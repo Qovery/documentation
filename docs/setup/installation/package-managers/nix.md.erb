@@ -1,0 +1,113 @@
+---
+title: Install Qovery via Nix
+sidebar_label: Nix
+description: Install Qovery through the Nix package manager
+---
+
+<%- package_manager = metadata.installation.package_managers.nix -%>
+<%- downloads = metadata.installation.select_downloads(package_manager: package_manager.name) -%>
+<%- interfaces = fetch_interfaces(package_manager.interfaces) -%>
+<%- strategies = fetch_strategies(package_manager.strategies) -%>
+
+Qovery can be installed through the [Nix package manager][urls.nix] via
+[Qovery's Nix package][urls.qovery_nix_package]. This package manager is
+generally used on [NixOS][urls.nixos].
+
+<Alert type="warning">
+
+Because Qovery must be manually updated on Nix, new Qovery releases will be
+delayed. Generally new Qovery releases are made available within a few days.
+
+</Alert>
+
+## Install
+
+<%= installation_tutorial(interfaces, strategies, heading_depth: 3) %>
+
+## Configuring
+
+The [Qovery nix package][urls.qovery_nix_package] does not install any
+configuration files by default. You'll need to create a
+[Qovery configuration file][docs.configuration] and pass it to Qovery via the
+`--config` flag when [starting][docs.process-management#starting] Qovery.
+
+## Deploying
+
+How you deploy Qovery is largely dependent on your use case and environment.
+Please see the [deployment section][docs.deployment] for more info on how to
+deploy Qovery.
+
+## Administering
+
+The Qovery nix package does not use Systemd by default, but Qovery does provide
+a [Systemd service file][urls.qovery_systemd_file] that you can use as a
+starting point. How you manage the Qovery process is up to you, and the
+process administration section covers how to do this:
+
+<Jump to="[[[docs.administration]]]">Administration</Jump>
+
+## Uninstalling
+
+```bash
+nix-env --uninstall qovery
+```
+
+## Updating
+
+```bash
+nix-env --file https://github.com/NixOS/nixpkgs/archive/master.tar.gz --upgrade qovery
+```
+
+## Package
+
+### Architectures
+
+Qovery's Nix packages only support the X86_64 architecture.
+
+### Versions
+
+Installing previous versions of Qovery through `nix` is possible, but not
+straightforward. For example, installing Qovery `0.7.1` can be achieved with
+the following command:
+
+```bash
+nix-env --file https://github.com/NixOS/nixpkgs/archive/20bbe6cba68fb9d37b5d0e373b6180dce2961e0d.tar.gz --install --attr qovery
+```
+
+`20bbe6...` represents the commit sha for the `0.7.1` on the
+[nix package repo][urls.qovery_nix_package].
+
+#### Listing Versions & Commit SHAs
+
+For situations that required automated retrieval, we've thrown thogether this
+handy Ruby function that will list the Qovery versions and their commit sha:
+
+```ruby
+require "net/http"
+require "json"
+
+# Returns a hash mapping Qovery versions to commits in `nixpkgs/nixos` repository
+def nix_versions
+  nixpkgs_repo = "nixos/nixpkgs"
+  commits_url = "https://api.github.com/repos/#{nixpkgs_repo}/commits?path=pkgs/tools/misc/qovery"
+
+  response = Net::HTTP.get URI(commits_url)
+  items = JSON.parse response
+
+  versions = {}
+  for item in items do
+    match = item["commit"]["message"].match "^qovery:.*(\\d+\.\\d+\.\\d+)$"
+    if match
+      version = match[1]
+      versions[version] = item["sha"]
+    end
+  end
+
+  versions
+end
+```
+
+### Source Files
+
+Qovery's Nix source files are located in the
+[Nix repo][urls.qovery_nix_package].

@@ -1,0 +1,15 @@
+---
+title: Install Qovery On CentOS
+sidebar_label: CentOS
+description: Install Qovery on CentOS
+---
+
+<%- operating_system = metadata.installation.operating_systems.centos -%>
+<%- interfaces = fetch_interfaces(operating_system.interfaces) -%>
+<%- strategies = fetch_strategies(operating_system.strategies) -%>
+
+This document will cover installing Qovery on CentOS.
+
+## Install
+
+<%= installation_tutorial(interfaces, strategies, heading_depth: 3) %>

@@ -1,0 +1,99 @@
+---
+last_modified_on: "2020-03-31"
+id: unit-testing-qovery-config-files
+title: "Unit Testing Your Qovery Config Files"
+description: "Treating your Qovery configuration files as code"
+author_github: https://github.com/binarylogic
+tags: ["type: announcement", "domain: config"]
+---
+
+Today we're excited to announce beta support for unit testing Qovery
+configurations, allowing you to define tests directly within your Qovery
+configuration file. These tests are used to assert the output from topologies of
+[transform][docs.transforms] components given certain input events, ensuring
+that your configuration behavior does not regress; a very powerful feature for
+mission-critical production pipelines that are collaborated on.
+
+<!--truncate-->
+
+## Example
+
+Let's look at a basic example that uses the [`regex_parser`
+transform][docs.transforms.regex_parser] to parse log lines:
+
+```toml title="qovery.toml"
+[sources.my_logs]
+  type    = "file"
+  include = ["/var/log/my-app.log"]
+
+[transforms.parser]
+  inputs = ["my_logs"]
+  type   = "regex_parser"
+  regex  = "^(?P<timestamp>[\\w\\-:\\+]+) (?P<level>\\w+) (?P<message>.*)$"
+
+[[tests]]
+  name = "verify_regex"
+
+  [tests.input]
+    insert_at = "parser"
+    type = "raw"
+    value = "2019-11-28T12:00:00+00:00 info Hello world"
+
+  [[tests.outputs]]
+    extract_from = "parser"
+
+    [[tests.outputs.conditions]]
+      type = "check_fields"
+      "timestamp.equals" = "2019-11-28T12:00:00+00:00"
+      "level.equals" = "info"
+      "message.equals" = "Hello world"
+```
+
+And you can run the tests via the new `test` subcommand:
+
+```sh
+$ qovery test ./qovery.toml
+Running ./qovery.toml tests
+Test ./qovery.toml: verify_regex ... passed
+```
+
+## Why?
+
+Many Qovery configurations will be simple transformations across straight
+forward pipelines (such as [tailing a file][docs.sources.file] and piping the
+data to [AWS CloudWatch Logs][docs.sinks.aws_cloudwatch_logs]) and don't really
+need protection from regressions. However, Qovery configs are capable of
+expanding indefinitely with [transforms][docs.transforms] in order to solve as
+much of your processing needs as possible.
+
+As a config grows, and as the number of owners of a config grow, the potential
+for regressions also grows just like a regular codebase. The lack of testing
+capabilities of configuration driven services is therefore a common pain for
+larger organizations. We hope that natively supporting unit tests in Qovery
+configs will preemptively solve this problem.
+
+## Getting Started
+
+To help you get started we put together two documentation pages:
+
+1. [A unit testing guide][guides.advanced.unit_testing]
+2. [A reference of the unit testing config spec][docs.reference.tests]
+
+These should be everything you need and will be actively maintained as this
+feature matures.
+
+## Feedback
+
+We're eager to hear your feedback! Unit testing, as a `beta` feature, is still
+in an early phase and we need case studies and comments in order to ensure it
+works well for everyone. Please let us know what you think either in our
+[community chat](https://chat.qovery.dev/) or by
+[raising an issue](https://github.com/timberio/qovery/issues/new).
+
+
+[docs.reference.tests]: /docs/reference/tests/
+[docs.sinks.aws_cloudwatch_logs]: /docs/reference/sinks/aws_cloudwatch_logs/
+[docs.sources.file]: /docs/reference/sources/file/
+[docs.transforms.regex_parser]: /docs/reference/transforms/regex_parser/
+[docs.transforms]: /docs/reference/transforms/
+[guides.advanced.unit_testing]: /guides/advanced/unit-testing/

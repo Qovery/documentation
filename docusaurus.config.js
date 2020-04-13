@@ -12,7 +12,7 @@ module.exports = {
         metadata: require('./metadata'),
     },
     themeConfig: {
-        disableDarkMode: true,
+        disableDarkMode: false,
         /*announcementBar: {
             id: 'support_us', // Any value that will identify this message
             content: 'We are looking to revamp our docs, please fill <a target="_blank" rel="noopener noreferrer" href="#">this survey</a>',

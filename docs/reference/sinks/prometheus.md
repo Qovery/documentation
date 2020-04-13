@@ -5,10 +5,10 @@ component_title: "Prometheus"
 description: "The Qovery `prometheus` sink exposes `metric` events to Prometheus metrics service."
 event_types: ["metric"]
 function_category: "transmit"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+prometheus%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+prometheus%22
 operating_systems: ["Linux","MacOS","Windows"]
 sidebar_label: "prometheus|[\"metric\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/sinks/prometheus.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/sinks/prometheus.rs
 status: "beta"
 title: "Prometheus Sink"
 unsupported_operating_systems: []
@@ -426,8 +426,8 @@ discussion with your use case if you find this to be a problem.
 [docs.data-model.metric#gauge]: /docs/about/data-model/metric/#gauge
 [docs.data-model.metric#set]: /docs/about/data-model/metric/#set
 [docs.data-model.metric]: /docs/about/data-model/metric/
-[urls.issue_387]: https://github.com/timberio/qovery/issues/387
-[urls.issue_710]: https://github.com/timberio/qovery/issues/710
+[urls.issue_387]: https://github.com/qovery/documentation/issues/387
+[urls.issue_710]: https://github.com/qovery/documentation/issues/710
 [urls.prometheus]: https://prometheus.io/
 [urls.prometheus_counter]: https://prometheus.io/docs/concepts/metric_types/#counter
 [urls.prometheus_gauge]: https://prometheus.io/docs/concepts/metric_types/#gauge

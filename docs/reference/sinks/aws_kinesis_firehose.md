@@ -5,10 +5,10 @@ component_title: "AWS Kinesis Firehose"
 description: "The Qovery `aws_kinesis_firehose` sink batches `log` events to Amazon Web Service's Kinesis Data Firehose via the `PutRecordBatch` API endpoint."
 event_types: ["log"]
 function_category: "transmit"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+aws_kinesis_firehose%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+aws_kinesis_firehose%22
 operating_systems: ["Linux","MacOS","Windows"]
 sidebar_label: "aws_kinesis_firehose|[\"log\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/sinks/aws_kinesis_firehose.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/sinks/aws_kinesis_firehose.rs
 status: "prod-ready"
 title: "AWS Kinesis Firehose Sink"
 unsupported_operating_systems: []
@@ -933,4 +933,4 @@ attempts and backoff rate with the [`retry_attempts`](#retry_attempts) and
 [urls.aws_kinesis_firehose]: https://aws.amazon.com/kinesis/data-firehose/
 [urls.aws_regions]: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html
 [urls.iam_instance_profile]: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html
-[urls.new_aws_kinesis_firehose_sink_issue]: https://github.com/timberio/qovery/issues/new?labels=sink%3A+aws_kinesis_firehose
+[urls.new_aws_kinesis_firehose_sink_issue]: https://github.com/qovery/documentation/issues/new?labels=sink%3A+aws_kinesis_firehose

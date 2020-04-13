@@ -5,10 +5,10 @@ component_title: "Datadog Logs"
 description: "The Qovery `datadog_logs` sink streams `log` events to Datadog's logs via the TCP endpoint."
 event_types: ["log"]
 function_category: "transmit"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+datadog_logs%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+datadog_logs%22
 operating_systems: ["Linux","MacOS","Windows"]
 sidebar_label: "datadog_logs|[\"log\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/sinks/datadog/logs.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/sinks/datadog/logs.rs
 status: "beta"
 title: "Datadog Logs Sink"
 unsupported_operating_systems: []

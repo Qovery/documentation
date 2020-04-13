@@ -21,8 +21,8 @@
     --ifm-color-blue-rgb: 67, 143, 255;
     --ifm-color-content: var(--ifm-color-emphasis-800);
     --ifm-color-content-secondary: var(--ifm-color-emphasis-600);
-    --ifm-color-danger: #ff1178;
-    --ifm-color-danger-rgb: 255, 17, 120;
+    --ifm-color-danger: #ff6240;
+    --ifm-color-danger-rgb: 255, 98, 64;
     --ifm-color-gray-25: rgba(0, 27, 61, 0.025);
     --ifm-color-gray-40: rgba(0, 27, 61, 0.04);
     --ifm-color-gray-50: rgba(0, 27, 61, 0.05);
@@ -2114,11 +2114,11 @@ html[data-theme="dark"] {
     --ifm-color-gray-1000: rgb(251, 251, 255);
     --ifm-contents-border-color: var(--ifm-color-emphasis-75);
     --ifm-global-shadow-md: 0 3px 8px 0px rgba(0, 0, 0, 0.2);
-    --ifm-color-primary: #e9eafa;
-    --ifm-color-primary-rgb: 233, 234, 250;
-    --ifm-color-primary-dark: #bcbeec;
+    --ifm-color-primary: #bebfff;
+    --ifm-color-primary-rgb: 190, 191, 255;
+    --ifm-color-primary-dark: #4749a8;
     --ifm-heading-color: var(--ifm-color-gray-1000);
-    --ifm-link-color: #f9f9fd;
+    --ifm-link-color: #bebfff;
     --ifm-navbar-search-input-icon: url('data:image/svg+xml;utf8,<svg fill="rgb(224, 235, 247)" alt="Search" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" height="16px" width="16px"><path d="M6.02945,10.20327a4.17382,4.17382,0,1,1,4.17382-4.17382A4.15609,4.15609,0,0,1,6.02945,10.20327Zm9.69195,4.2199L10.8989,9.59979A5.88021,5.88021,0,0,0,12.058,6.02856,6.00467,6.00467,0,1,0,9.59979,10.8989l4.82338,4.82338a.89729.89729,0,0,0,1.29912,0,.89749.89749,0,0,0-.00087-1.29909Z" /></svg>');
     --ifm-panel-background: var(--ifm-color-emphasis-50);
     --ifm-panel-background-rgb: 37, 37, 50;

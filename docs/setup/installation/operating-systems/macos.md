@@ -153,14 +153,14 @@ That's it! Simple and to the point. Hit `ctrl+c` to exit.
 docker run \
   -v $PWD/qovery.toml:/etc/qovery/qovery.toml:ro \
   -v /var/log \
-  timberio/qovery:latest-alpine
+  qovery/documentation:latest-alpine
 ```
 
 <CodeExplanation>
 
 * The `-v $PWD/qovery.to...` flag passes your custom configuration to Qovery.
 * The `-v /var/log` flag ensures that Qovery has access to your app's logging directory, adjust as necessary.
-* The `timberio/qovery:latest-alpine` is the default image we've chosen, you are welcome to use [other image variants][docs.platforms.docker#variants].
+* The `qovery/documentation:latest-alpine` is the default image we've chosen, you are welcome to use [other image variants][docs.platforms.docker#variants].
 
 </CodeExplanation>
 

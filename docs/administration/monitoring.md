@@ -158,4 +158,4 @@ Please refer to our troubleshooting guide:
 [docs.sinks]: /docs/reference/sinks/
 [docs.sources]: /docs/reference/sources/
 [guides.advanced.troubleshooting]: /guides/advanced/troubleshooting/
-[urls.issue_230]: https://github.com/timberio/qovery/issues/230
+[urls.issue_230]: https://github.com/qovery/documentation/issues/230

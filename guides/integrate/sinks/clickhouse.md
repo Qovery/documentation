@@ -234,7 +234,7 @@ Qovery is _powerful_ utility and we're just scratching the surface in this
 guide. Here are a few pages we recommend that demonstrate the power and
 flexibility of Qovery:
 
-<Jump to="https://github.com/timberio/qovery" leftIcon="github" target="_blank">
+<Jump to="https://github.com/qovery/documentation" leftIcon="github" target="_blank">
   <div className="title">Qovery Github repo <span className="badge badge--primary"><i className="feather icon-star"></i> 4k</span></div>
   <div className="sub-title">Qovery is free and open-source!</div>
 </Jump>
@@ -257,6 +257,6 @@ flexibility of Qovery:
 [urls.clickhouse]: https://clickhouse.yandex/
 [urls.rust]: https://www.rust-lang.org/
 [urls.qovery_performance]: https://qovery.dev/#performance
-[urls.qovery_repo]: https://github.com/timberio/qovery
-[urls.qovery_stars]: https://github.com/timberio/qovery/stargazers
+[urls.qovery_repo]: https://github.com/qovery/documentation
+[urls.qovery_stars]: https://github.com/qovery/documentation/stargazers
 [urls.qovery_website]: https://qovery.dev

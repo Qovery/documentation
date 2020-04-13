@@ -1,133 +1,133 @@
 .qovery-components--cols {
-  margin: var(--ifm-spacing-vertical) 0;
+    margin: var(--ifm-spacing-vertical) 0;
 }
 
 .qovery-components h2,
 .qovery-components h3 {
-  margin-top: calc( var(--ifm-spacing-vertical) * 2 );
-  margin-bottom: calc( var(--ifm-spacing-vertical) * 2 );
+    margin-top: calc(var(--ifm-spacing-vertical) * 2);
+    margin-bottom: calc(var(--ifm-spacing-vertical) * 2);
 }
 
 .qovery-components h2:first-child,
 .qovery-components h3:first-child {
-  margin-top: 0;
+    margin-top: 0;
 }
 
 .qovery-components--results {
-  padding-top: calc( var(--ifm-spacing-vertical) * 1 );
+    padding-top: calc(var(--ifm-spacing-vertical) * 1);
 }
 
 .qovery-components--grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  grid-gap: 1em;
-  margin-bottom: calc( var(--ifm-spacing-vertical) * 1 );
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 1em;
+    margin-bottom: calc(var(--ifm-spacing-vertical) * 1);
 }
 
 .qovery-component {
-  background: var(--ifm-panel-background);
-  border: 1px solid var(--ifm-panel-border-color);
-  border-radius: var(--ifm-global-radius);
-  box-shadow: var(--ifm-panel-box-shadow);
-  color: var(--ifm-heading-color);
-  font-weight: 500;
-  padding: var(--ifm-spacing-vertical) var(--ifm-spacing-horizontal);
-  transition: all var(--ifm-transition-fast) ease;
+    background: var(--ifm-panel-background);
+    border: 1px solid var(--ifm-panel-border-color);
+    border-radius: var(--ifm-global-radius);
+    box-shadow: var(--ifm-panel-box-shadow);
+    color: var(--ifm-heading-color);
+    font-weight: 500;
+    padding: var(--ifm-spacing-vertical) var(--ifm-spacing-horizontal);
+    transition: all var(--ifm-transition-fast) ease;
 }
 
 .qovery-component:hover {
-  background: var(--ifm-panel-background-active);
-  border-color: var(--ifm-panel-border-color-active);
-  box-shadow: var(--ifm-panel-box-shadow-active);
-  color: var(--ifm-panel-color-active);
-  text-decoration: none;
+    background: var(--ifm-panel-background-active);
+    border-color: var(--ifm-panel-border-color-active);
+    box-shadow: var(--ifm-panel-box-shadow-active);
+    color: var(--ifm-panel-color-active);
+    text-decoration: none;
 }
 
 .qovery-component .icon-info {
-  float: right;
-  margin-top: 0.2em;
+    float: right;
+    margin-top: 0.2em;
 }
 
 .qovery-component--name {
-  font-size: 1.1em;
-  font-weight: 600;
-  line-height: 1;
-  margin-bottom: calc( var(--ifm-spacing-vertical) / 2 );
+    font-size: 1.1em;
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: calc(var(--ifm-spacing-vertical) / 2);
 }
 
 .qovery-component--name svg {
-  height: 1em;
-  margin-right: 0.5em;
-  vertical-align: bottom;
-  width: 1em;
+    height: 1em;
+    margin-right: 0.5em;
+    vertical-align: bottom;
+    width: 1em;
 }
 
 .qovery-component--badges {
-  margin-top: var(--ifm-badge-padding-vertical);
+    margin-top: var(--ifm-badge-padding-vertical);
 }
 
 .qovery-component--badges .badge {
-  font-size: 0.6em;
-  margin-right: 5px;
-  padding: calc( var(--ifm-badge-padding-vertical) / 1.5 ) calc( var(--ifm-badge-padding-horizontal) / 1.5 );
+    font-size: 0.6em;
+    margin-right: 5px;
+    padding: calc(var(--ifm-badge-padding-vertical) / 1.5) calc(var(--ifm-badge-padding-horizontal) / 1.5);
 }
 
 .qovery-component--badges .badge--right {
-  float: right;
-  margin-left: 5px;
-  margin-right: 0;
-  margin-top: 0.75em;
+    float: right;
+    margin-left: 5px;
+    margin-right: 0;
+    margin-top: 0.75em;
 }
 
 @media (min-width: 996px) {
-  .qovery-components {
-    margin: 0;
-  }
+    .qovery-components {
+        margin: 0;
+    }
 
-  .qovery-components--cols {
-    display: flex;
-  }
+    .qovery-components--cols {
+        display: flex;
+    }
 
-  .qovery-components--cols .filters {
-    --ifm-sidebar-width: 225px;
-    flex: 0 0 var(--ifm-sidebar-width);
-    max-width: var(--ifm-sidebar-width);
-    padding: calc( var(--ifm-spacing-vertical) * 2 ) var(--ifm-spacing-horizontal);
-    padding-left: 0;
-  }
+    .qovery-components--cols .filters {
+        --ifm-sidebar-width: 225px;
+        flex: 0 0 var(--ifm-sidebar-width);
+        max-width: var(--ifm-sidebar-width);
+        padding: calc(var(--ifm-spacing-vertical) * 2) var(--ifm-spacing-horizontal);
+        padding-left: 0;
+    }
 
-  .qovery-components--cols .filters .search {
-    margin-bottom: calc( var(--ifm-spacing-vertical) * 2 );
-  }
+    .qovery-components--cols .filters .search {
+        margin-bottom: calc(var(--ifm-spacing-vertical) * 2);
+    }
 
-  .qovery-components--cols .filter {
-    display: block;
-    margin-bottom: var(--ifm-spacing-vertical);
-  }
+    .qovery-components--cols .filter {
+        display: block;
+        margin-bottom: var(--ifm-spacing-vertical);
+    }
 
-  .qovery-components--cols .filter--label {
-    border: 0px none;
-    font-size: 0.9em;
-    font-weight: bold;
-    margin: 0;
-    margin-bottom: var(--ifm-spacing-vertical);
-    text-align: left;
-    text-transform: uppercase;
-  }
+    .qovery-components--cols .filter--label {
+        border: 0px none;
+        font-size: 0.9em;
+        font-weight: bold;
+        margin: 0;
+        margin-bottom: var(--ifm-spacing-vertical);
+        text-align: left;
+        text-transform: uppercase;
+    }
 
-  .qovery-components--cols .filter--choices label {
-    display: block;
-    margin: 0;
-  }
+    .qovery-components--cols .filter--choices label {
+        display: block;
+        margin: 0;
+    }
 
-  .qovery-components--cols .filter--choices input[type="checkbox"] {
-    margin-left: 0;
-  }
+    .qovery-components--cols .filter--choices input[type="checkbox"] {
+        margin-left: 0;
+    }
 
-  .qovery-components--cols .qovery-components--results {
-    flex: 1 0;
-    max-width: 100%;
-    padding: calc( var(--ifm-spacing-vertical) * 2 ) var(--ifm-spacing-horizontal);
-    padding-right: 0;
-  }
+    .qovery-components--cols .qovery-components--results {
+        flex: 1 0;
+        max-width: 100%;
+        padding: calc(var(--ifm-spacing-vertical) * 2) var(--ifm-spacing-horizontal);
+        padding-right: 0;
+    }
 }

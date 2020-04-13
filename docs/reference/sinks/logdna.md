@@ -5,10 +5,10 @@ component_title: "LogDNA"
 description: "The Qovery `logdna` sink batches `log` events to LogDna's HTTP Ingestion API."
 event_types: ["log"]
 function_category: "transmit"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+logdna%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+logdna%22
 operating_systems: ["Linux","MacOS","Windows"]
 sidebar_label: "logdna|[\"log\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/sinks/logdna.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/sinks/logdna.rs
 status: "beta"
 title: "LogDNA Sink"
 unsupported_operating_systems: []
@@ -860,4 +860,4 @@ attempts and backoff rate with the [`retry_attempts`](#retry_attempts) and
 [docs.data-model]: /docs/about/data-model/
 [docs.guarantees]: /docs/about/guarantees/
 [urls.logdna]: https://logdna.com/
-[urls.new_logdna_sink_issue]: https://github.com/timberio/qovery/issues/new?labels=sink%3A+logdna
+[urls.new_logdna_sink_issue]: https://github.com/qovery/documentation/issues/new?labels=sink%3A+logdna

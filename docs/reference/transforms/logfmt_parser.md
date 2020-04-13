@@ -4,9 +4,9 @@ component_title: "Logfmt Parser"
 description: "The Qovery `logfmt_parser` transform accepts and outputs `log` events allowing you to parse a log field's value in the logfmt format."
 event_types: ["log"]
 function_category: "parse"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22transform%3A+logfmt_parser%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22transform%3A+logfmt_parser%22
 sidebar_label: "logfmt_parser|[\"log\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/transforms/logfmt_parser.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/transforms/logfmt_parser.rs
 status: "beta"
 title: "Logfmt Parser Transform"
 ---

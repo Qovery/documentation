@@ -47,4 +47,4 @@ usage][urls.qovery_performance].
 [docs.strategies#sidecar]: /docs/setup/deployment/strategies/#sidecar
 [urls.rust]: https://www.rust-lang.org/
 [urls.qovery_performance]: https://qovery.dev/#performance
-[urls.qovery_repo]: https://github.com/timberio/qovery
+[urls.qovery_repo]: https://github.com/qovery/documentation

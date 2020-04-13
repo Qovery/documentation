@@ -3,7 +3,7 @@ last_modified_on: "2020-04-01"
 title: Install Qovery On Docker
 sidebar_label: Docker
 description: Install Qovery on the Docker platform
-source_url: https://github.com/timberio/qovery/tree/master/distribution/docker
+source_url: https://github.com/qovery/documentation/tree/master/distribution/docker
 ---
 
 import CodeExplanation from '@site/src/components/CodeExplanation';
@@ -15,7 +15,7 @@ import Steps from '@site/src/components/Steps';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Qovery maintains the [`timberio/qovery` Docker images][urls.docker_hub_qovery]
+Qovery maintains the [`qovery/documentation` Docker images][urls.docker_hub_qovery]
 available on [Docker Hub][urls.docker_hub_qovery] which come pre-installed
 with Qovery and any recommended system dependencies. These images are available
 for x86_64, ARM64, and ARMv7
@@ -83,14 +83,14 @@ The following diagram demonstrates how it works.
 docker run \
   -v $PWD/qovery.toml:/etc/qovery/qovery.toml:ro \
   -v /var/run/docker.sock:/var/run/docker.sock \
-  timberio/qovery:latest-alpine
+  qovery/documentation:latest-alpine
 ```
 
 <CodeExplanation>
 
 * The `-v $PWD/qovery.to...` flag passes your custom configuration to Qovery.
 * The `-v /var/run/docke...` flag ensures that Qovery has access to the Docker API.
-* The `timberio/qovery:latest-alpine` is the default image we've chosen, you are welcome to use [other image variants][docs.platforms.docker#variants].
+* The `qovery/documentation:latest-alpine` is the default image we've chosen, you are welcome to use [other image variants][docs.platforms.docker#variants].
 
 </CodeExplanation>
 
@@ -154,14 +154,14 @@ each service. Typically data is collected by tailing local files via Qovery's
 docker run \
   -v $PWD/qovery.toml:/etc/qovery/qovery.toml:ro \
   -v /var/log \
-  timberio/qovery:latest-alpine
+  qovery/documentation:latest-alpine
 ```
 
 <CodeExplanation>
 
 * The `-v $PWD/qovery.to...` flag passes your custom configuration to Qovery.
 * The `-v /var/log` flag ensures that Qovery has access to your app's logging directory, adjust as necessary.
-* The `timberio/qovery:latest-alpine` is the default image we've chosen, you are welcome to use [other image variants][docs.platforms.docker#variants].
+* The `qovery/documentation:latest-alpine` is the default image we've chosen, you are welcome to use [other image variants][docs.platforms.docker#variants].
 
 </CodeExplanation>
 
@@ -227,14 +227,14 @@ The following diagram demonstrates how it works.
 docker run \
   -v $PWD/qovery.toml:/etc/qovery/qovery.toml:ro \
   -p 9000:9000 \
-  timberio/qovery:latest-alpine
+  qovery/documentation:latest-alpine
 ```
 
 <CodeExplanation>
 
 * The `-v $PWD/qovery.to...` flag passes your custom configuration to Qovery.
 * The `-p 9000:9000` flag ensures that port 9000 is exposed for network communication.
-* The `timberio/qovery:latest-alpine` is the default image we've chosen, you are welcome to use [other image variants][docs.platforms.docker#variants].
+* The `qovery/documentation:latest-alpine` is the default image we've chosen, you are welcome to use [other image variants][docs.platforms.docker#variants].
 
 </CodeExplanation>
 
@@ -273,8 +273,8 @@ deploy Qovery.
 Simply run with newer version in the tag:
 
 ```bash
-docker pull timberio/qovery:X.X.X-alpine && \
-  docker run timberio/qovery:X.X.X-alpine
+docker pull qovery/documentation:X.X.X-alpine && \
+  docker run qovery/documentation:X.X.X-alpine
 ```
 
 See the [variants](#variants) and [versions](#versions) sections to choose
@@ -292,7 +292,7 @@ smaller in size than other Docker images and statically links libraries. This
 is the image we recommend due to it's small size and reliability.
 
 ```bash
-docker run timberio/qovery:0.8.2-alpine
+docker run qovery/documentation:0.8.2-alpine
 ```
 
 #### debian
@@ -301,7 +301,7 @@ This image is based on the [`debian-slim` image][urls.docker_debian],
 which is a smaller, more compact variant of the [`debian` image][urls.docker_debian].
 
 ```bash
-docker run timberio/qovery:0.8.2-debian
+docker run qovery/documentation:0.8.2-debian
 ```
 
 ### Architectures
@@ -318,12 +318,12 @@ Qovery maintains special tags that are automatically updated whenever Qovery is
 
 | Version          | URL                                                      |
 |:-----------------|:---------------------------------------------------------|
-| Latest major     | `timberio/qovery:latest-alpine`               |
-| Latest minor     | `timberio/qovery:<MAJOR>.X-alpine`            |
-| Latest patch     | `timberio/qovery:<MAJOR.MINOR>.X-alpine`      |
-| Specific version | `timberio/qovery:<MAJOR.MINOR.PATCH>-alpine`  |
-| Latest nightly   | `timberio/qovery:nightly-alpine`              |
-| Specific nightly | `timberio/qovery:nightly-<YYYY-MM-DD>-alpine` |
+| Latest major     | `qovery/documentation:latest-alpine`               |
+| Latest minor     | `qovery/documentation:<MAJOR>.X-alpine`            |
+| Latest patch     | `qovery/documentation:<MAJOR.MINOR>.X-alpine`      |
+| Specific version | `qovery/documentation:<MAJOR.MINOR.PATCH>-alpine`  |
+| Latest nightly   | `qovery/documentation:nightly-alpine`              |
+| Specific nightly | `qovery/documentation:nightly-<YYYY-MM-DD>-alpine` |
 
 ### Source Files
 
@@ -341,9 +341,9 @@ Qovery's Docker source files are located
 [docs.strategies#daemon]: /docs/setup/deployment/strategies/#daemon
 [docs.strategies#service]: /docs/setup/deployment/strategies/#service
 [docs.strategies#sidecar]: /docs/setup/deployment/strategies/#sidecar
-[urls.default_configuration]: https://github.com/timberio/qovery/blob/master/config/qovery.toml
+[urls.default_configuration]: https://github.com/qovery/documentation/blob/master/config/qovery.toml
 [urls.docker_alpine]: https://hub.docker.com/_/alpine
 [urls.docker_debian]: https://hub.docker.com/_/debian
-[urls.docker_hub_qovery]: https://hub.docker.com/r/timberio/qovery
-[urls.qovery_docker_source_files]: https://github.com/timberio/qovery/tree/master/distribution/docker
+[urls.docker_hub_qovery]: https://hub.docker.com/r/qovery/documentation
+[urls.qovery_docker_source_files]: https://github.com/qovery/documentation/tree/master/distribution/docker
 [urls.qovery_releases]: https://qovery.dev/releases/latest

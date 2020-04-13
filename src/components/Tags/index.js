@@ -8,15 +8,15 @@ import {enrichTags} from '@site/src/exports/tags';
 import styles from './styles.module.css';
 
 function Tags({block, colorProfile, tags, valuesOnly}) {
-  const enrichedTags = enrichTags(tags, colorProfile);
+    const enrichedTags = enrichTags(tags, colorProfile);
 
-  return (
-    <div className={classnames(styles.tags, {[styles.tagsBlock]: block})}>
-      {enrichedTags.map((tag, idx) => (
-        <Tag key={idx} valueOnly={valuesOnly} {...tag} />
-      ))}
-    </div>
-  );
+    return (
+        <div className={classnames(styles.tags, {[styles.tagsBlock]: block})}>
+            {enrichedTags.map((tag, idx) => (
+                <Tag key={idx} valueOnly={valuesOnly} {...tag} />
+            ))}
+        </div>
+    );
 }
 
 export default Tags;

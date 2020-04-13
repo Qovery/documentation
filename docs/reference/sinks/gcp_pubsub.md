@@ -5,10 +5,10 @@ component_title: "GCP PubSub"
 description: "The Qovery `gcp_pubsub` sink batches `log` events to Google Cloud Platform's Pubsub service via the REST Interface."
 event_types: ["log"]
 function_category: "transmit"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+gcp_pubsub%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+gcp_pubsub%22
 operating_systems: ["Linux","MacOS","Windows"]
 sidebar_label: "gcp_pubsub|[\"log\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/sinks/gcp/pubsub.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/sinks/gcp/pubsub.rs
 status: "beta"
 title: "GCP PubSub Sink"
 unsupported_operating_systems: []
@@ -1014,5 +1014,5 @@ options.
 [urls.gcp_authentication_api_key]: https://cloud.google.com/docs/authentication/api-keys
 [urls.gcp_pubsub]: https://cloud.google.com/pubsub/
 [urls.gcp_pubsub_rest]: https://cloud.google.com/pubsub/docs/reference/rest/
-[urls.new_gcp_pubsub_sink_issue]: https://github.com/timberio/qovery/issues/new?labels=sink%3A+gcp_pubsub
+[urls.new_gcp_pubsub_sink_issue]: https://github.com/qovery/documentation/issues/new?labels=sink%3A+gcp_pubsub
 [urls.openssl]: https://www.openssl.org/

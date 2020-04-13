@@ -5,35 +5,35 @@ import createSitemap from './createSitemap';
 import {LoadContext, Props} from '@docusaurus/types';
 
 const DEFAULT_OPTIONS: PluginOptions = {
-  cacheTime: 600 * 1000, // 600 sec - cache purge period.
-  changefreq: 'weekly',
-  priority: 0.5,
+    cacheTime: 600 * 1000, // 600 sec - cache purge period.
+    changefreq: 'weekly',
+    priority: 0.5,
 };
 
 export default function pluginSitemap(
-  _context: LoadContext,
-  opts: Partial<PluginOptions>,
+    _context: LoadContext,
+    opts: Partial<PluginOptions>,
 ) {
-  const options = {...DEFAULT_OPTIONS, ...opts};
+    const options = {...DEFAULT_OPTIONS, ...opts};
 
-  return {
-    name: 'docusaurus-plugin-sitemap',
+    return {
+        name: 'docusaurus-plugin-sitemap',
 
-    async postBuild({siteConfig, routesPaths, outDir}: Props) {
-      // Generate sitemap.
-      const generatedSitemap = createSitemap(
-        siteConfig,
-        routesPaths,
-        options,
-      ).toString();
+        async postBuild({siteConfig, routesPaths, outDir}: Props) {
+            // Generate sitemap.
+            const generatedSitemap = createSitemap(
+                siteConfig,
+                routesPaths,
+                options,
+            ).toString();
 
-      // Write sitemap file.
-      const sitemapPath = path.join(outDir, 'sitemap.xml');
-      try {
-        fs.writeFileSync(sitemapPath, generatedSitemap);
-      } catch (err) {
-        throw new Error(`Sitemap error: ${err}`);
-      }
-    },
-  };
+            // Write sitemap file.
+            const sitemapPath = path.join(outDir, 'sitemap.xml');
+            try {
+                fs.writeFileSync(sitemapPath, generatedSitemap);
+            } catch (err) {
+                throw new Error(`Sitemap error: ${err}`);
+            }
+        },
+    };
 }

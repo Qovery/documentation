@@ -5,10 +5,10 @@ component_title: "Loki"
 description: "The Qovery `loki` sink batches `log` events to Loki."
 event_types: ["log"]
 function_category: "transmit"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+loki%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+loki%22
 operating_systems: ["Linux","MacOS","Windows"]
 sidebar_label: "loki|[\"log\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/sinks/loki.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/sinks/loki.rs
 status: "beta"
 title: "Loki Sink"
 unsupported_operating_systems: []
@@ -1194,5 +1194,5 @@ options.
 [urls.basic_auth]: https://en.wikipedia.org/wiki/Basic_access_authentication
 [urls.loki]: https://grafana.com/oss/loki/
 [urls.loki_multi_tenancy]: https://github.com/grafana/loki/blob/master/docs/operations/multi-tenancy.md
-[urls.new_loki_sink_issue]: https://github.com/timberio/qovery/issues/new?labels=sink%3A+loki
+[urls.new_loki_sink_issue]: https://github.com/qovery/documentation/issues/new?labels=sink%3A+loki
 [urls.openssl]: https://www.openssl.org/

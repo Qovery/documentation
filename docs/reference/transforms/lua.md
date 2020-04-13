@@ -4,9 +4,9 @@ component_title: "Lua"
 description: "The Qovery `lua` transform accepts and outputs `log` and `metric` events allowing you to transform events with a full embedded Lua engine."
 event_types: ["log","metric"]
 function_category: "program"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22transform%3A+lua%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22transform%3A+lua%22
 sidebar_label: "lua|[\"log\",\"metric\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/transforms/lua
+source_url: https://github.com/qovery/documentation/tree/master/src/transforms/lua
 status: "beta"
 title: "Lua Transform"
 ---

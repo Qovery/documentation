@@ -13,40 +13,40 @@ import pluralize from 'pluralize';
 const AnchoredH2 = Heading('h2');
 
 function GuideTagListPage(props) {
-  const {tags} = props;
+    const {tags} = props;
 
-  const normalizedTags = Object.values(tags).map(tag => ({
-    count: tag.count,
-    label: tag.name,
-    permalink: tag.permalink
-  }));
+    const normalizedTags = Object.values(tags).map(tag => ({
+        count: tag.count,
+        label: tag.name,
+        permalink: tag.permalink
+    }));
 
-  const enrichedTags = enrichTags(normalizedTags, 'guides');
-  const groupedTags = _.groupBy(enrichedTags, 'category');
+    const enrichedTags = enrichTags(normalizedTags, 'guides');
+    const groupedTags = _.groupBy(enrichedTags, 'category');
 
-  return (
-    <Layout title="Tags" description="Qovery guide tags">
-      <header className="hero hero--clean">
-        <div className="container">
-          <h1>All Guide Tags</h1>
-        </div>
-      </header>
-      <main className="container container--xs">
-        {Object.keys(groupedTags).map((category, index) => {
-          let tags = groupedTags[category];
-          return (
-            <section>
-              <AnchoredH2 id={category.name}>{pluralize(humanizeString(category))}</AnchoredH2>
+    return (
+        <Layout title="Tags" description="Qovery guide tags">
+            <header className="hero hero--clean">
+                <div className="container">
+                    <h1>All Guide Tags</h1>
+                </div>
+            </header>
+            <main className="container container--xs">
+                {Object.keys(groupedTags).map((category, index) => {
+                    let tags = groupedTags[category];
+                    return (
+                        <section>
+                            <AnchoredH2 id={category.name}>{pluralize(humanizeString(category))}</AnchoredH2>
 
-              {tags.map((tag, idx) => (
-                <div><Tag key={idx} valueOnly={true} {...tag} /></div>
-              ))}
-            </section>
-          );
-        })}
-      </main>
-    </Layout>
-  );
+                            {tags.map((tag, idx) => (
+                                <div><Tag key={idx} valueOnly={true} {...tag} /></div>
+                            ))}
+                        </section>
+                    );
+                })}
+            </main>
+        </Layout>
+    );
 }
 
 export default GuideTagListPage;

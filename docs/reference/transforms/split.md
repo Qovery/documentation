@@ -4,9 +4,9 @@ component_title: "Split"
 description: "The Qovery `split` transform accepts and outputs `log` events allowing you to split a field's value on a _literal_ separator and zip the tokens into ordered field names."
 event_types: ["log"]
 function_category: "parse"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22transform%3A+split%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22transform%3A+split%22
 sidebar_label: "split|[\"log\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/transforms/split.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/transforms/split.rs
 status: "prod-ready"
 title: "Split Transform"
 ---

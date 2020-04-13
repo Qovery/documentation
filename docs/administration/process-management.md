@@ -44,13 +44,13 @@ sudo systemctl start qovery
 ```bash
 docker run \
   -v $PWD/qovery.toml:/etc/qovery/qovery.toml:ro \
-  timberio/qovery:latest-alpine
+  qovery/documentation:latest-alpine
 ```
 
 <CodeExplanation>
 
 * The `-v $PWD/qovery.to...` flag passes your custom configuration to Qovery.
-* The `timberio/qovery:latest-alpine` is the default image we've chosen, you are welcome to use [other image variants][docs.platforms.docker#variants].
+* The `qovery/documentation:latest-alpine` is the default image we've chosen, you are welcome to use [other image variants][docs.platforms.docker#variants].
 
 </CodeExplanation>
 
@@ -153,7 +153,7 @@ sudo systemctl stop qovery
 <TabItem value="docker-cli">
 
 ```bash
-docker stop timberio/qovery
+docker stop qovery/documentation
 ```
 
 </TabItem>
@@ -250,7 +250,7 @@ sudo systemctl stop qovery
 <TabItem value="docker-cli">
 
 ```bash
-docker stop timberio/qovery
+docker stop qovery/documentation
 ```
 
 </TabItem>
@@ -322,4 +322,4 @@ transition from the old to new pipeline is graceful.
 [docs.validating]: /docs/administration/validating/
 [urls.exit_codes]: https://docs.rs/exitcode/1.1.2/exitcode/#constants
 [urls.systemd]: https://systemd.io/
-[urls.qovery_systemd_file]: https://github.com/timberio/qovery/blob/master/distribution/systemd/qovery.service
+[urls.qovery_systemd_file]: https://github.com/qovery/documentation/blob/master/distribution/systemd/qovery.service

@@ -14,30 +14,32 @@ import readingTime from 'reading-time';
 import './styles.css';
 
 function BlogPostItem(props) {
-  const {
-    children,
-    frontMatter,
-    metadata,
-    truncated,
-    isBlogPostPage = false,
-  } = props;
-  const {date: dateString, description, permalink, tags} = metadata;
-  const {author_github, title} = frontMatter;
-  const readingStats = readingTime(children.toString());
-  const date = new Date(Date.parse(dateString));
-  const domainTag = enrichTags(tags, 'blog').find(tag => tag.category == 'domain');
-  const domain = domainTag ? domainTag.value : null;
+    const {
+        children,
+        frontMatter,
+        metadata,
+        truncated,
+        isBlogPostPage = false,
+    } = props;
+    const {date: dateString, description, permalink, tags} = metadata;
+    const {author_github, title} = frontMatter;
+    const readingStats = readingTime(children.toString());
+    const date = new Date(Date.parse(dateString));
+    const domainTag = enrichTags(tags, 'blog').find(tag => tag.category == 'domain');
+    const domain = domainTag ? domainTag.value : null;
 
-  return (
-    <Link to={permalink + '/'} className={classnames('blog-post-item', 'domain-bg', 'domain-bg--hover', `domain-bg--${domain}`)}>
-      <article>
-        <h2>{title}</h2>
-        <div className="blog-post-item--subtitle">{description}</div>
-        <Avatar github={author_github} size="sm" subTitle={<><time pubdate="pubdate" dateTime={date.toISOString()}>{dateFormat(date, "mmm dS")}</time> / {readingStats.text}</>} rel="author" />
-        <Tags colorProfile="blog" tags={tags} />
-      </article>
-    </Link>
-  );
+    return (
+        <Link to={permalink + '/'} className={classnames('blog-post-item', 'domain-bg', 'domain-bg--hover', `domain-bg--${domain}`)}>
+            <article>
+                <h2>{title}</h2>
+                <div className="blog-post-item--subtitle">{description}</div>
+                <Avatar github={author_github} size="sm" subTitle={<>
+                    <time pubdate="pubdate" dateTime={date.toISOString()}>{dateFormat(date, "mmm dS")}</time>
+                    / {readingStats.text}</>} rel="author"/>
+                <Tags colorProfile="blog" tags={tags}/>
+            </article>
+        </Link>
+    );
 }
 
 export default BlogPostItem;

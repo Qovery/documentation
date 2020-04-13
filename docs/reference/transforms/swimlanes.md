@@ -4,9 +4,9 @@ component_title: "Swimlanes"
 description: "The Qovery `swimlanes` transform accepts and outputs `log` events allowing you to route events across parallel streams using logical filters."
 event_types: ["log"]
 function_category: "route"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22transform%3A+swimlanes%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22transform%3A+swimlanes%22
 sidebar_label: "swimlanes|[\"log\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/transforms/swimlanes.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/transforms/swimlanes.rs
 status: "beta"
 title: "Swimlanes Transform"
 ---

@@ -148,4 +148,4 @@ filters.
 [docs.data-model]: /docs/about/data-model/
 [docs.sinks]: /docs/reference/sinks/
 [pages.components]: /components/
-[urls.qovery_bug_issues]: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22type%3A+bug%22
+[urls.qovery_bug_issues]: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22type%3A+bug%22

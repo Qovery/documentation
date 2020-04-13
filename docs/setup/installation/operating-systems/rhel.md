@@ -219,13 +219,13 @@ That's it! Simple and to the point. Hit `ctrl+c` to exit.
 ```bash
 docker run \
   -v $PWD/qovery.toml:/etc/qovery/qovery.toml:ro \
-  timberio/qovery:latest-alpine
+  qovery/documentation:latest-alpine
 ```
 
 <CodeExplanation>
 
 * The `-v $PWD/qovery.to...` flag passes your custom configuration to Qovery.
-* The `timberio/qovery:latest-alpine` is the default image we've chosen, you are welcome to use [other image variants][docs.platforms.docker#variants].
+* The `qovery/documentation:latest-alpine` is the default image we've chosen, you are welcome to use [other image variants][docs.platforms.docker#variants].
 
 </CodeExplanation>
 

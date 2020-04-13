@@ -152,7 +152,7 @@ At this point we recommend reaching out to the community for help.
 
 
 [docs.monitoring#rate-limiting]: /docs/administration/monitoring/#rate-limiting
-[urls.new_bug_report]: https://github.com/timberio/qovery/issues/new?labels=type%3A+bug
-[urls.new_feature_request]: https://github.com/timberio/qovery/issues/new?labels=type%3A+new+feature
-[urls.qovery_chat]: https://chat.qovery.dev
-[urls.qovery_issues]: https://github.com/timberio/qovery/issues
+[urls.new_bug_report]: https://github.com/qovery/documentation/issues/new?labels=type%3A+bug
+[urls.new_feature_request]: https://github.com/qovery/documentation/issues/new?labels=type%3A+new+feature
+[urls.qovery_chat]: https://discord.qovery.com
+[urls.qovery_issues]: https://github.com/qovery/documentation/issues

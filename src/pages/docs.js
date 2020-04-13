@@ -2,7 +2,7 @@ import React from 'react';
 import {Redirect} from '@docusaurus/router';
 
 function Docs() {
-  return <Redirect to="/docs/about/what-is-qovery/" />;
+    return <Redirect to="/docs/about/what-is-qovery/"/>;
 }
 
 export default Docs;

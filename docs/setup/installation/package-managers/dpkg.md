@@ -313,5 +313,5 @@ Qovery's DPKG source files are located in
 [docs.strategies#daemon]: /docs/setup/deployment/strategies/#daemon
 [urls.dpkg]: https://wiki.debian.org/dpkg
 [urls.systemd]: https://systemd.io/
-[urls.qovery_debian_source_files]: https://github.com/timberio/qovery/tree/master/distribution/debian
+[urls.qovery_debian_source_files]: https://github.com/qovery/documentation/tree/master/distribution/debian
 [urls.qovery_releases]: https://qovery.dev/releases/latest

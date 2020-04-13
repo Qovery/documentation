@@ -5,10 +5,10 @@ component_title: "InfluxDB Metrics"
 description: "The Qovery `influxdb_metrics` sink batches `metric` events to InfluxDB using v1 or v2 HTTP API."
 event_types: ["metric"]
 function_category: "transmit"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+influxdb_metrics%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+influxdb_metrics%22
 operating_systems: ["Linux","MacOS","Windows"]
 sidebar_label: "influxdb_metrics|[\"metric\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/sinks/influxdb_metrics.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/sinks/influxdb_metrics.rs
 status: "beta"
 title: "InfluxDB Metrics Sink"
 unsupported_operating_systems: []
@@ -766,4 +766,4 @@ attempts and backoff rate with the [`retry_attempts`](#retry_attempts) and
 [urls.influxdb_http_api_v1]: https://docs.influxdata.com/influxdb/latest/tools/api/#write-http-endpoint
 [urls.influxdb_http_api_v2]: https://v2.docs.influxdata.com/v2.0/api/#tag/Write
 [urls.influxdb_line_protocol]: https://v2.docs.influxdata.com/v2.0/reference/syntax/line-protocol/
-[urls.new_influxdb_metrics_sink_issue]: https://github.com/timberio/qovery/issues/new?labels=sink%3A+influxdb_metrics
+[urls.new_influxdb_metrics_sink_issue]: https://github.com/qovery/documentation/issues/new?labels=sink%3A+influxdb_metrics

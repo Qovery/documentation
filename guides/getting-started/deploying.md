@@ -305,14 +305,14 @@ sudo systemctl start qovery
 docker run \
   -v $PWD/qovery.toml:/etc/qovery/qovery.toml:ro \
   -v /var/run/docker.sock:/var/run/docker.sock \
-  timberio/qovery:latest-alpine
+  qovery/documentation:latest-alpine
 ```
 
 <CodeExplanation>
 
 * The `-v $PWD/qovery.to...` flag passes your custom configuration to Qovery.
 * The `-v /var/run/docke...` flag ensures that Qovery has access to the Docker API.
-* The `timberio/qovery:latest-alpine` is the default image we've chosen, you are welcome to use [other image variants][docs.platforms.docker#variants].
+* The `qovery/documentation:latest-alpine` is the default image we've chosen, you are welcome to use [other image variants][docs.platforms.docker#variants].
 
 </CodeExplanation>
 

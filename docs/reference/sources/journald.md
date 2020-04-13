@@ -5,10 +5,10 @@ component_title: "Journald"
 description: "The Qovery `journald` source ingests data through Systemd's Journald utility and outputs `log` events."
 event_types: ["log"]
 function_category: "collect"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22source%3A+journald%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22source%3A+journald%22
 operating_systems: ["Linux"]
 sidebar_label: "journald|[\"log\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/sources/journald.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/sources/journald.rs
 status: "beta"
 title: "Journald Source"
 unsupported_operating_systems: ["MacOS","Windows"]
@@ -407,7 +407,7 @@ usermod -aG systemd-journal qovery
 [docs.global-options#data_dir]: /docs/reference/global-options/#data_dir
 [docs.sources.journald#communication-strategy]: /docs/reference/sources/journald/#communication-strategy
 [docs.sources.journald#user-permissions]: /docs/reference/sources/journald/#user-permissions
-[urls.issue_1473]: https://github.com/timberio/qovery/issues/1473
+[urls.issue_1473]: https://github.com/qovery/documentation/issues/1473
 [urls.journald]: https://www.freedesktop.org/software/systemd/man/systemd-journald.service.html
 [urls.rust_subprocess]: https://docs.rs/subprocess
 [urls.systemd]: https://systemd.io/

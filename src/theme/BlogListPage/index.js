@@ -13,59 +13,67 @@ import {viewedNewPost} from '@site/src/exports/newPost';
 import './styles.css';
 
 function BlogListPage(props) {
-  const {metadata, items} = props;
-  const context = useDocusaurusContext();
-  const {siteConfig = {title: siteTitle}} = context;
-  const {metadata: {post_tags: postTags}} = siteConfig.customFields;
-  const enrichedTags = enrichTags(postTags, 'blog');
-  const typeTags = enrichedTags.filter(tag => tag.category == 'type');
-  const domainTags = enrichedTags.filter(tag => tag.category == 'domain');
-  const isBlogOnlyMode = metadata.permalink === '/';
-  const title = isBlogOnlyMode ? siteTitle : 'Blog';
+    const {metadata, items} = props;
+    const context = useDocusaurusContext();
+    const {siteConfig = {title: siteTitle}} = context;
+    const {metadata: {post_tags: postTags}} = siteConfig.customFields;
+    const enrichedTags = enrichTags(postTags, 'blog');
+    const typeTags = enrichedTags.filter(tag => tag.category == 'type');
+    const domainTags = enrichedTags.filter(tag => tag.category == 'domain');
+    const isBlogOnlyMode = metadata.permalink === '/';
+    const title = isBlogOnlyMode ? siteTitle : 'Blog';
 
-  viewedNewPost();
+    viewedNewPost();
 
-  return (
-    <Layout title={title} description="Qovery blog posts, articles, and tips from the Qovery core team.">
-      <div className="blog-list container">
-        <div className="blog-list--filters">
-          <a href="/blog/rss.xml" style={{float: 'right', fontSize: '1.5em', marginTop: '0px', marginLeft: '-30px', width: '30px'}}><i className="feather icon-rss"></i></a>
-          <h1>The Qovery Blog</h1>
-          <p>Thoughts on monitoring and observability from the <Link to="/community/#team">Qovery & Timber.io team</Link>.</p>
+    return (
+        <Layout title={title} description="Qovery blog posts, articles, and tips from the Qovery core team.">
+            <div className="blog-list container">
+                <div className="blog-list--filters">
+                    <a href="/blog/rss.xml" style={{
+                        float: 'right',
+                        fontSize: '1.5em',
+                        marginTop: '0px',
+                        marginLeft: '-30px',
+                        width: '30px'
+                    }}><i className="feather icon-rss"></i></a>
+                    <h1>The Qovery Blog</h1>
+                    <p>Thoughts on monitoring and observability from the <Link to="/community/#team">Qovery & Timber.io team</Link>.</p>
 
-          <h3>Types</h3>
+                    <h3>Types</h3>
 
-          <ul className="filters unstyled">
-            {typeTags.map((tag, idx) => (
-              <li key={idx}><Link to={tag.permalink + '/'} className="badge badge--rounded badge--pink">{tag.value}</Link></li>
-            ))}
-          </ul>
+                    <ul className="filters unstyled">
+                        {typeTags.map((tag, idx) => (
+                            <li key={idx}><Link to={tag.permalink + '/'} className="badge badge--rounded badge--pink">{tag.value}</Link>
+                            </li>
+                        ))}
+                    </ul>
 
-          <h3>Domains</h3>
+                    <h3>Domains</h3>
 
-          <ul className="filters unstyled">
-            {domainTags.map((tag, idx) => (
-              <li key={idx}><Link to={tag.permalink + '/'} className="badge badge--rounded badge--blue">{tag.value}</Link></li>
-            ))}
-          </ul>
+                    <ul className="filters unstyled">
+                        {domainTags.map((tag, idx) => (
+                            <li key={idx}><Link to={tag.permalink + '/'} className="badge badge--rounded badge--blue">{tag.value}</Link>
+                            </li>
+                        ))}
+                    </ul>
 
-          <MailingListForm block={true} buttonClass="highlight" />
-        </div>
-        <div className="blog-list--items">
-          {items.map(({content: BlogPostContent}) => (
-            <BlogPostItem
-              key={BlogPostContent.metadata.permalink}
-              frontMatter={BlogPostContent.frontMatter}
-              metadata={BlogPostContent.metadata}
-              truncated={BlogPostContent.metadata.truncated}>
-              <BlogPostContent />
-            </BlogPostItem>
-          ))}
-          <BlogListPaginator metadata={metadata} />
-        </div>
-      </div>
-    </Layout>
-  );
+                    <MailingListForm block={true} buttonClass="highlight"/>
+                </div>
+                <div className="blog-list--items">
+                    {items.map(({content: BlogPostContent}) => (
+                        <BlogPostItem
+                            key={BlogPostContent.metadata.permalink}
+                            frontMatter={BlogPostContent.frontMatter}
+                            metadata={BlogPostContent.metadata}
+                            truncated={BlogPostContent.metadata.truncated}>
+                            <BlogPostContent/>
+                        </BlogPostItem>
+                    ))}
+                    <BlogListPaginator metadata={metadata}/>
+                </div>
+            </div>
+        </Layout>
+    );
 }
 
 export default BlogListPage;

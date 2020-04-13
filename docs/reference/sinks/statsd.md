@@ -5,10 +5,10 @@ component_title: "Statsd"
 description: "The Qovery `statsd` sink streams `metric` events to StatsD metrics service."
 event_types: ["metric"]
 function_category: "transmit"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+statsd%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+statsd%22
 operating_systems: ["Linux","MacOS","Windows"]
 sidebar_label: "statsd|[\"metric\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/sinks/statsd.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/sinks/statsd.rs
 status: "prod-ready"
 title: "Statsd Sink"
 unsupported_operating_systems: []

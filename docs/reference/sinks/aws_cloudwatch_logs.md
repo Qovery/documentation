@@ -5,10 +5,10 @@ component_title: "AWS Cloudwatch Logs"
 description: "The Qovery `aws_cloudwatch_logs` sink batches `log` events to Amazon Web Service's CloudWatch Logs service via the `PutLogEvents` API endpoint."
 event_types: ["log"]
 function_category: "transmit"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+aws_cloudwatch_logs%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+aws_cloudwatch_logs%22
 operating_systems: ["Linux","MacOS","Windows"]
 sidebar_label: "aws_cloudwatch_logs|[\"log\"]"
-source_url: https://github.com/timberio/qovery/blob/master/src/sinks/aws_cloudwatch_logs/
+source_url: https://github.com/qovery/documentation/blob/master/src/sinks/aws_cloudwatch_logs/
 status: "prod-ready"
 title: "AWS Cloudwatch Logs Sink"
 unsupported_operating_systems: []
@@ -1050,5 +1050,5 @@ You can learn more about the complete syntax in the
 [urls.aws_iam_role]: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html
 [urls.aws_regions]: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.RegionsAndAvailabilityZones.html
 [urls.iam_instance_profile]: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html
-[urls.new_aws_cloudwatch_logs_sink_issue]: https://github.com/timberio/qovery/issues/new?labels=sink%3A+aws_cloudwatch_logs
+[urls.new_aws_cloudwatch_logs_sink_issue]: https://github.com/qovery/documentation/issues/new?labels=sink%3A+aws_cloudwatch_logs
 [urls.strptime_specifiers]: https://docs.rs/chrono/0.4.11/chrono/format/strftime/index.html#specifiers

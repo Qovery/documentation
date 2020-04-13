@@ -4,9 +4,9 @@ component_title: "Dedupe events"
 description: "The Qovery `dedupe` transform accepts and outputs `log` events allowing you to prevent duplicate Events from being outputted by using an LRU cache."
 event_types: ["log"]
 function_category: "filter"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22transform%3A+dedupe%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22transform%3A+dedupe%22
 sidebar_label: "dedupe|[\"log\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/transforms/dedupe.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/transforms/dedupe.rs
 status: "prod-ready"
 title: "Dedupe events Transform"
 ---

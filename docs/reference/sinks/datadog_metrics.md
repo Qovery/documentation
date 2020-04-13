@@ -5,10 +5,10 @@ component_title: "Datadog Metrics"
 description: "The Qovery `datadog_metrics` sink batches `metric` events to Datadog's metrics service using HTTP API."
 event_types: ["metric"]
 function_category: "transmit"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+datadog_metrics%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+datadog_metrics%22
 operating_systems: ["Linux","MacOS","Windows"]
 sidebar_label: "datadog_metrics|[\"metric\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/sinks/datadog/metrics.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/sinks/datadog/metrics.rs
 status: "beta"
 title: "Datadog Metrics Sink"
 unsupported_operating_systems: []
@@ -530,4 +530,4 @@ attempts and backoff rate with the [`retry_attempts`](#retry_attempts) and
 [docs.configuration#environment-variables]: /docs/setup/configuration/#environment-variables
 [docs.data-model.metric]: /docs/about/data-model/metric/
 [urls.datadog]: https://www.datadoghq.com
-[urls.new_datadog_metrics_sink_issue]: https://github.com/timberio/qovery/issues/new?labels=sink%3A+datadog_metrics
+[urls.new_datadog_metrics_sink_issue]: https://github.com/qovery/documentation/issues/new?labels=sink%3A+datadog_metrics

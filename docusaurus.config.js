@@ -4,7 +4,7 @@ module.exports = {
     title: 'Qovery',
     tagline: 'Deploy complex application, seamlessly',
     url: 'https://qovery.github.io',
-    baseUrl: '/',
+    baseUrl: '/documentation/',
     favicon: 'img/logo-square.svg',
     organizationName: 'Qovery',
     projectName: 'documentation',

@@ -32,7 +32,7 @@ module.exports = {
                 {to: 'guides/', label: 'Guides', position: 'left'},
                 {to: 'docs/', label: 'Docs', position: 'left'},
                 //{to: 'blog/', label: 'Blog', position: 'left'},
-                {to: 'community/', label: 'Community', position: 'right'},
+                {to: 'community/', label: 'Community', position: 'left'},
                 // {to: 'releases/', label: 'Download', position: 'right'},
                 {href: 'https://github.com/Qovery', label: "GitHub", position: 'right'},
             ],

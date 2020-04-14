@@ -5,7 +5,7 @@ module.exports = {
     tagline: 'Deploy complex application, seamlessly',
     url: 'https://qovery.github.io',
     baseUrl: '/',
-    favicon: 'img/logo-light.svg',
+    favicon: 'img/logo-square.svg',
     organizationName: 'Qovery',
     projectName: 'documentation',
     customFields: {

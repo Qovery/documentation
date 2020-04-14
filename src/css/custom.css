@@ -4,6 +4,32 @@
  * Override the default Infima variables here. These values cascade down to
  * the rest of the elements.
  */
+@font-face {
+    font-family: 'HKGrotesk';
+    src: url('/font/HKGrotesk-Bold.ttf') format('truetype'),
+        url('/font/HKGrotesk-Black.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SFUIText';
+    src: url('/font/SF-UI-Text-Regular.otf') format('opentype'),
+    url('/font/SF-UI-Text-BoldItalic.otf') format('opentype'),
+    url('/font/SF-UI-Text-Heavy.otf') format('opentype'),
+    url('/font/SF-UI-Text-HeavyItalic.otf') format('opentype'),
+    url('/font/SF-UI-Text-Light.otf') format('opentype'),
+    url('/font/SF-UI-Text-LightItalic.otf') format('opentype'),
+    url('/font/SF-UI-Text-Medium.otf') format('opentype'),
+    url('/font/SF-UI-Text-MediumItalic.otf') format('opentype'),
+    url('/font/SF-UI-Text-RegularItalic.otf') format('opentype'),
+    url('/font/SF-UI-Text-Semibold.otf') format('opentype'),
+    url('/font/SF-UI-Text-SemiboldItalic.otf') format('opentype'),
+    url('/font/SF-UI-Text-Bold.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 :root {
     --ifm-alert-color: var(--ifm-heading-color);
     --ifm-background-color: white;
@@ -54,7 +80,7 @@
     --ifm-color-warning-rgb: 255, 186, 0;
     --ifm-contents-border-color: var(--ifm-color-emphasis-75);
     --ifm-contents-padding-left: var(--ifm-spacing-horizontal);
-    --ifm-font-family-base: -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    --ifm-font-family-base: SFUIText, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
     --ifm-font-family-monospace: "Source Code Pro", Menlo, monospace;
     --ifm-font-family-serif: "Source Serif Pro", Constantia, Lucida Bright, Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;
     --ifm-font-size-base: 16px;
@@ -63,7 +89,7 @@
     --ifm-global-shadow-md: 0 3px 8px 0px var(--ifm-hr-border-color);
     --ifm-h2-font-size: 2em;
     --ifm-heading-color: #373855;
-    --ifm-heading-font-family: Ubuntu, var(--ifm-font-family-base);
+    --ifm-heading-font-family: HKGrotesk, var(--ifm-font-family-base);
     --ifm-heading-margin-bottom: calc(var(--ifm-spacing-vertical) * 3);
     --ifm-hero-background-color: var(--ifm-background-color);
     --ifm-hero-text-color: var(--ifm-color-content);
@@ -891,7 +917,7 @@ header .badges .badge {
 }
 
 header h1 {
-    font-family: Ubuntu, var(--ifm-font-family-base);
+    font-family: HKGrotesk, var(--ifm-font-family-base);
     font-size: 2.5em;
     margin-bottom: 0;
 }

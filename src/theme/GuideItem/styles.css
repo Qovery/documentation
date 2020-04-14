@@ -49,7 +49,7 @@
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
     display: -webkit-box;
-    font-family: var(--ifm-font-family-base);
+    font-family: HKGrotesk, var(--ifm-font-family-base);
     font-size: 1.1em;
     font-weight: 600;
     hyphens: auto;

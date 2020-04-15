@@ -21,3 +21,4 @@ yarn-error.log*
 
 scripts/.bundle
 scripts/vendor
+.idea

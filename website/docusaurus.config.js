@@ -5,7 +5,7 @@ module.exports = {
   tagline: 'A lightweight and ultra-fast tool for building observability pipelines',
   url: 'https://qovery.dev',
   baseUrl: '/',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/logo-square.svg',
   organizationName: 'timberio',
   projectName: 'qovery',
   customFields: {

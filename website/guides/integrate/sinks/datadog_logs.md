@@ -9,12 +9,8 @@ tags: ["type: tutorial","domain: sinks","sink: datadog_logs"]
 hide_pagination: true
 ---
 
-import ConfigExample from '@site/src/components/ConfigExample';
 import DaemonDiagram from '@site/src/components/DaemonDiagram';
 import Jump from '@site/src/components/Jump';
-import Steps from '@site/src/components/Steps';
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
 Logs are an _essential_ part of observing any
 service; without them you are flying blind. But collecting and analyzing them
@@ -88,151 +84,7 @@ To be clear, here's everything we'll accomplish in this short guide:
 
 ## Tutorial
 
-<Tabs
-  centered={true}
-  className="rounded"
-  defaultValue="x86_64"
-  values={[{"label":"x86_64","value":"x86_64"},{"label":"ARM64","value":"arm64"},{"label":"ARMv7","value":"armv7"}]}>
 
-<TabItem value="x86_64">
-<Steps headingDepth={3}>
-<ol>
-<li>
-
-### Download the Qovery `.deb` package
-
-```bash
-curl --proto '=https' --tlsv1.2 -O https://packages.timber.io/qovery/0.8.X/qovery-amd64.deb
-```
-
-[Looking for a different version?][docs.package_managers.dpkg#versions]
-
-</li>
-<li>
-
-### Install the downloaded package
-
-```bash
-sudo dpkg -i qovery-amd64.deb
-```
-
-</li>
-<li>
-
-### Configure Qovery
-
-<ConfigExample
-  format="toml"
-  path={"/etc/qovery/qovery.toml"}
-  sourceName={null}
-  sinkName={"datadog_logs"} />
-
-</li>
-<li>
-
-### Start Qovery
-
-```bash
-sudo systemctl start qovery
-```
-
-</li>
-</ol>
-</Steps>
-</TabItem>
-<TabItem value="arm64">
-<Steps headingDepth={3}>
-<ol>
-<li>
-
-### Download the Qovery `.deb` package
-
-```bash
-curl --proto '=https' --tlsv1.2 -O https://packages.timber.io/qovery/0.8.X/qovery-arm64.deb
-```
-
-[Looking for a different version?][docs.package_managers.dpkg#versions]
-
-</li>
-<li>
-
-### Install the downloaded package
-
-```bash
-sudo dpkg -i qovery-arm64.deb
-```
-
-</li>
-<li>
-
-### Configure Qovery
-
-<ConfigExample
-  format="toml"
-  path={"/etc/qovery/qovery.toml"}
-  sourceName={null}
-  sinkName={"datadog_logs"} />
-
-</li>
-<li>
-
-### Start Qovery
-
-```bash
-sudo systemctl start qovery
-```
-
-</li>
-</ol>
-</Steps>
-</TabItem>
-<TabItem value="armv7">
-<Steps headingDepth={3}>
-<ol>
-<li>
-
-### Download the Qovery `.deb` package
-
-```bash
-curl --proto '=https' --tlsv1.2 -O https://packages.timber.io/qovery/0.8.X/qovery-armhf.deb
-```
-
-[Looking for a different version?][docs.package_managers.dpkg#versions]
-
-</li>
-<li>
-
-### Install the downloaded package
-
-```bash
-sudo dpkg -i qovery-armhf.deb
-```
-
-</li>
-<li>
-
-### Configure Qovery
-
-<ConfigExample
-  format="toml"
-  path={"/etc/qovery/qovery.toml"}
-  sourceName={null}
-  sinkName={"datadog_logs"} />
-
-</li>
-<li>
-
-### Start Qovery
-
-```bash
-sudo systemctl start qovery
-```
-
-</li>
-</ol>
-</Steps>
-</TabItem>
-</Tabs>
 
 ## Next Steps
 
@@ -256,13 +108,12 @@ flexibility of Qovery:
 </Jump>
 
 
-[docs.package_managers.dpkg#versions]: /docs/setup/installation/package-managers/dpkg/#versions
 [docs.sources.journald]: /docs/reference/sources/journald/
 [docs.sources]: /docs/reference/sources/
 [docs.strategies#daemon]: /docs/setup/deployment/strategies/#daemon
 [urls.datadog]: https://www.datadoghq.com
-[urls.qovery_performance]: https://qovery.dev/#performance
+[urls.qovery_performance]: https://docs.qovery.com
 [urls.qovery_repo]: https://github.com/qovery
 [urls.qovery_stars]: https://github.com/qovery/documentation/stargazers
-[urls.qovery_website]: https://qovery.dev
+[urls.qovery_website]: https://docs.qovery.com
 [urls.rust]: https://www.rust-lang.org/

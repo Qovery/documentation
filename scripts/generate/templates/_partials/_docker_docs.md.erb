@@ -21,7 +21,6 @@ docker pull timberio/qovery:X.X.X-alpine && \
   docker run timberio/qovery:X.X.X-alpine
 ```
 
-See the [variants](#variants) and [versions](#versions) sections to choose
 the appropriate image for your use case.
 
 ## Images
@@ -36,7 +35,6 @@ smaller in size than other Docker images and statically links libraries. This
 is the image we recommend due to it's small size and reliability.
 
 ```bash
-docker run timberio/qovery:<%= metadata.latest_version %>-alpine
 ```
 
 #### debian
@@ -45,7 +43,6 @@ This image is based on the [`debian-slim` image][urls.docker_debian],
 which is a smaller, more compact variant of the [`debian` image][urls.docker_debian].
 
 ```bash
-docker run timberio/qovery:<%= metadata.latest_version %>-debian
 ```
 
 ### Architectures
@@ -54,22 +51,3 @@ Qovery's images are multi-arch and support the
 <%= metadata.installation.platforms.docker.archs.to_sentence %> architectures.
 Docker handles this transparently for you.
 
-### Versions
-
-Qovery's Docker images can be downloaded with the following tags. Note that
-Qovery maintains special tags that are automatically updated whenever Qovery is
-[released][urls.qovery_releases]:
-
-| Version          | URL                                                      |
-|:-----------------|:---------------------------------------------------------|
-| Latest major     | `timberio/qovery:latest-alpine`               |
-| Latest minor     | `timberio/qovery:<MAJOR>.X-alpine`            |
-| Latest patch     | `timberio/qovery:<MAJOR.MINOR>.X-alpine`      |
-| Specific version | `timberio/qovery:<MAJOR.MINOR.PATCH>-alpine`  |
-| Latest nightly   | `timberio/qovery:nightly-alpine`              |
-| Specific nightly | `timberio/qovery:nightly-<YYYY-MM-DD>-alpine` |
-
-### Source Files
-
-Qovery's Docker source files are located
-[in it's Github repo][urls.qovery_docker_source_files].

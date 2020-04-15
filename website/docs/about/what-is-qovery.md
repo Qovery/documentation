@@ -45,6 +45,6 @@ usage][urls.qovery_performance].
 [docs.data-model.metric]: /docs/about/data-model/metric/
 [docs.strategies#daemon]: /docs/setup/deployment/strategies/#daemon
 [docs.strategies#sidecar]: /docs/setup/deployment/strategies/#sidecar
-[urls.qovery_performance]: https://qovery.dev/#performance
+[urls.qovery_performance]: https://docs.qovery.com
 [urls.qovery_repo]: https://github.com/qovery
 [urls.rust]: https://www.rust-lang.org/

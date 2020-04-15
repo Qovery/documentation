@@ -345,5 +345,5 @@ common formats:
 [docs.data-model.log]: /docs/about/data-model/log/
 [docs.reference.field-path-notation]: /docs/reference/field-path-notation/
 [docs.transforms.coercer]: /docs/reference/transforms/coercer/
-[urls.qovery_programmable_transforms]: https://qovery.dev/components?functions%5B%5D=program
+[urls.qovery_programmable_transforms]: https://docs.qovery.com
 [urls.strptime_specifiers]: https://docs.rs/chrono/0.4.11/chrono/format/strftime/index.html#specifiers

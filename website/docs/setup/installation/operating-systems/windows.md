@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-01"
+last_modified_on: "2020-04-15"
 title: Install Qovery On Windows
 sidebar_label: Windows
 description: Install Qovery on Windows
@@ -56,52 +56,7 @@ The following diagram demonstrates how it works.
   values={[{"group":"Package managers","label":"MSI","value":"msi"},{"group":"Nones","label":"Qovery CLI","value":"qovery-cli"},{"group":"Platforms","label":"Docker CLI","value":"docker-cli"},{"group":"Platforms","label":"Docker Compose","value":"docker-compose"}]}>
 <TabItem value="msi">
 
-<Steps headingDepth={3}>
-<Tabs
-  centered={true}
-  className="rounded"
-  defaultValue="x86_64"
-  values={[{"label":"x86_64","value":"x86_64"}]}>
 
-<TabItem value="x86_64">
-
-1.  ### Download the Qovery `.msi` file
-
-    ```bat
-    powershell Invoke-WebRequest https://packages.timber.io/qovery/0.8.X/qovery-x64.msi -OutFile qovery-x64.msi
-    ```
-
-    [Looking for a specific version?][docs.package_managers.msi#versions]
-
-2.  ### Install the Qovery `.msi` package using `msiexec` command
-
-    ```bat
-    msiexec /i qovery-x64.msi /quiet
-    ```
-
-3.  ### Navigate to the Qovery directory
-
-    ```bat
-    cd "C:\Program Files\Qovery"
-    ```
-
-4.  ### Configure Qovery
-
-    <ConfigExample
-      format="toml"
-      path={"config\\qovery.toml"}
-      sourceName={"file"}
-      sinkName={null} />
-
-5.  ### Start Qovery
-
-    ```bat
-    .\bin\qovery --config config\qovery.toml
-    ```
-
-</TabItem>
-</Tabs>
-</Steps>
 
 </TabItem>
 <TabItem value="qovery-cli">
@@ -192,7 +147,6 @@ compose!
 </Tabs>
 
 
-[docs.package_managers.msi#versions]: /docs/setup/installation/package-managers/msi/#versions
 [docs.platforms.docker#variants]: /docs/setup/installation/platforms/docker/#variants
 [docs.sources.journald]: /docs/reference/sources/journald/
 [docs.sources]: /docs/reference/sources/

@@ -148,10 +148,10 @@ flexibility of Qovery:
 [docs.sources.journald]: /docs/reference/sources/journald/
 [docs.strategies#daemon]: /docs/setup/deployment/strategies/#daemon
 [urls.journald]: https://www.freedesktop.org/software/systemd/man/systemd-journald.service.html
-[urls.qovery_performance]: https://qovery.dev/#performance
+[urls.qovery_performance]: https://docs.qovery.com
 [urls.qovery_repo]: https://github.com/qovery
 [urls.qovery_stars]: https://github.com/qovery/documentation/stargazers
-[urls.qovery_website]: https://qovery.dev
+[urls.qovery_website]: https://docs.qovery.com
 [urls.rust]: https://www.rust-lang.org/
 [urls.socket]: https://en.wikipedia.org/wiki/Network_socket
 [urls.systemd]: https://systemd.io/

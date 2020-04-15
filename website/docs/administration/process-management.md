@@ -127,7 +127,6 @@ sudo systemctl start qovery
 Qovery does not _directly_ offer a way to daemonize the Qovery process. We
 highly recommend that you use a utility like [Systemd][urls.systemd] to
 daemonize and manage your processes. Qovery provides a
-[`qovery.service` file][urls.qovery_systemd_file] for Systemd.
 
 ## Stopping
 
@@ -321,5 +320,4 @@ transition from the old to new pipeline is graceful.
 [docs.sources]: /docs/reference/sources/
 [docs.validating]: /docs/administration/validating/
 [urls.exit_codes]: https://docs.rs/exitcode/1.1.2/exitcode/#constants
-[urls.qovery_systemd_file]: https://github.com/qovery/documentation/blob/master/distribution/systemd/qovery.service
 [urls.systemd]: https://systemd.io/

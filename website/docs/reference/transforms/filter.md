@@ -344,6 +344,6 @@ You can learn more in the
 [docs.configuration#environment-variables]: /docs/setup/configuration/#environment-variables
 [docs.data-model.log]: /docs/about/data-model/log/
 [docs.data-model.metric]: /docs/about/data-model/metric/
-[urls.qovery_programmable_transforms]: https://qovery.dev/components?functions%5B%5D=program
+[urls.qovery_programmable_transforms]: https://docs.qovery.com
 [urls.regex]: https://en.wikipedia.org/wiki/Regular_expression
 [urls.rust_regex_syntax]: https://docs.rs/regex/1.3.6/regex/#syntax

@@ -160,5 +160,5 @@ Qovery should use very little memory. For average pipelines Qovery uses around
 
 
 [docs.sources]: /docs/reference/sources/
-[urls.qovery_performance]: https://qovery.dev/#performance
+[urls.qovery_performance]: https://docs.qovery.com
 [urls.qovery_roadmap]: https://github.com/qovery/documentation/milestones?direction=asc&sort=due_date&state=open

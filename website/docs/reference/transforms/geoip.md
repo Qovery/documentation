@@ -401,4 +401,4 @@ You can learn more about Qovery's field notation in the
 [urls.iana_time_zone_format]: https://en.wikipedia.org/wiki/Tz_database#Names_of_time_zones
 [urls.iana_time_zones]: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 [urls.iso3166-2]: https://en.wikipedia.org/wiki/ISO_3166-2
-[urls.qovery_programmable_transforms]: https://qovery.dev/components?functions%5B%5D=program
+[urls.qovery_programmable_transforms]: https://docs.qovery.com

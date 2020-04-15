@@ -163,8 +163,8 @@ flexibility of Qovery:
 [urls.docker]: https://www.docker.com/
 [urls.loki]: https://grafana.com/oss/loki/
 [urls.prometheus]: https://prometheus.io/
-[urls.qovery_performance]: https://qovery.dev/#performance
+[urls.qovery_performance]: https://docs.qovery.com
 [urls.qovery_repo]: https://github.com/qovery
 [urls.qovery_stars]: https://github.com/qovery/documentation/stargazers
-[urls.qovery_website]: https://qovery.dev
+[urls.qovery_website]: https://docs.qovery.com
 [urls.rust]: https://www.rust-lang.org/

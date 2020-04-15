@@ -1,6 +1,7 @@
 <p align="center">
   <strong>
-    <a href="https://qovery.dev/guides/getting-started/">Getting Started<a/>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="https://qovery.dev/docs/">Docs<a/>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="https://qovery.dev/community">Chat<a/>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="https://twitter.com/qoverydotdev">@qoverydotdev<a/>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="https://qovery.dev/releases/latest/download">Download v0.8.2<a/>
+    <a href="https://docs.qovery.com">Getting Started<a/>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="https://docs.qovery.com">Docs<a/>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="https://discord.qovery.com/">Chat<a/>&nbsp;&nbsp;&bull;&nbsp;&nbsp;<a href="https://twitter.com/qovery_">@qoverydotdev<a/>&nbsp;&nbsp;&bull;
+    &nbsp;&nbsp;<a href="https://docs.qovery.com">Download vhttps://google.com<a/>
   </strong>
 </p>
 
@@ -14,7 +15,7 @@
 
 <p align="center">
   <strong>
-    New post! <a href="https://qovery.dev/blog/how-we-test-qovery">How We Test Qovery</a>
+    New post! <a href="https://docs.qovery.com/blog/how-we-test-qovery">How We Test Qovery</a>
   </strong>
 </p>
 
@@ -59,7 +60,7 @@ usage][urls.qovery_performance].
 * Qovery has **over 15 active contributors** and growing.
 
 
-## [Documentation](https://qovery.dev/docs/)
+## [Documentation](https://docs.qovery.com/docs/)
 
 ### About
 
@@ -89,7 +90,6 @@ usage][urls.qovery_performance].
 ### Resources
 
 * [**Community**][urls.qovery_community] - [chat][urls.qovery_chat], [@qoverydotdev][urls.qovery_twitter], [mailing list][urls.mailing_list]
-* [**Releases**][urls.qovery_releases] - [v0.8.2 (latest)][urls.v0.8.2]
 * [**Roadmap**][urls.qovery_roadmap] - [vote on new features][urls.vote_feature]
 * **Policies** - [Security][urls.qovery_security_policy], [Privacy][urls.qovery_privacy_policy], [Code of Conduct][urls.qovery_code_of_conduct]
 
@@ -101,11 +101,6 @@ common protocols with the exception of the Regex Parsing test.
 
 | Test | Qovery | Filebeat | FluentBit | FluentD | Logstash | SplunkUF | SplunkHF |
 | ---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| [TCP to Blackhole](https://github.com/qovery-test-harness/tree/master/cases/tcp_to_blackhole_performance) | _**86mib/s**_ | n/a | 64.4mib/s | 27.7mib/s | 40.6mib/s | n/a | n/a |
-| [File to TCP](https://github.com/qovery-test-harness/tree/master/cases/file_to_tcp_performance) | _**76.7mib/s**_ | 7.8mib/s | 35mib/s | 26.1mib/s | 3.1mib/s | 40.1mib/s | 39mib/s |
-| [Regex Parsing](https://github.com/qovery-test-harness/tree/master/cases/regex_parsing_performance) | 13.2mib/s | n/a | _**20.5mib/s**_ | 2.6mib/s | 4.6mib/s | n/a | 7.8mib/s |
-| [TCP to HTTP](https://github.com/qovery-test-harness/tree/master/cases/tcp_to_http_performance) | _**26.7mib/s**_ | n/a | 19.6mib/s | <1mib/s | 2.7mib/s | n/a | n/a |
-| [TCP to TCP](https://github.com/qovery-test-harness/tree/master/cases/tcp_to_tcp_performance) | 69.9mib/s | 5mib/s | 67.1mib/s | 3.9mib/s | 10mib/s | _**70.4mib/s**_ | 7.6mib/s |
 
 To learn more about our performance tests, please see the [Qovery test harness][urls.qovery_test_harness].
 
@@ -117,12 +112,6 @@ fundamental differences in quality and attention to detail:
 
 | Test | Qovery | Filebeat | FluentBit | FluentD | Logstash | Splunk UF | Splunk HF |
 | ---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| [Disk Buffer Persistence](https://github.com/qovery-test-harness/tree/master/cases/disk_buffer_persistence_correctness) | ✅ | ✅ | ❌ | ❌ | ⚠️ | ✅ | ✅ |
-| [File Rotate (create)](https://github.com/qovery-test-harness/tree/master/cases/file_rotate_create_correctness) | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [File Rotate (copytruncate)](https://github.com/qovery-test-harness/tree/master/cases/file_rotate_truncate_correctness) | ✅ | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ |
-| [File Truncation](https://github.com/qovery-test-harness/tree/master/cases/file_truncate_correctness) | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [Process (SIGHUP)](https://github.com/qovery-test-harness/tree/master/cases/sighup_correctness) | ✅ | ❌ | ❌ | ❌ | ⚠️ | ✅ | ✅ |
-| [JSON (wrapped)](https://github.com/qovery-test-harness/tree/master/cases/wrapped_json_correctness) | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ |
 
 To learn more about our correctness tests, please see the [Qovery test harness][urls.qovery_test_harness].
 
@@ -193,11 +182,11 @@ Or use your own [preferred method][docs.installation].
 
 ## Latest Posts & Announcements
 
-* [How We Test Qovery](https://qovery.dev/blog/how-we-test-qovery)
-* [Prometheus Source](https://qovery.dev/blog/prometheus-source)
-* [EC2 Metadata Enrichments](https://qovery.dev/blog/ec2-metadata)
-* [Alpha Kubernetes Source](https://qovery.dev/blog/kubernetes-source-alpha)
-* [Use Custom DNS Servers](https://qovery.dev/blog/custom-dns)
+* [How We Test Qovery](https://docs.qovery.com/blog/how-we-test-qovery)
+* [Prometheus Source](https://docs.qovery.com/blog/prometheus-source)
+* [EC2 Metadata Enrichments](https://docs.qovery.com/blog/ec2-metadata)
+* [Alpha Kubernetes Source](https://docs.qovery.com/blog/kubernetes-source-alpha)
+* [Use Custom DNS Servers](https://docs.qovery.com/blog/custom-dns)
 
 [view all...][urls.qovery_blog]
 
@@ -208,85 +197,83 @@ Or use your own [preferred method][docs.installation].
 </p>
 
 
-[docs.administration.process-management]: https://qovery.dev/docs/administration/process-management/
-[docs.administration.validating]: https://qovery.dev/docs/administration/validating/
-[docs.concepts]: https://qovery.dev/docs/about/concepts/
-[docs.configuration]: https://qovery.dev/docs/setup/configuration/
-[docs.data-model.log#timestamps]: https://qovery.dev/docs/about/data-model/log/#timestamps
-[docs.data-model.log#types]: https://qovery.dev/docs/about/data-model/log/#types
-[docs.data-model.log]: https://qovery.dev/docs/about/data-model/log/
-[docs.data-model.metric#aggregated_histogram]: https://qovery.dev/docs/about/data-model/metric/#aggregated_histogram
-[docs.data-model.metric#aggregated_summary]: https://qovery.dev/docs/about/data-model/metric/#aggregated_summary
-[docs.data-model.metric]: https://qovery.dev/docs/about/data-model/metric/
-[docs.data_model]: https://qovery.dev/docs/about/data-model/
-[docs.deployment]: https://qovery.dev/docs/setup/deployment/
-[docs.from-archives]: https://qovery.dev/docs/setup/installation/manual/from-archives/
-[docs.from-source]: https://qovery.dev/docs/setup/installation/manual/from-source/
-[docs.global-options#dns_servers]: https://qovery.dev/docs/reference/global-options/#dns_servers
-[docs.global-options#log_schema]: https://qovery.dev/docs/reference/global-options/#log_schema
-[docs.guarantees]: https://qovery.dev/docs/about/guarantees/
-[docs.installation]: https://qovery.dev/docs/setup/installation/
-[docs.monitoring]: https://qovery.dev/docs/administration/monitoring/
-[docs.operating_systems]: https://qovery.dev/docs/setup/installation/operating-systems/
-[docs.package_managers]: https://qovery.dev/docs/setup/installation/package-managers/
-[docs.platforms]: https://qovery.dev/docs/setup/installation/platforms/
-[docs.process-management#reloading]: https://qovery.dev/docs/administration/process-management/#reloading
-[docs.process-management#starting]: https://qovery.dev/docs/administration/process-management/#starting
-[docs.process-management]: https://qovery.dev/docs/administration/process-management/
-[docs.reference.templating]: https://qovery.dev/docs/reference/templating/
-[docs.sinks.aws_cloudwatch_logs]: https://qovery.dev/docs/reference/sinks/aws_cloudwatch_logs/
-[docs.sinks.aws_s3#partitioning]: https://qovery.dev/docs/reference/sinks/aws_s3/#partitioning
-[docs.sinks.aws_s3]: https://qovery.dev/docs/reference/sinks/aws_s3/
-[docs.sinks.clickhouse]: https://qovery.dev/docs/reference/sinks/clickhouse/
-[docs.sinks.elasticsearch]: https://qovery.dev/docs/reference/sinks/elasticsearch/
-[docs.sinks.gcp_cloud_storage]: https://qovery.dev/docs/reference/sinks/gcp_cloud_storage/
-[docs.sinks.gcp_pubsub]: https://qovery.dev/docs/reference/sinks/gcp_pubsub/
-[docs.sinks]: https://qovery.dev/docs/reference/sinks/
-[docs.sources.docker]: https://qovery.dev/docs/reference/sources/docker/
-[docs.sources.file#multiline]: https://qovery.dev/docs/reference/sources/file/#multiline
-[docs.sources.file]: https://qovery.dev/docs/reference/sources/file/
-[docs.sources.http]: https://qovery.dev/docs/reference/sources/http/
-[docs.sources.journald]: https://qovery.dev/docs/reference/sources/journald/
-[docs.sources.kafka]: https://qovery.dev/docs/reference/sources/kafka/
-[docs.sources.socket]: https://qovery.dev/docs/reference/sources/socket/
-[docs.sources]: https://qovery.dev/docs/reference/sources/
-[docs.strategies#daemon]: https://qovery.dev/docs/setup/deployment/strategies/#daemon
-[docs.strategies#service]: https://qovery.dev/docs/setup/deployment/strategies/#service
-[docs.strategies#sidecar]: https://qovery.dev/docs/setup/deployment/strategies/#sidecar
-[docs.strategies]: https://qovery.dev/docs/setup/deployment/strategies/
-[docs.topologies]: https://qovery.dev/docs/setup/deployment/topologies/
-[docs.transforms.filter]: https://qovery.dev/docs/reference/transforms/filter/
-[docs.transforms.grok_parser]: https://qovery.dev/docs/reference/transforms/grok_parser/
-[docs.transforms.json_parser]: https://qovery.dev/docs/reference/transforms/json_parser/
-[docs.transforms.kubernetes_pod_metadata]: https://qovery.dev/docs/reference/transforms/kubernetes_pod_metadata/
-[docs.transforms.log_to_metric]: https://qovery.dev/docs/reference/transforms/log_to_metric/
-[docs.transforms.logfmt_parser]: https://qovery.dev/docs/reference/transforms/logfmt_parser/
-[docs.transforms.lua]: https://qovery.dev/docs/reference/transforms/lua/
-[docs.transforms.regex_parser#types]: https://qovery.dev/docs/reference/transforms/regex_parser/#types
-[docs.transforms.regex_parser]: https://qovery.dev/docs/reference/transforms/regex_parser/
-[docs.transforms.swimlanes]: https://qovery.dev/docs/reference/transforms/swimlanes/
-[docs.transforms]: https://qovery.dev/docs/reference/transforms/
-[docs.updating]: https://qovery.dev/docs/administration/updating/
-[docs.validating]: https://qovery.dev/docs/administration/validating/
-[docs.what-is-qovery]: https://qovery.dev/docs/about/what-is-qovery/
-[guides.advanced.unit-testing]: https://qovery.dev/guides/advanced/unit-testing/
-[pages.releases]: https://qovery.dev/releases/
-[urls.mailing_list]: https://qovery.dev/community/
-[urls.qovery_blog]: https://qovery.dev/blog
+[docs.administration.process-management]: https://docs.qovery.com/docs/administration/process-management/
+[docs.administration.validating]: https://docs.qovery.com/docs/administration/validating/
+[docs.concepts]: https://docs.qovery.com/docs/about/concepts/
+[docs.configuration]: https://docs.qovery.com/docs/setup/configuration/
+[docs.data-model.log#timestamps]: https://docs.qovery.com/docs/about/data-model/log/#timestamps
+[docs.data-model.log#types]: https://docs.qovery.com/docs/about/data-model/log/#types
+[docs.data-model.log]: https://docs.qovery.com/docs/about/data-model/log/
+[docs.data-model.metric#aggregated_histogram]: https://docs.qovery.com/docs/about/data-model/metric/#aggregated_histogram
+[docs.data-model.metric#aggregated_summary]: https://docs.qovery.com/docs/about/data-model/metric/#aggregated_summary
+[docs.data-model.metric]: https://docs.qovery.com/docs/about/data-model/metric/
+[docs.data_model]: https://docs.qovery.com/docs/about/data-model/
+[docs.deployment]: https://docs.qovery.com/docs/setup/deployment/
+[docs.from-archives]: https://docs.qovery.com/docs/setup/installation/manual/from-archives/
+[docs.from-source]: https://docs.qovery.com/docs/setup/installation/manual/from-source/
+[docs.global-options#dns_servers]: https://docs.qovery.com/docs/reference/global-options/#dns_servers
+[docs.global-options#log_schema]: https://docs.qovery.com/docs/reference/global-options/#log_schema
+[docs.guarantees]: https://docs.qovery.com/docs/about/guarantees/
+[docs.installation]: https://docs.qovery.com/docs/setup/installation/
+[docs.monitoring]: https://docs.qovery.com/docs/administration/monitoring/
+[docs.operating_systems]: https://docs.qovery.com/docs/setup/installation/operating-systems/
+[docs.package_managers]: https://docs.qovery.com/docs/setup/installation/package-managers/
+[docs.platforms]: https://docs.qovery.com/docs/setup/installation/platforms/
+[docs.process-management#reloading]: https://docs.qovery.com/docs/administration/process-management/#reloading
+[docs.process-management#starting]: https://docs.qovery.com/docs/administration/process-management/#starting
+[docs.process-management]: https://docs.qovery.com/docs/administration/process-management/
+[docs.reference.templating]: https://docs.qovery.com/docs/reference/templating/
+[docs.sinks.aws_cloudwatch_logs]: https://docs.qovery.com/docs/reference/sinks/aws_cloudwatch_logs/
+[docs.sinks.aws_s3#partitioning]: https://docs.qovery.com/docs/reference/sinks/aws_s3/#partitioning
+[docs.sinks.aws_s3]: https://docs.qovery.com/docs/reference/sinks/aws_s3/
+[docs.sinks.clickhouse]: https://docs.qovery.com/docs/reference/sinks/clickhouse/
+[docs.sinks.elasticsearch]: https://docs.qovery.com/docs/reference/sinks/elasticsearch/
+[docs.sinks.gcp_cloud_storage]: https://docs.qovery.com/docs/reference/sinks/gcp_cloud_storage/
+[docs.sinks.gcp_pubsub]: https://docs.qovery.com/docs/reference/sinks/gcp_pubsub/
+[docs.sinks]: https://docs.qovery.com/docs/reference/sinks/
+[docs.sources.docker]: https://docs.qovery.com/docs/reference/sources/docker/
+[docs.sources.file#multiline]: https://docs.qovery.com/docs/reference/sources/file/#multiline
+[docs.sources.file]: https://docs.qovery.com/docs/reference/sources/file/
+[docs.sources.http]: https://docs.qovery.com/docs/reference/sources/http/
+[docs.sources.journald]: https://docs.qovery.com/docs/reference/sources/journald/
+[docs.sources.kafka]: https://docs.qovery.com/docs/reference/sources/kafka/
+[docs.sources.socket]: https://docs.qovery.com/docs/reference/sources/socket/
+[docs.sources]: https://docs.qovery.com/docs/reference/sources/
+[docs.strategies#daemon]: https://docs.qovery.com/docs/setup/deployment/strategies/#daemon
+[docs.strategies#service]: https://docs.qovery.com/docs/setup/deployment/strategies/#service
+[docs.strategies#sidecar]: https://docs.qovery.com/docs/setup/deployment/strategies/#sidecar
+[docs.strategies]: https://docs.qovery.com/docs/setup/deployment/strategies/
+[docs.topologies]: https://docs.qovery.com/docs/setup/deployment/topologies/
+[docs.transforms.filter]: https://docs.qovery.com/docs/reference/transforms/filter/
+[docs.transforms.grok_parser]: https://docs.qovery.com/docs/reference/transforms/grok_parser/
+[docs.transforms.json_parser]: https://docs.qovery.com/docs/reference/transforms/json_parser/
+[docs.transforms.kubernetes_pod_metadata]: https://docs.qovery.com/docs/reference/transforms/kubernetes_pod_metadata/
+[docs.transforms.log_to_metric]: https://docs.qovery.com/docs/reference/transforms/log_to_metric/
+[docs.transforms.logfmt_parser]: https://docs.qovery.com/docs/reference/transforms/logfmt_parser/
+[docs.transforms.lua]: https://docs.qovery.com/docs/reference/transforms/lua/
+[docs.transforms.regex_parser#types]: https://docs.qovery.com/docs/reference/transforms/regex_parser/#types
+[docs.transforms.regex_parser]: https://docs.qovery.com/docs/reference/transforms/regex_parser/
+[docs.transforms.swimlanes]: https://docs.qovery.com/docs/reference/transforms/swimlanes/
+[docs.transforms]: https://docs.qovery.com/docs/reference/transforms/
+[docs.updating]: https://docs.qovery.com/docs/administration/updating/
+[docs.validating]: https://docs.qovery.com/docs/administration/validating/
+[docs.what-is-qovery]: https://docs.qovery.com/docs/about/what-is-qovery/
+[guides.advanced.unit-testing]: https://docs.qovery.com/guides/advanced/unit-testing/
+[pages.releases]: https://docs.qovery.com/releases/
+[urls.mailing_list]: https://discord.qovery.com
+[urls.qovery_blog]: https://docs.qovery.com
 [urls.qovery_chat]: https://discord.qovery.com
-[urls.qovery_code_of_conduct]: https://github.com/qovery/documentation/blob/master/CODE_OF_CONDUCT.md
-[urls.qovery_community]: https://qovery.dev/community
-[urls.qovery_enriching_transforms]: https://qovery.dev/components?functions%5B%5D=enrich
-[urls.qovery_parsing_transforms]: https://qovery.dev/components?functions%5B%5D=parse
-[urls.qovery_performance]: https://qovery.dev/#performance
-[urls.qovery_privacy_policy]: https://github.com/qovery/documentation/blob/master/PRIVACY.md
-[urls.qovery_releases]: https://qovery.dev/releases/latest
+[urls.qovery_code_of_conduct]: https://github.com/qovery/documentation/blob/master/README.md
+[urls.qovery_community]: https://discord.qovery.com/
+[urls.qovery_enriching_transforms]: https://docs.qovery.com
+[urls.qovery_parsing_transforms]: https://docs.qovery.com
+[urls.qovery_performance]: https://docs.qovery.com
+[urls.qovery_privacy_policy]: https://github.com/qovery
 [urls.qovery_repo]: https://github.com/qovery
 [urls.qovery_roadmap]: https://github.com/qovery/documentation/milestones?direction=asc&sort=due_date&state=open
 [urls.qovery_security_policy]: https://github.com/qovery/documentation/security/policy
-[urls.qovery_test_harness]: https://github.com/qovery-test-harness/
-[urls.qovery_twitter]: https://twitter.com/qoverydotdev
+[urls.qovery_test_harness]: https://github.com
+[urls.qovery_twitter]: https://twitter.com/qovery_
 [urls.rust]: https://www.rust-lang.org/
 [urls.rust_memory_safety]: https://hacks.mozilla.org/2019/01/fearless-security-memory-safety/
-[urls.v0.8.2]: https://qovery.dev/releases/0.8.2/download
 [urls.vote_feature]: https://github.com/qovery/documentation/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc+label%3A%22Type%3A+New+Feature%22

@@ -7,9 +7,9 @@
 #                            Configuration Specification
 #
 # ------------------------------------------------------------------------------
-# Website: https://qovery.dev
-# Docs: https://qovery.dev/docs/
-# Community: https://qovery.dev/community
+# Website: https://docs.qovery.com
+# Docs: https://docs.qovery.com
+# Community: https://discord.qovery.com/
 # ------------------------------------------------------------------------------
 # The file contains a full specification for the `qovery.toml` configuration
 # file. It follows the TOML format and includes all options, types, and

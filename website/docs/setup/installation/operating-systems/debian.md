@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-01"
+last_modified_on: "2020-04-15"
 title: Install Qovery On Debian
 sidebar_label: Debian
 description: Install Qovery on the Debian operating system
@@ -56,151 +56,7 @@ The following diagram demonstrates how it works.
   values={[{"group":"Package managers","label":"DPKG","value":"dpkg"},{"group":"Nones","label":"Qovery CLI","value":"qovery-cli"},{"group":"Platforms","label":"Docker CLI","value":"docker-cli"},{"group":"Platforms","label":"Docker Compose","value":"docker-compose"}]}>
 <TabItem value="dpkg">
 
-<Tabs
-  centered={true}
-  className="rounded"
-  defaultValue="x86_64"
-  values={[{"label":"x86_64","value":"x86_64"},{"label":"ARM64","value":"arm64"},{"label":"ARMv7","value":"armv7"}]}>
 
-<TabItem value="x86_64">
-<Steps headingDepth={3}>
-<ol>
-<li>
-
-### Download the Qovery `.deb` package
-
-```bash
-curl --proto '=https' --tlsv1.2 -O https://packages.timber.io/qovery/0.8.X/qovery-amd64.deb
-```
-
-[Looking for a different version?][docs.package_managers.dpkg#versions]
-
-</li>
-<li>
-
-### Install the downloaded package
-
-```bash
-sudo dpkg -i qovery-amd64.deb
-```
-
-</li>
-<li>
-
-### Configure Qovery
-
-<ConfigExample
-  format="toml"
-  path={"/etc/qovery/qovery.toml"}
-  sourceName={"journald"}
-  sinkName={null} />
-
-</li>
-<li>
-
-### Start Qovery
-
-```bash
-sudo systemctl start qovery
-```
-
-</li>
-</ol>
-</Steps>
-</TabItem>
-<TabItem value="arm64">
-<Steps headingDepth={3}>
-<ol>
-<li>
-
-### Download the Qovery `.deb` package
-
-```bash
-curl --proto '=https' --tlsv1.2 -O https://packages.timber.io/qovery/0.8.X/qovery-arm64.deb
-```
-
-[Looking for a different version?][docs.package_managers.dpkg#versions]
-
-</li>
-<li>
-
-### Install the downloaded package
-
-```bash
-sudo dpkg -i qovery-arm64.deb
-```
-
-</li>
-<li>
-
-### Configure Qovery
-
-<ConfigExample
-  format="toml"
-  path={"/etc/qovery/qovery.toml"}
-  sourceName={"journald"}
-  sinkName={null} />
-
-</li>
-<li>
-
-### Start Qovery
-
-```bash
-sudo systemctl start qovery
-```
-
-</li>
-</ol>
-</Steps>
-</TabItem>
-<TabItem value="armv7">
-<Steps headingDepth={3}>
-<ol>
-<li>
-
-### Download the Qovery `.deb` package
-
-```bash
-curl --proto '=https' --tlsv1.2 -O https://packages.timber.io/qovery/0.8.X/qovery-armhf.deb
-```
-
-[Looking for a different version?][docs.package_managers.dpkg#versions]
-
-</li>
-<li>
-
-### Install the downloaded package
-
-```bash
-sudo dpkg -i qovery-armhf.deb
-```
-
-</li>
-<li>
-
-### Configure Qovery
-
-<ConfigExample
-  format="toml"
-  path={"/etc/qovery/qovery.toml"}
-  sourceName={"journald"}
-  sinkName={null} />
-
-</li>
-<li>
-
-### Start Qovery
-
-```bash
-sudo systemctl start qovery
-```
-
-</li>
-</ol>
-</Steps>
-</TabItem>
-</Tabs>
 
 </TabItem>
 <TabItem value="qovery-cli">
@@ -289,7 +145,6 @@ compose!
 </Tabs>
 
 
-[docs.package_managers.dpkg#versions]: /docs/setup/installation/package-managers/dpkg/#versions
 [docs.platforms.docker#variants]: /docs/setup/installation/platforms/docker/#variants
 [docs.sources.journald]: /docs/reference/sources/journald/
 [docs.sources]: /docs/reference/sources/

@@ -7,14 +7,14 @@ data_dir = "/var/lib/qovery"
 
 # Ingest data
 # Example: {"message": "{\"parent\": \"{\\\"child\\\": \\\"value2\\\"}\"}"}
-# Docs: https://qovery.dev/docs/reference/sources/file
+# Docs: https://docs.qovery.com/docs/reference/sources/file
 [sources.logs]
   type         = "file"
   include      = ["/var/log/*.log"]
   ignore_older = 86400 # 1 day
 
 # Parse the data as JSON
-# Docs: https://qovery.dev/docs/reference/transforms/json_parser
+# Docs: https://docs.qovery.com/docs/reference/transforms/json_parser
 [transforms.parse_root_json]
   inputs       = ["logs"]
   type         = "json_parser"
@@ -31,7 +31,7 @@ data_dir = "/var/lib/qovery"
   field        = "child"
 
 # Print the data to STDOUT for inspection
-# Docs: https://qovery.dev/docs/reference/sinks/console
+# Docs: https://docs.qovery.com/docs/reference/sinks/console
 [sinks.out]
   inputs       = ["parse_child_json"]
   type         = "console"

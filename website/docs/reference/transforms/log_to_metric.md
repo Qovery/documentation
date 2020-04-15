@@ -569,4 +569,4 @@ individual metrics for reduction in the metrics storage itself.
 [docs.data-model.metric#tags]: /docs/about/data-model/metric/#tags
 [docs.data-model.metric]: /docs/about/data-model/metric/
 [docs.sinks.prometheus]: /docs/reference/sinks/prometheus/
-[urls.qovery_programmable_transforms]: https://qovery.dev/components?functions%5B%5D=program
+[urls.qovery_programmable_transforms]: https://docs.qovery.com

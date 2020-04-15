@@ -124,4 +124,4 @@ You can learn more about Qovery's field notation in the
 [docs.configuration#environment-variables]: /docs/setup/configuration/#environment-variables
 [docs.data-model.log]: /docs/about/data-model/log/
 [docs.reference.field-path-notation]: /docs/reference/field-path-notation/
-[urls.qovery_programmable_transforms]: https://qovery.dev/components?functions%5B%5D=program
+[urls.qovery_programmable_transforms]: https://docs.qovery.com

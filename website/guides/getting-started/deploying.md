@@ -135,151 +135,7 @@ act of deploying Qovery within your environment.
   values={[{"group":"Package managers","label":"DPKG","value":"dpkg"},{"group":"Platforms","label":"Docker CLI","value":"docker-cli"},{"group":"Platforms","label":"Docker Compose","value":"docker-compose"},{"group":"Package managers","label":"Homebrew","value":"homebrew"},{"group":"Package managers","label":"MSI","value":"msi"},{"group":"Package managers","label":"Nix","value":"nix"},{"group":"Nones","label":"Qovery CLI","value":"qovery-cli"},{"group":"Package managers","label":"RPM","value":"rpm"}]}>
 <TabItem value="dpkg">
 
-<Tabs
-  centered={true}
-  className="rounded"
-  defaultValue="x86_64"
-  values={[{"label":"x86_64","value":"x86_64"},{"label":"ARM64","value":"arm64"},{"label":"ARMv7","value":"armv7"}]}>
 
-<TabItem value="x86_64">
-<Steps headingDepth={3}>
-<ol>
-<li>
-
-### Download the Qovery `.deb` package
-
-```bash
-curl --proto '=https' --tlsv1.2 -O https://packages.timber.io/qovery/0.8.X/qovery-amd64.deb
-```
-
-[Looking for a different version?][docs.package_managers.dpkg#versions]
-
-</li>
-<li>
-
-### Install the downloaded package
-
-```bash
-sudo dpkg -i qovery-amd64.deb
-```
-
-</li>
-<li>
-
-### Configure Qovery
-
-<ConfigExample
-  format="toml"
-  path={"/etc/qovery/qovery.toml"}
-  sourceName={"docker"}
-  sinkName={null} />
-
-</li>
-<li>
-
-### Start Qovery
-
-```bash
-sudo systemctl start qovery
-```
-
-</li>
-</ol>
-</Steps>
-</TabItem>
-<TabItem value="arm64">
-<Steps headingDepth={3}>
-<ol>
-<li>
-
-### Download the Qovery `.deb` package
-
-```bash
-curl --proto '=https' --tlsv1.2 -O https://packages.timber.io/qovery/0.8.X/qovery-arm64.deb
-```
-
-[Looking for a different version?][docs.package_managers.dpkg#versions]
-
-</li>
-<li>
-
-### Install the downloaded package
-
-```bash
-sudo dpkg -i qovery-arm64.deb
-```
-
-</li>
-<li>
-
-### Configure Qovery
-
-<ConfigExample
-  format="toml"
-  path={"/etc/qovery/qovery.toml"}
-  sourceName={"docker"}
-  sinkName={null} />
-
-</li>
-<li>
-
-### Start Qovery
-
-```bash
-sudo systemctl start qovery
-```
-
-</li>
-</ol>
-</Steps>
-</TabItem>
-<TabItem value="armv7">
-<Steps headingDepth={3}>
-<ol>
-<li>
-
-### Download the Qovery `.deb` package
-
-```bash
-curl --proto '=https' --tlsv1.2 -O https://packages.timber.io/qovery/0.8.X/qovery-armhf.deb
-```
-
-[Looking for a different version?][docs.package_managers.dpkg#versions]
-
-</li>
-<li>
-
-### Install the downloaded package
-
-```bash
-sudo dpkg -i qovery-armhf.deb
-```
-
-</li>
-<li>
-
-### Configure Qovery
-
-<ConfigExample
-  format="toml"
-  path={"/etc/qovery/qovery.toml"}
-  sourceName={"docker"}
-  sinkName={null} />
-
-</li>
-<li>
-
-### Start Qovery
-
-```bash
-sudo systemctl start qovery
-```
-
-</li>
-</ol>
-</Steps>
-</TabItem>
-</Tabs>
 
 </TabItem>
 <TabItem value="docker-cli">
@@ -369,52 +225,7 @@ brew services start qovery
 </TabItem>
 <TabItem value="msi">
 
-<Steps headingDepth={3}>
-<Tabs
-  centered={true}
-  className="rounded"
-  defaultValue="x86_64"
-  values={[{"label":"x86_64","value":"x86_64"}]}>
 
-<TabItem value="x86_64">
-
-1.  ### Download the Qovery `.msi` file
-
-    ```bat
-    powershell Invoke-WebRequest https://packages.timber.io/qovery/0.8.X/qovery-x64.msi -OutFile qovery-x64.msi
-    ```
-
-    [Looking for a specific version?][docs.package_managers.msi#versions]
-
-2.  ### Install the Qovery `.msi` package using `msiexec` command
-
-    ```bat
-    msiexec /i qovery-x64.msi /quiet
-    ```
-
-3.  ### Navigate to the Qovery directory
-
-    ```bat
-    cd "C:\Program Files\Qovery"
-    ```
-
-4.  ### Configure Qovery
-
-    <ConfigExample
-      format="toml"
-      path={"config\\qovery.toml"}
-      sourceName={"docker"}
-      sinkName={null} />
-
-5.  ### Start Qovery
-
-    ```bat
-    .\bin\qovery --config config\qovery.toml
-    ```
-
-</TabItem>
-</Tabs>
-</Steps>
 
 </TabItem>
 <TabItem value="nix">
@@ -430,12 +241,10 @@ brew services start qovery
     <CodeExplanation>
 
     * The `--file` flag ensures that you're installing the latest stable version
-      of Qovery (0.8.2).
     * The `--attr` improves installation speed.
 
     </CodeExplanation>
 
-    [Looking for a specific version?][docs.package_managers.nix#versions]
 
 2.  ### Configure Qovery
 
@@ -501,108 +310,7 @@ That's it! Simple and to the point. Hit `ctrl+c` to exit.
 </TabItem>
 <TabItem value="rpm">
 
-<Steps headingDepth={3}>
-<Tabs
-  centered={true}
-  className="rounded"
-  defaultValue="arm64"
-  values={[{"label":"ARM64","value":"arm64"},{"label":"ARMv7","value":"armv7"},{"label":"x86_64","value":"x86_64"}]}>
 
-<TabItem value="arm64">
-
-1.  ### Download the Qovery `.rpm` file
-
-    ```bash
-    curl -O https://packages.timber.io/qovery/0.8.X/qovery-aarch64.rpm
-    ```
-
-    [Looking for a specific version?][docs.package_managers.rpm#versions]
-
-2.  ### Install the Qovery `.rpm` package directly
-
-    ```bash
-    sudo rpm -i qovery-aarch64.rpm
-    ```
-
-3.  ### Configure Qovery
-
-    <ConfigExample
-      format="toml"
-      path={"/etc/qovery/qovery.toml"}
-      sourceName={"docker"}
-      sinkName={null} />
-
-4.  ### Start Qovery
-
-    ```bash
-    sudo systemctl start qovery
-    ```
-
-</TabItem>
-<TabItem value="armv7">
-
-1.  ### Download the Qovery `.rpm` file
-
-    ```bash
-    curl -O https://packages.timber.io/qovery/0.8.X/qovery-armv7hl.rpm
-    ```
-
-    [Looking for a specific version?][docs.package_managers.rpm#versions]
-
-2.  ### Install the Qovery `.rpm` package directly
-
-    ```bash
-    sudo rpm -i qovery-armv7hl.rpm
-    ```
-
-3.  ### Configure Qovery
-
-    <ConfigExample
-      format="toml"
-      path={"/etc/qovery/qovery.toml"}
-      sourceName={"docker"}
-      sinkName={null} />
-
-4.  ### Start Qovery
-
-    ```bash
-    sudo systemctl start qovery
-    ```
-
-</TabItem>
-<TabItem value="x86_64">
-
-1.  ### Download the Qovery `.rpm` file
-
-    ```bash
-    curl -O https://packages.timber.io/qovery/0.8.X/qovery-x86_64.rpm
-    ```
-
-    [Looking for a specific version?][docs.package_managers.rpm#versions]
-
-2.  ### Install the Qovery `.rpm` package directly
-
-    ```bash
-    sudo rpm -i qovery-x86_64.rpm
-    ```
-
-3.  ### Configure Qovery
-
-    <ConfigExample
-      format="toml"
-      path={"/etc/qovery/qovery.toml"}
-      sourceName={"docker"}
-      sinkName={null} />
-
-4.  ### Start Qovery
-
-    ```bash
-    sudo systemctl start qovery
-    ```
-
-</TabItem>
-</Tabs>
-</Steps>
 
 </TabItem>
 </Tabs>
@@ -611,11 +319,7 @@ That's it! Simple and to the point. Hit `ctrl+c` to exit.
 
 
 [docs.configuration]: /docs/setup/configuration/
-[docs.package_managers.dpkg#versions]: /docs/setup/installation/package-managers/dpkg/#versions
 [docs.package_managers.homebrew]: /docs/setup/installation/package-managers/homebrew/
-[docs.package_managers.msi#versions]: /docs/setup/installation/package-managers/msi/#versions
-[docs.package_managers.nix#versions]: /docs/setup/installation/package-managers/nix/#versions
-[docs.package_managers.rpm#versions]: /docs/setup/installation/package-managers/rpm/#versions
 [docs.platforms.docker#variants]: /docs/setup/installation/platforms/docker/#variants
 [docs.strategies]: /docs/setup/deployment/strategies/
 [docs.topologies]: /docs/setup/deployment/topologies/

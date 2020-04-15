@@ -498,4 +498,4 @@ You can learn more in the
 [docs.transforms.aws_ec2_metadata#aws-imds-v2]: /docs/reference/transforms/aws_ec2_metadata/#aws-imds-v2
 [urls.aws_ec2_instance_metadata]: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html
 [urls.aws_imds_v1_security_problems]: https://aws.amazon.com/blogs/security/defense-in-depth-open-firewalls-reverse-proxies-ssrf-vulnerabilities-ec2-instance-metadata-service/
-[urls.qovery_programmable_transforms]: https://qovery.dev/components?functions%5B%5D=program
+[urls.qovery_programmable_transforms]: https://docs.qovery.com

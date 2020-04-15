@@ -86,7 +86,7 @@ enum SubCommand {
     List(list::Opts),
 
     /// Run Qovery config unit tests, then exit. This command is experimental and therefore subject to change.
-    /// For guidance on how to write unit tests check out: https://qovery.dev/docs/setup/guides/unit-testing/
+    /// For guidance on how to write unit tests check out: https://docs.qovery.com/docs/setup/guides/unit-testing/
     Test(unit_test::Opts),
 }
 

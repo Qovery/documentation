@@ -4,7 +4,7 @@
 
 [[redirects]]
   from = "https://qovery-project.netlify.com/*"
-  to = "https://qovery.dev/:splat"
+  to = "https://docs.qovery.com/:splat"
   status = 301
   force = true
 
@@ -38,61 +38,61 @@
 
 [[redirects]]
   from = "https://docs.qovery.dev/correctness"
-  to = "https://qovery.dev/#correctness"
+  to = "https://docs.qovery.com/#correctness"
   status = 301
   force = true
 
 [[redirects]]
   from = "https://docs.qovery.dev/performance"
-  to = "https://qovery.dev/#performance"
+  to = "https://docs.qovery.com/#performance"
   status = 301
   force = true
 
 [[redirects]]
   from = "https://docs.qovery.dev/usage/administration"
-  to = "https://qovery.dev/docs/administration/"
+  to = "https://docs.qovery.com/docs/administration/"
   status = 301
   force = true
 
 [[redirects]]
   from = "https://docs.qovery.dev/usage/administration/stopping"
-  to = "https://qovery.dev/docs/administration/process-management/#stopping"
+  to = "https://docs.qovery.com/docs/administration/process-management/#stopping"
   status = 301
   force = true
 
 [[redirects]]
   from = "https://docs.qovery.dev/usage/administration/reloading"
-  to = "https://qovery.dev/docs/administration/process-management/#reloading"
+  to = "https://docs.qovery.com/docs/administration/process-management/#reloading"
   status = 301
   force = true
 
 [[redirects]]
   from = "https://docs.qovery.dev/usage/administration/starting"
-  to = "https://qovery.dev/docs/administration/process-management/#starting"
+  to = "https://docs.qovery.com/docs/administration/process-management/#starting"
   status = 301
   force = true
 
 [[redirects]]
   from = "https://docs.qovery.dev/usage/administration/*"
-  to = "https://qovery.dev/docs/administration/:splat"
+  to = "https://docs.qovery.com/docs/administration/:splat"
   status = 301
   force = true
 
 [[redirects]]
   from = "https://docs.qovery.dev/usage/configuration"
-  to = "https://qovery.dev/docs/setup/configuration/"
+  to = "https://docs.qovery.com/docs/setup/configuration/"
   status = 301
   force = true
 
 [[redirects]]
   from = "https://docs.qovery.dev/usage/configuration/*"
-  to = "https://qovery.dev/docs/reference/:splat"
+  to = "https://docs.qovery.com/docs/reference/:splat"
   status = 301
   force = true
 
 [[redirects]]
   from = "https://docs.qovery.dev/*"
-  to = "https://qovery.dev/docs/:splat"
+  to = "https://docs.qovery.com/docs/:splat"
   status = 301
   force = true
 
@@ -116,13 +116,13 @@
 
 [[redirects]]
   from = "/docs/about/correctness"
-  to = "https://qovery.dev/#correctness"
+  to = "https://docs.qovery.com/#correctness"
   status = 301
   force = true
 
 [[redirects]]
   from = "/docs/about/performance"
-  to = "https://qovery.dev/#performance"
+  to = "https://docs.qovery.com/#performance"
   status = 301
   force = true
 

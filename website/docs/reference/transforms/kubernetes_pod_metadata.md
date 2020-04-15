@@ -776,5 +776,5 @@ root of the event.
 [urls.kubernetes_rbac]: https://kubernetes.io/docs/reference/access-authn-authz/rbac/
 [urls.kubernetes_request_verbs]: https://kubernetes.io/docs/reference/access-authn-authz/authorization/#determine-the-request-verb
 [urls.kubernetes_watch_api]: https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.10/#watch-30
-[urls.qovery_programmable_transforms]: https://qovery.dev/components?functions%5B%5D=program
+[urls.qovery_programmable_transforms]: https://docs.qovery.com
 [urls.rust_k8s_openapi_crate]: https://docs.rs/k8s-openapi/

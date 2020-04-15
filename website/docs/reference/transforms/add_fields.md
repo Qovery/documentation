@@ -201,4 +201,4 @@ and special types, such as [arrays](#arrays) and
 [docs.configuration#environment-variables]: /docs/setup/configuration/#environment-variables
 [docs.configuration#types]: /docs/setup/configuration/#types
 [docs.data-model.log]: /docs/about/data-model/log/
-[urls.qovery_programmable_transforms]: https://qovery.dev/components?functions%5B%5D=program
+[urls.qovery_programmable_transforms]: https://docs.qovery.com

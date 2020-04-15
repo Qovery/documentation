@@ -148,9 +148,9 @@ flexibility of Qovery:
 [docs.sources.socket]: /docs/reference/sources/socket/
 [docs.strategies#service]: /docs/setup/deployment/strategies/#service
 [urls.aws_kinesis_firehose]: https://aws.amazon.com/kinesis/data-firehose/
-[urls.qovery_performance]: https://qovery.dev/#performance
+[urls.qovery_performance]: https://docs.qovery.com
 [urls.qovery_repo]: https://github.com/qovery
 [urls.qovery_stars]: https://github.com/qovery/documentation/stargazers
-[urls.qovery_website]: https://qovery.dev
+[urls.qovery_website]: https://docs.qovery.com
 [urls.rust]: https://www.rust-lang.org/
 [urls.socket]: https://en.wikipedia.org/wiki/Network_socket

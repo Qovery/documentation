@@ -32,7 +32,7 @@ data:
   qovery-agent-config: |
     # file: qovery.toml
     # Configuration for qovery-agent
-    # Docs: https://qovery.dev/docs/
+    # Docs: https://docs.qovery.com/docs/
 
     # Set global options
     data_dir = "/var/tmp/qovery"

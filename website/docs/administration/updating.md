@@ -1,10 +1,8 @@
 ---
-last_modified_on: "2020-04-01"
+last_modified_on: "2020-04-15"
 title: Updating
 description: How to update Qovery to a newer version.
 ---
-
-import Jump from '@site/src/components/Jump';
 
 Updating Qovery depends largely on your [installation][docs.installation]
 method. Each installation guide provides it's own "Updating" section:
@@ -21,16 +19,9 @@ method. Each installation guide provides it's own "Updating" section:
 
 ### Package managers
 
-<Jump to="/docs/setup/installation/package-managers/dpkg/#updating">DPKG</Jump>
-<Jump to="/docs/setup/installation/package-managers/homebrew/#updating">Homebrew</Jump>
-<Jump to="/docs/setup/installation/package-managers/msi/#updating">MSI</Jump>
-<Jump to="/docs/setup/installation/package-managers/nix/#updating">Nix</Jump>
-<Jump to="/docs/setup/installation/package-managers/rpm/#updating">RPM</Jump>
 
 ### Manual
 
-<Jump to="/docs/setup/installation/manual/from-archives/#updating">Updating from archives</Jump>
-<Jump to="/docs/setup/installation/manual/from-source/#updating">Updating from source</Jump>
 
 ## Working Upstream
 

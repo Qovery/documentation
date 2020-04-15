@@ -131,7 +131,7 @@ class Metadata
     @guides = hash.fetch("guides").to_struct_with_name(constructor: Guides)
     @installation = Installation.new(hash.fetch("installation"))
     @options = hash.fetch("options").to_struct_with_name(constructor: Field)
-    @releases = OpenStruct.new()
+#     @releases = OpenStruct.new()
     @sinks = OpenStruct.new()
     @sources = OpenStruct.new()
     @transforms = OpenStruct.new()
@@ -150,26 +150,26 @@ class Metadata
 
     # releases
 
-    release_versions =
-      hash.fetch("releases").collect do |version_string, _release_hash|
-        Version.new(version_string)
-      end
+#     release_versions =
+#       hash.fetch("releases").collect do |version_string, _release_hash|
+#         Version.new(version_string)
+#       end
 
-    hash.fetch("releases").collect do |version_string, release_hash|
-      version = Version.new(version_string)
-
-      last_version =
-        release_versions.
-          select { |other_version| other_version < version }.
-          sort.
-          last
-
-      last_date = last_version && hash.fetch("releases").fetch(last_version.to_s).fetch("date").to_date
-
-      release_hash["version"] = version_string
-      release = Release.new(release_hash, last_version, last_date, @posts)
-      @releases.send("#{version_string}=", release)
-    end
+#     hash.fetch("releases").collect do |version_string, release_hash|
+#       version = Version.new(version_string)
+#
+#       last_version =
+#         release_versions.
+#           select { |other_version| other_version < version }.
+#           sort.
+#           last
+#
+#       last_date = last_version && hash.fetch("releases").fetch(last_version.to_s).fetch("date").to_date
+#
+#       release_hash["version"] = version_string
+#       release = Release.new(release_hash, last_version, last_date, @posts)
+#       @releases.send("#{version_string}=", release)
+#     end
 
     # sources
 

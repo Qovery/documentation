@@ -70,7 +70,7 @@ function Footer() {
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <a href="https://github.com/qovery" target="_blank"><i className="feather icon-github" alt="Qovery's Github Repo"></i></a>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="https://qovery.dev/blog/atom.xml" target="_blank"><i className="feather icon-rss" alt="Qovery's RSS feed"></i></a>
+                <a href="https://docs.qovery.com/blog/atom.xml" target="_blank"><i className="feather icon-rss" alt="Qovery's RSS feed"></i></a>
               </div>
             </div>
             {links.map((linkItem, i) => (

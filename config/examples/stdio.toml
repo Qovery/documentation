@@ -3,7 +3,7 @@
 # A simple STDIN / STDOUT example. This script is used in the getting started
 # guide:
 #
-# https://qovery.dev/guides/getting-started
+# https://docs.qovery.com/guides/getting-started
 
 [sources.in]
     type = "stdin"

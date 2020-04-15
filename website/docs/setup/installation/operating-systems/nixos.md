@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-01"
+last_modified_on: "2020-04-15"
 title: Install Qovery On NixOS
 sidebar_label: NixOS
 description: Install Qovery on NixOS
@@ -67,12 +67,10 @@ The following diagram demonstrates how it works.
     <CodeExplanation>
 
     * The `--file` flag ensures that you're installing the latest stable version
-      of Qovery (0.8.2).
     * The `--attr` improves installation speed.
 
     </CodeExplanation>
 
-    [Looking for a specific version?][docs.package_managers.nix#versions]
 
 2.  ### Configure Qovery
 
@@ -186,7 +184,6 @@ compose!
 
 
 [docs.configuration]: /docs/setup/configuration/
-[docs.package_managers.nix#versions]: /docs/setup/installation/package-managers/nix/#versions
 [docs.platforms.docker#variants]: /docs/setup/installation/platforms/docker/#variants
 [docs.sources.journald]: /docs/reference/sources/journald/
 [docs.sources]: /docs/reference/sources/

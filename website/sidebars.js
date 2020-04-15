@@ -288,7 +288,7 @@ module.exports = {
         {
           type: 'link',
           label: 'Privacy',
-          href: 'https://github.com/qovery/documentation/blob/master/PRIVACY.md'
+          href: 'https://github.com/qovery'
         },
         {
           type: 'link',

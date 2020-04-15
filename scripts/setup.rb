@@ -28,7 +28,7 @@ require_relative "util"
 # Constants
 #
 
-HOST = "https://qovery.dev".freeze
+HOST = "https://docs.qovery.com".freeze
 DOCS_BASE_PATH = "/docs".freeze
 GUIDES_BASE_PATH = "/guides".freeze
 

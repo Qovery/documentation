@@ -148,9 +148,9 @@ flexibility of Qovery:
 [docs.sources]: /docs/reference/sources/
 [docs.strategies#sidecar]: /docs/setup/deployment/strategies/#sidecar
 [urls.datadog]: https://www.datadoghq.com
-[urls.qovery_performance]: https://qovery.dev/#performance
+[urls.qovery_performance]: https://docs.qovery.com
 [urls.qovery_repo]: https://github.com/qovery
 [urls.qovery_stars]: https://github.com/qovery/documentation/stargazers
-[urls.qovery_website]: https://qovery.dev
+[urls.qovery_website]: https://docs.qovery.com
 [urls.rust]: https://www.rust-lang.org/
 [urls.stdin]: https://en.wikipedia.org/wiki/Standard_streams#Standard_input_(stdin)

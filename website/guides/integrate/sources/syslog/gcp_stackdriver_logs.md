@@ -153,9 +153,9 @@ flexibility of Qovery:
 [docs.sources.syslog]: /docs/reference/sources/syslog/
 [docs.strategies#service]: /docs/setup/deployment/strategies/#service
 [urls.gcp_stackdriver]: https://cloud.google.com/products/operations
-[urls.qovery_performance]: https://qovery.dev/#performance
+[urls.qovery_performance]: https://docs.qovery.com
 [urls.qovery_repo]: https://github.com/qovery
 [urls.qovery_stars]: https://github.com/qovery/documentation/stargazers
-[urls.qovery_website]: https://qovery.dev
+[urls.qovery_website]: https://docs.qovery.com
 [urls.rust]: https://www.rust-lang.org/
 [urls.syslog]: https://en.wikipedia.org/wiki/Syslog

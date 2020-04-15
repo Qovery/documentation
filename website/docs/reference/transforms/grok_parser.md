@@ -314,6 +314,6 @@ common formats:
 [urls.grok]: http://grokdebug.herokuapp.com/
 [urls.grok_debugger]: http://grokdebug.herokuapp.com/
 [urls.grok_patterns]: https://github.com/daschl/grok/tree/master/patterns
-[urls.qovery_programmable_transforms]: https://qovery.dev/components?functions%5B%5D=program
+[urls.qovery_programmable_transforms]: https://docs.qovery.com
 [urls.rust_grok_library]: https://github.com/daschl/grok
 [urls.strptime_specifiers]: https://docs.rs/chrono/0.4.11/chrono/format/strftime/index.html#specifiers

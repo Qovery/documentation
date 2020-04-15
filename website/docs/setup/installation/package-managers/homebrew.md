@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-01"
+last_modified_on: "2020-04-15"
 title: Install Qovery via Homebrew
 sidebar_label: Homebrew
 description: Install Qovery through the Homebrew package manager
@@ -156,7 +156,6 @@ directly [from an archive][docs.manual.from-archives].
 ### Source Files
 
 Qovery's Homebrew source files are located in
-[Qovery's brew repo][urls.qovery_homebrew_source_files].
 
 
 [docs.configuration]: /docs/setup/configuration/
@@ -168,5 +167,4 @@ Qovery's Homebrew source files are located in
 [docs.strategies#daemon]: /docs/setup/deployment/strategies/#daemon
 [urls.homebrew]: https://brew.sh/
 [urls.homebrew_services]: https://github.com/Homebrew/homebrew-services
-[urls.qovery_homebrew_source_files]: https://github.com/timberio/homebrew-brew/blob/master/Formula/qovery.rb
-[urls.qovery_releases]: https://qovery.dev/releases/latest
+[urls.qovery_releases]: https://docs.qovery.com

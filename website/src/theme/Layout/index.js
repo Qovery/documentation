@@ -14,7 +14,7 @@ import { useLocation } from 'react-router-dom';
 import './styles.css';
 
 // purposefully hardcoded to protect against people copying our site
-const VECTOR_HOST = 'https://qovery.dev';
+const VECTOR_HOST = 'https://docs.qovery.com';
 
 function Layout(props) {
   const {siteConfig = {}} = useDocusaurusContext();

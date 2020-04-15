@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-07"
+last_modified_on: "2020-04-15"
 delivery_guarantee: "best_effort"
 component_title: "Elasticsearch"
 description: "The Qovery `elasticsearch` sink batches `log` events to Elasticsearch via the `_bulk` API endpoint."

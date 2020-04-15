@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-01"
+last_modified_on: "2020-04-15"
 $schema: "/.meta/.schemas/guides.json"
 title: "Send logs from Splunk HEC to Apache Pulsar"
 description: "A simple guide to send logs from Splunk HEC to Apache Pulsar in just a few minutes."
@@ -152,9 +152,9 @@ flexibility of Qovery:
 [docs.sources.splunk_hec]: /docs/reference/sources/splunk_hec/
 [docs.strategies#service]: /docs/setup/deployment/strategies/#service
 [urls.pulsar]: https://pulsar.apache.org/
-[urls.rust]: https://www.rust-lang.org/
-[urls.splunk_hec]: http://dev.splunk.com/view/event-collector/SP-CAAAE6M
 [urls.qovery_performance]: https://qovery.dev/#performance
 [urls.qovery_repo]: https://github.com/qovery
 [urls.qovery_stars]: https://github.com/qovery/documentation/stargazers
 [urls.qovery_website]: https://qovery.dev
+[urls.rust]: https://www.rust-lang.org/
+[urls.splunk_hec]: http://dev.splunk.com/view/event-collector/SP-CAAAE6M

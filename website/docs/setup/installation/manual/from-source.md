@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-01"
+last_modified_on: "2020-04-15"
 title: Install Qovery From Source
 sidebar_label: From Source
 description: Install Qovery from the Qovery source code
@@ -403,12 +403,12 @@ features one has to pass a comma-separated list of component features.
 | `sources-kafka` | Enables building of [`kafka` source][docs.sources.kafka].  Requires `rdkafka-plain` or `rdkafka-cmake` feature to be also enabled.  |
 | `sources-logplex` | Enables building of [`logplex` source][docs.sources.logplex].  |
 | `sources-prometheus` | Enables building of [`prometheus` source][docs.sources.prometheus].  |
+| `sources-qovery` | Enables building of [`qovery` source][docs.sources.qovery].  |
 | `sources-socket` | Enables building of [`socket` source][docs.sources.socket].  |
 | `sources-splunk_hec` | Enables building of [`splunk_hec` source][docs.sources.splunk_hec].  |
 | `sources-statsd` | Enables building of [`statsd` source][docs.sources.statsd].  |
 | `sources-stdin` | Enables building of [`stdin` source][docs.sources.stdin].  |
 | `sources-syslog` | Enables building of [`syslog` source][docs.sources.syslog].  |
-| `sources-qovery` | Enables building of [`qovery` source][docs.sources.qovery].  |
 | `transforms-add_fields` | Enables building of [`add_fields` transform][docs.transforms.add_fields].  |
 | `transforms-add_tags` | Enables building of [`add_tags` transform][docs.transforms.add_tags].  |
 | `transforms-ansi_stripper` | Enables building of [`ansi_stripper` transform][docs.transforms.ansi_stripper].  |
@@ -460,11 +460,11 @@ features one has to pass a comma-separated list of component features.
 | `sinks-papertrail` | Enables building of [`papertrail` sink][docs.sinks.papertrail].  |
 | `sinks-prometheus` | Enables building of [`prometheus` sink][docs.sinks.prometheus].  |
 | `sinks-pulsar` | Enables building of [`pulsar` sink][docs.sinks.pulsar].  |
+| `sinks-qovery` | Enables building of [`qovery` sink][docs.sinks.qovery].  |
 | `sinks-sematext_logs` | Enables building of [`sematext_logs` sink][docs.sinks.sematext_logs].  |
 | `sinks-socket` | Enables building of [`socket` sink][docs.sinks.socket].  |
 | `sinks-splunk_hec` | Enables building of [`splunk_hec` sink][docs.sinks.splunk_hec].  |
 | `sinks-statsd` | Enables building of [`statsd` sink][docs.sinks.statsd].  |
-| `sinks-qovery` | Enables building of [`qovery` sink][docs.sinks.qovery].  |
 
 </p>
 </details>
@@ -502,11 +502,11 @@ features one has to pass a comma-separated list of component features.
 [docs.sinks.papertrail]: /docs/reference/sinks/papertrail/
 [docs.sinks.prometheus]: /docs/reference/sinks/prometheus/
 [docs.sinks.pulsar]: /docs/reference/sinks/pulsar/
+[docs.sinks.qovery]: /docs/reference/sinks/qovery/
 [docs.sinks.sematext_logs]: /docs/reference/sinks/sematext_logs/
 [docs.sinks.socket]: /docs/reference/sinks/socket/
 [docs.sinks.splunk_hec]: /docs/reference/sinks/splunk_hec/
 [docs.sinks.statsd]: /docs/reference/sinks/statsd/
-[docs.sinks.qovery]: /docs/reference/sinks/qovery/
 [docs.sources.docker]: /docs/reference/sources/docker/
 [docs.sources.file]: /docs/reference/sources/file/
 [docs.sources.http]: /docs/reference/sources/http/
@@ -514,12 +514,12 @@ features one has to pass a comma-separated list of component features.
 [docs.sources.kafka]: /docs/reference/sources/kafka/
 [docs.sources.logplex]: /docs/reference/sources/logplex/
 [docs.sources.prometheus]: /docs/reference/sources/prometheus/
+[docs.sources.qovery]: /docs/reference/sources/qovery/
 [docs.sources.socket]: /docs/reference/sources/socket/
 [docs.sources.splunk_hec]: /docs/reference/sources/splunk_hec/
 [docs.sources.statsd]: /docs/reference/sources/statsd/
 [docs.sources.stdin]: /docs/reference/sources/stdin/
 [docs.sources.syslog]: /docs/reference/sources/syslog/
-[docs.sources.qovery]: /docs/reference/sources/qovery/
 [docs.transforms.add_fields]: /docs/reference/transforms/add_fields/
 [docs.transforms.add_tags]: /docs/reference/transforms/add_tags/
 [docs.transforms.ansi_stripper]: /docs/reference/transforms/ansi_stripper/

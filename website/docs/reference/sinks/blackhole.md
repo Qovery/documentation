@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-06"
+last_modified_on: "2020-04-15"
 delivery_guarantee: "best_effort"
 component_title: "Blackhole"
 description: "The Qovery `blackhole` sink streams `log` and `metric` events to a blackhole that simply discards data, designed for testing and benchmarking purposes."

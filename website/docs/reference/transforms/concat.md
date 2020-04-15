@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-06"
+last_modified_on: "2020-04-15"
 component_title: "Concat"
 description: "The Qovery `concat` transform accepts and outputs `log` events allowing you to concat (substrings) of other fields to a new one."
 event_types: ["log"]

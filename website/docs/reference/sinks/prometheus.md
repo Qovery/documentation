@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-06"
+last_modified_on: "2020-04-15"
 delivery_guarantee: "best_effort"
 component_title: "Prometheus"
 description: "The Qovery `prometheus` sink exposes `metric` events to Prometheus metrics service."
@@ -404,7 +404,6 @@ level log will be output.
 #### Summaries
 
 Summaries are a Prometheus specific type and Qovery does not default to them
-by default. [issue #710][urls.issue_710] addresses the ability to define metrics,
 including the ability change their types (such as changing them to `summary`
 types).
 
@@ -414,7 +413,6 @@ If you experience out of memory (OOM) errors it's likely you're using extremely
 [high cardinality](#high-cardinality) metric names or labels. This is
 [discouraged by Prometheus][urls.prometheus_high_cardinality] and you should
 consider alternative strategies to reduce the cardinality. Such as leveraging
-logs for high cardinality analysis. [Issue #387][urls.issue_387] discusses the
 ability to provide safeguards around this. We encourage you to add to that
 discussion with your use case if you find this to be a problem.
 
@@ -426,8 +424,6 @@ discussion with your use case if you find this to be a problem.
 [docs.data-model.metric#gauge]: /docs/about/data-model/metric/#gauge
 [docs.data-model.metric#set]: /docs/about/data-model/metric/#set
 [docs.data-model.metric]: /docs/about/data-model/metric/
-[urls.issue_387]: https://github.com/qovery/documentation/issues/387
-[urls.issue_710]: https://github.com/qovery/documentation/issues/710
 [urls.prometheus]: https://prometheus.io/
 [urls.prometheus_counter]: https://prometheus.io/docs/concepts/metric_types/#counter
 [urls.prometheus_gauge]: https://prometheus.io/docs/concepts/metric_types/#gauge

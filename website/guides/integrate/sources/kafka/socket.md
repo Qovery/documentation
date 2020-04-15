@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-01"
+last_modified_on: "2020-04-15"
 $schema: "/.meta/.schemas/guides.json"
 title: "Send logs from Kafka to a TCP, UDP, or UDS socket"
 description: "A simple guide to send logs from Kafka to a TCP, UDP, or UDS socket in just a few minutes."
@@ -147,9 +147,9 @@ flexibility of Qovery:
 [docs.sources.kafka]: /docs/reference/sources/kafka/
 [docs.strategies#service]: /docs/setup/deployment/strategies/#service
 [urls.kafka]: https://kafka.apache.org/
-[urls.rust]: https://www.rust-lang.org/
-[urls.socket]: https://en.wikipedia.org/wiki/Network_socket
 [urls.qovery_performance]: https://qovery.dev/#performance
 [urls.qovery_repo]: https://github.com/qovery
 [urls.qovery_stars]: https://github.com/qovery/documentation/stargazers
 [urls.qovery_website]: https://qovery.dev
+[urls.rust]: https://www.rust-lang.org/
+[urls.socket]: https://en.wikipedia.org/wiki/Network_socket

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-07"
+last_modified_on: "2020-04-15"
 delivery_guarantee: "best_effort"
 component_title: "GCP Stackdriver Logs"
 description: "The Qovery `gcp_stackdriver_logs` sink batches [`log`](#log) events to Google Cloud Platform's Stackdriver Logging service via the REST Interface."

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-06"
+last_modified_on: "2020-04-15"
 component_title: "Add Tags"
 description: "The Qovery `add_tags` transform accepts and outputs `metric` events allowing you to add one or more metric tags."
 event_types: ["metric"]

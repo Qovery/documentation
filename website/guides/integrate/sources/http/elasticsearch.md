@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-01"
+last_modified_on: "2020-04-15"
 $schema: "/.meta/.schemas/guides.json"
 title: "Send logs from HTTP to Elasticsearch"
 description: "A simple guide to send logs from HTTP to Elasticsearch in just a few minutes."
@@ -151,8 +151,8 @@ flexibility of Qovery:
 [docs.strategies#service]: /docs/setup/deployment/strategies/#service
 [urls.elasticsearch]: https://www.elastic.co/products/elasticsearch
 [urls.http]: https://www.w3.org/Protocols/
-[urls.rust]: https://www.rust-lang.org/
 [urls.qovery_performance]: https://qovery.dev/#performance
 [urls.qovery_repo]: https://github.com/qovery
 [urls.qovery_stars]: https://github.com/qovery/documentation/stargazers
 [urls.qovery_website]: https://qovery.dev
+[urls.rust]: https://www.rust-lang.org/

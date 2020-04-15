@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-06"
+last_modified_on: "2020-04-15"
 delivery_guarantee: "at_least_once"
 component_title: "Journald"
 description: "The Qovery `journald` source ingests data through Systemd's Journald utility and outputs `log` events."
@@ -371,7 +371,6 @@ spawning a [subprocess][urls.rust_subprocess] that Qovery diligently interacts
 with. If the [`journalctl`](#journalctl) command is not in the environment path you can
 specify the exact location via the [`journalctl_path`](#journalctl_path) option. For more
 information on this communication strategy please see
-[issue #1473][urls.issue_1473].
 
 ### Environment Variables
 
@@ -407,7 +406,6 @@ usermod -aG systemd-journal qovery
 [docs.global-options#data_dir]: /docs/reference/global-options/#data_dir
 [docs.sources.journald#communication-strategy]: /docs/reference/sources/journald/#communication-strategy
 [docs.sources.journald#user-permissions]: /docs/reference/sources/journald/#user-permissions
-[urls.issue_1473]: https://github.com/qovery/documentation/issues/1473
 [urls.journald]: https://www.freedesktop.org/software/systemd/man/systemd-journald.service.html
 [urls.rust_subprocess]: https://docs.rs/subprocess
 [urls.systemd]: https://systemd.io/

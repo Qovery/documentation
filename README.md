@@ -145,7 +145,6 @@ To learn more about our correctness tests, please see the [Qovery test harness][
 
 ### Data Processing
 
-* **Programmable transforms** - [Lua][docs.transforms.lua], [Javascript (coming soon)][urls.pr_721], and [WASM (coming soon)][urls.issue_1802] transforms.
 * **Rich parsing** - [Regex][docs.transforms.regex_parser], [Grok][docs.transforms.grok_parser], and [more][urls.qovery_parsing_transforms] allow for rich parsing.
 * **Smart timestamp coercion** - All [parsing transforms][urls.qovery_parsing_transforms] implement a [`types` option][docs.transforms.regex_parser#types] that can automatically parse timestamps.
 * **Context enrichment** - [Enrich data with environment context][urls.qovery_enriching_transforms].
@@ -272,12 +271,7 @@ Or use your own [preferred method][docs.installation].
 [docs.what-is-qovery]: https://qovery.dev/docs/about/what-is-qovery/
 [guides.advanced.unit-testing]: https://qovery.dev/guides/advanced/unit-testing/
 [pages.releases]: https://qovery.dev/releases/
-[urls.issue_1802]: https://github.com/qovery/documentation/issues/1802
 [urls.mailing_list]: https://qovery.dev/community/
-[urls.pr_721]: https://github.com/qovery/documentation/pull/721
-[urls.rust]: https://www.rust-lang.org/
-[urls.rust_memory_safety]: https://hacks.mozilla.org/2019/01/fearless-security-memory-safety/
-[urls.v0.8.2]: https://qovery.dev/releases/0.8.2/download
 [urls.qovery_blog]: https://qovery.dev/blog
 [urls.qovery_chat]: https://discord.qovery.com
 [urls.qovery_code_of_conduct]: https://github.com/qovery/documentation/blob/master/CODE_OF_CONDUCT.md
@@ -292,4 +286,7 @@ Or use your own [preferred method][docs.installation].
 [urls.qovery_security_policy]: https://github.com/qovery/documentation/security/policy
 [urls.qovery_test_harness]: https://github.com/qovery-test-harness/
 [urls.qovery_twitter]: https://twitter.com/qoverydotdev
+[urls.rust]: https://www.rust-lang.org/
+[urls.rust_memory_safety]: https://hacks.mozilla.org/2019/01/fearless-security-memory-safety/
+[urls.v0.8.2]: https://qovery.dev/releases/0.8.2/download
 [urls.vote_feature]: https://github.com/qovery/documentation/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc+label%3A%22Type%3A+New+Feature%22

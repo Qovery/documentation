@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-06"
+last_modified_on: "2020-04-15"
 title: Process Management
 description: "How to manage the Qovery process, such as starting, stopping, and reloading."
 ---
@@ -31,7 +31,7 @@ Qovery.
   placeholder="How did you install Qovery?"
   select={true}
   size={null}
-  values={[{"group":"Package managers","label":"DPKG","value":"dpkg"},{"group":"Platforms","label":"Docker CLI","value":"docker-cli"},{"group":"Platforms","label":"Docker Compose","value":"docker-compose"},{"group":"Package managers","label":"Homebrew","value":"homebrew"},{"group":"Package managers","label":"MSI","value":"msi"},{"group":"Package managers","label":"Nix","value":"nix"},{"group":"Package managers","label":"RPM","value":"rpm"},{"group":"Nones","label":"Qovery CLI","value":"qovery-cli"}]}>
+  values={[{"group":"Package managers","label":"DPKG","value":"dpkg"},{"group":"Platforms","label":"Docker CLI","value":"docker-cli"},{"group":"Platforms","label":"Docker Compose","value":"docker-compose"},{"group":"Package managers","label":"Homebrew","value":"homebrew"},{"group":"Package managers","label":"MSI","value":"msi"},{"group":"Package managers","label":"Nix","value":"nix"},{"group":"Nones","label":"Qovery CLI","value":"qovery-cli"},{"group":"Package managers","label":"RPM","value":"rpm"}]}>
 <TabItem value="dpkg">
 
 ```bash
@@ -89,17 +89,17 @@ qovery --config /etc/qovery/qovery.toml
 </CodeExplanation>
 
 </TabItem>
-<TabItem value="rpm">
-
-```bash
-sudo systemctl start qovery
-```
-
-</TabItem>
 <TabItem value="qovery-cli">
 
 ```bash
 qovery --config qovery.toml
+```
+
+</TabItem>
+<TabItem value="rpm">
+
+```bash
+sudo systemctl start qovery
 ```
 
 </TabItem>
@@ -142,7 +142,7 @@ The Qovery process can be stopped by sending it a `SIGTERM` process signal:
   placeholder="How did you install Qovery?"
   select={true}
   size={null}
-  values={[{"group":"Package managers","label":"DPKG","value":"dpkg"},{"group":"Platforms","label":"Docker CLI","value":"docker-cli"},{"group":"Platforms","label":"Docker Compose","value":"docker-compose"},{"group":"Package managers","label":"Homebrew","value":"homebrew"},{"group":"Package managers","label":"MSI","value":"msi"},{"group":"Package managers","label":"Nix","value":"nix"},{"group":"Package managers","label":"RPM","value":"rpm"},{"group":"Nones","label":"Qovery CLI","value":"qovery-cli"}]}>
+  values={[{"group":"Package managers","label":"DPKG","value":"dpkg"},{"group":"Platforms","label":"Docker CLI","value":"docker-cli"},{"group":"Platforms","label":"Docker Compose","value":"docker-compose"},{"group":"Package managers","label":"Homebrew","value":"homebrew"},{"group":"Package managers","label":"MSI","value":"msi"},{"group":"Package managers","label":"Nix","value":"nix"},{"group":"Nones","label":"Qovery CLI","value":"qovery-cli"},{"group":"Package managers","label":"RPM","value":"rpm"}]}>
 <TabItem value="dpkg">
 
 ```bash
@@ -181,18 +181,18 @@ The Qovery Nix package does not install Qovery into a process manager.
 Therefore, you are responsible for stopping Qovery based on how you started it.
 
 </TabItem>
-<TabItem value="rpm">
-
-```bash
-sudo systemctl stop qovery
-```
-
-</TabItem>
 <TabItem value="qovery-cli">
 
 If you are starting Qovery directly from the Qovery CLI then you are responsible
 for stopping Qovery depending on how you are managing the process. If you're
 in the terminal, hitting `ctrl+c` will exit the process.
+
+</TabItem>
+<TabItem value="rpm">
+
+```bash
+sudo systemctl stop qovery
+```
 
 </TabItem>
 </Tabs>
@@ -239,7 +239,7 @@ sending the Qovery process a `SIGHUP` signal.
   placeholder="How did you install Qovery?"
   select={true}
   size={null}
-  values={[{"group":"Package managers","label":"DPKG","value":"dpkg"},{"group":"Platforms","label":"Docker CLI","value":"docker-cli"},{"group":"Platforms","label":"Docker Compose","value":"docker-compose"},{"group":"Package managers","label":"Homebrew","value":"homebrew"},{"group":"Package managers","label":"MSI","value":"msi"},{"group":"Package managers","label":"Nix","value":"nix"},{"group":"Package managers","label":"RPM","value":"rpm"},{"group":"Nones","label":"Qovery CLI","value":"qovery-cli"}]}>
+  values={[{"group":"Package managers","label":"DPKG","value":"dpkg"},{"group":"Platforms","label":"Docker CLI","value":"docker-cli"},{"group":"Platforms","label":"Docker Compose","value":"docker-compose"},{"group":"Package managers","label":"Homebrew","value":"homebrew"},{"group":"Package managers","label":"MSI","value":"msi"},{"group":"Package managers","label":"Nix","value":"nix"},{"group":"Nones","label":"Qovery CLI","value":"qovery-cli"},{"group":"Package managers","label":"RPM","value":"rpm"}]}>
 <TabItem value="dpkg">
 
 ```bash
@@ -278,18 +278,18 @@ The Qovery Nix package does not install Qovery into a process manager.
 Therefore, you are responsible for stopping Qovery based on how you started it.
 
 </TabItem>
-<TabItem value="rpm">
-
-```bash
-sudo systemctl stop qovery
-```
-
-</TabItem>
 <TabItem value="qovery-cli">
 
 If you are starting Qovery directly from the Qovery CLI then you are responsible
 for stopping Qovery depending on how you are managing the process. If you're
 in the terminal, hitting `ctrl+c` will exit the process.
+
+</TabItem>
+<TabItem value="rpm">
+
+```bash
+sudo systemctl stop qovery
+```
 
 </TabItem>
 </Tabs>
@@ -321,5 +321,5 @@ transition from the old to new pipeline is graceful.
 [docs.sources]: /docs/reference/sources/
 [docs.validating]: /docs/administration/validating/
 [urls.exit_codes]: https://docs.rs/exitcode/1.1.2/exitcode/#constants
-[urls.systemd]: https://systemd.io/
 [urls.qovery_systemd_file]: https://github.com/qovery/documentation/blob/master/distribution/systemd/qovery.service
+[urls.systemd]: https://systemd.io/

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-01"
+last_modified_on: "2020-04-15"
 $schema: "/.meta/.schemas/guides.json"
 title: "Send logs from a TCP, UDP, or UDS socket to Sematext"
 description: "A simple guide to send logs from a TCP, UDP, or UDS socket to Sematext in just a few minutes."
@@ -147,10 +147,10 @@ flexibility of Qovery:
 
 [docs.sources.socket]: /docs/reference/sources/socket/
 [docs.strategies#service]: /docs/setup/deployment/strategies/#service
-[urls.rust]: https://www.rust-lang.org/
-[urls.sematext]: https://sematext.com
-[urls.socket]: https://en.wikipedia.org/wiki/Network_socket
 [urls.qovery_performance]: https://qovery.dev/#performance
 [urls.qovery_repo]: https://github.com/qovery
 [urls.qovery_stars]: https://github.com/qovery/documentation/stargazers
 [urls.qovery_website]: https://qovery.dev
+[urls.rust]: https://www.rust-lang.org/
+[urls.sematext]: https://sematext.com
+[urls.socket]: https://en.wikipedia.org/wiki/Network_socket

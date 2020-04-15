@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-07"
+last_modified_on: "2020-04-15"
 component_title: "Coercer"
 description: "The Qovery `coercer` transform accepts and outputs `log` events allowing you to coerce log fields into fixed types."
 event_types: ["log"]
@@ -263,5 +263,5 @@ common formats:
 [docs.configuration#environment-variables]: /docs/setup/configuration/#environment-variables
 [docs.data-model.log]: /docs/about/data-model/log/
 [docs.transforms.coercer]: /docs/reference/transforms/coercer/
-[urls.strptime_specifiers]: https://docs.rs/chrono/0.4.11/chrono/format/strftime/index.html#specifiers
 [urls.qovery_programmable_transforms]: https://qovery.dev/components?functions%5B%5D=program
+[urls.strptime_specifiers]: https://docs.rs/chrono/0.4.11/chrono/format/strftime/index.html#specifiers

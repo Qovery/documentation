@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-06"
+last_modified_on: "2020-04-15"
 title: Monitoring
 description: How to monitor and observe Qovery with logs, metrics, and more.
 ---
@@ -29,7 +29,7 @@ This document will cover monitoring Qovery.
   placeholder="How did you install Qovery?"
   select={true}
   size={null}
-  values={[{"group":"Package managers","label":"DPKG","value":"dpkg"},{"group":"Platforms","label":"Docker CLI","value":"docker-cli"},{"group":"Platforms","label":"Docker Compose","value":"docker-compose"},{"group":"Package managers","label":"Homebrew","value":"homebrew"},{"group":"Package managers","label":"MSI","value":"msi"},{"group":"Package managers","label":"Nix","value":"nix"},{"group":"Package managers","label":"RPM","value":"rpm"},{"group":"Nones","label":"Qovery CLI","value":"qovery-cli"}]}>
+  values={[{"group":"Package managers","label":"DPKG","value":"dpkg"},{"group":"Platforms","label":"Docker CLI","value":"docker-cli"},{"group":"Platforms","label":"Docker Compose","value":"docker-compose"},{"group":"Package managers","label":"Homebrew","value":"homebrew"},{"group":"Package managers","label":"MSI","value":"msi"},{"group":"Package managers","label":"Nix","value":"nix"},{"group":"Nones","label":"Qovery CLI","value":"qovery-cli"},{"group":"Package managers","label":"RPM","value":"rpm"}]}>
 <TabItem value="dpkg">
 
 The Qovery DEB package installs Qovery as a Systemd service. Logs can be
@@ -94,6 +94,13 @@ are written to `STDOUT`. You are in charge of routing `STDOUT`, and this
 determines how you access Qovery's logs.
 
 </TabItem>
+<TabItem value="qovery-cli">
+
+If you are starting Qovery directly from the Qovery CLI then all logs will be
+written to `STDOUT`. You are in charge of routing `STDOUT`, and this determines
+how you access Qovery's logs.
+
+</TabItem>
 <TabItem value="rpm">
 
 The Qovery RPM package installs Qovery as a Systemd service. Logs can be
@@ -102,13 +109,6 @@ accessed through the `journalctl` utility:
 ```bash
 sudo journalctl -fu qovery
 ```
-
-</TabItem>
-<TabItem value="qovery-cli">
-
-If you are starting Qovery directly from the Qovery CLI then all logs will be
-written to `STDOUT`. You are in charge of routing `STDOUT`, and this determines
-how you access Qovery's logs.
 
 </TabItem>
 </Tabs>
@@ -141,7 +141,6 @@ logged.
 
 ## Metrics
 
-Currently, Qovery does not expose Metrics. [Issue #230][urls.issue_230]
 represents work to run internal Qovery metrics through Qovery's pipeline.
 Allowing you to define internal metrics as a [source][docs.sources] and
 then define one of many metrics [sinks][docs.sinks] to collect those metrics,
@@ -158,4 +157,3 @@ Please refer to our troubleshooting guide:
 [docs.sinks]: /docs/reference/sinks/
 [docs.sources]: /docs/reference/sources/
 [guides.advanced.troubleshooting]: /guides/advanced/troubleshooting/
-[urls.issue_230]: https://github.com/qovery/documentation/issues/230

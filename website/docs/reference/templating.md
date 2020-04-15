@@ -1,4 +1,5 @@
 ---
+last_modified_on: "2020-04-15"
 title: Templating
 description: Learn Qovery's templating syntax used to creat dynamic values in Qovery's configuration.
 status: beta
@@ -112,7 +113,6 @@ option = "{{ parent.child[0] }}"
 
 ### Fallback Values
 
-Qovery currently does not support fallback values. [Issue 1692][urls.issue_1692]
 is open to add this functionality. In the interim, you can use the
 [`lua` transform][docs.transforms.lua] to set a default value:
 
@@ -150,5 +150,4 @@ option = "{{ parent.child }}"
 [docs.sinks.aws_s3#key_prefix]: /docs/reference/sinks/aws_s3/#key_prefix
 [docs.sinks.aws_s3]: /docs/reference/sinks/aws_s3/
 [docs.transforms.lua]: /docs/reference/transforms/lua/
-[urls.issue_1692]: https://github.com/qovery/documentation/issues/1692
 [urls.strptime_specifiers]: https://docs.rs/chrono/0.4.11/chrono/format/strftime/index.html#specifiers

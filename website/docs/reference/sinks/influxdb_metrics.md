@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-06"
+last_modified_on: "2020-04-15"
 delivery_guarantee: "at_least_once"
 component_title: "InfluxDB Metrics"
 description: "The Qovery `influxdb_metrics` sink batches `metric` events to InfluxDB using v1 or v2 HTTP API."

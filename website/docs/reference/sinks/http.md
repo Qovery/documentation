@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-07"
+last_modified_on: "2020-04-15"
 delivery_guarantee: "at_least_once"
 component_title: "HTTP"
 description: "The Qovery `http` sink batches `log` events to a generic HTTP endpoint."

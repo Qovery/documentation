@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-01"
+last_modified_on: "2020-04-15"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploying Qovery
 description: How to deploy Qovery to your target environment
@@ -132,7 +132,7 @@ act of deploying Qovery within your environment.
   placeholder="Please choose an installation method..."
   select={true}
   size={"lg"}
-  values={[{"group":"Package managers","label":"DPKG","value":"dpkg"},{"group":"Platforms","label":"Docker CLI","value":"docker-cli"},{"group":"Platforms","label":"Docker Compose","value":"docker-compose"},{"group":"Package managers","label":"Homebrew","value":"homebrew"},{"group":"Package managers","label":"MSI","value":"msi"},{"group":"Package managers","label":"Nix","value":"nix"},{"group":"Package managers","label":"RPM","value":"rpm"},{"group":"Nones","label":"Qovery CLI","value":"qovery-cli"}]}>
+  values={[{"group":"Package managers","label":"DPKG","value":"dpkg"},{"group":"Platforms","label":"Docker CLI","value":"docker-cli"},{"group":"Platforms","label":"Docker Compose","value":"docker-compose"},{"group":"Package managers","label":"Homebrew","value":"homebrew"},{"group":"Package managers","label":"MSI","value":"msi"},{"group":"Package managers","label":"Nix","value":"nix"},{"group":"Nones","label":"Qovery CLI","value":"qovery-cli"},{"group":"Package managers","label":"RPM","value":"rpm"}]}>
 <TabItem value="dpkg">
 
 <Tabs
@@ -462,6 +462,43 @@ brew services start qovery
 </Steps>
 
 </TabItem>
+<TabItem value="qovery-cli">
+
+<Steps headingDepth={3}>
+<ol>
+<li>
+
+### Install Qovery
+
+<InstallationCommand />
+
+</li>
+<li>
+
+### Configure Qovery
+
+<ConfigExample
+  format="toml"
+  path={"qovery.toml"}
+  sourceName={"docker"}
+  sinkName={null} />
+
+</li>
+<li>
+
+### Start Qovery
+
+```bash
+qovery --config qovery.toml
+```
+
+That's it! Simple and to the point. Hit `ctrl+c` to exit.
+
+</li>
+</ol>
+</Steps>
+
+</TabItem>
 <TabItem value="rpm">
 
 <Steps headingDepth={3}>
@@ -565,43 +602,6 @@ brew services start qovery
 
 </TabItem>
 </Tabs>
-</Steps>
-
-</TabItem>
-<TabItem value="qovery-cli">
-
-<Steps headingDepth={3}>
-<ol>
-<li>
-
-### Install Qovery
-
-<InstallationCommand />
-
-</li>
-<li>
-
-### Configure Qovery
-
-<ConfigExample
-  format="toml"
-  path={"qovery.toml"}
-  sourceName={"docker"}
-  sinkName={null} />
-
-</li>
-<li>
-
-### Start Qovery
-
-```bash
-qovery --config qovery.toml
-```
-
-That's it! Simple and to the point. Hit `ctrl+c` to exit.
-
-</li>
-</ol>
 </Steps>
 
 </TabItem>

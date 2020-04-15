@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-07"
+last_modified_on: "2020-04-15"
 delivery_guarantee: "at_least_once"
 component_title: "Splunk HEC"
 description: "The Qovery `splunk_hec` sink batches `log` events to a Splunk's HTTP Event Collector."

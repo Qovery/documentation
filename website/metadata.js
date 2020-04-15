@@ -25110,6 +25110,46 @@ module.exports = {
       ],
       "write_to_description": "Apache Pulsar via the Pulsar protocol"
     },
+    "qovery": {
+      "beta": true,
+      "config_examples": {
+        "toml": "[sinks.out]\n  type = \"qovery\" # required\n  inputs = [\"in\"] # required\n  address = \"92.12.333.224:5000\" # required"
+      },
+      "delivery_guarantee": "best_effort",
+      "description": null,
+      "event_types": [
+        "log",
+        "metric"
+      ],
+      "features": [
+        "Send data to another downstream Qovery instance."
+      ],
+      "function_category": "transmit",
+      "id": "qovery_sink",
+      "input_types": [
+        "log",
+        "metric"
+      ],
+      "logo_path": "/img/logos/qovery.svg",
+      "name": "qovery",
+      "noun": "another Qovery instance",
+      "operating_systems": [
+        "Linux",
+        "MacOS",
+        "Windows"
+      ],
+      "service_providers": [
+
+      ],
+      "short_description": "Streams log and metric events to another downstream `qovery` source.",
+      "status": "beta",
+      "title": "Qovery",
+      "type": "sink",
+      "unsupported_operating_systems": [
+
+      ],
+      "write_to_description": "another downstream `qovery` source"
+    },
     "sematext_logs": {
       "beta": true,
       "config_examples": {
@@ -25270,46 +25310,6 @@ module.exports = {
 
       ],
       "write_to_description": "StatsD metrics service"
-    },
-    "qovery": {
-      "beta": true,
-      "config_examples": {
-        "toml": "[sinks.out]\n  type = \"qovery\" # required\n  inputs = [\"in\"] # required\n  address = \"92.12.333.224:5000\" # required"
-      },
-      "delivery_guarantee": "best_effort",
-      "description": null,
-      "event_types": [
-        "log",
-        "metric"
-      ],
-      "features": [
-        "Send data to another downstream Qovery instance."
-      ],
-      "function_category": "transmit",
-      "id": "qovery_sink",
-      "input_types": [
-        "log",
-        "metric"
-      ],
-      "logo_path": "/img/logos/qovery.svg",
-      "name": "qovery",
-      "noun": "another Qovery instance",
-      "operating_systems": [
-        "Linux",
-        "MacOS",
-        "Windows"
-      ],
-      "service_providers": [
-
-      ],
-      "short_description": "Streams log and metric events to another downstream `qovery` source.",
-      "status": "beta",
-      "title": "Qovery",
-      "type": "sink",
-      "unsupported_operating_systems": [
-
-      ],
-      "write_to_description": "another downstream `qovery` source"
     }
   },
   "sources": {
@@ -25596,6 +25596,46 @@ module.exports = {
 
       ]
     },
+    "qovery": {
+      "beta": true,
+      "config_examples": {
+        "toml": "[sources.in]\n  type = \"qovery\" # required\n  address = \"0.0.0.0:9000\" # required"
+      },
+      "delivery_guarantee": "best_effort",
+      "description": null,
+      "event_types": [
+        "log",
+        "metric"
+      ],
+      "features": [
+        "Accept data from another upstream Qovery instance."
+      ],
+      "function_category": "receive",
+      "id": "qovery_source",
+      "logo_path": "/img/logos/qovery.svg",
+      "name": "qovery",
+      "noun": "Qovery",
+      "operating_systems": [
+        "Linux",
+        "MacOS",
+        "Windows"
+      ],
+      "output_types": [
+        "log",
+        "metric"
+      ],
+      "service_providers": [
+
+      ],
+      "short_description": "Ingests data through another upstream `qovery` sink and outputs log and metric events.",
+      "status": "beta",
+      "through_description": "another upstream `qovery` sink",
+      "title": "Qovery",
+      "type": "source",
+      "unsupported_operating_systems": [
+
+      ]
+    },
     "socket": {
       "beta": false,
       "config_examples": {
@@ -25787,46 +25827,6 @@ module.exports = {
       "status": "prod-ready",
       "through_description": "the Syslog protocol",
       "title": "Syslog",
-      "type": "source",
-      "unsupported_operating_systems": [
-
-      ]
-    },
-    "qovery": {
-      "beta": true,
-      "config_examples": {
-        "toml": "[sources.in]\n  type = \"qovery\" # required\n  address = \"0.0.0.0:9000\" # required"
-      },
-      "delivery_guarantee": "best_effort",
-      "description": null,
-      "event_types": [
-        "log",
-        "metric"
-      ],
-      "features": [
-        "Accept data from another upstream Qovery instance."
-      ],
-      "function_category": "receive",
-      "id": "qovery_source",
-      "logo_path": "/img/logos/qovery.svg",
-      "name": "qovery",
-      "noun": "Qovery",
-      "operating_systems": [
-        "Linux",
-        "MacOS",
-        "Windows"
-      ],
-      "output_types": [
-        "log",
-        "metric"
-      ],
-      "service_providers": [
-
-      ],
-      "short_description": "Ingests data through another upstream `qovery` sink and outputs log and metric events.",
-      "status": "beta",
-      "through_description": "another upstream `qovery` sink",
-      "title": "Qovery",
       "type": "source",
       "unsupported_operating_systems": [
 

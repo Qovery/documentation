@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-07"
+last_modified_on: "2020-04-15"
 component_title: "Split"
 description: "The Qovery `split` transform accepts and outputs `log` events allowing you to split a field's value on a _literal_ separator and zip the tokens into ordered field names."
 event_types: ["log"]
@@ -358,6 +358,6 @@ common formats:
 [docs.data-model.log]: /docs/about/data-model/log/
 [docs.reference.field-path-notation]: /docs/reference/field-path-notation/
 [docs.transforms.coercer]: /docs/reference/transforms/coercer/
+[urls.qovery_programmable_transforms]: https://qovery.dev/components?functions%5B%5D=program
 [urls.strptime_specifiers]: https://docs.rs/chrono/0.4.11/chrono/format/strftime/index.html#specifiers
 [urls.unicode_whitespace]: https://en.wikipedia.org/wiki/Unicode_character_property#Whitespace
-[urls.qovery_programmable_transforms]: https://qovery.dev/components?functions%5B%5D=program

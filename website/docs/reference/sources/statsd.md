@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-06"
+last_modified_on: "2020-04-15"
 delivery_guarantee: "best_effort"
 component_title: "Statsd"
 description: "The Qovery `statsd` source ingests data through the StatsD UDP protocol and outputs `metric` events."

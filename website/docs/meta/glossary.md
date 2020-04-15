@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-03-31"
+last_modified_on: "2020-04-15"
 title: Glossary
 description: "Qovery documentation glossary of terms"
 ---
@@ -163,7 +163,7 @@ reducing cost, etc.
 [docs.transforms]: /docs/reference/transforms/
 [guides.index]: /guides
 [pages.index#performance]: /#performance
+[urls.qovery_repo]: https://github.com/qovery
 [urls.rust]: https://www.rust-lang.org/
 [urls.toml]: https://github.com/toml-lang/toml
 [urls.toml_table]: https://github.com/toml-lang/toml#table
-[urls.qovery_repo]: https://github.com/qovery

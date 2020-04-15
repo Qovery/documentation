@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-01"
+last_modified_on: "2020-04-15"
 title: "What is Qovery?"
 description: "High-level description of the Qovery observability data collector and router."
 ---
@@ -45,6 +45,6 @@ usage][urls.qovery_performance].
 [docs.data-model.metric]: /docs/about/data-model/metric/
 [docs.strategies#daemon]: /docs/setup/deployment/strategies/#daemon
 [docs.strategies#sidecar]: /docs/setup/deployment/strategies/#sidecar
-[urls.rust]: https://www.rust-lang.org/
 [urls.qovery_performance]: https://qovery.dev/#performance
 [urls.qovery_repo]: https://github.com/qovery
+[urls.rust]: https://www.rust-lang.org/

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-06"
+last_modified_on: "2020-04-15"
 delivery_guarantee: "best_effort"
 component_title: "Papertrail"
 description: "The Qovery `papertrail` sink streams `log` events to Papertrail via Syslog."

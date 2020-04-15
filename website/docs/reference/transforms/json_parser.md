@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-06"
+last_modified_on: "2020-04-15"
 component_title: "JSON Parser"
 description: "The Qovery `json_parser` transform accepts and outputs `log` events allowing you to parse a log field value as JSON."
 event_types: ["log"]

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-07"
+last_modified_on: "2020-04-15"
 delivery_guarantee: "best_effort"
 component_title: "Qovery"
 description: "The Qovery `qovery` source ingests data through another upstream `qovery` sink and outputs `log` and `metric` events."
@@ -312,8 +312,6 @@ will not request a certificate from the client.
 
 ### Encoding
 
-Data is encoded via Qovery's [event protobuf][urls.event_proto] before it is sent over the wire.
-
 ### Environment Variables
 
 Environment variables are supported through all of Qovery's configuration.
@@ -344,5 +342,4 @@ options.
 [docs.data-model.log]: /docs/about/data-model/log/
 [docs.data-model.metric]: /docs/about/data-model/metric/
 [docs.sinks.qovery]: /docs/reference/sinks/qovery/
-[urls.event_proto]: https://github.com/qovery/documentation/blob/master/proto/event.proto
 [urls.openssl]: https://www.openssl.org/

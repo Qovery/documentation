@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-06"
+last_modified_on: "2020-04-15"
 component_title: "Dedupe events"
 description: "The Qovery `dedupe` transform accepts and outputs `log` events allowing you to prevent duplicate Events from being outputted by using an LRU cache."
 event_types: ["log"]

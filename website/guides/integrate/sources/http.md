@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-01"
+last_modified_on: "2020-04-15"
 $schema: "/.meta/.schemas/guides.json"
 title: "Collect logs from HTTP and send them anywhere"
 description: "A simple guide to collect logs from HTTP and send them anywhere in just a few minutes."
@@ -138,8 +138,8 @@ flexibility of Qovery:
 [docs.sources.http]: /docs/reference/sources/http/
 [docs.strategies#service]: /docs/setup/deployment/strategies/#service
 [urls.http]: https://www.w3.org/Protocols/
-[urls.rust]: https://www.rust-lang.org/
 [urls.qovery_performance]: https://qovery.dev/#performance
 [urls.qovery_repo]: https://github.com/qovery
 [urls.qovery_stars]: https://github.com/qovery/documentation/stargazers
 [urls.qovery_website]: https://qovery.dev
+[urls.rust]: https://www.rust-lang.org/

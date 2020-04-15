@@ -121,7 +121,6 @@ level log will be output.
 #### Summaries
 
 Summaries are a Prometheus specific type and Qovery does not default to them
-by default. [issue #710][urls.issue_710] addresses the ability to define metrics,
 including the ability change their types (such as changing them to `summary`
 types).
 
@@ -131,6 +130,5 @@ If you experience out of memory (OOM) errors it's likely you're using extremely
 [high cardinality](#high-cardinality) metric names or labels. This is
 [discouraged by Prometheus][urls.prometheus_high_cardinality] and you should
 consider alternative strategies to reduce the cardinality. Such as leveraging
-logs for high cardinality analysis. [Issue #387][urls.issue_387] discusses the
 ability to provide safeguards around this. We encourage you to add to that
 discussion with your use case if you find this to be a problem.

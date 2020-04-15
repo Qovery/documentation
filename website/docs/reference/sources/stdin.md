@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-06"
+last_modified_on: "2020-04-15"
 delivery_guarantee: "at_least_once"
 component_title: "STDIN"
 description: "The Qovery `stdin` source ingests data through standard input (STDIN) and outputs `log` events."

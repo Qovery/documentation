@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-07"
+last_modified_on: "2020-04-15"
 delivery_guarantee: "best_effort"
 component_title: "Syslog"
 description: "The Qovery `syslog` source ingests data through the Syslog protocol and outputs `log` events."
@@ -392,6 +392,7 @@ will not request a certificate from the client.
 ```javascript title="example log event"
 {
   // ...
+  "custom_field1": "custom value 1",
   "appname": "app-name",
   "facility": "1",
   "host": "my.host.com",
@@ -400,13 +401,37 @@ will not request a certificate from the client.
   "procid": "8710",
   "severity": "notice",
   "timestamp": "2019-11-01T21:15:47+00:00",
-  "version": 1,
-  "custom_field1": "custom value 1"
+  "version": 1
   // ...
 }
 ```
 
 <Fields filters={true}>
+<Field
+  common={false}
+  defaultValue={null}
+  enumValues={null}
+  examples={[{"custom_field1":"custom value 1"}]}
+  groups={[]}
+  name={"`[field-name]`"}
+  path={null}
+  relevantWhen={null}
+  required={false}
+  templateable={false}
+  type={"*"}
+  unit={null}
+  warnings={[]}
+  >
+
+### `[field-name]`
+
+In addition to the defined fields, any Syslog 5424 structured fields are parsed
+and inserted as root level fields.
+
+
+
+
+</Field>
 <Field
   common={false}
   defaultValue={null}
@@ -627,31 +652,6 @@ then Qovery will use the current time.
 
 The version extracted from the Syslog line. If a version is not found, then the
 key will not be added.
-
-
-
-
-</Field>
-<Field
-  common={false}
-  defaultValue={null}
-  enumValues={null}
-  examples={[{"custom_field1":"custom value 1"}]}
-  groups={[]}
-  name={"`[field-name]`"}
-  path={null}
-  relevantWhen={null}
-  required={false}
-  templateable={false}
-  type={"*"}
-  unit={null}
-  warnings={[]}
-  >
-
-### `[field-name]`
-
-In addition to the defined fields, any Syslog 5424 structured fields are parsed
-and inserted as root level fields.
 
 
 

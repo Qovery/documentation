@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-07"
+last_modified_on: "2020-04-15"
 delivery_guarantee: "best_effort"
 component_title: "Socket"
 description: "The Qovery `socket` sink streams `log` events to a socket, such as a TCP, UDP, or UDS socket."

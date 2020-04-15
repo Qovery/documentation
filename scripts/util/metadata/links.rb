@@ -26,7 +26,7 @@ require 'net/http'
 # method.
 class Links
   CATEGORIES = ["assets", "docs", "guides", "pages", "urls"].freeze
-  VECTOR_ROOT = "https://github.com/qovery".freeze
+  VECTOR_ROOT = "https://github.com/qovery/documentation".freeze
   VECTOR_COMMIT_ROOT = "#{VECTOR_ROOT}/commit".freeze
   VECTOR_ISSUES_ROOT = "#{VECTOR_ROOT}/issues".freeze
   VECTOR_MILESTONES_ROOT = "#{VECTOR_ROOT}/milestone".freeze

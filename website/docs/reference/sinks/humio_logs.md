@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-06"
+last_modified_on: "2020-04-15"
 delivery_guarantee: "at_least_once"
 component_title: "Humio Logs"
 description: "The Qovery `humio_logs` sink batches `log` events to Humio via the HEC API."

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-01"
+last_modified_on: "2020-04-15"
 $schema: "/.meta/.schemas/guides.json"
 title: "Collect metrics from Statsd and send them anywhere"
 description: "A simple guide to collect metrics from Statsd and send them anywhere in just a few minutes."
@@ -143,9 +143,9 @@ flexibility of Qovery:
 [docs.sources.statsd]: /docs/reference/sources/statsd/
 [docs.strategies#service]: /docs/setup/deployment/strategies/#service
 [urls.etsy]: https://www.etsy.com
-[urls.rust]: https://www.rust-lang.org/
-[urls.statsd]: https://github.com/statsd/statsd
 [urls.qovery_performance]: https://qovery.dev/#performance
 [urls.qovery_repo]: https://github.com/qovery
 [urls.qovery_stars]: https://github.com/qovery/documentation/stargazers
 [urls.qovery_website]: https://qovery.dev
+[urls.rust]: https://www.rust-lang.org/
+[urls.statsd]: https://github.com/statsd/statsd

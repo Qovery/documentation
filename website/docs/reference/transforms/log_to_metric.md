@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-07"
+last_modified_on: "2020-04-15"
 component_title: "Log to Metric"
 description: "The Qovery `log_to_metric` transform accepts `log` events but outputs [`metric`](#metric) events allowing you to convert logs into one or more metrics."
 event_types: ["log","metric"]

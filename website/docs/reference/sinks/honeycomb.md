@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-06"
+last_modified_on: "2020-04-15"
 delivery_guarantee: "at_least_once"
 component_title: "Honeycomb"
 description: "The Qovery `honeycomb` sink batches `log` events to Honeycomb via the batch events API."

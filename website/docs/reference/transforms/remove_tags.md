@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-06"
+last_modified_on: "2020-04-15"
 component_title: "Remove Tags"
 description: "The Qovery `remove_tags` transform accepts and outputs `metric` events allowing you to remove one or more metric tags."
 event_types: ["metric"]

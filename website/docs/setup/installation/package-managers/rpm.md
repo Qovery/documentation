@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-01"
+last_modified_on: "2020-04-15"
 title: Install Qovery via RPM
 sidebar_label: RPM
 description: Install Qovery through the RPM package manager
@@ -268,7 +268,7 @@ Qovery's RPM source files are located in
 [docs.sources.journald]: /docs/reference/sources/journald/
 [docs.sources]: /docs/reference/sources/
 [docs.strategies#daemon]: /docs/setup/deployment/strategies/#daemon
-[urls.rpm]: https://rpm.org/
-[urls.systemd]: https://systemd.io/
 [urls.qovery_releases]: https://qovery.dev/releases/latest
 [urls.qovery_rpm_source_files]: https://github.com/qovery/documentation/tree/master/distribution/rpm
+[urls.rpm]: https://rpm.org/
+[urls.systemd]: https://systemd.io/

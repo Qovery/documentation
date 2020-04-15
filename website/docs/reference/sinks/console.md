@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-06"
+last_modified_on: "2020-04-15"
 delivery_guarantee: "best_effort"
 component_title: "Console"
 description: "The Qovery `console` sink streams `log` and `metric` events to standard output streams, such as STDOUT and STDERR."

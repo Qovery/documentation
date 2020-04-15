@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-01"
+last_modified_on: "2020-04-15"
 $schema: "/.meta/.schemas/guides.json"
 title: "Send logs from a file to GCP PubSub"
 description: "A simple guide to send logs from a file to GCP PubSub in just a few minutes."
@@ -153,8 +153,8 @@ flexibility of Qovery:
 [docs.strategies#daemon]: /docs/setup/deployment/strategies/#daemon
 [urls.file]: https://en.wikipedia.org/wiki/Computer_file
 [urls.gcp_pubsub]: https://cloud.google.com/pubsub/
-[urls.rust]: https://www.rust-lang.org/
 [urls.qovery_performance]: https://qovery.dev/#performance
 [urls.qovery_repo]: https://github.com/qovery
 [urls.qovery_stars]: https://github.com/qovery/documentation/stargazers
 [urls.qovery_website]: https://qovery.dev
+[urls.rust]: https://www.rust-lang.org/

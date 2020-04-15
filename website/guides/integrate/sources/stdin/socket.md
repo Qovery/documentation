@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-01"
+last_modified_on: "2020-04-15"
 $schema: "/.meta/.schemas/guides.json"
 title: "Send logs from STDIN to a TCP, UDP, or UDS socket"
 description: "A simple guide to send logs from STDIN to a TCP, UDP, or UDS socket in just a few minutes."
@@ -138,10 +138,10 @@ flexibility of Qovery:
 [docs.sources.file]: /docs/reference/sources/file/
 [docs.sources]: /docs/reference/sources/
 [docs.strategies#sidecar]: /docs/setup/deployment/strategies/#sidecar
-[urls.rust]: https://www.rust-lang.org/
-[urls.socket]: https://en.wikipedia.org/wiki/Network_socket
-[urls.stdin]: https://en.wikipedia.org/wiki/Standard_streams#Standard_input_(stdin)
 [urls.qovery_performance]: https://qovery.dev/#performance
 [urls.qovery_repo]: https://github.com/qovery
 [urls.qovery_stars]: https://github.com/qovery/documentation/stargazers
 [urls.qovery_website]: https://qovery.dev
+[urls.rust]: https://www.rust-lang.org/
+[urls.socket]: https://en.wikipedia.org/wiki/Network_socket
+[urls.stdin]: https://en.wikipedia.org/wiki/Standard_streams#Standard_input_(stdin)

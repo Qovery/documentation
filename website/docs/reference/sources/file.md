@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-06"
+last_modified_on: "2020-04-15"
 delivery_guarantee: "best_effort"
 component_title: "File"
 description: "The Qovery [`file`](#file) source ingests data through one or more local files and outputs `log` events."

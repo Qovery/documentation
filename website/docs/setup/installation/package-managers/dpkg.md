@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-01"
+last_modified_on: "2020-04-15"
 title: Install Qovery via DPKG
 sidebar_label: DPKG
 description: Install Qovery through the DKG package manager
@@ -312,6 +312,6 @@ Qovery's DPKG source files are located in
 [docs.sources]: /docs/reference/sources/
 [docs.strategies#daemon]: /docs/setup/deployment/strategies/#daemon
 [urls.dpkg]: https://wiki.debian.org/dpkg
-[urls.systemd]: https://systemd.io/
 [urls.qovery_debian_source_files]: https://github.com/qovery/documentation/tree/master/distribution/debian
 [urls.qovery_releases]: https://qovery.dev/releases/latest
+[urls.systemd]: https://systemd.io/

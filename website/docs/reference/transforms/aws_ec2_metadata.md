@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-06"
+last_modified_on: "2020-04-15"
 component_title: "AWS EC2 Metadata"
 description: "The Qovery `aws_ec2_metadata` transform accepts and outputs `log` events allowing you to enrich logs with AWS EC2 instance metadata."
 event_types: ["log"]

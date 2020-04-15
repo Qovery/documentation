@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-01"
+last_modified_on: "2020-04-15"
 title: Log Event
 description: A detailed guide on Qovery's internal log data model.
 ---
@@ -303,7 +303,6 @@ The indexes start from 0, missing values are auto-filled by [null values](#null-
 
 It is important that the host system contain time zone data files to properly
 determine the local time zone. This is typically installed through the `tzdata`
-package. See [issue 551][urls.issue_551] for more info.
 
 </Alert>
 
@@ -365,5 +364,4 @@ Array fields are sequences of values of any type.
 [docs.sources]: /docs/reference/sources/
 [docs.transforms.coercer]: /docs/reference/transforms/coercer/
 [urls.ieee_754]: https://en.wikipedia.org/wiki/IEEE_754
-[urls.issue_551]: https://github.com/qovery/documentation/issues/551
 [urls.rust_date_time]: https://docs.rs/chrono/0.4.0/chrono/struct.DateTime.html

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-06"
+last_modified_on: "2020-04-15"
 component_title: "ANSI Stripper"
 description: "The Qovery `ansi_stripper` transform accepts and outputs `log` events allowing you to strips ANSI escape sequences from the specified field."
 event_types: ["log"]

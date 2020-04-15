@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-07"
+last_modified_on: "2020-04-15"
 delivery_guarantee: "best_effort"
 component_title: "Datadog Logs"
 description: "The Qovery `datadog_logs` sink streams `log` events to Datadog's logs via the TCP endpoint."

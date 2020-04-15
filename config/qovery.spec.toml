@@ -761,6 +761,96 @@ dns_servers = ["0.0.0.0:53"]
   # * unit: seconds
   scrape_interval_secs = 15
 
+# Ingests data through another upstream `qovery` sink and outputs `log` and `metric` events.
+[sources.qovery]
+  #
+  # General
+  #
+
+  # The component type. This is a required field that tells Qovery which
+  # component to use. The value _must_ be `#{name}`.
+  #
+  # * required
+  # * type: string
+  # * must be: "qovery"
+  type = "qovery"
+
+  # The TCP address to listen for connections on, or `systemd#N to use the Nth
+  # socket passed by systemd socket activation. If an address is used it _must_
+  # include a port.
+  #
+  # * required
+  # * type: string
+  address = "0.0.0.0:9000"
+  address = "systemd"
+  address = "systemd#1"
+
+  # The timeout before a connection is forcefully closed during shutdown.
+  #
+  # * optional
+  # * default: 30
+  # * type: int
+  # * unit: seconds
+  shutdown_timeout_secs = 30
+
+  #
+  # TLS
+  #
+
+  [sources.qovery.tls]
+    # Absolute path to an additional CA certificate file, in DER or PEM format
+    # (X.509).
+    #
+    # * optional
+    # * no default
+    # * type: string
+    ca_path = "/path/to/certificate_authority.crt"
+
+    # Absolute path to a certificate file used to identify this server, in DER or
+    # PEM format (X.509) or PKCS#12. If this is set and is not a PKCS#12 archive,
+    # `key_path` must also be set. This is required if `enabled` is set to `true`.
+    #
+    # * optional
+    # * no default
+    # * type: string
+    crt_path = "/path/to/host_certificate.crt"
+
+    # Require TLS for incoming connections. If this is set, an identity certificate
+    # is also required.
+    #
+    # * optional
+    # * default: false
+    # * type: bool
+    enabled = false
+    enabled = true
+
+    # Pass phrase used to unlock the encrypted key file. This has no effect unless
+    # `key_path` is set.
+    #
+    # * optional
+    # * no default
+    # * type: string
+    key_pass = "${KEY_PASS_ENV_VAR}"
+    key_pass = "PassWord1"
+
+    # Absolute path to a certificate key file used to identify this server, in DER
+    # or PEM format (PKCS#8).
+    #
+    # * optional
+    # * no default
+    # * type: string
+    key_path = "/path/to/host_certificate.key"
+
+    # If `true`, Qovery will require a TLS certificate from the connecting host and
+    # terminate the connection if it is not valid. If `false` (the default), Qovery
+    #  will not request a certificate from the client.
+    #
+    # * optional
+    # * default: false
+    # * type: bool
+    verify_certificate = false
+    verify_certificate = true
+
 # Ingests data through a socket, such as a TCP, UDP, or UDS socket and outputs `log` events.
 [sources.socket]
   #
@@ -1099,96 +1189,6 @@ dns_servers = ["0.0.0.0:53"]
   #
 
   [sources.syslog.tls]
-    # Absolute path to an additional CA certificate file, in DER or PEM format
-    # (X.509).
-    #
-    # * optional
-    # * no default
-    # * type: string
-    ca_path = "/path/to/certificate_authority.crt"
-
-    # Absolute path to a certificate file used to identify this server, in DER or
-    # PEM format (X.509) or PKCS#12. If this is set and is not a PKCS#12 archive,
-    # `key_path` must also be set. This is required if `enabled` is set to `true`.
-    #
-    # * optional
-    # * no default
-    # * type: string
-    crt_path = "/path/to/host_certificate.crt"
-
-    # Require TLS for incoming connections. If this is set, an identity certificate
-    # is also required.
-    #
-    # * optional
-    # * default: false
-    # * type: bool
-    enabled = false
-    enabled = true
-
-    # Pass phrase used to unlock the encrypted key file. This has no effect unless
-    # `key_path` is set.
-    #
-    # * optional
-    # * no default
-    # * type: string
-    key_pass = "${KEY_PASS_ENV_VAR}"
-    key_pass = "PassWord1"
-
-    # Absolute path to a certificate key file used to identify this server, in DER
-    # or PEM format (PKCS#8).
-    #
-    # * optional
-    # * no default
-    # * type: string
-    key_path = "/path/to/host_certificate.key"
-
-    # If `true`, Qovery will require a TLS certificate from the connecting host and
-    # terminate the connection if it is not valid. If `false` (the default), Qovery
-    #  will not request a certificate from the client.
-    #
-    # * optional
-    # * default: false
-    # * type: bool
-    verify_certificate = false
-    verify_certificate = true
-
-# Ingests data through another upstream `qovery` sink and outputs `log` and `metric` events.
-[sources.qovery]
-  #
-  # General
-  #
-
-  # The component type. This is a required field that tells Qovery which
-  # component to use. The value _must_ be `#{name}`.
-  #
-  # * required
-  # * type: string
-  # * must be: "qovery"
-  type = "qovery"
-
-  # The TCP address to listen for connections on, or `systemd#N to use the Nth
-  # socket passed by systemd socket activation. If an address is used it _must_
-  # include a port.
-  #
-  # * required
-  # * type: string
-  address = "0.0.0.0:9000"
-  address = "systemd"
-  address = "systemd#1"
-
-  # The timeout before a connection is forcefully closed during shutdown.
-  #
-  # * optional
-  # * default: 30
-  # * type: int
-  # * unit: seconds
-  shutdown_timeout_secs = 30
-
-  #
-  # TLS
-  #
-
-  [sources.qovery.tls]
     # Absolute path to an additional CA certificate file, in DER or PEM format
     # (X.509).
     #
@@ -8027,6 +8027,147 @@ require('custom_module')
     timestamp_format = "rfc3339"
     timestamp_format = "unix"
 
+# Streams `log` and `metric` events to another downstream `qovery` source.
+[sinks.qovery]
+  #
+  # General
+  #
+
+  # The component type. This is a required field that tells Qovery which
+  # component to use. The value _must_ be `#{name}`.
+  #
+  # * required
+  # * type: string
+  # * must be: "qovery"
+  type = "qovery"
+
+  # A list of upstream source or transform IDs. See configuration for more info.
+  #
+  # * required
+  # * type: [string]
+  inputs = ["my-source-id"]
+
+  # The downstream Qovery address to connect to. The address _must_ include a
+  # port.
+  #
+  # * required
+  # * type: string
+  address = "92.12.333.224:5000"
+
+  # Enables/disables the sink healthcheck upon start.
+  #
+  # * optional
+  # * default: true
+  # * type: bool
+  healthcheck = true
+  healthcheck = false
+
+  #
+  # Buffer
+  #
+
+  [sinks.qovery.buffer]
+    # The buffer's type and storage mechanism.
+    #
+    # * optional
+    # * default: "memory"
+    # * type: string
+    # * enum: "memory" or "disk"
+    type = "memory"
+    type = "disk"
+
+    # The maximum number of events allowed in the buffer.
+    #
+    # * optional
+    # * default: 500
+    # * type: int
+    # * unit: events
+    # * relevant when type = "memory"
+    max_events = 500
+
+    # The maximum size of the buffer on the disk.
+    #
+    # * required
+    # * type: int
+    # * unit: bytes
+    # * required when type = "disk"
+    max_size = 104900000
+
+    # The behavior when the buffer becomes full.
+    #
+    # * optional
+    # * default: "block"
+    # * type: string
+    # * enum: "block" or "drop_newest"
+    when_full = "block"
+    when_full = "drop_newest"
+
+  #
+  # TLS
+  #
+
+  [sinks.qovery.tls]
+    # Enable TLS during connections to the remote.
+    #
+    # * optional
+    # * default: false
+    # * type: bool
+    enabled = false
+    enabled = true
+
+    # Absolute path to an additional CA certificate file, in DER or PEM format
+    # (X.509).
+    #
+    # * optional
+    # * no default
+    # * type: string
+    ca_path = "/path/to/certificate_authority.crt"
+
+    # Absolute path to a certificate file used to identify this connection, in DER
+    # or PEM format (X.509) or PKCS#12. If this is set and is not a PKCS#12
+    # archive, `key_path` must also be set.
+    #
+    # * optional
+    # * no default
+    # * type: string
+    crt_path = "/path/to/host_certificate.crt"
+
+    # Pass phrase used to unlock the encrypted key file. This has no effect unless
+    # `key_path` is set.
+    #
+    # * optional
+    # * no default
+    # * type: string
+    key_pass = "${KEY_PASS_ENV_VAR}"
+    key_pass = "PassWord1"
+
+    # Absolute path to a certificate key file used to identify this connection, in
+    # DER or PEM format (PKCS#8). If this is set, `crt_path` must also be set.
+    #
+    # * optional
+    # * no default
+    # * type: string
+    key_path = "/path/to/host_certificate.key"
+
+    # If `true` (the default), Qovery will validate the TLS certificate of the
+    # remote host.
+    #
+    # * optional
+    # * default: true
+    # * type: bool
+    verify_certificate = true
+    verify_certificate = false
+
+    # If `true` (the default), Qovery will validate the configured remote host name
+    # against the remote host's TLS certificate. Do NOT set this to `false` unless
+    # you understand the risks of not verifying the remote hostname.
+    #
+    # * optional
+    # * default: true
+    # * type: bool
+    verify_hostname = true
+    verify_hostname = false
+
 # Batches `log` events to Sematext via the Elasticsearch API.
 [sinks.sematext_logs]
   #
@@ -8748,144 +8889,3 @@ require('custom_module')
   # * required
   # * type: string
   namespace = "service"
-
-# Streams `log` and `metric` events to another downstream `qovery` source.
-[sinks.qovery]
-  #
-  # General
-  #
-
-  # The component type. This is a required field that tells Qovery which
-  # component to use. The value _must_ be `#{name}`.
-  #
-  # * required
-  # * type: string
-  # * must be: "qovery"
-  type = "qovery"
-
-  # A list of upstream source or transform IDs. See configuration for more info.
-  #
-  # * required
-  # * type: [string]
-  inputs = ["my-source-id"]
-
-  # The downstream Qovery address to connect to. The address _must_ include a
-  # port.
-  #
-  # * required
-  # * type: string
-  address = "92.12.333.224:5000"
-
-  # Enables/disables the sink healthcheck upon start.
-  #
-  # * optional
-  # * default: true
-  # * type: bool
-  healthcheck = true
-  healthcheck = false
-
-  #
-  # Buffer
-  #
-
-  [sinks.qovery.buffer]
-    # The buffer's type and storage mechanism.
-    #
-    # * optional
-    # * default: "memory"
-    # * type: string
-    # * enum: "memory" or "disk"
-    type = "memory"
-    type = "disk"
-
-    # The maximum number of events allowed in the buffer.
-    #
-    # * optional
-    # * default: 500
-    # * type: int
-    # * unit: events
-    # * relevant when type = "memory"
-    max_events = 500
-
-    # The maximum size of the buffer on the disk.
-    #
-    # * required
-    # * type: int
-    # * unit: bytes
-    # * required when type = "disk"
-    max_size = 104900000
-
-    # The behavior when the buffer becomes full.
-    #
-    # * optional
-    # * default: "block"
-    # * type: string
-    # * enum: "block" or "drop_newest"
-    when_full = "block"
-    when_full = "drop_newest"
-
-  #
-  # TLS
-  #
-
-  [sinks.qovery.tls]
-    # Enable TLS during connections to the remote.
-    #
-    # * optional
-    # * default: false
-    # * type: bool
-    enabled = false
-    enabled = true
-
-    # Absolute path to an additional CA certificate file, in DER or PEM format
-    # (X.509).
-    #
-    # * optional
-    # * no default
-    # * type: string
-    ca_path = "/path/to/certificate_authority.crt"
-
-    # Absolute path to a certificate file used to identify this connection, in DER
-    # or PEM format (X.509) or PKCS#12. If this is set and is not a PKCS#12
-    # archive, `key_path` must also be set.
-    #
-    # * optional
-    # * no default
-    # * type: string
-    crt_path = "/path/to/host_certificate.crt"
-
-    # Pass phrase used to unlock the encrypted key file. This has no effect unless
-    # `key_path` is set.
-    #
-    # * optional
-    # * no default
-    # * type: string
-    key_pass = "${KEY_PASS_ENV_VAR}"
-    key_pass = "PassWord1"
-
-    # Absolute path to a certificate key file used to identify this connection, in
-    # DER or PEM format (PKCS#8). If this is set, `crt_path` must also be set.
-    #
-    # * optional
-    # * no default
-    # * type: string
-    key_path = "/path/to/host_certificate.key"
-
-    # If `true` (the default), Qovery will validate the TLS certificate of the
-    # remote host.
-    #
-    # * optional
-    # * default: true
-    # * type: bool
-    verify_certificate = true
-    verify_certificate = false
-
-    # If `true` (the default), Qovery will validate the configured remote host name
-    # against the remote host's TLS certificate. Do NOT set this to `false` unless
-    # you understand the risks of not verifying the remote hostname.
-    #
-    # * optional
-    # * default: true
-    # * type: bool
-    verify_hostname = true
-    verify_hostname = false

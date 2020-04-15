@@ -98,33 +98,33 @@ module.exports = {
           label: 'Sources',
           items: [
             "reference/sources",
-
+            
               "reference/sources/docker",
-
+            
               "reference/sources/file",
-
+            
               "reference/sources/http",
-
+            
               "reference/sources/journald",
-
+            
               "reference/sources/kafka",
-
+            
               "reference/sources/logplex",
-
+            
               "reference/sources/prometheus",
-
-              "reference/sources/socket",
-
-              "reference/sources/splunk_hec",
-
-              "reference/sources/statsd",
-
-              "reference/sources/stdin",
-
-              "reference/sources/syslog",
-
+            
               "reference/sources/qovery",
-
+            
+              "reference/sources/socket",
+            
+              "reference/sources/splunk_hec",
+            
+              "reference/sources/statsd",
+            
+              "reference/sources/stdin",
+            
+              "reference/sources/syslog",
+            
           ]
         },
         {
@@ -132,57 +132,57 @@ module.exports = {
           label: 'Transforms',
           items: [
             "reference/transforms",
-
+            
               "reference/transforms/add_fields",
-
+            
               "reference/transforms/add_tags",
-
+            
               "reference/transforms/ansi_stripper",
-
+            
               "reference/transforms/aws_ec2_metadata",
-
+            
               "reference/transforms/coercer",
-
+            
               "reference/transforms/concat",
-
+            
               "reference/transforms/dedupe",
-
+            
               "reference/transforms/filter",
-
+            
               "reference/transforms/geoip",
-
+            
               "reference/transforms/grok_parser",
-
+            
               "reference/transforms/json_parser",
-
+            
               "reference/transforms/kubernetes_pod_metadata",
-
+            
               "reference/transforms/log_to_metric",
-
+            
               "reference/transforms/logfmt_parser",
-
+            
               "reference/transforms/lua",
-
+            
               "reference/transforms/merge",
-
+            
               "reference/transforms/regex_parser",
-
+            
               "reference/transforms/remove_fields",
-
+            
               "reference/transforms/remove_tags",
-
+            
               "reference/transforms/rename_fields",
-
+            
               "reference/transforms/sampler",
-
+            
               "reference/transforms/split",
-
+            
               "reference/transforms/swimlanes",
-
+            
               "reference/transforms/tag_cardinality_limit",
-
+            
               "reference/transforms/tokenizer",
-
+            
           ]
         },
         {
@@ -190,69 +190,69 @@ module.exports = {
           label: 'Sinks',
           items: [
             "reference/sinks",
-
+            
               "reference/sinks/aws_cloudwatch_logs",
-
+            
               "reference/sinks/aws_cloudwatch_metrics",
-
+            
               "reference/sinks/aws_kinesis_firehose",
-
+            
               "reference/sinks/aws_kinesis_streams",
-
+            
               "reference/sinks/aws_s3",
-
+            
               "reference/sinks/blackhole",
-
+            
               "reference/sinks/clickhouse",
-
+            
               "reference/sinks/console",
-
+            
               "reference/sinks/datadog_logs",
-
+            
               "reference/sinks/datadog_metrics",
-
+            
               "reference/sinks/elasticsearch",
-
+            
               "reference/sinks/file",
-
+            
               "reference/sinks/gcp_cloud_storage",
-
+            
               "reference/sinks/gcp_pubsub",
-
+            
               "reference/sinks/gcp_stackdriver_logs",
-
+            
               "reference/sinks/honeycomb",
-
+            
               "reference/sinks/http",
-
+            
               "reference/sinks/humio_logs",
-
+            
               "reference/sinks/influxdb_metrics",
-
+            
               "reference/sinks/kafka",
-
+            
               "reference/sinks/logdna",
-
+            
               "reference/sinks/loki",
-
+            
               "reference/sinks/new_relic_logs",
-
+            
               "reference/sinks/papertrail",
-
+            
               "reference/sinks/prometheus",
-
+            
               "reference/sinks/pulsar",
-
-              "reference/sinks/sematext_logs",
-
-              "reference/sinks/socket",
-
-              "reference/sinks/splunk_hec",
-
-              "reference/sinks/statsd",
-
+            
               "reference/sinks/qovery",
-
+            
+              "reference/sinks/sematext_logs",
+            
+              "reference/sinks/socket",
+            
+              "reference/sinks/splunk_hec",
+            
+              "reference/sinks/statsd",
+            
           ],
         },
         {

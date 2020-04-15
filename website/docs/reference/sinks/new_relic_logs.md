@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-06"
+last_modified_on: "2020-04-15"
 delivery_guarantee: "at_least_once"
 component_title: "New Relic Logs"
 description: "The Qovery `new_relic_logs` sink batches `log` events to New Relic's log service via their log API."

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-01"
+last_modified_on: "2020-04-15"
 $schema: "/.meta/.schemas/guides.json"
 title: "Collect logs from Journald and send them anywhere"
 description: "A simple guide to collect logs from Journald and send them anywhere in just a few minutes."
@@ -145,9 +145,9 @@ flexibility of Qovery:
 [docs.sources.journald]: /docs/reference/sources/journald/
 [docs.strategies#daemon]: /docs/setup/deployment/strategies/#daemon
 [urls.journald]: https://www.freedesktop.org/software/systemd/man/systemd-journald.service.html
-[urls.rust]: https://www.rust-lang.org/
-[urls.systemd]: https://systemd.io/
 [urls.qovery_performance]: https://qovery.dev/#performance
 [urls.qovery_repo]: https://github.com/qovery
 [urls.qovery_stars]: https://github.com/qovery/documentation/stargazers
 [urls.qovery_website]: https://qovery.dev
+[urls.rust]: https://www.rust-lang.org/
+[urls.systemd]: https://systemd.io/

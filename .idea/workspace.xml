@@ -19,384 +19,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="Favicon">
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="Replace timberio -&gt; qovery">
+      <change afterPath="$PROJECT_DIR$/gh-pages.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.meta/links.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/links.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.meta/releases/0.4.0.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/releases/0.4.0.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/README.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/release.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/release.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/util/metadata/links.rb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/util/metadata/links.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/util/metadata/release.rb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/util/metadata/release.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sinks/clickhouse.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/sinks/clickhouse.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/topology/config/watcher.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/topology/config/watcher.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/types.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/types.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/blog/2019-11-25-unit-testing-qovery-config-files.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/blog/2019-11-25-unit-testing-qovery-config-files.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/blog/2019-12-14-kubernetes-source-alpha.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/blog/2019-12-14-kubernetes-source-alpha.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/blog/2020-01-07-prometheus-source.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/blog/2020-01-07-prometheus-source.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/blog/2020-04-09-how-we-test-qovery.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/blog/2020-04-09-how-we-test-qovery.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/about/data-model/log.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/about/data-model/log.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/about/guarantees.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/about/guarantees.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/about/what-is-qovery.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/about/what-is-qovery.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/administration/monitoring.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/administration/monitoring.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/administration/process-management.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/administration/process-management.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/meta/glossary.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/meta/glossary.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sinks/aws_cloudwatch_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sinks/aws_cloudwatch_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sinks/aws_cloudwatch_metrics.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sinks/aws_cloudwatch_metrics.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sinks/aws_kinesis_firehose.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sinks/aws_kinesis_firehose.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sinks/aws_kinesis_streams.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sinks/aws_kinesis_streams.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sinks/aws_s3.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sinks/aws_s3.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sinks/blackhole.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sinks/blackhole.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sinks/clickhouse.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sinks/clickhouse.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sinks/console.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sinks/console.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sinks/datadog_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sinks/datadog_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sinks/datadog_metrics.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sinks/datadog_metrics.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sinks/elasticsearch.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sinks/elasticsearch.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sinks/file.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sinks/file.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sinks/gcp_cloud_storage.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sinks/gcp_cloud_storage.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sinks/gcp_pubsub.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sinks/gcp_pubsub.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sinks/gcp_stackdriver_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sinks/gcp_stackdriver_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sinks/honeycomb.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sinks/honeycomb.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sinks/http.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sinks/http.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sinks/humio_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sinks/humio_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sinks/influxdb_metrics.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sinks/influxdb_metrics.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sinks/kafka.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sinks/kafka.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sinks/logdna.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sinks/logdna.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sinks/loki.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sinks/loki.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sinks/new_relic_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sinks/new_relic_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sinks/papertrail.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sinks/papertrail.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sinks/prometheus.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sinks/prometheus.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sinks/pulsar.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sinks/pulsar.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sinks/qovery.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sinks/qovery.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sinks/sematext_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sinks/sematext_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sinks/socket.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sinks/socket.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sinks/splunk_hec.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sinks/splunk_hec.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sinks/statsd.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sinks/statsd.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sources/docker.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sources/docker.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sources/file.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sources/file.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sources/http.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sources/http.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sources/journald.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sources/journald.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sources/kafka.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sources/kafka.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sources/logplex.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sources/logplex.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sources/prometheus.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sources/prometheus.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sources/qovery.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sources/qovery.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sources/socket.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sources/socket.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sources/splunk_hec.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sources/splunk_hec.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sources/statsd.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sources/statsd.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sources/stdin.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sources/stdin.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/sources/syslog.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/sources/syslog.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/templating.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/templating.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/transforms/add_fields.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/transforms/add_fields.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/transforms/add_tags.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/transforms/add_tags.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/transforms/ansi_stripper.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/transforms/ansi_stripper.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/transforms/aws_ec2_metadata.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/transforms/aws_ec2_metadata.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/transforms/coercer.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/transforms/coercer.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/transforms/concat.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/transforms/concat.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/transforms/dedupe.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/transforms/dedupe.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/transforms/filter.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/transforms/filter.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/transforms/geoip.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/transforms/geoip.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/transforms/grok_parser.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/transforms/grok_parser.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/transforms/json_parser.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/transforms/json_parser.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/transforms/kubernetes_pod_metadata.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/transforms/kubernetes_pod_metadata.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/transforms/log_to_metric.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/transforms/log_to_metric.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/transforms/logfmt_parser.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/transforms/logfmt_parser.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/transforms/lua.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/transforms/lua.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/transforms/merge.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/transforms/merge.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/transforms/regex_parser.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/transforms/regex_parser.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/transforms/remove_fields.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/transforms/remove_fields.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/transforms/remove_tags.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/transforms/remove_tags.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/transforms/rename_fields.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/transforms/rename_fields.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/transforms/sampler.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/transforms/sampler.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/transforms/split.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/transforms/split.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/transforms/swimlanes.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/transforms/swimlanes.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/transforms/tag_cardinality_limit.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/transforms/tag_cardinality_limit.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/reference/transforms/tokenizer.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/reference/transforms/tokenizer.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/setup/installation/manual/from-source.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/setup/installation/manual/from-source.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/setup/installation/manual/from-source.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/setup/installation/manual/from-source.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/setup/installation/package-managers/dpkg.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/setup/installation/package-managers/dpkg.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/setup/installation/package-managers/msi.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/setup/installation/package-managers/msi.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/setup/installation/package-managers/nix.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/setup/installation/package-managers/nix.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/setup/installation/package-managers/rpm.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/setup/installation/package-managers/rpm.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/setup/installation/platforms/docker.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/setup/installation/platforms/docker.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/docusaurus.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/docusaurus.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/advanced/troubleshooting.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/troubleshooting.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/monitoring.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/monitoring.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/platforms/docker.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/platforms/docker.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/aws_cloudwatch_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/aws_cloudwatch_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/aws_kinesis_firehose.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/aws_kinesis_firehose.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/aws_kinesis_streams.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/aws_kinesis_streams.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/aws_s3.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/aws_s3.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/clickhouse.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/clickhouse.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/datadog_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/datadog_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/elasticsearch.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/elasticsearch.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/file.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/file.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/gcp_cloud_storage.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/gcp_cloud_storage.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/gcp_pubsub.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/gcp_pubsub.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/gcp_stackdriver_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/gcp_stackdriver_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/honeycomb.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/honeycomb.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/http.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/http.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/humio_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/humio_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/kafka.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/kafka.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/logdna.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/logdna.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/loki.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/loki.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/new_relic_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/new_relic_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/papertrail.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/papertrail.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/pulsar.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/pulsar.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/sematext_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/sematext_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/socket.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/socket.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/splunk_hec.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/platforms/docker/splunk_hec.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sinks/aws_cloudwatch_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sinks/aws_cloudwatch_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sinks/aws_cloudwatch_metrics.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sinks/aws_cloudwatch_metrics.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sinks/aws_kinesis_firehose.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sinks/aws_kinesis_firehose.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sinks/aws_kinesis_streams.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sinks/aws_kinesis_streams.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sinks/aws_s3.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sinks/aws_s3.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sinks/clickhouse.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sinks/clickhouse.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sinks/datadog_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sinks/datadog_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sinks/datadog_metrics.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sinks/datadog_metrics.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sinks/elasticsearch.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sinks/elasticsearch.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sinks/file.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sinks/file.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sinks/gcp_cloud_storage.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sinks/gcp_cloud_storage.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sinks/gcp_pubsub.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sinks/gcp_pubsub.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sinks/gcp_stackdriver_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sinks/gcp_stackdriver_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sinks/honeycomb.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sinks/honeycomb.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sinks/http.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sinks/http.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sinks/humio_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sinks/humio_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sinks/influxdb_metrics.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sinks/influxdb_metrics.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sinks/kafka.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sinks/kafka.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sinks/logdna.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sinks/logdna.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sinks/loki.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sinks/loki.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sinks/new_relic_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sinks/new_relic_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sinks/papertrail.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sinks/papertrail.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sinks/prometheus.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sinks/prometheus.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sinks/pulsar.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sinks/pulsar.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sinks/sematext_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sinks/sematext_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sinks/socket.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sinks/socket.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sinks/splunk_hec.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sinks/splunk_hec.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sinks/statsd.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sinks/statsd.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/file.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/file.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/file/aws_cloudwatch_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/file/aws_cloudwatch_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/file/aws_kinesis_firehose.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/file/aws_kinesis_firehose.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/file/aws_kinesis_streams.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/file/aws_kinesis_streams.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/file/aws_s3.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/file/aws_s3.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/file/clickhouse.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/file/clickhouse.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/file/datadog_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/file/datadog_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/file/elasticsearch.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/file/elasticsearch.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/file/file.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/file/file.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/file/gcp_cloud_storage.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/file/gcp_cloud_storage.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/file/gcp_pubsub.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/file/gcp_pubsub.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/file/gcp_stackdriver_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/file/gcp_stackdriver_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/file/honeycomb.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/file/honeycomb.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/file/http.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/file/http.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/file/humio_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/file/humio_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/file/kafka.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/file/kafka.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/file/logdna.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/file/logdna.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/file/loki.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/file/loki.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/file/new_relic_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/file/new_relic_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/file/papertrail.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/file/papertrail.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/file/pulsar.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/file/pulsar.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/file/qovery.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/file/qovery.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/file/sematext_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/file/sematext_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/file/socket.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/file/socket.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/file/splunk_hec.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/file/splunk_hec.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/http.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/http.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/http/aws_cloudwatch_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/http/aws_cloudwatch_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/http/aws_kinesis_firehose.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/http/aws_kinesis_firehose.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/http/aws_kinesis_streams.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/http/aws_kinesis_streams.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/http/aws_s3.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/http/aws_s3.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/http/clickhouse.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/http/clickhouse.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/http/datadog_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/http/datadog_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/http/elasticsearch.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/http/elasticsearch.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/http/file.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/http/file.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/http/gcp_cloud_storage.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/http/gcp_cloud_storage.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/http/gcp_pubsub.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/http/gcp_pubsub.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/http/gcp_stackdriver_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/http/gcp_stackdriver_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/http/honeycomb.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/http/honeycomb.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/http/http.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/http/http.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/http/humio_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/http/humio_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/http/kafka.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/http/kafka.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/http/logdna.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/http/logdna.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/http/loki.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/http/loki.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/http/new_relic_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/http/new_relic_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/http/papertrail.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/http/papertrail.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/http/pulsar.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/http/pulsar.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/http/qovery.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/http/qovery.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/http/sematext_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/http/sematext_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/http/socket.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/http/socket.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/http/splunk_hec.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/http/splunk_hec.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/journald.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/journald.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/journald/aws_cloudwatch_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/journald/aws_cloudwatch_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/journald/aws_kinesis_firehose.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/journald/aws_kinesis_firehose.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/journald/aws_kinesis_streams.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/journald/aws_kinesis_streams.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/journald/aws_s3.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/journald/aws_s3.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/journald/clickhouse.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/journald/clickhouse.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/journald/datadog_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/journald/datadog_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/journald/elasticsearch.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/journald/elasticsearch.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/journald/file.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/journald/file.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/journald/gcp_cloud_storage.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/journald/gcp_cloud_storage.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/journald/gcp_pubsub.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/journald/gcp_pubsub.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/journald/gcp_stackdriver_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/journald/gcp_stackdriver_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/journald/honeycomb.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/journald/honeycomb.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/journald/http.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/journald/http.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/journald/humio_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/journald/humio_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/journald/kafka.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/journald/kafka.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/journald/logdna.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/journald/logdna.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/journald/loki.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/journald/loki.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/journald/new_relic_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/journald/new_relic_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/journald/papertrail.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/journald/papertrail.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/journald/pulsar.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/journald/pulsar.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/journald/qovery.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/journald/qovery.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/journald/sematext_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/journald/sematext_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/journald/socket.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/journald/socket.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/journald/splunk_hec.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/journald/splunk_hec.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/kafka.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/kafka.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/aws_cloudwatch_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/aws_cloudwatch_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/aws_kinesis_firehose.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/aws_kinesis_firehose.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/aws_kinesis_streams.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/aws_kinesis_streams.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/aws_s3.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/aws_s3.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/clickhouse.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/clickhouse.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/datadog_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/datadog_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/elasticsearch.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/elasticsearch.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/file.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/file.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/gcp_cloud_storage.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/gcp_cloud_storage.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/gcp_pubsub.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/gcp_pubsub.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/gcp_stackdriver_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/gcp_stackdriver_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/honeycomb.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/honeycomb.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/http.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/http.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/humio_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/humio_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/kafka.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/kafka.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/logdna.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/logdna.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/loki.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/loki.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/new_relic_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/new_relic_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/papertrail.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/papertrail.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/pulsar.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/pulsar.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/qovery.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/qovery.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/sematext_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/sematext_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/socket.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/socket.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/splunk_hec.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/kafka/splunk_hec.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/prometheus.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/prometheus.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/prometheus/aws_cloudwatch_metrics.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/prometheus/aws_cloudwatch_metrics.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/prometheus/datadog_metrics.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/prometheus/datadog_metrics.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/prometheus/influxdb_metrics.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/prometheus/influxdb_metrics.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/prometheus/prometheus.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/prometheus/prometheus.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/prometheus/statsd.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/prometheus/statsd.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/socket.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/socket.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/socket/aws_cloudwatch_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/socket/aws_cloudwatch_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/socket/aws_kinesis_firehose.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/socket/aws_kinesis_firehose.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/socket/aws_kinesis_streams.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/socket/aws_kinesis_streams.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/socket/aws_s3.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/socket/aws_s3.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/socket/clickhouse.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/socket/clickhouse.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/socket/datadog_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/socket/datadog_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/socket/elasticsearch.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/socket/elasticsearch.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/socket/file.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/socket/file.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/socket/gcp_cloud_storage.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/socket/gcp_cloud_storage.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/socket/gcp_pubsub.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/socket/gcp_pubsub.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/socket/gcp_stackdriver_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/socket/gcp_stackdriver_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/socket/honeycomb.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/socket/honeycomb.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/socket/http.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/socket/http.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/socket/humio_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/socket/humio_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/socket/kafka.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/socket/kafka.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/socket/logdna.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/socket/logdna.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/socket/loki.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/socket/loki.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/socket/new_relic_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/socket/new_relic_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/socket/papertrail.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/socket/papertrail.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/socket/pulsar.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/socket/pulsar.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/socket/qovery.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/socket/qovery.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/socket/sematext_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/socket/sematext_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/socket/socket.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/socket/socket.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/socket/splunk_hec.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/socket/splunk_hec.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/aws_cloudwatch_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/aws_cloudwatch_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/aws_kinesis_firehose.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/aws_kinesis_firehose.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/aws_kinesis_streams.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/aws_kinesis_streams.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/aws_s3.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/aws_s3.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/clickhouse.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/clickhouse.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/datadog_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/datadog_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/elasticsearch.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/elasticsearch.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/file.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/file.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/gcp_cloud_storage.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/gcp_cloud_storage.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/gcp_pubsub.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/gcp_pubsub.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/gcp_stackdriver_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/gcp_stackdriver_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/honeycomb.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/honeycomb.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/http.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/http.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/humio_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/humio_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/kafka.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/kafka.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/logdna.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/logdna.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/loki.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/loki.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/new_relic_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/new_relic_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/papertrail.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/papertrail.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/pulsar.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/pulsar.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/qovery.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/qovery.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/sematext_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/sematext_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/socket.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/socket.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/splunk_hec.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/splunk_hec/splunk_hec.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/statsd.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/statsd.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/statsd/aws_cloudwatch_metrics.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/statsd/aws_cloudwatch_metrics.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/statsd/datadog_metrics.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/statsd/datadog_metrics.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/statsd/influxdb_metrics.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/statsd/influxdb_metrics.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/statsd/prometheus.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/statsd/prometheus.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/statsd/statsd.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/statsd/statsd.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/stdin.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/stdin.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/aws_cloudwatch_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/aws_cloudwatch_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/aws_kinesis_firehose.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/aws_kinesis_firehose.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/aws_kinesis_streams.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/aws_kinesis_streams.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/aws_s3.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/aws_s3.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/clickhouse.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/clickhouse.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/datadog_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/datadog_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/elasticsearch.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/elasticsearch.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/file.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/file.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/gcp_cloud_storage.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/gcp_cloud_storage.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/gcp_pubsub.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/gcp_pubsub.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/gcp_stackdriver_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/gcp_stackdriver_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/honeycomb.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/honeycomb.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/http.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/http.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/humio_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/humio_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/kafka.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/kafka.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/logdna.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/logdna.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/loki.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/loki.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/new_relic_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/new_relic_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/papertrail.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/papertrail.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/pulsar.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/pulsar.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/qovery.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/qovery.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/sematext_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/sematext_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/socket.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/socket.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/splunk_hec.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/stdin/splunk_hec.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/syslog.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/syslog.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/aws_cloudwatch_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/aws_cloudwatch_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/aws_kinesis_firehose.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/aws_kinesis_firehose.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/aws_kinesis_streams.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/aws_kinesis_streams.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/aws_s3.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/aws_s3.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/clickhouse.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/clickhouse.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/datadog_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/datadog_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/elasticsearch.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/elasticsearch.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/file.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/file.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/gcp_cloud_storage.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/gcp_cloud_storage.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/gcp_pubsub.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/gcp_pubsub.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/gcp_stackdriver_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/gcp_stackdriver_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/honeycomb.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/honeycomb.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/http.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/http.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/humio_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/humio_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/kafka.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/kafka.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/logdna.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/logdna.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/loki.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/loki.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/new_relic_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/new_relic_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/papertrail.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/papertrail.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/pulsar.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/pulsar.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/qovery.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/qovery.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/sematext_logs.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/sematext_logs.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/socket.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/socket.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/splunk_hec.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/integrate/sources/syslog/splunk_hec.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/metadata.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/metadata.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/netlify.toml" beforeDir="false" afterPath="$PROJECT_DIR$/website/netlify.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/sidebars.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/components/Changelog/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/components/Changelog/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/components/PerformanceTests/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/components/PerformanceTests/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/components/QoveryComponents/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/components/QoveryComponents/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/components/ReleaseDownload/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/components/ReleaseDownload/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/components/Steps/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/components/Steps/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/pages/community.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/pages/community.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/pages/contact.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/pages/contact.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/pages/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/theme/Footer/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/theme/Footer/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/theme/Navbar/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/theme/Navbar/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -406,6 +33,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
   <component name="ProjectId" id="1aZOKd6nWhHwq19R3Y0ZfnytT38" />
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
@@ -413,10 +46,12 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="GO_FMT" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="go.import.settings.migrated" value="true" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -427,6 +62,14 @@
       <updated>1586939586068</updated>
       <workItem from="1586939589634" duration="58000" />
     </task>
+    <task id="LOCAL-00001" summary="Replace timberio -&gt; qovery">
+      <created>1586940976665</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1586940976665</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -435,14 +78,24 @@
   <component name="Vcs.Log.Tabs.Properties">
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
+    <MESSAGE value="Replace timberio -&gt; qovery" />
+    <option name="LAST_COMMIT_MESSAGE" value="Replace timberio -&gt; qovery" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="684" y="333" key="FileChooserDialogImpl" timestamp="1586940395534">
       <screen x="0" y="23" width="1792" height="1097" />
     </state>
     <state x="684" y="333" key="FileChooserDialogImpl/0.23.1792.1097@0.23.1792.1097" timestamp="1586940395534" />
-    <state x="593" y="302" width="683" height="538" key="find.popup" timestamp="1586940696820">
+    <state x="593" y="302" width="964" height="578" key="find.popup" timestamp="1586941400677">
       <screen x="0" y="23" width="1792" height="1097" />
     </state>
-    <state x="593" y="302" width="683" height="538" key="find.popup/0.23.1792.1097@0.23.1792.1097" timestamp="1586940696820" />
+    <state x="593" y="302" width="964" height="578" key="find.popup/0.23.1792.1097@0.23.1792.1097" timestamp="1586941400677" />
+    <state x="561" y="222" width="670" height="676" key="search.everywhere.popup" timestamp="1586940744368">
+      <screen x="0" y="23" width="1792" height="1097" />
+    </state>
+    <state x="561" y="222" width="670" height="676" key="search.everywhere.popup/0.23.1792.1097@0.23.1792.1097" timestamp="1586940744368" />
   </component>
 </project>

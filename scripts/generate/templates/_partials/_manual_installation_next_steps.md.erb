@@ -1,0 +1,57 @@
+### Configuring
+
+The Qovery configuration file is located at:
+
+```text
+config/qovery.toml
+```
+
+A full spec is located at `config/qovery.spec.toml` and examples are
+located in `config/qovery/examples/*`. You can learn more about configuring
+Qovery in the [Configuration][docs.configuration] section.
+
+### Data Directory
+
+We highly recommend creating a [data directory][docs.global-options#data_dir]
+that Qovery can use:
+
+```bash
+mkdir /var/lib/qovery
+```
+
+<Alert type="warning">
+
+Make sure that this directory is writable by the `qovery` process.
+
+</Alert>
+
+Qovery offers a global [`data_dir` option][docs.global-options#data_dir] that
+you can use to specify the path of your directory.
+
+```toml title="qovery.toml"
+data_dir = "/var/lib/qovery" # default
+```
+
+### Service Managers
+
+Qovery archives ship with service files in case you need them:
+
+#### Init.d
+
+To install Qovery into Init.d run:
+
+```bash
+cp -av <%= distribution_dir %>/init.d/qovery /etc/init.d
+```
+
+#### Systemd
+
+To install Qovery into Systemd run:
+
+```bash
+cp -av <%= distribution_dir %>/systemd/qovery.service /etc/systemd/system
+```
+
+### Updating
+
+Simply follow the same [installation instructions above](#installation).

@@ -1,0 +1,27 @@
+#                                    __   __  __
+#                                    \ \ / / / /
+#                                     \ V / / /
+#                                      \_/  \/
+#
+#                                    V E C T O R
+#                                   Configuration
+#
+# ------------------------------------------------------------------------------
+# Website: https://qovery.dev
+# Docs: https://qovery.dev/docs/
+# ------------------------------------------------------------------------------
+
+# Note: A full config spec is located at ./qovery.spec.toml and examples
+#       in the ./examples folder.
+
+data_dir = "/var/lib/qovery"
+
+# Input data. Change me to a valid input source.
+[sources.in]
+  type = "stdin"
+
+# Output data
+[sinks.out]
+  inputs   = ["in"]
+  type     = "console"
+  encoding = "text"

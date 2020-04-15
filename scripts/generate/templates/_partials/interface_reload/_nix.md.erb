@@ -1,0 +1,11 @@
+First, determine the Qovery proccess ID:
+
+```bash
+ps -ax | grep qovery
+```
+
+And then send the Qovery process a `SIGHUP`:
+
+```bash
+kill -SIGHUP <qovery-process-id>
+```

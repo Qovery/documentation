@@ -1,0 +1,25 @@
+---
+title: Global Options
+description: "Qovery's global options, allowing you configure global Qovery-wide behavior."
+---
+
+In addition to [sources][docs.sources], [transforms][docs.transforms], and
+[sinks][docs.sinks], Qovery accepts global options that serve to configure
+Qovery as a whole and set defaults for component options.
+
+## Configuration
+
+```toml title="qovery.toml"
+<%= config_example(metadata.options.to_h.values.sort) %>
+```
+
+<%= fields(metadata.options.to_h.values.sort, heading_depth: 3) %>
+
+## How It Works [[sort]]
+
+### Data Directory
+
+Qovery requires a `data_dir` value for on-disk operations. Currently, the only
+operation using this directory are Qovery's on-disk buffers. Buffers, by
+default, are memory-based, but if you switch them to disk-based you'll need to
+specify a `data_dir`.

@@ -1,0 +1,31 @@
+<Steps headingDepth={<%= heading_depth.to_json %>}>
+
+1.  ### Install Qovery
+
+    ```bash
+    nix-env --file https://github.com/NixOS/nixpkgs/archive/master.tar.gz --install --attr qovery
+    ```
+
+    <CodeExplanation>
+
+    * The `--file` flag ensures that you're installing the latest stable version
+      of Qovery (<%= metadata.latest_version %>).
+    * The `--attr` improves installation speed.
+
+    </CodeExplanation>
+
+    [Looking for a specific version?][docs.package_managers.nix#versions]
+
+2.  ### Configure Qovery
+
+    <ConfigExample
+      format="toml"
+      path={<%= interface.config_path.to_json %>}
+      sourceName={<%= (source && source.name).to_json %>}
+      sinkName={<%= (sink && sink.name).to_json %>} />
+
+3.  ### Start Qovery
+
+<%= interface_start(interface, requirements: (source && source.requirements)).indent(4) %>
+
+</Steps>

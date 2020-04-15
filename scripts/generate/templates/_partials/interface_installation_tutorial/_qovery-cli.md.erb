@@ -1,0 +1,31 @@
+<Steps headingDepth={<%= heading_depth.to_json %>}>
+<ol>
+<li>
+
+### Install Qovery
+
+<InstallationCommand />
+
+</li>
+<li>
+
+### Configure Qovery
+
+<ConfigExample
+  format="toml"
+  path={<%= interface.config_path.to_json %>}
+  sourceName={<%= (source && source.name).to_json %>}
+  sinkName={<%= (sink && sink.name).to_json %>} />
+
+</li>
+<li>
+
+### Start Qovery
+
+<%= interface_start(interface, requirements: (source && source.requirements)) %>
+
+That's it! Simple and to the point. Hit `ctrl+c` to exit.
+
+</li>
+</ol>
+</Steps>

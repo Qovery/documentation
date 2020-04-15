@@ -1,0 +1,12 @@
+If you've started Qovery through the `docker` CLI you can access Qovery's logs
+via the `docker logs` command. First, find the Qovery container ID:
+
+```bash
+docker ps | grep qovery
+```
+
+Copy Qovery's container ID and use it to tail the logs:
+
+```bash
+docker logs -f <container-id>
+```

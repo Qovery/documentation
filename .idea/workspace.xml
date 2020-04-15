@@ -19,10 +19,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="Add lost changes">
-      <change afterPath="$PROJECT_DIR$/.github/workflows/gh-pages.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docusaurus.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="Logo">
       <change beforePath="$PROJECT_DIR$/website/docusaurus.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/docusaurus.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -53,6 +50,11 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/website/static/img" />
+    </key>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="" />
@@ -76,11 +78,28 @@
       <option name="project" value="LOCAL" />
       <updated>1586941495751</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Logo">
+      <created>1586944019812</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1586944019812</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="oldMeFiltersMigrated" value="true" />
@@ -90,7 +109,8 @@
     <option name="CHECK_NEW_TODO" value="false" />
     <MESSAGE value="Replace timberio -&gt; qovery" />
     <MESSAGE value="Add lost changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add lost changes" />
+    <MESSAGE value="Logo" />
+    <option name="LAST_COMMIT_MESSAGE" value="Logo" />
   </component>
   <component name="WindowStateProjectService">
     <state x="180" y="122" key="DiffContextDialog" timestamp="1586941827745">
@@ -109,6 +129,10 @@
       <screen x="0" y="23" width="1792" height="1097" />
     </state>
     <state x="400" y="219" width="608" height="478" key="MultipleFileMergeDialog/0.23.1792.1097@0.23.1792.1097" timestamp="1586942584214" />
+    <state x="663" y="281" key="RollbackChangesDialog" timestamp="1586943990616">
+      <screen x="0" y="23" width="1792" height="1097" />
+    </state>
+    <state x="663" y="281" key="RollbackChangesDialog/0.23.1792.1097@0.23.1792.1097" timestamp="1586943990616" />
     <state x="496" y="311" key="Vcs.Push.Dialog.v2" timestamp="1586941891639">
       <screen x="0" y="23" width="1792" height="1097" />
     </state>
@@ -117,9 +141,9 @@
       <screen x="0" y="23" width="1792" height="1097" />
     </state>
     <state x="593" y="302" width="964" height="578" key="find.popup/0.23.1792.1097@0.23.1792.1097" timestamp="1586941400677" />
-    <state x="561" y="222" width="670" height="676" key="search.everywhere.popup" timestamp="1586942435329">
+    <state x="561" y="222" width="670" height="676" key="search.everywhere.popup" timestamp="1586944268574">
       <screen x="0" y="23" width="1792" height="1097" />
     </state>
-    <state x="561" y="222" width="670" height="676" key="search.everywhere.popup/0.23.1792.1097@0.23.1792.1097" timestamp="1586942435329" />
+    <state x="561" y="222" width="670" height="676" key="search.everywhere.popup/0.23.1792.1097@0.23.1792.1097" timestamp="1586944268574" />
   </component>
 </project>

@@ -4,9 +4,9 @@ component_title: "Sampler"
 description: "The Qovery `sampler` transform accepts and outputs `log` events allowing you to sample events with a configurable rate."
 event_types: ["log"]
 function_category: "filter"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22transform%3A+sampler%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22transform%3A+sampler%22
 sidebar_label: "sampler|[\"log\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/transforms/sampler.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/transforms/sampler.rs
 status: "beta"
 title: "Sampler Transform"
 ---

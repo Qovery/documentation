@@ -66,9 +66,9 @@ function Footer() {
               <div>
                 <a href="https://twitter.com/qoverydotdev" target="_blank"><i className="feather icon-twitter" alt="Qovery's Twitter"></i></a>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="https://chat.qovery.dev" target="_blank"><i className="feather icon-message-circle" alt="Qovery's Chat"></i></a>
+                <a href="https://discord.qovery.com" target="_blank"><i className="feather icon-message-circle" alt="Qovery's Chat"></i></a>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <a href="https://github.com/timberio/qovery" target="_blank"><i className="feather icon-github" alt="Qovery's Github Repo"></i></a>
+                <a href="https://github.com/qovery" target="_blank"><i className="feather icon-github" alt="Qovery's Github Repo"></i></a>
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <a href="https://qovery.dev/blog/atom.xml" target="_blank"><i className="feather icon-rss" alt="Qovery's RSS feed"></i></a>
               </div>
@@ -122,8 +122,8 @@ function Footer() {
             )}
             {copyright}<br />
             <small>
-              <a href="https://github.com/timberio/qovery/security/policy">Security Policy</a>&nbsp;&bull;&nbsp;
-              <a href="https://github.com/timberio/qovery/blob/master/PRIVACY.md">Privacy Policy</a>
+              <a href="https://github.com/qovery/documentation/security/policy">Security Policy</a>&nbsp;&bull;&nbsp;
+              <a href="https://github.com/qovery/documentation/blob/master/PRIVACY.md">Privacy Policy</a>
             </small>
           </div>
         )}

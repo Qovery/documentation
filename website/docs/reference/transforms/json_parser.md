@@ -4,9 +4,9 @@ component_title: "JSON Parser"
 description: "The Qovery `json_parser` transform accepts and outputs `log` events allowing you to parse a log field value as JSON."
 event_types: ["log"]
 function_category: "parse"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22transform%3A+json_parser%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22transform%3A+json_parser%22
 sidebar_label: "json_parser|[\"log\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/transforms/json_parser.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/transforms/json_parser.rs
 status: "prod-ready"
 title: "JSON Parser Transform"
 ---

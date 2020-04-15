@@ -5,10 +5,10 @@ component_title: "Console"
 description: "The Qovery `console` sink streams `log` and `metric` events to standard output streams, such as STDOUT and STDERR."
 event_types: ["log","metric"]
 function_category: "test"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+console%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+console%22
 operating_systems: ["Linux","MacOS","Windows"]
 sidebar_label: "console|[\"log\",\"metric\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/sinks/console.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/sinks/console.rs
 status: "prod-ready"
 title: "Console Sink"
 unsupported_operating_systems: []

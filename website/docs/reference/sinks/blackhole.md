@@ -5,10 +5,10 @@ component_title: "Blackhole"
 description: "The Qovery `blackhole` sink streams `log` and `metric` events to a blackhole that simply discards data, designed for testing and benchmarking purposes."
 event_types: ["log","metric"]
 function_category: "test"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+blackhole%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+blackhole%22
 operating_systems: ["Linux","MacOS","Windows"]
 sidebar_label: "blackhole|[\"log\",\"metric\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/sinks/blackhole.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/sinks/blackhole.rs
 status: "prod-ready"
 title: "Blackhole Sink"
 unsupported_operating_systems: []

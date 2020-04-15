@@ -5,10 +5,10 @@ component_title: "Splunk HEC"
 description: "The Qovery `splunk_hec` sink batches `log` events to a Splunk's HTTP Event Collector."
 event_types: ["log"]
 function_category: "transmit"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+splunk_hec%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+splunk_hec%22
 operating_systems: ["Linux","MacOS","Windows"]
 sidebar_label: "splunk_hec|[\"log\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/sinks/splunk_hec.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/sinks/splunk_hec.rs
 status: "prod-ready"
 title: "Splunk HEC Sink"
 unsupported_operating_systems: []
@@ -1046,7 +1046,7 @@ options.
 [docs.data-model]: /docs/about/data-model/
 [docs.guarantees]: /docs/about/guarantees/
 [docs.reference.global-options#host_key]: /docs/reference/global-options/#host_key
-[urls.new_splunk_hec_sink_issue]: https://github.com/timberio/qovery/issues/new?labels=sink%3A+splunk_hec
+[urls.new_splunk_hec_sink_issue]: https://github.com/qovery/documentation/issues/new?labels=sink%3A+splunk_hec
 [urls.openssl]: https://www.openssl.org/
 [urls.splunk_hec]: http://dev.splunk.com/view/event-collector/SP-CAAAE6M
 [urls.splunk_hec_indexed_fields]: https://docs.splunk.com/Documentation/Splunk/8.0.0/Data/IFXandHEC

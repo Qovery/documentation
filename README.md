@@ -101,11 +101,11 @@ common protocols with the exception of the Regex Parsing test.
 
 | Test | Qovery | Filebeat | FluentBit | FluentD | Logstash | SplunkUF | SplunkHF |
 | ---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| [TCP to Blackhole](https://github.com/timberio/qovery-test-harness/tree/master/cases/tcp_to_blackhole_performance) | _**86mib/s**_ | n/a | 64.4mib/s | 27.7mib/s | 40.6mib/s | n/a | n/a |
-| [File to TCP](https://github.com/timberio/qovery-test-harness/tree/master/cases/file_to_tcp_performance) | _**76.7mib/s**_ | 7.8mib/s | 35mib/s | 26.1mib/s | 3.1mib/s | 40.1mib/s | 39mib/s |
-| [Regex Parsing](https://github.com/timberio/qovery-test-harness/tree/master/cases/regex_parsing_performance) | 13.2mib/s | n/a | _**20.5mib/s**_ | 2.6mib/s | 4.6mib/s | n/a | 7.8mib/s |
-| [TCP to HTTP](https://github.com/timberio/qovery-test-harness/tree/master/cases/tcp_to_http_performance) | _**26.7mib/s**_ | n/a | 19.6mib/s | <1mib/s | 2.7mib/s | n/a | n/a |
-| [TCP to TCP](https://github.com/timberio/qovery-test-harness/tree/master/cases/tcp_to_tcp_performance) | 69.9mib/s | 5mib/s | 67.1mib/s | 3.9mib/s | 10mib/s | _**70.4mib/s**_ | 7.6mib/s |
+| [TCP to Blackhole](https://github.com/qovery-test-harness/tree/master/cases/tcp_to_blackhole_performance) | _**86mib/s**_ | n/a | 64.4mib/s | 27.7mib/s | 40.6mib/s | n/a | n/a |
+| [File to TCP](https://github.com/qovery-test-harness/tree/master/cases/file_to_tcp_performance) | _**76.7mib/s**_ | 7.8mib/s | 35mib/s | 26.1mib/s | 3.1mib/s | 40.1mib/s | 39mib/s |
+| [Regex Parsing](https://github.com/qovery-test-harness/tree/master/cases/regex_parsing_performance) | 13.2mib/s | n/a | _**20.5mib/s**_ | 2.6mib/s | 4.6mib/s | n/a | 7.8mib/s |
+| [TCP to HTTP](https://github.com/qovery-test-harness/tree/master/cases/tcp_to_http_performance) | _**26.7mib/s**_ | n/a | 19.6mib/s | <1mib/s | 2.7mib/s | n/a | n/a |
+| [TCP to TCP](https://github.com/qovery-test-harness/tree/master/cases/tcp_to_tcp_performance) | 69.9mib/s | 5mib/s | 67.1mib/s | 3.9mib/s | 10mib/s | _**70.4mib/s**_ | 7.6mib/s |
 
 To learn more about our performance tests, please see the [Qovery test harness][urls.qovery_test_harness].
 
@@ -117,12 +117,12 @@ fundamental differences in quality and attention to detail:
 
 | Test | Qovery | Filebeat | FluentBit | FluentD | Logstash | Splunk UF | Splunk HF |
 | ---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| [Disk Buffer Persistence](https://github.com/timberio/qovery-test-harness/tree/master/cases/disk_buffer_persistence_correctness) | ✅ | ✅ | ❌ | ❌ | ⚠️ | ✅ | ✅ |
-| [File Rotate (create)](https://github.com/timberio/qovery-test-harness/tree/master/cases/file_rotate_create_correctness) | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [File Rotate (copytruncate)](https://github.com/timberio/qovery-test-harness/tree/master/cases/file_rotate_truncate_correctness) | ✅ | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ |
-| [File Truncation](https://github.com/timberio/qovery-test-harness/tree/master/cases/file_truncate_correctness) | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| [Process (SIGHUP)](https://github.com/timberio/qovery-test-harness/tree/master/cases/sighup_correctness) | ✅ | ❌ | ❌ | ❌ | ⚠️ | ✅ | ✅ |
-| [JSON (wrapped)](https://github.com/timberio/qovery-test-harness/tree/master/cases/wrapped_json_correctness) | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ |
+| [Disk Buffer Persistence](https://github.com/qovery-test-harness/tree/master/cases/disk_buffer_persistence_correctness) | ✅ | ✅ | ❌ | ❌ | ⚠️ | ✅ | ✅ |
+| [File Rotate (create)](https://github.com/qovery-test-harness/tree/master/cases/file_rotate_create_correctness) | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [File Rotate (copytruncate)](https://github.com/qovery-test-harness/tree/master/cases/file_rotate_truncate_correctness) | ✅ | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ |
+| [File Truncation](https://github.com/qovery-test-harness/tree/master/cases/file_truncate_correctness) | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| [Process (SIGHUP)](https://github.com/qovery-test-harness/tree/master/cases/sighup_correctness) | ✅ | ❌ | ❌ | ❌ | ⚠️ | ✅ | ✅ |
+| [JSON (wrapped)](https://github.com/qovery-test-harness/tree/master/cases/wrapped_json_correctness) | ✅ | ✅ | ❌ | ✅ | ✅ | ✅ | ✅ |
 
 To learn more about our correctness tests, please see the [Qovery test harness][urls.qovery_test_harness].
 
@@ -205,7 +205,7 @@ Or use your own [preferred method][docs.installation].
 ---
 
 <p align="center">
-  Developed with ❤️ by <strong><a href="https://timber.io">Timber.io</a></strong> - <a href="https://github.com/timberio/qovery/security/policy">Security Policy</a> - <a href="https://github.com/timberio/qovery/blob/master/PRIVACY.md">Privacy Policy</a>
+  Developed with ❤️ by <strong><a href="https://timber.io">Timber.io</a></strong> - <a href="https://github.com/qovery/documentation/security/policy">Security Policy</a> - <a href="https://github.com/qovery/documentation/blob/master/PRIVACY.md">Privacy Policy</a>
 </p>
 
 
@@ -272,24 +272,24 @@ Or use your own [preferred method][docs.installation].
 [docs.what-is-qovery]: https://qovery.dev/docs/about/what-is-qovery/
 [guides.advanced.unit-testing]: https://qovery.dev/guides/advanced/unit-testing/
 [pages.releases]: https://qovery.dev/releases/
-[urls.issue_1802]: https://github.com/timberio/qovery/issues/1802
+[urls.issue_1802]: https://github.com/qovery/documentation/issues/1802
 [urls.mailing_list]: https://qovery.dev/community/
-[urls.pr_721]: https://github.com/timberio/qovery/pull/721
+[urls.pr_721]: https://github.com/qovery/documentation/pull/721
 [urls.rust]: https://www.rust-lang.org/
 [urls.rust_memory_safety]: https://hacks.mozilla.org/2019/01/fearless-security-memory-safety/
 [urls.v0.8.2]: https://qovery.dev/releases/0.8.2/download
 [urls.qovery_blog]: https://qovery.dev/blog
-[urls.qovery_chat]: https://chat.qovery.dev
-[urls.qovery_code_of_conduct]: https://github.com/timberio/qovery/blob/master/CODE_OF_CONDUCT.md
+[urls.qovery_chat]: https://discord.qovery.com
+[urls.qovery_code_of_conduct]: https://github.com/qovery/documentation/blob/master/CODE_OF_CONDUCT.md
 [urls.qovery_community]: https://qovery.dev/community
 [urls.qovery_enriching_transforms]: https://qovery.dev/components?functions%5B%5D=enrich
 [urls.qovery_parsing_transforms]: https://qovery.dev/components?functions%5B%5D=parse
 [urls.qovery_performance]: https://qovery.dev/#performance
-[urls.qovery_privacy_policy]: https://github.com/timberio/qovery/blob/master/PRIVACY.md
+[urls.qovery_privacy_policy]: https://github.com/qovery/documentation/blob/master/PRIVACY.md
 [urls.qovery_releases]: https://qovery.dev/releases/latest
-[urls.qovery_repo]: https://github.com/timberio/qovery
-[urls.qovery_roadmap]: https://github.com/timberio/qovery/milestones?direction=asc&sort=due_date&state=open
-[urls.qovery_security_policy]: https://github.com/timberio/qovery/security/policy
-[urls.qovery_test_harness]: https://github.com/timberio/qovery-test-harness/
+[urls.qovery_repo]: https://github.com/qovery
+[urls.qovery_roadmap]: https://github.com/qovery/documentation/milestones?direction=asc&sort=due_date&state=open
+[urls.qovery_security_policy]: https://github.com/qovery/documentation/security/policy
+[urls.qovery_test_harness]: https://github.com/qovery-test-harness/
 [urls.qovery_twitter]: https://twitter.com/qoverydotdev
-[urls.vote_feature]: https://github.com/timberio/qovery/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc+label%3A%22Type%3A+New+Feature%22
+[urls.vote_feature]: https://github.com/qovery/documentation/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc+label%3A%22Type%3A+New+Feature%22

@@ -114,7 +114,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## v$current_version_minor.X
 
-The CHANGELOG for v$current_version_minor.X releases can be found in the [v$current_version_minor branch](https://github.com/timberio/qovery/blob/v$current_version_minor/CHANGELOG.md).
+The CHANGELOG for v$current_version_minor.X releases can be found in the [v$current_version_minor branch](https://github.com/qovery/documentation/blob/v$current_version_minor/CHANGELOG.md).
 " > CHANGELOG.md
 
 escaped_current_version=$(echo $current_version | sed "s/\./\\\./g")

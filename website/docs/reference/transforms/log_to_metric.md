@@ -4,9 +4,9 @@ component_title: "Log to Metric"
 description: "The Qovery `log_to_metric` transform accepts `log` events but outputs [`metric`](#metric) events allowing you to convert logs into one or more metrics."
 event_types: ["log","metric"]
 function_category: "convert"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22transform%3A+log_to_metric%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22transform%3A+log_to_metric%22
 sidebar_label: "log_to_metric|[\"log\",\"metric\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/transforms/log_to_metric.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/transforms/log_to_metric.rs
 status: "prod-ready"
 title: "Log to Metric Transform"
 ---

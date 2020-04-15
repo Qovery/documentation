@@ -60,7 +60,7 @@ function DownloadTable({browsePath, date, downloads, releaseNotesPath, version})
       <div>
         <div>License</div>
         <div>
-          <a href="https://github.com/timberio/qovery/blob/master/LICENSE" target="_blank">Apache 2</a>
+          <a href="https://github.com/qovery/documentation/blob/master/LICENSE" target="_blank">Apache 2</a>
         </div>
       </div>
       <div>

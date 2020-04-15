@@ -179,7 +179,7 @@ function RowDescription({test}) {
       <div className="text">{test.description}</div>
       <div className="links">
         <div>
-          <a href={`https://github.com/timberio/qovery-test-harness/tree/master/cases/${test.slug}`} target="_blank">
+          <a href={`https://github.com/qovery-test-harness/tree/master/cases/${test.slug}`} target="_blank">
             Try it yourself&hellip;
           </a>
         </div>

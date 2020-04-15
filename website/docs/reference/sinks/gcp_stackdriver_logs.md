@@ -5,10 +5,10 @@ component_title: "GCP Stackdriver Logs"
 description: "The Qovery `gcp_stackdriver_logs` sink batches [`log`](#log) events to Google Cloud Platform's Stackdriver Logging service via the REST Interface."
 event_types: ["log"]
 function_category: "transmit"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+gcp_stackdriver_logs%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+gcp_stackdriver_logs%22
 operating_systems: ["Linux","MacOS","Windows"]
 sidebar_label: "gcp_stackdriver_logs|[\"log\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/sinks/gcp/stackdriver_logs.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/sinks/gcp/stackdriver_logs.rs
 status: "beta"
 title: "GCP Stackdriver Logs Sink"
 unsupported_operating_systems: []
@@ -1167,5 +1167,5 @@ options.
 [urls.gcp_resources]: https://cloud.google.com/monitoring/api/resources
 [urls.gcp_stackdriver_logging]: https://cloud.google.com/logging/docs/reference/v2/rest/
 [urls.gcp_stackdriver_logging_rest]: https://cloud.google.com/logging/
-[urls.new_gcp_stackdriver_logs_sink_issue]: https://github.com/timberio/qovery/issues/new?labels=sink%3A+gcp_stackdriver_logs
+[urls.new_gcp_stackdriver_logs_sink_issue]: https://github.com/qovery/documentation/issues/new?labels=sink%3A+gcp_stackdriver_logs
 [urls.openssl]: https://www.openssl.org/

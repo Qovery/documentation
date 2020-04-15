@@ -288,12 +288,12 @@ module.exports = {
         {
           type: 'link',
           label: 'Privacy',
-          href: 'https://github.com/timberio/qovery/blob/master/PRIVACY.md'
+          href: 'https://github.com/qovery/documentation/blob/master/PRIVACY.md'
         },
         {
           type: 'link',
           label: 'Security',
-          href: 'https://github.com/timberio/qovery/security/policy'
+          href: 'https://github.com/qovery/documentation/security/policy'
         },
       ],
     },

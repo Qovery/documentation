@@ -30,7 +30,7 @@ function Community() {
 
             <div className="row">
               <div className="col">
-                <a href="https://chat.qovery.dev" target="_blank" className="panel panel--link text--center">
+                <a href="https://discord.qovery.com" target="_blank" className="panel panel--link text--center">
                   <div className="panel--icon">
                     <i className="feather icon-message-circle"></i>
                   </div>
@@ -48,11 +48,11 @@ function Community() {
                 </a>
               </div>
               <div className="col">
-                <a href="https://github.com/timberio/qovery" target="_blank" className="panel panel--link text--center">
+                <a href="https://github.com/qovery" target="_blank" className="panel panel--link text--center">
                   <div className="panel--icon">
                     <i className="feather icon-github"></i>
                   </div>
-                  <div className="panel--title">Github timberio/qovery</div>
+                  <div className="panel--title">Github qovery</div>
                   <div className="panel--description">Issues, code, and development</div>
                 </a>
               </div>
@@ -64,12 +64,12 @@ function Community() {
             <AnchoredH2 id="contribute">Contribute</AnchoredH2>
 
             <p>
-              Qovery is <a href="https://github.com/timberio/qovery">open-source</a> and welcomes contributions. A few guidelines to help you get started:
+              Qovery is <a href="https://github.com/qovery">open-source</a> and welcomes contributions. A few guidelines to help you get started:
             </p>
             <ol>
-              <li>Read our <a href="https://github.com/timberio/qovery/blob/master/CONTRIBUTING.md">contribution guide</a>.</li>
-              <li>Start with <a href="https://github.com/timberio/qovery/contribute">good first issues</a>.</li>
-              <li>Join our <a href="https://chat.qovery.dev">chat</a> if you have any questions.</li>
+              <li>Read our <a href="https://github.com/qovery/documentation/blob/master/CONTRIBUTING.md">contribution guide</a>.</li>
+              <li>Start with <a href="https://github.com/qovery/documentation/contribute">good first issues</a>.</li>
+              <li>Join our <a href="https://discord.qovery.com">chat</a> if you have any questions.</li>
             </ol>
           </div>
         </section>

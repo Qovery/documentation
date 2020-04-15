@@ -5,10 +5,10 @@ component_title: "Apache Pulsar"
 description: "The Qovery `pulsar` sink streams `log` events to Apache Pulsar via the Pulsar protocol."
 event_types: ["log"]
 function_category: "transmit"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+pulsar%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+pulsar%22
 operating_systems: ["Linux","MacOS","Windows"]
 sidebar_label: "pulsar|[\"log\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/sinks/pulsar.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/sinks/pulsar.rs
 status: "beta"
 title: "Apache Pulsar Sink"
 unsupported_operating_systems: []

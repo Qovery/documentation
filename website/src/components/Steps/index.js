@@ -11,7 +11,7 @@ function Steps({children, headingDepth}) {
     title: `Tutorial on ${location} failed`,
     body: `The tutorial on:\n\n${location}\n\nHere's what went wrong:\n\n<!-- Insert command output and details. Thank you for reporting! :) -->`
   };
-  let issueURL = `https://github.com/timberio/qovery/issues/new?${queryString.stringify(issueQueryString)}`;
+  let issueURL = `https://github.com/qovery/documentation/issues/new?${queryString.stringify(issueQueryString)}`;
 
   const [feedbackAnswer, setFeedbackAnswer] = useState(null);
 
@@ -33,7 +33,7 @@ function Steps({children, headingDepth}) {
         </a>
       </div>}
       {feedbackAnswer == 'yes' && <div className="steps--feedback steps--feedback--success">
-        Thanks! If you're enjoying Qovery please consider <a href="https://github.com/timberio/qovery/" target="_blank">starring our Github repo</a>.
+        Thanks! If you're enjoying Qovery please consider <a href="https://github.com/qovery/documentation/" target="_blank">starring our Github repo</a>.
       </div>}
     </div>
 

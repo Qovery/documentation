@@ -202,7 +202,7 @@ impl RetryLogic for ClickhouseRetryLogic {
                 // This attempts to check if the body starts with `Code: {code_num}` and to not
                 // retry those errors.
                 //
-                // Reference: https://github.com/timberio/qovery/pull/693#issuecomment-517332654
+                // Reference: https://github.com/qovery/documentation/pull/693#issuecomment-517332654
                 // Error code definitions: https://github.com/ClickHouse/ClickHouse/blob/master/dbms/src/Common/ErrorCodes.cpp
                 if body.starts_with(b"Code: 117") {
                     RetryAction::DontRetry("incorrect data".into())

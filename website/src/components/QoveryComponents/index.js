@@ -92,7 +92,7 @@ function Components({components, headingLevel, pathTemplate, titles}) {
           ''}
         <hr />
         <Jump
-          to="https://github.com/timberio/qovery/issues/new?labels=type%3A+new+feature"
+          to="https://github.com/qovery/documentation/issues/new?labels=type%3A+new+feature"
           target="_blank"
           rightIcon="plus-circle">
           Request a new component

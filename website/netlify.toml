@@ -9,7 +9,7 @@
   force = true
 
 [[redirects]]
-  from = "https://chat.qovery.dev/*"
+  from = "https://discord.qovery.com/*"
   to = "https://gitter.im/timberio-qovery/community"
   status = 302
   force = true

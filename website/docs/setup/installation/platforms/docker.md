@@ -3,7 +3,7 @@ last_modified_on: "2020-04-01"
 title: Install Qovery On Docker
 sidebar_label: Docker
 description: Install Qovery on the Docker platform
-source_url: https://github.com/timberio/qovery/tree/master/distribution/docker
+source_url: https://github.com/qovery/documentation/tree/master/distribution/docker
 ---
 
 import CodeExplanation from '@site/src/components/CodeExplanation';
@@ -341,9 +341,9 @@ Qovery's Docker source files are located
 [docs.strategies#daemon]: /docs/setup/deployment/strategies/#daemon
 [docs.strategies#service]: /docs/setup/deployment/strategies/#service
 [docs.strategies#sidecar]: /docs/setup/deployment/strategies/#sidecar
-[urls.default_configuration]: https://github.com/timberio/qovery/blob/master/config/qovery.toml
+[urls.default_configuration]: https://github.com/qovery/documentation/blob/master/config/qovery.toml
 [urls.docker_alpine]: https://hub.docker.com/_/alpine
 [urls.docker_debian]: https://hub.docker.com/_/debian
 [urls.docker_hub_qovery]: https://hub.docker.com/r/timberio/qovery
-[urls.qovery_docker_source_files]: https://github.com/timberio/qovery/tree/master/distribution/docker
+[urls.qovery_docker_source_files]: https://github.com/qovery/documentation/tree/master/distribution/docker
 [urls.qovery_releases]: https://qovery.dev/releases/latest

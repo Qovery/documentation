@@ -77,7 +77,7 @@ pub fn config_watcher(config_paths: Vec<PathBuf>, delay: Duration) -> Result<(),
 #[cfg(windows)]
 /// Errors on Windows.
 pub fn config_watcher(_config_paths: Vec<PathBuf>, _delay: Duration) -> Result<(), Error> {
-    Err("Reloading config on Windows isn't currently supported. Related issue https://github.com/timberio/qovery/issues/938 .".into())
+    Err("Reloading config on Windows isn't currently supported. Related issue https://github.com/qovery/documentation/issues/938 .".into())
 }
 
 #[cfg(unix)]

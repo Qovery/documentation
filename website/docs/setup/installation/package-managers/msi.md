@@ -185,6 +185,6 @@ Qovery's MSI source files are located in
 [docs.sources.journald]: /docs/reference/sources/journald/
 [docs.sources]: /docs/reference/sources/
 [docs.strategies#daemon]: /docs/setup/deployment/strategies/#daemon
-[urls.qovery_msi_source_files]: https://github.com/timberio/qovery/tree/master/distribution/msi
+[urls.qovery_msi_source_files]: https://github.com/qovery/documentation/tree/master/distribution/msi
 [urls.qovery_releases]: https://qovery.dev/releases/latest
 [urls.windows_service]: https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/new-service

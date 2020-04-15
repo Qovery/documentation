@@ -4,9 +4,9 @@ component_title: "Kubernetes Pod Metadata"
 description: "The Qovery `kubernetes_pod_metadata` transform accepts and outputs `log` events allowing you to enrich Kubernetes logs with Pod metadata."
 event_types: ["log"]
 function_category: "enrich"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22transform%3A+kubernetes_pod_metadata%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22transform%3A+kubernetes_pod_metadata%22
 sidebar_label: "kubernetes_pod_metadata|[\"log\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/transforms/kubernetes
+source_url: https://github.com/qovery/documentation/tree/master/src/transforms/kubernetes
 status: "beta"
 title: "Kubernetes Pod Metadata Transform"
 ---

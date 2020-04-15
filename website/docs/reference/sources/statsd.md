@@ -5,10 +5,10 @@ component_title: "Statsd"
 description: "The Qovery `statsd` source ingests data through the StatsD UDP protocol and outputs `metric` events."
 event_types: ["metric"]
 function_category: "receive"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22source%3A+statsd%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22source%3A+statsd%22
 operating_systems: ["Linux","MacOS","Windows"]
 sidebar_label: "statsd|[\"metric\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/sources/statsd
+source_url: https://github.com/qovery/documentation/tree/master/src/sources/statsd
 status: "prod-ready"
 title: "Statsd Source"
 unsupported_operating_systems: []

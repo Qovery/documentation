@@ -4,9 +4,9 @@ component_title: "Tag Cardinality Limit"
 description: "The Qovery `tag_cardinality_limit` transform accepts and outputs `metric` events allowing you to limit the cardinality of metric tags to prevent downstream disruption of metrics services."
 event_types: ["metric"]
 function_category: "filter"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22transform%3A+tag_cardinality_limit%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22transform%3A+tag_cardinality_limit%22
 sidebar_label: "tag_cardinality_limit|[\"metric\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/transforms/tag_cardinality_limit.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/transforms/tag_cardinality_limit.rs
 status: "beta"
 title: "Tag Cardinality Limit Transform"
 ---

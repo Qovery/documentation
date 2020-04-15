@@ -166,4 +166,4 @@ reducing cost, etc.
 [urls.rust]: https://www.rust-lang.org/
 [urls.toml]: https://github.com/toml-lang/toml
 [urls.toml_table]: https://github.com/toml-lang/toml#table
-[urls.qovery_repo]: https://github.com/timberio/qovery
+[urls.qovery_repo]: https://github.com/qovery

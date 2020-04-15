@@ -4,9 +4,9 @@ component_title: "Merge"
 description: "The Qovery [`merge`](#merge) transform accepts and outputs `log` events allowing you to merge partial log events into a single event."
 event_types: ["log"]
 function_category: "aggregate"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22transform%3A+merge%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22transform%3A+merge%22
 sidebar_label: "merge|[\"log\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/transforms/merge.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/transforms/merge.rs
 status: "beta"
 title: "Merge Transform"
 ---
@@ -316,5 +316,5 @@ If you're using this transform for a common use case, please consider
 [docs.data-model.log]: /docs/about/data-model/log/
 [docs.reference.field-path-notation]: /docs/reference/field-path-notation/
 [docs.sources.file]: /docs/reference/sources/file/
-[urls.new_feature_request]: https://github.com/timberio/qovery/issues/new?labels=type%3A+new+feature
+[urls.new_feature_request]: https://github.com/qovery/documentation/issues/new?labels=type%3A+new+feature
 [urls.qovery_programmable_transforms]: https://qovery.dev/components?functions%5B%5D=program

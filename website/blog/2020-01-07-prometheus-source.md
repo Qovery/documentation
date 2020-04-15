@@ -36,4 +36,4 @@ migration, if you have an interesting use case we'd [love to hear about it][urls
 
 [docs.sources.prometheus]: /docs/reference/sources/prometheus/
 [urls.prometheus]: https://prometheus.io/
-[urls.qovery_chat]: https://chat.qovery.dev
+[urls.qovery_chat]: https://discord.qovery.com

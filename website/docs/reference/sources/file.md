@@ -5,10 +5,10 @@ component_title: "File"
 description: "The Qovery [`file`](#file) source ingests data through one or more local files and outputs `log` events."
 event_types: ["log"]
 function_category: "collect"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22source%3A+file%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22source%3A+file%22
 operating_systems: ["Linux","MacOS","Windows"]
 sidebar_label: "file|[\"log\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/sources/file
+source_url: https://github.com/qovery/documentation/tree/master/src/sources/file
 status: "prod-ready"
 title: "File Source"
 unsupported_operating_systems: []

@@ -271,4 +271,4 @@ Qovery's RPM source files are located in
 [urls.rpm]: https://rpm.org/
 [urls.systemd]: https://systemd.io/
 [urls.qovery_releases]: https://qovery.dev/releases/latest
-[urls.qovery_rpm_source_files]: https://github.com/timberio/qovery/tree/master/distribution/rpm
+[urls.qovery_rpm_source_files]: https://github.com/qovery/documentation/tree/master/distribution/rpm

@@ -5,10 +5,10 @@ component_title: "Socket"
 description: "The Qovery `socket` source ingests data through a socket, such as a TCP, UDP, or UDS socket and outputs `log` events."
 event_types: ["log"]
 function_category: "receive"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22source%3A+socket%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22source%3A+socket%22
 operating_systems: ["Linux","MacOS","Windows"]
 sidebar_label: "socket|[\"log\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/sources/socket
+source_url: https://github.com/qovery/documentation/tree/master/src/sources/socket
 status: "prod-ready"
 title: "Socket Source"
 unsupported_operating_systems: []

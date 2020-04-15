@@ -7,7 +7,7 @@ author_github: https://github.com/Jeffail
 tags: ["type: announcement", "domain: platforms", "platform: kubernetes"]
 ---
 
-We're currently [experimenting with Kubernetes integration](https://github.com/timberio/qovery/issues/260)
+We're currently [experimenting with Kubernetes integration](https://github.com/qovery/documentation/issues/260)
 This functionality is undocumented and not yet ready for general use. However,
 we consider it to be at Alpha stage and suitable for adventurous early adopters
 to try out.
@@ -17,7 +17,7 @@ to try out.
 We consider Kubernetes integration to be extremely important and we want to get
 this right, so we'd love to [get feedback][urls.qovery_chat] from anyone willing.
 
-The main ticket to follow is [issue #260](https://github.com/timberio/qovery/issues/260).
+The main ticket to follow is [issue #260](https://github.com/qovery/documentation/issues/260).
 
 
-[urls.qovery_chat]: https://chat.qovery.dev
+[urls.qovery_chat]: https://discord.qovery.com

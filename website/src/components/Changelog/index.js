@@ -17,10 +17,10 @@ function Commit({commit, setSearchTerm}) {
       <div className="badges">
         {commit.breaking_change && <span className="badge badge--danger"><i className="feather icon-alert-triangle"></i> breaking</span>}
         {commit.pr_number && (<span className="badge badge--secondary" style={{minWidth: "65px", textAlign: "center"}}>
-          <a href={`https://github.com/timberio/qovery/pull/${commit.pr_number}`} target="_blank"><i className="feather icon-git-pull-request"></i> {commit.pr_number}</a>
+          <a href={`https://github.com/qovery/documentation/pull/${commit.pr_number}`} target="_blank"><i className="feather icon-git-pull-request"></i> {commit.pr_number}</a>
         </span>)}
         {!commit.pr_number && (<span className="badge badge--secondary" style={{minWidth: "65px", textAlign: "center"}}>
-          <a href={`https://github.com/timberio/qovery/commit/${commit.sha}`} target="_blank"><i className="feather icon-git-commit"></i> {commit.sha.slice(0,5)}</a>
+          <a href={`https://github.com/qovery/documentation/commit/${commit.sha}`} target="_blank"><i className="feather icon-git-commit"></i> {commit.sha.slice(0,5)}</a>
         </span>)}
       </div>
       <AnchoredH4 id={commit.sha}>

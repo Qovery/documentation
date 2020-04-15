@@ -5,10 +5,10 @@ component_title: "Elasticsearch"
 description: "The Qovery `elasticsearch` sink batches `log` events to Elasticsearch via the `_bulk` API endpoint."
 event_types: ["log"]
 function_category: "transmit"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+elasticsearch%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+elasticsearch%22
 operating_systems: ["Linux","MacOS","Windows"]
 sidebar_label: "elasticsearch|[\"log\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/sinks/elasticsearch.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/sinks/elasticsearch.rs
 status: "prod-ready"
 title: "Elasticsearch Sink"
 unsupported_operating_systems: []
@@ -1360,6 +1360,6 @@ You can learn more about the complete syntax in the
 [urls.elasticsearch_id_field]: https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-id-field.html
 [urls.elasticsearch_id_performance]: https://www.elastic.co/guide/en/elasticsearch/reference/master/tune-for-indexing-speed.html#_use_auto_generated_ids
 [urls.iam_instance_profile]: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html
-[urls.new_elasticsearch_sink_issue]: https://github.com/timberio/qovery/issues/new?labels=sink%3A+elasticsearch
+[urls.new_elasticsearch_sink_issue]: https://github.com/qovery/documentation/issues/new?labels=sink%3A+elasticsearch
 [urls.openssl]: https://www.openssl.org/
 [urls.strptime_specifiers]: https://docs.rs/chrono/0.4.11/chrono/format/strftime/index.html#specifiers

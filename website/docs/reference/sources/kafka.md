@@ -5,10 +5,10 @@ component_title: "Kafka"
 description: "The Qovery `kafka` source ingests data through Kafka and outputs `log` events."
 event_types: ["log"]
 function_category: "collect"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22source%3A+kafka%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22source%3A+kafka%22
 operating_systems: ["Linux","MacOS","Windows"]
 sidebar_label: "kafka|[\"log\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/sources/kafka.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/sources/kafka.rs
 status: "beta"
 title: "Kafka Source"
 unsupported_operating_systems: []

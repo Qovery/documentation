@@ -212,4 +212,4 @@ Qovery's Nix source files are located in the
 [urls.nix]: https://nixos.org/nix/
 [urls.nixos]: https://nixos.org/
 [urls.qovery_nix_package]: https://github.com/NixOS/nixpkgs/blob/master/pkgs/tools/misc/qovery/default.nix
-[urls.qovery_systemd_file]: https://github.com/timberio/qovery/blob/master/distribution/systemd/qovery.service
+[urls.qovery_systemd_file]: https://github.com/qovery/documentation/blob/master/distribution/systemd/qovery.service

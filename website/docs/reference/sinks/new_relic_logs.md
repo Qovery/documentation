@@ -5,10 +5,10 @@ component_title: "New Relic Logs"
 description: "The Qovery `new_relic_logs` sink batches `log` events to New Relic's log service via their log API."
 event_types: ["log"]
 function_category: "transmit"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+new_relic_logs%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+new_relic_logs%22
 operating_systems: ["Linux","MacOS","Windows"]
 sidebar_label: "new_relic_logs|[\"log\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/sinks/new_relic_logs.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/sinks/new_relic_logs.rs
 status: "beta"
 title: "New Relic Logs Sink"
 unsupported_operating_systems: []
@@ -790,6 +790,6 @@ attempts and backoff rate with the [`retry_attempts`](#retry_attempts) and
 [docs.data-model.log]: /docs/about/data-model/log/
 [docs.data-model]: /docs/about/data-model/
 [docs.guarantees]: /docs/about/guarantees/
-[urls.new_new_relic_logs_sink_issue]: https://github.com/timberio/qovery/issues/new?labels=sink%3A+new_relic_logs
+[urls.new_new_relic_logs_sink_issue]: https://github.com/qovery/documentation/issues/new?labels=sink%3A+new_relic_logs
 [urls.new_relic]: https://newrelic.com/
 [urls.new_relic_log_api]: https://docs.newrelic.com/docs/logs/new-relic-logs/log-api/introduction-log-api

@@ -5,10 +5,10 @@ component_title: "HTTP"
 description: "The Qovery `http` sink batches `log` events to a generic HTTP endpoint."
 event_types: ["log"]
 function_category: "transmit"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+http%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+http%22
 operating_systems: ["Linux","MacOS","Windows"]
 sidebar_label: "http|[\"log\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/sinks/http.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/sinks/http.rs
 status: "prod-ready"
 title: "HTTP Sink"
 unsupported_operating_systems: []
@@ -1225,5 +1225,5 @@ options.
 [urls.basic_auth]: https://en.wikipedia.org/wiki/Basic_access_authentication
 [urls.gzip]: https://www.gzip.org/
 [urls.http]: https://www.w3.org/Protocols/
-[urls.new_http_sink_issue]: https://github.com/timberio/qovery/issues/new?labels=sink%3A+http
+[urls.new_http_sink_issue]: https://github.com/qovery/documentation/issues/new?labels=sink%3A+http
 [urls.openssl]: https://www.openssl.org/

@@ -5,10 +5,10 @@ component_title: "Socket"
 description: "The Qovery `socket` sink streams `log` events to a socket, such as a TCP, UDP, or UDS socket."
 event_types: ["log"]
 function_category: "transmit"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+socket%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+socket%22
 operating_systems: ["Linux","MacOS","Windows"]
 sidebar_label: "socket|[\"log\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/sinks/socket.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/sinks/socket.rs
 status: "prod-ready"
 title: "Socket Sink"
 unsupported_operating_systems: []

@@ -5,10 +5,10 @@ component_title: "Honeycomb"
 description: "The Qovery `honeycomb` sink batches `log` events to Honeycomb via the batch events API."
 event_types: ["log"]
 function_category: "transmit"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+honeycomb%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+honeycomb%22
 operating_systems: ["Linux","MacOS","Windows"]
 sidebar_label: "honeycomb|[\"log\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/sinks/honeycomb.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/sinks/honeycomb.rs
 status: "beta"
 title: "Honeycomb Sink"
 unsupported_operating_systems: []
@@ -639,4 +639,4 @@ attempts and backoff rate with the [`retry_attempts`](#retry_attempts) and
 [docs.guarantees]: /docs/about/guarantees/
 [urls.honeycomb]: https://honeycomb.io
 [urls.honeycomb_batch]: https://docs.honeycomb.io/api/events/#batched-events
-[urls.new_honeycomb_sink_issue]: https://github.com/timberio/qovery/issues/new?labels=sink%3A+honeycomb
+[urls.new_honeycomb_sink_issue]: https://github.com/qovery/documentation/issues/new?labels=sink%3A+honeycomb

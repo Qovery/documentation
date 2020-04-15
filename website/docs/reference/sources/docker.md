@@ -5,10 +5,10 @@ component_title: "Docker"
 description: "The Qovery `docker` source ingests data through the Docker engine daemon and outputs `log` events."
 event_types: ["log"]
 function_category: "collect"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22source%3A+docker%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22source%3A+docker%22
 operating_systems: ["Linux","MacOS","Windows"]
 sidebar_label: "docker|[\"log\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/sources/docker.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/sources/docker.rs
 status: "beta"
 title: "Docker Source"
 unsupported_operating_systems: []

@@ -25,7 +25,7 @@ module.exports = {
         {to: 'blog/', label: 'Blog', position: 'left'},
         {to: 'community/', label: 'Community', position: 'right'},
         {to: 'releases/', label: 'Download', position: 'right'},
-        {href: 'https://github.com/timberio/qovery', label: "GitHub", position: 'right'},
+        {href: 'https://github.com/qovery', label: "GitHub", position: 'right'},
       ],
     },
     image: 'img/open-graph.png',
@@ -99,11 +99,11 @@ module.exports = {
           items: [
             {
               label: 'Chat',
-              to: 'https://chat.qovery.dev',
+              to: 'https://discord.qovery.com',
             },
             {
               label: 'Github',
-              to: 'https://github.com/timberio/qovery',
+              to: 'https://github.com/qovery',
             },
             {
               label: 'Twitter',
@@ -138,7 +138,7 @@ module.exports = {
     [
       '@docusaurus/plugin-content-docs',
       {
-        editUrl: 'https://github.com/timberio/qovery/edit/master/website/',
+        editUrl: 'https://github.com/qovery/documentation/edit/master/website/',
         sidebarPath: require.resolve('./sidebars.js')
       }
     ],

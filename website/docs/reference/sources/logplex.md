@@ -5,10 +5,10 @@ component_title: "Heroku Logplex"
 description: "The Qovery `logplex` source ingests data through the Heroku Logplex HTTP Drain protocol and outputs `log` events."
 event_types: ["log"]
 function_category: "receive"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22source%3A+logplex%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22source%3A+logplex%22
 operating_systems: ["Linux","MacOS","Windows"]
 sidebar_label: "logplex|[\"log\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/sources/logplex.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/sources/logplex.rs
 status: "beta"
 title: "Heroku Logplex Source"
 unsupported_operating_systems: []

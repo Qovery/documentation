@@ -4,9 +4,9 @@ component_title: "Regex Parser"
 description: "The Qovery `regex_parser` transform accepts and outputs `log` events allowing you to parse a log field's value with a Regular Expression."
 event_types: ["log"]
 function_category: "parse"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22transform%3A+regex_parser%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22transform%3A+regex_parser%22
 sidebar_label: "regex_parser|[\"log\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/transforms/regex_parser.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/transforms/regex_parser.rs
 status: "prod-ready"
 title: "Regex Parser Transform"
 ---
@@ -460,7 +460,7 @@ common formats:
 [pages.index#performance]: /#performance
 [urls.regex]: https://en.wikipedia.org/wiki/Regular_expression
 [urls.regex_grouping_and_flags]: https://docs.rs/regex/1.3.6/regex/#grouping-and-flags
-[urls.regex_parsing_performance_test]: https://github.com/timberio/qovery-test-harness/tree/master/cases/regex_parsing_performance
+[urls.regex_parsing_performance_test]: https://github.com/qovery-test-harness/tree/master/cases/regex_parsing_performance
 [urls.regex_tester]: https://rustexp.lpil.uk/
 [urls.rust_regex_syntax]: https://docs.rs/regex/1.3.6/regex/#syntax
 [urls.strptime_specifiers]: https://docs.rs/chrono/0.4.11/chrono/format/strftime/index.html#specifiers

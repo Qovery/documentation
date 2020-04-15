@@ -4,9 +4,9 @@ component_title: "Add Fields"
 description: "The Qovery `add_fields` transform accepts and outputs `log` events allowing you to add one or more log fields."
 event_types: ["log"]
 function_category: "shape"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22transform%3A+add_fields%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22transform%3A+add_fields%22
 sidebar_label: "add_fields|[\"log\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/transforms/add_fields.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/transforms/add_fields.rs
 status: "prod-ready"
 title: "Add Fields Transform"
 ---

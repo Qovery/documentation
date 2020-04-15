@@ -5,10 +5,10 @@ component_title: "Humio Logs"
 description: "The Qovery `humio_logs` sink batches `log` events to Humio via the HEC API."
 event_types: ["log"]
 function_category: "transmit"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+humio_logs%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+humio_logs%22
 operating_systems: ["Linux","MacOS","Windows"]
 sidebar_label: "humio_logs|[\"log\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/sinks/humio_logs.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/sinks/humio_logs.rs
 status: "beta"
 title: "Humio Logs Sink"
 unsupported_operating_systems: []
@@ -769,4 +769,4 @@ attempts and backoff rate with the [`retry_attempts`](#retry_attempts) and
 [docs.guarantees]: /docs/about/guarantees/
 [urls.humio]: https://humio.com
 [urls.humio_hec]: https://docs.humio.com/integrations/data-shippers/hec/
-[urls.new_humio_logs_sink_issue]: https://github.com/timberio/qovery/issues/new?labels=sink%3A+humio_logs
+[urls.new_humio_logs_sink_issue]: https://github.com/qovery/documentation/issues/new?labels=sink%3A+humio_logs

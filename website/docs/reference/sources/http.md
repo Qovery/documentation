@@ -5,10 +5,10 @@ component_title: "HTTP"
 description: "The Qovery `http` source ingests data through the HTTP protocol and outputs `log` events."
 event_types: ["log"]
 function_category: "receive"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22source%3A+http%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22source%3A+http%22
 operating_systems: ["Linux","MacOS","Windows"]
 sidebar_label: "http|[\"log\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/sources/http.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/sources/http.rs
 status: "beta"
 title: "HTTP Source"
 unsupported_operating_systems: []

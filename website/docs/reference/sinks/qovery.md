@@ -5,10 +5,10 @@ component_title: "Qovery"
 description: "The Qovery `qovery` sink streams `log` and `metric` events to another downstream `qovery` source."
 event_types: ["log","metric"]
 function_category: "transmit"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+qovery%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+qovery%22
 operating_systems: ["Linux","MacOS","Windows"]
 sidebar_label: "qovery|[\"log\",\"metric\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/sinks/qovery.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/sinks/qovery.rs
 status: "beta"
 title: "Qovery Sink"
 unsupported_operating_systems: []

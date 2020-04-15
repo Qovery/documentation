@@ -156,7 +156,7 @@ function Correctness() {
             </thead>
             <tbody>
               <tr>
-                <td className="row-label"><a target="_blank" href="https://github.com/timberio/qovery-test-harness/tree/master/cases/disk_buffer_persistence_correctness">Disk buffer persistence</a></td>
+                <td className="row-label"><a target="_blank" href="https://github.com/qovery-test-harness/tree/master/cases/disk_buffer_persistence_correctness">Disk buffer persistence</a></td>
                 <td className="result passed qovery"><i className="feather icon-check"></i></td>
                 <td className="result passed"><i className="feather icon-check"></i></td>
                 <td className="result failed"><i className="feather icon-x"></i></td>
@@ -166,7 +166,7 @@ function Correctness() {
                 <td className="result passed"><i className="feather icon-check"></i></td>
               </tr>
               <tr>
-                <td className="row-label"><a target="_blank" href="https://github.com/timberio/qovery-test-harness/tree/master/cases/file_rotate_create_correctness">File rotate (create)</a></td>
+                <td className="row-label"><a target="_blank" href="https://github.com/qovery-test-harness/tree/master/cases/file_rotate_create_correctness">File rotate (create)</a></td>
                 <td className="result passed qovery"><i className="feather icon-check"></i></td>
                 <td className="result passed"><i className="feather icon-check"></i></td>
                 <td className="result passed"><i className="feather icon-check"></i></td>
@@ -176,7 +176,7 @@ function Correctness() {
                 <td className="result passed"><i className="feather icon-check"></i></td>
               </tr>
               <tr>
-                <td className="row-label"><a target="_blank" href="https://github.com/timberio/qovery-test-harness/tree/master/cases/file_rotate_truncate_correctness">File rotate (copytruncate)</a></td>
+                <td className="row-label"><a target="_blank" href="https://github.com/qovery-test-harness/tree/master/cases/file_rotate_truncate_correctness">File rotate (copytruncate)</a></td>
                 <td className="result passed qovery"><i className="feather icon-check"></i></td>
                 <td className="result failed"><i className="feather icon-x"></i></td>
                 <td className="result failed"><i className="feather icon-x"></i></td>
@@ -186,7 +186,7 @@ function Correctness() {
                 <td className="result passed"><i className="feather icon-check"></i></td>
               </tr>
               <tr>
-                <td className="row-label"><a target="_blank" href="https://github.com/timberio/qovery-test-harness/tree/master/cases/file_truncate_correctness">File truncation</a></td>
+                <td className="row-label"><a target="_blank" href="https://github.com/qovery-test-harness/tree/master/cases/file_truncate_correctness">File truncation</a></td>
                 <td className="result passed qovery"><i className="feather icon-check"></i></td>
                 <td className="result passed"><i className="feather icon-check"></i></td>
                 <td className="result passed"><i className="feather icon-check"></i></td>
@@ -196,7 +196,7 @@ function Correctness() {
                 <td className="result passed"><i className="feather icon-check"></i></td>
               </tr>
               <tr>
-                <td className="row-label"><a target="_blank" href="https://github.com/timberio/qovery-test-harness/tree/master/cases/sighup_correctness">Process (SIGHUP)</a></td>
+                <td className="row-label"><a target="_blank" href="https://github.com/qovery-test-harness/tree/master/cases/sighup_correctness">Process (SIGHUP)</a></td>
                 <td className="result passed qovery"><i className="feather icon-check"></i></td>
                 <td className="result failed"><i className="feather icon-x"></i></td>
                 <td className="result failed"><i className="feather icon-x"></i></td>
@@ -206,7 +206,7 @@ function Correctness() {
                 <td className="result passed"><i className="feather icon-check"></i></td>
               </tr>
               <tr>
-                <td className="row-label"><a target="_blank" href="https://github.com/timberio/qovery-test-harness/tree/master/cases/tcp_stream_correctness">TCP Streaming</a></td>
+                <td className="row-label"><a target="_blank" href="https://github.com/qovery-test-harness/tree/master/cases/tcp_stream_correctness">TCP Streaming</a></td>
                 <td className="result passed qovery"><i className="feather icon-check"></i></td>
                 <td className="result failed"><i className="feather icon-x"></i></td>
                 <td className="result failed"><i className="feather icon-x"></i></td>
@@ -216,7 +216,7 @@ function Correctness() {
                 <td className="result passed"><i className="feather icon-check"></i></td>
               </tr>
               <tr>
-                <td className="row-label"><a target="_blank" href="https://github.com/timberio/qovery-test-harness/tree/master/cases/wrapped_json_correctness">JSON (wrapped)</a></td>
+                <td className="row-label"><a target="_blank" href="https://github.com/qovery-test-harness/tree/master/cases/wrapped_json_correctness">JSON (wrapped)</a></td>
                 <td className="result passed qovery"><i className="feather icon-check"></i></td>
                 <td className="result passed"><i className="feather icon-check"></i></td>
                 <td className="result failed"><i className="feather icon-x"></i></td>
@@ -431,7 +431,7 @@ function Home() {
             <Link to="/components/">Collect, transform, &amp; route</Link> <i>all</i> observability data with <i>one</i> simple tool.
           </p>
           <div className="hero--buttons">
-            <Link to="https://github.com/timberio/qovery/" className="button button--primary"><i className="feather icon-github"></i> View on Github</Link>
+            <Link to="https://github.com/qovery/documentation/" className="button button--primary"><i className="feather icon-github"></i> View on Github</Link>
             <Link to="/download/" className="button button--primary">Download<span className="version"> v{latest_release.version}</span></Link>
           </div>
           <Diagram className={styles.indexHeroDiagram} width="100%" />

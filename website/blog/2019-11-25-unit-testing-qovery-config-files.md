@@ -87,8 +87,8 @@ feature matures.
 We're eager to hear your feedback! Unit testing, as a `beta` feature, is still
 in an early phase and we need case studies and comments in order to ensure it
 works well for everyone. Please let us know what you think either in our
-[community chat](https://chat.qovery.dev/) or by
-[raising an issue](https://github.com/timberio/qovery/issues/new).
+[community chat](https://discord.qovery.com/) or by
+[raising an issue](https://github.com/qovery/documentation/issues/new).
 
 
 [docs.reference.tests]: /docs/reference/tests/

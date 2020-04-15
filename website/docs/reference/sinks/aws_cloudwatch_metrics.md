@@ -5,10 +5,10 @@ component_title: "AWS Cloudwatch Metrics"
 description: "The Qovery `aws_cloudwatch_metrics` sink streams `metric` events to Amazon Web Service's CloudWatch Metrics service via the `PutMetricData` API endpoint."
 event_types: ["metric"]
 function_category: "transmit"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+aws_cloudwatch_metrics%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+aws_cloudwatch_metrics%22
 operating_systems: ["Linux","MacOS","Windows"]
 sidebar_label: "aws_cloudwatch_metrics|[\"metric\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/sinks/aws_cloudwatch_metrics.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/sinks/aws_cloudwatch_metrics.rs
 status: "beta"
 title: "AWS Cloudwatch Metrics Sink"
 unsupported_operating_systems: []

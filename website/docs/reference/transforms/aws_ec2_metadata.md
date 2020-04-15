@@ -4,9 +4,9 @@ component_title: "AWS EC2 Metadata"
 description: "The Qovery `aws_ec2_metadata` transform accepts and outputs `log` events allowing you to enrich logs with AWS EC2 instance metadata."
 event_types: ["log"]
 function_category: "enrich"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22transform%3A+aws_ec2_metadata%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22transform%3A+aws_ec2_metadata%22
 sidebar_label: "aws_ec2_metadata|[\"log\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/transforms/aws_ec2_metadata.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/transforms/aws_ec2_metadata.rs
 status: "beta"
 title: "AWS EC2 Metadata Transform"
 ---

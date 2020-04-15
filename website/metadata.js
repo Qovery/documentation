@@ -3018,7 +3018,7 @@ module.exports = {
         "type": "chore"
       }
     ],
-    "compare_url": "https://github.com/timberio/qovery/compare/v0.8.1...v0.8.2",
+    "compare_url": "https://github.com/qovery/documentation/compare/v0.8.1...v0.8.2",
     "date": "2020-03-06",
     "deletions_count": 10,
     "description": "",
@@ -3504,11 +3504,11 @@ module.exports = {
           "breaking_change": false,
           "date": "2019-09-10 12:08:39 +0000",
           "deletions_count": 10,
-          "description": "add note about kafka topic pattern matching, ref https://github.com/timberio/qovery/issues/819",
+          "description": "add note about kafka topic pattern matching, ref https://github.com/qovery/documentation/issues/819",
           "files_count": 4,
           "group": "docs",
           "insertions_count": 16,
-          "message": "docs: add note about kafka topic pattern matching, ref https://github.com/timberio/qovery/issues/819",
+          "message": "docs: add note about kafka topic pattern matching, ref https://github.com/qovery/documentation/issues/819",
           "pr_number": null,
           "scope": {
             "category": "core",
@@ -4084,11 +4084,11 @@ module.exports = {
           "breaking_change": false,
           "date": "2019-08-24 10:25:52 +0000",
           "deletions_count": 12,
-          "description": "fix relative linking on root docs pages, ref: https://github.com/timberio/qovery/pull/793",
+          "description": "fix relative linking on root docs pages, ref: https://github.com/qovery/documentation/pull/793",
           "files_count": 4,
           "group": "docs",
           "insertions_count": 16,
-          "message": "docs: fix relative linking on root docs pages, ref: https://github.com/timberio/qovery/pull/793",
+          "message": "docs: fix relative linking on root docs pages, ref: https://github.com/qovery/documentation/pull/793",
           "pr_number": null,
           "scope": {
             "category": "core",
@@ -9340,7 +9340,7 @@ module.exports = {
           "type": "chore"
         }
       ],
-      "compare_url": "https://github.com/timberio/qovery/compare/v...v0.4.0",
+      "compare_url": "https://github.com/qovery/documentation/compare/v...v0.4.0",
       "date": "2019-09-24",
       "deletions_count": 8605,
       "description": "",
@@ -10623,7 +10623,7 @@ module.exports = {
           "type": "chore"
         }
       ],
-      "compare_url": "https://github.com/timberio/qovery/compare/v0.4.0...v0.5.0",
+      "compare_url": "https://github.com/qovery/documentation/compare/v0.4.0...v0.5.0",
       "date": "2019-10-09",
       "deletions_count": 3038,
       "description": "",
@@ -15566,7 +15566,7 @@ module.exports = {
           "type": "chore"
         }
       ],
-      "compare_url": "https://github.com/timberio/qovery/compare/v0.5.0...v0.6.0",
+      "compare_url": "https://github.com/qovery/documentation/compare/v0.5.0...v0.6.0",
       "date": "2019-12-09",
       "deletions_count": 9213,
       "description": "",
@@ -18924,7 +18924,7 @@ module.exports = {
           "type": "chore"
         }
       ],
-      "compare_url": "https://github.com/timberio/qovery/compare/v0.6.0...v0.7.0",
+      "compare_url": "https://github.com/qovery/documentation/compare/v0.6.0...v0.7.0",
       "date": "2020-01-22",
       "deletions_count": 11774,
       "description": "You can't make an omelet without cracking some eggs. We have our eyes set on version 1 and a backlog of breaking changes we wanted to merge before we reach it. Version 0.7.0 is our attempt to cluster as many breaking changes as we can into a single release.",
@@ -19288,7 +19288,7 @@ module.exports = {
           "type": "chore"
         }
       ],
-      "compare_url": "https://github.com/timberio/qovery/compare/v0.7.0...v0.7.1",
+      "compare_url": "https://github.com/qovery/documentation/compare/v0.7.0...v0.7.1",
       "date": "2020-01-23",
       "deletions_count": 206,
       "description": "",
@@ -19551,7 +19551,7 @@ module.exports = {
           "type": "docs"
         }
       ],
-      "compare_url": "https://github.com/timberio/qovery/compare/v0.7.1...v0.7.2",
+      "compare_url": "https://github.com/qovery/documentation/compare/v0.7.1...v0.7.2",
       "date": "2020-01-31",
       "deletions_count": 114,
       "description": "",
@@ -23834,7 +23834,7 @@ module.exports = {
           "type": "chore"
         }
       ],
-      "compare_url": "https://github.com/timberio/qovery/compare/v0.7.2...v0.8.0",
+      "compare_url": "https://github.com/qovery/documentation/compare/v0.7.2...v0.8.0",
       "date": "2020-02-20",
       "deletions_count": 20387,
       "description": "The features for this release have been pouring in. Clearly the\nQovery team need better hobbies.",
@@ -23906,7 +23906,7 @@ module.exports = {
           "type": "fix"
         }
       ],
-      "compare_url": "https://github.com/timberio/qovery/compare/v0.8.0...v0.8.1",
+      "compare_url": "https://github.com/qovery/documentation/compare/v0.8.0...v0.8.1",
       "date": "2020-03-04",
       "deletions_count": 1,
       "description": "",
@@ -24009,7 +24009,7 @@ module.exports = {
           "type": "chore"
         }
       ],
-      "compare_url": "https://github.com/timberio/qovery/compare/v0.8.1...v0.8.2",
+      "compare_url": "https://github.com/qovery/documentation/compare/v0.8.1...v0.8.2",
       "date": "2020-03-06",
       "deletions_count": 10,
       "description": "",

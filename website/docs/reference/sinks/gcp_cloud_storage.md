@@ -5,10 +5,10 @@ component_title: "GCP Cloud Storage (GCS)"
 description: "The Qovery `gcp_cloud_storage` sink batches `log` events to Google Cloud Platform's Cloud Storage service via the XML Interface."
 event_types: ["log"]
 function_category: "transmit"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+gcp_cloud_storage%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+gcp_cloud_storage%22
 operating_systems: ["Linux","MacOS","Windows"]
 sidebar_label: "gcp_cloud_storage|[\"log\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/sinks/gcp/cloud_storage.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/sinks/gcp/cloud_storage.rs
 status: "beta"
 title: "GCP Cloud Storage (GCS) Sink"
 unsupported_operating_systems: []
@@ -1335,7 +1335,7 @@ You can learn more about the complete syntax in the
 [urls.gcs_custom_metadata]: https://cloud.google.com/storage/docs/metadata#custom-metadata
 [urls.gcs_predefined_acl]: https://cloud.google.com/storage/docs/access-control/lists#predefined-acl
 [urls.gcs_storage_classes]: https://cloud.google.com/storage/docs/storage-classes
-[urls.new_gcp_cloud_storage_sink_issue]: https://github.com/timberio/qovery/issues/new?labels=sink%3A+gcp_cloud_storage
+[urls.new_gcp_cloud_storage_sink_issue]: https://github.com/qovery/documentation/issues/new?labels=sink%3A+gcp_cloud_storage
 [urls.openssl]: https://www.openssl.org/
 [urls.strptime_specifiers]: https://docs.rs/chrono/0.4.11/chrono/format/strftime/index.html#specifiers
 [urls.uuidv4]: https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random)

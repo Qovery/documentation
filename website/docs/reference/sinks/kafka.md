@@ -5,10 +5,10 @@ component_title: "Kafka"
 description: "The Qovery `kafka` sink streams `log` events to Apache Kafka via the Kafka protocol."
 event_types: ["log"]
 function_category: "transmit"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+kafka%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+kafka%22
 operating_systems: ["Linux","MacOS","Windows"]
 sidebar_label: "kafka|[\"log\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/sinks/kafka.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/sinks/kafka.rs
 status: "prod-ready"
 title: "Kafka Sink"
 unsupported_operating_systems: []

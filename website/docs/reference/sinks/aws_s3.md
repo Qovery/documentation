@@ -5,10 +5,10 @@ component_title: "AWS S3"
 description: "The Qovery `aws_s3` sink batches `log` events to Amazon Web Service's S3 service via the `PutObject` API endpoint."
 event_types: ["log"]
 function_category: "transmit"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+aws_s3%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+aws_s3%22
 operating_systems: ["Linux","MacOS","Windows"]
 sidebar_label: "aws_s3|[\"log\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/sinks/aws_s3.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/sinks/aws_s3.rs
 status: "prod-ready"
 title: "AWS S3 Sink"
 unsupported_operating_systems: []
@@ -1454,7 +1454,7 @@ You can learn more about the complete syntax in the
 [urls.aws_s3_storage_classes]: https://aws.amazon.com/s3/storage-classes/
 [urls.aws_s3_tags]: https://docs.aws.amazon.com/AmazonS3/latest/user-guide/add-object-tags.html
 [urls.iam_instance_profile]: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html
-[urls.issue_1694]: https://github.com/timberio/qovery/issues/1694
-[urls.new_aws_s3_sink_issue]: https://github.com/timberio/qovery/issues/new?labels=sink%3A+aws_s3
+[urls.issue_1694]: https://github.com/qovery/documentation/issues/1694
+[urls.new_aws_s3_sink_issue]: https://github.com/qovery/documentation/issues/new?labels=sink%3A+aws_s3
 [urls.strptime_specifiers]: https://docs.rs/chrono/0.4.11/chrono/format/strftime/index.html#specifiers
 [urls.uuidv4]: https://en.wikipedia.org/wiki/Universally_unique_identifier#Version_4_(random)

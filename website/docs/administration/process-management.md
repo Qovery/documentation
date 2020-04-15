@@ -322,4 +322,4 @@ transition from the old to new pipeline is graceful.
 [docs.validating]: /docs/administration/validating/
 [urls.exit_codes]: https://docs.rs/exitcode/1.1.2/exitcode/#constants
 [urls.systemd]: https://systemd.io/
-[urls.qovery_systemd_file]: https://github.com/timberio/qovery/blob/master/distribution/systemd/qovery.service
+[urls.qovery_systemd_file]: https://github.com/qovery/documentation/blob/master/distribution/systemd/qovery.service

@@ -26,12 +26,12 @@ require 'net/http'
 # method.
 class Links
   CATEGORIES = ["assets", "docs", "guides", "pages", "urls"].freeze
-  VECTOR_ROOT = "https://github.com/timberio/qovery".freeze
+  VECTOR_ROOT = "https://github.com/qovery".freeze
   VECTOR_COMMIT_ROOT = "#{VECTOR_ROOT}/commit".freeze
   VECTOR_ISSUES_ROOT = "#{VECTOR_ROOT}/issues".freeze
   VECTOR_MILESTONES_ROOT = "#{VECTOR_ROOT}/milestone".freeze
   VECTOR_PRS_ROOT = "#{VECTOR_ROOT}/pull".freeze
-  TEST_HARNESS_ROOT = "https://github.com/timberio/qovery-test-harness".freeze
+  TEST_HARNESS_ROOT = "https://github.com/qovery-test-harness".freeze
 
   attr_reader :values
 
@@ -279,7 +279,7 @@ class Links
         "#{VECTOR_COMMIT_ROOT}/#{$1}"
 
       when /^compare_([a-z0-9_\.]*)\.\.\.([a-z0-9_\.]*)$/
-        "https://github.com/timberio/qovery/compare/#{$1}...#{$2}"
+        "https://github.com/qovery/documentation/compare/#{$1}...#{$2}"
 
       when /^issue_([0-9]+)$/
         "#{VECTOR_ISSUES_ROOT}/#{$1}"

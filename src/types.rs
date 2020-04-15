@@ -295,7 +295,7 @@ mod tests {
             .convert(value.into())
     }
 
-    #[cfg(unix)] // https://github.com/timberio/qovery/issues/1201
+    #[cfg(unix)] // https://github.com/qovery/documentation/issues/1201
     #[test]
     fn timestamp_conversion() {
         assert_eq!(
@@ -304,7 +304,7 @@ mod tests {
         );
     }
 
-    #[cfg(unix)] // see https://github.com/timberio/qovery/issues/1201
+    #[cfg(unix)] // see https://github.com/qovery/documentation/issues/1201
     #[test]
     fn timestamp_param_conversion() {
         assert_eq!(
@@ -313,7 +313,7 @@ mod tests {
         );
     }
 
-    #[cfg(unix)] // see https://github.com/timberio/qovery/issues/1201
+    #[cfg(unix)] // see https://github.com/qovery/documentation/issues/1201
     #[test]
     fn parse_timestamp_auto() {
         std::env::set_var("TZ", TIMEZONE);

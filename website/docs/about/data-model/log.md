@@ -365,5 +365,5 @@ Array fields are sequences of values of any type.
 [docs.sources]: /docs/reference/sources/
 [docs.transforms.coercer]: /docs/reference/transforms/coercer/
 [urls.ieee_754]: https://en.wikipedia.org/wiki/IEEE_754
-[urls.issue_551]: https://github.com/timberio/qovery/issues/551
+[urls.issue_551]: https://github.com/qovery/documentation/issues/551
 [urls.rust_date_time]: https://docs.rs/chrono/0.4.0/chrono/struct.DateTime.html

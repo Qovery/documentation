@@ -5,10 +5,10 @@ component_title: "Clickhouse"
 description: "The Qovery `clickhouse` sink batches `log` events to Clickhouse via the `HTTP` Interface."
 event_types: ["log"]
 function_category: "transmit"
-issues_url: https://github.com/timberio/qovery/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+clickhouse%22
+issues_url: https://github.com/qovery/documentation/issues?q=is%3Aopen+is%3Aissue+label%3A%22sink%3A+clickhouse%22
 operating_systems: ["Linux","MacOS","Windows"]
 sidebar_label: "clickhouse|[\"log\"]"
-source_url: https://github.com/timberio/qovery/tree/master/src/sinks/clickhouse.rs
+source_url: https://github.com/qovery/documentation/tree/master/src/sinks/clickhouse.rs
 status: "beta"
 title: "Clickhouse Sink"
 unsupported_operating_systems: []
@@ -1100,5 +1100,5 @@ options.
 [urls.clickhouse]: https://clickhouse.yandex/
 [urls.clickhouse_http]: https://clickhouse.yandex/docs/en/interfaces/http/
 [urls.gzip]: https://www.gzip.org/
-[urls.new_clickhouse_sink_issue]: https://github.com/timberio/qovery/issues/new?labels=sink%3A+clickhouse
+[urls.new_clickhouse_sink_issue]: https://github.com/qovery/documentation/issues/new?labels=sink%3A+clickhouse
 [urls.openssl]: https://www.openssl.org/

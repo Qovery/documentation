@@ -70,7 +70,7 @@ class Release
   end
 
   def compare_url
-    @compare_url ||= "https://github.com/timberio/qovery/compare/v#{last_version}...v#{version}"
+    @compare_url ||= "https://github.com/qovery/documentation/compare/v#{last_version}...v#{version}"
   end
 
   def deletions_count

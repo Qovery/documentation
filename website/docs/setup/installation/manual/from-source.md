@@ -87,7 +87,7 @@ The following steps should be used to compile Qovery directly on Linux based sys
 
     ```bash
     mkdir -p qovery && \
-      curl -sSfL --proto '=https' --tlsv1.2 https://github.com/timberio/qovery/archive/master.tar.gz | \
+      curl -sSfL --proto '=https' --tlsv1.2 https://github.com/qovery/documentation/archive/master.tar.gz | \
       tar xzf - -C qovery --strip-components=1
     ```
 
@@ -165,7 +165,7 @@ operating systems.
     <TabItem value="latest">
 
     ```bat
-    git clone https://github.com/timberio/qovery
+    git clone https://github.com/qovery
     git checkout v0.8.2
     cd qovery
     ```
@@ -174,7 +174,7 @@ operating systems.
     <TabItem value="master">
 
     ```bat
-    git clone https://github.com/timberio/qovery
+    git clone https://github.com/qovery
     cd qovery
     ```
 
@@ -234,7 +234,7 @@ Building steps:
 
     ```bash
     mkdir -p qovery && \
-      curl -sSfL --proto '=https' --tlsv1.2 https://github.com/timberio/qovery/archive/master.tar.gz | \
+      curl -sSfL --proto '=https' --tlsv1.2 https://github.com/qovery/documentation/archive/master.tar.gz | \
       tar xzf - -C qovery --strip-components=1
     ```
 

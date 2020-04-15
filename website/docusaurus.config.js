@@ -2,30 +2,39 @@ const path = require('path');
 
 module.exports = {
   title: 'Qovery',
-  tagline: 'A lightweight and ultra-fast tool for building observability pipelines',
-  url: 'https://qovery.dev',
-  baseUrl: '/',
+  tagline: 'Deploy complex application, seamlessly',
+  url: 'https://qovery.github.io',
+  baseUrl: '/documentation/',
   favicon: 'img/logo-square.svg',
-  organizationName: 'timberio',
-  projectName: 'qovery',
+  organizationName: 'Qovery',
+  projectName: 'documentation',
   customFields: {
     metadata: require('./metadata'),
   },
   themeConfig: {
+    disableDarkMode: false,
+    /*announcementBar: {
+        id: 'support_us', // Any value that will identify this message
+        content: 'We are looking to revamp our docs, please fill <a target="_blank" rel="noopener noreferrer" href="#">this survey</a>',
+        backgroundColor: '#fafbfc', // Defaults to `#fff`
+        textColor: '#091E42', // Defaults to `#000`
+    },*/
     navbar: {
       hideOnScroll: true,
       logo: {
         alt: 'Qovery',
-        src: 'img/logo-light.svg'
+        src: 'img/logo-light.svg',
+        srcDark: 'img/logo-dark.svg'
       },
       links: [
-        {to: 'components/', label: 'Components', position: 'left'},
+        {href: 'https://www.qovery.com', label: "Home", position: 'left'},
+        // {to: 'components/', label: 'Components', position: 'left'},
         {to: 'guides/', label: 'Guides', position: 'left'},
         {to: 'docs/', label: 'Docs', position: 'left'},
-        {to: 'blog/', label: 'Blog', position: 'left'},
+        //{to: 'blog/', label: 'Blog', position: 'left'},
         {to: 'community/', label: 'Community', position: 'left'},
-        {to: 'releases/', label: 'Download', position: 'right'},
-        {href: 'https://github.com/qovery', label: "GitHub", position: 'right'},
+        // {to: 'releases/', label: 'Download', position: 'right'},
+        {href: 'https://github.com/Qovery', label: "GitHub", position: 'right'},
       ],
     },
     image: 'img/open-graph.png',
@@ -40,7 +49,7 @@ module.exports = {
           items: [
             {
               label: 'What is Qovery?',
-              to: 'docs/about/what-is-qovery/',
+              to: 'docs/about/what-is-Qovery/',
             },
             {
               label: 'The Team',
@@ -103,11 +112,11 @@ module.exports = {
             },
             {
               label: 'Github',
-              to: 'https://github.com/qovery',
+              to: 'https://github.com/qovery/documentation',
             },
             {
               label: 'Twitter',
-              to: 'https://twitter.com/qoverydotdev',
+              to: 'https://twitter.com/qovery_',
             },
             {
               label: 'Mailing List',
@@ -121,15 +130,16 @@ module.exports = {
         },
       ],
       logo: {
-        alt: 'Timber.io',
-        src: '/img/timber-logo.svg',
-        href: 'https://timber.io/',
+        alt: 'Qovery.com',
+        src: '/img/logo-light.svg',
+        srcDark: '/img/logo-dark.svg',
+        href: 'https://www.qovery.com',
       },
-      copyright: `Copyright © ${new Date().getFullYear()} Timber, Inc.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Qovery, Inc.`,
     },
     algolia: {
       apiKey: '2356c5cb76b57b43624c6450b0a031cc',
-      indexName: 'timberio_qovery',
+      indexName: 'timberio_Qovery',
       algoliaOptions: {}, // Optional, if provided by Algolia
     },
   },
@@ -138,7 +148,7 @@ module.exports = {
     [
       '@docusaurus/plugin-content-docs',
       {
-        editUrl: 'https://github.com/qovery/documentation/edit/master/website/',
+        editUrl: 'https://github.com/Qovery/documentation/edit/master/website/',
         sidebarPath: require.resolve('./sidebars.js')
       }
     ],
@@ -147,7 +157,8 @@ module.exports = {
       {
         feedOptions: {
           type: 'all',
-          copyright: `Copyright © ${new Date().getFullYear()} Timber, Inc.`,
+          copyright: `Copyright © ${new Date().getFullYear()} Qovery, Inc.`,
+          baseUrl: ''
         }
       }
     ],

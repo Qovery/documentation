@@ -41,7 +41,7 @@ The `<%= component.name %>` <%= component.type %> buffers & batches data as
 shown in the diagram above. You'll notice that Qovery treats these concepts
 differently, instead of treating them as global concepts, Qovery treats them
 as sink specific concepts. This isolates sinks, ensuring services disruptions
-are contained and [delivery guarantees][docs.guarantees] are honored.
+are contained and [delivery guarantees][docs.whats-next] are honored.
 
 *Batches* are flushed when 1 of 2 conditions are met:
 
@@ -117,8 +117,6 @@ Simply add `${MY_ENV_VAR}` in your Qovery configuration file and the variable
 will be replaced before being evaluated.
 
 You can learn more in the
-[Environment Variables][docs.configuration#environment-variables] section.
-<%- if component.sink? && component.exposing? -%>
 
 ### Exposing & Scraping
 
@@ -132,7 +130,6 @@ accessible by the downstream service doing the scraping.
 ### Field Notation Syntax
 
 The <%= option_names(component.field_path_notation_options).to_sentence %> options
-support [Qovery's field notiation syntax][docs.reference.field-path-notation],
 enabling access to root-level, nested, and array field values. For example:
 
 ```toml title="qovery.toml"
@@ -146,7 +143,6 @@ enabling access to root-level, nested, and array field values. For example:
 ```
 
 You can learn more about Qovery's field notation in the
-[field notation reference][docs.reference.field-path-notation].
 <%- end -%>
 <%- if component.sink? && component.service_provider?("Google") -%>
 
@@ -213,7 +209,6 @@ section][<%= component_short_link(component) %>#permissions].
 Partitioning is controlled via the <%= option_names(component.partition_options).to_sentence %>
 options and allows you to dynamically partition data on the fly.
 <%- if component.partition_options.any?(&:templateable?) -%>
-You'll notice that Qovery's [template sytax][docs.reference.templating] is
 supported for these options, enabling you to use field values as partition keys.
 <%- end -%>
 <%- end -%>
@@ -271,7 +266,6 @@ event-by-event basis. It does not batch data.
 ### Template Syntax
 
 The <%= option_names(component.templateable_options).to_sentence %> options
-support [Qovery's template syntax][docs.reference.templating], enabling dynamic
 values derived from the event's data. This syntax accepts
 [strptime specifiers][urls.strptime_specifiers] as well as the
 `{{ field_name }}` syntax for accessing event fields. For example:
@@ -287,7 +281,6 @@ values derived from the event's data. This syntax accepts
 ```
 
 You can learn more about the complete syntax in the
-[templating reference][docs.reference.templating].
 <%- end -%>
 <%- if component.options.key?("tls") -%>
 
@@ -302,7 +295,6 @@ options.
 ### Value Coercion
 
 Values can be coerced upon extraction via the `types.*` options. This functions
-exactly like the [`coercer` transform][docs.transforms.coercer] except that its
 coupled within this transform for convenience.
 
 #### Timestamps

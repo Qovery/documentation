@@ -15,7 +15,7 @@ groups = <%= groups.to_toml %>
 relevant_when = {type = "memory"}
 unit = "events"
 description = """\
-The maximum number of [events][docs.data-model] allowed in the buffer.\
+The maximum number of [events][docs.quickstart] allowed in the buffer.\
 """
 
 [<%= namespace %>.buffer.children.max_size]

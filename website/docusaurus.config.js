@@ -4,7 +4,7 @@ module.exports = {
   title: 'Qovery',
   tagline: 'Deploy complex application, seamlessly',
   url: 'https://qovery.github.io',
-  baseUrl: '/documentation/',
+  baseUrl: '/',
   favicon: 'img/logo-square.svg',
   organizationName: 'Qovery',
   projectName: 'documentation',
@@ -49,7 +49,7 @@ module.exports = {
           items: [
             {
               label: 'What is Qovery?',
-              to: 'docs/about/what-is-Qovery/',
+              to: 'docs/getting-started/what-is-Qovery/',
             },
             {
               label: 'The Team',

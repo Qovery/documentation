@@ -1,15 +1,11 @@
 <%- if describe -%>
-The [service deployment strategy][docs.strategies#service] treats Qovery like a
 separate service. It is desigend to receive data from an upstream source and
 fan-out to one or more destinations.
 <%- if source -%>
 For this guide, Qovery will <%= source.function_category %> data from
 <%= source.noun %> via Qovery's
-[`<%= source.name %>` source][docs.sources.<%= source.name %>].
 <%- else -%>
 Typically, upstream sources are other Qovery instances sending data via the
-[`qovery` sink][docs.sinks.qovery], but can be collected through any of Qovery's
-[sources][docs.sources].
 <%- end -%>
 The following diagram demonstrates how it works.
 

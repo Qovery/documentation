@@ -261,7 +261,7 @@ function QoveryComponents(props) {
         </div>
         <div className="filter">
           <div className="filter--label">
-            <Link to="/docs/about/data-model/" title="Learn more about Qovery's event types">
+            <Link to="/docs/getting-started/data-model/" title="Learn more about Qovery's event types">
               Event types <i className="feather icon-info"></i>
             </Link>
           </div>
@@ -277,7 +277,7 @@ function QoveryComponents(props) {
         </div>
         <div className="filter">
           <div className="filter--label">
-            <Link to="/docs/about/guarantees/" title="Learn more about Qovery's guarantees">
+            <Link to="/docs/getting-started/whats-next/" title="Learn more about Qovery's guarantees">
               Guarantees <i className="feather icon-info"></i>
             </Link>
           </div>

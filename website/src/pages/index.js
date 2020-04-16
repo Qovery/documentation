@@ -58,7 +58,8 @@ const features = [
     icon: 'shuffle',
     description: (
       <>
-        Qovery supports <Link to="/docs/about/data-model/log/">logs</Link>, <Link to="/docs/about/data-model/metric/">metrics</Link>, and <Link to="/docs/about/data-model/#event">events</Link>, making it easy to collect and process <i>all</i> observability data.
+        Qovery supports <Link to="/docs/getting-started/data-model/log/">logs</Link>, <Link to="/docs/getting-started/data-model/metric/">metrics</Link>, and"
+  + " <Link to="/docs/getting-started/data-model/#event">events</Link>, making it easy to collect and process <i>all</i> observability data.
       </>
     ),
   },
@@ -76,7 +77,7 @@ const features = [
     icon: 'shield',
     description: (
       <>
-        Guarantees matter, and Qovery is <Link to="/docs/about/guarantees/">clear on it's guarantees</Link>, helping you to make the appropriate trade offs for your use case.
+        Guarantees matter, and Qovery is <Link to="/docs/getting-started/whats-next/">clear on it's guarantees</Link>, helping you to make the appropriate trade offs for your use case.
       </>
     ),
   },

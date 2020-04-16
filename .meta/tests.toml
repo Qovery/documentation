@@ -79,10 +79,10 @@ common = true
 description = "The metric type."
 
 [tests.children.inputs.children.metric.children.type.enum]
-counter = "A [counter metric type][docs.data-model.metric#counter]."
-gauge = "A [gauge metric type][docs.data-model.metric#gauge]."
-histogram = "A [distribution metric type][docs.data-model.metric#distribution]."
-set = "A [set metric type][docs.data-model.metric#set]."
+counter = "A [counter metric type][docs.quickstart.metric#counter]."
+gauge = "A [gauge metric type][docs.quickstart.metric#gauge]."
+histogram = "A [distribution metric type][docs.quickstart.metric#distribution]."
+set = "A [set metric type][docs.quickstart.metric#set]."
 
 [tests.children.inputs.children.metric.children.name]
 type = "string"
@@ -97,7 +97,7 @@ The name of the metric. Defaults to `<field>_total` for `counter` and \
 [tests.children.inputs.children.metric.children.tags]
 type = "table"
 common = true
-description = "Key/value pairs representing [metric tags][docs.data-model.metric#tags]."
+description = "Key/value pairs representing [metric tags][docs.quickstart.metric#tags]."
 
 [tests.children.inputs.children.metric.children.tags.children."`[tag-name]`"]
 type = "string"
@@ -108,7 +108,7 @@ examples = [
 required = true
 common = true
 description = """\
-Key/value pairs representing [metric tags][docs.data-model.metric#tags].\
+Key/value pairs representing [metric tags][docs.quickstart.metric#tags].\
 """
 
 [tests.children.inputs.children.metric.children.val]

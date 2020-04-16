@@ -1,15 +1,11 @@
 <%- if describe -%>
-The [daemon deployment strategy][docs.strategies#daemon] is designed for data
 collection on a single host. Qovery runs in the background, in its own process,
 collecting _all_ data for that host.
 <%- if source -%>
 For this guide, Qovery will <%= source.function_category %> data from
 <%= source.noun %> via Qovery's
-[`<%= source.name %>`][docs.sources.<%= source.name %>].
 <%- else -%>
 Typically data is collected from a process manager, such as Journald via
-Qovery's [`journald` source][docs.sources.journald], but can be collected
-through any of Qovery's [sources][docs.sources].
 <%- end -%>
 The following diagram demonstrates how it works.
 

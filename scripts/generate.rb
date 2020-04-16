@@ -197,38 +197,38 @@ templates = Templates.new(ROOT_DIR, metadata)
 # Create missing platform integration guides
 #
 
-metadata.installation.platforms_list.each do |platform|
-  template_path = "#{GUIDES_ROOT}/integrate/platforms/#{platform.name}.md.erb"
-  strategy = platform.strategies.first
-  source = metadata.sources.send(strategy.source)
-
-  write_new_file(
-    template_path,
-    <<~EOF
-    <%- platform = metadata.installation.platforms.send("#{platform.name}") -%>
-    <%= integration_guide(platform: platform) %>
-    EOF
-  )
-
-  metadata.sinks_list.
-    select do |sink|
-      source.can_send_to?(sink) &&
-        !sink.function_category?("test") &&
-        !BLACKLISTED_SINKS.include?(sink.name)
-    end.
-    each do |sink|
-      template_path = "#{GUIDES_ROOT}/integrate/platforms/#{platform.name}/#{sink.name}.md.erb"
-
-      write_new_file(
-        template_path,
-        <<~EOF
-        <%- platform = metadata.installation.platforms.send("#{platform.name}") -%>
-        <%- sink = metadata.sinks.send("#{sink.name}") -%>
-        <%= integration_guide(platform: platform, sink: sink) %>
-        EOF
-      )
-    end
-end
+# metadata.installation.platforms_list.each do |platform|
+#   template_path = "#{GUIDES_ROOT}/integrate/platforms/#{platform.name}.md.erb"
+#   strategy = platform.strategies.first
+#   source = metadata.sources.send(strategy.source)
+#
+#   write_new_file(
+#     template_path,
+#     <<~EOF
+#     <%- platform = metadata.installation.platforms.send("#{platform.name}") -%>
+#     <%= integration_guide(platform: platform) %>
+#     EOF
+#   )
+#
+#   metadata.sinks_list.
+#     select do |sink|
+#       source.can_send_to?(sink) &&
+#         !sink.function_category?("test") &&
+#         !BLACKLISTED_SINKS.include?(sink.name)
+#     end.
+#     each do |sink|
+#       template_path = "#{GUIDES_ROOT}/integrate/platforms/#{platform.name}/#{sink.name}.md.erb"
+#
+#       write_new_file(
+#         template_path,
+#         <<~EOF
+#         <%- platform = metadata.installation.platforms.send("#{platform.name}") -%>
+#         <%- sink = metadata.sinks.send("#{sink.name}") -%>
+#         <%= integration_guide(platform: platform, sink: sink) %>
+#         EOF
+#       )
+#     end
+# end
 
 #
 # Create missing source integration guides

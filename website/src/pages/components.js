@@ -26,7 +26,7 @@ function Components(props) {
           <div className="overlay">
             <h1>Qovery Components</h1>
             <div className="hero--subtitle">
-              Components allow you to collect, transform, and route data with ease. <Link to="/docs/about/concepts/">Learn more</Link>.
+              Components allow you to collect, transform, and route data with ease. <Link to="/docs/getting-started/concepts/">Learn more</Link>.
             </div>
           </div>
         </div>

@@ -110,18 +110,18 @@
 
 [[redirects]]
   from = "/docs/"
-  to = "/docs/about/what-is-qovery/"
+  to = "/docs/getting-started/what-is-qovery/"
   status = 302
   force = true
 
 [[redirects]]
-  from = "/docs/about/correctness"
+  from = "/docs/getting-started/correctness"
   to = "https://docs.qovery.com/#correctness"
   status = 301
   force = true
 
 [[redirects]]
-  from = "/docs/about/performance"
+  from = "/docs/getting-started/performance"
   to = "https://docs.qovery.com/#performance"
   status = 301
   force = true

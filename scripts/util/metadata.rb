@@ -114,7 +114,7 @@ class Metadata
     :data_model,
     :domains,
     :env_vars,
-    :guides,
+#     :guides,
     :installation,
     :links,
     :options,
@@ -127,9 +127,9 @@ class Metadata
     :transforms
 
   def initialize(hash, docs_root, guides_root, pages_root)
-    @data_model = DataModel.new(hash.fetch("data_model"))
-    @guides = hash.fetch("guides").to_struct_with_name(constructor: Guides)
-    @installation = Installation.new(hash.fetch("installation"))
+#     @data_model = DataModel.new(hash.fetch("data_model"))
+#     @guides = hash.fetch("guides").to_struct_with_name(constructor: Guides)
+#     @installation = Installation.new(hash.fetch("installation"))
     @options = hash.fetch("options").to_struct_with_name(constructor: Field)
 #     @releases = OpenStruct.new()
     @sinks = OpenStruct.new()
@@ -172,47 +172,47 @@ class Metadata
 #     end
 
     # sources
-
-    hash["sources"].collect do |source_name, source_hash|
-      source_hash["name"] = source_name
-      source_hash["posts"] = posts.select { |post| post.source?(source_name) }
-      source = Source.new(source_hash)
-      @sources.send("#{source_name}=", source)
-    end
+#
+#     hash["sources"].collect do |source_name, source_hash|
+#       source_hash["name"] = source_name
+#       source_hash["posts"] = posts.select { |post| post.source?(source_name) }
+#       source = Source.new(source_hash)
+#       @sources.send("#{source_name}=", source)
+#     end
 
     # transforms
 
-    hash["transforms"].collect do |transform_name, transform_hash|
-      transform_hash["name"] = transform_name
-      transform_hash["posts"] = posts.select { |post| post.transform?(transform_name) }
-      transform = Transform.new(transform_hash)
-      @transforms.send("#{transform_name}=", transform)
-    end
+#     hash["transforms"].collect do |transform_name, transform_hash|
+#       transform_hash["name"] = transform_name
+#       transform_hash["posts"] = posts.select { |post| post.transform?(transform_name) }
+#       transform = Transform.new(transform_hash)
+#       @transforms.send("#{transform_name}=", transform)
+#     end
 
     # sinks
 
-    hash["sinks"].collect do |sink_name, sink_hash|
-      sink_hash["name"] = sink_name
-      sink_hash["posts"] = posts.select { |post| post.sink?(sink_name) }
+#     hash["sinks"].collect do |sink_name, sink_hash|
+#       sink_hash["name"] = sink_name
+#       sink_hash["posts"] = posts.select { |post| post.sink?(sink_name) }
+#
+#       (sink_hash["service_providers"] || []).each do |service_provider|
+#         provider_hash = (hash["service_providers"] || {})[service_provider.downcase] || {}
+#         sink_hash["env_vars"] = (sink_hash["env_vars"] || {}).merge((provider_hash["env_vars"] || {}).clone)
+#         sink_hash["options"] = sink_hash["options"].merge((provider_hash["options"] || {}).clone)
+#       end
 
-      (sink_hash["service_providers"] || []).each do |service_provider|
-        provider_hash = (hash["service_providers"] || {})[service_provider.downcase] || {}
-        sink_hash["env_vars"] = (sink_hash["env_vars"] || {}).merge((provider_hash["env_vars"] || {}).clone)
-        sink_hash["options"] = sink_hash["options"].merge((provider_hash["options"] || {}).clone)
-      end
-
-      sink =
-        case sink_hash.fetch("egress_method")
-        when "batching"
-          BatchingSink.new(sink_hash)
-        when "exposing"
-          ExposingSink.new(sink_hash)
-        when "streaming"
-          StreamingSink.new(sink_hash)
-        end
-
-      @sinks.send("#{sink_name}=", sink)
-    end
+#       sink =
+#         case sink_hash.fetch("egress_method")
+#         when "batching"
+#           BatchingSink.new(sink_hash)
+#         when "exposing"
+#           ExposingSink.new(sink_hash)
+#         when "streaming"
+#           StreamingSink.new(sink_hash)
+#         end
+#
+#       @sinks.send("#{sink_name}=", sink)
+#     end
 
     # links
 
@@ -340,8 +340,8 @@ class Metadata
 
   def to_h
     {
-      event_types: event_types,
-      guides: guides.deep_to_h,
+      event_types: [],
+      guides: [],
       installation: installation.deep_to_h,
       latest_post: posts.last.deep_to_h,
       latest_release: latest_release.deep_to_h,

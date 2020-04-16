@@ -91,31 +91,31 @@ function Statuses({deliveryGuarantee, eventTypes, operatingSystems, status, unsu
       <div className="title">Support</div>
       {status == "beta" &&
         <div>
-          <Link to="/docs/about/guarantees/#beta" className="text--warning" title="This component is in beta and is not recommended for production environments. Click to learn more.">
+          <Link to="/docs/getting-started/whats-next/#beta" className="text--warning" title="This component is in beta and is not recommended for production environments. Click to learn more.">
             <i className="feather icon-alert-triangle"></i> Beta Status
           </Link>
         </div>}
       {status == "prod-ready" &&
         <div>
-          <Link to="/docs/about/guarantees/#prod-ready" className="text--primary" title="This component has passed reliability standards that make it production ready. Click to learn more.">
+          <Link to="/docs/getting-started/whats-next/#prod-ready" className="text--primary" title="This component has passed reliability standards that make it production ready. Click to learn more.">
             <i className="feather icon-award"></i> Prod-Ready Status
           </Link>
         </div>}
       {deliveryGuarantee == "best_effort" &&
         <div>
-          <Link to="/docs/about/guarantees/#best-effort" className="text--warning" title="This component makes a best-effort delivery guarantee, and in rare cases can lose data. Click to learn more.">
+          <Link to="/docs/getting-started/whats-next/#best-effort" className="text--warning" title="This component makes a best-effort delivery guarantee, and in rare cases can lose data. Click to learn more.">
             <i className="feather icon-shield-off"></i> Best-Effort Delivery
           </Link>
         </div>}
       {deliveryGuarantee == "at_least_once" &&
         <div>
-          <Link to="/docs/about/guarantees/#at-least-once" className="text--primary" title="This component offers an at-least-once delivery guarantee. Click to learn more.">
+          <Link to="/docs/getting-started/whats-next/#at-least-once" className="text--primary" title="This component offers an at-least-once delivery guarantee. Click to learn more.">
             <i className="feather icon-shield"></i> At-Least-Once
           </Link>
         </div>}
       {eventTypes &&
         <div>
-          <Link to="/docs/about/data-model/" title={`This component works on the these event types.`}>
+          <Link to="/docs/getting-started/data-model/" title={`This component works on the these event types.`}>
             <i className="feather icon-database"></i> <SupportedEventTypes values={eventTypes} />
           </Link>
         </div>}

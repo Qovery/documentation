@@ -1,7 +1,7 @@
 FROM ruby:2.7
 
 # Install the git repository to ensure we get the latest version.
-# This is important for determining the current Qovery version number.
+# This is important for determining the current Vector version number.
 RUN apt-get update && \
   apt-get install -y software-properties-common
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys A1715D88E1DF1F24
@@ -33,7 +33,7 @@ ENV LC_ALL C.UTF-8
 
 RUN gem install rake
 
-# Docker is used to upload Qovery docker images
+# Docker is used to upload Vector docker images
 RUN apt-get remove docker docker-engine docker.io
 RUN apt-get update && apt-get install -y docker.io
 

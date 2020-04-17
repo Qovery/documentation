@@ -1,6 +1,6 @@
 # Docker Distribution
 
-This folder contains Docker images used to test, build, and release Qovery
+This folder contains Docker images used to test, build, and release Vector
 across various targets. The purpose of these images is to:
 
 1. Completely contain our CI process.
@@ -33,7 +33,7 @@ extend the `builde-base-*` images described above.
 
 ## `releaser-*` Images
 
-These images are responsible for releasing and uploading Qovery to the
+These images are responsible for releasing and uploading Vector to the
 appropriate channels (S3, PackageCloud, Github, etc).
 
 ## `verifier-*` Images

@@ -4,7 +4,7 @@
 #
 # SUMMARY
 #
-#   Generates a list of keywords based on Qovery's components.
+#   Generates a list of keywords based on Vector's components.
 
 #
 # Setup

@@ -9,7 +9,7 @@
 set -eu
 
 project_root=$(pwd)
-archive_name="qovery-$TARGET.tar.gz"
+archive_name="vector-$TARGET.tar.gz"
 archive_path="target/artifacts/$archive_name"
 absolute_archive_path="$project_root/$archive_path"
 package_version="$($project_root/scripts/version.sh)"
@@ -20,7 +20,7 @@ td=$(mktemp -d)
 pushd $td
 tar -xvf $absolute_archive_path
 mkdir -p $project_root/target/$TARGET/release
-mv qovery-$TARGET/bin/qovery $project_root/target/$TARGET/release
+mv vector-$TARGET/bin/vector $project_root/target/$TARGET/release
 popd
 rm -rf $td
 
@@ -45,7 +45,7 @@ cargo deb --target $TARGET --deb-version $package_version --no-build
 
 # Rename the resulting .deb file to use - instead of _ since this
 # is consistent with our package naming scheme.
-rename -v 's/qovery_([^_]*)_(.*)\.deb/qovery-$2\.deb/' target/$TARGET/debian/*.deb
+rename -v 's/vector_([^_]*)_(.*)\.deb/vector-$2\.deb/' target/$TARGET/debian/*.deb
 
 # Move the deb into the artifacts dir
 mv -v $(find target/$TARGET/debian/ -name *.deb) target/artifacts

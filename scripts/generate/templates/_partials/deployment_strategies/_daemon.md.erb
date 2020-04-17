@@ -1,11 +1,14 @@
 <%- if describe -%>
-collection on a single host. Qovery runs in the background, in its own process,
+collection on a single host. Vector runs in the background, in its own process,
 collecting _all_ data for that host.
 <%- if source -%>
-For this guide, Qovery will <%= source.function_category %> data from
-<%= source.noun %> via Qovery's
+For this guide, Vector will <%= source.function_category %> data from
+<%= source.noun %> via Vector's
+[`<%= source.name %>`][docs.sources.<%= source.name %>].
 <%- else -%>
 Typically data is collected from a process manager, such as Journald via
+Vector's [`journald` source][docs.sources.journald], but can be collected
+through any of Vector's [sources][docs.sources].
 <%- end -%>
 The following diagram demonstrates how it works.
 

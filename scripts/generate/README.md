@@ -1,22 +1,22 @@
 # Generate
 
-The `make generate` command auto-generates files across the Qovery repository
+The `make generate` command auto-generates files across the Vector repository
 (mostly documentation). This folder contains all of the inner-workings of that
 command.
 
 ## Metadata
 
-To start, you should be familiar with the Qovery [`/.meta`](/.meta) directory.
-This directory contains various metadata about the Qovery project as a whole,
+To start, you should be familiar with the Vector [`/.meta`](/.meta) directory.
+This directory contains various metadata about the Vector project as a whole,
 mostly configuration details but also link definitions and more. Its content is
 loaded via the [`./util/metadata.rb`](./util/metadata.rb) file and represented
 as an object.
 
 ## Templates
 
-If a file in the Qovery repo needs to be dynamically generated you can place
+If a file in the Vector repo needs to be dynamically generated you can place
 it in the [templates](templates) directory. The structure of this directory
-should match the root Qovery structure exactly, and only include files that
+should match the root Vector structure exactly, and only include files that
 need to be generated. For example, the [`/README.md`](/README.md) is generated
 by the [`/scripts/generate/templates/README.md.erb`](/scripts/generate/templates/README.md.erb)
 template.

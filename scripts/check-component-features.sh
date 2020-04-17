@@ -11,7 +11,7 @@ set -euo pipefail
 
 cd $(dirname $0)/..
 
-echo "Checking that Qovery and tests can be built without default features..."
+echo "Checking that Vector and tests can be built without default features..."
 cargo check --tests --no-default-features
 
 echo "Checking that all components have corresponding features in Cargo.toml..."

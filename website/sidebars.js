@@ -7,18 +7,7 @@ module.exports = {
         "getting-started",
         "getting-started/what-is-qovery",
         "getting-started/how-qovery-works",
-        {
-          type: 'category',
-          label: 'Quick Start',
-          items: [
-                "getting-started/quickstart",
-                "getting-started/quickstart/add-database",
-                "getting-started/quickstart/install-cli",
-                "getting-started/quickstart/deploy-backend-application",
-                "getting-started/quickstart/manage-environment-variables",
-                "getting-started/quickstart/create-an-account",
-            ]
-        },
+        "getting-started/quickstart",
         "getting-started/whats-next",
       ],
     },

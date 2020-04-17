@@ -206,7 +206,7 @@ class Templates
 
   def event_type_links(types)
     types.collect do |type|
-      "[`#{type}`][docs.quickstart.#{type}]"
+      "[`#{type}`][docs.data-model.#{type}]"
     end
   end
 
@@ -219,7 +219,7 @@ class Templates
   def fetch_strategies(strategy_references)
     strategy_references.collect do |reference|
       name = reference.is_a?(Hash) ? reference.name : reference
-      strategy = metadata.installation.strategies.send(name)
+      strategy = metadata.installation.strategies.send(name).clone
       if reference.respond_to?(:source)
         strategy[:source] = reference.source
       end
@@ -275,11 +275,44 @@ class Templates
     render("#{partials_path}/_full_config_spec.toml", binding).strip.gsub(/ *$/, '')
   end
 
+  def highlights(highlights, author: true, group_by: "type", heading_depth: 3, size: nil, style: nil, tags: true, timeline: true)
+    case group_by
+    when "type"
+      highlights.sort_by!(&:type)
+    when "version"
+      highlights.sort_by!(&:date)
+    else
+      raise ArgumentError.new("Invalid group_by value: #{group_by.inspect}")
+    end
+
+    highlight_maps =
+      highlights.collect do |highlight|
+        {
+          authorGithub: highlight.author_github,
+          dateString: "#{highlight.date}T00:00:00",
+          description: highlight.description,
+          permalink: highlight.permalink,
+          prNumbers: highlight.pr_numbers,
+          release: highlight.release,
+          style: highlight.breaking_change? ? "danger" : nil,
+          tags: highlight.tags,
+          title: highlight.title,
+          type: highlight.type
+        }
+      end
+
+    render("#{partials_path}/_highlights.md", binding).strip
+  end
+
   def installation_tutorial(interfaces, strategies, platform: nil, heading_depth: 3, show_deployment_strategy: true)
     render("#{partials_path}/_installation_tutorial.md", binding).strip
   end
 
   def interface_installation_tutorial(interface, sink: nil, source: nil, heading_depth: 3)
+    if !sink && !source
+      raise ArgumentError.new("You must supply at lease a source or sink")
+    end
+
     render("#{partials_path}/interface_installation_tutorial/_#{interface.name}.md", binding).strip
   end
 
@@ -335,7 +368,7 @@ class Templates
     description = option.description.strip
 
     if option.templateable?
-      description << " This option supports dynamic values via [Qovery's template syntax][docs.reference.templating]."
+      description << " This option supports dynamic values via [Vector's template syntax][docs.reference.templating]."
     end
 
     if option.relevant_when
@@ -439,7 +472,7 @@ class Templates
   end
 
   def install_command(prompts: true)
-    "curl --proto '=https' --tlsv1.2 -sSf https://sh.qovery.dev | sh#{prompts ? "" : " -s -- -y"}"
+    "curl --proto '=https' --tlsv1.2 -sSf https://sh.vector.dev | sh#{prompts ? "" : " -s -- -y"}"
   end
 
   def installation_target_links(targets)
@@ -461,7 +494,7 @@ class Templates
       strategy = fetch_strategy(platform.strategies.first)
       source = metadata.sources.send(strategy.source)
     elsif source
-      interfaces = [metadata.installation.interfaces.send("qovery-cli")]
+      interfaces = [metadata.installation.interfaces.send("vector-cli")]
       strategy = fetch_strategy(source.strategies.first)
     elsif sink
       interfaces = metadata.installation.interfaces_list
@@ -482,6 +515,18 @@ class Templates
 
   def pluralize(count, word)
     count != 1 ? "#{count} #{word.pluralize}" : "#{count} #{word}"
+  end
+
+  def release_breaking_changes(release, heading_depth: 3)
+    render("#{partials_path}/_release_breaking_changes.md", binding).strip
+  end
+
+  def release_header(release)
+    render("#{partials_path}/_release_header.md", binding).strip
+  end
+
+  def release_highlights(release, heading_depth: 3, tags: true)
+    render("#{partials_path}/_release_highlights.md", binding).strip
   end
 
   def release_summary(release)
@@ -616,6 +661,14 @@ class Templates
 
   def qovery_summary
     render("#{partials_path}/_qovery_summary.md", binding).strip
+  end
+
+  def qovery_sign_up
+    render("#{partials_path}/_qovery_sign_up.md", binding).strip
+  end
+
+  def qovery_install_cli
+    render("#{partials_path}/_qovery_install_cli.md", binding).strip
   end
 
   def warnings(warnings)

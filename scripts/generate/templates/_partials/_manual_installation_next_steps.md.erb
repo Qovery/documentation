@@ -1,54 +1,55 @@
 ### Configuring
 
-The Qovery configuration file is located at:
+The Vector configuration file is located at:
 
 ```text
-config/qovery.toml
+config/vector.toml
 ```
 
-A full spec is located at `config/qovery.spec.toml` and examples are
-located in `config/qovery/examples/*`. You can learn more about configuring
+A full spec is located at `config/vector.spec.toml` and examples are
+located in `config/vector/examples/*`. You can learn more about configuring
+Vector in the [Configuration][docs.configuration] section.
 
 ### Data Directory
 
 We highly recommend creating a [data directory][docs.global-options#data_dir]
-that Qovery can use:
+that Vector can use:
 
 ```bash
-mkdir /var/lib/qovery
+mkdir /var/lib/vector
 ```
 
 <Alert type="warning">
 
-Make sure that this directory is writable by the `qovery` process.
+Make sure that this directory is writable by the `vector` process.
 
 </Alert>
 
-Qovery offers a global [`data_dir` option][docs.global-options#data_dir] that
+Vector offers a global [`data_dir` option][docs.global-options#data_dir] that
 you can use to specify the path of your directory.
 
-```toml title="qovery.toml"
-data_dir = "/var/lib/qovery" # default
+```toml title="vector.toml"
+data_dir = "/var/lib/vector" # default
 ```
 
 ### Service Managers
 
-Qovery archives ship with service files in case you need them:
+Vector archives ship with service files in case you need them:
 
 #### Init.d
 
-To install Qovery into Init.d run:
+To install Vector into Init.d run:
 
 ```bash
-cp -av <%= distribution_dir %>/init.d/qovery /etc/init.d
+cp -av <%= distribution_dir %>/init.d/vector /etc/init.d
 ```
 
 #### Systemd
 
-To install Qovery into Systemd run:
+To install Vector into Systemd run:
 
 ```bash
-cp -av <%= distribution_dir %>/systemd/qovery.service /etc/systemd/system
+cp -av <%= distribution_dir %>/systemd/vector.service /etc/systemd/system
 ```
 
 ### Updating

@@ -7,18 +7,7 @@ module.exports = {
         <%= metadata.links.fetch_id("docs.getting-started").to_json %>,
         <%= metadata.links.fetch_id("docs.what-is-qovery").to_json %>,
         <%= metadata.links.fetch_id("docs.how-qovery-works").to_json %>,
-        {
-          type: 'category',
-          label: 'Quick Start',
-          items: [
-                <%= metadata.links.fetch_id("docs.getting-started.quickstart").to_json %>,
-                <%= metadata.links.fetch_id("docs.getting-started.quickstart.add-database").to_json %>,
-                <%= metadata.links.fetch_id("docs.getting-started.quickstart.install-cli").to_json %>,
-                <%= metadata.links.fetch_id("docs.getting-started.quickstart.deploy-backend-application").to_json %>,
-                <%= metadata.links.fetch_id("docs.getting-started.quickstart.manage-environment-variables").to_json %>,
-                <%= metadata.links.fetch_id("docs.getting-started.quickstart.create-an-account").to_json %>,
-            ]
-        },
+        <%= metadata.links.fetch_id("docs.quickstart").to_json %>,
         <%= metadata.links.fetch_id("docs.whats-next").to_json %>,
       ],
     },

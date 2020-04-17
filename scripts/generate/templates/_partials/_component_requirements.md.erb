@@ -1,6 +1,6 @@
 <%- permissions_list = component.permissions_list -%>
 <%- requirements = component.requirements -%>
-<Alert icon={false} type="danger" classNames="list--warnings">
+<Alert icon={false} type="danger" className="list--warnings">
 
 <%- if requirements.aws_imds_v2 %>
 * [AWS IMDS v2][urls.aws_ec2_instance_metadata] is required. This is available by default on EC2.
@@ -17,8 +17,8 @@
 * This component must be provided access to the configured file system.
 <%- end -%>
 <%- if requirements.journalctl -%>
-* The `journalctl` binary is required, this is the interface Qovery uses to retrieve JournalD logs. See the ["Communication Strategy" section][<%= component_short_link(component) %>#communication-strategy] for more info.
-* The Qovery user must be part of the `systemd-journal` group in order to execute the `journalctl` binary. See the ["User Permissions" section][<%= component_short_link(component) %>#user-permissions] for more info.
+* The `journalctl` binary is required, this is the interface Vector uses to retrieve JournalD logs. See the ["Communication Strategy" section][<%= component_short_link(component) %>#communication-strategy] for more info.
+* The Vector user must be part of the `systemd-journal` group in order to execute the `journalctl` binary. See the ["User Permissions" section][<%= component_short_link(component) %>#user-permissions] for more info.
 <%- end -%>
 <%- if requirements.kafka -%>
 * [Kafka][urls.kafka] version `<%= requirements.kafka %>` is required.

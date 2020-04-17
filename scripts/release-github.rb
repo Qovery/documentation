@@ -38,7 +38,7 @@ if release.pre?
   flags << "--pre"
 end
 
-command = "grease --debug create-release timberio/qovery v#{VERSION} #{SHA1} #{flags.join(" ")}"
+command = "grease --debug create-release timberio/vector v#{VERSION} #{SHA1} #{flags.join(" ")}"
 
 Printer.say(
   <<~EOF

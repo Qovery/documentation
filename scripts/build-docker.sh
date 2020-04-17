@@ -4,7 +4,7 @@
 #
 # SUMMARY
 #
-#   Builds the Qovery docker images and optionally
+#   Builds the Vector docker images and optionally
 #   pushes it to the Docker registry
 
 set -eux
@@ -26,23 +26,23 @@ build() {
   if [ -n "$PLATFORM" ]; then
     export DOCKER_CLI_EXPERIMENTAL=enabled
     docker run --rm --privileged docker/binfmt:66f9012c56a8316f9244ffd7622d7c21c1f6f28d
-    docker buildx rm qovery-builder || true
-    docker buildx create --use --name qovery-builder
+    docker buildx rm vector-builder || true
+    docker buildx create --use --name vector-builder
     docker buildx install
 
     docker buildx build \
       --platform="$PLATFORM" \
-      --tag timberio/qovery:$version-$base \
+      --tag timberio/vector:$version-$base \
       target/artifacts \
       -f distribution/docker/$base/Dockerfile ${PUSH:+--push}
   else
     docker build \
-      --tag timberio/qovery:$version-$base \
+      --tag timberio/vector:$version-$base \
       target/artifacts \
       -f distribution/docker/$base/Dockerfile
 
     if [ -n "$PUSH" ]; then
-      docker push timberio/qovery:$version-$base
+      docker push timberio/vector:$version-$base
     fi
   fi
 }
@@ -51,7 +51,7 @@ build() {
 # Build
 #
 
-echo "Building timberio/qovery:* Docker images"
+echo "Building timberio/vector:* Docker images"
 
 if [[ "$CHANNEL" == "latest" ]]; then
   version_exact=$VERSION

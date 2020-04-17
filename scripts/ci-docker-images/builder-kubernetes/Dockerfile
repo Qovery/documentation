@@ -1,6 +1,6 @@
-FROM qovery_build-x86_64:latest
+FROM vector_build-x86_64:latest
 
-WORKDIR /qovery
+WORKDIR /vector
 
 # Install Kubernetes kind
 ADD https://github.com/kubernetes-sigs/kind/releases/download/v0.7.0/kind-linux-amd64 /usr/local/bin/kind

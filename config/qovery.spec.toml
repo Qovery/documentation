@@ -11,16 +11,17 @@
 # Docs: https://docs.qovery.com
 # Community: https://discord.qovery.com/
 # ------------------------------------------------------------------------------
-# The file contains a full specification for the `qovery.toml` configuration
+# The file contains a full specification for the `vector.toml` configuration
 # file. It follows the TOML format and includes all options, types, and
 # possible values.
 #
-# More info on Qovery's configuration can be found at:
+# More info on Vector's configuration can be found at:
+# /docs/setup/configuration/
 
 # ------------------------------------------------------------------------------
 # Global
 # ------------------------------------------------------------------------------
-# Global options are relevant to Qovery as a whole and apply to global behavior.
+# Global options are relevant to Vector as a whole and apply to global behavior.
 
 #
 # General
@@ -113,7 +114,7 @@ dns_servers = ["0.0.0.0:53"]
 # Sources
 # ------------------------------------------------------------------------------
 # Sources specify data sources and are responsible for ingesting data into
-# Qovery.
+# Vector.
 
 
 # ------------------------------------------------------------------------------
@@ -125,4 +126,4 @@ dns_servers = ["0.0.0.0:53"]
 # ------------------------------------------------------------------------------
 # Sinks
 # ------------------------------------------------------------------------------
-# Sinks batch or stream data out of Qovery.
+# Sinks batch or stream data out of Vector.

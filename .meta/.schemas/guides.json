@@ -1,7 +1,7 @@
 {
-  "$id": "https://raw.githubusercontent.com/qovery/documentation/master/.meta/schemas/guides.json",
+  "$id": "https://raw.githubusercontent.com/timberio/vector/master/.meta/schemas/guides.json",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Qovery Guides Front Matter Schema",
+  "title": "Vector Guides Front Matter Schema",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -52,7 +52,7 @@
       "description": "Array of tags",
       "items": {
         "type": "string",
-        "enum": ["type: guide","type: post","type: tutorial","domain: buffers","domain: cli","domain: config","domain: dependencies","domain: networking","domain: observability","domain: operations","domain: platforms","domain: security","domain: sinks","domain: sources","domain: tests","domain: topology","domain: transforms","domain: ux","domain: website"]
+        "enum": ["type: guide","type: post","type: tutorial","domain: buffers","domain: cli","domain: config","domain: dependencies","domain: networking","domain: observability","domain: operations","domain: platforms","domain: security","domain: sinks","domain: sources","domain: tests","domain: topology","domain: transforms","domain: ux","domain: website","domain: services"]
       }
     },
     "title": {

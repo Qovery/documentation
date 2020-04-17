@@ -8,6 +8,7 @@ require_relative "metadata/data_model"
 require_relative "metadata/exposing_sink"
 require_relative "metadata/field"
 require_relative "metadata/guides"
+require_relative "metadata/highlight"
 require_relative "metadata/installation"
 require_relative "metadata/links"
 require_relative "metadata/post"
@@ -114,7 +115,8 @@ class Metadata
     :data_model,
     :domains,
     :env_vars,
-#     :guides,
+    :guides,
+    :highlights,
     :installation,
     :links,
     :options,
@@ -127,11 +129,11 @@ class Metadata
     :transforms
 
   def initialize(hash, docs_root, guides_root, pages_root)
-#     @data_model = DataModel.new(hash.fetch("data_model"))
-#     @guides = hash.fetch("guides").to_struct_with_name(constructor: Guides)
-#     @installation = Installation.new(hash.fetch("installation"))
+    # @data_model = DataModel.new(hash.fetch("data_model"))
+    @guides = hash.fetch("guides").to_struct_with_name(constructor: Guides)
+    # @installation = Installation.new(hash.fetch("installation"))
     @options = hash.fetch("options").to_struct_with_name(constructor: Field)
-#     @releases = OpenStruct.new()
+    @releases = OpenStruct.new()
     @sinks = OpenStruct.new()
     @sources = OpenStruct.new()
     @transforms = OpenStruct.new()
@@ -141,78 +143,101 @@ class Metadata
 
     @domains = hash.fetch("domains").collect { |h| OpenStruct.new(h) }
 
+    # highlights
+
+    @highlights ||=
+      Dir.
+        glob("#{HIGHLIGHTS_ROOT}/**/*.md").
+        filter do |path|
+          content = File.read(path)
+          content.start_with?("---\n")
+        end.
+        collect do |path|
+          Highlight.new(path)
+        end.
+        sort_by do |highlight|
+          [ highlight.date, highlight.id ]
+        end
+
     # posts
 
     @posts ||=
-      Dir.glob("#{POSTS_ROOT}/**/*.md").collect do |path|
-        Post.new(path)
-      end.sort_by { |post| [ post.date, post.id ] }
+      Dir.
+        glob("#{POSTS_ROOT}/**/*.md").
+        filter do |path|
+          content = File.read(path)
+          content.start_with?("---\n")
+        end.
+        collect do |path|
+          Post.new(path)
+        end.
+        sort_by do |post|
+          [ post.date, post.id ]
+        end
 
     # releases
 
-#     release_versions =
-#       hash.fetch("releases").collect do |version_string, _release_hash|
-#         Version.new(version_string)
-#       end
-
-#     hash.fetch("releases").collect do |version_string, release_hash|
-#       version = Version.new(version_string)
-#
-#       last_version =
-#         release_versions.
-#           select { |other_version| other_version < version }.
-#           sort.
-#           last
-#
-#       last_date = last_version && hash.fetch("releases").fetch(last_version.to_s).fetch("date").to_date
-#
-#       release_hash["version"] = version_string
-#       release = Release.new(release_hash, last_version, last_date, @posts)
-#       @releases.send("#{version_string}=", release)
-#     end
+    # release_versions =
+    #   hash.fetch("releases").collect do |version_string, _release_hash|
+    #     Version.new(version_string)
+    #   end
+    #
+    # hash.fetch("releases").collect do |version_string, release_hash|
+    #   version = Version.new(version_string)
+    #
+    #   last_version =
+    #     release_versions.
+    #       select { |other_version| other_version < version }.
+    #       sort.
+    #       last
+    #
+    #   release_hash["version"] = version_string
+    #   release = Release.new(release_hash, last_version, @highlights)
+    #   @releases.send("#{version_string}=", release)
+    # end
 
     # sources
-#
-#     hash["sources"].collect do |source_name, source_hash|
-#       source_hash["name"] = source_name
-#       source_hash["posts"] = posts.select { |post| post.source?(source_name) }
-#       source = Source.new(source_hash)
-#       @sources.send("#{source_name}=", source)
-#     end
 
-    # transforms
-
-#     hash["transforms"].collect do |transform_name, transform_hash|
-#       transform_hash["name"] = transform_name
-#       transform_hash["posts"] = posts.select { |post| post.transform?(transform_name) }
-#       transform = Transform.new(transform_hash)
-#       @transforms.send("#{transform_name}=", transform)
-#     end
+    # hash["sources"].collect do |source_name, source_hash|
+    #   source_hash["name"] = source_name
+    #   source_hash["posts"] = posts.select { |post| post.source?(source_name) }
+    #   source = Source.new(source_hash)
+    #   @sources.send("#{source_name}=", source)
+    # end
+    #
+    # # transforms
+    #
+    # hash["transforms"].collect do |transform_name, transform_hash|
+    #   transform_hash["name"] = transform_name
+    #   transform_hash["posts"] = posts.select { |post| post.transform?(transform_name) }
+    #   transform = Transform.new(transform_hash)
+    #   @transforms.send("#{transform_name}=", transform)
+    # end
 
     # sinks
 
-#     hash["sinks"].collect do |sink_name, sink_hash|
-#       sink_hash["name"] = sink_name
-#       sink_hash["posts"] = posts.select { |post| post.sink?(sink_name) }
-#
-#       (sink_hash["service_providers"] || []).each do |service_provider|
-#         provider_hash = (hash["service_providers"] || {})[service_provider.downcase] || {}
-#         sink_hash["env_vars"] = (sink_hash["env_vars"] || {}).merge((provider_hash["env_vars"] || {}).clone)
-#         sink_hash["options"] = sink_hash["options"].merge((provider_hash["options"] || {}).clone)
-#       end
-
-#       sink =
-#         case sink_hash.fetch("egress_method")
-#         when "batching"
-#           BatchingSink.new(sink_hash)
-#         when "exposing"
-#           ExposingSink.new(sink_hash)
-#         when "streaming"
-#           StreamingSink.new(sink_hash)
-#         end
-#
-#       @sinks.send("#{sink_name}=", sink)
-#     end
+    # hash["sinks"].collect do |sink_name, sink_hash|
+    #   sink_hash["name"] = sink_name
+    #   sink_hash["posts"] = posts.select { |post| post.sink?(sink_name) }
+    #
+    #   (sink_hash["service_providers"] || []).each do |service_provider|
+    #     provider_hash = (hash["service_providers"] || {})[service_provider.downcase] || {}
+    #     sink_hash["env_vars"] = (sink_hash["env_vars"] || {}).merge((provider_hash["env_vars"] || {}).clone)
+    #     sink_hash["options"] = sink_hash["options"].merge((provider_hash["options"] || {}).clone)
+    #   end
+    #
+    #   sink =
+    #     case sink_hash.fetch("egress_method")
+    #     when "batching"
+    #       BatchingSink.new(sink_hash)
+    #     when "exposing"
+    #       ExposingSink.new(sink_hash)
+    #     when "streaming"
+    #       StreamingSink.new(sink_hash)
+    #     end
+    #
+    #   @sinks.send("#{sink_name}=", sink)
+    # end
 
     # links
 
@@ -245,7 +270,7 @@ class Metadata
   end
 
   def event_types
-    @event_types ||= data_model.types
+    @event_types ||= []
   end
 
   def latest_patch_releases
@@ -304,11 +329,17 @@ class Metadata
     @post_tags ||= posts.collect(&:tags).flatten.uniq
   end
 
-  def platforms
-    @platforms ||= installation.operating_systems_list +
-      installation.package_managers_list +
-      installation.platforms_list
-  end
+  # def platform_names
+  #   @platforms ||=
+  #     begin
+  #       (
+  #         installation.operating_systems_list.collect(&:name) +
+  #         installation.package_managers_list.collect(&:name) +
+  #         installation.package_managers_list.collect(&:archs).flatten.uniq +
+  #         installation.platforms_list.collect(&:name)
+  #       ).sort
+  #     end
+  # end
 
   def previous_minor_releases(release)
     releases_list.select do |other_release|
@@ -340,11 +371,13 @@ class Metadata
 
   def to_h
     {
-      event_types: [],
-      guides: [],
+      event_types: event_types,
+      guides: guides.deep_to_h,
       installation: installation.deep_to_h,
+      latest_highlight: highlights.last.deep_to_h,
       latest_post: posts.last.deep_to_h,
       latest_release: latest_release.deep_to_h,
+      highlights: highlights.deep_to_h,
       posts: posts.deep_to_h,
       post_tags: post_tags,
       releases: releases.deep_to_h,

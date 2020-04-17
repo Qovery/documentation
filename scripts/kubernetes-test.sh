@@ -9,10 +9,10 @@ trap delete_cluster EXIT
 ## Actual purpose
 
 # desired cluster name
-KIND_CLUSTER_NAME="qovery_test_cluster"
+KIND_CLUSTER_NAME="vector_test_cluster"
 
 # Create registry container unless it already exists
-reg_name='qovery-kind-registry'
+reg_name='vector-kind-registry'
 running="$(docker inspect -f '{{.State.Running}}' "${reg_name}" 2>/dev/null || true)"
 if [ "${running}" != 'true' ]; then
   docker run \
@@ -24,13 +24,13 @@ reg_ip="$(docker inspect -f '{{.NetworkSettings.IPAddress}}' "${reg_name}")"
 # Build and push image
 echo "Build & push test image"
 cargo build --no-default-features --features default-musl --target x86_64-unknown-linux-musl
-strip ./target/x86_64-unknown-linux-musl/debug/qovery
-docker build -t "localhost:5000/qovery-test:ts" -f - . << EOF
+strip ./target/x86_64-unknown-linux-musl/debug/vector
+docker build -t "localhost:5000/vector-test:ts" -f - . << EOF
 FROM buildpack-deps:18.04-curl
-COPY ./target/x86_64-unknown-linux-musl/debug/qovery /usr/local/bin
-ENTRYPOINT ["/usr/local/bin/qovery"]
+COPY ./target/x86_64-unknown-linux-musl/debug/vector /usr/local/bin
+ENTRYPOINT ["/usr/local/bin/vector"]
 EOF
-docker push localhost:5000/qovery-test:ts
+docker push localhost:5000/vector-test:ts
 
 # Creates a cluster with the local registry enabled in containerd and runs the tests
 
@@ -52,7 +52,7 @@ containerdConfigPatches:
 EOF
 
   # Test Kubernetes
-  KUBE_TEST_IMAGE=localhost:5000/qovery-test:ts cargo test --lib --no-default-features --features "sources-kubernetes transforms-kubernetes kubernetes-integration-tests" -- --test-threads=1 kubernetes
+  KUBE_TEST_IMAGE=localhost:5000/vector-test:ts cargo test --lib --no-default-features --features "sources-kubernetes transforms-kubernetes kubernetes-integration-tests" -- --test-threads=1 kubernetes
 
   delete_cluster
 

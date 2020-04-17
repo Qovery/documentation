@@ -5,12 +5,12 @@
 #Go beyond the basics, become a Qovery pro, and extract the full potential of Qovery.\
 #"""
 #
-#[guides.getting-started]
-#title = "Getting Started"
-#series = true
-#description = """\
-#Take Qovery from zero to production in under 10 minutes.\
-#"""
+[guides.getting-started]
+title = "Getting Started"
+series = true
+description = """\
+Take Qovery from zero to production in under 10 minutes.\
+"""
 #
 #[guides.integrate]
 #title = "Integrate"

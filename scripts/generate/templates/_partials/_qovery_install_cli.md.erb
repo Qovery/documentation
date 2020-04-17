@@ -1,0 +1,101 @@
+
+<Tabs
+  centered={true}
+  className={"rounded"}
+  defaultValue={"linux"}
+  placeholder="Please select your OS"
+  select={false}
+  size={null}
+  values={[{"group":"Platforms","label":"Linux","value":"linux"},{"group":"Platforms","label":"MacOS","value":"macos"},{"group":"Platforms","label":"Windows","value":"windows"}]}>
+
+<TabItem value="linux">
+
+**Download and install Qovery CLI on every Linux distribution**
+
+```bash
+curl -s https://get.qovery.com | sudo bash
+```
+
+</TabItem>
+
+<TabItem value="macos">
+
+<Tabs
+  centered={true}
+  className="rounded"
+  defaultValue="homebrew"
+  values={[{"label":"Homebrew","value":"homebrew"},{"label":"Manual","value":"manual"}]}>
+
+<TabItem value="homebrew">
+
+**The common solution to install a command line binary on the MacOS is to use [Homebrew][urls.brew].**
+
+<Steps headingDepth={3}>
+
+1.  ### Add Qovery brew repository
+    ```bash
+    brew tap Qovery/qovery-cli
+    ```
+
+2.  ### Install the CLI
+    ```bash
+    brew install qovery-cli
+    ```
+
+</Steps>
+
+</TabItem>
+
+<TabItem value="manual">
+
+**Install the Qovery CLI on MacOS manually**
+
+```bash
+curl -s https://get.qovery.com | bash
+```
+
+</TabItem>
+
+</Tabs>
+
+</TabItem>
+
+<TabItem value="windows">
+
+<Tabs
+  centered={true}
+  className="rounded"
+  defaultValue="scoop"
+  values={[{"label":"Scoop","value":"scoop"},{"label":"Manual","value":"manual"}]}>
+
+<TabItem value="scoop">
+
+**The classic way to install binaries on Windows is to use [Scoop][urls.scoop].**
+
+<Steps headingDepth={3}>
+
+1.  ### Add Qovery bucket
+    ```bash
+    scoop bucket add qovery https://github.com/Qovery/scoop-qovery-cli
+    ```
+2.  ### Install the CLI
+    ```bash
+    scoop install qovery-cli
+    ```
+
+</Steps>
+
+</TabItem>
+
+<TabItem value="manual">
+
+** Install the Qovery CLI on Windows manually by downloading the [latest realease][urls.qovery_cli_releases] and uncompressing its content to
+`C:\Windows`.**
+
+</TabItem>
+
+</Tabs>
+
+</TabItem>
+
+</Tabs>

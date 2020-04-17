@@ -77,9 +77,9 @@ class CommitScope
       when "config"
         "docs.configuration"
       when "log data model"
-        "docs.quickstart.log"
+        "docs.data-model.log"
       when "metric data model"
-        "docs.quickstart.metric"
+        "docs.data-model.metric"
       when "observability"
         "docs.monitoring"
       else

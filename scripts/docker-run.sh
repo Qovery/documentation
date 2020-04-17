@@ -29,7 +29,7 @@ fi
 
 DOCKER=${USE_CONTAINER:-docker}
 tag="$1"
-image="timberiodev/qovery-$tag:latest"
+image="timberiodev/vector-$tag:latest"
 
 #
 # (Re)Build

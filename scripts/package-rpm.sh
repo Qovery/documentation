@@ -9,7 +9,7 @@
 set -eu
 
 project_root=$(pwd)
-archive_name="qovery-$TARGET.tar.gz"
+archive_name="vector-$TARGET.tar.gz"
 archive_path="target/artifacts/$archive_name"
 package_version="$($project_root/scripts/version.sh)"
 
@@ -37,11 +37,11 @@ cp -av distribution/init.d/. /root/rpmbuild/SOURCES/init.d
 cp -av distribution/systemd/. /root/rpmbuild/SOURCES/systemd
 
 # Copy the archive into the sources dir
-cp -av $archive_path "/root/rpmbuild/SOURCES/qovery-$ARCH.tar.gz"
+cp -av $archive_path "/root/rpmbuild/SOURCES/vector-$ARCH.tar.gz"
 
 # Perform the build.
-rpmbuild --target "$ARCH-redhat-linux" --define "_arch $ARCH" -ba distribution/rpm/qovery.spec
+rpmbuild --target "$ARCH-redhat-linux" --define "_arch $ARCH" -ba distribution/rpm/vector.spec
 
 # Move the RPM into the artifacts dir
 ls "/root/rpmbuild/RPMS/$ARCH"
-mv -v "/root/rpmbuild/RPMS/$ARCH/qovery-$CLEANED_VERSION-$RELEASE.$ARCH.rpm" "target/artifacts/qovery-$ARCH.rpm"
+mv -v "/root/rpmbuild/RPMS/$ARCH/vector-$CLEANED_VERSION-$RELEASE.$ARCH.rpm" "target/artifacts/vector-$ARCH.rpm"

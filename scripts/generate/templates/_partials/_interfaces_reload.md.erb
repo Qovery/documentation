@@ -3,7 +3,7 @@
   block={<%= !interfaces_style.to_json %>}
   centered={true}
   groupId="interfaces"
-  placeholder="How did you install Qovery?"
+  placeholder="How did you install Vector?"
   select={<%= interfaces_style.to_json %>}
   size={<%= size.to_json %>}
   values={<%= interfaces.collect { |interface| {group: interface.type.humanize.pluralize, label: interface.title, value: interface.name } }.to_json %>}>

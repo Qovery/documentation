@@ -4,7 +4,7 @@
 #
 # SUMMARY
 #
-#   Responsible for computing the release version of Qovery.
+#   Responsible for computing the release version of Vector.
 #   This is based on version in Cargo.toml.
 #   An optional "nightly" suffix is added if the build channel
 #   is nightly.

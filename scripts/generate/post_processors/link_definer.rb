@@ -89,7 +89,7 @@ module PostProcessors
 
           #{direct_links.first.inspect}
 
-          This is not allowed in the Qovery documentation for validation purposes.
+          This is not allowed in the Vector documentation for validation purposes.
           Please:
 
           1. Update your links to use a short link.

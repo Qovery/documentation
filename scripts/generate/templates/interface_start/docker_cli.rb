@@ -9,7 +9,7 @@ class Templates
       end
 
       def start_command_lines
-        flags.collect(&:flag) + ["timberio/qovery:latest-alpine"]
+        flags.collect(&:flag) + ["timberio/vector:latest-alpine"]
       end
 
       def start_command_explanations
@@ -18,7 +18,7 @@ class Templates
             "The `#{flag.flag.truncate(20)}` flag #{flag.explanation}."
           end
 
-        explanations << "The `timberio/qovery:latest-alpine` is the default image we've chosen, you are welcome to use [other image variants][docs.platforms.docker#variants]."
+        explanations << "The `timberio/vector:latest-alpine` is the default image we've chosen, you are welcome to use [other image variants][docs.platforms.docker#variants]."
         explanations
       end
 
@@ -27,8 +27,8 @@ class Templates
           hashes =
             [
               {
-                flag: "-v $PWD/qovery.toml:#{interface.config_path}:ro",
-                explanation: "passes your custom configuration to Qovery"
+                flag: "-v $PWD/vector.toml:#{interface.config_path}:ro",
+                explanation: "passes your custom configuration to Vector"
               }.to_struct
             ]
 
@@ -36,14 +36,14 @@ class Templates
             if requirements.docker_api
               hashes << {
                 flag: "-v /var/run/docker.sock:/var/run/docker.sock",
-                explanation: "ensures that Qovery has access to the Docker API"
+                explanation: "ensures that Vector has access to the Docker API"
               }.to_struct
             end
 
             if requirements.file_system
               hashes << {
                 flag: "-v /var/log",
-                explanation: "ensures that Qovery has access to your app's logging directory, adjust as necessary"
+                explanation: "ensures that Vector has access to your app's logging directory, adjust as necessary"
               }.to_struct
             end
 

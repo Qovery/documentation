@@ -1,7 +1,7 @@
 # `scripts` folder
 
 The `scripts` folder contains various utility scripts that help to
-maintain the Qovery project. All of these are exposed through the `Makefile`,
+maintain the Vector project. All of these are exposed through the `Makefile`,
 and it should be rare that you have to call these directly.
 
 ## Setup

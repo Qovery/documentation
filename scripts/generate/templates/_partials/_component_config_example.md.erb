@@ -9,7 +9,7 @@
 <TabItem value="<%= group.label.parameterize %>">
 
 <%- end -%>
-```toml title="qovery.toml"
+```toml title="vector.toml"
 <%=
   config_example(component.options_list, group: group.group_name, table_path: [component.type.pluralize, "my_#{component.type}_id"]) do |option|
     group.option_filter.call(option)

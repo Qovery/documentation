@@ -26,12 +26,12 @@ require 'net/http'
 # method.
 class Links
   CATEGORIES = ["assets", "docs", "guides", "pages", "urls"].freeze
-  VECTOR_ROOT = "https://github.com/qovery/documentation".freeze
+  VECTOR_ROOT = "https://github.com/timberio/vector".freeze
   VECTOR_COMMIT_ROOT = "#{VECTOR_ROOT}/commit".freeze
   VECTOR_ISSUES_ROOT = "#{VECTOR_ROOT}/issues".freeze
   VECTOR_MILESTONES_ROOT = "#{VECTOR_ROOT}/milestone".freeze
   VECTOR_PRS_ROOT = "#{VECTOR_ROOT}/pull".freeze
-  TEST_HARNESS_ROOT = "https://github.com/qovery-test-harness".freeze
+  TEST_HARNESS_ROOT = "https://github.com/timberio/vector-test-harness".freeze
 
   attr_reader :values
 
@@ -279,7 +279,7 @@ class Links
         "#{VECTOR_COMMIT_ROOT}/#{$1}"
 
       when /^compare_([a-z0-9_\.]*)\.\.\.([a-z0-9_\.]*)$/
-        "https://github.com/qovery/documentation/compare/#{$1}...#{$2}"
+        "https://github.com/timberio/vector/compare/#{$1}...#{$2}"
 
       when /^issue_([0-9]+)$/
         "#{VECTOR_ISSUES_ROOT}/#{$1}"
@@ -313,9 +313,9 @@ class Links
       when /^v([a-z0-9\-\.]+)_branch$/
         "#{VECTOR_ROOT}/tree/v#{$1}"
 
-      when /^qovery_downloads\.?(.*)$/
+      when /^vector_downloads\.?(.*)$/
         path = $1 == "" ? nil : $1
-        ["https://packages.timber.io/qovery", path].compact.join("/")
+        ["https://packages.timber.io/vector", path].compact.join("/")
       else
         raise KeyError.new(
           <<~EOF

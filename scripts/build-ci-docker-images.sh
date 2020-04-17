@@ -5,21 +5,21 @@
 # SUMMARY
 #
 #   Used to build the variety of Docker images used to build, test, package,
-#   and release Qovery. This is primarily used in CI.
+#   and release Vector. This is primarily used in CI.
 
 set -eou pipefail
 
-# Builds a generic Docker image with a `qovery-` prefix. The name
+# Builds a generic Docker image with a `vector-` prefix. The name
 # maps to the contained folder.
 function build_image() {
   local tag=$1
 
   docker build \
-    -t timberiodev/qovery-$tag:latest \
+    -t timberiodev/vector-$tag:latest \
     -f scripts/ci-docker-images/$tag/Dockerfile \
     .
 
-  docker push timberiodev/qovery-$tag:latest
+  docker push timberiodev/vector-$tag:latest
 }
 
 # The following images are basic Docker images that do not extend a

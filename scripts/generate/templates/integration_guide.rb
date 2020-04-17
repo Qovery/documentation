@@ -162,7 +162,7 @@ class Templates
     private
       def noun_link(component)
         case component.name
-        when "blackhole", "qovery"
+        when "blackhole", "vector"
           return normalize_noun(component.noun)
         else
           "[#{normalize_noun(component.noun)}][#{short_link(component.name)}]"

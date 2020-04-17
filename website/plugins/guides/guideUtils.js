@@ -45,7 +45,7 @@ async function generateGuides(guideDir, { siteConfig, siteDir }, options) {
                     description = 'Go beyond the basics, become a Vector pro, and extract the full potential of Vector.';
                     break;
                 case 'getting-started':
-                    description = 'Take Vector from zero to production in under 10 minutes.';
+                    description = 'Take Qovery from zero to production in under 10 minutes.';
                     break;
                 case 'integrate':
                     description = 'Simple step-by-step integration guides.';

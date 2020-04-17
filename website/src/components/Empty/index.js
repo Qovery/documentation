@@ -1,16 +1,12 @@
 import React from 'react';
 
-import Link from '@docusaurus/Link';
-
 function Empty({text}) {
-  return (
-    <section className="empty">
-      <Link to="/vic">
-        <div className="icon"><img src="/img/vicmojis/vicno.svg" alt="Vic - The Qovery Mascot" /></div>
-        <div className="text">{text}</div>
-      </Link>
-    </section>
-  );
+    return (
+        <section className="empty">
+            <div className="icon"><img src="/img/logo-square.svg" alt="The Qovery Logo"/></div>
+            <div className="text">{text}</div>
+        </section>
+    );
 }
 
 export default Empty;

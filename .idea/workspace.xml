@@ -20,153 +20,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="Adjust docs structure">
-      <change afterPath="$PROJECT_DIR$/rust-toolchain" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_install_cli.md.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_sign_up.md.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_simple_application.md.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/guides/getting-started/adding-databases.md.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/guides/getting-started/authentication.md.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/guides/getting-started/customizing-routing.md.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/guides/getting-started/deploying-application.md.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/guides/getting-started/fetching-logs.md.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/guides/getting-started/installing-cli.md.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/guides/getting-started/managing-environment-variables.md.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/guides/getting-started/microservices.md.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/guides/getting-started/setting-custom-domain.md.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/guides/getting-started/using-multiple-remote-environments.md.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/guides/getting-started/using-templates.md.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/static/img/github-auth.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/static/img/github-connect.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/static/img/qovery_auth.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.meta/.schemas/guides.json" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/.schemas/guides.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.meta/.schemas/guides.json.erb" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/.schemas/guides.json.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.meta/domains.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/domains.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.meta/guides.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/guides.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.meta/links.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/links.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/qovery.spec.toml" beforeDir="false" afterPath="$PROJECT_DIR$/config/qovery.spec.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/build-archive.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/build-archive.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/build-ci-docker-images.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/build-ci-docker-images.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/build-docker.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/build-docker.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/check-component-features.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/check-component-features.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/ci-docker-images/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/ci-docker-images/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/ci-docker-images/builder-kubernetes/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/ci-docker-images/builder-kubernetes/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/ci-docker-images/releaser/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/ci-docker-images/releaser/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/docker-run.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/docker-run.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate.rb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/post_processors/component_importer.rb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/post_processors/component_importer.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/post_processors/link_definer.rb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/post_processors/link_definer.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates.rb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_command_create_config.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_command_create_config.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_component_config_example.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_component_config_example.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_component_header.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_component_header.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_component_requirements.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_component_requirements.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_component_sections.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_component_sections.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_docker_docs.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_docker_docs.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_downloads_urls.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_downloads_urls.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_full_config_spec.toml.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_full_config_spec.toml.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_installation_tutorial.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_installation_tutorial.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_integration_guide.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_integration_guide.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_interfaces_logs.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_interfaces_logs.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_interfaces_reload.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_interfaces_reload.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_interfaces_start.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_interfaces_start.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_interfaces_stop.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_interfaces_stop.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_manual_installation_next_steps.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_manual_installation_next_steps.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_summary.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_summary.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_warnings.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_warnings.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/deployment_strategies/_daemon.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/deployment_strategies/_daemon.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/deployment_strategies/_service.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/deployment_strategies/_service.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/deployment_strategies/_sidecar.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/deployment_strategies/_sidecar.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_installation_tutorial/_docker-cli.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_installation_tutorial/_docker-cli.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_installation_tutorial/_dpkg.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_installation_tutorial/_dpkg.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_installation_tutorial/_homebrew.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_installation_tutorial/_homebrew.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_installation_tutorial/_msi.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_installation_tutorial/_msi.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_installation_tutorial/_nix.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_installation_tutorial/_nix.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_installation_tutorial/_qovery-cli.md.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_installation_tutorial/_rpm.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_installation_tutorial/_rpm.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_logs/_docker-cli.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_logs/_docker-cli.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_logs/_docker-compose.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_logs/_docker-compose.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_logs/_dpkg.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_logs/_dpkg.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_logs/_homebrew.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_logs/_homebrew.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_logs/_msi.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_logs/_msi.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_logs/_nix.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_logs/_nix.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_logs/_qovery-cli.md.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_logs/_rpm.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_logs/_rpm.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_reload/_docker-cli.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_reload/_docker-cli.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_reload/_dpkg.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_reload/_dpkg.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_reload/_homebrew.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_reload/_homebrew.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_reload/_msi.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_reload/_msi.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_reload/_nix.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_reload/_nix.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_reload/_qovery-cli.md.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_reload/_rpm.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_reload/_rpm.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_start/_dpkg.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_start/_dpkg.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_start/_homebrew.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_start/_homebrew.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_start/_msi.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_start/_msi.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_start/_nix.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_start/_nix.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_start/_qovery-cli.md.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_start/_rpm.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_start/_rpm.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_stop/_docker-cli.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_stop/_docker-cli.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_stop/_dpkg.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_stop/_dpkg.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_stop/_homebrew.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_stop/_homebrew.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_stop/_msi.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_stop/_msi.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_stop/_nix.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_stop/_nix.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_stop/_qovery-cli.md.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_stop/_rpm.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/interface_stop/_rpm.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/integration_guide.rb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/integration_guide.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/interface_start/docker_cli.rb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/interface_start/docker_cli.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/keywords.rb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/keywords.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/kubernetes-test.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/kubernetes-test.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/package-deb.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/package-deb.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/package-msi.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/package-msi.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/package-rpm.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/package-rpm.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/release-commit.rb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/release-commit.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/release-github.rb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/release-github.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/release-homebrew.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/release-homebrew.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/release-s3.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/release-s3.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/release.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/release.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/run.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/run.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/setup.rb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/setup.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/util/metadata.rb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/util/metadata.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/util/metadata/commit.rb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/util/metadata/commit.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/util/metadata/commit_scope.rb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/util/metadata/commit_scope.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/util/metadata/guide.rb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/util/metadata/guide.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/util/metadata/installation.rb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/util/metadata/installation.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/util/metadata/links.rb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/util/metadata/links.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/util/metadata/post.rb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/util/metadata/post.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/util/metadata/release.rb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/util/metadata/release.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/verify-nix.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/verify-nix.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/version.sh" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/version.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/getting-started.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/getting-started.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/data-model.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/how-qovery-works.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/how-qovery-works.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/how-qovery-works.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/how-qovery-works.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.meta/team.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/team.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_sign_up.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_sign_up.md.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/docs/getting-started/quickstart.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/quickstart.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/docs/getting-started/quickstart.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/quickstart.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/quickstart/add-database.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/quickstart/add-database.md.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/quickstart/create-an-account.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/quickstart/create-an-account.md.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/quickstart/deploy-backend-application.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/quickstart/deploy-backend-application.md.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/quickstart/install-cli.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/quickstart/install-cli.md.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/quickstart/manage-environment-variables.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/quickstart/manage-environment-variables.md.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/what-is-qovery.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/what-is-qovery.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/what-is-qovery.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/what-is-qovery.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/whats-next.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/whats-next.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/whats-next.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/whats-next.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/setup/configuration.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/setup/configuration.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/docusaurus.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/docusaurus.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/installing-cli.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/installing-cli.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/installing-cli.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/installing-cli.md.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/metadata.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/metadata.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/plugins/guides/guideUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/plugins/guides/guideUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/sidebars.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/sidebars.js.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.js.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/components/Empty/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/components/Empty/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/src/css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/css/custom.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/pages/community.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/pages/community.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/pages/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/pages/vic.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/pages/vic.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/theme/Footer/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/theme/Footer/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/theme/Footer/styles.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/theme/Footer/styles.module.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/src/theme/GuideListPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/theme/GuideListPage/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/static/img/logo-dark.svg" beforeDir="false" afterPath="$PROJECT_DIR$/website/static/img/logo-dark.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/static/img/logo-light.svg" beforeDir="false" afterPath="$PROJECT_DIR$/website/static/img/logo-light.svg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/static/img/vic.svg" beforeDir="false" afterPath="$PROJECT_DIR$/website/static/img/vic.svg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,6 +57,9 @@
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="0qlt6lxg" />
+  </component>
   <component name="ProjectId" id="1aZOKd6nWhHwq19R3Y0ZfnytT38" />
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
@@ -196,10 +74,24 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.vendoring.notification.had.been.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/scripts/generate/templates/_partials" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/website/static/img" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/website/static/img" />
+      <recent name="$PROJECT_DIR$/scripts/generate/templates/_partials" />
+      <recent name="$PROJECT_DIR$/website/guides/getting-started" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/website/docs" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/website/static/img" />
       <recent name="$PROJECT_DIR$/website/docs/using-qovery" />
@@ -207,13 +99,12 @@
       <recent name="$PROJECT_DIR$/website/docs/getting-started" />
       <recent name="$PROJECT_DIR$/website/docs" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/scripts/generate/templates/_partials" />
-      <recent name="$PROJECT_DIR$/website/guides/getting-started" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/website/docs" />
-      <recent name="$PROJECT_DIR$/website/docs/using-qovery" />
-    </key>
+  </component>
+  <component name="RustProjectSettings">
+    <option name="toolchainHomeDirectory" value="$USER_HOME$/.cargo/bin" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -226,6 +117,7 @@
       <workItem from="1587100760827" duration="37000" />
       <workItem from="1587103472614" duration="2531000" />
       <workItem from="1587106541124" duration="22978000" />
+      <workItem from="1587134212780" duration="8485000" />
     </task>
     <task id="LOCAL-00001" summary="Replace timberio -&gt; qovery">
       <created>1586940976665</created>
@@ -342,10 +234,11 @@
     </state>
     <state x="663" y="281" key="RollbackChangesDialog/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@0.23.1792.1097" timestamp="1587017173048" />
     <state x="663" y="281" key="RollbackChangesDialog/0.23.1792.1097@0.23.1792.1097" timestamp="1586967392759" />
-    <state width="536" height="429" key="SwitcherDM" timestamp="1587130320365">
-      <screen x="-1920" y="161" width="1920" height="1057" />
+    <state width="536" height="488" key="SwitcherDM" timestamp="1587148397942">
+      <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state width="536" height="429" key="SwitcherDM/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587042928490" />
+    <state width="536" height="488" key="SwitcherDM/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587148397942" />
     <state width="536" height="429" key="SwitcherDM/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587130320365" />
     <state width="500" height="445" key="SwitcherDM/0.23.1792.1097@0.23.1792.1097" timestamp="1586970316787" />
     <state x="-1389" y="408" key="Vcs.Push.Dialog.v2" timestamp="1587043142882">
@@ -357,18 +250,20 @@
       <screen x="-1920" y="161" width="1920" height="1057" />
     </state>
     <state x="-1157" y="610" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587108608568" />
-    <state x="-1285" y="429" width="964" height="578" key="find.popup" timestamp="1587130747733">
-      <screen x="-1920" y="161" width="1920" height="1057" />
+    <state x="455" y="304" width="1465" height="657" key="find.popup" timestamp="1587147722231">
+      <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="-1285" y="399" width="964" height="578" key="find.popup/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587040325645" />
     <state x="593" y="302" width="964" height="578" key="find.popup/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@0.23.1792.1097" timestamp="1587017131900" />
+    <state x="455" y="304" width="1465" height="657" key="find.popup/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587147722231" />
     <state x="-1285" y="429" width="964" height="578" key="find.popup/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587130747733" />
     <state x="593" y="302" width="964" height="578" key="find.popup/0.23.1792.1097@0.23.1792.1097" timestamp="1586971117204" />
-    <state x="-1319" y="353" width="718" height="652" key="search.everywhere.popup" timestamp="1587131778361">
-      <screen x="-1920" y="161" width="1920" height="1057" />
+    <state x="601" y="218" width="718" height="741" key="search.everywhere.popup" timestamp="1587147989873">
+      <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="-1319" y="323" width="718" height="652" key="search.everywhere.popup/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587040363911" />
     <state x="561" y="222" width="670" height="676" key="search.everywhere.popup/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@0.23.1792.1097" timestamp="1587014900518" />
+    <state x="601" y="218" width="718" height="741" key="search.everywhere.popup/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587147989873" />
     <state x="-1319" y="353" width="718" height="652" key="search.everywhere.popup/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587131778361" />
     <state x="561" y="222" width="670" height="676" key="search.everywhere.popup/0.23.1792.1097@0.23.1792.1097" timestamp="1586971120732" />
   </component>

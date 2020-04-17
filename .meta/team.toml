@@ -1,109 +1,39 @@
 [[team]]
-id = "alex"
-avatar = "https://github.com/a-rodin.png"
-github = "https://github.com/a-rodin"
-keybase = "https://keybase.io/arodin"
-name = "Alexander"
+id = "romaric"
+avatar = "https://github.com/evoxmusic.png"
+github = "https://github.com/evoxmusic"
+keybase = "https://keybase.io/evoxmusic"
+name = "Romaric"
 bio = """\
-Alexander is a Senior Engineer at <a href="https://timber.io">Timber.io</a> \
-and a member of the <a href="/community#team">core Qovery team</a>. He created \
-<a href="https://alexanderrodin.com/qstardict">QStarDict</a>, a dictionary \
-application written in C++.\
+Romaric is a Software Engineer and CEO at <a href=\"https://www.qovery.com\">Qovery</a> \
 """
 
 [[team]]
-id = "ana"
-avatar = "https://github.com/hoverbear.png"
-github = "https://github.com/hoverbear"
-keybase = "https://keybase.io/hoverbear"
-twitter = "https://twitter.com/a_hoverbear"
-name = "Ana"
+id = "pierre"
+avatar = "https://github.com/deimosfr.png"
+github = "https://github.com/deimosfr"
+keybase = "https://keybase.io/pierre"
+name = "Pierre"
 bio = """\
-Ana is a Senior Engineer at <a href="https://timber.io">Timber.io</a> \
-and member of the <a href="/community#team">core Qovery team</a>. She is \
-actively invovled in the Rust community and contributing to project and \
-organizing meetups.\
+Pierre is a Software Engineer and CTO at <a href=\"https://www.qovery.com\">Qovery</a> \
 """
 
 [[team]]
-id = "ashley"
-avatar = "https://github.com/Jeffail.png"
-github = "https://github.com/Jeffail"
-keybase = "https://keybase.io/jeffail"
-twitter = "https://twitter.com/jeffail"
-name = "Ashley"
+id = "patryk"
+avatar = "https://github.com/pjeziorowski.png"
+github = "https://github.com/pjeziorowski"
+keybase = "https://keybase.io/patryk"
+name = "Patryk"
 bio = """\
-Ashley is a Principal Engineer at <a href="https://timber.io">Timber.io</a> \
-and member of the <a href="/community#team">core Qovery team</a>. He created \
-<a href="https://github.com/Jeffail/benthos">Benthos stream processor</a>, a \
-popular stream processor written Go.\
+Patryk is a Developer Advocate at <a href=\"https://www.qovery.com\">Qovery</a> \
 """
 
 [[team]]
-id = "ben"
-avatar = "https://github.com/binarylogic.png"
-github = "https://github.com/binarylogic"
-keybase = "https://keybase.io/binarylogic"
-twitter = "https://twitter.com/binarylogic"
-name = "Ben"
+id = "mehdi"
+avatar = "https://github.com/sileht.png"
+github = "https://github.com/sileht"
+keybase = "https://keybase.io/mehdi"
+name = "Mehdi"
 bio = """\
-Ben is the CTO/Co-Founder at <a href="https://timber.io">Timber.io</a> and a \
-member of the <a href="/community#team">core Qovery team</a>. He is an \
-open-source veteran, creating \
-<a href="https://github.com/binarylogic/authlogic">Authlogic</a> over 15 years \
-ago before helping to launch Qovery.\
+Mehdi is a Software Engineer at <a href=\"https://www.qovery.com\">Qovery</a> \
 """
-
-[[team]]
-id = "brady"
-avatar = "https://github.com/timber-bradybot.png"
-github = "https://github.com/timber-bradybot"
-name = "Brady"
-
-[[team]]
-id = "bruce"
-avatar = "https://github.com/bruceg.png"
-github = "https://github.com/bruceg"
-name = "Bruce"
-
-[[team]]
-id = "kruno"
-avatar = "https://github.com/ktff.png"
-github = "https://github.com/ktff"
-name = "Kruno"
-
-[[team]]
-id = "lucio"
-avatar = "https://github.com/LucioFranco.png"
-github = "https://github.com/LucioFranco"
-keybase = "https://keybase.io/luciofranco"
-twitter = "https://twitter.com/lucio_d_franco"
-name = "Lucio"
-
-[[team]]
-id = "luke"
-avatar = "https://github.com/lukesteensen.png"
-github = "https://github.com/lukesteensen"
-keybase = "https://keybase.io/lukesteensen"
-twitter = "https://twitter.com/lukesteensen"
-name = "Luke"
-bio = """\
-Luke is a Senior Engineer at <a href="https://timber.io">Timber.io</a> \
-and member of the <a href="/community#team">core Qovery team</a>. Before \
-Timber Luke was an engineer at Braintree, working on parts of their \
-observability pipeline.\
-"""
-
-[[team]]
-id = "mike"
-avatar = "https://github.com/MOZGIII.png"
-github = "https://github.com/MOZGIII"
-keybase = "https://keybase.io/MOZGIII"
-twitter = "https://twitter.com/MOZGIII"
-name = "Mike"
-
-[[team]]
-id = "vic"
-avatar = "https://github.com/qovery-vic.png"
-github = "https://github.com/qovery-vic"
-name = "Vic"

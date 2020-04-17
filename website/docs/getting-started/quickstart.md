@@ -4,7 +4,6 @@ title: Quick Start Guide
 description: Get started with Qovery in minutes.
 ---
 
-import Alert from '@site/src/components/Alert';
 import Jump from '@site/src/components/Jump';
 import Steps from '@site/src/components/Steps';
 import Tabs from '@theme/Tabs';
@@ -25,13 +24,11 @@ If you don't want to learn more now, you can simply deploy your first applicatio
      website/docs/getting-started/quickstart.md.erb
 -->
 
-## Step #1 - Sign Up
+## Sign Up
 
 Sign up using the **Qovery CLI**, it's very simple!
 
-<Alert>
-
-### First time using Qovery? Install the CLI!
+### Install the CLI!
 
 <Tabs
   centered={true}
@@ -134,8 +131,6 @@ curl -s https://get.qovery.com | bash
 
 </Tabs>
 
-</Alert>
-
 ### Sign Up
 
 After the Qovery CLI is installed, run the following command:
@@ -170,7 +165,7 @@ At the end, we need to validate your action on our side:
 
 **That's it! You should see "Authentication successful. You can close this window." message.**
 
-## Step #2 - Create an Application
+## Create an Application
 
 To show you how it's simple to build and deploy your applications on Qovery, we have prepared a sample project.
 
@@ -248,7 +243,7 @@ Then, you'll see Qovery access permissions:
 
 **You can grant Qovery access to all repositories or just those you use with Qovery.**
 
-## Step #3 - Deploy!
+## Deploy!
 
 After you have initialized Qovery configuration and gave the permissions to access your repository, all you have to do to deploy your application
 is to commit and push your changes:

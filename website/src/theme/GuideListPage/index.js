@@ -87,7 +87,7 @@ function GuideListPage(props) {
         <div className="container">
           <h1>Qovery Guides</h1>
           <div className="hero--subtitle">
-            Thoughtful guides to help you get the most out of Qovery. Created and curated by the <Link to="/community#team">Qovery team</Link>.
+            Thoughtful guides to help you get the most out of Qovery. Created and curated by the <Link to="https://www.qovery.com/team">Qovery team</Link>.
           </div>
           <div className="hero--search">
             <input

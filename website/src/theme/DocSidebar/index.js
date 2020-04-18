@@ -187,7 +187,7 @@ function DocSidebar(props) {
 
   return (
     <div className={classnames('docs-sidebar', styles.sidebar)}>
-      <Link className={styles.sidebarLogo} to={logoLink} {...logoLinkProps}>
+      <Link className={styles.sidebarLogo} style={{maxWidth: '130px'}} to={logoLink} {...logoLinkProps}>
         {logoImageUrl != null && (
           <SVG key={isClient} src={logoImageUrl} alt={logoAlt} />
         )}

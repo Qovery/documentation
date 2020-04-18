@@ -97,13 +97,13 @@ module.exports = {
                     ],
                 },
             ],
-            logo: {
-                alt: 'Qovery.com',
-                src: '/img/logo-light.svg',
-                srcDark: '/img/logo-dark.svg',
-                href: 'https://www.qovery.com',
-            },
-            copyright: `Copyright © ${new Date().getFullYear()} Qovery, Inc.`,
+            /* logo: {
+                 alt: 'Qovery.com',
+                 src: '/img/logo-light.svg',
+                 srcDark: '/img/logo-dark.svg',
+                 href: 'https://www.qovery.com',
+             },*/
+            copyright: `© ${new Date().getFullYear()} DESIGNED BY QOVERY | BACKED BY TECHSTARS | QOVERY BY BIRDSIGHT - ALL RIGHTS RESERVED`,
         },
         algolia: {
             apiKey: '2356c5cb76b57b43624c6450b0a031cc',

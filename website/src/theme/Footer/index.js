@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Link from '@docusaurus/Link';
-import MailingListForm from '@site/src/components/MailingListForm';
 import SVG from 'react-inlinesvg';
 
 import classnames from 'classnames';
@@ -107,7 +106,7 @@ function Footer() {
                         ))}
                     </div>
                 )}
-               {/* {(logo || copyright) && (
+                {(logo || copyright) && (
                     <div className="text--center">
                         {logo && logo.src && (
                             <div className="margin-bottom--sm">
@@ -124,13 +123,13 @@ function Footer() {
                                 )}
                             </div>
                         )}
-                        {copyright}<br/>
-                        <small>
+                        <small>{copyright}</small><br/>
+                        {/*<small>
                             <a href="https://github.com/qovery/documentation/security/policy">Security Policy</a>&nbsp;&bull;&nbsp;
                             <a href="https://github.com/qovery/documentation/blob/master/PRIVACY.md">Privacy Policy</a>
-                        </small>
+                        </small>*/}
                     </div>
-                )}*/}
+                )}
             </div>
         </footer>
     );

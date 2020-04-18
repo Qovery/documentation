@@ -19,37 +19,23 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="feat: conf algolia">
-      <change afterPath="$PROJECT_DIR$/website/guides/getting-started/beyond-application-deployment.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/guides/getting-started/beyond-application-deployment.md.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/guides/getting-started/debugging.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/guides/getting-started/debugging.md.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/guides/getting-started/deploy-your-first-application.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/guides/getting-started/deploy-your-first-application.md.erb" afterDir="false" />
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="delete: src/*">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/adding-databases.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/adding-a-database.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/adding-databases.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/adding-a-database.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/authentication.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/authentication.md.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/customizing-routing.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/customizing-routing.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/customizing-routing.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/customizing-routing.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/deploying-application.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/deploying-application.md.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/fetching-logs.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/fetching-logs.md.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/installing-cli.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/installing-cli.md.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/managing-environment-variables.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/managing-environment-variables.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/managing-environment-variables.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/managing-environment-variables.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/microservices.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/microservices.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/microservices.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/microservices.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/setting-custom-domain.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/setting-custom-domain.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/setting-custom-domain.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/setting-custom-domain.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/using-multiple-remote-environments.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/using-multiple-remote-environments.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/using-multiple-remote-environments.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/using-multiple-remote-environments.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/using-templates.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/using-templates.md.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/metadata.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/metadata.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.meta/.schemas/guides.json" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/.schemas/guides.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.meta/.schemas/guides.json.erb" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/.schemas/guides.json.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/customizing-routing.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/customizing-routing.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/customizing-routing.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/customizing-routing.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/managing-environment-variables.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/managing-environment-variables.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/managing-environment-variables.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/managing-environment-variables.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/microservices.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/microservices.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/microservices.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/microservices.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/using-multiple-remote-environments.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/using-multiple-remote-environments.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/using-multiple-environments.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/plugins/guides/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/website/plugins/guides/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/pages/community.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/pages/community.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/pages/download.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/pages/releases.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/theme/GuideListPage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/theme/GuideListPage/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +111,7 @@
       <workItem from="1587100760827" duration="37000" />
       <workItem from="1587103472614" duration="2531000" />
       <workItem from="1587106541124" duration="22978000" />
-      <workItem from="1587134212780" duration="15916000" />
+      <workItem from="1587134212780" duration="19987000" />
     </task>
     <task id="LOCAL-00001" summary="Replace timberio -&gt; qovery">
       <created>1586940976665</created>
@@ -204,7 +190,21 @@
       <option name="project" value="LOCAL" />
       <updated>1587197994033</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="style: change guides">
+      <created>1587201642355</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1587201642355</updated>
+    </task>
+    <task id="LOCAL-00013" summary="delete: src/*">
+      <created>1587201725216</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1587201725216</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -274,7 +274,9 @@
     <MESSAGE value="style: make footer changes" />
     <MESSAGE value="style: footer changes" />
     <MESSAGE value="feat: conf algolia" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: conf algolia" />
+    <MESSAGE value="style: change guides" />
+    <MESSAGE value="delete: src/*" />
+    <option name="LAST_COMMIT_MESSAGE" value="delete: src/*" />
   </component>
   <component name="WindowStateProjectService">
     <state x="-1309" y="498" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1587110738425">
@@ -282,10 +284,10 @@
     </state>
     <state x="-1309" y="468" key="#com.intellij.fileTypes.FileTypeChooser/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587036960904" />
     <state x="-1309" y="498" key="#com.intellij.fileTypes.FileTypeChooser/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587110738425" />
-    <state x="193" y="108" width="1536" height="960" key="DiffContextDialog" timestamp="1587201614732">
+    <state x="193" y="108" width="1536" height="960" key="DiffContextDialog" timestamp="1587206418525">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
-    <state x="193" y="108" width="1536" height="960" key="DiffContextDialog/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587201614732" />
+    <state x="193" y="108" width="1536" height="960" key="DiffContextDialog/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587206418525" />
     <state x="180" y="122" key="DiffContextDialog/0.23.1792.1097@0.23.1792.1097" timestamp="1586941827745" />
     <state x="-1187" y="430" key="FileChooserDialogImpl" timestamp="1587022112681">
       <screen x="-1920" y="131" width="1920" height="1057" />
@@ -305,22 +307,22 @@
     </state>
     <state x="663" y="281" key="RollbackChangesDialog/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@0.23.1792.1097" timestamp="1587017173048" />
     <state x="663" y="281" key="RollbackChangesDialog/0.23.1792.1097@0.23.1792.1097" timestamp="1586967392759" />
-    <state width="536" height="488" key="SwitcherDM" timestamp="1587200946353">
+    <state width="536" height="488" key="SwitcherDM" timestamp="1587202915471">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state width="536" height="429" key="SwitcherDM/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587042928490" />
-    <state width="536" height="488" key="SwitcherDM/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587200946353" />
+    <state width="536" height="488" key="SwitcherDM/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587202915471" />
     <state width="536" height="429" key="SwitcherDM/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587130320365" />
     <state width="500" height="445" key="SwitcherDM/0.23.1792.1097@0.23.1792.1097" timestamp="1586970316787" />
     <state x="100" y="100" width="1720" height="1000" key="VCS.FileHistoryDialog" timestamp="1587195128563">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="100" y="100" width="1720" height="1000" key="VCS.FileHistoryDialog/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587195128563" />
-    <state x="531" y="314" key="Vcs.Push.Dialog.v2" timestamp="1587197996365">
+    <state x="531" y="314" key="Vcs.Push.Dialog.v2" timestamp="1587201727289">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="-1389" y="408" key="Vcs.Push.Dialog.v2/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587043142882" />
-    <state x="531" y="314" key="Vcs.Push.Dialog.v2/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587197996365" />
+    <state x="531" y="314" key="Vcs.Push.Dialog.v2/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587201727289" />
     <state x="496" y="311" key="Vcs.Push.Dialog.v2/0.23.1792.1097@0.23.1792.1097" timestamp="1586945386299" />
     <state x="500" y="204" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1587199930493">
       <screen x="0" y="0" width="1920" height="1200" />
@@ -330,20 +332,20 @@
       <screen x="-1920" y="161" width="1920" height="1057" />
     </state>
     <state x="-1157" y="610" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587108608568" />
-    <state x="220" y="102" width="1465" height="880" key="find.popup" timestamp="1587201558559">
+    <state x="220" y="102" width="1465" height="880" key="find.popup" timestamp="1587206162527">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="-1285" y="399" width="964" height="578" key="find.popup/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587040325645" />
     <state x="593" y="302" width="964" height="578" key="find.popup/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@0.23.1792.1097" timestamp="1587017131900" />
-    <state x="220" y="102" width="1465" height="880" key="find.popup/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587201558559" />
+    <state x="220" y="102" width="1465" height="880" key="find.popup/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587206162527" />
     <state x="-1285" y="429" width="964" height="578" key="find.popup/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587130747733" />
     <state x="593" y="302" width="964" height="578" key="find.popup/0.23.1792.1097@0.23.1792.1097" timestamp="1586971117204" />
-    <state x="601" y="218" width="718" height="741" key="search.everywhere.popup" timestamp="1587200838360">
+    <state x="601" y="218" width="718" height="741" key="search.everywhere.popup" timestamp="1587206370689">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="-1319" y="323" width="718" height="652" key="search.everywhere.popup/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587040363911" />
     <state x="561" y="222" width="670" height="676" key="search.everywhere.popup/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@0.23.1792.1097" timestamp="1587014900518" />
-    <state x="601" y="218" width="718" height="741" key="search.everywhere.popup/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587200838360" />
+    <state x="601" y="218" width="718" height="741" key="search.everywhere.popup/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587206370689" />
     <state x="-1319" y="353" width="718" height="652" key="search.everywhere.popup/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587131778361" />
     <state x="561" y="222" width="670" height="676" key="search.everywhere.popup/0.23.1792.1097@0.23.1792.1097" timestamp="1586971120732" />
   </component>

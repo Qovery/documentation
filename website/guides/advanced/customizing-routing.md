@@ -3,7 +3,7 @@ last_modified_on: "2020-04-18"
 $schema: "/.meta/.schemas/guides.json"
 title: Customizing routes
 description: How to set up routers in your project
-series_position: 12
+series_position: 4
 author_github: https://github.com/pjeziorowski
 tags: ["type: guide", "domain: networking"]
 ---

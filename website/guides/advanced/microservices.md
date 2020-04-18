@@ -1,9 +1,9 @@
 ---
-last_modified_on: "2020-04-17"
+last_modified_on: "2020-04-18"
 $schema: "/.meta/.schemas/guides.json"
 title: Microservices
 description: How to work with multiple applications in one project
-series_position: 9
+series_position: 3
 author_github: https://github.com/pjeziorowski
 tags: ["type: tutorial", "domain: services"]
 ---

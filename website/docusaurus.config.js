@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
     title: 'Qovery',
     tagline: 'Deploy complex application, seamlessly',
-    url: 'https://qovery.com',
+    url: 'https://docsv2.qovery.com',
     baseUrl: '/',
     favicon: 'img/logo-square.svg',
     organizationName: 'Qovery',

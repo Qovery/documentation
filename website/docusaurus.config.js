@@ -46,61 +46,23 @@ module.exports = {
         footer: {
             links: [
                 {
-                    title: 'About',
+                    title: 'Resources',
                     items: [
                         {
-                            label: 'What is Qovery?',
-                            to: 'docs/getting-started/what-is-Qovery/',
+                            label: 'Pricing',
+                            to: 'https://www.qovery.com/pricing',
                         },
                         {
-                            label: 'The Team',
-                            to: 'community/#team',
+                            label: 'Enterprise',
+                            to: 'https://www.qovery.com/enterprise',
                         },
                         {
-                            label: 'Contact Us',
-                            to: 'contact/',
+                            label: 'API',
+                            to: 'https://api.qovery.io/swagger-ui.html#',
                         },
                         {
-                            label: 'Press',
-                            to: 'press/',
-                        },
-                    ],
-                },
-                {
-                    title: 'Components',
-                    items: [
-                        {
-                            label: 'Sources',
-                            to: 'docs/reference/sources/',
-                        },
-                        {
-                            label: 'Transforms',
-                            to: 'docs/reference/transforms/',
-                        },
-                        {
-                            label: 'Sinks',
-                            to: 'docs/reference/sinks/',
-                        },
-                    ],
-                },
-                {
-                    title: 'Setup',
-                    items: [
-                        {
-                            label: 'Install',
-                            to: 'docs/setup/installation/',
-                        },
-                        {
-                            label: 'Deployment',
-                            to: 'docs/setup/deployment/',
-                        },
-                        {
-                            label: 'Configuration',
-                            to: 'docs/setup/configuration/',
-                        },
-                        {
-                            label: 'Administration',
-                            to: 'docs/administration/',
+                            label: 'Github',
+                            to: 'https://github.com/Qovery',
                         },
                     ],
                 },
@@ -108,24 +70,29 @@ module.exports = {
                     title: 'Community',
                     items: [
                         {
-                            label: 'Chat',
+                            label: 'Discord',
                             to: 'https://discord.qovery.com',
                         },
                         {
-                            label: 'Github',
-                            to: 'https://github.com/qovery/documentation',
+                            label: 'Roadmap',
+                            to: 'https://roadmap.qovery.com',
                         },
-                        {
-                            label: 'Twitter',
-                            to: 'https://twitter.com/qovery_',
-                        },
-                        {
-                            label: 'Mailing List',
-                            to: 'mailing_list/',
-                        },
+                    ],
+                },
+                {
+                    title: 'Company',
+                    items: [
                         {
                             label: 'Blog',
-                            to: 'blog/',
+                            to: 'https://www.qovery.com/blog',
+                        },
+                        {
+                            label: 'The Team',
+                            to: 'https://www.qovery.com/team',
+                        },
+                        {
+                            label: 'Contact Us',
+                            to: 'https://www.qovery.com/contact',
                         },
                     ],
                 },

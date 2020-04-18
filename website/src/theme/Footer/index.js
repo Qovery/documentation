@@ -60,16 +60,21 @@ function Footer() {
                                 <SVG className="navbar__logo" src="/img/logo-light.svg" alt="Qovery" width="150" height="auto"/>
                             </div>
                             <div className="margin-bottom--md">
-                                <MailingListForm description={false} width="150px"/>
+                                {/*<MailingListForm description={true} width="150px"/>*/}
+                                <p>
+                                    Qovery accelerates and scales application
+                                    development cycle with zero infrastructure
+                                    management investment
+                                </p>
                             </div>
                             <div>
-                                <a href="https://twitter.com/qovery_" target="_blank"><i className="feather icon-twitter" alt="Qovery's Twitter"></i></a>
-                                &nbsp;&nbsp;&nbsp;&nbsp;
-                                <a href="https://discord.qovery.com" target="_blank"><i className="feather icon-message-circle" alt="Qovery's Chat"></i></a>
-                                &nbsp;&nbsp;&nbsp;&nbsp;
                                 <a href="https://github.com/qovery" target="_blank"><i className="feather icon-github" alt="Qovery's Github Repo"></i></a>
                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                <a href="https://docs.qovery.com/blog/atom.xml" target="_blank"><i className="feather icon-rss" alt="Qovery's RSS feed"></i></a>
+                                <a href="https://www.linkedin.com/company/qovery/" target="_blank"><i className="feather icon-rss" alt="Qovery's Linkedin"></i></a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="https://twitter.com/qovery_" target="_blank"><i className="feather icon-twitter" alt="Qovery's Twitter"></i></a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <a href="https://discord.qovery.com" target="_blank"><i className="feather icon-message-circle" alt="Qovery's Discord"></i></a>
                             </div>
                         </div>
                         {links.map((linkItem, i) => (
@@ -102,7 +107,7 @@ function Footer() {
                         ))}
                     </div>
                 )}
-                {(logo || copyright) && (
+               {/* {(logo || copyright) && (
                     <div className="text--center">
                         {logo && logo.src && (
                             <div className="margin-bottom--sm">
@@ -125,7 +130,7 @@ function Footer() {
                             <a href="https://github.com/qovery/documentation/blob/master/PRIVACY.md">Privacy Policy</a>
                         </small>
                     </div>
-                )}
+                )}*/}
             </div>
         </footer>
     );

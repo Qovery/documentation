@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: '12.x'
 
-      - run: cd && npm install && npm run-script build
+      - run: cd website && npm install && npm run-script build
 
       #- name: Install broken-link-checker
       #  run: |

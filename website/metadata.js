@@ -67,38 +67,14 @@ module.exports = {
   "latest_highlight": {
   },
   "latest_post": {
-    "author_github": "https://github.com/lukesteensen",
-    "date": "2020-04-09",
-    "description": "When we set out to build Vector, we knew that reliability and performance were\ntwo of our top priorities. We also knew that even the best of intentions would\nnot be enough to make certain those qualities were realized and reflected in our\nusers' production deployments. Since then, we've been continuously evolving and\nexpanding our approach to achieving that level of quality.",
-    "id": "how-we-test-vector",
-    "path": "website/blog/2020-04-09-how-we-test-vector.md",
-    "permalink": "/blog/how-we-test-vector/",
-    "tags": [
-      "type: post",
-      "domain: testing"
-    ],
-    "title": "How We Test Vector"
   },
   "latest_release": {
   },
   "post_tags": [
-    "type: post",
-    "domain: testing"
+
   ],
   "posts": [
-    {
-      "author_github": "https://github.com/lukesteensen",
-      "date": "2020-04-09",
-      "description": "When we set out to build Vector, we knew that reliability and performance were\ntwo of our top priorities. We also knew that even the best of intentions would\nnot be enough to make certain those qualities were realized and reflected in our\nusers' production deployments. Since then, we've been continuously evolving and\nexpanding our approach to achieving that level of quality.",
-      "id": "how-we-test-vector",
-      "path": "website/blog/2020-04-09-how-we-test-vector.md",
-      "permalink": "/blog/how-we-test-vector/",
-      "tags": [
-        "type: post",
-        "domain: testing"
-      ],
-      "title": "How We Test Vector"
-    }
+
   ],
   "releases": {
   },

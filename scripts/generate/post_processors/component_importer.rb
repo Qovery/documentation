@@ -26,8 +26,7 @@ module PostProcessors
       'SVG' => "import SVG from 'react-inlinesvg';",
       'Tabs' => "import Tabs from '@theme/Tabs';",
       'TabItem' => "import TabItem from '@theme/TabItem';",
-      'VectorComponents' => "import VectorComponents from '@site/src/components/VectorComponents';",
-      'Vic' => "import Vic from '@site/src/components/Vic';"
+      'VectorComponents' => "import QoveryComponents from '@site/src/components/QoveryComponents';",
     }
 
     FRONTMATTER_FENCE = "---".freeze

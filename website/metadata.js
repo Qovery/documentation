@@ -3,6 +3,52 @@ module.exports = {
 
   ],
   "guides": {
+    "advanced": {
+      "children": {
+      },
+      "description": "Go beyond the basics, become a Qovery pro, and extract the full potential of Qovery.",
+      "guides": [
+        {
+          "author_github": "https://github.com/pjeziorowski",
+          "description": null,
+          "id": "/advanced/customizing-routing",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/customizing-routing.md",
+          "series_position": null,
+          "title": "Customizing routes"
+        },
+        {
+          "author_github": "https://github.com/pjeziorowski",
+          "description": null,
+          "id": "/advanced/managing-environment-variables",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/managing-environment-variables.md",
+          "series_position": null,
+          "title": "Managing env variables"
+        },
+        {
+          "author_github": "https://github.com/pjeziorowski",
+          "description": null,
+          "id": "/advanced/microservices",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/microservices.md",
+          "series_position": null,
+          "title": "Microservices"
+        },
+        {
+          "author_github": "https://github.com/pjeziorowski",
+          "description": null,
+          "id": "/advanced/using-multiple-environments",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/using-multiple-environments.md",
+          "series_position": null,
+          "title": "Using multiple environments"
+        }
+      ],
+      "name": "advanced",
+      "series": false,
+      "title": "Advanced"
+    },
     "getting-started": {
       "children": {
       },

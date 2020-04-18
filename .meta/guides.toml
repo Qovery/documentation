@@ -1,10 +1,10 @@
-#[guides.advanced]
-#title = "Advanced"
-#series = false
-#description = """\
-#Go beyond the basics, become a Qovery pro, and extract the full potential of Qovery.\
-#"""
-#
+[guides.advanced]
+title = "Advanced"
+series = false
+description = """\
+Go beyond the basics, become a Qovery pro, and extract the full potential of Qovery.\
+"""
+
 [guides.getting-started]
 title = "Getting Started"
 series = true

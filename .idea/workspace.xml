@@ -20,16 +20,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="style: fix logo">
-      <change afterPath="$PROJECT_DIR$/website/guides/advanced/using-multiple-environments.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.github/workflows/gh-pages.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/gh-pages.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codestream.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codestream.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/rust-toolchain" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/blog/2020-04-09-how-we-test-vector.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/blog/2020-04-09-how-we-test-vector.md.sig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.meta/guides.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/guides.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/generate/post_processors/component_importer.rb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/post_processors/component_importer.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/metadata.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/metadata.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/netlify.toml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/website/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/components/ReleaseDownload/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/components/ReleaseDownload/styles.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/components/ReleaseNotes/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/components/ReleaseNotes/styles.module.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/pages/releases/0.4.0.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/pages/releases/0.4.0/download.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/pages/releases/0.5.0.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/pages/releases/0.5.0/download.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/pages/releases/0.6.0.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/pages/releases/0.6.0/download.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/pages/releases/0.7.0.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/pages/releases/0.7.0/download.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/pages/releases/0.7.1.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/pages/releases/0.7.1/download.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/pages/releases/0.7.2.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/pages/releases/0.7.2/download.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/pages/releases/0.8.0.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/pages/releases/0.8.0/download.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/pages/releases/0.8.1.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/pages/releases/0.8.1/download.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/pages/releases/0.8.2.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/pages/releases/0.8.2/download.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/pages/releases/latest.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/pages/releases/latest/download.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,19 +94,19 @@
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/website/guides/getting-started" />
-      <recent name="$PROJECT_DIR$/website/static/img" />
-      <recent name="$PROJECT_DIR$/scripts/generate/templates/_partials" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/website/docs" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/website/guides/Advanced" />
       <recent name="$PROJECT_DIR$/website/static/img" />
       <recent name="$PROJECT_DIR$/website/docs/using-qovery" />
       <recent name="$PROJECT_DIR$/website/docs/using-qovery/examples" />
       <recent name="$PROJECT_DIR$/website/docs/getting-started" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/website/guides/getting-started" />
+      <recent name="$PROJECT_DIR$/website/static/img" />
+      <recent name="$PROJECT_DIR$/scripts/generate/templates/_partials" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/website/docs" />
     </key>
   </component>
   <component name="RunManager" selected="npm.start">
@@ -141,6 +161,7 @@
   </component>
   <component name="RustProjectSettings">
     <option name="toolchainHomeDirectory" value="$USER_HOME$/.cargo/bin" />
+    <option name="version" value="2" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -346,10 +367,11 @@
     <state x="-1309" y="468" key="#com.intellij.fileTypes.FileTypeChooser/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587036960904" />
     <state x="611" y="383" key="#com.intellij.fileTypes.FileTypeChooser/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587213016572" />
     <state x="-1309" y="498" key="#com.intellij.fileTypes.FileTypeChooser/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587110738425" />
-    <state x="193" y="108" width="1536" height="960" key="DiffContextDialog" timestamp="1587206418525">
-      <screen x="0" y="0" width="1920" height="1200" />
+    <state x="193" y="108" width="1536" height="960" key="DiffContextDialog" timestamp="1587228201313">
+      <screen x="0" y="23" width="1920" height="1177" />
     </state>
-    <state x="193" y="108" width="1536" height="960" key="DiffContextDialog/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587206418525" />
+    <state x="193" y="108" width="1536" height="960" key="DiffContextDialog/-333.-1417.2560.1417/0.23.1920.1177@0.23.1920.1177" timestamp="1587228201313" />
+    <state x="193" y="108" width="1536" height="960" key="DiffContextDialog/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587228116808" />
     <state x="180" y="122" key="DiffContextDialog/0.23.1792.1097@0.23.1792.1097" timestamp="1586941827745" />
     <state x="-1187" y="430" key="FileChooserDialogImpl" timestamp="1587022112681">
       <screen x="-1920" y="131" width="1920" height="1057" />
@@ -385,11 +407,11 @@
     </state>
     <state x="663" y="281" key="RollbackChangesDialog/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@0.23.1792.1097" timestamp="1587017173048" />
     <state x="663" y="281" key="RollbackChangesDialog/0.23.1792.1097@0.23.1792.1097" timestamp="1586967392759" />
-    <state width="536" height="488" key="SwitcherDM" timestamp="1587214143310">
+    <state width="536" height="488" key="SwitcherDM" timestamp="1587227211122">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state width="536" height="429" key="SwitcherDM/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587042928490" />
-    <state width="536" height="488" key="SwitcherDM/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587214143310" />
+    <state width="536" height="488" key="SwitcherDM/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587227211122" />
     <state width="536" height="429" key="SwitcherDM/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587130320365" />
     <state width="500" height="445" key="SwitcherDM/0.23.1792.1097@0.23.1792.1097" timestamp="1586970316787" />
     <state x="100" y="100" width="1720" height="1000" key="VCS.FileHistoryDialog" timestamp="1587195128563">
@@ -410,20 +432,20 @@
       <screen x="-1920" y="161" width="1920" height="1057" />
     </state>
     <state x="-1157" y="610" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587108608568" />
-    <state x="220" y="102" width="1472" height="880" key="find.popup" timestamp="1587214140358">
+    <state x="220" y="102" width="1472" height="880" key="find.popup" timestamp="1587228601357">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="-1285" y="399" width="964" height="578" key="find.popup/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587040325645" />
     <state x="593" y="302" width="964" height="578" key="find.popup/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@0.23.1792.1097" timestamp="1587017131900" />
-    <state x="220" y="102" width="1472" height="880" key="find.popup/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587214140358" />
+    <state x="220" y="102" width="1472" height="880" key="find.popup/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587228601357" />
     <state x="-1285" y="429" width="964" height="578" key="find.popup/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587130747733" />
     <state x="593" y="302" width="964" height="578" key="find.popup/0.23.1792.1097@0.23.1792.1097" timestamp="1586971117204" />
-    <state x="601" y="218" width="718" height="741" key="search.everywhere.popup" timestamp="1587217635892">
+    <state x="601" y="218" width="718" height="741" key="search.everywhere.popup" timestamp="1587227653295">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="-1319" y="323" width="718" height="652" key="search.everywhere.popup/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587040363911" />
     <state x="561" y="222" width="670" height="676" key="search.everywhere.popup/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@0.23.1792.1097" timestamp="1587014900518" />
-    <state x="601" y="218" width="718" height="741" key="search.everywhere.popup/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587217635892" />
+    <state x="601" y="218" width="718" height="741" key="search.everywhere.popup/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587227653295" />
     <state x="-1319" y="353" width="718" height="652" key="search.everywhere.popup/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587131778361" />
     <state x="561" y="222" width="670" height="676" key="search.everywhere.popup/0.23.1792.1097@0.23.1792.1097" timestamp="1586971120732" />
   </component>

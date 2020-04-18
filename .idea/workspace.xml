@@ -19,10 +19,22 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="style: make footer changes">
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="style: footer changes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/docusaurus.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/docusaurus.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/theme/Footer/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/theme/Footer/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/pages/press.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/static/press/qovery-diagram-components.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/static/press/qovery-diagram-components.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/static/press/qovery-icon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/static/press/qovery-icon.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/static/press/qovery-logo-horizontal-dark.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/static/press/qovery-logo-horizontal-dark.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/static/press/qovery-logo-horizontal-light.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/static/press/qovery-logo-horizontal-light.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/static/press/qovery-logo-vertical-dark.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/static/press/qovery-logo-vertical-dark.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/static/press/qovery-logo-vertical-light.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/static/press/qovery-logo-vertical-light.svg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +110,7 @@
       <workItem from="1587100760827" duration="37000" />
       <workItem from="1587103472614" duration="2531000" />
       <workItem from="1587106541124" duration="22978000" />
-      <workItem from="1587134212780" duration="12564000" />
+      <workItem from="1587134212780" duration="13491000" />
     </task>
     <task id="LOCAL-00001" summary="Replace timberio -&gt; qovery">
       <created>1586940976665</created>
@@ -163,7 +175,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587195331055</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="style: footer changes">
+      <created>1587197282482</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1587197282482</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -201,7 +220,8 @@
     <MESSAGE value="Adjust docs structure" />
     <MESSAGE value="Cleanup" />
     <MESSAGE value="style: make footer changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="style: make footer changes" />
+    <MESSAGE value="style: footer changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="style: footer changes" />
   </component>
   <component name="WindowStateProjectService">
     <state x="-1309" y="498" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1587110738425">
@@ -231,22 +251,22 @@
     </state>
     <state x="663" y="281" key="RollbackChangesDialog/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@0.23.1792.1097" timestamp="1587017173048" />
     <state x="663" y="281" key="RollbackChangesDialog/0.23.1792.1097@0.23.1792.1097" timestamp="1586967392759" />
-    <state width="536" height="488" key="SwitcherDM" timestamp="1587195698320">
+    <state width="536" height="488" key="SwitcherDM" timestamp="1587197055221">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state width="536" height="429" key="SwitcherDM/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587042928490" />
-    <state width="536" height="488" key="SwitcherDM/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587195698320" />
+    <state width="536" height="488" key="SwitcherDM/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587197055221" />
     <state width="536" height="429" key="SwitcherDM/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587130320365" />
     <state width="500" height="445" key="SwitcherDM/0.23.1792.1097@0.23.1792.1097" timestamp="1586970316787" />
     <state x="100" y="100" width="1720" height="1000" key="VCS.FileHistoryDialog" timestamp="1587195128563">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="100" y="100" width="1720" height="1000" key="VCS.FileHistoryDialog/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587195128563" />
-    <state x="531" y="314" key="Vcs.Push.Dialog.v2" timestamp="1587195332672">
+    <state x="531" y="314" key="Vcs.Push.Dialog.v2" timestamp="1587197283802">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="-1389" y="408" key="Vcs.Push.Dialog.v2/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587043142882" />
-    <state x="531" y="314" key="Vcs.Push.Dialog.v2/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587195332672" />
+    <state x="531" y="314" key="Vcs.Push.Dialog.v2/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587197283802" />
     <state x="496" y="311" key="Vcs.Push.Dialog.v2/0.23.1792.1097@0.23.1792.1097" timestamp="1586945386299" />
     <state x="500" y="204" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1587194879133">
       <screen x="0" y="0" width="1920" height="1200" />

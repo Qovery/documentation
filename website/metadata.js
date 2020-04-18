@@ -11,74 +11,38 @@ module.exports = {
         {
           "author_github": "https://github.com/pjeziorowski",
           "description": null,
-          "id": "/getting-started/adding-databases",
+          "id": "/getting-started/adding-a-database",
           "last_modified_on": null,
-          "path": "website/guides/getting-started/adding-databases.md",
+          "path": "website/guides/getting-started/adding-a-database.md",
           "series_position": null,
-          "title": "Adding databases"
+          "title": "Adding a database"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/getting-started/beyond-application-deployment",
+          "last_modified_on": null,
+          "path": "website/guides/getting-started/beyond-application-deployment.md",
+          "series_position": null,
+          "title": "Beyond application deployment"
         },
         {
           "author_github": "https://github.com/pjeziorowski",
           "description": null,
-          "id": "/getting-started/authentication",
+          "id": "/getting-started/debugging",
           "last_modified_on": null,
-          "path": "website/guides/getting-started/authentication.md",
+          "path": "website/guides/getting-started/debugging.md",
           "series_position": null,
-          "title": "Authentication"
+          "title": "Debugging"
         },
         {
           "author_github": "https://github.com/pjeziorowski",
           "description": null,
-          "id": "/getting-started/customizing-routing",
+          "id": "/getting-started/deploy-your-first-application",
           "last_modified_on": null,
-          "path": "website/guides/getting-started/customizing-routing.md",
+          "path": "website/guides/getting-started/deploy-your-first-application.md",
           "series_position": null,
-          "title": "Customizing routes"
-        },
-        {
-          "author_github": "https://github.com/pjeziorowski",
-          "description": null,
-          "id": "/getting-started/deploying-application",
-          "last_modified_on": null,
-          "path": "website/guides/getting-started/deploying-application.md",
-          "series_position": null,
-          "title": "Deploying application"
-        },
-        {
-          "author_github": "https://github.com/pjeziorowski",
-          "description": null,
-          "id": "/getting-started/fetching-logs",
-          "last_modified_on": null,
-          "path": "website/guides/getting-started/fetching-logs.md",
-          "series_position": null,
-          "title": "Fetching logs"
-        },
-        {
-          "author_github": "https://github.com/pjeziorowski",
-          "description": null,
-          "id": "/getting-started/installing-cli",
-          "last_modified_on": null,
-          "path": "website/guides/getting-started/installing-cli.md",
-          "series_position": null,
-          "title": "Installing CLI"
-        },
-        {
-          "author_github": "https://github.com/pjeziorowski",
-          "description": null,
-          "id": "/getting-started/managing-environment-variables",
-          "last_modified_on": null,
-          "path": "website/guides/getting-started/managing-environment-variables.md",
-          "series_position": null,
-          "title": "Managing env variables"
-        },
-        {
-          "author_github": "https://github.com/pjeziorowski",
-          "description": null,
-          "id": "/getting-started/microservices",
-          "last_modified_on": null,
-          "path": "website/guides/getting-started/microservices.md",
-          "series_position": null,
-          "title": "Microservices"
+          "title": "Hello World. Deploy your first application."
         },
         {
           "author_github": "https://github.com/pjeziorowski",
@@ -88,24 +52,6 @@ module.exports = {
           "path": "website/guides/getting-started/setting-custom-domain.md",
           "series_position": null,
           "title": "Setting custom domain"
-        },
-        {
-          "author_github": "https://github.com/pjeziorowski",
-          "description": null,
-          "id": "/getting-started/using-multiple-remote-environments",
-          "last_modified_on": null,
-          "path": "website/guides/getting-started/using-multiple-remote-environments.md",
-          "series_position": null,
-          "title": "Using multiple remote environments"
-        },
-        {
-          "author_github": "https://github.com/pjeziorowski",
-          "description": null,
-          "id": "/getting-started/using-templates",
-          "last_modified_on": null,
-          "path": "website/guides/getting-started/using-templates.md",
-          "series_position": null,
-          "title": "Using templates"
         }
       ],
       "name": "getting-started",

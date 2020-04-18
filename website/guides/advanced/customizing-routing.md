@@ -1,11 +1,11 @@
 ---
-last_modified_on: "2020-04-17"
+last_modified_on: "2020-04-18"
 $schema: "/.meta/.schemas/guides.json"
-title: Adding databases
-description: How to add a database to your application
-series_position: 7
+title: Customizing routes
+description: How to set up routers in your project
+series_position: 12
 author_github: https://github.com/pjeziorowski
-tags: ["type: tutorial", "domain: services"]
+tags: ["type: guide", "domain: networking"]
 ---
 
 import Jump from '@site/src/components/Jump';

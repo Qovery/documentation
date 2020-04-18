@@ -16,8 +16,6 @@ jobs:
         with:
           node-version: '12.x'
 
-      - run: apt update && apt install bundler
-      - run: USE_CONTAINER=none make generate
       - run: cd && npm install && npm run-script build
 
       #- name: Install broken-link-checker

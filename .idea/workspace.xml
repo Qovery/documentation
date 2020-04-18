@@ -19,37 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="style: fix logo">
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="style: fix static build">
       <change beforePath="$PROJECT_DIR$/.github/workflows/gh-pages.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/gh-pages.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codestream.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codestream.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.meta/guides.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/guides.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/post_processors/component_importer.rb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/post_processors/component_importer.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/metadata.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/metadata.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/components/ReleaseDownload/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/components/ReleaseDownload/styles.module.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/components/ReleaseNotes/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/components/ReleaseNotes/styles.module.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/pages/releases/0.4.0.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/pages/releases/0.4.0/download.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/pages/releases/0.5.0.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/pages/releases/0.5.0/download.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/pages/releases/0.6.0.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/pages/releases/0.6.0/download.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/pages/releases/0.7.0.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/pages/releases/0.7.0/download.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/pages/releases/0.7.1.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/pages/releases/0.7.1/download.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/pages/releases/0.7.2.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/pages/releases/0.7.2/download.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/pages/releases/0.8.0.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/pages/releases/0.8.0/download.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/pages/releases/0.8.1.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/pages/releases/0.8.1/download.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/pages/releases/0.8.2.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/pages/releases/0.8.2/download.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/pages/releases/latest.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/pages/releases/latest/download.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -284,7 +255,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587212247547</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="style: fix static build">
+      <created>1587228888723</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1587228888723</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -358,7 +336,8 @@
     <MESSAGE value="delete: src/*" />
     <MESSAGE value="feat: guides section ready to be filled" />
     <MESSAGE value="style: fix logo" />
-    <option name="LAST_COMMIT_MESSAGE" value="style: fix logo" />
+    <MESSAGE value="style: fix static build" />
+    <option name="LAST_COMMIT_MESSAGE" value="style: fix static build" />
   </component>
   <component name="WindowStateProjectService">
     <state x="611" y="383" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1587213016572">
@@ -418,11 +397,11 @@
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="100" y="100" width="1720" height="1000" key="VCS.FileHistoryDialog/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587195128563" />
-    <state x="531" y="314" key="Vcs.Push.Dialog.v2" timestamp="1587212249521">
+    <state x="531" y="314" key="Vcs.Push.Dialog.v2" timestamp="1587228890281">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="-1389" y="408" key="Vcs.Push.Dialog.v2/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587043142882" />
-    <state x="531" y="314" key="Vcs.Push.Dialog.v2/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587212249521" />
+    <state x="531" y="314" key="Vcs.Push.Dialog.v2/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587228890281" />
     <state x="496" y="311" key="Vcs.Push.Dialog.v2/0.23.1792.1097@0.23.1792.1097" timestamp="1586945386299" />
     <state x="500" y="204" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1587199930493">
       <screen x="0" y="0" width="1920" height="1200" />

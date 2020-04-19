@@ -25,7 +25,25 @@ module.exports = {
       type: 'category',
       label: 'Using Qovery',
       items: [
-             "setup/configuration"
+        "using-qovery",
+        "using-qovery/configuration",
+        {
+          type: 'category',
+          label: 'Integration',
+          items: [
+            "integration",
+            "integration/ide-plugins",
+          ]
+        }
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Useful Links',
+      items: [
+        "useful-links/api",
+        "useful-links/faq",
+        "useful-links/help-and-support",
       ],
     },
   ]

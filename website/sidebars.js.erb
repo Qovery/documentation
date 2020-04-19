@@ -25,7 +25,25 @@ module.exports = {
       type: 'category',
       label: 'Using Qovery',
       items: [
-             <%= metadata.links.fetch_id("docs.configuration").to_json %>
+        <%= metadata.links.fetch_id("docs.using-qovery").to_json %>,
+        <%= metadata.links.fetch_id("docs.using-qovery.configuration").to_json %>,
+        {
+          type: 'category',
+          label: 'Integration',
+          items: [
+            <%= metadata.links.fetch_id("docs.integration").to_json %>,
+            <%= metadata.links.fetch_id("docs.integration.ide-plugins").to_json %>,
+          ]
+        }
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Useful Links',
+      items: [
+        <%= metadata.links.fetch_id("docs.useful-links.api").to_json %>,
+        <%= metadata.links.fetch_id("docs.useful-links.faq").to_json %>,
+        <%= metadata.links.fetch_id("docs.useful-links.help-and-support").to_json %>,
       ],
     },
   ]

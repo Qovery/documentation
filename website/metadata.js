@@ -117,6 +117,15 @@ module.exports = {
           "path": "website/guides/tutorial/graphql-api-with-hasura.md",
           "series_position": null,
           "title": "GraphQL API with Hasura"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/tutorial/url-shortener-api-with-kotlin",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/url-shortener-api-with-kotlin.md",
+          "series_position": null,
+          "title": "URL Shortener API with Kotlin"
         }
       ],
       "name": "tutorial",

@@ -1,0 +1,152 @@
+---
+$schema: "/.meta/.schemas/guides.json"
+title: GraphQL API with Hasura
+description: How to build and deploy realtime GraphQL APIs in a few minutes
+series_position: 1
+author_github: https://github.com/pjeziorowski
+tags: ["type: tutorial", "domain: services"]
+---
+Before we dive deep into details, I'll **quickly describe the tools I used** to build and deploy a realtime GraphQL API and tell you **why you should fall in love with GraphQL** and all the tools I used.
+
+## First, why to use GraphQL?
+**GraphQL** is a query language for APIs and a runtime for fulfilling those queries with existing data. GraphQL provides a **schema** that describes the API and allows clients (e.g. your frontend or mobile application) to easily fetch data they want and nothing more.
+
+Here is what you get from using GraphQL instead of standard RESTful APIs:
+- GraphQL queries get exactly what you need, nothing more and nothing less
+- Instead of making multiple requests to fetch required data, you make just one request to one endpoint
+- GraphQL schema is typed, what makes the contract between frontend and backend clear and understandable
+
+If you are a frontend engineer, **you will not like to consume other APIs than GraphQL after trying it out**. It makes your life so much more pleasurable and easy.
+
+You don't need to know GraphQL to follow this article. All you need to know is that GraphQL allows you to define contract between frontend and backend and do operations on the data you are interested in.
+
+## Productivity boosting tools
+**Hasura** is an open source engine that connects to your databases & microservices and auto-generates a production-ready GraphQL backend. By using Hasura in conjunction with **Qovery** (platform that combines the power of Kubernetes, the reliability of AWS and the simplicity of Heroku to allow developers deploy their apps with pleasure), you get a **blazing fast, auto-scallable and extensible solution to quickly build your applications**.
+
+### Why Hasura?
+Consuming GraphQL APIs is a pleasure. We'd like to have more GraphQL APIs. But those APIs do not come out of nowhere. Somebody has to implement them first - the data won't just flow out of the database through the schema to your frontend automagically, right? Well... with Hasura it will!
+
+Hasura allows you to bootstrap a realtime GraphQL API in seconds by simply modeling your data. Hasura will do the hard work of translating your needs into queries to the database and translating them to GraphQL schema. Thanks to this, all you need to do is to define the data you want to store in the database - Hasura will do the rest.
+
+This is unbelievable how much time it saves. If you don't believe, try implementing a GraphQL server yourself - with all the featuers and options that Hasura offers.
+
+If you have doubts about flexibility - you don't have to worry. If you need to perform a very custom business logic, you can implement this part in any language you want and connect it to Hasura engine. This way you will not only save a lot of time, but also have flexibility to write your custom code if needed.
+
+### Why Qovery?
+Managing infrastructure is hard and takes time. **Developers want to focus on building their apps instead of wasting time on managing servers or databases**. Qovery is tool that does it all for you - all you have to do is to write your application code. It's **powered by Docker and Kubernetes ** underneath, so you get all the benefits of using those modern tools without the complexity and costs of learning and managing them.
+
+Qovery is also a great fit for Hasura - its **free plan allows you to deploy Hasura and database for free, without any limits, performance degradations or putting your app to sleep** like it's done on other platforms.
+
+If you have any questions regarding this post or other things, feel free to reach me on [Discord](https://discord.qovery.com).
+
+## Hasura deployment on Qovery
+Deploying Hasura on Qovery is really easy. All you have to do is to bootstrap a project using Qovery CLI in a Git repository & export environment variables required by Hasura.
+
+1/ Bootstrap a project with Qovery CLI (the script will ask you for project and application name, which you can choose as you like)
+```bash
+qovery template hasura
+```
+2/ Point Hasura to your Postgres database and enable Hasura Console using environment variables
+```bash
+qovery application env add HASURA_GRAPHQL_DATABASE_URL '$QOVERY_DATABASE_MY_POSTGRESQL_DATABASE_CONNECTION_URI'
+qovery application env add HASURA_GRAPHQL_ENABLE_CONSOLE true
+```
+3/ Commit and push your changes
+```
+git add .
+git commit -m "Deploy Hasura on Qovery"
+git push -u origin master
+```
+**Well done!** After pushing changes, Postgres and Hasura deployment will start. You can use `‍qovery status --watch` to track the progress. Once the deployment is done, you’ll see your Hasura application URL in the status:
+![Qovery Status](https://uploads-ssl.webflow.com/5de176c0d41c9b4a1dbbb0aa/5e8d9e3c75a7e46396d483d9_status.png)
+
+## Creating realtime GraphQL APIs
+Navigate to your Hasura application URL and choose Data tab in the console:
+![Hasura Console](https://uploads-ssl.webflow.com/5de176c0d41c9b4a1dbbb0aa/5e8d9e5e4788f066d395e4ac_data-tab.png)
+In this section we'll configure our data model. Now, click on the **Create Table** button.
+
+You’ll see the table creator. We are going to create a simple "Todo" items table. We'll name it "todos" and the table will contain three columns:
+
+* id - unique identifier of given "Todo" item
+* title
+* description - optional description of "Todo" item
+
+Fill the form as in the screenshots below to prepare the table.
+
+![Table](https://uploads-ssl.webflow.com/5de176c0d41c9b4a1dbbb0aa/5e8d9eccfd0cf4040e3017ff_table-name.png)
+![Table](https://uploads-ssl.webflow.com/5de176c0d41c9b4a1dbbb0aa/5e8d9edd3f6105fd73982190_table-columns.png)
+
+At the end, we should specify our id column as a Primary Key.‍
+
+![Primary Key](https://uploads-ssl.webflow.com/5de176c0d41c9b4a1dbbb0aa/5e8d9ef4d87c6c421133c2e7_primary-key.png)
+
+The table is ready to be created. Click **Add Table** button at the bottom of the page.
+
+**Voila!** The table has been created in Postgres and Hasura has exposed GraphQL APIs to interact with our data.
+
+## Testing GraphQL APIs
+To test the GraphQL API, navigate to the GraphiQL tab and run the following query:
+```graphql
+mutation query {
+  todos {
+    id
+    title
+    description
+  }
+}
+```
+![GraphiQL](https://uploads-ssl.webflow.com/5de176c0d41c9b4a1dbbb0aa/5e8da0edcf123c19f5918594_graphiql.png)
+As you can see, Hasura returned an empty array of "Todo" items. Let’s add a "Todo" item by executing the following query:
+```graphql
+mutation {
+  insert_todos(objects:[
+    {
+      title: "My first TODO"
+      description: "It's very important TODO item"
+    }
+  ]) {
+    affected_rows
+  }
+}
+```
+After you run the above query, in the response you'll see information about one affected row. Congrats! You have created a first "Todo" item. Let's now move further to a more interesting topic.
+
+## GraphQL realtime APIs
+It's time to use a realtime GraphQL APIs - **GraphQL Subscriptions**. Subscription allows you to fetch data and get updates about any changes that occur in data you are interested in.
+
+In the GraphiQL, run the following query:
+```graphql
+subscription {
+  todos {
+    id
+    title
+    description
+  }
+}
+```
+
+In the response in the right-hand of console you'll see a "Todo" item you have created previously. That's great. Let's now test if the subscription really works - open one more Hasura console in a separate browser tab and navigate to GraphiQL.
+
+Execute the following query a few times:
+```graphql
+mutation {
+  insert_todos(objects:[
+    {
+      title: "Another TODO to test subscriptions"
+      description: "Subscriptions!"
+    }
+  ]) {
+    affected_rows
+  }
+}
+```
+
+At the same time, keep an eye at the subscription. Each and every newly created "Todo" item automagically appears in the subscription response!
+
+![Realtime GraphQL](https://uploads-ssl.webflow.com/5de176c0d41c9b4a1dbbb0aa/5e8d9de17e6837d53983c32f_subscription.gif)
+
+## Conclusions
+By following this article you quickly deployed a realtime GraphQL backend using Qovery, Hasura and Postgres database.
+
+Using this stack saves you tons of time. Deploying it on Qovery is extremely easy. We take care of your application and your database. With Qovery and Hasura all you have to do to expose quality, realtime GraphQL backend is just a few clicks. After minutes your application is ready - define your data schema and expose GraphQL API to the world!
+<%= subpages() %>

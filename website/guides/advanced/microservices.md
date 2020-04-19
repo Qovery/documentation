@@ -1,11 +1,11 @@
 ---
-last_modified_on: "2020-04-18"
+last_modified_on: "2020-04-19"
 $schema: "/.meta/.schemas/guides.json"
 title: Microservices
 description: How to work with multiple applications in one project
 series_position: 3
 author_github: https://github.com/pjeziorowski
-tags: ["type: tutorial", "domain: services"]
+tags: ["type: guide", "domain: services"]
 ---
 
 import Jump from '@site/src/components/Jump';

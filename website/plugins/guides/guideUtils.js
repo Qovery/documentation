@@ -42,7 +42,10 @@ async function generateGuides(guideDir, { siteConfig, siteDir }, options) {
             let description = null;
             switch (name) {
                 case 'advanced':
-                    description = 'Go beyond the basics, become a Vector pro, and extract the full potential of Vector.';
+                    description = 'Go beyond the basics, become a Qovery pro, and extract the full potential of Qovery.';
+                    break;
+                case 'tutorial':
+                    description = 'Simple step-by-step tutorials.';
                     break;
                 case 'getting-started':
                     description = 'Take Qovery from zero to production in under 10 minutes.';

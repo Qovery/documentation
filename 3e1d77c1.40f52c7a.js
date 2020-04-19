@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[15],{165:function(e){e.exports=JSON.parse('{"category":{"name":"advanced","title":"Advanced","description":"Go beyond the basics, become a Vector pro, and extract the full potential of Vector.","permalink":"/guides/advanced"}}')}}]);

@@ -70,6 +70,7 @@ function navLinkAttributes(label, right) {
 function NavLink({href, hideIcon, label, onClick, position, right, to}) {
   let attributes = navLinkAttributes(label, right) || {};
   const toUrl = useBaseUrl(to);
+  const linkClassName = window.location.pathname.includes("/tutorial") && toUrl === "/guides/" ? "navbar__link" : "navbar__link--active"
 
   return (
     <Link
@@ -83,7 +84,7 @@ function NavLink({href, hideIcon, label, onClick, position, right, to}) {
             href: href,
           }
         : {
-            activeClassName: 'navbar__link--active',
+            activeClassName: linkClassName,
             to: toUrl,
           })}>
       {!hideIcon && attributes.icon && <><i className={`feather icon-${attributes.icon}`}></i> {attributes.iconLabel}</>}

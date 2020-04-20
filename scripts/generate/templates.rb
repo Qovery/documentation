@@ -663,6 +663,14 @@ class Templates
     render("#{partials_path}/_qovery_summary.md", binding).strip
   end
 
+  def qovery_intro_how_to_deploy_x_with_y
+    render("#{partials_path}/_qovery_intro_how_to_deploy_x_with_y.md", binding).strip
+  end
+
+  def qovery_status_output(branch, application, database)
+    render("#{partials_path}/_qovery_status_output.md", binding).strip
+  end
+
   def qovery_sign_up
     render("#{partials_path}/_qovery_sign_up.md", binding).strip
   end

@@ -1,0 +1,15 @@
+```bash
+$ qovery status
+```
+Output
+
+```bash
+ BRANCH NAME | STATUS  | ENDPOINTS                                   | APPLICATIONS                  | DATABASES
+<%= branch %>      | running | https://main-yenr7erjbs87dk4m-gtw.qovery.io | <%= application %> | <%= database %>
+
+APPLICATION NAME              | STATUS  | DATABASES
+docker-simple-example-laravel | running | <%= database %>
+
+DATABASE NAME    | STATUS  | TYPE       | VERSION | ENDPOINT | PORT     | USERNAME | PASSWORD | APPLICATIONS
+<%= database %> | running | POSTGRESQL | 11.5    | <hidden> | <hidden> | <hidden> | <hidden> | <%= application %>
+```

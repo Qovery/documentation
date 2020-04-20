@@ -1,12 +1,15 @@
 ---
-last_modified_on: "2020-04-19"
+last_modified_on: "2020-04-20"
 $schema: "/.meta/.schemas/guides.json"
 title: URL Shortener API with Kotlin
 description: Create a URL shortener API with Kotlin, the micro-framework Ktor and PostgreSQL
-series_position: 2
 author_github: https://github.com/evoxmusic
 tags: ["type: tutorial", "domain: services"]
+hide_pagination: true
 ---
+
+import Jump from '@site/src/components/Jump';
+
 The source code for this post can be found on this [github repo](https://github.com/evoxmusic/ktor-url-shortener)
 
 <!--
@@ -83,7 +86,6 @@ fun Application.module(testing: Boolean = false) {
 The URL encoder will translate an incoming address into a smaller URL. The idea is to provide an ID that will identify the final URL. Using a hash function is perfect for this operation. However, the operation is non-reversible, meaning you can’t retrieve the final URL by the generated identifier.
 
 Function to transform a long URL into a shorter URL
-
 ```kotlin
 // String extension
 fun String.encodeToID(): String {
@@ -536,6 +538,8 @@ $ qovery status
 We have seen that creating an URL shortener API with Ktor and Kotlin is extremely simple. The connection of the application with the PostgreSQL database is done in a very easy way with the Exposed library. In just a few lines of code the service is fully functional, and can be deployed in production very quickly with the help of Qovery. In the next part we will see how to create a web interface connecting to this API to convert our URLs without using the curl command.
 
 **Part 2: bind a web interface to the API** - [link coming soon]
+
+<Jump to="/guides/tutorial/">Tutorial</Jump>
 
 
 

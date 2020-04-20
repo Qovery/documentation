@@ -1,9 +1,8 @@
 ---
-last_modified_on: "2020-04-19"
+last_modified_on: "2020-04-20"
 $schema: "/.meta/.schemas/guides.json"
 title: Using multiple environments
 description: How to use Qovery Environments to improve your team workflows
-series_position: 2
 author_github: https://github.com/pjeziorowski
 tags: ["type: guide", "domain: services"]
 ---

@@ -1,12 +1,15 @@
 ---
-last_modified_on: "2020-04-19"
+last_modified_on: "2020-04-20"
 $schema: "/.meta/.schemas/guides.json"
 title: GraphQL API with Hasura
 description: How to build and deploy realtime GraphQL APIs in a few minutes
-series_position: 1
 author_github: https://github.com/pjeziorowski
 tags: ["type: tutorial", "domain: services"]
+hide_pagination: true
 ---
+
+import Jump from '@site/src/components/Jump';
+
 Before we dive deep into details, I'll **quickly describe the tools I used** to build and deploy a realtime GraphQL API and tell you **why you should fall in love with GraphQL** and all the tools I used.
 
 <!--
@@ -158,6 +161,8 @@ At the same time, keep an eye at the subscription. Each and every newly created 
 By following this article you quickly deployed a realtime GraphQL backend using Qovery, Hasura and Postgres database.
 
 Using this stack saves you tons of time. Deploying it on Qovery is extremely easy. We take care of your application and your database. With Qovery and Hasura all you have to do to expose quality, realtime GraphQL backend is just a few clicks. After minutes your application is ready - define your data schema and expose GraphQL API to the world!
+
+<Jump to="/guides/tutorial/">Tutorial</Jump>
 
 
 

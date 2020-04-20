@@ -67,6 +67,7 @@
     --ifm-color-emphasis-40: var(--ifm-color-gray-40);
     --ifm-color-emphasis-50: var(--ifm-color-gray-50);
     --ifm-color-emphasis-75: var(--ifm-color-gray-75);
+    --ifm-color-info: #4548b0;
     --ifm-color-pink: #f44af5;
     --ifm-color-pink-rgb: 244, 74, 245;
     --ifm-color-primary: #4548b0;

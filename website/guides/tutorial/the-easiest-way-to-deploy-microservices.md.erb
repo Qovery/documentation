@@ -1,0 +1,238 @@
+---
+$schema: "/.meta/.schemas/guides.json"
+title: The easiest way to deploy microservices
+description: How to deploy microservices in a very simple way
+author_github: https://github.com/evoxmusic
+tags: ["type: tutorial"]
+hide_pagination: true
+---
+import Assumptions from '@site/src/components/Assumptions';
+
+All developers are not equal, some know how to deploy their applications, others don’t. But now it’s over! With [Qovery](https://www.qovery.com), all developers can deploy their application in the Cloud in just a few seconds.
+
+Qovery integrates seamlessly with Github and requires no effort from the developer.
+
+We know how it can be painful for developers to deploy applications, manage staging/development/features environments, synchronize databases and all system stuff - even in the Cloud.
+
+Developers should spend time doing what they love - developing applications, instead of wasting time on configuring databases, CDN, cache, network... That's why we decided to create Qovery. The first Container as a Service platform that allows any developer (junior, senior, backend, frontend...) to deploy applications in just a few minutes.
+
+<Assumptions name="guide">
+
+* You have installed the [Qovery CLI](https://docs.qovery.com/extending-qovery/cli)
+* You host your code on Github
+
+</Assumptions>
+
+## Deploying application
+Qovery is fully integrated into Github. Basically, you just need to have a **.qovery.yml** and a **Dockerfile** at the root of your project. Once it is done, commit and push your code. You’re done!
+
+Generate the **.qovery.yml** file
+
+```bash
+cd simple-example-node
+# checkout this sample project
+# https://github.com/Qovery/simple-example-node
+
+qovery init
+cat .qovery.yml
+```
+
+```yaml
+application:
+  name: simple-example-node
+  project: simple-example-node
+  cloud_region: aws/eu-west-3
+  publicly_accessible: true
+routers:
+- name: main
+  routes:
+  - application_name: simple-example-node
+    paths:
+    - /*
+```
+
+Add your **Dockerfile** to the root folder of your project (*here is a Dockerfile for my NodeJS project*)
+
+```bash
+FROM node:13-alpine
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+COPY . .
+RUN npm install
+EXPOSE 3000
+CMD node ./bin/www
+
+```
+
+Commit and push your code
+```bash
+git add .qovery.yml Dockerfile
+git commit -m "Add .qovery.yml and Dockerfile"
+git push -u origin master
+```
+
+Congratulations, you have deployed your application.
+
+```bash
+qovery status --watch
+```
+
+![The master branch with its own environment, and a single NodeJS application](https://uploads-ssl.webflow.com/5de176c0d41c9b4a1dbbb0aa/5e3a8fab0d886981df6da99d_master%20nodejs.png)
+
+## Update application
+You just have modified your app and you want to deploy it? Well, it’s straightforward, just **commit**, **push** and that’s it!
+
+```bash
+git commit -m "my updated code"
+git push -u origin master
+```
+
+## Application rollback
+Oh! you miss something and you need to rollback to a previous version of your application? No worries, it's as simple as one command
+
+```bash
+qovery deploy list
+branch  date          commit id                                 deployed
+master  5 hours ago   2cad27c442e8022677e91a2ad3eb585adc18126a  ✓
+master  5 hours ago   418502a29706fae3fbec94df165cd0f025803ae7  𐄂
+master  21 hours ago  798303330c3789a7a5712350a4b04fa588705157  𐄂
+master  22 hours ago  503e1d942a3dc12093c485bd518d3b3f8803f76b  𐄂
+master  one day ago   c7ef8bdc8074ae18bbd42484e366d956ac3b0c72  𐄂
+master  one day ago   1eb5a515b41b1bce7dfa30bfdc698b7a8a2a9e94  𐄂
+master  2 days ago    d397cbe03be192e54a7233fd71e64728881430d4  𐄂
+master  2 days ago    2e71d7175a1f71bdec7ba29b2f6cb5143d199285  𐄂
+master  2 days ago    a219b603118c1c9cf065af8f2e8cf88506248de2  𐄂
+
+qovery deploy 418502a29706fae3fbec94df165cd0f025803ae7
+deployment in progress...
+hint: type "qovery status --watch" to track the progression of deployment
+```
+
+## Staging branch
+Sometimes you want to validate your code in a staging environment before putting it in production. That’s why we created the concept of “Environment”. Which is having isolated applications and services (databases, brokers, storage) for each branch. There is no risk to impact the production if something bad happens.
+
+![A staging isolated environment](https://uploads-ssl.webflow.com/5de176c0d41c9b4a1dbbb0aa/5e3a8ff19368910953fb88a8_staging%20nodejs.png)
+
+Having a staging environment is as easy as creating a new branch with the name “**staging**”
+
+```bash
+git checkout -b staging
+git push -u origin staging
+```
+
+That’s it!
+
+And obviously, you can track the status of your deployment in real time
+```bash
+qovery status --watch
+```
+
+## Feature branch
+Same as for the staging branch above, every branch that you create is per default an isolated environment. So just create your branch, and push your changes, a new isolated environment is live in a couple of seconds.
+
+![A feature isolated environment from the staging environment](https://uploads-ssl.webflow.com/5de176c0d41c9b4a1dbbb0aa/5e3a9017d565b245b23b1aaf_feature%20nodejs.png)
+
+```bash
+git checkout -b feat_x
+git push -u origin feat_x
+
+# watch status of the feat_x deployment
+qovery status --watch
+```
+
+## Database natively supported
+Do you need a database? We support the most popular SQL (PostgreSQL, MySQL) and NoSQL (MongoDB, Elasticsearch, Redis, Memcached, Cassandra) databases. Thanks to AWS managed services for the reliability and the performances.
+
+Supporting a database is as simple as updating the **.qovery.yml**
+
+```yaml
+application:
+  name: simple-example-node
+  project: simple-example-node
+  cloud_region: aws/eu-west-3
+  publicly_accessible: true
+# add this section
+databases:
+- type: postgresql
+  version: "11.5"
+  name: my-postgresql-db
+# end
+routers:
+- name: main
+  routes:
+  - application_name: simple-example-node
+    paths:
+    - /*
+```
+
+To deploy the PostgreSQL database you need to commit and push the *.qovery.yml*
+
+```bash
+git add .qovery.yml
+git commit -m "add postgresql database to the project"
+git push -u origin master
+```
+
+![The master environment now contains a PostgreSQL database](https://uploads-ssl.webflow.com/5de176c0d41c9b4a1dbbb0aa/5e3a90dc8ec6e5488ac91d44_master%20node%20pql.png)
+
+### What is going on if I create a new branch with a database?
+The database and all its data are cloned as well.
+Note: If you don’t want to clone the data, it is as well possible.
+
+![Each branch have their own isolated environment (application + database)](https://uploads-ssl.webflow.com/5de176c0d41c9b4a1dbbb0aa/5e3a91108c461071e0e775ad_feature%20node%20pql.png)
+
+## Multiple applications and databases in one project
+Let’s imagine that you need to have a backend API and a frontend website that work together. These 2 apps belong to the same project. Meaning, they need to communicate with each other within the same environment. Obviously, this is natively possible with Qovery.
+
+![isolated environments with multiple applications (NodeJS + React) and multiple databases (PostgreSQL + Redis)](https://uploads-ssl.webflow.com/5de176c0d41c9b4a1dbbb0aa/5e3a915f46ac5798fe3a2918_complete%20env.png)
+
+For instance:
+
+Repository A is a backend API made with NodeJS -> connected to a PostgreSQL database and Redis key/value store
+
+Repository B is a frontend made in React -> connected to the backend API
+
+Project A **.qovery.yml** file
+```yaml
+application:
+  name: backend-api
+  project: my-multi-apps-project
+  cloud_region: aws/eu-west-3
+  publicly_accessible: true
+databases:
+- type: postgresql
+  version: "11.5"
+  name: my-postgresql-db
+- type: redis
+  version: "5.0"
+  name: my-redis
+routers:
+- name: api
+  routes:
+  - application_name: backend-api
+    paths:
+    - /*
+```
+
+Project B **.qovery.yml** file
+```yaml
+application:
+  name: frontend
+  project: my-multi-apps-project
+  cloud_region: aws/eu-west-3
+  publicly_accessible: true
+routers:
+- name: web
+  routes:
+  - application_name: frontend
+    paths:
+    - /*
+```
+
+You can note that they have the same “project” name. This is the parameter to make them belong to the same project.
+On the other side, routers have different properties to properly route the traffic according to their application.
+
+## Conclusion
+Qovery is the swiss army knife of all developers who want to deploy their application while staying focused on their code. No need to learn how to use AWS to deploy on it. Our goal is to provide the best developer experience ever.
+
+<Jump to="/guides/tutorial/">Tutorial</Jump>

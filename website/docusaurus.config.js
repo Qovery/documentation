@@ -30,8 +30,9 @@ module.exports = {
             links: [
                 {href: 'https://www.qovery.com', label: "Home", position: 'left'},
                 // {to: 'components/', label: 'Components', position: 'left'},
-                {to: 'guides/', label: 'Guides', position: 'left'},
                 {to: 'docs/', label: 'Docs', position: 'left'},
+                {to: 'guides/', label: 'Guides', position: 'left'},
+                {to: 'guides/tutorial', label: 'Tutorials', position: 'left'},
                 //{to: 'blog/', label: 'Blog', position: 'left'},
                 {to: 'community/', label: 'Community', position: 'left'},
                 // {to: 'releases/', label: 'Download', position: 'right'},
@@ -48,6 +49,18 @@ module.exports = {
                 {
                     title: 'Resources',
                     items: [
+                        {
+                            label: 'Documentation',
+                            to: 'docs',
+                        },
+                        {
+                            label: 'Guides',
+                            to: 'guides',
+                        },
+                        {
+                            label: 'Tutorials',
+                            to: 'guides/tutorial',
+                        },
                         {
                             label: 'Pricing',
                             to: 'https://www.qovery.com/pricing',

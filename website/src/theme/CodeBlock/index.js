@@ -19,6 +19,10 @@ require('prismjs/components/prism-powershell');
 require('prismjs/components/prism-protobuf');
 require('prismjs/components/prism-rust');
 require('prismjs/components/prism-toml');
+require('prismjs/components/prism-kotlin');
+require('prismjs/components/prism-java');
+require('prismjs/components/prism-python');
+require('prismjs/components/prism-php');
 
 const highlightLinesRangeRegex = /{([\d,-]+)}/;
 const codeBlockTitleRegex = /title=".*"/;

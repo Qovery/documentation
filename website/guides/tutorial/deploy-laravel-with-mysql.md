@@ -16,12 +16,13 @@ import TabItem from '@theme/TabItem';
 import Assumptions from '@site/src/components/Assumptions';
 import Alert from '@site/src/components/Alert';
 
-
-[AWS](https://aws.amazon.com/) (Amazon Web Services) is a fantastic and reliable cloud service provider. AWS, like Google Cloud Platform and Microsoft Azure, provides everything you need to host an application without having to worry about running the underlying servers and network configuration.
+[AWS][urls.aws] (Amazon Web Services) is a fantastic and reliable cloud service provider. AWS, like Google Cloud Platform and Microsoft Azure, provides everything you need to host an application without having to worry about running the underlying servers and network configuration.
 
 However, deploying an application on AWS presents some challenges. The typical deployment workflow looks like this: write code, push it to Git, compile code, deploy code, validate your changes, and repeat. Developers thus not only have to do all of this manually, but they also have to configure tons of services (VPC, database, cache, DNS, CDN, etc.) to make their application live on the web.
 
-[Qovery](https://www.qovery.com/) solve this problem. In this blog post, I will show you how Qovery improves the developer experience to deploy staging and production [Laravel](https://www.laravel.com/) application with [MySQL](https://www.mysql.com/) database on AWS. You will be able to focus on writing the best code instead of managing complex services.
+Qovery solve this problem.
+
+In this blog post, I will show you how Qovery improves the developer experience to deploy staging and production [Laravel][urls.laravel] application with [MySQL][urls.mysql] database on AWS. You will be able to focus on writing the best code instead of managing complex services.
 
 <Assumptions name="guide">
 
@@ -188,7 +189,7 @@ $ git clone -b tutorial git@github.com:YOUR_GITHUB_USERNAME/docker-simple-exampl
 
 ## Deploy the Laravel application
 
-To deploy the Laravel application connected to a MySQL database, you need to have a .qovery.yml file, and a `Dockerfile` (already provided) at the root of your project. This file indicates the external resources (e.g. MySQL) that your application needs to work correctly.
+To deploy the Laravel application connected to a MySQL database, you need to have a .qovery.yml file, and a `Dockerfile` (provided in the sample project) at the root of your project. This file indicates the external resources (e.g. MySQL) that your application needs to work correctly.
 
 To create the `.qovery.yml` file, run the following command:‍‍
 
@@ -196,7 +197,7 @@ To create the `.qovery.yml` file, run the following command:‍‍
 $ qovery init
 ```
 
-The `.qovery.yml` file is created at the root of the project directory
+Which creates the `.qovery.yml` file at the root of your project directory
 
 ```bash
 $ cat .qovery.yml
@@ -226,7 +227,7 @@ routers:
 Qovery supports multiple databases (eg. PostgreSQL, MySQL, MongoDB, Redis, Memcached, Cassandra), brokers (eg. RabbitMQ, Kafka) and storage services (eg. S3).
 </Alert>
 
-[Authorize the Qovery Github application to get access to your Github account](https://github.com/apps/qovery/installations/new). Once done, you need to commit and push the `.qovery.yml` and `Dockerfile` file to deploy your app.
+[Authorize the Qovery Github application][urls.authorize_qovery] to get access to your Github account. Once done, you need to commit and push the `.qovery.yml` and `Dockerfile` file to deploy your app.
 
 ```bash
 $ git add .qovery.yml Dockerfile
@@ -244,16 +245,14 @@ $ qovery status
 Output
 
 ```bash
-------------+---------+---------------------------------------------+--------------+-----------+---------+----------
-  qovery      | running | https://ym3en0t3jm3j4wqq-main-gtw.qovery.io | 1            | 1         | 0       | 0
+  BRANCH NAME | STATUS  | ENDPOINTS                                   | APPLICATIONS                  | DATABASES
+  master      | running | https://main-yenr7erjbs87dk4m-gtw.qovery.io | docker-simple-example-laravel | my-mysql-6132005
 
-  APPLICATION NAME              | STATUS  | ENDPOINT                                                | DATABASES | BROKERS | STORAGE
---------------------------------+---------+---------------------------------------------------------+-----------+---------+----------
-  docker-simple-example-laravel | running | https://ee5laucsynk35unj-ym3en0t3jm3j4wqq-app.qovery.io | 1         | 0       | 0
+  APPLICATION NAME              | STATUS  | DATABASES
+  docker-simple-example-laravel | running | my-mysql-6132005
 
-  DATABASE NAME    | STATUS  | TYPE  | VERSION | ENDPOINT | PORT     | USERNAME | PASSWORD | APPLICATIONS
--------------------+---------+-------+---------+----------+----------+----------+----------+--------------------------------
-  my-mysql-6132005 | running | MYSQL | 8.0     |  hidden  |  hidden  |  hidden  |  hidden  | docker-simple-example-laravel
+  DATABASE NAME    | STATUS  | TYPE       | VERSION | ENDPOINT | PORT     | USERNAME | PASSWORD | APPLICATIONS
+  my-mysql-6132005 | running | POSTGRESQL | 11.5    | <hidden> | <hidden> | <hidden> | <hidden> | docker-simple-example-laravel
 ```
 
 ## Bonuses
@@ -295,22 +294,20 @@ $ qovery status
 Output
 
 ```bash
-------------+---------+---------------------------------------------+--------------+-----------+---------+----------
-  feat_foo    | running | https://ym3en0t3jm3j4xxx-main-gtw.qovery.io | 1            | 1         | 0       | 0
+  BRANCH NAME | STATUS  | ENDPOINTS                                   | APPLICATIONS                  | DATABASES
+  feat_foo    | running | https://main-yenr7erjbs87dk4m-gtw.qovery.io | docker-simple-example-laravel | my-mysql-6132005
 
-  APPLICATION NAME              | STATUS  | ENDPOINT                                                | DATABASES | BROKERS | STORAGE
---------------------------------+---------+---------------------------------------------------------+-----------+---------+----------
-  docker-simple-example-laravel | running | https://ee5laucsynk35unj-ym3en0t3jm3j4xxx-app.qovery.io | 1         | 0       | 0
+  APPLICATION NAME              | STATUS  | DATABASES
+  docker-simple-example-laravel | running | my-mysql-6132005
 
-  DATABASE NAME    | STATUS  | TYPE  | VERSION | ENDPOINT | PORT     | USERNAME | PASSWORD | APPLICATIONS
--------------------+---------+-------+---------+----------+----------+----------+----------+--------------------------------
-  my-mysql-6132005 | running | MYSQL | 8.0     |  hidden  |  hidden  |  hidden  |  hidden  | docker-simple-example-laravel
+  DATABASE NAME    | STATUS  | TYPE       | VERSION | ENDPOINT | PORT     | USERNAME | PASSWORD | APPLICATIONS
+  my-mysql-6132005 | running | POSTGRESQL | 11.5    | <hidden> | <hidden> | <hidden> | <hidden> | docker-simple-example-laravel
 ```
 
 ## Conclusion
 Qovery and AWS bring to developers, the full power of simplicity and flexibility while deploying applications. Any developer can now take advantage of AWS in seconds instead of days.
 
-Accelerate your development and start using Qovery today. Let us know what you think about it on [Twitter](https://twitter.com/Qovery_), or by [Discord](https://discord.qovery.com).
+Accelerate your development and start using Qovery today. Let us know what you think about it on [Twitter][urls.qovery_twitter], or by [Discord][urls.qovery_chat].
 
 **With thanks to [Arnaud J.](https://github.com/arnaudj) for his contribution to this article.**s
 
@@ -318,6 +315,11 @@ Accelerate your development and start using Qovery today. Let us know what you t
 
 
 [urls.authorize_qovery]: https://github.com/apps/qovery/installations/new
+[urls.aws]: https://aws.amazon.com
 [urls.brew]: https://brew.sh/
+[urls.laravel]: https://www.laravel.com
+[urls.mysql]: https://www.mysql.com
+[urls.qovery_chat]: https://discord.qovery.com
 [urls.qovery_cli_releases]: https://github.com/Qovery/qovery-cli/releases
+[urls.qovery_twitter]: https://twitter.com/qovery_
 [urls.scoop]: https://brew.sh/

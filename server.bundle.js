@@ -82,7 +82,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 523);
+/******/ 	return __webpack_require__(__webpack_require__.s = 527);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -521,7 +521,7 @@ react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a",Object(_home_runn
 /* harmony import */ var _docusaurus_Link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(4);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(488);
+/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(492);
 /* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_styles_css__WEBPACK_IMPORTED_MODULE_3__);
 function Jump({children,className,badge,leftIcon,rightIcon,size,target,to}){let classes=classnames__WEBPACK_IMPORTED_MODULE_2___default()('jump-to',`jump-to--${size}`,className);let content=/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"jump-to--inner"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"jump-to--inner-2"},leftIcon&&/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"jump-to--left"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i",{className:`feather icon-${leftIcon}`})),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"jump-to--main"},badge?/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span",{className:"badge badge--primary badge--right"},badge):"",children),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"jump-to--right"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i",{className:`feather icon-${rightIcon||'chevron-right'} arrow`}))));return target?/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a",{href:to,target:target,className:classes},content):/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_docusaurus_Link__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"],{to:to,className:classes},content);}/* harmony default export */ __webpack_exports__["a"] = (Jump);
 
@@ -612,7 +612,7 @@ var __spread = (this && this.__spread) || function () {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(1);
-var react_from_dom_1 = __webpack_require__(524);
+var react_from_dom_1 = __webpack_require__(528);
 var helpers_1 = __webpack_require__(464);
 exports.STATUS = {
     FAILED: 'failed',
@@ -18678,7 +18678,7 @@ function retry () {
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _docusaurus_useDocusaurusContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6);
-/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(476);
+/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(480);
 /* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_styles_css__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _styles_module_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(274);
 /* harmony import */ var _styles_module_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_styles_module_css__WEBPACK_IMPORTED_MODULE_4__);
@@ -27166,7 +27166,7 @@ function createMemoryHistory(props) {
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(482);
+/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(486);
 /* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_styles_css__WEBPACK_IMPORTED_MODULE_2__);
 function Alert({children,classNames,fill,icon,type}){let typeIcon=null;switch(type){case'danger':typeIcon='alert-triangle';break;case'success':typeIcon='check-circle';break;case'warning':typeIcon='alert-triangle';break;default:typeIcon='info';}return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:classnames__WEBPACK_IMPORTED_MODULE_1___default()(classNames,'alert',`alert--${type}`,{'alert--fill':fill,'alert--icon':icon!==false}),role:"alert"},icon!==false&&/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i",{className:classnames__WEBPACK_IMPORTED_MODULE_1___default()('feather',`icon-${icon||typeIcon}`)}),children);}/* harmony default export */ __webpack_exports__["a"] = (Alert);
 
@@ -27213,7 +27213,7 @@ var exports_tags = __webpack_require__(39);
 var useDocusaurusContext = __webpack_require__(6);
 
 // EXTERNAL MODULE: ./src/theme/GuideItem/styles.css
-var styles = __webpack_require__(478);
+var styles = __webpack_require__(482);
 
 // CONCATENATED MODULE: ./src/theme/GuideItem/index.js
 function GuideItem(props){const{frontMatter,metadata,isGuidePage=false}=props;const{categories,description,permalink,readingTime,seriesPosition,tags}=metadata;const{author_github,cover_label:coverLabel,last_modified_on:lastModifiedOn,title}=frontMatter;const enrichedTags=Object(exports_tags["a" /* enrichTags */])(tags,'guides');const domainTag=enrichedTags.find(tag=>tag.category=='domain');const domainBG=domainTag?domainTag.value:'default';const platformTag=enrichedTags.find(tag=>tag.category=='platform');const platformName=platformTag?platformTag.value:null;const sourceTag=enrichedTags.find(tag=>tag.category=='source');const sourceName=sourceTag?sourceTag.value:null;const sinkTag=enrichedTags.find(tag=>tag.category=='sink');const sinkName=sinkTag?sinkTag.value:null;const{siteConfig}=Object(useDocusaurusContext["a" /* default */])();const{metadata:{installation,sources,sinks}}=siteConfig.customFields;const{platforms}=installation;const platform=platformName&&platforms[platformName];const source=sourceName&&sources[sourceName];const sink=sinkName&&sinks[sinkName];const sourceIcon=(platform||source)!==null;const sinkIcon=sink!=null;let sourceLogoPath=null;if(platform){sourceLogoPath=platform.logo_path;}else if(source){sourceLogoPath=source.logo_path;}let sinkLogoPath=null;if(sink){sinkLogoPath=sink.logo_path;}return/*#__PURE__*/react_default.a.createElement(Link["a" /* default */],{to:permalink+'/',className:`guide-item`},/*#__PURE__*/react_default.a.createElement("article",null,/*#__PURE__*/react_default.a.createElement("div",{className:`domain-bg domain-bg--${domainBG} domain-bg--hover`},/*#__PURE__*/react_default.a.createElement("header",null,/*#__PURE__*/react_default.a.createElement("div",{className:"category"},categories[0].name),/*#__PURE__*/react_default.a.createElement("h2",{title:title},seriesPosition&&seriesPosition+'. ',coverLabel||title)),/*#__PURE__*/react_default.a.createElement("footer",null,sourceLogoPath&&/*#__PURE__*/react_default.a.createElement(lib_default.a,{src:sourceLogoPath,className:"logo"}),!sourceLogoPath&&sourceIcon&&/*#__PURE__*/react_default.a.createElement("div",{className:"logo"},/*#__PURE__*/react_default.a.createElement("i",{className:"feather icon-server"})),sinkLogoPath&&/*#__PURE__*/react_default.a.createElement(lib_default.a,{src:sinkLogoPath,className:"logo"}),!sinkLogoPath&&sinkIcon&&/*#__PURE__*/react_default.a.createElement("div",{className:"logo"},/*#__PURE__*/react_default.a.createElement("i",{className:"feather icon-server"})),!sourceLogoPath&&!sinkLogoPath&&!sourceIcon&&!sinkIcon&&/*#__PURE__*/react_default.a.createElement(Tags["a" /* default */],{colorProfile:"guides",tags:tags}),/*#__PURE__*/react_default.a.createElement("div",{className:"action"},"read now")))));}/* harmony default export */ var theme_GuideItem = (GuideItem);
@@ -27225,7 +27225,7 @@ var lodash = __webpack_require__(16);
 var lodash_default = /*#__PURE__*/__webpack_require__.n(lodash);
 
 // EXTERNAL MODULE: ./src/theme/GuideItems/styles.css
-var GuideItems_styles = __webpack_require__(479);
+var GuideItems_styles = __webpack_require__(483);
 
 // CONCATENATED MODULE: ./src/theme/GuideItems/index.js
 function sortGuides(guides){return lodash_default.a.sortBy(guides,['content.metadata.seriesPosition',guide=>guide.content.metadata.coverLabel.toLowerCase()]);}function GroupedGuideItems({groupLevel,items,large,staggered}){const groupedCategories=lodash_default()(items).map(item=>item.content.metadata.categories[groupLevel-1]).uniqBy('permalink').sortBy('title').keyBy('permalink').value();const groupedItems=lodash_default.a.groupBy(items,item=>item.content.metadata.categories[groupLevel-1].permalink);const SectionHeading=Object(Heading["a" /* default */])(`h${groupLevel+1}`);return Object.keys(groupedCategories).map((categoryPermalink,index)=>{let groupItems=groupedItems[categoryPermalink];let category=groupedCategories[categoryPermalink];return/*#__PURE__*/react_default.a.createElement("section",{key:index},/*#__PURE__*/react_default.a.createElement(SectionHeading,{id:categoryPermalink},category.title),category.description&&/*#__PURE__*/react_default.a.createElement("div",{className:"sub-title"},category.description),/*#__PURE__*/react_default.a.createElement(GuideItems,{items:groupItems,large:large,staggered:staggered}));});}function GuideItems({groupLevel,items,large,staggered}){if(groupLevel){return/*#__PURE__*/react_default.a.createElement(GroupedGuideItems,{groupLevel:groupLevel,items:items});}else{let sortedItems=sortGuides(items);return/*#__PURE__*/react_default.a.createElement("div",{className:"guides"},/*#__PURE__*/react_default.a.createElement("div",{className:classnames_default()('guide-items',{'guide-items--l':large,'guide-items--staggered':staggered})},sortedItems.map(({content:GuideContent})=>/*#__PURE__*/react_default.a.createElement(theme_GuideItem,{key:GuideContent.metadata.permalink,frontMatter:GuideContent.frontMatter,metadata:GuideContent.metadata,truncated:GuideContent.metadata.truncated},/*#__PURE__*/react_default.a.createElement(GuideContent,null)))));}}/* harmony default export */ var theme_GuideItems = __webpack_exports__["a"] = (GuideItems);
@@ -27416,7 +27416,7 @@ module.exports = {
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var query_string__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(98);
 /* harmony import */ var query_string__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(query_string__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(513);
+/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(517);
 /* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_styles_css__WEBPACK_IMPORTED_MODULE_3__);
 function Steps({children,headingDepth}){let location=typeof window!=='undefined'?window.location:null;let issueQueryString={title:`Tutorial on ${location} failed`,body:`The tutorial on:\n\n${location}\n\nHere's what went wrong:\n\n<!-- Insert command output and details. Thank you for reporting! :) -->`};let issueURL=`https://github.com/qovery/documentation/issues/new?${query_string__WEBPACK_IMPORTED_MODULE_2___default.a.stringify(issueQueryString)}`;const[feedbackAnswer,setFeedbackAnswer]=Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null);return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:`steps steps--h${headingDepth}`},children,!feedbackAnswer&&/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"steps--feedback"},"How was it? Did this tutorial work?\xA0\xA0",/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span",{className:"button button--sm button--primary",onClick:()=>setFeedbackAnswer('yes')},"Yes"),"\xA0\xA0",/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a",{href:issueURL,target:"_blank",className:"button button--sm button--primary"},"No")),feedbackAnswer=='yes'&&/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"steps--feedback steps--feedback--success"},"Thanks! If you're enjoying Qovery please consider ",/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a",{href:"https://github.com/qovery/documentation/",target:"_blank"},"starring our Github repo"),"."));}/* harmony default export */ __webpack_exports__["a"] = (Steps);
 
@@ -32749,7 +32749,7 @@ if (true) {
   // DCE check should happen before ReactDOM bundle executes so that
   // DevTools can report bad minification during injection.
   checkDCE();
-  module.exports = __webpack_require__(485);
+  module.exports = __webpack_require__(489);
 } else {}
 
 
@@ -33211,7 +33211,7 @@ var styles_module = __webpack_require__(41);
 var styles_module_default = /*#__PURE__*/__webpack_require__.n(styles_module);
 
 // CONCATENATED MODULE: ./src/theme/CodeBlock/index.js
-(typeof global!=='undefined'?global:window).Prism=prism_react_renderer_prism["a" /* default */];__webpack_require__(470);__webpack_require__(471);__webpack_require__(472);__webpack_require__(473);__webpack_require__(474);__webpack_require__(475);const highlightLinesRangeRegex=/{([\d,-]+)}/;const codeBlockTitleRegex=/title=".*"/;/* harmony default export */ var CodeBlock = __webpack_exports__["a"] = (({children,className:languageClassName,metastring})=>{const{siteConfig:{themeConfig:{prism={}}}}=Object(useDocusaurusContext["a" /* default */])();const[showCopied,setShowCopied]=Object(react["useState"])(false);const[mounted,setMounted]=Object(react["useState"])(false);// The Prism theme on SSR is always the default theme but the site theme
+(typeof global!=='undefined'?global:window).Prism=prism_react_renderer_prism["a" /* default */];__webpack_require__(470);__webpack_require__(471);__webpack_require__(472);__webpack_require__(473);__webpack_require__(474);__webpack_require__(475);__webpack_require__(476);__webpack_require__(477);__webpack_require__(478);__webpack_require__(479);const highlightLinesRangeRegex=/{([\d,-]+)}/;const codeBlockTitleRegex=/title=".*"/;/* harmony default export */ var CodeBlock = __webpack_exports__["a"] = (({children,className:languageClassName,metastring})=>{const{siteConfig:{themeConfig:{prism={}}}}=Object(useDocusaurusContext["a" /* default */])();const[showCopied,setShowCopied]=Object(react["useState"])(false);const[mounted,setMounted]=Object(react["useState"])(false);// The Prism theme on SSR is always the default theme but the site theme
 // can be in a different mode. React hydration doesn't update DOM styles
 // that come from SSR. Hence force a re-render after mounting to apply the
 // current relevant styles. There will be a flash seen of the original
@@ -34444,7 +34444,7 @@ return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a
 
 "use strict";
 
-const decamelize = __webpack_require__(497);
+const decamelize = __webpack_require__(501);
 
 const humanizeString = input => {
 	if (typeof input !== 'string') {
@@ -34820,7 +34820,7 @@ var humanize_string = __webpack_require__(68);
 var humanize_string_default = /*#__PURE__*/__webpack_require__.n(humanize_string);
 
 // EXTERNAL MODULE: ./src/components/CheckboxList/styles.css
-var styles = __webpack_require__(507);
+var styles = __webpack_require__(511);
 
 // CONCATENATED MODULE: ./src/components/CheckboxList/index.js
 function CheckboxList({humanize,icon,values,currentState,setState}){if(values.size==0)return null;let valuesArr=Array.from(values);return/*#__PURE__*/react_default.a.createElement(react_default.a.Fragment,null,valuesArr.map((value,idx)=>{let label=typeof value==='string'&&humanize?humanize_string_default()(value):value;return/*#__PURE__*/react_default.a.createElement("label",{key:idx},/*#__PURE__*/react_default.a.createElement("input",{type:"checkbox",onChange:event=>{let newValues=new Set(currentState);if(event.currentTarget.checked)newValues.add(value);else newValues.delete(value);setState(newValues);},checked:currentState.has(value)}),label&&/*#__PURE__*/react_default.a.createElement(react_default.a.Fragment,null,icon?/*#__PURE__*/react_default.a.createElement("i",{className:`feather icon-${icon}`}):''," ",label));}));}/* harmony default export */ var components_CheckboxList = (CheckboxList);
@@ -34852,7 +34852,7 @@ var qs_lib_default = /*#__PURE__*/__webpack_require__.n(qs_lib);
 var useDocusaurusContext = __webpack_require__(6);
 
 // EXTERNAL MODULE: ./src/components/QoveryComponents/styles.css
-var QoveryComponents_styles = __webpack_require__(510);
+var QoveryComponents_styles = __webpack_require__(514);
 
 // CONCATENATED MODULE: ./src/components/QoveryComponents/index.js
 function Component({delivery_guarantee,description,event_types,function_category,logo_path,name,pathTemplate,status,title,type}){let template=pathTemplate;if(!template){if(type=="source")template='/docs/reference/sources/<name>/';if(type=="transform")template='/docs/reference/transforms/<name>/';if(type=="sink")template='/docs/reference/sinks/<name>/';}let path=template.replace('<name>',name);return/*#__PURE__*/react_default.a.createElement(Link["a" /* default */],{to:path,className:"qovery-component",title:description},/*#__PURE__*/react_default.a.createElement("div",{className:"qovery-component--header"},/*#__PURE__*/react_default.a.createElement("div",{className:"qovery-component--name"},title)),/*#__PURE__*/react_default.a.createElement("div",{className:"qovery-component--badges"},status=="beta"?/*#__PURE__*/react_default.a.createElement("span",{className:"badge badge--warning",title:"This component is in beta and is not recommended for production environments"},/*#__PURE__*/react_default.a.createElement("i",{className:"feather icon-alert-triangle"})):/*#__PURE__*/react_default.a.createElement("span",{className:"badge badge--primary",title:"This component has passed reliability standards that make it production ready"},/*#__PURE__*/react_default.a.createElement("i",{className:"feather icon-award"})),delivery_guarantee=="best_effort"?/*#__PURE__*/react_default.a.createElement("span",{className:"badge badge--warning",title:"This component makes a best-effort delivery guarantee, and in rare cases can lose data"},/*#__PURE__*/react_default.a.createElement("i",{className:"feather icon-shield-off"})):/*#__PURE__*/react_default.a.createElement("span",{className:"badge badge--primary",title:"This component offers an at-least-once delivery guarantee"},/*#__PURE__*/react_default.a.createElement("i",{className:"feather icon-shield"})),event_types.includes("log")?/*#__PURE__*/react_default.a.createElement("span",{className:"badge badge--primary",title:"This component works with log event types"},"log"):'',event_types.includes("metric")?/*#__PURE__*/react_default.a.createElement("span",{className:"badge badge--primary",title:"This component works with metric event types"},"metric"):'',/*#__PURE__*/react_default.a.createElement("span",{className:"badge badge--primary"},function_category)));}function Components({components,headingLevel,pathTemplate,titles}){const sourceComponents=components.filter(component=>component.type=="source");const transformComponents=components.filter(component=>component.type=="transform");const sinkComponents=components.filter(component=>component.type=="sink");const HeadingTag=`h${headingLevel||3}`;if(components.length>0){return/*#__PURE__*/react_default.a.createElement(react_default.a.Fragment,null,sourceComponents.length>0?/*#__PURE__*/react_default.a.createElement(react_default.a.Fragment,null,titles&&/*#__PURE__*/react_default.a.createElement(HeadingTag,null,sourceComponents.length," Sources"),/*#__PURE__*/react_default.a.createElement("div",{className:"qovery-components--grid"},sourceComponents.map((props,idx)=>/*#__PURE__*/react_default.a.createElement(Component,Object(esm_extends["a" /* default */])({key:idx,pathTemplate:pathTemplate},props))))):'',transformComponents.length>0?/*#__PURE__*/react_default.a.createElement(react_default.a.Fragment,null,titles&&/*#__PURE__*/react_default.a.createElement(HeadingTag,null,transformComponents.length," Transforms"),/*#__PURE__*/react_default.a.createElement("div",{className:"qovery-components--grid"},transformComponents.map((props,idx)=>/*#__PURE__*/react_default.a.createElement(Component,Object(esm_extends["a" /* default */])({key:idx,pathTemplate:pathTemplate},props))))):'',sinkComponents.length>0?/*#__PURE__*/react_default.a.createElement(react_default.a.Fragment,null,titles&&/*#__PURE__*/react_default.a.createElement(HeadingTag,null,sinkComponents.length," Sinks"),/*#__PURE__*/react_default.a.createElement("div",{className:"qovery-components--grid"},sinkComponents.map((props,idx)=>/*#__PURE__*/react_default.a.createElement(Component,Object(esm_extends["a" /* default */])({key:idx,pathTemplate:pathTemplate},props))))):'',/*#__PURE__*/react_default.a.createElement("hr",null),/*#__PURE__*/react_default.a.createElement(Jump["a" /* default */],{to:"https://github.com/qovery/documentation/issues/new?labels=type%3A+new+feature",target:"_blank",rightIcon:"plus-circle"},"Request a new component"));}else{return/*#__PURE__*/react_default.a.createElement(Empty["a" /* default */],{text:"no components found"});}}function QoveryComponents(props){//
@@ -36869,7 +36869,7 @@ function Tag({count,label,permalink,style,value,valueOnly}){return/*#__PURE__*/r
 /* harmony import */ var _docusaurus_Link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(4);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(480);
+/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(484);
 /* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_styles_css__WEBPACK_IMPORTED_MODULE_3__);
 function PagePaginator({className,previous,next}){return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav",{className:classnames__WEBPACK_IMPORTED_MODULE_2___default()('pagination-nav',className)},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"pagination-nav__item"},previous&&/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_docusaurus_Link__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"],{className:"pagination-nav__link",to:previous.permalink},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5",{className:"pagination-nav__link--sublabel"},"Previous"),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4",{className:"pagination-nav__link--label"},"\xAB ",previous.title))),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"pagination-nav__item pagination-nav__item--next"},next&&/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_docusaurus_Link__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"],{className:"pagination-nav__link",to:next.permalink},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5",{className:"pagination-nav__link--sublabel"},"Next"),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4",{className:"pagination-nav__link--label"},next.title," \xBB"))));}/* harmony default export */ __webpack_exports__["a"] = (PagePaginator);
 
@@ -36978,7 +36978,7 @@ function renderRoutes(routes, extraProps, switchProps) {
 
 "use strict";
 
-var strictUriEncode = __webpack_require__(484);
+var strictUriEncode = __webpack_require__(488);
 var objectAssign = __webpack_require__(56);
 
 function encoderForArrayFormat(opts) {
@@ -37200,8 +37200,8 @@ function Empty({text}){return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___def
 "use strict";
 
 
-var stringify = __webpack_require__(508);
-var parse = __webpack_require__(509);
+var stringify = __webpack_require__(512);
+var parse = __webpack_require__(513);
 var formats = __webpack_require__(196);
 
 module.exports = {
@@ -37253,7 +37253,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Modal = __webpack_require__(489);
+var _Modal = __webpack_require__(493);
 
 var _Modal2 = _interopRequireDefault(_Modal);
 
@@ -39268,7 +39268,7 @@ module.exports = {
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./": 519
+	"./": 523
 };
 
 
@@ -46476,7 +46476,7 @@ exports.show = show;
 exports.documentNotReadyOrSSRTesting = documentNotReadyOrSSRTesting;
 exports.resetForTesting = resetForTesting;
 
-var _warning = __webpack_require__(493);
+var _warning = __webpack_require__(497);
 
 var _warning2 = _interopRequireDefault(_warning);
 
@@ -47100,7 +47100,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _theme_Layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(14);
-/* harmony import */ var _community_module_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(512);
+/* harmony import */ var _community_module_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(516);
 /* harmony import */ var _community_module_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_community_module_css__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _docusaurus_useDocusaurusContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(6);
 function Contact(){const context=Object(_docusaurus_useDocusaurusContext__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])();const{siteConfig={}}=context;const{metadata:{team}}=siteConfig.customFields;return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_theme_Layout__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"],{title:"Contact",description:"Contact the Qovery and Timber.io team"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header",{className:"hero"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"container container--fluid"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1",null,"Contact"),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"hero--subtitle"},"Qovery is a ",/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a",{href:"https://timber.io"},"Timber.io")," open-source product. You can contact the Qovery & Timber team using any of the options below."))),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main",null,/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section",null,/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"container"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"row"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"col"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a",{href:"mailto:hi@timber.io",className:"panel panel--link text--center"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"panel--icon"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i",{className:"feather icon-mail"})),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"panel--title"},"hi@timber.io"),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"panel--description"},"Shoot us an email"))),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"col"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a",{href:"https://twitter.com/qoverydotdev",target:"_blank",className:"panel panel--link text--center"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"panel--icon"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i",{className:"feather icon-twitter"})),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"panel--title"},"@qoverydotdev"),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"panel--description"},"Tweet at us"))),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"col"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a",{href:"https://discord.qovery.com",target:"_blank",className:"panel panel--link text--center"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"panel--icon"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i",{className:"feather icon-message-circle"})),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"panel--title"},"Chat"),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"panel--description"},"Join our chat"))))))));}/* harmony default export */ __webpack_exports__["default"] = (Contact);
@@ -47630,7 +47630,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _theme_TabItem__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(11);
 /* harmony import */ var _site_src_components_Assumptions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(40);
 /* harmony import */ var _site_src_components_Alert__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(28);
-const frontMatter={last_modified_on:'2020-04-20',$schema:'/.meta/.schemas/guides.json',title:'Deploy Laravel with MySQL on AWS',description:'How to deploy Laravel with MySQL on Amazon Web Services',author_github:'https://github.com/evoxmusic',tags:['type: tutorial'],hide_pagination:true};const metadata={"categories":[{"name":"tutorial","title":"Tutorial","description":"Simple step-by-step tutorials.","permalink":"/guides/tutorial"}],"coverLabel":"Deploy Laravel with MySQL on AWS","description":"How to deploy Laravel with MySQL on Amazon Web Services","permalink":"/guides/tutorial/deploy-laravel-with-mysql","readingTime":"7 min read","source":"@site/guides/tutorial/deploy-laravel-with-mysql.md","tags":[{"label":"type: tutorial","permalink":"/guides/tags/type-tutorial"}],"title":"Deploy Laravel with MySQL on AWS","truncated":false,"prevItem":{"title":"Customizing routes","permalink":"/guides/advanced/customizing-routing"},"nextItem":{"title":"GraphQL API with Hasura","permalink":"/guides/tutorial/graphql-api-with-hasura"}};/* @jsx mdx */const rightToc=[{value:'Sign up',id:'sign-up',children:[{value:'Install the CLI!',id:'install-the-cli',children:[]},{value:'Sign Up',id:'sign-up-1',children:[]},{value:'Authorize Qovery',id:'authorize-qovery',children:[]}]},{value:'Optional: Get the Laravel sample application',id:'optional-get-the-laravel-sample-application',children:[]},{value:'Deploy the Laravel application',id:'deploy-the-laravel-application',children:[]},{value:'Bonuses',id:'bonuses',children:[{value:'Test the Laravel application locally',id:'test-the-laravel-application-locally',children:[]},{value:'Deploy the application on a staging environment',id:'deploy-the-application-on-a-staging-environment',children:[]}]},{value:'Conclusion',id:'conclusion',children:[]}];const makeShortcode=name=>function MDXDefaultShortcode(props){console.warn("Component "+name+" was not imported, exported, or provided by MDXProvider as global scope");return Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("div",props);};const layoutProps={rightToc};const MDXLayout="wrapper";function MDXContent({components,...props}){return Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(MDXLayout,Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({},layoutProps,props,{components:components,mdxType:"MDXLayout"}),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"p"},{"href":"https://aws.amazon.com/"}),`AWS`),` (Amazon Web Services) is a fantastic and reliable cloud service provider. AWS, like Google Cloud Platform and Microsoft Azure, provides everything you need to host an application without having to worry about running the underlying servers and network configuration.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`However, deploying an application on AWS presents some challenges. The typical deployment workflow looks like this: write code, push it to Git, compile code, deploy code, validate your changes, and repeat. Developers thus not only have to do all of this manually, but they also have to configure tons of services (VPC, database, cache, DNS, CDN, etc.) to make their application live on the web.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"p"},{"href":"https://www.qovery.com/"}),`Qovery`),` solve this problem. In this blog post, I will show you how Qovery improves the developer experience to deploy staging and production `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"p"},{"href":"https://www.laravel.com/"}),`Laravel`),` application with `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"p"},{"href":"https://www.mysql.com/"}),`MySQL`),` database on AWS. You will be able to focus on writing the best code instead of managing complex services.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_site_src_components_Assumptions__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"],{name:"guide",mdxType:"Assumptions"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("ul",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("li",{parentName:"ul"},`Your Operating System is MacOS / Windows / Linux`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("li",{parentName:"ul"},`You have a Github account`))),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h2",{"id":"sign-up"},`Sign up`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Sign up using the `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("strong",{parentName:"p"},`Qovery CLI`),`, it's very simple!`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h3",{"id":"install-the-cli"},`Install the CLI!`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_theme_Tabs__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"],{centered:true,className:"rounded",defaultValue:"linux",placeholder:"Please select your OS",select:false,size:null,values:[{"group":"Platforms","label":"Linux","value":"linux"},{"group":"Platforms","label":"MacOS","value":"macos"},{"group":"Platforms","label":"Windows","value":"windows"}],mdxType:"Tabs"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_theme_TabItem__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"],{value:"linux",mdxType:"TabItem"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("strong",{parentName:"p"},`Download and install Qovery CLI on every Linux distribution`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`curl -s https://get.qovery.com | sudo bash
+const frontMatter={last_modified_on:'2020-04-20',$schema:'/.meta/.schemas/guides.json',title:'Deploy Laravel with MySQL on AWS',description:'How to deploy Laravel with MySQL on Amazon Web Services',author_github:'https://github.com/evoxmusic',tags:['type: tutorial'],hide_pagination:true};const metadata={"categories":[{"name":"tutorial","title":"Tutorial","description":"Simple step-by-step tutorials.","permalink":"/guides/tutorial"}],"coverLabel":"Deploy Laravel with MySQL on AWS","description":"How to deploy Laravel with MySQL on Amazon Web Services","permalink":"/guides/tutorial/deploy-laravel-with-mysql","readingTime":"7 min read","source":"@site/guides/tutorial/deploy-laravel-with-mysql.md","tags":[{"label":"type: tutorial","permalink":"/guides/tags/type-tutorial"}],"title":"Deploy Laravel with MySQL on AWS","truncated":false,"prevItem":{"title":"Customizing routes","permalink":"/guides/advanced/customizing-routing"},"nextItem":{"title":"GraphQL API with Hasura","permalink":"/guides/tutorial/graphql-api-with-hasura"}};/* @jsx mdx */const rightToc=[{value:'Sign up',id:'sign-up',children:[{value:'Install the CLI!',id:'install-the-cli',children:[]},{value:'Sign Up',id:'sign-up-1',children:[]},{value:'Authorize Qovery',id:'authorize-qovery',children:[]}]},{value:'Optional: Get the Laravel sample application',id:'optional-get-the-laravel-sample-application',children:[]},{value:'Deploy the Laravel application',id:'deploy-the-laravel-application',children:[]},{value:'Bonuses',id:'bonuses',children:[{value:'Test the Laravel application locally',id:'test-the-laravel-application-locally',children:[]},{value:'Deploy the application on a staging environment',id:'deploy-the-application-on-a-staging-environment',children:[]}]},{value:'Conclusion',id:'conclusion',children:[]}];const makeShortcode=name=>function MDXDefaultShortcode(props){console.warn("Component "+name+" was not imported, exported, or provided by MDXProvider as global scope");return Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("div",props);};const layoutProps={rightToc};const MDXLayout="wrapper";function MDXContent({components,...props}){return Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(MDXLayout,Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({},layoutProps,props,{components:components,mdxType:"MDXLayout"}),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"p"},{"href":"https://aws.amazon.com"}),`AWS`),` (Amazon Web Services) is a fantastic and reliable cloud service provider. AWS, like Google Cloud Platform and Microsoft Azure, provides everything you need to host an application without having to worry about running the underlying servers and network configuration.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`However, deploying an application on AWS presents some challenges. The typical deployment workflow looks like this: write code, push it to Git, compile code, deploy code, validate your changes, and repeat. Developers thus not only have to do all of this manually, but they also have to configure tons of services (VPC, database, cache, DNS, CDN, etc.) to make their application live on the web.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Qovery solve this problem.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`In this blog post, I will show you how Qovery improves the developer experience to deploy staging and production `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"p"},{"href":"https://www.laravel.com"}),`Laravel`),` application with `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"p"},{"href":"https://www.mysql.com"}),`MySQL`),` database on AWS. You will be able to focus on writing the best code instead of managing complex services.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_site_src_components_Assumptions__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"],{name:"guide",mdxType:"Assumptions"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("ul",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("li",{parentName:"ul"},`Your Operating System is MacOS / Windows / Linux`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("li",{parentName:"ul"},`You have a Github account`))),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h2",{"id":"sign-up"},`Sign up`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Sign up using the `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("strong",{parentName:"p"},`Qovery CLI`),`, it's very simple!`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h3",{"id":"install-the-cli"},`Install the CLI!`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_theme_Tabs__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"],{centered:true,className:"rounded",defaultValue:"linux",placeholder:"Please select your OS",select:false,size:null,values:[{"group":"Platforms","label":"Linux","value":"linux"},{"group":"Platforms","label":"MacOS","value":"macos"},{"group":"Platforms","label":"Windows","value":"windows"}],mdxType:"Tabs"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_theme_TabItem__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"],{value:"linux",mdxType:"TabItem"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("strong",{parentName:"p"},`Download and install Qovery CLI on every Linux distribution`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`curl -s https://get.qovery.com | sudo bash
 `))),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_theme_TabItem__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"],{value:"macos",mdxType:"TabItem"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_theme_Tabs__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"],{centered:true,className:"rounded",defaultValue:"homebrew",values:[{"label":"Homebrew","value":"homebrew"},{"label":"Manual","value":"manual"}],mdxType:"Tabs"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_theme_TabItem__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"],{value:"homebrew",mdxType:"TabItem"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("strong",{parentName:"p"},`The common solution to install a command line binary on the MacOS is to use `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"strong"},{"href":"https://brew.sh/"}),`Homebrew`),`.`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_site_src_components_Steps__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"],{headingDepth:3,mdxType:"Steps"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("ol",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("li",{parentName:"ol"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h3",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"li"},{"id":"add-qovery-brew-repository"}),`Add Qovery brew repository`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",{parentName:"li"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`brew tap Qovery/qovery-cli
 `))),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("li",{parentName:"ol"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h3",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"li"},{"id":"install-the-cli-1"}),`Install the CLI`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",{parentName:"li"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`brew install qovery-cli
 `)))))),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_theme_TabItem__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"],{value:"manual",mdxType:"TabItem"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("strong",{parentName:"p"},`Install the Qovery CLI on MacOS manually`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`curl -s https://get.qovery.com | bash
@@ -47639,8 +47639,8 @@ const frontMatter={last_modified_on:'2020-04-20',$schema:'/.meta/.schemas/guides
 `)))))),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_theme_TabItem__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"],{value:"manual",mdxType:"TabItem"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("strong",{parentName:"p"},` Install the Qovery CLI on Windows manually by downloading the `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"strong"},{"href":"https://github.com/Qovery/qovery-cli/releases"}),`latest realease`),` and uncompressing its content to
 `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("inlineCode",{parentName:"strong"},`C:\\Windows`),`.`)))))),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h3",{"id":"sign-up-1"},`Sign Up`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`After the Qovery CLI is installed, run the following command:`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`qovery auth
 `)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`A browser window with sign-in options will open.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",{align:"center"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("img",{src:"/img/qovery_signup.svg",alt:"Qovery Sign-up page"})),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Choose one of the options (e.g. `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("strong",{parentName:"p"},`Github`),`) to authenticate.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h3",{"id":"authorize-qovery"},`Authorize Qovery`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Qovery needs access to your account to be able to clone your repository for future application builds.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"p"},{"href":"https://github.com/apps/qovery/installations/new"}),`Click here`),` to authorize Qovery to clone and build your applications.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",{align:"center"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("img",{src:"/img/github-connect.png",alt:"Connect Github"})),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("strong",{parentName:"p"},`That's it! You should see "Authentication successful. You can close this window." message.`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h2",{"id":"optional-get-the-laravel-sample-application"},`Optional: Get the Laravel sample application`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Get a local copy of the `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"p"},{"href":"https://github.com/Qovery/docker-simple-example-laravel"}),`Laravel sample project`),` by forking the project using your Github account and by executing the following command:`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_site_src_components_Alert__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"],{mdxType:"Alert"},"Do not forget to fork the project and change the URL below with yours"),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`$ git clone -b tutorial git@github.com:YOUR_GITHUB_USERNAME/docker-simple-example-laravel.git
-`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h2",{"id":"deploy-the-laravel-application"},`Deploy the Laravel application`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`To deploy the Laravel application connected to a MySQL database, you need to have a .qovery.yml file, and a `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("inlineCode",{parentName:"p"},`Dockerfile`),` (already provided) at the root of your project. This file indicates the external resources (e.g. MySQL) that your application needs to work correctly.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`To create the `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("inlineCode",{parentName:"p"},`.qovery.yml`),` file, run the following command:‍‍`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`$ qovery init
-`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`The `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("inlineCode",{parentName:"p"},`.qovery.yml`),` file is created at the root of the project directory`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`$ cat .qovery.yml
+`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h2",{"id":"deploy-the-laravel-application"},`Deploy the Laravel application`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`To deploy the Laravel application connected to a MySQL database, you need to have a .qovery.yml file, and a `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("inlineCode",{parentName:"p"},`Dockerfile`),` (provided in the sample project) at the root of your project. This file indicates the external resources (e.g. MySQL) that your application needs to work correctly.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`To create the `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("inlineCode",{parentName:"p"},`.qovery.yml`),` file, run the following command:‍‍`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`$ qovery init
+`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Which creates the `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("inlineCode",{parentName:"p"},`.qovery.yml`),` file at the root of your project directory`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`$ cat .qovery.yml
 `)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Output`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`application:
   name: docker-simple-example-laravel
   project: my-laravel-app-cloud
@@ -47656,20 +47656,18 @@ routers:
   - application_name: docker-simple-example-laravel
     paths:
     - /
-`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_site_src_components_Alert__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"],{mdxType:"Alert"},"Qovery supports multiple databases (eg. PostgreSQL, MySQL, MongoDB, Redis, Memcached, Cassandra), brokers (eg. RabbitMQ, Kafka) and storage services (eg. S3)."),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"p"},{"href":"https://github.com/apps/qovery/installations/new"}),`Authorize the Qovery Github application to get access to your Github account`),`. Once done, you need to commit and push the `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("inlineCode",{parentName:"p"},`.qovery.yml`),` and `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("inlineCode",{parentName:"p"},`Dockerfile`),` file to deploy your app.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`$ git add .qovery.yml Dockerfile
+`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_site_src_components_Alert__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"],{mdxType:"Alert"},"Qovery supports multiple databases (eg. PostgreSQL, MySQL, MongoDB, Redis, Memcached, Cassandra), brokers (eg. RabbitMQ, Kafka) and storage services (eg. S3)."),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"p"},{"href":"https://github.com/apps/qovery/installations/new"}),`Authorize the Qovery Github application`),` to get access to your Github account. Once done, you need to commit and push the `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("inlineCode",{parentName:"p"},`.qovery.yml`),` and `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("inlineCode",{parentName:"p"},`Dockerfile`),` file to deploy your app.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`$ git add .qovery.yml Dockerfile
 $ git commit -m “add .qovery.yml and Dockerfile”
 $ git push -u origin qovery
 `)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Voila! Qovery is now deploying your app!`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`See the deployment status by executing`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`$ qovery status
-`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Output`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`------------+---------+---------------------------------------------+--------------+-----------+---------+----------
-  qovery      | running | https://ym3en0t3jm3j4wqq-main-gtw.qovery.io | 1            | 1         | 0       | 0
+`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Output`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`  BRANCH NAME | STATUS  | ENDPOINTS                                   | APPLICATIONS                  | DATABASES
+  master      | running | https://main-yenr7erjbs87dk4m-gtw.qovery.io | docker-simple-example-laravel | my-mysql-6132005
 
-  APPLICATION NAME              | STATUS  | ENDPOINT                                                | DATABASES | BROKERS | STORAGE
---------------------------------+---------+---------------------------------------------------------+-----------+---------+----------
-  docker-simple-example-laravel | running | https://ee5laucsynk35unj-ym3en0t3jm3j4wqq-app.qovery.io | 1         | 0       | 0
+  APPLICATION NAME              | STATUS  | DATABASES
+  docker-simple-example-laravel | running | my-mysql-6132005
 
-  DATABASE NAME    | STATUS  | TYPE  | VERSION | ENDPOINT | PORT     | USERNAME | PASSWORD | APPLICATIONS
--------------------+---------+-------+---------+----------+----------+----------+----------+--------------------------------
-  my-mysql-6132005 | running | MYSQL | 8.0     |  hidden  |  hidden  |  hidden  |  hidden  | docker-simple-example-laravel
+  DATABASE NAME    | STATUS  | TYPE       | VERSION | ENDPOINT | PORT     | USERNAME | PASSWORD | APPLICATIONS
+  my-mysql-6132005 | running | POSTGRESQL | 11.5    | <hidden> | <hidden> | <hidden> | <hidden> | docker-simple-example-laravel
 `)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h2",{"id":"bonuses"},`Bonuses`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h3",{"id":"test-the-laravel-application-locally"},`Test the Laravel application locally`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`The Qovery motto is: if your application runs locally, then your application will run on Qovery. To test if your application is running locally, execute the following command:`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_site_src_components_Alert__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"],{mdxType:"Alert"},"The Docker runtime is required"),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`$ qovery run
 `)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`...
 Starting server
@@ -47681,17 +47679,15 @@ AH00558: apache2: Could not reliably determine the server's fully qualified doma
 Note: `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("inlineCode",{parentName:"p"},`qovery run`),` connects your application to the MySQL database on AWS.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h3",{"id":"deploy-the-application-on-a-staging-environment"},`Deploy the application on a staging environment`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Qovery has a compelling feature known as “environment”. Qovery supports the deployment of isolated development environments from your branches, complete with exact copies of all of your data. The Environment is useful for testing changes in isolation before merging them.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`So, do you want to create a new feature, fix a bug, or make modifications without impacting the production or any other important environment? Type the following commands:`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`$ git checkout -b feat_foo
 $ git push -u origin feat_foo
 $ qovery status
-`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Output`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`------------+---------+---------------------------------------------+--------------+-----------+---------+----------
-  feat_foo    | running | https://ym3en0t3jm3j4xxx-main-gtw.qovery.io | 1            | 1         | 0       | 0
+`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Output`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`  BRANCH NAME | STATUS  | ENDPOINTS                                   | APPLICATIONS                  | DATABASES
+  feat_foo    | running | https://main-yenr7erjbs87dk4m-gtw.qovery.io | docker-simple-example-laravel | my-mysql-6132005
 
-  APPLICATION NAME              | STATUS  | ENDPOINT                                                | DATABASES | BROKERS | STORAGE
---------------------------------+---------+---------------------------------------------------------+-----------+---------+----------
-  docker-simple-example-laravel | running | https://ee5laucsynk35unj-ym3en0t3jm3j4xxx-app.qovery.io | 1         | 0       | 0
+  APPLICATION NAME              | STATUS  | DATABASES
+  docker-simple-example-laravel | running | my-mysql-6132005
 
-  DATABASE NAME    | STATUS  | TYPE  | VERSION | ENDPOINT | PORT     | USERNAME | PASSWORD | APPLICATIONS
--------------------+---------+-------+---------+----------+----------+----------+----------+--------------------------------
-  my-mysql-6132005 | running | MYSQL | 8.0     |  hidden  |  hidden  |  hidden  |  hidden  | docker-simple-example-laravel
-`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h2",{"id":"conclusion"},`Conclusion`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Qovery and AWS bring to developers, the full power of simplicity and flexibility while deploying applications. Any developer can now take advantage of AWS in seconds instead of days.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Accelerate your development and start using Qovery today. Let us know what you think about it on `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"p"},{"href":"https://twitter.com/Qovery_"}),`Twitter`),`, or by `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"p"},{"href":"https://discord.qovery.com"}),`Discord`),`.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("strong",{parentName:"p"},`With thanks to `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"strong"},{"href":"https://github.com/arnaudj"}),`Arnaud J.`),` for his contribution to this article.`),`s`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_site_src_components_Jump__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"],{to:"/guides/tutorial/",mdxType:"Jump"},"Tutorial"));};MDXContent.isMDXComponent=true;
+  DATABASE NAME    | STATUS  | TYPE       | VERSION | ENDPOINT | PORT     | USERNAME | PASSWORD | APPLICATIONS
+  my-mysql-6132005 | running | POSTGRESQL | 11.5    | <hidden> | <hidden> | <hidden> | <hidden> | docker-simple-example-laravel
+`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h2",{"id":"conclusion"},`Conclusion`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Qovery and AWS bring to developers, the full power of simplicity and flexibility while deploying applications. Any developer can now take advantage of AWS in seconds instead of days.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Accelerate your development and start using Qovery today. Let us know what you think about it on `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"p"},{"href":"https://twitter.com/qovery_"}),`Twitter`),`, or by `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"p"},{"href":"https://discord.qovery.com"}),`Discord`),`.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("strong",{parentName:"p"},`With thanks to `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"strong"},{"href":"https://github.com/arnaudj"}),`Arnaud J.`),` for his contribution to this article.`),`s`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_site_src_components_Jump__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"],{to:"/guides/tutorial/",mdxType:"Jump"},"Tutorial"));};MDXContent.isMDXComponent=true;
 
 /***/ }),
 /* 230 */
@@ -47770,7 +47766,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _docusaurus_Link__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(5);
 /* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(100);
 /* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(514);
+/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(518);
 /* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_styles_css__WEBPACK_IMPORTED_MODULE_7__);
 const AnchoredH2=Object(_theme_Heading__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])('h2');function Guides({filtering,items}){if(items.length==0){return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_site_src_components_Empty__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"],{text:"no guides found"});}else if(filtering){return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_theme_GuideItems__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"],{items:items});}else{const gettingStartedGuides=items.filter(item=>item.content.metadata.categories[0].name=='getting-started');const advancedGuides=items.filter(item=>item.content.metadata.categories[0].name=='advanced');const advancedCategory=advancedGuides[0].content.metadata.categories[0];const tutorialGuides=items.filter(item=>item.content.metadata.categories[0].name=='tutorial');const tutorialCategory=tutorialGuides[0].content.metadata.categories[0];//const integrationGuides = items.filter(item => item.content.metadata.categories[0].name == 'integrate');
 //const integrationCategory = integrationGuides[0].content.metadata.categories[0];
@@ -47961,7 +47957,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _theme_TabItem__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(11);
 /* harmony import */ var _site_src_components_Assumptions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(40);
 /* harmony import */ var _site_src_components_Alert__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(28);
-const frontMatter={last_modified_on:'2020-04-20',$schema:'/.meta/.schemas/guides.json',title:'Deploy Laravel with MySQL on AWS',description:'How to deploy Laravel with MySQL on Amazon Web Services',author_github:'https://github.com/evoxmusic',tags:['type: tutorial'],hide_pagination:true};const metadata={"categories":[{"name":"tutorial","title":"Tutorial","description":"Simple step-by-step tutorials.","permalink":"/guides/tutorial"}],"coverLabel":"Deploy Laravel with MySQL on AWS","description":"How to deploy Laravel with MySQL on Amazon Web Services","permalink":"/guides/tutorial/deploy-laravel-with-mysql","readingTime":"7 min read","source":"@site/guides/tutorial/deploy-laravel-with-mysql.md","tags":[{"label":"type: tutorial","permalink":"/guides/tags/type-tutorial"}],"title":"Deploy Laravel with MySQL on AWS","truncated":false,"prevItem":{"title":"Customizing routes","permalink":"/guides/advanced/customizing-routing"},"nextItem":{"title":"GraphQL API with Hasura","permalink":"/guides/tutorial/graphql-api-with-hasura"}};/* @jsx mdx */const rightToc=[{value:'Sign up',id:'sign-up',children:[{value:'Install the CLI!',id:'install-the-cli',children:[]},{value:'Sign Up',id:'sign-up-1',children:[]},{value:'Authorize Qovery',id:'authorize-qovery',children:[]}]},{value:'Optional: Get the Laravel sample application',id:'optional-get-the-laravel-sample-application',children:[]},{value:'Deploy the Laravel application',id:'deploy-the-laravel-application',children:[]},{value:'Bonuses',id:'bonuses',children:[{value:'Test the Laravel application locally',id:'test-the-laravel-application-locally',children:[]},{value:'Deploy the application on a staging environment',id:'deploy-the-application-on-a-staging-environment',children:[]}]},{value:'Conclusion',id:'conclusion',children:[]}];const makeShortcode=name=>function MDXDefaultShortcode(props){console.warn("Component "+name+" was not imported, exported, or provided by MDXProvider as global scope");return Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("div",props);};const layoutProps={rightToc};const MDXLayout="wrapper";function MDXContent({components,...props}){return Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(MDXLayout,Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({},layoutProps,props,{components:components,mdxType:"MDXLayout"}),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"p"},{"href":"https://aws.amazon.com/"}),`AWS`),` (Amazon Web Services) is a fantastic and reliable cloud service provider. AWS, like Google Cloud Platform and Microsoft Azure, provides everything you need to host an application without having to worry about running the underlying servers and network configuration.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`However, deploying an application on AWS presents some challenges. The typical deployment workflow looks like this: write code, push it to Git, compile code, deploy code, validate your changes, and repeat. Developers thus not only have to do all of this manually, but they also have to configure tons of services (VPC, database, cache, DNS, CDN, etc.) to make their application live on the web.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"p"},{"href":"https://www.qovery.com/"}),`Qovery`),` solve this problem. In this blog post, I will show you how Qovery improves the developer experience to deploy staging and production `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"p"},{"href":"https://www.laravel.com/"}),`Laravel`),` application with `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"p"},{"href":"https://www.mysql.com/"}),`MySQL`),` database on AWS. You will be able to focus on writing the best code instead of managing complex services.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_site_src_components_Assumptions__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"],{name:"guide",mdxType:"Assumptions"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("ul",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("li",{parentName:"ul"},`Your Operating System is MacOS / Windows / Linux`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("li",{parentName:"ul"},`You have a Github account`))),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h2",{"id":"sign-up"},`Sign up`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Sign up using the `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("strong",{parentName:"p"},`Qovery CLI`),`, it's very simple!`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h3",{"id":"install-the-cli"},`Install the CLI!`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_theme_Tabs__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"],{centered:true,className:"rounded",defaultValue:"linux",placeholder:"Please select your OS",select:false,size:null,values:[{"group":"Platforms","label":"Linux","value":"linux"},{"group":"Platforms","label":"MacOS","value":"macos"},{"group":"Platforms","label":"Windows","value":"windows"}],mdxType:"Tabs"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_theme_TabItem__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"],{value:"linux",mdxType:"TabItem"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("strong",{parentName:"p"},`Download and install Qovery CLI on every Linux distribution`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`curl -s https://get.qovery.com | sudo bash
+const frontMatter={last_modified_on:'2020-04-20',$schema:'/.meta/.schemas/guides.json',title:'Deploy Laravel with MySQL on AWS',description:'How to deploy Laravel with MySQL on Amazon Web Services',author_github:'https://github.com/evoxmusic',tags:['type: tutorial'],hide_pagination:true};const metadata={"categories":[{"name":"tutorial","title":"Tutorial","description":"Simple step-by-step tutorials.","permalink":"/guides/tutorial"}],"coverLabel":"Deploy Laravel with MySQL on AWS","description":"How to deploy Laravel with MySQL on Amazon Web Services","permalink":"/guides/tutorial/deploy-laravel-with-mysql","readingTime":"7 min read","source":"@site/guides/tutorial/deploy-laravel-with-mysql.md","tags":[{"label":"type: tutorial","permalink":"/guides/tags/type-tutorial"}],"title":"Deploy Laravel with MySQL on AWS","truncated":false,"prevItem":{"title":"Customizing routes","permalink":"/guides/advanced/customizing-routing"},"nextItem":{"title":"GraphQL API with Hasura","permalink":"/guides/tutorial/graphql-api-with-hasura"}};/* @jsx mdx */const rightToc=[{value:'Sign up',id:'sign-up',children:[{value:'Install the CLI!',id:'install-the-cli',children:[]},{value:'Sign Up',id:'sign-up-1',children:[]},{value:'Authorize Qovery',id:'authorize-qovery',children:[]}]},{value:'Optional: Get the Laravel sample application',id:'optional-get-the-laravel-sample-application',children:[]},{value:'Deploy the Laravel application',id:'deploy-the-laravel-application',children:[]},{value:'Bonuses',id:'bonuses',children:[{value:'Test the Laravel application locally',id:'test-the-laravel-application-locally',children:[]},{value:'Deploy the application on a staging environment',id:'deploy-the-application-on-a-staging-environment',children:[]}]},{value:'Conclusion',id:'conclusion',children:[]}];const makeShortcode=name=>function MDXDefaultShortcode(props){console.warn("Component "+name+" was not imported, exported, or provided by MDXProvider as global scope");return Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("div",props);};const layoutProps={rightToc};const MDXLayout="wrapper";function MDXContent({components,...props}){return Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(MDXLayout,Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({},layoutProps,props,{components:components,mdxType:"MDXLayout"}),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"p"},{"href":"https://aws.amazon.com"}),`AWS`),` (Amazon Web Services) is a fantastic and reliable cloud service provider. AWS, like Google Cloud Platform and Microsoft Azure, provides everything you need to host an application without having to worry about running the underlying servers and network configuration.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`However, deploying an application on AWS presents some challenges. The typical deployment workflow looks like this: write code, push it to Git, compile code, deploy code, validate your changes, and repeat. Developers thus not only have to do all of this manually, but they also have to configure tons of services (VPC, database, cache, DNS, CDN, etc.) to make their application live on the web.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Qovery solve this problem.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`In this blog post, I will show you how Qovery improves the developer experience to deploy staging and production `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"p"},{"href":"https://www.laravel.com"}),`Laravel`),` application with `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"p"},{"href":"https://www.mysql.com"}),`MySQL`),` database on AWS. You will be able to focus on writing the best code instead of managing complex services.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_site_src_components_Assumptions__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"],{name:"guide",mdxType:"Assumptions"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("ul",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("li",{parentName:"ul"},`Your Operating System is MacOS / Windows / Linux`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("li",{parentName:"ul"},`You have a Github account`))),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h2",{"id":"sign-up"},`Sign up`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Sign up using the `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("strong",{parentName:"p"},`Qovery CLI`),`, it's very simple!`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h3",{"id":"install-the-cli"},`Install the CLI!`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_theme_Tabs__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"],{centered:true,className:"rounded",defaultValue:"linux",placeholder:"Please select your OS",select:false,size:null,values:[{"group":"Platforms","label":"Linux","value":"linux"},{"group":"Platforms","label":"MacOS","value":"macos"},{"group":"Platforms","label":"Windows","value":"windows"}],mdxType:"Tabs"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_theme_TabItem__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"],{value:"linux",mdxType:"TabItem"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("strong",{parentName:"p"},`Download and install Qovery CLI on every Linux distribution`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`curl -s https://get.qovery.com | sudo bash
 `))),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_theme_TabItem__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"],{value:"macos",mdxType:"TabItem"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_theme_Tabs__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"],{centered:true,className:"rounded",defaultValue:"homebrew",values:[{"label":"Homebrew","value":"homebrew"},{"label":"Manual","value":"manual"}],mdxType:"Tabs"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_theme_TabItem__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"],{value:"homebrew",mdxType:"TabItem"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("strong",{parentName:"p"},`The common solution to install a command line binary on the MacOS is to use `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"strong"},{"href":"https://brew.sh/"}),`Homebrew`),`.`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_site_src_components_Steps__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"],{headingDepth:3,mdxType:"Steps"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("ol",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("li",{parentName:"ol"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h3",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"li"},{"id":"add-qovery-brew-repository"}),`Add Qovery brew repository`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",{parentName:"li"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`brew tap Qovery/qovery-cli
 `))),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("li",{parentName:"ol"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h3",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"li"},{"id":"install-the-cli-1"}),`Install the CLI`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",{parentName:"li"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`brew install qovery-cli
 `)))))),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_theme_TabItem__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"],{value:"manual",mdxType:"TabItem"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("strong",{parentName:"p"},`Install the Qovery CLI on MacOS manually`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`curl -s https://get.qovery.com | bash
@@ -47970,8 +47966,8 @@ const frontMatter={last_modified_on:'2020-04-20',$schema:'/.meta/.schemas/guides
 `)))))),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_theme_TabItem__WEBPACK_IMPORTED_MODULE_6__[/* default */ "a"],{value:"manual",mdxType:"TabItem"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("strong",{parentName:"p"},` Install the Qovery CLI on Windows manually by downloading the `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"strong"},{"href":"https://github.com/Qovery/qovery-cli/releases"}),`latest realease`),` and uncompressing its content to
 `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("inlineCode",{parentName:"strong"},`C:\\Windows`),`.`)))))),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h3",{"id":"sign-up-1"},`Sign Up`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`After the Qovery CLI is installed, run the following command:`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`qovery auth
 `)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`A browser window with sign-in options will open.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",{align:"center"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("img",{src:"/img/qovery_signup.svg",alt:"Qovery Sign-up page"})),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Choose one of the options (e.g. `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("strong",{parentName:"p"},`Github`),`) to authenticate.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h3",{"id":"authorize-qovery"},`Authorize Qovery`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Qovery needs access to your account to be able to clone your repository for future application builds.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"p"},{"href":"https://github.com/apps/qovery/installations/new"}),`Click here`),` to authorize Qovery to clone and build your applications.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",{align:"center"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("img",{src:"/img/github-connect.png",alt:"Connect Github"})),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("strong",{parentName:"p"},`That's it! You should see "Authentication successful. You can close this window." message.`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h2",{"id":"optional-get-the-laravel-sample-application"},`Optional: Get the Laravel sample application`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Get a local copy of the `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"p"},{"href":"https://github.com/Qovery/docker-simple-example-laravel"}),`Laravel sample project`),` by forking the project using your Github account and by executing the following command:`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_site_src_components_Alert__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"],{mdxType:"Alert"},"Do not forget to fork the project and change the URL below with yours"),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`$ git clone -b tutorial git@github.com:YOUR_GITHUB_USERNAME/docker-simple-example-laravel.git
-`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h2",{"id":"deploy-the-laravel-application"},`Deploy the Laravel application`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`To deploy the Laravel application connected to a MySQL database, you need to have a .qovery.yml file, and a `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("inlineCode",{parentName:"p"},`Dockerfile`),` (already provided) at the root of your project. This file indicates the external resources (e.g. MySQL) that your application needs to work correctly.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`To create the `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("inlineCode",{parentName:"p"},`.qovery.yml`),` file, run the following command:‍‍`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`$ qovery init
-`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`The `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("inlineCode",{parentName:"p"},`.qovery.yml`),` file is created at the root of the project directory`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`$ cat .qovery.yml
+`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h2",{"id":"deploy-the-laravel-application"},`Deploy the Laravel application`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`To deploy the Laravel application connected to a MySQL database, you need to have a .qovery.yml file, and a `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("inlineCode",{parentName:"p"},`Dockerfile`),` (provided in the sample project) at the root of your project. This file indicates the external resources (e.g. MySQL) that your application needs to work correctly.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`To create the `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("inlineCode",{parentName:"p"},`.qovery.yml`),` file, run the following command:‍‍`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`$ qovery init
+`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Which creates the `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("inlineCode",{parentName:"p"},`.qovery.yml`),` file at the root of your project directory`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`$ cat .qovery.yml
 `)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Output`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`application:
   name: docker-simple-example-laravel
   project: my-laravel-app-cloud
@@ -47987,20 +47983,18 @@ routers:
   - application_name: docker-simple-example-laravel
     paths:
     - /
-`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_site_src_components_Alert__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"],{mdxType:"Alert"},"Qovery supports multiple databases (eg. PostgreSQL, MySQL, MongoDB, Redis, Memcached, Cassandra), brokers (eg. RabbitMQ, Kafka) and storage services (eg. S3)."),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"p"},{"href":"https://github.com/apps/qovery/installations/new"}),`Authorize the Qovery Github application to get access to your Github account`),`. Once done, you need to commit and push the `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("inlineCode",{parentName:"p"},`.qovery.yml`),` and `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("inlineCode",{parentName:"p"},`Dockerfile`),` file to deploy your app.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`$ git add .qovery.yml Dockerfile
+`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_site_src_components_Alert__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"],{mdxType:"Alert"},"Qovery supports multiple databases (eg. PostgreSQL, MySQL, MongoDB, Redis, Memcached, Cassandra), brokers (eg. RabbitMQ, Kafka) and storage services (eg. S3)."),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"p"},{"href":"https://github.com/apps/qovery/installations/new"}),`Authorize the Qovery Github application`),` to get access to your Github account. Once done, you need to commit and push the `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("inlineCode",{parentName:"p"},`.qovery.yml`),` and `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("inlineCode",{parentName:"p"},`Dockerfile`),` file to deploy your app.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`$ git add .qovery.yml Dockerfile
 $ git commit -m “add .qovery.yml and Dockerfile”
 $ git push -u origin qovery
 `)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Voila! Qovery is now deploying your app!`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`See the deployment status by executing`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`$ qovery status
-`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Output`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`------------+---------+---------------------------------------------+--------------+-----------+---------+----------
-  qovery      | running | https://ym3en0t3jm3j4wqq-main-gtw.qovery.io | 1            | 1         | 0       | 0
+`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Output`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`  BRANCH NAME | STATUS  | ENDPOINTS                                   | APPLICATIONS                  | DATABASES
+  master      | running | https://main-yenr7erjbs87dk4m-gtw.qovery.io | docker-simple-example-laravel | my-mysql-6132005
 
-  APPLICATION NAME              | STATUS  | ENDPOINT                                                | DATABASES | BROKERS | STORAGE
---------------------------------+---------+---------------------------------------------------------+-----------+---------+----------
-  docker-simple-example-laravel | running | https://ee5laucsynk35unj-ym3en0t3jm3j4wqq-app.qovery.io | 1         | 0       | 0
+  APPLICATION NAME              | STATUS  | DATABASES
+  docker-simple-example-laravel | running | my-mysql-6132005
 
-  DATABASE NAME    | STATUS  | TYPE  | VERSION | ENDPOINT | PORT     | USERNAME | PASSWORD | APPLICATIONS
--------------------+---------+-------+---------+----------+----------+----------+----------+--------------------------------
-  my-mysql-6132005 | running | MYSQL | 8.0     |  hidden  |  hidden  |  hidden  |  hidden  | docker-simple-example-laravel
+  DATABASE NAME    | STATUS  | TYPE       | VERSION | ENDPOINT | PORT     | USERNAME | PASSWORD | APPLICATIONS
+  my-mysql-6132005 | running | POSTGRESQL | 11.5    | <hidden> | <hidden> | <hidden> | <hidden> | docker-simple-example-laravel
 `)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h2",{"id":"bonuses"},`Bonuses`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h3",{"id":"test-the-laravel-application-locally"},`Test the Laravel application locally`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`The Qovery motto is: if your application runs locally, then your application will run on Qovery. To test if your application is running locally, execute the following command:`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_site_src_components_Alert__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"],{mdxType:"Alert"},"The Docker runtime is required"),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`$ qovery run
 `)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`...
 Starting server
@@ -48012,17 +48006,15 @@ AH00558: apache2: Could not reliably determine the server's fully qualified doma
 Note: `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("inlineCode",{parentName:"p"},`qovery run`),` connects your application to the MySQL database on AWS.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h3",{"id":"deploy-the-application-on-a-staging-environment"},`Deploy the application on a staging environment`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Qovery has a compelling feature known as “environment”. Qovery supports the deployment of isolated development environments from your branches, complete with exact copies of all of your data. The Environment is useful for testing changes in isolation before merging them.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`So, do you want to create a new feature, fix a bug, or make modifications without impacting the production or any other important environment? Type the following commands:`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`$ git checkout -b feat_foo
 $ git push -u origin feat_foo
 $ qovery status
-`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Output`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`------------+---------+---------------------------------------------+--------------+-----------+---------+----------
-  feat_foo    | running | https://ym3en0t3jm3j4xxx-main-gtw.qovery.io | 1            | 1         | 0       | 0
+`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Output`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-bash"}),`  BRANCH NAME | STATUS  | ENDPOINTS                                   | APPLICATIONS                  | DATABASES
+  feat_foo    | running | https://main-yenr7erjbs87dk4m-gtw.qovery.io | docker-simple-example-laravel | my-mysql-6132005
 
-  APPLICATION NAME              | STATUS  | ENDPOINT                                                | DATABASES | BROKERS | STORAGE
---------------------------------+---------+---------------------------------------------------------+-----------+---------+----------
-  docker-simple-example-laravel | running | https://ee5laucsynk35unj-ym3en0t3jm3j4xxx-app.qovery.io | 1         | 0       | 0
+  APPLICATION NAME              | STATUS  | DATABASES
+  docker-simple-example-laravel | running | my-mysql-6132005
 
-  DATABASE NAME    | STATUS  | TYPE  | VERSION | ENDPOINT | PORT     | USERNAME | PASSWORD | APPLICATIONS
--------------------+---------+-------+---------+----------+----------+----------+----------+--------------------------------
-  my-mysql-6132005 | running | MYSQL | 8.0     |  hidden  |  hidden  |  hidden  |  hidden  | docker-simple-example-laravel
-`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h2",{"id":"conclusion"},`Conclusion`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Qovery and AWS bring to developers, the full power of simplicity and flexibility while deploying applications. Any developer can now take advantage of AWS in seconds instead of days.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Accelerate your development and start using Qovery today. Let us know what you think about it on `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"p"},{"href":"https://twitter.com/Qovery_"}),`Twitter`),`, or by `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"p"},{"href":"https://discord.qovery.com"}),`Discord`),`.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("strong",{parentName:"p"},`With thanks to `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"strong"},{"href":"https://github.com/arnaudj"}),`Arnaud J.`),` for his contribution to this article.`),`s`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_site_src_components_Jump__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"],{to:"/guides/tutorial/",mdxType:"Jump"},"Tutorial"));};MDXContent.isMDXComponent=true;
+  DATABASE NAME    | STATUS  | TYPE       | VERSION | ENDPOINT | PORT     | USERNAME | PASSWORD | APPLICATIONS
+  my-mysql-6132005 | running | POSTGRESQL | 11.5    | <hidden> | <hidden> | <hidden> | <hidden> | docker-simple-example-laravel
+`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h2",{"id":"conclusion"},`Conclusion`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Qovery and AWS bring to developers, the full power of simplicity and flexibility while deploying applications. Any developer can now take advantage of AWS in seconds instead of days.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Accelerate your development and start using Qovery today. Let us know what you think about it on `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"p"},{"href":"https://twitter.com/qovery_"}),`Twitter`),`, or by `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"p"},{"href":"https://discord.qovery.com"}),`Discord`),`.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("strong",{parentName:"p"},`With thanks to `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"strong"},{"href":"https://github.com/arnaudj"}),`Arnaud J.`),` for his contribution to this article.`),`s`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_site_src_components_Jump__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"],{to:"/guides/tutorial/",mdxType:"Jump"},"Tutorial"));};MDXContent.isMDXComponent=true;
 
 /***/ }),
 /* 248 */
@@ -48861,7 +48853,7 @@ var styles_module = __webpack_require__(48);
 var styles_module_default = /*#__PURE__*/__webpack_require__.n(styles_module);
 
 // EXTERNAL MODULE: ./src/theme/DocSidebar/styles.css
-var styles = __webpack_require__(481);
+var styles = __webpack_require__(485);
 
 // CONCATENATED MODULE: ./src/theme/DocSidebar/index.js
 const MOBILE_TOGGLE_SIZE=24;function DocSidebarItem({item,level,onItemClick,collapsible}){const{items,href,label,type}=item;const[collapsed,setCollapsed]=Object(react["useState"])(item.collapsed);const[prevCollapsedProp,setPreviousCollapsedProp]=Object(react["useState"])(null);// If the collapsing state from props changed, probably a navigation event
@@ -48913,7 +48905,7 @@ var Heading = __webpack_require__(17);
 var Alert = __webpack_require__(28);
 
 // EXTERNAL MODULE: ./src/components/CodeExplanation/styles.css
-var styles = __webpack_require__(483);
+var styles = __webpack_require__(487);
 
 // CONCATENATED MODULE: ./src/components/CodeExplanation/index.js
 function CodeExplanation({children}){const[isToggled,setToggled]=Object(react["useState"])(false);if(isToggled){return/*#__PURE__*/react_default.a.createElement("div",{className:"code-explanation code-explanation--expanded"},children,/*#__PURE__*/react_default.a.createElement("div",{className:"code-explanation--toggle",onClick:()=>setToggled(!isToggled)},/*#__PURE__*/react_default.a.createElement("i",{className:"feather icon-arrow-up-circle"})," hide"));}else{return/*#__PURE__*/react_default.a.createElement("div",{className:"code-explanation code-explanation--collapsed"},/*#__PURE__*/react_default.a.createElement("div",{className:"code-explanation--toggle",onClick:()=>setToggled(!isToggled)},/*#__PURE__*/react_default.a.createElement("i",{className:"feather icon-info"})," explain this command"));}}/* harmony default export */ var components_CodeExplanation = (CodeExplanation);
@@ -49025,7 +49017,7 @@ var classnames = __webpack_require__(4);
 var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 
 // EXTERNAL MODULE: ./src/components/MailingListForm/styles.css
-var styles = __webpack_require__(511);
+var styles = __webpack_require__(515);
 
 // CONCATENATED MODULE: ./src/components/MailingListForm/index.js
 function MailingListForm({block,buttonClass,center,description,size,width}){return/*#__PURE__*/react_default.a.createElement("div",{className:classnames_default()('mailing-list',{'mailing-list--block':block,'mailing-list--center':center,[`mailing-list--${size}`]:size})},description!==false&&/*#__PURE__*/react_default.a.createElement("div",{className:"mailing-list--description"},"The easiest way to stay up-to-date. One email on the 1st of every month. No spam, ever."),/*#__PURE__*/react_default.a.createElement("form",{action:"https://qovery.us4.list-manage.com/subscribe/post?u=3c76e7a2087d5bc4020348c46&id=63bd993879",method:"post",className:"mailing-list--form"},/*#__PURE__*/react_default.a.createElement("input",{className:classnames_default()('input',`input--${size}`),name:"email",placeholder:"you@email.com",type:"email",style:{width:width}}),/*#__PURE__*/react_default.a.createElement("button",{className:classnames_default()('button',`button--${buttonClass||'primary'}`,`button--${size}`),type:"submit"},"Subscribe")));}/* harmony default export */ var components_MailingListForm = (MailingListForm);
@@ -52232,7 +52224,7 @@ module.exports = {
 /* 276 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var emoji = __webpack_require__(477)
+var emoji = __webpack_require__(481)
 
 module.exports = BananaSlug
 
@@ -81257,27 +81249,343 @@ Prism.languages.rust = {
 /* 476 */
 /***/ (function(module, exports) {
 
+(function (Prism) {
+	Prism.languages.kotlin = Prism.languages.extend('clike', {
+		'keyword': {
+			// The lookbehind prevents wrong highlighting of e.g. kotlin.properties.get
+			pattern: /(^|[^.])\b(?:abstract|actual|annotation|as|break|by|catch|class|companion|const|constructor|continue|crossinline|data|do|dynamic|else|enum|expect|external|final|finally|for|fun|get|if|import|in|infix|init|inline|inner|interface|internal|is|lateinit|noinline|null|object|open|operator|out|override|package|private|protected|public|reified|return|sealed|set|super|suspend|tailrec|this|throw|to|try|typealias|val|var|vararg|when|where|while)\b/,
+			lookbehind: true
+		},
+		'function': [
+			/\w+(?=\s*\()/,
+			{
+				pattern: /(\.)\w+(?=\s*\{)/,
+				lookbehind: true
+			}
+		],
+		'number': /\b(?:0[xX][\da-fA-F]+(?:_[\da-fA-F]+)*|0[bB][01]+(?:_[01]+)*|\d+(?:_\d+)*(?:\.\d+(?:_\d+)*)?(?:[eE][+-]?\d+(?:_\d+)*)?[fFL]?)\b/,
+		'operator': /\+[+=]?|-[-=>]?|==?=?|!(?:!|==?)?|[\/*%<>]=?|[?:]:?|\.\.|&&|\|\||\b(?:and|inv|or|shl|shr|ushr|xor)\b/
+	});
+
+	delete Prism.languages.kotlin["class-name"];
+
+	Prism.languages.insertBefore('kotlin', 'string', {
+		'raw-string': {
+			pattern: /("""|''')[\s\S]*?\1/,
+			alias: 'string'
+			// See interpolation below
+		}
+	});
+	Prism.languages.insertBefore('kotlin', 'keyword', {
+		'annotation': {
+			pattern: /\B@(?:\w+:)?(?:[A-Z]\w*|\[[^\]]+\])/,
+			alias: 'builtin'
+		}
+	});
+	Prism.languages.insertBefore('kotlin', 'function', {
+		'label': {
+			pattern: /\w+@|@\w+/,
+			alias: 'symbol'
+		}
+	});
+
+	var interpolation = [
+		{
+			pattern: /\$\{[^}]+\}/,
+			inside: {
+				'delimiter': {
+					pattern: /^\$\{|\}$/,
+					alias: 'variable'
+				},
+				rest: Prism.languages.kotlin
+			}
+		},
+		{
+			pattern: /\$\w+/,
+			alias: 'variable'
+		}
+	];
+
+	Prism.languages.kotlin['string'].inside = Prism.languages.kotlin['raw-string'].inside = {
+		interpolation: interpolation
+	};
+
+}(Prism));
 
 
 /***/ }),
 /* 477 */
 /***/ (function(module, exports) {
 
-module.exports = function() {
-	return /[\xA9\xAE\u203C\u2049\u2122\u2139\u2194-\u2199\u21A9\u21AA\u231A\u231B\u2328\u23CF\u23E9-\u23F3\u23F8-\u23FA\u24C2\u25AA\u25AB\u25B6\u25C0\u25FB-\u25FE\u2600-\u2604\u260E\u2611\u2614\u2615\u2618\u261D\u2620\u2622\u2623\u2626\u262A\u262E\u262F\u2638-\u263A\u2648-\u2653\u2660\u2663\u2665\u2666\u2668\u267B\u267F\u2692-\u2694\u2696\u2697\u2699\u269B\u269C\u26A0\u26A1\u26AA\u26AB\u26B0\u26B1\u26BD\u26BE\u26C4\u26C5\u26C8\u26CE\u26CF\u26D1\u26D3\u26D4\u26E9\u26EA\u26F0-\u26F5\u26F7-\u26FA\u26FD\u2702\u2705\u2708-\u270D\u270F\u2712\u2714\u2716\u271D\u2721\u2728\u2733\u2734\u2744\u2747\u274C\u274E\u2753-\u2755\u2757\u2763\u2764\u2795-\u2797\u27A1\u27B0\u27BF\u2934\u2935\u2B05-\u2B07\u2B1B\u2B1C\u2B50\u2B55\u3030\u303D\u3297\u3299]|\uD83C[\uDC04\uDCCF\uDD70\uDD71\uDD7E\uDD7F\uDD8E\uDD91-\uDD9A\uDE01\uDE02\uDE1A\uDE2F\uDE32-\uDE3A\uDE50\uDE51\uDF00-\uDF21\uDF24-\uDF93\uDF96\uDF97\uDF99-\uDF9B\uDF9E-\uDFF0\uDFF3-\uDFF5\uDFF7-\uDFFF]|\uD83D[\uDC00-\uDCFD\uDCFF-\uDD3D\uDD49-\uDD4E\uDD50-\uDD67\uDD6F\uDD70\uDD73-\uDD79\uDD87\uDD8A-\uDD8D\uDD90\uDD95\uDD96\uDDA5\uDDA8\uDDB1\uDDB2\uDDBC\uDDC2-\uDDC4\uDDD1-\uDDD3\uDDDC-\uDDDE\uDDE1\uDDE3\uDDEF\uDDF3\uDDFA-\uDE4F\uDE80-\uDEC5\uDECB-\uDED0\uDEE0-\uDEE5\uDEE9\uDEEB\uDEEC\uDEF0\uDEF3]|\uD83E[\uDD10-\uDD18\uDD80-\uDD84\uDDC0]|\uD83C\uDDFF\uD83C[\uDDE6\uDDF2\uDDFC]|\uD83C\uDDFE\uD83C[\uDDEA\uDDF9]|\uD83C\uDDFD\uD83C\uDDF0|\uD83C\uDDFC\uD83C[\uDDEB\uDDF8]|\uD83C\uDDFB\uD83C[\uDDE6\uDDE8\uDDEA\uDDEC\uDDEE\uDDF3\uDDFA]|\uD83C\uDDFA\uD83C[\uDDE6\uDDEC\uDDF2\uDDF8\uDDFE\uDDFF]|\uD83C\uDDF9\uD83C[\uDDE6\uDDE8\uDDE9\uDDEB-\uDDED\uDDEF-\uDDF4\uDDF7\uDDF9\uDDFB\uDDFC\uDDFF]|\uD83C\uDDF8\uD83C[\uDDE6-\uDDEA\uDDEC-\uDDF4\uDDF7-\uDDF9\uDDFB\uDDFD-\uDDFF]|\uD83C\uDDF7\uD83C[\uDDEA\uDDF4\uDDF8\uDDFA\uDDFC]|\uD83C\uDDF6\uD83C\uDDE6|\uD83C\uDDF5\uD83C[\uDDE6\uDDEA-\uDDED\uDDF0-\uDDF3\uDDF7-\uDDF9\uDDFC\uDDFE]|\uD83C\uDDF4\uD83C\uDDF2|\uD83C\uDDF3\uD83C[\uDDE6\uDDE8\uDDEA-\uDDEC\uDDEE\uDDF1\uDDF4\uDDF5\uDDF7\uDDFA\uDDFF]|\uD83C\uDDF2\uD83C[\uDDE6\uDDE8-\uDDED\uDDF0-\uDDFF]|\uD83C\uDDF1\uD83C[\uDDE6-\uDDE8\uDDEE\uDDF0\uDDF7-\uDDFB\uDDFE]|\uD83C\uDDF0\uD83C[\uDDEA\uDDEC-\uDDEE\uDDF2\uDDF3\uDDF5\uDDF7\uDDFC\uDDFE\uDDFF]|\uD83C\uDDEF\uD83C[\uDDEA\uDDF2\uDDF4\uDDF5]|\uD83C\uDDEE\uD83C[\uDDE8-\uDDEA\uDDF1-\uDDF4\uDDF6-\uDDF9]|\uD83C\uDDED\uD83C[\uDDF0\uDDF2\uDDF3\uDDF7\uDDF9\uDDFA]|\uD83C\uDDEC\uD83C[\uDDE6\uDDE7\uDDE9-\uDDEE\uDDF1-\uDDF3\uDDF5-\uDDFA\uDDFC\uDDFE]|\uD83C\uDDEB\uD83C[\uDDEE-\uDDF0\uDDF2\uDDF4\uDDF7]|\uD83C\uDDEA\uD83C[\uDDE6\uDDE8\uDDEA\uDDEC\uDDED\uDDF7-\uDDFA]|\uD83C\uDDE9\uD83C[\uDDEA\uDDEC\uDDEF\uDDF0\uDDF2\uDDF4\uDDFF]|\uD83C\uDDE8\uD83C[\uDDE6\uDDE8\uDDE9\uDDEB-\uDDEE\uDDF0-\uDDF5\uDDF7\uDDFA-\uDDFF]|\uD83C\uDDE7\uD83C[\uDDE6\uDDE7\uDDE9-\uDDEF\uDDF1-\uDDF4\uDDF6-\uDDF9\uDDFB\uDDFC\uDDFE\uDDFF]|\uD83C\uDDE6\uD83C[\uDDE8-\uDDEC\uDDEE\uDDF1\uDDF2\uDDF4\uDDF6-\uDDFA\uDDFC\uDDFD\uDDFF]|[#\*0-9]\u20E3/g;
-};
+(function (Prism) {
+
+	var keywords = /\b(?:abstract|assert|boolean|break|byte|case|catch|char|class|const|continue|default|do|double|else|enum|exports|extends|final|finally|float|for|goto|if|implements|import|instanceof|int|interface|long|module|native|new|null|open|opens|package|private|protected|provides|public|record|requires|return|short|static|strictfp|super|switch|synchronized|this|throw|throws|to|transient|transitive|try|uses|var|void|volatile|while|with|yield)\b/;
+
+	// based on the java naming conventions
+	var className = /\b[A-Z](?:\w*[a-z]\w*)?\b/;
+
+	Prism.languages.java = Prism.languages.extend('clike', {
+		'class-name': [
+			className,
+
+			// variables and parameters
+			// this to support class names (or generic parameters) which do not contain a lower case letter (also works for methods)
+			/\b[A-Z]\w*(?=\s+\w+\s*[;,=())])/
+		],
+		'keyword': keywords,
+		'function': [
+			Prism.languages.clike.function,
+			{
+				pattern: /(\:\:)[a-z_]\w*/,
+				lookbehind: true
+			}
+		],
+		'number': /\b0b[01][01_]*L?\b|\b0x[\da-f_]*\.?[\da-f_p+-]+\b|(?:\b\d[\d_]*\.?[\d_]*|\B\.\d[\d_]*)(?:e[+-]?\d[\d_]*)?[dfl]?/i,
+		'operator': {
+			pattern: /(^|[^.])(?:<<=?|>>>?=?|->|--|\+\+|&&|\|\||::|[?:~]|[-+*/%&|^!=<>]=?)/m,
+			lookbehind: true
+		}
+	});
+
+	Prism.languages.insertBefore('java', 'string', {
+		'triple-quoted-string': {
+			// http://openjdk.java.net/jeps/355#Description
+			pattern: /"""[ \t]*[\r\n](?:(?:"|"")?(?:\\.|[^"\\]))*"""/,
+			greedy: true,
+			alias: 'string'
+		}
+	});
+
+	Prism.languages.insertBefore('java', 'class-name', {
+		'annotation': {
+			alias: 'punctuation',
+			pattern: /(^|[^.])@\w+/,
+			lookbehind: true
+		},
+		'namespace': {
+			pattern: /(\b(?:exports|import(?:\s+static)?|module|open|opens|package|provides|requires|to|transitive|uses|with)\s+)[a-z]\w*(?:\.[a-z]\w*)+/,
+			lookbehind: true,
+			inside: {
+				'punctuation': /\./,
+			}
+		},
+		'generics': {
+			pattern: /<(?:[\w\s,.&?]|<(?:[\w\s,.&?]|<(?:[\w\s,.&?]|<[\w\s,.&?]*>)*>)*>)*>/,
+			inside: {
+				'class-name': className,
+				'keyword': keywords,
+				'punctuation': /[<>(),.:]/,
+				'operator': /[?&|]/
+			}
+		}
+	});
+}(Prism));
 
 
 /***/ }),
 /* 478 */
 /***/ (function(module, exports) {
 
+Prism.languages.python = {
+	'comment': {
+		pattern: /(^|[^\\])#.*/,
+		lookbehind: true
+	},
+	'string-interpolation': {
+		pattern: /(?:f|rf|fr)(?:("""|''')[\s\S]+?\1|("|')(?:\\.|(?!\2)[^\\\r\n])*\2)/i,
+		greedy: true,
+		inside: {
+			'interpolation': {
+				// "{" <expression> <optional "!s", "!r", or "!a"> <optional ":" format specifier> "}"
+				pattern: /((?:^|[^{])(?:{{)*){(?!{)(?:[^{}]|{(?!{)(?:[^{}]|{(?!{)(?:[^{}])+})+})+}/,
+				lookbehind: true,
+				inside: {
+					'format-spec': {
+						pattern: /(:)[^:(){}]+(?=}$)/,
+						lookbehind: true
+					},
+					'conversion-option': {
+						pattern: /![sra](?=[:}]$)/,
+						alias: 'punctuation'
+					},
+					rest: null
+				}
+			},
+			'string': /[\s\S]+/
+		}
+	},
+	'triple-quoted-string': {
+		pattern: /(?:[rub]|rb|br)?("""|''')[\s\S]+?\1/i,
+		greedy: true,
+		alias: 'string'
+	},
+	'string': {
+		pattern: /(?:[rub]|rb|br)?("|')(?:\\.|(?!\1)[^\\\r\n])*\1/i,
+		greedy: true
+	},
+	'function': {
+		pattern: /((?:^|\s)def[ \t]+)[a-zA-Z_]\w*(?=\s*\()/g,
+		lookbehind: true
+	},
+	'class-name': {
+		pattern: /(\bclass\s+)\w+/i,
+		lookbehind: true
+	},
+	'decorator': {
+		pattern: /(^\s*)@\w+(?:\.\w+)*/im,
+		lookbehind: true,
+		alias: ['annotation', 'punctuation'],
+		inside: {
+			'punctuation': /\./
+		}
+	},
+	'keyword': /\b(?:and|as|assert|async|await|break|class|continue|def|del|elif|else|except|exec|finally|for|from|global|if|import|in|is|lambda|nonlocal|not|or|pass|print|raise|return|try|while|with|yield)\b/,
+	'builtin': /\b(?:__import__|abs|all|any|apply|ascii|basestring|bin|bool|buffer|bytearray|bytes|callable|chr|classmethod|cmp|coerce|compile|complex|delattr|dict|dir|divmod|enumerate|eval|execfile|file|filter|float|format|frozenset|getattr|globals|hasattr|hash|help|hex|id|input|int|intern|isinstance|issubclass|iter|len|list|locals|long|map|max|memoryview|min|next|object|oct|open|ord|pow|property|range|raw_input|reduce|reload|repr|reversed|round|set|setattr|slice|sorted|staticmethod|str|sum|super|tuple|type|unichr|unicode|vars|xrange|zip)\b/,
+	'boolean': /\b(?:True|False|None)\b/,
+	'number': /(?:\b(?=\d)|\B(?=\.))(?:0[bo])?(?:(?:\d|0x[\da-f])[\da-f]*\.?\d*|\.\d+)(?:e[+-]?\d+)?j?\b/i,
+	'operator': /[-+%=]=?|!=|\*\*?=?|\/\/?=?|<[<=>]?|>[=>]?|[&|^~]/,
+	'punctuation': /[{}[\];(),.:]/
+};
+
+Prism.languages.python['string-interpolation'].inside['interpolation'].inside.rest = Prism.languages.python;
+
+Prism.languages.py = Prism.languages.python;
 
 
 /***/ }),
 /* 479 */
 /***/ (function(module, exports) {
 
+/**
+ * Original by Aaron Harun: http://aahacreative.com/2012/07/31/php-syntax-highlighting-prism/
+ * Modified by Miles Johnson: http://milesj.me
+ *
+ * Supports the following:
+ * 		- Extends clike syntax
+ * 		- Support for PHP 5.3+ (namespaces, traits, generators, etc)
+ * 		- Smarter constant and function matching
+ *
+ * Adds the following new token classes:
+ * 		constant, delimiter, variable, function, package
+ */
+(function (Prism) {
+	Prism.languages.php = Prism.languages.extend('clike', {
+		'keyword': /\b(?:__halt_compiler|abstract|and|array|as|break|callable|case|catch|class|clone|const|continue|declare|default|die|do|echo|else|elseif|empty|enddeclare|endfor|endforeach|endif|endswitch|endwhile|eval|exit|extends|final|finally|for|foreach|function|global|goto|if|implements|include|include_once|instanceof|insteadof|interface|isset|list|namespace|new|or|parent|print|private|protected|public|require|require_once|return|static|switch|throw|trait|try|unset|use|var|while|xor|yield)\b/i,
+		'boolean': {
+			pattern: /\b(?:false|true)\b/i,
+			alias: 'constant'
+		},
+		'constant': [
+			/\b[A-Z_][A-Z0-9_]*\b/,
+			/\b(?:null)\b/i,
+		],
+		'comment': {
+			pattern: /(^|[^\\])(?:\/\*[\s\S]*?\*\/|\/\/.*)/,
+			lookbehind: true
+		}
+	});
+
+	Prism.languages.insertBefore('php', 'string', {
+		'shell-comment': {
+			pattern: /(^|[^\\])#.*/,
+			lookbehind: true,
+			alias: 'comment'
+		}
+	});
+
+	Prism.languages.insertBefore('php', 'comment', {
+		'delimiter': {
+			pattern: /\?>$|^<\?(?:php(?=\s)|=)?/i,
+			alias: 'important'
+		}
+	});
+
+	Prism.languages.insertBefore('php', 'keyword', {
+		'variable': /\$+(?:\w+\b|(?={))/i,
+		'package': {
+			pattern: /(\\|namespace\s+|use\s+)[\w\\]+/,
+			lookbehind: true,
+			inside: {
+				punctuation: /\\/
+			}
+		}
+	});
+
+	// Must be defined after the function pattern
+	Prism.languages.insertBefore('php', 'operator', {
+		'property': {
+			pattern: /(->)[\w]+/,
+			lookbehind: true
+		}
+	});
+
+	var string_interpolation = {
+		pattern: /{\$(?:{(?:{[^{}]+}|[^{}]+)}|[^{}])+}|(^|[^\\{])\$+(?:\w+(?:\[.+?]|->\w+)*)/,
+		lookbehind: true,
+		inside: Prism.languages.php
+	};
+
+	Prism.languages.insertBefore('php', 'string', {
+		'nowdoc-string': {
+			pattern: /<<<'([^']+)'(?:\r\n?|\n)(?:.*(?:\r\n?|\n))*?\1;/,
+			greedy: true,
+			alias: 'string',
+			inside: {
+				'delimiter': {
+					pattern: /^<<<'[^']+'|[a-z_]\w*;$/i,
+					alias: 'symbol',
+					inside: {
+						'punctuation': /^<<<'?|[';]$/
+					}
+				}
+			}
+		},
+		'heredoc-string': {
+			pattern: /<<<(?:"([^"]+)"(?:\r\n?|\n)(?:.*(?:\r\n?|\n))*?\1;|([a-z_]\w*)(?:\r\n?|\n)(?:.*(?:\r\n?|\n))*?\2;)/i,
+			greedy: true,
+			alias: 'string',
+			inside: {
+				'delimiter': {
+					pattern: /^<<<(?:"[^"]+"|[a-z_]\w*)|[a-z_]\w*;$/i,
+					alias: 'symbol',
+					inside: {
+						'punctuation': /^<<<"?|[";]$/
+					}
+				},
+				'interpolation': string_interpolation // See below
+			}
+		},
+		'single-quoted-string': {
+			pattern: /'(?:\\[\s\S]|[^\\'])*'/,
+			greedy: true,
+			alias: 'string'
+		},
+		'double-quoted-string': {
+			pattern: /"(?:\\[\s\S]|[^\\"])*"/,
+			greedy: true,
+			alias: 'string',
+			inside: {
+				'interpolation': string_interpolation // See below
+			}
+		}
+	});
+	// The different types of PHP strings "replace" the C-like standard string
+	delete Prism.languages.php['string'];
+
+	Prism.hooks.add('before-tokenize', function(env) {
+		if (!/<\?/.test(env.code)) {
+			return;
+		}
+
+		var phpPattern = /<\?(?:[^"'/#]|\/(?![*/])|("|')(?:\\[\s\S]|(?!\1)[^\\])*\1|(?:\/\/|#)(?:[^?\n\r]|\?(?!>))*(?=$|\?>|[\r\n])|\/\*[\s\S]*?(?:\*\/|$))*?(?:\?>|$)/ig;
+		Prism.languages['markup-templating'].buildPlaceholders(env, 'php', phpPattern);
+	});
+
+	Prism.hooks.add('after-tokenize', function(env) {
+		Prism.languages['markup-templating'].tokenizePlaceholders(env, 'php');
+	});
+
+}(Prism));
 
 
 /***/ }),
@@ -81290,6 +81598,9 @@ module.exports = function() {
 /* 481 */
 /***/ (function(module, exports) {
 
+module.exports = function() {
+	return /[\xA9\xAE\u203C\u2049\u2122\u2139\u2194-\u2199\u21A9\u21AA\u231A\u231B\u2328\u23CF\u23E9-\u23F3\u23F8-\u23FA\u24C2\u25AA\u25AB\u25B6\u25C0\u25FB-\u25FE\u2600-\u2604\u260E\u2611\u2614\u2615\u2618\u261D\u2620\u2622\u2623\u2626\u262A\u262E\u262F\u2638-\u263A\u2648-\u2653\u2660\u2663\u2665\u2666\u2668\u267B\u267F\u2692-\u2694\u2696\u2697\u2699\u269B\u269C\u26A0\u26A1\u26AA\u26AB\u26B0\u26B1\u26BD\u26BE\u26C4\u26C5\u26C8\u26CE\u26CF\u26D1\u26D3\u26D4\u26E9\u26EA\u26F0-\u26F5\u26F7-\u26FA\u26FD\u2702\u2705\u2708-\u270D\u270F\u2712\u2714\u2716\u271D\u2721\u2728\u2733\u2734\u2744\u2747\u274C\u274E\u2753-\u2755\u2757\u2763\u2764\u2795-\u2797\u27A1\u27B0\u27BF\u2934\u2935\u2B05-\u2B07\u2B1B\u2B1C\u2B50\u2B55\u3030\u303D\u3297\u3299]|\uD83C[\uDC04\uDCCF\uDD70\uDD71\uDD7E\uDD7F\uDD8E\uDD91-\uDD9A\uDE01\uDE02\uDE1A\uDE2F\uDE32-\uDE3A\uDE50\uDE51\uDF00-\uDF21\uDF24-\uDF93\uDF96\uDF97\uDF99-\uDF9B\uDF9E-\uDFF0\uDFF3-\uDFF5\uDFF7-\uDFFF]|\uD83D[\uDC00-\uDCFD\uDCFF-\uDD3D\uDD49-\uDD4E\uDD50-\uDD67\uDD6F\uDD70\uDD73-\uDD79\uDD87\uDD8A-\uDD8D\uDD90\uDD95\uDD96\uDDA5\uDDA8\uDDB1\uDDB2\uDDBC\uDDC2-\uDDC4\uDDD1-\uDDD3\uDDDC-\uDDDE\uDDE1\uDDE3\uDDEF\uDDF3\uDDFA-\uDE4F\uDE80-\uDEC5\uDECB-\uDED0\uDEE0-\uDEE5\uDEE9\uDEEB\uDEEC\uDEF0\uDEF3]|\uD83E[\uDD10-\uDD18\uDD80-\uDD84\uDDC0]|\uD83C\uDDFF\uD83C[\uDDE6\uDDF2\uDDFC]|\uD83C\uDDFE\uD83C[\uDDEA\uDDF9]|\uD83C\uDDFD\uD83C\uDDF0|\uD83C\uDDFC\uD83C[\uDDEB\uDDF8]|\uD83C\uDDFB\uD83C[\uDDE6\uDDE8\uDDEA\uDDEC\uDDEE\uDDF3\uDDFA]|\uD83C\uDDFA\uD83C[\uDDE6\uDDEC\uDDF2\uDDF8\uDDFE\uDDFF]|\uD83C\uDDF9\uD83C[\uDDE6\uDDE8\uDDE9\uDDEB-\uDDED\uDDEF-\uDDF4\uDDF7\uDDF9\uDDFB\uDDFC\uDDFF]|\uD83C\uDDF8\uD83C[\uDDE6-\uDDEA\uDDEC-\uDDF4\uDDF7-\uDDF9\uDDFB\uDDFD-\uDDFF]|\uD83C\uDDF7\uD83C[\uDDEA\uDDF4\uDDF8\uDDFA\uDDFC]|\uD83C\uDDF6\uD83C\uDDE6|\uD83C\uDDF5\uD83C[\uDDE6\uDDEA-\uDDED\uDDF0-\uDDF3\uDDF7-\uDDF9\uDDFC\uDDFE]|\uD83C\uDDF4\uD83C\uDDF2|\uD83C\uDDF3\uD83C[\uDDE6\uDDE8\uDDEA-\uDDEC\uDDEE\uDDF1\uDDF4\uDDF5\uDDF7\uDDFA\uDDFF]|\uD83C\uDDF2\uD83C[\uDDE6\uDDE8-\uDDED\uDDF0-\uDDFF]|\uD83C\uDDF1\uD83C[\uDDE6-\uDDE8\uDDEE\uDDF0\uDDF7-\uDDFB\uDDFE]|\uD83C\uDDF0\uD83C[\uDDEA\uDDEC-\uDDEE\uDDF2\uDDF3\uDDF5\uDDF7\uDDFC\uDDFE\uDDFF]|\uD83C\uDDEF\uD83C[\uDDEA\uDDF2\uDDF4\uDDF5]|\uD83C\uDDEE\uD83C[\uDDE8-\uDDEA\uDDF1-\uDDF4\uDDF6-\uDDF9]|\uD83C\uDDED\uD83C[\uDDF0\uDDF2\uDDF3\uDDF7\uDDF9\uDDFA]|\uD83C\uDDEC\uD83C[\uDDE6\uDDE7\uDDE9-\uDDEE\uDDF1-\uDDF3\uDDF5-\uDDFA\uDDFC\uDDFE]|\uD83C\uDDEB\uD83C[\uDDEE-\uDDF0\uDDF2\uDDF4\uDDF7]|\uD83C\uDDEA\uD83C[\uDDE6\uDDE8\uDDEA\uDDEC\uDDED\uDDF7-\uDDFA]|\uD83C\uDDE9\uD83C[\uDDEA\uDDEC\uDDEF\uDDF0\uDDF2\uDDF4\uDDFF]|\uD83C\uDDE8\uD83C[\uDDE6\uDDE8\uDDE9\uDDEB-\uDDEE\uDDF0-\uDDF5\uDDF7\uDDFA-\uDDFF]|\uD83C\uDDE7\uD83C[\uDDE6\uDDE7\uDDE9-\uDDEF\uDDF1-\uDDF4\uDDF6-\uDDF9\uDDFB\uDDFC\uDDFE\uDDFF]|\uD83C\uDDE6\uD83C[\uDDE8-\uDDEC\uDDEE\uDDF1\uDDF2\uDDF4\uDDF6-\uDDFA\uDDFC\uDDFD\uDDFF]|[#\*0-9]\u20E3/g;
+};
 
 
 /***/ }),
@@ -81306,6 +81617,30 @@ module.exports = function() {
 
 /***/ }),
 /* 484 */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+/* 485 */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+/* 486 */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+/* 487 */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+/* 488 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -81318,7 +81653,7 @@ module.exports = function (str) {
 
 
 /***/ }),
-/* 485 */
+/* 489 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -81334,7 +81669,7 @@ module.exports = function (str) {
 /*
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var aa=__webpack_require__(1),n=__webpack_require__(56),r=__webpack_require__(486);function u(a){for(var b="https://reactjs.org/docs/error-decoder.html?invariant="+a,c=1;c<arguments.length;c++)b+="&args[]="+encodeURIComponent(arguments[c]);return"Minified React error #"+a+"; visit "+b+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings."}if(!aa)throw Error(u(227));
+var aa=__webpack_require__(1),n=__webpack_require__(56),r=__webpack_require__(490);function u(a){for(var b="https://reactjs.org/docs/error-decoder.html?invariant="+a,c=1;c<arguments.length;c++)b+="&args[]="+encodeURIComponent(arguments[c]);return"Minified React error #"+a+"; visit "+b+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings."}if(!aa)throw Error(u(227));
 function ba(a,b,c,d,e,f,g,h,k){var l=Array.prototype.slice.call(arguments,3);try{b.apply(c,l)}catch(m){this.onError(m)}}var da=!1,ea=null,fa=!1,ha=null,ia={onError:function(a){da=!0;ea=a}};function ja(a,b,c,d,e,f,g,h,k){da=!1;ea=null;ba.apply(ia,arguments)}function ka(a,b,c,d,e,f,g,h,k){ja.apply(this,arguments);if(da){if(da){var l=ea;da=!1;ea=null}else throw Error(u(198));fa||(fa=!0,ha=l)}}var la=null,ma=null,na=null;
 function oa(a,b,c){var d=a.type||"unknown-event";a.currentTarget=na(c);ka(d,b,void 0,a);a.currentTarget=null}var pa=null,qa={};
 function ra(){if(pa)for(var a in qa){var b=qa[a],c=pa.indexOf(a);if(!(-1<c))throw Error(u(96,a));if(!sa[c]){if(!b.extractEvents)throw Error(u(97,a));sa[c]=b;c=b.eventTypes;for(var d in c){var e=void 0;var f=c[d],g=b,h=d;if(ta.hasOwnProperty(h))throw Error(u(99,h));ta[h]=f;var k=f.phasedRegistrationNames;if(k){for(e in k)k.hasOwnProperty(e)&&ua(k[e],g,h);e=!0}else f.registrationName?(ua(f.registrationName,g,h),e=!0):e=!1;if(!e)throw Error(u(98,d,a));}}}}
@@ -81617,19 +81952,19 @@ exports.unstable_renderSubtreeIntoContainer=function(a,b,c,d){if(!gk(c))throw Er
 
 
 /***/ }),
-/* 486 */
+/* 490 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 if (true) {
-  module.exports = __webpack_require__(487);
+  module.exports = __webpack_require__(491);
 } else {}
 
 
 /***/ }),
-/* 487 */
+/* 491 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -81657,13 +81992,13 @@ exports.unstable_shouldYield=function(){var a=exports.unstable_now();V(a);var b=
 
 
 /***/ }),
-/* 488 */
+/* 492 */
 /***/ (function(module, exports) {
 
 
 
 /***/ }),
-/* 489 */
+/* 493 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -81690,7 +82025,7 @@ var _propTypes = __webpack_require__(8);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _ModalPortal = __webpack_require__(490);
+var _ModalPortal = __webpack_require__(494);
 
 var _ModalPortal2 = _interopRequireDefault(_ModalPortal);
 
@@ -81702,7 +82037,7 @@ var _safeHTMLElement = __webpack_require__(127);
 
 var _safeHTMLElement2 = _interopRequireDefault(_safeHTMLElement);
 
-var _reactLifecyclesCompat = __webpack_require__(496);
+var _reactLifecyclesCompat = __webpack_require__(500);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -81940,7 +82275,7 @@ Modal.defaultStyles = {
 exports.default = Modal;
 
 /***/ }),
-/* 490 */
+/* 494 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -81964,11 +82299,11 @@ var _propTypes = __webpack_require__(8);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _focusManager = __webpack_require__(491);
+var _focusManager = __webpack_require__(495);
 
 var focusManager = _interopRequireWildcard(_focusManager);
 
-var _scopeTab = __webpack_require__(492);
+var _scopeTab = __webpack_require__(496);
 
 var _scopeTab2 = _interopRequireDefault(_scopeTab);
 
@@ -81976,7 +82311,7 @@ var _ariaAppHider = __webpack_require__(194);
 
 var ariaAppHider = _interopRequireWildcard(_ariaAppHider);
 
-var _classList = __webpack_require__(494);
+var _classList = __webpack_require__(498);
 
 var classList = _interopRequireWildcard(_classList);
 
@@ -81988,7 +82323,7 @@ var _portalOpenInstances = __webpack_require__(195);
 
 var _portalOpenInstances2 = _interopRequireDefault(_portalOpenInstances);
 
-__webpack_require__(495);
+__webpack_require__(499);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -82360,7 +82695,7 @@ exports.default = ModalPortal;
 module.exports = exports["default"];
 
 /***/ }),
-/* 491 */
+/* 495 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -82460,7 +82795,7 @@ function teardownScopedFocus() {
 }
 
 /***/ }),
-/* 492 */
+/* 496 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -82555,7 +82890,7 @@ function scopeTab(node, event) {
 module.exports = exports["default"];
 
 /***/ }),
-/* 493 */
+/* 497 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -82624,7 +82959,7 @@ module.exports = warning;
 
 
 /***/ }),
-/* 494 */
+/* 498 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -82716,7 +83051,7 @@ var remove = exports.remove = function remove(element, classString) {
 };
 
 /***/ }),
-/* 495 */
+/* 499 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -82778,7 +83113,7 @@ function bodyTrap(eventType, openInstances) {
 _portalOpenInstances2.default.subscribe(bodyTrap);
 
 /***/ }),
-/* 496 */
+/* 500 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -82945,12 +83280,12 @@ function polyfill(Component) {
 
 
 /***/ }),
-/* 497 */
+/* 501 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-const xRegExp = __webpack_require__(498);
+const xRegExp = __webpack_require__(502);
 
 module.exports = (text, separator) => {
 	if (typeof text !== 'string') {
@@ -82973,7 +83308,7 @@ module.exports = (text, separator) => {
 
 
 /***/ }),
-/* 498 */
+/* 502 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -82983,35 +83318,35 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _xregexp = __webpack_require__(499);
+var _xregexp = __webpack_require__(503);
 
 var _xregexp2 = _interopRequireDefault(_xregexp);
 
-var _build = __webpack_require__(500);
+var _build = __webpack_require__(504);
 
 var _build2 = _interopRequireDefault(_build);
 
-var _matchrecursive = __webpack_require__(501);
+var _matchrecursive = __webpack_require__(505);
 
 var _matchrecursive2 = _interopRequireDefault(_matchrecursive);
 
-var _unicodeBase = __webpack_require__(502);
+var _unicodeBase = __webpack_require__(506);
 
 var _unicodeBase2 = _interopRequireDefault(_unicodeBase);
 
-var _unicodeBlocks = __webpack_require__(503);
+var _unicodeBlocks = __webpack_require__(507);
 
 var _unicodeBlocks2 = _interopRequireDefault(_unicodeBlocks);
 
-var _unicodeCategories = __webpack_require__(504);
+var _unicodeCategories = __webpack_require__(508);
 
 var _unicodeCategories2 = _interopRequireDefault(_unicodeCategories);
 
-var _unicodeProperties = __webpack_require__(505);
+var _unicodeProperties = __webpack_require__(509);
 
 var _unicodeProperties2 = _interopRequireDefault(_unicodeProperties);
 
-var _unicodeScripts = __webpack_require__(506);
+var _unicodeScripts = __webpack_require__(510);
 
 var _unicodeScripts2 = _interopRequireDefault(_unicodeScripts);
 
@@ -83029,7 +83364,7 @@ exports.default = _xregexp2.default;
 module.exports = exports['default'];
 
 /***/ }),
-/* 499 */
+/* 503 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -84827,7 +85162,7 @@ exports.default = XRegExp;
 module.exports = exports['default'];
 
 /***/ }),
-/* 500 */
+/* 504 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -85074,7 +85409,7 @@ exports.default = function (XRegExp) {
 module.exports = exports['default'];
 
 /***/ }),
-/* 501 */
+/* 505 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -85282,7 +85617,7 @@ exports.default = function (XRegExp) {
 module.exports = exports['default'];
 
 /***/ }),
-/* 502 */
+/* 506 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -85535,7 +85870,7 @@ exports.default = function (XRegExp) {
 module.exports = exports['default'];
 
 /***/ }),
-/* 503 */
+/* 507 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -86393,7 +86728,7 @@ exports.default = function (XRegExp) {
 module.exports = exports['default'];
 
 /***/ }),
-/* 504 */
+/* 508 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -86603,7 +86938,7 @@ exports.default = function (XRegExp) {
 module.exports = exports['default'];
 
 /***/ }),
-/* 505 */
+/* 509 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -86712,7 +87047,7 @@ exports.default = function (XRegExp) {
 module.exports = exports['default'];
 
 /***/ }),
-/* 506 */
+/* 510 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -87172,13 +87507,13 @@ exports.default = function (XRegExp) {
 module.exports = exports['default'];
 
 /***/ }),
-/* 507 */
+/* 511 */
 /***/ (function(module, exports) {
 
 
 
 /***/ }),
-/* 508 */
+/* 512 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -87464,7 +87799,7 @@ module.exports = function (object, opts) {
 
 
 /***/ }),
-/* 509 */
+/* 513 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -87739,34 +88074,6 @@ module.exports = function (str, opts) {
 
 
 /***/ }),
-/* 510 */
-/***/ (function(module, exports) {
-
-
-
-/***/ }),
-/* 511 */
-/***/ (function(module, exports) {
-
-
-
-/***/ }),
-/* 512 */
-/***/ (function(module, exports) {
-
-// Exports
-module.exports = {
-	"coreTeam": "coreTeam_o74D"
-};
-
-
-/***/ }),
-/* 513 */
-/***/ (function(module, exports) {
-
-
-
-/***/ }),
 /* 514 */
 /***/ (function(module, exports) {
 
@@ -87782,6 +88089,10 @@ module.exports = {
 /* 516 */
 /***/ (function(module, exports) {
 
+// Exports
+module.exports = {
+	"coreTeam": "coreTeam_o74D"
+};
 
 
 /***/ }),
@@ -87792,6 +88103,30 @@ module.exports = {
 
 /***/ }),
 /* 518 */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+/* 519 */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+/* 520 */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+/* 521 */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+/* 522 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -87809,11 +88144,11 @@ __webpack_require__.r(__webpack_exports__);
 });delete window.Prism;}})();
 
 /***/ }),
-/* 519 */
+/* 523 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const components = __webpack_require__(520);
-const getLoader = __webpack_require__(521);
+const components = __webpack_require__(524);
+const getLoader = __webpack_require__(525);
 
 
 /**
@@ -87871,14 +88206,14 @@ module.exports = loadLanguages;
 
 
 /***/ }),
-/* 520 */
+/* 524 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var components = {"core":{"meta":{"path":"components/prism-core.js","option":"mandatory"},"core":"Core"},"themes":{"meta":{"path":"themes/{id}.css","link":"index.html?theme={id}","exclusive":true},"prism":{"title":"Default","option":"default"},"prism-dark":"Dark","prism-funky":"Funky","prism-okaidia":{"title":"Okaidia","owner":"ocodia"},"prism-twilight":{"title":"Twilight","owner":"remybach"},"prism-coy":{"title":"Coy","owner":"tshedor"},"prism-solarizedlight":{"title":"Solarized Light","owner":"hectormatos2011 "},"prism-tomorrow":{"title":"Tomorrow Night","owner":"Rosey"}},"languages":{"meta":{"path":"components/prism-{id}","noCSS":true,"examplesPath":"examples/prism-{id}","addCheckAll":true},"markup":{"title":"Markup","alias":["html","xml","svg","mathml"],"aliasTitles":{"html":"HTML","xml":"XML","svg":"SVG","mathml":"MathML"},"option":"default"},"css":{"title":"CSS","option":"default","modify":"markup"},"clike":{"title":"C-like","option":"default"},"javascript":{"title":"JavaScript","require":"clike","modify":"markup","alias":"js","option":"default"},"abap":{"title":"ABAP","owner":"dellagustin"},"abnf":{"title":"Augmented Backus–Naur form","owner":"RunDevelopment"},"actionscript":{"title":"ActionScript","require":"javascript","modify":"markup","owner":"Golmote"},"ada":{"title":"Ada","owner":"Lucretia"},"antlr4":{"title":"ANTLR4","alias":"g4","owner":"RunDevelopment"},"apacheconf":{"title":"Apache Configuration","owner":"GuiTeK"},"apl":{"title":"APL","owner":"ngn"},"applescript":{"title":"AppleScript","owner":"Golmote"},"aql":{"title":"AQL","owner":"RunDevelopment"},"arduino":{"title":"Arduino","require":"cpp","owner":"eisbehr-"},"arff":{"title":"ARFF","owner":"Golmote"},"asciidoc":{"alias":"adoc","title":"AsciiDoc","owner":"Golmote"},"asm6502":{"title":"6502 Assembly","owner":"kzurawel"},"aspnet":{"title":"ASP.NET (C#)","require":["markup","csharp"],"owner":"nauzilus"},"autohotkey":{"title":"AutoHotkey","owner":"aviaryan"},"autoit":{"title":"AutoIt","owner":"Golmote"},"bash":{"title":"Bash","alias":"shell","aliasTitles":{"shell":"Shell"},"owner":"zeitgeist87"},"basic":{"title":"BASIC","owner":"Golmote"},"batch":{"title":"Batch","owner":"Golmote"},"bbcode":{"title":"BBcode","alias":"shortcode","aliasTitles":{"shortcode":"Shortcode"},"owner":"RunDevelopment"},"bison":{"title":"Bison","require":"c","owner":"Golmote"},"bnf":{"title":"Backus–Naur form","alias":"rbnf","aliasTitles":{"rbnf":"Routing Backus–Naur form"},"owner":"RunDevelopment"},"brainfuck":{"title":"Brainfuck","owner":"Golmote"},"brightscript":{"title":"BrightScript","owner":"RunDevelopment"},"bro":{"title":"Bro","owner":"wayward710"},"c":{"title":"C","require":"clike","owner":"zeitgeist87"},"concurnas":{"title":"Concurnas","alias":"conc","owner":"jasontatton"},"csharp":{"title":"C#","require":"clike","alias":["cs","dotnet"],"owner":"mvalipour"},"cpp":{"title":"C++","require":"c","owner":"zeitgeist87"},"cil":{"title":"CIL","owner":"sbrl"},"coffeescript":{"title":"CoffeeScript","require":"javascript","alias":"coffee","owner":"R-osey"},"cmake":{"title":"CMake","owner":"mjrogozinski"},"clojure":{"title":"Clojure","owner":"troglotit"},"crystal":{"title":"Crystal","require":"ruby","owner":"MakeNowJust"},"csp":{"title":"Content-Security-Policy","owner":"ScottHelme"},"css-extras":{"title":"CSS Extras","require":"css","modify":"css","owner":"milesj"},"d":{"title":"D","require":"clike","owner":"Golmote"},"dart":{"title":"Dart","require":"clike","owner":"Golmote"},"dax":{"title":"DAX","owner":"peterbud"},"diff":{"title":"Diff","owner":"uranusjr"},"django":{"title":"Django/Jinja2","require":"markup-templating","alias":"jinja2","owner":"romanvm"},"dns-zone-file":{"title":"DNS zone file","owner":"RunDevelopment","alias":"dns-zone"},"docker":{"title":"Docker","alias":"dockerfile","owner":"JustinBeckwith"},"ebnf":{"title":"Extended Backus–Naur form","owner":"RunDevelopment"},"eiffel":{"title":"Eiffel","owner":"Conaclos"},"ejs":{"title":"EJS","require":["javascript","markup-templating"],"owner":"RunDevelopment"},"elixir":{"title":"Elixir","owner":"Golmote"},"elm":{"title":"Elm","owner":"zwilias"},"etlua":{"title":"Embedded Lua templating","require":["lua","markup-templating"],"owner":"RunDevelopment"},"erb":{"title":"ERB","require":["ruby","markup-templating"],"owner":"Golmote"},"erlang":{"title":"Erlang","owner":"Golmote"},"excel-formula":{"title":"Excel Formula","alias":["xlsx","xls"],"owner":"RunDevelopment"},"fsharp":{"title":"F#","require":"clike","owner":"simonreynolds7"},"factor":{"title":"Factor","owner":"catb0t"},"firestore-security-rules":{"title":"Firestore security rules","require":"clike","owner":"RunDevelopment"},"flow":{"title":"Flow","require":"javascript","owner":"Golmote"},"fortran":{"title":"Fortran","owner":"Golmote"},"ftl":{"title":"FreeMarker Template Language","require":"markup-templating","owner":"RunDevelopment"},"gcode":{"title":"G-code","owner":"RunDevelopment"},"gdscript":{"title":"GDScript","owner":"RunDevelopment"},"gedcom":{"title":"GEDCOM","owner":"Golmote"},"gherkin":{"title":"Gherkin","owner":"hason"},"git":{"title":"Git","owner":"lgiraudel"},"glsl":{"title":"GLSL","require":"clike","owner":"Golmote"},"gml":{"title":"GameMaker Language","alias":"gamemakerlanguage","require":"clike","owner":"LiarOnce"},"go":{"title":"Go","require":"clike","owner":"arnehormann"},"graphql":{"title":"GraphQL","owner":"Golmote"},"groovy":{"title":"Groovy","require":"clike","owner":"robfletcher"},"haml":{"title":"Haml","require":"ruby","optional":["css","css-extras","coffeescript","erb","javascript","less","markdown","scss","textile"],"owner":"Golmote"},"handlebars":{"title":"Handlebars","require":"markup-templating","owner":"Golmote"},"haskell":{"title":"Haskell","alias":"hs","owner":"bholst"},"haxe":{"title":"Haxe","require":"clike","owner":"Golmote"},"hcl":{"title":"HCL","owner":"outsideris"},"http":{"title":"HTTP","optional":["css","javascript","json","markup"],"owner":"danielgtaylor"},"hpkp":{"title":"HTTP Public-Key-Pins","owner":"ScottHelme"},"hsts":{"title":"HTTP Strict-Transport-Security","owner":"ScottHelme"},"ichigojam":{"title":"IchigoJam","owner":"BlueCocoa"},"icon":{"title":"Icon","owner":"Golmote"},"inform7":{"title":"Inform 7","owner":"Golmote"},"ini":{"title":"Ini","owner":"aviaryan"},"io":{"title":"Io","owner":"AlesTsurko"},"j":{"title":"J","owner":"Golmote"},"java":{"title":"Java","require":"clike","owner":"sherblot"},"javadoc":{"title":"JavaDoc","require":["markup","java","javadoclike"],"modify":"java","optional":"scala","owner":"RunDevelopment"},"javadoclike":{"title":"JavaDoc-like","modify":["java","javascript","php"],"owner":"RunDevelopment"},"javastacktrace":{"title":"Java stack trace","owner":"RunDevelopment"},"jolie":{"title":"Jolie","require":"clike","owner":"thesave"},"jq":{"title":"JQ","owner":"RunDevelopment"},"jsdoc":{"title":"JSDoc","require":["javascript","javadoclike"],"modify":"javascript","optional":["actionscript","coffeescript"],"owner":"RunDevelopment"},"js-extras":{"title":"JS Extras","require":"javascript","modify":"javascript","optional":["actionscript","coffeescript","flow","n4js","typescript"],"owner":"RunDevelopment"},"js-templates":{"title":"JS Templates","require":"javascript","modify":"javascript","optional":["css","css-extras","graphql","markdown","markup"],"owner":"RunDevelopment"},"json":{"title":"JSON","owner":"CupOfTea696"},"jsonp":{"title":"JSONP","require":"json","owner":"RunDevelopment"},"json5":{"title":"JSON5","require":"json","owner":"RunDevelopment"},"julia":{"title":"Julia","owner":"cdagnino"},"keyman":{"title":"Keyman","owner":"mcdurdin"},"kotlin":{"title":"Kotlin","require":"clike","owner":"Golmote"},"latex":{"title":"LaTeX","alias":["tex","context"],"aliasTitles":{"tex":"TeX","context":"ConTeXt"},"owner":"japborst"},"latte":{"title":"Latte","require":["clike","markup-templating","php"],"owner":"nette"},"less":{"title":"Less","require":"css","optional":"css-extras","owner":"Golmote"},"lilypond":{"title":"LilyPond","require":"scheme","alias":"ly","owner":"RunDevelopment"},"liquid":{"title":"Liquid","owner":"cinhtau"},"lisp":{"title":"Lisp","alias":["emacs","elisp","emacs-lisp"],"owner":"JuanCaicedo"},"livescript":{"title":"LiveScript","owner":"Golmote"},"llvm":{"title":"LLVM IR","owner":"porglezomp"},"lolcode":{"title":"LOLCODE","owner":"Golmote"},"lua":{"title":"Lua","owner":"Golmote"},"makefile":{"title":"Makefile","owner":"Golmote"},"markdown":{"title":"Markdown","require":"markup","alias":"md","owner":"Golmote"},"markup-templating":{"title":"Markup templating","require":"markup","owner":"Golmote"},"matlab":{"title":"MATLAB","owner":"Golmote"},"mel":{"title":"MEL","owner":"Golmote"},"mizar":{"title":"Mizar","owner":"Golmote"},"monkey":{"title":"Monkey","owner":"Golmote"},"moonscript":{"title":"MoonScript","alias":"moon","owner":"RunDevelopment"},"n1ql":{"title":"N1QL","owner":"TMWilds"},"n4js":{"title":"N4JS","require":"javascript","optional":"jsdoc","alias":"n4jsd","owner":"bsmith-n4"},"nand2tetris-hdl":{"title":"Nand To Tetris HDL","owner":"stephanmax"},"nasm":{"title":"NASM","owner":"rbmj"},"neon":{"title":"NEON","owner":"nette"},"nginx":{"title":"nginx","owner":"westonganger","require":"clike"},"nim":{"title":"Nim","owner":"Golmote"},"nix":{"title":"Nix","owner":"Golmote"},"nsis":{"title":"NSIS","owner":"idleberg"},"objectivec":{"title":"Objective-C","require":"c","owner":"uranusjr"},"ocaml":{"title":"OCaml","owner":"Golmote"},"opencl":{"title":"OpenCL","require":"c","modify":["c","cpp"],"owner":"Milania1"},"oz":{"title":"Oz","owner":"Golmote"},"parigp":{"title":"PARI/GP","owner":"Golmote"},"parser":{"title":"Parser","require":"markup","owner":"Golmote"},"pascal":{"title":"Pascal","alias":"objectpascal","aliasTitles":{"objectpascal":"Object Pascal"},"owner":"Golmote"},"pascaligo":{"title":"Pascaligo","owner":"DefinitelyNotAGoat"},"pcaxis":{"title":"PC-Axis","alias":"px","owner":"RunDevelopment"},"perl":{"title":"Perl","owner":"Golmote"},"php":{"title":"PHP","require":["clike","markup-templating"],"owner":"milesj"},"phpdoc":{"title":"PHPDoc","require":["php","javadoclike"],"modify":"php","owner":"RunDevelopment"},"php-extras":{"title":"PHP Extras","require":"php","modify":"php","owner":"milesj"},"plsql":{"title":"PL/SQL","require":"sql","owner":"Golmote"},"powerquery":{"title":"PowerQuery","alias":["pq","mscript"],"owner":"peterbud"},"powershell":{"title":"PowerShell","owner":"nauzilus"},"processing":{"title":"Processing","require":"clike","owner":"Golmote"},"prolog":{"title":"Prolog","owner":"Golmote"},"properties":{"title":".properties","owner":"Golmote"},"protobuf":{"title":"Protocol Buffers","require":"clike","owner":"just-boris"},"pug":{"title":"Pug","require":["markup","javascript"],"optional":["coffeescript","ejs","handlebars","less","livescript","markdown","scss","stylus","twig"],"owner":"Golmote"},"puppet":{"title":"Puppet","owner":"Golmote"},"pure":{"title":"Pure","optional":["c","cpp","fortran"],"owner":"Golmote"},"python":{"title":"Python","alias":"py","owner":"multipetros"},"q":{"title":"Q (kdb+ database)","owner":"Golmote"},"qml":{"title":"QML","require":"javascript","owner":"RunDevelopment"},"qore":{"title":"Qore","require":"clike","owner":"temnroegg"},"r":{"title":"R","owner":"Golmote"},"jsx":{"title":"React JSX","require":["markup","javascript"],"optional":["jsdoc","js-extras","js-templates"],"owner":"vkbansal"},"tsx":{"title":"React TSX","require":["jsx","typescript"]},"renpy":{"title":"Ren'py","owner":"HyuchiaDiego"},"reason":{"title":"Reason","require":"clike","owner":"Golmote"},"regex":{"title":"Regex","modify":["actionscript","coffeescript","flow","javascript","typescript","vala"],"owner":"RunDevelopment"},"rest":{"title":"reST (reStructuredText)","owner":"Golmote"},"rip":{"title":"Rip","owner":"ravinggenius"},"roboconf":{"title":"Roboconf","owner":"Golmote"},"robotframework":{"title":"Robot Framework","alias":"robot","owner":"RunDevelopment"},"ruby":{"title":"Ruby","require":"clike","alias":"rb","owner":"samflores"},"rust":{"title":"Rust","owner":"Golmote"},"sas":{"title":"SAS","optional":["groovy","lua","sql"],"owner":"Golmote"},"sass":{"title":"Sass (Sass)","require":"css","owner":"Golmote"},"scss":{"title":"Sass (Scss)","require":"css","optional":"css-extras","owner":"MoOx"},"scala":{"title":"Scala","require":"java","owner":"jozic"},"scheme":{"title":"Scheme","owner":"bacchus123"},"shell-session":{"title":"Shell session","require":"bash","owner":"RunDevelopment"},"smalltalk":{"title":"Smalltalk","owner":"Golmote"},"smarty":{"title":"Smarty","require":"markup-templating","owner":"Golmote"},"solidity":{"title":"Solidity (Ethereum)","require":"clike","owner":"glachaud"},"solution-file":{"title":"Solution file","alias":"sln","owner":"RunDevelopment"},"soy":{"title":"Soy (Closure Template)","require":"markup-templating","owner":"Golmote"},"sparql":{"title":"SPARQL","require":"turtle","owner":"Triply-Dev","alias":"rq"},"splunk-spl":{"title":"Splunk SPL","owner":"RunDevelopment"},"sqf":{"title":"SQF: Status Quo Function (Arma 3)","require":"clike","owner":"RunDevelopment"},"sql":{"title":"SQL","owner":"multipetros"},"stylus":{"title":"Stylus","owner":"vkbansal"},"swift":{"title":"Swift","require":"clike","owner":"chrischares"},"tap":{"title":"TAP","owner":"isaacs","require":"yaml"},"tcl":{"title":"Tcl","owner":"PeterChaplin"},"textile":{"title":"Textile","require":"markup","optional":"css","owner":"Golmote"},"toml":{"title":"TOML","owner":"RunDevelopment"},"tt2":{"title":"Template Toolkit 2","require":["clike","markup-templating"],"owner":"gflohr"},"turtle":{"title":"Turtle","alias":"trig","aliasTitles":{"trig":"TriG"},"owner":"jakubklimek"},"twig":{"title":"Twig","require":"markup","owner":"brandonkelly"},"typescript":{"title":"TypeScript","require":"javascript","optional":"js-templates","alias":"ts","owner":"vkbansal"},"t4-cs":{"title":"T4 Text Templates (C#)","require":["t4-templating","csharp"],"alias":"t4","owner":"RunDevelopment"},"t4-vb":{"title":"T4 Text Templates (VB)","require":["t4-templating","visual-basic"],"owner":"RunDevelopment"},"t4-templating":{"title":"T4 templating","owner":"RunDevelopment"},"vala":{"title":"Vala","require":"clike","owner":"TemplarVolk"},"vbnet":{"title":"VB.Net","require":"basic","owner":"Bigsby"},"velocity":{"title":"Velocity","require":"markup","owner":"Golmote"},"verilog":{"title":"Verilog","owner":"a-rey"},"vhdl":{"title":"VHDL","owner":"a-rey"},"vim":{"title":"vim","owner":"westonganger"},"visual-basic":{"title":"Visual Basic","alias":"vb","owner":"Golmote"},"wasm":{"title":"WebAssembly","owner":"Golmote"},"wiki":{"title":"Wiki markup","require":"markup","owner":"Golmote"},"xeora":{"title":"Xeora","require":"markup","alias":"xeoracube","aliasTitles":{"xeoracube":"XeoraCube"},"owner":"freakmaxi"},"xojo":{"title":"Xojo (REALbasic)","owner":"Golmote"},"xquery":{"title":"XQuery","require":"markup","owner":"Golmote"},"yaml":{"title":"YAML","alias":"yml","owner":"hason"},"zig":{"title":"Zig","owner":"RunDevelopment"}},"plugins":{"meta":{"path":"plugins/{id}/prism-{id}","link":"plugins/{id}/"},"line-highlight":{"title":"Line Highlight","description":"Highlights specific lines and/or line ranges."},"line-numbers":{"title":"Line Numbers","description":"Line number at the beginning of code lines.","owner":"kuba-kubula"},"show-invisibles":{"title":"Show Invisibles","description":"Show hidden characters such as tabs and line breaks.","optional":["autolinker","data-uri-highlight"]},"autolinker":{"title":"Autolinker","description":"Converts URLs and emails in code to clickable links. Parses Markdown links in comments."},"wpd":{"title":"WebPlatform Docs","description":"Makes tokens link to <a href=\"https://webplatform.github.io/docs/\">WebPlatform.org documentation</a>. The links open in a new tab."},"custom-class":{"title":"Custom Class","description":"This plugin allows you to prefix Prism's default classes (<code>.comment</code> can become <code>.namespace--comment</code>) or replace them with your defined ones (like <code>.editor__comment</code>). You can even add new classes.","owner":"dvkndn","noCSS":true},"file-highlight":{"title":"File Highlight","description":"Fetch external files and highlight them with Prism. Used on the Prism website itself.","noCSS":true},"show-language":{"title":"Show Language","description":"Display the highlighted language in code blocks (inline code does not show the label).","owner":"nauzilus","noCSS":true,"require":"toolbar"},"jsonp-highlight":{"title":"JSONP Highlight","description":"Fetch content with JSONP and highlight some interesting content (e.g. GitHub/Gists or Bitbucket API).","noCSS":true,"owner":"nauzilus"},"highlight-keywords":{"title":"Highlight Keywords","description":"Adds special CSS classes for each keyword matched in the code. For example, the keyword <code>if</code> will have the class <code>keyword-if</code> as well. You can have fine grained control over the appearance of each keyword by providing your own CSS rules.","owner":"vkbansal","noCSS":true},"remove-initial-line-feed":{"title":"Remove initial line feed","description":"Removes the initial line feed in code blocks.","owner":"Golmote","noCSS":true},"inline-color":{"title":"Inline color","description":"Adds a small inline preview for colors in style sheets.","require":"css-extras","owner":"RunDevelopment"},"previewers":{"title":"Previewers","description":"Previewers for angles, colors, gradients, easing and time.","require":"css-extras","owner":"Golmote"},"autoloader":{"title":"Autoloader","description":"Automatically loads the needed languages to highlight the code blocks.","owner":"Golmote","noCSS":true},"keep-markup":{"title":"Keep Markup","description":"Prevents custom markup from being dropped out during highlighting.","owner":"Golmote","optional":"normalize-whitespace","noCSS":true},"command-line":{"title":"Command Line","description":"Display a command line with a prompt and, optionally, the output/response from the commands.","owner":"chriswells0"},"unescaped-markup":{"title":"Unescaped Markup","description":"Write markup without having to escape anything."},"normalize-whitespace":{"title":"Normalize Whitespace","description":"Supports multiple operations to normalize whitespace in code blocks.","owner":"zeitgeist87","optional":"unescaped-markup","noCSS":true},"data-uri-highlight":{"title":"Data-URI Highlight","description":"Highlights data-URI contents.","owner":"Golmote","noCSS":true},"toolbar":{"title":"Toolbar","description":"Attach a toolbar for plugins to easily register buttons on the top of a code block.","owner":"mAAdhaTTah"},"copy-to-clipboard":{"title":"Copy to Clipboard Button","description":"Add a button that copies the code block to the clipboard when clicked.","owner":"mAAdhaTTah","require":"toolbar","noCSS":true},"download-button":{"title":"Download Button","description":"A button in the toolbar of a code block adding a convenient way to download a code file.","owner":"Golmote","require":"toolbar","noCSS":true},"match-braces":{"title":"Match braces","description":"Highlights matching braces.","owner":"RunDevelopment"},"diff-highlight":{"title":"Diff Highlight","description":"Highlights the code inside diff blocks.","owner":"RunDevelopment","require":"diff"},"filter-highlight-all":{"title":"Filter highlightAll","description":"Filters the elements the <code>highlightAll</code> and <code>highlightAllUnder</code> methods actually highlight.","owner":"RunDevelopment","noCSS":true},"treeview":{"title":"Treeview","description":"A language with special styles to highlight file system tree structures.","owner":"Golmote"}}};
 if ( true && module.exports) { module.exports = components; }
 
 /***/ }),
-/* 521 */
+/* 525 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -88335,13 +88670,13 @@ if (true) {
 
 
 /***/ }),
-/* 522 */
+/* 526 */
 /***/ (function(module, exports) {
 
 
 
 /***/ }),
-/* 523 */
+/* 527 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -88467,7 +88802,7 @@ var nprogress = __webpack_require__(105);
 var nprogress_default = /*#__PURE__*/__webpack_require__.n(nprogress);
 
 // CONCATENATED MODULE: ./.docusaurus/client-modules.js
-/* harmony default export */ var client_modules = ([__webpack_require__(515),__webpack_require__(516),__webpack_require__(517),__webpack_require__(518)]);
+/* harmony default export */ var client_modules = ([__webpack_require__(519),__webpack_require__(520),__webpack_require__(521),__webpack_require__(522)]);
 // CONCATENATED MODULE: ./node_modules/@docusaurus/core/lib/client/client-lifecycles-dispatcher.js
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -88489,7 +88824,7 @@ lifecycles[lifecycleAction]=function(...args){dispatchLifecycleAction(lifecycleA
  */ // Memoize previously normalized pathnames.
 const pathnames={};function normalizeLocation(location){if(pathnames[location.pathname]){return{...location,pathname:pathnames[location.pathname]};}let pathname=location.pathname||'/';pathname=pathname.trim().replace(/\/index\.html$/,'');if(pathname===''){pathname='/';}pathnames[location.pathname]=pathname;return{...location,pathname};}/* harmony default export */ var client_normalizeLocation = (normalizeLocation);
 // EXTERNAL MODULE: ./node_modules/nprogress/nprogress.css
-var nprogress_nprogress = __webpack_require__(522);
+var nprogress_nprogress = __webpack_require__(526);
 
 // CONCATENATED MODULE: ./node_modules/@docusaurus/core/lib/client/PendingNavigation.js
 /**
@@ -88532,7 +88867,7 @@ const modulesToBeLoaded=[...manifest.entrypoints,...Array.from(modules)];const b
 return Object(htmlminifier["minify"])(renderedHtml,{removeComments:true,removeRedundantAttributes:true,removeEmptyAttributes:true,removeScriptTypeAttributes:true,removeStyleLinkTypeAttributes:true,useShortDoctype:true,minifyJS:true});}
 
 /***/ }),
-/* 524 */
+/* 528 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

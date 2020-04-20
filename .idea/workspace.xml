@@ -20,21 +20,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="style changes">
-      <change afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-laravel-with-mysql.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-laravel-with-mysql.md.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/guides/tutorial/the-easiest-way-to-deploy-microservices.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/guides/tutorial/the-easiest-way-to-deploy-microservices.md.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/src/components/Assumptions/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/qovery_environments.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/qovery_signup.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.meta/.schemas/guides.json" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/.schemas/guides.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.meta/.schemas/guides.json.erb" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/.schemas/guides.json.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docusaurus.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/docusaurus.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/graphql-api-with-hasura.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/graphql-api-with-hasura.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/graphql-api-with-hasura.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/graphql-api-with-hasura.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/url-shortener-api-with-kotlin.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/url-shortener-api-with-kotlin.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/url-shortener-api-with-kotlin.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/url-shortener-api-with-kotlin.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/metadata.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/metadata.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/css/custom.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_sign_up.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_sign_up.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/quickstart.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/quickstart.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/what-is-qovery.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/what-is-qovery.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/what-is-qovery.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/what-is-qovery.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-laravel-with-mysql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-laravel-with-mysql.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-laravel-with-mysql.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-laravel-with-mysql.md.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +64,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.vendoring.notification.had.been.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/website/src/components" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/website/static/img" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -83,9 +77,9 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/website/static/img" />
       <recent name="$PROJECT_DIR$/website/src/components" />
       <recent name="$PROJECT_DIR$/website/guides/tutorial" />
-      <recent name="$PROJECT_DIR$/website/static/img" />
       <recent name="$PROJECT_DIR$/website/guides/integrate/sinks" />
       <recent name="$PROJECT_DIR$/website/guides/integrate" />
     </key>
@@ -168,7 +162,7 @@
       <workItem from="1587134212780" duration="24227000" />
       <workItem from="1587314084927" duration="5072000" />
       <workItem from="1587329685355" duration="1413000" />
-      <workItem from="1587366223403" duration="7300000" />
+      <workItem from="1587366223403" duration="9930000" />
     </task>
     <task id="LOCAL-00001" summary="Replace timberio -&gt; qovery">
       <created>1586940976665</created>
@@ -338,7 +332,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587369402377</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="style changes">
+      <created>1587379073914</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1587379073914</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -472,22 +473,22 @@
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="690" y="350" width="540" height="524" key="StructurePopup/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587315040454" />
-    <state width="536" height="488" key="SwitcherDM" timestamp="1587378256604">
+    <state width="536" height="488" key="SwitcherDM" timestamp="1587388936909">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state width="536" height="429" key="SwitcherDM/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587042928490" />
-    <state width="536" height="488" key="SwitcherDM/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587378256604" />
+    <state width="536" height="488" key="SwitcherDM/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587388936909" />
     <state width="536" height="429" key="SwitcherDM/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587130320365" />
     <state width="500" height="445" key="SwitcherDM/0.23.1792.1097@0.23.1792.1097" timestamp="1586970316787" />
     <state x="100" y="100" width="1720" height="1000" key="VCS.FileHistoryDialog" timestamp="1587195128563">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="100" y="100" width="1720" height="1000" key="VCS.FileHistoryDialog/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587195128563" />
-    <state x="531" y="314" key="Vcs.Push.Dialog.v2" timestamp="1587369404143">
+    <state x="531" y="314" key="Vcs.Push.Dialog.v2" timestamp="1587379087482">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="-1389" y="408" key="Vcs.Push.Dialog.v2/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587043142882" />
-    <state x="531" y="314" key="Vcs.Push.Dialog.v2/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587369404143" />
+    <state x="531" y="314" key="Vcs.Push.Dialog.v2/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587379087482" />
     <state x="496" y="311" key="Vcs.Push.Dialog.v2/0.23.1792.1097@0.23.1792.1097" timestamp="1586945386299" />
     <state x="500" y="204" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1587317239278">
       <screen x="0" y="0" width="1920" height="1200" />

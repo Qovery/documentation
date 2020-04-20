@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-17"
+last_modified_on: "2020-04-20"
 title: Quick Start Guide
 description: Get started with Qovery in minutes.
 ---
@@ -139,28 +139,22 @@ After the Qovery CLI is installed, run the following command:
 qovery auth
 ```
 
-A browser window with sign in options will open.
+A browser window with sign-in options will open.
 
 <p align="center">
-  <img src="/img/qovery_auth.png" alt="Qovery Authentication" />
+  <img src="/img/qovery_signup.svg" alt="Qovery Sign-up page" />
 </p>
 
 Choose one of the options (e.g. **Github**) to authenticate.
 
 ### Authorize Qovery
 
-Qovery needs an access to your account to be able to clone your repository for future application builds.
+Qovery needs access to your account to be able to clone your repository for future application builds.
 
-Click [here to authorize Qovery to clone and build your applications][urls.authorize_qovery].
+[Click here][urls.authorize_qovery] to authorize Qovery to clone and build your applications.
 
 <p align="center">
   <img src="/img/github-connect.png" alt="Connect Github" />
-</p>
-
-At the end, we need to validate your action on our side:
-
-<p align="center">
-  <img src="/img/github-auth.png" alt="Github Auth" />
 </p>
 
 **That's it! You should see "Authentication successful. You can close this window." message.**

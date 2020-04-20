@@ -17,11 +17,11 @@ import Assumptions from '@site/src/components/Assumptions';
 import Alert from '@site/src/components/Alert';
 
 
-[AWS](https://aws.amazon.com/) (Amazon Web Services) is an amazing and reliable cloud service provider. AWS, like Google Cloud Platform and Microsoft Azure, provides everything you need to host an application without having to worry about running the underlying servers and network configuration. Everything you need to quickly begin hosting is provided as a packaged services.
+[AWS](https://aws.amazon.com/) (Amazon Web Services) is a fantastic and reliable cloud service provider. AWS, like Google Cloud Platform and Microsoft Azure, provides everything you need to host an application without having to worry about running the underlying servers and network configuration.
 
-However, deploying an application on AWS presents some challenges. The typical deployment workflow looks like this: write code, push it to Git, compile code, deploy code, validate your changes and repeat. Developers thus not only have to do all of this manually, but they also have to configure tons of services (VPC, database, cache, DNS, CDN, etc.) to make their application live on the web.
+However, deploying an application on AWS presents some challenges. The typical deployment workflow looks like this: write code, push it to Git, compile code, deploy code, validate your changes, and repeat. Developers thus not only have to do all of this manually, but they also have to configure tons of services (VPC, database, cache, DNS, CDN, etc.) to make their application live on the web.
 
-[Qovery](https://www.qovery.com/) was created to solve this problem. In this blog post, I will show you how Qovery improves the developer experience to deploy staging and production [Laravel](https://www.laravel.com/) application with [MySQL](https://www.mysql.com/) database on AWS. You will be able to focus on writing the best code instead of managing complex services.
+[Qovery](https://www.qovery.com/) solve this problem. In this blog post, I will show you how Qovery improves the developer experience to deploy staging and production [Laravel](https://www.laravel.com/) application with [MySQL](https://www.mysql.com/) database on AWS. You will be able to focus on writing the best code instead of managing complex services.
 
 <Assumptions name="guide">
 
@@ -153,28 +153,22 @@ After the Qovery CLI is installed, run the following command:
 qovery auth
 ```
 
-A browser window with sign in options will open.
+A browser window with sign-in options will open.
 
 <p align="center">
-  <img src="/img/qovery_auth.png" alt="Qovery Authentication" />
+  <img src="/img/qovery_signup.svg" alt="Qovery Sign-up page" />
 </p>
 
 Choose one of the options (e.g. **Github**) to authenticate.
 
 ### Authorize Qovery
 
-Qovery needs an access to your account to be able to clone your repository for future application builds.
+Qovery needs access to your account to be able to clone your repository for future application builds.
 
-Click [here to authorize Qovery to clone and build your applications][urls.authorize_qovery].
+[Click here][urls.authorize_qovery] to authorize Qovery to clone and build your applications.
 
 <p align="center">
   <img src="/img/github-connect.png" alt="Connect Github" />
-</p>
-
-At the end, we need to validate your action on our side:
-
-<p align="center">
-  <img src="/img/github-auth.png" alt="Github Auth" />
 </p>
 
 **That's it! You should see "Authentication successful. You can close this window." message.**
@@ -189,12 +183,78 @@ Do not forget to fork the project and change the URL below with yours
 </Alert>
 
 ```bash
-git clone -b tutorial git@github.com:YOUR_GITHUB_USERNAME/docker-simple-example-laravel.git
+$ git clone -b tutorial git@github.com:YOUR_GITHUB_USERNAME/docker-simple-example-laravel.git
 ```
 
 ## Deploy the Laravel application
 
-TODO CHANGE
+To deploy the Laravel application connected to a MySQL database, you need to have a .qovery.yml file, and a `Dockerfile` (already provided) at the root of your project. This file indicates the external resources (e.g. MySQL) that your application needs to work correctly.
+
+To create the `.qovery.yml` file, run the following command:‍‍
+
+```bash
+$ qovery init
+```
+
+The `.qovery.yml` file is created at the root of the project directory
+
+```bash
+$ cat .qovery.yml
+```
+
+Output
+
+```bash
+application:
+  name: docker-simple-example-laravel
+  project: my-laravel-app-cloud
+  cloud_region: aws/eu-west-3
+  publicly_accessible: true
+databases:
+- type: mysql
+  version: "8.0"
+  name: my-mysql-6132005
+routers:
+- name: main
+  routes:
+  - application_name: docker-simple-example-laravel
+    paths:
+    - /
+```
+
+<Alert>
+Qovery supports multiple databases (eg. PostgreSQL, MySQL, MongoDB, Redis, Memcached, Cassandra), brokers (eg. RabbitMQ, Kafka) and storage services (eg. S3).
+</Alert>
+
+[Authorize the Qovery Github application to get access to your Github account](https://github.com/apps/qovery/installations/new). Once done, you need to commit and push the `.qovery.yml` and `Dockerfile` file to deploy your app.
+
+```bash
+$ git add .qovery.yml Dockerfile
+$ git commit -m “add .qovery.yml and Dockerfile”
+$ git push -u origin qovery
+```
+
+Voila! Qovery is now deploying your app!
+
+See the deployment status by executing
+
+```bash
+$ qovery status
+```
+Output
+
+```bash
+------------+---------+---------------------------------------------+--------------+-----------+---------+----------
+  qovery      | running | https://ym3en0t3jm3j4wqq-main-gtw.qovery.io | 1            | 1         | 0       | 0
+
+  APPLICATION NAME              | STATUS  | ENDPOINT                                                | DATABASES | BROKERS | STORAGE
+--------------------------------+---------+---------------------------------------------------------+-----------+---------+----------
+  docker-simple-example-laravel | running | https://ee5laucsynk35unj-ym3en0t3jm3j4wqq-app.qovery.io | 1         | 0       | 0
+
+  DATABASE NAME    | STATUS  | TYPE  | VERSION | ENDPOINT | PORT     | USERNAME | PASSWORD | APPLICATIONS
+-------------------+---------+-------+---------+----------+----------+----------+----------+--------------------------------
+  my-mysql-6132005 | running | MYSQL | 8.0     |  hidden  |  hidden  |  hidden  |  hidden  | docker-simple-example-laravel
+```
 
 ## Bonuses
 ### Test the Laravel application locally
@@ -222,9 +282,9 @@ Navigate to http://localhost:80 through your web browser and you should see a JS
 Note: `qovery run` connects your application to the MySQL database on AWS.
 
 ### Deploy the application on a staging environment
-Qovery has a very powerful feature known as “environment”. Qovery supports the deployment of isolated development environments from your branches, complete with exact copies of all of your data. This is useful for testing changes in isolation before merging them.
+Qovery has a compelling feature known as “environment”. Qovery supports the deployment of isolated development environments from your branches, complete with exact copies of all of your data. The Environment is useful for testing changes in isolation before merging them.
 
-So, do you want to create a new feature, fix a bug or make a modification without impacting the production or any other important environment? Type the following commands:
+So, do you want to create a new feature, fix a bug, or make modifications without impacting the production or any other important environment? Type the following commands:
 
 ```bash
 $ git checkout -b feat_foo
@@ -248,9 +308,9 @@ Output
 ```
 
 ## Conclusion
-Qovery and AWS together bring to developers the full power of simplicity and flexibility while deploying applications. Any developer can now take advantage of AWS in seconds instead of days.
+Qovery and AWS bring to developers, the full power of simplicity and flexibility while deploying applications. Any developer can now take advantage of AWS in seconds instead of days.
 
-Accelerate your development and start using Qovery today. Let us know what you think about it on [Twitter](https://twitter.com/Qovery_), or by Discord.
+Accelerate your development and start using Qovery today. Let us know what you think about it on [Twitter](https://twitter.com/Qovery_), or by [Discord](https://discord.qovery.com).
 
 **With thanks to [Arnaud J.](https://github.com/arnaudj) for his contribution to this article.**s
 

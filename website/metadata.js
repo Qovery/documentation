@@ -16,6 +16,10 @@ module.exports = {
     {
       "logo_path": "/img/logos/hasura.svg",
       "name": "hasura"
+    },
+    {
+      "logo_path": "/img/logos/laravel.svg",
+      "name": "laravel"
     }
   ],
   "guides": {

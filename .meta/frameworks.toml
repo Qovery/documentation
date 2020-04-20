@@ -2,3 +2,6 @@
 name = "hasura"
 logo_path = "/img/logos/hasura.svg"
 
+[[frameworks]]
+name = "laravel"
+logo_path = "/img/logos/laravel.svg"

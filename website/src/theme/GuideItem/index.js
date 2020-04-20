@@ -1,15 +1,7 @@
 import React from 'react';
-
-import Avatar from '@site/src/components/Avatar';
 import Link from '@docusaurus/Link';
-import MDXComponents from '@theme/MDXComponents';
-import {MDXProvider} from '@mdx-js/react';
 import SVG from 'react-inlinesvg';
-import Tag from '@site/src/components/Tag';
 import Tags from '@site/src/components/Tags';
-
-import classnames from 'classnames';
-import dateFormat from 'dateformat';
 import {enrichTags} from '@site/src/exports/tags';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 
@@ -51,10 +43,10 @@ function GuideItem(props) {
     console.log(language);
     let sourceLogoPath = null;
 
-    if (language) {
-        sourceLogoPath = language.logo_path;
-    } else if (framework) {
+    if (framework) {
         sourceLogoPath = framework.logo_path;
+    } else if (language) {
+        sourceLogoPath = language.logo_path;
     } else if (platform) {
         sourceLogoPath = platform.logo_path;
     } else if (source) {

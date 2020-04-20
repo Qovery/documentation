@@ -70,7 +70,7 @@ function navLinkAttributes(label, right) {
 function NavLink({href, hideIcon, label, onClick, position, right, to}) {
   let attributes = navLinkAttributes(label, right) || {};
   const toUrl = useBaseUrl(to);
-  const linkClassName = window.location.pathname.includes("/tutorial") && toUrl === "/guides/" ? "navbar__link" : "navbar__link--active"
+  const linkClassName = typeof window !== 'undefined' && window.location.pathname.includes("/tutorial") && toUrl === "/guides/" ? "navbar__link" : "navbar__link--active"
 
   return (
     <Link

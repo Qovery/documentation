@@ -19,28 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="style changes">
-      <change afterPath="$PROJECT_DIR$/.meta/databases.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.meta/frameworks.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.meta/languages.toml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/static/img/logos/hasura.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/static/img/logos/kotlin.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/static/img/logos/php.svg" afterDir="false" />
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="feat: add new tags &quot;language, framework and database&quot;&#10;feat: add image to guide item">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.meta/.schemas/guides.json" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/.schemas/guides.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.meta/.schemas/guides.json.erb" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/.schemas/guides.json.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.meta/domains.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/domains.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/util/metadata.rb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/util/metadata.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-laravel-with-mysql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-laravel-with-mysql.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-laravel-with-mysql.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-laravel-with-mysql.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/graphql-api-with-hasura.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/graphql-api-with-hasura.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/graphql-api-with-hasura.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/graphql-api-with-hasura.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/url-shortener-api-with-kotlin.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/url-shortener-api-with-kotlin.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/guides/tutorial/url-shortener-api-with-kotlin.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/url-shortener-api-with-kotlin.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/metadata.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/metadata.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/components/Tag/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/components/Tag/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/theme/GuideItem/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/theme/GuideItem/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/static/img/logos/qovery.svg" beforeDir="false" afterPath="$PROJECT_DIR$/website/static/img/logos/qovery.svg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,7 +156,8 @@
       <workItem from="1587134212780" duration="24227000" />
       <workItem from="1587314084927" duration="5072000" />
       <workItem from="1587329685355" duration="1413000" />
-      <workItem from="1587366223403" duration="24789000" />
+      <workItem from="1587366223403" duration="24902000" />
+      <workItem from="1587406274481" duration="15000" />
     </task>
     <task id="LOCAL-00001" summary="Replace timberio -&gt; qovery">
       <created>1586940976665</created>
@@ -373,7 +355,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587396750105</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="feat: add new tags &quot;language, framework and database&quot;&#10;feat: add image to guide item">
+      <created>1587405896270</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1587405896270</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -454,7 +443,8 @@
     <MESSAGE value="style: change og image" />
     <MESSAGE value="add &quot;url shortener api with kotlin&quot; article" />
     <MESSAGE value="style changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="style changes" />
+    <MESSAGE value="feat: add new tags &quot;language, framework and database&quot;&#10;feat: add image to guide item" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add new tags &quot;language, framework and database&quot;&#10;feat: add image to guide item" />
   </component>
   <component name="WindowStateProjectService">
     <state x="611" y="383" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1587213016572">
@@ -523,11 +513,11 @@
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="100" y="100" width="1720" height="1000" key="VCS.FileHistoryDialog/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587195128563" />
-    <state x="531" y="314" key="Vcs.Push.Dialog.v2" timestamp="1587396752323">
+    <state x="531" y="314" key="Vcs.Push.Dialog.v2" timestamp="1587405898308">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="-1389" y="408" key="Vcs.Push.Dialog.v2/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587043142882" />
-    <state x="531" y="314" key="Vcs.Push.Dialog.v2/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587396752323" />
+    <state x="531" y="314" key="Vcs.Push.Dialog.v2/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587405898308" />
     <state x="496" y="311" key="Vcs.Push.Dialog.v2/0.23.1792.1097@0.23.1792.1097" timestamp="1586945386299" />
     <state x="500" y="204" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1587397197759">
       <screen x="0" y="0" width="1920" height="1200" />

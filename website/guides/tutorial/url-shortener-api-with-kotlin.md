@@ -4,7 +4,7 @@ $schema: "/.meta/.schemas/guides.json"
 title: URL Shortener API with Kotlin
 description: Create a URL shortener API with Kotlin, the micro-framework Ktor and PostgreSQL
 author_github: https://github.com/evoxmusic
-tags: ["type: tutorial"]
+tags: ["type: tutorial", "language: kotlin"]
 hide_pagination: true
 ---
 

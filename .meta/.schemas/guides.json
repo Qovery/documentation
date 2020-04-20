@@ -52,7 +52,7 @@
       "description": "Array of tags",
       "items": {
         "type": "string",
-        "enum": ["type: guide","type: post","type: tutorial","domain: buffers","domain: cli","domain: config","domain: dependencies","domain: networking","domain: observability","domain: operations","domain: platforms","domain: security","domain: sinks","domain: sources","domain: tests","domain: topology","domain: transforms","domain: ux","domain: website","domain: services"]
+        "enum": ["type: guide","type: post","type: tutorial","domain: buffers","domain: cli","domain: config","domain: dependencies","domain: networking","domain: observability","domain: operations","domain: platforms","domain: security","domain: sinks","domain: sources","domain: tests","domain: topology","domain: transforms","domain: ux","domain: website","domain: services","language: php","language: kotlin","database: mysql","database: postgresql","framework: hasura"]
       }
     },
     "title": {

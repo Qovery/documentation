@@ -1,6 +1,22 @@
 module.exports = {
+  "databases": [
+    {
+      "logo_path": "/img/logos/docker.svg",
+      "name": "mysql"
+    },
+    {
+      "logo_path": "/img/logos/docker.svg",
+      "name": "postgresql"
+    }
+  ],
   "event_types": [
 
+  ],
+  "frameworks": [
+    {
+      "logo_path": "/img/logos/hasura.svg",
+      "name": "hasura"
+    }
   ],
   "guides": {
     "getting-started": {
@@ -156,6 +172,16 @@ module.exports = {
   ],
   "installation": {
   },
+  "languages": [
+    {
+      "logo_path": "/img/logos/php.svg",
+      "name": "php"
+    },
+    {
+      "logo_path": "/img/logos/kotlin.svg",
+      "name": "kotlin"
+    }
+  ],
   "latest_highlight": {
   },
   "latest_post": {

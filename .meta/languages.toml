@@ -1,0 +1,7 @@
+[[languages]]
+name = "php"
+logo_path = "/img/logos/php.svg"
+
+[[languages]]
+name = "kotlin"
+logo_path = "/img/logos/kotlin.svg"

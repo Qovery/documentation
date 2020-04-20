@@ -54,7 +54,10 @@
         "type": "string",
         "enum": <%= (
           ["type: guide", "type: post", "type: tutorial"] +
-          metadata.domains.collect { |d| "domain: #{d.name}" }
+          metadata.domains.collect { |d| "domain: #{d.name}" } +
+          metadata.languages.collect { |l| "language: #{l.name}" } +
+          metadata.databases.collect { |d| "database: #{d.name}" } +
+          metadata.frameworks.collect { |f| "framework: #{f.name}" }
         ) .to_json %>
       }
     },

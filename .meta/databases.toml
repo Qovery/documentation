@@ -1,0 +1,7 @@
+[[databases]]
+name = "mysql"
+logo_path = "/img/logos/docker.svg"
+
+[[databases]]
+name = "postgresql"
+logo_path = "/img/logos/docker.svg"

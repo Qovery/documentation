@@ -5,3 +5,7 @@ logo_path = "/img/logos/hasura.svg"
 [[frameworks]]
 name = "laravel"
 logo_path = "/img/logos/laravel.svg"
+
+[[frameworks]]
+name = "springboot"
+logo_path = "/img/logos/springboot.svg"

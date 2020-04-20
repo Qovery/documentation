@@ -5,3 +5,7 @@ logo_path = "/img/logos/php.svg"
 [[languages]]
 name = "kotlin"
 logo_path = "/img/logos/kotlin.svg"
+
+[[languages]]
+name = "java"
+logo_path = "/img/logos/java.svg"

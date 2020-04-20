@@ -40,7 +40,6 @@ function GuideItem(props) {
     const sourceIcon = (platform || source) !== null;
     const sinkIcon = sink != null;
 
-    console.log(language);
     let sourceLogoPath = null;
 
     if (framework) {

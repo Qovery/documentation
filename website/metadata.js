@@ -20,6 +20,10 @@ module.exports = {
     {
       "logo_path": "/img/logos/laravel.svg",
       "name": "laravel"
+    },
+    {
+      "logo_path": "/img/logos/springboot.svg",
+      "name": "springboot"
     }
   ],
   "guides": {
@@ -136,7 +140,16 @@ module.exports = {
           "last_modified_on": null,
           "path": "website/guides/tutorial/deploy-laravel-with-mysql.md",
           "series_position": null,
-          "title": "Deploy Laravel with MySQL on AWS"
+          "title": "Deploy Laravel with MySQL on Qovery"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/tutorial/deploy-spring-boot-with-postgresql",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/deploy-spring-boot-with-postgresql.md",
+          "series_position": null,
+          "title": "Deploy Spring Boot with PostgreSQL on Qovery"
         },
         {
           "author_github": "https://github.com/pjeziorowski",
@@ -184,6 +197,10 @@ module.exports = {
     {
       "logo_path": "/img/logos/kotlin.svg",
       "name": "kotlin"
+    },
+    {
+      "logo_path": "/img/logos/java.svg",
+      "name": "java"
     }
   ],
   "latest_highlight": {

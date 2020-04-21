@@ -16,9 +16,9 @@ module.exports = {
       label: 'Main Concepts',
       items: [
         "main-concepts",
-        "main-concepts/Application",
-        "main-concepts/Project",
-        "main-concepts/Environment",
+        "main-concepts/application",
+        "main-concepts/project",
+        "main-concepts/environment",
       ],
     },
     {

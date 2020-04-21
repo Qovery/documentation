@@ -43,4 +43,4 @@ You can override variables - the highest level variable win (application level v
 By default, every environment will have those variables:
 
 
-[docs.main-concepts.environment]: /docs/main-concepts/Environment/
+[docs.main-concepts.environment]: /docs/main-concepts/environment/

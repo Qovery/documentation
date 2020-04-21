@@ -144,6 +144,15 @@ module.exports = {
         {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
+          "id": "/tutorial/deploy-flask-with-postgresql",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/deploy-flask-with-postgresql.md",
+          "series_position": null,
+          "title": "Deploy Flask with PostgreSQL on Qovery"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
           "id": "/tutorial/deploy-laravel-with-mysql",
           "last_modified_on": null,
           "path": "website/guides/tutorial/deploy-laravel-with-mysql.md",

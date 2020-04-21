@@ -7,7 +7,7 @@ import classnames from 'classnames';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './styles.module.css';
-
+import useThemeContext from '@theme/hooks/useThemeContext';
 
 function FooterLink({to, href, label, ...props}) {
     const toUrl = useBaseUrl(to);
@@ -38,12 +38,18 @@ function Footer() {
     const {siteConfig = {}} = context;
     const {themeConfig = {}} = siteConfig;
     const {footer} = themeConfig;
+    const {isDarkTheme} = useThemeContext();
 
     const {copyright, links = [], logo = {}} = footer || {};
     const logoUrl = useBaseUrl(logo.src);
 
     if (!footer) {
         return null;
+    }
+
+    let srcLogo = "/img/logo-light.svg";
+    if (isDarkTheme) {
+        srcLogo = "/img/logo-dark.svg";
     }
 
     return (
@@ -56,7 +62,7 @@ function Footer() {
                     <div className="row footer__links">
                         <div className="col col--5 footer__col">
                             <div className="margin-bottom--md">
-                                <SVG className="navbar__logo" src="/img/logo-light.svg" alt="Qovery" width="150" height="auto"/>
+                                <SVG className="navbar__logo" src={srcLogo} alt="Qovery" width="150" height="auto"/>
                             </div>
                             <div className="margin-bottom--md">
                                 {/*<MailingListForm description={true} width="150px"/>*/}

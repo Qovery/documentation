@@ -23,7 +23,7 @@ data, so all your environments are close copies of your production setup.
      website/docs/main-concepts/Environment.md.erb
 -->
 
-## Problem of managing multiple environments
+## Complexity of managing multiple environments
 When software teams work on new features, they rarely work using just one Git branch. New features are developed on dedicated branches and tested on
 pre-production environments to make sure they work flawlessly before releasing to production. Achieving this, however, is often costly and troublesome:
 

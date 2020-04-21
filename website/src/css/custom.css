@@ -1326,7 +1326,7 @@ ol li.list--li--pink {
 
 .menu .menu__link.menu__link--sublist:hover::after,
 .menu .menu__link.menu__link--sublist.menu__link--active::after {
-    background-image: url('data:image/svg+xml;utf8,<svg alt="Arrow" xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="-6 -6 38 38"><path fill="rgb(40,217,242)" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>');
+    background-image: url('data:image/svg+xml;utf8,<svg alt="Arrow" xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="-6 -6 38 38"><path fill="rgb(69,72,176,0.9)" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>');
 }
 
 .menu .menu__list-item.menu__list-item--collapsed .menu__link--sublist::after {

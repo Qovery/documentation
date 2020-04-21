@@ -36,7 +36,10 @@ This document presents a high-level overview of how Qovery operates. We believe 
     We make sure all databases, storage, and message brokers your application requirements are provisioned and configured. If something is missing,
     we provision it quickly and make it accessible to your application without any additional work from your side.
 
-5.  ## Integrating other 3rd-Party services
+5.  ## Replicating your projects
+    One of the most powerful features of Qovery is **Environments**. When we detect a new branch in one of your applications, we deliver a complete copy of your production environment (apps, databases, and services) so you can test new features quickly and adequately before going to production.
+
+6.  ## Integrating other 3rd-Party services
     We make sure that using and integrating all popular cloud services (e.g., Datadog) is smooth and seamless for all your applications on Qovery.
 
 </Steps>

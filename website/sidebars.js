@@ -31,8 +31,8 @@ module.exports = {
           type: 'category',
           label: 'Integration',
           items: [
-            "integration",
-            "integration/ide-plugins",
+            "using-qovery/integration",
+            "using-qovery/integration/ide-plugins",
           ]
         }
       ],

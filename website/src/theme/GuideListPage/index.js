@@ -114,7 +114,7 @@ function GuideListPage(props) {
                             type="text"
                             className="input--text input--xl"
                             onChange={(event) => setSearchTerm(event.currentTarget.value)}
-                            placeholder="🔍 Search by guide name or tag..."/>
+                            placeholder="🔍 Search by language, framework, database or tag..."/>
                     </div>
                 </div>
             </header>

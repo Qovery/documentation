@@ -47,7 +47,7 @@ class Metadata
 
       if errors.any?
         Printer.error!(
-          <<~EOF
+            <<~EOF
           The resulting hash from the `/.meta/**/*.toml` files failed
           validation against the following schema:
 
@@ -56,7 +56,7 @@ class Metadata
           The errors include:
 
               * #{errors[0..50].join("\n*    ")}
-          EOF
+        EOF
         )
       end
 
@@ -64,16 +64,17 @@ class Metadata
     end
 
     private
-      def load_metadata!(meta_dir)
-        metadata = {}
 
-        contents =
+    def load_metadata!(meta_dir)
+      metadata = {}
+
+      contents =
           Dir.glob("#{meta_dir}/**/[^_]*.toml").collect do |file|
             begin
               Template.render(file)
             rescue Exception => e
               Printer.error!(
-                <<~EOF
+                  <<~EOF
                 The follow metadata file failed to load:
 
                   #{file}
@@ -82,20 +83,20 @@ class Metadata
 
                   #{e.message}
                   #{e.backtrace.join("\n  ")}
-                EOF
+              EOF
               )
             end
           end
 
-        content = contents.join("\n")
-        TomlRB.parse(content)
-      end
+      content = contents.join("\n")
+      TomlRB.parse(content)
+    end
 
-      def validate_schema!(metadata)
-        errors = metadata.validate_schema
+    def validate_schema!(metadata)
+      errors = metadata.validate_schema
 
-        if errors.any?
-          Printer.error!(
+      if errors.any?
+        Printer.error!(
             <<~EOF
             The resulting hash from the `/.meta/**/*.toml` files failed
             validation against the following schema:
@@ -105,28 +106,31 @@ class Metadata
             The errors include:
 
                 * #{errors[0..50].join("\n*    ")}
-            EOF
-          )
-        end
+        EOF
+        )
       end
+    end
   end
 
   attr_reader :blog_posts,
-    :data_model,
-    :domains,
-    :env_vars,
-    :guides,
-    :highlights,
-    :installation,
-    :links,
-    :options,
-    :tests,
-    :posts,
-    :releases,
-    :sinks,
-    :sources,
-    :team,
-    :transforms
+              :data_model,
+              :domains,
+              :languages,
+              :databases,
+              :frameworks,
+              :env_vars,
+              :guides,
+              :highlights,
+              :installation,
+              :links,
+              :options,
+              :tests,
+              :posts,
+              :releases,
+              :sinks,
+              :sources,
+              :team,
+              :transforms
 
   def initialize(hash, docs_root, guides_root, pages_root)
     # @data_model = DataModel.new(hash.fetch("data_model"))
@@ -142,37 +146,40 @@ class Metadata
     # domains
 
     @domains = hash.fetch("domains").collect { |h| OpenStruct.new(h) }
+    @languages = hash.fetch("languages").collect { |h| OpenStruct.new(h) }
+    @databases = hash.fetch("databases").collect { |h| OpenStruct.new(h) }
+    @frameworks = hash.fetch("frameworks").collect { |h| OpenStruct.new(h) }
 
     # highlights
 
     @highlights ||=
-      Dir.
-        glob("#{HIGHLIGHTS_ROOT}/**/*.md").
-        filter do |path|
+        Dir.
+            glob("#{HIGHLIGHTS_ROOT}/**/*.md").
+            filter do |path|
           content = File.read(path)
           content.start_with?("---\n")
         end.
-        collect do |path|
+            collect do |path|
           Highlight.new(path)
         end.
-        sort_by do |highlight|
-          [ highlight.date, highlight.id ]
+            sort_by do |highlight|
+          [highlight.date, highlight.id]
         end
 
     # posts
 
     @posts ||=
-      Dir.
-        glob("#{POSTS_ROOT}/**/*.md").
-        filter do |path|
+        Dir.
+            glob("#{POSTS_ROOT}/**/*.md").
+            filter do |path|
           content = File.read(path)
           content.start_with?("---\n")
         end.
-        collect do |path|
+            collect do |path|
           Post.new(path)
         end.
-        sort_by do |post|
-          [ post.date, post.id ]
+            sort_by do |post|
+          [post.date, post.id]
         end
 
     # releases
@@ -256,9 +263,9 @@ class Metadata
     # team
 
     @team =
-      hash.fetch("team").collect do |member|
-        OpenStruct.new(member)
-      end
+        hash.fetch("team").collect do |member|
+          OpenStruct.new(member)
+        end
   end
 
   def components
@@ -299,30 +306,30 @@ class Metadata
     return @new_post if defined?(@new_post)
 
     @new_post ||=
-      begin
-        last_post = posts.last
+        begin
+          last_post = posts.last
 
-        if (Date.today - last_post.date) <= 30
-          last_post
-        else
-          nil
+          if (Date.today - last_post.date) <= 30
+            last_post
+          else
+            nil
+          end
         end
-      end
   end
 
   def new_release
     return @new_post if defined?(@new_post)
 
     @new_post ||=
-      begin
-        last_release = releases.releases_list.last
+        begin
+          last_release = releases.releases_list.last
 
-        if (Date.today - last_release.date) <= 30
-          last_release
-        else
-          nil
+          if (Date.today - last_release.date) <= 30
+            last_release
+          else
+            nil
+          end
         end
-      end
   end
 
   def post_tags
@@ -344,8 +351,8 @@ class Metadata
   def previous_minor_releases(release)
     releases_list.select do |other_release|
       other_release.version < release.version &&
-        other_release.version.major != release.version.major &&
-        other_release.version.minor != release.version.minor
+          other_release.version.major != release.version.major &&
+          other_release.version.minor != release.version.minor
     end
   end
 
@@ -371,20 +378,23 @@ class Metadata
 
   def to_h
     {
-      event_types: event_types,
-      guides: guides.deep_to_h,
-      installation: installation.deep_to_h,
-      latest_highlight: highlights.last.deep_to_h,
-      latest_post: posts.last.deep_to_h,
-      latest_release: latest_release.deep_to_h,
-      highlights: highlights.deep_to_h,
-      posts: posts.deep_to_h,
-      post_tags: post_tags,
-      releases: releases.deep_to_h,
-      sources: sources.deep_to_h,
-      team: team.deep_to_h,
-      transforms: transforms.deep_to_h,
-      sinks: sinks.deep_to_h
+        event_types: event_types,
+        guides: guides.deep_to_h,
+        installation: installation.deep_to_h,
+        latest_highlight: highlights.last.deep_to_h,
+        latest_post: posts.last.deep_to_h,
+        latest_release: latest_release.deep_to_h,
+        highlights: highlights.deep_to_h,
+        posts: posts.deep_to_h,
+        post_tags: post_tags,
+        releases: releases.deep_to_h,
+        sources: sources.deep_to_h,
+        languages: languages.deep_to_h,
+        databases: databases.deep_to_h,
+        frameworks: frameworks.deep_to_h,
+        team: team.deep_to_h,
+        transforms: transforms.deep_to_h,
+        sinks: sinks.deep_to_h
     }
   end
 

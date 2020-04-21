@@ -1,11 +1,11 @@
 ---
-last_modified_on: "2020-04-18"
+last_modified_on: "2020-04-21"
 $schema: "/.meta/.schemas/guides.json"
 title: Adding a database
 description: How to add a database to your application
 series_position: 2
 author_github: https://github.com/pjeziorowski
-tags: ["type: guide", "domain: services"]
+tags: ["type: guide"]
 ---
 
 import Jump from '@site/src/components/Jump';

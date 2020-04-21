@@ -1,6 +1,38 @@
 module.exports = {
+  "databases": [
+    {
+      "logo_path": "/img/logos/docker.svg",
+      "name": "mysql"
+    },
+    {
+      "logo_path": "/img/logos/docker.svg",
+      "name": "postgresql"
+    }
+  ],
   "event_types": [
 
+  ],
+  "frameworks": [
+    {
+      "logo_path": "/img/logos/hasura.svg",
+      "name": "hasura"
+    },
+    {
+      "logo_path": "/img/logos/laravel.svg",
+      "name": "laravel"
+    },
+    {
+      "logo_path": "/img/logos/springboot.svg",
+      "name": "springboot"
+    },
+    {
+      "logo_path": "/img/logos/nodejs.svg",
+      "name": "nodejs"
+    },
+    {
+      "logo_path": "/img/logos/flask.svg",
+      "name": "flask"
+    }
   ],
   "guides": {
     "getting-started": {
@@ -36,7 +68,7 @@ module.exports = {
           "title": "Debugging"
         },
         {
-          "author_github": "https://github.com/pjeziorowski",
+          "author_github": "https://github.com/evoxmusic",
           "description": null,
           "id": "/getting-started/deploy-your-first-application",
           "last_modified_on": null,
@@ -112,11 +144,38 @@ module.exports = {
         {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
+          "id": "/tutorial/deploy-flask-with-postgresql",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/deploy-flask-with-postgresql.md",
+          "series_position": null,
+          "title": "Deploy Flask with PostgreSQL on Qovery"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
           "id": "/tutorial/deploy-laravel-with-mysql",
           "last_modified_on": null,
           "path": "website/guides/tutorial/deploy-laravel-with-mysql.md",
           "series_position": null,
-          "title": "Deploy Laravel with MySQL on AWS"
+          "title": "Deploy Laravel with MySQL on Qovery"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/tutorial/deploy-node-js-with-postgresql",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/deploy-node-js-with-postgresql.md",
+          "series_position": null,
+          "title": "Deploy Node.JS with PostgreSQL on Qovery"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/tutorial/deploy-spring-boot-with-postgresql",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/deploy-spring-boot-with-postgresql.md",
+          "series_position": null,
+          "title": "Deploy Spring Boot with PostgreSQL on Qovery"
         },
         {
           "author_github": "https://github.com/pjeziorowski",
@@ -143,7 +202,7 @@ module.exports = {
           "last_modified_on": null,
           "path": "website/guides/tutorial/url-shortener-api-with-kotlin.md",
           "series_position": null,
-          "title": "URL Shortener API with Kotlin"
+          "title": "URL Shortener API with Kotlin (Part 1/2)"
         }
       ],
       "name": "tutorial",
@@ -156,6 +215,28 @@ module.exports = {
   ],
   "installation": {
   },
+  "languages": [
+    {
+      "logo_path": "/img/logos/php.svg",
+      "name": "php"
+    },
+    {
+      "logo_path": "/img/logos/kotlin.svg",
+      "name": "kotlin"
+    },
+    {
+      "logo_path": "/img/logos/java.svg",
+      "name": "java"
+    },
+    {
+      "logo_path": "/img/logos/javascript.svg",
+      "name": "javascript"
+    },
+    {
+      "logo_path": "/img/logos/python.svg",
+      "name": "python"
+    }
+  ],
   "latest_highlight": {
   },
   "latest_post": {

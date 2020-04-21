@@ -1,10 +1,10 @@
 ---
 last_modified_on: "2020-04-21"
 $schema: "/.meta/.schemas/guides.json"
-title: Deploy Laravel with MySQL on Qovery
-description: How to deploy a Laravel application with the MySQL database on Qovery
+title: Deploy Flask with PostgreSQL on Qovery
+description: How to deploy a Flask application with the PostgreSQL database on Qovery
 author_github: https://github.com/evoxmusic
-tags: ["type: tutorial", "framework: laravel", "language: php", "database: mysql"]
+tags: ["type: tutorial", "framework: flask", "language: python", "database: postgresql"]
 hide_pagination: true
 ---
 
@@ -21,7 +21,7 @@ However, deploying an application on any of these Cloud provider presents some c
 
 Qovery solves this problem by combining the reliability of AWS, and the simplicity of Heroku to augment the developer experience.
 
-In this blog post, I will show you how Qovery improves the developer experience to deploy staging and production [Laravel][urls.laravel] application with [MySQL][urls.mysql] database on Qovery. You will be able to focus on writing the best code instead of managing complex services.
+In this blog post, I will show you how Qovery improves the developer experience to deploy staging and production [Flask][urls.node_js] application with [PostgreSQL][urls.postgresql] database on Qovery. You will be able to focus on writing the best code instead of managing complex services.
 
 <Assumptions name="guide">
 
@@ -35,7 +35,7 @@ In this blog post, I will show you how Qovery improves the developer experience 
 
      To make changes please edit the template located at:
 
-     website/guides/tutorial/deploy-laravel-with-mysql.md.erb
+     website/guides/tutorial/deploy-flask-with-postgresql.md.erb
 -->
 
 ## Qovery
@@ -156,17 +156,17 @@ Congratulations, you are logged-in.
 
 ## Deployment
 
-### Laravel sample application (Optional)
-Get a local copy of the [Laravel sample project][urls.sample_laravel_with_mysql] by forking the project.
+### Flask sample application (Optional)
+Get a local copy of the [Flask sample project][urls.sample_flask_with_postgresql] by forking the project.
 
 ### Configure your project
-To deploy your Laravel application connected to a MySQL database, you need to have a `.qovery.yml` file, and a `Dockerfile` (provided in the sample project) at the root of your project.
+To deploy your Flask application connected to a PostgreSQL database, you need to have a `.qovery.yml` file, and a `Dockerfile` (provided in the sample project) at the root of your project.
 
 <Alert>
-The .qovery.yml file indicates all the dependencies that your application needs (e.g., MySQL) to work smoothly
+The .qovery.yml file indicates all the dependencies that your application needs (e.g., PostgreSQL) to work smoothly
 </Alert>
 
-Here we will use MySQL v8.0
+Here we will use PostgreSQL v11.5
 
 To create the `.qovery.yml` file, run the following command:‍‍
 
@@ -190,8 +190,8 @@ application:
   cloud_region: aws/us-west-2
   publicly_accessible: true
 databases:
-- type: mysql
-  version: "8.0"
+- type: postgresql
+  version: "11.5"
   name: my-db
 routers:
 - name: main
@@ -203,7 +203,7 @@ routers:
 
 [Authorize the Qovery Github application][urls.authorize_qovery] to get access to your Github account. Once done, you need to commit and push the `.qovery.yml` and `Dockerfile` file to deploy your app.
 
-### Connect your application to MySQL
+### Connect your application to PostgreSQL
 Credentials of your database are available through environment variables. Qovery injects environment variables at the runtime.
 To list all the environment variables available for your application, execute
 
@@ -226,8 +226,8 @@ BUILT_IN | QOVERY_DATABASE_MY_DB_FQDN                               | <hidden>
 BUILT_IN | QOVERY_DATABASE_MY_DB_HOST                               | <hidden>
 BUILT_IN | QOVERY_DATABASE_MY_DB_CONNECTION_URI_WITHOUT_CREDENTIALS | <hidden>
 BUILT_IN | QOVERY_DATABASE_MY_DB_CONNECTION_URI                     | <hidden>
-BUILT_IN | QOVERY_DATABASE_MY_DB_VERSION                            | 8.0
-BUILT_IN | QOVERY_DATABASE_MY_DB_TYPE                               | MySQL
+BUILT_IN | QOVERY_DATABASE_MY_DB_VERSION                            | 11.5
+BUILT_IN | QOVERY_DATABASE_MY_DB_TYPE                               | PostgreSQL
 BUILT_IN | QOVERY_DATABASE_MY_DB_NAME                               | my-db
 ```
 
@@ -259,11 +259,11 @@ APPLICATION NAME  | STATUS  | DATABASES
 my-application    | running | my-db
 
 DATABASE NAME    | STATUS  | TYPE       | VERSION | ENDPOINT | PORT     | USERNAME | PASSWORD | APPLICATIONS
-my-db            | running | MYSQL      | 8.0     | <hidden> | <hidden> | <hidden> | <hidden> | my-application
+my-db            | running | POSTGRESQL      | 11.5     | <hidden> | <hidden> | <hidden> | <hidden> | my-application
 ```
 
 ## Bonuses (optional)
-### Test the Laravel application locally
+### Test the Flask application locally
 The Qovery motto is: if your application runs locally, then your application will run on Qovery. To test if your application is running locally, execute the following command:
 
 <Alert>
@@ -274,7 +274,7 @@ The Docker runtime is required
 $ qovery run
 ```
 
-Note: `qovery run` connects your application to the MySQL database on Qovery.
+Note: `qovery run` connects your application to the PostgreSQL database on Qovery.
 
 ### Deploy the application on a staging environment
 Qovery has a compelling feature known as “environment”. Qovery supports the deployment of isolated development environments from your branches, complete with exact copies of all of your data. The Environment is useful for testing changes in isolation before merging them.
@@ -299,7 +299,7 @@ APPLICATION NAME              | STATUS  | DATABASES
 docker-simple-example-laravel | running | my-db
 
 DATABASE NAME  | STATUS  | TYPE       | VERSION | ENDPOINT | PORT     | USERNAME | PASSWORD | APPLICATIONS
-my-db          | running | MySQL      | 8.0     | <hidden> | <hidden> | <hidden> | <hidden> | my-application
+my-db          | running | PostgreSQL      | 11.5     | <hidden> | <hidden> | <hidden> | <hidden> | my-application
 ```
 
 <Jump to="/guides/advanced/using-multiple-environments">Multiple Environments</Jump>
@@ -309,9 +309,7 @@ Qovery bring to developers, the full power of simplicity and flexibility while d
 
 Accelerate your development and start using Qovery today. Let us know what you think about it on [Twitter][urls.qovery_twitter], or by [Discord][urls.qovery_chat].
 
-**With thanks to [Arnaud J.](https://github.com/arnaudj) for his contribution to this article.**s
-
-<Jump to="/guides/tutorial/">Tutorials</Jump>
+<Jump to="/guides/tutorial/">Tutorial</Jump>
 
 
 [urls.authorize_qovery]: https://github.com/apps/qovery/installations/new
@@ -319,10 +317,10 @@ Accelerate your development and start using Qovery today. Let us know what you t
 [urls.azure]: https://azure.microsoft.com
 [urls.brew]: https://brew.sh/
 [urls.gcp]: https://cloud.google.com
-[urls.laravel]: https://www.laravel.com
-[urls.mysql]: https://www.mysql.com
+[urls.node_js]: https://nodejs.org
+[urls.postgresql]: https://www.postgresql.org
 [urls.qovery_chat]: https://discord.qovery.com
 [urls.qovery_cli_releases]: https://github.com/Qovery/qovery-cli/releases
 [urls.qovery_twitter]: https://twitter.com/qovery_
-[urls.sample_laravel_with_mysql]: https://github.com/Qovery/docker-simple-example-laravel
+[urls.sample_flask_with_postgresql]: https://github.com/Qovery/flask-todo
 [urls.scoop]: https://brew.sh/

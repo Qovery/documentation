@@ -4,7 +4,7 @@ $schema: "/.meta/.schemas/guides.json"
 title: GraphQL API with Hasura
 description: How to build and deploy realtime GraphQL APIs in a few minutes
 author_github: https://github.com/pjeziorowski
-tags: ["type: tutorial"]
+tags: ["type: tutorial", "framework: hasura", "database: postgresql"]
 hide_pagination: true
 ---
 

@@ -1,14 +1,18 @@
 ---
-last_modified_on: "2020-04-20"
+last_modified_on: "2020-04-21"
 $schema: "/.meta/.schemas/guides.json"
-title: URL Shortener API with Kotlin
+title: URL Shortener API with Kotlin (Part 1/2)
 description: Create a URL shortener API with Kotlin, the micro-framework Ktor and PostgreSQL
 author_github: https://github.com/evoxmusic
-tags: ["type: tutorial"]
+tags: ["type: tutorial", "language: kotlin", "database: postgresql"]
 hide_pagination: true
 ---
 
 import Jump from '@site/src/components/Jump';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+import Assumptions from '@site/src/components/Assumptions';
 
 The source code for this post can be found on this [github repo](https://github.com/evoxmusic/ktor-url-shortener)
 
@@ -414,14 +418,131 @@ We have to replace the Hash Table used to store the data by the PostgreSQL datab
 
 > Qovery is a Container as a Service platform for developer - developers can deploy their application in the Cloud in just a few seconds
 
-Pre-requisites:
+<Assumptions name="tutorial">
 
-* Have an account on Qovery (register [here](https://www.qovery.com/))
 * Your code need to be hosted on Github
 * You need to [accept the Qovery Github app](https://github.com/apps/qovery/installations/new)
 * [Package your Ktor application to build and run it on Docker](https://ktor.io/quickstart/quickstart/docker.html)
 
-To deploy on Qovery 2 files are mandatories
+</Assumptions>
+
+### Install the CLI
+
+<Tabs
+  centered={true}
+  className={"rounded"}
+  defaultValue={"linux"}
+  placeholder="Select your OS"
+  select={false}
+  size={null}
+  values={[{"group":"Platforms","label":"Linux","value":"linux"},{"group":"Platforms","label":"MacOS","value":"macos"},{"group":"Platforms","label":"Windows","value":"windows"}]}>
+
+<TabItem value="linux">
+
+```bash
+# Download and install Qovery CLI on every Linux distribution
+curl -s https://get.qovery.com | sudo bash
+```
+
+</TabItem>
+
+<TabItem value="macos">
+
+<Tabs
+  centered={true}
+  className="rounded"
+  defaultValue="homebrew"
+  values={[{"label":"Homebrew","value":"homebrew"},{"label":"Manual","value":"manual"}]}>
+
+<TabItem value="homebrew">
+
+The common solution to install a command line binary on the MacOS is to use [Homebrew][urls.brew].
+
+```bash
+# Add Qovery brew repository
+brew tap Qovery/qovery-cli
+
+# Install the CLI
+brew install qovery-cli
+```
+
+</TabItem>
+
+<TabItem value="manual">
+
+```bash
+# Install the Qovery CLI on MacOS manually
+curl -s https://get.qovery.com | bash
+```
+
+</TabItem>
+
+</Tabs>
+
+</TabItem>
+
+<TabItem value="windows">
+
+<Tabs
+  centered={true}
+  className="rounded"
+  defaultValue="scoop"
+  values={[{"label":"Scoop","value":"scoop"},{"label":"Manual","value":"manual"}]}>
+
+<TabItem value="scoop">
+
+The classic way to install binaries on Windows is to use [Scoop][urls.scoop].
+
+```bash
+# Add Qovery bucket
+scoop bucket add qovery https://github.com/Qovery/scoop-qovery-cli
+
+# Install the CLI
+scoop install qovery-cli
+```
+
+</TabItem>
+
+<TabItem value="manual">
+
+Install the Qovery CLI on Windows manually by downloading the [latest realease][urls.qovery_cli_releases], and uncompress its content to
+`C:\Windows`.
+
+</TabItem>
+
+</Tabs>
+
+</TabItem>
+
+</Tabs>
+
+### Sign up
+
+To sign up, run the following command:
+
+```bash
+qovery auth
+```
+
+Your browser window with sign-in options will open.
+
+<p align="center">
+  <img src="/img/qovery_signup.svg" alt="Qovery Sign-up page" />
+</p>
+
+Note: Qovery needs access to your account to be able to clone your repository for future application builds.
+
+[Click here][urls.authorize_qovery] to authorize Qovery to clone and build your applications.
+
+<p align="center">
+  <img src="/img/github-connect.png" alt="Connect Github" />
+</p>
+
+Congratulations, you are logged-in.
+
+### Configuration
+
+To deploy on Qovery, two files are mandatories
 
 .qovery.yml - a very simple way to declare the dependencies that you need (e.g: PostgreSQL) and where you want to run it (here on AWS and eu-west-3 / Paris)
 
@@ -542,4 +663,7 @@ We have seen that creating an URL shortener API with Ktor and Kotlin is extremel
 <Jump to="/guides/tutorial/">Tutorial</Jump>
 
 
-
+[urls.authorize_qovery]: https://github.com/apps/qovery/installations/new
+[urls.brew]: https://brew.sh/
+[urls.qovery_cli_releases]: https://github.com/Qovery/qovery-cli/releases
+[urls.scoop]: https://brew.sh/

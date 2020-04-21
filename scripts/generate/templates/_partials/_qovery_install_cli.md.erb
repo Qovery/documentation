@@ -1,18 +1,16 @@
-
 <Tabs
   centered={true}
   className={"rounded"}
   defaultValue={"linux"}
-  placeholder="Please select your OS"
+  placeholder="Select your OS"
   select={false}
   size={null}
   values={[{"group":"Platforms","label":"Linux","value":"linux"},{"group":"Platforms","label":"MacOS","value":"macos"},{"group":"Platforms","label":"Windows","value":"windows"}]}>
 
 <TabItem value="linux">
 
-**Download and install Qovery CLI on every Linux distribution**
-
 ```bash
+# Download and install Qovery CLI on every Linux distribution
 curl -s https://get.qovery.com | sudo bash
 ```
 
@@ -28,29 +26,22 @@ curl -s https://get.qovery.com | sudo bash
 
 <TabItem value="homebrew">
 
-**The common solution to install a command line binary on the MacOS is to use [Homebrew][urls.brew].**
+The common solution to install a command line binary on the MacOS is to use [Homebrew][urls.brew].
 
-<Steps headingDepth={3}>
+```bash
+# Add Qovery brew repository
+brew tap Qovery/qovery-cli
 
-1.  ### Add Qovery brew repository
-    ```bash
-    brew tap Qovery/qovery-cli
-    ```
-
-2.  ### Install the CLI
-    ```bash
-    brew install qovery-cli
-    ```
-
-</Steps>
+# Install the CLI
+brew install qovery-cli
+```
 
 </TabItem>
 
 <TabItem value="manual">
 
-**Install the Qovery CLI on MacOS manually**
-
 ```bash
+# Install the Qovery CLI on MacOS manually
 curl -s https://get.qovery.com | bash
 ```
 
@@ -70,27 +61,22 @@ curl -s https://get.qovery.com | bash
 
 <TabItem value="scoop">
 
-**The classic way to install binaries on Windows is to use [Scoop][urls.scoop].**
+The classic way to install binaries on Windows is to use [Scoop][urls.scoop].
 
-<Steps headingDepth={3}>
+```bash
+# Add Qovery bucket
+scoop bucket add qovery https://github.com/Qovery/scoop-qovery-cli
 
-1.  ### Add Qovery bucket
-    ```bash
-    scoop bucket add qovery https://github.com/Qovery/scoop-qovery-cli
-    ```
-2.  ### Install the CLI
-    ```bash
-    scoop install qovery-cli
-    ```
-
-</Steps>
+# Install the CLI
+scoop install qovery-cli
+```
 
 </TabItem>
 
 <TabItem value="manual">
 
-** Install the Qovery CLI on Windows manually by downloading the [latest realease][urls.qovery_cli_releases] and uncompressing its content to
-`C:\Windows`.**
+Install the Qovery CLI on Windows manually by downloading the [latest realease][urls.qovery_cli_releases], and uncompress its content to
+`C:\Windows`.
 
 </TabItem>
 

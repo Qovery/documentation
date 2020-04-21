@@ -23,17 +23,6 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Security and Compliance',
-      items: [
-        <%= metadata.links.fetch_id("docs.security-and-compliance").to_json %>,
-        <%= metadata.links.fetch_id("docs.security-and-compliance.gdpr").to_json %>,
-        <%= metadata.links.fetch_id("docs.security-and-compliance.data").to_json %>,
-        <%= metadata.links.fetch_id("docs.security-and-compliance.backup-and-restore").to_json %>,
-        <%= metadata.links.fetch_id("docs.security-and-compliance.encryption").to_json %>,
-      ],
-    },
-    {
-      type: 'category',
       label: 'Using Qovery',
       items: [
         <%= metadata.links.fetch_id("docs.using-qovery").to_json %>,
@@ -46,6 +35,17 @@ module.exports = {
             <%= metadata.links.fetch_id("docs.integration.ide-plugins").to_json %>,
           ]
         }
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Security and Compliance',
+      items: [
+        <%= metadata.links.fetch_id("docs.security-and-compliance").to_json %>,
+        <%= metadata.links.fetch_id("docs.security-and-compliance.gdpr").to_json %>,
+        <%= metadata.links.fetch_id("docs.security-and-compliance.data").to_json %>,
+        <%= metadata.links.fetch_id("docs.security-and-compliance.backup-and-restore").to_json %>,
+        <%= metadata.links.fetch_id("docs.security-and-compliance.encryption").to_json %>,
       ],
     },
     {

@@ -1,6 +1,6 @@
 ---
 last_modified_on: "2020-04-21"
-title: "IDE Plugins"
+title: "Datab"
 description: "Description of Qovery IDE plugins"
 ---
 Writing Qovery configuration is simple. If you like using IDE plugins to improve your workflows, you can be assisted by our plugins to avoid typo mistakes, get auto-completion and write it even faster.

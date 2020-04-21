@@ -26,7 +26,19 @@ module.exports = {
       label: 'Using Qovery',
       items: [
         <%= metadata.links.fetch_id("docs.using-qovery").to_json %>,
-        <%= metadata.links.fetch_id("docs.using-qovery.configuration").to_json %>,
+        {
+          type: 'category',
+          label: 'Configuration',
+          items: [
+            <%= metadata.links.fetch_id("docs.using-qovery.configuration").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.configuration.env-vars").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.configuration.databases").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.configuration.domains").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.configuration.storage").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.configuration.brokers").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.configuration.routing").to_json %>,
+          ]
+        },
         {
           type: 'category',
           label: 'Integration',

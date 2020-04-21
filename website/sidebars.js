@@ -26,7 +26,19 @@ module.exports = {
       label: 'Using Qovery',
       items: [
         "using-qovery",
-        "using-qovery/configuration",
+        {
+          type: 'category',
+          label: 'Configuration',
+          items: [
+            "using-qovery/configuration",
+            "using-qovery/configuration/env-vars",
+            "using-qovery/configuration/databases",
+            "using-qovery/configuration/domains",
+            "using-qovery/configuration/storage",
+            "using-qovery/configuration/brokers",
+            "using-qovery/configuration/routing",
+          ]
+        },
         {
           type: 'category',
           label: 'Integration',

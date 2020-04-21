@@ -1,9 +1,21 @@
 ---
-last_modified_on: "2020-04-19"
+last_modified_on: "2020-04-21"
 title: Configuration
 description: "Everything you need to know to configure your applications on Qovery"
+sidebar_label: hidden
+hide_pagination: true
 ---
-!!!TODO!!!
+
+import Jump from '@site/src/components/Jump';
+
+In the following subsections, you'll learn all you need to know to configure all aspects of your projects on Qovery.
+
+<Jump to="/docs/using-qovery/configuration/brokers/">Brokers</Jump>
+<Jump to="/docs/using-qovery/configuration/databases/">Databases</Jump>
+<Jump to="/docs/using-qovery/configuration/domains/">Domains</Jump>
+<Jump to="/docs/using-qovery/configuration/env-vars/">Env vars</Jump>
+<Jump to="/docs/using-qovery/configuration/routing/">Routing</Jump>
+<Jump to="/docs/using-qovery/configuration/storage/">Storage</Jump>
 
 
 

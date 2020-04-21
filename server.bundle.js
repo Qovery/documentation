@@ -82,7 +82,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 540);
+/******/ 	return __webpack_require__(__webpack_require__.s = 541);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -2658,7 +2658,7 @@ function isMobileDevice() {
 
 
 // EXTERNAL MODULE: ./node_modules/react-input-autosize/lib/AutosizeInput.js
-var AutosizeInput = __webpack_require__(128);
+var AutosizeInput = __webpack_require__(129);
 var AutosizeInput_default = /*#__PURE__*/__webpack_require__.n(AutosizeInput);
 
 // CONCATENATED MODULE: ./node_modules/react-select/dist/index-52626178.esm.js
@@ -6858,7 +6858,7 @@ var node_modules_classnames = __webpack_require__(6);
 var classnames_default = /*#__PURE__*/__webpack_require__.n(node_modules_classnames);
 
 // EXTERNAL MODULE: ./node_modules/query-string/index.js
-var query_string = __webpack_require__(284);
+var query_string = __webpack_require__(92);
 var query_string_default = /*#__PURE__*/__webpack_require__.n(query_string);
 
 // EXTERNAL MODULE: ./node_modules/@docusaurus/theme-classic/src/theme/TabGroupChoiceContext.js
@@ -7002,7 +7002,7 @@ var __spread = (this && this.__spread) || function () {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var React = __webpack_require__(1);
-var react_from_dom_1 = __webpack_require__(541);
+var react_from_dom_1 = __webpack_require__(542);
 var helpers_1 = __webpack_require__(477);
 exports.STATUS = {
     FAILED: 'failed',
@@ -7348,7 +7348,7 @@ function Assumptions({children,name}){return/*#__PURE__*/react__WEBPACK_IMPORTED
 /* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var helpers = __webpack_require__(109);
+var helpers = __webpack_require__(110);
 
 function store(serializeContext, token) {
   serializeContext.output.push(typeof token == 'string' ? token : token[1]);
@@ -7416,7 +7416,7 @@ var react_default = /*#__PURE__*/__webpack_require__.n(react);
 var useDocusaurusContext = __webpack_require__(9);
 
 // EXTERNAL MODULE: ./node_modules/@docusaurus/theme-classic/src/theme/AnnouncementBar/styles.module.css
-var styles_module = __webpack_require__(100);
+var styles_module = __webpack_require__(101);
 var styles_module_default = /*#__PURE__*/__webpack_require__.n(styles_module);
 
 // CONCATENATED MODULE: ./node_modules/@docusaurus/theme-classic/src/theme/AnnouncementBar/index.js
@@ -7509,7 +7509,7 @@ var lib = __webpack_require__(12);
 var lib_default = /*#__PURE__*/__webpack_require__.n(lib);
 
 // EXTERNAL MODULE: ./node_modules/react-toggle/dist/component/index.js
-var component = __webpack_require__(280);
+var component = __webpack_require__(281);
 var component_default = /*#__PURE__*/__webpack_require__.n(component);
 
 // EXTERNAL MODULE: ./src/theme/Toggle/styles.module.css
@@ -7555,7 +7555,7 @@ var Navbar_styles_module_default = /*#__PURE__*/__webpack_require__.n(Navbar_sty
 // CONCATENATED MODULE: ./src/theme/Navbar/index.js
 function navLinkAttributes(label,right){let attrs={'label':label};switch(label.toLowerCase()){case'blog':const newPost=fetchNewPost();if(newPost){attrs.badge='new';attrs.badgeStyle='primary';}return attrs;case'chat':attrs.hideText=right==true;attrs.icon='message-circle';return attrs;case'community':attrs.hideText=right==true;attrs.icon='users';return attrs;case'download':const newRelease=fetchNewRelease();attrs.hideText=right==true;attrs.icon='download';if(newRelease){attrs.badge='new';attrs.badgeStyle='primary';}return attrs;case'github':attrs.badge='';attrs.hideText=true;attrs.icon='github';return attrs;default:return attrs;};}function NavLink({href,hideIcon,label,onClick,position,right,to}){let attributes=navLinkAttributes(label,right)||{};const toUrl=Object(useBaseUrl["a" /* default */])(to);const linkClassName=typeof window!=='undefined'&&window.location.pathname.includes("/tutorial")&&toUrl==="/guides/"?"navbar__link":"navbar__link--active";return/*#__PURE__*/react_default.a.createElement(Link["a" /* default */],Object(esm_extends["a" /* default */])({className:classnames_default()("navbar__item navbar__link",attributes.className),title:attributes.hideText?label:null,onClick:onClick},href?{target:'_blank',rel:'noopener noreferrer',href:href}:{activeClassName:linkClassName,to:toUrl}),!hideIcon&&attributes.icon&&/*#__PURE__*/react_default.a.createElement(react_default.a.Fragment,null,/*#__PURE__*/react_default.a.createElement("i",{className:`feather icon-${attributes.icon}`})," ",attributes.iconLabel),!attributes.hideText&&attributes.label,attributes.badge&&/*#__PURE__*/react_default.a.createElement("span",{className:classnames_default()('badge',`badge--${attributes.badgeStyle||'secondary'}`)},attributes.badge));}function Navbar(){const{siteConfig:{themeConfig:{navbar:{title,links=[],hideOnScroll=false}={},disableDarkMode=false}},isClient}=Object(useDocusaurusContext["a" /* default */])();const[sidebarShown,setSidebarShown]=Object(react["useState"])(false);const[isSearchBarExpanded,setIsSearchBarExpanded]=Object(react["useState"])(false);const{isDarkTheme,setLightTheme,setDarkTheme}=Object(useThemeContext["a" /* default */])();const{navbarRef,isNavbarVisible}=hooks_useHideableNavbar(hideOnScroll);const{logoLink,logoLinkProps,logoImageUrl,logoAlt}=Object(useLogo["a" /* default */])();Object(useLockBodyScroll["a" /* default */])(sidebarShown);const showSidebar=Object(react["useCallback"])(()=>{setSidebarShown(true);},[setSidebarShown]);const hideSidebar=Object(react["useCallback"])(()=>{setSidebarShown(false);},[setSidebarShown]);const onToggleChange=Object(react["useCallback"])(e=>e.target.checked?setDarkTheme():setLightTheme(),[setLightTheme,setDarkTheme]);return/*#__PURE__*/react_default.a.createElement("nav",{ref:navbarRef,className:classnames_default()('navbar','navbar--light','navbar--fixed-top',{'navbar-sidebar--show':sidebarShown,[Navbar_styles_module_default.a.navbarHideable]:hideOnScroll,[Navbar_styles_module_default.a.navbarHidden]:!isNavbarVisible})},/*#__PURE__*/react_default.a.createElement("div",{className:"navbar__inner"},/*#__PURE__*/react_default.a.createElement("div",{className:"navbar__items"},/*#__PURE__*/react_default.a.createElement("div",{"aria-label":"Navigation bar toggle",className:"navbar__toggle",role:"button",tabIndex:0,onClick:showSidebar,onKeyDown:showSidebar},/*#__PURE__*/react_default.a.createElement("svg",{xmlns:"http://www.w3.org/2000/svg",width:"30",height:"30",viewBox:"0 0 30 30",role:"img",focusable:"false"},/*#__PURE__*/react_default.a.createElement("title",null,"Menu"),/*#__PURE__*/react_default.a.createElement("path",{stroke:"currentColor",strokeLinecap:"round",strokeMiterlimit:"10",strokeWidth:"2",d:"M4 7h22M4 15h22M4 23h22"}))),/*#__PURE__*/react_default.a.createElement(Link["a" /* default */],Object(esm_extends["a" /* default */])({className:"navbar__brand",to:logoLink},logoLinkProps),logoImageUrl!=null&&/*#__PURE__*/react_default.a.createElement(lib_default.a,{className:"navbar__logo",src:logoImageUrl,alt:logoAlt}),title!=null&&/*#__PURE__*/react_default.a.createElement("strong",{className:isSearchBarExpanded?Navbar_styles_module_default.a.hideLogoText:''},title)),links.filter(linkItem=>linkItem.position!=='right').map((linkItem,i)=>/*#__PURE__*/react_default.a.createElement(NavLink,Object(esm_extends["a" /* default */])({},linkItem,{left:true,key:i})))),/*#__PURE__*/react_default.a.createElement("div",{className:"navbar__items navbar__items--right"},links.filter(linkItem=>linkItem.position==='right').map((linkItem,i)=>/*#__PURE__*/react_default.a.createElement(NavLink,Object(esm_extends["a" /* default */])({},linkItem,{right:true,key:i}))),!disableDarkMode&&/*#__PURE__*/react_default.a.createElement(Toggle,{className:Navbar_styles_module_default.a.displayOnlyInLargeViewport,"aria-label":"Dark mode toggle",checked:isDarkTheme,onChange:onToggleChange}),/*#__PURE__*/react_default.a.createElement(SearchBar,{handleSearchBarToggle:setIsSearchBarExpanded,isSearchBarExpanded:isSearchBarExpanded}))),/*#__PURE__*/react_default.a.createElement("div",{role:"presentation",className:"navbar-sidebar__backdrop",onClick:hideSidebar}),/*#__PURE__*/react_default.a.createElement("div",{className:"navbar-sidebar"},/*#__PURE__*/react_default.a.createElement("div",{className:"navbar-sidebar__brand"},/*#__PURE__*/react_default.a.createElement(Link["a" /* default */],Object(esm_extends["a" /* default */])({className:"navbar__brand",onClick:hideSidebar,to:logoLink},logoLinkProps),logoImageUrl!=null&&/*#__PURE__*/react_default.a.createElement(lib_default.a,{className:"navbar__logo",src:logoImageUrl,alt:logoAlt}),title!=null&&/*#__PURE__*/react_default.a.createElement("strong",null,title)),!disableDarkMode&&sidebarShown&&/*#__PURE__*/react_default.a.createElement(Toggle,{"aria-label":"Dark mode toggle in sidebar",checked:isDarkTheme,onChange:onToggleChange})),/*#__PURE__*/react_default.a.createElement("div",{className:"navbar-sidebar__items"},/*#__PURE__*/react_default.a.createElement("div",{className:"menu"},/*#__PURE__*/react_default.a.createElement("ul",{className:"menu__list"},links.map((linkItem,i)=>/*#__PURE__*/react_default.a.createElement("li",{className:"menu__list-item",key:i},/*#__PURE__*/react_default.a.createElement(NavLink,Object(esm_extends["a" /* default */])({className:"menu__link"},linkItem,{hideIcon:true,onClick:hideSidebar})))))))));}/* harmony default export */ var theme_Navbar = (Navbar);
 // EXTERNAL MODULE: ./src/theme/Footer/styles.module.css
-var Footer_styles_module = __webpack_require__(281);
+var Footer_styles_module = __webpack_require__(282);
 var Footer_styles_module_default = /*#__PURE__*/__webpack_require__.n(Footer_styles_module);
 
 // CONCATENATED MODULE: ./src/theme/Footer/index.js
@@ -7690,7 +7690,7 @@ if (!global[gracefulQueue]) {
   if (/\bgfs4\b/i.test(process.env.NODE_DEBUG || '')) {
     process.on('exit', function() {
       debug(global[gracefulQueue])
-      __webpack_require__(116).equal(global[gracefulQueue].length, 0)
+      __webpack_require__(117).equal(global[gracefulQueue].length, 0)
     })
   }
 }
@@ -25065,7 +25065,7 @@ function retry () {
   else {}
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(153)(module)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(154)(module)))
 
 /***/ }),
 /* 20 */
@@ -25079,7 +25079,7 @@ function retry () {
 /* harmony import */ var _docusaurus_useDocusaurusContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(9);
 /* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(484);
 /* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_styles_css__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _styles_module_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(283);
+/* harmony import */ var _styles_module_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(284);
 /* harmony import */ var _styles_module_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_styles_module_css__WEBPACK_IMPORTED_MODULE_4__);
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -25216,7 +25216,7 @@ var helpers_inheritsLoose = __webpack_require__(59);
 var inheritsLoose_default = /*#__PURE__*/__webpack_require__.n(helpers_inheritsLoose);
 
 // EXTERNAL MODULE: ./node_modules/gud/index.js
-var gud = __webpack_require__(278);
+var gud = __webpack_require__(279);
 var gud_default = /*#__PURE__*/__webpack_require__.n(gud);
 
 // CONCATENATED MODULE: ./node_modules/mini-create-react-context/dist/esm/index.js
@@ -25401,17 +25401,17 @@ var tiny_invariant_esm = __webpack_require__(26);
 var esm_extends = __webpack_require__(2);
 
 // EXTERNAL MODULE: ./node_modules/react-router/node_modules/path-to-regexp/index.js
-var path_to_regexp = __webpack_require__(130);
+var path_to_regexp = __webpack_require__(131);
 var path_to_regexp_default = /*#__PURE__*/__webpack_require__.n(path_to_regexp);
 
 // EXTERNAL MODULE: ./node_modules/react-is/index.js
-var react_is = __webpack_require__(165);
+var react_is = __webpack_require__(166);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js
 var objectWithoutPropertiesLoose = __webpack_require__(46);
 
 // EXTERNAL MODULE: ./node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js
-var hoist_non_react_statics_cjs = __webpack_require__(279);
+var hoist_non_react_statics_cjs = __webpack_require__(280);
 var hoist_non_react_statics_cjs_default = /*#__PURE__*/__webpack_require__.n(hoist_non_react_statics_cjs);
 
 // CONCATENATED MODULE: ./node_modules/react-router/esm/react-router.js
@@ -27253,7 +27253,7 @@ module.exports = require("url");
 "use strict";
 
 const u = __webpack_require__(23).fromPromise
-const fs = __webpack_require__(159)
+const fs = __webpack_require__(160)
 
 function pathExists (path) {
   return fs.access(path).then(() => true).catch(() => false)
@@ -27413,7 +27413,7 @@ module.exports = require("fs");
 /* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var roundingPrecisionFrom = __webpack_require__(137).roundingPrecisionFrom;
+var roundingPrecisionFrom = __webpack_require__(138).roundingPrecisionFrom;
 
 var override = __webpack_require__(49);
 
@@ -30847,7 +30847,7 @@ Prism.languages.yml = Prism.languages.yaml;
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return enrichTags; });
 /* unused harmony export extractTagValue */
-/* harmony import */ var github_slugger__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(282);
+/* harmony import */ var github_slugger__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(283);
 /* harmony import */ var github_slugger__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(github_slugger__WEBPACK_IMPORTED_MODULE_0__);
 function blogColor(category){switch(category){case'domain':return'blue';case'type':return'pink';default:return'primary';}}function guidesColor(category){switch(category){case'domain':return'blue';case'type':return'pink';default:return'primary';}}function enrichTag(tag,colorProfile){const labelParts=tag.label.split(': ',2);const category=labelParts[0];const value=labelParts[1];let style='primary';switch(colorProfile){case'blog':style=blogColor(category);break;case'guides':style=guidesColor(category);break;}return{category:category,count:tag.count,label:tag.label,permalink:tag.permalink,style:style,value:value};}function enrichTags(tags,colorProfile){const slugger=new github_slugger__WEBPACK_IMPORTED_MODULE_0___default.a();return tags.map(tag=>{let normalizedTag=tag;if(typeof tag=='string'){normalizedTag={label:tag,permalink:`/blog/tags/${slugger.slug(tag)}`};}return enrichTag(normalizedTag,colorProfile);});}function extractTagValue(tags,category){let prefix=category+': ';let tag=tags.find(tag=>tag.startsWith(prefix));if(tag){return tag.replace(prefix,'');}else{return null;}}/* unused harmony default export */ var _unused_webpack_default_export = ({enrichTags,extractTagValue});
 
@@ -32347,7 +32347,7 @@ module.exports = override;
 /* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Hack = __webpack_require__(107);
+var Hack = __webpack_require__(108);
 
 var Marker = __webpack_require__(21);
 var Token = __webpack_require__(14);
@@ -33210,7 +33210,7 @@ module.exports = _inheritsLoose;
 /* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Hack = __webpack_require__(107);
+var Hack = __webpack_require__(108);
 
 var Marker = __webpack_require__(21);
 
@@ -34777,7 +34777,7 @@ var styles = __webpack_require__(525);
 // CONCATENATED MODULE: ./src/components/CheckboxList/index.js
 function CheckboxList({humanize,icon,values,currentState,setState}){if(values.size==0)return null;let valuesArr=Array.from(values);return/*#__PURE__*/react_default.a.createElement(react_default.a.Fragment,null,valuesArr.map((value,idx)=>{let label=typeof value==='string'&&humanize?humanize_string_default()(value):value;return/*#__PURE__*/react_default.a.createElement("label",{key:idx},/*#__PURE__*/react_default.a.createElement("input",{type:"checkbox",onChange:event=>{let newValues=new Set(currentState);if(event.currentTarget.checked)newValues.add(value);else newValues.delete(value);setState(newValues);},checked:currentState.has(value)}),label&&/*#__PURE__*/react_default.a.createElement(react_default.a.Fragment,null,icon?/*#__PURE__*/react_default.a.createElement("i",{className:`feather icon-${icon}`}):''," ",label));}));}/* harmony default export */ var components_CheckboxList = (CheckboxList);
 // EXTERNAL MODULE: ./src/components/Empty/index.js
-var Empty = __webpack_require__(97);
+var Empty = __webpack_require__(98);
 
 // EXTERNAL MODULE: ./src/components/Jump/index.js
 var Jump = __webpack_require__(5);
@@ -34797,7 +34797,7 @@ var classnames = __webpack_require__(6);
 var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 
 // EXTERNAL MODULE: ./node_modules/qs/lib/index.js
-var qs_lib = __webpack_require__(98);
+var qs_lib = __webpack_require__(99);
 var qs_lib_default = /*#__PURE__*/__webpack_require__.n(qs_lib);
 
 // EXTERNAL MODULE: ./node_modules/@docusaurus/core/lib/client/exports/useDocusaurusContext.js
@@ -34856,7 +34856,7 @@ module.exports = {
 /* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var systemLineBreak = __webpack_require__(135).EOL;
+var systemLineBreak = __webpack_require__(136).EOL;
 
 var override = __webpack_require__(49);
 
@@ -35096,7 +35096,7 @@ module.exports = formatPosition;
 /***/ (function(module, exports, __webpack_require__) {
 
 var Marker = __webpack_require__(21);
-var split = __webpack_require__(108);
+var split = __webpack_require__(109);
 
 var DEEP_SELECTOR_PATTERN = /\/deep\//;
 var DOUBLE_COLON_PATTERN = /^::/;
@@ -35362,12 +35362,12 @@ module.exports = isMergeable;
 
 var mergeIntoShorthands = __webpack_require__(316);
 var overrideProperties = __webpack_require__(321);
-var populateComponents = __webpack_require__(110);
+var populateComponents = __webpack_require__(111);
 
-var restoreWithComponents = __webpack_require__(111);
+var restoreWithComponents = __webpack_require__(112);
 
 var wrapForOptimizing = __webpack_require__(50).all;
-var removeUnused = __webpack_require__(136);
+var removeUnused = __webpack_require__(137);
 var restoreFromOptimizing = __webpack_require__(60);
 
 var OptimizationLevel = __webpack_require__(36).OptimizationLevel;
@@ -35447,7 +35447,7 @@ module.exports = {
 
 // TODO: it'd be great to merge it with the other canReorder functionality
 
-var rulesOverlap = __webpack_require__(142);
+var rulesOverlap = __webpack_require__(143);
 var specificitiesOverlap = __webpack_require__(327);
 
 var FLEX_PROPERTIES = /align\-items|box\-align|box\-pack|flex|justify/;
@@ -35778,9 +35778,9 @@ if (typeof process !== 'undefined' && process.type === 'renderer') {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HelmetExport; });
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(10);
 /* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_side_effect__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(272);
+/* harmony import */ var react_side_effect__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(273);
 /* harmony import */ var react_side_effect__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_side_effect__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_fast_compare__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(273);
+/* harmony import */ var react_fast_compare__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(274);
 /* harmony import */ var react_fast_compare__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_fast_compare__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(1);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
@@ -36795,7 +36795,7 @@ HelmetExport.renderStatic = HelmetExport.rewind;
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(6);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _site_src_exports_tags__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(40);
-/* harmony import */ var _styles_module_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(131);
+/* harmony import */ var _styles_module_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(132);
 /* harmony import */ var _styles_module_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_styles_module_css__WEBPACK_IMPORTED_MODULE_6__);
 function Tags({block,colorProfile,tags,valuesOnly}){const enrichedTags=Object(_site_src_exports_tags__WEBPACK_IMPORTED_MODULE_5__[/* enrichTags */ "a"])(tags,colorProfile);return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div",{className:classnames__WEBPACK_IMPORTED_MODULE_4___default()(_styles_module_css__WEBPACK_IMPORTED_MODULE_6___default.a.tags,{[_styles_module_css__WEBPACK_IMPORTED_MODULE_6___default.a.tagsBlock]:block})},enrichedTags.map((tag,idx)=>/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_site_src_components_Tag__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"],Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({key:idx,valueOnly:valuesOnly},tag))));}/* harmony default export */ __webpack_exports__["a"] = (Tags);
 
@@ -36813,6 +36813,218 @@ function Tag({count,label,permalink,style,value,valueOnly}){return/*#__PURE__*/r
 
 /***/ }),
 /* 92 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var strictUriEncode = __webpack_require__(487);
+var objectAssign = __webpack_require__(56);
+
+function encoderForArrayFormat(opts) {
+	switch (opts.arrayFormat) {
+		case 'index':
+			return function (key, value, index) {
+				return value === null ? [
+					encode(key, opts),
+					'[',
+					index,
+					']'
+				].join('') : [
+					encode(key, opts),
+					'[',
+					encode(index, opts),
+					']=',
+					encode(value, opts)
+				].join('');
+			};
+
+		case 'bracket':
+			return function (key, value) {
+				return value === null ? encode(key, opts) : [
+					encode(key, opts),
+					'[]=',
+					encode(value, opts)
+				].join('');
+			};
+
+		default:
+			return function (key, value) {
+				return value === null ? encode(key, opts) : [
+					encode(key, opts),
+					'=',
+					encode(value, opts)
+				].join('');
+			};
+	}
+}
+
+function parserForArrayFormat(opts) {
+	var result;
+
+	switch (opts.arrayFormat) {
+		case 'index':
+			return function (key, value, accumulator) {
+				result = /\[(\d*)\]$/.exec(key);
+
+				key = key.replace(/\[\d*\]$/, '');
+
+				if (!result) {
+					accumulator[key] = value;
+					return;
+				}
+
+				if (accumulator[key] === undefined) {
+					accumulator[key] = {};
+				}
+
+				accumulator[key][result[1]] = value;
+			};
+
+		case 'bracket':
+			return function (key, value, accumulator) {
+				result = /(\[\])$/.exec(key);
+				key = key.replace(/\[\]$/, '');
+
+				if (!result) {
+					accumulator[key] = value;
+					return;
+				} else if (accumulator[key] === undefined) {
+					accumulator[key] = [value];
+					return;
+				}
+
+				accumulator[key] = [].concat(accumulator[key], value);
+			};
+
+		default:
+			return function (key, value, accumulator) {
+				if (accumulator[key] === undefined) {
+					accumulator[key] = value;
+					return;
+				}
+
+				accumulator[key] = [].concat(accumulator[key], value);
+			};
+	}
+}
+
+function encode(value, opts) {
+	if (opts.encode) {
+		return opts.strict ? strictUriEncode(value) : encodeURIComponent(value);
+	}
+
+	return value;
+}
+
+function keysSorter(input) {
+	if (Array.isArray(input)) {
+		return input.sort();
+	} else if (typeof input === 'object') {
+		return keysSorter(Object.keys(input)).sort(function (a, b) {
+			return Number(a) - Number(b);
+		}).map(function (key) {
+			return input[key];
+		});
+	}
+
+	return input;
+}
+
+exports.extract = function (str) {
+	return str.split('?')[1] || '';
+};
+
+exports.parse = function (str, opts) {
+	opts = objectAssign({arrayFormat: 'none'}, opts);
+
+	var formatter = parserForArrayFormat(opts);
+
+	// Create an object with no prototype
+	// https://github.com/sindresorhus/query-string/issues/47
+	var ret = Object.create(null);
+
+	if (typeof str !== 'string') {
+		return ret;
+	}
+
+	str = str.trim().replace(/^(\?|#|&)/, '');
+
+	if (!str) {
+		return ret;
+	}
+
+	str.split('&').forEach(function (param) {
+		var parts = param.replace(/\+/g, ' ').split('=');
+		// Firefox (pre 40) decodes `%3D` to `=`
+		// https://github.com/sindresorhus/query-string/pull/37
+		var key = parts.shift();
+		var val = parts.length > 0 ? parts.join('=') : undefined;
+
+		// missing `=` should be `null`:
+		// http://w3.org/TR/2012/WD-url-20120524/#collect-url-parameters
+		val = val === undefined ? null : decodeURIComponent(val);
+
+		formatter(decodeURIComponent(key), val, ret);
+	});
+
+	return Object.keys(ret).sort().reduce(function (result, key) {
+		var val = ret[key];
+		if (Boolean(val) && typeof val === 'object' && !Array.isArray(val)) {
+			// Sort object keys, not values
+			result[key] = keysSorter(val);
+		} else {
+			result[key] = val;
+		}
+
+		return result;
+	}, Object.create(null));
+};
+
+exports.stringify = function (obj, opts) {
+	var defaults = {
+		encode: true,
+		strict: true,
+		arrayFormat: 'none'
+	};
+
+	opts = objectAssign(defaults, opts);
+
+	var formatter = encoderForArrayFormat(opts);
+
+	return obj ? Object.keys(obj).sort().map(function (key) {
+		var val = obj[key];
+
+		if (val === undefined) {
+			return '';
+		}
+
+		if (val === null) {
+			return encode(key, opts);
+		}
+
+		if (Array.isArray(val)) {
+			var result = [];
+
+			val.slice().forEach(function (val2) {
+				if (val2 === undefined) {
+					return;
+				}
+
+				result.push(formatter(key, val2, result.length));
+			});
+
+			return result.join('&');
+		}
+
+		return encode(key, opts) + '=' + encode(val, opts);
+	}).filter(function (x) {
+		return x.length > 0;
+	}).join('&') : '';
+};
+
+
+/***/ }),
+/* 93 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -36826,7 +37038,7 @@ function Tag({count,label,permalink,style,value,valueOnly}){return/*#__PURE__*/r
 function PagePaginator({className,previous,next}){return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav",{className:classnames__WEBPACK_IMPORTED_MODULE_2___default()('pagination-nav',className)},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"pagination-nav__item"},previous&&/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_docusaurus_Link__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"],{className:"pagination-nav__link",to:previous.permalink},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5",{className:"pagination-nav__link--sublabel"},"Previous"),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4",{className:"pagination-nav__link--label"},"\xAB ",previous.title))),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"pagination-nav__item pagination-nav__item--next"},next&&/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_docusaurus_Link__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"],{className:"pagination-nav__link",to:next.permalink},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5",{className:"pagination-nav__link--sublabel"},"Next"),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4",{className:"pagination-nav__link--label"},next.title," \xBB"))));}/* harmony default export */ __webpack_exports__["a"] = (PagePaginator);
 
 /***/ }),
-/* 93 */
+/* 94 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -36840,11 +37052,11 @@ function PagePaginator({className,previous,next}){return/*#__PURE__*/react__WEBP
  */function useTOCHighlight(linkClassName,linkActiveClassName,topOffset){const[lastActiveLink,setLastActiveLink]=Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(undefined);Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(()=>{let headersAnchors=[];let links=[];function setActiveLink(){function getActiveHeaderAnchor(){let index=0;let activeHeaderAnchor=null;headersAnchors=document.getElementsByClassName('anchor');while(index<headersAnchors.length&&!activeHeaderAnchor){const headerAnchor=headersAnchors[index];const{top}=headerAnchor.getBoundingClientRect();if(top>=0&&top<=topOffset){activeHeaderAnchor=headerAnchor;}index+=1;}return activeHeaderAnchor;}const activeHeaderAnchor=getActiveHeaderAnchor();if(activeHeaderAnchor){let index=0;let itemHighlighted=false;links=document.getElementsByClassName(linkClassName);while(index<links.length&&!itemHighlighted){const link=links[index];const{href}=link;const anchorValue=decodeURIComponent(href.substring(href.indexOf('#')+1));if(activeHeaderAnchor.id===anchorValue){if(lastActiveLink){lastActiveLink.classList.remove(linkActiveClassName);}link.classList.add(linkActiveClassName);setLastActiveLink(link);itemHighlighted=true;}index+=1;}}}document.addEventListener('scroll',setActiveLink);document.addEventListener('resize',setActiveLink);setActiveLink();return()=>{document.removeEventListener('scroll',setActiveLink);document.removeEventListener('resize',setActiveLink);};});}/* harmony default export */ __webpack_exports__["a"] = (useTOCHighlight);
 
 /***/ }),
-/* 94 */
+/* 95 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var react_router_config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(95);
+/* harmony import */ var react_router_config__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(96);
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
@@ -36853,7 +37065,7 @@ function PagePaginator({className,previous,next}){return/*#__PURE__*/react__WEBP
  *//* harmony default export */ __webpack_exports__["a"] = (react_router_config__WEBPACK_IMPORTED_MODULE_0__[/* renderRoutes */ "b"]);
 
 /***/ }),
-/* 95 */
+/* 96 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -36925,7 +37137,7 @@ function renderRoutes(routes, extraProps, switchProps) {
 
 
 /***/ }),
-/* 96 */
+/* 97 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -36946,7 +37158,7 @@ function renderRoutes(routes, extraProps, switchProps) {
 return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a",props);}return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_docusaurus_Link__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"],props);},pre:props=>/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({className:_styles_module_css__WEBPACK_IMPORTED_MODULE_5___default.a.mdxCodeBlock},props)),h1:Object(_theme_Heading__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])('h1'),h2:Object(_theme_Heading__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])('h2'),h3:Object(_theme_Heading__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])('h3'),h4:Object(_theme_Heading__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])('h4'),h5:Object(_theme_Heading__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])('h5'),h6:Object(_theme_Heading__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"])('h6')});
 
 /***/ }),
-/* 97 */
+/* 98 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -36955,7 +37167,7 @@ return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a
 function Empty({text}){return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section",{className:"empty"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"icon"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img",{src:"/img/logo-square.svg",alt:"The Qovery Logo"})),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"text"},text));}/* harmony default export */ __webpack_exports__["a"] = (Empty);
 
 /***/ }),
-/* 98 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36963,7 +37175,7 @@ function Empty({text}){return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___def
 
 var stringify = __webpack_require__(526);
 var parse = __webpack_require__(527);
-var formats = __webpack_require__(196);
+var formats = __webpack_require__(197);
 
 module.exports = {
     formats: formats,
@@ -36973,14 +37185,14 @@ module.exports = {
 
 
 /***/ }),
-/* 99 */
+/* 100 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({"plugins":[["@docusaurus/plugin-content-docs",{"editUrl":"https://github.com/Qovery/documentation/edit/master/website/","sidebarPath":"/home/runner/work/documentation/documentation/website/sidebars.js"}],["@docusaurus/plugin-content-blog",{"feedOptions":{"type":"all","copyright":"Copyright © 2020 Qovery, Inc.","baseUrl":""}}],"/home/runner/work/documentation/documentation/website/plugins/guides",["@docusaurus/plugin-content-pages",{}],["/home/runner/work/documentation/documentation/website/plugins/sitemap",{}]],"themes":[["@docusaurus/theme-classic",{"customCss":"/home/runner/work/documentation/documentation/website/src/css/custom.css"}],"@docusaurus/theme-search-algolia"],"customFields":{"metadata":{"databases":[{"logo_path":"/img/logos/docker.svg","name":"mysql"},{"logo_path":"/img/logos/docker.svg","name":"postgresql"}],"event_types":[],"frameworks":[{"logo_path":"/img/logos/hasura.svg","name":"hasura"},{"logo_path":"/img/logos/laravel.svg","name":"laravel"},{"logo_path":"/img/logos/springboot.svg","name":"springboot"},{"logo_path":"/img/logos/nodejs.svg","name":"nodejs"},{"logo_path":"/img/logos/flask.svg","name":"flask"}],"guides":{"getting-started":{"children":{},"description":"Take Qovery from zero to production in under 10 minutes.","guides":[{"author_github":"https://github.com/pjeziorowski","description":null,"id":"/getting-started/adding-a-database","last_modified_on":null,"path":"website/guides/getting-started/adding-a-database.md","series_position":null,"title":"Adding a database"},{"author_github":"https://github.com/evoxmusic","description":null,"id":"/getting-started/beyond-application-deployment","last_modified_on":null,"path":"website/guides/getting-started/beyond-application-deployment.md","series_position":null,"title":"Beyond application deployment"},{"author_github":"https://github.com/pjeziorowski","description":null,"id":"/getting-started/debugging","last_modified_on":null,"path":"website/guides/getting-started/debugging.md","series_position":null,"title":"Debugging"},{"author_github":"https://github.com/evoxmusic","description":null,"id":"/getting-started/deploy-your-first-application","last_modified_on":null,"path":"website/guides/getting-started/deploy-your-first-application.md","series_position":null,"title":"Hello World. Deploy your first application."},{"author_github":"https://github.com/pjeziorowski","description":null,"id":"/getting-started/setting-custom-domain","last_modified_on":null,"path":"website/guides/getting-started/setting-custom-domain.md","series_position":null,"title":"Setting custom domain"}],"name":"getting-started","series":true,"title":"Getting Started"},"advanced":{"children":{},"description":"Go beyond the basics, become a Qovery pro, and extract the full potential of Qovery.","guides":[{"author_github":"https://github.com/pjeziorowski","description":null,"id":"/advanced/customizing-routing","last_modified_on":null,"path":"website/guides/advanced/customizing-routing.md","series_position":null,"title":"Customizing routes"},{"author_github":"https://github.com/pjeziorowski","description":null,"id":"/advanced/managing-environment-variables","last_modified_on":null,"path":"website/guides/advanced/managing-environment-variables.md","series_position":null,"title":"Managing env variables"},{"author_github":"https://github.com/pjeziorowski","description":null,"id":"/advanced/microservices","last_modified_on":null,"path":"website/guides/advanced/microservices.md","series_position":null,"title":"Microservices"},{"author_github":"https://github.com/pjeziorowski","description":null,"id":"/advanced/using-multiple-environments","last_modified_on":null,"path":"website/guides/advanced/using-multiple-environments.md","series_position":null,"title":"Using multiple environments"}],"name":"advanced","series":false,"title":"Advanced"},"tutorial":{"children":{},"description":"Simple step-by-step tutorials ","guides":[{"author_github":"https://github.com/evoxmusic","description":null,"id":"/tutorial/deploy-flask-with-postgresql","last_modified_on":null,"path":"website/guides/tutorial/deploy-flask-with-postgresql.md","series_position":null,"title":"Deploy Flask with PostgreSQL on Qovery"},{"author_github":"https://github.com/evoxmusic","description":null,"id":"/tutorial/deploy-laravel-with-mysql","last_modified_on":null,"path":"website/guides/tutorial/deploy-laravel-with-mysql.md","series_position":null,"title":"Deploy Laravel with MySQL on Qovery"},{"author_github":"https://github.com/evoxmusic","description":null,"id":"/tutorial/deploy-node-js-with-postgresql","last_modified_on":null,"path":"website/guides/tutorial/deploy-node-js-with-postgresql.md","series_position":null,"title":"Deploy Node.JS with PostgreSQL on Qovery"},{"author_github":"https://github.com/evoxmusic","description":null,"id":"/tutorial/deploy-spring-boot-with-postgresql","last_modified_on":null,"path":"website/guides/tutorial/deploy-spring-boot-with-postgresql.md","series_position":null,"title":"Deploy Spring Boot with PostgreSQL on Qovery"},{"author_github":"https://github.com/pjeziorowski","description":null,"id":"/tutorial/graphql-api-with-hasura","last_modified_on":null,"path":"website/guides/tutorial/graphql-api-with-hasura.md","series_position":null,"title":"GraphQL API with Hasura"},{"author_github":"https://github.com/evoxmusic","description":null,"id":"/tutorial/the-easiest-way-to-deploy-microservices","last_modified_on":null,"path":"website/guides/tutorial/the-easiest-way-to-deploy-microservices.md","series_position":null,"title":"The easiest way to deploy microservices"},{"author_github":"https://github.com/evoxmusic","description":null,"id":"/tutorial/url-shortener-api-with-kotlin","last_modified_on":null,"path":"website/guides/tutorial/url-shortener-api-with-kotlin.md","series_position":null,"title":"URL Shortener API with Kotlin (Part 1/2)"}],"name":"tutorial","series":false,"title":"Tutorial"}},"highlights":[],"installation":{},"languages":[{"logo_path":"/img/logos/php.svg","name":"php"},{"logo_path":"/img/logos/kotlin.svg","name":"kotlin"},{"logo_path":"/img/logos/java.svg","name":"java"},{"logo_path":"/img/logos/javascript.svg","name":"javascript"},{"logo_path":"/img/logos/python.svg","name":"python"}],"latest_highlight":{},"latest_post":{},"latest_release":{},"post_tags":[],"posts":[],"releases":{},"sinks":{},"sources":{},"team":[{"avatar":"https://github.com/evoxmusic.png","bio":"Romaric is a Software Engineer and CEO at <a href=\"https://www.qovery.com\">Qovery</a> ","github":"https://github.com/evoxmusic","id":"romaric","keybase":"https://keybase.io/evoxmusic","name":"Romaric"},{"avatar":"https://github.com/deimosfr.png","bio":"Pierre is a Software Engineer and CTO at <a href=\"https://www.qovery.com\">Qovery</a> ","github":"https://github.com/deimosfr","id":"pierre","keybase":"https://keybase.io/pierre","name":"Pierre"},{"avatar":"https://github.com/pjeziorowski.png","bio":"Patryk is a Developer Advocate at <a href=\"https://www.qovery.com\">Qovery</a> ","github":"https://github.com/pjeziorowski","id":"patryk","keybase":"https://keybase.io/patryk","name":"Patryk"},{"avatar":"https://github.com/sileht.png","bio":"Mehdi is a Software Engineer at <a href=\"https://www.qovery.com\">Qovery</a> ","github":"https://github.com/sileht","id":"mehdi","keybase":"https://keybase.io/mehdi","name":"Mehdi"}],"transforms":{}}},"themeConfig":{"disableDarkMode":false,"navbar":{"hideOnScroll":true,"logo":{"alt":"Qovery","src":"img/logo-light.svg","srcDark":"img/logo-dark.svg","url":"https://www.qovery.com"},"links":[{"href":"https://www.qovery.com","label":"Home","position":"left"},{"to":"docs/","label":"Docs","position":"left"},{"to":"guides/","label":"Guides","position":"left"},{"to":"guides/tutorial","label":"Tutorials","position":"left"},{"to":"community/","label":"Community","position":"left"},{"href":"https://github.com/Qovery","label":"GitHub","position":"right"}]},"image":"img/open-graph.png","prism":{"theme":{"plain":{"color":"#393A34","backgroundColor":"#f6f8fa"},"styles":[{"types":["comment","prolog","doctype","cdata"],"style":{"color":"#999988","fontStyle":"italic"}},{"types":["namespace"],"style":{"opacity":0.7}},{"types":["string","attr-value"],"style":{"color":"#e3116c"}},{"types":["punctuation","operator"],"style":{"color":"#393A34"}},{"types":["entity","url","symbol","number","boolean","variable","constant","property","regex","inserted"],"style":{"color":"#36acaa"}},{"types":["atrule","keyword","attr-name","selector"],"style":{"color":"#00a4db"}},{"types":["function","deleted","tag"],"style":{"color":"#d73a49"}},{"types":["function-variable"],"style":{"color":"#6f42c1"}},{"types":["tag","selector","keyword"],"style":{"color":"#00009f"}}]},"darkTheme":{"plain":{"color":"#F8F8F2","backgroundColor":"#282A36"},"styles":[{"types":["prolog","constant","builtin"],"style":{"color":"rgb(189, 147, 249)"}},{"types":["inserted","function"],"style":{"color":"rgb(80, 250, 123)"}},{"types":["deleted"],"style":{"color":"rgb(255, 85, 85)"}},{"types":["changed"],"style":{"color":"rgb(255, 184, 108)"}},{"types":["punctuation","symbol"],"style":{"color":"rgb(248, 248, 242)"}},{"types":["string","char","tag","selector"],"style":{"color":"rgb(255, 121, 198)"}},{"types":["keyword","variable"],"style":{"color":"rgb(189, 147, 249)","fontStyle":"italic"}},{"types":["comment"],"style":{"color":"rgb(98, 114, 164)"}},{"types":["attr-name"],"style":{"color":"rgb(241, 250, 140)"}}]}},"footer":{"links":[{"title":"Resources","items":[{"label":"Documentation","to":"docs"},{"label":"Guides","to":"guides"},{"label":"Tutorials","to":"guides/tutorial"},{"label":"Pricing","to":"https://www.qovery.com/pricing"},{"label":"Enterprise","to":"https://www.qovery.com/enterprise"},{"label":"API","to":"https://api.qovery.io/swagger-ui.html#"},{"label":"Github","to":"https://github.com/Qovery"}]},{"title":"Community","items":[{"label":"Discord","to":"https://discord.qovery.com"},{"label":"Roadmap","to":"https://roadmap.qovery.com"}]},{"title":"Company","items":[{"label":"Blog","to":"https://www.qovery.com/blog"},{"label":"The Team","to":"https://www.qovery.com/team"},{"label":"Contact Us","to":"https://www.qovery.com/contact"}]}],"copyright":"© 2020 DESIGNED BY QOVERY | BACKED BY TECHSTARS | QOVERY BY BIRDSIGHT - ALL RIGHTS RESERVED"},"algolia":{"appId":"8UWX20JUZ7","apiKey":"d00b02cc517347c75a0b2fd59d4354b1","indexName":"qovery_documentation","algoliaOptions":{}}},"title":"Qovery","tagline":"Deploy complex application, seamlessly","url":"https://docsv2.qovery.com","baseUrl":"/","favicon":"img/logo-square.svg","organizationName":"Qovery","projectName":"documentation","presets":[],"scripts":[],"stylesheets":["https://fonts.googleapis.com/css?family=Ubuntu|Roboto|Source+Code+Pro","https://at-ui.github.io/feather-font/css/iconfont.css"]});
 
 /***/ }),
-/* 100 */
+/* 101 */
 /***/ (function(module, exports) {
 
 // Exports
@@ -36992,7 +37204,7 @@ module.exports = {
 
 
 /***/ }),
-/* 101 */
+/* 102 */
 /***/ (function(module, exports) {
 
 // Exports
@@ -37004,7 +37216,7 @@ module.exports = {
 
 
 /***/ }),
-/* 102 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37024,7 +37236,7 @@ exports.default = _Modal2.default;
 module.exports = exports["default"];
 
 /***/ }),
-/* 103 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/* NProgress, (c) 2013, 2014 Rico Sta. Cruz - http://ricostacruz.com/nprogress
@@ -37506,8 +37718,8 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/* NProgress, 
 
 
 /***/ }),
-/* 104 */,
-/* 105 */
+/* 105 */,
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var naturalCompare = __webpack_require__(311);
@@ -37536,7 +37748,7 @@ module.exports = sortSelectors;
 
 
 /***/ }),
-/* 106 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Spaces = __webpack_require__(71).Spaces;
@@ -37755,7 +37967,7 @@ module.exports = tidyRules;
 
 
 /***/ }),
-/* 107 */
+/* 108 */
 /***/ (function(module, exports) {
 
 var Hack = {
@@ -37769,7 +37981,7 @@ module.exports = Hack;
 
 
 /***/ }),
-/* 108 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Marker = __webpack_require__(21);
@@ -37825,7 +38037,7 @@ module.exports = split;
 
 
 /***/ }),
-/* 109 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var emptyCharacter = '';
@@ -38078,11 +38290,11 @@ module.exports = {
 
 
 /***/ }),
-/* 110 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var compactable = __webpack_require__(43);
-var InvalidPropertyError = __webpack_require__(140);
+var InvalidPropertyError = __webpack_require__(141);
 
 function populateComponents(properties, validator, warnings) {
   var component;
@@ -38126,7 +38338,7 @@ module.exports = populateComponents;
 
 
 /***/ }),
-/* 111 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var compactable = __webpack_require__(43);
@@ -38145,7 +38357,7 @@ module.exports = restoreWithComponents;
 
 
 /***/ }),
-/* 112 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // This extractor is used in level 2 optimizations
@@ -38224,7 +38436,7 @@ module.exports = extractProperties;
 
 
 /***/ }),
-/* 113 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var path = __webpack_require__(11);
@@ -38307,7 +38519,7 @@ module.exports = isAllowedResource;
 
 
 /***/ }),
-/* 114 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38378,7 +38590,7 @@ module.exports =
 
 
 /***/ }),
-/* 115 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38434,13 +38646,13 @@ module.exports =
 
 
 /***/ }),
-/* 116 */
+/* 117 */
 /***/ (function(module, exports) {
 
 module.exports = require("assert");
 
 /***/ }),
-/* 117 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38459,13 +38671,13 @@ module.exports = {
 
 
 /***/ }),
-/* 118 */
+/* 119 */
 /***/ (function(module, exports) {
 
 module.exports = require("net");
 
 /***/ }),
-/* 119 */
+/* 120 */
 /***/ (function(module, exports) {
 
 module.exports = function deprecate(fn, message) {
@@ -38486,7 +38698,7 @@ module.exports = function deprecate(fn, message) {
 
 
 /***/ }),
-/* 120 */
+/* 121 */
 /***/ (function(module, exports) {
 
 module.exports = function deprecatedMessage(previousUsage, newUsage) {
@@ -38499,13 +38711,13 @@ module.exports = function deprecatedMessage(previousUsage, newUsage) {
 
 
 /***/ }),
-/* 121 */
+/* 122 */
 /***/ (function(module, exports) {
 
 module.exports = require("events");
 
 /***/ }),
-/* 122 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38543,7 +38755,7 @@ exports.inherits = util.inherits;
 
 
 /***/ }),
-/* 123 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38652,7 +38864,7 @@ function bindContext(fn, context) {
 
 
 /***/ }),
-/* 124 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38756,7 +38968,7 @@ module.exports = css;
 
 
 /***/ }),
-/* 125 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38767,7 +38979,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.canUseDOM = undefined;
 
-var _exenv = __webpack_require__(185);
+var _exenv = __webpack_require__(186);
 
 var _exenv2 = _interopRequireDefault(_exenv);
 
@@ -38782,7 +38994,7 @@ var canUseDOM = exports.canUseDOM = EE.canUseDOM;
 exports.default = SafeHTMLElement;
 
 /***/ }),
-/* 126 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39025,11 +39237,11 @@ module.exports = {
 
 
 /***/ }),
-/* 127 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./": 536
+	"./": 537
 };
 
 
@@ -39050,10 +39262,10 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 127;
+webpackContext.id = 128;
 
 /***/ }),
-/* 128 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39327,7 +39539,7 @@ AutosizeInput.defaultProps = {
 exports.default = AutosizeInput;
 
 /***/ }),
-/* 129 */
+/* 130 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -39343,7 +39555,7 @@ __webpack_require__.r(__webpack_exports__);
  */function NotFound(){return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_theme_Layout__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"],{title:"Page Not Found"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"container margin-vert--xl"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"row"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"col col--6 col--offset-3"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1",{className:"hero__title"},"Page Not Found"),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p",null,"We could not find what you were looking for."),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p",null,"Please contact the owner of the site that linked you to the original URL and let them know their link is broken.")))));}/* harmony default export */ __webpack_exports__["default"] = (NotFound);
 
 /***/ }),
-/* 130 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isarray = __webpack_require__(419)
@@ -39775,7 +39987,7 @@ function pathToRegexp (path, keys, options) {
 
 
 /***/ }),
-/* 131 */
+/* 132 */
 /***/ (function(module, exports) {
 
 // Exports
@@ -39786,13 +39998,13 @@ module.exports = {
 
 
 /***/ }),
-/* 132 */
+/* 133 */
 /***/ (function(module, exports) {
 
 module.exports = require("stream");
 
 /***/ }),
-/* 133 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39820,19 +40032,19 @@ exports.hasEntry = _hasEntry["default"];
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 /***/ }),
-/* 134 */
+/* 135 */
 /***/ (function(module, exports) {
 
 module.exports = require("crypto");
 
 /***/ }),
-/* 135 */
+/* 136 */
 /***/ (function(module, exports) {
 
 module.exports = require("os");
 
 /***/ }),
-/* 136 */
+/* 137 */
 /***/ (function(module, exports) {
 
 function removeUnused(properties) {
@@ -39849,7 +40061,7 @@ module.exports = removeUnused;
 
 
 /***/ }),
-/* 137 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var override = __webpack_require__(49);
@@ -39943,7 +40155,7 @@ module.exports = {
 
 
 /***/ }),
-/* 138 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var Marker = __webpack_require__(21);
@@ -39977,7 +40189,7 @@ module.exports = everyValuesPair;
 
 
 /***/ }),
-/* 139 */
+/* 140 */
 /***/ (function(module, exports) {
 
 function hasInherit(property) {
@@ -39993,7 +40205,7 @@ module.exports = hasInherit;
 
 
 /***/ }),
-/* 140 */
+/* 141 */
 /***/ (function(module, exports) {
 
 function InvalidPropertyError(message) {
@@ -40009,7 +40221,7 @@ module.exports = InvalidPropertyError;
 
 
 /***/ }),
-/* 141 */
+/* 142 */
 /***/ (function(module, exports) {
 
 var VENDOR_PREFIX_PATTERN = /(?:^|\W)(\-\w+\-)/g;
@@ -40038,7 +40250,7 @@ module.exports = {
 
 
 /***/ }),
-/* 142 */
+/* 143 */
 /***/ (function(module, exports) {
 
 var MODIFIER_PATTERN = /\-\-.+$/;
@@ -40076,7 +40288,7 @@ module.exports = rulesOverlap;
 
 
 /***/ }),
-/* 143 */
+/* 144 */
 /***/ (function(module, exports) {
 
 function cloneArray(array) {
@@ -40094,7 +40306,7 @@ module.exports = cloneArray;
 
 
 /***/ }),
-/* 144 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -40102,13 +40314,13 @@ module.exports = cloneArray;
  * Licensed under the New BSD license. See LICENSE.txt or:
  * http://opensource.org/licenses/BSD-3-Clause
  */
-exports.SourceMapGenerator = __webpack_require__(145).SourceMapGenerator;
+exports.SourceMapGenerator = __webpack_require__(146).SourceMapGenerator;
 exports.SourceMapConsumer = __webpack_require__(352).SourceMapConsumer;
 exports.SourceNode = __webpack_require__(355).SourceNode;
 
 
 /***/ }),
-/* 145 */
+/* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* -*- Mode: js; js-indent-level: 2; -*- */
@@ -40118,9 +40330,9 @@ exports.SourceNode = __webpack_require__(355).SourceNode;
  * http://opensource.org/licenses/BSD-3-Clause
  */
 
-var base64VLQ = __webpack_require__(146);
+var base64VLQ = __webpack_require__(147);
 var util = __webpack_require__(61);
-var ArraySet = __webpack_require__(147).ArraySet;
+var ArraySet = __webpack_require__(148).ArraySet;
 var MappingList = __webpack_require__(351).MappingList;
 
 /**
@@ -40539,7 +40751,7 @@ exports.SourceMapGenerator = SourceMapGenerator;
 
 
 /***/ }),
-/* 146 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* -*- Mode: js; js-indent-level: 2; -*- */
@@ -40685,7 +40897,7 @@ exports.decode = function base64VLQ_decode(aStr, aIndex, aOutParam) {
 
 
 /***/ }),
-/* 147 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* -*- Mode: js; js-indent-level: 2; -*- */
@@ -40812,7 +41024,7 @@ exports.ArraySet = ArraySet;
 
 
 /***/ }),
-/* 148 */
+/* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var path = __webpack_require__(11);
@@ -40833,7 +41045,7 @@ module.exports = rebaseLocalMap;
 
 
 /***/ }),
-/* 149 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var path = __webpack_require__(11);
@@ -40853,10 +41065,10 @@ module.exports = rebaseRemoteMap;
 
 
 /***/ }),
-/* 150 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var split = __webpack_require__(108);
+var split = __webpack_require__(109);
 
 var BRACE_PREFIX = /^\(/;
 var BRACE_SUFFIX = /\)$/;
@@ -40894,7 +41106,7 @@ module.exports = extractImportUrlAndMedia;
 
 
 /***/ }),
-/* 151 */
+/* 152 */
 /***/ (function(module, exports) {
 
 function restoreImport(uri, mediaQuery) {
@@ -40905,7 +41117,7 @@ module.exports = restoreImport;
 
 
 /***/ }),
-/* 152 */
+/* 153 */
 /***/ (function(module, exports) {
 
 var IMPORT_PREFIX_PATTERN = /^@import/i;
@@ -40918,7 +41130,7 @@ module.exports = isImport;
 
 
 /***/ }),
-/* 153 */
+/* 154 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -40946,7 +41158,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 154 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40971,7 +41183,7 @@ exports.createMapFromString = function(values, ignoreCase) {
 
 
 /***/ }),
-/* 155 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40988,7 +41200,7 @@ module.exports =
 
 
 /***/ }),
-/* 156 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* -*- Mode: js; js-indent-level: 2; -*- */
@@ -40998,9 +41210,9 @@ module.exports =
  * http://opensource.org/licenses/BSD-3-Clause
  */
 
-var base64VLQ = __webpack_require__(157);
+var base64VLQ = __webpack_require__(158);
 var util = __webpack_require__(63);
-var ArraySet = __webpack_require__(158).ArraySet;
+var ArraySet = __webpack_require__(159).ArraySet;
 var MappingList = __webpack_require__(387).MappingList;
 
 /**
@@ -41419,7 +41631,7 @@ exports.SourceMapGenerator = SourceMapGenerator;
 
 
 /***/ }),
-/* 157 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* -*- Mode: js; js-indent-level: 2; -*- */
@@ -41565,7 +41777,7 @@ exports.decode = function base64VLQ_decode(aStr, aIndex, aOutParam) {
 
 
 /***/ }),
-/* 158 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* -*- Mode: js; js-indent-level: 2; -*- */
@@ -41692,7 +41904,7 @@ exports.ArraySet = ArraySet;
 
 
 /***/ }),
-/* 159 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41808,7 +42020,7 @@ if (typeof fs.realpath.native === 'function') {
 
 
 /***/ }),
-/* 160 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41820,7 +42032,7 @@ module.exports = {
 
 
 /***/ }),
-/* 161 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41852,14 +42064,14 @@ module.exports = {
 
 
 /***/ }),
-/* 162 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 const fs = __webpack_require__(18)
-const os = __webpack_require__(135)
+const os = __webpack_require__(136)
 const path = __webpack_require__(11)
 
 // HFS, ext{2,3}, FAT do not, Node.js v0.10 does not
@@ -41938,7 +42150,7 @@ module.exports = {
 
 
 /***/ }),
-/* 163 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41951,7 +42163,7 @@ module.exports = {
 
 
 /***/ }),
-/* 164 */
+/* 165 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -41964,7 +42176,7 @@ __webpack_require__.r(__webpack_exports__);
 function pluralize(count,word){return count>1?`${word}s`:word;}function GuideTagPage(props){const{metadata,items}=props;const{allTagsPath,name:tagName,count}=metadata;return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_theme_Layout__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"],{title:`Guides tagged "${tagName}"`,description:`Guide | Tagged "${tagName}"`},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header",{className:"hero hero--clean"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"container"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1",null,count," ",pluralize(count,'guide')," tagged with \"",tagName,"\""),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"hero--subtitle"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_docusaurus_Link__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"],{href:allTagsPath},"View All Tags")))),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main",{className:"container container--s"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_theme_GuideItems__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"],{items:items})));}/* harmony default export */ __webpack_exports__["default"] = (GuideTagPage);
 
 /***/ }),
-/* 165 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41976,7 +42188,7 @@ if (true) {
 
 
 /***/ }),
-/* 166 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41989,7 +42201,7 @@ module.exports = __webpack_require__(430);
 
 
 /***/ }),
-/* 167 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -42197,7 +42409,7 @@ function coerce(val) {
 
 
 /***/ }),
-/* 168 */
+/* 169 */
 /***/ (function(module, exports) {
 
 exports = module.exports = SemVer
@@ -43686,7 +43898,7 @@ function coerce (version) {
 
 
 /***/ }),
-/* 169 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = buildSearchMethod;
@@ -43759,12 +43971,12 @@ function buildSearchMethod(queryParam, url) {
 
 
 /***/ }),
-/* 170 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var buildSearchMethod = __webpack_require__(169);
-var deprecate = __webpack_require__(119);
-var deprecatedMessage = __webpack_require__(120);
+var buildSearchMethod = __webpack_require__(170);
+var deprecate = __webpack_require__(120);
+var deprecatedMessage = __webpack_require__(121);
 
 module.exports = IndexCore;
 
@@ -43922,7 +44134,7 @@ IndexCore.prototype.similarSearch = deprecate(
 * @see {@link https://www.algolia.com/doc/rest_api#Browse|Algolia REST API Documentation}
 */
 IndexCore.prototype.browse = function(query, queryParameters, callback) {
-  var merge = __webpack_require__(171);
+  var merge = __webpack_require__(172);
 
   var indexObj = this;
 
@@ -44018,7 +44230,7 @@ IndexCore.prototype.browseFrom = function(cursor, callback) {
 */
 IndexCore.prototype.searchForFacetValues = function(params, callback) {
   var clone = __webpack_require__(37);
-  var omit = __webpack_require__(172);
+  var omit = __webpack_require__(173);
   var usage = 'Usage: index.searchForFacetValues({facetName, facetQuery, ...params}[, callback])';
 
   if (params.facetName === undefined || params.facetQuery === undefined) {
@@ -44154,7 +44366,7 @@ IndexCore.prototype.typeAheadValueOption = null;
 
 
 /***/ }),
-/* 171 */
+/* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var foreach = __webpack_require__(54);
@@ -44179,11 +44391,11 @@ module.exports = function merge(destination/* , sources */) {
 
 
 /***/ }),
-/* 172 */
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = function omit(obj, test) {
-  var keys = __webpack_require__(173);
+  var keys = __webpack_require__(174);
   var foreach = __webpack_require__(54);
 
   var filtered = {};
@@ -44199,14 +44411,14 @@ module.exports = function omit(obj, test) {
 
 
 /***/ }),
-/* 173 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var slice = Array.prototype.slice;
-var isArgs = __webpack_require__(174);
+var isArgs = __webpack_require__(175);
 
 var origKeys = Object.keys;
 var keysShim = origKeys ? function keys(o) { return origKeys(o); } : __webpack_require__(445);
@@ -44238,7 +44450,7 @@ module.exports = keysShim;
 
 
 /***/ }),
-/* 174 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44262,7 +44474,7 @@ module.exports = function isArguments(value) {
 
 
 /***/ }),
-/* 175 */
+/* 176 */
 /***/ (function(module, exports) {
 
 // Parse cloud does not supports setTimeout
@@ -44275,15 +44487,15 @@ module.exports = function exitPromise(fn, _setTimeout) {
 
 
 /***/ }),
-/* 176 */
+/* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(177);
+module.exports = __webpack_require__(178);
 module.exports.HttpsAgent = __webpack_require__(454);
 
 
 /***/ }),
-/* 177 */
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44306,7 +44518,7 @@ module.exports.HttpsAgent = __webpack_require__(454);
  */
 
 var https = __webpack_require__(51);
-var utils = __webpack_require__(122);
+var utils = __webpack_require__(123);
 var OriginalAgent = __webpack_require__(453).Agent;
 var OriginalHttpsAgent = https.Agent;
 
@@ -44387,7 +44599,7 @@ function inspect(obj) {
 
 
 /***/ }),
-/* 178 */
+/* 179 */
 /***/ (function(module, exports) {
 
 /* istanbul ignore next */
@@ -45710,7 +45922,7 @@ function inspect(obj) {
 
 
 /***/ }),
-/* 179 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45750,7 +45962,7 @@ module.exports = EventBus;
 
 
 /***/ }),
-/* 180 */
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45766,14 +45978,14 @@ module.exports = {
 
 
 /***/ }),
-/* 181 */
+/* 182 */
 /***/ (function(module, exports) {
 
 module.exports = "0.36.0";
 
 
 /***/ }),
-/* 182 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45786,7 +45998,7 @@ module.exports = function parseAlgoliaClientVersion(agent) {
 
 
 /***/ }),
-/* 183 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45796,7 +46008,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _zepto = __webpack_require__(178);
+var _zepto = __webpack_require__(179);
 
 var _zepto2 = _interopRequireDefault(_zepto);
 
@@ -45805,7 +46017,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = _zepto2.default;
 
 /***/ }),
-/* 184 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -45817,7 +46029,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = '2.6.3';
 
 /***/ }),
-/* 185 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -45860,7 +46072,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 
 /***/ }),
-/* 186 */
+/* 187 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -45961,13 +46173,13 @@ my-db          | running | PostgreSQL      | 11.5     | <hidden> | <hidden> | <h
 `)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_site_src_components_Jump__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"],{to:"/guides/advanced/using-multiple-environments",mdxType:"Jump"},"Multiple Environments"),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h2",{"id":"conclusion"},`Conclusion`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Qovery bring to developers, the full power of simplicity and flexibility while deploying applications. Any developer can now take advantage of the most popular Cloud providers in seconds instead of days.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Accelerate your development and start using Qovery today. Let us know what you think about it on `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"p"},{"href":"https://twitter.com/qovery_"}),`Twitter`),`, or by `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"p"},{"href":"https://discord.qovery.com"}),`Discord`),`.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_site_src_components_Jump__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"],{to:"/guides/tutorial/",mdxType:"Jump"},"Tutorial"));};MDXContent.isMDXComponent=true;
 
 /***/ }),
-/* 187 */
+/* 188 */
 /***/ (function(module) {
 
 module.exports = JSON.parse("{\"category\":{\"name\":\"getting-started\",\"title\":\"Getting Started\",\"description\":\"Take Qovery from zero to production in under 10 minutes.\",\"permalink\":\"/guides/getting-started\"}}");
 
 /***/ }),
-/* 188 */
+/* 189 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -46068,7 +46280,7 @@ my-db          | running | PostgreSQL      | 11.5     | <hidden> | <hidden> | <h
 `)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_site_src_components_Jump__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"],{to:"/guides/advanced/using-multiple-environments",mdxType:"Jump"},"Multiple Environments"),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h2",{"id":"conclusion"},`Conclusion`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Qovery bring to developers, the full power of simplicity and flexibility while deploying applications. Any developer can now take advantage of the most popular Cloud providers in seconds instead of days.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Accelerate your development and start using Qovery today. Let us know what you think about it on `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"p"},{"href":"https://twitter.com/qovery_"}),`Twitter`),`, or by `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"p"},{"href":"https://discord.qovery.com"}),`Discord`),`.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_site_src_components_Jump__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"],{to:"/guides/tutorial/",mdxType:"Jump"},"Tutorial"));};MDXContent.isMDXComponent=true;
 
 /***/ }),
-/* 189 */
+/* 190 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -46169,7 +46381,7 @@ my-db          | running | PostgreSQL      | 11.5     | <hidden> | <hidden> | <h
 `)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_site_src_components_Jump__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"],{to:"/guides/advanced/using-multiple-environments",mdxType:"Jump"},"Multiple Environments"),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h2",{"id":"conclusion"},`Conclusion`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Qovery bring to developers, the full power of simplicity and flexibility while deploying applications. Any developer can now take advantage of the most popular Cloud providers in seconds instead of days.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Accelerate your development and start using Qovery today. Let us know what you think about it on `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"p"},{"href":"https://twitter.com/qovery_"}),`Twitter`),`, or by `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"p"},{"href":"https://discord.qovery.com"}),`Discord`),`.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_site_src_components_Jump__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"],{to:"/guides/tutorial/",mdxType:"Jump"},"Tutorial"));};MDXContent.isMDXComponent=true;
 
 /***/ }),
-/* 190 */
+/* 191 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -46187,7 +46399,7 @@ __webpack_require__.r(__webpack_exports__);
 const frontMatter={last_modified_on:'2020-04-21',$schema:'/.meta/.schemas/guides.json',title:'Customizing routes',description:'How to set up routers in your project',author_github:'https://github.com/pjeziorowski',tags:['type: guide']};const metadata={"categories":[{"name":"advanced","title":"Advanced","description":"Go beyond the basics, become a Qovery pro, and extract the full potential of Qovery.","permalink":"/guides/advanced"}],"coverLabel":"Customizing routes","description":"How to set up routers in your project","permalink":"/guides/advanced/customizing-routing","readingTime":"1 min read","source":"@site/guides/advanced/customizing-routing.md","tags":[{"label":"type: guide","permalink":"/guides/tags/type-guide"}],"title":"Customizing routes","truncated":false,"prevItem":{"title":"Beyond application deployment","permalink":"/guides/getting-started/beyond-application-deployment"},"nextItem":{"title":"Deploy Flask with PostgreSQL on Qovery","permalink":"/guides/tutorial/deploy-flask-with-postgresql"}};/* @jsx mdx */const rightToc=[];const makeShortcode=name=>function MDXDefaultShortcode(props){console.warn("Component "+name+" was not imported, exported, or provided by MDXProvider as global scope");return Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("div",props);};const layoutProps={rightToc};const MDXLayout="wrapper";function MDXContent({components,...props}){return Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(MDXLayout,Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({},layoutProps,props,{components:components,mdxType:"MDXLayout"}),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(react_inlinesvg__WEBPACK_IMPORTED_MODULE_3___default.a,{src:"/img/components.svg",mdxType:"SVG"}),"Installing Vector manually should be a last resort if Vector cannot be");};MDXContent.isMDXComponent=true;
 
 /***/ }),
-/* 191 */
+/* 192 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -46288,7 +46500,7 @@ my-db          | running | PostgreSQL      | 11.5     | <hidden> | <hidden> | <h
 `)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_site_src_components_Jump__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"],{to:"/guides/advanced/using-multiple-environments",mdxType:"Jump"},"Multiple Environments"),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h2",{"id":"conclusion"},`Conclusion`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Qovery bring to developers, the full power of simplicity and flexibility while deploying applications. Any developer can now take advantage of the most popular Cloud providers in seconds instead of days.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Accelerate your development and start using Qovery today. Let us know what you think about it on `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"p"},{"href":"https://twitter.com/qovery_"}),`Twitter`),`, or by `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("a",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"p"},{"href":"https://discord.qovery.com"}),`Discord`),`.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_site_src_components_Jump__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"],{to:"/guides/tutorial/",mdxType:"Jump"},"Tutorial"));};MDXContent.isMDXComponent=true;
 
 /***/ }),
-/* 192 */
+/* 193 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -46297,7 +46509,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _docusaurus_Head__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(65);
 /* harmony import */ var _docusaurus_Link__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(8);
-/* harmony import */ var _theme_PagePaginator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(92);
+/* harmony import */ var _theme_PagePaginator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(93);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(19);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(6);
@@ -46306,13 +46518,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_module_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_styles_module_css__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _docusaurus_useBaseUrl__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(22);
 /* harmony import */ var _docusaurus_useDocusaurusContext__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(9);
-/* harmony import */ var _theme_hooks_useTOCHighlight__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(93);
+/* harmony import */ var _theme_hooks_useTOCHighlight__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(94);
 const LINK_CLASS_NAME='contents__link';const ACTIVE_LINK_CLASS_NAME='contents__link--active';const TOP_OFFSET=100;function Headings({headings,isChild}){Object(_theme_hooks_useTOCHighlight__WEBPACK_IMPORTED_MODULE_9__[/* default */ "a"])(LINK_CLASS_NAME,ACTIVE_LINK_CLASS_NAME,TOP_OFFSET);if(!headings.length)return null;// We need to track shown headings because the markdown parser will
 // extract duplicate headings if we're using tabs
 let uniqHeadings=lodash__WEBPACK_IMPORTED_MODULE_4___default.a.uniqBy(headings,heading=>heading.value);return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul",{className:isChild?'':'contents'},uniqHeadings.map(heading=>{let cleanValue=heading.value.replace('<code><','<code>&lt;').replace('></code>','&gt;</code>');return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li",{key:heading.id},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a",{href:`#${heading.id}`,className:LINK_CLASS_NAME,dangerouslySetInnerHTML:{__html:cleanValue}}),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Headings,{isChild:true,headings:heading.children}));}));}function SupportedEventTypes({values}){const context=Object(_docusaurus_useDocusaurusContext__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"])();const{siteConfig={}}=context;const{metadata:{event_types:eventTypes}}=siteConfig.customFields;let els=[];eventTypes.forEach(eventType=>{if(values.includes(eventType)){els.push(/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span",{key:eventType,className:"text--primary"},lodash__WEBPACK_IMPORTED_MODULE_4___default.a.capitalize(eventType)));}else{els.push(/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("del",{key:eventType,className:"text--warning"},lodash__WEBPACK_IMPORTED_MODULE_4___default.a.capitalize(eventType)));}els.push(/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span",{key:eventType+'-comma'},", "));});els.pop();return els;}function OperatingSystemsStatus({operatingSystems,unsupportedOperatingSystems}){let operatingSystemsEls=[];(operatingSystems||[]).forEach(operatingSystem=>{operatingSystemsEls.push(/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span",{key:operatingSystem,className:"text--primary"},operatingSystem));operatingSystemsEls.push(/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span",{key:operatingSystem+'-comma'},", "));});(unsupportedOperatingSystems||[]).forEach(operatingSystem=>{operatingSystemsEls.push(/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("del",{key:operatingSystem,className:"text--warning"},operatingSystem));operatingSystemsEls.push(/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span",{key:operatingSystem+'-comma'},", "));});operatingSystemsEls.pop();return operatingSystemsEls;}function Statuses({deliveryGuarantee,eventTypes,operatingSystems,status,unsupportedOperatingSystems}){if(!status&&!deliveryGuarantee&&!operatingSystems&&!unsupportedOperatingSystems)return null;return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"section"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"title"},"Support"),status=="beta"&&/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_docusaurus_Link__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"],{to:"/docs/getting-started/whats-next/#beta",className:"text--warning",title:"This component is in beta and is not recommended for production environments. Click to learn more."},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i",{className:"feather icon-alert-triangle"})," Beta Status")),status=="prod-ready"&&/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_docusaurus_Link__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"],{to:"/docs/getting-started/whats-next/#prod-ready",className:"text--primary",title:"This component has passed reliability standards that make it production ready. Click to learn more."},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i",{className:"feather icon-award"})," Prod-Ready Status")),deliveryGuarantee=="best_effort"&&/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_docusaurus_Link__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"],{to:"/docs/getting-started/whats-next/#best-effort",className:"text--warning",title:"This component makes a best-effort delivery guarantee, and in rare cases can lose data. Click to learn more."},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i",{className:"feather icon-shield-off"})," Best-Effort Delivery")),deliveryGuarantee=="at_least_once"&&/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_docusaurus_Link__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"],{to:"/docs/getting-started/whats-next/#at-least-once",className:"text--primary",title:"This component offers an at-least-once delivery guarantee. Click to learn more."},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i",{className:"feather icon-shield"})," At-Least-Once")),eventTypes&&/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_docusaurus_Link__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"],{to:"/docs/getting-started/data-model/",title:`This component works on the these event types.`},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i",{className:"feather icon-database"})," ",/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(SupportedEventTypes,{values:eventTypes}))),operatingSystems&&unsupportedOperatingSystems&&/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_docusaurus_Link__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"],{to:"/docs/setup/installation/operating-systems/",title:`This component works on the ${operatingSystems.join(", ")} operating systems.`},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i",{className:"feather icon-cpu"})," ",/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(OperatingSystemsStatus,{operatingSystems:operatingSystems,unsupportedOperatingSystems:unsupportedOperatingSystems}))));}function DocItem(props){const{siteConfig={}}=Object(_docusaurus_useDocusaurusContext__WEBPACK_IMPORTED_MODULE_8__[/* default */ "a"])();const{title:siteTitle,url:siteUrl}=siteConfig;const{content:DocContent}=props;const{metadata}=DocContent;const{description,editUrl,image:metaImage,keywords,lastUpdatedAt,lastUpdatedBy,permalink,title,version}=metadata;const{frontMatter:{component_title:componentTitle,delivery_guarantee:deliveryGuarantee,event_types:eventTypes,function_category:functionCategory,hide_title:hideTitle,hide_table_of_contents:hideTableOfContents,issues_url:issuesUrl,operating_systems:operatingSystems,posts_path:postsPath,source_url:sourceUrl,status,unsupported_operating_systems:unsupportedOperatingSystems}}=DocContent;const metaImageUrl=siteUrl+Object(_docusaurus_useBaseUrl__WEBPACK_IMPORTED_MODULE_7__[/* default */ "a"])(metaImage);return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",null,/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_docusaurus_Head__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"],null,title&&/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("title",null,title," | Docs | ",siteTitle),description&&/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("meta",{name:"description",content:description}),description&&/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("meta",{property:"og:description",content:description}),keywords&&keywords.length&&/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("meta",{name:"keywords",content:keywords.join(',')}),metaImage&&/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("meta",{property:"og:image",content:metaImageUrl}),metaImage&&/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("meta",{property:"twitter:image",content:metaImageUrl}),metaImage&&/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("meta",{name:"twitter:image:alt",content:`Image for ${title}`}),permalink&&/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("meta",{property:"og:url",content:siteUrl+permalink})),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_styles_module_css__WEBPACK_IMPORTED_MODULE_6___default.a.container},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_styles_module_css__WEBPACK_IMPORTED_MODULE_6___default.a.leftCol},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"docItemContainer_"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("article",null,version&&/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span",{style:{verticalAlign:'top'},className:"badge badge--info"},"Version: ",version),!metadata.hide_title&&/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header",null,/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"badges"},functionCategory&&/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_docusaurus_Link__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"],{to:`/components?functions[]=${functionCategory}`,className:"badge badge--primary"},functionCategory)),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1",{className:_styles_module_css__WEBPACK_IMPORTED_MODULE_6___default.a.docTitle},metadata.title)),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"markdown"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(DocContent,null)))),!metadata.hide_pagination&&(metadata.next||metadata.previous)&&/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_styles_module_css__WEBPACK_IMPORTED_MODULE_6___default.a.paginator},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_theme_PagePaginator__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"],{next:metadata.next,previous:metadata.previous}))),DocContent.rightToc&&/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:_styles_module_css__WEBPACK_IMPORTED_MODULE_6___default.a.rightCol},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:classnames__WEBPACK_IMPORTED_MODULE_5___default()('table-of-contents',_styles_module_css__WEBPACK_IMPORTED_MODULE_6___default.a.tableOfContents)},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Statuses,{deliveryGuarantee:deliveryGuarantee,eventTypes:eventTypes,operatingSystems:operatingSystems,status:status,unsupportedOperatingSystems:unsupportedOperatingSystems}),DocContent.rightToc.length>0&&/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"section"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"title"},"Contents"),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Headings,{headings:DocContent.rightToc})),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"section"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"title"},"Resources"),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul",{className:"contents"},editUrl&&/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li",null,/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a",{href:editUrl,className:"contents__link",target:"_blank"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i",{className:"feather icon-edit-1"})," Edit this page")),postsPath&&/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li",null,/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_docusaurus_Link__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"],{to:postsPath,className:"contents__link"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i",{className:"feather icon-book-open"})," View Blog Posts")),issuesUrl&&/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li",null,/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a",{href:issuesUrl,className:"contents__link",target:"_blank"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i",{className:"feather icon-message-circle"})," View Issues")),sourceUrl&&/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li",null,/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a",{href:sourceUrl,className:"contents__link",target:"_blank"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i",{className:"feather icon-github"})," View Source")))),(lastUpdatedAt||lastUpdatedBy)&&/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"section"},"Last updated",' ',lastUpdatedAt&&/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment,null,"on",' ',/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong",null,new Date(lastUpdatedAt*1000).toLocaleDateString()),lastUpdatedBy&&' '),lastUpdatedBy&&/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment,null,"by ",/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong",null,lastUpdatedBy)))))));}/* harmony default export */ __webpack_exports__["default"] = (DocItem);
 
 /***/ }),
-/* 193 */
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46378,7 +46590,7 @@ function findTabbableDescendants(element) {
 module.exports = exports["default"];
 
 /***/ }),
-/* 194 */
+/* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46399,7 +46611,7 @@ var _warning = __webpack_require__(511);
 
 var _warning2 = _interopRequireDefault(_warning);
 
-var _safeHTMLElement = __webpack_require__(125);
+var _safeHTMLElement = __webpack_require__(126);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -46453,7 +46665,7 @@ function resetForTesting() {
 }
 
 /***/ }),
-/* 195 */
+/* 196 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46513,7 +46725,7 @@ exports.default = portalOpenInstances;
 module.exports = exports["default"];
 
 /***/ }),
-/* 196 */
+/* 197 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46522,7 +46734,7 @@ module.exports = exports["default"];
 var replace = String.prototype.replace;
 var percentTwenties = /%20/g;
 
-var util = __webpack_require__(126);
+var util = __webpack_require__(127);
 
 var Format = {
     RFC1738: 'RFC1738',
@@ -46546,7 +46758,7 @@ module.exports = util.assign(
 
 
 /***/ }),
-/* 197 */
+/* 198 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -46565,7 +46777,7 @@ __webpack_require__.r(__webpack_exports__);
 const frontMatter={last_modified_on:'2020-04-21',$schema:'/.meta/.schemas/guides.json',title:'Adding a database',description:'How to add a database to your application',series_position:2,author_github:'https://github.com/pjeziorowski',tags:['type: guide']};const metadata={"categories":[{"name":"getting-started","title":"Getting Started","description":"Take Qovery from zero to production in under 10 minutes.","permalink":"/guides/getting-started"}],"coverLabel":"Adding a database","description":"How to add a database to your application","permalink":"/guides/getting-started/adding-a-database","readingTime":"1 min read","seriesPosition":2,"source":"@site/guides/getting-started/adding-a-database.md","tags":[{"label":"type: guide","permalink":"/guides/tags/type-guide"}],"title":"Adding a database","truncated":false,"prevItem":{"title":"Hello World. Deploy your first application.","permalink":"/guides/getting-started/deploy-your-first-application"},"nextItem":{"title":"Setting custom domain","permalink":"/guides/getting-started/setting-custom-domain"}};/* @jsx mdx */const rightToc=[];const makeShortcode=name=>function MDXDefaultShortcode(props){console.warn("Component "+name+" was not imported, exported, or provided by MDXProvider as global scope");return Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("div",props);};const layoutProps={rightToc};const MDXLayout="wrapper";function MDXContent({components,...props}){return Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(MDXLayout,Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({},layoutProps,props,{components:components,mdxType:"MDXLayout"}),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(react_inlinesvg__WEBPACK_IMPORTED_MODULE_4___default.a,{src:"/img/components.svg",mdxType:"SVG"}),"Bla bla TODO",Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_site_src_components_Jump__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"],{to:"/guides/getting-started/",mdxType:"Jump"},"Get started"));};MDXContent.isMDXComponent=true;
 
 /***/ }),
-/* 198 */
+/* 199 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -46627,13 +46839,13 @@ As you can see, Hasura returned an empty array of "Todo" items. Let’s add a "T
 `)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`At the same time, keep an eye at the subscription. Each and every newly created "Todo" item automagically appears in the subscription response!`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("img",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"p"},{"src":"https://uploads-ssl.webflow.com/5de176c0d41c9b4a1dbbb0aa/5e8d9de17e6837d53983c32f_subscription.gif","alt":"Realtime GraphQL"}))),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h2",{"id":"conclusions"},`Conclusions`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`By following this article you quickly deployed a realtime GraphQL backend using Qovery, Hasura and Postgres database.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Using this stack saves you tons of time. Deploying it on Qovery is extremely easy. We take care of your application and your database. With Qovery and Hasura all you have to do to expose quality, realtime GraphQL backend is just a few clicks. After minutes your application is ready - define your data schema and expose GraphQL API to the world!`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(_site_src_components_Jump__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"],{to:"/guides/tutorial/",mdxType:"Jump"},"Tutorial"));};MDXContent.isMDXComponent=true;
 
 /***/ }),
-/* 199 */
+/* 200 */
 /***/ (function(module) {
 
 module.exports = JSON.parse("{\"docsSidebars\":{\"docs\":[{\"type\":\"category\",\"label\":\"Getting Started\",\"items\":[{\"type\":\"link\",\"label\":\"hidden\",\"href\":\"/docs/getting-started\"},{\"type\":\"link\",\"label\":\"What is Qovery?\",\"href\":\"/docs/getting-started/what-is-qovery\"},{\"type\":\"link\",\"label\":\"How Qovery works?\",\"href\":\"/docs/getting-started/how-qovery-works\"},{\"type\":\"link\",\"label\":\"Quick Start Guide\",\"href\":\"/docs/getting-started/quickstart\"},{\"type\":\"link\",\"label\":\"What's next\",\"href\":\"/docs/getting-started/whats-next\"}]},{\"type\":\"category\",\"label\":\"Main Concepts\",\"items\":[{\"type\":\"link\",\"label\":\"hidden\",\"href\":\"/docs/main-concepts\"},{\"type\":\"link\",\"label\":\"Application\",\"href\":\"/docs/main-concepts/Application\"},{\"type\":\"link\",\"label\":\"Project\",\"href\":\"/docs/main-concepts/Project\"},{\"type\":\"link\",\"label\":\"Environment\",\"href\":\"/docs/main-concepts/Environment\"}]},{\"type\":\"category\",\"label\":\"Using Qovery\",\"items\":[{\"type\":\"link\",\"label\":\"hidden\",\"href\":\"/docs/using-qovery\"},{\"type\":\"link\",\"label\":\"Configuration\",\"href\":\"/docs/using-qovery/configuration\"},{\"type\":\"category\",\"label\":\"Integration\",\"items\":[{\"type\":\"link\",\"label\":\"hidden\",\"href\":\"/docs/integration\"},{\"type\":\"link\",\"label\":\"IDE Plugins\",\"href\":\"/docs/integration/ide-plugins\"}]}]},{\"type\":\"category\",\"label\":\"Useful Links\",\"items\":[{\"type\":\"link\",\"label\":\"API\",\"href\":\"/docs/useful-links/api\"},{\"type\":\"link\",\"label\":\"FAQ\",\"href\":\"/docs/useful-links/faq\"},{\"type\":\"link\",\"label\":\"Help and Support\",\"href\":\"/docs/useful-links/help-and-support\"}]}]},\"permalinkToSidebar\":{\"/docs/getting-started\":\"docs\",\"/docs/getting-started/how-qovery-works\":\"docs\",\"/docs/getting-started/quickstart\":\"docs\",\"/docs/getting-started/what-is-qovery\":\"docs\",\"/docs/getting-started/whats-next\":\"docs\",\"/docs/integration\":\"docs\",\"/docs/integration/ide-plugins\":\"docs\",\"/docs/main-concepts\":\"docs\",\"/docs/main-concepts/Application\":\"docs\",\"/docs/main-concepts/Environment\":\"docs\",\"/docs/main-concepts/Project\":\"docs\",\"/docs/useful-links/api\":\"docs\",\"/docs/useful-links/faq\":\"docs\",\"/docs/useful-links/help-and-support\":\"docs\",\"/docs/using-qovery\":\"docs\",\"/docs/using-qovery/configuration\":\"docs\"}}");
 
 /***/ }),
-/* 200 */
+/* 201 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -46644,13 +46856,13 @@ __webpack_require__.r(__webpack_exports__);
 function Docs(){return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_docusaurus_router__WEBPACK_IMPORTED_MODULE_1__[/* Redirect */ "a"],{to:"/docs/getting-started/what-is-qovery/"});}/* harmony default export */ __webpack_exports__["default"] = (Docs);
 
 /***/ }),
-/* 201 */
+/* 202 */
 /***/ (function(module) {
 
 module.exports = JSON.parse("{\"allTagsPath\":\"/guides/tags\",\"slug\":\"framework-nodejs\",\"name\":\"framework: nodejs\",\"count\":1,\"permalink\":\"/guides/tags/framework-nodejs\"}");
 
 /***/ }),
-/* 202 */
+/* 203 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -46670,22 +46882,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var pluralize__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(290);
 /* harmony import */ var pluralize__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(pluralize__WEBPACK_IMPORTED_MODULE_9__);
 const AnchoredH2=Object(_theme_Heading__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])('h2');function GuideTagListPage(props){const{tags}=props;const normalizedTags=Object.values(tags).map(tag=>({count:tag.count,label:tag.name,permalink:tag.permalink}));const enrichedTags=Object(_site_src_exports_tags__WEBPACK_IMPORTED_MODULE_7__[/* enrichTags */ "a"])(normalizedTags,'guides');const groupedTags=lodash__WEBPACK_IMPORTED_MODULE_6___default.a.groupBy(enrichedTags,'category');return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_theme_Layout__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"],{title:"Tags",description:"Qovery guide tags"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("header",{className:"hero hero--clean"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div",{className:"container"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1",null,"All Guide Tags"))),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("main",{className:"container container--xs"},Object.keys(groupedTags).map((category,index)=>{let tags=groupedTags[category];return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("section",null,/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(AnchoredH2,{id:category.name},pluralize__WEBPACK_IMPORTED_MODULE_9___default()(humanize_string__WEBPACK_IMPORTED_MODULE_8___default()(category))),tags.map((tag,idx)=>/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div",null,/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_site_src_components_Tag__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"],Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({key:idx,valueOnly:true},tag)))));})));}/* harmony default export */ __webpack_exports__["default"] = (GuideTagListPage);
-
-/***/ }),
-/* 203 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "frontMatter", function() { return frontMatter; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "metadata", function() { return metadata; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "rightToc", function() { return rightToc; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return MDXContent; });
-/* harmony import */ var _home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _mdx_js_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(0);
-const frontMatter={last_modified_on:'2020-04-19',title:'Environment',description:'High-level description of the Qovery observability data collector and router.'};const metadata={"id":"main-concepts/Environment","title":"Environment","description":"High-level description of the Qovery observability data collector and router.","source":"@site/docs/main-concepts/Environment.md","permalink":"/docs/main-concepts/Environment","editUrl":"https://github.com/Qovery/documentation/edit/master/website/docs/main-concepts/Environment.md","sidebar":"docs","previous":{"title":"Project","permalink":"/docs/main-concepts/Project"},"next":{"title":"Using Qovery","permalink":"/docs/using-qovery"}};/* @jsx mdx */const rightToc=[];const makeShortcode=name=>function MDXDefaultShortcode(props){console.warn("Component "+name+" was not imported, exported, or provided by MDXProvider as global scope");return Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("div",props);};const layoutProps={rightToc};const MDXLayout="wrapper";function MDXContent({components,...props}){return Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(MDXLayout,Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({},layoutProps,props,{components:components,mdxType:"MDXLayout"}),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`!!!TODO!!!`));};MDXContent.isMDXComponent=true;
 
 /***/ }),
 /* 204 */
@@ -47073,7 +47269,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _theme_Layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(17);
-/* harmony import */ var _community_module_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(530);
+/* harmony import */ var _community_module_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(531);
 /* harmony import */ var _community_module_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_community_module_css__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _docusaurus_useDocusaurusContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9);
 function Contact(){const context=Object(_docusaurus_useDocusaurusContext__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])();const{siteConfig={}}=context;const{metadata:{team}}=siteConfig.customFields;return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_theme_Layout__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"],{title:"Contact",description:"Contact the Qovery and Timber.io team"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header",{className:"hero"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"container container--fluid"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1",null,"Contact"),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"hero--subtitle"},"Qovery is a ",/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a",{href:"https://timber.io"},"Timber.io")," open-source product. You can contact the Qovery & Timber team using any of the options below."))),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("main",null,/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section",null,/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"container"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"row"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"col"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a",{href:"mailto:hi@timber.io",className:"panel panel--link text--center"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"panel--icon"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i",{className:"feather icon-mail"})),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"panel--title"},"hi@timber.io"),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"panel--description"},"Shoot us an email"))),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"col"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a",{href:"https://twitter.com/qoverydotdev",target:"_blank",className:"panel panel--link text--center"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"panel--icon"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i",{className:"feather icon-twitter"})),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"panel--title"},"@qoverydotdev"),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"panel--description"},"Tweet at us"))),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"col"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a",{href:"https://discord.qovery.com",target:"_blank",className:"panel panel--link text--center"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"panel--icon"},/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i",{className:"feather icon-message-circle"})),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"panel--title"},"Chat"),/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div",{className:"panel--description"},"Join our chat"))))))));}/* harmony default export */ __webpack_exports__["default"] = (Contact);
@@ -47193,7 +47389,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _mdx_js_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(0);
-const frontMatter={last_modified_on:'2020-04-19',title:'Application',description:'High-level description of the Qovery observability data collector and router.'};const metadata={"id":"main-concepts/Application","title":"Application","description":"High-level description of the Qovery observability data collector and router.","source":"@site/docs/main-concepts/Application.md","permalink":"/docs/main-concepts/Application","editUrl":"https://github.com/Qovery/documentation/edit/master/website/docs/main-concepts/Application.md","sidebar":"docs","previous":{"title":"Main Concepts","permalink":"/docs/main-concepts"},"next":{"title":"Project","permalink":"/docs/main-concepts/Project"}};/* @jsx mdx */const rightToc=[];const makeShortcode=name=>function MDXDefaultShortcode(props){console.warn("Component "+name+" was not imported, exported, or provided by MDXProvider as global scope");return Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("div",props);};const layoutProps={rightToc};const MDXLayout="wrapper";function MDXContent({components,...props}){return Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(MDXLayout,Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({},layoutProps,props,{components:components,mdxType:"MDXLayout"}),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`!!!TODO!!!`));};MDXContent.isMDXComponent=true;
+const frontMatter={last_modified_on:'2020-04-21',title:'Application',description:'Understand the concept of Qovery application'};const metadata={"id":"main-concepts/Application","title":"Application","description":"Understand the concept of Qovery application","source":"@site/docs/main-concepts/Application.md","permalink":"/docs/main-concepts/Application","editUrl":"https://github.com/Qovery/documentation/edit/master/website/docs/main-concepts/Application.md","sidebar":"docs","previous":{"title":"Main Concepts","permalink":"/docs/main-concepts"},"next":{"title":"Project","permalink":"/docs/main-concepts/Project"}};/* @jsx mdx */const rightToc=[{value:'Git Driven Infrastructure',id:'git-driven-infrastructure',children:[]},{value:'Rich selection of integrated services',id:'rich-selection-of-integrated-services',children:[]},{value:'All languages and frameworks supported',id:'all-languages-and-frameworks-supported',children:[]},{value:'Consistent development environment',id:'consistent-development-environment',children:[]}];const makeShortcode=name=>function MDXDefaultShortcode(props){console.warn("Component "+name+" was not imported, exported, or provided by MDXProvider as global scope");return Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("div",props);};const layoutProps={rightToc};const MDXLayout="wrapper";function MDXContent({components,...props}){return Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(MDXLayout,Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({},layoutProps,props,{components:components,mdxType:"MDXLayout"}),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`In our terminology, `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("strong",{parentName:"p"},`application`),` is a program versioned by Git that is run and managed by Qovery.
+An application repository should contain a `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("inlineCode",{parentName:"p"},`Dockerfile`),` - Qovery uses `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("strong",{parentName:"p"},`Docker`),` container runtime to run applications.
+The last thing - to deploy applications to Qovery, you need to add a Qovery configuration. Here is the minimal configuration file:`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-yaml"}),`application:
+  name: myapp
+  project: test
+`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`TODO - IMAGE - GIT REPO WITH DOCKERFILE, CONFIG AND SRC FOLDER`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`After you commit and push this file to your repository, Qovery automatically deploys your application.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h2",{"id":"git-driven-infrastructure"},`Git Driven Infrastructure`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Qovery automatically manages your application and everything it needs to run. That means you treat your infrastructure dependencies as a part of your application.
+If your application needs a PostgreSQL database, all you need to do is to edit the configuration file, commit and push your changes:`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("pre",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("code",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"pre"},{"className":"language-yaml{4-7}"}),`application:
+  name: myapp
+  project: test
+databases:
+- type: postgresql
+  version: "11.5"
+  name: my-postgresql
+`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`TODO - IMAGE - GIT REPO -> DOCKERFILE + CONFIG FILE -> APPLICATION + DATABASE DEPLOYED`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`It means you keep your infrastructure needs under version-control as a part of your application.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h2",{"id":"rich-selection-of-integrated-services"},`Rich selection of integrated services`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`Qovery integrates, provisions, and manages all kinds of services and infrastructure dependencies your application may need. We provide a rich selection of services
+that you can use in your application just by adding a few lines to your config file.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("table",null,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("thead",{parentName:"table"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("tr",{parentName:"thead"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("th",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"tr"},{"align":null}),`Services`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("th",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"tr"},{"align":null}),`Examples`))),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("tbody",{parentName:"table"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("tr",{parentName:"tbody"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("td",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"tr"},{"align":null}),`Databases`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("td",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"tr"},{"align":null}),`SQL, NoSQL databases and caches`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("tr",{parentName:"tbody"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("td",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"tr"},{"align":null}),`Brokers`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("td",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"tr"},{"align":null}),`Message queuing systems`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("tr",{parentName:"tbody"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("td",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"tr"},{"align":null}),`Storages`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("td",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"tr"},{"align":null}),`Data storage e.g., S3`)),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("tr",{parentName:"tbody"},Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("td",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"tr"},{"align":null}),`Network`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("td",Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({parentName:"tr"},{"align":null}),`Custom DNS, SSL/TLS`)))),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`TODO - IMAGE - DATABAES & OTHER SERVICES LOGOS`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`After you define your needs in the configuration file, Qovery provides all the required infrastructure. Since now, all you need to do is to implement your business features!`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h2",{"id":"all-languages-and-frameworks-supported"},`All languages and frameworks supported`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`To make Qovery flexible and efficient, we decided to use containers as a runtime for applications. Due to this fact, Qovery can run any software you need.
+The only thing you need to do to run your applications on Qovery is to provide a Dockerfile in your application repository.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`TODO - IMAGE - APPS & FRAMEWORKS LOGOS`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("h2",{"id":"consistent-development-environment"},`Consistent development environment`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`At Qovery, we believe your application should behave the same on your local machine as in your production environment. We can achieve this
+using Docker runtime and `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("strong",{parentName:"p"},`Qovery CLI`),` features that automagically run your application on your machine in the same way as it runs in production.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`TODO - IMAGE - LOCAL APP == DEPLOYED APP`));};MDXContent.isMDXComponent=true;
 
 /***/ }),
 /* 230 */
@@ -47862,14 +48074,14 @@ const frontMatter={last_modified_on:'2020-04-21',$schema:'/.meta/.schemas/guides
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _site_src_components_Empty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(97);
+/* harmony import */ var _site_src_components_Empty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(98);
 /* harmony import */ var _theme_GuideItems__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(30);
 /* harmony import */ var _theme_Heading__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(20);
 /* harmony import */ var _theme_Layout__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(17);
 /* harmony import */ var _docusaurus_Link__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(8);
-/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(98);
+/* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(99);
 /* harmony import */ var qs__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(qs__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(531);
+/* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(532);
 /* harmony import */ var _styles_css__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_styles_css__WEBPACK_IMPORTED_MODULE_7__);
 const AnchoredH2=Object(_theme_Heading__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])('h2');function Guides({filtering,items}){if(items.length==0){return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_site_src_components_Empty__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"],{text:"no guides found"});}else if(filtering){return/*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_theme_GuideItems__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"],{items:items});}else{const gettingStartedGuides=items.filter(item=>item.content.metadata.categories[0].name=='getting-started');const advancedGuides=items.filter(item=>item.content.metadata.categories[0].name=='advanced');const advancedCategory=advancedGuides[0].content.metadata.categories[0];const tutorialGuides=items.filter(item=>item.content.metadata.categories[0].name=='tutorial');const tutorialCategory=tutorialGuides[0].content.metadata.categories[0];//const integrationGuides = items.filter(item => item.content.metadata.categories[0].name == 'integrate');
 //const integrationCategory = integrationGuides[0].content.metadata.categories[0];
@@ -48070,7 +48282,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _mdx_js_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(0);
-const frontMatter={last_modified_on:'2020-04-19',title:'Project',description:'High-level description of the Qovery observability data collector and router.'};const metadata={"id":"main-concepts/Project","title":"Project","description":"High-level description of the Qovery observability data collector and router.","source":"@site/docs/main-concepts/Project.md","permalink":"/docs/main-concepts/Project","editUrl":"https://github.com/Qovery/documentation/edit/master/website/docs/main-concepts/Project.md","sidebar":"docs","previous":{"title":"Application","permalink":"/docs/main-concepts/Application"},"next":{"title":"Environment","permalink":"/docs/main-concepts/Environment"}};/* @jsx mdx */const rightToc=[];const makeShortcode=name=>function MDXDefaultShortcode(props){console.warn("Component "+name+" was not imported, exported, or provided by MDXProvider as global scope");return Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("div",props);};const layoutProps={rightToc};const MDXLayout="wrapper";function MDXContent({components,...props}){return Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(MDXLayout,Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({},layoutProps,props,{components:components,mdxType:"MDXLayout"}),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`!!!TODO!!!`));};MDXContent.isMDXComponent=true;
+const frontMatter={last_modified_on:'2020-04-21',title:'Project',description:'High-level description of Qovery Projects'};const metadata={"id":"main-concepts/Project","title":"Project","description":"High-level description of Qovery Projects","source":"@site/docs/main-concepts/Project.md","permalink":"/docs/main-concepts/Project","editUrl":"https://github.com/Qovery/documentation/edit/master/website/docs/main-concepts/Project.md","sidebar":"docs","previous":{"title":"Application","permalink":"/docs/main-concepts/Application"},"next":{"title":"Environment","permalink":"/docs/main-concepts/Environment"}};/* @jsx mdx */const rightToc=[];const makeShortcode=name=>function MDXDefaultShortcode(props){console.warn("Component "+name+" was not imported, exported, or provided by MDXProvider as global scope");return Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("div",props);};const layoutProps={rightToc};const MDXLayout="wrapper";function MDXContent({components,...props}){return Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])(MDXLayout,Object(_home_runner_work_documentation_documentation_website_node_modules_babel_runtime_helpers_esm_extends__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"])({},layoutProps,props,{components:components,mdxType:"MDXLayout"}),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`A project is a `,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("strong",{parentName:"p"},`set of applications and their dependencies`),` (databases & other services). Today's software products are rarely made of just one application.
+To meet the needs of modern software architectures, Qovery natively supports projects with multiple apps. With Qovery you can design your product as a set of
+independent applications (`,Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("inlineCode",{parentName:"p"},`microservices`),`). We take care of all the plumbing (network, resiliency, deployments) to let you focus on your business goals.`),Object(_mdx_js_react__WEBPACK_IMPORTED_MODULE_2__[/* mdx */ "b"])("p",null,`TODO - IMAGE - APPS + DATABASES + BROKER = PROJECT`));};MDXContent.isMDXComponent=true;
 
 /***/ }),
 /* 256 */
@@ -49150,17 +49364,17 @@ var Layout = __webpack_require__(17);
 var Link = __webpack_require__(8);
 
 // EXTERNAL MODULE: ./node_modules/react-modal/lib/index.js
-var lib = __webpack_require__(102);
+var lib = __webpack_require__(103);
 var lib_default = /*#__PURE__*/__webpack_require__.n(lib);
 
 // EXTERNAL MODULE: ./node_modules/@docusaurus/theme-classic/src/theme/MDXComponents/index.js
-var MDXComponents = __webpack_require__(96);
+var MDXComponents = __webpack_require__(97);
 
 // EXTERNAL MODULE: ./node_modules/@mdx-js/react/dist/esm.js
 var esm = __webpack_require__(0);
 
 // EXTERNAL MODULE: ./src/theme/PagePaginator/index.js
-var PagePaginator = __webpack_require__(92);
+var PagePaginator = __webpack_require__(93);
 
 // EXTERNAL MODULE: ./node_modules/react-inlinesvg/lib/index.js
 var react_inlinesvg_lib = __webpack_require__(12);
@@ -49188,7 +49402,7 @@ var styles_module = __webpack_require__(42);
 var styles_module_default = /*#__PURE__*/__webpack_require__.n(styles_module);
 
 // EXTERNAL MODULE: ./node_modules/@docusaurus/theme-classic/src/theme/hooks/useTOCHighlight.js
-var useTOCHighlight = __webpack_require__(93);
+var useTOCHighlight = __webpack_require__(94);
 
 // CONCATENATED MODULE: ./src/theme/GuidePage/index.js
 lib_default.a.setAppElement('#__docusaurus');const AnchoredH2=Object(Heading["a" /* default */])('h2');const AnchoredH3=Object(Heading["a" /* default */])('h3');const LINK_CLASS_NAME='contents__link';const ACTIVE_LINK_CLASS_NAME='contents__link--active';const TOP_OFFSET=100;/* eslint-disable jsx-a11y/control-has-associated-label */function Headings({headings,isChild}){if(!headings.length)return null;// We need to track shown headings because the markdown parser will
@@ -49233,7 +49447,7 @@ var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 var useDocusaurusContext = __webpack_require__(9);
 
 // EXTERNAL MODULE: ./node_modules/@docusaurus/core/lib/client/exports/renderRoutes.js
-var renderRoutes = __webpack_require__(94);
+var renderRoutes = __webpack_require__(95);
 
 // EXTERNAL MODULE: ./src/theme/Layout/index.js + 14 modules
 var Layout = __webpack_require__(17);
@@ -49280,16 +49494,16 @@ if(item.collapsed!==prevCollapsedProp){setPreviousCollapsedProp(item.collapsed);
 function mutateSidebarCollapsingState(item,path){const{items,href,type}=item;switch(type){case'category':{const anyChildItemsActive=items.map(childItem=>mutateSidebarCollapsingState(childItem,path)).filter(val=>val).length>0;// eslint-disable-next-line no-param-reassign
 item.collapsed=!anyChildItemsActive;return anyChildItemsActive;}case'link':default:return href===path;}}function DocSidebar(props){const[showResponsiveSidebar,setShowResponsiveSidebar]=Object(react["useState"])(false);const{siteConfig:{themeConfig:{navbar:{title}={}}}={},isClient}=Object(useDocusaurusContext["a" /* default */])();const{logoLink,logoLinkProps,logoImageUrl,logoAlt}=Object(useLogo["a" /* default */])();const{docsSidebars,path,sidebar:currentSidebar,sidebarCollapsible}=props;Object(useLockBodyScroll["a" /* default */])(showResponsiveSidebar);if(!currentSidebar){return null;}const sidebarData=docsSidebars[currentSidebar];if(!sidebarData){throw new Error(`Cannot find the sidebar "${currentSidebar}" in the sidebar config!`);}if(sidebarCollapsible){sidebarData.forEach(sidebarItem=>mutateSidebarCollapsingState(sidebarItem,path));}return/*#__PURE__*/react_default.a.createElement("div",{className:classnames_default()('docs-sidebar',styles_module_default.a.sidebar)},/*#__PURE__*/react_default.a.createElement(Link["a" /* default */],Object(esm_extends["a" /* default */])({className:styles_module_default.a.sidebarLogo,style:{maxWidth:'130px'},to:logoLink},logoLinkProps),logoImageUrl!=null&&/*#__PURE__*/react_default.a.createElement(lib_default.a,{key:isClient,src:logoImageUrl,alt:logoAlt}),title!=null&&/*#__PURE__*/react_default.a.createElement("strong",null,title)),/*#__PURE__*/react_default.a.createElement("div",{className:classnames_default()('menu','menu--responsive',styles_module_default.a.menu,{'menu--show':showResponsiveSidebar})},/*#__PURE__*/react_default.a.createElement("button",{"aria-label":showResponsiveSidebar?'Close Menu':'Open Menu',className:"button button--secondary button--sm menu__button",type:"button",onClick:()=>{setShowResponsiveSidebar(!showResponsiveSidebar);}},showResponsiveSidebar?/*#__PURE__*/react_default.a.createElement("span",{className:classnames_default()(styles_module_default.a.sidebarMenuIcon,styles_module_default.a.sidebarMenuCloseIcon)},"\xD7"):/*#__PURE__*/react_default.a.createElement("svg",{className:styles_module_default.a.sidebarMenuIcon,xmlns:"http://www.w3.org/2000/svg",height:MOBILE_TOGGLE_SIZE,width:MOBILE_TOGGLE_SIZE,viewBox:"0 0 32 32",role:"img",focusable:"false"},/*#__PURE__*/react_default.a.createElement("title",null,"Menu"),/*#__PURE__*/react_default.a.createElement("path",{stroke:"currentColor",strokeLinecap:"round",strokeMiterlimit:"10",strokeWidth:"2",d:"M4 7h22M4 15h22M4 23h22"}))),/*#__PURE__*/react_default.a.createElement("ul",{className:"menu__list"},sidebarData.map(item=>item.items.length>0&&/*#__PURE__*/react_default.a.createElement(DocSidebarItem,{key:item.label,item:item,level:1,onItemClick:()=>{setShowResponsiveSidebar(false);},collapsible:sidebarCollapsible})))));}/* harmony default export */ var theme_DocSidebar = (DocSidebar);
 // EXTERNAL MODULE: ./node_modules/@docusaurus/theme-classic/src/theme/MDXComponents/index.js
-var MDXComponents = __webpack_require__(96);
+var MDXComponents = __webpack_require__(97);
 
 // EXTERNAL MODULE: ./node_modules/@docusaurus/theme-classic/src/theme/NotFound.js
-var NotFound = __webpack_require__(129);
+var NotFound = __webpack_require__(130);
 
 // EXTERNAL MODULE: ./node_modules/@docusaurus/core/lib/client/exports/router.js
 var router = __webpack_require__(28);
 
 // EXTERNAL MODULE: ./src/theme/DocPage/styles.module.css
-var DocPage_styles_module = __webpack_require__(101);
+var DocPage_styles_module = __webpack_require__(102);
 var DocPage_styles_module_default = /*#__PURE__*/__webpack_require__.n(DocPage_styles_module);
 
 // CONCATENATED MODULE: ./src/theme/DocPage/index.js
@@ -49298,6 +49512,63 @@ const currentRoute=baseRoute.routes.find(route=>{return Object(router["b" /* mat
 
 /***/ }),
 /* 269 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+// ESM COMPAT FLAG
+__webpack_require__.r(__webpack_exports__);
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, "frontMatter", function() { return /* binding */ frontMatter; });
+__webpack_require__.d(__webpack_exports__, "metadata", function() { return /* binding */ metadata; });
+__webpack_require__.d(__webpack_exports__, "rightToc", function() { return /* binding */ rightToc; });
+__webpack_require__.d(__webpack_exports__, "default", function() { return /* binding */ MDXContent; });
+
+// EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/extends.js
+var esm_extends = __webpack_require__(2);
+
+// EXTERNAL MODULE: ./node_modules/react/index.js
+var react = __webpack_require__(1);
+var react_default = /*#__PURE__*/__webpack_require__.n(react);
+
+// EXTERNAL MODULE: ./node_modules/@mdx-js/react/dist/esm.js
+var esm = __webpack_require__(0);
+
+// EXTERNAL MODULE: ./node_modules/classnames/index.js
+var classnames = __webpack_require__(6);
+
+// EXTERNAL MODULE: ./node_modules/query-string/index.js
+var query_string = __webpack_require__(92);
+var query_string_default = /*#__PURE__*/__webpack_require__.n(query_string);
+
+// EXTERNAL MODULE: ./src/components/Steps/styles.css
+var styles = __webpack_require__(529);
+
+// CONCATENATED MODULE: ./src/components/Steps/index.js
+function Steps({children,headingDepth,hideFeedbackQuestion}){let location=typeof window!=='undefined'?window.location:null;let issueQueryString={title:`Tutorial on ${location} failed`,body:`The tutorial on:\n\n${location}\n\nHere's what went wrong:\n\n<!-- Insert command output and details. Thank you for reporting! :) -->`};let issueURL=`https://github.com/qovery/documentation/issues/new?${query_string_default.a.stringify(issueQueryString)}`;const[feedbackAnswer,setFeedbackAnswer]=Object(react["useState"])(null);return/*#__PURE__*/react_default.a.createElement("div",{className:`steps steps--h${headingDepth}`},children,!hideFeedbackQuestion&&!feedbackAnswer&&/*#__PURE__*/react_default.a.createElement("div",{className:"steps--feedback"},"How was it? Did this tutorial work?\xA0\xA0",/*#__PURE__*/react_default.a.createElement("span",{className:"button button--sm button--primary",onClick:()=>setFeedbackAnswer('yes')},"Yes"),"\xA0\xA0",/*#__PURE__*/react_default.a.createElement("a",{href:issueURL,target:"_blank",className:"button button--sm button--primary"},"No")),feedbackAnswer=='yes'&&/*#__PURE__*/react_default.a.createElement("div",{className:"steps--feedback steps--feedback--success"},"Thanks! If you're enjoying Qovery please consider ",/*#__PURE__*/react_default.a.createElement("a",{href:"https://github.com/qovery/documentation/",target:"_blank"},"starring our Github repo"),"."));}/* harmony default export */ var components_Steps = (Steps);
+// CONCATENATED MODULE: ./docs/main-concepts/Environment.md
+const frontMatter={last_modified_on:'2020-04-21',title:'Environment',description:'Understand the concept of Qovery environment'};const metadata={"id":"main-concepts/Environment","title":"Environment","description":"Understand the concept of Qovery environment","source":"@site/docs/main-concepts/Environment.md","permalink":"/docs/main-concepts/Environment","editUrl":"https://github.com/Qovery/documentation/edit/master/website/docs/main-concepts/Environment.md","sidebar":"docs","previous":{"title":"Project","permalink":"/docs/main-concepts/Project"},"next":{"title":"Using Qovery","permalink":"/docs/using-qovery"}};/* @jsx mdx */const rightToc=[{value:'Problem of managing multiple environments',id:'problem-of-managing-multiple-environments',children:[]},{value:'Benefits of using Qovery environments',id:'benefits-of-using-qovery-environments',children:[]},{value:'Virtual Branches',id:'virtual-branches',children:[]},{value:'Managing costs',id:'managing-costs',children:[]}];const makeShortcode=name=>function MDXDefaultShortcode(props){console.warn("Component "+name+" was not imported, exported, or provided by MDXProvider as global scope");return Object(esm["b" /* mdx */])("div",props);};const layoutProps={rightToc};const MDXLayout="wrapper";function MDXContent({components,...props}){return Object(esm["b" /* mdx */])(MDXLayout,Object(esm_extends["a" /* default */])({},layoutProps,props,{components:components,mdxType:"MDXLayout"}),Object(esm["b" /* mdx */])("p",null,Object(esm["b" /* mdx */])("strong",{parentName:"p"},`Environment`),` is a fully independent instance of your project (its applications, services and data). On Qovery,
+environments reflect your `,Object(esm["b" /* mdx */])("strong",{parentName:"p"},`Git`),` workflows. Every Git branch is automagically transformed into a complete copy of your production environment,
+including applications and their dependencies (databases, message brokers, storage and others). In addition, we also replicate your production
+data, so all your environments are close copies of your production setup.`),Object(esm["b" /* mdx */])("p",{align:"center"},Object(esm["b" /* mdx */])("img",{src:"/img/qovery_environments.svg",alt:"Qovery environments"})),Object(esm["b" /* mdx */])("h2",{"id":"problem-of-managing-multiple-environments"},`Problem of managing multiple environments`),Object(esm["b" /* mdx */])("p",null,`When software teams work on new features, they rarely work using just one Git branch. New features are developed on dedicated branches and tested on
+pre-production environments to make sure they work flawlessly before releasing to production. This, however, is often costly and troublesome:`),Object(esm["b" /* mdx */])("ul",null,Object(esm["b" /* mdx */])("li",{parentName:"ul"},`Creating new environments is hard and requires work and time from developers`),Object(esm["b" /* mdx */])("li",{parentName:"ul"},`Keeping pre-prod environments identical to production environment is even harder`),Object(esm["b" /* mdx */])("li",{parentName:"ul"},`Number of environments developers can manage is very limited`)),Object(esm["b" /* mdx */])("p",null,Object(esm["b" /* mdx */])("strong",{parentName:"p"},`Creating and managing multiple environments requires work and time. Precious time, that is better spent on delivering business value.`)),Object(esm["b" /* mdx */])("p",null,`Thanks to Qovery concept of environments, all these problems are solved. New environments are spinned up in minutes without any work from your side.`),Object(esm["b" /* mdx */])("h2",{"id":"benefits-of-using-qovery-environments"},`Benefits of using Qovery environments`),Object(esm["b" /* mdx */])(components_Steps,{headingDepth:3,hideFeedbackQuestion:true,mdxType:"Steps"},Object(esm["b" /* mdx */])("ol",null,Object(esm["b" /* mdx */])("li",{parentName:"ol"},Object(esm["b" /* mdx */])("h3",Object(esm_extends["a" /* default */])({parentName:"li"},{"id":"test-new-features-in-production-like-environment"}),`Test new features in production-like environment`),Object(esm["b" /* mdx */])("p",{parentName:"li"},`Introducing bugs to production is costly. You can't be sure your code works correctly if your testing environment is not the same as production.
+With Qovery, you can test new features in environments that are identical to your production, so you'll introduce less bugs to the product your
+clients use.`)),Object(esm["b" /* mdx */])("li",{parentName:"ol"},Object(esm["b" /* mdx */])("h3",Object(esm_extends["a" /* default */])({parentName:"li"},{"id":"dont-waste-developers-time"}),`Don't waste developers time`),Object(esm["b" /* mdx */])("p",{parentName:"li"},`Software development teams often implement multiple features at the same time. However, it's very common that developers are blocked from
+delivering new features quickly if they can't freely test their code. Testing features by multiple developers at the same time is often impossible
+if you have only one or two testing environments. Developers have to wait until their teammates are done with their tests. With Qovery, every
+developer can work and test his code using his own copy of production environment. No more wasted time. Shorten your development cycle and
+deliver new features quickly!`)))),Object(esm["b" /* mdx */])("h2",{"id":"virtual-branches"},`Virtual Branches`),Object(esm["b" /* mdx */])("p",null,`You don't have to create a new `,Object(esm["b" /* mdx */])("inlineCode",{parentName:"p"},`branch_X`),` branch in every application of your project to get a fully functional `,Object(esm["b" /* mdx */])("inlineCode",{parentName:"p"},`branch_X`),` environment.`),Object(esm["b" /* mdx */])("p",null,`When `,Object(esm["b" /* mdx */])("inlineCode",{parentName:"p"},`branch_X`),` is missing in part of your applications, Qovery deploys them from your production branch. After you create `,Object(esm["b" /* mdx */])("inlineCode",{parentName:"p"},`branch_X`),` in any
+of your applications, they are automatically redeployed from that branch in this environment.`),Object(esm["b" /* mdx */])("h2",{"id":"managing-costs"},`Managing costs`),Object(esm["b" /* mdx */])("p",null,`To limit costs, it is possible to limit the creation of environments to certain branches.`),Object(esm["b" /* mdx */])("pre",null,Object(esm["b" /* mdx */])("code",Object(esm_extends["a" /* default */])({parentName:"pre"},{"className":"language-yml"}),`application:
+  name: myapp
+  project: test
+  active_environments:
+  - master
+  - staging
+  - test_x
+`)),Object(esm["b" /* mdx */])("p",null,`The production environment (by default - `,Object(esm["b" /* mdx */])("inlineCode",{parentName:"p"},`master`),`) use high-availability and resiliency systems for applications and databases. We guarantee that your app will scale as you need and will be available according to our SLAs.`));};MDXContent.isMDXComponent=true;
+
+/***/ }),
+/* 270 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -49319,7 +49590,7 @@ var classnames = __webpack_require__(6);
 var classnames_default = /*#__PURE__*/__webpack_require__.n(classnames);
 
 // EXTERNAL MODULE: ./src/components/MailingListForm/styles.css
-var styles = __webpack_require__(529);
+var styles = __webpack_require__(530);
 
 // CONCATENATED MODULE: ./src/components/MailingListForm/index.js
 function MailingListForm({block,buttonClass,center,description,size,width}){return/*#__PURE__*/react_default.a.createElement("div",{className:classnames_default()('mailing-list',{'mailing-list--block':block,'mailing-list--center':center,[`mailing-list--${size}`]:size})},description!==false&&/*#__PURE__*/react_default.a.createElement("div",{className:"mailing-list--description"},"The easiest way to stay up-to-date. One email on the 1st of every month. No spam, ever."),/*#__PURE__*/react_default.a.createElement("form",{action:"https://qovery.us4.list-manage.com/subscribe/post?u=3c76e7a2087d5bc4020348c46&id=63bd993879",method:"post",className:"mailing-list--form"},/*#__PURE__*/react_default.a.createElement("input",{className:classnames_default()('input',`input--${size}`),name:"email",placeholder:"you@email.com",type:"email",style:{width:width}}),/*#__PURE__*/react_default.a.createElement("button",{className:classnames_default()('button',`button--${buttonClass||'primary'}`,`button--${size}`),type:"submit"},"Subscribe")));}/* harmony default export */ var components_MailingListForm = (MailingListForm);
@@ -49330,14 +49601,14 @@ var useDocusaurusContext = __webpack_require__(9);
 const AnchoredH2=Object(Heading["a" /* default */])('h2');function Community(){const context=Object(useDocusaurusContext["a" /* default */])();const{siteConfig={}}=context;const{metadata:{team}}=siteConfig.customFields;return/*#__PURE__*/react_default.a.createElement(Layout["a" /* default */],{title:"Community",description:"Join the Qovery community. Connect with the core Qovery team and other Qovery users."},/*#__PURE__*/react_default.a.createElement("header",{className:"hero"},/*#__PURE__*/react_default.a.createElement("div",{className:"container container--fluid"},/*#__PURE__*/react_default.a.createElement("h1",null,"Qovery Community"),/*#__PURE__*/react_default.a.createElement(components_MailingListForm,{buttonClass:"highlight",center:true,size:"lg"}))),/*#__PURE__*/react_default.a.createElement("main",null,/*#__PURE__*/react_default.a.createElement("section",null,/*#__PURE__*/react_default.a.createElement("div",{className:"container"},/*#__PURE__*/react_default.a.createElement(AnchoredH2,{id:"connect"},"Connect"),/*#__PURE__*/react_default.a.createElement("div",{className:"row"},/*#__PURE__*/react_default.a.createElement("div",{className:"col"},/*#__PURE__*/react_default.a.createElement("a",{href:"https://discord.qovery.com",target:"_blank",className:"panel panel--link text--center"},/*#__PURE__*/react_default.a.createElement("div",{className:"panel--icon"},/*#__PURE__*/react_default.a.createElement("i",{className:"feather icon-message-circle"})),/*#__PURE__*/react_default.a.createElement("div",{className:"panel--title"},"Chat"),/*#__PURE__*/react_default.a.createElement("div",{className:"panel--description"},"Ask questions and get help"))),/*#__PURE__*/react_default.a.createElement("div",{className:"col"},/*#__PURE__*/react_default.a.createElement("a",{href:"https://twitter.com/Qovery_",target:"_blank",className:"panel panel--link text--center"},/*#__PURE__*/react_default.a.createElement("div",{className:"panel--icon"},/*#__PURE__*/react_default.a.createElement("i",{className:"feather icon-twitter",title:"Twitter"})),/*#__PURE__*/react_default.a.createElement("div",{className:"panel--title"},"@Qovery"),/*#__PURE__*/react_default.a.createElement("div",{className:"panel--description"},"Follow us in real-time"))),/*#__PURE__*/react_default.a.createElement("div",{className:"col"},/*#__PURE__*/react_default.a.createElement("a",{href:"https://github.com/qovery",target:"_blank",className:"panel panel--link text--center"},/*#__PURE__*/react_default.a.createElement("div",{className:"panel--icon"},/*#__PURE__*/react_default.a.createElement("i",{className:"feather icon-github"})),/*#__PURE__*/react_default.a.createElement("div",{className:"panel--title"},"Github qovery"),/*#__PURE__*/react_default.a.createElement("div",{className:"panel--description"},"Issues, code, and development")))))),/*#__PURE__*/react_default.a.createElement("section",null,/*#__PURE__*/react_default.a.createElement("div",{className:"container"},/*#__PURE__*/react_default.a.createElement(AnchoredH2,{id:"contribute"},"Contribute"),/*#__PURE__*/react_default.a.createElement("p",null,"Qovery is ",/*#__PURE__*/react_default.a.createElement("a",{href:"https://github.com/qovery"},"open-source")," and welcomes contributions. A few guidelines to help you get started:"),/*#__PURE__*/react_default.a.createElement("ol",null,/*#__PURE__*/react_default.a.createElement("li",null,"Read our ",/*#__PURE__*/react_default.a.createElement("a",{href:"https://github.com/qovery/documentation/blob/master/CONTRIBUTING.md"},"contribution guide"),"."),/*#__PURE__*/react_default.a.createElement("li",null,"Start with ",/*#__PURE__*/react_default.a.createElement("a",{href:"https://github.com/qovery/documentation/contribute"},"good first issues"),"."),/*#__PURE__*/react_default.a.createElement("li",null,"Join our ",/*#__PURE__*/react_default.a.createElement("a",{href:"https://discord.qovery.com"},"chat")," if you have any questions."))))));}/* harmony default export */ var community = __webpack_exports__["default"] = (Community);
 
 /***/ }),
-/* 270 */
+/* 271 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var require;var require;(function(f){if(true){module.exports=f()}else { var g; }})(function(){var define,module,exports;return function(){function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return require(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s}return e}()({1:[function(require,module,exports){"use strict";var fs=require("fs");var path=require("path");var utils=require("./utils");var scopeOptionWarned=false;var _VERSION_STRING=require("../package.json").version;var _DEFAULT_OPEN_DELIMITER="<";var _DEFAULT_CLOSE_DELIMITER=">";var _DEFAULT_DELIMITER="%";var _DEFAULT_LOCALS_NAME="locals";var _NAME="ejs";var _REGEX_STRING="(<%%|%%>|<%=|<%-|<%_|<%#|<%|%>|-%>|_%>)";var _OPTS_PASSABLE_WITH_DATA=["delimiter","scope","context","debug","compileDebug","client","_with","rmWhitespace","strict","filename","async"];var _OPTS_PASSABLE_WITH_DATA_EXPRESS=_OPTS_PASSABLE_WITH_DATA.concat("cache");var _BOM=/^\uFEFF/;exports.cache=utils.cache;exports.fileLoader=fs.readFileSync;exports.localsName=_DEFAULT_LOCALS_NAME;exports.promiseImpl=new Function("return this;")().Promise;exports.resolveInclude=function(name,filename,isDir){var dirname=path.dirname;var extname=path.extname;var resolve=path.resolve;var includePath=resolve(isDir?filename:dirname(filename),name);var ext=extname(name);if(!ext){includePath+=".ejs"}return includePath};function getIncludePath(path,options){var includePath;var filePath;var views=options.views;var match=/^[A-Za-z]+:\\|^\//.exec(path);if(match&&match.length){includePath=exports.resolveInclude(path.replace(/^\/*/,""),options.root||"/",true)}else{if(options.filename){filePath=exports.resolveInclude(path,options.filename);if(fs.existsSync(filePath)){includePath=filePath}}if(!includePath){if(Array.isArray(views)&&views.some(function(v){filePath=exports.resolveInclude(path,v,true);return fs.existsSync(filePath)})){includePath=filePath}}if(!includePath){throw new Error('Could not find the include file "'+options.escapeFunction(path)+'"')}}return includePath}function handleCache(options,template){var func;var filename=options.filename;var hasTemplate=arguments.length>1;if(options.cache){if(!filename){throw new Error("cache option requires a filename")}func=exports.cache.get(filename);if(func){return func}if(!hasTemplate){template=fileLoader(filename).toString().replace(_BOM,"")}}else if(!hasTemplate){if(!filename){throw new Error("Internal EJS error: no file name or template "+"provided")}template=fileLoader(filename).toString().replace(_BOM,"")}func=exports.compile(template,options);if(options.cache){exports.cache.set(filename,func)}return func}function tryHandleCache(options,data,cb){var result;if(!cb){if(typeof exports.promiseImpl=="function"){return new exports.promiseImpl(function(resolve,reject){try{result=handleCache(options)(data);resolve(result)}catch(err){reject(err)}})}else{throw new Error("Please provide a callback function")}}else{try{result=handleCache(options)(data)}catch(err){return cb(err)}cb(null,result)}}function fileLoader(filePath){return exports.fileLoader(filePath)}function includeFile(path,options){var opts=utils.shallowCopy({},options);opts.filename=getIncludePath(path,opts);return handleCache(opts)}function rethrow(err,str,flnm,lineno,esc){var lines=str.split("\n");var start=Math.max(lineno-3,0);var end=Math.min(lines.length,lineno+3);var filename=esc(flnm);var context=lines.slice(start,end).map(function(line,i){var curr=i+start+1;return(curr==lineno?" >> ":"    ")+curr+"| "+line}).join("\n");err.path=filename;err.message=(filename||"ejs")+":"+lineno+"\n"+context+"\n\n"+err.message;throw err}function stripSemi(str){return str.replace(/;(\s*$)/,"$1")}exports.compile=function compile(template,opts){var templ;if(opts&&opts.scope){if(!scopeOptionWarned){console.warn("`scope` option is deprecated and will be removed in EJS 3");scopeOptionWarned=true}if(!opts.context){opts.context=opts.scope}delete opts.scope}templ=new Template(template,opts);return templ.compile()};exports.render=function(template,d,o){var data=d||{};var opts=o||{};if(arguments.length==2){utils.shallowCopyFromList(opts,data,_OPTS_PASSABLE_WITH_DATA)}return handleCache(opts,template)(data)};exports.renderFile=function(){var args=Array.prototype.slice.call(arguments);var filename=args.shift();var cb;var opts={filename:filename};var data;var viewOpts;if(typeof arguments[arguments.length-1]=="function"){cb=args.pop()}if(args.length){data=args.shift();if(args.length){utils.shallowCopy(opts,args.pop())}else{if(data.settings){if(data.settings.views){opts.views=data.settings.views}if(data.settings["view cache"]){opts.cache=true}viewOpts=data.settings["view options"];if(viewOpts){utils.shallowCopy(opts,viewOpts)}}utils.shallowCopyFromList(opts,data,_OPTS_PASSABLE_WITH_DATA_EXPRESS)}opts.filename=filename}else{data={}}return tryHandleCache(opts,data,cb)};exports.Template=Template;exports.clearCache=function(){exports.cache.reset()};function Template(text,opts){opts=opts||{};var options={};this.templateText=text;this.mode=null;this.truncate=false;this.currentLine=1;this.source="";options.client=opts.client||false;options.escapeFunction=opts.escape||opts.escapeFunction||utils.escapeXML;options.compileDebug=opts.compileDebug!==false;options.debug=!!opts.debug;options.filename=opts.filename;options.openDelimiter=opts.openDelimiter||exports.openDelimiter||_DEFAULT_OPEN_DELIMITER;options.closeDelimiter=opts.closeDelimiter||exports.closeDelimiter||_DEFAULT_CLOSE_DELIMITER;options.delimiter=opts.delimiter||exports.delimiter||_DEFAULT_DELIMITER;options.strict=opts.strict||false;options.context=opts.context;options.cache=opts.cache||false;options.rmWhitespace=opts.rmWhitespace;options.root=opts.root;options.outputFunctionName=opts.outputFunctionName;options.localsName=opts.localsName||exports.localsName||_DEFAULT_LOCALS_NAME;options.views=opts.views;options.async=opts.async;options.destructuredLocals=opts.destructuredLocals;options.legacyInclude=typeof opts.legacyInclude!="undefined"?!!opts.legacyInclude:true;if(options.strict){options._with=false}else{options._with=typeof opts._with!="undefined"?opts._with:true}this.opts=options;this.regex=this.createRegex()}Template.modes={EVAL:"eval",ESCAPED:"escaped",RAW:"raw",COMMENT:"comment",LITERAL:"literal"};Template.prototype={createRegex:function(){var str=_REGEX_STRING;var delim=utils.escapeRegExpChars(this.opts.delimiter);var open=utils.escapeRegExpChars(this.opts.openDelimiter);var close=utils.escapeRegExpChars(this.opts.closeDelimiter);str=str.replace(/%/g,delim).replace(/</g,open).replace(/>/g,close);return new RegExp(str)},compile:function(){var src;var fn;var opts=this.opts;var prepended="";var appended="";var escapeFn=opts.escapeFunction;var ctor;if(!this.source){this.generateSource();prepended+='  var __output = "";\n'+"  function __append(s) { if (s !== undefined && s !== null) __output += s }\n";if(opts.outputFunctionName){prepended+="  var "+opts.outputFunctionName+" = __append;"+"\n"}if(opts.destructuredLocals&&opts.destructuredLocals.length){var destructuring="  var __locals = ("+opts.localsName+" || {}),\n";for(var i=0;i<opts.destructuredLocals.length;i++){var name=opts.destructuredLocals[i];if(i>0){destructuring+=",\n  "}destructuring+=name+" = __locals."+name}prepended+=destructuring+";\n"}if(opts._with!==false){prepended+="  with ("+opts.localsName+" || {}) {"+"\n";appended+="  }"+"\n"}appended+="  return __output;"+"\n";this.source=prepended+this.source+appended}if(opts.compileDebug){src="var __line = 1"+"\n"+"  , __lines = "+JSON.stringify(this.templateText)+"\n"+"  , __filename = "+(opts.filename?JSON.stringify(opts.filename):"undefined")+";"+"\n"+"try {"+"\n"+this.source+"} catch (e) {"+"\n"+"  rethrow(e, __lines, __filename, __line, escapeFn);"+"\n"+"}"+"\n"}else{src=this.source}if(opts.client){src="escapeFn = escapeFn || "+escapeFn.toString()+";"+"\n"+src;if(opts.compileDebug){src="rethrow = rethrow || "+rethrow.toString()+";"+"\n"+src}}if(opts.strict){src='"use strict";\n'+src}if(opts.debug){console.log(src)}if(opts.compileDebug&&opts.filename){src=src+"\n"+"//# sourceURL="+opts.filename+"\n"}try{if(opts.async){try{ctor=new Function("return (async function(){}).constructor;")()}catch(e){if(e instanceof SyntaxError){throw new Error("This environment does not support async/await")}else{throw e}}}else{ctor=Function}fn=new ctor(opts.localsName+", escapeFn, include, rethrow",src)}catch(e){if(e instanceof SyntaxError){if(opts.filename){e.message+=" in "+opts.filename}e.message+=" while compiling ejs\n\n";e.message+="If the above error is not helpful, you may want to try EJS-Lint:\n";e.message+="https://github.com/RyanZim/EJS-Lint";if(!opts.async){e.message+="\n";e.message+="Or, if you meant to create an async function, pass `async: true` as an option."}}throw e}var returnedFn=opts.client?fn:function anonymous(data){var include=function(path,includeData){var d=utils.shallowCopy({},data);if(includeData){d=utils.shallowCopy(d,includeData)}return includeFile(path,opts)(d)};return fn.apply(opts.context,[data||{},escapeFn,include,rethrow])};if(opts.filename&&typeof Object.defineProperty==="function"){var filename=opts.filename;var basename=path.basename(filename,path.extname(filename));try{Object.defineProperty(returnedFn,"name",{value:basename,writable:false,enumerable:false,configurable:true})}catch(e){}}return returnedFn},generateSource:function(){var opts=this.opts;if(opts.rmWhitespace){this.templateText=this.templateText.replace(/[\r\n]+/g,"\n").replace(/^\s+|\s+$/gm,"")}this.templateText=this.templateText.replace(/[ \t]*<%_/gm,"<%_").replace(/_%>[ \t]*/gm,"_%>");var self=this;var matches=this.parseTemplateText();var d=this.opts.delimiter;var o=this.opts.openDelimiter;var c=this.opts.closeDelimiter;if(matches&&matches.length){matches.forEach(function(line,index){var closing;if(line.indexOf(o+d)===0&&line.indexOf(o+d+d)!==0){closing=matches[index+2];if(!(closing==d+c||closing=="-"+d+c||closing=="_"+d+c)){throw new Error('Could not find matching close tag for "'+line+'".')}}self.scanLine(line)})}},parseTemplateText:function(){var str=this.templateText;var pat=this.regex;var result=pat.exec(str);var arr=[];var firstPos;while(result){firstPos=result.index;if(firstPos!==0){arr.push(str.substring(0,firstPos));str=str.slice(firstPos)}arr.push(result[0]);str=str.slice(result[0].length);result=pat.exec(str)}if(str){arr.push(str)}return arr},_addOutput:function(line){if(this.truncate){line=line.replace(/^(?:\r\n|\r|\n)/,"");this.truncate=false}if(!line){return line}line=line.replace(/\\/g,"\\\\");line=line.replace(/\n/g,"\\n");line=line.replace(/\r/g,"\\r");line=line.replace(/"/g,'\\"');this.source+='    ; __append("'+line+'")'+"\n"},scanLine:function(line){var self=this;var d=this.opts.delimiter;var o=this.opts.openDelimiter;var c=this.opts.closeDelimiter;var newLineCount=0;newLineCount=line.split("\n").length-1;switch(line){case o+d:case o+d+"_":this.mode=Template.modes.EVAL;break;case o+d+"=":this.mode=Template.modes.ESCAPED;break;case o+d+"-":this.mode=Template.modes.RAW;break;case o+d+"#":this.mode=Template.modes.COMMENT;break;case o+d+d:this.mode=Template.modes.LITERAL;this.source+='    ; __append("'+line.replace(o+d+d,o+d)+'")'+"\n";break;case d+d+c:this.mode=Template.modes.LITERAL;this.source+='    ; __append("'+line.replace(d+d+c,d+c)+'")'+"\n";break;case d+c:case"-"+d+c:case"_"+d+c:if(this.mode==Template.modes.LITERAL){this._addOutput(line)}this.mode=null;this.truncate=line.indexOf("-")===0||line.indexOf("_")===0;break;default:if(this.mode){switch(this.mode){case Template.modes.EVAL:case Template.modes.ESCAPED:case Template.modes.RAW:if(line.lastIndexOf("//")>line.lastIndexOf("\n")){line+="\n"}}switch(this.mode){case Template.modes.EVAL:this.source+="    ; "+line+"\n";break;case Template.modes.ESCAPED:this.source+="    ; __append(escapeFn("+stripSemi(line)+"))"+"\n";break;case Template.modes.RAW:this.source+="    ; __append("+stripSemi(line)+")"+"\n";break;case Template.modes.COMMENT:break;case Template.modes.LITERAL:this._addOutput(line);break}}else{this._addOutput(line)}}if(self.opts.compileDebug&&newLineCount){this.currentLine+=newLineCount;this.source+="    ; __line = "+this.currentLine+"\n"}}};exports.escapeXML=utils.escapeXML;exports.__express=exports.renderFile;exports.VERSION=_VERSION_STRING;exports.name=_NAME;if(typeof window!="undefined"){window.ejs=exports}},{"../package.json":6,"./utils":2,fs:3,path:4}],2:[function(require,module,exports){"use strict";var regExpChars=/[|\\{}()[\]^$+*?.]/g;exports.escapeRegExpChars=function(string){if(!string){return""}return String(string).replace(regExpChars,"\\$&")};var _ENCODE_HTML_RULES={"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&#34;","'":"&#39;"};var _MATCH_HTML=/[&<>'"]/g;function encode_char(c){return _ENCODE_HTML_RULES[c]||c}var escapeFuncStr="var _ENCODE_HTML_RULES = {\n"+'      "&": "&amp;"\n'+'    , "<": "&lt;"\n'+'    , ">": "&gt;"\n'+'    , \'"\': "&#34;"\n'+'    , "\'": "&#39;"\n'+"    }\n"+"  , _MATCH_HTML = /[&<>'\"]/g;\n"+"function encode_char(c) {\n"+"  return _ENCODE_HTML_RULES[c] || c;\n"+"};\n";exports.escapeXML=function(markup){return markup==undefined?"":String(markup).replace(_MATCH_HTML,encode_char)};exports.escapeXML.toString=function(){return Function.prototype.toString.call(this)+";\n"+escapeFuncStr};exports.shallowCopy=function(to,from){from=from||{};for(var p in from){to[p]=from[p]}return to};exports.shallowCopyFromList=function(to,from,list){for(var i=0;i<list.length;i++){var p=list[i];if(typeof from[p]!="undefined"){to[p]=from[p]}}return to};exports.cache={_data:{},set:function(key,val){this._data[key]=val},get:function(key){return this._data[key]},remove:function(key){delete this._data[key]},reset:function(){this._data={}}}},{}],3:[function(require,module,exports){},{}],4:[function(require,module,exports){(function(process){function normalizeArray(parts,allowAboveRoot){var up=0;for(var i=parts.length-1;i>=0;i--){var last=parts[i];if(last==="."){parts.splice(i,1)}else if(last===".."){parts.splice(i,1);up++}else if(up){parts.splice(i,1);up--}}if(allowAboveRoot){for(;up--;up){parts.unshift("..")}}return parts}var splitPathRe=/^(\/?|)([\s\S]*?)((?:\.{1,2}|[^\/]+?|)(\.[^.\/]*|))(?:[\/]*)$/;var splitPath=function(filename){return splitPathRe.exec(filename).slice(1)};exports.resolve=function(){var resolvedPath="",resolvedAbsolute=false;for(var i=arguments.length-1;i>=-1&&!resolvedAbsolute;i--){var path=i>=0?arguments[i]:process.cwd();if(typeof path!=="string"){throw new TypeError("Arguments to path.resolve must be strings")}else if(!path){continue}resolvedPath=path+"/"+resolvedPath;resolvedAbsolute=path.charAt(0)==="/"}resolvedPath=normalizeArray(filter(resolvedPath.split("/"),function(p){return!!p}),!resolvedAbsolute).join("/");return(resolvedAbsolute?"/":"")+resolvedPath||"."};exports.normalize=function(path){var isAbsolute=exports.isAbsolute(path),trailingSlash=substr(path,-1)==="/";path=normalizeArray(filter(path.split("/"),function(p){return!!p}),!isAbsolute).join("/");if(!path&&!isAbsolute){path="."}if(path&&trailingSlash){path+="/"}return(isAbsolute?"/":"")+path};exports.isAbsolute=function(path){return path.charAt(0)==="/"};exports.join=function(){var paths=Array.prototype.slice.call(arguments,0);return exports.normalize(filter(paths,function(p,index){if(typeof p!=="string"){throw new TypeError("Arguments to path.join must be strings")}return p}).join("/"))};exports.relative=function(from,to){from=exports.resolve(from).substr(1);to=exports.resolve(to).substr(1);function trim(arr){var start=0;for(;start<arr.length;start++){if(arr[start]!=="")break}var end=arr.length-1;for(;end>=0;end--){if(arr[end]!=="")break}if(start>end)return[];return arr.slice(start,end-start+1)}var fromParts=trim(from.split("/"));var toParts=trim(to.split("/"));var length=Math.min(fromParts.length,toParts.length);var samePartsLength=length;for(var i=0;i<length;i++){if(fromParts[i]!==toParts[i]){samePartsLength=i;break}}var outputParts=[];for(var i=samePartsLength;i<fromParts.length;i++){outputParts.push("..")}outputParts=outputParts.concat(toParts.slice(samePartsLength));return outputParts.join("/")};exports.sep="/";exports.delimiter=":";exports.dirname=function(path){var result=splitPath(path),root=result[0],dir=result[1];if(!root&&!dir){return"."}if(dir){dir=dir.substr(0,dir.length-1)}return root+dir};exports.basename=function(path,ext){var f=splitPath(path)[2];if(ext&&f.substr(-1*ext.length)===ext){f=f.substr(0,f.length-ext.length)}return f};exports.extname=function(path){return splitPath(path)[3]};function filter(xs,f){if(xs.filter)return xs.filter(f);var res=[];for(var i=0;i<xs.length;i++){if(f(xs[i],i,xs))res.push(xs[i])}return res}var substr="ab".substr(-1)==="b"?function(str,start,len){return str.substr(start,len)}:function(str,start,len){if(start<0)start=str.length+start;return str.substr(start,len)}}).call(this,require("_process"))},{_process:5}],5:[function(require,module,exports){var process=module.exports={};var cachedSetTimeout;var cachedClearTimeout;function defaultSetTimout(){throw new Error("setTimeout has not been defined")}function defaultClearTimeout(){throw new Error("clearTimeout has not been defined")}(function(){try{if(typeof setTimeout==="function"){cachedSetTimeout=setTimeout}else{cachedSetTimeout=defaultSetTimout}}catch(e){cachedSetTimeout=defaultSetTimout}try{if(typeof clearTimeout==="function"){cachedClearTimeout=clearTimeout}else{cachedClearTimeout=defaultClearTimeout}}catch(e){cachedClearTimeout=defaultClearTimeout}})();function runTimeout(fun){if(cachedSetTimeout===setTimeout){return setTimeout(fun,0)}if((cachedSetTimeout===defaultSetTimout||!cachedSetTimeout)&&setTimeout){cachedSetTimeout=setTimeout;return setTimeout(fun,0)}try{return cachedSetTimeout(fun,0)}catch(e){try{return cachedSetTimeout.call(null,fun,0)}catch(e){return cachedSetTimeout.call(this,fun,0)}}}function runClearTimeout(marker){if(cachedClearTimeout===clearTimeout){return clearTimeout(marker)}if((cachedClearTimeout===defaultClearTimeout||!cachedClearTimeout)&&clearTimeout){cachedClearTimeout=clearTimeout;return clearTimeout(marker)}try{return cachedClearTimeout(marker)}catch(e){try{return cachedClearTimeout.call(null,marker)}catch(e){return cachedClearTimeout.call(this,marker)}}}var queue=[];var draining=false;var currentQueue;var queueIndex=-1;function cleanUpNextTick(){if(!draining||!currentQueue){return}draining=false;if(currentQueue.length){queue=currentQueue.concat(queue)}else{queueIndex=-1}if(queue.length){drainQueue()}}function drainQueue(){if(draining){return}var timeout=runTimeout(cleanUpNextTick);draining=true;var len=queue.length;while(len){currentQueue=queue;queue=[];while(++queueIndex<len){if(currentQueue){currentQueue[queueIndex].run()}}queueIndex=-1;len=queue.length}currentQueue=null;draining=false;runClearTimeout(timeout)}process.nextTick=function(fun){var args=new Array(arguments.length-1);if(arguments.length>1){for(var i=1;i<arguments.length;i++){args[i-1]=arguments[i]}}queue.push(new Item(fun,args));if(queue.length===1&&!draining){runTimeout(drainQueue)}};function Item(fun,array){this.fun=fun;this.array=array}Item.prototype.run=function(){this.fun.apply(null,this.array)};process.title="browser";process.browser=true;process.env={};process.argv=[];process.version="";process.versions={};function noop(){}process.on=noop;process.addListener=noop;process.once=noop;process.off=noop;process.removeListener=noop;process.removeAllListeners=noop;process.emit=noop;process.prependListener=noop;process.prependOnceListener=noop;process.listeners=function(name){return[]};process.binding=function(name){throw new Error("process.binding is not supported")};process.cwd=function(){return"/"};process.chdir=function(dir){throw new Error("process.chdir is not supported")};process.umask=function(){return 0}},{}],6:[function(require,module,exports){module.exports={name:"ejs",description:"Embedded JavaScript templates",keywords:["template","engine","ejs"],version:"3.0.2",author:"Matthew Eernisse <mde@fleegix.org> (http://fleegix.org)",license:"Apache-2.0",main:"./lib/ejs.js",repository:{type:"git",url:"git://github.com/mde/ejs.git"},bugs:"https://github.com/mde/ejs/issues",homepage:"https://github.com/mde/ejs",dependencies:{},devDependencies:{browserify:"^13.1.1",eslint:"^4.14.0","git-directory-deploy":"^1.5.1",jake:"^10.3.1",jsdoc:"^3.4.0","lru-cache":"^4.0.1",mocha:"^5.0.5","uglify-js":"^3.3.16"},engines:{node:">=0.10.0"},scripts:{test:"mocha",postinstall:"node --harmony ./postinstall.js"}}},{}]},{},[1])(1)});
 
 
 /***/ }),
-/* 271 */
+/* 272 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49347,7 +49618,7 @@ module.exports = __webpack_require__(294);
 
 
 /***/ }),
-/* 272 */
+/* 273 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49479,7 +49750,7 @@ module.exports = withSideEffect;
 
 
 /***/ }),
-/* 273 */
+/* 274 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49580,7 +49851,7 @@ module.exports = function exportedEqual(a, b) {
 
 
 /***/ }),
-/* 274 */
+/* 275 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49596,7 +49867,7 @@ module.exports = _ReactLoadableSSRAddon["default"];
 module.exports.getBundles = _getBundles["default"];
 
 /***/ }),
-/* 275 */
+/* 276 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -49608,7 +49879,7 @@ var HTMLParser = __webpack_require__(368).HTMLParser;
 var RelateUrl = __webpack_require__(369);
 var TokenChain = __webpack_require__(383);
 var Terser = __webpack_require__(384);
-var utils = __webpack_require__(154);
+var utils = __webpack_require__(155);
 
 function trimWhitespace(str) {
   return str && str.replace(/^[ \n\r\t\f]+/, '').replace(/[ \n\r\t\f]+$/, '');
@@ -50948,7 +51219,7 @@ exports.minify = function(value, options) {
 
 
 /***/ }),
-/* 276 */
+/* 277 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50957,10 +51228,10 @@ exports.minify = function(value, options) {
 module.exports = Object.assign(
   {},
   // Export promiseified graceful-fs:
-  __webpack_require__(159),
-  // Export extra methods:
   __webpack_require__(160),
-  __webpack_require__(163),
+  // Export extra methods:
+  __webpack_require__(161),
+  __webpack_require__(164),
   __webpack_require__(401),
   __webpack_require__(403),
   __webpack_require__(409),
@@ -50983,13 +51254,13 @@ if (Object.getOwnPropertyDescriptor(fs, 'promises')) {
 
 
 /***/ }),
-/* 277 */
+/* 278 */
 /***/ (function(module) {
 
 module.exports = JSON.parse("{\"/\":{\"component\":\"c4f5d8e4\"},\"/community\":{\"component\":\"672ba3d6\"},\"/components\":{\"component\":\"54e7632e\"},\"/contact\":{\"component\":\"83e9e333\"},\"/docs\":{\"component\":\"25b7c3f2\"},\"/guides\":{\"component\":\"c6d06197\",\"items\":[{\"content\":\"d2397242\"},{\"content\":\"c6f5b0ea\"},{\"content\":\"e4310ee0\"},{\"content\":\"48764d63\"},{\"content\":\"f45ef360\"},{\"content\":\"dd8d0802\"},{\"content\":\"1138c682\"},{\"content\":\"e93b7267\"},{\"content\":\"0deb734b\"},{\"content\":\"160dfb6f\"},{\"content\":\"aa76bfff\"},{\"content\":\"ab7caaf3\"},{\"content\":\"dea3d534\"},{\"content\":\"7b4de6d5\"},{\"content\":\"f7098925\"},{\"content\":\"c5f12fb3\"}],\"metadata\":\"49d2885e\"},\"/guides/advanced\":{\"component\":\"d9deea5f\",\"items\":[{\"content\":\"dd8d0802\"},{\"content\":\"ab7caaf3\"},{\"content\":\"dea3d534\"},{\"content\":\"c5f12fb3\"}],\"metadata\":\"3e1d77c1\"},\"/guides/advanced/customizing-routing\":{\"component\":\"1c13b173\",\"content\":\"14b0cbfc\"},\"/guides/advanced/managing-environment-variables\":{\"component\":\"1c13b173\",\"content\":\"99a633da\"},\"/guides/advanced/microservices\":{\"component\":\"1c13b173\",\"content\":\"66bbed7b\"},\"/guides/advanced/using-multiple-environments\":{\"component\":\"1c13b173\",\"content\":\"b0c42eac\"},\"/guides/getting-started\":{\"component\":\"d9deea5f\",\"items\":[{\"content\":\"d2397242\"},{\"content\":\"c6f5b0ea\"},{\"content\":\"e4310ee0\"},{\"content\":\"48764d63\"},{\"content\":\"f45ef360\"}],\"metadata\":\"0e2fb061\"},\"/guides/getting-started/adding-a-database\":{\"component\":\"1c13b173\",\"content\":\"1faae7db\"},\"/guides/getting-started/beyond-application-deployment\":{\"component\":\"1c13b173\",\"content\":\"7df13880\"},\"/guides/getting-started/debugging\":{\"component\":\"1c13b173\",\"content\":\"6504a542\"},\"/guides/getting-started/deploy-your-first-application\":{\"component\":\"1c13b173\",\"content\":\"cc9be38a\"},\"/guides/getting-started/setting-custom-domain\":{\"component\":\"1c13b173\",\"content\":\"c0594016\"},\"/guides/tags\":{\"component\":\"3116c1fa\",\"tags\":\"a81fb19d\"},\"/guides/tags/database-mysql\":{\"component\":\"004ec9e5\",\"items\":[{\"content\":\"e93b7267\"}],\"metadata\":\"76f58103\"},\"/guides/tags/database-postgresql\":{\"component\":\"004ec9e5\",\"items\":[{\"content\":\"1138c682\"},{\"content\":\"0deb734b\"},{\"content\":\"160dfb6f\"},{\"content\":\"aa76bfff\"},{\"content\":\"f7098925\"}],\"metadata\":\"4a111132\"},\"/guides/tags/framework-flask\":{\"component\":\"004ec9e5\",\"items\":[{\"content\":\"1138c682\"}],\"metadata\":\"6983b81e\"},\"/guides/tags/framework-hasura\":{\"component\":\"004ec9e5\",\"items\":[{\"content\":\"aa76bfff\"}],\"metadata\":\"4e0a0777\"},\"/guides/tags/framework-laravel\":{\"component\":\"004ec9e5\",\"items\":[{\"content\":\"e93b7267\"}],\"metadata\":\"56956cba\"},\"/guides/tags/framework-nodejs\":{\"component\":\"004ec9e5\",\"items\":[{\"content\":\"0deb734b\"}],\"metadata\":\"2b4af991\"},\"/guides/tags/framework-springboot\":{\"component\":\"004ec9e5\",\"items\":[{\"content\":\"160dfb6f\"}],\"metadata\":\"5209428e\"},\"/guides/tags/language-java\":{\"component\":\"004ec9e5\",\"items\":[{\"content\":\"160dfb6f\"}],\"metadata\":\"5828cab0\"},\"/guides/tags/language-javascript\":{\"component\":\"004ec9e5\",\"items\":[{\"content\":\"0deb734b\"}],\"metadata\":\"cb05c8fa\"},\"/guides/tags/language-kotlin\":{\"component\":\"004ec9e5\",\"items\":[{\"content\":\"f7098925\"}],\"metadata\":\"dbe0f891\"},\"/guides/tags/language-php\":{\"component\":\"004ec9e5\",\"items\":[{\"content\":\"e93b7267\"}],\"metadata\":\"46f80567\"},\"/guides/tags/language-python\":{\"component\":\"004ec9e5\",\"items\":[{\"content\":\"1138c682\"}],\"metadata\":\"b07a5451\"},\"/guides/tags/type-guide\":{\"component\":\"004ec9e5\",\"items\":[{\"content\":\"d2397242\"},{\"content\":\"c6f5b0ea\"},{\"content\":\"e4310ee0\"},{\"content\":\"48764d63\"},{\"content\":\"f45ef360\"},{\"content\":\"dd8d0802\"},{\"content\":\"ab7caaf3\"},{\"content\":\"dea3d534\"},{\"content\":\"c5f12fb3\"}],\"metadata\":\"f11e9a8e\"},\"/guides/tags/type-tutorial\":{\"component\":\"004ec9e5\",\"items\":[{\"content\":\"1138c682\"},{\"content\":\"e93b7267\"},{\"content\":\"0deb734b\"},{\"content\":\"160dfb6f\"},{\"content\":\"aa76bfff\"},{\"content\":\"7b4de6d5\"},{\"content\":\"f7098925\"}],\"metadata\":\"bf22200e\"},\"/guides/tutorial\":{\"component\":\"d9deea5f\",\"items\":[{\"content\":\"1138c682\"},{\"content\":\"e93b7267\"},{\"content\":\"0deb734b\"},{\"content\":\"160dfb6f\"},{\"content\":\"aa76bfff\"},{\"content\":\"7b4de6d5\"},{\"content\":\"f7098925\"}],\"metadata\":\"af9ec14b\"},\"/guides/tutorial/deploy-flask-with-postgresql\":{\"component\":\"1c13b173\",\"content\":\"f7fef85d\"},\"/guides/tutorial/deploy-laravel-with-mysql\":{\"component\":\"1c13b173\",\"content\":\"b7193131\"},\"/guides/tutorial/deploy-node-js-with-postgresql\":{\"component\":\"1c13b173\",\"content\":\"874f6ff2\"},\"/guides/tutorial/deploy-spring-boot-with-postgresql\":{\"component\":\"1c13b173\",\"content\":\"0fedbc0d\"},\"/guides/tutorial/graphql-api-with-hasura\":{\"component\":\"1c13b173\",\"content\":\"209dc929\"},\"/guides/tutorial/the-easiest-way-to-deploy-microservices\":{\"component\":\"1c13b173\",\"content\":\"f91bd47a\"},\"/guides/tutorial/url-shortener-api-with-kotlin\":{\"component\":\"1c13b173\",\"content\":\"ab8f5b83\"},\"/mailing_list\":{\"component\":\"48912b2c\"},\"/docs/:route\":{\"component\":\"1be78505\",\"docsMetadata\":\"20ac7829\"},\"/docs/getting-started\":{\"component\":\"17896441\",\"content\":\"d589d3a7\"},\"/docs/getting-started/how-qovery-works\":{\"component\":\"17896441\",\"content\":\"cb2208c1\"},\"/docs/getting-started/quickstart\":{\"component\":\"17896441\",\"content\":\"fbd7a87c\"},\"/docs/getting-started/what-is-qovery\":{\"component\":\"17896441\",\"content\":\"68b95634\"},\"/docs/getting-started/whats-next\":{\"component\":\"17896441\",\"content\":\"543e268a\"},\"/docs/integration\":{\"component\":\"17896441\",\"content\":\"8ef82481\"},\"/docs/integration/ide-plugins\":{\"component\":\"17896441\",\"content\":\"453e2ac4\"},\"/docs/main-concepts\":{\"component\":\"17896441\",\"content\":\"40366c9d\"},\"/docs/main-concepts/Application\":{\"component\":\"17896441\",\"content\":\"8e606da1\"},\"/docs/main-concepts/Environment\":{\"component\":\"17896441\",\"content\":\"336cb651\"},\"/docs/main-concepts/Project\":{\"component\":\"17896441\",\"content\":\"df4a08e0\"},\"/docs/useful-links/api\":{\"component\":\"17896441\",\"content\":\"56d3d463\"},\"/docs/useful-links/faq\":{\"component\":\"17896441\",\"content\":\"3b8107ee\"},\"/docs/useful-links/help-and-support\":{\"component\":\"17896441\",\"content\":\"ed77dcea\"},\"/docs/using-qovery\":{\"component\":\"17896441\",\"content\":\"56cfbe62\"},\"/docs/using-qovery/configuration\":{\"component\":\"17896441\",\"content\":\"fc376fea\"}}");
 
 /***/ }),
-/* 278 */
+/* 279 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51004,13 +51275,13 @@ module.exports = function() {
 
 
 /***/ }),
-/* 279 */
+/* 280 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var reactIs = __webpack_require__(165);
+var reactIs = __webpack_require__(166);
 
 /**
  * Copyright 2015, Yahoo! Inc.
@@ -51114,7 +51385,7 @@ module.exports = hoistNonReactStatics;
 
 
 /***/ }),
-/* 280 */
+/* 281 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51377,7 +51648,7 @@ Toggle.propTypes = {
 };
 
 /***/ }),
-/* 281 */
+/* 282 */
 /***/ (function(module, exports) {
 
 // Exports
@@ -51387,7 +51658,7 @@ module.exports = {
 
 
 /***/ }),
-/* 282 */
+/* 283 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var emoji = __webpack_require__(482)
@@ -51449,224 +51720,12 @@ BananaSlug.slug = slugger
 
 
 /***/ }),
-/* 283 */
+/* 284 */
 /***/ (function(module, exports) {
 
 // Exports
 module.exports = {
 	"enhancedAnchor": "enhancedAnchor_ZqCz"
-};
-
-
-/***/ }),
-/* 284 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var strictUriEncode = __webpack_require__(487);
-var objectAssign = __webpack_require__(56);
-
-function encoderForArrayFormat(opts) {
-	switch (opts.arrayFormat) {
-		case 'index':
-			return function (key, value, index) {
-				return value === null ? [
-					encode(key, opts),
-					'[',
-					index,
-					']'
-				].join('') : [
-					encode(key, opts),
-					'[',
-					encode(index, opts),
-					']=',
-					encode(value, opts)
-				].join('');
-			};
-
-		case 'bracket':
-			return function (key, value) {
-				return value === null ? encode(key, opts) : [
-					encode(key, opts),
-					'[]=',
-					encode(value, opts)
-				].join('');
-			};
-
-		default:
-			return function (key, value) {
-				return value === null ? encode(key, opts) : [
-					encode(key, opts),
-					'=',
-					encode(value, opts)
-				].join('');
-			};
-	}
-}
-
-function parserForArrayFormat(opts) {
-	var result;
-
-	switch (opts.arrayFormat) {
-		case 'index':
-			return function (key, value, accumulator) {
-				result = /\[(\d*)\]$/.exec(key);
-
-				key = key.replace(/\[\d*\]$/, '');
-
-				if (!result) {
-					accumulator[key] = value;
-					return;
-				}
-
-				if (accumulator[key] === undefined) {
-					accumulator[key] = {};
-				}
-
-				accumulator[key][result[1]] = value;
-			};
-
-		case 'bracket':
-			return function (key, value, accumulator) {
-				result = /(\[\])$/.exec(key);
-				key = key.replace(/\[\]$/, '');
-
-				if (!result) {
-					accumulator[key] = value;
-					return;
-				} else if (accumulator[key] === undefined) {
-					accumulator[key] = [value];
-					return;
-				}
-
-				accumulator[key] = [].concat(accumulator[key], value);
-			};
-
-		default:
-			return function (key, value, accumulator) {
-				if (accumulator[key] === undefined) {
-					accumulator[key] = value;
-					return;
-				}
-
-				accumulator[key] = [].concat(accumulator[key], value);
-			};
-	}
-}
-
-function encode(value, opts) {
-	if (opts.encode) {
-		return opts.strict ? strictUriEncode(value) : encodeURIComponent(value);
-	}
-
-	return value;
-}
-
-function keysSorter(input) {
-	if (Array.isArray(input)) {
-		return input.sort();
-	} else if (typeof input === 'object') {
-		return keysSorter(Object.keys(input)).sort(function (a, b) {
-			return Number(a) - Number(b);
-		}).map(function (key) {
-			return input[key];
-		});
-	}
-
-	return input;
-}
-
-exports.extract = function (str) {
-	return str.split('?')[1] || '';
-};
-
-exports.parse = function (str, opts) {
-	opts = objectAssign({arrayFormat: 'none'}, opts);
-
-	var formatter = parserForArrayFormat(opts);
-
-	// Create an object with no prototype
-	// https://github.com/sindresorhus/query-string/issues/47
-	var ret = Object.create(null);
-
-	if (typeof str !== 'string') {
-		return ret;
-	}
-
-	str = str.trim().replace(/^(\?|#|&)/, '');
-
-	if (!str) {
-		return ret;
-	}
-
-	str.split('&').forEach(function (param) {
-		var parts = param.replace(/\+/g, ' ').split('=');
-		// Firefox (pre 40) decodes `%3D` to `=`
-		// https://github.com/sindresorhus/query-string/pull/37
-		var key = parts.shift();
-		var val = parts.length > 0 ? parts.join('=') : undefined;
-
-		// missing `=` should be `null`:
-		// http://w3.org/TR/2012/WD-url-20120524/#collect-url-parameters
-		val = val === undefined ? null : decodeURIComponent(val);
-
-		formatter(decodeURIComponent(key), val, ret);
-	});
-
-	return Object.keys(ret).sort().reduce(function (result, key) {
-		var val = ret[key];
-		if (Boolean(val) && typeof val === 'object' && !Array.isArray(val)) {
-			// Sort object keys, not values
-			result[key] = keysSorter(val);
-		} else {
-			result[key] = val;
-		}
-
-		return result;
-	}, Object.create(null));
-};
-
-exports.stringify = function (obj, opts) {
-	var defaults = {
-		encode: true,
-		strict: true,
-		arrayFormat: 'none'
-	};
-
-	opts = objectAssign(defaults, opts);
-
-	var formatter = encoderForArrayFormat(opts);
-
-	return obj ? Object.keys(obj).sort().map(function (key) {
-		var val = obj[key];
-
-		if (val === undefined) {
-			return '';
-		}
-
-		if (val === null) {
-			return encode(key, opts);
-		}
-
-		if (Array.isArray(val)) {
-			var result = [];
-
-			val.slice().forEach(function (val2) {
-				if (val2 === undefined) {
-					return;
-				}
-
-				result.push(formatter(key, val2, result.length));
-			});
-
-			return result.join('&');
-		}
-
-		return encode(key, opts) + '=' + encode(val, opts);
-	}).filter(function (x) {
-		return x.length > 0;
-	}).join('&') : '';
 };
 
 
@@ -53633,7 +53692,7 @@ if (true) {
  * LICENSE file in the root directory of this source tree.
  */
 
-var k=__webpack_require__(56),m=__webpack_require__(1),aa=__webpack_require__(132);function r(a){for(var b="https://reactjs.org/docs/error-decoder.html?invariant="+a,c=1;c<arguments.length;c++)b+="&args[]="+encodeURIComponent(arguments[c]);return"Minified React error #"+a+"; visit "+b+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings."}
+var k=__webpack_require__(56),m=__webpack_require__(1),aa=__webpack_require__(133);function r(a){for(var b="https://reactjs.org/docs/error-decoder.html?invariant="+a,c=1;c<arguments.length;c++)b+="&args[]="+encodeURIComponent(arguments[c]);return"Minified React error #"+a+"; visit "+b+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings."}
 var u="function"===typeof Symbol&&Symbol.for,ba=u?Symbol.for("react.portal"):60106,v=u?Symbol.for("react.fragment"):60107,ca=u?Symbol.for("react.strict_mode"):60108,da=u?Symbol.for("react.profiler"):60114,w=u?Symbol.for("react.provider"):60109,ea=u?Symbol.for("react.context"):60110,fa=u?Symbol.for("react.concurrent_mode"):60111,ha=u?Symbol.for("react.forward_ref"):60112,B=u?Symbol.for("react.suspense"):60113,ia=u?Symbol.for("react.suspense_list"):60120,ja=u?Symbol.for("react.memo"):60115,ka=u?Symbol.for("react.lazy"):
 60116,la=u?Symbol.for("react.block"):60121,ma=u?Symbol.for("react.fundamental"):60117,na=u?Symbol.for("react.scope"):60119;function oa(a){if(-1===a._status){a._status=0;var b=a._ctor;b=b();a._result=b;b.then(function(c){0===a._status&&(c=c.default,a._status=1,a._result=c)},function(c){0===a._status&&(a._status=2,a._result=c)})}}
 function C(a){if(null==a)return null;if("function"===typeof a)return a.displayName||a.name||null;if("string"===typeof a)return a;switch(a){case v:return"Fragment";case ba:return"Portal";case da:return"Profiler";case ca:return"StrictMode";case B:return"Suspense";case ia:return"SuspenseList"}if("object"===typeof a)switch(a.$$typeof){case ea:return"Context.Consumer";case w:return"Context.Provider";case ha:var b=a.render;b=b.displayName||b.name||"";return a.displayName||(""!==b?"ForwardRef("+b+")":"ForwardRef");
@@ -53787,7 +53846,7 @@ var _path = _interopRequireDefault(__webpack_require__(11));
 
 var _url = _interopRequireDefault(__webpack_require__(32));
 
-var _utils = __webpack_require__(133);
+var _utils = __webpack_require__(134);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -54087,7 +54146,7 @@ exports["default"] = _default;
 exports.__esModule = true;
 exports["default"] = void 0;
 
-var _crypto = _interopRequireDefault(__webpack_require__(134));
+var _crypto = _interopRequireDefault(__webpack_require__(135));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -54178,7 +54237,7 @@ function hasEntry(target, targetKey, searchFor) {
 exports.__esModule = true;
 exports["default"] = void 0;
 
-var _utils = __webpack_require__(133);
+var _utils = __webpack_require__(134);
 
 function getBundles(manifest, chunks) {
   if (!manifest || !chunks) {
@@ -54413,13 +54472,13 @@ module.exports = level0Optimize;
 var shortenHex = __webpack_require__(308);
 var shortenHsl = __webpack_require__(309);
 var shortenRgb = __webpack_require__(310);
-var sortSelectors = __webpack_require__(105);
-var tidyRules = __webpack_require__(106);
+var sortSelectors = __webpack_require__(106);
+var tidyRules = __webpack_require__(107);
 var tidyBlock = __webpack_require__(312);
 var tidyAtRule = __webpack_require__(313);
 
-var Hack = __webpack_require__(107);
-var removeUnused = __webpack_require__(136);
+var Hack = __webpack_require__(108);
+var removeUnused = __webpack_require__(137);
 var restoreFromOptimizing = __webpack_require__(60);
 var wrapForOptimizing = __webpack_require__(50).all;
 
@@ -54429,7 +54488,7 @@ var Token = __webpack_require__(14);
 var Marker = __webpack_require__(21);
 
 var formatPosition = __webpack_require__(72);
-var split = __webpack_require__(108);
+var split = __webpack_require__(109);
 
 var serializeRules = __webpack_require__(16).rules;
 
@@ -54438,7 +54497,7 @@ var IgnoreProperty = 'ignore-property';
 var CHARSET_TOKEN = '@charset';
 var CHARSET_REGEXP = new RegExp('^' + CHARSET_TOKEN, 'i');
 
-var DEFAULT_ROUNDING_PRECISION = __webpack_require__(137).DEFAULT;
+var DEFAULT_ROUNDING_PRECISION = __webpack_require__(138).DEFAULT;
 
 var WHOLE_PIXEL_VALUE = /(?:^|\s|\()(-?\d+)px/;
 var TIME_VALUE = /^(\-?[\d\.]+)(m?s)$/;
@@ -55610,8 +55669,8 @@ var isMergeable = __webpack_require__(73);
 
 var optimizeProperties = __webpack_require__(74);
 
-var sortSelectors = __webpack_require__(105);
-var tidyRules = __webpack_require__(106);
+var sortSelectors = __webpack_require__(106);
+var tidyRules = __webpack_require__(107);
 
 var OptimizationLevel = __webpack_require__(36).OptimizationLevel;
 
@@ -55662,13 +55721,13 @@ module.exports = mergeAdjacent;
 /* 316 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var everyValuesPair = __webpack_require__(138);
-var hasInherit = __webpack_require__(139);
-var populateComponents = __webpack_require__(110);
+var everyValuesPair = __webpack_require__(139);
+var hasInherit = __webpack_require__(140);
+var populateComponents = __webpack_require__(111);
 
 var compactable = __webpack_require__(43);
 var deepClone = __webpack_require__(75).deep;
-var restoreWithComponents = __webpack_require__(111);
+var restoreWithComponents = __webpack_require__(112);
 
 var restoreFromOptimizing = __webpack_require__(60);
 var wrapSingle = __webpack_require__(50).single;
@@ -56113,7 +56172,7 @@ module.exports = mergeIntoShorthands;
 /* 317 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var InvalidPropertyError = __webpack_require__(140);
+var InvalidPropertyError = __webpack_require__(141);
 
 var wrapSingle = __webpack_require__(50).single;
 
@@ -57052,7 +57111,7 @@ module.exports = {
 /* 319 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var sameVendorPrefixes = __webpack_require__(141).same;
+var sameVendorPrefixes = __webpack_require__(142).same;
 
 function understandable(validator, value1, value2, _position, isPaired) {
   if (!sameVendorPrefixes(value1, value2)) {
@@ -57382,17 +57441,17 @@ module.exports = {
 /* 321 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var hasInherit = __webpack_require__(139);
-var everyValuesPair = __webpack_require__(138);
+var hasInherit = __webpack_require__(140);
+var everyValuesPair = __webpack_require__(139);
 var findComponentIn = __webpack_require__(322);
 var isComponentOf = __webpack_require__(323);
 var isMergeableShorthand = __webpack_require__(324);
 var overridesNonComponentShorthand = __webpack_require__(325);
-var sameVendorPrefixesIn = __webpack_require__(141).same;
+var sameVendorPrefixesIn = __webpack_require__(142).same;
 
 var compactable = __webpack_require__(43);
 var deepClone = __webpack_require__(75).deep;
-var restoreWithComponents = __webpack_require__(111);
+var restoreWithComponents = __webpack_require__(112);
 var shallowClone = __webpack_require__(75).shallow;
 
 var restoreFromOptimizing = __webpack_require__(60);
@@ -57980,8 +58039,8 @@ module.exports = overridesNonComponentShorthand;
 
 var canReorder = __webpack_require__(76).canReorder;
 var canReorderSingle = __webpack_require__(76).canReorderSingle;
-var extractProperties = __webpack_require__(112);
-var rulesOverlap = __webpack_require__(142);
+var extractProperties = __webpack_require__(113);
+var rulesOverlap = __webpack_require__(143);
 
 var serializeRules = __webpack_require__(16).rules;
 var OptimizationLevel = __webpack_require__(36).OptimizationLevel;
@@ -58212,8 +58271,8 @@ module.exports = specificity;
 
 var isMergeable = __webpack_require__(73);
 
-var sortSelectors = __webpack_require__(105);
-var tidyRules = __webpack_require__(106);
+var sortSelectors = __webpack_require__(106);
+var tidyRules = __webpack_require__(107);
 
 var OptimizationLevel = __webpack_require__(36).OptimizationLevel;
 
@@ -58297,7 +58356,7 @@ module.exports = mergeNonAdjacentByBody;
 /***/ (function(module, exports, __webpack_require__) {
 
 var canReorder = __webpack_require__(76).canReorder;
-var extractProperties = __webpack_require__(112);
+var extractProperties = __webpack_require__(113);
 
 var optimizeProperties = __webpack_require__(74);
 
@@ -58384,7 +58443,7 @@ var isMergeable = __webpack_require__(73);
 
 var optimizeProperties = __webpack_require__(74);
 
-var cloneArray = __webpack_require__(143);
+var cloneArray = __webpack_require__(144);
 
 var Token = __webpack_require__(14);
 
@@ -58687,7 +58746,7 @@ module.exports = removeDuplicates;
 /* 335 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var populateComponents = __webpack_require__(110);
+var populateComponents = __webpack_require__(111);
 
 var wrapForOptimizing = __webpack_require__(50).single;
 var restoreFromOptimizing = __webpack_require__(60);
@@ -58943,13 +59002,13 @@ module.exports = removeUnusedAtRules;
 /***/ (function(module, exports, __webpack_require__) {
 
 var canReorderSingle = __webpack_require__(76).canReorderSingle;
-var extractProperties = __webpack_require__(112);
+var extractProperties = __webpack_require__(113);
 var isMergeable = __webpack_require__(73);
 var tidyRuleDuplicates = __webpack_require__(337);
 
 var Token = __webpack_require__(14);
 
-var cloneArray = __webpack_require__(143);
+var cloneArray = __webpack_require__(144);
 
 var serializeBody = __webpack_require__(16).body;
 var serializeRules = __webpack_require__(16).rules;
@@ -60293,7 +60352,7 @@ module.exports = rebaseToFrom;
 /* 349 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var SourceMapConsumer = __webpack_require__(144).SourceMapConsumer;
+var SourceMapConsumer = __webpack_require__(145).SourceMapConsumer;
 
 function inputSourceMapTracker() {
   var maps = {};
@@ -60524,8 +60583,8 @@ exports.MappingList = MappingList;
 
 var util = __webpack_require__(61);
 var binarySearch = __webpack_require__(353);
-var ArraySet = __webpack_require__(147).ArraySet;
-var base64VLQ = __webpack_require__(146);
+var ArraySet = __webpack_require__(148).ArraySet;
+var base64VLQ = __webpack_require__(147);
 var quickSort = __webpack_require__(354).quickSort;
 
 function SourceMapConsumer(aSourceMap, aSourceMapURL) {
@@ -61910,7 +61969,7 @@ exports.quickSort = function (ary, comparator) {
  * http://opensource.org/licenses/BSD-3-Clause
  */
 
-var SourceMapGenerator = __webpack_require__(145).SourceMapGenerator;
+var SourceMapGenerator = __webpack_require__(146).SourceMapGenerator;
 var util = __webpack_require__(61);
 
 // Matches a Windows-style `\r\n` newline or a `\n` newline used by all other
@@ -62326,20 +62385,20 @@ var fs = __webpack_require__(35);
 var path = __webpack_require__(11);
 
 var applySourceMaps = __webpack_require__(357);
-var extractImportUrlAndMedia = __webpack_require__(150);
-var isAllowedResource = __webpack_require__(113);
+var extractImportUrlAndMedia = __webpack_require__(151);
+var isAllowedResource = __webpack_require__(114);
 var loadOriginalSources = __webpack_require__(360);
 var normalizePath = __webpack_require__(361);
 var rebase = __webpack_require__(362);
-var rebaseLocalMap = __webpack_require__(148);
-var rebaseRemoteMap = __webpack_require__(149);
-var restoreImport = __webpack_require__(151);
+var rebaseLocalMap = __webpack_require__(149);
+var rebaseRemoteMap = __webpack_require__(150);
+var restoreImport = __webpack_require__(152);
 
 var tokenize = __webpack_require__(364);
 var Token = __webpack_require__(14);
 var Marker = __webpack_require__(21);
 var hasProtocol = __webpack_require__(78);
-var isImport = __webpack_require__(152);
+var isImport = __webpack_require__(153);
 var isRemoteResource = __webpack_require__(62);
 
 var UNKNOWN_URI = 'uri:unknown';
@@ -62672,10 +62731,10 @@ module.exports = readSources;
 var fs = __webpack_require__(35);
 var path = __webpack_require__(11);
 
-var isAllowedResource = __webpack_require__(113);
+var isAllowedResource = __webpack_require__(114);
 var matchDataUri = __webpack_require__(358);
-var rebaseLocalMap = __webpack_require__(148);
-var rebaseRemoteMap = __webpack_require__(149);
+var rebaseLocalMap = __webpack_require__(149);
+var rebaseRemoteMap = __webpack_require__(150);
 
 var Token = __webpack_require__(14);
 var hasProtocol = __webpack_require__(78);
@@ -62949,7 +63008,7 @@ module.exports = isDataUriResource;
 var fs = __webpack_require__(35);
 var path = __webpack_require__(11);
 
-var isAllowedResource = __webpack_require__(113);
+var isAllowedResource = __webpack_require__(114);
 
 var hasProtocol = __webpack_require__(78);
 var isRemoteResource = __webpack_require__(62);
@@ -63092,12 +63151,12 @@ module.exports = normalizePath;
 /* 362 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var extractImportUrlAndMedia = __webpack_require__(150);
-var restoreImport = __webpack_require__(151);
+var extractImportUrlAndMedia = __webpack_require__(151);
+var restoreImport = __webpack_require__(152);
 var rewriteUrl = __webpack_require__(363);
 
 var Token = __webpack_require__(14);
-var isImport = __webpack_require__(152);
+var isImport = __webpack_require__(153);
 
 var SOURCE_MAP_COMMENT_PATTERN = /^\/\*# sourceMappingURL=(\S+) \*\/$/;
 
@@ -63900,7 +63959,7 @@ module.exports = tokenize;
 /* 365 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var all = __webpack_require__(109).all;
+var all = __webpack_require__(110).all;
 
 function store(serializeContext, token) {
   var value = typeof token == 'string' ?
@@ -63956,8 +64015,8 @@ module.exports = serializeStyles;
 /* 366 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var SourceMapGenerator = __webpack_require__(144).SourceMapGenerator;
-var all = __webpack_require__(109).all;
+var SourceMapGenerator = __webpack_require__(145).SourceMapGenerator;
+var all = __webpack_require__(110).all;
 
 var isRemoteResource = __webpack_require__(62);
 
@@ -64398,7 +64457,7 @@ module.exports = serializeStylesAndSourceMap;
 
 }(this));
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(153)(module)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(154)(module)))
 
 /***/ }),
 /* 368 */
@@ -64437,7 +64496,7 @@ module.exports = serializeStylesAndSourceMap;
 
 
 
-var createMapFromString = __webpack_require__(154).createMapFromString;
+var createMapFromString = __webpack_require__(155).createMapFromString;
 
 function makeMap(values) {
   return createMapFromString(values, true);
@@ -64981,10 +65040,10 @@ exports.HTMLtoDOM = function(html, doc) {
 "use strict";
 
 
-var constants  = __webpack_require__(155);
+var constants  = __webpack_require__(156);
 var formatUrl  = __webpack_require__(370);
 var getOptions = __webpack_require__(371);
-var objUtils   = __webpack_require__(114);
+var objUtils   = __webpack_require__(115);
 var parseUrl   = __webpack_require__(372);
 var relateUrl  = __webpack_require__(379);
 
@@ -65082,7 +65141,7 @@ module.exports = RelateUrl;
 "use strict";
 
 
-var constants = __webpack_require__(155);
+var constants = __webpack_require__(156);
 
 
 
@@ -65263,7 +65322,7 @@ module.exports = formatUrl;
 "use strict";
 
 
-var objUtils = __webpack_require__(114);
+var objUtils = __webpack_require__(115);
 
 
 
@@ -65333,7 +65392,7 @@ var parsePath  = __webpack_require__(375);
 var parsePort  = __webpack_require__(376);
 var parseQuery = __webpack_require__(377);
 var parseUrlString = __webpack_require__(378);
-var pathUtils      = __webpack_require__(115);
+var pathUtils      = __webpack_require__(116);
 
 
 
@@ -65837,8 +65896,8 @@ module.exports = relateUrl;
 
 
 var findRelation = __webpack_require__(381);
-var objUtils     = __webpack_require__(114);
-var pathUtils    = __webpack_require__(115);
+var objUtils     = __webpack_require__(115);
+var pathUtils    = __webpack_require__(116);
 
 
 
@@ -66018,7 +66077,7 @@ module.exports =
 "use strict";
 
 
-var pathUtils = __webpack_require__(115);
+var pathUtils = __webpack_require__(116);
 
 
 
@@ -66180,7 +66239,7 @@ module.exports = TokenChain;
  * Licensed under the New BSD license. See LICENSE.txt or:
  * http://opensource.org/licenses/BSD-3-Clause
  */
-exports.SourceMapGenerator = __webpack_require__(156).SourceMapGenerator;
+exports.SourceMapGenerator = __webpack_require__(157).SourceMapGenerator;
 exports.SourceMapConsumer = __webpack_require__(388).SourceMapConsumer;
 exports.SourceNode = __webpack_require__(391).SourceNode;
 
@@ -66356,8 +66415,8 @@ exports.MappingList = MappingList;
 
 var util = __webpack_require__(63);
 var binarySearch = __webpack_require__(389);
-var ArraySet = __webpack_require__(158).ArraySet;
-var base64VLQ = __webpack_require__(157);
+var ArraySet = __webpack_require__(159).ArraySet;
+var base64VLQ = __webpack_require__(158);
 var quickSort = __webpack_require__(390).quickSort;
 
 function SourceMapConsumer(aSourceMap, aSourceMapURL) {
@@ -67742,7 +67801,7 @@ exports.quickSort = function (ary, comparator) {
  * http://opensource.org/licenses/BSD-3-Clause
  */
 
-var SourceMapGenerator = __webpack_require__(156).SourceMapGenerator;
+var SourceMapGenerator = __webpack_require__(157).SourceMapGenerator;
 var util = __webpack_require__(63);
 
 // Matches a Windows-style `\r\n` newline or a `\n` newline used by all other
@@ -68508,7 +68567,7 @@ module.exports = require("constants");
 /* 394 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Stream = __webpack_require__(132).Stream
+var Stream = __webpack_require__(133).Stream
 
 module.exports = legacy
 
@@ -68664,7 +68723,7 @@ function clone (obj) {
 const fs = __webpack_require__(18)
 const path = __webpack_require__(11)
 const mkdirpSync = __webpack_require__(27).mkdirsSync
-const utimesSync = __webpack_require__(162).utimesMillisSync
+const utimesSync = __webpack_require__(163).utimesMillisSync
 const stat = __webpack_require__(79)
 
 function copySync (src, dest, opts) {
@@ -68834,7 +68893,7 @@ module.exports = copySync
 
 const fs = __webpack_require__(18)
 const path = __webpack_require__(11)
-const invalidWin32Path = __webpack_require__(161).invalidWin32Path
+const invalidWin32Path = __webpack_require__(162).invalidWin32Path
 
 const o777 = parseInt('0777', 8)
 
@@ -68904,7 +68963,7 @@ module.exports = mkdirs
 
 const fs = __webpack_require__(18)
 const path = __webpack_require__(11)
-const invalidWin32Path = __webpack_require__(161).invalidWin32Path
+const invalidWin32Path = __webpack_require__(162).invalidWin32Path
 
 const o777 = parseInt('0777', 8)
 
@@ -68986,7 +69045,7 @@ const fs = __webpack_require__(18)
 const path = __webpack_require__(11)
 const mkdirp = __webpack_require__(27).mkdirs
 const pathExists = __webpack_require__(33).pathExists
-const utimes = __webpack_require__(162).utimesMillis
+const utimes = __webpack_require__(163).utimesMillis
 const stat = __webpack_require__(79)
 
 function copy (src, dest, opts, cb) {
@@ -69258,7 +69317,7 @@ module.exports = {
 
 const fs = __webpack_require__(18)
 const path = __webpack_require__(11)
-const assert = __webpack_require__(116)
+const assert = __webpack_require__(117)
 
 const isWindows = (process.platform === 'win32')
 
@@ -69946,7 +70005,7 @@ module.exports = {
 
 
 const u = __webpack_require__(23).fromCallback
-const jsonFile = __webpack_require__(117)
+const jsonFile = __webpack_require__(118)
 
 jsonFile.outputJson = u(__webpack_require__(411))
 jsonFile.outputJsonSync = __webpack_require__(412)
@@ -70111,7 +70170,7 @@ module.exports = jsonfile
 const path = __webpack_require__(11)
 const mkdir = __webpack_require__(27)
 const pathExists = __webpack_require__(33).pathExists
-const jsonFile = __webpack_require__(117)
+const jsonFile = __webpack_require__(118)
 
 function outputJson (file, data, options, callback) {
   if (typeof options === 'function') {
@@ -70145,7 +70204,7 @@ module.exports = outputJson
 const fs = __webpack_require__(18)
 const path = __webpack_require__(11)
 const mkdir = __webpack_require__(27)
-const jsonFile = __webpack_require__(117)
+const jsonFile = __webpack_require__(118)
 
 function outputJsonSync (file, data, options) {
   const dir = path.dirname(file)
@@ -70181,7 +70240,7 @@ module.exports = {
 
 const fs = __webpack_require__(18)
 const path = __webpack_require__(11)
-const copySync = __webpack_require__(160).copySync
+const copySync = __webpack_require__(161).copySync
 const removeSync = __webpack_require__(80).removeSync
 const mkdirpSync = __webpack_require__(27).mkdirpSync
 const stat = __webpack_require__(79)
@@ -70248,7 +70307,7 @@ module.exports = {
 
 const fs = __webpack_require__(18)
 const path = __webpack_require__(11)
-const copy = __webpack_require__(163).copy
+const copy = __webpack_require__(164).copy
 const remove = __webpack_require__(80).remove
 const mkdirp = __webpack_require__(27).mkdirp
 const pathExists = __webpack_require__(33).pathExists
@@ -70865,7 +70924,7 @@ var _DocSearch = __webpack_require__(425);
 
 var _DocSearch2 = _interopRequireDefault(_DocSearch);
 
-var _version = __webpack_require__(184);
+var _version = __webpack_require__(185);
 
 var _version2 = _interopRequireDefault(_version);
 
@@ -70936,11 +70995,11 @@ var _utils = __webpack_require__(475);
 
 var _utils2 = _interopRequireDefault(_utils);
 
-var _version = __webpack_require__(184);
+var _version = __webpack_require__(185);
 
 var _version2 = _interopRequireDefault(_version);
 
-var _zepto = __webpack_require__(183);
+var _zepto = __webpack_require__(184);
 
 var _zepto2 = _interopRequireDefault(_zepto);
 
@@ -72107,7 +72166,7 @@ var Hogan = {};
 // For browser users, this will be mapped to src/browser/builds/algoliasearchLite.js
 // when used through browserify or webpack (see package.json browser field)
 // This is done to ease universal applications (https://github.com/algolia/algoliasearch-client-js/issues/283)
-module.exports = __webpack_require__(166);
+module.exports = __webpack_require__(167);
 
 
 /***/ }),
@@ -72121,12 +72180,12 @@ module.exports = __webpack_require__(166);
 module.exports = algoliasearch;
 
 var debug = __webpack_require__(81)('algoliasearch:nodejs');
-var crypto = __webpack_require__(134);
+var crypto = __webpack_require__(135);
 var zlib = __webpack_require__(435);
 
 var inherits = __webpack_require__(53);
 var Promise = global.Promise || __webpack_require__(437).Promise;
-var semver = __webpack_require__(168);
+var semver = __webpack_require__(169);
 var isNotSupported = semver.satisfies(process.version, '<0.10');
 var isNode010 = semver.satisfies(process.version, '=0.10');
 var places = __webpack_require__(438);
@@ -72463,7 +72522,7 @@ AlgoliaSearchNodeJS.prototype.getSecuredApiKeyRemainingValidity = function getSe
  * Expose `debug()` as the module.
  */
 
-exports = module.exports = __webpack_require__(167);
+exports = module.exports = __webpack_require__(168);
 exports.log = log;
 exports.formatArgs = formatArgs;
 exports.save = save;
@@ -72819,7 +72878,7 @@ var util = __webpack_require__(52);
  * Expose `debug()` as the module.
  */
 
-exports = module.exports = __webpack_require__(167);
+exports = module.exports = __webpack_require__(168);
 exports.init = init;
 exports.log = log;
 exports.formatArgs = formatArgs;
@@ -72998,7 +73057,7 @@ function createWritableStdioStream (fd) {
 
     case 'PIPE':
     case 'TCP':
-      var net = __webpack_require__(118);
+      var net = __webpack_require__(119);
       stream = new net.Socket({
         fd: fd,
         readable: false,
@@ -74287,7 +74346,7 @@ return Promise$1;
 module.exports = createPlacesClient;
 
 var qs3 = __webpack_require__(439);
-var buildSearchMethod = __webpack_require__(169);
+var buildSearchMethod = __webpack_require__(170);
 
 function createPlacesClient(algoliasearch) {
   return function places(appID, apiKey, opts) {
@@ -74621,8 +74680,8 @@ AlgoliaSearchServer.prototype._computeRequestHeaders = function(additionalUA) {
 module.exports = AlgoliaSearch;
 
 var Index = __webpack_require__(444);
-var deprecate = __webpack_require__(119);
-var deprecatedMessage = __webpack_require__(120);
+var deprecate = __webpack_require__(120);
+var deprecatedMessage = __webpack_require__(121);
 var AlgoliaSearchCore = __webpack_require__(447);
 var inherits = __webpack_require__(53);
 var errors = __webpack_require__(64);
@@ -75392,10 +75451,10 @@ function notImplemented() {
 /***/ (function(module, exports, __webpack_require__) {
 
 var inherits = __webpack_require__(53);
-var IndexCore = __webpack_require__(170);
-var deprecate = __webpack_require__(119);
-var deprecatedMessage = __webpack_require__(120);
-var exitPromise = __webpack_require__(175);
+var IndexCore = __webpack_require__(171);
+var deprecate = __webpack_require__(120);
+var deprecatedMessage = __webpack_require__(121);
+var exitPromise = __webpack_require__(176);
 var errors = __webpack_require__(64);
 
 var deprecateForwardToSlaves = deprecate(
@@ -75823,7 +75882,7 @@ Index.prototype.browseAll = function(query, queryParameters) {
     query = undefined;
   }
 
-  var merge = __webpack_require__(171);
+  var merge = __webpack_require__(172);
 
   var IndexBrowser = __webpack_require__(446);
 
@@ -76739,7 +76798,7 @@ if (!Object.keys) {
 	// modified from https://github.com/es-shims/es5-shim
 	var has = Object.prototype.hasOwnProperty;
 	var toStr = Object.prototype.toString;
-	var isArgs = __webpack_require__(174); // eslint-disable-line global-require
+	var isArgs = __webpack_require__(175); // eslint-disable-line global-require
 	var isEnumerable = Object.prototype.propertyIsEnumerable;
 	var hasDontEnumBug = !isEnumerable.call({ toString: null }, 'toString');
 	var hasProtoEnumBug = isEnumerable.call(function () {}, 'prototype');
@@ -76868,7 +76927,7 @@ module.exports = keysShim;
 module.exports = IndexBrowser;
 
 var inherits = __webpack_require__(53);
-var EventEmitter = __webpack_require__(121).EventEmitter;
+var EventEmitter = __webpack_require__(122).EventEmitter;
 
 function IndexBrowser() {
 }
@@ -76909,8 +76968,8 @@ IndexBrowser.prototype._clean = function() {
 module.exports = AlgoliaSearchCore;
 
 var errors = __webpack_require__(64);
-var exitPromise = __webpack_require__(175);
-var IndexCore = __webpack_require__(170);
+var exitPromise = __webpack_require__(176);
+var IndexCore = __webpack_require__(171);
 var store = __webpack_require__(448);
 
 // We will always put the API KEY in the JSON body in case of too long API KEY,
@@ -77630,7 +77689,7 @@ AlgoliaSearchCore.prototype.searchForFacetValues = function(queries) {
     }
 
     var clone = __webpack_require__(37);
-    var omit = __webpack_require__(172);
+    var omit = __webpack_require__(173);
 
     var indexName = query.indexName;
     var params = query.params;
@@ -77974,7 +78033,7 @@ function cleanup() {
 
 module.exports = createAnalyticsClient;
 
-var algoliasearch = __webpack_require__(166);
+var algoliasearch = __webpack_require__(167);
 
 function createAnalyticsClient(appId, apiKey, opts) {
   var analytics = {};
@@ -78066,7 +78125,7 @@ function createAnalyticsClient(appId, apiKey, opts) {
 "use strict";
 
 
-var objectKeys = __webpack_require__(173);
+var objectKeys = __webpack_require__(174);
 
 module.exports = function reduce(list, iterator) {
     var keys = objectKeys(list);
@@ -78151,9 +78210,9 @@ function getKeepaliveAgent(protocol) {
   var http = __webpack_require__(77);
   var https = __webpack_require__(51);
 
-  var HttpsAgent = __webpack_require__(176).HttpsAgent;
-  var HttpAgent = __webpack_require__(176);
-  var semver = __webpack_require__(168);
+  var HttpsAgent = __webpack_require__(177).HttpsAgent;
+  var HttpAgent = __webpack_require__(177);
+  var semver = __webpack_require__(169);
 
   var keepAliveAgent;
 
@@ -78248,10 +78307,10 @@ function getProxyingAgent(protocol, parsedProxy) {
 
 
 
-var net = __webpack_require__(118);
+var net = __webpack_require__(119);
 var util = __webpack_require__(52);
-var EventEmitter = __webpack_require__(121).EventEmitter;
-var debug = __webpack_require__(122).debug;
+var EventEmitter = __webpack_require__(122).EventEmitter;
+var debug = __webpack_require__(123).debug;
 
 // New Agent code.
 
@@ -78581,8 +78640,8 @@ exports.globalAgent = new Agent();
  */
 
 var https = __webpack_require__(51);
-var utils = __webpack_require__(122);
-var HttpAgent = __webpack_require__(177);
+var utils = __webpack_require__(123);
+var HttpAgent = __webpack_require__(178);
 var OriginalHttpsAgent = https.Agent;
 
 var HttpsAgent;
@@ -78668,12 +78727,12 @@ module.exports = HttpsAgent;
 "use strict";
 
 
-var net = __webpack_require__(118)
+var net = __webpack_require__(119)
   , tls = __webpack_require__(456)
   , http = __webpack_require__(77)
   , https = __webpack_require__(51)
-  , events = __webpack_require__(121)
-  , assert = __webpack_require__(116)
+  , events = __webpack_require__(122)
+  , assert = __webpack_require__(117)
   , util = __webpack_require__(52)
   , Buffer = __webpack_require__(457).Buffer
   ;
@@ -79010,7 +79069,7 @@ module.exports = __webpack_require__(460);
 
 
 // this will inject Zepto in window, unfortunately no easy commonJS zepto build
-var zepto = __webpack_require__(178);
+var zepto = __webpack_require__(179);
 
 // setup DOM element
 var DOM = __webpack_require__(44);
@@ -79035,7 +79094,7 @@ _.Event = zepto.Event;
 
 var typeaheadKey = 'aaAutocomplete';
 var Typeahead = __webpack_require__(461);
-var EventBus = __webpack_require__(179);
+var EventBus = __webpack_require__(180);
 
 function autocomplete(selector, options, datasets, typeaheadObject) {
   datasets = _.isArray(datasets) ? datasets : [].slice.call(arguments, 2);
@@ -79111,11 +79170,11 @@ var attrsKey = 'aaAttrs';
 
 var _ = __webpack_require__(34);
 var DOM = __webpack_require__(44);
-var EventBus = __webpack_require__(179);
+var EventBus = __webpack_require__(180);
 var Input = __webpack_require__(462);
 var Dropdown = __webpack_require__(469);
-var html = __webpack_require__(180);
-var css = __webpack_require__(124);
+var html = __webpack_require__(181);
+var css = __webpack_require__(125);
 
 // constructor
 // -----------
@@ -79782,7 +79841,7 @@ specialKeyCodeMap = {
 
 var _ = __webpack_require__(34);
 var DOM = __webpack_require__(44);
-var EventEmitter = __webpack_require__(123);
+var EventEmitter = __webpack_require__(124);
 
 // constructor
 // -----------
@@ -80337,9 +80396,9 @@ exports.install = function (t) {
 
 var _ = __webpack_require__(34);
 var DOM = __webpack_require__(44);
-var EventEmitter = __webpack_require__(123);
+var EventEmitter = __webpack_require__(124);
 var Dataset = __webpack_require__(470);
-var css = __webpack_require__(124);
+var css = __webpack_require__(125);
 
 // constructor
 // -----------
@@ -80742,9 +80801,9 @@ var datumKey = 'aaDatum';
 
 var _ = __webpack_require__(34);
 var DOM = __webpack_require__(44);
-var html = __webpack_require__(180);
-var css = __webpack_require__(124);
-var EventEmitter = __webpack_require__(123);
+var html = __webpack_require__(181);
+var css = __webpack_require__(125);
+var EventEmitter = __webpack_require__(124);
 
 // constructor
 // -----------
@@ -81062,8 +81121,8 @@ module.exports = {
 
 
 var _ = __webpack_require__(34);
-var version = __webpack_require__(181);
-var parseAlgoliaClientVersion = __webpack_require__(182);
+var version = __webpack_require__(182);
+var parseAlgoliaClientVersion = __webpack_require__(183);
 
 module.exports = function search(index, params) {
   var algoliaVersion = parseAlgoliaClientVersion(index.as._ua);
@@ -81093,8 +81152,8 @@ module.exports = function search(index, params) {
 
 
 var _ = __webpack_require__(34);
-var version = __webpack_require__(181);
-var parseAlgoliaClientVersion = __webpack_require__(182);
+var version = __webpack_require__(182);
+var parseAlgoliaClientVersion = __webpack_require__(183);
 
 module.exports = function popularIn(index, params, details, options) {
   var algoliaVersion = parseAlgoliaClientVersion(index.as._ua);
@@ -81216,7 +81275,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _zepto = __webpack_require__(183);
+var _zepto = __webpack_require__(184);
 
 var _zepto2 = _interopRequireDefault(_zepto);
 
@@ -81506,7 +81565,7 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var exenv_1 = __webpack_require__(185);
+var exenv_1 = __webpack_require__(186);
 exports.canUseDOM = function () { return exenv_1.canUseDOM; };
 exports.supportsInlineSVG = function () {
     /* istanbul ignore next */
@@ -82857,11 +82916,11 @@ var _ModalPortal = __webpack_require__(508);
 
 var _ModalPortal2 = _interopRequireDefault(_ModalPortal);
 
-var _ariaAppHider = __webpack_require__(194);
+var _ariaAppHider = __webpack_require__(195);
 
 var ariaAppHider = _interopRequireWildcard(_ariaAppHider);
 
-var _safeHTMLElement = __webpack_require__(125);
+var _safeHTMLElement = __webpack_require__(126);
 
 var _safeHTMLElement2 = _interopRequireDefault(_safeHTMLElement);
 
@@ -83135,7 +83194,7 @@ var _scopeTab = __webpack_require__(510);
 
 var _scopeTab2 = _interopRequireDefault(_scopeTab);
 
-var _ariaAppHider = __webpack_require__(194);
+var _ariaAppHider = __webpack_require__(195);
 
 var ariaAppHider = _interopRequireWildcard(_ariaAppHider);
 
@@ -83143,11 +83202,11 @@ var _classList = __webpack_require__(512);
 
 var classList = _interopRequireWildcard(_classList);
 
-var _safeHTMLElement = __webpack_require__(125);
+var _safeHTMLElement = __webpack_require__(126);
 
 var _safeHTMLElement2 = _interopRequireDefault(_safeHTMLElement);
 
-var _portalOpenInstances = __webpack_require__(195);
+var _portalOpenInstances = __webpack_require__(196);
 
 var _portalOpenInstances2 = _interopRequireDefault(_portalOpenInstances);
 
@@ -83540,7 +83599,7 @@ exports.popWithoutFocus = popWithoutFocus;
 exports.setupScopedFocus = setupScopedFocus;
 exports.teardownScopedFocus = teardownScopedFocus;
 
-var _tabbable = __webpack_require__(193);
+var _tabbable = __webpack_require__(194);
 
 var _tabbable2 = _interopRequireDefault(_tabbable);
 
@@ -83634,7 +83693,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = scopeTab;
 
-var _tabbable = __webpack_require__(193);
+var _tabbable = __webpack_require__(194);
 
 var _tabbable2 = _interopRequireDefault(_tabbable);
 
@@ -83885,7 +83944,7 @@ var remove = exports.remove = function remove(element, classString) {
 "use strict";
 
 
-var _portalOpenInstances = __webpack_require__(195);
+var _portalOpenInstances = __webpack_require__(196);
 
 var _portalOpenInstances2 = _interopRequireDefault(_portalOpenInstances);
 
@@ -88347,8 +88406,8 @@ module.exports = exports['default'];
 "use strict";
 
 
-var utils = __webpack_require__(126);
-var formats = __webpack_require__(196);
+var utils = __webpack_require__(127);
+var formats = __webpack_require__(197);
 var has = Object.prototype.hasOwnProperty;
 
 var arrayPrefixGenerators = {
@@ -88633,7 +88692,7 @@ module.exports = function (object, opts) {
 "use strict";
 
 
-var utils = __webpack_require__(126);
+var utils = __webpack_require__(127);
 
 var has = Object.prototype.hasOwnProperty;
 var isArray = Array.isArray;
@@ -88917,16 +88976,16 @@ module.exports = function (str, opts) {
 /* 530 */
 /***/ (function(module, exports) {
 
-// Exports
-module.exports = {
-	"coreTeam": "coreTeam_o74D"
-};
 
 
 /***/ }),
 /* 531 */
 /***/ (function(module, exports) {
 
+// Exports
+module.exports = {
+	"coreTeam": "coreTeam_o74D"
+};
 
 
 /***/ }),
@@ -88949,6 +89008,12 @@ module.exports = {
 
 /***/ }),
 /* 535 */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+/* 536 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -88956,21 +89021,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prism_react_renderer_prism__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(38);
 /* harmony import */ var _docusaurus_ExecutionEnvironment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(85);
 /* harmony import */ var _docusaurus_ExecutionEnvironment__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_docusaurus_ExecutionEnvironment__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _generated_docusaurus_config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(99);
+/* harmony import */ var _generated_docusaurus_config__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(100);
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
- */(()=>{if(_docusaurus_ExecutionEnvironment__WEBPACK_IMPORTED_MODULE_1___default.a.canUseDOM){const{themeConfig:{prism:{additionalLanguages=[]}={}}}=_generated_docusaurus_config__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"];window.Prism=prism_react_renderer_prism__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"];additionalLanguages.forEach(lang=>{__webpack_require__(127)(`./prism-${lang}`);// eslint-disable-line
+ */(()=>{if(_docusaurus_ExecutionEnvironment__WEBPACK_IMPORTED_MODULE_1___default.a.canUseDOM){const{themeConfig:{prism:{additionalLanguages=[]}={}}}=_generated_docusaurus_config__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"];window.Prism=prism_react_renderer_prism__WEBPACK_IMPORTED_MODULE_0__[/* default */ "a"];additionalLanguages.forEach(lang=>{__webpack_require__(128)(`./prism-${lang}`);// eslint-disable-line
 });delete window.Prism;}})();
 
 /***/ }),
-/* 536 */
+/* 537 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const components = __webpack_require__(537);
-const getLoader = __webpack_require__(538);
+const components = __webpack_require__(538);
+const getLoader = __webpack_require__(539);
 
 
 /**
@@ -89010,10 +89075,10 @@ function loadLanguages(languages) {
 		const pathToLanguage = './prism-' + lang;
 
 		// remove from require cache and from Prism
-		delete __webpack_require__.c[/*require.resolve*/(__webpack_require__(127).resolve(pathToLanguage))];
+		delete __webpack_require__.c[/*require.resolve*/(__webpack_require__(128).resolve(pathToLanguage))];
 		delete Prism.languages[lang];
 
-		__webpack_require__(127)(pathToLanguage);
+		__webpack_require__(128)(pathToLanguage);
 
 		loadedLanguages.add(lang);
 	});
@@ -89028,14 +89093,14 @@ module.exports = loadLanguages;
 
 
 /***/ }),
-/* 537 */
+/* 538 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var components = {"core":{"meta":{"path":"components/prism-core.js","option":"mandatory"},"core":"Core"},"themes":{"meta":{"path":"themes/{id}.css","link":"index.html?theme={id}","exclusive":true},"prism":{"title":"Default","option":"default"},"prism-dark":"Dark","prism-funky":"Funky","prism-okaidia":{"title":"Okaidia","owner":"ocodia"},"prism-twilight":{"title":"Twilight","owner":"remybach"},"prism-coy":{"title":"Coy","owner":"tshedor"},"prism-solarizedlight":{"title":"Solarized Light","owner":"hectormatos2011 "},"prism-tomorrow":{"title":"Tomorrow Night","owner":"Rosey"}},"languages":{"meta":{"path":"components/prism-{id}","noCSS":true,"examplesPath":"examples/prism-{id}","addCheckAll":true},"markup":{"title":"Markup","alias":["html","xml","svg","mathml"],"aliasTitles":{"html":"HTML","xml":"XML","svg":"SVG","mathml":"MathML"},"option":"default"},"css":{"title":"CSS","option":"default","modify":"markup"},"clike":{"title":"C-like","option":"default"},"javascript":{"title":"JavaScript","require":"clike","modify":"markup","alias":"js","option":"default"},"abap":{"title":"ABAP","owner":"dellagustin"},"abnf":{"title":"Augmented Backus–Naur form","owner":"RunDevelopment"},"actionscript":{"title":"ActionScript","require":"javascript","modify":"markup","owner":"Golmote"},"ada":{"title":"Ada","owner":"Lucretia"},"antlr4":{"title":"ANTLR4","alias":"g4","owner":"RunDevelopment"},"apacheconf":{"title":"Apache Configuration","owner":"GuiTeK"},"apl":{"title":"APL","owner":"ngn"},"applescript":{"title":"AppleScript","owner":"Golmote"},"aql":{"title":"AQL","owner":"RunDevelopment"},"arduino":{"title":"Arduino","require":"cpp","owner":"eisbehr-"},"arff":{"title":"ARFF","owner":"Golmote"},"asciidoc":{"alias":"adoc","title":"AsciiDoc","owner":"Golmote"},"asm6502":{"title":"6502 Assembly","owner":"kzurawel"},"aspnet":{"title":"ASP.NET (C#)","require":["markup","csharp"],"owner":"nauzilus"},"autohotkey":{"title":"AutoHotkey","owner":"aviaryan"},"autoit":{"title":"AutoIt","owner":"Golmote"},"bash":{"title":"Bash","alias":"shell","aliasTitles":{"shell":"Shell"},"owner":"zeitgeist87"},"basic":{"title":"BASIC","owner":"Golmote"},"batch":{"title":"Batch","owner":"Golmote"},"bbcode":{"title":"BBcode","alias":"shortcode","aliasTitles":{"shortcode":"Shortcode"},"owner":"RunDevelopment"},"bison":{"title":"Bison","require":"c","owner":"Golmote"},"bnf":{"title":"Backus–Naur form","alias":"rbnf","aliasTitles":{"rbnf":"Routing Backus–Naur form"},"owner":"RunDevelopment"},"brainfuck":{"title":"Brainfuck","owner":"Golmote"},"brightscript":{"title":"BrightScript","owner":"RunDevelopment"},"bro":{"title":"Bro","owner":"wayward710"},"c":{"title":"C","require":"clike","owner":"zeitgeist87"},"concurnas":{"title":"Concurnas","alias":"conc","owner":"jasontatton"},"csharp":{"title":"C#","require":"clike","alias":["cs","dotnet"],"owner":"mvalipour"},"cpp":{"title":"C++","require":"c","owner":"zeitgeist87"},"cil":{"title":"CIL","owner":"sbrl"},"coffeescript":{"title":"CoffeeScript","require":"javascript","alias":"coffee","owner":"R-osey"},"cmake":{"title":"CMake","owner":"mjrogozinski"},"clojure":{"title":"Clojure","owner":"troglotit"},"crystal":{"title":"Crystal","require":"ruby","owner":"MakeNowJust"},"csp":{"title":"Content-Security-Policy","owner":"ScottHelme"},"css-extras":{"title":"CSS Extras","require":"css","modify":"css","owner":"milesj"},"d":{"title":"D","require":"clike","owner":"Golmote"},"dart":{"title":"Dart","require":"clike","owner":"Golmote"},"dax":{"title":"DAX","owner":"peterbud"},"diff":{"title":"Diff","owner":"uranusjr"},"django":{"title":"Django/Jinja2","require":"markup-templating","alias":"jinja2","owner":"romanvm"},"dns-zone-file":{"title":"DNS zone file","owner":"RunDevelopment","alias":"dns-zone"},"docker":{"title":"Docker","alias":"dockerfile","owner":"JustinBeckwith"},"ebnf":{"title":"Extended Backus–Naur form","owner":"RunDevelopment"},"eiffel":{"title":"Eiffel","owner":"Conaclos"},"ejs":{"title":"EJS","require":["javascript","markup-templating"],"owner":"RunDevelopment"},"elixir":{"title":"Elixir","owner":"Golmote"},"elm":{"title":"Elm","owner":"zwilias"},"etlua":{"title":"Embedded Lua templating","require":["lua","markup-templating"],"owner":"RunDevelopment"},"erb":{"title":"ERB","require":["ruby","markup-templating"],"owner":"Golmote"},"erlang":{"title":"Erlang","owner":"Golmote"},"excel-formula":{"title":"Excel Formula","alias":["xlsx","xls"],"owner":"RunDevelopment"},"fsharp":{"title":"F#","require":"clike","owner":"simonreynolds7"},"factor":{"title":"Factor","owner":"catb0t"},"firestore-security-rules":{"title":"Firestore security rules","require":"clike","owner":"RunDevelopment"},"flow":{"title":"Flow","require":"javascript","owner":"Golmote"},"fortran":{"title":"Fortran","owner":"Golmote"},"ftl":{"title":"FreeMarker Template Language","require":"markup-templating","owner":"RunDevelopment"},"gcode":{"title":"G-code","owner":"RunDevelopment"},"gdscript":{"title":"GDScript","owner":"RunDevelopment"},"gedcom":{"title":"GEDCOM","owner":"Golmote"},"gherkin":{"title":"Gherkin","owner":"hason"},"git":{"title":"Git","owner":"lgiraudel"},"glsl":{"title":"GLSL","require":"clike","owner":"Golmote"},"gml":{"title":"GameMaker Language","alias":"gamemakerlanguage","require":"clike","owner":"LiarOnce"},"go":{"title":"Go","require":"clike","owner":"arnehormann"},"graphql":{"title":"GraphQL","owner":"Golmote"},"groovy":{"title":"Groovy","require":"clike","owner":"robfletcher"},"haml":{"title":"Haml","require":"ruby","optional":["css","css-extras","coffeescript","erb","javascript","less","markdown","scss","textile"],"owner":"Golmote"},"handlebars":{"title":"Handlebars","require":"markup-templating","owner":"Golmote"},"haskell":{"title":"Haskell","alias":"hs","owner":"bholst"},"haxe":{"title":"Haxe","require":"clike","owner":"Golmote"},"hcl":{"title":"HCL","owner":"outsideris"},"http":{"title":"HTTP","optional":["css","javascript","json","markup"],"owner":"danielgtaylor"},"hpkp":{"title":"HTTP Public-Key-Pins","owner":"ScottHelme"},"hsts":{"title":"HTTP Strict-Transport-Security","owner":"ScottHelme"},"ichigojam":{"title":"IchigoJam","owner":"BlueCocoa"},"icon":{"title":"Icon","owner":"Golmote"},"inform7":{"title":"Inform 7","owner":"Golmote"},"ini":{"title":"Ini","owner":"aviaryan"},"io":{"title":"Io","owner":"AlesTsurko"},"j":{"title":"J","owner":"Golmote"},"java":{"title":"Java","require":"clike","owner":"sherblot"},"javadoc":{"title":"JavaDoc","require":["markup","java","javadoclike"],"modify":"java","optional":"scala","owner":"RunDevelopment"},"javadoclike":{"title":"JavaDoc-like","modify":["java","javascript","php"],"owner":"RunDevelopment"},"javastacktrace":{"title":"Java stack trace","owner":"RunDevelopment"},"jolie":{"title":"Jolie","require":"clike","owner":"thesave"},"jq":{"title":"JQ","owner":"RunDevelopment"},"jsdoc":{"title":"JSDoc","require":["javascript","javadoclike"],"modify":"javascript","optional":["actionscript","coffeescript"],"owner":"RunDevelopment"},"js-extras":{"title":"JS Extras","require":"javascript","modify":"javascript","optional":["actionscript","coffeescript","flow","n4js","typescript"],"owner":"RunDevelopment"},"js-templates":{"title":"JS Templates","require":"javascript","modify":"javascript","optional":["css","css-extras","graphql","markdown","markup"],"owner":"RunDevelopment"},"json":{"title":"JSON","owner":"CupOfTea696"},"jsonp":{"title":"JSONP","require":"json","owner":"RunDevelopment"},"json5":{"title":"JSON5","require":"json","owner":"RunDevelopment"},"julia":{"title":"Julia","owner":"cdagnino"},"keyman":{"title":"Keyman","owner":"mcdurdin"},"kotlin":{"title":"Kotlin","require":"clike","owner":"Golmote"},"latex":{"title":"LaTeX","alias":["tex","context"],"aliasTitles":{"tex":"TeX","context":"ConTeXt"},"owner":"japborst"},"latte":{"title":"Latte","require":["clike","markup-templating","php"],"owner":"nette"},"less":{"title":"Less","require":"css","optional":"css-extras","owner":"Golmote"},"lilypond":{"title":"LilyPond","require":"scheme","alias":"ly","owner":"RunDevelopment"},"liquid":{"title":"Liquid","owner":"cinhtau"},"lisp":{"title":"Lisp","alias":["emacs","elisp","emacs-lisp"],"owner":"JuanCaicedo"},"livescript":{"title":"LiveScript","owner":"Golmote"},"llvm":{"title":"LLVM IR","owner":"porglezomp"},"lolcode":{"title":"LOLCODE","owner":"Golmote"},"lua":{"title":"Lua","owner":"Golmote"},"makefile":{"title":"Makefile","owner":"Golmote"},"markdown":{"title":"Markdown","require":"markup","alias":"md","owner":"Golmote"},"markup-templating":{"title":"Markup templating","require":"markup","owner":"Golmote"},"matlab":{"title":"MATLAB","owner":"Golmote"},"mel":{"title":"MEL","owner":"Golmote"},"mizar":{"title":"Mizar","owner":"Golmote"},"monkey":{"title":"Monkey","owner":"Golmote"},"moonscript":{"title":"MoonScript","alias":"moon","owner":"RunDevelopment"},"n1ql":{"title":"N1QL","owner":"TMWilds"},"n4js":{"title":"N4JS","require":"javascript","optional":"jsdoc","alias":"n4jsd","owner":"bsmith-n4"},"nand2tetris-hdl":{"title":"Nand To Tetris HDL","owner":"stephanmax"},"nasm":{"title":"NASM","owner":"rbmj"},"neon":{"title":"NEON","owner":"nette"},"nginx":{"title":"nginx","owner":"westonganger","require":"clike"},"nim":{"title":"Nim","owner":"Golmote"},"nix":{"title":"Nix","owner":"Golmote"},"nsis":{"title":"NSIS","owner":"idleberg"},"objectivec":{"title":"Objective-C","require":"c","owner":"uranusjr"},"ocaml":{"title":"OCaml","owner":"Golmote"},"opencl":{"title":"OpenCL","require":"c","modify":["c","cpp"],"owner":"Milania1"},"oz":{"title":"Oz","owner":"Golmote"},"parigp":{"title":"PARI/GP","owner":"Golmote"},"parser":{"title":"Parser","require":"markup","owner":"Golmote"},"pascal":{"title":"Pascal","alias":"objectpascal","aliasTitles":{"objectpascal":"Object Pascal"},"owner":"Golmote"},"pascaligo":{"title":"Pascaligo","owner":"DefinitelyNotAGoat"},"pcaxis":{"title":"PC-Axis","alias":"px","owner":"RunDevelopment"},"perl":{"title":"Perl","owner":"Golmote"},"php":{"title":"PHP","require":["clike","markup-templating"],"owner":"milesj"},"phpdoc":{"title":"PHPDoc","require":["php","javadoclike"],"modify":"php","owner":"RunDevelopment"},"php-extras":{"title":"PHP Extras","require":"php","modify":"php","owner":"milesj"},"plsql":{"title":"PL/SQL","require":"sql","owner":"Golmote"},"powerquery":{"title":"PowerQuery","alias":["pq","mscript"],"owner":"peterbud"},"powershell":{"title":"PowerShell","owner":"nauzilus"},"processing":{"title":"Processing","require":"clike","owner":"Golmote"},"prolog":{"title":"Prolog","owner":"Golmote"},"properties":{"title":".properties","owner":"Golmote"},"protobuf":{"title":"Protocol Buffers","require":"clike","owner":"just-boris"},"pug":{"title":"Pug","require":["markup","javascript"],"optional":["coffeescript","ejs","handlebars","less","livescript","markdown","scss","stylus","twig"],"owner":"Golmote"},"puppet":{"title":"Puppet","owner":"Golmote"},"pure":{"title":"Pure","optional":["c","cpp","fortran"],"owner":"Golmote"},"python":{"title":"Python","alias":"py","owner":"multipetros"},"q":{"title":"Q (kdb+ database)","owner":"Golmote"},"qml":{"title":"QML","require":"javascript","owner":"RunDevelopment"},"qore":{"title":"Qore","require":"clike","owner":"temnroegg"},"r":{"title":"R","owner":"Golmote"},"jsx":{"title":"React JSX","require":["markup","javascript"],"optional":["jsdoc","js-extras","js-templates"],"owner":"vkbansal"},"tsx":{"title":"React TSX","require":["jsx","typescript"]},"renpy":{"title":"Ren'py","owner":"HyuchiaDiego"},"reason":{"title":"Reason","require":"clike","owner":"Golmote"},"regex":{"title":"Regex","modify":["actionscript","coffeescript","flow","javascript","typescript","vala"],"owner":"RunDevelopment"},"rest":{"title":"reST (reStructuredText)","owner":"Golmote"},"rip":{"title":"Rip","owner":"ravinggenius"},"roboconf":{"title":"Roboconf","owner":"Golmote"},"robotframework":{"title":"Robot Framework","alias":"robot","owner":"RunDevelopment"},"ruby":{"title":"Ruby","require":"clike","alias":"rb","owner":"samflores"},"rust":{"title":"Rust","owner":"Golmote"},"sas":{"title":"SAS","optional":["groovy","lua","sql"],"owner":"Golmote"},"sass":{"title":"Sass (Sass)","require":"css","owner":"Golmote"},"scss":{"title":"Sass (Scss)","require":"css","optional":"css-extras","owner":"MoOx"},"scala":{"title":"Scala","require":"java","owner":"jozic"},"scheme":{"title":"Scheme","owner":"bacchus123"},"shell-session":{"title":"Shell session","require":"bash","owner":"RunDevelopment"},"smalltalk":{"title":"Smalltalk","owner":"Golmote"},"smarty":{"title":"Smarty","require":"markup-templating","owner":"Golmote"},"solidity":{"title":"Solidity (Ethereum)","require":"clike","owner":"glachaud"},"solution-file":{"title":"Solution file","alias":"sln","owner":"RunDevelopment"},"soy":{"title":"Soy (Closure Template)","require":"markup-templating","owner":"Golmote"},"sparql":{"title":"SPARQL","require":"turtle","owner":"Triply-Dev","alias":"rq"},"splunk-spl":{"title":"Splunk SPL","owner":"RunDevelopment"},"sqf":{"title":"SQF: Status Quo Function (Arma 3)","require":"clike","owner":"RunDevelopment"},"sql":{"title":"SQL","owner":"multipetros"},"stylus":{"title":"Stylus","owner":"vkbansal"},"swift":{"title":"Swift","require":"clike","owner":"chrischares"},"tap":{"title":"TAP","owner":"isaacs","require":"yaml"},"tcl":{"title":"Tcl","owner":"PeterChaplin"},"textile":{"title":"Textile","require":"markup","optional":"css","owner":"Golmote"},"toml":{"title":"TOML","owner":"RunDevelopment"},"tt2":{"title":"Template Toolkit 2","require":["clike","markup-templating"],"owner":"gflohr"},"turtle":{"title":"Turtle","alias":"trig","aliasTitles":{"trig":"TriG"},"owner":"jakubklimek"},"twig":{"title":"Twig","require":"markup","owner":"brandonkelly"},"typescript":{"title":"TypeScript","require":"javascript","optional":"js-templates","alias":"ts","owner":"vkbansal"},"t4-cs":{"title":"T4 Text Templates (C#)","require":["t4-templating","csharp"],"alias":"t4","owner":"RunDevelopment"},"t4-vb":{"title":"T4 Text Templates (VB)","require":["t4-templating","visual-basic"],"owner":"RunDevelopment"},"t4-templating":{"title":"T4 templating","owner":"RunDevelopment"},"vala":{"title":"Vala","require":"clike","owner":"TemplarVolk"},"vbnet":{"title":"VB.Net","require":"basic","owner":"Bigsby"},"velocity":{"title":"Velocity","require":"markup","owner":"Golmote"},"verilog":{"title":"Verilog","owner":"a-rey"},"vhdl":{"title":"VHDL","owner":"a-rey"},"vim":{"title":"vim","owner":"westonganger"},"visual-basic":{"title":"Visual Basic","alias":"vb","owner":"Golmote"},"wasm":{"title":"WebAssembly","owner":"Golmote"},"wiki":{"title":"Wiki markup","require":"markup","owner":"Golmote"},"xeora":{"title":"Xeora","require":"markup","alias":"xeoracube","aliasTitles":{"xeoracube":"XeoraCube"},"owner":"freakmaxi"},"xojo":{"title":"Xojo (REALbasic)","owner":"Golmote"},"xquery":{"title":"XQuery","require":"markup","owner":"Golmote"},"yaml":{"title":"YAML","alias":"yml","owner":"hason"},"zig":{"title":"Zig","owner":"RunDevelopment"}},"plugins":{"meta":{"path":"plugins/{id}/prism-{id}","link":"plugins/{id}/"},"line-highlight":{"title":"Line Highlight","description":"Highlights specific lines and/or line ranges."},"line-numbers":{"title":"Line Numbers","description":"Line number at the beginning of code lines.","owner":"kuba-kubula"},"show-invisibles":{"title":"Show Invisibles","description":"Show hidden characters such as tabs and line breaks.","optional":["autolinker","data-uri-highlight"]},"autolinker":{"title":"Autolinker","description":"Converts URLs and emails in code to clickable links. Parses Markdown links in comments."},"wpd":{"title":"WebPlatform Docs","description":"Makes tokens link to <a href=\"https://webplatform.github.io/docs/\">WebPlatform.org documentation</a>. The links open in a new tab."},"custom-class":{"title":"Custom Class","description":"This plugin allows you to prefix Prism's default classes (<code>.comment</code> can become <code>.namespace--comment</code>) or replace them with your defined ones (like <code>.editor__comment</code>). You can even add new classes.","owner":"dvkndn","noCSS":true},"file-highlight":{"title":"File Highlight","description":"Fetch external files and highlight them with Prism. Used on the Prism website itself.","noCSS":true},"show-language":{"title":"Show Language","description":"Display the highlighted language in code blocks (inline code does not show the label).","owner":"nauzilus","noCSS":true,"require":"toolbar"},"jsonp-highlight":{"title":"JSONP Highlight","description":"Fetch content with JSONP and highlight some interesting content (e.g. GitHub/Gists or Bitbucket API).","noCSS":true,"owner":"nauzilus"},"highlight-keywords":{"title":"Highlight Keywords","description":"Adds special CSS classes for each keyword matched in the code. For example, the keyword <code>if</code> will have the class <code>keyword-if</code> as well. You can have fine grained control over the appearance of each keyword by providing your own CSS rules.","owner":"vkbansal","noCSS":true},"remove-initial-line-feed":{"title":"Remove initial line feed","description":"Removes the initial line feed in code blocks.","owner":"Golmote","noCSS":true},"inline-color":{"title":"Inline color","description":"Adds a small inline preview for colors in style sheets.","require":"css-extras","owner":"RunDevelopment"},"previewers":{"title":"Previewers","description":"Previewers for angles, colors, gradients, easing and time.","require":"css-extras","owner":"Golmote"},"autoloader":{"title":"Autoloader","description":"Automatically loads the needed languages to highlight the code blocks.","owner":"Golmote","noCSS":true},"keep-markup":{"title":"Keep Markup","description":"Prevents custom markup from being dropped out during highlighting.","owner":"Golmote","optional":"normalize-whitespace","noCSS":true},"command-line":{"title":"Command Line","description":"Display a command line with a prompt and, optionally, the output/response from the commands.","owner":"chriswells0"},"unescaped-markup":{"title":"Unescaped Markup","description":"Write markup without having to escape anything."},"normalize-whitespace":{"title":"Normalize Whitespace","description":"Supports multiple operations to normalize whitespace in code blocks.","owner":"zeitgeist87","optional":"unescaped-markup","noCSS":true},"data-uri-highlight":{"title":"Data-URI Highlight","description":"Highlights data-URI contents.","owner":"Golmote","noCSS":true},"toolbar":{"title":"Toolbar","description":"Attach a toolbar for plugins to easily register buttons on the top of a code block.","owner":"mAAdhaTTah"},"copy-to-clipboard":{"title":"Copy to Clipboard Button","description":"Add a button that copies the code block to the clipboard when clicked.","owner":"mAAdhaTTah","require":"toolbar","noCSS":true},"download-button":{"title":"Download Button","description":"A button in the toolbar of a code block adding a convenient way to download a code file.","owner":"Golmote","require":"toolbar","noCSS":true},"match-braces":{"title":"Match braces","description":"Highlights matching braces.","owner":"RunDevelopment"},"diff-highlight":{"title":"Diff Highlight","description":"Highlights the code inside diff blocks.","owner":"RunDevelopment","require":"diff"},"filter-highlight-all":{"title":"Filter highlightAll","description":"Filters the elements the <code>highlightAll</code> and <code>highlightAllUnder</code> methods actually highlight.","owner":"RunDevelopment","noCSS":true},"treeview":{"title":"Treeview","description":"A language with special styles to highlight file system tree structures.","owner":"Golmote"}}};
 if ( true && module.exports) { module.exports = components; }
 
 /***/ }),
-/* 538 */
+/* 539 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -89492,13 +89557,13 @@ if (true) {
 
 
 /***/ }),
-/* 539 */
+/* 540 */
 /***/ (function(module, exports) {
 
 
 
 /***/ }),
-/* 540 */
+/* 541 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -89509,7 +89574,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.d(__webpack_exports__, "default", function() { return /* binding */ render; });
 
 // EXTERNAL MODULE: ./node_modules/ejs/ejs.min.js
-var ejs_min = __webpack_require__(270);
+var ejs_min = __webpack_require__(271);
 var ejs_min_default = /*#__PURE__*/__webpack_require__.n(ejs_min);
 
 // EXTERNAL MODULE: ./node_modules/react/index.js
@@ -89520,28 +89585,28 @@ var react_default = /*#__PURE__*/__webpack_require__.n(react);
 var react_router = __webpack_require__(25);
 
 // EXTERNAL MODULE: ./node_modules/react-dom/server.js
-var server = __webpack_require__(271);
+var server = __webpack_require__(272);
 var server_default = /*#__PURE__*/__webpack_require__.n(server);
 
 // EXTERNAL MODULE: ./node_modules/react-helmet/es/Helmet.js
 var Helmet = __webpack_require__(82);
 
 // EXTERNAL MODULE: ./node_modules/react-loadable-ssr-addon/lib/index.js
-var lib = __webpack_require__(274);
+var lib = __webpack_require__(275);
 
 // EXTERNAL MODULE: ./node_modules/react-loadable/lib/index.js
 var react_loadable_lib = __webpack_require__(67);
 var react_loadable_lib_default = /*#__PURE__*/__webpack_require__.n(react_loadable_lib);
 
 // EXTERNAL MODULE: ./node_modules/html-minifier-terser/src/htmlminifier.js
-var htmlminifier = __webpack_require__(275);
+var htmlminifier = __webpack_require__(276);
 
 // EXTERNAL MODULE: external "path"
 var external_path_ = __webpack_require__(11);
 var external_path_default = /*#__PURE__*/__webpack_require__.n(external_path_);
 
 // EXTERNAL MODULE: ./node_modules/fs-extra/lib/index.js
-var fs_extra_lib = __webpack_require__(276);
+var fs_extra_lib = __webpack_require__(277);
 var fs_extra_lib_default = /*#__PURE__*/__webpack_require__.n(fs_extra_lib);
 
 // EXTERNAL MODULE: ./node_modules/@babel/runtime/helpers/esm/extends.js
@@ -89558,10 +89623,10 @@ var interopRequireWildcard = __webpack_require__(4);
  * LICENSE file in the root directory of this source tree.
  *//* harmony default export */ var Loading = (({error,retry,pastDelay})=>{if(error){return/*#__PURE__*/react_default.a.createElement("div",{style:{align:'center',color:'#fff',backgroundColor:'#fa383e',borderColor:'#fa383e',borderStyle:'solid',borderRadius:'0.25rem',borderWidth:'1px',boxSizing:'border-box',display:'block',padding:'1rem',flex:'0 0 50%',marginLeft:'25%',marginRight:'25%',marginTop:'5rem',maxWidth:'50%',width:'100%'}},/*#__PURE__*/react_default.a.createElement("p",null,error.message),/*#__PURE__*/react_default.a.createElement("div",null,/*#__PURE__*/react_default.a.createElement("button",{type:"button",onClick:retry},"Retry")));}if(pastDelay){return/*#__PURE__*/react_default.a.createElement("div",{style:{display:'flex',justifyContent:'center',alignItems:'center',height:'100vh'}},/*#__PURE__*/react_default.a.createElement("svg",{id:"loader",style:{width:128,height:110,position:'absolute',top:'calc(100vh - 64%)'},viewBox:"0 0 45 45",xmlns:"http://www.w3.org/2000/svg",stroke:"#61dafb"},/*#__PURE__*/react_default.a.createElement("g",{fill:"none",fillRule:"evenodd",transform:"translate(1 1)",strokeWidth:"2"},/*#__PURE__*/react_default.a.createElement("circle",{cx:"22",cy:"22",r:"6",strokeOpacity:"0"},/*#__PURE__*/react_default.a.createElement("animate",{attributeName:"r",begin:"1.5s",dur:"3s",values:"6;22",calcMode:"linear",repeatCount:"indefinite"}),/*#__PURE__*/react_default.a.createElement("animate",{attributeName:"stroke-opacity",begin:"1.5s",dur:"3s",values:"1;0",calcMode:"linear",repeatCount:"indefinite"}),/*#__PURE__*/react_default.a.createElement("animate",{attributeName:"stroke-width",begin:"1.5s",dur:"3s",values:"2;0",calcMode:"linear",repeatCount:"indefinite"})),/*#__PURE__*/react_default.a.createElement("circle",{cx:"22",cy:"22",r:"6",strokeOpacity:"0"},/*#__PURE__*/react_default.a.createElement("animate",{attributeName:"r",begin:"3s",dur:"3s",values:"6;22",calcMode:"linear",repeatCount:"indefinite"}),/*#__PURE__*/react_default.a.createElement("animate",{attributeName:"stroke-opacity",begin:"3s",dur:"3s",values:"1;0",calcMode:"linear",repeatCount:"indefinite"}),/*#__PURE__*/react_default.a.createElement("animate",{attributeName:"stroke-width",begin:"3s",dur:"3s",values:"2;0",calcMode:"linear",repeatCount:"indefinite"})),/*#__PURE__*/react_default.a.createElement("circle",{cx:"22",cy:"22",r:"8"},/*#__PURE__*/react_default.a.createElement("animate",{attributeName:"r",begin:"0s",dur:"1.5s",values:"6;1;2;3;4;5;6",calcMode:"linear",repeatCount:"indefinite"})))));}return null;});
 // EXTERNAL MODULE: ./.docusaurus/routesChunkNames.json
-var routesChunkNames = __webpack_require__(277);
+var routesChunkNames = __webpack_require__(278);
 
 // CONCATENATED MODULE: ./.docusaurus/registry.js
-/* harmony default export */ var registry = ({'004ec9e5':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(164))),"@theme/GuideTagPage",/*require.resolve*/(164)],'0deb734b':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(186))),"@site/guides/tutorial/deploy-node-js-with-postgresql.md?truncated=true",/*require.resolve*/(186)],'0e2fb061':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(187))),"~guide/guides-getting-started-f8f.json",/*require.resolve*/(187)],'0fedbc0d':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(188))),"@site/guides/tutorial/deploy-spring-boot-with-postgresql.md",/*require.resolve*/(188)],'1138c682':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(189))),"@site/guides/tutorial/deploy-flask-with-postgresql.md?truncated=true",/*require.resolve*/(189)],'14b0cbfc':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(190))),"@site/guides/advanced/customizing-routing.md",/*require.resolve*/(190)],'160dfb6f':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(191))),"@site/guides/tutorial/deploy-spring-boot-with-postgresql.md?truncated=true",/*require.resolve*/(191)],'17896441':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(192))),"@theme/DocItem",/*require.resolve*/(192)],'1be78505':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(268))),"@theme/DocPage",/*require.resolve*/(268)],'1c13b173':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(267))),"@theme/GuidePage",/*require.resolve*/(267)],'1faae7db':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(197))),"@site/guides/getting-started/adding-a-database.md",/*require.resolve*/(197)],'209dc929':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(198))),"@site/guides/tutorial/graphql-api-with-hasura.md",/*require.resolve*/(198)],'20ac7829':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(199))),"~docs/docs-route-ff2.json",/*require.resolve*/(199)],'25b7c3f2':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(200))),"@site/src/pages/docs.js",/*require.resolve*/(200)],'2b4af991':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(201))),"~guide/guides-tags-framework-nodejs-82e.json",/*require.resolve*/(201)],'3116c1fa':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(202))),"@theme/GuideTagListPage",/*require.resolve*/(202)],'336cb651':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(203))),"@site/docs/main-concepts/Environment.md",/*require.resolve*/(203)],'3b8107ee':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(204))),"@site/docs/useful-links/faq.md",/*require.resolve*/(204)],'3e1d77c1':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(205))),"~guide/guides-advanced-ed2.json",/*require.resolve*/(205)],'40366c9d':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(206))),"@site/docs/main-concepts.md",/*require.resolve*/(206)],'453e2ac4':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(207))),"@site/docs/integration/ide-plugins.md",/*require.resolve*/(207)],'46f80567':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(208))),"~guide/guides-tags-language-php-ddd.json",/*require.resolve*/(208)],'48764d63':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(209))),"@site/guides/getting-started/debugging.md?truncated=true",/*require.resolve*/(209)],'48912b2c':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(210))),"@site/src/pages/mailing_list.js",/*require.resolve*/(210)],'49d2885e':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(211))),"~guide/guides-8fc.json",/*require.resolve*/(211)],'4a111132':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(212))),"~guide/guides-tags-database-postgresql-83a.json",/*require.resolve*/(212)],'4e0a0777':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(213))),"~guide/guides-tags-framework-hasura-eb4.json",/*require.resolve*/(213)],'5209428e':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(214))),"~guide/guides-tags-framework-springboot-4cc.json",/*require.resolve*/(214)],'543e268a':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(215))),"@site/docs/getting-started/whats-next.md",/*require.resolve*/(215)],'54e7632e':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(266))),"@site/src/pages/components.js",/*require.resolve*/(266)],'56956cba':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(216))),"~guide/guides-tags-framework-laravel-044.json",/*require.resolve*/(216)],'56cfbe62':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(217))),"@site/docs/using-qovery.md",/*require.resolve*/(217)],'56d3d463':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(218))),"@site/docs/useful-links/api.md",/*require.resolve*/(218)],'5828cab0':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(219))),"~guide/guides-tags-language-java-e14.json",/*require.resolve*/(219)],'6504a542':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(220))),"@site/guides/getting-started/debugging.md",/*require.resolve*/(220)],'66bbed7b':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(221))),"@site/guides/advanced/microservices.md",/*require.resolve*/(221)],'672ba3d6':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(269))),"@site/src/pages/community.js",/*require.resolve*/(269)],'68b95634':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(222))),"@site/docs/getting-started/what-is-qovery.md",/*require.resolve*/(222)],'6983b81e':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(223))),"~guide/guides-tags-framework-flask-2ba.json",/*require.resolve*/(223)],'76f58103':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(224))),"~guide/guides-tags-database-mysql-3c9.json",/*require.resolve*/(224)],'7b4de6d5':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(225))),"@site/guides/tutorial/the-easiest-way-to-deploy-microservices.md?truncated=true",/*require.resolve*/(225)],'7df13880':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(226))),"@site/guides/getting-started/beyond-application-deployment.md",/*require.resolve*/(226)],'83e9e333':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(227))),"@site/src/pages/contact.js",/*require.resolve*/(227)],'874f6ff2':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(228))),"@site/guides/tutorial/deploy-node-js-with-postgresql.md",/*require.resolve*/(228)],'8e606da1':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(229))),"@site/docs/main-concepts/Application.md",/*require.resolve*/(229)],'8ef82481':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(230))),"@site/docs/integration.md",/*require.resolve*/(230)],'99a633da':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(231))),"@site/guides/advanced/managing-environment-variables.md",/*require.resolve*/(231)],'a81fb19d':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(232))),"~guide/guides-tags-tags-978.json",/*require.resolve*/(232)],'aa76bfff':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(233))),"@site/guides/tutorial/graphql-api-with-hasura.md?truncated=true",/*require.resolve*/(233)],'ab7caaf3':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(234))),"@site/guides/advanced/managing-environment-variables.md?truncated=true",/*require.resolve*/(234)],'ab8f5b83':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(235))),"@site/guides/tutorial/url-shortener-api-with-kotlin.md",/*require.resolve*/(235)],'af9ec14b':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(236))),"~guide/guides-tutorial-ffa.json",/*require.resolve*/(236)],'b07a5451':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(237))),"~guide/guides-tags-language-python-7b8.json",/*require.resolve*/(237)],'b0c42eac':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(238))),"@site/guides/advanced/using-multiple-environments.md",/*require.resolve*/(238)],'b7193131':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(239))),"@site/guides/tutorial/deploy-laravel-with-mysql.md",/*require.resolve*/(239)],'bf22200e':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(240))),"~guide/guides-tags-type-tutorial-54b.json",/*require.resolve*/(240)],'c0594016':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(241))),"@site/guides/getting-started/setting-custom-domain.md",/*require.resolve*/(241)],'c4f5d8e4':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(242))),"@site/src/pages/index.js",/*require.resolve*/(242)],'c5f12fb3':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(243))),"@site/guides/advanced/using-multiple-environments.md?truncated=true",/*require.resolve*/(243)],'c6d06197':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(244))),"@theme/GuideListPage",/*require.resolve*/(244)],'c6f5b0ea':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(245))),"@site/guides/getting-started/adding-a-database.md?truncated=true",/*require.resolve*/(245)],'cb05c8fa':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(246))),"~guide/guides-tags-language-javascript-13a.json",/*require.resolve*/(246)],'cb2208c1':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(247))),"@site/docs/getting-started/how-qovery-works.md",/*require.resolve*/(247)],'cc9be38a':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(248))),"@site/guides/getting-started/deploy-your-first-application.md",/*require.resolve*/(248)],'d2397242':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(249))),"@site/guides/getting-started/deploy-your-first-application.md?truncated=true",/*require.resolve*/(249)],'d589d3a7':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(250))),"@site/docs/getting-started.md",/*require.resolve*/(250)],'d9deea5f':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(251))),"@theme/GuideCategoryPage",/*require.resolve*/(251)],'dbe0f891':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(252))),"~guide/guides-tags-language-kotlin-a27.json",/*require.resolve*/(252)],'dd8d0802':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(253))),"@site/guides/advanced/customizing-routing.md?truncated=true",/*require.resolve*/(253)],'dea3d534':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(254))),"@site/guides/advanced/microservices.md?truncated=true",/*require.resolve*/(254)],'df4a08e0':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(255))),"@site/docs/main-concepts/Project.md",/*require.resolve*/(255)],'e4310ee0':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(256))),"@site/guides/getting-started/setting-custom-domain.md?truncated=true",/*require.resolve*/(256)],'e93b7267':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(257))),"@site/guides/tutorial/deploy-laravel-with-mysql.md?truncated=true",/*require.resolve*/(257)],'ed77dcea':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(258))),"@site/docs/useful-links/help-and-support.md",/*require.resolve*/(258)],'f11e9a8e':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(259))),"~guide/guides-tags-type-guide-004.json",/*require.resolve*/(259)],'f45ef360':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(260))),"@site/guides/getting-started/beyond-application-deployment.md?truncated=true",/*require.resolve*/(260)],'f7098925':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(261))),"@site/guides/tutorial/url-shortener-api-with-kotlin.md?truncated=true",/*require.resolve*/(261)],'f7fef85d':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(262))),"@site/guides/tutorial/deploy-flask-with-postgresql.md",/*require.resolve*/(262)],'f91bd47a':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(263))),"@site/guides/tutorial/the-easiest-way-to-deploy-microservices.md",/*require.resolve*/(263)],'fbd7a87c':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(264))),"@site/docs/getting-started/quickstart.md",/*require.resolve*/(264)],'fc376fea':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(265))),"@site/docs/using-qovery/configuration.md",/*require.resolve*/(265)]});
+/* harmony default export */ var registry = ({'004ec9e5':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(165))),"@theme/GuideTagPage",/*require.resolve*/(165)],'0deb734b':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(187))),"@site/guides/tutorial/deploy-node-js-with-postgresql.md?truncated=true",/*require.resolve*/(187)],'0e2fb061':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(188))),"~guide/guides-getting-started-f8f.json",/*require.resolve*/(188)],'0fedbc0d':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(189))),"@site/guides/tutorial/deploy-spring-boot-with-postgresql.md",/*require.resolve*/(189)],'1138c682':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(190))),"@site/guides/tutorial/deploy-flask-with-postgresql.md?truncated=true",/*require.resolve*/(190)],'14b0cbfc':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(191))),"@site/guides/advanced/customizing-routing.md",/*require.resolve*/(191)],'160dfb6f':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(192))),"@site/guides/tutorial/deploy-spring-boot-with-postgresql.md?truncated=true",/*require.resolve*/(192)],'17896441':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(193))),"@theme/DocItem",/*require.resolve*/(193)],'1be78505':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(268))),"@theme/DocPage",/*require.resolve*/(268)],'1c13b173':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(267))),"@theme/GuidePage",/*require.resolve*/(267)],'1faae7db':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(198))),"@site/guides/getting-started/adding-a-database.md",/*require.resolve*/(198)],'209dc929':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(199))),"@site/guides/tutorial/graphql-api-with-hasura.md",/*require.resolve*/(199)],'20ac7829':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(200))),"~docs/docs-route-ff2.json",/*require.resolve*/(200)],'25b7c3f2':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(201))),"@site/src/pages/docs.js",/*require.resolve*/(201)],'2b4af991':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(202))),"~guide/guides-tags-framework-nodejs-82e.json",/*require.resolve*/(202)],'3116c1fa':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(203))),"@theme/GuideTagListPage",/*require.resolve*/(203)],'336cb651':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(269))),"@site/docs/main-concepts/Environment.md",/*require.resolve*/(269)],'3b8107ee':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(204))),"@site/docs/useful-links/faq.md",/*require.resolve*/(204)],'3e1d77c1':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(205))),"~guide/guides-advanced-ed2.json",/*require.resolve*/(205)],'40366c9d':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(206))),"@site/docs/main-concepts.md",/*require.resolve*/(206)],'453e2ac4':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(207))),"@site/docs/integration/ide-plugins.md",/*require.resolve*/(207)],'46f80567':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(208))),"~guide/guides-tags-language-php-ddd.json",/*require.resolve*/(208)],'48764d63':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(209))),"@site/guides/getting-started/debugging.md?truncated=true",/*require.resolve*/(209)],'48912b2c':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(210))),"@site/src/pages/mailing_list.js",/*require.resolve*/(210)],'49d2885e':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(211))),"~guide/guides-8fc.json",/*require.resolve*/(211)],'4a111132':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(212))),"~guide/guides-tags-database-postgresql-83a.json",/*require.resolve*/(212)],'4e0a0777':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(213))),"~guide/guides-tags-framework-hasura-eb4.json",/*require.resolve*/(213)],'5209428e':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(214))),"~guide/guides-tags-framework-springboot-4cc.json",/*require.resolve*/(214)],'543e268a':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(215))),"@site/docs/getting-started/whats-next.md",/*require.resolve*/(215)],'54e7632e':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(266))),"@site/src/pages/components.js",/*require.resolve*/(266)],'56956cba':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(216))),"~guide/guides-tags-framework-laravel-044.json",/*require.resolve*/(216)],'56cfbe62':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(217))),"@site/docs/using-qovery.md",/*require.resolve*/(217)],'56d3d463':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(218))),"@site/docs/useful-links/api.md",/*require.resolve*/(218)],'5828cab0':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(219))),"~guide/guides-tags-language-java-e14.json",/*require.resolve*/(219)],'6504a542':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(220))),"@site/guides/getting-started/debugging.md",/*require.resolve*/(220)],'66bbed7b':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(221))),"@site/guides/advanced/microservices.md",/*require.resolve*/(221)],'672ba3d6':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(270))),"@site/src/pages/community.js",/*require.resolve*/(270)],'68b95634':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(222))),"@site/docs/getting-started/what-is-qovery.md",/*require.resolve*/(222)],'6983b81e':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(223))),"~guide/guides-tags-framework-flask-2ba.json",/*require.resolve*/(223)],'76f58103':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(224))),"~guide/guides-tags-database-mysql-3c9.json",/*require.resolve*/(224)],'7b4de6d5':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(225))),"@site/guides/tutorial/the-easiest-way-to-deploy-microservices.md?truncated=true",/*require.resolve*/(225)],'7df13880':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(226))),"@site/guides/getting-started/beyond-application-deployment.md",/*require.resolve*/(226)],'83e9e333':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(227))),"@site/src/pages/contact.js",/*require.resolve*/(227)],'874f6ff2':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(228))),"@site/guides/tutorial/deploy-node-js-with-postgresql.md",/*require.resolve*/(228)],'8e606da1':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(229))),"@site/docs/main-concepts/Application.md",/*require.resolve*/(229)],'8ef82481':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(230))),"@site/docs/integration.md",/*require.resolve*/(230)],'99a633da':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(231))),"@site/guides/advanced/managing-environment-variables.md",/*require.resolve*/(231)],'a81fb19d':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(232))),"~guide/guides-tags-tags-978.json",/*require.resolve*/(232)],'aa76bfff':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(233))),"@site/guides/tutorial/graphql-api-with-hasura.md?truncated=true",/*require.resolve*/(233)],'ab7caaf3':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(234))),"@site/guides/advanced/managing-environment-variables.md?truncated=true",/*require.resolve*/(234)],'ab8f5b83':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(235))),"@site/guides/tutorial/url-shortener-api-with-kotlin.md",/*require.resolve*/(235)],'af9ec14b':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(236))),"~guide/guides-tutorial-ffa.json",/*require.resolve*/(236)],'b07a5451':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(237))),"~guide/guides-tags-language-python-7b8.json",/*require.resolve*/(237)],'b0c42eac':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(238))),"@site/guides/advanced/using-multiple-environments.md",/*require.resolve*/(238)],'b7193131':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(239))),"@site/guides/tutorial/deploy-laravel-with-mysql.md",/*require.resolve*/(239)],'bf22200e':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(240))),"~guide/guides-tags-type-tutorial-54b.json",/*require.resolve*/(240)],'c0594016':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(241))),"@site/guides/getting-started/setting-custom-domain.md",/*require.resolve*/(241)],'c4f5d8e4':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(242))),"@site/src/pages/index.js",/*require.resolve*/(242)],'c5f12fb3':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(243))),"@site/guides/advanced/using-multiple-environments.md?truncated=true",/*require.resolve*/(243)],'c6d06197':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(244))),"@theme/GuideListPage",/*require.resolve*/(244)],'c6f5b0ea':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(245))),"@site/guides/getting-started/adding-a-database.md?truncated=true",/*require.resolve*/(245)],'cb05c8fa':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(246))),"~guide/guides-tags-language-javascript-13a.json",/*require.resolve*/(246)],'cb2208c1':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(247))),"@site/docs/getting-started/how-qovery-works.md",/*require.resolve*/(247)],'cc9be38a':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(248))),"@site/guides/getting-started/deploy-your-first-application.md",/*require.resolve*/(248)],'d2397242':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(249))),"@site/guides/getting-started/deploy-your-first-application.md?truncated=true",/*require.resolve*/(249)],'d589d3a7':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(250))),"@site/docs/getting-started.md",/*require.resolve*/(250)],'d9deea5f':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(251))),"@theme/GuideCategoryPage",/*require.resolve*/(251)],'dbe0f891':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(252))),"~guide/guides-tags-language-kotlin-a27.json",/*require.resolve*/(252)],'dd8d0802':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(253))),"@site/guides/advanced/customizing-routing.md?truncated=true",/*require.resolve*/(253)],'dea3d534':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(254))),"@site/guides/advanced/microservices.md?truncated=true",/*require.resolve*/(254)],'df4a08e0':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(255))),"@site/docs/main-concepts/Project.md",/*require.resolve*/(255)],'e4310ee0':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(256))),"@site/guides/getting-started/setting-custom-domain.md?truncated=true",/*require.resolve*/(256)],'e93b7267':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(257))),"@site/guides/tutorial/deploy-laravel-with-mysql.md?truncated=true",/*require.resolve*/(257)],'ed77dcea':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(258))),"@site/docs/useful-links/help-and-support.md",/*require.resolve*/(258)],'f11e9a8e':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(259))),"~guide/guides-tags-type-guide-004.json",/*require.resolve*/(259)],'f45ef360':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(260))),"@site/guides/getting-started/beyond-application-deployment.md?truncated=true",/*require.resolve*/(260)],'f7098925':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(261))),"@site/guides/tutorial/url-shortener-api-with-kotlin.md?truncated=true",/*require.resolve*/(261)],'f7fef85d':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(262))),"@site/guides/tutorial/deploy-flask-with-postgresql.md",/*require.resolve*/(262)],'f91bd47a':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(263))),"@site/guides/tutorial/the-easiest-way-to-deploy-microservices.md",/*require.resolve*/(263)],'fbd7a87c':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(264))),"@site/docs/getting-started/quickstart.md",/*require.resolve*/(264)],'fc376fea':[()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(265))),"@site/docs/using-qovery/configuration.md",/*require.resolve*/(265)]});
 // CONCATENATED MODULE: ./node_modules/@docusaurus/core/lib/client/flat.js
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -89576,7 +89641,7 @@ var routesChunkNames = __webpack_require__(277);
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */function ComponentCreator(path){// 404 page
-if(path==='*'){return react_loadable_lib_default()({loading:Loading,loader:()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(129)))});}const chunkNames=routesChunkNames[path];const optsModules=[];const optsWebpack=[];const optsLoader={};/* Prepare opts data that react-loadable needs
+if(path==='*'){return react_loadable_lib_default()({loading:Loading,loader:()=>Promise.resolve().then(()=>Object(interopRequireWildcard["a" /* default */])(__webpack_require__(130)))});}const chunkNames=routesChunkNames[path];const optsModules=[];const optsWebpack=[];const optsLoader={};/* Prepare opts data that react-loadable needs
   https://github.com/jamiebuilds/react-loadable#declaring-which-modules-are-being-loaded
   Example:
   - optsLoader:
@@ -89594,7 +89659,7 @@ const loadedModules=JSON.parse(JSON.stringify(chunkNames));Object.keys(loaded).f
 var core_package = __webpack_require__(291);
 
 // EXTERNAL MODULE: ./node_modules/react-router-config/esm/react-router-config.js
-var react_router_config = __webpack_require__(95);
+var react_router_config = __webpack_require__(96);
 
 // CONCATENATED MODULE: ./node_modules/@docusaurus/core/lib/client/preload.js
 /**
@@ -89611,20 +89676,20 @@ var react_router_config = __webpack_require__(95);
  * @returns {Promise} Promise object represents whether pathname has been preloaded
  */function preload(routes,pathname){const matches=Object(react_router_config["a" /* matchRoutes */])(routes,pathname);return Promise.all(matches.map(match=>{const{component}=match.route;if(component&&component.preload){return component.preload();}return undefined;}));}
 // EXTERNAL MODULE: ./.docusaurus/docusaurus.config.js
-var docusaurus_config = __webpack_require__(99);
+var docusaurus_config = __webpack_require__(100);
 
 // EXTERNAL MODULE: ./node_modules/@docusaurus/core/lib/client/exports/renderRoutes.js
-var renderRoutes = __webpack_require__(94);
+var renderRoutes = __webpack_require__(95);
 
 // EXTERNAL MODULE: ./node_modules/@docusaurus/core/lib/client/exports/context.js
 var exports_context = __webpack_require__(83);
 
 // EXTERNAL MODULE: ./node_modules/nprogress/nprogress.js
-var nprogress = __webpack_require__(103);
+var nprogress = __webpack_require__(104);
 var nprogress_default = /*#__PURE__*/__webpack_require__.n(nprogress);
 
 // CONCATENATED MODULE: ./.docusaurus/client-modules.js
-/* harmony default export */ var client_modules = ([__webpack_require__(532),__webpack_require__(533),__webpack_require__(534),__webpack_require__(535)]);
+/* harmony default export */ var client_modules = ([__webpack_require__(533),__webpack_require__(534),__webpack_require__(535),__webpack_require__(536)]);
 // CONCATENATED MODULE: ./node_modules/@docusaurus/core/lib/client/client-lifecycles-dispatcher.js
 /**
  * Copyright (c) Facebook, Inc. and its affiliates.
@@ -89646,7 +89711,7 @@ lifecycles[lifecycleAction]=function(...args){dispatchLifecycleAction(lifecycleA
  */ // Memoize previously normalized pathnames.
 const pathnames={};function normalizeLocation(location){if(pathnames[location.pathname]){return{...location,pathname:pathnames[location.pathname]};}let pathname=location.pathname||'/';pathname=pathname.trim().replace(/\/index\.html$/,'');if(pathname===''){pathname='/';}pathnames[location.pathname]=pathname;return{...location,pathname};}/* harmony default export */ var client_normalizeLocation = (normalizeLocation);
 // EXTERNAL MODULE: ./node_modules/nprogress/nprogress.css
-var nprogress_nprogress = __webpack_require__(539);
+var nprogress_nprogress = __webpack_require__(540);
 
 // CONCATENATED MODULE: ./node_modules/@docusaurus/core/lib/client/PendingNavigation.js
 /**
@@ -89689,7 +89754,7 @@ const modulesToBeLoaded=[...manifest.entrypoints,...Array.from(modules)];const b
 return Object(htmlminifier["minify"])(renderedHtml,{removeComments:true,removeRedundantAttributes:true,removeEmptyAttributes:true,removeScriptTypeAttributes:true,removeStyleLinkTypeAttributes:true,useShortDoctype:true,minifyJS:true});}
 
 /***/ }),
-/* 541 */
+/* 542 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

@@ -170,7 +170,7 @@ Congratulations, you are logged-in.
 
 </Alert>
 
-Fork this NodeJS application, and clone the repository:
+**Fork** this [NodeJS application](https://github.com/Qovery/simple-example-node), and clone the repository:
 
 ```bash
 # Clone the sample application

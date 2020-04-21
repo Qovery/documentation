@@ -7,22 +7,70 @@ author_github: https://github.com/evoxmusic
 tags: ["type: guide"]
 ---
 import Steps from '@site/src/components/Steps';
+import Alert from '@site/src/components/Alert';
+import Assumptions from '@site/src/components/Assumptions';
 
 Qovery is a straightforward way to deploy any application. In this guide, we'll deploy a Hello World [Node.JS][urls.node_js] application and touch on some basic concepts.
 
+<Assumptions>
+
+* You have a [Github][urls.github] account
+
+</Assumptions>
+
 ## Tutorial
+<Steps headingDepth={3}>
 
-<Steps headingDepth={2}>
+<ol>
 
-### Qovery
-<%= qovery_sign_up() %>
+<%= qovery_sign_up(true) %>>
+
+<li>
 
 ### Hello World!
 
+<Alert type="warning">
+
+[Qovery needs to get access to your Github account][urls.authorize_qovery] to deploy the application.
+
+</Alert>
+
+Fork this NodeJS application, and clone the repository:
+
+```bash
+# Clone the sample application
+$ git clone git@github.com:Qovery/simple-example-node.git
+```
+
+Qovery has deployed the application, to get the deployment status:
+
+```bash
+# Move into the directory
+$ cd simple-example-node
+
+# Show the deployment status
+$ qovery status
+```
+
+Here is the output you should have. Is it not the case? [Contact us on Discord][urls.qovery_chat]
+
+```bash
+BRANCH NAME | STATUS  | ENDPOINTS          | APPLICATIONS        | DATABASES
+master      | running | https://domain.tld | simple-example-node | none
+
+APPLICATION NAME    | STATUS  | DATABASES
+simple-example-node | running | none
+```
+
+Voilà ! Your first application has been successfully deployed
+
+
+</li>
+</ol>
 </Steps>
 
 ## Next Steps
 
-If you expected something more interesting to happen then that's on you. The text came out unchanged because we didn't ask Vector to change it, we can remedy that by following the next guide in the series.
+To deploy your application, it's as simple as that. In the following article, we will see how to add a database. Let's get started!
 
 <%= subpages() %>

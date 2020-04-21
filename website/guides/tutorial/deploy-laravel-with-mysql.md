@@ -26,7 +26,7 @@ In this blog post, I will show you how Qovery improves the developer experience 
 <Assumptions name="guide">
 
 * Your Operating System is MacOS / Windows / Linux
-* You have a Github account
+* You have a [Github][urls.github] account
 
 </Assumptions>
 
@@ -40,7 +40,7 @@ In this blog post, I will show you how Qovery improves the developer experience 
 
 ## Qovery
 
-### Install the CLI
+### Install Qovery CLI
 
 <Tabs
   centered={true}
@@ -55,7 +55,7 @@ In this blog post, I will show you how Qovery improves the developer experience 
 
 ```bash
 # Download and install Qovery CLI on every Linux distribution
-curl -s https://get.qovery.com | sudo bash
+$ curl -s https://get.qovery.com | sudo bash
 ```
 
 </TabItem>
@@ -74,10 +74,10 @@ The common solution to install a command line binary on the MacOS is to use [Hom
 
 ```bash
 # Add Qovery brew repository
-brew tap Qovery/qovery-cli
+$ brew tap Qovery/qovery-cli
 
 # Install the CLI
-brew install qovery-cli
+$ brew install qovery-cli
 ```
 
 </TabItem>
@@ -86,7 +86,7 @@ brew install qovery-cli
 
 ```bash
 # Install the Qovery CLI on MacOS manually
-curl -s https://get.qovery.com | bash
+$ curl -s https://get.qovery.com | bash
 ```
 
 </TabItem>
@@ -109,10 +109,10 @@ The classic way to install binaries on Windows is to use [Scoop][urls.scoop].
 
 ```bash
 # Add Qovery bucket
-scoop bucket add qovery https://github.com/Qovery/scoop-qovery-cli
+$ scoop bucket add qovery https://github.com/Qovery/scoop-qovery-cli
 
 # Install the CLI
-scoop install qovery-cli
+$ scoop install qovery-cli
 ```
 
 </TabItem>
@@ -130,12 +130,12 @@ Install the Qovery CLI on Windows manually by downloading the [latest realease][
 
 </Tabs>
 
+
+
 ### Sign up
-
-To sign up, run the following command:
-
 ```bash
-qovery auth
+# Sign up and sign in command
+$ qovery auth
 ```
 
 Your browser window with sign-in options will open.
@@ -319,6 +319,7 @@ Accelerate your development and start using Qovery today. Let us know what you t
 [urls.azure]: https://azure.microsoft.com
 [urls.brew]: https://brew.sh/
 [urls.gcp]: https://cloud.google.com
+[urls.github]: https://github.com
 [urls.laravel]: https://www.laravel.com
 [urls.mysql]: https://www.mysql.com
 [urls.qovery_chat]: https://discord.qovery.com

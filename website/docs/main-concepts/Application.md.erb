@@ -1,6 +1,63 @@
 ---
 last_modified_on: "2020-04-16"
 title: "Application"
-description: "High-level description of the Qovery observability data collector and router."
+description: "Understand the concept of Qovery application"
 ---
-!!!TODO!!!
+In our terminology, **application** is a program versioned by Git that is run and managed by Qovery.
+An application repository should contain a `Dockerfile` - Qovery uses **Docker** container runtime to run applications.
+The last thing - to deploy applications to Qovery, you need to add a Qovery configuration. Here is the minimal configuration file:
+
+```yaml
+application:
+  name: myapp
+  project: test
+```
+
+TODO - IMAGE - GIT REPO WITH DOCKERFILE, CONFIG AND SRC FOLDER
+
+After you commit and push this file to your repository, Qovery automatically deploys your application.
+
+## Git Driven Infrastructure
+Qovery automatically manages your application and everything it needs to run. That means you treat your infrastructure dependencies as a part of your application.
+If your application needs a PostgreSQL database, all you need to do is to edit the configuration file, commit and push your changes:
+
+```yaml{4-7}
+application:
+  name: myapp
+  project: test
+databases:
+- type: postgresql
+  version: "11.5"
+  name: my-postgresql
+```  
+
+TODO - IMAGE - GIT REPO -> DOCKERFILE + CONFIG FILE -> APPLICATION + DATABASE DEPLOYED
+
+It means you keep your infrastructure needs under version-control as a part of your application.
+
+## Rich selection of integrated services
+Qovery integrates, provisions, and manages all kinds of services and infrastructure dependencies your application may need. We provide a rich selection of services
+that you can use in your application just by adding a few lines to your config file.
+
+| Services        | Examples                        |
+| -------------   |---------------------------------|
+| Databases       | SQL, NoSQL databases and caches |
+| Brokers         | Message queuing systems         |
+| Storages        | Data storage e.g., S3            |
+| Network         | Custom DNS, SSL/TLS             |
+
+TODO - IMAGE - DATABAES & OTHER SERVICES LOGOS
+
+After you define your needs in the configuration file, Qovery provides all the required infrastructure. Since now, all you need to do is to implement your business features!
+
+## All languages and frameworks supported
+To make Qovery flexible and efficient, we decided to use containers as a runtime for applications. Due to this fact, Qovery can run any software you need. 
+The only thing you need to do to run your applications on Qovery is to provide a Dockerfile in your application repository.
+
+TODO - IMAGE - APPS & FRAMEWORKS LOGOS
+
+## Consistent development environment
+At Qovery, we believe your application should behave the same on your local machine as in your production environment. We can achieve this
+using Docker runtime and **Qovery CLI** features that automagically run your application on your machine in the same way as it runs in production.
+
+TODO - IMAGE - LOCAL APP == DEPLOYED APP

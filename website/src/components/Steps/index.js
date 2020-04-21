@@ -5,7 +5,7 @@ import queryString from 'query-string';
 
 import './styles.css';
 
-function Steps({children, headingDepth}) {
+function Steps({children, headingDepth, hideFeedbackQuestion}) {
   let location = typeof(window) !== 'undefined' ? window.location : null;
   let issueQueryString = {
     title: `Tutorial on ${location} failed`,
@@ -18,7 +18,7 @@ function Steps({children, headingDepth}) {
   return (
     <div className={`steps steps--h${headingDepth}`}>
       {children}
-      {!feedbackAnswer && <div className="steps--feedback">
+      {!hideFeedbackQuestion && !feedbackAnswer && <div className="steps--feedback">
         How was it? Did this tutorial work?&nbsp;&nbsp;
         <span
           className="button button--sm button--primary"

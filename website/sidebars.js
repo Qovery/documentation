@@ -23,6 +23,17 @@ module.exports = {
     },
     {
       type: 'category',
+      label: 'Security and Compliance',
+      items: [
+        "security-and-compliance",
+        "security-and-compliance/gdpr",
+        "security-and-compliance/data",
+        "security-and-compliance/backup-and-restore",
+        "security-and-compliance/encryption",
+      ],
+    },
+    {
+      type: 'category',
       label: 'Using Qovery',
       items: [
         "using-qovery",

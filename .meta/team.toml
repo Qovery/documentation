@@ -3,9 +3,10 @@ id = "romaric"
 avatar = "https://github.com/evoxmusic.png"
 github = "https://github.com/evoxmusic"
 keybase = "https://keybase.io/evoxmusic"
-name = "Romaric"
+name = "Romaric P."
 bio = """\
-Romaric is a Software Engineer and CEO at <a href=\"https://www.qovery.com\">Qovery</a> \
+Romaric is a Software Engineer, and CEO at <a href=\"https://www.qovery.com\">Qovery</a>. \
+He has 10+ years of experience in R&D. From the ad-tech to the financial industry, he has deep expertise in reliable and performant systems.
 """
 
 [[team]]
@@ -13,9 +14,9 @@ id = "pierre"
 avatar = "https://github.com/deimosfr.png"
 github = "https://github.com/deimosfr"
 keybase = "https://keybase.io/pierre"
-name = "Pierre"
+name = "Pierre M."
 bio = """\
-Pierre is a Software Engineer and CTO at <a href=\"https://www.qovery.com\">Qovery</a> \
+Pierre is a Software Engineer, and CTO at <a href=\"https://www.qovery.com\">Qovery</a>. \
 """
 
 [[team]]
@@ -23,9 +24,9 @@ id = "patryk"
 avatar = "https://github.com/pjeziorowski.png"
 github = "https://github.com/pjeziorowski"
 keybase = "https://keybase.io/patryk"
-name = "Patryk"
+name = "Patryk J."
 bio = """\
-Patryk is a Developer Advocate at <a href=\"https://www.qovery.com\">Qovery</a> \
+Patryk is an experienced Software Engineer, and Developer Advocate at <a href=\"https://www.qovery.com\">Qovery</a>. \
 """
 
 [[team]]
@@ -33,7 +34,7 @@ id = "mehdi"
 avatar = "https://github.com/sileht.png"
 github = "https://github.com/sileht"
 keybase = "https://keybase.io/mehdi"
-name = "Mehdi"
+name = "Mehdi A."
 bio = """\
-Mehdi is a Software Engineer at <a href=\"https://www.qovery.com\">Qovery</a> \
+Mehdi is an experienced Software Engineer at <a href=\"https://www.qovery.com\">Qovery</a>. \
 """

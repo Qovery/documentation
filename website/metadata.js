@@ -41,7 +41,7 @@ module.exports = {
       "description": "Take Qovery from zero to production in under 10 minutes.",
       "guides": [
         {
-          "author_github": "https://github.com/pjeziorowski",
+          "author_github": "https://github.com/evoxmusic",
           "description": null,
           "id": "/getting-started/adding-a-database",
           "last_modified_on": null,
@@ -258,35 +258,35 @@ module.exports = {
   "team": [
     {
       "avatar": "https://github.com/evoxmusic.png",
-      "bio": "Romaric is a Software Engineer and CEO at <a href=\"https://www.qovery.com\">Qovery</a> ",
+      "bio": "Romaric is a Software Engineer, and CEO at <a href=\"https://www.qovery.com\">Qovery</a>. He has 10+ years of experience in R&D. From the ad-tech to the financial industry, he has deep expertise in reliable and performant systems.\n",
       "github": "https://github.com/evoxmusic",
       "id": "romaric",
       "keybase": "https://keybase.io/evoxmusic",
-      "name": "Romaric"
+      "name": "Romaric P."
     },
     {
       "avatar": "https://github.com/deimosfr.png",
-      "bio": "Pierre is a Software Engineer and CTO at <a href=\"https://www.qovery.com\">Qovery</a> ",
+      "bio": "Pierre is a Software Engineer, and CTO at <a href=\"https://www.qovery.com\">Qovery</a>. ",
       "github": "https://github.com/deimosfr",
       "id": "pierre",
       "keybase": "https://keybase.io/pierre",
-      "name": "Pierre"
+      "name": "Pierre M."
     },
     {
       "avatar": "https://github.com/pjeziorowski.png",
-      "bio": "Patryk is a Developer Advocate at <a href=\"https://www.qovery.com\">Qovery</a> ",
+      "bio": "Patryk is an experienced Software Engineer, and Developer Advocate at <a href=\"https://www.qovery.com\">Qovery</a>. ",
       "github": "https://github.com/pjeziorowski",
       "id": "patryk",
       "keybase": "https://keybase.io/patryk",
-      "name": "Patryk"
+      "name": "Patryk J."
     },
     {
       "avatar": "https://github.com/sileht.png",
-      "bio": "Mehdi is a Software Engineer at <a href=\"https://www.qovery.com\">Qovery</a> ",
+      "bio": "Mehdi is an experienced Software Engineer at <a href=\"https://www.qovery.com\">Qovery</a>. ",
       "github": "https://github.com/sileht",
       "id": "mehdi",
       "keybase": "https://keybase.io/mehdi",
-      "name": "Mehdi"
+      "name": "Mehdi A."
     }
   ],
   "transforms": {

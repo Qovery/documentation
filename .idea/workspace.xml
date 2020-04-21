@@ -19,26 +19,20 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="fix: footer logo color on Dark them">
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="update: tags for getting-started and advanced guides">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/advanced/customizing-routing.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/customizing-routing.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/advanced/customizing-routing.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/customizing-routing.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/advanced/managing-environment-variables.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/managing-environment-variables.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/advanced/managing-environment-variables.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/managing-environment-variables.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/advanced/microservices.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/microservices.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/advanced/microservices.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/microservices.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/advanced/using-multiple-environments.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/using-multiple-environments.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/advanced/using-multiple-environments.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/using-multiple-environments.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/adding-a-database.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/adding-a-database.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/adding-a-database.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/adding-a-database.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/beyond-application-deployment.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/beyond-application-deployment.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/beyond-application-deployment.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/beyond-application-deployment.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/debugging.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/debugging.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/debugging.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/debugging.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_how_to_deploy_x_with_y.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_how_to_deploy_x_with_y.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_install_cli.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_install_cli.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_sign_up.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_sign_up.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/quickstart.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/quickstart.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/guides/getting-started/deploy-your-first-application.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/deploy-your-first-application.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/guides/getting-started/deploy-your-first-application.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/deploy-your-first-application.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/setting-custom-domain.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/setting-custom-domain.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/setting-custom-domain.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/setting-custom-domain.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-flask-with-postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-flask-with-postgresql.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-laravel-with-mysql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-laravel-with-mysql.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-node-js-with-postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-node-js-with-postgresql.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-spring-boot-with-postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-spring-boot-with-postgresql.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/url-shortener-api-with-kotlin.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/url-shortener-api-with-kotlin.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/url-shortener-api-with-kotlin.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/url-shortener-api-with-kotlin.md.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/metadata.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/metadata.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -177,7 +171,7 @@
       <workItem from="1587329685355" duration="1413000" />
       <workItem from="1587366223403" duration="24902000" />
       <workItem from="1587406274481" duration="12340000" />
-      <workItem from="1587451217555" duration="3507000" />
+      <workItem from="1587451217555" duration="7471000" />
     </task>
     <task id="LOCAL-00001" summary="Replace timberio -&gt; qovery">
       <created>1586940976665</created>
@@ -417,7 +411,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587454000685</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="update: tags for getting-started and advanced guides">
+      <created>1587455023410</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1587455023410</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -478,7 +479,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Add lost changes" />
     <MESSAGE value="Logo" />
     <MESSAGE value="Fix make generate errors" />
     <MESSAGE value="Adjust docs structure" />
@@ -503,7 +503,8 @@
     <MESSAGE value="feat: automationnnnnn" />
     <MESSAGE value="add: article &quot;how to deploy flask with postgresql&quot; &#10;add: article &quot;how to node js flask with postgresql&quot;" />
     <MESSAGE value="fix: footer logo color on Dark them" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: footer logo color on Dark them" />
+    <MESSAGE value="update: tags for getting-started and advanced guides" />
+    <option name="LAST_COMMIT_MESSAGE" value="update: tags for getting-started and advanced guides" />
   </component>
   <component name="WindowStateProjectService">
     <state x="611" y="383" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1587213016572">
@@ -560,28 +561,28 @@
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="690" y="350" width="540" height="524" key="StructurePopup/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587398370723" />
-    <state width="536" height="488" key="SwitcherDM" timestamp="1587454752947">
+    <state width="536" height="488" key="SwitcherDM" timestamp="1587457989296">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state width="536" height="429" key="SwitcherDM/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587042928490" />
     <state width="536" height="488" key="SwitcherDM/-333.-1417.2560.1417/0.0.1920.1200@0.0.1920.1200" timestamp="1587404749293" />
-    <state width="536" height="488" key="SwitcherDM/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587454752947" />
+    <state width="536" height="488" key="SwitcherDM/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587457989296" />
     <state width="536" height="429" key="SwitcherDM/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587130320365" />
     <state width="500" height="445" key="SwitcherDM/0.23.1792.1097@0.23.1792.1097" timestamp="1586970316787" />
     <state x="100" y="100" width="1720" height="1000" key="VCS.FileHistoryDialog" timestamp="1587195128563">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="100" y="100" width="1720" height="1000" key="VCS.FileHistoryDialog/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587195128563" />
-    <state x="531" y="314" key="Vcs.Push.Dialog.v2" timestamp="1587454002214">
+    <state x="531" y="314" key="Vcs.Push.Dialog.v2" timestamp="1587455024667">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="-1389" y="408" key="Vcs.Push.Dialog.v2/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587043142882" />
-    <state x="531" y="314" key="Vcs.Push.Dialog.v2/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587454002214" />
+    <state x="531" y="314" key="Vcs.Push.Dialog.v2/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587455024667" />
     <state x="496" y="311" key="Vcs.Push.Dialog.v2/0.23.1792.1097@0.23.1792.1097" timestamp="1586945386299" />
-    <state x="500" y="204" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1587424997161">
+    <state x="500" y="204" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1587457926230">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
-    <state x="500" y="204" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587424997161" />
+    <state x="500" y="204" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587457926230" />
     <state x="763" y="510" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587395407343">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>

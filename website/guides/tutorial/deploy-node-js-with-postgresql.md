@@ -9,7 +9,6 @@ hide_pagination: true
 ---
 
 import Jump from '@site/src/components/Jump';
-import Steps from '@site/src/components/Steps';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -39,26 +38,23 @@ In this blog post, I will show you how Qovery improves the developer experience 
      website/guides/tutorial/deploy-node-js-with-postgresql.md.erb
 -->
 
-## Sign up
+## Qovery
 
-Sign up using the **Qovery CLI**, it's very simple!
-
-### Install the CLI!
+### Install the CLI
 
 <Tabs
   centered={true}
   className={"rounded"}
   defaultValue={"linux"}
-  placeholder="Please select your OS"
+  placeholder="Select your OS"
   select={false}
   size={null}
   values={[{"group":"Platforms","label":"Linux","value":"linux"},{"group":"Platforms","label":"MacOS","value":"macos"},{"group":"Platforms","label":"Windows","value":"windows"}]}>
 
 <TabItem value="linux">
 
-**Download and install Qovery CLI on every Linux distribution**
-
 ```bash
+# Download and install Qovery CLI on every Linux distribution
 curl -s https://get.qovery.com | sudo bash
 ```
 
@@ -74,29 +70,22 @@ curl -s https://get.qovery.com | sudo bash
 
 <TabItem value="homebrew">
 
-**The common solution to install a command line binary on the MacOS is to use [Homebrew][urls.brew].**
+The common solution to install a command line binary on the MacOS is to use [Homebrew][urls.brew].
 
-<Steps headingDepth={3}>
+```bash
+# Add Qovery brew repository
+brew tap Qovery/qovery-cli
 
-1.  ### Add Qovery brew repository
-    ```bash
-    brew tap Qovery/qovery-cli
-    ```
-
-2.  ### Install the CLI
-    ```bash
-    brew install qovery-cli
-    ```
-
-</Steps>
+# Install the CLI
+brew install qovery-cli
+```
 
 </TabItem>
 
 <TabItem value="manual">
 
-**Install the Qovery CLI on MacOS manually**
-
 ```bash
+# Install the Qovery CLI on MacOS manually
 curl -s https://get.qovery.com | bash
 ```
 
@@ -116,27 +105,22 @@ curl -s https://get.qovery.com | bash
 
 <TabItem value="scoop">
 
-**The classic way to install binaries on Windows is to use [Scoop][urls.scoop].**
+The classic way to install binaries on Windows is to use [Scoop][urls.scoop].
 
-<Steps headingDepth={3}>
+```bash
+# Add Qovery bucket
+scoop bucket add qovery https://github.com/Qovery/scoop-qovery-cli
 
-1.  ### Add Qovery bucket
-    ```bash
-    scoop bucket add qovery https://github.com/Qovery/scoop-qovery-cli
-    ```
-2.  ### Install the CLI
-    ```bash
-    scoop install qovery-cli
-    ```
-
-</Steps>
+# Install the CLI
+scoop install qovery-cli
+```
 
 </TabItem>
 
 <TabItem value="manual">
 
-** Install the Qovery CLI on Windows manually by downloading the [latest realease][urls.qovery_cli_releases] and uncompressing its content to
-`C:\Windows`.**
+Install the Qovery CLI on Windows manually by downloading the [latest realease][urls.qovery_cli_releases], and uncompress its content to
+`C:\Windows`.
 
 </TabItem>
 
@@ -146,25 +130,21 @@ curl -s https://get.qovery.com | bash
 
 </Tabs>
 
-### Sign Up
+### Sign up
 
-After the Qovery CLI is installed, run the following command:
+To sign up, run the following command:
 
 ```bash
 qovery auth
 ```
 
-A browser window with sign-in options will open.
+Your browser window with sign-in options will open.
 
 <p align="center">
   <img src="/img/qovery_signup.svg" alt="Qovery Sign-up page" />
 </p>
 
-Choose one of the options (e.g. **Github**) to authenticate.
-
-### Authorize Qovery
-
-Qovery needs access to your account to be able to clone your repository for future application builds.
+Note: Qovery needs access to your account to be able to clone your repository for future application builds.
 
 [Click here][urls.authorize_qovery] to authorize Qovery to clone and build your applications.
 
@@ -172,12 +152,12 @@ Qovery needs access to your account to be able to clone your repository for futu
   <img src="/img/github-connect.png" alt="Connect Github" />
 </p>
 
-**That's it! You should see "Authentication successful. You can close this window." message.**
-
-## Get the NodeJS sample application (Optional)
-Get a local copy of the [NodeJS sample project][urls.sample_node_js_with_postgresql] by forking the project.
+Congratulations, you are logged-in.
 
 ## Deployment
+
+### NodeJS sample application (Optional)
+Get a local copy of the [NodeJS sample project][urls.sample_node_js_with_postgresql] by forking the project.
 
 ### Configure your project
 To deploy your NodeJS application connected to a PostgreSQL database, you need to have a `.qovery.yml` file, and a `Dockerfile` (provided in the sample project) at the root of your project.

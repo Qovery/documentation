@@ -6,6 +6,8 @@ author_github: https://github.com/evoxmusic
 tags: ["type: tutorial", "language: kotlin", "database: postgresql"]
 hide_pagination: true
 ---
+import Assumptions from '@site/src/components/Assumptions';
+
 The source code for this post can be found on this [github repo](https://github.com/evoxmusic/ktor-url-shortener)
 
 ## Introduction
@@ -402,14 +404,19 @@ We have to replace the Hash Table used to store the data by the PostgreSQL datab
 
 > Qovery is a Container as a Service platform for developer - developers can deploy their application in the Cloud in just a few seconds
 
-Pre-requisites:
+<Assumptions name="tutorial">
 
-* Have an account on Qovery (register [here](https://www.qovery.com/))
 * Your code need to be hosted on Github
 * You need to [accept the Qovery Github app](https://github.com/apps/qovery/installations/new)
 * [Package your Ktor application to build and run it on Docker](https://ktor.io/quickstart/quickstart/docker.html)
 
-To deploy on Qovery 2 files are mandatories
+</Assumptions>
+
+<%= qovery_sign_up() %>
+
+### Configuration
+
+To deploy on Qovery, two files are mandatories
 
 .qovery.yml - a very simple way to declare the dependencies that you need (e.g: PostgreSQL) and where you want to run it (here on AWS and eu-west-3 / Paris)
 

@@ -68,7 +68,7 @@ module.exports = {
           "title": "Debugging"
         },
         {
-          "author_github": "https://github.com/pjeziorowski",
+          "author_github": "https://github.com/evoxmusic",
           "description": null,
           "id": "/getting-started/deploy-your-first-application",
           "last_modified_on": null,

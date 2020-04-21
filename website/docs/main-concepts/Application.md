@@ -11,6 +11,7 @@ The last thing - to deploy applications to Qovery, you need to add a Qovery conf
 application:
   name: myapp
   project: test
+  region: "aws/eu-west-2" # refer to available available
 ```
 
 TODO - IMAGE - GIT REPO WITH DOCKERFILE, CONFIG AND SRC FOLDER
@@ -25,7 +26,7 @@ After you commit and push this file to your repository, Qovery automatically dep
      website/docs/main-concepts/Application.md.erb
 -->
 
-## Git Driven Infrastructure
+## Git Driven Infrastructure (GitOps)
 Qovery automatically manages your application and everything it needs to run. That means you treat your infrastructure dependencies as a part of your application.
 If your application needs a PostgreSQL database, all you need to do is to edit the configuration file, commit and push your changes:
 
@@ -33,11 +34,12 @@ If your application needs a PostgreSQL database, all you need to do is to edit t
 application:
   name: myapp
   project: test
+  region: "aws/eu-west-2"
 databases:
 - type: postgresql
   version: "11.5"
   name: my-postgresql
-```  
+```
 
 TODO - IMAGE - GIT REPO -> DOCKERFILE + CONFIG FILE -> APPLICATION + DATABASE DEPLOYED
 
@@ -59,7 +61,7 @@ TODO - IMAGE - DATABAES & OTHER SERVICES LOGOS
 After you define your needs in the configuration file, Qovery provides all the required infrastructure. Since now, all you need to do is to implement your business features!
 
 ## All languages and frameworks supported
-To make Qovery flexible and efficient, we decided to use containers as a runtime for applications. Due to this fact, Qovery can run any software you need. 
+To make Qovery flexible and efficient, we decided to use containers as a runtime for applications. Due to this fact, Qovery can run any software you need.
 The only thing you need to do to run your applications on Qovery is to provide a Dockerfile in your application repository.
 
 TODO - IMAGE - APPS & FRAMEWORKS LOGOS

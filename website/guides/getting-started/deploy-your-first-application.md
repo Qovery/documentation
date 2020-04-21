@@ -11,6 +11,8 @@ tags: ["type: guide"]
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
+import Steps from '@site/src/components/Steps';
+
 Qovery is a straightforward way to deploy any application. In this guide, we'll deploy a Hello World [Node.JS][urls.node_js] application and touch on some basic concepts.
 
 <!--
@@ -23,6 +25,9 @@ Qovery is a straightforward way to deploy any application. In this guide, we'll 
 
 ## Tutorial
 
+<Steps headingDepth={2}>
+
+### Qovery
 ### Install the CLI
 
 <Tabs
@@ -136,6 +141,10 @@ Note: Qovery needs access to your account to be able to clone your repository fo
 </p>
 
 Congratulations, you are logged-in.
+
+### Hello World!
+
+</Steps>
 
 ## Next Steps
 

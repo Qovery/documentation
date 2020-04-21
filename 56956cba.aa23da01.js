@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[32],{181:function(a){a.exports=JSON.parse('{"allTagsPath":"/guides/tags","slug":"framework-laravel","name":"framework: laravel","count":1,"permalink":"/guides/tags/framework-laravel"}')}}]);

@@ -15,7 +15,7 @@ import Steps from '@site/src/components/Steps';
 import Alert from '@site/src/components/Alert';
 import Assumptions from '@site/src/components/Assumptions';
 
-Qovery is a straightforward way to deploy any application. In this guide, we'll deploy a Hello World [Node.JS][urls.node_js] application and touch on some basic concepts.
+Qovery is an easy way to deploy complete backend and frontend applications. In this guide, we'll deploy a Hello World [Node.JS][urls.node_js] application and touch on some basic concepts.
 
 <Assumptions>
 

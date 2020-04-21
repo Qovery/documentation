@@ -671,7 +671,7 @@ class Templates
     render("#{partials_path}/_qovery_status_output.md", binding).strip
   end
 
-  def qovery_sign_up
+  def qovery_sign_up(is_steps = false)
     render("#{partials_path}/_qovery_sign_up.md", binding).strip
   end
 

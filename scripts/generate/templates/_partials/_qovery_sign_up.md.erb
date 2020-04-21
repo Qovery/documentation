@@ -1,13 +1,21 @@
-### Install the CLI
+<% if is_steps %>
+<li>
+<% end %>
+
+### Install Qovery CLI
 
 <%= qovery_install_cli() %>
 
+<% if is_steps %>
+</li>
+
+<li>
+<% end %>
+
 ### Sign up
-
-To sign up, run the following command:
-
 ```bash
-qovery auth
+# Sign up and sign in command
+$ qovery auth
 ```
 
 Your browser window with sign-in options will open.
@@ -25,3 +33,7 @@ Note: Qovery needs access to your account to be able to clone your repository fo
 </p>
 
 Congratulations, you are logged-in.
+
+<% if is_steps %>
+</li>
+<% end %>

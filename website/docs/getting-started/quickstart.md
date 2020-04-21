@@ -25,7 +25,7 @@ If you don't want to learn more now, you can simply deploy your first applicatio
 
 ## Sign Up
 
-### Install the CLI
+### Install Qovery CLI
 
 <Tabs
   centered={true}
@@ -40,7 +40,7 @@ If you don't want to learn more now, you can simply deploy your first applicatio
 
 ```bash
 # Download and install Qovery CLI on every Linux distribution
-curl -s https://get.qovery.com | sudo bash
+$ curl -s https://get.qovery.com | sudo bash
 ```
 
 </TabItem>
@@ -59,10 +59,10 @@ The common solution to install a command line binary on the MacOS is to use [Hom
 
 ```bash
 # Add Qovery brew repository
-brew tap Qovery/qovery-cli
+$ brew tap Qovery/qovery-cli
 
 # Install the CLI
-brew install qovery-cli
+$ brew install qovery-cli
 ```
 
 </TabItem>
@@ -71,7 +71,7 @@ brew install qovery-cli
 
 ```bash
 # Install the Qovery CLI on MacOS manually
-curl -s https://get.qovery.com | bash
+$ curl -s https://get.qovery.com | bash
 ```
 
 </TabItem>
@@ -94,10 +94,10 @@ The classic way to install binaries on Windows is to use [Scoop][urls.scoop].
 
 ```bash
 # Add Qovery bucket
-scoop bucket add qovery https://github.com/Qovery/scoop-qovery-cli
+$ scoop bucket add qovery https://github.com/Qovery/scoop-qovery-cli
 
 # Install the CLI
-scoop install qovery-cli
+$ scoop install qovery-cli
 ```
 
 </TabItem>
@@ -115,12 +115,12 @@ Install the Qovery CLI on Windows manually by downloading the [latest realease][
 
 </Tabs>
 
+
+
 ### Sign up
-
-To sign up, run the following command:
-
 ```bash
-qovery auth
+# Sign up and sign in command
+$ qovery auth
 ```
 
 Your browser window with sign-in options will open.

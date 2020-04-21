@@ -1,10 +1,10 @@
 ---
 last_modified_on: "2020-04-21"
 $schema: "/.meta/.schemas/guides.json"
-title: Deploy Spring Boot with PostgreSQL on Qovery
-description: How to deploy a Spring Boot application with the PostgreSQL database on Qovery
+title: Deploy Node.JS with PostgreSQL on Qovery
+description: How to deploy a Node.JS application with the PostgreSQL database on Qovery
 author_github: https://github.com/evoxmusic
-tags: ["type: tutorial", "framework: springboot", "language: java", "database: postgresql"]
+tags: ["type: tutorial", "framework: nodejs", "language: javascript", "database: postgresql"]
 hide_pagination: true
 ---
 
@@ -22,7 +22,7 @@ However, deploying an application on any of these Cloud provider presents some c
 
 Qovery solves this problem by combining the reliability of AWS, and the simplicity of Heroku to augment the developer experience.
 
-In this blog post, I will show you how Qovery improves the developer experience to deploy staging and production [Spring Boot][urls.spring_boot] application with [PostgreSQL][urls.postgresql] database on Qovery. You will be able to focus on writing the best code instead of managing complex services.
+In this blog post, I will show you how Qovery improves the developer experience to deploy staging and production [NodeJS][urls.node_js] application with [PostgreSQL][urls.postgresql] database on Qovery. You will be able to focus on writing the best code instead of managing complex services.
 
 <Assumptions name="guide">
 
@@ -36,7 +36,7 @@ In this blog post, I will show you how Qovery improves the developer experience 
 
      To make changes please edit the template located at:
 
-     website/guides/tutorial/deploy-spring-boot-with-postgresql.md.erb
+     website/guides/tutorial/deploy-node-js-with-postgresql.md.erb
 -->
 
 ## Sign up
@@ -174,13 +174,13 @@ Qovery needs access to your account to be able to clone your repository for futu
 
 **That's it! You should see "Authentication successful. You can close this window." message.**
 
-## Get the Spring Boot sample application (Optional)
-Get a local copy of the [Spring Boot sample project][urls.sample_spring_boot_with_postgresql] by forking the project.
+## Get the NodeJS sample application (Optional)
+Get a local copy of the [NodeJS sample project][urls.sample_node_js_with_postgresql] by forking the project.
 
 ## Deployment
 
 ### Configure your project
-To deploy your Spring Boot application connected to a PostgreSQL database, you need to have a `.qovery.yml` file, and a `Dockerfile` (provided in the sample project) at the root of your project.
+To deploy your NodeJS application connected to a PostgreSQL database, you need to have a `.qovery.yml` file, and a `Dockerfile` (provided in the sample project) at the root of your project.
 
 <Alert>
 The .qovery.yml file indicates all the dependencies that your application needs (e.g., PostgreSQL) to work smoothly
@@ -283,7 +283,7 @@ my-db            | running | POSTGRESQL      | 11.5     | <hidden> | <hidden> | 
 ```
 
 ## Bonuses (optional)
-### Test the Spring Boot application locally
+### Test the NodeJS application locally
 The Qovery motto is: if your application runs locally, then your application will run on Qovery. To test if your application is running locally, execute the following command:
 
 <Alert>
@@ -337,10 +337,10 @@ Accelerate your development and start using Qovery today. Let us know what you t
 [urls.azure]: https://azure.microsoft.com
 [urls.brew]: https://brew.sh/
 [urls.gcp]: https://cloud.google.com
+[urls.node_js]: https://nodejs.org
 [urls.postgresql]: https://www.postgresql.org
 [urls.qovery_chat]: https://discord.qovery.com
 [urls.qovery_cli_releases]: https://github.com/Qovery/qovery-cli/releases
 [urls.qovery_twitter]: https://twitter.com/qovery_
-[urls.sample_spring_boot_with_postgresql]: https://github.com/Qovery/simple-example-with-postgresql
+[urls.sample_node_js_with_postgresql]: https://github.com/Qovery/simple-example-node-with-postgresql
 [urls.scoop]: https://brew.sh/
-[urls.spring_boot]: https://spring.io/projects/spring-boot

@@ -24,6 +24,14 @@ module.exports = {
     {
       "logo_path": "/img/logos/springboot.svg",
       "name": "springboot"
+    },
+    {
+      "logo_path": "/img/logos/nodejs.svg",
+      "name": "nodejs"
+    },
+    {
+      "logo_path": "/img/logos/flask.svg",
+      "name": "flask"
     }
   ],
   "guides": {
@@ -145,6 +153,15 @@ module.exports = {
         {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
+          "id": "/tutorial/deploy-node-js-with-postgresql",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/deploy-node-js-with-postgresql.md",
+          "series_position": null,
+          "title": "Deploy Node.JS with PostgreSQL on Qovery"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
           "id": "/tutorial/deploy-spring-boot-with-postgresql",
           "last_modified_on": null,
           "path": "website/guides/tutorial/deploy-spring-boot-with-postgresql.md",
@@ -176,7 +193,7 @@ module.exports = {
           "last_modified_on": null,
           "path": "website/guides/tutorial/url-shortener-api-with-kotlin.md",
           "series_position": null,
-          "title": "URL Shortener API with Kotlin"
+          "title": "URL Shortener API with Kotlin (Part 1/2)"
         }
       ],
       "name": "tutorial",
@@ -201,6 +218,14 @@ module.exports = {
     {
       "logo_path": "/img/logos/java.svg",
       "name": "java"
+    },
+    {
+      "logo_path": "/img/logos/javascript.svg",
+      "name": "javascript"
+    },
+    {
+      "logo_path": "/img/logos/python.svg",
+      "name": "python"
     }
   ],
   "latest_highlight": {

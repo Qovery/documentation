@@ -9,3 +9,11 @@ logo_path = "/img/logos/kotlin.svg"
 [[languages]]
 name = "java"
 logo_path = "/img/logos/java.svg"
+
+[[languages]]
+name = "javascript"
+logo_path = "/img/logos/javascript.svg"
+
+[[languages]]
+name = "python"
+logo_path = "/img/logos/python.svg"

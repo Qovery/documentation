@@ -1,7 +1,7 @@
 ---
-last_modified_on: "2020-04-20"
+last_modified_on: "2020-04-21"
 $schema: "/.meta/.schemas/guides.json"
-title: URL Shortener API with Kotlin
+title: URL Shortener API with Kotlin (Part 1/2)
 description: Create a URL shortener API with Kotlin, the micro-framework Ktor and PostgreSQL
 author_github: https://github.com/evoxmusic
 tags: ["type: tutorial", "language: kotlin", "database: postgresql"]

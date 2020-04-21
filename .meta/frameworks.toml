@@ -9,3 +9,11 @@ logo_path = "/img/logos/laravel.svg"
 [[frameworks]]
 name = "springboot"
 logo_path = "/img/logos/springboot.svg"
+
+[[frameworks]]
+name = "nodejs"
+logo_path = "/img/logos/nodejs.svg"
+
+[[frameworks]]
+name = "flask"
+logo_path = "/img/logos/flask.svg"

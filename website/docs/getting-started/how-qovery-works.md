@@ -19,8 +19,8 @@ When it detects a Qovery configuration in your repository, it puts your applicat
 
 TODO - IMAGE - GIT EVENTS?
 
-## Integrating Git and Continuous Integration & Deployment
-You don't need to set up your CI/CD pipeline. In response to Git events, we clone your repository and put it in our pipelines. 
+## Integrating Git and CI/CD
+You don't need to set up your CI/CD (Continuous Integration and Continuous Deployment) pipeline. In response to Git events, we clone your repository and put it in our pipelines.
 We use a **Dockerfile** from your repository to build a Docker image of your application. We also check the infrastructure requirements
 of your application using a simple `.qovery.yml` config file.
 

@@ -52,7 +52,11 @@ module.exports = {
       type: 'category',
       label: 'Useful Links',
       items: [
-        "useful-links/api",
+        {
+          type: 'link',
+          label: 'API',
+          href: 'https://api.qovery.io/swagger-ui.html#'
+        },
         "useful-links/faq",
         "useful-links/help-and-support",
       ],

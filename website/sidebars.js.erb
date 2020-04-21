@@ -52,7 +52,11 @@ module.exports = {
       type: 'category',
       label: 'Useful Links',
       items: [
-        <%= metadata.links.fetch_id("docs.useful-links.api").to_json %>,
+        {
+          type: 'link',
+          label: 'API',
+          href: '<%= metadata.links.fetch_id("urls.qovery_swagger") %>'
+        },
         <%= metadata.links.fetch_id("docs.useful-links.faq").to_json %>,
         <%= metadata.links.fetch_id("docs.useful-links.help-and-support").to_json %>,
       ],

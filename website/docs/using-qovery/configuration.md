@@ -10,7 +10,7 @@ import Jump from '@site/src/components/Jump';
 
 In the following subsections, you'll learn all you need to know to configure all aspects of your projects on Qovery.
 
-<Jump to="/docs/using-qovery/configuration/environment-variables/">Environment variables</Jump>
+<Jump to="/docs/using-qovery/configuration/environment-variables/">Environment Variables</Jump>
 <Jump to="/docs/using-qovery/configuration/databases/">Databases</Jump>
 <Jump to="/docs/using-qovery/configuration/domains/">Domains</Jump>
 <Jump to="/docs/using-qovery/configuration/storage/">Storage</Jump>

@@ -12,7 +12,8 @@ Qovery integrations improve developers' experience with Qovery and make their li
 
 This section shows several Qovery integrations. Some of them are maintained by the Qovery community and [open sourced][urls.main_qovery_github].
 
-<Jump to="/docs/using-qovery/integration/ide-plugins/">Ide plugins</Jump>
+<Jump to="/docs/using-qovery/integration/project-templates/">Project Templates</Jump>
+<Jump to="/docs/using-qovery/integration/ide-plugins/">IDE Plugins</Jump>
 
 
 [urls.main_qovery_github]: https://github.com/qovery

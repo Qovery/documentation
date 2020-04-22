@@ -11,29 +11,31 @@
 
 <title data-react-helmet="true">Deploy Flask with PostgreSQL on Qovery | Qovery</title>
 
-<meta data-react-helmet="true" http-equiv="x-ua-compatible" content="ie=edge"><meta data-react-helmet="true" property="og:title" content="Deploy Flask with PostgreSQL on Qovery | Qovery"><meta data-react-helmet="true" name="description" content="Deploy Flask with PostgreSQL on Qovery, in minutes, for free"><meta data-react-helmet="true" property="og:description" content="Deploy Flask with PostgreSQL on Qovery, in minutes, for free"><meta data-react-helmet="true" property="og:image" content="https://docsv2.qovery.com/img/open-graph.png"><meta data-react-helmet="true" property="twitter:image" content="https://docsv2.qovery.com/img/open-graph.png"><meta data-react-helmet="true" name="twitter:image:alt" content="Image for Deploy Flask with PostgreSQL on Qovery | Qovery"><meta data-react-helmet="true" property="og:url" content="https://docs.qovery.com/guides/tutorial/deploy-flask-with-postgresql/"><meta data-react-helmet="true" name="twitter:card" content="summary">
+<meta data-react-helmet="true" http-equiv="x-ua-compatible" content="ie=edge"><meta data-react-helmet="true" property="og:title" content="Deploy Flask with PostgreSQL on Qovery | Qovery"><meta data-react-helmet="true" name="description" content="How to deploy a Flask application with the PostgreSQL database on Qovery"><meta data-react-helmet="true" property="og:description" content="How to deploy a Flask application with the PostgreSQL database on Qovery"><meta data-react-helmet="true" property="og:image" content="https://docsv2.qovery.com/img/open-graph.png"><meta data-react-helmet="true" property="twitter:image" content="https://docsv2.qovery.com/img/open-graph.png"><meta data-react-helmet="true" name="twitter:image:alt" content="Image for Deploy Flask with PostgreSQL on Qovery | Qovery"><meta data-react-helmet="true" property="og:url" content="https://docs.qovery.com/guides/tutorial/deploy-flask-with-postgresql/"><meta data-react-helmet="true" name="twitter:card" content="summary">
 
 <link data-react-helmet="true" rel="shortcut icon" href="/img/logo-square.svg"><link data-react-helmet="true" rel="canonical" href="https://docs.qovery.com/guides/tutorial/deploy-flask-with-postgresql/">
 
 
-<link rel="stylesheet" href="/styles.824c038e.css">
+<link rel="stylesheet" href="/styles.41ddd852.css">
 
 
-<link rel="preload" href="/styles.a9821a8e.js" as="script">
+<link rel="preload" href="/styles.2b0d6529.js" as="script">
 
-<link rel="preload" href="/runtime~main.2dc1e0db.js" as="script">
+<link rel="preload" href="/runtime~main.dc1eeb1e.js" as="script">
 
-<link rel="preload" href="/main.10a7cbaa.js" as="script">
+<link rel="preload" href="/main.1e5aec67.js" as="script">
 
-<link rel="preload" href="/1.d5d90b6e.js" as="script">
+<link rel="preload" href="/1.34c35a3d.js" as="script">
 
-<link rel="preload" href="/2.348de9ad.js" as="script">
+<link rel="preload" href="/3.d04351fd.js" as="script">
 
-<link rel="preload" href="/3.780886f7.js" as="script">
+<link rel="preload" href="/4.2c17a066.js" as="script">
 
-<link rel="preload" href="/1c13b173.1608d8a8.js" as="script">
+<link rel="preload" href="/1c13b173.4ed8c80c.js" as="script">
 
-<link rel="preload" href="/f7fef85d.56e3bfaa.js" as="script">
+<link rel="preload" href="/2.173f86bc.js" as="script">
+
+<link rel="preload" href="/f7fef85d.94101965.js" as="script">
 
 </head>
 <body>
@@ -49,21 +51,23 @@ To list all the environment variables available for your application, execute</p
 </span></div><div class="token-line" style="color:#393A34"><span class="token plain">DATABASE NAME  </span><span class="token operator" style="color:#393A34">|</span><span class="token plain"> STATUS  </span><span class="token operator" style="color:#393A34">|</span><span class="token plain"> TYPE       </span><span class="token operator" style="color:#393A34">|</span><span class="token plain"> VERSION </span><span class="token operator" style="color:#393A34">|</span><span class="token plain"> ENDPOINT </span><span class="token operator" style="color:#393A34">|</span><span class="token plain"> PORT     </span><span class="token operator" style="color:#393A34">|</span><span class="token plain"> USERNAME </span><span class="token operator" style="color:#393A34">|</span><span class="token plain"> PASSWORD </span><span class="token operator" style="color:#393A34">|</span><span class="token plain"> APPLICATIONS</span></div><div class="token-line" style="color:#393A34"><span class="token plain">my-db          </span><span class="token operator" style="color:#393A34">|</span><span class="token plain"> running </span><span class="token operator" style="color:#393A34">|</span><span class="token plain"> PostgreSQL      </span><span class="token operator" style="color:#393A34">|</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">11.5</span><span class="token plain">     </span><span class="token operator" style="color:#393A34">|</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain">hidden</span><span class="token operator" style="color:#393A34">&gt;</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">|</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain">hidden</span><span class="token operator" style="color:#393A34">&gt;</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">|</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain">hidden</span><span class="token operator" style="color:#393A34">&gt;</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">|</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain">hidden</span><span class="token operator" style="color:#393A34">&gt;</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">|</span><span class="token plain"> my-application</span></div></div></pre></div></div><a class="jump-to jump-to--undefined" href="/guides/advanced/using-multiple-environments"><div class="jump-to--inner"><div class="jump-to--inner-2"><div class="jump-to--main">Multiple Environments</div><div class="jump-to--right"><i class="feather icon-chevron-right arrow"></i></div></div></div></a><h2><a aria-hidden="true" tabindex="-1" class="anchor" id="conclusion"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#conclusion" title="Direct link to heading">#</a>Conclusion</h2><p>Qovery bring to developers, the full power of simplicity and flexibility while deploying applications. Any developer can now take advantage of the most popular Cloud providers in seconds instead of days.</p><p>Accelerate your development and start using Qovery today. Let us know what you think about it on <a href="https://twitter.com/qovery_">Twitter</a>, or by <a href="https://discord.qovery.com">Discord</a>.</p><a aria-current="page" class="jump-to jump-to--undefined active" href="/guides/tutorial/"><div class="jump-to--inner"><div class="jump-to--inner-2"><div class="jump-to--main">Tutorial</div><div class="jump-to--right"><i class="feather icon-chevron-right arrow"></i></div></div></div></a></div></article></div></main></div><footer class="footer"><div class="container"><div class="row footer__links"><div class="col col--5 footer__col"><div class="margin-bottom--md"></div><div class="margin-bottom--md"><p>Qovery accelerates and scales application development cycle with zero infrastructure management investment</p></div><div><a href="https://github.com/qovery" target="_blank"><i class="feather icon-github" alt="Qovery&#x27;s Github Repo"></i></a>    <a href="https://www.linkedin.com/company/qovery/" target="_blank"><i class="feather icon-rss" alt="Qovery&#x27;s Linkedin"></i></a>    <a href="https://twitter.com/qovery_" target="_blank"><i class="feather icon-twitter" alt="Qovery&#x27;s Twitter"></i></a>    <a href="https://discord.qovery.com" target="_blank"><i class="feather icon-message-circle" alt="Qovery&#x27;s Discord"></i></a></div></div><div class="col footer__col"><h4 class="footer__title">Resources</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" href="/docs">Documentation</a></li><li class="footer__item"><a aria-current="page" class="footer__link-item active" href="/guides">Guides</a></li><li class="footer__item"><a aria-current="page" class="footer__link-item active" href="/guides/tutorial">Tutorials</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/pricing" href="https://www.qovery.com/pricing">Pricing</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/enterprise" href="https://www.qovery.com/enterprise">Enterprise</a></li><li class="footer__item"><a class="footer__link-item" to="https://api.qovery.io/swagger-ui.html#" href="https://api.qovery.io/swagger-ui.html#">API</a></li><li class="footer__item"><a class="footer__link-item" to="https://github.com/Qovery" href="https://github.com/Qovery">Github</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Community</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://discord.qovery.com" href="https://discord.qovery.com">Discord</a></li><li class="footer__item"><a class="footer__link-item" to="https://roadmap.qovery.com" href="https://roadmap.qovery.com">Roadmap</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Company</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/blog" href="https://www.qovery.com/blog">Blog</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/team" href="https://www.qovery.com/team">The Team</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/contact" href="https://www.qovery.com/contact">Contact Us</a></li></ul></div></div><div class="text--center"><small>© 2020 DESIGNED BY QOVERY | BACKED BY TECHSTARS | QOVERY BY BIRDSIGHT - ALL RIGHTS RESERVED</small><br></div></div></footer>
 </div>
 
-<script src="/styles.a9821a8e.js"></script>
+<script src="/styles.2b0d6529.js"></script>
 
-<script src="/runtime~main.2dc1e0db.js"></script>
+<script src="/runtime~main.dc1eeb1e.js"></script>
 
-<script src="/main.10a7cbaa.js"></script>
+<script src="/main.1e5aec67.js"></script>
 
-<script src="/1.d5d90b6e.js"></script>
+<script src="/1.34c35a3d.js"></script>
 
-<script src="/2.348de9ad.js"></script>
+<script src="/3.d04351fd.js"></script>
 
-<script src="/3.780886f7.js"></script>
+<script src="/4.2c17a066.js"></script>
 
-<script src="/1c13b173.1608d8a8.js"></script>
+<script src="/1c13b173.4ed8c80c.js"></script>
 
-<script src="/f7fef85d.56e3bfaa.js"></script>
+<script src="/2.173f86bc.js"></script>
+
+<script src="/f7fef85d.94101965.js"></script>
 
 
 </body>

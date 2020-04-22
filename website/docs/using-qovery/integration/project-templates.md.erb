@@ -5,9 +5,25 @@ description: "Use Project Templates to move blazingly fast"
 ---
 Templates are pre-configured `Dockerfiles` and `.qovery.yml` configs that allow you to bootstrap a new application quickly.
 
-For example, to quickly set up a <a href="https://hasura.io/">Hasura</a> GraphQL APIs on Qovery, you can use a template maintained by our [community][urls.qovery_templates_repo].
+## Template
 
-To set it up from scratch, run:
+### List
+
+You can list all available templates with the command:
+
+```bash
+$ qovery template list
+```
+```bash title="All templates available"
+NAME   | DESCRIPTION
+hasura | Hasura is a production-ready GraphQL backend
+gatsby | Gatsby is a fast modern site generator for React
+...
+```
+
+### Use
+
+To use one of them, run:
 
 ```bash
 mkdir my_hasura_application
@@ -26,4 +42,10 @@ qovery init -t hasura
 
 </CodeExplanation>
 
-Now, all you have to do is to commit and publish your repository to Github, Gitlab, or Bitbucket, and your Hasura application is deployed!
+## Contributions
+
+Any idea of a new template? [Contributions are welcomed][urls.qovery_templates_repo].
+
+## Final word
+
+Now, all you have to do is to commit and publish your repository to Github, Gitlab, or Bitbucket, to deploy your application!

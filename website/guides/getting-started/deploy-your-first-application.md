@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-21"
+last_modified_on: "2020-04-22"
 $schema: "/.meta/.schemas/guides.json"
 title: Hello World. Deploy your first application.
 description: How to deploy your first application with Qovery
@@ -13,6 +13,7 @@ import TabItem from '@theme/TabItem';
 
 import Steps from '@site/src/components/Steps';
 import Alert from '@site/src/components/Alert';
+import CodeExplanation from '@site/src/components/CodeExplanation';
 import Assumptions from '@site/src/components/Assumptions';
 
 Qovery is an easy way to deploy complete backend and frontend applications. In this guide, we'll deploy a Hello World [Node.JS][urls.node_js] application and touch on some basic concepts.
@@ -204,11 +205,34 @@ Voilà ! Your first application has been successfully deployed
 </ol>
 </Steps>
 
+## Deploy your own application
+
+<Alert type="info">
+
+You must provide your `Dockerfile` **OR** use [one provided by us][guides.application-template]
+
+</Alert>
+
+Deploying your own application is as easy as running `qovery init` at the root of your project directory.
+
+```bash
+$ qovery init
+```
+<CodeExplanation>
+
+* `qovery init` is an interactive command to generate the final `.qovery.yml`.
+* It must be run at the root of your project directory.
+* You must version your application with Git.
+
+</CodeExplanation>
+
+
 ## Next Steps
 
 To deploy your application, it's as simple as that. In the following article, we will see how to add a database. Let's get started!
 
 
+[guides.application-template]: /guides/getting-started/application-template/
 [urls.authorize_qovery]: https://github.com/apps/qovery/installations/new
 [urls.brew]: https://brew.sh/
 [urls.github]: https://github.com

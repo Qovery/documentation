@@ -1,13 +1,13 @@
 ---
-last_modified_on: "2020-04-21"
+last_modified_on: "2020-04-22"
 $schema: "/.meta/.schemas/guides.json"
 title: Beyond application deployment
-description: What's next your first application deployment
-series_position: 5
+description: This is what to do after your first application deployment
+series_position: 6
 author_github: https://github.com/evoxmusic
 tags: ["type: guide"]
 ---
-Bla bla TODO
+Bravo for your first complete application deployment. You've learned how to deploy a containerized application, with a
 
 
 

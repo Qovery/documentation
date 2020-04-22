@@ -84,6 +84,15 @@ module.exports = {
           "path": "website/guides/getting-started/setting-custom-domain.md",
           "series_position": null,
           "title": "Setting custom domain"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/getting-started/application-template",
+          "last_modified_on": null,
+          "path": "website/guides/getting-started/application-template.md",
+          "series_position": null,
+          "title": "Use application template"
         }
       ],
       "name": "getting-started",

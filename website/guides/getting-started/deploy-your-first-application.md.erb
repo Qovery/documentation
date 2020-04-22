@@ -8,6 +8,7 @@ tags: ["type: guide"]
 ---
 import Steps from '@site/src/components/Steps';
 import Alert from '@site/src/components/Alert';
+import CodeExplanation from '@site/src/components/CodeExplanation';
 import Assumptions from '@site/src/components/Assumptions';
 
 Qovery is an easy way to deploy complete backend and frontend applications. In this guide, we'll deploy a Hello World [Node.JS][urls.node_js] application and touch on some basic concepts.
@@ -68,6 +69,28 @@ Voilà ! Your first application has been successfully deployed
 </li>
 </ol>
 </Steps>
+
+## Deploy your own application
+
+<Alert type="info">
+
+You must provide your `Dockerfile` **OR** use [one provided by us][guides.application-template]
+
+</Alert>
+
+Deploying your own application is as easy as running `qovery init` at the root of your project directory.
+
+```bash
+$ qovery init
+```
+<CodeExplanation>
+
+* `qovery init` is an interactive command to generate the final `.qovery.yml`.
+* It must be run at the root of your project directory.
+* You must version your application with Git.
+
+</CodeExplanation>
+
 
 ## Next Steps
 

@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[34],{183:function(a){a.exports=JSON.parse('{"allTagsPath":"/guides/tags","slug":"framework-hasura","name":"framework: hasura","count":1,"permalink":"/guides/tags/framework-hasura"}')}}]);

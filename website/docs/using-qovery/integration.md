@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-21"
+last_modified_on: "2020-04-22"
 title: Integration
 description: "Useful integrations to improve your Qovery workflow"
 sidebar_label: hidden
@@ -8,7 +8,7 @@ hide_pagination: true
 
 import Jump from '@site/src/components/Jump';
 
-Qovery integrations are made to improve developers experience with Qovery and make their lives easier.
+Qovery integrations improve developers' experience with Qovery and make their lives easier.
 
 This section shows several Qovery integrations. Some of them are maintained by the Qovery community and [open sourced][urls.main_qovery_github].
 

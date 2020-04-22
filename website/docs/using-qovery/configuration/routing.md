@@ -42,7 +42,7 @@ routers:
 
 <Alert type="success">
 
-Qovery takes care about duplicated routes and deny the latest created one to avoid unintended overrides
+Qovery takes care of duplicated routes and deny the latest created one to avoid unintended overrides.
 
 </Alert>
 

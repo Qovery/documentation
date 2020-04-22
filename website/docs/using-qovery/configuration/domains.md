@@ -13,7 +13,7 @@ description: "Learn how to configure custom Domains on Qovery"
 
 ## Qovery Domain (default)
 
-Your application will be publicly accessible via a Qovery domain as soon as you define it to be publicly accessible in `.qovery.yml` file:
+Your application is publicly accessible via a Qovery domain as soon as you define it to be publicly accessible in `.qovery.yml` file:
 
 ```title=".qovery.yml" {4}
 application:
@@ -29,11 +29,11 @@ $ qovery status
 ```
 
 ```plain title="OUTPUT"
-BRANCHES NAME	STATUS        	ENDPOINTS                       APPLICATIONS	DATABASES	BROKERS	STORAGE 
-master       	up and running	https://xxx-main-gtw.qovery.io	1           	1        	0      	0      	
+BRANCHES NAME   STATUS          ENDPOINTS                       APPLICATIONS    DATABASES   BROKERS STORAGE 
+master          up and running  https://xxx-main-gtw.qovery.io  1               1           0       0       
 
-APPLICATIONS NAME	STATUS        	ENDPOINTS                    	DATABASES	BROKERS	STORAGE 
-simple-example   	up and running	https://yyy-xxx-app.qovery.io	1        	0      	0      	
+APPLICATIONS NAME   STATUS          ENDPOINTS                       DATABASES   BROKERS STORAGE 
+simple-example      up and running  https://yyy-xxx-app.qovery.io   1           0       0       
 ```
 
 ## Custom DNS

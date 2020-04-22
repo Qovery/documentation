@@ -36,6 +36,7 @@ module.exports = {
               type: 'category',
               label: 'Databases',
               items: [
+                <%= metadata.links.fetch_id("docs.using-qovery.configuration.databases").to_json %>,
                 <%= metadata.links.fetch_id("docs.using-qovery.configuration.databases.mongodb").to_json %>,
                 <%= metadata.links.fetch_id("docs.using-qovery.configuration.databases.postgresql").to_json %>,
                 <%= metadata.links.fetch_id("docs.using-qovery.configuration.databases.mysql").to_json %>,

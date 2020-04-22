@@ -12,7 +12,7 @@ Qovery supports environment variables to make you able to configure your applica
 
 Environment Variables are not directly connected to [Environment][docs.main-concepts.environment] concept.
 - **Environment Variables**: represent variables you can store and retrieve in your applications
-- **Environments**: represent environments (apps, databases and other services) associated with Git branch like `master`, `staging` etc.
+- **Environments**: represent environments (apps, databases, and other services) associated with Git branches like `master`, `staging`, and others.
 
 </Alert>
 
@@ -26,23 +26,23 @@ Environment Variables are not directly connected to [Environment][docs.main-conc
 
 ## Levels
 
-There are four levels of Environment Variables. Each type differs in scope - you can create variables bound to application, environment or project.
+There are four levels of Environment Variables. Each type differs in scope - you can create variables bound to application, environment, or project.
 
 | Scope       | Level     | Description     |
 |-------------|-----------|-----------------|
-| **BUILT_IN**    | 1 | Automatically generated variables based on your configuration (e.g. requested databases) propagated to all projects, environments and applications|
+| **BUILT_IN**    | 1 | Automatically generated variables based on your configuration (e.g., requested databases) propagated to all projects, environments, and applications|
 | **PROJECT**     | 2 | Variables at the project level are shared across all environments and all applications of the project|
 | **ENVIRONMENT** | 3 | Variables at the environment level are shared across all applications of the project in one, given environment |
 | **APPLICATION** | 4 | Variables available for one application in one environment |
 
 <Alert>
 
-You can override variables - the highest level variable win (e.g. `PROJECT` variable can override `BUILT_IN` variable).
+You can override variables - the highest level variable win (e.g., `PROJECT` variable can override `BUILT_IN` variable).
 
 </Alert>
 
 ## Built-in variables
-By default, every environment will have those variables:
+By default, every environment contains those variables:
 
 | Name       | Example     | Description     |
 |-------------|-----------|-----------------|
@@ -52,7 +52,7 @@ By default, every environment will have those variables:
 
 ## Additional built-in variables
 
-For any added service (database, broker, storage), your application will receive additional built-in variables. These can be used, for example, to connect
+For any added service (database, broker, storage), your application receives additional built-in variables. These can be used, for example, to connect
 to the database.
 
 **Naming Convention**:
@@ -96,7 +96,7 @@ qovery application env add ENV_NAME ENV_VALUE
 
 <Alert>
 
-When you add Environment Variables using the CLI, you also specify the scope of given variable, e.g.
+When you add Environment Variables using the CLI, you also specify the scope of a given variable, e.g.
 
 ```bash {2}
 qovery project env add ENV_NAME ENV_VALUE
@@ -110,7 +110,7 @@ The highlighted command adds a variable with `environment` scope.
 
 <Alert type="danger"> 
 
-Qovery CLI is aware of your current directory and Git branch. Be sure you are in correct application directory and Git branch (environment) before executing Qovery Environment Variables commands
+Qovery CLI is aware of your current directory and Git branch. Be sure you are in the correct application directory and Git branch (environment) before executing Qovery Environment Variables commands
 
 </Alert>
 
@@ -164,19 +164,19 @@ You can not delete `BUILT_IN` variables, but you can override them!
 
 ## Overriding Environment Variables
 
-As described in the levels' section, you can override existing variables. To do so, just add a new Environment Variables with higher level (e.g. add an `APPLICATION` level variable to override `PROJECT` variable for given application).
+As described in the levels' section, you can override existing variables. To do so, add a new Environment Variables with a higher level (e.g., add an `APPLICATION` level variable to override `PROJECT` variable for a given application).
 
 ## Env Var aliases
-You can create an alias for existing environment variable.
+You can create an alias for the existing environment variable.
 
-For example: your application requires a `DATABASE_PASSWORD` variable. Qovery provides your application with `QOVERY_DATABASE_MY_POSTGRESQL_3498225_PASSWORD` variable with database password.
+Let's suppose that your application requires a `DATABASE_PASSWORD` variable. Qovery provides your application with `QOVERY_DATABASE_MY_POSTGRESQL_3498225_PASSWORD` variable with a database password.
 Instead of copy-pasting its value, you can create an alias to `QOVERY_DATABASE_MY_POSTGRESQL_3498225_PASSWORD`.
 
 ```bash
 qovery application env add DATABASE_PASSWORD '$QOVERY_DATABASE_MY_POSTGRESQL_3498225_PASSWORD'
 ```
 
-After executing the above command, your application can use `DATABASE_PASSWORD` variable to get database password.
+After executing the above command, your application can use `DATABASE_PASSWORD` variable to get a database password.
 
 The syntax for aliasing is:
 

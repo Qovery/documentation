@@ -33,7 +33,7 @@ databases:
 - version: choose the version of the database
 - type: the database engine (postgresql in this case)
 
-Alternatively, if you are creating a new application, use `qovery init` to interactively add a database (the CLI will ask if you need one).
+Alternatively, if you are creating a new application, use `qovery init` to interactively add a database (the CLI asks if you need one).
 
 ## Get access to the database
 
@@ -62,7 +62,7 @@ $ qovery application env list -c
   BUILT_IN    | QOVERY_DATABASE_MY_postgresql_DATABASE                           | postgresql 
 ```
 
-In the output you get all data you need to use the database. Those environment variables are available in the runtime of your application.
+In the output, you get all data you need to use the database. Those environment variables are available in the runtime of your application.
 
 ## Get the database status
 
@@ -82,17 +82,17 @@ DATABASE NAME | STATUS  | TYPE    | VERSION | ENDPOINT | PORT     | USERNAME | P
 
 To delete a database, you have two options:
 - Remove it from the configuration file, commit and push
-- If you worked on feature branch, delete the branch and the database instance will automatically be deleted as well
+- If you worked on a feature branch, delete the branch, and the database instance automatically deletes as well
 
 <Alert type="danger">
 
-Delete action will drop the service and its data!
+Delete action drops the service and its data!
 
 </Alert>
 
 <Alert type="info">
 
-Backups will be kept for 1 month if you need to recover.
+Backups are kept for 1 month if you need to recover.
 
 </Alert>
 
@@ -116,7 +116,7 @@ databases:
     backup-window: 21-23
 ```
 
-As described in the configuration file, the backup will occur between 9PM and 11PM.
+As described in the configuration file, the backup occurs between 9 PM and 11 PM.
 
 
 

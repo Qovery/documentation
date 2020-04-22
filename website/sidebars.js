@@ -36,6 +36,7 @@ module.exports = {
               type: 'category',
               label: 'Databases',
               items: [
+                "using-qovery/configuration/databases",
                 "using-qovery/configuration/databases/mongodb",
                 "using-qovery/configuration/databases/postgresql",
                 "using-qovery/configuration/databases/mysql",

@@ -7,26 +7,50 @@ Qovery supports environment variables to make you able to configure your applica
 
 <Alert type="warning">
 
-Env Vars (environment variables) concept is not directly connected to [Environment concept][docs.main-concepts.environment].
-- Env Vars: represents variables you can store and retrieve in your applications
-- Environment: is the environment (apps, databases and other services) associated with Git branch like `master`, `staging` etc.
+Env Vars (environment variables) concept is not directly connected to [Environment][docs.main-concepts.environment] concept.
+- **Env Vars**: represent variables you can store and retrieve in your applications
+- **Environments**: represent environments (apps, databases and other services) associated with Git branch like `master`, `staging` etc.
 
 </Alert>
 
 ## Levels
 
-There are four levels of Env Vars. Each type differs in scope - you can create variables bound to one application, environment or project.
+There are four levels of Env Vars. Each type differs in scope - you can create variables bound to application, environment or project.
 
 | Scope       | Level     | Description     |
 |-------------|-----------|-----------------|
-| BUILT_IN    | 1 | Automatically generated variables based on your configuration and will be propagated to all projects, environments and applications|
-| PROJECT     | 2 | Env Vars at the project level are shared across all environments and all applications of the project|
-| ENVIRONMENT | 3 | Env Vars at the environment level are shared across all applications of the project in one, given environment |
-| Application | 4 | Env Variables available for one application in one environment |
+| **BUILT_IN**    | 1 | Automatically generated variables based on your configuration (e.g. requested databases) propagated to all projects, environments and applications|
+| **PROJECT**     | 2 | Variables at the project level are shared across all environments and all applications of the project|
+| **ENVIRONMENT** | 3 | Variables at the environment level are shared across all applications of the project in one, given environment |
+| **APPLICATION** | 4 | Variables available for one application in one environment |
 
 <Alert>
-You can override variables - the highest level variable win (application level variable can override any other variable from other levels).
+
+You can override variables - the highest level variable win (e.g. `PROJECT` variable can override `BUILT_IN` variable).
+
 </Alert>
 
-## Built-In variables
+## Built-in variables
 By default, every environment will have those variables:
+
+
+## Built-in variables naming convention
+For any added service (database, broker, storage), your application will get additional built-in variables. These can be used, for example, to connect
+to the database.
+
+We follow this naming convention:
+
+```
+QOVERY_<SERVICE_TYPE>_<NAME>_<SPEC>
+```
+
+To demonstrate this, let's take a quick look on a simple database example:
+
+```yml title=".qovery.yml" {1,5}
+application:
+  ...
+databases:
+- type: postgresql
+  version: "10.10"
+  name: my-pg
+```

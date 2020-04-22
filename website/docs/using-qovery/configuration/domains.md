@@ -11,7 +11,7 @@ description: "Learn how to configure custom Domains on Qovery"
      website/docs/using-qovery/configuration/domains.md.erb
 -->
 
-## Qovery Domain (default)
+## Qovery Domains (default)
 
 Your application is publicly accessible via a Qovery domain as soon as you define it to be publicly accessible in `.qovery.yml` file:
 
@@ -36,9 +36,9 @@ APPLICATIONS NAME   STATUS          ENDPOINTS                       DATABASES   
 simple-example      up and running  https://yyy-xxx-app.qovery.io   1           0       0       
 ```
 
-## Custom DNS
+## Custom Domains
 
-You can use a custom domain name for any of your applications. Additionally, the domain can differ per environment.
+You can use a custom domain name for any of your applications. Additionally, the domain name can be different in each environment.
 
 
 

@@ -11,7 +11,7 @@ The last thing - to deploy applications to Qovery, you need to add a Qovery conf
 application:
   name: myapp
   project: test
-  region: "aws/us-west-2" # refer to available available
+  region: "aws/us-west-2" # refer to available regions
 ```
 
 TODO - IMAGE - GIT REPO WITH DOCKERFILE, CONFIG AND SRC FOLDER
@@ -30,7 +30,7 @@ After you commit and push this file to your repository, Qovery automatically dep
 Qovery automatically manages your application and everything it needs to run. That means you treat your infrastructure dependencies as a part of your application.
 If your application needs a PostgreSQL database, **all you need to do is to edit the configuration file, commit and push your changes**:
 
-```yaml
+```yaml title=".qovery.yml" {5-8}
 application:
   name: myapp
   project: test

@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[43],{192:function(a){a.exports=JSON.parse('{"allTagsPath":"/guides/tags","slug":"language-java","name":"language: java","count":1,"permalink":"/guides/tags/language-java"}')}}]);

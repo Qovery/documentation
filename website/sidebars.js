@@ -32,7 +32,15 @@ module.exports = {
           items: [
             "using-qovery/configuration",
             "using-qovery/configuration/env-vars",
-            "using-qovery/configuration/databases",
+            {
+              type: 'category',
+              label: 'Databases',
+              items: [
+                "using-qovery/configuration/databases/mongodb",
+                "using-qovery/configuration/databases/postgresql",
+                "using-qovery/configuration/databases/mysql",
+              ],
+            },
             "using-qovery/configuration/domains",
             "using-qovery/configuration/storage",
             "using-qovery/configuration/brokers",

@@ -44,12 +44,20 @@ You can override variables - the highest level variable win (e.g. `PROJECT` vari
 ## Built-in variables
 By default, every environment will have those variables:
 
+| Name       | Example     | Description     |
+|-------------|-----------|-----------------|
+| **QOVEY_JSON_B64**    | - | Contains all environment variables accessible by your application encoded as Base64 JSON |
+| **QOVERY_BRANCH_NAME**     | master | Git branch name |
+| **QOVERY_IS_PRODUCTION** | true | Flag that indicates production environment |
 
-## Built-in variables naming convention
-For any added service (database, broker, storage), your application will get additional built-in variables. These can be used, for example, to connect
+## Additional built-in variables
+
+For any added service (database, broker, storage), your application will receive additional built-in variables. These can be used, for example, to connect
 to the database.
 
-We follow this naming convention:
+**Naming Convention**:
+
+We use the following naming convention for additional built-in variables:
 
 ```
 QOVERY_<SERVICE_TYPE>_<NAME>_<SPEC>
@@ -57,13 +65,123 @@ QOVERY_<SERVICE_TYPE>_<NAME>_<SPEC>
 
 To demonstrate this, let's take a quick look on a simple database example:
 
-```yml title=".qovery.yml" {1,5}
+```yml title=".qovery.yml" {3-6}
 application:
   ...
 databases:
 - type: postgresql
   version: "10.10"
   name: my-pg
+```
+
+Adding a database like in the example above results in adding the following environment variables to your application:
+
+| Name       | Example     | Description    |
+|-------------|-----------|-----------------|
+| QOVERY_**DATABASE_MY_PG_NAME**    | my-postgresql | Name of your PostgreSQL database |
+| QOVERY_**DATABASE_MY_PG_HOST**     | host.amazonaws.com | PostgreSQL host address |
+| QOVERY_**DATABASE_MY_PG_USERNAME** | username | PostgreSQL username |
+| QOVERY_**DATABASE_MY_PG_PASSWORD** | password | PostgreSQL password |
+| ... | ... | ... |
+
+## Adding custom Env Vars
+
+Adding environment variables with the CLI is very simple:
+
+```bash
+qovery project env add ENV_NAME ENV_VALUE
+qovery environment env add ENV_NAME ENV_VALUE
+qovery application env add ENV_NAME ENV_VALUE
+```
+
+<Alert>
+
+When you add Env Vars using the CLI, you also specify the scope of given variable, e.g.
+
+```bash {2}
+qovery project env add ENV_NAME ENV_VALUE
+qovery environment env add ENV_NAME ENV_VALUE
+qovery application env add ENV_NAME ENV_VALUE
+```
+
+The highlighted command adds a variable with `environment` scope.
+
+</Alert>
+
+<Alert type="danger"> 
+
+Qovery CLI is aware of your current directory and Git branch. Be sure you are in correct application directory and Git branch (environment) before executing Qovery Env Vars commands
+
+</Alert>
+
+## Listing Env Vars
+
+You can list environment variables of given application with single CLI command;
+
+```bash
+qovery application env list
+```
+
+```plain title="OUTPUT"
+SCOPE        KEY                                                   VALUE
+BUILT_IN     QOVERY_BRANCH_NAME                                    feature_a
+BUILT_IN     QOVERY_IS_PRODUCTION                                  false
+BUILT_IN     QOVERY_DATABASE_MY_POSTGRESQL_3498225_PASSWORD        xxxxxxxxxxxxxxxxxxxx
+BUILT_IN     QOVERY_DATABASE_MY_POSTGRESQL_3498225_USERNAME        superuser
+BUILT_IN     QOVERY_DATABASE_MY_POSTGRESQL_3498225_PORT            5432
+BUILT_IN     QOVERY_DATABASE_MY_POSTGRESQL_3498225_FQDN            your.fqdn.id.rds.amazonaws.com
+BUILT_IN     QOVERY_DATABASE_MY_POSTGRESQL_3498225_HOST            your.host.id.rds.amazonaws.com
+BUILT_IN     QOVERY_DATABASE_MY_POSTGRESQL_3498225_CONNECTION_URI  postgresql://user:pass@your.fqdn.id.rds.amazonaws.com:5432/postgres
+BUILT_IN     QOVERY_DATABASE_MY_POSTGRESQL_3498225_VERSION         11.5
+BUILT_IN     QOVERY_DATABASE_MY_POSTGRESQL_3498225_TYPE            POSTGRESQL
+BUILT_IN     QOVERY_DATABASE_MY_POSTGRESQL_3498225_NAME            my-postgresql-id
+PROJECT      my_custom_project_env                                 my_project_value
+ENVIRONMENT  DRY_RUN                                               true
+APPLICATION  enable_feature_a                                      true
+```
+
+Analogically to adding environment variables, while listing Env Vars you also choose the scope of variables to list:
+
+```bash
+qovery application env list
+qovery project env list
+qovery environment env list
+```
+
+## Deleting Env Vars
+
+To delete an environment variable of application scope, run:
+
+```
+qovery application env delete MY_ENV_NAME
+```
+
+<Alert> 
+
+You can not delete `BUILT_IN` variables, but you can override them!
+
+</Alert>
+
+## Overriding Env Vars
+
+As described in the levels' section, you can override existing variables. To do so, just add a new Env Vars with higher level (e.g. add an `APPLICATION` level variable to override `PROJECT` variable for given application).
+
+## Env Var aliases
+You can create an alias for existing environment variable.
+
+For example: your application requires a `DATABASE_PASSWORD` variable. Qovery provides your application with `QOVERY_DATABASE_MY_POSTGRESQL_3498225_PASSWORD` variable with database password.
+Instead of copy-pasting its value, you can create an alias to `QOVERY_DATABASE_MY_POSTGRESQL_3498225_PASSWORD`.
+
+```bash
+qovery application env add DATABASE_PASSWORD '$QOVERY_DATABASE_MY_POSTGRESQL_3498225_PASSWORD'
+```
+
+After executing the above command, your application can use `DATABASE_PASSWORD` variable to get database password.
+
+The syntax for aliasing is:
+
+```bash
+... add NEW_VARIABLE_NAME `$OLD_VARIABLE_NAME`
 ```
 
 

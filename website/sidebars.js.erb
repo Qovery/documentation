@@ -32,7 +32,15 @@ module.exports = {
           items: [
             <%= metadata.links.fetch_id("docs.using-qovery.configuration").to_json %>,
             <%= metadata.links.fetch_id("docs.using-qovery.configuration.env-vars").to_json %>,
-            <%= metadata.links.fetch_id("docs.using-qovery.configuration.databases").to_json %>,
+            {
+              type: 'category',
+              label: 'Databases',
+              items: [
+                <%= metadata.links.fetch_id("docs.using-qovery.configuration.databases.mongodb").to_json %>,
+                <%= metadata.links.fetch_id("docs.using-qovery.configuration.databases.postgresql").to_json %>,
+                <%= metadata.links.fetch_id("docs.using-qovery.configuration.databases.mysql").to_json %>,
+              ],
+            },
             <%= metadata.links.fetch_id("docs.using-qovery.configuration.domains").to_json %>,
             <%= metadata.links.fetch_id("docs.using-qovery.configuration.storage").to_json %>,
             <%= metadata.links.fetch_id("docs.using-qovery.configuration.brokers").to_json %>,

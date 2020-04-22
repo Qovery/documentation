@@ -6,10 +6,10 @@ description: "Description of Qovery IDE plugins"
 
 import Alert from '@site/src/components/Alert';
 
-Writing Qovery configuration is simple. If you like using IDE plugins to improve your workflows, you can be assisted by plugins to avoid typo mistakes, get auto-completion, and move even faster.
+Writing Qovery configuration is simple. If you like using IDE plugins to improve your workflows, you can be assisted by Qovery plugins to avoid typo mistakes, get auto-completion, and move even faster.
 
 <Alert>
-A big shout out to great contributor <a href="https://github.com/alexisvisco">Alexis Viscogliosi</a> for creating these great plugins!
+A big shout out to a great contributor <a href="https://github.com/alexisvisco">Alexis Viscogliosi</a> for creating these great plugins!
 </Alert>
 
 <!--

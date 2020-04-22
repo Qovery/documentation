@@ -84,7 +84,7 @@ Adding a database like in the example above results in adding the following envi
 | QOVERY_**DATABASE_MY_PG_PASSWORD** | password | PostgreSQL password |
 | ... | ... | ... |
 
-## Adding custom Environment Variables
+## Add custom Environment Variables
 
 Adding environment variables with the CLI is very simple:
 
@@ -110,13 +110,13 @@ The highlighted command adds a variable with `environment` scope.
 
 <Alert type="danger"> 
 
-Qovery CLI is aware of your current directory and Git branch. Be sure you are in the correct application directory and Git branch (environment) before executing Qovery Environment Variables commands
+Qovery CLI is aware of your current directory and Git branch. Be sure you are in the correct application directory and Git branch (environment) before executing Qovery Environment Variables commands.
 
 </Alert>
 
-## Listing Environment Variables
+## List Environment Variables
 
-You can list environment variables of given application with single CLI command;
+You can list environment variables of given application with single CLI command:
 
 ```bash
 qovery application env list
@@ -148,11 +148,11 @@ qovery project env list
 qovery environment env list
 ```
 
-## Deleting Environment Variables
+## Delete Environment Variables
 
 To delete an environment variable of application scope, run:
 
-```
+```bash
 qovery application env delete MY_ENV_NAME
 ```
 
@@ -162,11 +162,11 @@ You can not delete `BUILT_IN` variables, but you can override them!
 
 </Alert>
 
-## Overriding Environment Variables
+## Override Environment Variables
 
 As described in the levels' section, you can override existing variables. To do so, add a new Environment Variables with a higher level (e.g., add an `APPLICATION` level variable to override `PROJECT` variable for a given application).
 
-## Env Var aliases
+## Aliases
 You can create an alias for the existing environment variable.
 
 Let's suppose that your application requires a `DATABASE_PASSWORD` variable. Qovery provides your application with `QOVERY_DATABASE_MY_POSTGRESQL_3498225_PASSWORD` variable with a database password.

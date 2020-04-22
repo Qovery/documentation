@@ -7,7 +7,7 @@ In our terminology, **application** is a program versioned by Git that is run an
 An application repository should contain a `Dockerfile` - Qovery uses **Docker** container runtime to run applications.
 The last thing - to deploy applications to Qovery, you need to add a Qovery configuration. Here is the minimal configuration file:
 
-```yaml
+```yaml title=".qovery.yml"
 application:
   name: myapp
   project: test
@@ -28,7 +28,7 @@ After you commit and push this file to your repository, Qovery automatically dep
 
 ## Git Driven Infrastructure (GitOps)
 Qovery automatically manages your application and everything it needs to run. That means you treat your infrastructure dependencies as a part of your application.
-If your application needs a PostgreSQL database, all you need to do is to edit the configuration file, commit and push your changes:
+If your application needs a PostgreSQL database, **all you need to do is to edit the configuration file, commit and push your changes**:
 
 ```yaml
 application:

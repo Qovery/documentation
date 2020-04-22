@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-21"
+last_modified_on: "2020-04-22"
 title: "Environment"
 description: "Understand the concept of Qovery environment"
 ---
@@ -54,22 +54,7 @@ You don't have to create a new `branch_X` branch in every application of your pr
 
 When `branch_X` is missing in part of your applications, Qovery deploys them from your production branch. After you create `branch_X` in any
 of your applications, they are automatically redeployed from that branch in this environment.
-
-## Managing costs
-
-To limit costs, you can reduce the number of created environments to specific branches.
-
-```yml
-application:
-  name: myapp
-  project: test
-  active_environments:
-  - master
-  - staging
-  - test_x
-```
-
-The production environment (by default - `master`) use high-availability and resiliency systems for applications and databases. We guarantee that your app scales as you need and is available according to our SLAs.
+``
 
 
 

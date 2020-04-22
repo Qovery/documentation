@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-21"
+last_modified_on: "2020-04-22"
 title: "How Qovery works?"
 description: "Insights about the way Qovery does its job."
 ---
@@ -33,7 +33,7 @@ TODO - IMAGE - APPS - K8S?
 
 ## Integrating & Provisioning Cloud Infrastructure
 We make sure all databases, storage, and message brokers your application requirements are provisioned and configured. If something is missing,
-we provision it quickly and make it accessible to your application without any additional work from your side.
+we provision it quickly and make it accessible to your application without any additional work from your side. To achieve it, we use managed services from many major cloud providers (like AWS, Azure, MongoDB Atlas, and others) - that's why our platform is so reliable.
 
 TODO - IMAGE - APP - DATABASES & SERVICES ETC.
 

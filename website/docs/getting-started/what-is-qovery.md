@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-21"
+last_modified_on: "2020-04-22"
 title: "What is Qovery?"
 description: "High-level description of the Qovery goals and mission."
 ---
@@ -22,7 +22,7 @@ import Steps from '@site/src/components/Steps';
 
 ## Deploy complex applications, seamlessly
 
-** Push your code, we handle the rest.**
+#### Push your code, we handle the rest.
 
 **Qovery** is a platform that combines the power of **Kubernetes**, the reliability of **AWS**, and the simplicity of **Heroku** to augment the
 developer experience. It accelerates and scales the application development cycle with zero infrastructure management investment.
@@ -65,14 +65,19 @@ databases:
 
 ## The power of Kubernetes, reliability of AWS, and the simplicity of Heroku
 
+#### The power of Kubernetes
 Under the hood, Qovery uses **containers** and **Kubernetes** to run applications. With us, your applications scale accordingly to your traffic and needs. We rely on
-major cloud providers to provide reliable infrastructure to make your applications highly available. What's more, we took on our shoulders the complexity of providing
-and managing other infrastructure requirements you need (like databases or message brokers), so you can focus merely on developing business features.
+major cloud providers to provide reliable infrastructure to make your applications highly available. 
 
-**With Qovery, the cloud is simple again**. Get all the benefits of using cloud and Kubernetes without dealing with its complexity. You don't need to hire infrastructure experts -
-configuring continuous integration, deployment, databases, message brokers, storage, DNS, SSL/TLS, VPCs, and many others - we do it all for you.
+#### Reliable infrastructure
+What's more, we took on our shoulders the complexity of providing and managing other infrastructure requirements you need (like databases or message brokers), so you can focus merely on developing business features.
 
-####  Simplicity - built for all developers
+
+#### Simple and Powerful
+With Qovery, the cloud is simple again. Get all the benefits of using cloud and Kubernetes without dealing with its complexity. You don't need to hire infrastructure experts -
+configuring continuous integration, deployment, databases, message brokers, storage, DNS, SSL/TLS, VPCs, and many others - we do it all for you. On Qovery, you can spin up a set of microservices, databases, and other cloud services in minutes with a single Git push!
+
+####  Built for all developers
 
 Qovery is designed by developers for developers. Our goal is to make your life easier and allow you to move faster. Developer experience is at our heart. Building cloud-native applications was never that fast and simple!
 

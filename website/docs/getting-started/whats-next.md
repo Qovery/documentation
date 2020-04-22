@@ -1,13 +1,12 @@
 ---
-last_modified_on: "2020-04-17"
-title: "What's next"
-description: "Where should I go to learn more?"
+last_modified_on: "2020-04-22"
+title: "What's next?"
+description: "Where should I go to learn more about Qovery?"
 ---
 
 import Jump from '@site/src/components/Jump';
 
-If you have followed the short version of guide in [*Quick Start*][docs.quickstart] section, we strongly recommend you to follow the complete
-**Getting Started Guide** as it's the most effective way to learn all the most common workflows.
+Before you go any further, make sure you have followed and finished the basic Getting Started Guide:
 
 <Jump to="/guides/getting-started/">Getting Started Guide</Jump>
 
@@ -20,4 +19,3 @@ subsections:
 
 
 [docs.main-concepts]: /docs/main-concepts/
-[docs.quickstart]: /docs/getting-started/quickstart/

@@ -90,7 +90,7 @@ $ qovery status
 <li>
 
 ### Connect
-Now, we need to connect our application to our database. The credentials (URI, Username, Password ...) are available through [environment variables][docs.env-vars]. They are injected by Qovery when your application runs.
+Now, we need to connect our application to our database. The credentials (URI, Username, Password ...) are available through [environment variables][docs.environment-variables]. They are injected by Qovery when your application runs.
 
 First, we need to list all the environment variables available for our application:
 
@@ -180,5 +180,5 @@ Congratulations, your application is connected to a PostgreSQL database. Now we 
 
 
 [docs.databases]: /docs/using-qovery/configuration/databases/
-[docs.env-vars]: /docs/using-qovery/configuration/env-vars/
+[docs.environment-variables]: /docs/using-qovery/configuration/environment-variables/
 [guides.deploy-your-first-application]: /guides/getting-started/deploy-your-first-application/

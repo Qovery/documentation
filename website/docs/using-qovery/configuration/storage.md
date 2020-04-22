@@ -1,9 +1,11 @@
 ---
-last_modified_on: "2020-04-21"
+last_modified_on: "2020-04-22"
 title: "Storage"
 description: "Learn how to configure Storage on Qovery"
 ---
-TODO
+This feature will be added soon!
+
+[Vote on this feature][urls.qovery_roadmap] to make it available sooner.
 
 
-
+[urls.qovery_roadmap]: https://roadmap.qovery.com/

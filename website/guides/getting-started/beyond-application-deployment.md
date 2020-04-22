@@ -2,7 +2,7 @@
 last_modified_on: "2020-04-22"
 $schema: "/.meta/.schemas/guides.json"
 title: Beyond application deployment
-description: This is what to do after your first application deployment
+description: What to do after your first application deployment
 series_position: 6
 author_github: https://github.com/evoxmusic
 tags: ["type: guide"]

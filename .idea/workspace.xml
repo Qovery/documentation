@@ -19,12 +19,18 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="add &quot;application template&quot; guide page">
-      <change beforePath="$PROJECT_DIR$/.idea/documentation.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/documentation.iml" afterDir="false" />
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="add &quot;setting custom domain&quot; getting started page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/setting-custom-domain.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/setting-custom-domain.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/setting-custom-domain.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/setting-custom-domain.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/css/custom.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/customizing-routing.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/customizing-routing.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/customizing-routing.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/customizing-routing.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/managing-environment-variables.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/managing-environment-variables.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/microservices.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/microservices.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/using-multiple-environments.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/using-multiple-environments.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/beyond-application-deployment.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/beyond-application-deployment.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/beyond-application-deployment.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/beyond-application-deployment.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/sidebars.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/sidebars.js.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.js.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/theme/GuidePage/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/theme/GuidePage/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,14 +170,7 @@
       <workItem from="1587329685355" duration="1413000" />
       <workItem from="1587366223403" duration="24902000" />
       <workItem from="1587406274481" duration="12340000" />
-      <workItem from="1587451217555" duration="49299000" />
-    </task>
-    <task id="LOCAL-00002" summary="Add lost changes">
-      <created>1586941495751</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1586941495751</updated>
+      <workItem from="1587451217555" duration="53879000" />
     </task>
     <task id="LOCAL-00003" summary="Logo">
       <created>1586944019812</created>
@@ -509,7 +508,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587554388653</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="add &quot;setting custom domain&quot; getting started page">
+      <created>1587567403737</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1587567403737</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -570,7 +576,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="fix: gitlab ci" />
     <MESSAGE value="change: custom domain" />
     <MESSAGE value="feat: add tutorial section" />
     <MESSAGE value="style: change og image" />
@@ -595,7 +600,8 @@
     <MESSAGE value="fill debugging guide article" />
     <MESSAGE value="change: guide page description" />
     <MESSAGE value="add &quot;application template&quot; guide page" />
-    <option name="LAST_COMMIT_MESSAGE" value="add &quot;application template&quot; guide page" />
+    <MESSAGE value="add &quot;setting custom domain&quot; getting started page" />
+    <option name="LAST_COMMIT_MESSAGE" value="add &quot;setting custom domain&quot; getting started page" />
   </component>
   <component name="WindowStateProjectService">
     <state x="611" y="383" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1587213016572">
@@ -604,11 +610,11 @@
     <state x="-1309" y="468" key="#com.intellij.fileTypes.FileTypeChooser/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587036960904" />
     <state x="611" y="383" key="#com.intellij.fileTypes.FileTypeChooser/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587213016572" />
     <state x="-1309" y="498" key="#com.intellij.fileTypes.FileTypeChooser/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587110738425" />
-    <state x="193" y="108" width="1536" height="960" key="DiffContextDialog" timestamp="1587397655074">
+    <state x="193" y="108" width="1536" height="960" key="DiffContextDialog" timestamp="1587578791802">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
-    <state x="193" y="108" width="1536" height="960" key="DiffContextDialog/-333.-1417.2560.1417/0.23.1920.1177@0.23.1920.1177" timestamp="1587228201313" />
-    <state x="193" y="108" width="1536" height="960" key="DiffContextDialog/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587397655074" />
+    <state x="193" y="108" width="1536" height="960" key="DiffContextDialog/-333.-1417.2560.1417/0.23.1920.1177@0.23.1920.1177" timestamp="1587577802365" />
+    <state x="193" y="108" width="1536" height="960" key="DiffContextDialog/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587578791802" />
     <state x="180" y="122" key="DiffContextDialog/0.23.1792.1097@0.23.1792.1097" timestamp="1586941827745" />
     <state x="-1187" y="430" key="FileChooserDialogImpl" timestamp="1587022112681">
       <screen x="-1920" y="131" width="1920" height="1057" />
@@ -657,47 +663,51 @@
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="690" y="350" width="540" height="524" key="StructurePopup/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587398370723" />
-    <state width="536" height="488" key="SwitcherDM" timestamp="1587567319214">
+    <state width="536" height="488" key="SwitcherDM" timestamp="1587577498698">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state width="536" height="429" key="SwitcherDM/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587042928490" />
     <state width="536" height="488" key="SwitcherDM/-333.-1417.2560.1417/0.0.1920.1200@0.0.1920.1200" timestamp="1587550681508" />
-    <state width="536" height="488" key="SwitcherDM/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587567319214" />
+    <state width="536" height="488" key="SwitcherDM/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587577498698" />
     <state width="536" height="429" key="SwitcherDM/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587130320365" />
     <state width="500" height="445" key="SwitcherDM/0.23.1792.1097@0.23.1792.1097" timestamp="1586970316787" />
     <state x="100" y="100" width="1720" height="1000" key="VCS.FileHistoryDialog" timestamp="1587195128563">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="100" y="100" width="1720" height="1000" key="VCS.FileHistoryDialog/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587195128563" />
-    <state x="531" y="314" key="Vcs.Push.Dialog.v2" timestamp="1587554390020">
+    <state x="531" y="314" key="Vcs.Push.Dialog.v2" timestamp="1587567405101">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="-1389" y="408" key="Vcs.Push.Dialog.v2/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587043142882" />
-    <state x="531" y="314" key="Vcs.Push.Dialog.v2/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587554390020" />
+    <state x="531" y="314" key="Vcs.Push.Dialog.v2/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587567405101" />
     <state x="496" y="311" key="Vcs.Push.Dialog.v2/0.23.1792.1097@0.23.1792.1097" timestamp="1586945386299" />
+    <state x="710" y="341" key="VcsDiffUtil.ChangesDialog" timestamp="1587578340186">
+      <screen x="0" y="0" width="1920" height="1200" />
+    </state>
+    <state x="710" y="341" key="VcsDiffUtil.ChangesDialog/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587578340186" />
     <state x="500" y="204" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1587502807004">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="500" y="204" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587502807004" />
-    <state x="763" y="510" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587567278782">
+    <state x="763" y="510" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587577295073">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
-    <state x="763" y="510" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587567278782" />
+    <state x="763" y="510" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587577295073" />
     <state x="-1157" y="610" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587108608568" />
-    <state x="220" y="102" width="1479" height="880" key="find.popup" timestamp="1587548522280">
+    <state x="220" y="102" width="1479" height="880" key="find.popup" timestamp="1587578721839">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="-1285" y="399" width="964" height="578" key="find.popup/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587040325645" />
     <state x="593" y="302" width="964" height="578" key="find.popup/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@0.23.1792.1097" timestamp="1587017131900" />
-    <state x="220" y="102" width="1479" height="880" key="find.popup/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587548522280" />
+    <state x="220" y="102" width="1479" height="880" key="find.popup/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587578721839" />
     <state x="-1285" y="429" width="964" height="578" key="find.popup/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587130747733" />
     <state x="593" y="302" width="964" height="578" key="find.popup/0.23.1792.1097@0.23.1792.1097" timestamp="1586971117204" />
-    <state x="601" y="218" width="718" height="741" key="search.everywhere.popup" timestamp="1587557611136">
+    <state x="601" y="218" width="718" height="741" key="search.everywhere.popup" timestamp="1587576720576">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="-1319" y="323" width="718" height="652" key="search.everywhere.popup/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587040363911" />
     <state x="561" y="222" width="670" height="676" key="search.everywhere.popup/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@0.23.1792.1097" timestamp="1587014900518" />
-    <state x="601" y="218" width="718" height="741" key="search.everywhere.popup/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587557611136" />
+    <state x="601" y="218" width="718" height="741" key="search.everywhere.popup/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587576720576" />
     <state x="-1319" y="353" width="718" height="652" key="search.everywhere.popup/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587131778361" />
     <state x="561" y="222" width="670" height="676" key="search.everywhere.popup/0.23.1792.1097@0.23.1792.1097" timestamp="1586971120732" />
   </component>

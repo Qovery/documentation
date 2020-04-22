@@ -80,6 +80,11 @@ module.exports = {
           href: 'https://api.qovery.io/swagger-ui.html#'
         },
         "useful-links/faq",
+        {
+          type: 'link',
+          label: 'Roadmap',
+          href: 'https://roadmap.qovery.com'
+        },
         "useful-links/help-and-support",
       ],
     },

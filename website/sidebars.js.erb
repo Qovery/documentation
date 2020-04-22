@@ -80,6 +80,11 @@ module.exports = {
           href: '<%= metadata.links.fetch_id("urls.qovery_swagger") %>'
         },
         <%= metadata.links.fetch_id("docs.useful-links.faq").to_json %>,
+        {
+          type: 'link',
+          label: 'Roadmap',
+          href: '<%= metadata.links.fetch_id("urls.qovery_roadmap") %>'
+        },
         <%= metadata.links.fetch_id("docs.useful-links.help-and-support").to_json %>,
       ],
     },

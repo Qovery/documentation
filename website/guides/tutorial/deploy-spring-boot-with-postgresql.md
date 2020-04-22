@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-21"
+last_modified_on: "2020-04-22"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy Spring Boot with PostgreSQL on Qovery
 description: How to deploy a Spring Boot application with the PostgreSQL database on Qovery
@@ -181,9 +181,7 @@ Which creates the `.qovery.yml` file at the root of your project directory
 $ cat .qovery.yml
 ```
 
-Output
-
-```bash
+```yaml title=".qovery.yml"
 application:
   name: my-application
   project: my-project
@@ -212,7 +210,7 @@ To list all the environment variables available for your application, execute
 $ qovery project env list
 ```
 
-```bash
+```bash title="Output"
 SCOPE    | KEY                                                      | VALUE
 BUILT_IN | QOVERY_JSON_B64                                          | <base64>
 BUILT_IN | QOVERY_BRANCH_NAME                                       | master
@@ -249,9 +247,7 @@ See the deployment status by executing
 $ qovery status
 ```
 
-Output
-
-```bash
+```bash title="Output"
 BRANCH NAME | STATUS  | ENDPOINTS                                   | APPLICATIONS    | DATABASES
 master      | running | https://main-abcdefgh12345678-gtw.qovery.io | my-application  | my-db
 
@@ -289,9 +285,7 @@ $ git push -u origin feat_foo
 $ qovery status
 ```
 
-Output
-
-```bash
+```bash title="Output"
 BRANCH NAME | STATUS  | ENDPOINTS                                   | APPLICATIONS    | DATABASES
 feat_foo    | running | https://main-yenr7erjbs87dk4m-gtw.qovery.io | my-application  | my-db
 

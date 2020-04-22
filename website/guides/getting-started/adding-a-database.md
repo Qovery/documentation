@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-21"
+last_modified_on: "2020-04-22"
 $schema: "/.meta/.schemas/guides.json"
 title: Adding a database
 description: How to add a database to your application
@@ -54,7 +54,7 @@ Up to 16 databases can be added per application
 
 Our complete `.qovery.yml` looks like this
 
-```yaml
+```yaml title=".qovery.yml"
 application:
   name: simple-example-node
   project: getting-started
@@ -100,9 +100,7 @@ $ qovery application env list
 # By adding the arg option -c you can see the value of hidden fields
 ```
 
-Output
-
-```bash
+```bash title="Output"
 SCOPE    | KEY                                                      | VALUE
 BUILT_IN | QOVERY_JSON_B64                                          | <base64>
 BUILT_IN | QOVERY_BRANCH_NAME                                       | master

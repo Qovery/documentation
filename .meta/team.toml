@@ -6,7 +6,7 @@ keybase = "https://keybase.io/evoxmusic"
 name = "Romaric P."
 bio = """\
 Romaric is a Software Engineer, and CEO at <a href=\"https://www.qovery.com\">Qovery</a>. \
-He has 10+ years of experience in R&D. From the ad-tech to the financial industry, he has deep expertise in reliable and performant systems.
+He has 10+ years of experience in R&D. From the Ad-Tech to the financial industry, he has deep expertise in highly-reliable and performant systems.
 """
 
 [[team]]
@@ -16,7 +16,10 @@ github = "https://github.com/deimosfr"
 keybase = "https://keybase.io/pierre"
 name = "Pierre M."
 bio = """\
-Pierre is a Software Engineer, and CTO at <a href=\"https://www.qovery.com\">Qovery</a>. \
+Pierre is an SRE, and CTO of <a href=\"https://www.qovery.com\">Qovery</a>. \
+He has 15+ years of experience in R&D. From the financial to the Ad-Tech industry, \
+he has a strong knowledge in distributed and highly-reliable systems. \
+He's also the <a href=\"https://www.amazon.fr/MariaDB-High-Performance-Pierre-MAVRO/dp/1783981601\">MariaDB High Performance</a> book author.
 """
 
 [[team]]
@@ -36,5 +39,7 @@ github = "https://github.com/sileht"
 keybase = "https://keybase.io/mehdi"
 name = "Mehdi A."
 bio = """\
-Mehdi is an experienced Software Engineer at <a href=\"https://www.qovery.com\">Qovery</a>. \
+Mehdi is Senior DevOps Engineer at <a href=\"https://www.qovery.com\">Qovery</a>, with 15+ years of software \
+development and managing infrastructures, Co-founder of <a href=\"https://mergify.io\">Mergify</a>, active member \
+of non-profit <a href=\"https://tetaneutral.net/\">Tetaneutral.net</a> ISP and Hosting provider, and he also likes to dance on crazy swing rhythm.
 """

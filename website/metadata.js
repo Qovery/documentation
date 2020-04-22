@@ -59,7 +59,7 @@ module.exports = {
           "title": "Beyond application deployment"
         },
         {
-          "author_github": "https://github.com/pjeziorowski",
+          "author_github": "https://github.com/evoxmusic",
           "description": null,
           "id": "/getting-started/debugging",
           "last_modified_on": null,
@@ -77,7 +77,7 @@ module.exports = {
           "title": "Hello World. Deploy your first application."
         },
         {
-          "author_github": "https://github.com/pjeziorowski",
+          "author_github": "https://github.com/evoxmusic",
           "description": null,
           "id": "/getting-started/setting-custom-domain",
           "last_modified_on": null,
@@ -258,7 +258,7 @@ module.exports = {
   "team": [
     {
       "avatar": "https://github.com/evoxmusic.png",
-      "bio": "Romaric is a Software Engineer, and CEO at <a href=\"https://www.qovery.com\">Qovery</a>. He has 10+ years of experience in R&D. From the ad-tech to the financial industry, he has deep expertise in reliable and performant systems.\n",
+      "bio": "Romaric is a Software Engineer, and CEO at <a href=\"https://www.qovery.com\">Qovery</a>. He has 10+ years of experience in R&D. From the Ad-Tech to the financial industry, he has deep expertise in highly-reliable and performant systems.\n",
       "github": "https://github.com/evoxmusic",
       "id": "romaric",
       "keybase": "https://keybase.io/evoxmusic",
@@ -266,7 +266,7 @@ module.exports = {
     },
     {
       "avatar": "https://github.com/deimosfr.png",
-      "bio": "Pierre is a Software Engineer, and CTO at <a href=\"https://www.qovery.com\">Qovery</a>. ",
+      "bio": "Pierre is an SRE, and CTO of <a href=\"https://www.qovery.com\">Qovery</a>. He has 15+ years of experience in R&D. From the financial to the Ad-Tech industry, he has a strong knowledge in distributed and highly-reliable systems. He's also the <a href=\"https://www.amazon.fr/MariaDB-High-Performance-Pierre-MAVRO/dp/1783981601\">MariaDB High Performance</a> book author.\n",
       "github": "https://github.com/deimosfr",
       "id": "pierre",
       "keybase": "https://keybase.io/pierre",
@@ -282,7 +282,7 @@ module.exports = {
     },
     {
       "avatar": "https://github.com/sileht.png",
-      "bio": "Mehdi is an experienced Software Engineer at <a href=\"https://www.qovery.com\">Qovery</a>. ",
+      "bio": "Mehdi is Senior DevOps Engineer at <a href=\"https://www.qovery.com\">Qovery</a>, with 15+ years of software development and managing infrastructures, Co-founder of <a href=\"https://mergify.io\">Mergify</a>, active member of non-profit <a href=\"https://tetaneutral.net/\">Tetaneutral.net</a> ISP and Hosting provider, and he also likes to dance on crazy swing rhythm.\n",
       "github": "https://github.com/sileht",
       "id": "mehdi",
       "keybase": "https://keybase.io/mehdi",

@@ -1,7 +1,7 @@
 ---
 $schema: "/.meta/.schemas/guides.json"
 title: Debugging
-description: How to debug your application
+description: How to debug your application with Qovery
 series_position: 4
 author_github: https://github.com/evoxmusic
 tags: ["type: guide"]
@@ -30,7 +30,7 @@ The command `qovery status` give the status of our application. In the case of a
 $ qovery status
 ```
 
-```bash title="Build error output"
+```bash title="Build error output" {10-23}
 BRANCH NAME | STATUS      | ENDPOINTS                                   | APPLICATIONS                        | DATABASES
 master      | build error | https://main-yenr7erjbs87dk4m-gtw.qovery.io | simple-example-node-with-postgresql | my-postgresql-3498225
 
@@ -200,7 +200,7 @@ Well done! You have rollback to a previous working version.
 
 ## Monitoring and alerting
 
-Qovery will provide very soon monitoring and alerting. In the meantime, we highly recommend using tools like [Datadog][urls.datadog].
+Qovery will provide [very soon][urls.qovery_roadmap] monitoring and alerting. In the meantime, we highly recommend using tools like [Datadog][urls.datadog].
 
 ## Third-party integration
 Qovery integrates third-party services like Datadog, NewRelic, and others. You can use any third service that you want if they support containers (which is the case of most of them).

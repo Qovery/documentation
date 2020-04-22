@@ -52,15 +52,6 @@ module.exports = {
         {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
-          "id": "/getting-started/beyond-application-deployment",
-          "last_modified_on": null,
-          "path": "website/guides/getting-started/beyond-application-deployment.md",
-          "series_position": null,
-          "title": "Beyond application deployment"
-        },
-        {
-          "author_github": "https://github.com/evoxmusic",
-          "description": null,
           "id": "/getting-started/debugging",
           "last_modified_on": null,
           "path": "website/guides/getting-started/debugging.md",

@@ -65,8 +65,8 @@ module.exports = {
         "security-and-compliance",
         "security-and-compliance/gdpr",
         "security-and-compliance/data",
-        "security-and-compliance/backup-and-restore",
         "security-and-compliance/encryption",
+        "security-and-compliance/backup-and-restore",
       ],
     },
     {

@@ -15,6 +15,7 @@ In the following subsections, you'll learn all you need to know to configure all
 <Jump to="/docs/using-qovery/configuration/domains/">Domains</Jump>
 <Jump to="/docs/using-qovery/configuration/environment-variables/">Environment variables</Jump>
 <Jump to="/docs/using-qovery/configuration/network/">Network</Jump>
+<Jump to="/docs/using-qovery/configuration/routing/">Routing</Jump>
 <Jump to="/docs/using-qovery/configuration/storage/">Storage</Jump>
 
 

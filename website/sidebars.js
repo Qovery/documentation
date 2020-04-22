@@ -44,15 +44,7 @@ module.exports = {
             "using-qovery/configuration/domains",
             "using-qovery/configuration/storage",
             "using-qovery/configuration/brokers",
-            {
-              type: 'category',
-              label: 'Network',
-              items: [
-                "using-qovery/configuration/network",
-                "using-qovery/configuration/network/ssl-tls",
-                "using-qovery/configuration/network/routing",
-              ],
-            },
+            "using-qovery/configuration/routing",
           ]
         },
         {

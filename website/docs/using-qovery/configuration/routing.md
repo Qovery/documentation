@@ -6,9 +6,7 @@ description: "Learn how to configure Routing on Qovery"
 
 import Alert from '@site/src/components/Alert';
 
-Qovery allows you to configure network routing in your projects.
-
-Here is how to do it in the Qovery configuration file:
+Qovery allows you to configure network routing in your projects. Here is how to do it in the Qovery configuration file:
 - create and name a `router`
 - create associated route paths to the application
 

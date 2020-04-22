@@ -3,28 +3,27 @@ last_modified_on: "2020-04-16"
 title: "Project Templates"
 description: "Use Project Templates to move blazignly fast"
 ---
-Writing Qovery configuration is simple. If you like using IDE plugins to improve your workflows, you can be assisted by Qovery plugins to avoid typo mistakes, get auto-completion, and move even faster.
+Templates are preconfigured `Dockerfiles` and `.qovery.yml` configs that allow you to quickly bootstrap a new application.
 
-<Alert>
-A big shout out to a great contributor <a href="https://github.com/alexisvisco">Alexis Viscogliosi</a> for creating these great plugins!
-</Alert>
+For example, to quickly set up a <a href="https://hasura.io/">Hasura</a> GraphQL APIs on Qovery, you can use a template maintained by our [community][urls.qovery_templates_repo].
 
-## IntelliJ
+To set it up from scratch, run:
 
-You can easily install the Qovery Intellij plugin through the [Marketplace][urls.qovery_intelij_plugin] or directly from the IDE (`File` -> `Settings` -> `Plugins` -> search `Qovery`).
+```bash
+mkdir my_hasura_application
+cd my_hasura_application
+git init
 
-Here's a quick demo to show you how it works:
+qovery init -t hasura
+```
 
-<p align="center">
-  <img src="/img/plugin-intellij.gif" alt="Qovery InteliJ Plugin" />
-</p>
+<CodeExplanation>
 
-## VSCode
+* The mkdir command creates a new directory for your application
+* The cd command moves you to your newly created directory
+* The git init command initializes a new git repository in current directory
+* The qovery init command configures Hasura
 
-VisualStudio Code has our module available on the Marketplace.
+</CodeExplanation>
 
-Demo:
-
-<p align="center">
-  <img src="/img/vscode-module.gif" alt="Qovery VSCode Plugin" />
-</p>
+Now, all you have to do is to commit and publish your repository to Github, Gitlab or Bitbucket, and your Hasura application is deployed!

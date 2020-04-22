@@ -38,7 +38,7 @@ simple-example      up and running  https://yyy-xxx-app.qovery.io   1           
 
 ## Custom Domains
 
-You can use a custom domain name for any of your applications. Additionally, the domain name can be different in each environment.
+You can use a custom domain name for any of your applications. Additionally, the domain name can be different in each environment (branch).
 
 
 

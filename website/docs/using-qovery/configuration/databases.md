@@ -20,12 +20,12 @@ For each database, we rely on the most popular major database cloud providers li
      website/docs/using-qovery/configuration/databases.md.erb
 -->
 
+## NoSQL
+<Jump to="/docs/using-qovery/configuration/databases/mongodb">MongoDB</Jump>
+
 ## SQL
 <Jump to="/docs/using-qovery/configuration/databases/postgresql">PostgreSQL</Jump>
 <Jump to="/docs/using-qovery/configuration/databases/mysql">MySQL</Jump>
-
-## NoSQL
-<Jump to="/docs/using-qovery/configuration/databases/mongodb">MongoDB</Jump>
 
 
 

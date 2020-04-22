@@ -73,7 +73,7 @@ Adding a database like in the example above results in adding the following envi
 | QOVERY_**DATABASE_MY_PG_PASSWORD** | password | PostgreSQL password |
 | ... | ... | ... |
 
-## Add custom Environment Variables
+## Add custom variables
 
 Adding environment variables with the CLI is very simple:
 
@@ -103,7 +103,7 @@ Qovery CLI is aware of your current directory and Git branch. Be sure you are in
 
 </Alert>
 
-## List Environment Variables
+## List variables
 
 You can list environment variables of given application with single CLI command:
 
@@ -137,7 +137,7 @@ qovery project env list
 qovery environment env list
 ```
 
-## Delete Environment Variables
+## Delete variables
 
 To delete an environment variable of application scope, run:
 
@@ -151,7 +151,7 @@ You can not delete `BUILT_IN` variables, but you can override them!
 
 </Alert>
 
-## Override Environment Variables
+## Override variables
 
 As described in the levels' section, you can override existing variables. To do so, add a new Environment Variables with a higher level (e.g., add an `APPLICATION` level variable to override `PROJECT` variable for a given application).
 

@@ -35,7 +35,7 @@ databases:
 
 Alternatively, if you are creating a new application, use `qovery init` to interactively add a database (the CLI asks if you need one).
 
-## Get access to the database
+## Get access to a database
 
 To get the connection information of your database, you can use the CLI:
 
@@ -64,7 +64,7 @@ $ qovery application env list -c
 
 In the output, you get all data you need to use the database. Those environment variables are available in the runtime of your application.
 
-## Get the database status
+## Get database status
 
 To know more about your database status, run:
 
@@ -78,7 +78,7 @@ DATABASE NAME | STATUS  | TYPE    | VERSION | ENDPOINT | PORT     | USERNAME | P
   my-mongo      | running | mysql | 3.6     | <hidden> | <hidden> | <hidden> | <hidden> | simple-example 
 ```
 
-## Delete the database
+## Delete a database
 
 To delete a database, you have two options:
 - Remove it from the configuration file, commit and push

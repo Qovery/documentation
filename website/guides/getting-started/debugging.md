@@ -188,7 +188,7 @@ Then, we can watch the progress of the rollback with
 $ qovery status --watch
 ```
 
-```bash title="Deployment progress"
+```bash title="Deployment progression"
  100% |████████████████████████████████████████|  [0s:0s]
 
 Your environment is ready!

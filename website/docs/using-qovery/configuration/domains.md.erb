@@ -3,4 +3,33 @@ last_modified_on: "2020-04-16"
 title: "Domains"
 description: "Learn how to configure custom Domains on Qovery"
 ---
-TODO
+A DNS (Domain Name System) is automatically generated on deployed applications that you request to be publicly accessible. This allows you to get a simple way to access your application. Also, you get a separate DNS name for each of your branches.
+
+## Qovery DNS (default)
+
+Your application will be publicly accessible via a Qovery domain as soon as you define it to be publicly accessible in `.qovery.yml` file:
+
+```title=".qovery.yml" {4}
+application:
+  name: myapp
+  project: test
+  publicly_accessible: true
+```
+
+To get the domain that was assigned to your application, use the CLI:
+
+```
+$ qovery status
+```
+
+```plain title="OUTPUT"
+BRANCHES NAME	STATUS        	ENDPOINTS                       APPLICATIONS	DATABASES	BROKERS	STORAGE 
+master       	up and running	https://xxx-main-gtw.qovery.io	1           	1        	0      	0      	
+
+APPLICATIONS NAME	STATUS        	ENDPOINTS                    	DATABASES	BROKERS	STORAGE 
+simple-example   	up and running	https://yyy-xxx-app.qovery.io	1        	0      	0      	
+```
+
+## Custom DNS
+
+You can use a custom domain name for any of your applications.

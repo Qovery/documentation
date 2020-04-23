@@ -31,3 +31,34 @@ simple-example      up and running  https://yyy-xxx-app.qovery.io   1           
 ## Custom Domains
 
 You can use a custom domain name for any of your applications. Additionally, the domain name can be different in each environment (branch).
+
+### Set a domain
+
+```yaml title=".qovery.yml" {4-6}
+...
+routers:
+- name: main
+  custom_domains:
+  - branch: master
+    domain: my.domain.tld
+  routes:
+  - application_name: simple-example-node-with-postgresql
+    paths:
+    - /
+```
+
+Adding the highlighted lines like in the configuration file above exposes your application using your domain. However, before it's
+done, you have to confirm that the domain is yours.
+
+```bash title="List domains"
+qovery list domains
+```
+
+```plain title="OUTPUT"
+BRANCH | DOMAIN                                      | STATUS             | VALIDATION DOMAIN    | ROUTER NAME
+master | node.deimos.fr                              | validation pending | xxx-yyy-zzz.acme.com | main
+master | https://main-yenr7erjbs87dk4m-gtw.qovery.io | live               | none                 | main
+```
+
+To validate a domain that is in `validation pending ` status, add a `CNAME` record that is targeting the `VALIDATION DOMAIN` - `xxx-yyy-zzz.acme.com`. After doing so, it takes
+Qovery a few minutes to verify and complete the process. You can check the verification status using `qovery domain list`.

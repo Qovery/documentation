@@ -154,7 +154,7 @@ During the time your friend tests his code, your feature can not be finished and
 ### Qovery Environments to the rescue
 
 To solve this issue and enable software developers to work independently, Qovery introduces the concept of `Environments`.
-On Qovery, after you create a new branch for your new feature, you automatically get a completely separated, exact copy of your production environment (including all applications, databases, data, storage and brokers).
+On Qovery, after you create a new branch for your new feature, you automatically get a completely separated, exact copy of your production environment (including all applications, databases, data, storage, and brokers).
 
 <p align="center">
     <img src="/img/multiple-environments-demo.png" alt="Deploying multiple Environments" />
@@ -208,7 +208,7 @@ $ curl https://main-gezg7nlejmutwjsn-gtw.qovery.io/
 Hello from master environment!    
 ```
 
-Now, you can play a bit and make some changes. After you commit and push, your application will be automatically updated in the appropriate environment, depending on which branch you are working.
+Now, you can play a bit and make some changes. After you commit and push, your application is automatically updated in the appropriate environment, depending on which branch you are working in.
 
 
 [guides.deploy-your-first-application]: /guides/getting-started/deploy-your-first-application/

@@ -1,41 +1,13 @@
 ---
 title: Routing
-description: "Learn how to configure Routing on Qovery"
+description: "Learn how to configure your custom routes on Qovery"
 ---
-Qovery allows you to configure network routing in your projects. Here is how to do it in the Qovery configuration file:
-- create and name a `router`
-- create associated route paths to the application
+<%= qovery_routing_intro() %>
 
-```yml title=".qovery.yml" {6-13}
-application:
-  name: myapp
-  project: test
-  publicly_accessible: true
-...
-routers:
-  - name: backend-router
-    dns: api.mycompany.com
-    routes:
-      - application-name: myapp
-        paths:
-          - \/api\/v1\/user\/\w+\/.*
-          - \/api\/v1\/stat\/\w+\/.*
-```
+## Concepts
 
-<Alert>
+<%= qovery_routing_concepts() %>
 
-**Important**
+## Example
 
-- you can specify multiple routers
-- you can specify multiple routes to different applications of the same project
-- you can define multiple paths
-
-**Any other application of the same project can create rules for other applications**
-
-</Alert>
-
-<Alert type="success">
-
-Qovery takes care of duplicated routes and deny the latest created one to avoid unintended overrides.
-
-</Alert>
+[Check out our guide][guides.custom-routes] to see an example

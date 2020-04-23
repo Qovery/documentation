@@ -683,6 +683,14 @@ class Templates
     render("#{partials_path}/_qovery_install_cli.md", binding).strip
   end
 
+  def qovery_routing_intro
+    render("#{partials_path}/_qovery_routing_intro.md", binding).strip
+  end
+
+  def qovery_routing_concepts
+    render("#{partials_path}/_qovery_routing_concepts.md", binding).strip
+  end
+
   def warnings(warnings)
     render("#{partials_path}/_warnings.md", binding).strip
   end

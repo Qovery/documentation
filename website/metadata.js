@@ -96,13 +96,13 @@ module.exports = {
       "description": "Go beyond the basics, become a Qovery pro, and extract the full potential of Qovery.",
       "guides": [
         {
-          "author_github": "https://github.com/pjeziorowski",
+          "author_github": "https://github.com/evoxmusic",
           "description": null,
-          "id": "/advanced/customizing-routing",
+          "id": "/advanced/custom-routes",
           "last_modified_on": null,
-          "path": "website/guides/advanced/customizing-routing.md",
+          "path": "website/guides/advanced/custom-routes.md",
           "series_position": null,
-          "title": "Customizing routes"
+          "title": "Custom routes"
         },
         {
           "author_github": "https://github.com/pjeziorowski",
@@ -112,15 +112,6 @@ module.exports = {
           "path": "website/guides/advanced/managing-environment-variables.md",
           "series_position": null,
           "title": "Managing env variables"
-        },
-        {
-          "author_github": "https://github.com/pjeziorowski",
-          "description": null,
-          "id": "/advanced/microservices",
-          "last_modified_on": null,
-          "path": "website/guides/advanced/microservices.md",
-          "series_position": null,
-          "title": "Microservices"
         },
         {
           "author_github": "https://github.com/pjeziorowski",

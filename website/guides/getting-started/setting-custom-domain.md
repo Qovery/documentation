@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-22"
+last_modified_on: "2020-04-23"
 $schema: "/.meta/.schemas/guides.json"
 title: Setting custom domain
 description: How to set and use your own domain
@@ -11,7 +11,7 @@ import Steps from '@site/src/components/Steps';
 import Assumptions from '@site/src/components/Assumptions';
 import Alert from '@site/src/components/Alert';
 
-Every application on Qovery automatically gets a free `qovery.io` address which does not change.
+Every application on Qovery automatically gets a free `qovery.io` address which does not change per branch.
 
 But you can also bring your own domains to Qovery easily. We handle TLS/SSL certificate creation and renewal, as well as automatic HTTP to HTTPS redirects for all your custom domains. Let’s learn how to set up your domains on Qovery!
 
@@ -26,7 +26,7 @@ But you can also bring your own domains to Qovery easily. We handle TLS/SSL cert
 
 <Alert type="warning">
 
-A custom domain is bound to a Git branch - [Read more][docs.environment] to understand the concepts behind.
+A custom domain is bound to a Git branch - [Read more][docs.routing] to understand the concepts behind.
 
 </Alert>
 
@@ -119,6 +119,6 @@ You’re all set! Your custom domains will start pointing to your application, a
 As always, if you run into any trouble, [find us on chat][urls.qovery_chat] we’ll be glad to help out.
 
 
-[docs.environment]: /docs/main-concepts/environment/
+[docs.routing]: /docs/using-qovery/configuration/routing/
 [guides.deploy-your-first-application]: /guides/getting-started/deploy-your-first-application/
 [urls.qovery_chat]: https://discord.qovery.com

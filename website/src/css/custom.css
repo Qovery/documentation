@@ -81,14 +81,14 @@
     --ifm-color-warning-rgb: 255, 186, 0;
     --ifm-contents-border-color: var(--ifm-color-emphasis-75);
     --ifm-contents-padding-left: var(--ifm-spacing-horizontal);
-    --ifm-font-family-base: SFUIText, -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    --ifm-font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", SFUIText, Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     --ifm-font-family-monospace: "Source Code Pro", Menlo, monospace;
     --ifm-font-family-serif: "Source Serif Pro", Constantia, Lucida Bright, Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;
-    --ifm-font-size-base: 16px;
+    --ifm-font-size-base: 15px;
     --ifm-footer-background-color: var(--ifm-background-color);
     --ifm-footer-padding-vertical: calc(var(--ifm-spacing-vertical) * 4);
     --ifm-global-shadow-md: 0 3px 8px 0px var(--ifm-hr-border-color);
-    --ifm-h2-font-size: 2em;
+    --ifm-h2-font-size: 1.8em;
     --ifm-heading-color: #373855;
     --ifm-heading-font-family: HKGrotesk, var(--ifm-font-family-base);
     --ifm-heading-margin-bottom: calc(var(--ifm-spacing-vertical) * 3);
@@ -107,7 +107,7 @@
     --ifm-navbar-logo-width: 155px;
     --ifm-panel-background: var(--ifm-background-color);
     --ifm-panel-background-rgb: 255, 255, 255;
-    --ifm-panel-background-solid: #FFFFFF;
+    --ifm-panel-background-solid: #F9F9FD;
     --ifm-panel-background-active: rgba(var(--ifm-color-primary-rgb), 0.2);
     --ifm-panel-border-color: var(--ifm-hr-border-color);
     --ifm-panel-border-color-active: var(--ifm-color-primary);
@@ -198,6 +198,20 @@ a code {
 article header h1 {
     font-size: 2em;
 }
+
+/**
+ * headings
+ */
+
+h1, h2 {
+    letter-spacing: -1px;
+}
+
+h3 {
+    font-family: var(--ifm-heading-font-family);
+    letter-spacing: -0.5px;
+}
+
 
 /**
  * badge
@@ -920,6 +934,7 @@ header .badges .badge {
 header h1 {
     font-family: HKGrotesk, var(--ifm-font-family-base);
     font-size: 2.5em;
+    letter-spacing: -1px;
     margin-bottom: 0;
 }
 
@@ -1122,7 +1137,7 @@ input[type="text"] {
     box-sizing: border-box;
     color: var(--ifm-heading-color);
     display: inline-block;
-    font-size: calc(0.8rem * var(--ifm-button-size-multiplier));
+    font-size: calc(0.6rem * var(--ifm-button-size-multiplier));
     line-height: 1.5;
     padding: calc(var(--ifm-button-padding-vertical) * var(--ifm-button-size-multiplier)) 0.8em;
     transition: var(--ifm-transition-slow) ease;
@@ -2112,7 +2127,7 @@ ul.tabs.rounded li.tab-item.tab-item--active {
  */
 
 html[data-theme="dark"] {
-    --ifm-background-color: #373855;
+    --ifm-background-color: #151B2B;
     --ifm-background-color-rgb: 55, 56, 85;
     --ifm-color-blue: #e9eafa;
     --ifm-color-content-secondary: var(--ifm-color-emphasis-600);
@@ -2149,8 +2164,8 @@ html[data-theme="dark"] {
     --ifm-navbar-search-input-icon: url('data:image/svg+xml;utf8,<svg fill="rgb(224, 235, 247)" alt="Search" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" height="16px" width="16px"><path d="M6.02945,10.20327a4.17382,4.17382,0,1,1,4.17382-4.17382A4.15609,4.15609,0,0,1,6.02945,10.20327Zm9.69195,4.2199L10.8989,9.59979A5.88021,5.88021,0,0,0,12.058,6.02856,6.00467,6.00467,0,1,0,9.59979,10.8989l4.82338,4.82338a.89729.89729,0,0,0,1.29912,0,.89749.89749,0,0,0-.00087-1.29909Z" /></svg>');
     --ifm-panel-background: var(--ifm-color-emphasis-50);
     --ifm-panel-background-rgb: 37, 37, 50;
-    --ifm-panel-background-solid: #252532;
-    --ifm-panel-background-solid-light: #323242;
+    --ifm-panel-background-solid: #1E2433;
+    --ifm-panel-background-solid-light: #37345E;
     --ifm-panel-box-shadow: none;
     --ifm-panel-box-shadow-active: 0 0px 10px 0px rgba(var(--ifm-color-primary-rgb), 0.5);
 }

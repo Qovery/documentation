@@ -248,7 +248,7 @@ qovery application env add MY_MESSAGE "Completely new message!"
 
 Adding env variable with the same name shadows previously set value.
 
-## Deleting variable
+## Delete variable
 
 If for some reason you would like to delete variable completely, you can run:
 

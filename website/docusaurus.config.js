@@ -119,9 +119,8 @@ module.exports = {
             copyright: `© ${new Date().getFullYear()} DESIGNED BY QOVERY | BACKED BY TECHSTARS | QOVERY BY BIRDSIGHT - ALL RIGHTS RESERVED`,
         },
         algolia: {
-            appId: '8UWX20JUZ7',
-            apiKey: 'd00b02cc517347c75a0b2fd59d4354b1',
-            indexName: 'qovery_documentation',
+            apiKey: '9818067f4257abce10ba3c9855f0e0f1',
+            indexName: 'qovery',
             algoliaOptions: {}, // Optional, if provided by Algolia
         },
     },

@@ -123,6 +123,9 @@ module.exports = {
             indexName: 'qovery',
             algoliaOptions: {}, // Optional, if provided by Algolia
         },
+        googleAnalytics: {
+            trackingId: 'UA-129773960-5',
+        },
     },
     presets: [],
     plugins: [
@@ -141,12 +144,6 @@ module.exports = {
                     copyright: `Copyright © ${new Date().getFullYear()} Qovery, Inc.`,
                     baseUrl: ''
                 }
-            }
-        ],
-        [
-            '@docusaurus/plugin-google-analytics',
-            {
-                trackingID: 'UA-129773960-5',
             }
         ],
         path.resolve(__dirname, './plugins/guides'),

@@ -1,5 +1,17 @@
 ---
 title: Encryption
-description: "TODO"
+description: End to end encryption for safe data transit and storage
 ---
-!!!TODO!!!
+
+## Data in transit
+
+Data in transit between the World and Qovery is always encrypted, as all of the services which Qovery supports. Services include the Qovery CLI, management console, Documentation, Landing Page, and Back Office.
+
+Data in transit between the World and customer applications is encrypted. By default, HTTPS connections use an automatically generated Let's Encrypt certificate, or users may provide their own TLS certificate (Enterprise only).
+
+Data in transit on Qovery controlled networks (e.g., between the application and a database) use end-to-end encryption and private networking rules.
+
+
+## Data storage
+
+All application data is encrypted by using encrypted storage (typically using an AES-256 block cipher). If you have specific audit requirements surrounding data at rest encryption, please [contact us][urls.qovery_contact_us].

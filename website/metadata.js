@@ -129,7 +129,7 @@ module.exports = {
           "last_modified_on": null,
           "path": "website/guides/advanced/using-multiple-environments.md",
           "series_position": null,
-          "title": "Using multiple environments"
+          "title": "Using multiple Environments"
         }
       ],
       "name": "advanced",

@@ -13,12 +13,12 @@ module.exports = {
     },
     themeConfig: {
         disableDarkMode: false,
-        /*announcementBar: {
-            id: 'support_us', // Any value that will identify this message
-            content: 'We are looking to revamp our docs, please fill <a target="_blank" rel="noopener noreferrer" href="#">this survey</a>',
-            backgroundColor: '#fafbfc', // Defaults to `#fff`
-            textColor: '#091E42', // Defaults to `#000`
-        },*/
+        announcementBar: {
+            id: 'qovery_is_free', // Any value that will identify this message
+            content: 'Qovery is <b>free</b> for developers 🚀 - <a target="_blank" rel="noopener noreferrer" href="https://www.qovery.com/blog/qovery-is-free-for-open-source-projects">Read more</a>',
+            backgroundColor: '#3a3ca1', // Defaults to `#fff`
+            textColor: '#fff', // Defaults to `#000`
+        },
         navbar: {
             hideOnScroll: true,
             logo: {
@@ -125,7 +125,7 @@ module.exports = {
         },
         googleAnalytics: {
             trackingID: 'UA-129773960-5',
-            anonymizeIP: false,
+            anonymizeIP: true,
         },
     },
     presets: [],
@@ -149,7 +149,6 @@ module.exports = {
         ],
         path.resolve(__dirname, './plugins/guides'),
         ['@docusaurus/plugin-content-pages', {}],
-        ['@docusaurus/plugin-google-analytics', {}]
         [path.resolve(__dirname, './plugins/sitemap'), {}]
     ],
     scripts: [],

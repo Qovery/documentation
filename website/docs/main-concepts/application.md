@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-22"
+last_modified_on: "2020-04-23"
 title: "Application"
 description: "Understand the concept of Qovery application"
 ---
@@ -14,8 +14,9 @@ application:
   region: "aws/us-west-2" # refer to available regions
 ```
 
+<!---
 TODO - IMAGE - GIT REPO WITH DOCKERFILE, CONFIG AND SRC FOLDER
-
+-->
 After you commit and push this file to your repository, Qovery automatically deploys your application.
 
 <!--
@@ -41,8 +42,9 @@ databases:
   name: my-postgresql
 ```
 
+<!---
 TODO - IMAGE - GIT REPO -> DOCKERFILE + CONFIG FILE -> APPLICATION + DATABASE DEPLOYED
-
+-->
 It means you keep your infrastructure needs under version-control as a part of your application.
 
 ## Rich selection of integrated services
@@ -56,21 +58,25 @@ that you can use in your application just by adding a few lines to your config f
 | Storage         | Data storage e.g., S3           |
 | Network         | Custom DNS, SSL/TLS             |
 
+<!---
 TODO - IMAGE - DATABASES & OTHER SERVICES LOGOS
-
+-->
 After you define your needs in the configuration file, Qovery provides all the required infrastructure. Since now, all you need to do is to implement your business features!
 
 ## All languages and frameworks supported
 To make Qovery flexible and efficient, we decided to use containers as a runtime for applications. Due to this fact, Qovery can run any software you need.
 The only thing you need to do to run your applications on Qovery is to provide a Dockerfile in your application repository.
 
+<!---
 TODO - IMAGE - APPS & FRAMEWORKS LOGOS
-
+-->
 ## Consistent development environment
 At Qovery, we believe your application should behave the same on your local machine as in your production environment. We can achieve this
 using Docker runtime and **Qovery CLI** features that auto-magically run your application on your machine in the same way as it runs in production.
 
+<!---
 TODO - IMAGE - LOCAL APP == DEPLOYED APP
+-->
 
 
 

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-22"
+last_modified_on: "2020-04-23"
 title: "How Qovery works?"
 description: "Insights about the way Qovery does its job."
 ---
@@ -16,36 +16,37 @@ This document presents a high-level overview of how Qovery operates. We believe 
 ## Observing your Git repositories
 Qovery reacts to events in your Git repositories, like new commits, pull requests, or adding new branches.
 When it detects a Qovery configuration in your repository, it puts your application into a **Qovery CI/CD pipeline**.
-
+<!---
 TODO - IMAGE - GIT EVENTS?
-
+-->
 ## Integrating Git and CI/CD
 You don't need to set up your CI/CD (Continuous Integration and Continuous Deployment) pipeline. In response to Git events, we clone your repository and put it in our pipelines.
 We use a **Dockerfile** from your repository to build a Docker image of your application. We also check the infrastructure requirements
 of your application using a simple `.qovery.yml` config file.
-
+<!---
 TODO - IMAGE - GIT EVENTS -> CI/CD PIPE?
-
+-->
 ## Deploying applications on Kubernetes clusters
 After building a Docker image of your application, we make it accessible by deploying it on our **Kubernetes** clusters.
-
+<!---
 TODO - IMAGE - APPS - K8S?
-
+-->
 ## Integrating & Provisioning Cloud Infrastructure
 We make sure all databases, storage, and message brokers your application requirements are provisioned and configured. If something is missing,
 we provision it quickly and make it accessible to your application without any additional work from your side. To achieve it, we use managed services from many major cloud providers (like AWS, Azure, MongoDB Atlas, and others) - that's why our platform is so reliable.
-
+<!---
 TODO - IMAGE - APP - DATABASES & SERVICES ETC.
-
+-->
 ## Replicating your projects
 One of the most powerful features of Qovery is **Environments**. When we detect a new branch in one of your applications, we deliver a complete copy of your production environment (apps, databases, and services) so you can test new features quickly and adequately before going to production.
-
+<!---
 TODO - IMAGE - QOVERY ENVS
-
+-->
 ## Integrating other 3rd-Party services
 We make sure that using and integrating all popular cloud services (e.g., Datadog) is smooth and seamless for all your applications on Qovery.
-
+<!---
 TODO - IMAGE - SERVICES LOGOS
+-->
 
 
 

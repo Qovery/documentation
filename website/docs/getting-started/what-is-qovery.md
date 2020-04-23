@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-22"
+last_modified_on: "2020-04-23"
 title: "What is Qovery?"
 description: "High-level description of the Qovery goals and mission."
 ---
@@ -47,13 +47,15 @@ Deploying an application with Qovery is as simple as pushing your code with Git.
 
 </Steps>
 
+<!---
 TODO - IMAGE - GIT -> APP -> DEPOY
-
+-->
 ## Rich selection of integrated services
 Qovery integrates, provisions, and manages all kinds of services and infrastructure dependencies your application may need. Adding databases, storage, message brokers, and other services has never been that easy - add a few lines of configuration, and we handle the rest!
 
+<!---
 TODO - IMAGE - SERVICES LOGOS
-
+-->
 ```
 databases:
 - type: postgresql

@@ -35,7 +35,7 @@ In this guide, you will learn how to make a full use of Qovery `Environments` to
 Let's suppose you're working in a team. You and your colleagues are adding new features to one of your applications.
 For simplicity of the guide, let's suppose that this is your application:
 
-```javascript
+```javascript title="app.js"
 const http = require('http');
 
 const hostname = '0.0.0.0';
@@ -59,7 +59,7 @@ It's a simple Node.js server that returns text in HTTP body response.
 Your colleague had a task - adding jokes about Chuck Norris to server responses. 
 He is a great programmer - he created a new branch and developed a new feature:
 
-```javascript title="Your colleague's feature" {15-29}
+```javascript title="app.js - Your colleague's feature" {15-29}
 const http = require('http');
 const https = require('https');
 
@@ -113,7 +113,7 @@ So, your colleague has deployed his app to the `testing` environment.
 
 Unluckily, at the same time, you have finished your own important feature (adding the current Bitcoin price to the response!), and you also want to test it in a remote environment.
 
-```javascript title="Your own feature" {15-30}
+```javascript title="app.js - Your own feature" {15-30}
 const http = require('http');
 const https = require('https');
 

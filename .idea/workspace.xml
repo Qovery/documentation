@@ -19,8 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="change warning and success colors">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/gh-pages.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/gh-pages.yml" afterDir="false" />
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="change: domain from docsv2.qovery.com to docs.qovery.com">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docusaurus.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/docusaurus.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/website/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -160,14 +162,7 @@
       <workItem from="1587329685355" duration="1413000" />
       <workItem from="1587366223403" duration="24902000" />
       <workItem from="1587406274481" duration="12340000" />
-      <workItem from="1587451217555" duration="74894000" />
-    </task>
-    <task id="LOCAL-00013" summary="delete: src/*">
-      <created>1587201725216</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1587201725216</updated>
+      <workItem from="1587451217555" duration="75664000" />
     </task>
     <task id="LOCAL-00014" summary="feat: guides section ready to be filled">
       <created>1587206782255</created>
@@ -505,7 +500,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587654055025</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="change: domain from docsv2.qovery.com to docs.qovery.com">
+      <created>1587654115616</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1587654115616</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -566,7 +568,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="add: article &quot;how to deploy flask with postgresql&quot; &#10;add: article &quot;how to node js flask with postgresql&quot;" />
     <MESSAGE value="fix: footer logo color on Dark them" />
     <MESSAGE value="update: tags for getting-started and advanced guides" />
     <MESSAGE value="style: change sign up partial template" />
@@ -591,7 +592,8 @@
     <MESSAGE value="wip: custom routes article" />
     <MESSAGE value="change css (provided by Gaëtan)" />
     <MESSAGE value="change warning and success colors" />
-    <option name="LAST_COMMIT_MESSAGE" value="change warning and success colors" />
+    <MESSAGE value="change: domain from docsv2.qovery.com to docs.qovery.com" />
+    <option name="LAST_COMMIT_MESSAGE" value="change: domain from docsv2.qovery.com to docs.qovery.com" />
   </component>
   <component name="WindowStateProjectService">
     <state x="611" y="383" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1587213016572">
@@ -653,23 +655,23 @@
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="690" y="350" width="540" height="524" key="StructurePopup/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587398370723" />
-    <state width="536" height="488" key="SwitcherDM" timestamp="1587653845714">
+    <state width="536" height="488" key="SwitcherDM" timestamp="1587655584270">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state width="536" height="429" key="SwitcherDM/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587042928490" />
     <state width="536" height="488" key="SwitcherDM/-333.-1417.2560.1417/0.0.1920.1200@0.0.1920.1200" timestamp="1587550681508" />
-    <state width="536" height="488" key="SwitcherDM/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587653845714" />
+    <state width="536" height="488" key="SwitcherDM/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587655584270" />
     <state width="536" height="429" key="SwitcherDM/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587130320365" />
     <state width="500" height="445" key="SwitcherDM/0.23.1792.1097@0.23.1792.1097" timestamp="1586970316787" />
     <state x="100" y="100" width="1720" height="1000" key="VCS.FileHistoryDialog" timestamp="1587195128563">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="100" y="100" width="1720" height="1000" key="VCS.FileHistoryDialog/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587195128563" />
-    <state x="531" y="314" key="Vcs.Push.Dialog.v2" timestamp="1587654056601">
+    <state x="531" y="314" key="Vcs.Push.Dialog.v2" timestamp="1587654212860">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="-1389" y="408" key="Vcs.Push.Dialog.v2/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587043142882" />
-    <state x="531" y="314" key="Vcs.Push.Dialog.v2/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587654056601" />
+    <state x="531" y="314" key="Vcs.Push.Dialog.v2/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587654212860" />
     <state x="496" y="311" key="Vcs.Push.Dialog.v2/0.23.1792.1097@0.23.1792.1097" timestamp="1586945386299" />
     <state x="710" y="341" key="VcsDiffUtil.ChangesDialog" timestamp="1587578340186">
       <screen x="0" y="0" width="1920" height="1200" />
@@ -679,10 +681,10 @@
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="500" y="204" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587646911764" />
-    <state x="763" y="510" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587654039248">
+    <state x="763" y="510" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587655554757">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
-    <state x="763" y="510" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587654039248" />
+    <state x="763" y="510" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587655554757" />
     <state x="-1157" y="610" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587108608568" />
     <state x="220" y="102" width="1479" height="880" key="find.popup" timestamp="1587653711613">
       <screen x="0" y="0" width="1920" height="1200" />

@@ -123,6 +123,10 @@ module.exports = {
             indexName: 'qovery',
             algoliaOptions: {}, // Optional, if provided by Algolia
         },
+        googleAnalytics: {
+            trackingID: 'UA-129773960-5',
+            anonymizeIP: false,
+        },
     },
     presets: [],
     plugins: [
@@ -145,6 +149,7 @@ module.exports = {
         ],
         path.resolve(__dirname, './plugins/guides'),
         ['@docusaurus/plugin-content-pages', {}],
+        ['@docusaurus/plugin-google-analytics', {}]
         [path.resolve(__dirname, './plugins/sitemap'), {}]
     ],
     scripts: [],

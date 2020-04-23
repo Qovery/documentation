@@ -1,91 +1,100 @@
 module.exports = {
-  docs: [
-    {
-      type: 'category',
-      label: 'Getting Started',
-      items: [
-        <%= metadata.links.fetch_id("docs.getting-started").to_json %>,
-        <%= metadata.links.fetch_id("docs.what-is-qovery").to_json %>,
-        <%= metadata.links.fetch_id("docs.how-qovery-works").to_json %>,
-        <%= metadata.links.fetch_id("docs.quickstart").to_json %>,
-        <%= metadata.links.fetch_id("docs.whats-next").to_json %>,
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Main Concepts',
-      items: [
-        <%= metadata.links.fetch_id("docs.main-concepts").to_json %>,
-        <%= metadata.links.fetch_id("docs.main-concepts.application").to_json %>,
-        <%= metadata.links.fetch_id("docs.main-concepts.project").to_json %>,
-        <%= metadata.links.fetch_id("docs.main-concepts.environment").to_json %>,
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Using Qovery',
-      items: [
-        <%= metadata.links.fetch_id("docs.using-qovery").to_json %>,
+    docs: [
         {
-          type: 'category',
-          label: 'Configuration',
-          items: [
-            <%= metadata.links.fetch_id("docs.using-qovery.configuration").to_json %>,
-            <%= metadata.links.fetch_id("docs.using-qovery.configuration.environment-variables").to_json %>,
-            {
-              type: 'category',
-              label: 'Databases',
-              items: [
-                <%= metadata.links.fetch_id("docs.using-qovery.configuration.databases").to_json %>,
-                <%= metadata.links.fetch_id("docs.using-qovery.configuration.databases.mongodb").to_json %>,
-                <%= metadata.links.fetch_id("docs.using-qovery.configuration.databases.postgresql").to_json %>,
-                <%= metadata.links.fetch_id("docs.using-qovery.configuration.databases.mysql").to_json %>,
-              ],
-            },
-            <%= metadata.links.fetch_id("docs.using-qovery.configuration.domains").to_json %>,
-            <%= metadata.links.fetch_id("docs.using-qovery.configuration.storage").to_json %>,
-            <%= metadata.links.fetch_id("docs.using-qovery.configuration.brokers").to_json %>,
-            <%= metadata.links.fetch_id("docs.using-qovery.configuration.routing").to_json %>,
-          ]
+            type: 'category',
+            label: 'Getting Started',
+            items: [
+                <%= metadata.links.fetch_id("docs.getting-started").to_json %>,
+                <%= metadata.links.fetch_id("docs.what-is-qovery").to_json %>,
+                <%= metadata.links.fetch_id("docs.how-qovery-works").to_json %>,
+                <%= metadata.links.fetch_id("docs.quickstart").to_json %>,
+                <%= metadata.links.fetch_id("docs.whats-next").to_json %>,
+            ],
         },
         {
-          type: 'category',
-          label: 'Integration',
-          items: [
-            <%= metadata.links.fetch_id("docs.using-qovery.integration").to_json %>,
-            <%= metadata.links.fetch_id("docs.using-qovery.integration.project-templates").to_json %>,
-            <%= metadata.links.fetch_id("docs.using-qovery.integration.ide-plugins").to_json %>,
-          ]
-        }
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Security and Compliance',
-      items: [
-        <%= metadata.links.fetch_id("docs.security-and-compliance").to_json %>,
-        <%= metadata.links.fetch_id("docs.security-and-compliance.backup-and-restore").to_json %>,
-        <%= metadata.links.fetch_id("docs.security-and-compliance.encryption").to_json %>,
-        <%= metadata.links.fetch_id("docs.security-and-compliance.gdpr").to_json %>,
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Useful Links',
-      items: [
-        {
-          type: 'link',
-          label: 'API',
-          href: '<%= metadata.links.fetch_id("urls.qovery_swagger") %>'
+            type: 'category',
+            label: 'Main Concepts',
+            items: [
+                <%= metadata.links.fetch_id("docs.main-concepts").to_json %>,
+                <%= metadata.links.fetch_id("docs.main-concepts.application").to_json %>,
+                <%= metadata.links.fetch_id("docs.main-concepts.project").to_json %>,
+                <%= metadata.links.fetch_id("docs.main-concepts.environment").to_json %>,
+            ],
         },
-        <%= metadata.links.fetch_id("docs.useful-links.faq").to_json %>,
         {
-          type: 'link',
-          label: 'Roadmap',
-          href: '<%= metadata.links.fetch_id("urls.qovery_roadmap") %>'
+            type: 'category',
+            label: 'Using Qovery',
+            items: [
+                <%= metadata.links.fetch_id("docs.using-qovery").to_json %>,
+                {
+                    type: 'category',
+                    label: 'Interface',
+                    items: [
+                        <%= metadata.links.fetch_id("docs.using-qovery.interface").to_json %>,
+                        <%= metadata.links.fetch_id("docs.using-qovery.interface.cli").to_json %>,
+                        <%= metadata.links.fetch_id("docs.using-qovery.interface.web-interface").to_json %>,
+                    ]
+                },
+                {
+                    type: 'category',
+                    label: 'Configuration',
+                    items: [
+                        <%= metadata.links.fetch_id("docs.using-qovery.configuration").to_json %>,
+                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.environment-variables").to_json %>,
+                        {
+                            type: 'category',
+                            label: 'Databases',
+                            items: [
+                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.databases").to_json %>,
+                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.databases.mongodb").to_json %>,
+                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.databases.postgresql").to_json %>,
+                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.databases.mysql").to_json %>,
+                            ],
+                        },
+                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.domains").to_json %>,
+                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.storage").to_json %>,
+                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.brokers").to_json %>,
+                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.routing").to_json %>,
+                    ]
+                },
+                {
+                    type: 'category',
+                    label: 'Integration',
+                    items: [
+                        <%= metadata.links.fetch_id("docs.using-qovery.integration").to_json %>,
+                        <%= metadata.links.fetch_id("docs.using-qovery.integration.project-templates").to_json %>,
+                        <%= metadata.links.fetch_id("docs.using-qovery.integration.ide-plugins").to_json %>,
+                    ]
+                }
+            ],
         },
-        <%= metadata.links.fetch_id("docs.useful-links.help-and-support").to_json %>,
-      ],
-    },
-  ]
+        {
+            type: 'category',
+            label: 'Security and Compliance',
+            items: [
+                <%= metadata.links.fetch_id("docs.security-and-compliance").to_json %>,
+                <%= metadata.links.fetch_id("docs.security-and-compliance.backup-and-restore").to_json %>,
+                <%= metadata.links.fetch_id("docs.security-and-compliance.encryption").to_json %>,
+                <%= metadata.links.fetch_id("docs.security-and-compliance.gdpr").to_json %>,
+            ],
+        },
+        {
+            type: 'category',
+            label: 'Useful Links',
+            items: [
+                {
+                    type: 'link',
+                    label: 'API',
+                    href: '<%= metadata.links.fetch_id("urls.qovery_swagger") %>'
+                },
+                <%= metadata.links.fetch_id("docs.useful-links.faq").to_json %>,
+                {
+                    type: 'link',
+                    label: 'Roadmap',
+                    href: '<%= metadata.links.fetch_id("urls.qovery_roadmap") %>'
+                },
+                <%= metadata.links.fetch_id("docs.useful-links.help-and-support").to_json %>,
+            ],
+        },
+    ]
 };

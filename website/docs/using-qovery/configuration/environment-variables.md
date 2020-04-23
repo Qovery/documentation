@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-22"
+last_modified_on: "2020-04-23"
 title: "Environment Variables"
 description: "Learn how to configure Environment Variables on Qovery"
 ---
@@ -108,7 +108,7 @@ The highlighted command adds a variable with `environment` scope.
 
 </Alert>
 
-<Alert type="danger"> 
+<Alert type="danger">
 
 Qovery CLI is aware of your current directory and Git branch. Be sure you are in the correct application directory and Git branch (environment) before executing Qovery Environment Variables commands.
 
@@ -156,7 +156,7 @@ To delete an environment variable of application scope, run:
 qovery application env delete MY_ENV_NAME
 ```
 
-<Alert> 
+<Alert>
 
 You can not delete `BUILT_IN` variables, but you can override them!
 

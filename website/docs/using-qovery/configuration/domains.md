@@ -29,11 +29,11 @@ $ qovery status
 ```
 
 ```plain title="OUTPUT"
-BRANCHES NAME   STATUS          ENDPOINTS                       APPLICATIONS    DATABASES   BROKERS STORAGE 
-master          up and running  https://xxx-main-gtw.qovery.io  1               1           0       0       
+BRANCHES NAME   STATUS          ENDPOINTS                       APPLICATIONS    DATABASES   BROKERS STORAGE
+master          up and running  https://xxx-main-gtw.qovery.io  1               1           0       0
 
-APPLICATIONS NAME   STATUS          ENDPOINTS                       DATABASES   BROKERS STORAGE 
-simple-example      up and running  https://yyy-xxx-app.qovery.io   1           0       0       
+APPLICATIONS NAME   STATUS          ENDPOINTS                       DATABASES   BROKERS STORAGE
+simple-example      up and running  https://yyy-xxx-app.qovery.io   1           0       0
 ```
 
 ## Custom Domains

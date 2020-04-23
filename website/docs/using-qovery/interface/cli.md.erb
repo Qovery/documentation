@@ -1,0 +1,61 @@
+---
+title: CLI
+description: How to use the Qovery CLI (Command Line Interface)
+---
+import Alert from '@site/src/components/Alert';
+
+Qovery provides a very easy to use CLI (Command Line Interface) designed to perfectly fit the developer workflow.
+
+<Alert type="warning">
+
+When you type a command, the CLI is aware of your current [project][docs.project], [application][docs.application] and [environment][docs.environment]. Which is very convenient!
+
+</Alert>
+
+## First usage
+
+<%= qovery_sign_up() %>
+
+### Help
+
+You can see all the commands available by executing:
+
+```bash
+$ qovery help
+```
+
+```bash title="Help output"
+The qovery command line interface lets you manage your Qovery environment.
+
+Usage:
+  qovery [command]
+
+Available Commands:
+  application Perform application actions
+  auth        Do authentication
+  database    Perform database actions
+  deploy      Perform deploy actions
+  domain      Perform domain actions
+  environment Perform environment actions
+  help        Help about any command
+  init        Do project initialization to use Qovery
+  log         Show application logs
+  project     Perform project actions
+  redeploy    Redeploys your application
+  run         Equivalent to 'docker build' and 'docker run' but with Qovery magic sauce
+  status      Show status from current project and environment
+  template    Perform templating actions
+  upgrade     Upgrade Qovery CLI to latest version
+  validate    Validate the current config is valid
+  version     Print version information for the Qovery CLI
+
+Flags:
+      --debug   Enable debugging when true.
+  -h, --help    help for qovery
+
+Use "qovery [command] --help" for more information about a command.
+```
+
+## Next steps
+
+Now that you have installed the CLI, check out [how to deploy your first application][guides.deploy-your-first-application]

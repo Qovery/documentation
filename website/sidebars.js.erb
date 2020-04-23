@@ -64,10 +64,9 @@ module.exports = {
       label: 'Security and Compliance',
       items: [
         <%= metadata.links.fetch_id("docs.security-and-compliance").to_json %>,
-        <%= metadata.links.fetch_id("docs.security-and-compliance.gdpr").to_json %>,
-        <%= metadata.links.fetch_id("docs.security-and-compliance.data").to_json %>,
-        <%= metadata.links.fetch_id("docs.security-and-compliance.encryption").to_json %>,
         <%= metadata.links.fetch_id("docs.security-and-compliance.backup-and-restore").to_json %>,
+        <%= metadata.links.fetch_id("docs.security-and-compliance.encryption").to_json %>,
+        <%= metadata.links.fetch_id("docs.security-and-compliance.gdpr").to_json %>,
       ],
     },
     {

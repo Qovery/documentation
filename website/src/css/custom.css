@@ -76,9 +76,10 @@
     --ifm-color-purple: #9988ff;
     --ifm-color-purple-rgb: 153, 136, 255;
     --ifm-color-secondary: var(--ifm-color-emphasis-100);
-    --ifm-color-success: #00ff7f;
-    --ifm-color-success-rgb: 0, 255, 127;
-    --ifm-color-warning-rgb: 255, 186, 0;
+    --ifm-color-success: #01b83b;
+    --ifm-color-success-rgb: 1, 184, 59;
+    --ifm-color-warning: #ff6f00;
+    --ifm-color-warning-rgb: 255, 111, 0;
     --ifm-contents-border-color: var(--ifm-color-emphasis-75);
     --ifm-contents-padding-left: var(--ifm-spacing-horizontal);
     --ifm-font-family-base: -apple-system, BlinkMacSystemFont, "Segoe UI", SFUIText, Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";

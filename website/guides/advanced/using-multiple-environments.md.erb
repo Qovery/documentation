@@ -47,7 +47,7 @@ It's a simple Node.js server that returns text in HTTP body response.
 
 ## Adding new features
 
-Your colleague had a task - adding jokes about Chuck Norris to server responses. 
+Your colleague had a task - adding jokes about Chuck Norris to server responses.
 He is a great programmer - he created a new branch and developed a new feature:
 
 ```javascript title="app.js - Your colleague's feature" {15-29}
@@ -88,7 +88,7 @@ He tested his code locally:
 $ curl http://localhost:3333
 Hello from undefined environment!
 
-Enjoy a high quality joke: Chuck Norris can unscramble an egg⏎    
+Enjoy a high quality joke: Chuck Norris can unscramble an egg⏎
 ```
 
 It works! A great joke appears in the response. Great! But your colleague is a smart guy - he wanted to make sure that his feature also
@@ -137,7 +137,7 @@ const myFeature = (r) => {
 }
 ```
 
-You have your own separate Git branch, so your changes are not a part of your friend's version of the application. 
+You have your own separate Git branch, so your changes are not a part of your friend's version of the application.
 
 You can't test your changes at the same time with your colleague in one environment!
 During the time your friend tests his code, your feature can not be finished and delivered to the production.
@@ -196,9 +196,7 @@ and finally:
 
 ```bash title="Response from production environment"
 $ curl https://main-gezg7nlejmutwjsn-gtw.qovery.io/
-Hello from master environment!    
+Hello from master environment!
 ```
 
 Now, you can play a bit and make some changes. After you commit and push, your application is automatically updated in the appropriate environment, depending on which branch you are working in.
-
-<%= subpages() %>

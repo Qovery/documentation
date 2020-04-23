@@ -19,25 +19,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="feat: add GTAG">
-      <change afterPath="$PROJECT_DIR$/website/docs/using-qovery/interface.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/docs/using-qovery/interface.md.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/docs/using-qovery/interface/cli.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/docs/using-qovery/interface/cli.md.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/docs/using-qovery/interface/web-interface.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/docs/using-qovery/interface/web-interface.md.erb" afterDir="false" />
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="feat: add interface, cli and web interface pages">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/brokers.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/brokers.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/domains.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/domains.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/domains.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/domains.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/environment-variables.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/environment-variables.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/environment-variables.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/environment-variables.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/storage.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/storage.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/integration/ide-plugins.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/integration/ide-plugins.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/integration/project-templates.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/integration/project-templates.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/sidebars.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/sidebars.js.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.js.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/custom-routes.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/custom-routes.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/custom-routes.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/custom-routes.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/using-multiple-environments.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/using-multiple-environments.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/using-multiple-environments.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/using-multiple-environments.md.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,14 +164,7 @@
       <workItem from="1587329685355" duration="1413000" />
       <workItem from="1587366223403" duration="24902000" />
       <workItem from="1587406274481" duration="12340000" />
-      <workItem from="1587451217555" duration="79570000" />
-    </task>
-    <task id="LOCAL-00015" summary="style: fix logo">
-      <created>1587212247547</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1587212247547</updated>
+      <workItem from="1587451217555" duration="81724000" />
     </task>
     <task id="LOCAL-00016" summary="style: fix static build">
       <created>1587228888723</created>
@@ -522,7 +502,14 @@
       <option name="project" value="LOCAL" />
       <updated>1587655664562</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="feat: add interface, cli and web interface pages">
+      <created>1587671321393</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1587671321393</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -583,7 +570,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="update: tags for getting-started and advanced guides" />
     <MESSAGE value="style: change sign up partial template" />
     <MESSAGE value="fix: minor changes on docs" />
     <MESSAGE value="feat: article &quot;deploy your first application&quot;" />
@@ -608,7 +594,8 @@
     <MESSAGE value="change warning and success colors" />
     <MESSAGE value="change: domain from docsv2.qovery.com to docs.qovery.com" />
     <MESSAGE value="feat: add GTAG" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: add GTAG" />
+    <MESSAGE value="feat: add interface, cli and web interface pages" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add interface, cli and web interface pages" />
   </component>
   <component name="WindowStateProjectService">
     <state x="611" y="383" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1587213016572">
@@ -670,23 +657,23 @@
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="690" y="350" width="540" height="524" key="StructurePopup/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587398370723" />
-    <state width="536" height="488" key="SwitcherDM" timestamp="1587670865985">
+    <state width="536" height="488" key="SwitcherDM" timestamp="1587673677062">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state width="536" height="429" key="SwitcherDM/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587042928490" />
     <state width="536" height="488" key="SwitcherDM/-333.-1417.2560.1417/0.0.1920.1200@0.0.1920.1200" timestamp="1587550681508" />
-    <state width="536" height="488" key="SwitcherDM/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587670865985" />
+    <state width="536" height="488" key="SwitcherDM/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587673677062" />
     <state width="536" height="429" key="SwitcherDM/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587130320365" />
     <state width="500" height="445" key="SwitcherDM/0.23.1792.1097@0.23.1792.1097" timestamp="1586970316787" />
     <state x="100" y="100" width="1720" height="1000" key="VCS.FileHistoryDialog" timestamp="1587195128563">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="100" y="100" width="1720" height="1000" key="VCS.FileHistoryDialog/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587195128563" />
-    <state x="531" y="314" key="Vcs.Push.Dialog.v2" timestamp="1587655666128">
+    <state x="531" y="314" key="Vcs.Push.Dialog.v2" timestamp="1587671322755">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="-1389" y="408" key="Vcs.Push.Dialog.v2/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587043142882" />
-    <state x="531" y="314" key="Vcs.Push.Dialog.v2/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587655666128" />
+    <state x="531" y="314" key="Vcs.Push.Dialog.v2/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587671322755" />
     <state x="496" y="311" key="Vcs.Push.Dialog.v2/0.23.1792.1097@0.23.1792.1097" timestamp="1586945386299" />
     <state x="710" y="341" key="VcsDiffUtil.ChangesDialog" timestamp="1587578340186">
       <screen x="0" y="0" width="1920" height="1200" />
@@ -709,12 +696,12 @@
     <state x="220" y="102" width="1479" height="880" key="find.popup/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587653711613" />
     <state x="-1285" y="429" width="964" height="578" key="find.popup/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587130747733" />
     <state x="593" y="302" width="964" height="578" key="find.popup/0.23.1792.1097@0.23.1792.1097" timestamp="1586971117204" />
-    <state x="601" y="218" width="718" height="741" key="search.everywhere.popup" timestamp="1587670318261">
+    <state x="601" y="218" width="718" height="741" key="search.everywhere.popup" timestamp="1587673481522">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="-1319" y="323" width="718" height="652" key="search.everywhere.popup/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587040363911" />
     <state x="561" y="222" width="670" height="676" key="search.everywhere.popup/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@0.23.1792.1097" timestamp="1587014900518" />
-    <state x="601" y="218" width="718" height="741" key="search.everywhere.popup/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587670318261" />
+    <state x="601" y="218" width="718" height="741" key="search.everywhere.popup/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587673481522" />
     <state x="-1319" y="353" width="718" height="652" key="search.everywhere.popup/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587131778361" />
     <state x="561" y="222" width="670" height="676" key="search.everywhere.popup/0.23.1792.1097@0.23.1792.1097" timestamp="1586971120732" />
   </component>

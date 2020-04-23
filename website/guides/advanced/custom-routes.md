@@ -24,7 +24,7 @@ No network knowledge is required to create your custom routes
 <Assumptions>
 
 * You have installed the [Qovery CLI][guides.deploy-your-first-application]
-* You have deployed at least 2 applications with Qovery
+* You need to deploy more than one application (e.g backend and frontend)
 
 </Assumptions>
 
@@ -180,17 +180,85 @@ Every router on Qovery automatically gets a free `qovery.io` address which does 
 
 </Alert>
 
-## Example
-TODO
+# Example
+Here is a concrete example to show how custom routes could be your best friend in a real-world application.
 
-### Backend
-TODO
+## The e-commerce website
+Let's imagine that we have to build an e-commerce website which gives the possibility to order shoes. This website must be able to take orders and provide an invoice for each order. Our system has one web interface, one order service, and one billing service that is for each of them an independent application.
 
-### Frontend
-TODO
+What do we want?
+* The **web interface** must be available through **shopping.com** and **www.shopping.com**
+* The **order** service must be available through **api.shopping.com/order**
+* The **billing** service must be available through **api.shopping.com/billing** as well
+* The traffic coming on `api.shopping.com` and not covered by the two rules above must be routed on **order**
 
-## Next steps
-TODO
+This is what the custom routing definition looks like for each of them
+
+### Web interface
+Here is what the `.qovery.yml` looks like for the web interface:
+
+```yaml title=".qovery.yml web interface" {7-16}
+application:
+  name: web-interface
+  project: my-ecommerce-project
+  cloud_region: aws/us-west-2
+  publicly_accessible: true
+routers:
+- name: frontend
+  custom_domains:
+  - branch: master
+    domain: shopping.com
+  - branch: master
+    domain: www.shopping.com
+  routes:
+  - application_name: web-interface
+    paths:
+    - /
+```
+
+### Order service
+Here is what the `.qovery.yml` looks like for the order service:
+
+```yaml title=".qovery.yml order service" {7-16}
+application:
+  name: order-service
+  project: my-ecommerce-project
+  cloud_region: aws/us-west-2
+  publicly_accessible: true
+routers:
+- name: backend
+  custom_domains:
+  - branch: master
+    domain: api.shopping.com
+  routes:
+  - application_name: order-service
+    paths:
+    - /
+    - /order/
+```
+
+### Billing service
+Here is what the `.qovery.yml` looks like for the billing service:
+
+```yaml title=".qovery.yml billing service" {7-15}
+application:
+  name: billing-service
+  project: my-ecommerce-project
+  cloud_region: aws/us-west-2
+  publicly_accessible: true
+routers:
+- name: backend
+  custom_domains:
+  - branch: master
+    domain: api.shopping.com
+  routes:
+  - application_name: billing-service
+    paths:
+    - /billing/
+```
+
+At the end, `api.shopping.com`, `shopping.com` and `www.shopping.com` work as expected.
+Happy custom routing.
 
 
 [docs.environment]: /docs/main-concepts/environment/

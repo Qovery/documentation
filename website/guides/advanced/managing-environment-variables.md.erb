@@ -7,7 +7,8 @@ tags: ["type: guide"]
 ---
 import Steps from '@site/src/components/Steps';
 
-A well designed application can run in multiple environments. Its configuration is not hard-coded in the source code, but instead extracted and allowed to be adjustable appropriately for different situations.
+A well designed application can run in multiple environments. 
+Its configuration is not hard-coded in the source code, but instead extracted and allowed to be adjustable appropriately for different situations.
 Although apps run the same code, they may use different, environment-specific configuration. 
 
 For example, your application may use a different instance of database on your machine than in a production environment (thus, database credentials and addresses should be configurable).
@@ -72,14 +73,10 @@ Let's first create a new Node.js application that uses environment variables.
 
 </Steps>
 
-At this stage, your file structure should look like this:
-
-TODO IMG
-
 Now, initialize a Git repository in this directory and publish it to your Github. After it's done, your app should be deployed quickly:
 
 ```bash title="Check app status"
-`qovery status`
+qovery status
 ```
 
 ```plain title="OUTPUT"
@@ -92,11 +89,11 @@ node-app         | running |          | none
 
 When you hit the application endpoint (using `curl` or your browser), you'll see an empty response:
 
-```title="Invoke application endpoint"
+```bash title="Invoke application endpoint"
 $ curl https://main-im6qagd2nmnrfqax-gtw.qovery.io
 ```
 
-```title="OUTPUT"
+```bash title="OUTPUT"
 ```
 
 Why is that? That's because... we did not set `MY_MESSAGE` environment variable that we use in our application.
@@ -130,11 +127,11 @@ qovery redeploy
 
 Your application should be back up shortly after redeployment. You can track the status using `qovery status` command. After it's running again, test the app's endpoint:
 
-```title="Invoke application endpoint"
+```bash title="Invoke application endpoint"
 $ curl https://main-im6qagd2nmnrfqax-gtw.qovery.io
 ```
 
-```title="OUTPUT"
+```bash title="OUTPUT"
 Hello World from Qovery!
 ```
 
@@ -164,7 +161,7 @@ routers:
     - /*
 ```
 
-Add the highlighted part to your Qovery config, commit and push. Voila! In a few minutes, our MongoDB instance is available to the application. To track this process, run 'qovery status'.
+Add the highlighted part to your Qovery config, commit and push. Voila! In a few minutes, our MongoDB instance is available to the application. To track this process, run `qovery status`.
 
 After the database is deployed, we need to know a few details about it to use it in the application.
 
@@ -198,16 +195,16 @@ If we need a value of one of `BUILT_IN` variables (like Qovery database credenti
 Let's see it in action:
 
 ```bash title="Create variable alias"
-qovery application env add MONGO_URI '$QOVERY_DATABASE_MY_MONGO_CONNECTION_URI_WITHOUT_CREDENTIALS'
+qovery application env add MONGO_URI '$QOVERY_DATABASE_MY_MONGO_CONNECTION_URI'
 ```
 
-After running the command from above, we should see a new env variable added with the value of `QOVERY_DATABASE_MY_MONGO_CONNECTION_URI_WITHOUT_CREDENTIALS`:
+After running the command from above, we should see a new env variable added with the value of `QOVERY_DATABASE_MY_MONGO_CONNECTION_URI`:
 
 ```bash title="List variables"
 qovery application env list
 ```
 
-```title="OUTPUT"
+```bash title="OUTPUT"
 SCOPE       | KEY                                                         | VALUE                     
 BUILT_IN    | QOVERY_JSON_B64                                             | <base64>                  
 BUILT_IN    | QOVERY_BRANCH_NAME                                          | master                    
@@ -228,7 +225,7 @@ APPLICATION | MONGO_URI                                                   | <hid
 APPLICATION | MY_MESSAGE                                                  | Hello World from Qovery! 
 ```
 
-Above, you can see that the env was added. Run the same command with `-c` flag to see that its value is in fact the same as `QOVERY_DATABASE_MY_MONGO_CONNECTION_URI_WITHOUT_CREDENTIALS`.
+Above, you can see that the env was added. Run the same command with `-c` flag to see that its value is in fact the same as `QOVERY_DATABASE_MY_MONGO_CONNECTION_URI`.
 
 Now, we can use `MONGO_URI` environment variable to connect our application to MongoDB!
 
@@ -252,11 +249,11 @@ qovery application env delete MY_MESSAGE
 
 That's all; it's gone.
 
-## Final words - scopes of env variables
+## Scopes of variables
 
 So far, we have used just one branch (environment) and only one env variable scope (`application` scope).
 
-To see what I mean, run:
+To see what it means, run:
 
 ```bash title="Create a new branch"
 git checkout -b another_branch
@@ -269,7 +266,7 @@ Run `qovery application env list`. What do you see? Env variables we set previou
 
 On Qovery, we have a few levels of environment variables. `BUILT_IN` variables are automatically created and injected by Qovery.
 `APPLICATION` variables are bound to *single application in one environment* (Git branch). `ENVIRONMENT` scope variables are bound to the environment,
-so they're accessible by all applications in a given environment. The last scope - `PROJECT` scope - makes a given variable accessible to everywhere (all apps, all environments).
+so they're accessible by all applications in a given environment. The last scope - `PROJECT` scope - makes a given variable accessible everywhere (all apps, all environments).
 
 To select the scope of variables that you are adding/removing/listing, use the CLI as follows:
 

@@ -150,7 +150,13 @@ module.exports = {
         ['@docusaurus/plugin-content-pages', {}],
         [path.resolve(__dirname, './plugins/sitemap'), {}]
     ],
-    scripts: [],
+    scripts: [
+        {
+            src: 'https://www.googletagmanager.com/gtag/js?id=UA-129773960-5',
+            async: true,
+        },
+        '/js/ga.js'
+    ],
     stylesheets: [
         'https://fonts.googleapis.com/css?family=Ubuntu|Roboto|Source+Code+Pro',
         'https://at-ui.github.io/feather-font/css/iconfont.css'

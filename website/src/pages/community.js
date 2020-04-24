@@ -56,23 +56,6 @@ function Community() {
                         </div>
                     </div>
                 </section>
-                <section>
-                    <div className="container">
-                        <AnchoredH2 id="contribute">Contribute</AnchoredH2>
-
-                        <p>
-                            Qovery is <a href="https://github.com/qovery">open-source</a> and welcomes contributions. A few guidelines to
-                            help you get started:
-                        </p>
-                        <ol>
-                            <li>Read our <a href="https://github.com/qovery/documentation/blob/master/CONTRIBUTING.md">contribution
-                                guide</a>.
-                            </li>
-                            <li>Start with <a href="https://github.com/qovery/documentation/contribute">good first issues</a>.</li>
-                            <li>Join our <a href="https://discord.qovery.com">chat</a> if you have any questions.</li>
-                        </ol>
-                    </div>
-                </section>
             </main>
         </Layout>
     );

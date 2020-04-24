@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-20"
+last_modified_on: "2020-04-24"
 $schema: "/.meta/.schemas/guides.json"
 title: GraphQL API with Hasura
 description: How to build and deploy realtime GraphQL APIs in a few minutes
@@ -56,7 +56,7 @@ Deploying Hasura on Qovery is really easy. All you have to do is to bootstrap a 
 
 1/ Bootstrap a project with Qovery CLI (the script will ask you for project and application name, which you can choose as you like)
 ```bash
-qovery template hasura
+qovery init -t hasura
 ```
 2/ Point Hasura to your Postgres database and enable Hasura Console using environment variables
 ```bash

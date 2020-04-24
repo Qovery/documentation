@@ -14,22 +14,27 @@ module.exports = {
   ],
   "frameworks": [
     {
+      "dark_logo_path": "/img/logos/hasura_white.svg",
       "logo_path": "/img/logos/hasura.svg",
       "name": "hasura"
     },
     {
+      "dark_logo_path": "/img/logos/laravel.svg",
       "logo_path": "/img/logos/laravel.svg",
       "name": "laravel"
     },
     {
+      "dark_logo_path": "/img/logos/springboot.svg",
       "logo_path": "/img/logos/springboot.svg",
       "name": "springboot"
     },
     {
+      "dark_logo_path": "/img/logos/nodejs.svg",
       "logo_path": "/img/logos/nodejs.svg",
       "name": "nodejs"
     },
     {
+      "dark_logo_path": "/img/logos/flask_white.svg",
       "logo_path": "/img/logos/flask.svg",
       "name": "flask"
     }
@@ -208,22 +213,27 @@ module.exports = {
   },
   "languages": [
     {
+      "dark_logo_path": "/img/logos/php.svg",
       "logo_path": "/img/logos/php.svg",
       "name": "php"
     },
     {
+      "dark_logo_path": "/img/logos/kotlin.svg",
       "logo_path": "/img/logos/kotlin.svg",
       "name": "kotlin"
     },
     {
+      "dark_logo_path": "/img/logos/java.svg",
       "logo_path": "/img/logos/java.svg",
       "name": "java"
     },
     {
+      "dark_logo_path": "/img/logos/javascript.svg",
       "logo_path": "/img/logos/javascript.svg",
       "name": "javascript"
     },
     {
+      "dark_logo_path": "/img/logos/python.svg",
       "logo_path": "/img/logos/python.svg",
       "name": "python"
     }

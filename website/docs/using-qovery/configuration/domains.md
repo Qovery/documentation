@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-23"
+last_modified_on: "2020-04-24"
 title: "Domains"
 description: "Learn how to configure custom Domains on Qovery"
 ---
@@ -59,7 +59,7 @@ Adding the highlighted lines like in the configuration file above exposes your a
 done, you have to confirm that the domain is yours.
 
 ```bash title="List domains"
-qovery list domains
+qovery domain list
 ```
 
 ```plain title="OUTPUT"

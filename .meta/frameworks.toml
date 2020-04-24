@@ -1,19 +1,24 @@
 [[frameworks]]
 name = "hasura"
 logo_path = "/img/logos/hasura.svg"
+dark_logo_path = "/img/logos/hasura_white.svg"
 
 [[frameworks]]
 name = "laravel"
 logo_path = "/img/logos/laravel.svg"
+dark_logo_path = "/img/logos/laravel.svg"
 
 [[frameworks]]
 name = "springboot"
 logo_path = "/img/logos/springboot.svg"
+dark_logo_path = "/img/logos/springboot.svg"
 
 [[frameworks]]
 name = "nodejs"
 logo_path = "/img/logos/nodejs.svg"
+dark_logo_path = "/img/logos/nodejs.svg"
 
 [[frameworks]]
 name = "flask"
 logo_path = "/img/logos/flask.svg"
+dark_logo_path = "/img/logos/flask_white.svg"

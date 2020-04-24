@@ -4,6 +4,7 @@ import SVG from 'react-inlinesvg';
 import Tags from '@site/src/components/Tags';
 import {enrichTags} from '@site/src/exports/tags';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import useThemeContext from '@theme/hooks/useThemeContext';
 
 import './styles.css';
 
@@ -13,6 +14,7 @@ function GuideItem(props) {
         metadata,
         isGuidePage = false,
     } = props;
+    const {isDarkTheme} = useThemeContext();
     const {categories, description, permalink, readingTime, seriesPosition, tags} = metadata;
     const {author_github, cover_label: coverLabel, last_modified_on: lastModifiedOn, title} = frontMatter;
     const enrichedTags = enrichTags(tags, 'guides');
@@ -43,9 +45,17 @@ function GuideItem(props) {
     let sourceLogoPath = null;
 
     if (framework) {
-        sourceLogoPath = framework.logo_path;
+        if (isDarkTheme) {
+            sourceLogoPath = framework.dark_logo_path;
+        } else {
+            sourceLogoPath = framework.logo_path;
+        }
     } else if (language) {
-        sourceLogoPath = language.logo_path;
+        if (isDarkTheme) {
+            sourceLogoPath = language.dark_logo_path;
+        } else {
+            sourceLogoPath = language.logo_path;
+        }
     } else if (platform) {
         sourceLogoPath = platform.logo_path;
     } else if (source) {

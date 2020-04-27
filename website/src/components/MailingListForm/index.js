@@ -37,7 +37,7 @@ const MailingListForm = ({ block, buttonClass, center, description, size, width 
       )}
       {!subscribed &&
         <form onSubmit={e => handleSubmit(e)} className={classnames("mailing-list--form")}>
-          <input className={classnames('input', `input--${size}`)} name="email" placeholder="you@email.com" type="email" style={{ width: width }} />
+          <input onChange={e => setEmail(e.target.value)} className={classnames('input', `input--${size}`)} name="email" placeholder="you@email.com" type="email" style={{ width: width }} />
           <button className={classnames('button', `button--${buttonClass || 'primary'}`, `button--${size}`)} type="submit">Subscribe</button>
           {err && <span>Something went wrong :(</span>}
         </form>}

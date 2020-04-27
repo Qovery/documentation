@@ -12,9 +12,9 @@ import { validate } from 'email-validator';
  *  or rejects an error object
  */
 
-const subscribeEmailToMailchimp = () =>
+const subscribeEmailToMailchimp = (url) =>
     new Promise((resolve, reject) =>
-        jsonp('https://qovery.us4.list-manage.com/subscribe/post-json?u=3c76e7a2087d5bc4020348c46&amp;id=63bd993879', { param: 'c', timeout: 3500 }, (err, data) => {
+        jsonp(url, { param: 'c', timeout: 3500 }, (err, data) => {
             if (err) reject(err);
             if (data) resolve(data);
         }),
@@ -80,7 +80,7 @@ const addToMailchimp = function addToMailchimp(email, fields, endpointOverride) 
     const queryParams = `&EMAIL=${emailEncoded}${convertListFields(fields)}`;
     const url = `${endpoint}${queryParams}`;
 
-    return subscribeEmailToMailchimp();
+    return subscribeEmailToMailchimp(url);
 };
 
 export default addToMailchimp;

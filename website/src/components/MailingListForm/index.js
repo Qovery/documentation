@@ -15,15 +15,17 @@ const MailingListForm = ({ block, buttonClass, center, description, size, width 
     console.log(email)
     e.preventDefault();
     addToMailchimp(email)
-      .then(data => {
-        setSubscribed(true)
-        console.log(data)
-        if (err) {
-          setErr(false)
+      .then(res => {
+        if (res.result === 'success') {
+          setSubscribed(true)
+          if (err) {
+            setErr(false)
+          }
+        } else {
+            setErr(true)
         }
       })
       .catch(e => {
-        console.log(e)
         setErr(true)
       })
   }
@@ -39,10 +41,10 @@ const MailingListForm = ({ block, buttonClass, center, description, size, width 
         <form onSubmit={e => handleSubmit(e)} className={classnames("mailing-list--form")}>
           <input onChange={e => setEmail(e.target.value)} className={classnames('input', `input--${size}`)} name="email" placeholder="you@email.com" type="email" style={{ width: width }} />
           <button className={classnames('button', `button--${buttonClass || 'primary'}`, `button--${size}`)} type="submit">Subscribe</button>
-          {err && <span>Something went wrong :(</span>}
         </form>}
+        {err && <span className="badge badge--secondary">Something went wrong :(</span>}
       <div style={{ textAlign: 'center' }}>
-        {subscribed && <span>Thanks!</span>}
+        {subscribed && <span className="badge badge--primary">Subscribed!</span>}
       </div>
     </div>
   );

@@ -41,6 +41,7 @@ module.exports = {
                     items: [
                         "using-qovery/configuration",
                         "using-qovery/configuration/environment-variables",
+                        "using-qovery/configuration/secrets",
                         {
                             type: 'category',
                             label: 'Databases',

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-22"
+last_modified_on: "2020-04-27"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy Laravel with MySQL on Qovery
 description: How to deploy a Laravel application with the MySQL database on Qovery
@@ -320,4 +320,4 @@ Accelerate your development and start using Qovery today. Let us know what you t
 [urls.qovery_cli_releases]: https://github.com/Qovery/qovery-cli/releases
 [urls.qovery_twitter]: https://twitter.com/qovery_
 [urls.sample_laravel_with_mysql]: https://github.com/Qovery/docker-simple-example-laravel
-[urls.scoop]: https://brew.sh/
+[urls.scoop]: https://scoop.sh/

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-21"
+last_modified_on: "2020-04-27"
 $schema: "/.meta/.schemas/guides.json"
 title: URL Shortener API with Kotlin (Part 1/2)
 description: Create a URL shortener API with Kotlin, the micro-framework Ktor and PostgreSQL
@@ -666,4 +666,4 @@ We have seen that creating an URL shortener API with Ktor and Kotlin is extremel
 [urls.authorize_qovery]: https://github.com/apps/qovery/installations/new
 [urls.brew]: https://brew.sh/
 [urls.qovery_cli_releases]: https://github.com/Qovery/qovery-cli/releases
-[urls.scoop]: https://brew.sh/
+[urls.scoop]: https://scoop.sh/

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-23"
+last_modified_on: "2020-04-27"
 title: CLI
 description: How to use the Qovery CLI (Command Line Interface)
 ---
@@ -193,4 +193,4 @@ Now that you have installed the CLI, check out [how to deploy your first applica
 [urls.authorize_qovery]: https://github.com/apps/qovery/installations/new
 [urls.brew]: https://brew.sh/
 [urls.qovery_cli_releases]: https://github.com/Qovery/qovery-cli/releases
-[urls.scoop]: https://brew.sh/
+[urls.scoop]: https://scoop.sh/

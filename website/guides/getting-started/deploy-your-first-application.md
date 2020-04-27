@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-22"
+last_modified_on: "2020-04-27"
 $schema: "/.meta/.schemas/guides.json"
 title: Hello World. Deploy your first application.
 description: How to deploy your first application with Qovery
@@ -171,11 +171,11 @@ Congratulations, you are logged-in.
 
 </Alert>
 
-**Fork** this [NodeJS application](https://github.com/Qovery/simple-example-node), and clone the repository:
+**Fork** this [NodeJS application](https://github.com/Qovery/simple-example-node), and **Clone** your repository
 
-```bash
-# Clone the sample application
-$ git clone git@github.com:Qovery/simple-example-node.git
+```bash title="Clone your forked application"
+# Change <your_name> with your Github account name
+$ git clone git@github.com:<your_name>/simple-example-node.git
 ```
 
 Qovery has deployed the application, to get the deployment status:
@@ -239,4 +239,4 @@ To deploy your application, it's as simple as that. In the following article, we
 [urls.node_js]: https://nodejs.org
 [urls.qovery_chat]: https://discord.qovery.com
 [urls.qovery_cli_releases]: https://github.com/Qovery/qovery-cli/releases
-[urls.scoop]: https://brew.sh/
+[urls.scoop]: https://scoop.sh/

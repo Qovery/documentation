@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-22"
+last_modified_on: "2020-04-27"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy Spring Boot with PostgreSQL on Qovery
 description: How to deploy a Spring Boot application with the PostgreSQL database on Qovery
@@ -317,5 +317,5 @@ Accelerate your development and start using Qovery today. Let us know what you t
 [urls.qovery_cli_releases]: https://github.com/Qovery/qovery-cli/releases
 [urls.qovery_twitter]: https://twitter.com/qovery_
 [urls.sample_spring_boot_with_postgresql]: https://github.com/Qovery/simple-example-with-postgresql
-[urls.scoop]: https://brew.sh/
+[urls.scoop]: https://scoop.sh/
 [urls.spring_boot]: https://spring.io/projects/spring-boot

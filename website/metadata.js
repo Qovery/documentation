@@ -267,6 +267,11 @@ module.exports = {
       "name": "python"
     },
     {
+      "dark_logo_path": "/img/logos/rust_white.svg",
+      "logo_path": "/img/logos/rust.svg",
+      "name": "rust"
+    },
+    {
       "dark_logo_path": "/img/logos/go.svg",
       "logo_path": "/img/logos/go.svg",
       "name": "go"

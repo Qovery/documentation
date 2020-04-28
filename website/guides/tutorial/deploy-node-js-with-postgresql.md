@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-27"
+last_modified_on: "2020-04-28"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy Node.JS with PostgreSQL on Qovery
 description: How to deploy a Node.JS application with the PostgreSQL database on Qovery
@@ -17,15 +17,15 @@ import Alert from '@site/src/components/Alert';
 
 [AWS][urls.aws] (Amazon Web Services) is a fantastic and reliable cloud service provider. AWS, like [GCP][urls.gcp] (Google Cloud Platform) and Microsoft [Azure][urls.azure], provides everything you need to host an application without having to worry about running the underlying servers and network configuration.
 
-However, deploying an application on any of these Cloud provider presents some challenges. The typical deployment workflow looks like this: write code, push it to Git, compile code, deploy code, validate your changes, and repeat. Developers thus not only have to do all of this manually, but they also have to configure tons of services (VPC, database, cache, DNS, CDN, etc.) to make their application live on the web.
+However, deploying an application on any of those cloud providers presents many challenges. The typical deployment workflow looks like this: write code, push it to Git repository, compile code, deploy code, validate your changes, and repeat. Developers not only have to take care of all of this by themselves, but they also have to configure tons of services (like VPCs, databases, caches, DNS, CDN, and others) to make their application live on the web.
 
-Qovery solves this problem by combining the reliability of AWS, and the simplicity of Heroku to augment the developer experience.
+Qovery solves this problem by combining the reliability of AWS and the simplicity of Heroku to augment the developer experience.
 
-In this blog post, I will show you how Qovery improves the developer experience to deploy staging and production [NodeJS][urls.node_js] application with [PostgreSQL][urls.postgresql] database on Qovery. You will be able to focus on writing the best code instead of managing complex services.
+In this blog post, I will show you how Qovery improves developers' workflows by deploying staging and production [NodeJS][urls.node_js] application with [PostgreSQL][urls.postgresql] database on Qovery. You will be able to focus on writing the best code and delivering business value instead of managing complex services.
 
 <Assumptions name="guide">
 
-* Your Operating System is MacOS / Windows / Linux
+* Your Operating System is macOS / Windows / Linux
 * You have a [Github][urls.github] account
 
 </Assumptions>
@@ -156,26 +156,19 @@ Congratulations, you are logged-in.
 
 ## Deployment
 
-### NodeJS sample application (Optional)
-Get a local copy of the [NodeJS sample project][urls.sample_node_js_with_postgresql] by forking the project.
+### NodeJS sample application
+Get a local copy of the [NodeJS sample project][urls.sample_node_js_with_postgresql] by forking it.
 
 ### Configure your project
-To deploy your NodeJS application connected to a PostgreSQL database, you need to have a `.qovery.yml` file, and a `Dockerfile` (provided in the sample project) at the root of your project.
+To deploy your NodeJS application connected to a PostgreSQL, you need to have a `.qovery.yml` file, and a `Dockerfile` (both provided in the sample project) at the root of your project.
 
 <Alert>
-The .qovery.yml file indicates all the dependencies that your application needs (e.g., PostgreSQL) to work smoothly
+The .qovery.yml file describes all the dependencies that your application needs (e.g., PostgreSQL) to work smoothly
 </Alert>
 
-Here we will use PostgreSQL v11.5
+In this example we are using PostgreSQL v11.5
 
-To create the `.qovery.yml` file, run the following command:‍‍
-
-```bash
-# Interactive command to generate the .qovery.yml
-$ qovery init
-```
-
-Which creates the `.qovery.yml` file at the root of your project directory
+After forking the sample application, you can check the content of `.qovery.yml`:
 
 ```bash
 $ cat .qovery.yml
@@ -199,11 +192,11 @@ routers:
     - /
 ```
 
-[Authorize the Qovery Github application][urls.authorize_qovery] to get access to your Github account. Once done, you need to commit and push the `.qovery.yml` and `Dockerfile` file to deploy your app.
+[Authorize the Qovery Github application][urls.authorize_qovery] to get access to your Github account. Once done, all new commits you push to your forked repository will trigger new deployments of the application.
 
 ### Connect your application to PostgreSQL
-Credentials of your database are available through environment variables. Qovery injects environment variables at the runtime.
-To list all the environment variables available for your application, execute
+Credentials of your database are available via environment variables. Qovery injects environment vars at the runtime.
+To list all the environment variables available to your application, execute
 
 ```bash
 # List all environment variables
@@ -229,18 +222,11 @@ BUILT_IN | QOVERY_DATABASE_MY_DB_TYPE                               | PostgreSQL
 BUILT_IN | QOVERY_DATABASE_MY_DB_NAME                               | my-db
 ```
 
-### Deploy your application
-Congratulations, you are finally ready to deploy your application. Now, execute the following commands:
+The sample application is preconfigured to use those environment variables to connect to the database.
 
-```bash
-$ git add .qovery.yml Dockerfile
-$ git commit -m “add .qovery.yml and Dockerfile”
-$ git push -u origin qovery
-```
+Forking the application with `.qovery.yml` and a `Dockerfile` should trigger app deployment.
 
-Voila! Qovery is now deploying your app!
-
-See the deployment status by executing
+See the deployment status by executing:
 
 ```bash
 # Show your deployment status
@@ -258,9 +244,15 @@ DATABASE NAME    | STATUS  | TYPE       | VERSION | ENDPOINT | PORT     | USERNA
 my-db            | running | POSTGRESQL      | 11.5     | <hidden> | <hidden> | <hidden> | <hidden> | my-application
 ```
 
+When your application `status` is `running`, you can use a browser or `curl` to access its endpoints.
+
+## Trigger a new deployment
+
+Now, you can play with the sample application and commit & push your changes. Qovery detects your actions and triggers new builds and application deployments. Any change you make will be reflected in your deployed application automatically.
+
 ## Bonuses (optional)
 ### Test the NodeJS application locally
-The Qovery motto is: if your application runs locally, then your application will run on Qovery. To test if your application is running locally, execute the following command:
+The Qovery motto is: if your application runs locally, it runs well on Qovery, too. To test if your application is running locally, execute the following command:
 
 <Alert>
 The Docker runtime is required
@@ -273,7 +265,7 @@ $ qovery run
 Note: `qovery run` connects your application to the PostgreSQL database on Qovery.
 
 ### Deploy the application on a staging environment
-Qovery has a compelling feature known as “environment”. Qovery supports the deployment of isolated development environments from your branches, complete with exact copies of all of your data. The Environment is useful for testing changes in isolation before merging them.
+Qovery has a compelling feature known as "environments". Qovery supports the deployment of isolated development environments that reflect your Git branches. Environments are complete copies of all of your data, application, and services like databases. The Environment is useful for testing changes in isolation before merging them to your main branch.
 
 So, do you want to create a new feature, fix a bug, or make modifications without impacting the production or any other important environment? Type the following commands:
 
@@ -299,7 +291,7 @@ my-db          | running | PostgreSQL      | 11.5     | <hidden> | <hidden> | <h
 <Jump to="/guides/advanced/using-multiple-environments">Multiple Environments</Jump>
 
 ## Conclusion
-Qovery bring to developers, the full power of simplicity and flexibility while deploying applications. Any developer can now take advantage of the most popular Cloud providers in seconds instead of days.
+Qovery brings developers the full power of simplicity and flexibility while deploying applications. Any developer can now take advantage of the most popular cloud providers in seconds instead of hours or days.
 
 Accelerate your development and start using Qovery today. Let us know what you think about it on [Twitter][urls.qovery_twitter], or by [Discord][urls.qovery_chat].
 

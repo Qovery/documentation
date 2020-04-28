@@ -18,16 +18,16 @@ The idea behind this article is to see how performant a Rust API can be. I am go
 
 <Alert type="info">
 
-Most of the Rust REST API tests across the web are "[Hello World](https://medium.com/sean3z/rest-api-node-vs-rust-c75aa8c96343)" tests. They bench direct API I/O with no payload. It's very far from reality. Let's bench Rust with a simple **[Twitter](https://www.twitter.com) clone** API.
+Most of the Rust REST API tests across the web are "[Hello World](https://medium.com/sean3z/rest-api-node-vs-rust-c75aa8c96343)" applications. They bench direct API I/O with no payload. It's very far from reality. In the part 2 of this article, I will bench our Rust application with an intensive payload.
 
 </Alert>
 
-In this article, you will learn how to:
+This article is separate in two parts, in this first part you will learn how to:
 
-* To create a simple Twitter clone
-* Implement a blazing fast REST API in Rust
+* Create a blazingly fast REST API in Rust
 * Connect it to a PostgreSQL database
-* Test it with a very large number of queries
+
+In the second part, we will compare the performance of our application to a Go application.
 
 ## Twitter clone
 
@@ -43,7 +43,7 @@ I am going to create a small part of their API to be able to post, read, and lik
 
 ### API design
 
-Our REST API needs to have 3 endpoints :
+Our REST API needs to have three endpoints :
 
 * **/tweets**
   * GET: list last 50 tweets
@@ -52,9 +52,9 @@ Our REST API needs to have 3 endpoints :
   * GET: find a tweet by its ID
   * DELETE: delete a tweet by its ID
 * **/tweets/:id/likes**
-  * GET: list last 50 likes
-  * POST: add a like
-  * DELETE: delete a like
+  * GET: list all likes attached to a tweet
+  * POST: add +1 like to a tweet
+  * DELETE: add -1 like to a tweet
 
 <Alert type="info">
 
@@ -64,7 +64,7 @@ For the sake of simplicity, I will not set up a user management service.
 
 ## Implementation
 
-Now that I have defined our API, I am almost ready to code. Even though implementing an HTTP server could be fun, I choose to use [Actix](https://actix.rs/), which is ranked as [the most performant framework](https://www.techempower.com/benchmarks/#section=data-r18&hw=ph&test=fortune) ever by *Techempower*.
+Even though implementing an HTTP server could be fun, I choose to use [Actix](https://actix.rs/), which is ranked as [the most performant framework](https://www.techempower.com/benchmarks/#section=data-r18&hw=ph&test=fortune) ever by *Techempower*.
 
 ### Actix Web
 
@@ -72,7 +72,7 @@ Actix is an actor framework prevalent in the Rust ecosystem. I am using it as an
 
 ### Let's code
 
-3 files structured our application.
+Three files structured our application.
 * `main.rs` to route HTTP requests to the right endpoint
 * `tweet.rs` to handle requests on /tweets
 * `like.rs` to handle requests on /tweets/:id/likes

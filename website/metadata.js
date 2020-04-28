@@ -37,6 +37,26 @@ module.exports = {
       "dark_logo_path": "/img/logos/flask_white.svg",
       "logo_path": "/img/logos/flask.svg",
       "name": "flask"
+    },
+    {
+      "dark_logo_path": "/img/logos/jhipster.svg",
+      "logo_path": "/img/logos/jhipster.svg",
+      "name": "jhipster"
+    },
+    {
+      "dark_logo_path": "/img/logos/gin.svg",
+      "logo_path": "/img/logos/gin.svg",
+      "name": "gin"
+    },
+    {
+      "dark_logo_path": "/img/logos/rails.svg",
+      "logo_path": "/img/logos/rails.svg",
+      "name": "rails"
+    },
+    {
+      "dark_logo_path": "/img/logos/django.svg",
+      "logo_path": "/img/logos/django.svg",
+      "name": "django"
     }
   ],
   "guides": {
@@ -140,20 +160,20 @@ module.exports = {
         {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
-          "id": "/tutorial/create-a-blazingly-fast-api-in-rust",
-          "last_modified_on": null,
-          "path": "website/guides/tutorial/create-a-blazingly-fast-api-in-rust.md",
-          "series_position": null,
-          "title": "Create a blazingly fast REST API in Rust"
-        },
-        {
-          "author_github": "https://github.com/evoxmusic",
-          "description": null,
           "id": "/tutorial/deploy-flask-with-postgresql",
           "last_modified_on": null,
           "path": "website/guides/tutorial/deploy-flask-with-postgresql.md",
           "series_position": null,
           "title": "Deploy Flask with PostgreSQL on Qovery"
+        },
+        {
+          "author_github": "https://github.com/pjeziorowski",
+          "description": null,
+          "id": "/tutorial/deploy-gin-with-postgresql",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/deploy-gin-with-postgresql.md",
+          "series_position": null,
+          "title": "Deploy Gin with PostgreSQL on Qovery"
         },
         {
           "author_github": "https://github.com/evoxmusic",
@@ -247,9 +267,14 @@ module.exports = {
       "name": "python"
     },
     {
-      "dark_logo_path": "/img/logos/rust_white.svg",
-      "logo_path": "/img/logos/rust.svg",
-      "name": "rust"
+      "dark_logo_path": "/img/logos/go.svg",
+      "logo_path": "/img/logos/go.svg",
+      "name": "go"
+    },
+    {
+      "dark_logo_path": "/img/logos/ruby.svg",
+      "logo_path": "/img/logos/ruby.svg",
+      "name": "ruby"
     }
   ],
   "latest_highlight": {

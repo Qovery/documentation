@@ -22,3 +22,13 @@ dark_logo_path = "/img/logos/javascript.svg"
 name = "python"
 logo_path = "/img/logos/python.svg"
 dark_logo_path = "/img/logos/python.svg"
+
+[[languages]]
+name = "go"
+logo_path = "/img/logos/go.svg"
+dark_logo_path = "/img/logos/go.svg"
+
+[[languages]]
+name = "ruby"
+logo_path = "/img/logos/ruby.svg"
+dark_logo_path = "/img/logos/ruby.svg"

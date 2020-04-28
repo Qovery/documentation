@@ -319,7 +319,7 @@ At this stage, our application works without any database. Let's go more in-dept
 
 ### Diesel
 
-[Diesel](https://diesel.rs/) is the most popular ORM in Rust to connect to a [PostgreSQL][urls.postgresql] database. Combined with Actix, it's a perfect fit to persist in our data. Let's see how to make it happened. However, Diesel does not support [tokio](https://github.com/tokio-rs/tokio) (the asynchronous engine behind Actix), so we have to run it in separate threads using the web::block function, which offloads blocking code (like Diesel's) to do not block the server's thread.
+[Diesel](https://diesel.rs/) is the most popular ORM in Rust to connect to a [PostgreSQL][urls.postgresql] database. Combined with Actix, it's a perfect fit to persist in our data. Let's see how we can make that happen. However, Diesel does not support [tokio](https://github.com/tokio-rs/tokio) (the asynchronous engine behind Actix), so we have to run it in separate threads using the web::block function, which offloads blocking code (like Diesel's) to do not block the server's thread.
 
 <Alert type="warning">
 

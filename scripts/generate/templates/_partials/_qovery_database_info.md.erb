@@ -37,17 +37,17 @@ $ qovery application env list -c
 --------------+---------------------------------------------------------------+-----------
   BUILT_IN    | QOVERY_BRANCH_NAME                                            | master    
   BUILT_IN    | QOVERY_IS_PRODUCTION                                          | true      
-  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId %>_NAME                               | my-<%= dbId %>
-  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId %>_TYPE                               | <%= dbId %>     
-  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId %>_VERSION                            | 3.6       
-  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId %>_CONNECTION_URI                     | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId %>_CONNECTION_URI_WITHOUT_CREDENTIALS | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId %>_HOST                               | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId %>_FQDN                               | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId %>_PORT                               | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId %>_USERNAME                           | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId %>_PASSWORD                           | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId %>_DATABASE                           | <%= dbId %> 
+  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId.upcase %>_NAME                               | my-<%= dbId %>
+  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId.upcase %>_TYPE                               | <%= dbId %>     
+  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId.upcase %>_VERSION                            | 3.6       
+  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId.upcase %>_CONNECTION_URI                     | <hidden>  
+  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId.upcase %>_CONNECTION_URI_WITHOUT_CREDENTIALS | <hidden>  
+  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId.upcase %>_HOST                               | <hidden>  
+  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId.upcase %>_FQDN                               | <hidden>  
+  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId.upcase %>_PORT                               | <hidden>  
+  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId.upcase %>_USERNAME                           | <hidden>  
+  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId.upcase %>_PASSWORD                           | <hidden>  
+  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId.upcase %>_DATABASE                           | <%= dbId %> 
 ```
 
 In the output, you get all data you need to use the database. Those environment variables are available in the runtime of your application.

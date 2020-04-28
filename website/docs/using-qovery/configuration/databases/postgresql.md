@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-22"
+last_modified_on: "2020-04-28"
 title: PostgreSQL
 description: "How to use PostgreSQL"
 ---
@@ -49,17 +49,17 @@ $ qovery application env list -c
 --------------+---------------------------------------------------------------+-----------
   BUILT_IN    | QOVERY_BRANCH_NAME                                            | master    
   BUILT_IN    | QOVERY_IS_PRODUCTION                                          | true      
-  BUILT_IN    | QOVERY_DATABASE_MY_postgresql_NAME                               | my-postgresql
-  BUILT_IN    | QOVERY_DATABASE_MY_postgresql_TYPE                               | postgresql     
-  BUILT_IN    | QOVERY_DATABASE_MY_postgresql_VERSION                            | 3.6       
-  BUILT_IN    | QOVERY_DATABASE_MY_postgresql_CONNECTION_URI                     | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_postgresql_CONNECTION_URI_WITHOUT_CREDENTIALS | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_postgresql_HOST                               | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_postgresql_FQDN                               | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_postgresql_PORT                               | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_postgresql_USERNAME                           | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_postgresql_PASSWORD                           | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_postgresql_DATABASE                           | postgresql 
+  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_NAME                               | my-postgresql
+  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_TYPE                               | postgresql     
+  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_VERSION                            | 3.6       
+  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_CONNECTION_URI                     | <hidden>  
+  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_CONNECTION_URI_WITHOUT_CREDENTIALS | <hidden>  
+  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_HOST                               | <hidden>  
+  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_FQDN                               | <hidden>  
+  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_PORT                               | <hidden>  
+  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_USERNAME                           | <hidden>  
+  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_PASSWORD                           | <hidden>  
+  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_DATABASE                           | postgresql 
 ```
 
 In the output, you get all data you need to use the database. Those environment variables are available in the runtime of your application.

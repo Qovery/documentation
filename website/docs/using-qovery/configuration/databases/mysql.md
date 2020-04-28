@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-22"
+last_modified_on: "2020-04-28"
 title: MySQL
 description: "How to use MySQL"
 ---
@@ -49,17 +49,17 @@ $ qovery application env list -c
 --------------+---------------------------------------------------------------+-----------
   BUILT_IN    | QOVERY_BRANCH_NAME                                            | master    
   BUILT_IN    | QOVERY_IS_PRODUCTION                                          | true      
-  BUILT_IN    | QOVERY_DATABASE_MY_mysql_NAME                               | my-mysql
-  BUILT_IN    | QOVERY_DATABASE_MY_mysql_TYPE                               | mysql     
-  BUILT_IN    | QOVERY_DATABASE_MY_mysql_VERSION                            | 3.6       
-  BUILT_IN    | QOVERY_DATABASE_MY_mysql_CONNECTION_URI                     | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_mysql_CONNECTION_URI_WITHOUT_CREDENTIALS | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_mysql_HOST                               | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_mysql_FQDN                               | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_mysql_PORT                               | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_mysql_USERNAME                           | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_mysql_PASSWORD                           | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_mysql_DATABASE                           | mysql 
+  BUILT_IN    | QOVERY_DATABASE_MY_MYSQL_NAME                               | my-mysql
+  BUILT_IN    | QOVERY_DATABASE_MY_MYSQL_TYPE                               | mysql     
+  BUILT_IN    | QOVERY_DATABASE_MY_MYSQL_VERSION                            | 3.6       
+  BUILT_IN    | QOVERY_DATABASE_MY_MYSQL_CONNECTION_URI                     | <hidden>  
+  BUILT_IN    | QOVERY_DATABASE_MY_MYSQL_CONNECTION_URI_WITHOUT_CREDENTIALS | <hidden>  
+  BUILT_IN    | QOVERY_DATABASE_MY_MYSQL_HOST                               | <hidden>  
+  BUILT_IN    | QOVERY_DATABASE_MY_MYSQL_FQDN                               | <hidden>  
+  BUILT_IN    | QOVERY_DATABASE_MY_MYSQL_PORT                               | <hidden>  
+  BUILT_IN    | QOVERY_DATABASE_MY_MYSQL_USERNAME                           | <hidden>  
+  BUILT_IN    | QOVERY_DATABASE_MY_MYSQL_PASSWORD                           | <hidden>  
+  BUILT_IN    | QOVERY_DATABASE_MY_MYSQL_DATABASE                           | mysql 
 ```
 
 In the output, you get all data you need to use the database. Those environment variables are available in the runtime of your application.

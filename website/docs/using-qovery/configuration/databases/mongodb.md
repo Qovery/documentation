@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-22"
+last_modified_on: "2020-04-28"
 title: MongoDB
 description: "How to use MongoDB"
 ---
@@ -49,17 +49,17 @@ $ qovery application env list -c
 --------------+---------------------------------------------------------------+-----------
   BUILT_IN    | QOVERY_BRANCH_NAME                                            | master    
   BUILT_IN    | QOVERY_IS_PRODUCTION                                          | true      
-  BUILT_IN    | QOVERY_DATABASE_MY_mongodb_NAME                               | my-mongodb
-  BUILT_IN    | QOVERY_DATABASE_MY_mongodb_TYPE                               | mongodb     
-  BUILT_IN    | QOVERY_DATABASE_MY_mongodb_VERSION                            | 3.6       
-  BUILT_IN    | QOVERY_DATABASE_MY_mongodb_CONNECTION_URI                     | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_mongodb_CONNECTION_URI_WITHOUT_CREDENTIALS | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_mongodb_HOST                               | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_mongodb_FQDN                               | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_mongodb_PORT                               | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_mongodb_USERNAME                           | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_mongodb_PASSWORD                           | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_mongodb_DATABASE                           | mongodb 
+  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_NAME                               | my-mongodb
+  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_TYPE                               | mongodb     
+  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_VERSION                            | 3.6       
+  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_CONNECTION_URI                     | <hidden>  
+  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_CONNECTION_URI_WITHOUT_CREDENTIALS | <hidden>  
+  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_HOST                               | <hidden>  
+  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_FQDN                               | <hidden>  
+  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_PORT                               | <hidden>  
+  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_USERNAME                           | <hidden>  
+  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_PASSWORD                           | <hidden>  
+  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_DATABASE                           | mongodb 
 ```
 
 In the output, you get all data you need to use the database. Those environment variables are available in the runtime of your application.

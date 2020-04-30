@@ -45,24 +45,35 @@ qovery application env list -c
 
 ```plain title="OUTPUT"
 $ qovery application env list -c
-  SCOPE       | KEY                                                           | VALUE     
+  SCOPE       | KEY                                                           | VALUE
 --------------+---------------------------------------------------------------+-----------
-  BUILT_IN    | QOVERY_BRANCH_NAME                                            | master    
-  BUILT_IN    | QOVERY_IS_PRODUCTION                                          | true      
+  BUILT_IN    | QOVERY_BRANCH_NAME                                            | master
+  BUILT_IN    | QOVERY_IS_PRODUCTION                                          | true
   BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_NAME                               | my-mongodb
-  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_TYPE                               | mongodb     
-  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_VERSION                            | 3.6       
-  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_CONNECTION_URI                     | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_CONNECTION_URI_WITHOUT_CREDENTIALS | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_HOST                               | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_FQDN                               | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_PORT                               | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_USERNAME                           | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_PASSWORD                           | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_DATABASE                           | mongodb 
+  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_TYPE                               | mongodb
+  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_VERSION                            | 3.6
+  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_CONNECTION_URI                     | <hidden>
+  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_CONNECTION_URI_WITHOUT_CREDENTIALS | <hidden>
+  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_HOST                               | <hidden>
+  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_FQDN                               | <hidden>
+  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_PORT                               | <hidden>
+  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_USERNAME                           | <hidden>
+  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_PASSWORD                           | <hidden>
+  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_DATABASE                           | mongodb
 ```
 
 In the output, you get all data you need to use the database. Those environment variables are available in the runtime of your application.
+
+<Alert type="warning">
+Usage of TLS to connect to mongodb in mandatory.
+
+The docker image must contain the TLS certificate of the mongodb cluster, it
+can be [downloaded here](https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem)
+
+The application must be configured to use it, if you use the environment variable
+`QOVERY_DATABASE_MY_MONGODB_CONNECTION_URI` you usually just have to append
+`&ssl_ca_certs=/path/to/the/rds-combined-ca-bundle.pem`.
+</Alert>
 
 ## Get database status
 
@@ -73,9 +84,9 @@ qovery status -c
 ```
 
 ```plain title="OUTPUT"
-DATABASE NAME | STATUS  | TYPE    | VERSION | ENDPOINT | PORT     | USERNAME | PASSWORD | APPLICATIONS    
+DATABASE NAME | STATUS  | TYPE    | VERSION | ENDPOINT | PORT     | USERNAME | PASSWORD | APPLICATIONS
 ----------------+---------+---------+---------+----------+----------+----------+----------+-----------------
-  my-mongo      | running | mongodb | 3.6     | <hidden> | <hidden> | <hidden> | <hidden> | simple-example 
+  my-mongo      | running | mongodb | 3.6     | <hidden> | <hidden> | <hidden> | <hidden> | simple-example
 ```
 
 ## Delete a database

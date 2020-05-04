@@ -158,15 +158,6 @@ module.exports = {
       "description": "Simple step-by-step tutorials ",
       "guides": [
         {
-          "author_github": "https://github.com/pjeziorowski",
-          "description": null,
-          "id": "/tutorial/deploy-django-with-postgresql",
-          "last_modified_on": null,
-          "path": "website/guides/tutorial/deploy-django-with-postgresql.md",
-          "series_position": null,
-          "title": "Deploy Django with PostgreSQL on Qovery"
-        },
-        {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
           "id": "/tutorial/create-a-blazingly-fast-api-in-rust-part-1",
@@ -174,6 +165,15 @@ module.exports = {
           "path": "website/guides/tutorial/create-a-blazingly-fast-api-in-rust-part-1.md",
           "series_position": null,
           "title": "Create a blazingly fast REST API in Rust (Part 1/2)"
+        },
+        {
+          "author_github": "https://github.com/pjeziorowski",
+          "description": null,
+          "id": "/tutorial/deploy-django-with-postgresql",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/deploy-django-with-postgresql.md",
+          "series_position": null,
+          "title": "Deploy Django with PostgreSQL on Qovery"
         },
         {
           "author_github": "https://github.com/evoxmusic",

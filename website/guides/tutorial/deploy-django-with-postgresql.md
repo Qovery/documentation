@@ -230,7 +230,7 @@ All you have to do now to deploy the application is to initialize a new Github r
 
 ### Connect your application to PostgreSQL
 Credentials of your database are available via environment variables. Qovery injects environment vars at the runtime.
-To list all the environment variables available to your application, execute
+To list all the environment variables available to your application, execute the follwing in your application folder:
 
 ```bash
 # List all environment variables
@@ -297,7 +297,7 @@ $ qovery run
 Note: `qovery run` connects your application to the PostgreSQL database on Qovery.
 
 ### Deploy the application on a staging environment
-Qovery has a compelling feature known as "environments". Qovery supports the deployment of isolated development environments that reflect your Git branches. Environments are complete copies of all of your data, application, and services like databases. The Environment is useful for testing changes in isolation before merging them to your main branch.
+Qovery has a compelling feature known as `environments`. Qovery supports the deployment of isolated development environments that reflect your Git branches. Environments are complete copies of all of your data, application, and services like databases. The Environment is useful for testing changes in isolation before merging them to your main branch.
 
 So, do you want to create a new feature, fix a bug, or make modifications without impacting the production or any other important environment? Type the following commands:
 
@@ -319,6 +319,9 @@ docker-simple-example-laravel | running | my-db
 DATABASE NAME  | STATUS  | TYPE       | VERSION | ENDPOINT | PORT     | USERNAME | PASSWORD | APPLICATIONS
 my-db          | running | PostgreSQL      | 11.5     | <hidden> | <hidden> | <hidden> | <hidden> | my-application
 ```
+
+As you see, a new environment related to `feat_foo` branch is now running. New environment includes all applications and databases of your project, so you can test
+new features in environment that is an identical copy of your production environment (we even replicate the database data!).
 
 <Jump to="/guides/advanced/using-multiple-environments">Multiple Environments</Jump>
 

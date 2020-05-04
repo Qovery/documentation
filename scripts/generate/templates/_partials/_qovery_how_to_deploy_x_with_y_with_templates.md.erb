@@ -1,0 +1,195 @@
+import Assumptions from '@site/src/components/Assumptions';
+import Alert from '@site/src/components/Alert';
+
+[AWS][urls.aws] (Amazon Web Services) is a fantastic and reliable cloud service provider. AWS, like [GCP][urls.gcp] (Google Cloud Platform) and Microsoft [Azure][urls.azure], provides everything you need to host an application without having to worry about running the underlying servers and network configuration.
+
+However, deploying an application on any of those cloud providers presents many challenges. The typical deployment workflow looks like this: write code, push it to Git repository, compile code, deploy code, validate your changes, and repeat. Developers not only have to take care of all of this by themselves, but they also have to configure tons of services (like VPCs, databases, caches, DNS, CDN, and others) to make their application live on the web.
+
+Qovery solves this problem by combining the reliability of AWS and the simplicity of Heroku to augment the developer experience and to take this configuration burden from developers shoulders.
+
+In this blog post, I will show you how Qovery improves developers' workflows by deploying staging and production [<%= x %>][<%= x_url %>] application with [<%= y %>][<%= y_url %>] database on Qovery. You will be able to focus on writing the best code and delivering business value instead of managing complex services.
+
+<Assumptions name="guide">
+
+* Your Operating System is macOS / Windows / Linux
+* You have a [Github][urls.github] account
+
+</Assumptions>
+
+## Setup Qovery
+
+<%= qovery_sign_up() %>
+
+## Deployment
+
+### <%= x %> sample application
+To bootstrap the <%= x %> sample project, we'll use a `template`. [Templates][urls.qovery_templates_docs] are preconfigured basic project structures that allow you to create application skeleton using just one command. To bootstrap the application, run:
+
+```bash
+$ qovery init -t <%= template_name %>
+```
+
+This command creates a new directory with initial application structure configured to be deployed on Qovery.
+
+### About configuration
+To deploy your <%= x %> application connected to a <%= y %>, you need to have a `.qovery.yml` file, and a `Dockerfile` (both provided in the template skeleton) at the root of your project.
+
+<Alert>
+The .qovery.yml file describes all the dependencies that your application needs (e.g., <%= y %>) to work smoothly
+</Alert>
+
+In this example we are using <%= y %> v<%= y_version %>
+
+After running `template` command, you can check the content of `.qovery.yml` in the folder containing your new application:
+
+```bash
+$ cat .qovery.yml
+```
+
+```yaml title=".qovery.yml"
+application:
+  name: my-application
+  project: my-project
+  cloud_region: aws/us-west-2
+  publicly_accessible: true
+databases:
+- type: <%= y.downcase %>
+  version: "<%= y_version %>"
+  name: my-db
+routers:
+- name: main
+  routes:
+  - application_name: my-application
+    paths:
+    - /
+```
+
+All you have to do now to deploy the application is to initialize a new Github repository and grant Qovery access to this newly created repo:
+
+<Steps headingDepth={3}>
+
+  1. Create a new repository @ [Github][urls.github].
+
+  2. [Authorize the Qovery Github application][urls.authorize_qovery] to get access to your Github account. Make sure it has access to repositories containing application you want to deploy with Qovery.
+
+  3. Initialize a new local Git repository in your new application folder:
+
+  ```bash
+  git init ; git add . ; git commit -m "Initial commit"
+  ```
+
+  4. Connect your local Git repository to the newly created Github repo (don't forget to replace placeholders in the command):
+
+  ```bash
+  git remote add origin https://github.com/${YOUR_USERNAME}/${YOUR_REPOSITORY_NAME}.git
+  ```
+  5. Push initial commit:
+
+  ```bash
+  git push --set-upstream origin master
+  ```
+
+  Voila! Your application is now being deployed to Qovery.
+
+</Steps>
+
+### Connect your application to <%= y %>
+Credentials of your database are available via environment variables. Qovery injects environment vars at the runtime.
+To list all the environment variables available to your application, execute
+
+```bash
+# List all environment variables
+$ qovery project env list
+```
+
+```bash title="Output"
+SCOPE    | KEY                                                      | VALUE
+BUILT_IN | QOVERY_JSON_B64                                          | <base64>
+BUILT_IN | QOVERY_BRANCH_NAME                                       | master
+BUILT_IN | QOVERY_IS_PRODUCTION                                     | true
+BUILT_IN | QOVERY_MY_APPLICATION_HOSTNAME                           | <hidden>
+BUILT_IN | QOVERY_DATABASE_MY_DB_DATABASE                           | <hidden>
+BUILT_IN | QOVERY_DATABASE_MY_DB_PASSWORD                           | <hidden>
+BUILT_IN | QOVERY_DATABASE_MY_DB_USERNAME                           | <hidden>
+BUILT_IN | QOVERY_DATABASE_MY_DB_PORT                               | <hidden>
+BUILT_IN | QOVERY_DATABASE_MY_DB_FQDN                               | <hidden>
+BUILT_IN | QOVERY_DATABASE_MY_DB_HOST                               | <hidden>
+BUILT_IN | QOVERY_DATABASE_MY_DB_CONNECTION_URI_WITHOUT_CREDENTIALS | <hidden>
+BUILT_IN | QOVERY_DATABASE_MY_DB_CONNECTION_URI                     | <hidden>
+BUILT_IN | QOVERY_DATABASE_MY_DB_VERSION                            | <%= y_version %>
+BUILT_IN | QOVERY_DATABASE_MY_DB_TYPE                               | <%= y %>
+BUILT_IN | QOVERY_DATABASE_MY_DB_NAME                               | my-db
+```
+
+The sample application is preconfigured to use those environment variables to connect to the database.
+
+See the deployment status by executing:
+
+```bash
+# Show your deployment status
+$ qovery status
+```
+
+```bash title="Output"
+BRANCH NAME | STATUS  | ENDPOINTS                                   | APPLICATIONS    | DATABASES
+master      | running | https://main-abcdefgh12345678-gtw.qovery.io | my-application  | my-db
+
+APPLICATION NAME  | STATUS  | DATABASES
+my-application    | running | my-db
+
+DATABASE NAME    | STATUS  | TYPE       | VERSION | ENDPOINT | PORT     | USERNAME | PASSWORD | APPLICATIONS
+my-db            | running | <%= y.upcase %>      | <%= y_version %>     | <hidden> | <hidden> | <hidden> | <hidden> | my-application
+```
+
+As you see in the status output, the application as well as the database are automagically deployed. When your application `status` is `running`, you can use a browser or `curl` to access its endpoints.
+
+## Trigger a new deployment
+
+Now, you can play with the sample application and commit & push your changes. Qovery detects your actions and triggers new builds and application deployments. Any change you make will be reflected in your deployed application automatically.
+
+## Bonuses (optional)
+### Test the <%= x %> application locally
+The Qovery motto is: if your application runs locally, it runs well on Qovery, too. To test if your application is running locally, execute the following command:
+
+<Alert>
+The Docker runtime is required
+</Alert>
+
+```bash
+$ qovery run
+```
+
+Note: `qovery run` connects your application to the <%= y %> database on Qovery.
+
+### Deploy the application on a staging environment
+Qovery has a compelling feature known as "environments". Qovery supports the deployment of isolated development environments that reflect your Git branches. Environments are complete copies of all of your data, application, and services like databases. The Environment is useful for testing changes in isolation before merging them to your main branch.
+
+So, do you want to create a new feature, fix a bug, or make modifications without impacting the production or any other important environment? Type the following commands:
+
+```bash
+$ git checkout -b feat_foo
+$ git push -u origin feat_foo
+
+# show deployment status
+$ qovery status
+```
+
+```bash title="Output"
+BRANCH NAME | STATUS  | ENDPOINTS                                   | APPLICATIONS    | DATABASES
+feat_foo    | running | https://main-yenr7erjbs87dk4m-gtw.qovery.io | my-application  | my-db
+
+APPLICATION NAME              | STATUS  | DATABASES
+docker-simple-example-laravel | running | my-db
+
+DATABASE NAME  | STATUS  | TYPE       | VERSION | ENDPOINT | PORT     | USERNAME | PASSWORD | APPLICATIONS
+my-db          | running | <%= y %>      | <%= y_version %>     | <hidden> | <hidden> | <hidden> | <hidden> | my-application
+```
+
+<Jump to="/guides/advanced/using-multiple-environments">Multiple Environments</Jump>
+
+## Conclusion
+Qovery brings developers the full power of simplicity and flexibility while deploying applications. Any developer can now take advantage of the most popular cloud providers in seconds instead of hours or days.
+
+Accelerate your development and start using Qovery today. Let us know what you think about it on [Twitter][urls.qovery_twitter], or by [Discord][urls.qovery_chat].
+
+

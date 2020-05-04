@@ -667,6 +667,10 @@ class Templates
     render("#{partials_path}/_qovery_how_to_deploy_x_with_y.md", binding).strip
   end
 
+  def qovery_how_to_deploy_x_with_y_with_templates(x, x_url, template_name, y, y_url, y_version)
+    render("#{partials_path}/_qovery_how_to_deploy_x_with_y_with_templates.md", binding).strip
+  end
+
   def qovery_status_output(branch, application, database)
     render("#{partials_path}/_qovery_status_output.md", binding).strip
   end

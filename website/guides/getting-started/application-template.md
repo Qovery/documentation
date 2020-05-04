@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-22"
+last_modified_on: "2020-04-30"
 $schema: "/.meta/.schemas/guides.json"
 title: Use application template
 description: How to deploy any application in 10 seconds by using qovery template
@@ -101,15 +101,14 @@ my-postgresql-3498225 | running | POSTGRESQL | 11.5    | <hidden> | <hidden> | <
 ## What to do if a template...
 
 ### Does not work
-Unwanted behaviour can happens, if a template is not working as expected, please [open an issue][urls.qovery_documentation_issues]. If you can fix it, you can [make a Pull Request][urls.qovery_documentation] as well. We love contributors, and we know how to thanks them :)
+Unwanted behaviour can happen, if a template is not working as expected, please [open an issue][urls.qovery_templates_repository]. If you can fix it, you can [make a Pull Request][urls.qovery_templates_repository] as well. We love contributors, and we know how to thanks them :)
 
 ### Does not exist
 We are sorry to know that you didn't find the template of your dream. You can contribute by opening an issue or submitting a Pull Request.
 
 ### Could be improved
-You can improve a template by [submitting a Pull Request][urls.qovery_documentation].
+You can improve a template by [submitting a Pull Request][urls.qovery_templates_repository].
 
 
 [guides.deploy-your-first-application]: /guides/getting-started/deploy-your-first-application/
-[urls.qovery_documentation]: https://github.com/qovery/documentation
-[urls.qovery_documentation_issues]: https://github.com/qovery/documentation/issues
+[urls.qovery_templates_repository]: https://github.com/Qovery/qovery-templates

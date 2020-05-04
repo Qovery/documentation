@@ -313,6 +313,7 @@ qovery_initd_service = "https://github.com/qovery/documentation/blob/master/dist
 qovery_issues = "https://github.com/qovery/documentation/issues"
 qovery_documentation_issues = "https://github.com/qovery/documentation/issues"
 qovery_documentation = "https://github.com/qovery/documentation"
+qovery_templates_repository = "https://github.com/Qovery/qovery-templates"
 qovery_msi_source_files = "https://github.com/qovery/documentation/tree/master/distribution/msi"
 qovery_nightly_builds = "http://packages.timber.io/qovery/nightly/latest/"
 qovery_nix_package = "https://github.com/NixOS/nixpkgs/blob/master/pkgs/tools/misc/qovery/default.nix"

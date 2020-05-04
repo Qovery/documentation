@@ -24,6 +24,11 @@ logo_path = "/img/logos/python.svg"
 dark_logo_path = "/img/logos/python.svg"
 
 [[languages]]
+name = "rust"
+logo_path = "/img/logos/rust.svg"
+dark_logo_path = "/img/logos/rust_white.svg"
+
+[[languages]]
 name = "go"
 logo_path = "/img/logos/go.svg"
 dark_logo_path = "/img/logos/go.svg"

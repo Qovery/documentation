@@ -169,6 +169,15 @@ module.exports = {
         {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
+          "id": "/tutorial/create-a-blazingly-fast-api-in-rust-part-1",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/create-a-blazingly-fast-api-in-rust-part-1.md",
+          "series_position": null,
+          "title": "Create a blazingly fast REST API in Rust (Part 1/2)"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
           "id": "/tutorial/deploy-flask-with-postgresql",
           "last_modified_on": null,
           "path": "website/guides/tutorial/deploy-flask-with-postgresql.md",
@@ -274,6 +283,11 @@ module.exports = {
       "dark_logo_path": "/img/logos/python.svg",
       "logo_path": "/img/logos/python.svg",
       "name": "python"
+    },
+    {
+      "dark_logo_path": "/img/logos/rust_white.svg",
+      "logo_path": "/img/logos/rust.svg",
+      "name": "rust"
     },
     {
       "dark_logo_path": "/img/logos/go.svg",

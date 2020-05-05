@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-28"
+last_modified_on: "2020-05-05"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy Node.JS with PostgreSQL on Qovery
 description: How to deploy a Node.JS application with the PostgreSQL database on Qovery
@@ -281,8 +281,8 @@ $ qovery status
 BRANCH NAME | STATUS  | ENDPOINTS                                   | APPLICATIONS    | DATABASES
 feat_foo    | running | https://main-yenr7erjbs87dk4m-gtw.qovery.io | my-application  | my-db
 
-APPLICATION NAME              | STATUS  | DATABASES
-docker-simple-example-laravel | running | my-db
+APPLICATION NAME      | STATUS  | DATABASES
+docker-simple-example | running | my-db
 
 DATABASE NAME  | STATUS  | TYPE       | VERSION | ENDPOINT | PORT     | USERNAME | PASSWORD | APPLICATIONS
 my-db          | running | PostgreSQL      | 11.5     | <hidden> | <hidden> | <hidden> | <hidden> | my-application

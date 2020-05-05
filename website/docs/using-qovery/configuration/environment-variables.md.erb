@@ -176,14 +176,35 @@ The syntax for aliasing is:
 
 When running your application, you will typically use a set of environment variables to capture the configuration of the application. For example: say your app uses S3 for image storage. You would want to store the credentials to S3 as environment variable.
 
-The .env file lets you capture all the environment variables that you need in order to run your application locally. When you start your application using `qovery run`, the .env file is read, and each name/value pair is inserted into the environment, to mimic the action of environment variables.
+The `.env` file lets you capture all the environment variables that you need in order to run your application locally. When you start your application using `qovery run`, the `.env` file is read, and each name/value pair is inserted into the environment, to mimic the action of environment variables.
+
+### View you application's environment variables
+
+To view all of your app’s config vars, type `qovery application env list`.
+
+### Look at the contents of your .env file
+
+```bash
+$ cat .env
+```
+
+Here's an example `.env` file:
+
+```bash
+S3_KEY=myS3Key
+S3_SECRET=myS3Secret
+```
+
+### Add an environment variable to your .env file
+
+To add an environment variable to your `.env` file, edit it and add a new name=value pair on a new line.
 
 ## Copy Qovery environment variables to your local .env file
 
-Sometimes you may want to use the same environment variable in both local and Qovery environments. For each environment variable that you want to add to your .env file, use the following command:
+Sometimes you may want to use the same environment variable in both local and Qovery environments. For each environment variable that you want to add to your `.env` file, use the following command:
 
 ```bash
-qovery application env list --dotenv >> .env
+$ qovery application env list --dotenv >> .env
 ```
 
 ## Policies

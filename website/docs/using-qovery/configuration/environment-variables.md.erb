@@ -171,3 +171,24 @@ The syntax for aliasing is:
 ```bash
 ... add NEW_VARIABLE_NAME `$OLD_VARIABLE_NAME`
 ```
+
+## .env file (dot env file)
+
+When running your application, you will typically use a set of environment variables to capture the configuration of the application. For example: say your app uses S3 for image storage. You would want to store the credentials to S3 as environment variable.
+
+The .env file lets you capture all the environment variables that you need in order to run your application locally. When you start your application using `qovery run`, the .env file is read, and each name/value pair is inserted into the environment, to mimic the action of environment variables.
+
+## Copy Qovery environment variables to your local .env file
+
+Sometimes you may want to use the same environment variable in both local and Qovery environments. For each environment variable that you want to add to your .env file, use the following command:
+
+```bash
+qovery application env list --dotenv >> .env
+```
+
+## Policies
+
+* Environment variable keys should use only alphanumeric characters, and the underscore character (_) to ensure that they are accessible from all programming languages. Environment variable keys should not include the hyphen character.
+* Environment variable data (the combination of all keys and values) cannot exceed 32kb for each app.
+* Environment variable keys should not begin with a double underscore (__).
+* An environment variable’s key should not begin with QOVERY_ unless it is set by the Qovery platform itself.

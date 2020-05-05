@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-28"
+last_modified_on: "2020-05-05"
 title: MongoDB
 description: "How to use MongoDB"
 ---
@@ -63,6 +63,17 @@ $ qovery application env list -c
 ```
 
 In the output, you get all data you need to use the database. Those environment variables are available in the runtime of your application.
+
+<Alert type="warning">
+Usage of TLS to connect to MongoDB is mandatory.
+
+Your Docker image must contain the TLS certificate of the MongoDB cluster - it
+can be [downloaded here](https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem).
+
+The application must be configured to use it. If you use the environment variable
+`QOVERY_DATABASE_MY_MONGODB_CONNECTION_URI`, you usually should have just append
+`&ssl_ca_certs=/path/to/the/rds-combined-ca-bundle.pem` to its value.
+</Alert>
 
 ## Get database status
 

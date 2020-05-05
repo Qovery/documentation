@@ -51,7 +51,11 @@ $ qovery application env list -c
 ```
 
 In the output, you get all data you need to use the database. Those environment variables are available in the runtime of your application.
-
+<% if dbSpecificAlert %>
+<Alert type="warning">
+<%= dbSpecificAlert %>
+</Alert>
+<% end %>
 ## Get database status
 
 To know more about your database status, run:

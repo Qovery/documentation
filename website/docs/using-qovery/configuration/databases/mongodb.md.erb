@@ -1,1 +1,8 @@
-<%= qovery_database_info("MongoDB", "mongodb", "MongoDB is a cross-platform document-oriented database program. Classified as a NoSQL, MongoDB uses JSON-like documents with schema.") %>
+<%= qovery_database_info("MongoDB", "mongodb", "MongoDB is a cross-platform document-oriented database program. Classified as a NoSQL, MongoDB uses JSON-like documents with schema.", "Usage of TLS to connect to MongoDB is mandatory.
+
+Your Docker image must contain the TLS certificate of the MongoDB cluster - it
+can be [downloaded here](https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem).
+
+The application must be configured to use it. If you use the environment variable
+`QOVERY_DATABASE_MY_MONGODB_CONNECTION_URI`, you usually should have just append
+`&ssl_ca_certs=/path/to/the/rds-combined-ca-bundle.pem` to its value.") %>

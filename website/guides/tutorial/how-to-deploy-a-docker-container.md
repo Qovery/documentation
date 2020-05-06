@@ -240,6 +240,8 @@ Congratulations, you are logged-in.
 
 After you have access to Qovery, it's time to deploy the application.
 
+### Deploy the docker container
+
 1. Run `qovery init`
 2. Choose application name, e.g., `node-app`
 3. Choose project name, e.g., `testing-docker`
@@ -247,12 +249,26 @@ After you have access to Qovery, it's time to deploy the application.
 
 Voila! That's all. Your Dockerized application is being deployed as a Docker container. To deploy a Docker container on Qovery, all you need is a Dockerfile that describes containers with your application + running `qovery init` command to initialize Qovery. From now on, Qovery will build and deploy your Dockerized application after you make any changes in your repository to scalable Kubernetes clusters as a Docker container.
 
+To check that your application is in fact deploying, run `qovery status`:
+
+```bash title="Output"
+BRANCH NAME       | STATUS  | ENDPOINTS                            | APPLICATIONS    | DATABASES
+master            | running | https://some.url.qovery.io           | node-app  | 
+
+APPLICATION NAME  | STATUS  | DATABASES
+node-app          | running | 
+
+DATABASE NAME     | STATUS  | TYPE       | VERSION | ENDPOINT | PORT     | USERNAME | PASSWORD | APPLICATIONS
+```
+
 ## Summary
 
 In this guide, you learned the essential basics of Docker. You also learned why you should be interested in using it, and how to deploy your application to the cloud as a Docker container. This is all you need to know to improve your development experience and deploy your application to the cloud with ease!
+If you have any questions, feedback or want to learn more, please join us on our [Discord server][urls.qovery_chat] and feel free to speak your mind.
 
 
 [urls.authorize_qovery]: https://github.com/apps/qovery/installations/new
 [urls.brew]: https://brew.sh/
+[urls.qovery_chat]: https://discord.qovery.com
 [urls.qovery_cli_releases]: https://github.com/Qovery/qovery-cli/releases
 [urls.scoop]: https://scoop.sh/

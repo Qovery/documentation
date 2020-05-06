@@ -230,6 +230,15 @@ module.exports = {
           "title": "GraphQL API with Hasura"
         },
         {
+          "author_github": "https://github.com/pjeziorowski",
+          "description": null,
+          "id": "/tutorial/how-to-deploy-a-docker-container",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/how-to-deploy-a-docker-container.md",
+          "series_position": null,
+          "title": "How to deploy Docker containers?"
+        },
+        {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
           "id": "/tutorial/the-easiest-way-to-deploy-microservices",

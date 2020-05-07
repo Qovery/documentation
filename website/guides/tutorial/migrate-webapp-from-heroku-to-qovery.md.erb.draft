@@ -8,16 +8,16 @@ hide_pagination: true
 ---
 import Assumptions from '@site/src/components/Assumptions';
 
-This tutorial describes how to migrate your web application running on Heroku to Qovery. In the article you learn how to
-migrate a Node.js application connected to Heroku Postgres as a backing service on Heroku platform. It covers all required
+This tutorial describes how to migrate your web application running on Heroku to Qovery. In the article, you learn how to
+migrate a Node.js application connected to Heroku Postgres as a backing service on the Heroku platform. It covers all required
 steps you need to take to deploy your application on Qovery and transfer your data from Heroku Postgres to the database managed
 by Qovery.
 
-The application is a simple Node.js *Todo* webapp that uses PostgreSQL as a persistence layer.
+The application is a simple Node.js *Todo* web app that uses PostgreSQL as a persistence layer.
 
 <Assumptions name="guide">
 
-* You are familar with Heroku basics, have a Heroku account and access to Heroku CLI
+* You are familiar with Heroku basics, have a Heroku account and access to Heroku CLI
 * You have a Qovery account and access to Qovery CLI
 * You have a [Github][urls.github] account
 
@@ -39,14 +39,14 @@ If you have not installed the Qovery CLI yet, you can see steps to do it [here][
   git clone https://github.com/qovery/migrate-webapp-from-heroku-to-qovery.git
   ```
 
-  3. Move to the directory of cloned repository:
+  3. Move to the directory of the cloned repository:
   ```bash
   cd migrate-webapp-from-heroku-to-qovery
   ```
   The repository is made of a few simple components:
     - `index.js` - Node.js script for setting up the web application.
     - `package.json` - File determining app's dependencies.
-    - `Procfile` - File required to run the app on heroku. It determines the command executed on the application startup.
+    - `Procfile` - File required to run the app on Heroku. It determines the command executed on the application startup.
     - `views` - Directory with the HTML served by the app.
 
   4. Create a Heroku app:
@@ -127,9 +127,19 @@ For your future projects, you can use the `qovery init` command instead to confi
 
 </Alert>
 
+The application uses `DATABASE_URL` environment variable to connect to PostgreSQL. To provide your app
+with correct database URL, create a `.env` file in the root of application repository with this content:
+
+```plain title=".env"
+DATABASE_URL=$QOVERY_DATABASE_MY_POSTGRESQL_DATABASE_CONNECTION_URI
+```
+
+Adding this file populates the `DATABASE_URL` environment variable (that is consumed often on Heroku)
+with database URL provided by Qovery.
+
 ### Deploy the application to Qovery
 
-All you need to do to deploy the application to Qovery, is to commit and push repository containing `Dockerfile` and `.qovery.yml` to Github.
+All you need to do to deploy the application to Qovery is to commit and push a repository containing `Dockerfile` and `.qovery.yml` to Github.
 Qovery needs access to this repository to build and deploy the application.
 
 1. [Create a Github repository](https://github.com/new)
@@ -152,8 +162,8 @@ git remote add origin https://github.com/$YOUR_NAME/$YOUR_REPOSITORY_NAME.git
 git push -u origin master
 ```
 
-Good job! This is all you need to do to deloy your application with a database to Qovery.
-To confirm that your application is in fact deploying, run `qovery status`.
+Good job! It's all you need to do to deploy your application with a database to Qovery.
+To confirm that your application is, in fact, deploying, run `qovery status`.
 
 The output of the above command could look like this:
 
@@ -171,14 +181,14 @@ my-postgresql-database   | running | POSTGRESQL   | 11.5     | <hidden> | <hidde
 The application should be deployed in a few minutes. When it's status is `running`, open the browser
 using address specified in the `ENDPOINTS` section of `qovery status` output.
 
-You should see the exact same application you previously deployed to Heroku, yet without *Todo* tasks you have added before.
+You should see the same application you previously deployed to Heroku, yet without *Todo* tasks you have added before.
 
 ### Migrate PostgreSQL data
 
 There are multiple paths you could take to migrate your data from Heroku Postgres to Qovery. 
 For production usage for the shortest downtime you would probably want to configure Qovery PostgreSQL as a replica to
-the database on Heroku, and making it the primary instance after migration. Heroku does not support this in it's free
-tier, so for the purposes of the example, we take a simpler path and use different tools to migrate the data.
+the database on Heroku, and making it the primary instance after migration. Heroku does not support this in its free
+tier, so for the purpose of the example, we take a simpler path and use different tools to migrate the data.
 
 <Alert> 
 
@@ -193,7 +203,7 @@ heroku pg:backups:download -a YOUR_APPLICATION_NAME
 heroku pg:backups:capture -a YOUR_APPLICATION_NAME
 ```
 
-This will result in creating a new `latest.dump` file which you use to transfer data to Qovery.
+It results in creating a new `latest.dump` file, which you use to transfer data to Qovery.
 
 To migrate the data to Qovery, run (replace all placeholders with values you get from running `qovery application env list -c`):
 

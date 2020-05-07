@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-05-05"
+last_modified_on: "2020-05-07"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy Laravel with MySQL on Qovery
 description: How to deploy a Laravel application with the MySQL database on Qovery
@@ -125,6 +125,8 @@ Install the Qovery CLI on Windows manually by downloading the [latest realease][
 </TabItem>
 
 </Tabs>
+
+Few limitations exist on Windows: [read more][docs.cli#windows]
 
 </TabItem>
 
@@ -300,6 +302,7 @@ Accelerate your development and start using Qovery today. Let us know what you t
 <Jump to="/guides/tutorial/">Tutorials</Jump>
 
 
+[docs.cli#windows]: /docs/using-qovery/interface/cli/#windows
 [urls.authorize_qovery]: https://github.com/apps/qovery/installations/new
 [urls.aws]: https://aws.amazon.com
 [urls.azure]: https://azure.microsoft.com

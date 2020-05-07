@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-27"
+last_modified_on: "2020-05-07"
 title: CLI
 description: How to use the Qovery CLI (Command Line Interface)
 ---
@@ -113,6 +113,8 @@ Install the Qovery CLI on Windows manually by downloading the [latest realease][
 
 </Tabs>
 
+Few limitations exist on Windows: [read more][docs.cli#windows]
+
 </TabItem>
 
 </Tabs>
@@ -181,12 +183,24 @@ Flags:
 Use "qovery [command] --help" for more information about a command.
 ```
 
+## Limitations
+
+### Windows
+
+**ANSI Color codes**: *Powershell* does not natively support ANSI color codes. [Some tricks exist to make it work](https://stackoverflow.com/a/51681675/560638).
+The more accessible it is to use `qovery <command> | Out-Host` when you need to show colors.
+
+## Support
+
+Do you have any issue with Qovery CLI? [Open an issue](https://github.com/Qovery/qovery-cli/issues).
+
 ## Next steps
 
 Now that you have installed the CLI, check out [how to deploy your first application][guides.deploy-your-first-application]
 
 
 [docs.application]: /docs/main-concepts/application/
+[docs.cli#windows]: /docs/using-qovery/interface/cli/#windows
 [docs.environment]: /docs/main-concepts/environment/
 [docs.project]: /docs/main-concepts/project/
 [guides.deploy-your-first-application]: /guides/getting-started/deploy-your-first-application/

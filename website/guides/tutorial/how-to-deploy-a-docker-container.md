@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-05-06"
+last_modified_on: "2020-05-07"
 $schema: "/.meta/.schemas/guides.json"
 title: How to deploy Docker containers?
 description: Dockerizing an application and deploying it to the cloud
@@ -210,6 +210,8 @@ Install the Qovery CLI on Windows manually by downloading the [latest realease][
 
 </Tabs>
 
+Few limitations exist on Windows: [read more][docs.cli#windows]
+
 </TabItem>
 
 </Tabs>
@@ -267,6 +269,7 @@ In this guide, you learned the essential basics of Docker. You also learned why 
 If you have any questions, feedback or want to learn more, please join us on our [Discord server][urls.qovery_chat] and feel free to speak your mind.
 
 
+[docs.cli#windows]: /docs/using-qovery/interface/cli/#windows
 [urls.authorize_qovery]: https://github.com/apps/qovery/installations/new
 [urls.brew]: https://brew.sh/
 [urls.qovery_chat]: https://discord.qovery.com

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-27"
+last_modified_on: "2020-05-07"
 $schema: "/.meta/.schemas/guides.json"
 title: Hello World. Deploy your first application.
 description: How to deploy your first application with Qovery
@@ -126,6 +126,8 @@ Install the Qovery CLI on Windows manually by downloading the [latest realease][
 
 </Tabs>
 
+Few limitations exist on Windows: [read more][docs.cli#windows]
+
 </TabItem>
 
 </Tabs>
@@ -232,6 +234,7 @@ $ qovery init
 To deploy your application, it's as simple as that. In the following article, we will see how to add a database. Let's get started!
 
 
+[docs.cli#windows]: /docs/using-qovery/interface/cli/#windows
 [guides.application-template]: /guides/getting-started/application-template/
 [urls.authorize_qovery]: https://github.com/apps/qovery/installations/new
 [urls.brew]: https://brew.sh/

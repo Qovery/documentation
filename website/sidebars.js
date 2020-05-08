@@ -66,6 +66,13 @@ module.exports = {
                         "using-qovery/integration/project-templates",
                         "using-qovery/integration/ide-plugins",
                     ]
+                },
+                {
+                    type: 'category',
+                    label: 'Troubleshoot',
+                    items: [
+                        "using-qovery/troubleshoot",
+                    ]
                 }
             ],
         },

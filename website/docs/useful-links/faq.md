@@ -7,6 +7,10 @@ description: "Frequently Asked Questions"
 
 A [project][docs.project] is the site that you're working on. Each project can contain multiple [applications][docs.application] and be deployed in multiple [environments][docs.environment]. An environment is a standalone copy of your site, including apps, databases, storage, data, and all other services. By default, `master` branch is the production environment, while all other branches can be set up as identical copies of the prod environment for testing purposes.
 
+### Can you help me to deploy my application on Qovery?
+
+Yes, absolutely. [Join our fantastic community on Discord][urls.qovery_chat] to get the help of one of our team member.
+
 ### How does application build work?
 
 We [build and run your Dockerfile][guides.how-to-deploy-a-docker-container], so it's up to you to provide all the good instructions. If you have any trouble, we can assist you.

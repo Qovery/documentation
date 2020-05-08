@@ -66,6 +66,13 @@ module.exports = {
                         <%= metadata.links.fetch_id("docs.using-qovery.integration.project-templates").to_json %>,
                         <%= metadata.links.fetch_id("docs.using-qovery.integration.ide-plugins").to_json %>,
                     ]
+                },
+                {
+                    type: 'category',
+                    label: 'Troubleshoot',
+                    items: [
+                        <%= metadata.links.fetch_id("docs.using-qovery.troubleshoot").to_json %>,
+                    ]
                 }
             ],
         },

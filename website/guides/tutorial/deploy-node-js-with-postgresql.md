@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-05-07"
+last_modified_on: "2020-05-08"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy Node.JS with PostgreSQL on Qovery
 description: How to deploy a Node.JS application with the PostgreSQL database on Qovery
@@ -151,7 +151,7 @@ Note: Qovery needs access to your account to be able to clone your repository fo
 [Click here][urls.authorize_qovery] to authorize Qovery to clone and build your applications.
 
 <p align="center">
-  <img src="/img/github-connect.png" alt="Connect Github" />
+  <img src="/img/github_signup.svg" alt="Connect Github" />
 </p>
 
 Congratulations, you are logged-in.

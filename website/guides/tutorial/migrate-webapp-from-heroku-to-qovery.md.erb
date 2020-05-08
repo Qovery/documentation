@@ -25,6 +25,26 @@ If you have not installed the Qovery CLI yet, you can see steps to do it [here][
 
 </Assumptions>
 
+<hr />
+
+<Tabs
+  centered={true}
+  className={"rounded"}
+  defaultValue={"deploy"}
+  placeholder="Don't deploy sample application"
+  select={false}
+  size={null}
+  values={[{"group":"Platforms","label":"I don't want to deploy the sample application","value":"dontDeploy"},{"group":"Platforms","label":"I want to deploy the sample application","value":"deploy"}]}>
+
+<TabItem value="dontDeploy">
+
+If you have an existing app, you do not have to deploy our sample application to benefit from this guide.
+Otherwise, you can try to deploy and migrate our sample application to get experience.
+
+</TabItem>
+
+<TabItem value="deploy">
+
 ## Deploying the sample application to Heroku
 
 <Steps headingDepth={3}>
@@ -78,7 +98,17 @@ If you have not installed the Qovery CLI yet, you can see steps to do it [here][
 
 </Steps>
 
+</TabItem>
+
+</Tabs>
+
 ## Migrating the application from Heroku to Qovery
+
+<Alert>
+
+Contents of the `Dockerfile` and `.qovery.yml` assumes that you migrate our sample application
+
+</Alert>
 
 ### Dockerize the application
 
@@ -127,7 +157,7 @@ For your future projects, you can use the `qovery init` command instead to confi
 
 </Alert>
 
-The application uses `DATABASE_URL` environment variable to connect to PostgreSQL. To provide your app
+The sample application uses `DATABASE_URL` environment variable to connect to PostgreSQL. To provide your app
 with correct database URL, create a `.env` file in the root of application repository with this content:
 
 ```plain title=".env"
@@ -181,7 +211,7 @@ my-postgresql-database   | running | POSTGRESQL   | 11.5     | <hidden> | <hidde
 The application should be deployed in a few minutes. When it's status is `running`, open the browser
 using address specified in the `ENDPOINTS` section of `qovery status` output.
 
-You should see the same application you previously deployed to Heroku, yet without *Todo* tasks you have added before.
+You should see the same application you previously deployed to Heroku, yet without the data from the database.
 
 ### Migrate PostgreSQL data
 
@@ -211,4 +241,9 @@ To migrate the data to Qovery, run (replace all placeholders with values you get
 pg_restore -v -h $DATABASE_HOST -U $DATABASE_USER -d postgres latest.dump --no-owner
 ```
 
-In the browser, navigate to your application URL deployed on Qovery. You'll see all tasks you have previously added to the application hosted on Heroku. Well done!
+In the browser, navigate to your application URL deployed on Qovery. Now you should see all the data you had in your database hosted on Heroku. Well done!
+
+## What's next
+
+<Jump to="/guides/getting-started/setting-custom-domain">Setting Custom Domain</Jump>
+<Jump to="/guides/advanced/using-multiple-environments">Using Multiple Environments</Jump>

@@ -239,6 +239,15 @@ module.exports = {
           "title": "How to deploy Docker containers?"
         },
         {
+          "author_github": "https://github.com/pjeziorowski",
+          "description": null,
+          "id": "/tutorial/migrate-webapp-from-heroku-to-qovery",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/migrate-webapp-from-heroku-to-qovery.md",
+          "series_position": null,
+          "title": "Migrating application from Heroku to Qovery"
+        },
+        {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
           "id": "/tutorial/the-easiest-way-to-deploy-microservices",

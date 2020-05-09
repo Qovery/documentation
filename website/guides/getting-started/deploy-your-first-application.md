@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-05-08"
+last_modified_on: "2020-05-09"
 $schema: "/.meta/.schemas/guides.json"
 title: Hello World. Deploy your first application.
 description: How to deploy your first application with Qovery
@@ -215,7 +215,7 @@ You must provide your `Dockerfile` **OR** use [one provided by us][guides.applic
 
 </Alert>
 
-Deploying your own application is as easy as running `qovery init` at the root of your project directory.
+Deploying your existing application is as easy as running `qovery init` at the root of your project directory.
 
 ```bash
 $ qovery init
@@ -228,6 +228,15 @@ $ qovery init
 
 </CodeExplanation>
 
+Then, **commit** and **push** your code
+
+```bash
+$ git add .qovery.yml Dockerfile
+$ git commit -m "add: .qovery.yml and Dockerfile to deploy on Qovery"
+$ git push -u origin master
+```
+
+That's it!
 
 ## Next Steps
 

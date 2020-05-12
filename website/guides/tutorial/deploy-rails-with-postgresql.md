@@ -9,6 +9,7 @@ hide_pagination: true
 ---
 
 import Jump from '@site/src/components/Jump';
+import Steps from '@site/src/components/Steps';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -19,7 +20,7 @@ import Alert from '@site/src/components/Alert';
 
 However, deploying an application on any of those cloud providers presents many challenges. The typical deployment workflow looks like this: write code, push it to Git repository, compile code, deploy code, validate your changes, and repeat. Developers not only have to take care of all of this by themselves, but they also have to configure tons of services (like VPCs, databases, caches, DNS, CDN, and others) to make their application live on the web.
 
-Qovery solves this problem by combining the reliability of AWS and the simplicity of Heroku to augment the developer experience.
+Qovery solves this problem by combining the reliability of AWS and the simplicity of Heroku to augment the developer experience and to take this configuration burden from developers shoulders.
 
 In this blog post, I will show you how Qovery improves developers' workflows by deploying staging and production [Rails][urls.rails] application with [PostgreSQL][urls.postgresql] database on Qovery. You will be able to focus on writing the best code and delivering business value instead of managing complex services.
 
@@ -38,7 +39,7 @@ In this blog post, I will show you how Qovery improves developers' workflows by 
      website/guides/tutorial/deploy-rails-with-postgresql.md.erb
 -->
 
-## Qovery
+## Setup Qovery
 
 ### Install Qovery CLI
 
@@ -159,10 +160,16 @@ Congratulations, you are logged-in.
 ## Deployment
 
 ### Rails sample application
-Get a local copy of the [Rails sample project][urls.sample_rails_with_postgresql] by forking it.
+To bootstrap the Rails sample project, we'll use a `template`. [Templates][urls.qovery_templates_docs] are preconfigured basic project structures that allow you to create application skeleton using just one command. To bootstrap the application, run:
 
-### Configure your project
-To deploy your Rails application connected to a PostgreSQL, you need to have a `.qovery.yml` file, and a `Dockerfile` (both provided in the sample project) at the root of your project.
+```bash
+$ qovery init -t rails-postgresql
+```
+
+This command creates a new directory with initial application structure configured to be deployed on Qovery.
+
+### About configuration
+To deploy your Rails application connected to a PostgreSQL, you need to have a `.qovery.yml` file, and a `Dockerfile` (both provided in the template skeleton) at the root of your project.
 
 <Alert>
 The .qovery.yml file describes all the dependencies that your application needs (e.g., PostgreSQL) to work smoothly
@@ -170,7 +177,7 @@ The .qovery.yml file describes all the dependencies that your application needs 
 
 In this example we are using PostgreSQL v11.5
 
-After forking the sample application, you can check the content of `.qovery.yml`:
+After running `template` command, you can check the content of `.qovery.yml` in the folder containing your new application:
 
 ```bash
 $ cat .qovery.yml
@@ -194,11 +201,38 @@ routers:
     - /
 ```
 
-[Authorize the Qovery Github application][urls.authorize_qovery] to get access to your Github account. Once done, all new commits you push to your forked repository will trigger new deployments of the application.
+All you have to do now to deploy the application is to initialize a new Github repository and grant Qovery access to this newly created repo:
+
+<Steps headingDepth={3}>
+
+  1. Create a new repository @ [Github][urls.github].
+
+  2. [Authorize the Qovery Github application][urls.authorize_qovery] to get access to your Github account. Make sure it has access to repositories containing application you want to deploy with Qovery.
+
+  3. Initialize a new local Git repository in your new application folder:
+
+  ```bash
+  git init ; git add . ; git commit -m "Initial commit"
+  ```
+
+  4. Connect your local Git repository to the newly created Github repo (don't forget to replace placeholders in the command):
+
+  ```bash
+  git remote add origin https://github.com/${YOUR_USERNAME}/${YOUR_REPOSITORY_NAME}.git
+  ```
+  5. Push initial commit:
+
+  ```bash
+  git push --set-upstream origin master
+  ```
+
+  Voila! Your application is now being deployed to Qovery.
+
+</Steps>
 
 ### Connect your application to PostgreSQL
 Credentials of your database are available via environment variables. Qovery injects environment vars at the runtime.
-To list all the environment variables available to your application, execute
+To list all the environment variables available to your application, execute the follwing in your application folder:
 
 ```bash
 # List all environment variables
@@ -226,8 +260,6 @@ BUILT_IN | QOVERY_DATABASE_MY_DB_NAME                               | my-db
 
 The sample application is preconfigured to use those environment variables to connect to the database.
 
-Forking the application with `.qovery.yml` and a `Dockerfile` should trigger app deployment.
-
 See the deployment status by executing:
 
 ```bash
@@ -246,7 +278,7 @@ DATABASE NAME    | STATUS  | TYPE       | VERSION | ENDPOINT | PORT     | USERNA
 my-db            | running | POSTGRESQL      | 11.5     | <hidden> | <hidden> | <hidden> | <hidden> | my-application
 ```
 
-When your application `status` is `running`, you can use a browser or `curl` to access its endpoints.
+As you see in the status output, the application as well as the database are automagically deployed. When your application `status` is `running`, you can use a browser or `curl` to access its endpoints.
 
 ## Trigger a new deployment
 
@@ -267,7 +299,7 @@ $ qovery run
 Note: `qovery run` connects your application to the PostgreSQL database on Qovery.
 
 ### Deploy the application on a staging environment
-Qovery has a compelling feature known as "environments". Qovery supports the deployment of isolated development environments that reflect your Git branches. Environments are complete copies of all of your data, application, and services like databases. The Environment is useful for testing changes in isolation before merging them to your main branch.
+Qovery has a compelling feature known as `environments`. Qovery supports the deployment of isolated development environments that reflect your Git branches. Environments are complete copies of all of your data, application, and services like databases. The Environment is useful for testing changes in isolation before merging them to your main branch.
 
 So, do you want to create a new feature, fix a bug, or make modifications without impacting the production or any other important environment? Type the following commands:
 
@@ -290,6 +322,9 @@ DATABASE NAME  | STATUS  | TYPE       | VERSION | ENDPOINT | PORT     | USERNAME
 my-db          | running | PostgreSQL      | 11.5     | <hidden> | <hidden> | <hidden> | <hidden> | my-application
 ```
 
+As you see, a new environment related to `feat_foo` branch is now running. New environment includes all applications and databases of your project, so you can test
+new features in environment that is an identical copy of your production environment (we even replicate the database data!).
+
 <Jump to="/guides/advanced/using-multiple-environments">Multiple Environments</Jump>
 
 ## Conclusion
@@ -310,7 +345,7 @@ Accelerate your development and start using Qovery today. Let us know what you t
 [urls.postgresql]: https://www.postgresql.org
 [urls.qovery_chat]: https://discord.qovery.com
 [urls.qovery_cli_releases]: https://github.com/Qovery/qovery-cli/releases
+[urls.qovery_templates_docs]: https://docs.qovery.com/docs/using-qovery/integration/project-templates/
 [urls.qovery_twitter]: https://twitter.com/qovery_
 [urls.rails]: https://rubyonrails.org/
-[urls.sample_rails_with_postgresql]: https://github.com/Qovery/simple-example-rails-with-postgresql
 [urls.scoop]: https://scoop.sh/

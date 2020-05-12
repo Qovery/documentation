@@ -212,6 +212,15 @@ module.exports = {
           "title": "Deploy Node.JS with PostgreSQL on Qovery"
         },
         {
+          "author_github": "https://github.com/pjeziorowski",
+          "description": null,
+          "id": "/tutorial/deploy-rails-with-postgresql",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/deploy-rails-with-postgresql.md",
+          "series_position": null,
+          "title": "Deploy Rails with PostgreSQL on Qovery"
+        },
+        {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
           "id": "/tutorial/deploy-spring-boot-with-postgresql",

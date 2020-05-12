@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-05-08"
+last_modified_on: "2020-05-12"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy Django with PostgreSQL on Qovery
 description: How to deploy a Django application with the PostgreSQL database on Qovery
@@ -209,10 +209,10 @@ All you have to do now to deploy the application is to initialize a new Github r
 
   2. [Authorize the Qovery Github application][urls.authorize_qovery] to get access to your Github account. Make sure it has access to repositories containing application you want to deploy with Qovery.
 
-  3. Initialize a new local Git repository in your new application folder:
+  3. Go to the new application folder:
 
   ```bash
-  git init ; git add . ; git commit -m "Initial commit"
+  cd django-postgresql
   ```
 
   4. Connect your local Git repository to the newly created Github repo (don't forget to replace placeholders in the command):

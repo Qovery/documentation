@@ -19,9 +19,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="add: docs/troubleshoot page&#10;update: FAQ">
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="update: deploy-your-first-application.md.erb">
+      <change afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/regions.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/regions.md.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/deploy-your-first-application.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/deploy-your-first-application.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/sidebars.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/sidebars.js.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.js.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +72,7 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.vendoring.notification.had.been.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/website/docs/using-qovery" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/website/docs/using-qovery/configuration" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -76,23 +81,23 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Color Scheme Font" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/website/docs/using-qovery" />
-      <recent name="$PROJECT_DIR$/website/static/img" />
-      <recent name="$PROJECT_DIR$/website/docs/using-qovery/configuration" />
-      <recent name="$PROJECT_DIR$/website/static/img/logos" />
-      <recent name="$PROJECT_DIR$/website/guides/tutorial" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/website/guides/getting-started" />
       <recent name="$PROJECT_DIR$/website/guides/Advanced" />
       <recent name="$PROJECT_DIR$/website/static/img" />
       <recent name="$PROJECT_DIR$/website/docs/using-qovery" />
       <recent name="$PROJECT_DIR$/website/docs/using-qovery/examples" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/website/docs/using-qovery/configuration" />
+      <recent name="$PROJECT_DIR$/website/docs/useful-links" />
+      <recent name="$PROJECT_DIR$/website/docs/using-qovery" />
+      <recent name="$PROJECT_DIR$/website/static/img" />
+      <recent name="$PROJECT_DIR$/website/static/img/logos" />
     </key>
   </component>
   <component name="RunManager" selected="npm.start">
@@ -178,21 +183,8 @@
       <workItem from="1588839426393" duration="2143000" />
       <workItem from="1588939331014" duration="1398000" />
       <workItem from="1588966067520" duration="4673000" />
-      <workItem from="1589057015498" duration="422000" />
-    </task>
-    <task id="LOCAL-00041" summary="minor changes">
-      <created>1587473578739</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1587473578739</updated>
-    </task>
-    <task id="LOCAL-00042" summary="style: arrow color">
-      <created>1587487894692</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1587487894693</updated>
+      <workItem from="1589057015498" duration="943000" />
+      <workItem from="1589291298717" duration="5858000" />
     </task>
     <task id="LOCAL-00043" summary="fix: .md name">
       <created>1587487995884</created>
@@ -523,7 +515,21 @@
       <option name="project" value="LOCAL" />
       <updated>1588972387810</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task id="LOCAL-00090" summary="update: deploy-your-first-application.md.erb">
+      <created>1589057472687</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1589057472688</updated>
+    </task>
+    <task id="LOCAL-00091" summary="update: deploy-your-first-application.md.erb">
+      <created>1589057495253</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1589057495253</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -584,7 +590,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="wip: custom routes article" />
     <MESSAGE value="change css (provided by Gaëtan)" />
     <MESSAGE value="change warning and success colors" />
     <MESSAGE value="change: domain from docsv2.qovery.com to docs.qovery.com" />
@@ -609,7 +614,8 @@
     <MESSAGE value="change: github connection image used for sign up" />
     <MESSAGE value="update: FAQ" />
     <MESSAGE value="add: docs/troubleshoot page&#10;update: FAQ" />
-    <option name="LAST_COMMIT_MESSAGE" value="add: docs/troubleshoot page&#10;update: FAQ" />
+    <MESSAGE value="update: deploy-your-first-application.md.erb" />
+    <option name="LAST_COMMIT_MESSAGE" value="update: deploy-your-first-application.md.erb" />
   </component>
   <component name="WindowStateProjectService">
     <state x="424" y="262" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588007526167">
@@ -667,31 +673,33 @@
     </state>
     <state x="663" y="281" key="RollbackChangesDialog/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@0.23.1792.1097" timestamp="1587017173048" />
     <state x="663" y="281" key="RollbackChangesDialog/0.23.1792.1097@0.23.1792.1097" timestamp="1586967392759" />
-    <state x="461" y="239" key="SettingsEditor" timestamp="1589057129937">
+    <state x="461" y="239" key="SettingsEditor" timestamp="1589314136513">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="461" y="239" key="SettingsEditor/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1589057129937" />
+    <state x="461" y="239" key="SettingsEditor/0.0.1920.1200@0.0.1920.1200" timestamp="1589314136513" />
     <state x="690" y="350" width="540" height="524" key="StructurePopup" timestamp="1587398370723">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="690" y="350" width="540" height="524" key="StructurePopup/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587398370723" />
-    <state width="536" height="488" key="SwitcherDM" timestamp="1589057234292">
+    <state width="536" height="488" key="SwitcherDM" timestamp="1589396292604">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state width="536" height="429" key="SwitcherDM/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587042928490" />
     <state width="536" height="488" key="SwitcherDM/-333.-1417.2560.1417/0.0.1920.1200@0.0.1920.1200" timestamp="1587550681508" />
-    <state width="536" height="488" key="SwitcherDM/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1589057234292" />
+    <state width="536" height="488" key="SwitcherDM/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1589057951875" />
     <state width="536" height="429" key="SwitcherDM/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587130320365" />
+    <state width="536" height="488" key="SwitcherDM/0.0.1920.1200@0.0.1920.1200" timestamp="1589396292604" />
     <state width="500" height="445" key="SwitcherDM/0.23.1792.1097@0.23.1792.1097" timestamp="1586970316787" />
     <state x="100" y="100" width="1720" height="1000" key="VCS.FileHistoryDialog" timestamp="1587678290994">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="100" y="100" width="1720" height="1000" key="VCS.FileHistoryDialog/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587678290994" />
-    <state x="531" y="314" key="Vcs.Push.Dialog.v2" timestamp="1588972389233">
+    <state x="531" y="314" key="Vcs.Push.Dialog.v2" timestamp="1589057496632">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="-1389" y="408" key="Vcs.Push.Dialog.v2/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587043142882" />
-    <state x="531" y="314" key="Vcs.Push.Dialog.v2/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1588972389233" />
+    <state x="531" y="314" key="Vcs.Push.Dialog.v2/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1589057496632" />
     <state x="496" y="311" key="Vcs.Push.Dialog.v2/0.23.1792.1097@0.23.1792.1097" timestamp="1586945386299" />
     <state x="710" y="341" key="VcsDiffUtil.ChangesDialog" timestamp="1587578340186">
       <screen x="0" y="0" width="1920" height="1200" />
@@ -701,11 +709,12 @@
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="500" y="204" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1588090849211" />
-    <state x="763" y="510" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1588966703266">
+    <state x="763" y="510" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1589354889393">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="763" y="510" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1588966703266" />
     <state x="-1157" y="610" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587108608568" />
+    <state x="763" y="510" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1200@0.0.1920.1200" timestamp="1589354889393" />
     <state x="220" y="102" width="1479" height="880" key="find.popup" timestamp="1587653711613">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
@@ -714,13 +723,14 @@
     <state x="220" y="102" width="1479" height="880" key="find.popup/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587653711613" />
     <state x="-1285" y="429" width="964" height="578" key="find.popup/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587130747733" />
     <state x="593" y="302" width="964" height="578" key="find.popup/0.23.1792.1097@0.23.1792.1097" timestamp="1586971117204" />
-    <state x="601" y="218" width="718" height="741" key="search.everywhere.popup" timestamp="1588971326096">
+    <state x="601" y="218" width="718" height="741" key="search.everywhere.popup" timestamp="1589396624035">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="-1319" y="323" width="718" height="652" key="search.everywhere.popup/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587040363911" />
     <state x="561" y="222" width="670" height="676" key="search.everywhere.popup/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@0.23.1792.1097" timestamp="1587014900518" />
     <state x="601" y="218" width="718" height="741" key="search.everywhere.popup/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1588971326096" />
     <state x="-1319" y="353" width="718" height="652" key="search.everywhere.popup/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587131778361" />
+    <state x="601" y="218" width="718" height="741" key="search.everywhere.popup/0.0.1920.1200@0.0.1920.1200" timestamp="1589396624035" />
     <state x="561" y="222" width="670" height="676" key="search.everywhere.popup/0.23.1792.1097@0.23.1792.1097" timestamp="1586971120732" />
   </component>
   <component name="XDebuggerManager">

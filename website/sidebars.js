@@ -40,8 +40,7 @@ module.exports = {
                     label: 'Configuration',
                     items: [
                         "using-qovery/configuration",
-                        "using-qovery/configuration/environment-variables",
-                        "using-qovery/configuration/secrets",
+                        "using-qovery/configuration/regions",
                         {
                             type: 'category',
                             label: 'Databases',
@@ -52,6 +51,8 @@ module.exports = {
                                 "using-qovery/configuration/databases/mysql",
                             ],
                         },
+                        "using-qovery/configuration/environment-variables",
+                        "using-qovery/configuration/secrets",
                         "using-qovery/configuration/domains",
                         "using-qovery/configuration/storage",
                         "using-qovery/configuration/brokers",

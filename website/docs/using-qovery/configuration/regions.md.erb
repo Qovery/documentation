@@ -1,0 +1,74 @@
+---
+title: Regions
+description: Learn how to configure Regions on Qovery
+---
+Qovery is available in a number of different Regions. Each region is a self-contained copy of Qovery in a single datacenter. When you first create an [environment][docs.environment] you can specify which region it should be in.
+
+<Alert type="info">
+
+Each environment can be assigned to a different region
+
+</Alert>
+
+## Configuration
+
+To specify the region you want to use you need to modify your `.qovery.yml`
+
+```yaml title=".qovery.yml" {4}
+application:
+  name: jhipster-sample-app
+  project: jhipster-sample-app
+  cloud_region: aws/us-west-2
+  publicly_accessible: true
+routers:
+  - name: main
+    routes:
+      - application_name: jhipster-sample-app
+        paths:
+          - /*
+```
+
+The format used is `{cloud_provider}/{cloud_provider_sregion}`
+
+If you use a non supported region you will have an error from the linter:
+
+```bash title="non-existing region"
+ERROR:   aws/fake-region is not a valid region
+SOLUTION: Valid cloud regions: aws/us-east-2, aws/us-west-2, aws/eu-west-3
+
+Total errors found: 1
+```
+
+## Region
+
+### Community plan
+
+The following regions are available:
+
+<Alert type="info">
+
+More regions will come in the near future
+
+</Alert>
+
+#### AWS
+
+* eu-west-3 (Paris, France)
+* us-east-2 (Ohio, United States)
+* us-west-2 (Oregon, United States)
+
+Do you want to speed up the support of a specific AWS region? [Tell us][urls.qovery_chat]
+
+### Enterprise plan
+
+With the enterprise plan, Qovery can be deployed on any region supported by AWS, GCP, and Azure - on your own Cloud provider account.
+
+## FAQ
+
+### How to choose a region?
+
+Different datacenters are located in different geographic areas, and you may want to keep your site physically close to the bulk of your user base for reduced latency.
+
+### Migrate between regions
+
+You can't migrate an environment from one region to another after it is created.

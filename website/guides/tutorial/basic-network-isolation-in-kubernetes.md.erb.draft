@@ -8,7 +8,6 @@ hide_pagination: true
 ---
 import Assumptions from '@site/src/components/Assumptions';
 
-
 # Basic network isolation in Kubernetes
 
 As your number of deployed applications within Kubernetes grows, you may want to isolate them from a network point of view. By default Kubernetes does not offer any network isolation, all pods of all your namespaces can talk to each other without any isolation and even on network port you have not declared in your yaml files. Yeah that's a bit scary :)

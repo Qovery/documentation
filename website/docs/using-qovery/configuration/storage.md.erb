@@ -15,10 +15,10 @@ Qovery Storage supports:
 
 |Type|Max IOPS|Max Throughput|Min Size|Max Size|Use cases|
 |----|--------|--------------|--------|--------|---------|
-|cold|250|250MB/s|500GB|16TB|Store a lot of data that do not need to be frequently accessed|
+|slow_hdd|250|250MB/s|500GB|16TB|Store a lot of data that do not need to be frequently accessed|
 |hdd|500|500MB/s|500GB|16TB|Big data, Log processing|
 |ssd|16000|250MB/s|1GB|16TB|Recommended for most workload|
-|nvme|64000|1GB/s|4GB|16TB|Critical business applications that require sustained IOPS like databases|
+|fast_ssd|64000|1GB/s|4GB|16TB|Critical business applications that require sustained IOPS like databases|
 
 ## Configuration
 
@@ -44,8 +44,8 @@ routers:
 ```
 
 * `name` must be unique across your storage attached to your application.
-* `type` you have the choice between: `cold`, `hdd`, `ssd` and `nvme`. Refer to the details above.
-* `size` size in TB, GB and MB are available
+* `type` you have the choice between: `slow_hdd`, `hdd`, `ssd` and `fast_ssd`. Refer to the details above.
+* `size` size in GB, and TB are available
 * `mount_point` (optional): per default qovery will mount your disk into `/mnt/{name}`
 
 ## FAQ

@@ -2,6 +2,53 @@
 title: "Storage"
 description: "Learn how to configure Storage on Qovery"
 ---
-This feature will be added soon!
+The default filesystem for applications running on Qovery is ephemeral. Application data isn’t persisted across deploys and restarts, which works just fine for most apps because they use managed databases to persist data.
 
-[Vote on this feature][urls.qovery_roadmap] to make it available sooner.
+However, many applications need persistent disk storage that isn’t ephemeral. These include:
+
+* Blogging platforms and CMSs like WordPress, Ghost, and Strapi.
+* Collaboration apps like Mattermost, GitLab, and Discourse.
+
+This is where Qovery Storage comes in. Qovery applications can use storage to store data that persists across deploys and restarts, making it easy to deploy stateful applications.
+
+Qovery Storage supports:
+
+* cold (very slow)
+* hdd (slow)
+* ssd (fast)
+* nvme (very fast)
+
+## Configuration
+
+To specify one or more storage attached to your application, you need to modify your `.qovery.yml`
+
+```yaml title=".qovery.yml" {6-11}
+application:
+  name: jhipster-sample-app
+  project: jhipster-sample-app
+  cloud_region: aws/us-west-2
+  publicly_accessible: true
+  storage:
+    - name: images
+      type: ssd
+      size: 10GB # TB, GB, MB
+      mount_point: /mnt/images # optional; per default qovery will mount your disk into /mnt/{name}
+      backup_retention_in_days: 3 # optional; 0 means no backup
+routers:
+  - name: main
+    routes:
+      - application_name: jhipster-sample-app
+        paths:
+          - /*
+```
+
+## FAQ
+
+### How to extend the size of a storage
+
+You need to update with a higher size value your storage.size property inside your `.qovery.yml`.
+
+### How to reduce the size of a storage
+
+Once you have defined the size of your storage, you can't reduce it. If you want to reduce the size, you must create a new storage with a smaller size, transfer the data from the old storage to the new one, then delete the old storage.
+

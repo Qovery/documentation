@@ -194,6 +194,15 @@ module.exports = {
           "title": "Deploy Gin with PostgreSQL on Qovery"
         },
         {
+          "author_github": "https://github.com/pjeziorowski",
+          "description": null,
+          "id": "/tutorial/deploy-jhipster-with-postgresql",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/deploy-jhipster-with-postgresql.md",
+          "series_position": null,
+          "title": "Deploy JHipster with PostgreSQL on Qovery"
+        },
+        {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
           "id": "/tutorial/deploy-laravel-with-mysql",

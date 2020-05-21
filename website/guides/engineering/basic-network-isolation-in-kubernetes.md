@@ -40,9 +40,9 @@ Some Kubernetes cluster providers propose their implementation, like [GKS](https
 
 Here are the links to install the Kubernetes Networking plugin according to your Cloud provider.
 
-* Google Cloud Platform: https://cloud.google.com/kubernetes-engine/docs/how-to/network-policy#using_network_policy_enforcement
-* Azure: https://docs.microsoft.com/en-us/azure/aks/use-network-policies#create-an-aks-cluster-and-enable-network-policy
-* Amazon Web Services: https://eksworkshop.com/beginner/120_network-policies/calico/install_calico
+* Google Cloud Platform: [installation guide](https://cloud.google.com/kubernetes-engine/docs/how-to/network-policy#using_network_policy_enforcement)
+* Azure: [installation guide](https://docs.microsoft.com/en-us/azure/aks/use-network-policies#create-an-aks-cluster-and-enable-network-policy)
+* Amazon Web Services: [installation guide](https://eksworkshop.com/beginner/120_network-policies/calico/install_calico)
 
 ## Configuration
 

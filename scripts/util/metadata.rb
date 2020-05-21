@@ -118,6 +118,7 @@ class Metadata
               :languages,
               :databases,
               :frameworks,
+              :technologies,
               :env_vars,
               :guides,
               :highlights,
@@ -149,6 +150,7 @@ class Metadata
     @languages = hash.fetch("languages").collect { |h| OpenStruct.new(h) }
     @databases = hash.fetch("databases").collect { |h| OpenStruct.new(h) }
     @frameworks = hash.fetch("frameworks").collect { |h| OpenStruct.new(h) }
+    @technologies = hash.fetch("technologies").collect { |h| OpenStruct.new(h) }
 
     # highlights
 
@@ -392,6 +394,7 @@ class Metadata
         languages: languages.deep_to_h,
         databases: databases.deep_to_h,
         frameworks: frameworks.deep_to_h,
+        technologies: technologies.deep_to_h,
         team: team.deep_to_h,
         transforms: transforms.deep_to_h,
         sinks: sinks.deep_to_h

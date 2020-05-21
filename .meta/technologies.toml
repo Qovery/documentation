@@ -1,0 +1,9 @@
+[[technologies]]
+name = "kubernetes"
+logo_path = "/img/logos/kubernetes.svg"
+dark_logo_path = "/img/logos/kubernetes_white.svg"
+
+[[technologies]]
+name = "docker"
+logo_path = "/img/logos/docker.svg"
+dark_logo_path = "/img/logos/docker.svg"

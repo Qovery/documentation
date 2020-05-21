@@ -16,7 +16,14 @@ Go beyond the basics, become a Qovery pro, and extract the full potential of Qov
 title = "Tutorial"
 series = false
 description = """\
-Simple step-by-step tutorials \
+Simple step-by-step tutorials. \
+"""
+
+[guides.engineering]
+title = "Engineering"
+series = false
+description = """\
+We share our engineering learning with all of you. \
 """
 
 #[guides.integrate]

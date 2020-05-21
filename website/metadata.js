@@ -1,10 +1,12 @@
 module.exports = {
   "databases": [
     {
+      "dark_logo_path": "/img/logos/docker.svg",
       "logo_path": "/img/logos/docker.svg",
       "name": "mysql"
     },
     {
+      "dark_logo_path": "/img/logos/docker.svg",
       "logo_path": "/img/logos/docker.svg",
       "name": "postgresql"
     }
@@ -155,7 +157,7 @@ module.exports = {
     "tutorial": {
       "children": {
       },
-      "description": "Simple step-by-step tutorials ",
+      "description": "Simple step-by-step tutorials. ",
       "guides": [
         {
           "author_github": "https://github.com/evoxmusic",
@@ -287,6 +289,25 @@ module.exports = {
       "name": "tutorial",
       "series": false,
       "title": "Tutorial"
+    },
+    "engineering": {
+      "children": {
+      },
+      "description": "We share our engineering learning with all of you. ",
+      "guides": [
+        {
+          "author_github": "https://github.com/sileht",
+          "description": null,
+          "id": "/engineering/basic-network-isolation-in-kubernetes",
+          "last_modified_on": null,
+          "path": "website/guides/engineering/basic-network-isolation-in-kubernetes.md",
+          "series_position": null,
+          "title": "Kubernetes - Network isolation with NetworkPolicy"
+        }
+      ],
+      "name": "engineering",
+      "series": false,
+      "title": "Engineering"
     }
   },
   "highlights": [
@@ -373,7 +394,7 @@ module.exports = {
     },
     {
       "avatar": "https://github.com/pjeziorowski.png",
-      "bio": "Patryk is an experienced Software Engineer, and Developer Advocate at <a href=\"https://www.qovery.com\">Qovery</a>. ",
+      "bio": "Patryk is an experienced Software Engineer, and a Backend Developer at <a href=\"https://www.qovery.com\">Qovery</a>. ",
       "github": "https://github.com/pjeziorowski",
       "id": "patryk",
       "keybase": "https://keybase.io/patryk",
@@ -386,6 +407,18 @@ module.exports = {
       "id": "mehdi",
       "keybase": "https://keybase.io/mehdi",
       "name": "Mehdi A."
+    }
+  ],
+  "technologies": [
+    {
+      "dark_logo_path": "/img/logos/kubernetes_white.svg",
+      "logo_path": "/img/logos/kubernetes.svg",
+      "name": "kubernetes"
+    },
+    {
+      "dark_logo_path": "/img/logos/docker.svg",
+      "logo_path": "/img/logos/docker.svg",
+      "name": "docker"
     }
   ],
   "transforms": {

@@ -53,11 +53,12 @@
       "items": {
         "type": "string",
         "enum": <%= (
-          ["type: guide", "type: post", "type: tutorial"] +
+          ["type: guide", "type: post", "type: tutorial", "type: engineering"] +
           metadata.domains.collect { |d| "domain: #{d.name}" } +
           metadata.languages.collect { |l| "language: #{l.name}" } +
           metadata.databases.collect { |d| "database: #{d.name}" } +
-          metadata.frameworks.collect { |f| "framework: #{f.name}" }
+          metadata.frameworks.collect { |f| "framework: #{f.name}" } +
+          metadata.technologies.collect { |t| "technology: #{t.name}" }
         ) .to_json %>
       }
     },

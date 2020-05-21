@@ -23,7 +23,6 @@ name = "flask"
 logo_path = "/img/logos/flask.svg"
 dark_logo_path = "/img/logos/flask_white.svg"
 
-
 [[frameworks]]
 name = "jhipster"
 logo_path = "/img/logos/jhipster.svg"

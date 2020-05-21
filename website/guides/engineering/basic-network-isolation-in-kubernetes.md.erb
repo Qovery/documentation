@@ -1,0 +1,162 @@
+---
+$schema: "/.meta/.schemas/guides.json"
+title: Kubernetes - Network isolation with NetworkPolicy
+description: Learn how to configure network isolation with NetworkPolicy in Kubernetes
+author_github: https://github.com/sileht
+tags: ["type: engineering", "technology: kubernetes"]
+hide_pagination: true
+---
+import Assumptions from '@site/src/components/Assumptions';
+
+As your number of deployed applications within Kubernetes grows, you may want to isolate them from a network point of view. By default, Kubernetes does not offer any network isolation, all pods of all your namespaces can talk to each other without any isolation, and even on network port that you have not defined. Yes, that's scary!
+
+There are different approaches and tools to do network isolation; let's take a look at the [NetworkPolicy](https://kubernetes.io/docs/concepts/services-networking/network-policies/).
+
+## Kubernetes Networking plugin
+
+Kubernetes provides a resource called `NetworkPolicy` that allows the creation of rules to allow/deny network traffic, which works like a network firewall. By default using this resource doesn't do anything. To make it work, you need first to add a Kubernetes Networking plugin that implements it.
+
+Some Kubernetes cluster providers propose their implementation, like [GKS](https://cloud.google.com/kubernetes-engine/docs/how-to/network-policy#using_network_policy_enforcement) and [AKS](https://docs.microsoft.com/en-us/azure/aks/use-network-policies#create-an-aks-cluster-and-enable-network-policy). On the other side, you can use [Calico](https://docs.projectcalico.org) like recommended by AWS with [EKS](https://eksworkshop.com/beginner/120_network-policies/calico/install_calico/).
+
+<Assumptions>
+
+* You have installed the Kubernetes Networking Plugin (See below).
+
+</Assumptions>
+
+### Installation
+
+Here are the links to install the Kubernetes Networking plugin according to your Cloud provider.
+
+* Google Cloud Platform: https://cloud.google.com/kubernetes-engine/docs/how-to/network-policy#using_network_policy_enforcement
+* Azure: https://docs.microsoft.com/en-us/azure/aks/use-network-policies#create-an-aks-cluster-and-enable-network-policy
+* Amazon Web Services: https://eksworkshop.com/beginner/120_network-policies/calico/install_calico
+
+## Configuration
+
+Implementing Network Isolation is the same rule of thumb as configuring a firewall - block every inbound request and allow what you need.
+
+### Block all incoming traffic
+
+To
+In example below, we will configure the production to be isolated from all other namespaces, but still allow any pods deployed within production namespace to talk to each other.
+
+First, let's create a namespace:
+
+```yaml title="Production namespace"
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: production
+  labels:
+    role: production
+```
+
+Then, blocking incoming traffic for this namespace looks like this:
+
+```yaml title="Blocking all incoming traffic" {8-11}
+#...
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: no-inbound-traffic
+  namespace: production
+spec:
+  policyTypes:
+  - Ingress
+  podSelector:
+    matchLabels: {}
+```
+
+The rule is:
+
+* `policyTypes=Ingress` to select only the incoming traffic
+* an empty set in `podSelector/matchLabels`, to apply the rule to all pods within the namespace.
+* no `ingress` rule have been defined, so everything is blocked
+
+
+### Allow traffic between pods within the same namespace
+
+To allow any pods within the `production` namespace to communicate to each other, add a `NetworkPolicy` rule:
+
+```yaml title="Add a NetworkPolicy rule to allow traffic between pods" {12-16}
+#...
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow-same-namespace-traffic
+  namespace: production
+spec:
+  policyTypes:
+  - Ingress
+  podSelector:
+    matchLabels: {}
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          role: production
+```
+
+The `ingress` rules indicate that we want to allow all traffic from namespace with the label `role=production`.
+
+### Allow incoming traffic from outside
+Let's now imagine that you have a web application listening on port 8000, to make it publicly accessible we need to add one more rule:
+
+```yaml title="Allow incoming traffic from outside"
+#...
+kind: NetworkPolicy
+apiVersion: networking.k8s.io/v1
+metadata:
+  name: allow-port-8000
+  namespace: production
+spec:
+  policyTypes:
+  - Ingress
+  podSelector:
+    matchLabels:
+      app=web-server
+  ingress:
+  - ports:
+    - port: 8000
+```
+
+Instead of selecting all pods, I pick only those with label `app=web-server` of the `productions` namespace. Then the `ingress:` rule allows anybody to connect to the port 8000 of my web-server.
+
+### Block outgoing traffic
+
+`NetworkPolicy` can also be used to prevent traffic from going out. For instance, we may not want an application to read the AWS metadata server information.
+
+```yaml title="Block outgoing traffic to a specific IP address range" {10-22}
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: disable-aws-metadata
+  namespace: production
+spec:
+  policyTypes:
+  - Egress
+  podSelector:
+    matchLabels: {}
+  egress:
+  - to:
+    - ipBlock:
+        cidr: 0.0.0.0/0
+        except:
+          - 169.254.169.254/32
+```
+
+## Going further
+
+`NetworkPolicy` is useful for simple network traffic filtering, but not enough to have perfect control over pods communication. Filtering rules are made only with Pod and Namespace selectors. A person with bad intentions can still connect directly to the application port (here 8000) and bypass your `Ingress` resources and `Loadbalancer` setup once the network port is open.
+
+In a forthcoming post, we will see how we can have fine-grained filtering with a sidecar service called [Istio](https://istio.io/).
+
+### Resources
+
+* [Kubernetes Network Policies](https://kubernetes.io/docs/concepts/services-networking/network-policies/)
+* [Calico Network Policies](https://docs.projectcalico.org/reference/resources/networkpolicy#content-main)
+* [Calico Network Policies - eksworkshop](https://eksworkshop.com/beginner/120_network-policies/calico/stars_policy_demo/apply_network_policies/)
+* [GCP Network Policy](https://cloud.google.com/kubernetes-engine/docs/how-to/network-policy)
+
+<Jump to="/guides/engineering/">Engineering</Jump>

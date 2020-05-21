@@ -24,6 +24,8 @@ function GuideItem(props) {
     const languageName = languageTag ? languageTag.value : null;
     const frameworkTag = enrichedTags.find(tag => tag.category == 'framework');
     const frameworkName = frameworkTag ? frameworkTag.value : null;
+    const technologyTag = enrichedTags.find(tag => tag.category == 'technology');
+    const technologyName = technologyTag ? technologyTag.value : null;
     const platformTag = enrichedTags.find(tag => tag.category == 'platform');
     const platformName = platformTag ? platformTag.value : null;
     const sourceTag = enrichedTags.find(tag => tag.category == 'source');
@@ -32,13 +34,14 @@ function GuideItem(props) {
     const sinkName = sinkTag ? sinkTag.value : null;
 
     const {siteConfig} = useDocusaurusContext();
-    const {metadata: {installation, sources, sinks, languages, frameworks}} = siteConfig.customFields;
+    const {metadata: {installation, sources, sinks, languages, frameworks, technologies}} = siteConfig.customFields;
     const {platforms} = installation;
     const platform = platformName && platforms[platformName];
     const source = sourceName && sources[sourceName];
     const sink = sinkName && sinks[sinkName];
     const language = languageName && languages.find(language => language.name === languageName);
     const framework = frameworkName && frameworks.find(framework => framework.name === frameworkName);
+    const technology = technologyName && technologies.find(framework => framework.name === technologyName);
     const sourceIcon = (platform || source) !== null;
     const sinkIcon = sink != null;
 
@@ -49,6 +52,12 @@ function GuideItem(props) {
             sourceLogoPath = framework.dark_logo_path;
         } else {
             sourceLogoPath = framework.logo_path;
+        }
+    } else if (technology) {
+        if (isDarkTheme) {
+            sourceLogoPath = technology.dark_logo_path;
+        } else {
+            sourceLogoPath = technology.logo_path;
         }
     } else if (language) {
         if (isDarkTheme) {

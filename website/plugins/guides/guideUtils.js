@@ -47,6 +47,9 @@ async function generateGuides(guideDir, { siteConfig, siteDir }, options) {
                 case 'tutorial':
                     description = 'Simple step-by-step tutorials.';
                     break;
+                case 'engineering':
+                    description = 'We share our engineering learning with all of you.';
+                    break;
                 case 'getting-started':
                     description = 'Take Qovery from zero to production in under 10 minutes.';
                     break;

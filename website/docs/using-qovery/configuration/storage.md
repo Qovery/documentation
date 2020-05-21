@@ -3,6 +3,9 @@ last_modified_on: "2020-05-21"
 title: "Storage"
 description: "Learn how to configure Storage on Qovery"
 ---
+
+import Alert from '@site/src/components/Alert';
+
 The default filesystem for applications running on Qovery is ephemeral. Application data isn’t persisted across deploys and restarts, which works just fine for most apps because they use managed databases to persist data.
 
 However, many applications need persistent disk storage that isn’t ephemeral. These include:
@@ -63,6 +66,12 @@ routers:
 Yes, all your data are encrypted with AES-256.
 
 ### How to extend the size of a storage
+
+<Alert type="warning">
+
+Not yet supported
+
+</Alert>
 
 You need to update with a higher size value your storage.size property inside your `.qovery.yml`.
 

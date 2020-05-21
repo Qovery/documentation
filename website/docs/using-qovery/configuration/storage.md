@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-05-20"
+last_modified_on: "2020-05-21"
 title: "Storage"
 description: "Learn how to configure Storage on Qovery"
 ---
@@ -69,6 +69,10 @@ You need to update with a higher size value your storage.size property inside yo
 ### How to reduce the size of a storage
 
 Once you have defined the size of your storage, you can't reduce it. If you want to reduce the size, you must create a new storage with a smaller size, transfer the data from the old storage to the new one, then delete the old storage.
+
+### How to change the Storage type
+
+Once you have defined the type of your storage, you can't change it. If you want to change the type, you must create a new storage with the new type, transfer the data from the old storage to the new one, then delete the old storage.
 
 
 

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-05-13"
+last_modified_on: "2020-05-22"
 title: Regions
 description: Learn how to configure Regions on Qovery
 ---
@@ -71,9 +71,9 @@ More regions will come in the near future
 
 Do you want to speed up the support of a specific AWS region? [Tell us][urls.qovery_chat]
 
-### Enterprise plan
+### Business plan
 
-With the enterprise plan, Qovery can be deployed on any region supported by AWS, GCP, and Azure - on your own Cloud provider account.
+With the Business plan, Qovery can be deployed on any region supported by AWS, GCP, and Azure - on your own Cloud provider account.
 
 ## FAQ
 

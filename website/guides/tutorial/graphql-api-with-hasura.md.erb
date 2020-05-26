@@ -46,12 +46,7 @@ Deploying Hasura on Qovery is really easy. All you have to do is to bootstrap a 
 ```bash
 qovery init -t hasura
 ```
-2/ Point Hasura to your Postgres database and enable Hasura Console using environment variables
-```bash
-qovery application env add HASURA_GRAPHQL_DATABASE_URL '$QOVERY_DATABASE_MY_POSTGRESQL_DATABASE_CONNECTION_URI'
-qovery application env add HASURA_GRAPHQL_ENABLE_CONSOLE true
-```
-3/ Commit and push your changes
+2/ Commit and push your changes
 ```
 git add .
 git commit -m "Deploy Hasura on Qovery"

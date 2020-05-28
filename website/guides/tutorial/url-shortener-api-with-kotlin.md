@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-05-08"
+last_modified_on: "2020-05-28"
 $schema: "/.meta/.schemas/guides.json"
 title: URL Shortener API with Kotlin (Part 1/2)
 description: Create a URL shortener API with Kotlin, the micro-framework Ktor and PostgreSQL
@@ -8,6 +8,7 @@ tags: ["type: tutorial", "language: kotlin", "database: postgresql"]
 hide_pagination: true
 ---
 
+import Alert from '@site/src/components/Alert';
 import Jump from '@site/src/components/Jump';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
@@ -525,6 +526,17 @@ Few limitations exist on Windows: [read more][docs.cli#windows]
 # Sign up and sign in command
 $ qovery auth
 ```
+
+<Alert type="info">
+
+If you are using an environment without access to GUI or a browser, you can use headless authentication instead:
+
+```bash
+# Sign up and sign in command
+$ qovery auth --headless
+```
+
+</Alert>
 
 Your browser window with sign-in options will open.
 

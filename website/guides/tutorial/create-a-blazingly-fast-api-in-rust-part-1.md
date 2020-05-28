@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-05-08"
+last_modified_on: "2020-05-28"
 $schema: "/.meta/.schemas/guides.json"
 title: Create a blazingly fast REST API in Rust (Part 1/2)
 description: How to create a blazingly fast REST API in Rust, with zero-cost abstraction and very low overhead - Part 1/2
@@ -646,6 +646,17 @@ Few limitations exist on Windows: [read more][docs.cli#windows]
 # Sign up and sign in command
 $ qovery auth
 ```
+
+<Alert type="info">
+
+If you are using an environment without access to GUI or a browser, you can use headless authentication instead:
+
+```bash
+# Sign up and sign in command
+$ qovery auth --headless
+```
+
+</Alert>
 
 Your browser window with sign-in options will open.
 

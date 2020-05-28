@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-05-09"
+last_modified_on: "2020-05-28"
 $schema: "/.meta/.schemas/guides.json"
 title: Hello World. Deploy your first application.
 description: How to deploy your first application with Qovery
@@ -143,6 +143,17 @@ Few limitations exist on Windows: [read more][docs.cli#windows]
 # Sign up and sign in command
 $ qovery auth
 ```
+
+<Alert type="info">
+
+If you are using an environment without access to GUI or a browser, you can use headless authentication instead:
+
+```bash
+# Sign up and sign in command
+$ qovery auth --headless
+```
+
+</Alert>
 
 Your browser window with sign-in options will open.
 

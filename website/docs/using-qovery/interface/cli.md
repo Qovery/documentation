@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-05-28"
+last_modified_on: "2020-06-04"
 title: CLI
 description: How to use the Qovery CLI (Command Line Interface)
 ---
@@ -153,6 +153,22 @@ Note: Qovery needs access to your account to be able to clone your repository fo
 </p>
 
 Congratulations, you are logged-in.
+
+<Alert type="info" >
+
+Are you hosting your projects on Gitlab? We got you covered!
+Simply sign in to Qovery using your Gitlab account and enable Qovery in your project using:
+
+```bash
+# enables Qovery for the project in current working directory
+$ qovery git enable
+```
+
+That's it! It's a one time process that needs to be performed in each of your Gitlab projects that makes Gitlab send notifications about events happening in your repository.
+
+In the future, Qovery will allow you to manage your projects directly in Gitlab and Qovery UI.
+
+</Alert>
 
 ### Help
 

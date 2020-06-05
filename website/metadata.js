@@ -259,6 +259,15 @@ module.exports = {
           "title": "How to deploy Docker containers?"
         },
         {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/tutorial/deploy-fullstack-application-composed-of-hasura-postgresql-angular",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/deploy-fullstack-application-composed-of-hasura-postgresql-angular.md",
+          "series_position": null,
+          "title": "How to deploy a full-stack application composed of Hasura, PostgreSQL and Angular"
+        },
+        {
           "author_github": "https://github.com/pjeziorowski",
           "description": null,
           "id": "/tutorial/migrate-webapp-from-heroku-to-qovery",

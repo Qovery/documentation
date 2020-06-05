@@ -315,10 +315,12 @@ COPY --from=build /usr/src/app/dist/my-angular-app /usr/share/nginx/html
 ## Demo
 Now, let's look at the final result...
 
-<p align="center">
-  <iframe width="800" height="600" src="https://www.youtube.com/embed/nmtLfzSDlPM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-  </iframe>
-</p>
+<div class="video-container">
+  <p align="center">
+    <iframe width="800" height="600" src="https://www.youtube.com/embed/nmtLfzSDlPM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+    </iframe>
+  </p>
+</div>
 
 ## Beyond application deployment
 Application deployment is one part of what Qovery provides. Qovery helps development teams to better collaborate altogether by cloning [environment][docs.environment] and creating ephemeral environments on Pull Requests. Plus, deploying on its own Cloud account is available for business plans - and last, but not least, a [web interface][docs.web-interface] will be available very soon.

@@ -41,7 +41,6 @@ Here are the MySQL versions supported by Qovery.
 
 |Version|Supported|
 |---------|-------|
-|latest|Yes|
 |8.0|Yes|
 |5.7|Yes|
 |5.6|Yes|

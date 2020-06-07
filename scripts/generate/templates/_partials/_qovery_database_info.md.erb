@@ -13,7 +13,7 @@ application:
 ...
 databases:
 - type: <%= dbId %>
-  version: <%= versions[1] %>
+  version: <%= versions[0] %>
   name: my-<%= dbId %>
 ```
 
@@ -50,7 +50,7 @@ $ qovery application env list -c
   BUILT_IN    | QOVERY_IS_PRODUCTION                                          | true
   BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId.upcase %>_NAME                               | my-<%= dbId %>
   BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId.upcase %>_TYPE                               | <%= dbId %>
-  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId.upcase %>_VERSION                            | <%= versions[1] %>
+  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId.upcase %>_VERSION                            | <%= versions[0] %>
   BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId.upcase %>_CONNECTION_URI                     | <hidden>
   BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId.upcase %>_CONNECTION_URI_WITHOUT_CREDENTIALS | <hidden>
   BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId.upcase %>_HOST                               | <hidden>
@@ -78,7 +78,7 @@ qovery status -c
 ```plain title="OUTPUT"
 DATABASE NAME | STATUS  | TYPE    | VERSION | ENDPOINT | PORT     | USERNAME | PASSWORD | APPLICATIONS
 ----------------+---------+---------+---------+----------+----------+----------+----------+-----------------
-  my-mongo      | running | <%= dbId %> | <%= versions[1] %>     | <hidden> | <hidden> | <hidden> | <hidden> | simple-example
+  my-mongo      | running | <%= dbId %> | <%= versions[0] %>     | <hidden> | <hidden> | <hidden> | <hidden> | simple-example
 ```
 
 ## Delete a database

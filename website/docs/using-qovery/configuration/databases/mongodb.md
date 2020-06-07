@@ -41,7 +41,6 @@ Here are the MongoDB versions supported by Qovery.
 
 |Version|Supported|
 |---------|-------|
-|latest|Yes|
 |4.2|Yes|
 |4.0|Yes|
 |3.6|Yes|

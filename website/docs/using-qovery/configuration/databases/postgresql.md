@@ -41,7 +41,6 @@ Here are the PostgreSQL versions supported by Qovery.
 
 |Version|Supported|
 |---------|-------|
-|latest|Yes|
 |12|Yes|
 |11|Yes|
 |10|Yes|

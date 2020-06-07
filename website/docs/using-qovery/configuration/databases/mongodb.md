@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-05-05"
+last_modified_on: "2020-06-07"
 title: MongoDB
 description: "How to use MongoDB"
 ---
@@ -25,7 +25,7 @@ application:
 ...
 databases:
 - type: mongodb
-  version: "latest"
+  version: 4.2
   name: my-mongodb
 ```
 
@@ -34,6 +34,20 @@ databases:
 - type: the database engine (mongodb in this case)
 
 Alternatively, if you are creating a new application, use `qovery init` to interactively add a database (the CLI asks if you need one).
+
+## Supported versions
+
+Here are the MongoDB versions supported by Qovery.
+
+|Version|Supported|
+|---------|-------|
+|latest|Yes|
+|4.2|Yes|
+|4.0|Yes|
+|3.6|Yes|
+
+
+Qovery does not support a new version of MongoDB yet? [Contact us][urls.qovery_chat]
 
 ## Get access to a database
 
@@ -45,21 +59,21 @@ qovery application env list -c
 
 ```plain title="OUTPUT"
 $ qovery application env list -c
-  SCOPE       | KEY                                                           | VALUE     
+  SCOPE       | KEY                                                           | VALUE
 --------------+---------------------------------------------------------------+-----------
-  BUILT_IN    | QOVERY_BRANCH_NAME                                            | master    
-  BUILT_IN    | QOVERY_IS_PRODUCTION                                          | true      
+  BUILT_IN    | QOVERY_BRANCH_NAME                                            | master
+  BUILT_IN    | QOVERY_IS_PRODUCTION                                          | true
   BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_NAME                               | my-mongodb
-  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_TYPE                               | mongodb     
-  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_VERSION                            | 3.6       
-  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_CONNECTION_URI                     | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_CONNECTION_URI_WITHOUT_CREDENTIALS | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_HOST                               | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_FQDN                               | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_PORT                               | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_USERNAME                           | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_PASSWORD                           | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_DATABASE                           | mongodb 
+  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_TYPE                               | mongodb
+  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_VERSION                            | 4.2
+  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_CONNECTION_URI                     | <hidden>
+  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_CONNECTION_URI_WITHOUT_CREDENTIALS | <hidden>
+  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_HOST                               | <hidden>
+  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_FQDN                               | <hidden>
+  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_PORT                               | <hidden>
+  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_USERNAME                           | <hidden>
+  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_PASSWORD                           | <hidden>
+  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_DATABASE                           | mongodb
 ```
 
 In the output, you get all data you need to use the database. Those environment variables are available in the runtime of your application.
@@ -84,9 +98,9 @@ qovery status -c
 ```
 
 ```plain title="OUTPUT"
-DATABASE NAME | STATUS  | TYPE    | VERSION | ENDPOINT | PORT     | USERNAME | PASSWORD | APPLICATIONS    
+DATABASE NAME | STATUS  | TYPE    | VERSION | ENDPOINT | PORT     | USERNAME | PASSWORD | APPLICATIONS
 ----------------+---------+---------+---------+----------+----------+----------+----------+-----------------
-  my-mongo      | running | mongodb | 3.6     | <hidden> | <hidden> | <hidden> | <hidden> | simple-example 
+  my-mongo      | running | mongodb | 4.2     | <hidden> | <hidden> | <hidden> | <hidden> | simple-example
 ```
 
 ## Delete a database
@@ -130,4 +144,4 @@ databases:
 As described in the configuration file, the backup occurs between 9 PM and 11 PM.
 
 
-
+[urls.qovery_chat]: https://discord.qovery.com

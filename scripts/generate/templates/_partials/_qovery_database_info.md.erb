@@ -13,7 +13,7 @@ application:
 ...
 databases:
 - type: <%= dbId %>
-  version: "latest"
+  version: <%= versions[1] %>
   name: my-<%= dbId %>
 ```
 
@@ -22,6 +22,17 @@ databases:
 - type: the database engine (<%= dbId %> in this case)
 
 Alternatively, if you are creating a new application, use `qovery init` to interactively add a database (the CLI asks if you need one).
+
+## Supported versions
+
+Here are the <%= dbName %> versions supported by Qovery.
+
+|Version|Supported|
+|---------|-------|
+<% versions.each do |version| %>|<%= version %>|Yes|
+<% end %>
+
+Qovery does not support a new version of <%= dbName %> yet? [Contact us][urls.qovery_chat]
 
 ## Get access to a database
 
@@ -33,21 +44,21 @@ qovery application env list -c
 
 ```plain title="OUTPUT"
 $ qovery application env list -c
-  SCOPE       | KEY                                                           | VALUE     
+  SCOPE       | KEY                                                           | VALUE
 --------------+---------------------------------------------------------------+-----------
-  BUILT_IN    | QOVERY_BRANCH_NAME                                            | master    
-  BUILT_IN    | QOVERY_IS_PRODUCTION                                          | true      
+  BUILT_IN    | QOVERY_BRANCH_NAME                                            | master
+  BUILT_IN    | QOVERY_IS_PRODUCTION                                          | true
   BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId.upcase %>_NAME                               | my-<%= dbId %>
-  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId.upcase %>_TYPE                               | <%= dbId %>     
-  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId.upcase %>_VERSION                            | 3.6       
-  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId.upcase %>_CONNECTION_URI                     | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId.upcase %>_CONNECTION_URI_WITHOUT_CREDENTIALS | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId.upcase %>_HOST                               | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId.upcase %>_FQDN                               | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId.upcase %>_PORT                               | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId.upcase %>_USERNAME                           | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId.upcase %>_PASSWORD                           | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId.upcase %>_DATABASE                           | <%= dbId %> 
+  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId.upcase %>_TYPE                               | <%= dbId %>
+  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId.upcase %>_VERSION                            | <%= versions[1] %>
+  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId.upcase %>_CONNECTION_URI                     | <hidden>
+  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId.upcase %>_CONNECTION_URI_WITHOUT_CREDENTIALS | <hidden>
+  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId.upcase %>_HOST                               | <hidden>
+  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId.upcase %>_FQDN                               | <hidden>
+  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId.upcase %>_PORT                               | <hidden>
+  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId.upcase %>_USERNAME                           | <hidden>
+  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId.upcase %>_PASSWORD                           | <hidden>
+  BUILT_IN    | QOVERY_DATABASE_MY_<%= dbId.upcase %>_DATABASE                           | <%= dbId %>
 ```
 
 In the output, you get all data you need to use the database. Those environment variables are available in the runtime of your application.
@@ -65,9 +76,9 @@ qovery status -c
 ```
 
 ```plain title="OUTPUT"
-DATABASE NAME | STATUS  | TYPE    | VERSION | ENDPOINT | PORT     | USERNAME | PASSWORD | APPLICATIONS    
+DATABASE NAME | STATUS  | TYPE    | VERSION | ENDPOINT | PORT     | USERNAME | PASSWORD | APPLICATIONS
 ----------------+---------+---------+---------+----------+----------+----------+----------+-----------------
-  my-mongo      | running | <%= dbId %> | 3.6     | <hidden> | <hidden> | <hidden> | <hidden> | simple-example 
+  my-mongo      | running | <%= dbId %> | <%= versions[1] %>     | <hidden> | <hidden> | <hidden> | <hidden> | simple-example
 ```
 
 ## Delete a database

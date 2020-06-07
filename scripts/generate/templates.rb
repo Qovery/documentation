@@ -679,7 +679,7 @@ class Templates
     render("#{partials_path}/_qovery_sign_up.md", binding).strip
   end
 
-  def qovery_database_info(dbName, dbId, dbDescription, dbSpecificAlert)
+  def qovery_database_info(dbName, dbId, dbDescription, versions, dbSpecificAlert)
     render("#{partials_path}/_qovery_database_info.md", binding).strip
   end
 

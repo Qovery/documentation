@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-28"
+last_modified_on: "2020-06-07"
 title: PostgreSQL
 description: "How to use PostgreSQL"
 ---
@@ -25,7 +25,7 @@ application:
 ...
 databases:
 - type: postgresql
-  version: "latest"
+  version: 12
   name: my-postgresql
 ```
 
@@ -34,6 +34,21 @@ databases:
 - type: the database engine (postgresql in this case)
 
 Alternatively, if you are creating a new application, use `qovery init` to interactively add a database (the CLI asks if you need one).
+
+## Supported versions
+
+Here are the PostgreSQL versions supported by Qovery.
+
+|Version|Supported|
+|---------|-------|
+|latest|Yes|
+|12|Yes|
+|11|Yes|
+|10|Yes|
+|9|Yes|
+
+
+Qovery does not support a new version of PostgreSQL yet? [Contact us][urls.qovery_chat]
 
 ## Get access to a database
 
@@ -45,21 +60,21 @@ qovery application env list -c
 
 ```plain title="OUTPUT"
 $ qovery application env list -c
-  SCOPE       | KEY                                                           | VALUE     
+  SCOPE       | KEY                                                           | VALUE
 --------------+---------------------------------------------------------------+-----------
-  BUILT_IN    | QOVERY_BRANCH_NAME                                            | master    
-  BUILT_IN    | QOVERY_IS_PRODUCTION                                          | true      
+  BUILT_IN    | QOVERY_BRANCH_NAME                                            | master
+  BUILT_IN    | QOVERY_IS_PRODUCTION                                          | true
   BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_NAME                               | my-postgresql
-  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_TYPE                               | postgresql     
-  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_VERSION                            | 3.6       
-  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_CONNECTION_URI                     | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_CONNECTION_URI_WITHOUT_CREDENTIALS | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_HOST                               | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_FQDN                               | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_PORT                               | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_USERNAME                           | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_PASSWORD                           | <hidden>  
-  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_DATABASE                           | postgresql 
+  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_TYPE                               | postgresql
+  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_VERSION                            | 12
+  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_CONNECTION_URI                     | <hidden>
+  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_CONNECTION_URI_WITHOUT_CREDENTIALS | <hidden>
+  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_HOST                               | <hidden>
+  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_FQDN                               | <hidden>
+  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_PORT                               | <hidden>
+  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_USERNAME                           | <hidden>
+  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_PASSWORD                           | <hidden>
+  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_DATABASE                           | postgresql
 ```
 
 In the output, you get all data you need to use the database. Those environment variables are available in the runtime of your application.
@@ -73,9 +88,9 @@ qovery status -c
 ```
 
 ```plain title="OUTPUT"
-DATABASE NAME | STATUS  | TYPE    | VERSION | ENDPOINT | PORT     | USERNAME | PASSWORD | APPLICATIONS    
+DATABASE NAME | STATUS  | TYPE    | VERSION | ENDPOINT | PORT     | USERNAME | PASSWORD | APPLICATIONS
 ----------------+---------+---------+---------+----------+----------+----------+----------+-----------------
-  my-mongo      | running | postgresql | 3.6     | <hidden> | <hidden> | <hidden> | <hidden> | simple-example 
+  my-mongo      | running | postgresql | 12     | <hidden> | <hidden> | <hidden> | <hidden> | simple-example
 ```
 
 ## Delete a database
@@ -119,4 +134,4 @@ databases:
 As described in the configuration file, the backup occurs between 9 PM and 11 PM.
 
 
-
+[urls.qovery_chat]: https://discord.qovery.com

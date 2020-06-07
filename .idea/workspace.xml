@@ -21,10 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="update databases - add &quot;supported versions&quot; section">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_database_info.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_database_info.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/databases/mongodb.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/databases/mongodb.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/databases/mysql.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/databases/mysql.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/databases/postgresql.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/databases/postgresql.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docusaurus.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/docusaurus.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,14 +193,7 @@
       <workItem from="1590743427665" duration="25471000" />
       <workItem from="1591102322107" duration="411000" />
       <workItem from="1591188090443" duration="17233000" />
-      <workItem from="1591460461408" duration="3647000" />
-    </task>
-    <task id="LOCAL-00050" summary="add &quot;application template&quot; guide page">
-      <created>1587554388653</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1587554388653</updated>
+      <workItem from="1591460461408" duration="3961000" />
     </task>
     <task id="LOCAL-00051" summary="add &quot;setting custom domain&quot; getting started page">
       <created>1587567403737</created>
@@ -541,7 +531,14 @@
       <option name="project" value="LOCAL" />
       <updated>1591521559336</updated>
     </task>
-    <option name="localTasksCounter" value="99" />
+    <task id="LOCAL-00099" summary="update databases - add &quot;supported versions&quot; section">
+      <created>1591521916445</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1591521916445</updated>
+    </task>
+    <option name="localTasksCounter" value="100" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -694,7 +691,7 @@
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="690" y="350" width="540" height="524" key="StructurePopup/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587398370723" />
-    <state width="1072" height="652" key="SwitcherDM" timestamp="1591521898974">
+    <state width="1072" height="652" key="SwitcherDM" timestamp="1591522146833">
       <screen x="0" y="0" width="3840" height="1600" />
     </state>
     <state width="536" height="429" key="SwitcherDM/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587042928490" />
@@ -703,19 +700,19 @@
     <state width="536" height="429" key="SwitcherDM/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587130320365" />
     <state width="1072" height="642" key="SwitcherDM/-976.-1577.3840.1577/0.23.1920.1177@-976.-1577.3840.1577" timestamp="1590096570711" />
     <state width="536" height="488" key="SwitcherDM/0.0.1920.1200@0.0.1920.1200" timestamp="1589396292604" />
-    <state width="1072" height="652" key="SwitcherDM/0.0.3840.1600@0.0.3840.1600" timestamp="1591521898974" />
+    <state width="1072" height="652" key="SwitcherDM/0.0.3840.1600@0.0.3840.1600" timestamp="1591522146833" />
     <state width="500" height="445" key="SwitcherDM/0.23.1792.1097@0.23.1792.1097" timestamp="1586970316787" />
     <state x="100" y="100" width="1720" height="1000" key="VCS.FileHistoryDialog" timestamp="1587678290994">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="100" y="100" width="1720" height="1000" key="VCS.FileHistoryDialog/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587678290994" />
-    <state x="1920" y="1" width="1917" height="1574" key="Vcs.Push.Dialog.v2" timestamp="1591521561137">
+    <state x="1920" y="1" width="1917" height="1574" key="Vcs.Push.Dialog.v2" timestamp="1591521918019">
       <screen x="0" y="0" width="3840" height="1600" />
     </state>
     <state x="-1389" y="408" key="Vcs.Push.Dialog.v2/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587043142882" />
     <state x="531" y="314" key="Vcs.Push.Dialog.v2/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1589057496632" />
     <state x="944" y="-1576" width="1917" height="1574" key="Vcs.Push.Dialog.v2/-976.-1577.3840.1577/0.23.1920.1177@-976.-1577.3840.1577" timestamp="1590166467672" />
-    <state x="1920" y="1" key="Vcs.Push.Dialog.v2/0.0.3840.1600@0.0.3840.1600" timestamp="1591521561137" />
+    <state x="1920" y="1" key="Vcs.Push.Dialog.v2/0.0.3840.1600@0.0.3840.1600" timestamp="1591521918019" />
     <state x="496" y="311" key="Vcs.Push.Dialog.v2/0.23.1792.1097@0.23.1792.1097" timestamp="1586945386299" />
     <state x="710" y="341" key="VcsDiffUtil.ChangesDialog" timestamp="1587578340186">
       <screen x="0" y="0" width="1920" height="1200" />

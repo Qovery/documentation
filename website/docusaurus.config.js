@@ -105,11 +105,19 @@ module.exports = {
                             to: 'https://www.qovery.com/blog',
                         },
                         {
-                            label: 'The Team',
+                            label: 'Jobs',
+                            to: 'https://jobs.qovery.com',
+                        },
+                        {
+                            label: 'Team',
                             to: 'https://www.qovery.com/team',
                         },
                         {
-                            label: 'Contact Us',
+                            label: 'Investors',
+                            to: 'https://www.qovery.com/investors',
+                        },
+                        {
+                            label: 'Contact',
                             to: 'https://www.qovery.com/contact',
                         },
                     ],

@@ -19,9 +19,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="update databases - add &quot;supported versions&quot; section">
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="update footer">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docusaurus.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/docusaurus.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-fullstack-application-composed-of-hasura-postgresql-angular.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-fullstack-application-composed-of-hasura-postgresql-angular.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-fullstack-application-composed-of-hasura-postgresql-angular.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-fullstack-application-composed-of-hasura-postgresql-angular.md.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -193,14 +194,8 @@
       <workItem from="1590743427665" duration="25471000" />
       <workItem from="1591102322107" duration="411000" />
       <workItem from="1591188090443" duration="17233000" />
-      <workItem from="1591460461408" duration="3961000" />
-    </task>
-    <task id="LOCAL-00051" summary="add &quot;setting custom domain&quot; getting started page">
-      <created>1587567403737</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1587567403737</updated>
+      <workItem from="1591460461408" duration="4183000" />
+      <workItem from="1591595407673" duration="114000" />
     </task>
     <task id="LOCAL-00052" summary="fix: build">
       <created>1587578975761</created>
@@ -538,7 +533,14 @@
       <option name="project" value="LOCAL" />
       <updated>1591521916445</updated>
     </task>
-    <option name="localTasksCounter" value="100" />
+    <task id="LOCAL-00100" summary="update footer">
+      <created>1591536691480</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1591536691480</updated>
+    </task>
+    <option name="localTasksCounter" value="101" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -599,7 +601,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="fix: google analytics" />
     <MESSAGE value="fix: GA" />
     <MESSAGE value="fix: dark logo with dark theme" />
     <MESSAGE value="remove: community contribution section" />
@@ -624,7 +625,8 @@
     <MESSAGE value="create deploy fullstack article" />
     <MESSAGE value="fix: youtube video iframe container" />
     <MESSAGE value="update databases - add &quot;supported versions&quot; section" />
-    <option name="LAST_COMMIT_MESSAGE" value="update databases - add &quot;supported versions&quot; section" />
+    <MESSAGE value="update footer" />
+    <option name="LAST_COMMIT_MESSAGE" value="update footer" />
   </component>
   <component name="WindowStateProjectService">
     <state x="424" y="262" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588007526167">
@@ -691,7 +693,7 @@
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="690" y="350" width="540" height="524" key="StructurePopup/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587398370723" />
-    <state width="1072" height="652" key="SwitcherDM" timestamp="1591522146833">
+    <state width="1072" height="652" key="SwitcherDM" timestamp="1591595470308">
       <screen x="0" y="0" width="3840" height="1600" />
     </state>
     <state width="536" height="429" key="SwitcherDM/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587042928490" />
@@ -700,19 +702,19 @@
     <state width="536" height="429" key="SwitcherDM/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587130320365" />
     <state width="1072" height="642" key="SwitcherDM/-976.-1577.3840.1577/0.23.1920.1177@-976.-1577.3840.1577" timestamp="1590096570711" />
     <state width="536" height="488" key="SwitcherDM/0.0.1920.1200@0.0.1920.1200" timestamp="1589396292604" />
-    <state width="1072" height="652" key="SwitcherDM/0.0.3840.1600@0.0.3840.1600" timestamp="1591522146833" />
+    <state width="1072" height="652" key="SwitcherDM/0.0.3840.1600@0.0.3840.1600" timestamp="1591595470308" />
     <state width="500" height="445" key="SwitcherDM/0.23.1792.1097@0.23.1792.1097" timestamp="1586970316787" />
     <state x="100" y="100" width="1720" height="1000" key="VCS.FileHistoryDialog" timestamp="1587678290994">
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="100" y="100" width="1720" height="1000" key="VCS.FileHistoryDialog/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587678290994" />
-    <state x="1920" y="1" width="1917" height="1574" key="Vcs.Push.Dialog.v2" timestamp="1591521918019">
+    <state x="1920" y="1" width="1917" height="1574" key="Vcs.Push.Dialog.v2" timestamp="1591536693254">
       <screen x="0" y="0" width="3840" height="1600" />
     </state>
     <state x="-1389" y="408" key="Vcs.Push.Dialog.v2/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587043142882" />
     <state x="531" y="314" key="Vcs.Push.Dialog.v2/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1589057496632" />
     <state x="944" y="-1576" width="1917" height="1574" key="Vcs.Push.Dialog.v2/-976.-1577.3840.1577/0.23.1920.1177@-976.-1577.3840.1577" timestamp="1590166467672" />
-    <state x="1920" y="1" key="Vcs.Push.Dialog.v2/0.0.3840.1600@0.0.3840.1600" timestamp="1591521918019" />
+    <state x="1920" y="1" key="Vcs.Push.Dialog.v2/0.0.3840.1600@0.0.3840.1600" timestamp="1591536693254" />
     <state x="496" y="311" key="Vcs.Push.Dialog.v2/0.23.1792.1097@0.23.1792.1097" timestamp="1586945386299" />
     <state x="710" y="341" key="VcsDiffUtil.ChangesDialog" timestamp="1587578340186">
       <screen x="0" y="0" width="1920" height="1200" />
@@ -741,7 +743,7 @@
       <screen x="0" y="0" width="3840" height="1600" />
     </state>
     <state x="1638" y="580" key="git4idea.merge.GitPullDialog/0.0.3840.1600@0.0.3840.1600" timestamp="1590740367181" />
-    <state x="1202" y="290" width="1436" height="989" key="search.everywhere.popup" timestamp="1591520861570">
+    <state x="1202" y="290" width="1436" height="989" key="search.everywhere.popup" timestamp="1591595444478">
       <screen x="0" y="0" width="3840" height="1600" />
     </state>
     <state x="-1319" y="323" width="718" height="652" key="search.everywhere.popup/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587040363911" />
@@ -750,7 +752,7 @@
     <state x="-1319" y="353" width="718" height="652" key="search.everywhere.popup/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587131778361" />
     <state x="226" y="-1291" width="1436" height="974" key="search.everywhere.popup/-976.-1577.3840.1577/0.23.1920.1177@-976.-1577.3840.1577" timestamp="1590166374839" />
     <state x="601" y="218" width="718" height="741" key="search.everywhere.popup/0.0.1920.1200@0.0.1920.1200" timestamp="1589396624035" />
-    <state x="1202" y="290" width="1436" height="989" key="search.everywhere.popup/0.0.3840.1600@0.0.3840.1600" timestamp="1591520861570" />
+    <state x="1202" y="290" width="1436" height="989" key="search.everywhere.popup/0.0.3840.1600@0.0.3840.1600" timestamp="1591595444478" />
     <state x="561" y="222" width="670" height="676" key="search.everywhere.popup/0.23.1792.1097@0.23.1792.1097" timestamp="1586971120732" />
   </component>
 </project>

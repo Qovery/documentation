@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-06-05"
+last_modified_on: "2020-06-08"
 $schema: "/.meta/.schemas/guides.json"
 title: How to deploy a full-stack application composed of Hasura, PostgreSQL and Angular
 description: State of the art full-stack application deployment with Qovery
@@ -21,11 +21,13 @@ In the end, our application will be available within development and production 
   <img src="/img/deploy-fullstack-application-composed-of-hasura-postgresql-angular/fullstack_with_background.jpg" alt="Full-stack application Hasura, Angular and PostgreSQL with Qovery" />
 </p>
 
+<!---
 <Alert type="success">
 
 This week the Qovery team was presenting at the [Hasura Con 2020](https://hasura.io/events/hasura-con-2020/talks/blazing-fast-deployment-of-a-fullstack-angular-GraphQL-hasura-app-with-qovery) - *How to deploy a full-stack application composed of Hasura, PostgreSQL, and Angular with Qovery*. At the bottom of this article, you will find the recorded video and the resources links.
 
 </Alert>
+--->
 
 To show all of that, we will create a food application to find out the best Parisian restaurants.
 

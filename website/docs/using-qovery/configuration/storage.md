@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-05-21"
+last_modified_on: "2020-06-09"
 title: "Storage"
 description: "Learn how to configure Storage on Qovery"
 ---
@@ -59,6 +59,24 @@ routers:
 * `type` you have the choice between: `slow_hdd`, `hdd`, `ssd` and `fast_ssd`. Refer to the details above.
 * `size` size in GB, and TB are available
 * `mount_point` (optional): per default qovery will mount your disk into `/mnt/{name}`
+
+## Delete a storage
+
+To delete a storage, you have two options:
+- Remove it from the configuration file, commit and push
+- If you worked on a feature branch, delete the branch, and the storage instance automatically deletes as well
+
+<Alert type="danger">
+
+Delete action drops the storage and its data
+
+</Alert>
+
+<Alert type="info">
+
+Backups are kept for 1 month if you need to recover.
+
+</Alert>
 
 ## FAQ
 

@@ -42,3 +42,9 @@ dark_logo_path = "/img/logos/rails.svg"
 name = "django"
 logo_path = "/img/logos/django.svg"
 dark_logo_path = "/img/logos/django.svg"
+
+
+[[frameworks]]
+name = "deno"
+logo_path = "/img/logos/deno.svg"
+dark_logo_path = "/img/logos/deno.svg"

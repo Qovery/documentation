@@ -7,3 +7,8 @@ dark_logo_path = "/img/logos/docker.svg"
 name = "postgresql"
 logo_path = "/img/logos/docker.svg"
 dark_logo_path = "/img/logos/docker.svg"
+
+[[databases]]
+name = "mongodb"
+logo_path = "/img/logos/docker.svg"
+dark_logo_path = "/img/logos/docker.svg"

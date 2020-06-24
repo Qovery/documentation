@@ -9,6 +9,11 @@ module.exports = {
       "dark_logo_path": "/img/logos/docker.svg",
       "logo_path": "/img/logos/docker.svg",
       "name": "postgresql"
+    },
+    {
+      "dark_logo_path": "/img/logos/docker.svg",
+      "logo_path": "/img/logos/docker.svg",
+      "name": "mongodb"
     }
   ],
   "event_types": [
@@ -59,6 +64,11 @@ module.exports = {
       "dark_logo_path": "/img/logos/django.svg",
       "logo_path": "/img/logos/django.svg",
       "name": "django"
+    },
+    {
+      "dark_logo_path": "/img/logos/deno.svg",
+      "logo_path": "/img/logos/deno.svg",
+      "name": "deno"
     }
   ],
   "guides": {
@@ -275,6 +285,15 @@ module.exports = {
           "path": "website/guides/tutorial/migrate-webapp-from-heroku-to-qovery.md",
           "series_position": null,
           "title": "Migrating application from Heroku to Qovery"
+        },
+        {
+          "author_github": "https://github.com/pjeziorowski",
+          "description": null,
+          "id": "/tutorial/simplest-way-to-deploy-deno-with-database",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/simplest-way-to-deploy-deno-with-database.md",
+          "series_position": null,
+          "title": "Simplest way to deploy your Deno application with database"
         },
         {
           "author_github": "https://github.com/evoxmusic",

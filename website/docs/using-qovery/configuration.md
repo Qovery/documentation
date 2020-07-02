@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-05-13"
+last_modified_on: "2020-07-02"
 title: Configuration
 description: "Everything you need to know to configure your applications on Qovery"
 sidebar_label: hidden
@@ -11,6 +11,7 @@ import Jump from '@site/src/components/Jump';
 In the following subsections, you'll learn all you need to know to configure all aspects of your projects on Qovery.
 
 <Jump to="/docs/using-qovery/configuration/regions/">Regions</Jump>
+<Jump to="/docs/using-qovery/configuration/projects/">Projects</Jump>
 <Jump to="/docs/using-qovery/configuration/databases/">Databases</Jump>
 <Jump to="/docs/using-qovery/configuration/environment-variables/">Environment Variables</Jump>
 <Jump to="/docs/using-qovery/configuration/secrets/">Secrets</Jump>

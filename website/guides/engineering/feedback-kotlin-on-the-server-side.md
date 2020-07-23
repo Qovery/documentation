@@ -48,7 +48,7 @@ Another thing that that I could quickly notice is the improvement in code readab
 
 TODO: FORMATTING OF CODE SNIPPETS & GIFS (on blog)
 
-Data Classes:
+Data Classes (Kotlin vs Java):
 
 ```kotlin title="Kotlin"
 data class Person(var name: String, var surname: String, var id: String)
@@ -102,7 +102,14 @@ public class Person {
 }
 ```
 
-Null checks:
+Null checks (Kotlin vs Java):
+
+```kotlin title="Kotlin"
+fun main() {
+    val outer = OuterClass(null)
+    print(outer.inner?.someValue ?: “DEFAULT VALUE”)
+}
+```
 
 ```java title="Java"
 public class Example {
@@ -116,13 +123,6 @@ public class Example {
     }
   }
 
-}
-```
-
-```kotlin title="Kotlin"
-fun main() {
-    val outer = OuterClass(null)
-    print(outer.inner?.someValue ?: “DEFAULT VALUE”)
 }
 ```
 

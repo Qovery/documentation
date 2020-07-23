@@ -7,3 +7,8 @@ dark_logo_path = "/img/logos/kubernetes_white.svg"
 name = "docker"
 logo_path = "/img/logos/docker.svg"
 dark_logo_path = "/img/logos/docker.svg"
+
+[[technologies]]
+name = "kotlin"
+logo_path = "/img/logos/kotlin.svg"
+dark_logo_path = "/img/logos/kotlin.svg"

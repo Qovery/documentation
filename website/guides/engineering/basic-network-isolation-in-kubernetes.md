@@ -1,9 +1,9 @@
 ---
-last_modified_on: "2020-05-21"
+last_modified_on: "2020-07-23"
 $schema: "/.meta/.schemas/guides.json"
 title: Kubernetes - Network isolation with NetworkPolicy
 description: Learn how to configure network isolation with NetworkPolicy in Kubernetes
-author_github: https://github.com/sileht
+author_github: https://github.com/deimosfr
 tags: ["type: engineering", "technology: kubernetes"]
 hide_pagination: true
 ---

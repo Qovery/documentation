@@ -1,0 +1,169 @@
+---
+$schema: "/.meta/.schemas/guides.json"
+title: Kubernetes - Network isolation with NetworkPolicy
+description: Learn how to configure network isolation with NetworkPolicy in Kubernetes
+author_github: https://github.com/sileht
+tags: ["type: engineering", "technology: kubernetes"]
+hide_pagination: true
+---
+import Assumptions from '@site/src/components/Assumptions';
+
+Running a stateless application is the first step you do when using Kubernetes for the first time.
+This answers very well to a lot of usages. However, sometimes you need to have persistent and store different kinds of data.
+It could be:
+* Blobs
+* Images
+* Databases
+
+Storing in generally not the only thing, you also want to manage the access method:
+* Restrict to only one application at a time
+* Allow parallel read access to the data, but write only once at a time
+* Allow parallel read and write access
+
+All of those access patterns have their pros and cons.
+
+First of all, let's make a quick tour of what is available and how it works.
+
+## CSI: Container Storage Interface
+
+CSI has been created to provide a standard way to abstract storage through Kubernetes. You can find a complete list
+of the CSI drivers here: https://kubernetes-csi.github.io/docs/drivers.html
+
+By default, there are several pre-installed CSI on Kubernetes able to access block storage. Here are some popular ones:
+* GCEPersistentDisk
+* AWSElasticBlockStore
+* AzureDisk
+
+Others are provided by cloud providers as Deamonset and not natively integrated into Kubernetes. Why? Because:
+1. It allows any provider to update the storage part when they want
+2. Customers can update the driver on the fly without having to update Kubernetes
+3. To extend the possibilities of the kind of volumes
+
+## Storage Class
+
+Storage class is the first abstraction layer that administrators can use. Storage class goal is simple: defining providers
+specificities that users will be able to use.
+
+Let's take this example on AWS, using EBS (Elastic Block Storage):
+```yaml
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: aws-ebs-gp2
+  labels:
+    aws-type: "gp2"
+    qovery-type: "ssd"
+    reclaim: "0"
+provisioner: kubernetes.io/aws-ebs
+parameters:
+  type: gp2
+  encrypted: 'true'
+volumeBindingMode: WaitForFirstConsumer
+allowVolumeExpansion: true
+reclaimPolicy: Delete
+```
+
+* provisioner: the used driver
+* parameters -> type: AWS EBS disk type (GP2 is SSD)
+* parameters -> encrypted: Force encryption provider side
+
+Here are the main required parameters. Others are used to adjust the way volumes can be used, extended and deleted (full list of parameters can be seen here https://kubernetes.io/docs/concepts/storage/storage-classes/)
+
+## Persistent volumes
+
+Persistent volumes are (pre-provisioned) disks. They can only be created with specific provider permissions.
+Here is one example of what a provisionned PV looks like:
+
+```yaml
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  annotations:
+    pv.kubernetes.io/bound-by-controller: "yes"
+    pv.kubernetes.io/provisioned-by: kubernetes.io/aws-ebs
+  creationTimestamp: "2020-06-06T16:58:12Z"
+  finalizers:
+  - kubernetes.io/pv-protection
+  labels:
+    failure-domain.beta.kubernetes.io/region: eu-west-3
+    failure-domain.beta.kubernetes.io/zone: eu-west-3c
+spec:
+  accessModes:
+  - ReadWriteOnce
+  awsElasticBlockStore:
+    fsType: ext4
+    volumeID: aws://eu-west-3c/vol-026e978a3d576faxx
+  capacity:
+    storage: 1Gi
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: failure-domain.beta.kubernetes.io/zone
+          operator: In
+          values:
+          - eu-west-3c
+        - key: failure-domain.beta.kubernetes.io/region
+          operator: In
+          values:
+          - eu-west-3
+  persistentVolumeReclaimPolicy: Delete
+  storageClassName: aws-ebs-gp2
+  volumeMode: Filesystem
+status:
+  phase: Bound
+```
+
+Persisted Volumes is not convenient enough for the end-user who needs to ask the Administrator provisioned disks anytime he needs one.
+To get rid of this friction, the solution is: the Persisted Volumes claim.
+
+## PCV: Persistent volume claim
+
+PVC will allow users to manage their persisted volumes. Once declared in a pod, it will automatically request a
+Persisted Volume once the pod starts.
+
+Here is a simple pod with a volume request attached:
+```yaml
+kind: Pod
+apiVersion: v1
+metadata:
+  name: qovery-pod
+spec:
+  containers:
+    - name: qovery-web
+      image: nginx
+      volumeMounts:
+      - mountPath: "/var/www/html"
+        name: my-csi-volume
+  volumes:
+    - name: my-csi-volume
+      persistentVolumeClaim:
+        claimName: qovery-web
+```
+
+Once applied, you can see the requested volume:
+```yaml
+$ kubectl get pvc
+NAMESPACE     NAME        STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS    AGE
+default       qovery-web  Bound    pvc-b49495ad-a826-11ec-bda2-066c63c2f0ec   1Gi        RWO            aws-ebs-gp2     1m
+```
+
+And the volume automatically created:
+```yaml
+NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                STORAGECLASS    REASON   AGE
+pvc-b49495ad-a826-11ec-bda2-066c63c2f0ec   1Gi        RWO            Delete           Bound    default/qovery-web   aws-ebs-gp2              1m
+```
+
+## Extending possibilities
+
+A dedicated CSI driver provided by a Cloud Provider can leverage the possibilities of what is possible.
+For example, on AWS, they created the EBS CSI Driver (https://github.com/kubernetes-sigs/aws-ebs-csi-driver).
+
+Compared to the previous usage we've seen, it also allows for the management of snapshots and disk resize. AWS is highly investing in this to become
+their standard.
+
+## Wrapping up
+
+CSI is becoming more common, providing standard storage management between all Cloud Providers with some extensible features.
+
+<Jump to="/guides/engineering/">Engineering</Jump>

@@ -324,6 +324,15 @@ module.exports = {
       "description": "We share our engineering learning with all of you. ",
       "guides": [
         {
+          "author_github": "https://github.com/pjeziorowski",
+          "description": null,
+          "id": "/engineering/getting-started-with-kotlin-on-the-server-side",
+          "last_modified_on": null,
+          "path": "website/guides/engineering/getting-started-with-kotlin-on-the-server-side.md",
+          "series_position": null,
+          "title": "Getting started with Kotlin on the server-side"
+        },
+        {
           "author_github": "https://github.com/sileht",
           "description": null,
           "id": "/engineering/basic-network-isolation-in-kubernetes",

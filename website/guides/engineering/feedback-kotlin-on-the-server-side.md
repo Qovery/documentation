@@ -33,22 +33,20 @@ In April, I started working at Qovery, a container as a service platform where a
 
 ## My feedback
 ### From Java to Kotlin
-For me, a Java developer with basic knowledge of other languages (like JS, Go, and other popular programming languages) moving from Java to Kotlin was natural. It was more like a gradual transition/upgrade rather than jumping into something new. Most of the right parts from Kotlin that are missing in Java can be found in other programming languages. If you are not limited to just one language (Java), there will be little in Kotlin that will surprise you (for the people thinking the transition from Java to Kotlin is hard - I recommend trying to use Rust without reading the Rust Bible(https://doc.rust-lang.org/book/) twice - you'll change your mind quickly.).
+For me, a Java developer with basic knowledge of other languages (like JS, Go, and other popular programming languages) moving from Java to Kotlin was natural. It was more like a gradual transition/upgrade rather than jumping into something new. Most of the right parts from Kotlin that are missing in Java can be found in other programming languages. If you are not limited to just one language (Java), there will be little in Kotlin that will surprise you (for the people thinking the transition from Java to Kotlin is hard - I recommend trying to use Rust without reading [the Rust Bible](https://doc.rust-lang.org/book/) twice - you'll change your mind quickly.).
 
 ### Reading/Writing Kotlin code
-Reading Kotlin code came without any efforts. If you can't guess what the 'new' syntax means, all you need to do is take a quick look at the basic syntax page (https://kotlinlang.org/docs/reference/basic-syntax.html), and you are good to go. Writing idiomatic Kotlin code, however, is a bit trickier. After years of using Java, you may have habits that will lead you to write Java-like Kotlin code. Writing idiomatic code, at least in my case, requires more time spent with the language. I found this (https://kotlinlang.org/docs/reference/idioms.html) document invaluable to speed up this process.
+Reading Kotlin code came without any efforts. If you can't guess what the 'new' syntax means, all you need to do is take a quick look at the [basic syntax page](https://kotlinlang.org/docs/reference/basic-syntax.html), and you are good to go. Writing idiomatic Kotlin code, however, is a bit trickier. After years of using Java, you may have habits that will lead you to write Java-like Kotlin code. Writing idiomatic code, at least in my case, requires more time spent with the language. I found [this](https://kotlinlang.org/docs/reference/idioms.html) document invaluable to speed up this process.
 
 ### How did I ramp up on Kotlin?
-Getting ready to use Kotlin did not require more than spending a few days to get used to the codebase I would later work with and slowly reading the Kotlin documentation (https://kotlinlang.org/docs/reference/basic-types.html) in the meantime. I believe this gives you all the basics you need to be productive with the language - proficiency and expertise will come with time.
+Getting ready to use Kotlin did not require more than spending a few days to get used to the codebase I would later work with and slowly reading the [Kotlin documentation](https://kotlinlang.org/docs/reference/basic-types.html) in the meantime. I believe this gives you all the basics you need to be productive with the language - proficiency and expertise will come with time.
 
 ### After a few months
-After switching from Java to Kotlin, my first impressions were that I deal with a modern programming language. Pascal notation, type inference, extension functions, no semicolons, immutable collections, coroutines, channels, and more - this all added to a feeling of using a powerful, modern language (even though most of the concepts are quite old, borrowed from other langs, you can see similar trends in other new, modern programming languages).
+After switching from Java to Kotlin, my first impressions were that I deal with a modern programming language. Pascal notation, type inference, extension functions, no semicolons, immutable collections, coroutines, channels, and more - this all added to a feeling of using a powerful, modern language (even though most of the concepts are quite old, borrowed from other languages, you can see similar trends in other new, modern programming languages).
 
-Another thing that that I could quickly notice is the improvement in code readability (in the majority of cases) and conciseness. The most striking, simple examples are, of course, data classes and null checks, which cost much more work (and lines of code) in Java.
+Another thing that I could quickly notice is the improvement in code readability (in the majority of cases) and conciseness. The most striking, simple examples are, of course, data classes and null checks, which cost much more work (and lines of code) in Java.
 
-TODO: FORMATTING OF CODE SNIPPETS & GIFS (on blog)
-
-Data Classes (Kotlin vs Java):
+**Data Classes** (Kotlin vs Java):
 
 ```kotlin title="Kotlin"
 data class Person(var name: String, var surname: String, var id: String)
@@ -102,7 +100,7 @@ public class Person {
 }
 ```
 
-Null checks (Kotlin vs Java):
+**Null checks** (Kotlin vs Java):
 
 ```kotlin title="Kotlin"
 fun main() {

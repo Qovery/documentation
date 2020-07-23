@@ -324,7 +324,16 @@ module.exports = {
       "description": "We share our engineering learning with all of you. ",
       "guides": [
         {
-          "author_github": "https://github.com/sileht",
+          "author_github": "https://github.com/pjeziorowski",
+          "description": null,
+          "id": "/engineering/feedback-kotlin-on-the-server-side",
+          "last_modified_on": null,
+          "path": "website/guides/engineering/feedback-kotlin-on-the-server-side.md",
+          "series_position": null,
+          "title": "Feedback - Kotlin on the server-side - the good, and the bad"
+        },
+        {
+          "author_github": "https://github.com/deimosfr",
           "description": null,
           "id": "/engineering/basic-network-isolation-in-kubernetes",
           "last_modified_on": null,
@@ -447,6 +456,11 @@ module.exports = {
       "dark_logo_path": "/img/logos/docker.svg",
       "logo_path": "/img/logos/docker.svg",
       "name": "docker"
+    },
+    {
+      "dark_logo_path": "/img/logos/kotlin.svg",
+      "logo_path": "/img/logos/kotlin.svg",
+      "name": "kotlin"
     }
   ],
   "transforms": {

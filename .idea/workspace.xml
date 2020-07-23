@@ -19,18 +19,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="update storage doc on deletion">
-      <change afterPath="$PROJECT_DIR$/website/guides/engineering/feedback-kotlin-on-the-server-side.md.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/guides/engineering/kubernetes-storage.md.erb.draft" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/static/img/feedback-kotlin-on-the-server-side/golang.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/static/img/feedback-kotlin-on-the-server-side/java2kotlin.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/static/img/feedback-kotlin-on-the-server-side/kotlin.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.meta/.schemas/guides.json" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/.schemas/guides.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.meta/technologies.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/technologies.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/engineering/basic-network-isolation-in-kubernetes.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/engineering/basic-network-isolation-in-kubernetes.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/engineering/basic-network-isolation-in-kubernetes.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/engineering/basic-network-isolation-in-kubernetes.md.erb" afterDir="false" />
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="add kotlin server side article">
+      <change beforePath="$PROJECT_DIR$/website/guides/engineering/feedback-kotlin-on-the-server-side.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/engineering/feedback-kotlin-on-the-server-side.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/engineering/getting-started-with-kotlin-on-the-server-side.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/engineering/feedback-kotlin-on-the-server-side.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/engineering/getting-started-with-kotlin-on-the-server-side.md.erb" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/website/metadata.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/metadata.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/static/img/golang-refactor.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/static/img/java2kotlin.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/static/img/kotlin-refactor.gif" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -207,14 +203,7 @@
       <workItem from="1591693782898" duration="1082000" />
       <workItem from="1592343384338" duration="5319000" />
       <workItem from="1592892422065" duration="56000" />
-      <workItem from="1595497037516" duration="3137000" />
-    </task>
-    <task id="LOCAL-00054" summary="remove &quot;beyond application deployment&quot; getting started page">
-      <created>1587587250360</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1587587250360</updated>
+      <workItem from="1595497037516" duration="3445000" />
     </task>
     <task id="LOCAL-00055" summary="remove &quot;beyond application deployment&quot; getting started page">
       <created>1587587258058</created>
@@ -552,7 +541,14 @@
       <option name="project" value="LOCAL" />
       <updated>1591693942608</updated>
     </task>
-    <option name="localTasksCounter" value="103" />
+    <task id="LOCAL-00103" summary="add kotlin server side article">
+      <created>1595500605342</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1595500605343</updated>
+    </task>
+    <option name="localTasksCounter" value="104" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -613,7 +609,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="remove: community contribution section" />
     <MESSAGE value="improvement: domains.md.erb" />
     <MESSAGE value="fix: hasura article init command" />
     <MESSAGE value="add: &quot;Secrets&quot; doc" />
@@ -638,7 +633,8 @@
     <MESSAGE value="update footer" />
     <MESSAGE value="hide section from hasura fullstack article" />
     <MESSAGE value="update storage doc on deletion" />
-    <option name="LAST_COMMIT_MESSAGE" value="update storage doc on deletion" />
+    <MESSAGE value="add kotlin server side article" />
+    <option name="LAST_COMMIT_MESSAGE" value="add kotlin server side article" />
   </component>
   <component name="WindowStateProjectService">
     <state x="424" y="262" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588007526167">
@@ -651,12 +647,12 @@
     <state x="-1309" y="468" key="#com.intellij.fileTypes.FileTypeChooser/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587036960904" />
     <state x="611" y="383" key="#com.intellij.fileTypes.FileTypeChooser/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587213016572" />
     <state x="-1309" y="498" key="#com.intellij.fileTypes.FileTypeChooser/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587110738425" />
-    <state x="386" y="144" width="3072" height="1280" key="DiffContextDialog" timestamp="1591693816852">
+    <state x="386" y="144" width="3072" height="1280" key="DiffContextDialog" timestamp="1595500885046">
       <screen x="0" y="0" width="3840" height="1600" />
     </state>
     <state x="193" y="108" width="1536" height="960" key="DiffContextDialog/-333.-1417.2560.1417/0.23.1920.1177@0.23.1920.1177" timestamp="1587577802365" />
     <state x="193" y="108" width="1536" height="960" key="DiffContextDialog/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587578791802" />
-    <state x="386" y="144" width="3072" height="1280" key="DiffContextDialog/0.0.3840.1600@0.0.3840.1600" timestamp="1591693816852" />
+    <state x="386" y="144" width="3072" height="1280" key="DiffContextDialog/0.0.3840.1600@0.0.3840.1600" timestamp="1595500885046" />
     <state x="180" y="122" key="DiffContextDialog/0.23.1792.1097@0.23.1792.1097" timestamp="1586941827745" />
     <state x="-1187" y="430" key="FileChooserDialogImpl" timestamp="1587022112681">
       <screen x="-1920" y="131" width="1920" height="1057" />
@@ -683,14 +679,16 @@
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="548" y="350" key="IDE.errors.dialog/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587501451429" />
-    <state x="0" y="0" key="MergeDialog" timestamp="1588093073346">
-      <screen x="0" y="0" width="1920" height="1200" />
+    <state x="0" y="0" key="MergeDialog" timestamp="1595500656221">
+      <screen x="0" y="0" width="3840" height="1600" />
     </state>
     <state x="0" y="0" key="MergeDialog/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1588093073346" />
+    <state x="0" y="0" key="MergeDialog/0.0.3840.1600@0.0.3840.1600" timestamp="1595500656221" />
     <state x="0" y="23" key="MergeDialog/0.23.1792.1097@0.23.1792.1097" timestamp="1586942584157" />
-    <state x="400" y="219" width="608" height="478" key="MultipleFileMergeDialog" timestamp="1586942584214">
-      <screen x="0" y="23" width="1792" height="1097" />
+    <state x="857" y="286" width="608" height="478" key="MultipleFileMergeDialog" timestamp="1595500656238">
+      <screen x="0" y="0" width="3840" height="1600" />
     </state>
+    <state x="857" y="286" key="MultipleFileMergeDialog/0.0.3840.1600@0.0.3840.1600" timestamp="1595500656238" />
     <state x="400" y="219" width="608" height="478" key="MultipleFileMergeDialog/0.23.1792.1097@0.23.1792.1097" timestamp="1586942584214" />
     <state x="663" y="281" key="RollbackChangesDialog" timestamp="1587017173048">
       <screen x="0" y="23" width="1792" height="1097" />
@@ -721,13 +719,13 @@
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="100" y="100" width="1720" height="1000" key="VCS.FileHistoryDialog/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587678290994" />
-    <state x="1920" y="1" width="1917" height="1574" key="Vcs.Push.Dialog.v2" timestamp="1591693944338">
+    <state x="1920" y="1" width="1917" height="1574" key="Vcs.Push.Dialog.v2" timestamp="1595500609297">
       <screen x="0" y="0" width="3840" height="1600" />
     </state>
     <state x="-1389" y="408" key="Vcs.Push.Dialog.v2/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587043142882" />
     <state x="531" y="314" key="Vcs.Push.Dialog.v2/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1589057496632" />
     <state x="944" y="-1576" width="1917" height="1574" key="Vcs.Push.Dialog.v2/-976.-1577.3840.1577/0.23.1920.1177@-976.-1577.3840.1577" timestamp="1590166467672" />
-    <state x="1920" y="1" key="Vcs.Push.Dialog.v2/0.0.3840.1600@0.0.3840.1600" timestamp="1591693944338" />
+    <state x="1920" y="1" key="Vcs.Push.Dialog.v2/0.0.3840.1600@0.0.3840.1600" timestamp="1595500609297" />
     <state x="496" y="311" key="Vcs.Push.Dialog.v2/0.23.1792.1097@0.23.1792.1097" timestamp="1586945386299" />
     <state x="710" y="341" key="VcsDiffUtil.ChangesDialog" timestamp="1587578340186">
       <screen x="0" y="0" width="1920" height="1200" />
@@ -737,13 +735,13 @@
       <screen x="0" y="0" width="1920" height="1200" />
     </state>
     <state x="500" y="204" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1588090849211" />
-    <state x="1526" y="680" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1595497041872">
+    <state x="1526" y="680" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1595500662055">
       <screen x="0" y="0" width="3840" height="1600" />
     </state>
     <state x="763" y="510" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1588966703266" />
     <state x="-1157" y="610" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587108608568" />
     <state x="763" y="510" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1200@0.0.1920.1200" timestamp="1592550468559" />
-    <state x="1526" y="680" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.3840.1600@0.0.3840.1600" timestamp="1595497041872" />
+    <state x="1526" y="680" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.3840.1600@0.0.3840.1600" timestamp="1595500662055" />
     <state x="440" y="136" width="2958" height="1174" key="find.popup" timestamp="1595499545517">
       <screen x="0" y="0" width="3840" height="1600" />
     </state>
@@ -757,7 +755,7 @@
       <screen x="0" y="0" width="3840" height="1600" />
     </state>
     <state x="1638" y="580" key="git4idea.merge.GitPullDialog/0.0.3840.1600@0.0.3840.1600" timestamp="1590740367181" />
-    <state x="1202" y="290" width="1436" height="989" key="search.everywhere.popup" timestamp="1592892462200">
+    <state x="1202" y="290" width="1436" height="989" key="search.everywhere.popup" timestamp="1595500783619">
       <screen x="0" y="0" width="3840" height="1600" />
     </state>
     <state x="-1319" y="323" width="718" height="652" key="search.everywhere.popup/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587040363911" />
@@ -766,7 +764,7 @@
     <state x="-1319" y="353" width="718" height="652" key="search.everywhere.popup/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587131778361" />
     <state x="226" y="-1291" width="1436" height="974" key="search.everywhere.popup/-976.-1577.3840.1577/0.23.1920.1177@-976.-1577.3840.1577" timestamp="1590166374839" />
     <state x="601" y="218" width="718" height="741" key="search.everywhere.popup/0.0.1920.1200@0.0.1920.1200" timestamp="1589396624035" />
-    <state x="1202" y="290" width="1436" height="989" key="search.everywhere.popup/0.0.3840.1600@0.0.3840.1600" timestamp="1592892462200" />
+    <state x="1202" y="290" width="1436" height="989" key="search.everywhere.popup/0.0.3840.1600@0.0.3840.1600" timestamp="1595500783619" />
     <state x="561" y="222" width="670" height="676" key="search.everywhere.popup/0.23.1792.1097@0.23.1792.1097" timestamp="1586971120732" />
   </component>
 </project>

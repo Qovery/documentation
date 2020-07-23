@@ -19,16 +19,17 @@ In April, I started working at Qovery, a container as a service platform where a
 
 > From developer experience point of view, Kotlin is a significant improvement, especially if you jump from 'old' Java - Patryk J.
 
-## From Java to Kotlin
+## My feedback
+### From Java to Kotlin
 For me, a Java developer with basic knowledge of other languages (like JS, Go, and other popular programming languages) moving from Java to Kotlin was natural. It was more like a gradual transition/upgrade rather than jumping into something new. Most of the right parts from Kotlin that are missing in Java can be found in other programming languages. If you are not limited to just one language (Java), there will be little in Kotlin that will surprise you (for the people thinking the transition from Java to Kotlin is hard - I recommend trying to use Rust without reading the Rust Bible(https://doc.rust-lang.org/book/) twice - you'll change your mind quickly.).
 
-## Reading/Writing Kotlin code
+### Reading/Writing Kotlin code
 Reading Kotlin code came without any efforts. If you can't guess what the 'new' syntax means, all you need to do is take a quick look at the basic syntax page (https://kotlinlang.org/docs/reference/basic-syntax.html), and you are good to go. Writing idiomatic Kotlin code, however, is a bit trickier. After years of using Java, you may have habits that will lead you to write Java-like Kotlin code. Writing idiomatic code, at least in my case, requires more time spent with the language. I found this (https://kotlinlang.org/docs/reference/idioms.html) document invaluable to speed up this process.
 
-## How did I ramp up on Kotlin?
+### How did I ramp up on Kotlin?
 Getting ready to use Kotlin did not require more than spending a few days to get used to the codebase I would later work with and slowly reading the Kotlin documentation (https://kotlinlang.org/docs/reference/basic-types.html) in the meantime. I believe this gives you all the basics you need to be productive with the language - proficiency and expertise will come with time.
 
-## My impressions after a few months
+### After a few months
 After switching from Java to Kotlin, my first impressions were that I deal with a modern programming language. Pascal notation, type inference, extension functions, no semicolons, immutable collections, coroutines, channels, and more - this all added to a feeling of using a powerful, modern language (even though most of the concepts are quite old, borrowed from other langs, you can see similar trends in other new, modern programming languages).
 
 Another thing that that I could quickly notice is the improvement in code readability (in the majority of cases) and conciseness. The most striking, simple examples are, of course, data classes and null checks, which cost much more work (and lines of code) in Java.
@@ -115,7 +116,7 @@ fun main() {
 
 After some time of working with the language, I noticed another thing - the null safety, in fact, does make the difference. It does not solve all the issues with NPEs, but it drastically reduces this problem. Most of the time, when I get NPE is during development when I intentionally cut corners due to my laziness. After the code is ready to go to production, it's improbable to throw an NPE.
 
-## Java-Kotlin interop
+### Java-Kotlin interop
 Java-Kotlin interop is excellent. You can basically use anything you would use in plain Java. Sometimes you may fall into a pitfall, you need to take care of nulls (they may come from Java libraries, which are not null-safe) or may need to use a plugin to make a given framework work properly. Still, in general, it's very good interop between two languages. You can even copy-paste Java code, and IntelliJ will convert it to Kotlin on the fly - it works quite good; most often, it produces working code - from time to time, you may need to correct something manually.
 
 <p align="center">

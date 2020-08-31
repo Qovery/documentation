@@ -90,6 +90,17 @@ module.exports = {
         },
         {
             type: 'category',
+            label: 'Business',
+            items: [
+                "business/organization",
+                "business/cloud-account",
+                "business/build-platform",
+                "business/container-registry",
+                "business/policy",
+            ],
+        },
+        {
+            type: 'category',
             label: 'Useful Links',
             items: [
                 {

@@ -90,6 +90,17 @@ module.exports = {
         },
         {
             type: 'category',
+            label: 'Business',
+            items: [
+                <%= metadata.links.fetch_id("docs.business.organization").to_json %>,
+                <%= metadata.links.fetch_id("docs.business.cloud-account").to_json %>,
+                <%= metadata.links.fetch_id("docs.business.build-platform").to_json %>,
+                <%= metadata.links.fetch_id("docs.business.container-registry").to_json %>,
+                <%= metadata.links.fetch_id("docs.business.policy").to_json %>,
+            ],
+        },
+        {
+            type: 'category',
             label: 'Useful Links',
             items: [
                 {

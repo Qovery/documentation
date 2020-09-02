@@ -19,6 +19,18 @@ module.exports = {
                 <%= metadata.links.fetch_id("docs.main-concepts.application").to_json %>,
                 <%= metadata.links.fetch_id("docs.main-concepts.project").to_json %>,
                 <%= metadata.links.fetch_id("docs.main-concepts.environment").to_json %>,
+                {
+                    type: 'category',
+                    label: 'Qovery Business',
+                    items: [
+                        <%= metadata.links.fetch_id("docs.main-concepts.business").to_json %>,
+                        <%= metadata.links.fetch_id("docs.main-concepts.business.organization").to_json %>,
+                        <%= metadata.links.fetch_id("docs.main-concepts.business.cloud-account").to_json %>,
+                        <%= metadata.links.fetch_id("docs.main-concepts.business.build-platform").to_json %>,
+                        <%= metadata.links.fetch_id("docs.main-concepts.business.container-registry").to_json %>,
+                        <%= metadata.links.fetch_id("docs.main-concepts.business.policy").to_json %>,
+                    ],
+                },
             ],
         },
         {
@@ -58,6 +70,18 @@ module.exports = {
                         <%= metadata.links.fetch_id("docs.using-qovery.configuration.storage").to_json %>,
                         <%= metadata.links.fetch_id("docs.using-qovery.configuration.brokers").to_json %>,
                         <%= metadata.links.fetch_id("docs.using-qovery.configuration.routing").to_json %>,
+                        {
+                            type: 'category',
+                            label: 'Business',
+                            items: [
+                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.business").to_json %>,
+                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.business.organization").to_json %>,
+                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.business.cloud-account").to_json %>,
+                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.business.build-platform").to_json %>,
+                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.business.container-registry").to_json %>,
+                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.business.policy").to_json %>,
+                            ],
+                        },
                     ]
                 },
                 {
@@ -86,17 +110,6 @@ module.exports = {
                 <%= metadata.links.fetch_id("docs.security-and-compliance.backup-and-restore").to_json %>,
                 <%= metadata.links.fetch_id("docs.security-and-compliance.encryption").to_json %>,
                 <%= metadata.links.fetch_id("docs.security-and-compliance.gdpr").to_json %>,
-            ],
-        },
-        {
-            type: 'category',
-            label: 'Business',
-            items: [
-                <%= metadata.links.fetch_id("docs.business.organization").to_json %>,
-                <%= metadata.links.fetch_id("docs.business.cloud-account").to_json %>,
-                <%= metadata.links.fetch_id("docs.business.build-platform").to_json %>,
-                <%= metadata.links.fetch_id("docs.business.container-registry").to_json %>,
-                <%= metadata.links.fetch_id("docs.business.policy").to_json %>,
             ],
         },
         {

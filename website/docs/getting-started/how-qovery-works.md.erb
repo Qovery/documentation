@@ -6,19 +6,27 @@ This document presents a high-level overview of how Qovery operates. We believe 
 
 ## Observing your Git repositories
 Qovery reacts to events in your Git repositories, like new commits, pull requests, or adding new branches.
-When it detects a Qovery configuration in your repository, it puts your application into a **Qovery CI/CD pipeline**.
+When it detects a Qovery configuration in your repository, it puts your application into a **CI/CD pipeline**.
 <!---
 TODO - IMAGE - GIT EVENTS?
 -->
 ## Integrating Git and CI/CD
-You don't need to set up your CI/CD (Continuous Integration and Continuous Deployment) pipeline. In response to Git events, we clone your repository and put it in our pipelines.
+You don't need to set up your CI/CD (Continuous Integration and Continuous Deployment) pipeline. In response to Git events, we clone your repository and put it in the pipeline.
 We use a **Dockerfile** from your repository to build a Docker image of your application. We also check the infrastructure requirements
 of your application using a simple `.qovery.yml` config file.
+
+<Alert type="info">
+
+If you are a business user you can use your own solution to build and store Docker images 
+
+<Alert"/>
+
+
 <!---
 TODO - IMAGE - GIT EVENTS -> CI/CD PIPE?
 -->
 ## Deploying applications on Kubernetes clusters
-After building a Docker image of your application, we make it accessible by deploying it on our **Kubernetes** clusters.
+After building a Docker image of your application, we make it accessible by deploying it on Kubernetes clusters.
 <!---
 TODO - IMAGE - APPS - K8S?
 -->
@@ -38,3 +46,10 @@ We make sure that using and integrating all popular cloud services (e.g., Datado
 <!---
 TODO - IMAGE - SERVICES LOGOS
 -->
+## BUSINESS_BADGE Managing your organization
+Qovery allows you to define fine-grained rules that mirror the way your company operates. Create teams, assign roles, split responsibilities
+and enforce company-wide rules, all in one place.
+
+## BUSINESS_BADGE Deploying on multiple clouds
+Have you thought multi-cloud is a myth? Not with Qovery. Qovery Business allows your organization to run your production environments on very reliable clouds and at the same time
+use cheaper cloud providers for your development environments.

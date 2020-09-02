@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-05-22"
+last_modified_on: "2020-09-01"
 title: Regions
 description: Learn how to configure Regions on Qovery
 ---
@@ -24,6 +24,7 @@ Each environment can be assigned to a different region
 
 ## Configuration
 
+// TODO!!! How exactly it's gonna look like? Whole page to edit
 To specify the region you want to use you need to modify your `.qovery.yml`
 
 ```yaml title=".qovery.yml" {4}

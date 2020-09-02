@@ -1,8 +1,0 @@
----
-last_modified_on: "2020-08-31"
-title: "Cloud Account"
-description: "Understand the concept of Cloud Accounts in Qovery"
----
-
-
-

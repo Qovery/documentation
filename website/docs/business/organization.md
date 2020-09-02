@@ -1,8 +1,0 @@
----
-last_modified_on: "2020-08-31"
-title: "Organizaton"
-description: "Understand the concept of Organizations in Qovery"
----
-
-
-

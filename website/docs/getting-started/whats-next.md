@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-22"
+last_modified_on: "2020-09-02"
 title: "What's next?"
 description: "Where should I go to learn more about Qovery?"
 ---
@@ -16,6 +16,10 @@ subsections:
 <Jump to="/docs/main-concepts/application">Applications</Jump>
 <Jump to="/docs/main-concepts/project">Projects</Jump>
 <Jump to="/docs/main-concepts/environment">Environments</Jump>
+
+Interested in business/enterprise features of Qovery?
+
+<Jump to="/docs/main-concepts/business">Qovery Business</Jump>
 
 
 [docs.main-concepts]: /docs/main-concepts/

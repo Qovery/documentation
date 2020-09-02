@@ -19,6 +19,18 @@ module.exports = {
                 "main-concepts/application",
                 "main-concepts/project",
                 "main-concepts/environment",
+                {
+                    type: 'category',
+                    label: 'Qovery Business',
+                    items: [
+                        "main-concepts/business",
+                        "main-concepts/business/organization",
+                        "main-concepts/business/cloud-account",
+                        "main-concepts/business/build-platform",
+                        "main-concepts/business/container-registry",
+                        "main-concepts/business/policy",
+                    ],
+                },
             ],
         },
         {
@@ -58,6 +70,18 @@ module.exports = {
                         "using-qovery/configuration/storage",
                         "using-qovery/configuration/brokers",
                         "using-qovery/configuration/routing",
+                        {
+                            type: 'category',
+                            label: 'Business',
+                            items: [
+                                "using-qovery/configuration/business",
+                                "using-qovery/configuration/business/organization",
+                                "using-qovery/configuration/business/cloud-account",
+                                "using-qovery/configuration/business/build-platform",
+                                "using-qovery/configuration/business/container-registry",
+                                "using-qovery/configuration/business/policy",
+                            ],
+                        },
                     ]
                 },
                 {
@@ -86,17 +110,6 @@ module.exports = {
                 "security-and-compliance/backup-and-restore",
                 "security-and-compliance/encryption",
                 "security-and-compliance/gdpr",
-            ],
-        },
-        {
-            type: 'category',
-            label: 'Business',
-            items: [
-                "business/organization",
-                "business/cloud-account",
-                "business/build-platform",
-                "business/container-registry",
-                "business/policy",
             ],
         },
         {

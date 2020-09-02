@@ -3,3 +3,22 @@ last_modified_on: "2020-08-31"
 title: "Organization"
 description: "Learn how to configure Organizations on Qovery"
 ---
+## Using Organization
+
+To asign an application to an organization, put the organization name in the `.qovery.yml`:
+
+```yaml title=".qovery.yml" {2}
+application:
+  organization: my-organization
+  name: my-application
+  project: project-x
+  publicly_accessible: true
+routers:
+- name: main
+  routes:
+  - application_name: my-application
+    paths:
+    - /
+```
+
+This configuration deploys the application in `my-organization` organization.

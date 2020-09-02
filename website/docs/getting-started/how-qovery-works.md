@@ -6,6 +6,8 @@ description: "Insights about the way Qovery does its job."
 
 import Alert from '@site/src/components/Alert';
 
+import BusinessBadge from '@site/src/components/BusinessBadge';
+
 This document presents a high-level overview of how Qovery operates. We believe knowing these facts may help you understand Qovery and the power it brings for software development teams.
 
 <!--
@@ -28,7 +30,7 @@ We use a **Dockerfile** from your repository to build a Docker image of your app
 of your application using a simple `.qovery.yml` config file.
 
 <Alert type="info">
-If you are a business user you can use your own solution to build and store Docker images 
+<BusinessBadge /> If you are a business user you can use your own solution to build and store Docker images 
 </Alert>
 
 
@@ -56,11 +58,11 @@ We make sure that using and integrating all popular cloud services (e.g., Datado
 <!---
 TODO - IMAGE - SERVICES LOGOS
 -->
-## BUSINESS_BADGE Managing your organization
+## Managing your organization <BusinessBadge />
 Qovery allows you to define fine-grained rules that mirror the way your company operates. Create teams, assign roles, split responsibilities
 and enforce company-wide rules, all in one place.
 
-## BUSINESS_BADGE Deploying on multiple clouds
+## Deploying on multiple clouds <BusinessBadge /> 
 Have you thought multi-cloud is a myth? Not with Qovery. Qovery Business allows your organization to run your production environments on very reliable clouds and at the same time
 use cheaper cloud providers for your development environments.
 

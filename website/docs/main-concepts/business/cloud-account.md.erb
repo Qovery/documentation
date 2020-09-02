@@ -11,7 +11,9 @@ No problem! You can deploy your reliable production system on AWS, and to save r
 enironments using one of cheaper cloud providers. Qovery brings you a real multicloud capabilities which are fully transparent for
 application developers.
 
+<!---
 IMAGE - 2 CLOUD ACCOUNTS - PROD - DEV - MONEY
+-->
 
 All you need to do to benefit from cloud-agnostic deployments is to provide us with credentials to your cloud accounts
 and declare a simple [Policy][docs.main-concepts.business.policy] to use them.

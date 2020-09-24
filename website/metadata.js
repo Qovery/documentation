@@ -340,6 +340,15 @@ module.exports = {
           "path": "website/guides/engineering/basic-network-isolation-in-kubernetes.md",
           "series_position": null,
           "title": "Kubernetes - Network isolation with NetworkPolicy"
+        },
+        {
+          "author_github": "https://github.com/deimosfr",
+          "description": null,
+          "id": "/engineering/helm-freeze-manage-helm-charts-with-ease",
+          "last_modified_on": null,
+          "path": "website/guides/engineering/helm-freeze-manage-helm-charts-with-ease.md",
+          "series_position": null,
+          "title": "helm-freeze - manage Helm Charts and Repositories with ease"
         }
       ],
       "name": "engineering",

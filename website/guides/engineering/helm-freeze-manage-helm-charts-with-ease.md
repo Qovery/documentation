@@ -147,6 +147,8 @@ Managing charts is now easy with `helm-freeze`. In our day to day job, it solves
 * Works well with monorepo
 * Declarative configuration (YAML file)
 
+[See helm-freeze on Github](https://github.com/Qovery/helm-freeze)
+
 Hope it will help you as it helps us at [Qovery][urls.qovery]
 
 <Jump to="/guides/engineering/">Engineering</Jump>

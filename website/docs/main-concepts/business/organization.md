@@ -1,6 +1,6 @@
 ---
-last_modified_on: "2020-09-02"
-title: "Organizaton"
+last_modified_on: "2020-09-28"
+title: "Organization"
 description: "Understand the concept of Organizations in Qovery"
 ---
 *Organizations* help you manage how your company operates. Define your own set of rules, roles, manage privilages, split responsibilites.

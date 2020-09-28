@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-09-02"
+last_modified_on: "2020-09-28"
 title: Qovery Business
 description: "Everything you need to know about Qovery Business concepts"
 sidebar_label: hidden
@@ -22,16 +22,66 @@ costs and configuration. This is where Qovery Business comes in.
 
 ## Qovery Business
 
+> "The deployment platform you would build for your company"
+
 ### Your applications, your cloud account
 One of the greatest benefits of moving to Business version is that your projects are deployed on your own cloud account.
 We take care of the whole process of setting up your environment - from bootstrapping Kubernetes clusters to application deployment.
 All we need is the access to your cloud account. Of course, it's highly customizable and you have the power to edit or override
 the default behaviours.
 
+<p style={{textAlign: "left", fontWeight: "bold"}}>Add your cloud account</p>
+
+<img src="/img/providers.png" alt="Your Cloud Account"/>
+
 ### Your organization, your rules
 Each organization has its own unique approach to dealing with people, communication and teams. We value your uniqueness and thus
 we give you the ability to create very fine-grained rules that mirror your organization. Spliting responsibilities, creating teams,
 assigning roles, enforcing company-wide restrictions (e.g. allowing to use PostgreSQL only) and much more.
+
+### Platform that you would build for your company
+Building a cloud platform based on Kubernetes and other cloud-native technologies is a tremendous task. Doing it right might take months
+of work of experienced engineers. With Qovery Business, you can shorten this time to days, not months. 
+
+<img src="/img/platform.svg" alt="Qovery Platform"/>
+
+<p style={{textAlign: "center", fontWeight: "bold"}}>Time to setup the Platform</p>
+
+<img src="/img/time-matters.svg" alt="Time Matters"/>
+
+### Multi-cloud ready
+Qovery allows you to deploy to multiple clouds simultanously. Avoid vendor lock-in, optimize costs and become one of the first beneficiaries of real multi-cloud deployments.
+
+<img src="/img/multicloud.svg" alt="Multi-Cloud"/>
+
+### Easy to use for Developers, easy to customize for DevOps
+Do your developers struggle with complexities of cloud deployments? Qovery hides complex cloud providers' details and allows them
+to focus on delivering a real business value. If you need flexibility and customizations, Qovery provides very flexible mechanisms that allow
+your DevOps team to customize behaviours of the platform and monitor all the details of what is happening under the hood.
+
+<img src="/img/team-productivity.svg" alt="Team Productivity"/>
+
+### Developers
+The web interface and command line interface cover all developers' needs - getting application logs, managing environment variables, checking application status.
+Developers don't have to worry about CI/CD or configure backing services anymore. Qovery CI/CD is integrated with Git control system that all developers know and love.
+They don't have to change their habits or learn yet another tool - `git commit` & `git push` is all they need to deliver new business features.
+If their application needs a new type of database, it can be provided using just one line of configuration that is versioned in Git as well.
+
+<p style={{textAlign: "center", fontWeight: "bold"}}>Deploying application using the Command Line Interface</p>
+
+<img src="/img/cli.png" />
+
+### DevOps
+Your DevOps engineers have fine-grained control of how the platform behaves. Using the web interface or CLI they are able to enforce organization wide rules,
+target different cloud providers, plug in custom CI systems, Container Registries, monitoring services and more.
+In case of any problems, Qovery automatically manages rollbacks to the last working version, so they will be less interrupted during workhours and have easier time on-call.
+
+<p style={{textAlign: "center", fontWeight: "bold"}}>Managing the platform using the Web Interface</p>
+
+<img src="https://s3.amazonaws.com/media-p.slid.es/uploads/1266307/images/7727622/env.jpg" />
+
+If DevOps team want to know what happens under the hood - we got them covered. Qovery provides all Terraform and Helm files, so DevOps enginners can make advanced adjustments
+and see how the things work under the hood.
 
 
 

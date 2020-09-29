@@ -1,8 +1,10 @@
 ---
-last_modified_on: "2020-09-28"
+last_modified_on: "2020-09-29"
 title: "Container Registry"
 description: "Understand the concept of Container Registries in Qovery"
 ---
+### Plug your own Container Registry
+
 As Qovery uses Docker as a runtime for its applications, it needs a storage for Docker application images.
 You have a complete control over the way Qovery stores your Docker images - all you have to do is to provide
 credentials for one of the supported container registries and Qovery will use it to store your application images.

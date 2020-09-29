@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-09-28"
+last_modified_on: "2020-09-29"
 title: Qovery Business
 description: "Everything you need to know about Qovery Business concepts"
 sidebar_label: hidden
@@ -83,5 +83,16 @@ In case of any problems, Qovery automatically manages rollbacks to the last work
 If DevOps team want to know what happens under the hood - we got them covered. Qovery provides all Terraform and Helm files, so DevOps enginners can make advanced adjustments
 and see how the things work under the hood.
 
+### Plug in External Services
+
+Your organization uses a service that is not oficially supported by Qovery? No worries. Our External Services plugin system allows you to easily add your services
+and consume them in your applications. Read more about this concept [here][docs.main-concepts.business.external-services].
+
+### Monitor your platform
+
+Qovery is not a monitoring solution, yet it allows you to easily connect to third party monitoring systems like Datadog or New Relic. Qovery team prepared integrations
+that allows you to [start monitoring the platform][docs.main-concepts.business.monitoring] with just a few mouse clicks.
 
 
+[docs.main-concepts.business.external-services]: /docs/main-concepts/business/external-services/
+[docs.main-concepts.business.monitoring]: /docs/main-concepts/business/monitoring/

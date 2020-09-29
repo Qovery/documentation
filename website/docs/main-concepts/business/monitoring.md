@@ -1,8 +1,10 @@
 ---
-last_modified_on: "2020-09-28"
+last_modified_on: "2020-09-29"
 title: "Monitoring"
 description: "Plug-in monitoring systems to Qovery"
 ---
+### Monitor your platform with a few clicks
+
 For convenience, Qovery enables very easy integration with monitoring platforms like Datadog or New Relic.
 
 <img src="/img/monitoring.png" />

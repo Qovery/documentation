@@ -14,24 +14,12 @@ from multiple cloud providers.
 
 Do you want to have a reliable production environment but also save money on staging platforms which are not crucial?
 No problem! You can deploy your reliable production system on AWS, and to save resources, deploy other non-production
-enironments using one of cheaper cloud providers. Qovery brings you a real multicloud capabilities which are fully transparent for
+environments using one of cheaper cloud providers. Qovery brings you a real multi-cloud capabilities which are fully transparent for
 application developers.
 
-<div style={{display: 'flex', justifyContent: 'space-evenly'}}>
-
-<img style={{maxWidth: '200px'}} src="/img/logos/aws.svg" />
-
-<img style={{maxWidth: '200px'}} src="/img/logos/do.svg" />
-
-<img style={{maxWidth: '200px'}} src="/img/logos/scw.svg" />
-
-</div>
-
-All you need to do to benefit from cloud-agnostic deployments is to provide us with credentials to your cloud accounts
-and declare a simple [Policy][docs.main-concepts.business.policy] to use them.
+All you need to do to benefit from cloud-agnostic deployments is to have an account on a [supported cloud provider][docs.using-qovery.configuration.business.cloud-account].
 
 Read more about [Cloud Account][docs.using-qovery.configuration.business.cloud-account]
 
 
-[docs.main-concepts.business.policy]: /docs/main-concepts/business/policy/
 [docs.using-qovery.configuration.business.cloud-account]: /docs/using-qovery/configuration/business/cloud-account/

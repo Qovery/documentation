@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-09-29"
+last_modified_on: "2020-10-01"
 title: "Cloud Account"
 description: "Understand the concept of Cloud Accounts in Qovery"
 ---
@@ -30,5 +30,8 @@ application developers.
 All you need to do to benefit from cloud-agnostic deployments is to provide us with credentials to your cloud accounts
 and declare a simple [Policy][docs.main-concepts.business.policy] to use them.
 
+Read more about [Cloud Account][docs.using-qovery.configuration.business.cloud-account]
+
 
 [docs.main-concepts.business.policy]: /docs/main-concepts/business/policy/
+[docs.using-qovery.configuration.business.cloud-account]: /docs/using-qovery/configuration/business/cloud-account/

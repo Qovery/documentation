@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-09-29"
+last_modified_on: "2020-10-01"
 title: "Organization"
 description: "Understand the concept of Organizations in Qovery"
 ---
@@ -14,5 +14,8 @@ number of developers, organization helps to keep your teams productive and self-
 ### Track team expenses
 Splitting projects between suborganizations allows to calculate expenses on a team basis. See what cost you the most and find a room for improvements.
 
+Read more about [Organization][docs.using-qovery.configuration.business.organization]
+
 
 [docs.main-concepts.business.policy]: /docs/main-concepts/business/policy/
+[docs.using-qovery.configuration.business.organization]: /docs/using-qovery/configuration/business/organization/

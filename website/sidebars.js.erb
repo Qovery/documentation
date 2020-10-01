@@ -29,7 +29,7 @@ module.exports = {
                         <%= metadata.links.fetch_id("docs.main-concepts.business.cloud-account").to_json %>,
                         <%= metadata.links.fetch_id("docs.main-concepts.business.build-platform").to_json %>,
                         <%= metadata.links.fetch_id("docs.main-concepts.business.container-registry").to_json %>,
-                        <%= metadata.links.fetch_id("docs.main-concepts.business.external-services").to_json %>,
+                        <%= metadata.links.fetch_id("docs.main-concepts.business.external-service").to_json %>,
                         <%= metadata.links.fetch_id("docs.main-concepts.business.monitoring").to_json %>,
                     ],
                 },
@@ -77,11 +77,13 @@ module.exports = {
                             label: 'Business',
                             items: [
                                 <%= metadata.links.fetch_id("docs.using-qovery.configuration.business").to_json %>,
+                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.business.policy").to_json %>,
                                 <%= metadata.links.fetch_id("docs.using-qovery.configuration.business.organization").to_json %>,
                                 <%= metadata.links.fetch_id("docs.using-qovery.configuration.business.cloud-account").to_json %>,
                                 <%= metadata.links.fetch_id("docs.using-qovery.configuration.business.build-platform").to_json %>,
                                 <%= metadata.links.fetch_id("docs.using-qovery.configuration.business.container-registry").to_json %>,
-                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.business.policy").to_json %>,
+                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.business.external-service").to_json %>,
+                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.business.monitoring").to_json %>,
                             ],
                         },
                     ]

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-05-08"
+last_modified_on: "2020-10-01"
 title: FAQ
 description: "Frequently Asked Questions"
 ---
@@ -50,5 +50,5 @@ Feel free to join our [Discord server][urls.qovery_chat] or contact us by email 
 [guides.how-to-deploy-a-docker-container]: /guides/tutorial/how-to-deploy-a-docker-container/
 [urls.kubernetes]: https://kubernetes.io/
 [urls.qovery_chat]: https://discord.qovery.com
-[urls.qovery_enterprise]: https://www.qovery.com/enterprise
+[urls.qovery_enterprise]: https://www.qovery.com/business
 [urls.qovery_roadmap]: https://roadmap.qovery.com/

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-09-02"
+last_modified_on: "2020-10-01"
 title: "Organization"
 description: "Learn how to configure Organizations on Qovery"
 ---
@@ -13,7 +13,7 @@ description: "Learn how to configure Organizations on Qovery"
 
 ## Using Organization
 
-To asign an application to an organization, put the organization name in the `.qovery.yml`:
+To assign an application to an organization, put the organization name in the `.qovery.yml`:
 
 ```yaml title=".qovery.yml" {2}
 application:

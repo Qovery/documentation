@@ -29,7 +29,7 @@ module.exports = {
                         "main-concepts/business/cloud-account",
                         "main-concepts/business/build-platform",
                         "main-concepts/business/container-registry",
-                        "main-concepts/business/external-services",
+                        "main-concepts/business/external-service",
                         "main-concepts/business/monitoring",
                     ],
                 },
@@ -77,11 +77,13 @@ module.exports = {
                             label: 'Business',
                             items: [
                                 "using-qovery/configuration/business",
+                                "using-qovery/configuration/business/policy",
                                 "using-qovery/configuration/business/organization",
                                 "using-qovery/configuration/business/cloud-account",
                                 "using-qovery/configuration/business/build-platform",
                                 "using-qovery/configuration/business/container-registry",
-                                "using-qovery/configuration/business/policy",
+                                "using-qovery/configuration/business/external-service",
+                                "using-qovery/configuration/business/monitoring",
                             ],
                         },
                     ]

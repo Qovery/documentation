@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-09-02"
+last_modified_on: "2020-10-01"
 title: Regions
 description: Learn how to configure Regions on Qovery
 ---
@@ -57,23 +57,57 @@ Total errors found: 1
 
 The following regions are available:
 
-<Alert type="info">
-
-More regions will come in the near future
-
-</Alert>
-
-#### AWS
-
-* eu-west-3 (Paris, France)
-* us-east-2 (Ohio, United States)
-* us-west-2 (Oregon, United States)
-
-Do you want to speed up the support of a specific AWS region? [Tell us][urls.qovery_chat]
+| name             |
+|------------------|
+| europe |
+| north-america      |
+| asia      |
 
 ### Business plan
 
-With the Business plan, Qovery can be deployed on any region supported by AWS, GCP, and Azure - on your own Cloud provider account.
+When using Qovery with a paid plan, you can access to any Cloud regions listed below
+
+#### Amazon Web Services
+
+| name             | description                   | supported by Qovery |
+|------------------|-------------------------------|---------------------|
+| aws/ap-northeast-1 | Asia Pacific (Tokyo)        | yes                 |
+| aws/us-west-2      | US West (Oregon)            | yes                 |
+| aws/eu-west-3      | Europe (Paris)              | yes                 |
+| aws/us-east-2      | US East (Ohio)              | yes                 |
+| aws/us-east-1      | US East (N. Virginia)      |  yes                 |
+| aws/us-west-1      | US West (N. California)    |  yes                 |
+| aws/af-south-1     | Africa (Cape Town)          | yes                 |
+| aws/ap-east-1      | Asia Pacific (Hong Kong)    | yes                 |
+| aws/ap-south-1     | Asia Pacific (Mumbai)       | yes                 |
+| aws/ap-northeast-3 | Asia Pacific (Osaka-Local) |  yes                 |
+| aws/ap-northeast-2 | Asia Pacific (Seoul)        | yes                 |
+| aws/ap-southeast-1 | Asia Pacific (Singapore)    | yes                 |
+| aws/ap-southeast-2 | Asia Pacific (Sydney)       | yes                 |
+| aws/ca-central-1   | Canada (Central)            | yes                 |
+| aws/eu-central-1   | Europe (Frankfurt)          | yes                 |
+| aws/eu-west-1      | Europe (Ireland)            | yes                 |
+| aws/eu-west-2      | Europe (London)             | yes                 |
+| aws/eu-south-1     | Europe (Milan)              | yes                 |
+| aws/eu-north-1     | Europe (Stockholm)          | yes                 |
+| aws/me-south-1     | Middle East (Bahrain)       | yes                 |
+| aws/sa-east-1      | South America (São Paulo)   | yes                 |
+
+#### Azure
+
+Coming soon - vote [here][urls.qovery_roadmap]
+
+#### Google Cloud Platform
+
+Coming soon - vote [here][urls.qovery_roadmap]
+
+#### Digital Ocean
+
+Coming soon - vote [here][urls.qovery_roadmap]
+
+#### Scaleway
+
+Coming soon - vote [here][urls.qovery_roadmap]
 
 ## FAQ
 
@@ -81,10 +115,15 @@ With the Business plan, Qovery can be deployed on any region supported by AWS, G
 
 Different datacenters are located in different geographic areas, and you may want to keep your site physically close to the bulk of your user base for reduced latency.
 
+### I don't find a region that is provided by a Cloud provider
+
+We are probably testing the support of this region, please [contact us][urls.qovery_contact_us] to know what's the status
+
 ### Migrate between regions
 
 You can't migrate an environment from one region to another after it is created.
 
 
 [docs.environment]: /docs/main-concepts/environment/
-[urls.qovery_chat]: https://discord.qovery.com
+[urls.qovery_contact_us]: https://www.qovery.com/contact
+[urls.qovery_roadmap]: https://roadmap.qovery.com/

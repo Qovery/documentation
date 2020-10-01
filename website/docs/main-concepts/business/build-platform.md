@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-09-29"
+last_modified_on: "2020-10-01"
 title: "Build Platform"
 description: "Understand the concept of Build Platforms in Qovery"
 ---
@@ -26,8 +26,7 @@ build platform.
 TODO IMAGE CODE -> BUILD PLATFORM -> APP/DOCKER IMAGE
 -->
 
-### List of supported Build Platforms
-- **Qovery Engine**
+Read more about [Build Platform][docs.using-qovery.configuration.business.build-platform]
 
 
-
+[docs.using-qovery.configuration.business.build-platform]: /docs/using-qovery/configuration/business/build-platform/

@@ -22,7 +22,7 @@ If it's still not enough, you can always plug in your own custom build scripts t
 
 ## Enforcing organization-wide rules
 
-Enforing organization-wide policies on multiple teams is ususally a hard task. Qovery allows you to completely eliminate this problem - just define your rules and
+Enforcing organization-wide policies on multiple teams is usually a hard task. Qovery allows you to completely eliminate this problem - just define your rules and
 let Qovery do the dirty work of assuring that your teams adhere to it. Choose which databases and versions are allowed. Specify the list of allowed services. Set up the list of environments to deploy.
 All you have to do is to declare the rules - Qovery is here to make sure the rules are respected in your organization.
 
@@ -37,5 +37,7 @@ Do you think your development environments cost too much? Solve the problem with
 Automatically turn off applications after working hours. Clean unused environments. These are just a few examples of how declaration of policies
 can make your organization more cost-efficient.
 
+Read more about [Policy][docs.using-qovery.configuration.business.policy]
 
 
+[docs.using-qovery.configuration.business.policy]: /docs/using-qovery/configuration/business/policy/

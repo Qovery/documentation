@@ -12,31 +12,48 @@ description: "Learn how to configure and plug your Amazon Web Services (AWS) acc
      website/docs/using-qovery/configuration/business/cloud-account/amazon-web-services.md.erb
 -->
 
-## List of available regions
+## Add your AWS account
 
-| name             | description                   | supported |
-|------------------|-------------------------------|-----------|
-| aws/ap-northeast-1 | Asia Pacific (Tokyo)        | yes       |
-| aws/us-west-2      | US West (Oregon)            | yes       |
-| aws/eu-west-3      | Europe (Paris)              | yes       |
-| aws/us-east-2      | US East (Ohio)              | yes       |
-| aws/us-east-1      | US East (N. Virginia)      |  yes       |
-| aws/us-west-1      | US West (N. California)    |  yes       |
-| aws/af-south-1     | Africa (Cape Town)          | yes       |
-| aws/ap-east-1      | Asia Pacific (Hong Kong)    | yes       |
-| aws/ap-south-1     | Asia Pacific (Mumbai)       | yes       |
-| aws/ap-northeast-3 | Asia Pacific (Osaka-Local) |  yes       |
-| aws/ap-northeast-2 | Asia Pacific (Seoul)        | yes       |
-| aws/ap-southeast-1 | Asia Pacific (Singapore)    | yes       |
-| aws/ap-southeast-2 | Asia Pacific (Sydney)       | yes       |
-| aws/ca-central-1   | Canada (Central)            | yes       |
-| aws/eu-central-1   | Europe (Frankfurt)          | yes       |
-| aws/eu-west-1      | Europe (Ireland)            | yes       |
-| aws/eu-west-2      | Europe (London)             | yes       |
-| aws/eu-south-1     | Europe (Milan)              | yes       |
-| aws/eu-north-1     | Europe (Stockholm)          | yes       |
-| aws/me-south-1     | Middle East (Bahrain)       | yes       |
-| aws/sa-east-1      | South America (São Paulo)   | yes       |
+TODO
+
+### Required IAM permissions
+
+TODO
+
+## Delete your AWS account
+
+TODO
+
+## Available regions
+
+| | name             | description                   | supported |
+|-|------------------|-------------------------------|-----------|
+|🇺🇸| aws/us-west-2      | US West (Oregon)            | yes       |
+|🇺🇸| aws/us-east-2      | US East (Ohio)              | yes       |
+|🇺🇸| aws/us-east-1      | US East (N. Virginia)      |  yes       |
+|🇺🇸| aws/us-west-1      | US West (N. California)    |  yes       |
+|🇿🇦| aws/af-south-1     | Africa (Cape Town)          | yes       |
+|🇭🇰| aws/ap-east-1      | Asia Pacific (Hong Kong)    | yes       |
+|🇮🇳| aws/ap-south-1     | Asia Pacific (Mumbai)       | yes       |
+|🇯🇵| aws/ap-northeast-1 | Asia Pacific (Tokyo)        | yes       |
+|🇰🇷| aws/ap-northeast-2 | Asia Pacific (Seoul)        | yes       |
+|🇯🇵| aws/ap-northeast-3 | Asia Pacific (Osaka) |  yes       |
+|🇸🇬| aws/ap-southeast-1 | Asia Pacific (Singapore)    | yes       |
+|🇦🇺| aws/ap-southeast-2 | Asia Pacific (Sydney)       | yes       |
+|🇨🇦| aws/ca-central-1   | Canada (Central)            | yes       |
+|🇩🇪| aws/eu-central-1   | Europe (Frankfurt)          | yes       |
+|🇮🇪| aws/eu-west-1      | Europe (Ireland)            | yes       |
+|🏴󠁧󠁢󠁥󠁮󠁧󠁿| aws/eu-west-2      | Europe (London)             | yes       |
+|🇫🇷| aws/eu-west-3      | Europe (Paris)             | yes       |
+|🇮🇹| aws/eu-south-1     | Europe (Milan)              | yes       |
+|🇸🇪| aws/eu-north-1     | Europe (Stockholm)          | yes       |
+|🇧🇭| aws/me-south-1     | Middle East (Bahrain)       | yes       |
+|🇧🇷| aws/sa-east-1      | South America (São Paulo)   | yes       |
+
+
+## Kubernetes
+
+TODO
 
 ## FAQ
 

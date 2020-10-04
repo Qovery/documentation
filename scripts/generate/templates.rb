@@ -663,8 +663,28 @@ class Templates
     render("#{partials_path}/_qovery_summary.md", binding).strip
   end
 
+  def qovery_cloud_account_kubernetes(cloud_provider)
+    render("#{partials_path}/_qovery_cloud_account_kubernetes.md", binding).strip
+  end
+
   def qovery_cloud_account_faq(cloud_provider)
     render("#{partials_path}/_qovery_cloud_account_faq.md", binding).strip
+  end
+
+  def qovery_cloud_account_coming_soon(cloud_provider, vote_url)
+    render("#{partials_path}/_qovery_cloud_account_coming_soon.md", binding).strip
+  end
+
+  def qovery_container_registry_coming_soon(container_registry, vote_url)
+    render("#{partials_path}/_qovery_container_registry_coming_soon.md", binding).strip
+  end
+
+  def qovery_monitoring_coming_soon(monitoring, vote_url)
+    render("#{partials_path}/_qovery_monitoring_coming_soon.md", binding).strip
+  end
+
+  def qovery_build_platform_coming_soon(build_platform, vote_url)
+    render("#{partials_path}/_qovery_build_platform_coming_soon.md", binding).strip
   end
 
   def qovery_how_to_deploy_x_with_y(x, x_url, x_sample_application_url, y, y_url, y_version)

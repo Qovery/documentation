@@ -108,7 +108,7 @@ module.exports = {
                                         "using-qovery/configuration/business/container-registry",
                                         "using-qovery/configuration/business/container-registry/elastic-container-registry",
                                         "using-qovery/configuration/business/container-registry/azure-container-registry",
-                                        "using-qovery/configuration/business/container-registry/digital-ocean-registry",
+                                        "using-qovery/configuration/business/container-registry/digital-ocean-container-registry",
                                         "using-qovery/configuration/business/container-registry/scaleway-container-registry",
                                         "using-qovery/configuration/business/container-registry/docker-hub",
                                     ],

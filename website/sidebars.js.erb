@@ -54,7 +54,6 @@ module.exports = {
                     label: 'Configuration',
                     items: [
                         <%= metadata.links.fetch_id("docs.using-qovery.configuration").to_json %>,
-                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.regions").to_json %>,
                         <%= metadata.links.fetch_id("docs.using-qovery.configuration.projects").to_json %>,
                         {
                             type: 'category',
@@ -79,11 +78,51 @@ module.exports = {
                                 <%= metadata.links.fetch_id("docs.using-qovery.configuration.business").to_json %>,
                                 <%= metadata.links.fetch_id("docs.using-qovery.configuration.business.policy").to_json %>,
                                 <%= metadata.links.fetch_id("docs.using-qovery.configuration.business.organization").to_json %>,
-                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.business.cloud-account").to_json %>,
-                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.business.build-platform").to_json %>,
-                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.business.container-registry").to_json %>,
+                                {
+                                    type: 'category',
+                                    label: 'Cloud Account',
+                                    items: [
+                                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.business.cloud-account").to_json %>,
+                                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.business.cloud-account.amazon-web-services").to_json %>,
+                                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.business.cloud-account.azure").to_json %>,
+                                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.business.cloud-account.google-cloud-platform").to_json %>,
+                                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.business.cloud-account.digital-ocean").to_json %>,
+                                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.business.cloud-account.scaleway").to_json %>,
+                                    ],
+                                },
+                                {
+                                    type: 'category',
+                                    label: 'Build Platform',
+                                    items: [
+                                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.business.build-platform").to_json %>,
+                                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.business.build-platform.qovery-ci").to_json %>,
+                                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.business.build-platform.gitlab-ci").to_json %>,
+                                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.business.build-platform.circle-ci").to_json %>,
+                                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.business.build-platform.github-actions").to_json %>,
+                                    ],
+                                },
+                                {
+                                    type: 'category',
+                                    label: 'Container Registry',
+                                    items: [
+                                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.business.container-registry").to_json %>,
+                                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.business.container-registry.elastic-container-registry").to_json %>,
+                                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.business.container-registry.azure-container-registry").to_json %>,
+                                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.business.container-registry.digital-ocean-registry").to_json %>,
+                                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.business.container-registry.scaleway-container-registry").to_json %>,
+                                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.business.container-registry.docker-hub").to_json %>,
+                                    ],
+                                },
                                 <%= metadata.links.fetch_id("docs.using-qovery.configuration.business.external-service").to_json %>,
-                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.business.monitoring").to_json %>,
+                                {
+                                    type: 'category',
+                                    label: 'Monitoring',
+                                    items: [
+                                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.business.monitoring").to_json %>,
+                                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.business.monitoring.datadog").to_json %>,
+                                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.business.monitoring.new-relic").to_json %>,
+                                    ],
+                                },
                             ],
                         },
                     ]

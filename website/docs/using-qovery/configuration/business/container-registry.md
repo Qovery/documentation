@@ -1,7 +1,9 @@
 ---
-last_modified_on: "2020-10-01"
+last_modified_on: "2020-10-04"
 title: "Container Registry"
 description: "Learn how to configure and plug in Container Registries"
+sidebar_label: hidden
+hide_pagination: true
 ---
 
 ### List of supported container registries
@@ -24,7 +26,7 @@ description: "Learn how to configure and plug in Container Registries"
 
 ## FAQ
 
-### I don't find my container registry, what should I do?
+### I don't find my Container Registry, what should I do?
 
 Your container registry is probably going to be supported in the near future. [Contact us][urls.qovery_contact_us] to see how we can help you.
 

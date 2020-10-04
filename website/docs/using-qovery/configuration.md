@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-07-02"
+last_modified_on: "2020-10-04"
 title: Configuration
 description: "Everything you need to know to configure your applications on Qovery"
 sidebar_label: hidden
@@ -19,6 +19,7 @@ In the following subsections, you'll learn all you need to know to configure all
 <Jump to="/docs/using-qovery/configuration/storage/">Storage</Jump>
 <Jump to="/docs/using-qovery/configuration/brokers/">Brokers</Jump>
 <Jump to="/docs/using-qovery/configuration/routing/">Routing</Jump>
+<Jump to="/docs/using-qovery/configuration/business/">Business</Jump>
 
 
 

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-10-01"
+last_modified_on: "2020-10-04"
 title: "Organization"
 description: "Learn how to configure Organizations on Qovery"
 ---
@@ -10,6 +10,10 @@ description: "Learn how to configure Organizations on Qovery"
 
      website/docs/using-qovery/configuration/business/organization.md.erb
 -->
+
+## Create an Organization
+
+TODO
 
 ## Using Organization
 
@@ -30,7 +34,6 @@ routers:
 ```
 
 This configuration deploys the application in `my-organization` organization.
-
 
 ## Members
 

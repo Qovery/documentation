@@ -54,7 +54,6 @@ module.exports = {
                     label: 'Configuration',
                     items: [
                         "using-qovery/configuration",
-                        "using-qovery/configuration/regions",
                         "using-qovery/configuration/projects",
                         {
                             type: 'category',
@@ -79,11 +78,51 @@ module.exports = {
                                 "using-qovery/configuration/business",
                                 "using-qovery/configuration/business/policy",
                                 "using-qovery/configuration/business/organization",
-                                "using-qovery/configuration/business/cloud-account",
-                                "using-qovery/configuration/business/build-platform",
-                                "using-qovery/configuration/business/container-registry",
+                                {
+                                    type: 'category',
+                                    label: 'Cloud Account',
+                                    items: [
+                                        "using-qovery/configuration/business/cloud-account",
+                                        "using-qovery/configuration/business/cloud-account/amazon-web-services",
+                                        "using-qovery/configuration/business/cloud-account/azure",
+                                        "using-qovery/configuration/business/cloud-account/google-cloud-platform",
+                                        "using-qovery/configuration/business/cloud-account/digital-ocean",
+                                        "using-qovery/configuration/business/cloud-account/scaleway",
+                                    ],
+                                },
+                                {
+                                    type: 'category',
+                                    label: 'Build Platform',
+                                    items: [
+                                        "using-qovery/configuration/business/build-platform",
+                                        "using-qovery/configuration/business/build-platform/qovery-ci",
+                                        "using-qovery/configuration/business/build-platform/gitlab-ci",
+                                        "using-qovery/configuration/business/build-platform/circle-ci",
+                                        "using-qovery/configuration/business/build-platform/github-actions",
+                                    ],
+                                },
+                                {
+                                    type: 'category',
+                                    label: 'Container Registry',
+                                    items: [
+                                        "using-qovery/configuration/business/container-registry",
+                                        "using-qovery/configuration/business/container-registry/elastic-container-registry",
+                                        "using-qovery/configuration/business/container-registry/azure-container-registry",
+                                        "using-qovery/configuration/business/container-registry/digital-ocean-registry",
+                                        "using-qovery/configuration/business/container-registry/scaleway-container-registry",
+                                        "using-qovery/configuration/business/container-registry/docker-hub",
+                                    ],
+                                },
                                 "using-qovery/configuration/business/external-service",
-                                "using-qovery/configuration/business/monitoring",
+                                {
+                                    type: 'category',
+                                    label: 'Monitoring',
+                                    items: [
+                                        "using-qovery/configuration/business/monitoring",
+                                        "using-qovery/configuration/business/monitoring/datadog",
+                                        "using-qovery/configuration/business/monitoring/new-relic",
+                                    ],
+                                },
                             ],
                         },
                     ]

@@ -1,6 +1,6 @@
 ---
-last_modified_on: "2020-10-01"
-title: Qovery Business
+last_modified_on: "2020-10-04"
+title: Qovery Business ⭐️
 description: "Everything you need to know about Qovery Business concepts"
 sidebar_label: hidden
 hide_pagination: true

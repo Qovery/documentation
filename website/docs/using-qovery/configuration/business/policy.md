@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-10-04"
+last_modified_on: "2020-10-05"
 title: "Policy"
 description: "Learn how to configure Policies in Qovery"
 ---
@@ -119,19 +119,19 @@ This option indicates if you prefer to manually start an environment or not.
 
 ### Reduce development environment costs
 
-<!--- Create a schema where we see that environment are automatically startup and shutdown -->
+<!-- SCHEMA: Create a schema where we see that environment are automatically startup and shutdown -->
 
 TODO
 
 ### Reduce the risk of production outage
 
-<!--- Create a schema where we see that environment are deploy on different clusters depending if it is production or development -->
+<!-- SCHEMA: Create a schema where we see that environment are deploy on different clusters depending if it is production or development -->
 
 TODO
 
 ### Synchronize the staging environment with the production environment
 
-<!--- Create a schema where we see two environment in synchronization -->
+<!-- SCHEMA: Create a schema where we see two environment in synchronization -->
 
 TODO
 

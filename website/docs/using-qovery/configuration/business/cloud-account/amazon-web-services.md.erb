@@ -3,102 +3,49 @@ last_modified_on: "2020-10-04"
 title: "Amazon Web Services (AWS)"
 description: "Learn how to configure and plug your Amazon Web Services (AWS) account"
 ---
+import Alert from '@site/src/components/Alert';
+import Assumptions from '@site/src/components/Assumptions';
 
-## Add your AWS account
+Qovery lets you quickly deploy applications to your [Amazon Web Services (AWS)][urls.aws] account. No knowledge is needed, and it takes less than 20 minutes to install Qovery on your AWS account.
 
-TODO
+<Alert type="info">
 
-### Required IAM permissions
+Do you want to know more about how Qovery works on your AWS account? [Here][docs.useful-links.faq#how-qovery-works-under-the-hood] is explained how Qovery works under the hood.
 
-```json
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
-                "iam:*",
-                "s3:*",
-                "cloudwatch:*",
-                "autoscaling:*",
-                "application-autoscaling:*",
-                "elasticloadbalancing:*",
-                "organizations:DescribeAccount",
-                "organizations:DescribeOrganization",
-                "organizations:DescribeOrganizationalUnit",
-                "organizations:DescribePolicy",
-                "organizations:ListChildren",
-                "organizations:ListParents",
-                "organizations:ListPoliciesForTarget",
-                "organizations:ListRoots",
-                "organizations:ListPolicies",
-                "organizations:ListTargetsForPolicy",
-                "dynamodb:*",
-                "ecr:*",
-                "ec2:*",
-                "cloudtrail:LookupEvents",
-                "kms:DescribeKey",
-                "kms:ListAliases",
-                "dynamodb:*",
-                "tag:GetResources",
-                "rds:*",
-                "ecs:*",
-                "eks:*",
-                "logs:*",
-                "events:DescribeRule",
-                "events:DeleteRule",
-                "events:ListRuleNamesByTarget",
-                "events:ListTargetsByRule",
-                "events:PutRule",
-                "events:PutTargets",
-                "es:AddTags",
-                "es:RemoveTags",
-                "es:ListTags",
-                "es:DeleteElasticsearchDomain",
-                "es:DescribeElasticsearchDomain",
-                "es:CreateElasticsearchDomain",
-                "events:RemoveTargets",
-                "kms:EnableKeyRotation",
-                "kms:EnableKey",
-                "kms:ImportKeyMaterial",
-                "kms:Decrypt",
-                "kms:UpdateKeyDescription",
-                "kms:GenerateDataKeyWithoutPlaintext",
-                "kms:Verify",
-                "kms:CancelKeyDeletion",
-                "kms:DeleteImportedKeyMaterial",
-                "kms:GenerateDataKeyPairWithoutPlaintext",
-                "kms:DisableKey",
-                "kms:GenerateDataKeyPair",
-                "kms:ReEncryptFrom",
-                "kms:DisableKeyRotation",
-                "kms:UpdateAlias",
-                "kms:Encrypt",
-                "kms:ScheduleKeyDeletion",
-                "kms:GenerateDataKey",
-                "kms:CreateAlias",
-                "kms:ReEncryptTo",
-                "kms:Sign",
-                "kms:DeleteAlias",
-                "kms:DeleteCustomKeyStore",
-                "kms:GenerateRandom",
-                "kms:UpdateCustomKeyStore",
-                "kms:DisconnectCustomKeyStore",
-                "kms:CreateKey",
-                "kms:ConnectCustomKeyStore",
-                "kms:CreateCustomKeyStore"
-            ],
-            "Resource": "*"
-        }
-    ]
-}
-```
+</Alert>
 
-## Remove your AWS account
+<!--
+SCHEMA: Show a schema where Qovery is deployed on the account of the customer
+-->
+
+## Getting started
+
+<Assumptions>
+
+* You have a [Qovery][docs.using-qovery.interface] account
+* You have created an [Organization][docs.using-qovery.configuration.business.organization]
+
+</Assumptions>
+
+### Link your AWS account
 
 TODO
 
-## Available regions
+#### Required IAM permissions
+
+Qovery required IAM permissions to work. Get the list of permissions <a href="/files/qovery-iam-aws.json">here</a>.
+
+### Remove your AWS account
+
+TODO
+
+## Best practices
+
+TODO
+
+## Regions
+
+Qovery supports the following AWS regions:
 
 | | name             | description                   | supported |
 |-|------------------|-------------------------------|-----------|
@@ -123,7 +70,6 @@ TODO
 |🇸🇪| aws/eu-north-1     | Europe (Stockholm)          | yes       |
 |🇧🇭| aws/me-south-1     | Middle East (Bahrain)       | yes       |
 |🇧🇷| aws/sa-east-1      | South America (São Paulo)   | yes       |
-
 
 <%= qovery_cloud_account_kubernetes('AWS') %>
 

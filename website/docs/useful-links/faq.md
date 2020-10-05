@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-10-01"
+last_modified_on: "2020-10-05"
 title: FAQ
 description: "Frequently Asked Questions"
 ---
@@ -38,6 +38,10 @@ Qovery is in beta but is stable enough to consider hosting your projects. Qovery
 ### Where are your servers located?
 
 Qovery relies on Cloud providers like AWS (Amazon Web Services), GCP (Google Cloud Platform) and Azure. For each [project][docs.project], and [environment][docs.environment] you can select the region (America, Europe, Asia) of your choice.
+
+### How Qovery works under the hood?
+
+TODO
 
 ### How can I contact you?
 

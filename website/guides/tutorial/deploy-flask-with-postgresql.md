@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-06-04"
+last_modified_on: "2020-10-12"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy Flask with PostgreSQL on Qovery
 description: How to deploy a Flask application with the PostgreSQL database on Qovery
@@ -207,7 +207,6 @@ $ cat .qovery.yml
 application:
   name: my-application
   project: my-project
-  cloud_region: aws/us-west-2
   publicly_accessible: true
 databases:
 - type: postgresql

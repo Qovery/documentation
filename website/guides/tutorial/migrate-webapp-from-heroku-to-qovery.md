@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-05-08"
+last_modified_on: "2020-10-12"
 $schema: "/.meta/.schemas/guides.json"
 title: Migrating application from Heroku to Qovery
 description: Tutorial how to migrate a webapp connected to PostgreSQL database from Heroku to Qovery
@@ -103,7 +103,7 @@ Otherwise, you can try to deploy and migrate our sample application to get exper
   7. Check your application URL:
   ```bash
   heroku info
-  ``` 
+  ```
 
   8. In the browser, navigate to your application's URL - you'll see a simple view with a *Todo* app:
   <p align="center">
@@ -153,7 +153,6 @@ To set up the application for Qovery deployment with a PostgreSQL database, crea
 application:
   name: node-todo-app
   project: migrate-from-heroku
-  cloud_region: aws/eu-west-3
   publicly_accessible: true
 databases:
 - type: postgresql
@@ -231,12 +230,12 @@ You should see the same application you previously deployed to Heroku, yet witho
 
 ### Migrate PostgreSQL data
 
-There are multiple paths you could take to migrate your data from Heroku Postgres to Qovery. 
+There are multiple paths you could take to migrate your data from Heroku Postgres to Qovery.
 For production usage for the shortest downtime you would probably want to configure Qovery PostgreSQL as a replica to
 the database on Heroku, and making it the primary instance after migration. Heroku does not support this in its free
 tier, so for the purpose of the example, we take a simpler path and use different tools to migrate the data.
 
-<Alert> 
+<Alert>
 
 To run the migration successfully, you need a `psql` PostgreSQL client installed on your machine.
 

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-06-09"
+last_modified_on: "2020-10-12"
 title: "Storage"
 description: "Learn how to configure Storage on Qovery"
 ---
@@ -40,7 +40,6 @@ To specify one or more storage attached to your application, you need to modify 
 application:
   name: jhipster-sample-app
   project: jhipster-sample-app
-  cloud_region: aws/us-west-2
   publicly_accessible: true
   storage:
     - name: images

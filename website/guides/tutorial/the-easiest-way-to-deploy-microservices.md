@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-20"
+last_modified_on: "2020-10-12"
 $schema: "/.meta/.schemas/guides.json"
 title: The easiest way to deploy microservices
 description: How to deploy microservices in a very simple way
@@ -53,7 +53,6 @@ cat .qovery.yml
 application:
   name: simple-example-node
   project: simple-example-node
-  cloud_region: aws/eu-west-3
   publicly_accessible: true
 routers:
 - name: main
@@ -209,7 +208,6 @@ Project A **.qovery.yml** file
 application:
   name: backend-api
   project: my-multi-apps-project
-  cloud_region: aws/eu-west-3
   publicly_accessible: true
 databases:
 - type: postgresql

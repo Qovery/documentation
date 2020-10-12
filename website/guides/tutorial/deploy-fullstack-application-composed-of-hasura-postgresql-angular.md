@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-06-08"
+last_modified_on: "2020-10-12"
 $schema: "/.meta/.schemas/guides.json"
 title: How to deploy a full-stack application composed of Hasura, PostgreSQL and Angular
 description: State of the art full-stack application deployment with Qovery
@@ -151,7 +151,6 @@ The `.qovery.yml` file - which is the description file indicating what dependenc
 application:
   name: hasura
   project: MyProjectName
-  cloud_region: aws/us-east-2
 databases:
 - type: postgresql
   version: 11

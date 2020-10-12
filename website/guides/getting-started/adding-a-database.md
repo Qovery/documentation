@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-22"
+last_modified_on: "2020-10-12"
 $schema: "/.meta/.schemas/guides.json"
 title: Adding a database
 description: How to add a database to your application
@@ -58,7 +58,6 @@ Our complete `.qovery.yml` looks like this
 application:
   name: simple-example-node
   project: getting-started
-  cloud_region: aws/us-west-2
   publicly_accessible: true
 databases:
 - type: postgresql

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-06-04"
+last_modified_on: "2020-10-12"
 $schema: "/.meta/.schemas/guides.json"
 title: Create a blazingly fast REST API in Rust (Part 1/2)
 description: How to create a blazingly fast REST API in Rust, with zero-cost abstraction and very low overhead - Part 1/2
@@ -709,7 +709,6 @@ Qovery needs two files at the root of your project to deploy an application:
 application:
   name: twitter-clone-rust
   project: Twitter-Clone
-  cloud_region: aws/us-west-2
   publicly_accessible: true
 databases:
 - type: postgresql

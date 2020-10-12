@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-23"
+last_modified_on: "2020-10-12"
 $schema: "/.meta/.schemas/guides.json"
 title: Custom routes
 description: How to set up custom routes in your project
@@ -66,7 +66,6 @@ Here is a configuration example of a router:
 application:
   name: my-app-1
   project: my-project
-  cloud_region: aws/us-west-2
   publicly_accessible: true
 routers:
 - name: main
@@ -115,7 +114,6 @@ Here is an example with two applications, which each of them have their own `.qo
 application:
   name: my-app-1
   project: my-project
-  cloud_region: aws/us-west-2
   publicly_accessible: true
 routers:
 - name: main
@@ -201,7 +199,6 @@ Here is what the `.qovery.yml` looks like for the web interface:
 application:
   name: web-interface
   project: my-ecommerce-project
-  cloud_region: aws/us-west-2
   publicly_accessible: true
 routers:
 - name: frontend
@@ -244,7 +241,6 @@ Here is what the `.qovery.yml` looks like for the billing service:
 application:
   name: billing-service
   project: my-ecommerce-project
-  cloud_region: aws/us-west-2
   publicly_accessible: true
 routers:
 - name: backend

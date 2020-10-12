@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-23"
+last_modified_on: "2020-10-12"
 title: Routing
 description: "Learn how to configure your custom routes on Qovery"
 ---
@@ -37,7 +37,6 @@ Here is a configuration example of a router:
 application:
   name: my-app-1
   project: my-project
-  cloud_region: aws/us-west-2
   publicly_accessible: true
 routers:
 - name: main
@@ -86,7 +85,6 @@ Here is an example with two applications, which each of them have their own `.qo
 application:
   name: my-app-1
   project: my-project
-  cloud_region: aws/us-west-2
   publicly_accessible: true
 routers:
 - name: main

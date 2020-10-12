@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-10-05"
+last_modified_on: "2020-10-09"
 title: "Amazon Web Services (AWS)"
 description: "Learn how to configure and plug your Amazon Web Services (AWS) account"
 ---
@@ -38,6 +38,12 @@ SCHEMA: Show a schema where Qovery is deployed on the account of the customer
 ### Link your AWS account
 
 TODO
+
+<Alert type="info">
+
+You can link more than one AWS account. Qovery also support multiple Cloud providers within the same Organization. Which means that you can balance your workload on different Cloud providers. [Read more][].
+
+</Alert>
 
 #### Required IAM permissions
 

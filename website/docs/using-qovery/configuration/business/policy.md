@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-10-05"
+last_modified_on: "2020-10-11"
 title: "Policy"
 description: "Learn how to configure Policies in Qovery"
 ---
@@ -34,7 +34,7 @@ Here is an exhaustive list of available policies options:
 | [TTL (Time To Live)][docs.using-qovery.configuration.business.policy#ttl-time-to-live] | set how long the environment can live at maximum                         | no        |
 | [startup cron][docs.using-qovery.configuration.business.policy#startup-cron] | set when an environment must be started                                  | no        |
 | [shutdown cron][docs.using-qovery.configuration.business.policy#shutdown-cron] | set when an environment must be shutdown                                 | no        |
-| [manual spawn][docs.using-qovery.configuration.business.policy#manual-spawn] | environment have to be manually started                                  | no        |
+| [manual deployment][docs.using-qovery.configuration.business.policy#manual-deployment] | environment has to be manually started                                  | no        |
 
 Those options bring you the ability to compose your deployment flow depending on your business, economic and legal criteria.
 
@@ -111,7 +111,7 @@ This option wake up an environment at the specific date and time and can be repe
 
 This option shutdown an environment at the specific date and time and can be repetitive. For instance, you can automatically shutdown an environment from Monday to Friday at 7pm PST. This option helps to reduce Cloud cost.
 
-### Manual spawn
+### Manual deployment
 
 This option indicates if you prefer to manually start an environment or not.
 
@@ -146,7 +146,7 @@ TODO
 [docs.using-qovery.configuration.business.policy#cluster]: /docs/using-qovery/configuration/business/policy/#cluster
 [docs.using-qovery.configuration.business.policy#container-registry]: /docs/using-qovery/configuration/business/policy/#container-registry
 [docs.using-qovery.configuration.business.policy#environment-mode]: /docs/using-qovery/configuration/business/policy/#environment-mode
-[docs.using-qovery.configuration.business.policy#manual-spawn]: /docs/using-qovery/configuration/business/policy/#manual-spawn
+[docs.using-qovery.configuration.business.policy#manual-deployment]: /docs/using-qovery/configuration/business/policy/#manual-deployment
 [docs.using-qovery.configuration.business.policy#monitoring]: /docs/using-qovery/configuration/business/policy/#monitoring
 [docs.using-qovery.configuration.business.policy#shutdown-cron]: /docs/using-qovery/configuration/business/policy/#shutdown-cron
 [docs.using-qovery.configuration.business.policy#startup-cron]: /docs/using-qovery/configuration/business/policy/#startup-cron

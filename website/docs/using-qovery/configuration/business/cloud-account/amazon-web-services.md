@@ -77,7 +77,7 @@ Create `Admins` group **without any permissions**
 
 <li>
 
-Create one IAM user called `qovery` with the <a href="/files/qovery-iam-aws.json">appropriate permissions</a>
+Create one IAM user called `qovery`.
 <img src="/img/aws-create-user-1.jpg" />
 <img src="/img/aws-create-user-2.jpg" />
 <img src="/img/aws-create-user-3.jpg" />
@@ -88,11 +88,23 @@ Go to the last step and copy your `access key id` and `secret access key`.
 
 </li>
 
+<li>
+
+Setup<a href="/files/qovery-iam-aws.json"> IAM permissions</a> to the `qovery` user.
+<img src="/img/aws-add-policy-1.jpg" />
+<img src="/img/aws-add-policy-2.jpg" />
+
+<a href="/files/qovery-iam-aws.json">Download permissions JSON</a>
+<img src="/img/aws-add-policy-3.jpg" />
+<img src="/img/aws-add-policy-4.jpg" />
+
+</li>
+
 </ol>
 
 </Steps>
 
-Well done!! You now have your AWS `access key id` and `secret access key`; It's time to connect Qovery to your AWS account.
+Well done!! You now have your AWS `access key id` and `secret access key` and your permissions are setups; It's time to connect Qovery to your AWS account.
 
 #### Use AWS credentials with Qovery
 
@@ -124,29 +136,31 @@ Qovery required IAM permissions to create, update and managed the infrastructure
 
 Qovery supports the following AWS regions:
 
-| | name             | description                   | supported |
-|-|------------------|-------------------------------|-----------|
-|🇺🇸| aws/us-west-2      | US West (Oregon)            | yes       |
-|🇺🇸| aws/us-east-2      | US East (Ohio)              | yes       |
-|🇺🇸| aws/us-east-1      | US East (N. Virginia)      |  yes       |
-|🇺🇸| aws/us-west-1      | US West (N. California)    |  yes       |
-|🇿🇦| aws/af-south-1     | Africa (Cape Town)          | yes       |
-|🇭🇰| aws/ap-east-1      | Asia Pacific (Hong Kong)    | yes       |
-|🇮🇳| aws/ap-south-1     | Asia Pacific (Mumbai)       | yes       |
-|🇯🇵| aws/ap-northeast-1 | Asia Pacific (Tokyo)        | yes       |
-|🇰🇷| aws/ap-northeast-2 | Asia Pacific (Seoul)        | yes       |
-|🇯🇵| aws/ap-northeast-3 | Asia Pacific (Osaka) |  yes       |
-|🇸🇬| aws/ap-southeast-1 | Asia Pacific (Singapore)    | yes       |
-|🇦🇺| aws/ap-southeast-2 | Asia Pacific (Sydney)       | yes       |
-|🇨🇦| aws/ca-central-1   | Canada (Central)            | yes       |
-|🇩🇪| aws/eu-central-1   | Europe (Frankfurt)          | yes       |
-|🇮🇪| aws/eu-west-1      | Europe (Ireland)            | yes       |
-|🏴󠁧󠁢󠁥󠁮󠁧󠁿| aws/eu-west-2      | Europe (London)             | yes       |
-|🇫🇷| aws/eu-west-3      | Europe (Paris)             | yes       |
-|🇮🇹| aws/eu-south-1     | Europe (Milan)              | yes       |
-|🇸🇪| aws/eu-north-1     | Europe (Stockholm)          | yes       |
-|🇧🇭| aws/me-south-1     | Middle East (Bahrain)       | yes       |
-|🇧🇷| aws/sa-east-1      | South America (São Paulo)   | yes       |
+| | name             | description
+|-|------------------|-------------------------------
+|🇺🇸| us-west-2      | US West (Oregon)
+|🇺🇸| us-east-2      | US East (Ohio)
+|🇺🇸| us-east-1      | US East (N. Virginia)
+|🇺🇸| us-west-1      | US West (N. California)
+|🇿🇦| af-south-1     | Africa (Cape Town)
+|🇭🇰| ap-east-1      | Asia Pacific (Hong Kong)
+|🇮🇳| ap-south-1     | Asia Pacific (Mumbai)
+|🇯🇵| ap-northeast-1 | Asia Pacific (Tokyo)
+|🇰🇷| ap-northeast-2 | Asia Pacific (Seoul)
+|🇯🇵| ap-northeast-3 | Asia Pacific (Osaka)
+|🇸🇬| ap-southeast-1 | Asia Pacific (Singapore)
+|🇦🇺| ap-southeast-2 | Asia Pacific (Sydney)
+|🇨🇦| ca-central-1   | Canada (Central)
+|🇩🇪| eu-central-1   | Europe (Frankfurt)
+|🇮🇪| eu-west-1      | Europe (Ireland)
+|🏴󠁧󠁢󠁥󠁮󠁧󠁿| eu-west-2      | Europe (London)
+|🇫🇷| eu-west-3      | Europe (Paris)
+|🇮🇹| eu-south-1     | Europe (Milan)
+|🇸🇪| eu-north-1     | Europe (Stockholm)
+|🇧🇭| me-south-1     | Middle East (Bahrain)
+|🇧🇷| sa-east-1      | South America (São Paulo)
+
+Qovery supports regions where [Amazon EKS](https://aws.amazon.com/eks) is supported.
 
 ## How Qovery works on AWS
 

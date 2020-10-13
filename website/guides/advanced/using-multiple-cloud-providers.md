@@ -3,7 +3,7 @@ last_modified_on: "2020-10-12"
 $schema: "/.meta/.schemas/guides.json"
 title: Using multiple Cloud providers
 description: How to make use of multiple Cloud providers on Qovery
-author_github: https://github.com/pjeziorowski
+author_github: https://github.com/evoxmusic
 tags: ["type: guide"]
 ---
 import Steps from '@site/src/components/Steps';

@@ -671,6 +671,10 @@ class Templates
     render("#{partials_path}/_qovery_cloud_account_faq.md", binding).strip
   end
 
+  def qovery_web_interface_coming_soon
+    render("#{partials_path}/_qovery_web_interface_coming_soon.md", binding).strip
+  end
+
   def qovery_cloud_account_coming_soon(cloud_provider, vote_url)
     render("#{partials_path}/_qovery_cloud_account_coming_soon.md", binding).strip
   end

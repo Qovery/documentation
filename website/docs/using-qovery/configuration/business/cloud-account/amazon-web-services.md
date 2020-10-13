@@ -1,8 +1,9 @@
 ---
-last_modified_on: "2020-10-09"
+last_modified_on: "2020-10-13"
 title: "Amazon Web Services (AWS)"
 description: "Learn how to configure and plug your Amazon Web Services (AWS) account"
 ---
+import Steps from '@site/src/components/Steps';
 import Alert from '@site/src/components/Alert';
 import Assumptions from '@site/src/components/Assumptions';
 
@@ -35,27 +36,89 @@ SCHEMA: Show a schema where Qovery is deployed on the account of the customer
 
 </Assumptions>
 
-### Link your AWS account
+### Connect your AWS account
 
-TODO
+To link your AWS account to Qovery you need to provide an AWS `access key id` and `secret access key` with the [required IAM permissions][docs.using-qovery.configuration.business.cloud-account.amazon-web-services].
 
 <Alert type="info">
 
-You can link more than one AWS account. Qovery also support multiple Cloud providers within the same Organization. Which means that you can balance your workload on different Cloud providers. [Read more][].
+You can link more than one AWS account. Qovery also support multiple Cloud providers within the same Organization. Which means that you can balance your workload on different Cloud providers. [Read more][guides.advanced.using-multiple-cloud-providers].
 
 </Alert>
 
-#### Required IAM permissions
+#### Create your AWS credentials - `access key id` and `secret access key`
 
-Qovery required IAM permissions to work. Get the list of permissions <a href="/files/qovery-iam-aws.json">here</a>.
+<Steps headingDepth={3}>
+<ol>
+
+<li>
+
+[Connect to your AWS console](https://console.aws.amazon.com)
+
+</li>
+
+<li>
+
+Go to `My Security Credentials`
+<img src="/img/aws-my-security-credentials.jpg" />
+
+</li>
+
+<li>
+
+Create `Admins` group **without any permissions**
+
+<img src="/img/aws-create-group-1.jpg" />
+<img src="/img/aws-create-group-2.jpg" />
+<img src="/img/aws-create-group-3.jpg" />
+<img src="/img/aws-create-group-4.jpg" />
+
+</li>
+
+<li>
+
+Create one IAM user called `qovery` with the <a href="/files/qovery-iam-aws.json">appropriate permissions</a>
+<img src="/img/aws-create-user-1.jpg" />
+<img src="/img/aws-create-user-2.jpg" />
+<img src="/img/aws-create-user-3.jpg" />
+
+Go to the last step and copy your `access key id` and `secret access key`.
+
+<img src="/img/aws-create-user-4.jpg" />
+
+</li>
+
+</ol>
+
+</Steps>
+
+Well done!! You now have your AWS `access key id` and `secret access key`; It's time to connect Qovery to your AWS account.
+
+#### Use AWS credentials with Qovery
+
+*this section is under development - [join us][urls.qovery_chat] and be part of the first to try it*
 
 ### Remove your AWS account
 
-TODO
+*this section is under development - [join us][urls.qovery_chat] and be part of the first to try it*
 
-## Best practices
+### Delete Qovery from your AWS account
 
-TODO
+To delete Qovery from your AWS account you must be authenticated as the Organization admin. Once done, everything configured (VPC, Kubernetes, ...) by Qovery will be deleted forever.
+
+### IAM permissions
+
+Qovery required IAM permissions to create, update and managed the infrastructure.
+
+- IAM is used to create IAM roles
+- S3 is used to store our generated configuration files
+- Cloudwatch, for creating a group stream for each Kubernetes clusters
+- Autoscaling for RDS and autoscaling rules for the Kubernetes cluster
+- Elastic load-balancing for ELB / ALB / NLB.
+- DynamoDB to have a distributed lock on infrastructure deployment.
+- ECR for managing the container registry, create/update/delete repository.
+- KMS to load and store keys (RDS, SSH, …)
+- EKS to create and update the Kubernetes cluster.
 
 ## Regions
 
@@ -105,8 +168,11 @@ Today, you can't migrate an environment from one region to another after it has 
 
 
 [docs.useful-links.faq#how-qovery-works-under-the-hood]: /docs/useful-links/faq/#how-qovery-works-under-the-hood
+[docs.using-qovery.configuration.business.cloud-account.amazon-web-services]: /docs/using-qovery/configuration/business/cloud-account/amazon-web-services/
 [docs.using-qovery.configuration.business.organization]: /docs/using-qovery/configuration/business/organization/
 [docs.using-qovery.interface]: /docs/using-qovery/interface/
+[guides.advanced.using-multiple-cloud-providers]: /guides/advanced/using-multiple-cloud-providers/
 [urls.aws]: https://aws.amazon.com
+[urls.qovery_chat]: https://discord.qovery.com
 [urls.qovery_contact_us]: https://www.qovery.com/contact
 [urls.qovery_roadmap]: https://roadmap.qovery.com/

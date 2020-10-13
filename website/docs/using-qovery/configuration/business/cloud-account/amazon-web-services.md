@@ -148,9 +148,25 @@ Qovery supports the following AWS regions:
 |🇧🇭| aws/me-south-1     | Middle East (Bahrain)       | yes       |
 |🇧🇷| aws/sa-east-1      | South America (São Paulo)   | yes       |
 
-## Kubernetes
+## How Qovery works on AWS
 
-TODO
+Qovery is an abstraction layer on top of AWS and Kubernetes. Qovery manages the configuration of AWS account, and helps your to deploy production ready apps in seconds.
+To make it works, Qovery rely on Kubernetes for stateless apps (containers), and  AWS for stateful apps (databases, storage...).
+
+### Kubernetes
+
+The first time you set up your AWS account, Qovery creates a Kubernetes cluster in your chosen region. Qovery managed it for you - no action required. It takes ~15 minutes to configure and bootstrap a Kubernetes cluster. Once bootstrapped, your Kubernetes cluster runs the Qovery app and is ready to deploy your applications.
+
+### Managed services
+
+AWS provides managed services for PostgreSQL and MySQL. Qovery gives you access to those services when you set the [environment mode][docs.using-qovery.configuration.business.policy#environment-mode] to `Production`. In `Development` mode, Qovery provides containers equivalent, which is cheaper and faster to start.
+
+### Security and compliance
+
+Qovery runs your Kubernetes cluster and is autonomous to manage your applications, which means:
+- Your configuration are stored on your AWS account.
+- Your configuration is encrypted on your AWS account.
+- Qovery can't access to your data.
 
 ## FAQ
 
@@ -170,6 +186,7 @@ Today, you can't migrate an environment from one region to another after it has 
 [docs.useful-links.faq#how-qovery-works-under-the-hood]: /docs/useful-links/faq/#how-qovery-works-under-the-hood
 [docs.using-qovery.configuration.business.cloud-account.amazon-web-services]: /docs/using-qovery/configuration/business/cloud-account/amazon-web-services/
 [docs.using-qovery.configuration.business.organization]: /docs/using-qovery/configuration/business/organization/
+[docs.using-qovery.configuration.business.policy#environment-mode]: /docs/using-qovery/configuration/business/policy/#environment-mode
 [docs.using-qovery.interface]: /docs/using-qovery/interface/
 [guides.advanced.using-multiple-cloud-providers]: /guides/advanced/using-multiple-cloud-providers/
 [urls.aws]: https://aws.amazon.com

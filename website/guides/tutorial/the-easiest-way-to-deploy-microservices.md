@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-10-12"
+last_modified_on: "2020-10-13"
 $schema: "/.meta/.schemas/guides.json"
 title: The easiest way to deploy microservices
 description: How to deploy microservices in a very simple way
@@ -160,7 +160,6 @@ Supporting a database is as simple as updating the **.qovery.yml**
 application:
   name: simple-example-node
   project: simple-example-node
-  cloud_region: aws/eu-west-3
   publicly_accessible: true
 # add this section
 databases:
@@ -229,7 +228,6 @@ Project B **.qovery.yml** file
 application:
   name: frontend
   project: my-multi-apps-project
-  cloud_region: aws/eu-west-3
   publicly_accessible: true
 routers:
 - name: web

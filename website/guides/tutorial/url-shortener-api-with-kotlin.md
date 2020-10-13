@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-06-04"
+last_modified_on: "2020-10-13"
 $schema: "/.meta/.schemas/guides.json"
 title: URL Shortener API with Kotlin (Part 1/2)
 description: Create a URL shortener API with Kotlin, the micro-framework Ktor and PostgreSQL
@@ -580,7 +580,6 @@ To deploy on Qovery, two files are mandatories
 application:
   name: api
   project: url-shortener
-  cloud_region: aws/eu-west-3
   publicly_accessible: true
 databases:
   - type: postgresql

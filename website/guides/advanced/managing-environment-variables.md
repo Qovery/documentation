@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-10-12"
+last_modified_on: "2020-10-13"
 $schema: "/.meta/.schemas/guides.json"
 title: Managing env variables
 description: How to manage environment variables in your projects and applications
@@ -155,7 +155,6 @@ Let's first add a database to our app:
 application:
   name: node-app
   project: environment-variables-demo
-  cloud_region: aws/eu-west-3
   publicly_accessible: true
 databases:
 - type: mongodb

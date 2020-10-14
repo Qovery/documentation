@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-22"
+last_modified_on: "2020-10-14"
 title: Main Concepts
 description: "Learn the main concepts behind Qovery"
 sidebar_label: hidden
@@ -13,6 +13,7 @@ This section covers the main concepts behind Qovery:
 <Jump to="/docs/main-concepts/application/">Application</Jump>
 <Jump to="/docs/main-concepts/project/">Project</Jump>
 <Jump to="/docs/main-concepts/environment/">Environment</Jump>
+<Jump to="/docs/main-concepts/qovery-business/">Qovery Business</Jump>
 
 
 

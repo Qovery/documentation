@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-06-04"
+last_modified_on: "2020-10-14"
 title: CLI
 description: How to use the Qovery CLI (Command Line Interface)
 ---
@@ -13,7 +13,7 @@ Qovery provides a very easy to use CLI (Command Line Interface) designed to perf
 
 <Alert type="warning">
 
-When you type a command, the CLI is aware of your current [project][docs.project], [application][docs.application] and [environment][docs.environment]. Which is very convenient!
+When you type a command, the CLI is aware of your current [project][docs.main-concepts.project], [application][docs.main-concepts.application] and [environment][docs.main-concepts.environment]. Which is very convenient!
 
 </Alert>
 
@@ -226,10 +226,10 @@ Do you have any issue with Qovery CLI? [Open an issue](https://github.com/Qovery
 Now that you have installed the CLI, check out [how to deploy your first application][guides.deploy-your-first-application]
 
 
-[docs.application]: /docs/main-concepts/application/
 [docs.cli#windows]: /docs/using-qovery/interface/cli/#windows
-[docs.environment]: /docs/main-concepts/environment/
-[docs.project]: /docs/main-concepts/project/
+[docs.main-concepts.application]: /docs/main-concepts/application/
+[docs.main-concepts.environment]: /docs/main-concepts/environment/
+[docs.main-concepts.project]: /docs/main-concepts/project/
 [guides.deploy-your-first-application]: /guides/getting-started/deploy-your-first-application/
 [urls.authorize_qovery]: https://github.com/apps/qovery/installations/new
 [urls.brew]: https://brew.sh/

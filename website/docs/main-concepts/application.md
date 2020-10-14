@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-23"
+last_modified_on: "2020-10-14"
 title: "Application"
 description: "Understand the concept of Qovery application"
 ---
@@ -11,7 +11,6 @@ The last thing - to deploy applications to Qovery, you need to add a Qovery conf
 application:
   name: myapp
   project: test
-  region: "aws/us-west-2" # refer to available regions
 ```
 
 <!---
@@ -35,7 +34,6 @@ If your application needs a PostgreSQL database, **all you need to do is to edit
 application:
   name: myapp
   project: test
-  region: "aws/us-west-2"
 databases:
 - type: postgresql
   version: "11.5"

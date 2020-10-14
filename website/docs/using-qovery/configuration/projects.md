@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-10-12"
+last_modified_on: "2020-10-14"
 title: "Projects"
 description: "Learn how to configure Projects on Qovery"
 ---
@@ -32,7 +32,7 @@ Above snippet creates a project named `myProject` and adds `myApp` as one of its
 
 ## Renaming Projects
 
-To give a project a new name, just type `qovery project rename $NEW_NAME`, where `$NEW_NAME` is a placeholder for the new name you want to use.
+To give to your project a new name, just type `qovery project rename $NEW_NAME`, where `$NEW_NAME` is a placeholder for the new name you want to use.
 After it's done, you need to update your `.qovery.yml` configuration file to match your new project name.
 
 

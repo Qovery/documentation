@@ -1,11 +1,11 @@
 ---
-last_modified_on: "2020-10-05"
+last_modified_on: "2020-10-14"
 title: FAQ
 description: "Frequently Asked Questions"
 ---
 ### What is the difference between a Project, Application, and Environment?
 
-A [project][docs.project] is the site that you're working on. Each project can contain multiple [applications][docs.application] and be deployed in multiple [environments][docs.environment]. An environment is a standalone copy of your site, including apps, databases, storage, data, and all other services. By default, `master` branch is the production environment, while all other branches can be set up as identical copies of the prod environment for testing purposes.
+A [project][docs.main-concepts.project] is the site that you're working on. Each project can contain multiple [applications][docs.main-concepts.application] and be deployed in multiple [environments][docs.main-concepts.environment]. An environment is a standalone copy of your site, including apps, databases, storage, data, and all other services. By default, `master` branch is the production environment, while all other branches can be set up as identical copies of the prod environment for testing purposes.
 
 ### Can you help me to deploy my application on Qovery?
 
@@ -48,8 +48,10 @@ TODO
 Feel free to join our [Discord server][urls.qovery_chat] or contact us by email at hello (at) qovery.com.
 
 
-[docs.application]: /docs/main-concepts/application/
 [docs.environment]: /docs/main-concepts/environment/
+[docs.main-concepts.application]: /docs/main-concepts/application/
+[docs.main-concepts.environment]: /docs/main-concepts/environment/
+[docs.main-concepts.project]: /docs/main-concepts/project/
 [docs.project]: /docs/main-concepts/project/
 [guides.how-to-deploy-a-docker-container]: /guides/tutorial/how-to-deploy-a-docker-container/
 [urls.kubernetes]: https://kubernetes.io/

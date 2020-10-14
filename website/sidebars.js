@@ -55,6 +55,7 @@ module.exports = {
                     items: [
                         "using-qovery/configuration",
                         "using-qovery/configuration/projects",
+                        "using-qovery/configuration/applications",
                         {
                             type: 'category',
                             label: 'Databases',

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-05-05"
+last_modified_on: "2020-10-15"
 title: "Environment Variables"
 description: "Learn how to configure Environment Variables on Qovery"
 ---
@@ -46,7 +46,6 @@ By default, every environment contains those variables:
 
 | Name       | Example     | Description     |
 |-------------|-----------|-----------------|
-| **QOVEY_JSON_B64**    | - | Contains all environment variables accessible by your application encoded as Base64 JSON |
 | **QOVERY_BRANCH_NAME**     | master | Git branch name |
 | **QOVERY_IS_PRODUCTION** | true | Flag that indicates production environment |
 

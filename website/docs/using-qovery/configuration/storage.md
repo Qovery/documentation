@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-10-12"
+last_modified_on: "2020-10-15"
 title: "Storage"
 description: "Learn how to configure Storage on Qovery"
 ---
@@ -36,7 +36,7 @@ Qovery Storage supports:
 
 To specify one or more storage attached to your application, you need to modify your `.qovery.yml`
 
-```yaml title=".qovery.yml" {6-11}
+```yaml title=".qovery.yml" {5-9}
 application:
   name: jhipster-sample-app
   project: jhipster-sample-app

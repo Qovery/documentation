@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-10-12"
+last_modified_on: "2020-10-15"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy Gin with PostgreSQL on Qovery
 description: How to deploy a Gin application with the PostgreSQL database on Qovery
@@ -332,7 +332,7 @@ Accelerate your development and start using Qovery today. Let us know what you t
 [urls.azure]: https://azure.microsoft.com
 [urls.brew]: https://brew.sh/
 [urls.gcp]: https://cloud.google.com
-[urls.gin]: https://gin-gonic.com/
+[urls.gin]: https://github.com/gin-gonic/gin
 [urls.github]: https://github.com
 [urls.postgresql]: https://www.postgresql.org
 [urls.qovery_chat]: https://discord.qovery.com

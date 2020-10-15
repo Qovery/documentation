@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-10-13"
+last_modified_on: "2020-10-15"
 $schema: "/.meta/.schemas/guides.json"
 title: Custom routes
 description: How to set up custom routes in your project
@@ -62,7 +62,7 @@ A router is defined by:
 
 Here is a configuration example of a router:
 
-```yaml title=".qovery.yml" {7-15}
+```yaml title=".qovery.yml" {6-15}
 application:
   name: my-app-1
   project: my-project
@@ -87,7 +87,7 @@ A route is defined by:
 
 Here is a configuration example of a route:
 
-```yaml title=".qovery.yml" {12-15}
+```yaml title=".qovery.yml" {11-15}
 application:
   name: my-app-1
   project: my-project

@@ -8,7 +8,7 @@ import Alert from '@site/src/components/Alert';
 import Steps from '@site/src/components/Steps';
 
 <p align="center">
-  <img src="/img/qovery_environments_.svg" alt="Qovery environments" />
+  <img src="/img/qovery_environments_x.svg" alt="Qovery environments" />
 </p>
 
 

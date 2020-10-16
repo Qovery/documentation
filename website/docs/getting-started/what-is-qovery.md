@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-09-02"
+last_modified_on: "2020-10-16"
 title: "What is Qovery?"
 description: "High-level description of the Qovery goals and mission."
 ---
@@ -29,6 +29,12 @@ import BusinessBadge from '@site/src/components/BusinessBadge';
 **Qovery** is a platform that combines the power of **Kubernetes**, the reliability of **AWS**, and the simplicity of **Heroku** to augment the
 developer experience. It accelerates and scales the application development cycle with zero infrastructure management investment.
 
+<p align="center">
+  <img src="/img/qovery_any_cloud_providers.svg" alt="Deploy on AWS, GCP, Azure, Digital Ocean with Qovery" />
+</p>
+
+Qovery helps you to seamlessly deploy full stack and micro services applications on AWS, GCP, Azure, Digital Ocean and many more.
+
 ## Git Workflows
 
 Deploying an application with Qovery is as simple as pushing your code with Git.
@@ -47,7 +53,7 @@ Deploying an application with Qovery is as simple as pushing your code with Git.
 4.  ### New branch = New environment
     On Qovery, every branch is an isolated environment. Creating a new Git branch results in a complete copy of your production environment, so developers can test new features quicker and introduce fewer bugs to production.
 
-5.  ### <BusinessBadge /> Use your own cloud account 
+5.  ### <BusinessBadge /> Use your own cloud account
     It is very convenient to deploy side projects and early stage applications on Qovery infrastructure. However, if your organization grows,
     you may want to run your business on your own cloud account to have greater control, reduce costs or use your cloud provider credits.
     In this case Qovery got you covered - not only it allows to deploy your environments on your own cloud account, but also it's provider agnostic,
@@ -89,7 +95,7 @@ databases:
 
 #### The power of Kubernetes
 Under the hood, Qovery uses **containers** and **Kubernetes** to run applications. With us, your applications scale accordingly to your traffic and needs. We rely on
-major cloud providers to provide reliable infrastructure to make your applications highly available. 
+major cloud providers to provide reliable infrastructure to make your applications highly available.
 
 #### Reliable infrastructure
 What's more, we took on our shoulders the complexity of providing and managing other infrastructure requirements you need (like databases or message brokers), so you can focus merely on developing business features.

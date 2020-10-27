@@ -19,19 +19,17 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="add kotlin server side article">
-      <change beforePath="$PROJECT_DIR$/website/guides/engineering/feedback-kotlin-on-the-server-side.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/engineering/feedback-kotlin-on-the-server-side.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/engineering/getting-started-with-kotlin-on-the-server-side.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/engineering/feedback-kotlin-on-the-server-side.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/engineering/getting-started-with-kotlin-on-the-server-side.md.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/metadata.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/metadata.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/static/img/golang-refactor.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/static/img/java2kotlin.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/static/img/kotlin-refactor.gif" beforeDir="false" />
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="update: documentation">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docusaurus.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/docusaurus.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -49,12 +47,16 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="2" />
+  </component>
   <component name="JsFlowSettings">
     <service-enabled>true</service-enabled>
     <exe-path />
     <other-services-enabled>true</other-services-enabled>
     <auto-save>true</auto-save>
   </component>
+  <component name="JupyterTrust" id="99d7fc35-d091-4e4e-ae13-001ca09c7af3" />
   <component name="MacroExpansionManager">
     <option name="directoryName" value="0qlt6lxg" />
   </component>
@@ -77,7 +79,7 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.vendoring.notification.had.been.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/website/static/img/feedback-kotlin-on-the-server-side" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/website/static/img" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -90,19 +92,19 @@
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/website/static/img" />
+      <recent name="$PROJECT_DIR$/website/docs/using-qovery/configuration" />
+      <recent name="$PROJECT_DIR$/scripts/generate/templates/_partials" />
+      <recent name="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/build-platform" />
+      <recent name="$PROJECT_DIR$/website/guides/advanced" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/website/docs/using-qovery/configuration/business" />
       <recent name="$PROJECT_DIR$/website/guides/getting-started" />
       <recent name="$PROJECT_DIR$/website/guides/Advanced" />
       <recent name="$PROJECT_DIR$/website/static/img" />
       <recent name="$PROJECT_DIR$/website/docs/using-qovery" />
-      <recent name="$PROJECT_DIR$/website/docs/using-qovery/examples" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/website/static/img/feedback-kotlin-on-the-server-side" />
-      <recent name="$PROJECT_DIR$/website/guides/engineering" />
-      <recent name="$PROJECT_DIR$/website/static/img/deploy-fullstack-application-composed-of-hasura-postgresql-angular" />
-      <recent name="$PROJECT_DIR$/website/static/img/deploy-fullstack-application-with-hasura-postgresql-angular" />
-      <recent name="$PROJECT_DIR$/website/static/img/fullstack-application-with-hasura-and-angular" />
     </key>
   </component>
   <component name="RunManager" selected="npm.start">
@@ -152,7 +154,6 @@
         <item itemvalue="npm.start" />
         <item itemvalue="npm.deploy" />
         <item itemvalue="npm.build" />
-        <item itemvalue="npm.start" />
       </list>
     </recent_temporary>
   </component>
@@ -160,6 +161,7 @@
     <option name="toolchainHomeDirectory" value="$USER_HOME$/.cargo/bin" />
     <option name="version" value="2" />
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -203,175 +205,14 @@
       <workItem from="1591693782898" duration="1082000" />
       <workItem from="1592343384338" duration="5319000" />
       <workItem from="1592892422065" duration="56000" />
-      <workItem from="1595497037516" duration="3445000" />
-    </task>
-    <task id="LOCAL-00055" summary="remove &quot;beyond application deployment&quot; getting started page">
-      <created>1587587258058</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1587587258058</updated>
-    </task>
-    <task id="LOCAL-00056" summary="change: project-templates.md.erb">
-      <created>1587589706448</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1587589706448</updated>
-    </task>
-    <task id="LOCAL-00057" summary="update: security and compliance part">
-      <created>1587631715365</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1587631715365</updated>
-    </task>
-    <task id="LOCAL-00058" summary="update: Algolia api key and index name">
-      <created>1587640999147</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1587640999147</updated>
-    </task>
-    <task id="LOCAL-00059" summary="wip: custom routes article">
-      <created>1587652892381</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1587652892382</updated>
-    </task>
-    <task id="LOCAL-00060" summary="change css (provided by Gaëtan)">
-      <created>1587653673871</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1587653673871</updated>
-    </task>
-    <task id="LOCAL-00061" summary="change warning and success colors">
-      <created>1587654055025</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1587654055025</updated>
-    </task>
-    <task id="LOCAL-00062" summary="change: domain from docsv2.qovery.com to docs.qovery.com">
-      <created>1587654115616</created>
-      <option name="number" value="00062" />
-      <option name="presentableId" value="LOCAL-00062" />
-      <option name="project" value="LOCAL" />
-      <updated>1587654115616</updated>
-    </task>
-    <task id="LOCAL-00063" summary="feat: add GTAG">
-      <created>1587655664562</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1587655664562</updated>
-    </task>
-    <task id="LOCAL-00064" summary="feat: add interface, cli and web interface pages">
-      <created>1587671321393</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1587671321393</updated>
-    </task>
-    <task id="LOCAL-00065" summary="custom routes article - done">
-      <created>1587674215316</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1587674215316</updated>
-    </task>
-    <task id="LOCAL-00066" summary="fix: sitemap.xml and google analytics">
-      <created>1587681093402</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1587681093402</updated>
-    </task>
-    <task id="LOCAL-00067" summary="fix: google analytics">
-      <created>1587683759234</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1587683759234</updated>
-    </task>
-    <task id="LOCAL-00068" summary="fix: GA">
-      <created>1587684899525</created>
-      <option name="number" value="00068" />
-      <option name="presentableId" value="LOCAL-00068" />
-      <option name="project" value="LOCAL" />
-      <updated>1587684899525</updated>
-    </task>
-    <task id="LOCAL-00069" summary="fix: GA">
-      <created>1587686478792</created>
-      <option name="number" value="00069" />
-      <option name="presentableId" value="LOCAL-00069" />
-      <option name="project" value="LOCAL" />
-      <updated>1587686478792</updated>
-    </task>
-    <task id="LOCAL-00070" summary="fix: typo">
-      <created>1587686823652</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1587686823652</updated>
-    </task>
-    <task id="LOCAL-00071" summary="fix: dark logo with dark theme">
-      <created>1587714845634</created>
-      <option name="number" value="00071" />
-      <option name="presentableId" value="LOCAL-00071" />
-      <option name="project" value="LOCAL" />
-      <updated>1587714845634</updated>
-    </task>
-    <task id="LOCAL-00072" summary="remove: community contribution section">
-      <created>1587715926029</created>
-      <option name="number" value="00072" />
-      <option name="presentableId" value="LOCAL-00072" />
-      <option name="project" value="LOCAL" />
-      <updated>1587715926029</updated>
-    </task>
-    <task id="LOCAL-00073" summary="improvement: domains.md.erb">
-      <created>1587750913006</created>
-      <option name="number" value="00073" />
-      <option name="presentableId" value="LOCAL-00073" />
-      <option name="project" value="LOCAL" />
-      <updated>1587750913007</updated>
-    </task>
-    <task id="LOCAL-00074" summary="fix: hasura article init command">
-      <created>1587761335620</created>
-      <option name="number" value="00074" />
-      <option name="presentableId" value="LOCAL-00074" />
-      <option name="project" value="LOCAL" />
-      <updated>1587761335620</updated>
-    </task>
-    <task id="LOCAL-00075" summary="add: &quot;Secrets&quot; doc">
-      <created>1587970199468</created>
-      <option name="number" value="00075" />
-      <option name="presentableId" value="LOCAL-00075" />
-      <option name="project" value="LOCAL" />
-      <updated>1587970199469</updated>
-    </task>
-    <task id="LOCAL-00076" summary="fix: deploy-your-first-application.md.erb">
-      <created>1588002283975</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL-00076" />
-      <option name="project" value="LOCAL" />
-      <updated>1588002283975</updated>
-    </task>
-    <task id="LOCAL-00077" summary="new article: create-a-blazingly-fast-api-in-rust.md.erb">
-      <created>1588098332609</created>
-      <option name="number" value="00077" />
-      <option name="presentableId" value="LOCAL-00077" />
-      <option name="project" value="LOCAL" />
-      <updated>1588098332609</updated>
-    </task>
-    <task id="LOCAL-00078" summary="update: create-a-blazingly-fast-api-in-rust-part-1.md.erb">
-      <created>1588099823722</created>
-      <option name="number" value="00078" />
-      <option name="presentableId" value="LOCAL-00078" />
-      <option name="project" value="LOCAL" />
-      <updated>1588099823722</updated>
+      <workItem from="1595497037516" duration="4335000" />
+      <workItem from="1600608742173" duration="6574000" />
+      <workItem from="1601485455402" duration="71735000" />
+      <workItem from="1601963073688" duration="4463000" />
+      <workItem from="1602427079906" duration="39124000" />
+      <workItem from="1603525344687" duration="197000" />
+      <workItem from="1603701939726" duration="166000" />
+      <workItem from="1603702211035" duration="1351000" />
     </task>
     <task id="LOCAL-00079" summary="update: create-a-blazingly-fast-api-in-rust-part-1.md.erb">
       <created>1588107808052</created>
@@ -548,11 +389,204 @@
       <option name="project" value="LOCAL" />
       <updated>1595500605343</updated>
     </task>
-    <option name="localTasksCounter" value="104" />
+    <task id="LOCAL-00104" summary="update kotlin server side article">
+      <created>1595500922418</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1595500922418</updated>
+    </task>
+    <task id="LOCAL-00105" summary="update kotlin server side article">
+      <created>1595501014824</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1595501014824</updated>
+    </task>
+    <task id="LOCAL-00106" summary="update kotlin server side article">
+      <created>1595501800141</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1595501800141</updated>
+    </task>
+    <task id="LOCAL-00107" summary="add: helm freeze engineering article">
+      <created>1600932397129</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1600932397129</updated>
+    </task>
+    <task id="LOCAL-00108" summary="update: helm freeze engineering article">
+      <created>1600932648284</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1600932648284</updated>
+    </task>
+    <task id="LOCAL-00109" summary="update: business documentation">
+      <created>1601556393648</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1601556393648</updated>
+    </task>
+    <task id="LOCAL-00110" summary="update: business documentation">
+      <created>1601558272781</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1601558272781</updated>
+    </task>
+    <task id="LOCAL-00111" summary="update: business documentation">
+      <created>1601578852312</created>
+      <option name="number" value="00111" />
+      <option name="presentableId" value="LOCAL-00111" />
+      <option name="project" value="LOCAL" />
+      <updated>1601578852312</updated>
+    </task>
+    <task id="LOCAL-00112" summary="update: business documentation">
+      <created>1601800838443</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1601800838443</updated>
+    </task>
+    <task id="LOCAL-00113" summary="update: business documentation">
+      <created>1601821369201</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1601821369201</updated>
+    </task>
+    <task id="LOCAL-00114" summary="update: business documentation">
+      <created>1601839833432</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1601839833432</updated>
+    </task>
+    <task id="LOCAL-00115" summary="update: business documentation">
+      <created>1601892936533</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1601892936533</updated>
+    </task>
+    <task id="LOCAL-00116" summary="update: business documentation">
+      <created>1602492180154</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1602492180154</updated>
+    </task>
+    <task id="LOCAL-00117" summary="update: remove `cloud_region` property from .qovery.yml">
+      <created>1602493940209</created>
+      <option name="number" value="00117" />
+      <option name="presentableId" value="LOCAL-00117" />
+      <option name="project" value="LOCAL" />
+      <updated>1602493940210</updated>
+    </task>
+    <task id="LOCAL-00118" summary="update: business documentation">
+      <created>1602570434270</created>
+      <option name="number" value="00118" />
+      <option name="presentableId" value="LOCAL-00118" />
+      <option name="project" value="LOCAL" />
+      <updated>1602570434271</updated>
+    </task>
+    <task id="LOCAL-00119" summary="update: business documentation">
+      <created>1602573192030</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1602573192030</updated>
+    </task>
+    <task id="LOCAL-00120" summary="update: business documentation">
+      <created>1602576819984</created>
+      <option name="number" value="00120" />
+      <option name="presentableId" value="LOCAL-00120" />
+      <option name="project" value="LOCAL" />
+      <updated>1602576819984</updated>
+    </task>
+    <task id="LOCAL-00121" summary="update: qovery-iam-aws.json">
+      <created>1602576993766</created>
+      <option name="number" value="00121" />
+      <option name="presentableId" value="LOCAL-00121" />
+      <option name="project" value="LOCAL" />
+      <updated>1602576993766</updated>
+    </task>
+    <task id="LOCAL-00122" summary="update: business documentation">
+      <created>1602617460502</created>
+      <option name="number" value="00122" />
+      <option name="presentableId" value="LOCAL-00122" />
+      <option name="project" value="LOCAL" />
+      <updated>1602617460502</updated>
+    </task>
+    <task id="LOCAL-00123" summary="update: documentation">
+      <created>1602666692357</created>
+      <option name="number" value="00123" />
+      <option name="presentableId" value="LOCAL-00123" />
+      <option name="project" value="LOCAL" />
+      <updated>1602666692357</updated>
+    </task>
+    <task id="LOCAL-00124" summary="update: documentation">
+      <created>1602757299822</created>
+      <option name="number" value="00124" />
+      <option name="presentableId" value="LOCAL-00124" />
+      <option name="project" value="LOCAL" />
+      <updated>1602757299822</updated>
+    </task>
+    <task id="LOCAL-00125" summary="update: documentation">
+      <created>1602847085602</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1602847085602</updated>
+    </task>
+    <task id="LOCAL-00126" summary="update: documentation">
+      <created>1602847419226</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
+      <option name="project" value="LOCAL" />
+      <updated>1602847419226</updated>
+    </task>
+    <task id="LOCAL-00127" summary="update: documentation">
+      <created>1602847998871</created>
+      <option name="number" value="00127" />
+      <option name="presentableId" value="LOCAL-00127" />
+      <option name="project" value="LOCAL" />
+      <updated>1602847998871</updated>
+    </task>
+    <option name="localTasksCounter" value="128" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/website/plugins/guides/index.d.ts.map" />
+        <option value="$PROJECT_DIR$/website/plugins/guides/index.js" />
+        <option value="$PROJECT_DIR$/website/plugins/guides/index.d.ts" />
+        <option value="$PROJECT_DIR$/website/plugins/guides/markdownLoader.d.ts.map" />
+        <option value="$PROJECT_DIR$/website/plugins/guides/markdownLoader.js" />
+        <option value="$PROJECT_DIR$/website/plugins/guides/markdownLoader.d.ts" />
+        <option value="$PROJECT_DIR$/website/plugins/guides/guideUtils.d.ts.map" />
+        <option value="$PROJECT_DIR$/website/plugins/guides/guideUtils.js" />
+        <option value="$PROJECT_DIR$/website/plugins/guides/guideUtils.d.ts" />
+        <option value="$PROJECT_DIR$/website/plugins/guides/types.d.ts.map" />
+        <option value="$PROJECT_DIR$/website/plugins/guides/types.js" />
+        <option value="$PROJECT_DIR$/website/plugins/guides/types.d.ts" />
+        <option value="$PROJECT_DIR$/website/plugins/sitemap/index.d.ts.map" />
+        <option value="$PROJECT_DIR$/website/plugins/sitemap/index.js" />
+        <option value="$PROJECT_DIR$/website/plugins/sitemap/index.d.ts" />
+        <option value="$PROJECT_DIR$/website/plugins/sitemap/types.d.ts.map" />
+        <option value="$PROJECT_DIR$/website/plugins/sitemap/types.js" />
+        <option value="$PROJECT_DIR$/website/plugins/sitemap/types.d.ts" />
+        <option value="$PROJECT_DIR$/website/plugins/sitemap/createSitemap.d.ts.map" />
+        <option value="$PROJECT_DIR$/website/plugins/sitemap/createSitemap.js" />
+        <option value="$PROJECT_DIR$/website/plugins/sitemap/createSitemap.d.ts" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="COLUMN_ORDER">
@@ -609,13 +643,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="improvement: domains.md.erb" />
-    <MESSAGE value="fix: hasura article init command" />
-    <MESSAGE value="add: &quot;Secrets&quot; doc" />
-    <MESSAGE value="fix: deploy-your-first-application.md.erb" />
-    <MESSAGE value="new article: create-a-blazingly-fast-api-in-rust.md.erb" />
-    <MESSAGE value="update: create-a-blazingly-fast-api-in-rust-part-1.md.erb" />
-    <MESSAGE value="fix: typo" />
     <MESSAGE value="add thanks to create-a-blazingly-fast-api-in-rust-part-1.md.erb" />
     <MESSAGE value="fix: qovery template links" />
     <MESSAGE value="update: environment-variables.md.erb" />
@@ -634,137 +661,69 @@
     <MESSAGE value="hide section from hasura fullstack article" />
     <MESSAGE value="update storage doc on deletion" />
     <MESSAGE value="add kotlin server side article" />
-    <option name="LAST_COMMIT_MESSAGE" value="add kotlin server side article" />
+    <MESSAGE value="update kotlin server side article" />
+    <MESSAGE value="add: helm freeze engineering article" />
+    <MESSAGE value="update: helm freeze engineering article" />
+    <MESSAGE value="update: remove `cloud_region` property from .qovery.yml" />
+    <MESSAGE value="update: qovery-iam-aws.json" />
+    <MESSAGE value="update: business documentation" />
+    <MESSAGE value="update: documentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="update: documentation" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="424" y="262" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588007526167">
-      <screen x="0" y="0" width="1920" height="1200" />
-    </state>
-    <state x="424" y="262" key="#com.intellij.execution.impl.EditConfigurationsDialog/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1588007526167" />
-    <state x="611" y="383" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1587213016572">
-      <screen x="0" y="0" width="1920" height="1200" />
-    </state>
-    <state x="-1309" y="468" key="#com.intellij.fileTypes.FileTypeChooser/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587036960904" />
-    <state x="611" y="383" key="#com.intellij.fileTypes.FileTypeChooser/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587213016572" />
-    <state x="-1309" y="498" key="#com.intellij.fileTypes.FileTypeChooser/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587110738425" />
-    <state x="386" y="144" width="3072" height="1280" key="DiffContextDialog" timestamp="1595500885046">
+    <state x="1520" y="448" key="#Plugins" timestamp="1603702130846">
       <screen x="0" y="0" width="3840" height="1600" />
     </state>
-    <state x="193" y="108" width="1536" height="960" key="DiffContextDialog/-333.-1417.2560.1417/0.23.1920.1177@0.23.1920.1177" timestamp="1587577802365" />
-    <state x="193" y="108" width="1536" height="960" key="DiffContextDialog/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587578791802" />
-    <state x="386" y="144" width="3072" height="1280" key="DiffContextDialog/0.0.3840.1600@0.0.3840.1600" timestamp="1595500885046" />
-    <state x="180" y="122" key="DiffContextDialog/0.23.1792.1097@0.23.1792.1097" timestamp="1586941827745" />
-    <state x="-1187" y="430" key="FileChooserDialogImpl" timestamp="1587022112681">
-      <screen x="-1920" y="131" width="1920" height="1057" />
+    <state x="1520" y="448" key="#Plugins/0.0.3840.1600@0.0.3840.1600" timestamp="1603702130846" />
+    <state x="386" y="144" width="3072" height="1280" key="DiffContextDialog" timestamp="1595501503740">
+      <screen x="0" y="23" width="3840" height="1577" />
     </state>
-    <state x="-1187" y="430" key="FileChooserDialogImpl/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587022112681" />
-    <state x="684" y="333" key="FileChooserDialogImpl/0.23.1792.1097@0.23.1792.1097" timestamp="1586940395534" />
-    <state width="1878" height="344" key="GridCell.Tab.0.bottom" timestamp="1587231807810">
-      <screen x="0" y="0" width="1920" height="1200" />
-    </state>
-    <state width="1878" height="344" key="GridCell.Tab.0.bottom/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587231807810" />
-    <state width="1878" height="344" key="GridCell.Tab.0.center" timestamp="1587231807807">
-      <screen x="0" y="0" width="1920" height="1200" />
-    </state>
-    <state width="1878" height="344" key="GridCell.Tab.0.center/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587231807807" />
-    <state width="1878" height="344" key="GridCell.Tab.0.left" timestamp="1587231807801">
-      <screen x="0" y="0" width="1920" height="1200" />
-    </state>
-    <state width="1878" height="344" key="GridCell.Tab.0.left/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587231807801" />
-    <state width="1878" height="344" key="GridCell.Tab.0.right" timestamp="1587231807809">
-      <screen x="0" y="0" width="1920" height="1200" />
-    </state>
-    <state width="1878" height="344" key="GridCell.Tab.0.right/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587231807809" />
-    <state x="548" y="350" key="IDE.errors.dialog" timestamp="1587501451429">
-      <screen x="0" y="0" width="1920" height="1200" />
-    </state>
-    <state x="548" y="350" key="IDE.errors.dialog/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587501451429" />
+    <state x="386" y="144" width="3072" height="1280" key="DiffContextDialog/0.0.3840.1600@0.0.3840.1600" timestamp="1595500975685" />
+    <state x="386" y="144" width="3072" height="1280" key="DiffContextDialog/0.23.3840.1577@0.23.3840.1577" timestamp="1595501503740" />
     <state x="0" y="0" key="MergeDialog" timestamp="1595500656221">
       <screen x="0" y="0" width="3840" height="1600" />
     </state>
-    <state x="0" y="0" key="MergeDialog/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1588093073346" />
     <state x="0" y="0" key="MergeDialog/0.0.3840.1600@0.0.3840.1600" timestamp="1595500656221" />
-    <state x="0" y="23" key="MergeDialog/0.23.1792.1097@0.23.1792.1097" timestamp="1586942584157" />
     <state x="857" y="286" width="608" height="478" key="MultipleFileMergeDialog" timestamp="1595500656238">
       <screen x="0" y="0" width="3840" height="1600" />
     </state>
     <state x="857" y="286" key="MultipleFileMergeDialog/0.0.3840.1600@0.0.3840.1600" timestamp="1595500656238" />
-    <state x="400" y="219" width="608" height="478" key="MultipleFileMergeDialog/0.23.1792.1097@0.23.1792.1097" timestamp="1586942584214" />
-    <state x="663" y="281" key="RollbackChangesDialog" timestamp="1587017173048">
-      <screen x="0" y="23" width="1792" height="1097" />
+    <state width="1072" height="643" key="SwitcherDM" timestamp="1602847377524">
+      <screen x="0" y="23" width="3840" height="1577" />
     </state>
-    <state x="663" y="281" key="RollbackChangesDialog/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@0.23.1792.1097" timestamp="1587017173048" />
-    <state x="663" y="281" key="RollbackChangesDialog/0.23.1792.1097@0.23.1792.1097" timestamp="1586967392759" />
-    <state x="461" y="239" key="SettingsEditor" timestamp="1589314136513">
-      <screen x="0" y="0" width="1920" height="1200" />
-    </state>
-    <state x="461" y="239" key="SettingsEditor/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1589057129937" />
-    <state x="461" y="239" key="SettingsEditor/0.0.1920.1200@0.0.1920.1200" timestamp="1589314136513" />
-    <state x="690" y="350" width="540" height="524" key="StructurePopup" timestamp="1587398370723">
-      <screen x="0" y="0" width="1920" height="1200" />
-    </state>
-    <state x="690" y="350" width="540" height="524" key="StructurePopup/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587398370723" />
-    <state width="1072" height="652" key="SwitcherDM" timestamp="1595500305791">
-      <screen x="0" y="0" width="3840" height="1600" />
-    </state>
-    <state width="536" height="429" key="SwitcherDM/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587042928490" />
-    <state width="536" height="488" key="SwitcherDM/-333.-1417.2560.1417/0.0.1920.1200@0.0.1920.1200" timestamp="1587550681508" />
-    <state width="536" height="488" key="SwitcherDM/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1589057951875" />
-    <state width="536" height="429" key="SwitcherDM/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587130320365" />
-    <state width="1072" height="642" key="SwitcherDM/-976.-1577.3840.1577/0.23.1920.1177@-976.-1577.3840.1577" timestamp="1590096570711" />
-    <state width="536" height="488" key="SwitcherDM/0.0.1920.1200@0.0.1920.1200" timestamp="1589396292604" />
     <state width="1072" height="652" key="SwitcherDM/0.0.3840.1600@0.0.3840.1600" timestamp="1595500305791" />
-    <state width="500" height="445" key="SwitcherDM/0.23.1792.1097@0.23.1792.1097" timestamp="1586970316787" />
-    <state x="100" y="100" width="1720" height="1000" key="VCS.FileHistoryDialog" timestamp="1587678290994">
-      <screen x="0" y="0" width="1920" height="1200" />
+    <state width="1072" height="643" key="SwitcherDM/0.23.3840.1577@0.23.3840.1577" timestamp="1602847377524" />
+    <state x="2820" y="24" width="1017" height="1574" key="Vcs.Push.Dialog.v2" timestamp="1602848000758">
+      <screen x="0" y="23" width="3840" height="1577" />
     </state>
-    <state x="100" y="100" width="1720" height="1000" key="VCS.FileHistoryDialog/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587678290994" />
-    <state x="1920" y="1" width="1917" height="1574" key="Vcs.Push.Dialog.v2" timestamp="1595500609297">
+    <state x="1920" y="1" key="Vcs.Push.Dialog.v2/0.0.3840.1600@0.0.3840.1600" timestamp="1595501801826" />
+    <state x="2820" y="24" width="1017" height="1574" key="Vcs.Push.Dialog.v2/0.23.3840.1577@0.23.3840.1577" timestamp="1602848000758" />
+    <state x="2643" y="24" width="1194" height="1574" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1601811971550">
+      <screen x="0" y="23" width="3840" height="1577" />
+    </state>
+    <state x="2643" y="24" width="1194" height="1574" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.23.3840.1577@0.23.3840.1577" timestamp="1601811971550" />
+    <state x="2820" y="24" width="1017" height="1574" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1602838032561">
+      <screen x="0" y="23" width="3840" height="1577" />
+    </state>
+    <state x="1526" y="680" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.3840.1600@0.0.3840.1600" timestamp="1601383534884" />
+    <state x="2820" y="24" width="1017" height="1574" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.3840.1577@0.23.3840.1577" timestamp="1602838032561" />
+    <state x="440" y="136" width="2958" height="1174" key="find.popup" timestamp="1603817161539">
       <screen x="0" y="0" width="3840" height="1600" />
     </state>
-    <state x="-1389" y="408" key="Vcs.Push.Dialog.v2/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587043142882" />
-    <state x="531" y="314" key="Vcs.Push.Dialog.v2/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1589057496632" />
-    <state x="944" y="-1576" width="1917" height="1574" key="Vcs.Push.Dialog.v2/-976.-1577.3840.1577/0.23.1920.1177@-976.-1577.3840.1577" timestamp="1590166467672" />
-    <state x="1920" y="1" key="Vcs.Push.Dialog.v2/0.0.3840.1600@0.0.3840.1600" timestamp="1595500609297" />
-    <state x="496" y="311" key="Vcs.Push.Dialog.v2/0.23.1792.1097@0.23.1792.1097" timestamp="1586945386299" />
-    <state x="710" y="341" key="VcsDiffUtil.ChangesDialog" timestamp="1587578340186">
-      <screen x="0" y="0" width="1920" height="1200" />
+    <state x="440" y="136" width="2958" height="1174" key="find.popup/0.0.3840.1600@0.0.3840.1600" timestamp="1603817161539" />
+    <state x="440" y="157" width="2958" height="1158" key="find.popup/0.23.3840.1577@0.23.3840.1577" timestamp="1602665362993" />
+    <state x="2820" y="24" width="1017" height="1574" key="new project wizard" timestamp="1602842040334">
+      <screen x="0" y="23" width="3840" height="1577" />
     </state>
-    <state x="710" y="341" key="VcsDiffUtil.ChangesDialog/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587578340186" />
-    <state x="500" y="204" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1588090849211">
-      <screen x="0" y="0" width="1920" height="1200" />
+    <state x="2820" y="24" width="1017" height="1574" key="new project wizard/0.23.3840.1577@0.23.3840.1577" timestamp="1602842040334" />
+    <state x="2454" y="385" key="run.anything.popup" timestamp="1602665499511">
+      <screen x="0" y="23" width="3840" height="1577" />
     </state>
-    <state x="500" y="204" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1588090849211" />
-    <state x="1526" y="680" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1595500662055">
+    <state x="2454" y="385" key="run.anything.popup/0.23.3840.1577@0.23.3840.1577" timestamp="1602665499511" />
+    <state x="1202" y="290" width="1436" height="989" key="search.everywhere.popup" timestamp="1603817213522">
       <screen x="0" y="0" width="3840" height="1600" />
     </state>
-    <state x="763" y="510" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1588966703266" />
-    <state x="-1157" y="610" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587108608568" />
-    <state x="763" y="510" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1200@0.0.1920.1200" timestamp="1592550468559" />
-    <state x="1526" y="680" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.3840.1600@0.0.3840.1600" timestamp="1595500662055" />
-    <state x="440" y="136" width="2958" height="1174" key="find.popup" timestamp="1595499545517">
-      <screen x="0" y="0" width="3840" height="1600" />
-    </state>
-    <state x="-1285" y="399" width="964" height="578" key="find.popup/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587040325645" />
-    <state x="593" y="302" width="964" height="578" key="find.popup/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@0.23.1792.1097" timestamp="1587017131900" />
-    <state x="220" y="102" width="1479" height="880" key="find.popup/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1587653711613" />
-    <state x="-1285" y="429" width="964" height="578" key="find.popup/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587130747733" />
-    <state x="440" y="136" width="2958" height="1174" key="find.popup/0.0.3840.1600@0.0.3840.1600" timestamp="1595499545517" />
-    <state x="593" y="302" width="964" height="578" key="find.popup/0.23.1792.1097@0.23.1792.1097" timestamp="1586971117204" />
-    <state x="1638" y="580" key="git4idea.merge.GitPullDialog" timestamp="1590740367181">
-      <screen x="0" y="0" width="3840" height="1600" />
-    </state>
-    <state x="1638" y="580" key="git4idea.merge.GitPullDialog/0.0.3840.1600@0.0.3840.1600" timestamp="1590740367181" />
-    <state x="1202" y="290" width="1436" height="989" key="search.everywhere.popup" timestamp="1595500783619">
-      <screen x="0" y="0" width="3840" height="1600" />
-    </state>
-    <state x="-1319" y="323" width="718" height="652" key="search.everywhere.popup/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@-1920.131.1920.1057" timestamp="1587040363911" />
-    <state x="561" y="222" width="670" height="676" key="search.everywhere.popup/-1920.131.1920.1057/-3000.-655.1080.1897/0.23.1792.1097@0.23.1792.1097" timestamp="1587014900518" />
-    <state x="601" y="218" width="718" height="741" key="search.everywhere.popup/-333.-1440.2560.1440/0.0.1920.1200@0.0.1920.1200" timestamp="1588971326096" />
-    <state x="-1319" y="353" width="718" height="652" key="search.everywhere.popup/-3840.161.1920.1057/-1920.161.1920.1057/0.23.1792.1097@-1920.161.1920.1057" timestamp="1587131778361" />
-    <state x="226" y="-1291" width="1436" height="974" key="search.everywhere.popup/-976.-1577.3840.1577/0.23.1920.1177@-976.-1577.3840.1577" timestamp="1590166374839" />
-    <state x="601" y="218" width="718" height="741" key="search.everywhere.popup/0.0.1920.1200@0.0.1920.1200" timestamp="1589396624035" />
-    <state x="1202" y="290" width="1436" height="989" key="search.everywhere.popup/0.0.3840.1600@0.0.3840.1600" timestamp="1595500783619" />
-    <state x="561" y="222" width="670" height="676" key="search.everywhere.popup/0.23.1792.1097@0.23.1792.1097" timestamp="1586971120732" />
+    <state x="1202" y="290" width="1436" height="989" key="search.everywhere.popup/0.0.3840.1600@0.0.3840.1600" timestamp="1603817213522" />
+    <state x="1202" y="309" width="1436" height="975" key="search.everywhere.popup/0.23.3840.1577@0.23.3840.1577" timestamp="1602846934005" />
   </component>
 </project>

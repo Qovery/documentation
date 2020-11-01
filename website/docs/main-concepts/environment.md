@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-22"
+last_modified_on: "2020-11-01"
 title: "Environment"
 description: "Understand the concept of Qovery environment"
 ---
@@ -12,7 +12,7 @@ including applications and their dependencies (databases, message brokers, stora
 data, so all your environments are close copies of your production setup.
 
 <p align="center">
-  <img src="/img/qovery_environments.svg" alt="Qovery environments" />
+  <img src="/img/qovery_environments_x.svg" alt="Qovery environments" />
 </p>
 
 <!--

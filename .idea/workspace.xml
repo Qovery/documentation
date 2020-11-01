@@ -19,9 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="update: documentation">
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="update: change footer">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docusaurus.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/docusaurus.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/main-concepts/environment.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/main-concepts/environment.md.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -212,14 +212,8 @@
       <workItem from="1602427079906" duration="39124000" />
       <workItem from="1603525344687" duration="197000" />
       <workItem from="1603701939726" duration="166000" />
-      <workItem from="1603702211035" duration="1351000" />
-    </task>
-    <task id="LOCAL-00079" summary="update: create-a-blazingly-fast-api-in-rust-part-1.md.erb">
-      <created>1588107808052</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1588107808052</updated>
+      <workItem from="1603702211035" duration="1912000" />
+      <workItem from="1604233307663" duration="32000" />
     </task>
     <task id="LOCAL-00080" summary="fix: typo">
       <created>1588109676248</created>
@@ -557,7 +551,14 @@
       <option name="project" value="LOCAL" />
       <updated>1602847998871</updated>
     </task>
-    <option name="localTasksCounter" value="128" />
+    <task id="LOCAL-00128" summary="update: change footer">
+      <created>1603817476791</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1603817476791</updated>
+    </task>
+    <option name="localTasksCounter" value="129" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -643,7 +644,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="add thanks to create-a-blazingly-fast-api-in-rust-part-1.md.erb" />
     <MESSAGE value="fix: qovery template links" />
     <MESSAGE value="update: environment-variables.md.erb" />
     <MESSAGE value="change: github connection image used for sign up" />
@@ -668,35 +668,22 @@
     <MESSAGE value="update: qovery-iam-aws.json" />
     <MESSAGE value="update: business documentation" />
     <MESSAGE value="update: documentation" />
-    <option name="LAST_COMMIT_MESSAGE" value="update: documentation" />
+    <MESSAGE value="update: change footer" />
+    <option name="LAST_COMMIT_MESSAGE" value="update: change footer" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1520" y="448" key="#Plugins" timestamp="1603702130846">
       <screen x="0" y="0" width="3840" height="1600" />
     </state>
     <state x="1520" y="448" key="#Plugins/0.0.3840.1600@0.0.3840.1600" timestamp="1603702130846" />
-    <state x="386" y="144" width="3072" height="1280" key="DiffContextDialog" timestamp="1595501503740">
-      <screen x="0" y="23" width="3840" height="1577" />
-    </state>
-    <state x="386" y="144" width="3072" height="1280" key="DiffContextDialog/0.0.3840.1600@0.0.3840.1600" timestamp="1595500975685" />
-    <state x="386" y="144" width="3072" height="1280" key="DiffContextDialog/0.23.3840.1577@0.23.3840.1577" timestamp="1595501503740" />
-    <state x="0" y="0" key="MergeDialog" timestamp="1595500656221">
-      <screen x="0" y="0" width="3840" height="1600" />
-    </state>
-    <state x="0" y="0" key="MergeDialog/0.0.3840.1600@0.0.3840.1600" timestamp="1595500656221" />
-    <state x="857" y="286" width="608" height="478" key="MultipleFileMergeDialog" timestamp="1595500656238">
-      <screen x="0" y="0" width="3840" height="1600" />
-    </state>
-    <state x="857" y="286" key="MultipleFileMergeDialog/0.0.3840.1600@0.0.3840.1600" timestamp="1595500656238" />
     <state width="1072" height="643" key="SwitcherDM" timestamp="1602847377524">
       <screen x="0" y="23" width="3840" height="1577" />
     </state>
-    <state width="1072" height="652" key="SwitcherDM/0.0.3840.1600@0.0.3840.1600" timestamp="1595500305791" />
     <state width="1072" height="643" key="SwitcherDM/0.23.3840.1577@0.23.3840.1577" timestamp="1602847377524" />
-    <state x="2820" y="24" width="1017" height="1574" key="Vcs.Push.Dialog.v2" timestamp="1602848000758">
-      <screen x="0" y="23" width="3840" height="1577" />
+    <state x="1920" y="1" width="1017" height="1574" key="Vcs.Push.Dialog.v2" timestamp="1603817516255">
+      <screen x="0" y="0" width="3840" height="1600" />
     </state>
-    <state x="1920" y="1" key="Vcs.Push.Dialog.v2/0.0.3840.1600@0.0.3840.1600" timestamp="1595501801826" />
+    <state x="1920" y="1" key="Vcs.Push.Dialog.v2/0.0.3840.1600@0.0.3840.1600" timestamp="1603817516255" />
     <state x="2820" y="24" width="1017" height="1574" key="Vcs.Push.Dialog.v2/0.23.3840.1577@0.23.3840.1577" timestamp="1602848000758" />
     <state x="2643" y="24" width="1194" height="1574" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1601811971550">
       <screen x="0" y="23" width="3840" height="1577" />
@@ -720,10 +707,10 @@
       <screen x="0" y="23" width="3840" height="1577" />
     </state>
     <state x="2454" y="385" key="run.anything.popup/0.23.3840.1577@0.23.3840.1577" timestamp="1602665499511" />
-    <state x="1202" y="290" width="1436" height="989" key="search.everywhere.popup" timestamp="1603817213522">
+    <state x="1202" y="290" width="1436" height="989" key="search.everywhere.popup" timestamp="1604233318115">
       <screen x="0" y="0" width="3840" height="1600" />
     </state>
-    <state x="1202" y="290" width="1436" height="989" key="search.everywhere.popup/0.0.3840.1600@0.0.3840.1600" timestamp="1603817213522" />
+    <state x="1202" y="290" width="1436" height="989" key="search.everywhere.popup/0.0.3840.1600@0.0.3840.1600" timestamp="1604233318115" />
     <state x="1202" y="309" width="1436" height="975" key="search.everywhere.popup/0.23.3840.1577@0.23.3840.1577" timestamp="1602846934005" />
   </component>
 </project>

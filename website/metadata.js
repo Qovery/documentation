@@ -351,6 +351,15 @@ module.exports = {
           "title": "Kubernetes - Network isolation with NetworkPolicy"
         },
         {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/engineering/qovery-engine-a-rust-lib-to-deploy-microservices-apps-on-any-cloud-provider",
+          "last_modified_on": null,
+          "path": "website/guides/engineering/qovery-engine-a-rust-lib-to-deploy-microservices-apps-on-any-cloud-provider.md",
+          "series_position": null,
+          "title": "Qovery Engine - A Rust lib to deploy microservices apps on any Cloud provider"
+        },
+        {
           "author_github": "https://github.com/deimosfr",
           "description": null,
           "id": "/engineering/helm-freeze-manage-helm-charts-with-ease",

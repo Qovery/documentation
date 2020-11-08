@@ -1,27 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
+    <expand />
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="update: change footer">
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="fix: bad link to environment image">
+      <change afterPath="$PROJECT_DIR$/website/guides/engineering/qovery-engine-a-rust-lib-to-deploy-microservices-apps-on-any-cloud-provider.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/guides/engineering/qovery-engine-a-rust-lib-to-deploy-microservices-apps-on-any-cloud-provider.md.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/main-concepts/environment.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/main-concepts/environment.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.meta/links.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/links.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/metadata.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/metadata.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/static/img/policy-complete-flow.png" beforeDir="false" afterPath="$PROJECT_DIR$/website/static/img/policy-complete-flow.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +47,12 @@
     <auto-save>true</auto-save>
   </component>
   <component name="JupyterTrust" id="99d7fc35-d091-4e4e-ae13-001ca09c7af3" />
+  <component name="KonanWorkspace">
+    <executables />
+  </component>
+  <component name="KotlinMultiplatform">
+    <executables />
+  </component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="0qlt6lxg" />
   </component>
@@ -75,7 +71,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="TEXT" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Rust&#10;TEXT" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.vendoring.notification.had.been.shown" value="true" />
@@ -94,10 +90,10 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/website/static/img" />
+      <recent name="$PROJECT_DIR$/website/src/components" />
+      <recent name="$PROJECT_DIR$/website/guides/engineering" />
       <recent name="$PROJECT_DIR$/website/docs/using-qovery/configuration" />
       <recent name="$PROJECT_DIR$/scripts/generate/templates/_partials" />
-      <recent name="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/build-platform" />
-      <recent name="$PROJECT_DIR$/website/guides/advanced" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/website/docs/using-qovery/configuration/business" />
@@ -213,14 +209,9 @@
       <workItem from="1603525344687" duration="197000" />
       <workItem from="1603701939726" duration="166000" />
       <workItem from="1603702211035" duration="1912000" />
-      <workItem from="1604233307663" duration="32000" />
-    </task>
-    <task id="LOCAL-00080" summary="fix: typo">
-      <created>1588109676248</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1588109676248</updated>
+      <workItem from="1604233307663" duration="4821000" />
+      <workItem from="1604407941100" duration="6553000" />
+      <workItem from="1604579365984" duration="632000" />
     </task>
     <task id="LOCAL-00081" summary="add thanks to create-a-blazingly-fast-api-in-rust-part-1.md.erb">
       <created>1588109941172</created>
@@ -558,7 +549,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603817476791</updated>
     </task>
-    <option name="localTasksCounter" value="129" />
+    <task id="LOCAL-00129" summary="fix: bad link to environment image">
+      <created>1604233412691</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1604233412691</updated>
+    </task>
+    <option name="localTasksCounter" value="130" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -644,7 +642,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="fix: qovery template links" />
     <MESSAGE value="update: environment-variables.md.erb" />
     <MESSAGE value="change: github connection image used for sign up" />
     <MESSAGE value="update: FAQ" />
@@ -669,21 +666,39 @@
     <MESSAGE value="update: business documentation" />
     <MESSAGE value="update: documentation" />
     <MESSAGE value="update: change footer" />
-    <option name="LAST_COMMIT_MESSAGE" value="update: change footer" />
+    <MESSAGE value="fix: bad link to environment image" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: bad link to environment image" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1520" y="448" key="#Plugins" timestamp="1603702130846">
       <screen x="0" y="0" width="3840" height="1600" />
     </state>
     <state x="1520" y="448" key="#Plugins/0.0.3840.1600@0.0.3840.1600" timestamp="1603702130846" />
-    <state width="1072" height="643" key="SwitcherDM" timestamp="1602847377524">
-      <screen x="0" y="23" width="3840" height="1577" />
-    </state>
-    <state width="1072" height="643" key="SwitcherDM/0.23.3840.1577@0.23.3840.1577" timestamp="1602847377524" />
-    <state x="1920" y="1" width="1017" height="1574" key="Vcs.Push.Dialog.v2" timestamp="1603817516255">
+    <state width="2216" height="470" key="GridCell.Tab.0.bottom" timestamp="1604579320848">
       <screen x="0" y="0" width="3840" height="1600" />
     </state>
-    <state x="1920" y="1" key="Vcs.Push.Dialog.v2/0.0.3840.1600@0.0.3840.1600" timestamp="1603817516255" />
+    <state width="2216" height="470" key="GridCell.Tab.0.bottom/0.0.3840.1600@0.0.3840.1600" timestamp="1604579320848" />
+    <state width="2216" height="470" key="GridCell.Tab.0.center" timestamp="1604579320846">
+      <screen x="0" y="0" width="3840" height="1600" />
+    </state>
+    <state width="2216" height="470" key="GridCell.Tab.0.center/0.0.3840.1600@0.0.3840.1600" timestamp="1604579320846" />
+    <state width="2216" height="470" key="GridCell.Tab.0.left" timestamp="1604579320846">
+      <screen x="0" y="0" width="3840" height="1600" />
+    </state>
+    <state width="2216" height="470" key="GridCell.Tab.0.left/0.0.3840.1600@0.0.3840.1600" timestamp="1604579320846" />
+    <state width="2216" height="470" key="GridCell.Tab.0.right" timestamp="1604579320847">
+      <screen x="0" y="0" width="3840" height="1600" />
+    </state>
+    <state width="2216" height="470" key="GridCell.Tab.0.right/0.0.3840.1600@0.0.3840.1600" timestamp="1604579320847" />
+    <state width="1072" height="653" key="SwitcherDM" timestamp="1604579397583">
+      <screen x="0" y="0" width="3840" height="1600" />
+    </state>
+    <state width="1072" height="653" key="SwitcherDM/0.0.3840.1600@0.0.3840.1600" timestamp="1604579397583" />
+    <state width="1072" height="643" key="SwitcherDM/0.23.3840.1577@0.23.3840.1577" timestamp="1602847377524" />
+    <state x="1920" y="1" width="1017" height="1574" key="Vcs.Push.Dialog.v2" timestamp="1604233415419">
+      <screen x="0" y="0" width="3840" height="1600" />
+    </state>
+    <state x="1920" y="1" key="Vcs.Push.Dialog.v2/0.0.3840.1600@0.0.3840.1600" timestamp="1604233415419" />
     <state x="2820" y="24" width="1017" height="1574" key="Vcs.Push.Dialog.v2/0.23.3840.1577@0.23.3840.1577" timestamp="1602848000758" />
     <state x="2643" y="24" width="1194" height="1574" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1601811971550">
       <screen x="0" y="23" width="3840" height="1577" />
@@ -694,10 +709,10 @@
     </state>
     <state x="1526" y="680" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.3840.1600@0.0.3840.1600" timestamp="1601383534884" />
     <state x="2820" y="24" width="1017" height="1574" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.3840.1577@0.23.3840.1577" timestamp="1602838032561" />
-    <state x="440" y="136" width="2958" height="1174" key="find.popup" timestamp="1603817161539">
+    <state x="440" y="136" width="2958" height="1174" key="find.popup" timestamp="1604233401913">
       <screen x="0" y="0" width="3840" height="1600" />
     </state>
-    <state x="440" y="136" width="2958" height="1174" key="find.popup/0.0.3840.1600@0.0.3840.1600" timestamp="1603817161539" />
+    <state x="440" y="136" width="2958" height="1174" key="find.popup/0.0.3840.1600@0.0.3840.1600" timestamp="1604233401913" />
     <state x="440" y="157" width="2958" height="1158" key="find.popup/0.23.3840.1577@0.23.3840.1577" timestamp="1602665362993" />
     <state x="2820" y="24" width="1017" height="1574" key="new project wizard" timestamp="1602842040334">
       <screen x="0" y="23" width="3840" height="1577" />
@@ -707,10 +722,10 @@
       <screen x="0" y="23" width="3840" height="1577" />
     </state>
     <state x="2454" y="385" key="run.anything.popup/0.23.3840.1577@0.23.3840.1577" timestamp="1602665499511" />
-    <state x="1202" y="290" width="1436" height="989" key="search.everywhere.popup" timestamp="1604233318115">
+    <state x="1202" y="290" width="1436" height="989" key="search.everywhere.popup" timestamp="1604432835655">
       <screen x="0" y="0" width="3840" height="1600" />
     </state>
-    <state x="1202" y="290" width="1436" height="989" key="search.everywhere.popup/0.0.3840.1600@0.0.3840.1600" timestamp="1604233318115" />
+    <state x="1202" y="290" width="1436" height="989" key="search.everywhere.popup/0.0.3840.1600@0.0.3840.1600" timestamp="1604432835655" />
     <state x="1202" y="309" width="1436" height="975" key="search.everywhere.popup/0.23.3840.1577@0.23.3840.1577" timestamp="1602846934005" />
   </component>
 </project>

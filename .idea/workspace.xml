@@ -1,27 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
+    <expand />
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="update: change footer">
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="wip: qovery-engine-a-rust-lib-to-deploy-microservices-apps-on-any-cloud-provider">
+      <change afterPath="$PROJECT_DIR$/website/static/js/intercom.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/main-concepts/environment.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/main-concepts/environment.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docusaurus.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/docusaurus.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,13 +29,36 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="2941d67ea928ae500e8b7a6cd2bf19d557dc0986" />
+        <entry key="$PROJECT_DIR$" value="article/qovery-engine-rust-lib" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitToolBoxStore">
     <option name="projectConfigVersion" value="2" />
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="master" />
+                    <option name="lastUsedInstant" value="1604830509" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="article/qovery-engine-rust-lib" />
+                    <option name="lastUsedInstant" value="1604829971" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
   </component>
   <component name="JsFlowSettings">
     <service-enabled>true</service-enabled>
@@ -57,6 +67,9 @@
     <auto-save>true</auto-save>
   </component>
   <component name="JupyterTrust" id="99d7fc35-d091-4e4e-ae13-001ca09c7af3" />
+  <component name="KotlinMultiplatform">
+    <executables />
+  </component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="0qlt6lxg" />
   </component>
@@ -108,6 +121,17 @@
     </key>
   </component>
   <component name="RunManager" selected="npm.start">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/website/package.json" />
       <command value="run" />
@@ -676,9 +700,10 @@
       <screen x="0" y="0" width="3840" height="1600" />
     </state>
     <state x="1520" y="448" key="#Plugins/0.0.3840.1600@0.0.3840.1600" timestamp="1603702130846" />
-    <state width="1072" height="643" key="SwitcherDM" timestamp="1602847377524">
-      <screen x="0" y="23" width="3840" height="1577" />
+    <state width="1072" height="653" key="SwitcherDM" timestamp="1604833555014">
+      <screen x="0" y="0" width="3840" height="1600" />
     </state>
+    <state width="1072" height="653" key="SwitcherDM/0.0.3840.1600@0.0.3840.1600" timestamp="1604833555014" />
     <state width="1072" height="643" key="SwitcherDM/0.23.3840.1577@0.23.3840.1577" timestamp="1602847377524" />
     <state x="1920" y="1" width="1017" height="1574" key="Vcs.Push.Dialog.v2" timestamp="1603817516255">
       <screen x="0" y="0" width="3840" height="1600" />
@@ -707,10 +732,10 @@
       <screen x="0" y="23" width="3840" height="1577" />
     </state>
     <state x="2454" y="385" key="run.anything.popup/0.23.3840.1577@0.23.3840.1577" timestamp="1602665499511" />
-    <state x="1202" y="290" width="1436" height="989" key="search.everywhere.popup" timestamp="1604233318115">
+    <state x="1202" y="290" width="1436" height="989" key="search.everywhere.popup" timestamp="1604833271590">
       <screen x="0" y="0" width="3840" height="1600" />
     </state>
-    <state x="1202" y="290" width="1436" height="989" key="search.everywhere.popup/0.0.3840.1600@0.0.3840.1600" timestamp="1604233318115" />
+    <state x="1202" y="290" width="1436" height="989" key="search.everywhere.popup/0.0.3840.1600@0.0.3840.1600" timestamp="1604833271590" />
     <state x="1202" y="309" width="1436" height="975" key="search.everywhere.popup/0.23.3840.1577@0.23.3840.1577" timestamp="1602846934005" />
   </component>
 </project>

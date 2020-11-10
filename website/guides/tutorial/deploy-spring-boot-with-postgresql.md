@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-10-12"
+last_modified_on: "2020-11-10"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy Spring Boot with PostgreSQL on Qovery
 description: How to deploy a Spring Boot application with the PostgreSQL database on Qovery
@@ -167,7 +167,28 @@ Note: Qovery needs access to your account to be able to clone your repository fo
 
 Congratulations, you are logged-in.
 
-<Alert type="info" >
+
+
+### Permissions
+
+<Tabs
+  centered={true}
+  className={"rounded"}
+  defaultValue={"github"}
+  placeholder="Select your Git provider"
+  select={false}
+  size={null}
+  values={[{"group":"Git","label":"Github","value":"github"},{"group":"Git","label":"Gitlab","value":"gitlab"}]}>
+
+<TabItem value="github">
+
+Qovery needs to get access to your Github account to deploy the application.
+
+**[Click here to give access!][urls.authorize_qovery]**
+
+</TabItem>
+
+<TabItem value="gitlab">
 
 Are you hosting your projects on Gitlab? We got you covered!
 Simply sign in to Qovery using your Gitlab account and enable Qovery in your project using:
@@ -181,7 +202,9 @@ That's it! It's a one time process that needs to be performed in each of your Gi
 
 In the future, Qovery will allow you to manage your projects directly in Gitlab and Qovery UI.
 
-</Alert>
+</TabItem>
+
+</Tabs>
 
 ## Deployment
 

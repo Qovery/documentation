@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-10-14"
+last_modified_on: "2020-11-11"
 title: "Applications"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -151,6 +151,31 @@ EXPOSE 3000
 ```
 
 Your app is now publicly accessible through the auto generated endpoint.
+
+#### Long startup time
+
+Sometimes your application can take some time to start. E.g., when your app is performing database migration.
+By default, Qovery waits for 15 seconds to check if your app is running correctly. If it's not the case, your environment is rolled-back to the previous working version.
+
+To prevent this, you can change the startup time:
+
+```yml {4} title="Change the start timeout to 5 minutes"
+application:
+  name: myApp
+  project: myProject
+  start_timeout: 600s
+```
+
+or
+
+```yml {4} title="Change the start timeout to 5 minutes"
+application:
+  name: myApp
+  project: myProject
+  start_timeout: 5m
+```
+
+Seconds (s) and minutes (m) are accepted units.
 
 
 [docs.using-qovery.configuration.projects]: /docs/using-qovery/configuration/projects/

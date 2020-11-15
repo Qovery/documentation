@@ -5,9 +5,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="improvement: add permission section to `deploy your first app page`">
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="feat: add `start_timeout` option in Applications">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/applications.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/applications.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/applications.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/applications.md.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -121,17 +120,6 @@
     </key>
   </component>
   <component name="RunManager" selected="npm.start">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/website/package.json" />
       <command value="run" />
@@ -238,13 +226,10 @@
       <workItem from="1603701939726" duration="166000" />
       <workItem from="1603702211035" duration="1912000" />
       <workItem from="1604233307663" duration="32000" />
-    </task>
-    <task id="LOCAL-00082" summary="fix: qovery template links">
-      <created>1588234283457</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1588234283457</updated>
+      <workItem from="1605344462212" duration="142000" />
+      <workItem from="1605344766167" duration="296000" />
+      <workItem from="1605345667091" duration="179000" />
+      <workItem from="1605460849435" duration="2047000" />
     </task>
     <task id="LOCAL-00083" summary="update: environment-variables.md.erb">
       <created>1588686679228</created>
@@ -582,7 +567,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605046811532</updated>
     </task>
-    <option name="localTasksCounter" value="131" />
+    <task id="LOCAL-00131" summary="feat: add `start_timeout` option in Applications">
+      <created>1605126144587</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1605126144587</updated>
+    </task>
+    <option name="localTasksCounter" value="132" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -668,7 +660,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="change: github connection image used for sign up" />
     <MESSAGE value="update: FAQ" />
     <MESSAGE value="add: docs/troubleshoot page&#10;update: FAQ" />
     <MESSAGE value="update: deploy-your-first-application.md.erb" />
@@ -693,7 +684,8 @@
     <MESSAGE value="update: change footer" />
     <MESSAGE value="chore: add intercom plugin" />
     <MESSAGE value="improvement: add permission section to `deploy your first app page`" />
-    <option name="LAST_COMMIT_MESSAGE" value="improvement: add permission section to `deploy your first app page`" />
+    <MESSAGE value="feat: add `start_timeout` option in Applications" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add `start_timeout` option in Applications" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1520" y="448" key="#Plugins" timestamp="1603702130846">
@@ -705,10 +697,10 @@
     </state>
     <state width="1072" height="653" key="SwitcherDM/0.0.3840.1600@0.0.3840.1600" timestamp="1605046685138" />
     <state width="1072" height="643" key="SwitcherDM/0.23.3840.1577@0.23.3840.1577" timestamp="1602847377524" />
-    <state x="1920" y="1" width="1017" height="1574" key="Vcs.Push.Dialog.v2" timestamp="1605046813709">
+    <state x="1920" y="1" width="1017" height="1574" key="Vcs.Push.Dialog.v2" timestamp="1605126146829">
       <screen x="0" y="0" width="3840" height="1600" />
     </state>
-    <state x="1920" y="1" key="Vcs.Push.Dialog.v2/0.0.3840.1600@0.0.3840.1600" timestamp="1605046813709" />
+    <state x="1920" y="1" key="Vcs.Push.Dialog.v2/0.0.3840.1600@0.0.3840.1600" timestamp="1605126146829" />
     <state x="2820" y="24" width="1017" height="1574" key="Vcs.Push.Dialog.v2/0.23.3840.1577@0.23.3840.1577" timestamp="1602848000758" />
     <state x="2643" y="24" width="1194" height="1574" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1601811971550">
       <screen x="0" y="23" width="3840" height="1577" />
@@ -732,10 +724,10 @@
       <screen x="0" y="23" width="3840" height="1577" />
     </state>
     <state x="2454" y="385" key="run.anything.popup/0.23.3840.1577@0.23.3840.1577" timestamp="1602665499511" />
-    <state x="1202" y="290" width="1436" height="989" key="search.everywhere.popup" timestamp="1605125631483">
+    <state x="1202" y="290" width="1436" height="989" key="search.everywhere.popup" timestamp="1605471410355">
       <screen x="0" y="0" width="3840" height="1600" />
     </state>
-    <state x="1202" y="290" width="1436" height="989" key="search.everywhere.popup/0.0.3840.1600@0.0.3840.1600" timestamp="1605125631483" />
+    <state x="1202" y="290" width="1436" height="989" key="search.everywhere.popup/0.0.3840.1600@0.0.3840.1600" timestamp="1605471410355" />
     <state x="1202" y="309" width="1436" height="975" key="search.everywhere.popup/0.23.3840.1577@0.23.3840.1577" timestamp="1602846934005" />
   </component>
 </project>

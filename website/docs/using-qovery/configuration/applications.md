@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-11-11"
+last_modified_on: "2020-11-15"
 title: "Applications"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -176,6 +176,32 @@ application:
 ```
 
 Seconds (s) and minutes (m) are accepted units.
+
+
+#### Define start order
+
+Qovery gives you the power to have multiple apps within one environment. Sometimes it's necessary to one or multiple apps before others.
+By using `depends_on` property you can declare a list of apps your app is depending on.
+
+Let's take as example 3 apps:
+
+- billing-api
+- user-api
+- frontend
+
+Where:
+- **frontend** depends on **user-api** and **billing-api**.
+
+```yml {4-6} title="Declare dependencies"
+application:
+  name: frontend
+  project: myProject
+  depends_on:
+  - user-api
+    billing-api
+```
+
+The `depends_on` property, guarantee that your app will never start before others that it depends on.
 
 
 [docs.using-qovery.configuration.projects]: /docs/using-qovery/configuration/projects/

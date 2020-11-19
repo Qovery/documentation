@@ -23,6 +23,7 @@
         "dynamodb:*",
         "ecr:*",
         "ec2:*",
+        "elasticache:*",
         "cloudtrail:LookupEvents",
         "kms:DescribeKey",
         "kms:ListAliases",

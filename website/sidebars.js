@@ -133,6 +133,7 @@ module.exports = {
                     label: 'Integration',
                     items: [
                         "using-qovery/integration",
+                        "using-qovery/integration/github-preview",
                         "using-qovery/integration/project-templates",
                         "using-qovery/integration/ide-plugins",
                     ]

@@ -1,0 +1,47 @@
+---
+title: "Github Preview"
+description: "See your application preview before merging a pull request"
+---
+**Github Preview** allow you to quickly see your latest changes on an automatically deployed environment before merging your pull request.
+You don't have to do anything - simply use Github as you would normally do. All useful information will appear automatically
+in Github's user interface.
+
+Github Previews allow you to make the best use of Qovery deployments without even leaving Github UI. Qovery makes sure
+that all information you need appear next to your commits in your pull requests.
+
+This feature allows you to focus completely on developing your application instead of learning and using additional tools.
+Write your feature, push the code, open a pull request and see everything you need in one place.
+
+## Overview
+To display deployment status and application previews, simply navigate to your pull request on Github.
+Application Preview as well as build logs can be seen in **Checks** section.
+
+<p align="center">
+    <figure>
+        <img src="/img/github-preview/pr-overview.png" alt="Pull Request Overview" />
+        <figcaption>How to access Deployment Status</figcaption>
+    </figure>
+</p>
+
+## Deployment Success
+If an application is built and deployed successfully, you'll see a successful status message directly in the Github UI with a link to the preview
+of your application which you can use for tests before merging the pull request.
+
+<p align="center">
+    <figure>
+        <img src="/img/github-preview/deploy-success.png" alt="Deployment Failure" />
+        <figcaption>Success status with Application Preview URL</figcaption>
+    </figure>
+</p>
+
+
+## Deployment Failure
+If an error occured during the build or deployment phase of the CI/CD pipeline, you'll see an appropriate error message as well as
+build and application logs which may help you to fix the issue quickly without even leaving Github UI.
+
+<p align="center">
+    <figure>
+        <img src="/img/github-preview/deploy-fail.png" alt="Deployment Failure" />
+        <figcaption>Failure status with build logs</figcaption>
+    </figure>
+</p>

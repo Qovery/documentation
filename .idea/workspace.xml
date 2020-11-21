@@ -5,9 +5,15 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="feat: add `start_timeout` option in Applications">
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="feat: add `depends_on` Application property doc">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/applications.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/applications.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.meta/links.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/links.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_summary.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_summary.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/quickstart.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/quickstart.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/quickstart.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/quickstart.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/what-is-qovery.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/what-is-qovery.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/what-is-qovery.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/what-is-qovery.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/whats-next.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/whats-next.md.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -229,14 +235,7 @@
       <workItem from="1605344462212" duration="142000" />
       <workItem from="1605344766167" duration="296000" />
       <workItem from="1605345667091" duration="179000" />
-      <workItem from="1605460849435" duration="2047000" />
-    </task>
-    <task id="LOCAL-00083" summary="update: environment-variables.md.erb">
-      <created>1588686679228</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1588686679228</updated>
+      <workItem from="1605460849435" duration="5614000" />
     </task>
     <task id="LOCAL-00084" summary="update: environment-variables.md.erb">
       <created>1588686752090</created>
@@ -574,7 +573,14 @@
       <option name="project" value="LOCAL" />
       <updated>1605126144587</updated>
     </task>
-    <option name="localTasksCounter" value="132" />
+    <task id="LOCAL-00132" summary="feat: add `depends_on` Application property doc">
+      <created>1605473312050</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1605473312050</updated>
+    </task>
+    <option name="localTasksCounter" value="133" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -660,7 +666,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="update: FAQ" />
     <MESSAGE value="add: docs/troubleshoot page&#10;update: FAQ" />
     <MESSAGE value="update: deploy-your-first-application.md.erb" />
     <MESSAGE value="fix: escaped chars" />
@@ -685,31 +690,32 @@
     <MESSAGE value="chore: add intercom plugin" />
     <MESSAGE value="improvement: add permission section to `deploy your first app page`" />
     <MESSAGE value="feat: add `start_timeout` option in Applications" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: add `start_timeout` option in Applications" />
+    <MESSAGE value="feat: add `depends_on` Application property doc" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add `depends_on` Application property doc" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1520" y="448" key="#Plugins" timestamp="1603702130846">
       <screen x="0" y="0" width="3840" height="1600" />
     </state>
     <state x="1520" y="448" key="#Plugins/0.0.3840.1600@0.0.3840.1600" timestamp="1603702130846" />
-    <state width="1072" height="653" key="SwitcherDM" timestamp="1605046685138">
+    <state width="1072" height="653" key="SwitcherDM" timestamp="1605953512531">
       <screen x="0" y="0" width="3840" height="1600" />
     </state>
-    <state width="1072" height="653" key="SwitcherDM/0.0.3840.1600@0.0.3840.1600" timestamp="1605046685138" />
+    <state width="1072" height="653" key="SwitcherDM/0.0.3840.1600@0.0.3840.1600" timestamp="1605953512531" />
     <state width="1072" height="643" key="SwitcherDM/0.23.3840.1577@0.23.3840.1577" timestamp="1602847377524" />
-    <state x="1920" y="1" width="1017" height="1574" key="Vcs.Push.Dialog.v2" timestamp="1605126146829">
+    <state x="1920" y="1" width="1017" height="1574" key="Vcs.Push.Dialog.v2" timestamp="1605473315752">
       <screen x="0" y="0" width="3840" height="1600" />
     </state>
-    <state x="1920" y="1" key="Vcs.Push.Dialog.v2/0.0.3840.1600@0.0.3840.1600" timestamp="1605126146829" />
+    <state x="1920" y="1" key="Vcs.Push.Dialog.v2/0.0.3840.1600@0.0.3840.1600" timestamp="1605473315752" />
     <state x="2820" y="24" width="1017" height="1574" key="Vcs.Push.Dialog.v2/0.23.3840.1577@0.23.3840.1577" timestamp="1602848000758" />
     <state x="2643" y="24" width="1194" height="1574" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1601811971550">
       <screen x="0" y="23" width="3840" height="1577" />
     </state>
     <state x="2643" y="24" width="1194" height="1574" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.23.3840.1577@0.23.3840.1577" timestamp="1601811971550" />
-    <state x="2820" y="24" width="1017" height="1574" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1602838032561">
-      <screen x="0" y="23" width="3840" height="1577" />
+    <state x="1526" y="680" width="1017" height="1574" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1605949186732">
+      <screen x="0" y="0" width="3840" height="1600" />
     </state>
-    <state x="1526" y="680" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.3840.1600@0.0.3840.1600" timestamp="1601383534884" />
+    <state x="1526" y="680" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.3840.1600@0.0.3840.1600" timestamp="1605949186732" />
     <state x="2820" y="24" width="1017" height="1574" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.3840.1577@0.23.3840.1577" timestamp="1602838032561" />
     <state x="440" y="136" width="2958" height="1174" key="find.popup" timestamp="1603817161539">
       <screen x="0" y="0" width="3840" height="1600" />
@@ -724,10 +730,10 @@
       <screen x="0" y="23" width="3840" height="1577" />
     </state>
     <state x="2454" y="385" key="run.anything.popup/0.23.3840.1577@0.23.3840.1577" timestamp="1602665499511" />
-    <state x="1202" y="290" width="1436" height="989" key="search.everywhere.popup" timestamp="1605471410355">
+    <state x="1202" y="290" width="1436" height="989" key="search.everywhere.popup" timestamp="1605953953514">
       <screen x="0" y="0" width="3840" height="1600" />
     </state>
-    <state x="1202" y="290" width="1436" height="989" key="search.everywhere.popup/0.0.3840.1600@0.0.3840.1600" timestamp="1605471410355" />
+    <state x="1202" y="290" width="1436" height="989" key="search.everywhere.popup/0.0.3840.1600@0.0.3840.1600" timestamp="1605953953514" />
     <state x="1202" y="309" width="1436" height="975" key="search.everywhere.popup/0.23.3840.1577@0.23.3840.1577" timestamp="1602846934005" />
   </component>
 </project>

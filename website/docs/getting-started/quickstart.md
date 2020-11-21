@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-09-02"
+last_modified_on: "2020-11-21"
 title: Quick Start Guide
 description: Get started with Qovery in minutes.
 ---
@@ -13,9 +13,9 @@ need while developing your applications with Qovery.
 
 <Jump to="/guides/getting-started/">Getting Started Guide</Jump>
 
-<BusinessBadge /> If you are a Business user, you may want to deploy your projects on your own cloud accounts.
+<!-- <BusinessBadge /> If you are a Business user, you may want to deploy your projects on your own cloud accounts. -->
 
-<Jump to="/guides/getting-started-business/">Deploying Using Own Cloud Account</Jump>
+<!-- <Jump to="/guides/getting-started-business/">Deploying Using Own Cloud Account</Jump> -->
 
 
 

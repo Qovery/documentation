@@ -172,6 +172,11 @@ module.exports = {
                     label: 'Roadmap',
                     href: '<%= metadata.links.fetch_id("urls.qovery_roadmap") %>'
                 },
+                {
+                    type: 'link',
+                    label: 'Github',
+                    href: '<%= metadata.links.fetch_id("urls.main_qovery_github") %>'
+                },
                 <%= metadata.links.fetch_id("docs.useful-links.help-and-support").to_json %>,
             ],
         },

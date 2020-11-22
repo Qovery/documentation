@@ -172,6 +172,11 @@ module.exports = {
                     label: 'Roadmap',
                     href: 'https://roadmap.qovery.com'
                 },
+                {
+                    type: 'link',
+                    label: 'Github',
+                    href: 'https://github.com/qovery'
+                },
                 "useful-links/help-and-support",
             ],
         },

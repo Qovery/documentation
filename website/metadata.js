@@ -151,15 +151,6 @@ module.exports = {
           "title": "Managing env variables"
         },
         {
-          "author_github": "https://github.com/evoxmusic",
-          "description": null,
-          "id": "/advanced/using-multiple-cloud-providers",
-          "last_modified_on": null,
-          "path": "website/guides/advanced/using-multiple-cloud-providers.md",
-          "series_position": null,
-          "title": "Using multiple Cloud providers"
-        },
-        {
           "author_github": "https://github.com/pjeziorowski",
           "description": null,
           "id": "/advanced/using-multiple-environments",

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-10-13"
+last_modified_on: "2020-11-22"
 title: "Amazon Web Services (AWS)"
 description: "Learn how to configure and plug your Amazon Web Services (AWS) account"
 ---
@@ -42,7 +42,7 @@ To link your AWS account to Qovery you need to provide an AWS `access key id` an
 
 <Alert type="info">
 
-You can link more than one AWS account. Qovery also support multiple Cloud providers within the same Organization. Which means that you can balance your workload on different Cloud providers. [Read more][guides.advanced.using-multiple-cloud-providers].
+You can link more than one AWS account. Qovery also support multiple Cloud providers within the same Organization. Which means that you can balance your workload on different Cloud providers. [Read more][guides.advanced].
 
 </Alert>
 
@@ -202,7 +202,7 @@ Today, you can't migrate an environment from one region to another after it has 
 [docs.using-qovery.configuration.business.organization]: /docs/using-qovery/configuration/business/organization/
 [docs.using-qovery.configuration.business.policy#environment-mode]: /docs/using-qovery/configuration/business/policy/#environment-mode
 [docs.using-qovery.interface]: /docs/using-qovery/interface/
-[guides.advanced.using-multiple-cloud-providers]: /guides/advanced/using-multiple-cloud-providers/
+[guides.advanced]: /guides/advanced/
 [urls.aws]: https://aws.amazon.com
 [urls.qovery_chat]: https://discord.qovery.com
 [urls.qovery_contact_us]: https://www.qovery.com/contact

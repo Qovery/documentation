@@ -33,7 +33,6 @@ module.exports = {
                 {to: 'docs/', label: 'Docs', position: 'left'},
                 {to: 'guides/', label: 'Guides', position: 'left'},
                 {to: 'guides/tutorial', label: 'Tutorials', position: 'left'},
-                {to: 'guides/engineering', label: 'Engineering', position: 'left'},
                 //{to: 'blog/', label: 'Blog', position: 'left'},
                 {to: 'community/', label: 'Community', position: 'right'},
                 // {to: 'releases/', label: 'Download', position: 'right'},

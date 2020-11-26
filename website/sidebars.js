@@ -164,7 +164,7 @@ module.exports = {
                 {
                     type: 'link',
                     label: 'API',
-                    href: 'https://api.qovery.io/swagger-ui.html#'
+                    href: 'https://api.qovery.com/swagger-ui.html#'
                 },
                 "useful-links/faq",
                 {

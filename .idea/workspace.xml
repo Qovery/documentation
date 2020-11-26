@@ -5,10 +5,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="update documentation">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docusaurus.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/docusaurus.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/theme/Footer/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/theme/Footer/index.js" afterDir="false" />
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="update footer">
+      <change beforePath="$PROJECT_DIR$/.meta/links.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/links.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -242,14 +240,7 @@
       <workItem from="1605344766167" duration="296000" />
       <workItem from="1605345667091" duration="179000" />
       <workItem from="1605460849435" duration="11599000" />
-      <workItem from="1606210463882" duration="1190000" />
-    </task>
-    <task id="LOCAL-00089" summary="add: docs/troubleshoot page&#10;update: FAQ">
-      <created>1588972387810</created>
-      <option name="number" value="00089" />
-      <option name="presentableId" value="LOCAL-00089" />
-      <option name="project" value="LOCAL" />
-      <updated>1588972387810</updated>
+      <workItem from="1606210463882" duration="1326000" />
     </task>
     <task id="LOCAL-00090" summary="update: deploy-your-first-application.md.erb">
       <created>1589057472687</created>
@@ -587,7 +578,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606069808857</updated>
     </task>
-    <option name="localTasksCounter" value="138" />
+    <task id="LOCAL-00138" summary="update footer">
+      <created>1606397186782</created>
+      <option name="number" value="00138" />
+      <option name="presentableId" value="LOCAL-00138" />
+      <option name="project" value="LOCAL" />
+      <updated>1606397186782</updated>
+    </task>
+    <option name="localTasksCounter" value="139" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -681,7 +679,6 @@
     <MESSAGE value="create deploy fullstack article" />
     <MESSAGE value="fix: youtube video iframe container" />
     <MESSAGE value="update databases - add &quot;supported versions&quot; section" />
-    <MESSAGE value="update footer" />
     <MESSAGE value="hide section from hasura fullstack article" />
     <MESSAGE value="update storage doc on deletion" />
     <MESSAGE value="add kotlin server side article" />
@@ -698,7 +695,8 @@
     <MESSAGE value="feat: add `start_timeout` option in Applications" />
     <MESSAGE value="feat: add `depends_on` Application property doc" />
     <MESSAGE value="update documentation" />
-    <option name="LAST_COMMIT_MESSAGE" value="update documentation" />
+    <MESSAGE value="update footer" />
+    <option name="LAST_COMMIT_MESSAGE" value="update footer" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1520" y="448" key="#Plugins" timestamp="1603702130846">
@@ -710,10 +708,10 @@
     </state>
     <state width="1072" height="653" key="SwitcherDM/0.0.3840.1600@0.0.3840.1600" timestamp="1606069136576" />
     <state width="1072" height="643" key="SwitcherDM/0.23.3840.1577@0.23.3840.1577" timestamp="1602847377524" />
-    <state x="1920" y="1" width="1017" height="1574" key="Vcs.Push.Dialog.v2" timestamp="1606069810304">
+    <state x="1920" y="1" width="1017" height="1574" key="Vcs.Push.Dialog.v2" timestamp="1606397188172">
       <screen x="0" y="0" width="3840" height="1600" />
     </state>
-    <state x="1920" y="1" key="Vcs.Push.Dialog.v2/0.0.3840.1600@0.0.3840.1600" timestamp="1606069810304" />
+    <state x="1920" y="1" key="Vcs.Push.Dialog.v2/0.0.3840.1600@0.0.3840.1600" timestamp="1606397188172" />
     <state x="2820" y="24" width="1017" height="1574" key="Vcs.Push.Dialog.v2/0.23.3840.1577@0.23.3840.1577" timestamp="1602848000758" />
     <state x="2643" y="24" width="1194" height="1574" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1601811971550">
       <screen x="0" y="23" width="3840" height="1577" />

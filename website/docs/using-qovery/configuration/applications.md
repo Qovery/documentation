@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-11-15"
+last_modified_on: "2020-12-02"
 title: "Applications"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -61,6 +61,20 @@ CMD node ./bin/www
 ```
 
 To validate it you can run `qovery run` - Note: you need to have Docker running on your computer.
+
+#### Custom Dockerfile location
+
+To specify the location of your Dockerfile, use `dockerfile` field in your `.qovery.yml`.
+
+```yml {4}
+application:
+  name: myApp
+  project: myProject
+  cpu: 1
+  dockerfile: my/folder/Dockerfile
+```
+
+Configuration from above will make Qovery look for the Dockerfile in `my/folder/Dockerfile` path of your repository.
 
 ### .qovery.yml
 

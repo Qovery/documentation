@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[29],{179:function(a){a.exports=JSON.parse('{"allTagsPath":"/guides/tags","slug":"language-rust","name":"language: rust","count":1,"permalink":"/guides/tags/language-rust"}')}}]);

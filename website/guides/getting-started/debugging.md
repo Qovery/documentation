@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-11-26"
+last_modified_on: "2020-12-02"
 $schema: "/.meta/.schemas/guides.json"
 title: Debugging
 description: How to debug your application with Qovery

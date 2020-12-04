@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-11-10"
+last_modified_on: "2020-12-04"
 $schema: "/.meta/.schemas/guides.json"
 title: Simplest way to deploy your Deno application with database
 description: Tutorial how to deploy a Deno app with MongoDB database on the cloud

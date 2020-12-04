@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-11-10"
+last_modified_on: "2020-12-04"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy Laravel with MySQL on Qovery
 description: How to deploy a Laravel application with the MySQL database on Qovery

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-11-10"
+last_modified_on: "2020-12-04"
 $schema: "/.meta/.schemas/guides.json"
 title: Hello World. Deploy your first application.
 description: How to deploy your first application with Qovery
@@ -31,6 +31,17 @@ Qovery is an easy way to deploy complete backend and frontend applications. In t
 
      website/guides/getting-started/deploy-your-first-application.md.erb
 -->
+
+## Video tutorial
+
+Here is a short video showing all the steps to deploy your first app with the [Qovery Web interface][urls.start_qovery] and the [Qovery CLI](#install-qovery-cli).
+
+<div class="video-container">
+  <p align="center">
+    <iframe width="800" height="600" src="https://www.youtube.com/embed/wiy_qypBnRM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+    </iframe>
+  </p>
+</div>
 
 ## Tutorial
 <Steps headingDepth={3}>
@@ -301,3 +312,4 @@ To deploy your application, it's as simple as that. In the following article, we
 [urls.qovery_chat]: https://discord.qovery.com
 [urls.qovery_cli_releases]: https://github.com/Qovery/qovery-cli/releases
 [urls.scoop]: https://scoop.sh/
+[urls.start_qovery]: https://start.qovery.com

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-11-10"
+last_modified_on: "2020-12-04"
 $schema: "/.meta/.schemas/guides.json"
 title: How to deploy Docker containers?
 description: Dockerizing an application and deploying it to the cloud

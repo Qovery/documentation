@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-11-10"
+last_modified_on: "2020-12-04"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy Flask with PostgreSQL on Qovery
 description: How to deploy a Flask application with the PostgreSQL database on Qovery

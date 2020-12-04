@@ -5,10 +5,23 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="update footer">
-      <change afterPath="$PROJECT_DIR$/website/static/img/qovery_deploy_on_aws.svg" afterDir="false" />
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="update documentation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_summary.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_summary.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/interface/cli.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/interface/cli.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/deploy-your-first-application.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/deploy-your-first-application.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/deploy-your-first-application.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/deploy-your-first-application.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/create-a-blazingly-fast-api-in-rust-part-1.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/create-a-blazingly-fast-api-in-rust-part-1.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-django-with-postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-django-with-postgresql.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-flask-with-postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-flask-with-postgresql.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-gin-with-postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-gin-with-postgresql.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-jhipster-with-postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-jhipster-with-postgresql.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-laravel-with-mysql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-laravel-with-mysql.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-node-js-with-postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-node-js-with-postgresql.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-rails-with-postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-rails-with-postgresql.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-spring-boot-with-postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-spring-boot-with-postgresql.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-a-docker-container.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-a-docker-container.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/simplest-way-to-deploy-deno-with-database.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/simplest-way-to-deploy-deno-with-database.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/url-shortener-api-with-kotlin.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/url-shortener-api-with-kotlin.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,17 +134,6 @@
     </key>
   </component>
   <component name="RunManager" selected="npm.start">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/website/package.json" />
       <command value="run" />
@@ -242,14 +244,9 @@
       <workItem from="1605344766167" duration="296000" />
       <workItem from="1605345667091" duration="179000" />
       <workItem from="1605460849435" duration="11599000" />
-      <workItem from="1606210463882" duration="3191000" />
-    </task>
-    <task id="LOCAL-00091" summary="update: deploy-your-first-application.md.erb">
-      <created>1589057495253</created>
-      <option name="number" value="00091" />
-      <option name="presentableId" value="LOCAL-00091" />
-      <option name="project" value="LOCAL" />
-      <updated>1589057495253</updated>
+      <workItem from="1606210463882" duration="3459000" />
+      <workItem from="1606669116296" duration="940000" />
+      <workItem from="1606861485707" duration="1366000" />
     </task>
     <task id="LOCAL-00092" summary="fix: escaped chars">
       <created>1590094664097</created>
@@ -587,7 +584,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606397373274</updated>
     </task>
-    <option name="localTasksCounter" value="140" />
+    <task id="LOCAL-00140" summary="update documentation">
+      <created>1606405347805</created>
+      <option name="number" value="00140" />
+      <option name="presentableId" value="LOCAL-00140" />
+      <option name="project" value="LOCAL" />
+      <updated>1606405347805</updated>
+    </task>
+    <option name="localTasksCounter" value="141" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -696,24 +700,24 @@
     <MESSAGE value="improvement: add permission section to `deploy your first app page`" />
     <MESSAGE value="feat: add `start_timeout` option in Applications" />
     <MESSAGE value="feat: add `depends_on` Application property doc" />
-    <MESSAGE value="update documentation" />
     <MESSAGE value="update footer" />
-    <option name="LAST_COMMIT_MESSAGE" value="update footer" />
+    <MESSAGE value="update documentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="update documentation" />
   </component>
   <component name="WindowStateProjectService">
     <state x="1520" y="448" key="#Plugins" timestamp="1603702130846">
       <screen x="0" y="0" width="3840" height="1600" />
     </state>
     <state x="1520" y="448" key="#Plugins/0.0.3840.1600@0.0.3840.1600" timestamp="1603702130846" />
-    <state width="1072" height="653" key="SwitcherDM" timestamp="1606405279765">
+    <state width="1072" height="653" key="SwitcherDM" timestamp="1607069055239">
       <screen x="0" y="0" width="3840" height="1600" />
     </state>
-    <state width="1072" height="653" key="SwitcherDM/0.0.3840.1600@0.0.3840.1600" timestamp="1606405279765" />
+    <state width="1072" height="653" key="SwitcherDM/0.0.3840.1600@0.0.3840.1600" timestamp="1607069055239" />
     <state width="1072" height="643" key="SwitcherDM/0.23.3840.1577@0.23.3840.1577" timestamp="1602847377524" />
-    <state x="1920" y="1" width="1017" height="1574" key="Vcs.Push.Dialog.v2" timestamp="1606397375194">
+    <state x="1920" y="1" width="1017" height="1574" key="Vcs.Push.Dialog.v2" timestamp="1606405349457">
       <screen x="0" y="0" width="3840" height="1600" />
     </state>
-    <state x="1920" y="1" key="Vcs.Push.Dialog.v2/0.0.3840.1600@0.0.3840.1600" timestamp="1606397375194" />
+    <state x="1920" y="1" key="Vcs.Push.Dialog.v2/0.0.3840.1600@0.0.3840.1600" timestamp="1606405349457" />
     <state x="2820" y="24" width="1017" height="1574" key="Vcs.Push.Dialog.v2/0.23.3840.1577@0.23.3840.1577" timestamp="1602848000758" />
     <state x="2643" y="24" width="1194" height="1574" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1601811971550">
       <screen x="0" y="23" width="3840" height="1577" />
@@ -737,10 +741,10 @@
       <screen x="0" y="23" width="3840" height="1577" />
     </state>
     <state x="2454" y="385" key="run.anything.popup/0.23.3840.1577@0.23.3840.1577" timestamp="1602665499511" />
-    <state x="1202" y="290" width="1436" height="989" key="search.everywhere.popup" timestamp="1606401098078">
+    <state x="1202" y="290" width="1436" height="989" key="search.everywhere.popup" timestamp="1607069034560">
       <screen x="0" y="0" width="3840" height="1600" />
     </state>
-    <state x="1202" y="290" width="1436" height="989" key="search.everywhere.popup/0.0.3840.1600@0.0.3840.1600" timestamp="1606401098078" />
+    <state x="1202" y="290" width="1436" height="989" key="search.everywhere.popup/0.0.3840.1600@0.0.3840.1600" timestamp="1607069034560" />
     <state x="1202" y="309" width="1436" height="975" key="search.everywhere.popup/0.23.3840.1577@0.23.3840.1577" timestamp="1602846934005" />
   </component>
 </project>

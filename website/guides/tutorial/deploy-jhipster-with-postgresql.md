@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-11-10"
+last_modified_on: "2020-12-04"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy JHipster with PostgreSQL on Qovery
 description: How to deploy a JHipster application with the PostgreSQL database on Qovery

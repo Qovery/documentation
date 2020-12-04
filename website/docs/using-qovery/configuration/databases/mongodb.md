@@ -1,7 +1,7 @@
 ---
-last_modified_on: "2020-06-07"
+last_modified_on: "2020-12-04"
 title: MongoDB
-description: "How to use MongoDB"
+description: "How to set up and use a MongoDB database"
 ---
 
 import Alert from '@site/src/components/Alert';
@@ -16,7 +16,7 @@ MongoDB is a cross-platform document-oriented database program. Classified as a 
      website/docs/using-qovery/configuration/databases/mongodb.md.erb
 -->
 
-## Add a database to your application
+## Add a MongoDB database to your application
 
 To add a dedicated MongoDB instance to your existing application, simply add these lines to your configuration file:
 
@@ -48,7 +48,7 @@ Here are the MongoDB versions supported by Qovery.
 
 Qovery does not support a new version of MongoDB yet? [Contact us][urls.qovery_chat]
 
-## Get access to a database
+## Get access to your MongoDB database
 
 To get the connection information of your database, you can use the CLI:
 
@@ -88,7 +88,7 @@ The application must be configured to use it. If you use the environment variabl
 `&ssl_ca_certs=/path/to/the/rds-combined-ca-bundle.pem` to its value.
 </Alert>
 
-## Get database status
+## Show MongoDB database status
 
 To know more about your database status, run:
 
@@ -102,11 +102,11 @@ DATABASE NAME | STATUS  | TYPE    | VERSION | ENDPOINT | PORT     | USERNAME | P
   my-mongo      | running | mongodb | 4.2     | <hidden> | <hidden> | <hidden> | <hidden> | simple-example
 ```
 
-## Delete a database
+## Delete your MongoDB database
 
-To delete a database, you have two options:
-- Remove it from the configuration file, commit and push
-- If you worked on a feature branch, delete the branch, and the database instance automatically deletes as well
+To delete a database, you have to:
+- Remove it from the configuration file, commit and push.
+- Delete it manually (for security purpose) through the [Qovery web interface][urls.start_qovery].
 
 <Alert type="danger">
 
@@ -116,31 +116,15 @@ Delete action drops the service and its data!
 
 <Alert type="info">
 
-Backups are kept for 1 month if you need to recover.
+Backups from production environments are kept for 1 month if you need to recover.
 
 </Alert>
 
-## Backups
+## MongoDB backup
+
+Daily backups for your MongoDB database are automatically done for [Production environments][docs.using-qovery.configuration.business.policy#environment-mode].
 
 
-<Alert>
-
-By default, backups are made daily between 1h and 5h.
-
-</Alert>
-
-You can change the window very easily (use 24h format):
-
-```yml title=".qovery.yml" {6}
-application:
-  ...
-databases:
-  - name: my-mongodb
-    type: mongodb
-    backup-window: 21-23
-```
-
-As described in the configuration file, the backup occurs between 9 PM and 11 PM.
-
-
+[docs.using-qovery.configuration.business.policy#environment-mode]: /docs/using-qovery/configuration/business/policy/#environment-mode
 [urls.qovery_chat]: https://discord.qovery.com
+[urls.start_qovery]: https://start.qovery.com

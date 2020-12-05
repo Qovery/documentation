@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-12-04"
+last_modified_on: "2020-12-05"
 $schema: "/.meta/.schemas/guides.json"
 title: Hello World. Deploy your first application.
 description: How to deploy your first application with Qovery
@@ -32,23 +32,50 @@ Qovery is an easy way to deploy complete backend and frontend applications. In t
      website/guides/getting-started/deploy-your-first-application.md.erb
 -->
 
-## Video tutorial
-
-Here is a short video showing all the steps to deploy your first app with the [Qovery Web interface][urls.start_qovery] and the [Qovery CLI](#install-qovery-cli).
-
-<div class="video-container">
-  <p align="center">
-    <iframe width="800" height="600" src="https://www.youtube.com/embed/wiy_qypBnRM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-    </iframe>
-  </p>
-</div>
-
-## Tutorial
+## Step by step tutorial
 <Steps headingDepth={3}>
 
 <ol>
 
+<Tabs
+  centered={true}
+  className={"rounded"}
+  defaultValue={"web"}
+  placeholder="Select your interface"
+  select={false}
+  size={null}
+  values={[{"group":"Interfaces","label":"Web","value":"web"},{"group":"Interfaces","label":"CLI","value":"cli"}]}>
+
+<TabItem value="web">
+
+
+
 <li>
+
+
+
+### Web interface
+
+Sign up with Github or Gitlab to the [Qovery web interface][urls.start_qovery].
+
+<p align="center">
+  <a href="https://start.qovery.com"><img src="/img/qovery_signup.svg" alt="Qovery Sign-up page" /></a>
+</p>
+
+
+
+</li>
+
+
+
+</TabItem>
+
+<TabItem value="cli">
+
+
+
+<li>
+
 
 
 ### Install Qovery CLI
@@ -144,9 +171,15 @@ Few limitations exist on Windows: [read more][docs.cli#windows]
 </Tabs>
 
 
+
 </li>
 
+
+
+
+
 <li>
+
 
 
 ### Sign up
@@ -183,9 +216,19 @@ Note: Qovery needs access to your account to be able to clone your repository fo
 Congratulations, you are logged-in.
 
 
+
 </li>
 
+
+
+</TabItem>
+
+</Tabs>
+
+
+
 <li>
+
 
 
 ### Permissions
@@ -232,6 +275,23 @@ In the future, Qovery will allow you to manage your projects directly in Gitlab 
 <li>
 
 ### Deploy your first app!
+
+.
+
+#### Web interface
+
+Here is a short video showing all the steps to deploy your first app with the [Qovery Web interface][urls.start_qovery].
+
+<div class="video-container">
+  <p align="center">
+    <iframe width="800" height="600" src="https://www.youtube.com/embed/wiy_qypBnRM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+    </iframe>
+  </p>
+</div>
+
+.
+
+#### CLI
 
 **Fork** this [NodeJS application](https://github.com/Qovery/simple-example-node), and **Clone** your repository
 

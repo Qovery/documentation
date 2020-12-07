@@ -293,7 +293,7 @@ module.exports = {
           "last_modified_on": null,
           "path": "website/guides/tutorial/simplest-way-to-deploy-deno-with-database.md",
           "series_position": null,
-          "title": "Simplest way to deploy your Deno application with database on AWS"
+          "title": "Simplest way to deploy your Deno application with MongoDB database on AWS"
         },
         {
           "author_github": "https://github.com/evoxmusic",

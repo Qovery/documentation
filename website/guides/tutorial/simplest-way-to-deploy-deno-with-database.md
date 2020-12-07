@@ -257,7 +257,7 @@ In the future, Qovery will allow you to manage your projects directly in Gitlab 
 ## Deployment
 
 ### Deno sample application
-Get a local copy of the [Deno sample project][deno-mongodb] by forking it.
+Get a local copy of the [Deno sample project][urls.sample_deno_with_mongodb] by forking it.
 
 ### Configure your project
 To deploy your Deno application connected to a MongoDB, you need to have a `.qovery.yml` file, and a `Dockerfile` (both provided in the sample project) at the root of your project.
@@ -407,5 +407,6 @@ Do you have any feedback about this tutorial? Let us know what you think on [Dis
 [urls.mongodb]: https://www.mongodb.com
 [urls.qovery_chat]: https://discord.qovery.com
 [urls.qovery_cli_releases]: https://github.com/Qovery/qovery-cli/releases
+[urls.sample_deno_with_mongodb]: https://github.com/Qovery/deno-simple-example
 [urls.scoop]: https://scoop.sh/
 [urls.start_qovery]: https://start.qovery.com

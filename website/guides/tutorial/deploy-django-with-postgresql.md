@@ -15,7 +15,7 @@ import TabItem from '@theme/TabItem';
 import Assumptions from '@site/src/components/Assumptions';
 import Alert from '@site/src/components/Alert';
 
-This tutorial show you how to deploy your [Django][urls.sample_django_with_postgresql] application with [PostgreSQL][urls.postgresql] database on [AWS][urls.aws]. Let's go!
+This tutorial show you how to deploy your [Django][urls.django] application with [PostgreSQL][urls.postgresql] database on [AWS][urls.aws]. Let's go!
 
 <Assumptions name="guide">
 
@@ -240,7 +240,7 @@ In the future, Qovery will allow you to manage your projects directly in Gitlab 
 ## Deployment
 
 ### Django sample application
-Get a local copy of the [Django sample project][django-postgresql] by forking it.
+Get a local copy of the [Django sample project][urls.sample_django_with_postgresql] by forking it.
 
 ### Configure your project
 To deploy your Django application connected to a PostgreSQL, you need to have a `.qovery.yml` file, and a `Dockerfile` (both provided in the sample project) at the root of your project.
@@ -386,6 +386,7 @@ Do you have any feedback about this tutorial? Let us know what you think on [Dis
 [urls.authorize_qovery]: https://github.com/apps/qovery/installations/new
 [urls.aws]: https://aws.amazon.com
 [urls.brew]: https://brew.sh/
+[urls.django]: https://www.djangoproject.com/
 [urls.github]: https://github.com
 [urls.gitlab]: https://gitlab.com
 [urls.postgresql]: https://www.postgresql.org

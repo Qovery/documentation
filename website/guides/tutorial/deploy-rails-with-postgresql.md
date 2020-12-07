@@ -15,7 +15,7 @@ import TabItem from '@theme/TabItem';
 import Assumptions from '@site/src/components/Assumptions';
 import Alert from '@site/src/components/Alert';
 
-This tutorial show you how to deploy your [Rails][urls.sample_rails_with_postgresql] application with [PostgreSQL][urls.postgresql] database on [AWS][urls.aws]. Let's go!
+This tutorial show you how to deploy your [Rails][urls.rails] application with [PostgreSQL][urls.postgresql] database on [AWS][urls.aws]. Let's go!
 
 <Assumptions name="guide">
 
@@ -240,7 +240,7 @@ In the future, Qovery will allow you to manage your projects directly in Gitlab 
 ## Deployment
 
 ### Rails sample application
-Get a local copy of the [Rails sample project][rails-postgresql] by forking it.
+Get a local copy of the [Rails sample project][urls.sample_rails_with_postgresql] by forking it.
 
 ### Configure your project
 To deploy your Rails application connected to a PostgreSQL, you need to have a `.qovery.yml` file, and a `Dockerfile` (both provided in the sample project) at the root of your project.
@@ -391,6 +391,7 @@ Do you have any feedback about this tutorial? Let us know what you think on [Dis
 [urls.postgresql]: https://www.postgresql.org
 [urls.qovery_chat]: https://discord.qovery.com
 [urls.qovery_cli_releases]: https://github.com/Qovery/qovery-cli/releases
+[urls.rails]: https://rubyonrails.org/
 [urls.sample_rails_with_postgresql]: https://github.com/Qovery/simple-example-rails-with-postgresql
 [urls.scoop]: https://scoop.sh/
 [urls.start_qovery]: https://start.qovery.com

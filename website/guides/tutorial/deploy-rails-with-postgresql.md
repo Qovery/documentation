@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-12-05"
+last_modified_on: "2020-12-07"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy Rails with PostgreSQL on AWS with Qovery
 description: How to deploy a Rails application with the PostgreSQL database on AWS with Qovery
@@ -15,7 +15,7 @@ import TabItem from '@theme/TabItem';
 import Assumptions from '@site/src/components/Assumptions';
 import Alert from '@site/src/components/Alert';
 
-This tutorial show you how to deploy your [Rails][urls.rails] application with [PostgreSQL][urls.postgresql] database on [AWS][urls.aws]. Let's go!
+This tutorial show you how to deploy your [Rails][urls.sample_rails_with_postgresql] application with [PostgreSQL][urls.postgresql] database on [AWS][urls.aws]. Let's go!
 
 <Assumptions name="guide">
 
@@ -391,6 +391,6 @@ Do you have any feedback about this tutorial? Let us know what you think on [Dis
 [urls.postgresql]: https://www.postgresql.org
 [urls.qovery_chat]: https://discord.qovery.com
 [urls.qovery_cli_releases]: https://github.com/Qovery/qovery-cli/releases
-[urls.rails]: https://rubyonrails.org/
+[urls.sample_rails_with_postgresql]: https://github.com/Qovery/simple-example-rails-with-postgresql
 [urls.scoop]: https://scoop.sh/
 [urls.start_qovery]: https://start.qovery.com

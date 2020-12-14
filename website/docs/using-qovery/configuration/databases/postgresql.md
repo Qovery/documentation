@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-06-07"
+last_modified_on: "2020-12-14"
 title: PostgreSQL
 description: "How to use PostgreSQL"
 ---
@@ -44,7 +44,6 @@ Here are the PostgreSQL versions supported by Qovery.
 |12|Yes|
 |11|Yes|
 |10|Yes|
-|9|Yes|
 
 
 Qovery does not support a new version of PostgreSQL yet? [Contact us][urls.qovery_chat]

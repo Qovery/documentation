@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-11-10"
+last_modified_on: "2020-12-05"
 $schema: "/.meta/.schemas/guides.json"
 title: Create a blazingly fast REST API in Rust (Part 1/2)
 description: How to create a blazingly fast REST API in Rust, with zero-cost abstraction and very low overhead - Part 1/2
@@ -547,6 +547,35 @@ pub fn delete_like(_tweet_id: Uuid, conn: &DBPooledConnection) -> Result<(), Err
 
 Qovery is going to help you to deploy your application in a few seconds. Let's deploy our Twitter Clone now.
 
+<Tabs
+  centered={true}
+  className={"rounded"}
+  defaultValue={"web"}
+  placeholder="Select your interface"
+  select={false}
+  size={null}
+  values={[{"group":"Interfaces","label":"Web","value":"web"},{"group":"Interfaces","label":"CLI","value":"cli"}]}>
+
+<TabItem value="web">
+
+
+
+### Web interface
+
+Sign up with Github or Gitlab to the [Qovery web interface][urls.start_qovery].
+
+<p align="center">
+  <a href="https://start.qovery.com"><img src="/img/qovery_signup.svg" alt="Qovery Sign-up page" /></a>
+</p>
+
+
+
+</TabItem>
+
+<TabItem value="cli">
+
+
+
 ### Install Qovery CLI
 
 <Tabs
@@ -641,6 +670,8 @@ Few limitations exist on Windows: [read more][docs.cli#windows]
 
 
 
+
+
 ### Sign up
 ```bash
 # Sign up and sign in command
@@ -673,6 +704,12 @@ Note: Qovery needs access to your account to be able to clone your repository fo
 </p>
 
 Congratulations, you are logged-in.
+
+
+
+</TabItem>
+
+</Tabs>
 
 
 
@@ -873,3 +910,4 @@ Do you want to know more about Rust?
 [urls.postgresql]: https://www.postgresql.org
 [urls.qovery_cli_releases]: https://github.com/Qovery/qovery-cli/releases
 [urls.scoop]: https://scoop.sh/
+[urls.start_qovery]: https://start.qovery.com

@@ -1,5 +1,42 @@
+<Tabs
+  centered={true}
+  className={"rounded"}
+  defaultValue={"web"}
+  placeholder="Select your interface"
+  select={false}
+  size={null}
+  values={[{"group":"Interfaces","label":"Web","value":"web"},{"group":"Interfaces","label":"CLI","value":"cli"}]}>
+
+<TabItem value="web">
+
 <% if is_steps %>
+
 <li>
+
+<% end %>
+
+### Web interface
+
+Sign up with Github or Gitlab to the [Qovery web interface][urls.start_qovery].
+
+<p align="center">
+  <a href="https://start.qovery.com"><img src="/img/qovery_signup.svg" alt="Qovery Sign-up page" /></a>
+</p>
+
+<% if is_steps %>
+
+</li>
+
+<% end %>
+
+</TabItem>
+
+<TabItem value="cli">
+
+<% if is_steps %>
+
+<li>
+
 <% end %>
 
 ### Install Qovery CLI
@@ -7,9 +44,15 @@
 <%= qovery_install_cli() %>
 
 <% if is_steps %>
+
 </li>
 
+<% end %>
+
+<% if is_steps %>
+
 <li>
+
 <% end %>
 
 ### Sign up
@@ -46,9 +89,19 @@ Note: Qovery needs access to your account to be able to clone your repository fo
 Congratulations, you are logged-in.
 
 <% if is_steps %>
+
 </li>
 
+<% end %>
+
+</TabItem>
+
+</Tabs>
+
+<% if is_steps %>
+
 <li>
+
 <% end %>
 
 ### Permissions

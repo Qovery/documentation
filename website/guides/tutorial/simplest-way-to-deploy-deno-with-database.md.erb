@@ -1,7 +1,7 @@
 ---
 $schema: "/.meta/.schemas/guides.json"
-title: Simplest way to deploy your Deno application with database
-description: Tutorial how to deploy a Deno app with MongoDB database on the cloud
+title: Simplest way to deploy your Deno application with MongoDB database on AWS
+description: Tutorial how to deploy a Deno app with MongoDB database on AWS with Qovery
 author_github: https://github.com/pjeziorowski
 tags: ["type: tutorial", "framework: deno", "language: javascript", "database: mongodb"]
 hide_pagination: true
@@ -14,7 +14,7 @@ This article is not meant to teach you Deno, but it’s worth to mention its mai
 - TypeScript compiler baked in, works out of the box.
 - Has built-in utilities like a dependency inspector (deno info) and a code formatter (deno fmt).
 - Ships only a single executable file.
-- Dencentralized packages. No more NPM packages / package.json. Packages are imported from URLs and are cached on the hard drive on load.
+- Decentralized packages. No more NPM packages / package.json. Packages are imported from URLs and are cached on the hard drive on load.
 - Extensive standard library.
 - ES Modules import syntax over require syntax.
 - Browser compatible API e.g. fetch.
@@ -23,4 +23,4 @@ Without further due, let's move on to next post section where we'll deploy a Den
 
 ## Deployment
 
-<%= qovery_how_to_deploy_x_with_y_with_templates("Deno","urls.deno", "deno-mongodb", "MongoDB", "urls.mongodb", "3.6") %>
+<%= qovery_how_to_deploy_x_with_y("Deno", "urls.deno", "urls.sample_deno_with_mongodb", "MongoDB", "urls.mongodb", "3.6") %>

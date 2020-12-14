@@ -61,9 +61,10 @@ module.exports = {
                             label: 'Databases',
                             items: [
                                 "using-qovery/configuration/databases",
-                                "using-qovery/configuration/databases/mongodb",
                                 "using-qovery/configuration/databases/postgresql",
                                 "using-qovery/configuration/databases/mysql",
+                                "using-qovery/configuration/databases/mongodb",
+                                "using-qovery/configuration/databases/redis",
                             ],
                         },
                         "using-qovery/configuration/environment-variables",

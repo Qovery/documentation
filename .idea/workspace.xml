@@ -6,11 +6,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="update documentation (missing URLs)">
+      <change afterPath="$PROJECT_DIR$/website/guides/engineering/qovery-engine-a-rust-lib-to-deploy-microservices-apps-on-any-cloud-service-provider.md.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-django-with-postgresql.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-django-with-postgresql.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-rails-with-postgresql.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-rails-with-postgresql.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/simplest-way-to-deploy-deno-with-database.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/simplest-way-to-deploy-deno-with-database.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/metadata.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/metadata.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.meta/links.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/links.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +29,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="article/qovery-engine-rust-lib" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -46,12 +44,16 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
+                    <option name="branchName" value="article/qovery-engine" />
+                    <option name="lastUsedInstant" value="1609596012" />
+                  </RecentBranch>
+                  <RecentBranch>
                     <option name="branchName" value="master" />
-                    <option name="lastUsedInstant" value="1604830509" />
+                    <option name="lastUsedInstant" value="1609595914" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="article/qovery-engine-rust-lib" />
-                    <option name="lastUsedInstant" value="1604829971" />
+                    <option name="lastUsedInstant" value="1609595894" />
                   </RecentBranch>
                 </list>
               </option>
@@ -70,7 +72,7 @@
   </component>
   <component name="JupyterTrust" id="99d7fc35-d091-4e4e-ae13-001ca09c7af3" />
   <component name="KotlinMultiplatform">
-    <executables />
+    <allAvailableExecutables />
   </component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="0qlt6lxg" />
@@ -103,6 +105,9 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
@@ -123,6 +128,17 @@
     </key>
   </component>
   <component name="RunManager" selected="npm.start">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/website/package.json" />
       <command value="run" />
@@ -169,6 +185,7 @@
         <item itemvalue="npm.start" />
         <item itemvalue="npm.deploy" />
         <item itemvalue="npm.build" />
+        <item itemvalue="npm.swizzle" />
       </list>
     </recent_temporary>
   </component>
@@ -653,7 +670,19 @@
         </entry>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="article/qovery-engine-rust-lib" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -661,6 +690,21 @@
     <option name="OPEN_GENERIC_TABS">
       <map>
         <entry key="1" value="TOOL_WINDOW" />
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="article/qovery-engine-rust-lib" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
@@ -694,49 +738,5 @@
     <MESSAGE value="update documentation" />
     <MESSAGE value="update documentation (missing URLs)" />
     <option name="LAST_COMMIT_MESSAGE" value="update documentation (missing URLs)" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="1520" y="448" key="#Plugins" timestamp="1603702130846">
-      <screen x="0" y="0" width="3840" height="1600" />
-    </state>
-    <state x="1520" y="448" key="#Plugins/0.0.3840.1600@0.0.3840.1600" timestamp="1603702130846" />
-    <state width="1072" height="653" key="SwitcherDM" timestamp="1607339473949">
-      <screen x="0" y="0" width="3840" height="1600" />
-    </state>
-    <state width="1072" height="653" key="SwitcherDM/0.0.3840.1600@0.0.3840.1600" timestamp="1607339473949" />
-    <state width="1072" height="643" key="SwitcherDM/0.23.3840.1577@0.23.3840.1577" timestamp="1602847377524" />
-    <state x="1920" y="1" width="1017" height="1574" key="Vcs.Push.Dialog.v2" timestamp="1607338954430">
-      <screen x="0" y="0" width="3840" height="1600" />
-    </state>
-    <state x="1920" y="1" key="Vcs.Push.Dialog.v2/0.0.3840.1600@0.0.3840.1600" timestamp="1607338954430" />
-    <state x="2820" y="24" width="1017" height="1574" key="Vcs.Push.Dialog.v2/0.23.3840.1577@0.23.3840.1577" timestamp="1602848000758" />
-    <state x="2643" y="24" width="1194" height="1574" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1601811971550">
-      <screen x="0" y="23" width="3840" height="1577" />
-    </state>
-    <state x="2643" y="24" width="1194" height="1574" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.23.3840.1577@0.23.3840.1577" timestamp="1601811971550" />
-    <state x="1526" y="680" width="1017" height="1574" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606396984774">
-      <screen x="0" y="0" width="3840" height="1600" />
-    </state>
-    <state x="1526" y="680" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.3840.1600@0.0.3840.1600" timestamp="1606396984774" />
-    <state x="2820" y="24" width="1017" height="1574" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.3840.1577@0.23.3840.1577" timestamp="1602838032561" />
-    <state x="440" y="136" width="2958" height="1174" key="find.popup" timestamp="1607338638432">
-      <screen x="0" y="0" width="3840" height="1600" />
-    </state>
-    <state x="440" y="136" width="2958" height="1174" key="find.popup/0.0.3840.1600@0.0.3840.1600" timestamp="1607338638432" />
-    <state x="440" y="157" width="2958" height="1158" key="find.popup/0.23.3840.1577@0.23.3840.1577" timestamp="1602665362993" />
-    <state x="2820" y="1" width="1017" height="1574" key="new project wizard" timestamp="1607073672226">
-      <screen x="0" y="0" width="3840" height="1600" />
-    </state>
-    <state x="2820" y="1" key="new project wizard/0.0.3840.1600@0.0.3840.1600" timestamp="1607073672226" />
-    <state x="2820" y="24" width="1017" height="1574" key="new project wizard/0.23.3840.1577@0.23.3840.1577" timestamp="1602842040334" />
-    <state x="2454" y="385" key="run.anything.popup" timestamp="1602665499511">
-      <screen x="0" y="23" width="3840" height="1577" />
-    </state>
-    <state x="2454" y="385" key="run.anything.popup/0.23.3840.1577@0.23.3840.1577" timestamp="1602665499511" />
-    <state x="1202" y="290" width="1436" height="989" key="search.everywhere.popup" timestamp="1607184349769">
-      <screen x="0" y="0" width="3840" height="1600" />
-    </state>
-    <state x="1202" y="290" width="1436" height="989" key="search.everywhere.popup/0.0.3840.1600@0.0.3840.1600" timestamp="1607184349769" />
-    <state x="1202" y="309" width="1436" height="975" key="search.everywhere.popup/0.23.3840.1577@0.23.3840.1577" timestamp="1602846934005" />
   </component>
 </project>

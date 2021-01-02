@@ -53,6 +53,20 @@ CMD node ./bin/www
 
 To validate it you can run `qovery run` - Note: you need to have Docker running on your computer.
 
+#### Custom Dockerfile location
+
+To specify the location of your Dockerfile, use `dockerfile` field in your `.qovery.yml`.
+
+```yml {5}
+application:
+  name: myApp
+  project: myProject
+  cpu: 1
+  dockerfile: my/folder/Dockerfile
+```
+
+Configuration from above will make Qovery look for the Dockerfile in `my/folder/Dockerfile` path of your repository.
+
 ### .qovery.yml
 
 #### CPU
@@ -142,3 +156,54 @@ EXPOSE 3000
 ```
 
 Your app is now publicly accessible through the auto generated endpoint.
+
+#### Long startup time
+
+Sometimes your application can take some time to start. E.g., when your app is performing database migration.
+By default, Qovery waits for 15 seconds to check if your app is running correctly. If it's not the case, your environment is rolled-back to the previous working version.
+
+To prevent this, you can change the startup time:
+
+```yml {4} title="Change the start timeout to 5 minutes"
+application:
+  name: myApp
+  project: myProject
+  start_timeout: 600s
+```
+
+or
+
+```yml {4} title="Change the start timeout to 5 minutes"
+application:
+  name: myApp
+  project: myProject
+  start_timeout: 5m
+```
+
+Seconds (s) and minutes (m) are accepted units.
+
+
+#### Define start order
+
+Qovery gives you the power to have multiple apps within one environment. Sometimes it's necessary to one or multiple apps before others.
+By using `depends_on` property you can declare a list of apps your app is depending on.
+
+Let's take as example 3 apps:
+
+- billing-api
+- user-api
+- frontend
+
+Where:
+- **frontend** depends on **user-api** and **billing-api**.
+
+```yml {4-6} title="Declare dependencies"
+application:
+  name: frontend
+  project: myProject
+  depends_on:
+  - user-api
+    billing-api
+```
+
+The `depends_on` property, guarantee that your app will never start before others that it depends on.

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-22"
+last_modified_on: "2020-12-02"
 $schema: "/.meta/.schemas/guides.json"
 title: Debugging
 description: How to debug your application with Qovery
@@ -148,6 +148,28 @@ See all log options with `qovery log -h`
 
 ```bash
 $ qovery log -f
+```
+
+If you want to display logs of all applications in a given environment, use `qovery env log` instead:
+
+```bash
+$ qovery env log
+log-printer-gitlab | 2020-11-24T12:00:24.826Z
+log-printer-gitlab-v2 | 2020-11-24T12:00:25.027Z
+log-printer-gitlab    | 2020-11-24T12:00:25.827Z
+log-printer-gitlab-v2 | 2020-11-24T12:00:26.027Z
+log-printer-gitlab    | 2020-11-24T12:00:26.828Z
+log-printer-gitlab-v2 | 2020-11-24T12:00:27.028Z
+log-printer-gitlab    | 2020-11-24T12:00:27.830Z
+log-printer-gitlab-v2 | 2020-11-24T12:00:28.029Z
+log-printer-gitlab    | 2020-11-24T12:00:28.831Z
+log-printer-gitlab-v2 | 2020-11-24T12:00:29.030Z
+log-printer-gitlab    | 2020-11-24T12:00:29.832Z
+log-printer-gitlab-v2 | 2020-11-24T12:00:30.031Z
+log-printer-gitlab    | 2020-11-24T12:00:30.833Z
+log-printer-gitlab-v2 | 2020-11-24T12:00:31.031Z
+log-printer-gitlab    | 2020-11-24T12:00:31.834Z
+log-printer-gitlab-v2 | 2020-11-24T12:00:32.032Z
 ```
 
 ### Rollback

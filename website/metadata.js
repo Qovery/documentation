@@ -151,15 +151,6 @@ module.exports = {
           "title": "Managing env variables"
         },
         {
-          "author_github": "https://github.com/evoxmusic",
-          "description": null,
-          "id": "/advanced/using-multiple-cloud-providers",
-          "last_modified_on": null,
-          "path": "website/guides/advanced/using-multiple-cloud-providers.md",
-          "series_position": null,
-          "title": "Using multiple Cloud providers"
-        },
-        {
           "author_github": "https://github.com/pjeziorowski",
           "description": null,
           "id": "/advanced/using-multiple-environments",
@@ -194,7 +185,7 @@ module.exports = {
           "last_modified_on": null,
           "path": "website/guides/tutorial/deploy-django-with-postgresql.md",
           "series_position": null,
-          "title": "Deploy Django with PostgreSQL on Qovery"
+          "title": "Deploy Django with PostgreSQL on AWS with Qovery"
         },
         {
           "author_github": "https://github.com/evoxmusic",
@@ -203,7 +194,7 @@ module.exports = {
           "last_modified_on": null,
           "path": "website/guides/tutorial/deploy-flask-with-postgresql.md",
           "series_position": null,
-          "title": "Deploy Flask with PostgreSQL on Qovery"
+          "title": "Deploy Flask with PostgreSQL on AWS with Qovery"
         },
         {
           "author_github": "https://github.com/pjeziorowski",
@@ -212,7 +203,7 @@ module.exports = {
           "last_modified_on": null,
           "path": "website/guides/tutorial/deploy-gin-with-postgresql.md",
           "series_position": null,
-          "title": "Deploy Gin with PostgreSQL on Qovery"
+          "title": "Deploy Gin with PostgreSQL on AWS with Qovery"
         },
         {
           "author_github": "https://github.com/pjeziorowski",
@@ -221,7 +212,7 @@ module.exports = {
           "last_modified_on": null,
           "path": "website/guides/tutorial/deploy-jhipster-with-postgresql.md",
           "series_position": null,
-          "title": "Deploy JHipster with PostgreSQL on Qovery"
+          "title": "Deploy JHipster with PostgreSQL on AWS with Qovery"
         },
         {
           "author_github": "https://github.com/evoxmusic",
@@ -230,7 +221,7 @@ module.exports = {
           "last_modified_on": null,
           "path": "website/guides/tutorial/deploy-laravel-with-mysql.md",
           "series_position": null,
-          "title": "Deploy Laravel with MySQL on Qovery"
+          "title": "Deploy Laravel with MySQL on AWS with Qovery"
         },
         {
           "author_github": "https://github.com/evoxmusic",
@@ -239,7 +230,7 @@ module.exports = {
           "last_modified_on": null,
           "path": "website/guides/tutorial/deploy-node-js-with-postgresql.md",
           "series_position": null,
-          "title": "Deploy Node.JS with PostgreSQL on Qovery"
+          "title": "Deploy NodeJS with PostgreSQL on AWS with Qovery"
         },
         {
           "author_github": "https://github.com/pjeziorowski",
@@ -248,7 +239,7 @@ module.exports = {
           "last_modified_on": null,
           "path": "website/guides/tutorial/deploy-rails-with-postgresql.md",
           "series_position": null,
-          "title": "Deploy Rails with PostgreSQL on Qovery"
+          "title": "Deploy Rails with PostgreSQL on AWS with Qovery"
         },
         {
           "author_github": "https://github.com/evoxmusic",
@@ -257,7 +248,7 @@ module.exports = {
           "last_modified_on": null,
           "path": "website/guides/tutorial/deploy-spring-boot-with-postgresql.md",
           "series_position": null,
-          "title": "Deploy Spring Boot with PostgreSQL on Qovery"
+          "title": "Deploy Spring Boot with PostgreSQL on AWS with Qovery"
         },
         {
           "author_github": "https://github.com/pjeziorowski",
@@ -302,7 +293,7 @@ module.exports = {
           "last_modified_on": null,
           "path": "website/guides/tutorial/simplest-way-to-deploy-deno-with-database.md",
           "series_position": null,
-          "title": "Simplest way to deploy your Deno application with database"
+          "title": "Simplest way to deploy your Deno application with MongoDB database on AWS"
         },
         {
           "author_github": "https://github.com/evoxmusic",

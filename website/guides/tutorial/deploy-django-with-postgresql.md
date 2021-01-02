@@ -1,33 +1,26 @@
 ---
-last_modified_on: "2020-10-12"
+last_modified_on: "2020-12-07"
 $schema: "/.meta/.schemas/guides.json"
-title: Deploy Django with PostgreSQL on Qovery
-description: How to deploy a Django application with the PostgreSQL database on Qovery
+title: Deploy Django with PostgreSQL on AWS with Qovery
+description: How to deploy a Django application with the PostgreSQL database on AWS with Qovery
 author_github: https://github.com/pjeziorowski
 tags: ["type: tutorial", "framework: django", "language: python", "database: postgresql"]
 hide_pagination: true
 ---
 
 import Jump from '@site/src/components/Jump';
-import Steps from '@site/src/components/Steps';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 import Assumptions from '@site/src/components/Assumptions';
 import Alert from '@site/src/components/Alert';
 
-[AWS][urls.aws] (Amazon Web Services) is a fantastic and reliable cloud service provider. AWS, like [GCP][urls.gcp] (Google Cloud Platform) and Microsoft [Azure][urls.azure], provides everything you need to host an application without having to worry about running the underlying servers and network configuration.
-
-However, deploying an application on any of those cloud providers presents many challenges. The typical deployment workflow looks like this: write code, push it to Git repository, compile code, deploy code, validate your changes, and repeat. Developers not only have to take care of all of this by themselves, but they also have to configure tons of services (like VPCs, databases, caches, DNS, CDN, and others) to make their application live on the web.
-
-Qovery solves this problem by combining the reliability of AWS and the simplicity of Heroku to augment the developer experience and to take this configuration burden from developers shoulders.
-
-In this blog post, I will show you how Qovery improves developers' workflows by deploying staging and production [Django][urls.django] application with [PostgreSQL][urls.postgresql] database on Qovery. You will be able to focus on writing the best code and delivering business value instead of managing complex services.
+This tutorial show you how to deploy your [Django][urls.django] application with [PostgreSQL][urls.postgresql] database on [AWS][urls.aws]. Let's go!
 
 <Assumptions name="guide">
 
 * Your Operating System is macOS / Windows / Linux
-* You have a [Github][urls.github] account
+* You have a [Github][urls.github] or [Gitlab][urls.gitlab] account
 
 </Assumptions>
 
@@ -39,7 +32,36 @@ In this blog post, I will show you how Qovery improves developers' workflows by 
      website/guides/tutorial/deploy-django-with-postgresql.md.erb
 -->
 
-## Setup Qovery
+## Steps to deploy Django on AWS with Qovery
+
+<Tabs
+  centered={true}
+  className={"rounded"}
+  defaultValue={"web"}
+  placeholder="Select your interface"
+  select={false}
+  size={null}
+  values={[{"group":"Interfaces","label":"Web","value":"web"},{"group":"Interfaces","label":"CLI","value":"cli"}]}>
+
+<TabItem value="web">
+
+
+
+### Web interface
+
+Sign up with Github or Gitlab to the [Qovery web interface][urls.start_qovery].
+
+<p align="center">
+  <a href="https://start.qovery.com"><img src="/img/qovery_signup.svg" alt="Qovery Sign-up page" /></a>
+</p>
+
+
+
+</TabItem>
+
+<TabItem value="cli">
+
+
 
 ### Install Qovery CLI
 
@@ -135,6 +157,8 @@ Few limitations exist on Windows: [read more][docs.cli#windows]
 
 
 
+
+
 ### Sign up
 ```bash
 # Sign up and sign in command
@@ -168,7 +192,34 @@ Note: Qovery needs access to your account to be able to clone your repository fo
 
 Congratulations, you are logged-in.
 
-<Alert type="info" >
+
+
+</TabItem>
+
+</Tabs>
+
+
+
+### Permissions
+
+<Tabs
+  centered={true}
+  className={"rounded"}
+  defaultValue={"github"}
+  placeholder="Select your Git provider"
+  select={false}
+  size={null}
+  values={[{"group":"Git","label":"Github","value":"github"},{"group":"Git","label":"Gitlab","value":"gitlab"}]}>
+
+<TabItem value="github">
+
+Qovery needs to get access to your Github account to deploy the application.
+
+**[Click here to give access!][urls.authorize_qovery]**
+
+</TabItem>
+
+<TabItem value="gitlab">
 
 Are you hosting your projects on Gitlab? We got you covered!
 Simply sign in to Qovery using your Gitlab account and enable Qovery in your project using:
@@ -182,21 +233,17 @@ That's it! It's a one time process that needs to be performed in each of your Gi
 
 In the future, Qovery will allow you to manage your projects directly in Gitlab and Qovery UI.
 
-</Alert>
+</TabItem>
+
+</Tabs>
 
 ## Deployment
 
 ### Django sample application
-To bootstrap the Django sample project, we'll use a `template`. [Templates][urls.qovery_templates_docs] are preconfigured basic project structures that allow you to create application skeleton using just one command. To bootstrap the application, run:
+Get a local copy of the [Django sample project][urls.sample_django_with_postgresql] by forking it.
 
-```bash
-$ qovery init -t django-postgresql
-```
-
-This command creates a new directory with initial application structure configured to be deployed on Qovery.
-
-### About configuration
-To deploy your Django application connected to a PostgreSQL, you need to have a `.qovery.yml` file, and a `Dockerfile` (both provided in the template skeleton) at the root of your project.
+### Configure your project
+To deploy your Django application connected to a PostgreSQL, you need to have a `.qovery.yml` file, and a `Dockerfile` (both provided in the sample project) at the root of your project.
 
 <Alert>
 The .qovery.yml file describes all the dependencies that your application needs (e.g., PostgreSQL) to work smoothly
@@ -204,7 +251,7 @@ The .qovery.yml file describes all the dependencies that your application needs 
 
 In this example we are using PostgreSQL v11.5
 
-After running `template` command, you can check the content of `.qovery.yml` in the folder containing your new application:
+After forking the sample application, you can check the content of `.qovery.yml`:
 
 ```bash
 $ cat .qovery.yml
@@ -227,38 +274,11 @@ routers:
     - /
 ```
 
-All you have to do now to deploy the application is to initialize a new Github repository and grant Qovery access to this newly created repo:
+[Authorize the Qovery Github application][urls.authorize_qovery] to get access to your Github account. Once done, all new commits you push to your forked repository will trigger new deployments of the application.
 
-<Steps headingDepth={3}>
-
-  1. Create a new repository @ [Github][urls.github].
-
-  2. [Authorize the Qovery Github application][urls.authorize_qovery] to get access to your Github account. Make sure it has access to repositories containing application you want to deploy with Qovery.
-
-  3. Go to the new application folder:
-
-  ```bash
-  cd django-postgresql
-  ```
-
-  4. Connect your local Git repository to the newly created Github repo (don't forget to replace placeholders in the command):
-
-  ```bash
-  git remote add origin https://github.com/${YOUR_USERNAME}/${YOUR_REPOSITORY_NAME}.git
-  ```
-  5. Push initial commit:
-
-  ```bash
-  git push --set-upstream origin master
-  ```
-
-  Voila! Your application is now being deployed to Qovery.
-
-</Steps>
-
-### Connect your application to PostgreSQL
+### Connect Django to PostgreSQL
 Credentials of your database are available via environment variables. Qovery injects environment vars at the runtime.
-To list all the environment variables available to your application, execute the follwing in your application folder:
+To list all the environment variables available to your application, execute
 
 ```bash
 # List all environment variables
@@ -286,6 +306,8 @@ BUILT_IN | QOVERY_DATABASE_MY_DB_NAME                               | my-db
 
 The sample application is preconfigured to use those environment variables to connect to the database.
 
+Forking the application with `.qovery.yml` and a `Dockerfile` should trigger app deployment.
+
 See the deployment status by executing:
 
 ```bash
@@ -304,28 +326,15 @@ DATABASE NAME    | STATUS  | TYPE       | VERSION | ENDPOINT | PORT     | USERNA
 my-db            | running | POSTGRESQL      | 11.5     | <hidden> | <hidden> | <hidden> | <hidden> | my-application
 ```
 
-As you see in the status output, the application as well as the database are automagically deployed. When your application `status` is `running`, you can use a browser or `curl` to access its endpoints.
+When your application `status` is `running`, you can use a browser or `curl` to access its endpoints.
 
 ## Trigger a new deployment
 
 Now, you can play with the sample application and commit & push your changes. Qovery detects your actions and triggers new builds and application deployments. Any change you make will be reflected in your deployed application automatically.
 
 ## Bonuses (optional)
-### Test the Django application locally
-The Qovery motto is: if your application runs locally, it runs well on Qovery, too. To test if your application is running locally, execute the following command:
-
-<Alert>
-The Docker runtime is required
-</Alert>
-
-```bash
-$ qovery run
-```
-
-Note: `qovery run` connects your application to the PostgreSQL database on Qovery.
-
-### Deploy the application on a staging environment
-Qovery has a compelling feature known as `environments`. Qovery supports the deployment of isolated development environments that reflect your Git branches. Environments are complete copies of all of your data, application, and services like databases. The Environment is useful for testing changes in isolation before merging them to your main branch.
+### Deploy the application on dev environments
+Qovery has a compelling feature known as "[environments][docs.main-concepts.environment]". Qovery supports the deployment of isolated development environments that reflect your Git branches. Environments are complete copies of all of your data, application, and services like databases. The Environment is useful for testing changes in isolation before merging them to your main branch.
 
 So, do you want to create a new feature, fix a bug, or make modifications without impacting the production or any other important environment? Type the following commands:
 
@@ -348,30 +357,41 @@ DATABASE NAME  | STATUS  | TYPE       | VERSION | ENDPOINT | PORT     | USERNAME
 my-db          | running | PostgreSQL      | 11.5     | <hidden> | <hidden> | <hidden> | <hidden> | my-application
 ```
 
-As you see, a new environment related to `feat_foo` branch is now running. New environment includes all applications and databases of your project, so you can test
-new features in environment that is an identical copy of your production environment (we even replicate the database data!).
-
 <Jump to="/guides/advanced/using-multiple-environments">Multiple Environments</Jump>
 
-## Conclusion
-Qovery brings developers the full power of simplicity and flexibility while deploying applications. Any developer can now take advantage of the most popular cloud providers in seconds instead of hours or days.
+### Test the Django application locally
+The Qovery motto is: if your application runs locally, it runs well on Qovery, too. To test if your application is running locally, execute the following command:
 
-Accelerate your development and start using Qovery today. Let us know what you think about it on [Twitter][urls.qovery_twitter], or by [Discord][urls.qovery_chat].
+<Alert>
+The Docker runtime is required
+</Alert>
+
+```bash
+$ qovery run
+```
+
+Note: `qovery run` connects your application to the PostgreSQL database on Qovery.
+
+
+## Conclusion
+Congratulations! Now, you know how to deploy your Django app with PostgreSQL on AWS in just a few steps.
+
+Do you have any feedback about this tutorial? Let us know what you think on [Discord][urls.qovery_chat], and join our wonderful dev community of +600 devs.
 
 <Jump to="/guides/tutorial/">Tutorial</Jump>
 
 
 [docs.cli#windows]: /docs/using-qovery/interface/cli/#windows
+[docs.main-concepts.environment]: /docs/main-concepts/environment/
 [urls.authorize_qovery]: https://github.com/apps/qovery/installations/new
 [urls.aws]: https://aws.amazon.com
-[urls.azure]: https://azure.microsoft.com
 [urls.brew]: https://brew.sh/
 [urls.django]: https://www.djangoproject.com/
-[urls.gcp]: https://cloud.google.com
 [urls.github]: https://github.com
+[urls.gitlab]: https://gitlab.com
 [urls.postgresql]: https://www.postgresql.org
 [urls.qovery_chat]: https://discord.qovery.com
 [urls.qovery_cli_releases]: https://github.com/Qovery/qovery-cli/releases
-[urls.qovery_templates_docs]: https://docs.qovery.com/docs/using-qovery/integration/project-templates/
-[urls.qovery_twitter]: https://twitter.com/qovery_
+[urls.sample_django_with_postgresql]: https://github.com/Qovery/simple-example-django-with-postgresql
 [urls.scoop]: https://scoop.sh/
+[urls.start_qovery]: https://start.qovery.com

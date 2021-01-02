@@ -61,9 +61,10 @@ module.exports = {
                             label: 'Databases',
                             items: [
                                 <%= metadata.links.fetch_id("docs.using-qovery.configuration.databases").to_json %>,
-                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.databases.mongodb").to_json %>,
                                 <%= metadata.links.fetch_id("docs.using-qovery.configuration.databases.postgresql").to_json %>,
                                 <%= metadata.links.fetch_id("docs.using-qovery.configuration.databases.mysql").to_json %>,
+                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.databases.mongodb").to_json %>,
+                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.databases.redis").to_json %>,
                             ],
                         },
                         <%= metadata.links.fetch_id("docs.using-qovery.configuration.environment-variables").to_json %>,
@@ -133,6 +134,7 @@ module.exports = {
                     label: 'Integration',
                     items: [
                         <%= metadata.links.fetch_id("docs.using-qovery.integration").to_json %>,
+                        <%= metadata.links.fetch_id("docs.using-qovery.integration.github-preview").to_json %>,
                         <%= metadata.links.fetch_id("docs.using-qovery.integration.project-templates").to_json %>,
                         <%= metadata.links.fetch_id("docs.using-qovery.integration.ide-plugins").to_json %>,
                     ]
@@ -170,6 +172,11 @@ module.exports = {
                     type: 'link',
                     label: 'Roadmap',
                     href: '<%= metadata.links.fetch_id("urls.qovery_roadmap") %>'
+                },
+                {
+                    type: 'link',
+                    label: 'Github',
+                    href: '<%= metadata.links.fetch_id("urls.main_qovery_github") %>'
                 },
                 <%= metadata.links.fetch_id("docs.useful-links.help-and-support").to_json %>,
             ],

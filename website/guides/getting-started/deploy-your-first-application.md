@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-06-04"
+last_modified_on: "2020-12-05"
 $schema: "/.meta/.schemas/guides.json"
 title: Hello World. Deploy your first application.
 description: How to deploy your first application with Qovery
@@ -32,12 +32,50 @@ Qovery is an easy way to deploy complete backend and frontend applications. In t
      website/guides/getting-started/deploy-your-first-application.md.erb
 -->
 
-## Tutorial
+## Step by step tutorial
 <Steps headingDepth={3}>
 
 <ol>
 
+<Tabs
+  centered={true}
+  className={"rounded"}
+  defaultValue={"web"}
+  placeholder="Select your interface"
+  select={false}
+  size={null}
+  values={[{"group":"Interfaces","label":"Web","value":"web"},{"group":"Interfaces","label":"CLI","value":"cli"}]}>
+
+<TabItem value="web">
+
+
+
 <li>
+
+
+
+### Web interface
+
+Sign up with Github or Gitlab to the [Qovery web interface][urls.start_qovery].
+
+<p align="center">
+  <a href="https://start.qovery.com"><img src="/img/qovery_signup.svg" alt="Qovery Sign-up page" /></a>
+</p>
+
+
+
+</li>
+
+
+
+</TabItem>
+
+<TabItem value="cli">
+
+
+
+<li>
+
 
 
 ### Install Qovery CLI
@@ -133,9 +171,15 @@ Few limitations exist on Windows: [read more][docs.cli#windows]
 </Tabs>
 
 
+
 </li>
 
+
+
+
+
 <li>
+
 
 
 ### Sign up
@@ -171,7 +215,42 @@ Note: Qovery needs access to your account to be able to clone your repository fo
 
 Congratulations, you are logged-in.
 
-<Alert type="info" >
+
+
+</li>
+
+
+
+</TabItem>
+
+</Tabs>
+
+
+
+<li>
+
+
+
+### Permissions
+
+<Tabs
+  centered={true}
+  className={"rounded"}
+  defaultValue={"github"}
+  placeholder="Select your Git provider"
+  select={false}
+  size={null}
+  values={[{"group":"Git","label":"Github","value":"github"},{"group":"Git","label":"Gitlab","value":"gitlab"}]}>
+
+<TabItem value="github">
+
+Qovery needs to get access to your Github account to deploy the application.
+
+**[Click here to give access!][urls.authorize_qovery]**
+
+</TabItem>
+
+<TabItem value="gitlab">
 
 Are you hosting your projects on Gitlab? We got you covered!
 Simply sign in to Qovery using your Gitlab account and enable Qovery in your project using:
@@ -185,20 +264,34 @@ That's it! It's a one time process that needs to be performed in each of your Gi
 
 In the future, Qovery will allow you to manage your projects directly in Gitlab and Qovery UI.
 
-</Alert>
+</TabItem>
+
+</Tabs>
+
 
 
 </li>>
 
 <li>
 
-### Hello World!
+### Deploy your first app!
 
-<Alert type="warning">
+.
 
-[Qovery needs to get access to your Github account][urls.authorize_qovery] to deploy the application.
+#### Web interface
 
-</Alert>
+Here is a short video showing all the steps to deploy your first app with the [Qovery Web interface][urls.start_qovery].
+
+<div class="video-container">
+  <p align="center">
+    <iframe width="800" height="600" src="https://www.youtube.com/embed/wiy_qypBnRM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+    </iframe>
+  </p>
+</div>
+
+.
+
+#### CLI
 
 **Fork** this [NodeJS application](https://github.com/Qovery/simple-example-node), and **Clone** your repository
 
@@ -279,3 +372,4 @@ To deploy your application, it's as simple as that. In the following article, we
 [urls.qovery_chat]: https://discord.qovery.com
 [urls.qovery_cli_releases]: https://github.com/Qovery/qovery-cli/releases
 [urls.scoop]: https://scoop.sh/
+[urls.start_qovery]: https://start.qovery.com

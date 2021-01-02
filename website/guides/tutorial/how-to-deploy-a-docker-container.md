@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-06-04"
+last_modified_on: "2020-12-05"
 $schema: "/.meta/.schemas/guides.json"
 title: How to deploy Docker containers?
 description: Dockerizing an application and deploying it to the cloud
@@ -125,6 +125,35 @@ Did it work? Great. Our app works well in the Docker container. It's adorable, b
 
 To deploy our Dockerized application, we'll use Qovery. It's a Container as a Service platform that allows us to deploy Dockerized apps without any efforts. Qovery is free up to three applications (and databases!) in the community version.
 
+<Tabs
+  centered={true}
+  className={"rounded"}
+  defaultValue={"web"}
+  placeholder="Select your interface"
+  select={false}
+  size={null}
+  values={[{"group":"Interfaces","label":"Web","value":"web"},{"group":"Interfaces","label":"CLI","value":"cli"}]}>
+
+<TabItem value="web">
+
+
+
+### Web interface
+
+Sign up with Github or Gitlab to the [Qovery web interface][urls.start_qovery].
+
+<p align="center">
+  <a href="https://start.qovery.com"><img src="/img/qovery_signup.svg" alt="Qovery Sign-up page" /></a>
+</p>
+
+
+
+</TabItem>
+
+<TabItem value="cli">
+
+
+
 ### Install Qovery CLI
 
 <Tabs
@@ -219,6 +248,8 @@ Few limitations exist on Windows: [read more][docs.cli#windows]
 
 
 
+
+
 ### Sign up
 ```bash
 # Sign up and sign in command
@@ -252,7 +283,34 @@ Note: Qovery needs access to your account to be able to clone your repository fo
 
 Congratulations, you are logged-in.
 
-<Alert type="info" >
+
+
+</TabItem>
+
+</Tabs>
+
+
+
+### Permissions
+
+<Tabs
+  centered={true}
+  className={"rounded"}
+  defaultValue={"github"}
+  placeholder="Select your Git provider"
+  select={false}
+  size={null}
+  values={[{"group":"Git","label":"Github","value":"github"},{"group":"Git","label":"Gitlab","value":"gitlab"}]}>
+
+<TabItem value="github">
+
+Qovery needs to get access to your Github account to deploy the application.
+
+**[Click here to give access!][urls.authorize_qovery]**
+
+</TabItem>
+
+<TabItem value="gitlab">
 
 Are you hosting your projects on Gitlab? We got you covered!
 Simply sign in to Qovery using your Gitlab account and enable Qovery in your project using:
@@ -266,7 +324,9 @@ That's it! It's a one time process that needs to be performed in each of your Gi
 
 In the future, Qovery will allow you to manage your projects directly in Gitlab and Qovery UI.
 
-</Alert>
+</TabItem>
+
+</Tabs>
 
 After you have access to Qovery, it's time to deploy the application.
 
@@ -303,3 +363,4 @@ If you have any questions, feedback or want to learn more, please join us on our
 [urls.qovery_chat]: https://discord.qovery.com
 [urls.qovery_cli_releases]: https://github.com/Qovery/qovery-cli/releases
 [urls.scoop]: https://scoop.sh/
+[urls.start_qovery]: https://start.qovery.com

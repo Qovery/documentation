@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-10-14"
+last_modified_on: "2020-12-05"
 title: CLI
 description: How to use the Qovery CLI (Command Line Interface)
 ---
@@ -26,6 +26,35 @@ When you type a command, the CLI is aware of your current [project][docs.main-co
 -->
 
 ## First usage
+
+<Tabs
+  centered={true}
+  className={"rounded"}
+  defaultValue={"web"}
+  placeholder="Select your interface"
+  select={false}
+  size={null}
+  values={[{"group":"Interfaces","label":"Web","value":"web"},{"group":"Interfaces","label":"CLI","value":"cli"}]}>
+
+<TabItem value="web">
+
+
+
+### Web interface
+
+Sign up with Github or Gitlab to the [Qovery web interface][urls.start_qovery].
+
+<p align="center">
+  <a href="https://start.qovery.com"><img src="/img/qovery_signup.svg" alt="Qovery Sign-up page" /></a>
+</p>
+
+
+
+</TabItem>
+
+<TabItem value="cli">
+
+
 
 ### Install Qovery CLI
 
@@ -121,6 +150,8 @@ Few limitations exist on Windows: [read more][docs.cli#windows]
 
 
 
+
+
 ### Sign up
 ```bash
 # Sign up and sign in command
@@ -154,7 +185,34 @@ Note: Qovery needs access to your account to be able to clone your repository fo
 
 Congratulations, you are logged-in.
 
-<Alert type="info" >
+
+
+</TabItem>
+
+</Tabs>
+
+
+
+### Permissions
+
+<Tabs
+  centered={true}
+  className={"rounded"}
+  defaultValue={"github"}
+  placeholder="Select your Git provider"
+  select={false}
+  size={null}
+  values={[{"group":"Git","label":"Github","value":"github"},{"group":"Git","label":"Gitlab","value":"gitlab"}]}>
+
+<TabItem value="github">
+
+Qovery needs to get access to your Github account to deploy the application.
+
+**[Click here to give access!][urls.authorize_qovery]**
+
+</TabItem>
+
+<TabItem value="gitlab">
 
 Are you hosting your projects on Gitlab? We got you covered!
 Simply sign in to Qovery using your Gitlab account and enable Qovery in your project using:
@@ -168,7 +226,9 @@ That's it! It's a one time process that needs to be performed in each of your Gi
 
 In the future, Qovery will allow you to manage your projects directly in Gitlab and Qovery UI.
 
-</Alert>
+</TabItem>
+
+</Tabs>
 
 ### Help
 
@@ -235,3 +295,4 @@ Now that you have installed the CLI, check out [how to deploy your first applica
 [urls.brew]: https://brew.sh/
 [urls.qovery_cli_releases]: https://github.com/Qovery/qovery-cli/releases
 [urls.scoop]: https://scoop.sh/
+[urls.start_qovery]: https://start.qovery.com

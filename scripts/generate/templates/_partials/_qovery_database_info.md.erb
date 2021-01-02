@@ -1,10 +1,10 @@
 ---
 title: <%= dbName %>
-description: "How to use <%= dbName %>"
+description: "How to set up and use a <%= dbName %> database"
 ---
 <%= dbDescription %>
 
-## Add a database to your application
+## Add a <%= dbName %> database to your application
 
 To add a dedicated <%= dbName %> instance to your existing application, simply add these lines to your configuration file:
 
@@ -34,7 +34,7 @@ Here are the <%= dbName %> versions supported by Qovery.
 
 Qovery does not support a new version of <%= dbName %> yet? [Contact us][urls.qovery_chat]
 
-## Get access to a database
+## Get access to your <%= dbName %> database
 
 To get the connection information of your database, you can use the CLI:
 
@@ -67,7 +67,7 @@ In the output, you get all data you need to use the database. Those environment 
 <%= dbSpecificAlert %>
 </Alert>
 <% end %>
-## Get database status
+## Show <%= dbName %> database status
 
 To know more about your database status, run:
 
@@ -81,11 +81,11 @@ DATABASE NAME | STATUS  | TYPE    | VERSION | ENDPOINT | PORT     | USERNAME | P
   my-mongo      | running | <%= dbId %> | <%= versions[0] %>     | <hidden> | <hidden> | <hidden> | <hidden> | simple-example
 ```
 
-## Delete a database
+## Delete your <%= dbName %> database
 
-To delete a database, you have two options:
-- Remove it from the configuration file, commit and push
-- If you worked on a feature branch, delete the branch, and the database instance automatically deletes as well
+To delete a database, you have to:
+- Remove it from the configuration file, commit and push.
+- Delete it manually (for security purpose) through the [Qovery web interface][urls.start_qovery].
 
 <Alert type="danger">
 
@@ -95,28 +95,10 @@ Delete action drops the service and its data!
 
 <Alert type="info">
 
-Backups are kept for 1 month if you need to recover.
+Backups from production environments are kept for 1 month if you need to recover.
 
 </Alert>
 
-## Backups
+## <%= dbName %> backup
 
-
-<Alert>
-
-By default, backups are made daily between 1h and 5h.
-
-</Alert>
-
-You can change the window very easily (use 24h format):
-
-```yml title=".qovery.yml" {6}
-application:
-  ...
-databases:
-  - name: my-<%= dbId %>
-    type: <%= dbId %>
-    backup-window: 21-23
-```
-
-As described in the configuration file, the backup occurs between 9 PM and 11 PM.
+Daily backups for your <%= dbName %> database are automatically done for [Production environments][docs.using-qovery.configuration.business.policy#environment-mode].

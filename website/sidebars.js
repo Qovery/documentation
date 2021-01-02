@@ -61,9 +61,10 @@ module.exports = {
                             label: 'Databases',
                             items: [
                                 "using-qovery/configuration/databases",
-                                "using-qovery/configuration/databases/mongodb",
                                 "using-qovery/configuration/databases/postgresql",
                                 "using-qovery/configuration/databases/mysql",
+                                "using-qovery/configuration/databases/mongodb",
+                                "using-qovery/configuration/databases/redis",
                             ],
                         },
                         "using-qovery/configuration/environment-variables",
@@ -133,6 +134,7 @@ module.exports = {
                     label: 'Integration',
                     items: [
                         "using-qovery/integration",
+                        "using-qovery/integration/github-preview",
                         "using-qovery/integration/project-templates",
                         "using-qovery/integration/ide-plugins",
                     ]
@@ -163,13 +165,18 @@ module.exports = {
                 {
                     type: 'link',
                     label: 'API',
-                    href: 'https://api.qovery.io/swagger-ui.html#'
+                    href: 'https://api.qovery.com/swagger-ui.html#'
                 },
                 "useful-links/faq",
                 {
                     type: 'link',
                     label: 'Roadmap',
                     href: 'https://roadmap.qovery.com'
+                },
+                {
+                    type: 'link',
+                    label: 'Github',
+                    href: 'https://github.com/qovery'
                 },
                 "useful-links/help-and-support",
             ],

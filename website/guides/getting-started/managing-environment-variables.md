@@ -1,15 +1,15 @@
 ---
-last_modified_on: "2020-10-13"
+last_modified_on: "2021-01-09"
 $schema: "/.meta/.schemas/guides.json"
-title: Managing env variables
+title: Environment variables
 description: How to manage environment variables in your projects and applications
+series_position: 4
 author_github: https://github.com/pjeziorowski
 tags: ["type: guide"]
 ---
 import Steps from '@site/src/components/Steps';
 
-A well designed application can run in multiple environments.
-Its configuration is not hard-coded in the source code, but instead extracted and allowed to be adjustable appropriately for different situations.
+A well-designed application can run in multiple environments. Its configuration is not hard-coded in the source code, but instead extracted and allowed to be adjustable appropriately for different situations.
 Although apps run the same code, they may use different, environment-specific configuration.
 
 For example, your application may use a different instance of database on your machine than in a production environment (thus, database credentials and addresses should be configurable).
@@ -21,7 +21,7 @@ For this reason, Qovery allows you to store your configurations and credentials 
 
      To make changes please edit the template located at:
 
-     website/guides/advanced/managing-environment-variables.md.erb
+     website/guides/getting-started/managing-environment-variables.md.erb
 -->
 
 ## Set variables

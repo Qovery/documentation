@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-12-05"
+last_modified_on: "2021-01-09"
 $schema: "/.meta/.schemas/guides.json"
 title: Create a blazingly fast REST API in Rust (Part 1/2)
 description: How to create a blazingly fast REST API in Rust, with zero-cost abstraction and very low overhead - Part 1/2
@@ -558,23 +558,21 @@ Qovery is going to help you to deploy your application in a few seconds. Let's d
 
 <TabItem value="web">
 
+<li>
 
-
-### Web interface
-
-Sign up with Github or Gitlab to the [Qovery web interface][urls.start_qovery].
+Sign in to the [Qovery web interface][urls.start_qovery].
 
 <p align="center">
   <a href="https://start.qovery.com"><img src="/img/qovery_signup.svg" alt="Qovery Sign-up page" /></a>
 </p>
 
-
+</li>
 
 </TabItem>
 
 <TabItem value="cli">
 
-
+<li>
 
 ### Install Qovery CLI
 
@@ -668,11 +666,12 @@ Few limitations exist on Windows: [read more][docs.cli#windows]
 
 </Tabs>
 
+</li>
 
-
-
+<li>
 
 ### Sign up
+
 ```bash
 # Sign up and sign in command
 $ qovery auth
@@ -705,46 +704,7 @@ Note: Qovery needs access to your account to be able to clone your repository fo
 
 Congratulations, you are logged-in.
 
-
-
-</TabItem>
-
-</Tabs>
-
-
-
-### Permissions
-
-<Tabs
-  centered={true}
-  className={"rounded"}
-  defaultValue={"github"}
-  placeholder="Select your Git provider"
-  select={false}
-  size={null}
-  values={[{"group":"Git","label":"Github","value":"github"},{"group":"Git","label":"Gitlab","value":"gitlab"}]}>
-
-<TabItem value="github">
-
-Qovery needs to get access to your Github account to deploy the application.
-
-**[Click here to give access!][urls.authorize_qovery]**
-
-</TabItem>
-
-<TabItem value="gitlab">
-
-Are you hosting your projects on Gitlab? We got you covered!
-Simply sign in to Qovery using your Gitlab account and enable Qovery in your project using:
-
-```bash
-# enables Qovery for the project in current working directory
-$ qovery git enable
-```
-
-That's it! It's a one time process that needs to be performed in each of your Gitlab projects that makes Gitlab send notifications about events happening in your repository.
-
-In the future, Qovery will allow you to manage your projects directly in Gitlab and Qovery UI.
+</li>
 
 </TabItem>
 

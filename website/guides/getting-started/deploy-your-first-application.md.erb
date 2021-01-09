@@ -11,11 +11,11 @@ import Alert from '@site/src/components/Alert';
 import CodeExplanation from '@site/src/components/CodeExplanation';
 import Assumptions from '@site/src/components/Assumptions';
 
-Qovery is an easy way to deploy complete backend and frontend applications. In this guide, we'll deploy a Hello World [Node.JS][urls.node_js] application and touch on some basic concepts.
+Qovery is an easy way to deploy a full-stack application. Meaning, you can deploy a backend, frontend and a database seamlessly. In this guide, I'll show you how to deploy a template app.
 
 <Assumptions>
 
-* You have a [Github][urls.github] account
+* You have a [Github][urls.github] or [Gitlab][urls.gitlab] account
 
 </Assumptions>
 
@@ -24,68 +24,95 @@ Qovery is an easy way to deploy complete backend and frontend applications. In t
 
 <ol>
 
-<%= qovery_sign_up(true) %>>
+<Tabs
+centered={true}
+className={"rounded"}
+defaultValue={"web"}
+placeholder="Select your interface"
+select={false}
+size={null}
+values={[{"group":"Interfaces","label":"Web","value":"web"},{"group":"Interfaces","label":"CLI","value":"cli"}]}>
+
+<TabItem value="web">
 
 <li>
 
-### Deploy your first app!
+### Sign up
 
-.
+<%= qovery_sign_up_web() %>
 
-#### Web interface
+</li>
 
-Here is a short video showing all the steps to deploy your first app with the [Qovery Web interface][urls.start_qovery].
+<li>
 
-<div class="video-container">
-  <p align="center">
-    <iframe width="800" height="600" src="https://www.youtube.com/embed/wiy_qypBnRM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-    </iframe>
-  </p>
-</div>
+### Deploy a templated app!
 
-.
-
-#### CLI
-
-**Fork** this [NodeJS application](https://github.com/Qovery/simple-example-node), and **Clone** your repository
-
-```bash title="Clone your forked application"
-# Change <your_name> with your Github account name
-$ git clone git@github.com:<your_name>/simple-example-node.git
-```
-
-Qovery has deployed the application, to get the deployment status:
-
-```bash
-# Move into the directory
-$ cd simple-example-node
-
-# Show the deployment status
-$ qovery status
-```
-
-Here is the output you should have. Is it not the case? [Contact us on Discord][urls.qovery_chat]
-
-```bash
-BRANCH NAME | STATUS  | ENDPOINTS          | APPLICATIONS        | DATABASES
-master      | running | https://domain.tld | simple-example-node | none
-
-APPLICATION NAME    | STATUS  | DATABASES
-simple-example-node | running | none
-```
-
-Voilà ! Your first application has been successfully deployed
+<%= qovery_deploy_app_web() %>
 
 
 </li>
+
+</TabItem>
+
+<TabItem value="cli">
+
+<li>
+
+### Install
+
+<%= qovery_install_cli() %>
+
+</li>
+
+<li>
+
+### Sign up
+
+<%= qovery_sign_up_cli() %>
+
+</li>
+
+<li>
+
+### Deploy a templated app!
+
+<%= qovery_deploy_app_cli() %>
+
+</li>
+
+</TabItem>
+
+</Tabs>
+
 </ol>
 </Steps>
 
-## Deploy your own application
+## Deploy your app!
+
+<Tabs
+centered={true}
+className={"rounded"}
+defaultValue={"web"}
+placeholder="Select your interface"
+select={false}
+size={null}
+values={[{"group":"Interfaces","label":"Web","value":"web"},{"group":"Interfaces","label":"CLI","value":"cli"}]}>
+
+<TabItem value="web">
+
+It's as simple as deploying a template, the difference is to choose `I already have an application` instead of `I want to use a template`.
+
+<p align="center">
+  <img src="/img/i-have-an-app.png" alt="Deploy your app with Qovery" />
+</p>
+
+</TabItem>
+
+<TabItem value="cli">
 
 <Alert type="info">
 
-You must provide your `Dockerfile` **OR** use [one provided by us][guides.application-template]
+You must provide your `Dockerfile`.
 
 </Alert>
 
@@ -111,6 +138,10 @@ $ git push -u origin master
 ```
 
 That's it!
+
+</TabItem>
+
+</Tabs>
 
 ## Next Steps
 

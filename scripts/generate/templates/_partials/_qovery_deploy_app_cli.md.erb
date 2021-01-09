@@ -1,0 +1,26 @@
+```bash title="Clone your forked application"
+# Change <your_name> with your Github account name
+$ git clone git@github.com:<your_name>/simple-example-node.git
+```
+
+Qovery has deployed the application, to get the deployment status:
+
+```bash
+# Move into the directory
+$ cd simple-example-node
+
+# Show the deployment status
+$ qovery status
+```
+
+Here is the output you should have. Is it not the case? [Contact us on Discord][urls.qovery_chat]
+
+```bash
+BRANCH NAME | STATUS  | ENDPOINTS          | APPLICATIONS        | DATABASES
+master      | running | https://domain.tld | simple-example-node | none
+
+APPLICATION NAME    | STATUS  | DATABASES
+simple-example-node | running | none
+```
+
+Voilà ! Your first templated app has been successfully deployed

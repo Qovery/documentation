@@ -9,140 +9,33 @@
 
 <TabItem value="web">
 
-<% if is_steps %>
-
 <li>
 
-<% end %>
-
-### Web interface
-
-Sign up with Github or Gitlab to the [Qovery web interface][urls.start_qovery].
-
-<p align="center">
-  <a href="https://start.qovery.com"><img src="/img/qovery_signup.svg" alt="Qovery Sign-up page" /></a>
-</p>
-
-<% if is_steps %>
+<%= qovery_sign_up_web() %>
 
 </li>
-
-<% end %>
 
 </TabItem>
 
 <TabItem value="cli">
 
-<% if is_steps %>
-
 <li>
-
-<% end %>
 
 ### Install Qovery CLI
 
 <%= qovery_install_cli() %>
 
-<% if is_steps %>
-
 </li>
 
-<% end %>
-
-<% if is_steps %>
-
 <li>
-
-<% end %>
 
 ### Sign up
-```bash
-# Sign up and sign in command
-$ qovery auth
-```
 
-<Alert type="info">
-
-If you are using an environment without access to GUI or a browser, you can use headless authentication instead:
-
-```bash
-# Sign up and sign in command
-$ qovery auth --headless
-```
-
-</Alert>
-
-Your browser window with sign-in options will open.
-
-<p align="center">
-  <img src="/img/qovery_signup.svg" alt="Qovery Sign-up page" />
-</p>
-
-Note: Qovery needs access to your account to be able to clone your repository for future application builds.
-
-[Click here][urls.authorize_qovery] to authorize Qovery to clone and build your applications.
-
-<p align="center">
-  <img src="/img/github_signup.svg" alt="Connect Github" />
-</p>
-
-Congratulations, you are logged-in.
-
-<% if is_steps %>
+<%= qovery_sign_up_cli() %>
 
 </li>
-
-<% end %>
 
 </TabItem>
 
 </Tabs>
 
-<% if is_steps %>
-
-<li>
-
-<% end %>
-
-### Permissions
-
-<Tabs
-  centered={true}
-  className={"rounded"}
-  defaultValue={"github"}
-  placeholder="Select your Git provider"
-  select={false}
-  size={null}
-  values={[{"group":"Git","label":"Github","value":"github"},{"group":"Git","label":"Gitlab","value":"gitlab"}]}>
-
-<TabItem value="github">
-
-Qovery needs to get access to your Github account to deploy the application.
-
-**[Click here to give access!][urls.authorize_qovery]**
-
-</TabItem>
-
-<TabItem value="gitlab">
-
-Are you hosting your projects on Gitlab? We got you covered!
-Simply sign in to Qovery using your Gitlab account and enable Qovery in your project using:
-
-```bash
-# enables Qovery for the project in current working directory
-$ qovery git enable
-```
-
-That's it! It's a one time process that needs to be performed in each of your Gitlab projects that makes Gitlab send notifications about events happening in your repository.
-
-In the future, Qovery will allow you to manage your projects directly in Gitlab and Qovery UI.
-
-</TabItem>
-
-</Tabs>
-
-<% if is_steps %>
-
-</li>
-
-<% end %>

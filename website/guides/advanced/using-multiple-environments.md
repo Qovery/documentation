@@ -1,7 +1,7 @@
 ---
-last_modified_on: "2020-04-23"
+last_modified_on: "2021-01-09"
 $schema: "/.meta/.schemas/guides.json"
-title: Using multiple Environments
+title: Multiple environments
 description: How to make use of Environments on Qovery
 author_github: https://github.com/pjeziorowski
 tags: ["type: guide"]

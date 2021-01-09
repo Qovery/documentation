@@ -699,7 +699,7 @@ class Templates
     render("#{partials_path}/_qovery_status_output.md", binding).strip
   end
 
-  def qovery_sign_up(is_steps = false)
+  def qovery_sign_up()
     render("#{partials_path}/_qovery_sign_up.md", binding).strip
   end
 
@@ -709,6 +709,22 @@ class Templates
 
   def qovery_install_cli
     render("#{partials_path}/_qovery_install_cli.md", binding).strip
+  end
+
+  def qovery_sign_up_cli
+    render("#{partials_path}/_qovery_sign_up_cli.md", binding).strip
+  end
+
+  def qovery_sign_up_web
+    render("#{partials_path}/_qovery_sign_up_web.md", binding).strip
+  end
+
+  def qovery_deploy_app_cli
+    render("#{partials_path}/_qovery_deploy_app_cli.md", binding).strip
+  end
+
+  def qovery_deploy_app_web
+    render("#{partials_path}/_qovery_deploy_app_web.md", binding).strip
   end
 
   def qovery_routing_intro

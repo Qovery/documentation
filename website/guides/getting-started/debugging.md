@@ -1,9 +1,9 @@
 ---
-last_modified_on: "2020-12-02"
+last_modified_on: "2021-01-09"
 $schema: "/.meta/.schemas/guides.json"
 title: Debugging
 description: How to debug your application with Qovery
-series_position: 4
+series_position: 5
 author_github: https://github.com/evoxmusic
 tags: ["type: guide"]
 ---

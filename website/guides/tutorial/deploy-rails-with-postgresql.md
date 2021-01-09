@@ -1,8 +1,8 @@
 ---
-last_modified_on: "2020-12-07"
+last_modified_on: "2021-01-09"
 $schema: "/.meta/.schemas/guides.json"
-title: Deploy Rails with PostgreSQL on AWS with Qovery
-description: How to deploy a Rails application with the PostgreSQL database on AWS with Qovery
+title: Deploy Rails with PostgreSQL with Qovery
+description: How to deploy a Rails application with the PostgreSQL database with Qovery
 author_github: https://github.com/pjeziorowski
 tags: ["type: tutorial", "framework: rails", "language: ruby", "database: postgresql"]
 hide_pagination: true
@@ -15,7 +15,7 @@ import TabItem from '@theme/TabItem';
 import Assumptions from '@site/src/components/Assumptions';
 import Alert from '@site/src/components/Alert';
 
-This tutorial show you how to deploy your [Rails][urls.rails] application with [PostgreSQL][urls.postgresql] database on [AWS][urls.aws]. Let's go!
+This tutorial show you how to deploy your [Rails][urls.rails] application with [PostgreSQL][urls.postgresql] database. Let's go!
 
 <Assumptions name="guide">
 
@@ -32,7 +32,7 @@ This tutorial show you how to deploy your [Rails][urls.rails] application with [
      website/guides/tutorial/deploy-rails-with-postgresql.md.erb
 -->
 
-## Steps to deploy Rails on AWS with Qovery
+## Steps to deploy Rails with Qovery
 
 <Tabs
   centered={true}
@@ -45,23 +45,21 @@ This tutorial show you how to deploy your [Rails][urls.rails] application with [
 
 <TabItem value="web">
 
+<li>
 
-
-### Web interface
-
-Sign up with Github or Gitlab to the [Qovery web interface][urls.start_qovery].
+Sign in to the [Qovery web interface][urls.start_qovery].
 
 <p align="center">
   <a href="https://start.qovery.com"><img src="/img/qovery_signup.svg" alt="Qovery Sign-up page" /></a>
 </p>
 
-
+</li>
 
 </TabItem>
 
 <TabItem value="cli">
 
-
+<li>
 
 ### Install Qovery CLI
 
@@ -155,11 +153,12 @@ Few limitations exist on Windows: [read more][docs.cli#windows]
 
 </Tabs>
 
+</li>
 
-
-
+<li>
 
 ### Sign up
+
 ```bash
 # Sign up and sign in command
 $ qovery auth
@@ -192,46 +191,7 @@ Note: Qovery needs access to your account to be able to clone your repository fo
 
 Congratulations, you are logged-in.
 
-
-
-</TabItem>
-
-</Tabs>
-
-
-
-### Permissions
-
-<Tabs
-  centered={true}
-  className={"rounded"}
-  defaultValue={"github"}
-  placeholder="Select your Git provider"
-  select={false}
-  size={null}
-  values={[{"group":"Git","label":"Github","value":"github"},{"group":"Git","label":"Gitlab","value":"gitlab"}]}>
-
-<TabItem value="github">
-
-Qovery needs to get access to your Github account to deploy the application.
-
-**[Click here to give access!][urls.authorize_qovery]**
-
-</TabItem>
-
-<TabItem value="gitlab">
-
-Are you hosting your projects on Gitlab? We got you covered!
-Simply sign in to Qovery using your Gitlab account and enable Qovery in your project using:
-
-```bash
-# enables Qovery for the project in current working directory
-$ qovery git enable
-```
-
-That's it! It's a one time process that needs to be performed in each of your Gitlab projects that makes Gitlab send notifications about events happening in your repository.
-
-In the future, Qovery will allow you to manage your projects directly in Gitlab and Qovery UI.
+</li>
 
 </TabItem>
 
@@ -374,7 +334,7 @@ Note: `qovery run` connects your application to the PostgreSQL database on Qover
 
 
 ## Conclusion
-Congratulations! Now, you know how to deploy your Rails app with PostgreSQL on AWS in just a few steps.
+Congratulations! Now, you know how to deploy your Rails app with PostgreSQL in just a few steps.
 
 Do you have any feedback about this tutorial? Let us know what you think on [Discord][urls.qovery_chat], and join our wonderful dev community of +600 devs.
 
@@ -384,7 +344,6 @@ Do you have any feedback about this tutorial? Let us know what you think on [Dis
 [docs.cli#windows]: /docs/using-qovery/interface/cli/#windows
 [docs.main-concepts.environment]: /docs/main-concepts/environment/
 [urls.authorize_qovery]: https://github.com/apps/qovery/installations/new
-[urls.aws]: https://aws.amazon.com
 [urls.brew]: https://brew.sh/
 [urls.github]: https://github.com
 [urls.gitlab]: https://gitlab.com

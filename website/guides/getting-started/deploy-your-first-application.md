@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-12-05"
+last_modified_on: "2021-01-09"
 $schema: "/.meta/.schemas/guides.json"
 title: Hello World. Deploy your first application.
 description: How to deploy your first application with Qovery
@@ -16,11 +16,11 @@ import Alert from '@site/src/components/Alert';
 import CodeExplanation from '@site/src/components/CodeExplanation';
 import Assumptions from '@site/src/components/Assumptions';
 
-Qovery is an easy way to deploy complete backend and frontend applications. In this guide, we'll deploy a Hello World [Node.JS][urls.node_js] application and touch on some basic concepts.
+Qovery is an easy way to deploy a full-stack application. Meaning, you can deploy a backend, frontend and a database seamlessly. In this guide, I'll show you how to deploy a template app.
 
 <Assumptions>
 
-* You have a [Github][urls.github] account
+* You have a [Github][urls.github] or [Gitlab][urls.gitlab] account
 
 </Assumptions>
 
@@ -38,47 +38,55 @@ Qovery is an easy way to deploy complete backend and frontend applications. In t
 <ol>
 
 <Tabs
-  centered={true}
-  className={"rounded"}
-  defaultValue={"web"}
-  placeholder="Select your interface"
-  select={false}
-  size={null}
-  values={[{"group":"Interfaces","label":"Web","value":"web"},{"group":"Interfaces","label":"CLI","value":"cli"}]}>
+centered={true}
+className={"rounded"}
+defaultValue={"web"}
+placeholder="Select your interface"
+select={false}
+size={null}
+values={[{"group":"Interfaces","label":"Web","value":"web"},{"group":"Interfaces","label":"CLI","value":"cli"}]}>
 
 <TabItem value="web">
 
-
-
 <li>
 
+### Sign up
 
-
-### Web interface
-
-Sign up with Github or Gitlab to the [Qovery web interface][urls.start_qovery].
+Sign in to the [Qovery web interface][urls.start_qovery].
 
 <p align="center">
   <a href="https://start.qovery.com"><img src="/img/qovery_signup.svg" alt="Qovery Sign-up page" /></a>
 </p>
 
+</li>
+
+<li>
+
+### Deploy a templated app!
+
+Here is a short video showing how to deploy your app with the [Qovery Web interface][urls.start_qovery].
+
+<div class="video-container">
+  <p align="center">
+    <iframe width="800" height="600" src="https://www.youtube.com/embed/kdCt26vyzgs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+    </iframe>
+  </p>
+</div>
+
+Steps:
+* Create a project
+* Deploy an app
 
 
 </li>
-
-
 
 </TabItem>
 
 <TabItem value="cli">
 
-
-
 <li>
 
-
-
-### Install Qovery CLI
+### Install
 
 <Tabs
   centered={true}
@@ -170,19 +178,12 @@ Few limitations exist on Windows: [read more][docs.cli#windows]
 
 </Tabs>
 
-
-
 </li>
-
-
-
-
 
 <li>
 
-
-
 ### Sign up
+
 ```bash
 # Sign up and sign in command
 $ qovery auth
@@ -215,85 +216,11 @@ Note: Qovery needs access to your account to be able to clone your repository fo
 
 Congratulations, you are logged-in.
 
-
-
 </li>
 
-
-
-</TabItem>
-
-</Tabs>
-
-
-
 <li>
 
-
-
-### Permissions
-
-<Tabs
-  centered={true}
-  className={"rounded"}
-  defaultValue={"github"}
-  placeholder="Select your Git provider"
-  select={false}
-  size={null}
-  values={[{"group":"Git","label":"Github","value":"github"},{"group":"Git","label":"Gitlab","value":"gitlab"}]}>
-
-<TabItem value="github">
-
-Qovery needs to get access to your Github account to deploy the application.
-
-**[Click here to give access!][urls.authorize_qovery]**
-
-</TabItem>
-
-<TabItem value="gitlab">
-
-Are you hosting your projects on Gitlab? We got you covered!
-Simply sign in to Qovery using your Gitlab account and enable Qovery in your project using:
-
-```bash
-# enables Qovery for the project in current working directory
-$ qovery git enable
-```
-
-That's it! It's a one time process that needs to be performed in each of your Gitlab projects that makes Gitlab send notifications about events happening in your repository.
-
-In the future, Qovery will allow you to manage your projects directly in Gitlab and Qovery UI.
-
-</TabItem>
-
-</Tabs>
-
-
-
-</li>>
-
-<li>
-
-### Deploy your first app!
-
-.
-
-#### Web interface
-
-Here is a short video showing all the steps to deploy your first app with the [Qovery Web interface][urls.start_qovery].
-
-<div class="video-container">
-  <p align="center">
-    <iframe width="800" height="600" src="https://www.youtube.com/embed/wiy_qypBnRM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-    </iframe>
-  </p>
-</div>
-
-.
-
-#### CLI
-
-**Fork** this [NodeJS application](https://github.com/Qovery/simple-example-node), and **Clone** your repository
+### Deploy a templated app!
 
 ```bash title="Clone your forked application"
 # Change <your_name> with your Github account name
@@ -320,18 +247,43 @@ APPLICATION NAME    | STATUS  | DATABASES
 simple-example-node | running | none
 ```
 
-Voilà ! Your first application has been successfully deployed
-
+Voilà ! Your first templated app has been successfully deployed
 
 </li>
+
+</TabItem>
+
+</Tabs>
+
 </ol>
 </Steps>
 
-## Deploy your own application
+## Deploy your app!
+
+<Tabs
+centered={true}
+className={"rounded"}
+defaultValue={"web"}
+placeholder="Select your interface"
+select={false}
+size={null}
+values={[{"group":"Interfaces","label":"Web","value":"web"},{"group":"Interfaces","label":"CLI","value":"cli"}]}>
+
+<TabItem value="web">
+
+It's as simple as deploying a template, the difference is to choose `I already have an application` instead of `I want to use a template`.
+
+<p align="center">
+  <img src="/img/i-have-an-app.png" alt="Deploy your app with Qovery" />
+</p>
+
+</TabItem>
+
+<TabItem value="cli">
 
 <Alert type="info">
 
-You must provide your `Dockerfile` **OR** use [one provided by us][guides.application-template]
+You must provide your `Dockerfile`.
 
 </Alert>
 
@@ -358,17 +310,20 @@ $ git push -u origin master
 
 That's it!
 
+</TabItem>
+
+</Tabs>
+
 ## Next Steps
 
 To deploy your application, it's as simple as that. In the following article, we will see how to add a database. Let's get started!
 
 
 [docs.cli#windows]: /docs/using-qovery/interface/cli/#windows
-[guides.application-template]: /guides/getting-started/application-template/
 [urls.authorize_qovery]: https://github.com/apps/qovery/installations/new
 [urls.brew]: https://brew.sh/
 [urls.github]: https://github.com
-[urls.node_js]: https://nodejs.org
+[urls.gitlab]: https://gitlab.com
 [urls.qovery_chat]: https://discord.qovery.com
 [urls.qovery_cli_releases]: https://github.com/Qovery/qovery-cli/releases
 [urls.scoop]: https://scoop.sh/

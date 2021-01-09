@@ -5,12 +5,57 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="update documentation (missing URLs)">
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="wip: article">
+      <change afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_deploy_app_cli.md.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_deploy_app_web.md.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_sign_up_cli.md.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_sign_up_web.md.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/guides/getting-started/managing-environment-variables.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/i-have-an-app.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/generate/templates.rb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_how_to_deploy_x_with_y.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_how_to_deploy_x_with_y.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_sign_up.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_sign_up.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/integration/project-templates.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/integration/project-templates.md.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/interface/cli.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/interface/cli.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/managing-environment-variables.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/managing-environment-variables.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/managing-environment-variables.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/using-multiple-environments.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/using-multiple-environments.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/using-multiple-environments.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/using-multiple-environments.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/application-template.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/application-template.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/application-template.md.erb.deleted" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/debugging.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/debugging.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/debugging.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/debugging.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/deploy-your-first-application.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/deploy-your-first-application.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/deploy-your-first-application.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/deploy-your-first-application.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/setting-custom-domain.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/setting-custom-domain.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/setting-custom-domain.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/setting-custom-domain.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/create-a-blazingly-fast-api-in-rust-part-1.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/create-a-blazingly-fast-api-in-rust-part-1.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-django-with-postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-django-with-postgresql.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-django-with-postgresql.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-django-with-postgresql.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-flask-with-postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-flask-with-postgresql.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-flask-with-postgresql.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-flask-with-postgresql.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-gin-with-postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-gin-with-postgresql.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-gin-with-postgresql.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-gin-with-postgresql.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-jhipster-with-postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-jhipster-with-postgresql.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-jhipster-with-postgresql.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-jhipster-with-postgresql.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-laravel-with-mysql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-laravel-with-mysql.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-laravel-with-mysql.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-laravel-with-mysql.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-node-js-with-postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-node-js-with-postgresql.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-node-js-with-postgresql.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-node-js-with-postgresql.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-rails-with-postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-rails-with-postgresql.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-rails-with-postgresql.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-rails-with-postgresql.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-spring-boot-with-postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-spring-boot-with-postgresql.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-spring-boot-with-postgresql.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-spring-boot-with-postgresql.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-a-docker-container.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-a-docker-container.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/simplest-way-to-deploy-deno-with-database.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/simplest-way-to-deploy-deno-with-database.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/guides/tutorial/simplest-way-to-deploy-deno-with-database.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/simplest-way-to-deploy-deno-with-database.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/url-shortener-api-with-kotlin.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/url-shortener-api-with-kotlin.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/metadata.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/metadata.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/sidebars.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/sidebars.js.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.js.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/theme/Footer/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/theme/Footer/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +107,9 @@
       </RecentBranches>
     </option>
   </component>
+  <component name="GoVcsConfiguration">
+    <option name="GO_FMT" value="false" />
+  </component>
   <component name="JsFlowSettings">
     <service-enabled>true</service-enabled>
     <exe-path />
@@ -70,7 +118,7 @@
   </component>
   <component name="JupyterTrust" id="99d7fc35-d091-4e4e-ae13-001ca09c7af3" />
   <component name="KotlinMultiplatform">
-    <executables />
+    <allAvailableExecutables />
   </component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="0qlt6lxg" />
@@ -105,21 +153,22 @@
     <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/website/static/img" />
+      <recent name="$PROJECT_DIR$/scripts/generate/templates/_partials" />
+      <recent name="$PROJECT_DIR$/website/docs/using-qovery/configuration/databases" />
+      <recent name="$PROJECT_DIR$/website/docs/using-qovery/configuration" />
+      <recent name="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/build-platform" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/website/docs/using-qovery/configuration/business" />
       <recent name="$PROJECT_DIR$/website/guides/getting-started" />
+      <recent name="$PROJECT_DIR$/website/docs/using-qovery/configuration/business" />
       <recent name="$PROJECT_DIR$/website/guides/Advanced" />
       <recent name="$PROJECT_DIR$/website/static/img" />
       <recent name="$PROJECT_DIR$/website/docs/using-qovery" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/website/static/img" />
-      <recent name="$PROJECT_DIR$/website/docs/using-qovery/configuration/databases" />
-      <recent name="$PROJECT_DIR$/scripts/generate/templates/_partials" />
-      <recent name="$PROJECT_DIR$/website/docs/using-qovery/configuration" />
-      <recent name="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/build-platform" />
     </key>
   </component>
   <component name="RunManager" selected="npm.start">
@@ -238,13 +287,10 @@
       <workItem from="1606861485707" duration="9548000" />
       <workItem from="1607327751450" duration="343000" />
       <workItem from="1607328971423" duration="1430000" />
-    </task>
-    <task id="LOCAL-00096" summary="create deploy fullstack article">
-      <created>1591374588230</created>
-      <option name="number" value="00096" />
-      <option name="presentableId" value="LOCAL-00096" />
-      <option name="project" value="LOCAL" />
-      <updated>1591374588231</updated>
+      <workItem from="1609752590301" duration="49000" />
+      <workItem from="1609757738295" duration="6000" />
+      <workItem from="1610136448757" duration="6624000" />
+      <workItem from="1610192043097" duration="2235000" />
     </task>
     <task id="LOCAL-00097" summary="fix: youtube video iframe container">
       <created>1591380920610</created>
@@ -582,7 +628,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607338952401</updated>
     </task>
-    <option name="localTasksCounter" value="145" />
+    <task id="LOCAL-00145" summary="wip: article">
+      <created>1609596302486</created>
+      <option name="number" value="00145" />
+      <option name="presentableId" value="LOCAL-00145" />
+      <option name="project" value="LOCAL" />
+      <updated>1609596302486</updated>
+    </task>
+    <option name="localTasksCounter" value="146" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -668,7 +721,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="update: storage.md.erb" />
     <MESSAGE value="update: rename &quot;Enterprise&quot; to &quot;Business&quot;" />
     <MESSAGE value="update: Hasura with PQL article" />
     <MESSAGE value="create deploy fullstack article" />
@@ -693,50 +745,7 @@
     <MESSAGE value="update documentation (add redis)" />
     <MESSAGE value="update documentation" />
     <MESSAGE value="update documentation (missing URLs)" />
-    <option name="LAST_COMMIT_MESSAGE" value="update documentation (missing URLs)" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="1520" y="448" key="#Plugins" timestamp="1603702130846">
-      <screen x="0" y="0" width="3840" height="1600" />
-    </state>
-    <state x="1520" y="448" key="#Plugins/0.0.3840.1600@0.0.3840.1600" timestamp="1603702130846" />
-    <state width="1072" height="653" key="SwitcherDM" timestamp="1607339473949">
-      <screen x="0" y="0" width="3840" height="1600" />
-    </state>
-    <state width="1072" height="653" key="SwitcherDM/0.0.3840.1600@0.0.3840.1600" timestamp="1607339473949" />
-    <state width="1072" height="643" key="SwitcherDM/0.23.3840.1577@0.23.3840.1577" timestamp="1602847377524" />
-    <state x="1920" y="1" width="1017" height="1574" key="Vcs.Push.Dialog.v2" timestamp="1607338954430">
-      <screen x="0" y="0" width="3840" height="1600" />
-    </state>
-    <state x="1920" y="1" key="Vcs.Push.Dialog.v2/0.0.3840.1600@0.0.3840.1600" timestamp="1607338954430" />
-    <state x="2820" y="24" width="1017" height="1574" key="Vcs.Push.Dialog.v2/0.23.3840.1577@0.23.3840.1577" timestamp="1602848000758" />
-    <state x="2643" y="24" width="1194" height="1574" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1601811971550">
-      <screen x="0" y="23" width="3840" height="1577" />
-    </state>
-    <state x="2643" y="24" width="1194" height="1574" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.23.3840.1577@0.23.3840.1577" timestamp="1601811971550" />
-    <state x="1526" y="680" width="1017" height="1574" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606396984774">
-      <screen x="0" y="0" width="3840" height="1600" />
-    </state>
-    <state x="1526" y="680" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.3840.1600@0.0.3840.1600" timestamp="1606396984774" />
-    <state x="2820" y="24" width="1017" height="1574" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.3840.1577@0.23.3840.1577" timestamp="1602838032561" />
-    <state x="440" y="136" width="2958" height="1174" key="find.popup" timestamp="1607338638432">
-      <screen x="0" y="0" width="3840" height="1600" />
-    </state>
-    <state x="440" y="136" width="2958" height="1174" key="find.popup/0.0.3840.1600@0.0.3840.1600" timestamp="1607338638432" />
-    <state x="440" y="157" width="2958" height="1158" key="find.popup/0.23.3840.1577@0.23.3840.1577" timestamp="1602665362993" />
-    <state x="2820" y="1" width="1017" height="1574" key="new project wizard" timestamp="1607073672226">
-      <screen x="0" y="0" width="3840" height="1600" />
-    </state>
-    <state x="2820" y="1" key="new project wizard/0.0.3840.1600@0.0.3840.1600" timestamp="1607073672226" />
-    <state x="2820" y="24" width="1017" height="1574" key="new project wizard/0.23.3840.1577@0.23.3840.1577" timestamp="1602842040334" />
-    <state x="2454" y="385" key="run.anything.popup" timestamp="1602665499511">
-      <screen x="0" y="23" width="3840" height="1577" />
-    </state>
-    <state x="2454" y="385" key="run.anything.popup/0.23.3840.1577@0.23.3840.1577" timestamp="1602665499511" />
-    <state x="1202" y="290" width="1436" height="989" key="search.everywhere.popup" timestamp="1607184349769">
-      <screen x="0" y="0" width="3840" height="1600" />
-    </state>
-    <state x="1202" y="290" width="1436" height="989" key="search.everywhere.popup/0.0.3840.1600@0.0.3840.1600" timestamp="1607184349769" />
-    <state x="1202" y="309" width="1436" height="975" key="search.everywhere.popup/0.23.3840.1577@0.23.3840.1577" timestamp="1602846934005" />
+    <MESSAGE value="wip: article" />
+    <option name="LAST_COMMIT_MESSAGE" value="wip: article" />
   </component>
 </project>

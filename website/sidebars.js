@@ -71,7 +71,6 @@ module.exports = {
                         "using-qovery/configuration/secrets",
                         "using-qovery/configuration/domains",
                         "using-qovery/configuration/storage",
-                        "using-qovery/configuration/brokers",
                         "using-qovery/configuration/routing",
                         {
                             type: 'category',

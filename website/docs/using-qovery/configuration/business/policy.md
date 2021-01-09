@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-10-11"
+last_modified_on: "2021-01-09"
 title: "Policy"
 description: "Learn how to configure Policies in Qovery"
 ---
@@ -115,25 +115,25 @@ This option shutdown an environment at the specific date and time and can be rep
 
 This option indicates if you prefer to manually start an environment or not.
 
-## Policy scenarios
+<!-- ## Policy scenarios -->
 
-### Reduce development environment costs
+<!-- ### Reduce development environment costs -->
 
 <!-- SCHEMA: Create a schema where we see that environment are automatically startup and shutdown -->
 
-TODO
+<!-- TODO -->
 
-### Reduce the risk of production outage
+<!-- ### Reduce the risk of production outage -->
 
 <!-- SCHEMA: Create a schema where we see that environment are deploy on different clusters depending if it is production or development -->
 
-TODO
+<!-- TODO -->
 
-### Synchronize the staging environment with the production environment
+<!-- ### Synchronize the staging environment with the production environment -->
 
 <!-- SCHEMA: Create a schema where we see two environment in synchronization -->
 
-TODO
+<!-- TODO -->
 
 
 [docs.main-concepts.environment]: /docs/main-concepts/environment/

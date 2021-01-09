@@ -1,10 +1,10 @@
 ---
-last_modified_on: "2020-10-04"
+last_modified_on: "2021-01-09"
 title: "External Service"
 description: "Learn how to configure External Service in Qovery"
 ---
 
-TODO
+This feature is still under development.
 
 
 

@@ -59,7 +59,7 @@ You may have already heard about [Angular][urls.angular]. It is one of the most 
 
 ### Qovery
 
-[Qovery][urls.qovery] is a Container as a Service platform that helps developers deploy their applications in the Cloud in just a few seconds. Qovery is designed to deploy stateless and stateful applications - like [databases][docs.databases], [brokers][docs.brokers] and [storage][docs.storage]. And all of this, on any Cloud providers; More specifically AWS (Amazon Web Services), GCP (Google Cloud Platform), and Azure (Microsoft Cloud).
+[Qovery][urls.qovery] is a Container as a Service platform that helps developers deploy their applications in the Cloud in just a few seconds. Qovery is designed to deploy stateless and stateful applications - like [databases][docs.databases], and [storage][docs.storage]. And all of this, on any Cloud providers; More specifically AWS (Amazon Web Services), GCP (Google Cloud Platform), and Azure (Microsoft Cloud).
 
 <p align="center">
   <img src="/img/deploy-fullstack-application-composed-of-hasura-postgresql-angular/qovery_with_background.jpg" alt="Qovery integrated with gitlab, github and bitbucket. And integrated with the Cloud providers" />
@@ -337,7 +337,6 @@ In this tutorial, we saw how to deploy a full-stack application composed of a fr
 <Jump to="/guides/tutorial/">Tutorial</Jump>
 
 
-[docs.brokers]: /docs/using-qovery/configuration/brokers/
 [docs.databases]: /docs/using-qovery/configuration/databases/
 [docs.environment]: /docs/main-concepts/environment/
 [docs.storage]: /docs/using-qovery/configuration/storage/

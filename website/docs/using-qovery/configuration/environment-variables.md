@@ -1,12 +1,12 @@
 ---
-last_modified_on: "2020-10-15"
+last_modified_on: "2021-01-09"
 title: "Environment Variables"
 description: "Learn how to configure Environment Variables on Qovery"
 ---
 
 import Alert from '@site/src/components/Alert';
 
-Qovery supports environment variables to make you able to configure your applications.
+Qovery makes environment variables available to all services at runtime, as well as during builds and deploys.
 
 <Alert type="warning">
 

@@ -27,34 +27,7 @@ When you type a command, the CLI is aware of your current [project][docs.main-co
 
 ## First usage
 
-<Tabs
-  centered={true}
-  className={"rounded"}
-  defaultValue={"web"}
-  placeholder="Select your interface"
-  select={false}
-  size={null}
-  values={[{"group":"Interfaces","label":"Web","value":"web"},{"group":"Interfaces","label":"CLI","value":"cli"}]}>
-
-<TabItem value="web">
-
-<li>
-
-Sign in to the [Qovery web interface][urls.start_qovery].
-
-<p align="center">
-  <a href="https://start.qovery.com"><img src="/img/qovery_signup.svg" alt="Qovery Sign-up page" /></a>
-</p>
-
-</li>
-
-</TabItem>
-
-<TabItem value="cli">
-
-<li>
-
-### Install Qovery CLI
+### Install
 
 <Tabs
   centered={true}
@@ -146,10 +119,6 @@ Few limitations exist on Windows: [read more][docs.cli#windows]
 
 </Tabs>
 
-</li>
-
-<li>
-
 ### Sign up
 
 ```bash
@@ -183,12 +152,6 @@ Note: Qovery needs access to your account to be able to clone your repository fo
 </p>
 
 Congratulations, you are logged-in.
-
-</li>
-
-</TabItem>
-
-</Tabs>
 
 ### Help
 
@@ -241,7 +204,7 @@ The more accessible it is to use `qovery <command> | Out-Host` when you need to 
 
 Do you have any issue with Qovery CLI? [Open an issue](https://github.com/Qovery/qovery-cli/issues).
 
-## Next steps
+## Deploy your first application
 
 Now that you have installed the CLI, check out [how to deploy your first application][guides.deploy-your-first-application]
 
@@ -255,4 +218,3 @@ Now that you have installed the CLI, check out [how to deploy your first applica
 [urls.brew]: https://brew.sh/
 [urls.qovery_cli_releases]: https://github.com/Qovery/qovery-cli/releases
 [urls.scoop]: https://scoop.sh/
-[urls.start_qovery]: https://start.qovery.com

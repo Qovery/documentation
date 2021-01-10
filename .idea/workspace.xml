@@ -5,26 +5,18 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="wip: article">
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="wip: remove brokers and update other content">
+      <change afterPath="$PROJECT_DIR$/website/static/img/do-create-token-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/do-create-token-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/do-create-token-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/do-create-token-4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/do-create-token-5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/do-create-token-6.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/brokers.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/brokers.md.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/external-service.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/external-service.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/external-service.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/external-service.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/policy.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/policy.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/policy.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/policy.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/environment-variables.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/environment-variables.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/environment-variables.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/environment-variables.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/secrets.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/secrets.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/secrets.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/secrets.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/interface/cli.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/interface/cli.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/interface/cli.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/interface/cli.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/interface/web-interface.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/interface/web-interface.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/interface/web-interface.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/interface/web-interface.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-fullstack-application-composed-of-hasura-postgresql-angular.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-fullstack-application-composed-of-hasura-postgresql-angular.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-fullstack-application-composed-of-hasura-postgresql-angular.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-fullstack-application-composed-of-hasura-postgresql-angular.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/sidebars.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/sidebars.js.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.js.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/cloud-account/amazon-web-services.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/cloud-account/amazon-web-services.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/cloud-account/amazon-web-services.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/cloud-account/amazon-web-services.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/cloud-account/digital-ocean.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/cloud-account/digital-ocean.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/cloud-account/digital-ocean.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/cloud-account/digital-ocean.md.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +95,6 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
-    <property name="GO_FMT" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -260,14 +251,7 @@
       <workItem from="1609757738295" duration="6000" />
       <workItem from="1610136448757" duration="6624000" />
       <workItem from="1610192043097" duration="2235000" />
-      <workItem from="1610200529183" duration="1232000" />
-    </task>
-    <task id="LOCAL-00097" summary="fix: youtube video iframe container">
-      <created>1591380920610</created>
-      <option name="number" value="00097" />
-      <option name="presentableId" value="LOCAL-00097" />
-      <option name="project" value="LOCAL" />
-      <updated>1591380920610</updated>
+      <workItem from="1610200529183" duration="5248000" />
     </task>
     <task id="LOCAL-00098" summary="update databases - add &quot;supported versions&quot; section">
       <created>1591521559335</created>
@@ -605,7 +589,14 @@
       <option name="project" value="LOCAL" />
       <updated>1609596302486</updated>
     </task>
-    <option name="localTasksCounter" value="146" />
+    <task id="LOCAL-00146" summary="wip: remove brokers and update other content">
+      <created>1610201795384</created>
+      <option name="number" value="00146" />
+      <option name="presentableId" value="LOCAL-00146" />
+      <option name="project" value="LOCAL" />
+      <updated>1610201795384</updated>
+    </task>
+    <option name="localTasksCounter" value="147" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -691,7 +682,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="update: rename &quot;Enterprise&quot; to &quot;Business&quot;" />
     <MESSAGE value="update: Hasura with PQL article" />
     <MESSAGE value="create deploy fullstack article" />
     <MESSAGE value="fix: youtube video iframe container" />
@@ -716,6 +706,7 @@
     <MESSAGE value="update documentation" />
     <MESSAGE value="update documentation (missing URLs)" />
     <MESSAGE value="wip: article" />
-    <option name="LAST_COMMIT_MESSAGE" value="wip: article" />
+    <MESSAGE value="wip: remove brokers and update other content" />
+    <option name="LAST_COMMIT_MESSAGE" value="wip: remove brokers and update other content" />
   </component>
 </project>

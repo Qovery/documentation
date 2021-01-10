@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-11-22"
+last_modified_on: "2021-01-10"
 title: "Amazon Web Services (AWS)"
 description: "Learn how to configure and plug your Amazon Web Services (AWS) account"
 ---
@@ -33,6 +33,7 @@ SCHEMA: Show a schema where Qovery is deployed on the account of the customer
 
 * You have a [Qovery][docs.using-qovery.interface] account
 * You have created an [Organization][docs.using-qovery.configuration.business.organization]
+* You have an AWS account
 
 </Assumptions>
 
@@ -42,7 +43,7 @@ To link your AWS account to Qovery you need to provide an AWS `access key id` an
 
 <Alert type="info">
 
-You can link more than one AWS account. Qovery also support multiple Cloud providers within the same Organization. Which means that you can balance your workload on different Cloud providers. [Read more][guides.advanced].
+You can link more than one AWS account. Qovery also support multiple Cloud providers within the same Organization. Meaning, you can balance your workload on different Cloud providers. [Read more][guides.advanced].
 
 </Alert>
 
@@ -116,7 +117,7 @@ Well done!! You now have your AWS `access key id` and `secret access key` and yo
 
 ### Delete Qovery from your AWS account
 
-To delete Qovery from your AWS account you must be authenticated as the Organization admin. Once done, everything configured (VPC, Kubernetes, ...) by Qovery will be deleted forever.
+To delete Qovery from your AWS account you must be authenticated as the Organization admin. Once your AWS account removed from Qovery, everything configured (VPC, Kubernetes, ...) by Qovery will be deleted forever.
 
 ### IAM permissions
 

@@ -5,18 +5,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="wip: remove brokers and update other content">
-      <change afterPath="$PROJECT_DIR$/website/static/img/do-create-token-1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/static/img/do-create-token-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/static/img/do-create-token-3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/static/img/do-create-token-4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/static/img/do-create-token-5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/static/img/do-create-token-6.jpg" afterDir="false" />
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="update digital-ocean.md">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_cloud_account_how_it_works.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_cloud_account_how_it_works.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_summary.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_summary.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/what-is-qovery.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/what-is-qovery.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/cloud-account/amazon-web-services.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/cloud-account/amazon-web-services.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/cloud-account/amazon-web-services.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/cloud-account/amazon-web-services.md.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/cloud-account/digital-ocean.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/cloud-account/digital-ocean.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/cloud-account/digital-ocean.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/cloud-account/digital-ocean.md.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -251,14 +246,7 @@
       <workItem from="1609757738295" duration="6000" />
       <workItem from="1610136448757" duration="6624000" />
       <workItem from="1610192043097" duration="2235000" />
-      <workItem from="1610200529183" duration="5248000" />
-    </task>
-    <task id="LOCAL-00098" summary="update databases - add &quot;supported versions&quot; section">
-      <created>1591521559335</created>
-      <option name="number" value="00098" />
-      <option name="presentableId" value="LOCAL-00098" />
-      <option name="project" value="LOCAL" />
-      <updated>1591521559336</updated>
+      <workItem from="1610200529183" duration="6453000" />
     </task>
     <task id="LOCAL-00099" summary="update databases - add &quot;supported versions&quot; section">
       <created>1591521916445</created>
@@ -596,7 +584,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610201795384</updated>
     </task>
-    <option name="localTasksCounter" value="147" />
+    <task id="LOCAL-00147" summary="update digital-ocean.md">
+      <created>1610319733342</created>
+      <option name="number" value="00147" />
+      <option name="presentableId" value="LOCAL-00147" />
+      <option name="project" value="LOCAL" />
+      <updated>1610319733342</updated>
+    </task>
+    <option name="localTasksCounter" value="148" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -682,7 +677,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="update: Hasura with PQL article" />
     <MESSAGE value="create deploy fullstack article" />
     <MESSAGE value="fix: youtube video iframe container" />
     <MESSAGE value="update databases - add &quot;supported versions&quot; section" />
@@ -707,6 +701,7 @@
     <MESSAGE value="update documentation (missing URLs)" />
     <MESSAGE value="wip: article" />
     <MESSAGE value="wip: remove brokers and update other content" />
-    <option name="LAST_COMMIT_MESSAGE" value="wip: remove brokers and update other content" />
+    <MESSAGE value="update digital-ocean.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="update digital-ocean.md" />
   </component>
 </project>

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-12-02"
+last_modified_on: "2021-01-26"
 title: "Applications"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -44,9 +44,33 @@ After it's done, you need to update your `.qovery.yml` configuration file to mat
 
 ## configuration
 
-The `Dockerfile` and `.qovery.yml` files are mandatory to run your Application with Qovery.
+1. The `.qovery.yml` file is mandatory to run your Application with Qovery.
+2. The `Dockerfile` file is non-mandatory if your application is written in Ruby, Java, Node.JS, Python, Golang or PHP. More will be added. Suggest us to support a language [here][urls.qovery_roadmap]. If your language is not in the supported list, then you need to provide a `Dockerfile`.
 
-### Dockerfile
+### Application build
+
+#### Option 1: Buildpacks
+
+To simplify application build for the developer, Qovery supports [Buildpacks](https://buildpacks.io) out of the box. Buildpacks determine the build process for an app, and which assets and runtimes should be made available to your code at runtime. If your complex apps are running multiple languages, you can also use multiple buildpacks within a single app.
+Meaning, as a developer, you don't need to write a `Dockerfile` to build and run your app. Qovery Buildpacks takes care of everything for you.
+
+**Supported languages**
+
+| language   | version |
+|------------|---------|
+| Ruby       | any     |
+| Java       | any     |
+| Node.JS    | any     |
+| Python     | any     |
+| Javascript | any     |
+| Typescript | any     |
+| Python     | any     |
+| Golang     | any     |
+| PHP        | any     |
+
+You don't find a cool language? [Suggest us to support it][urls.qovery_roadmap]
+
+#### Option 2: Dockerfile
 
 Qovery runs your application within the [Container technology](https://www.docker.com/resources/what-container). To build and run your application, you need to provide a valid [Dockerfile](https://docs.docker.com/engine/reference/builder).
 
@@ -141,11 +165,12 @@ application:
 
 To publicly expose your application you need to add the following lines into your `.qovery.yml`
 
-```yml {4-10} title="publicly expose my application and route the traffic into it"
+```yml {4-11} title="publicly expose my application and route the traffic into it"
 application:
   name: myApp
   project: myProject
   publicly_accessible: true
+  port: 8080
 routers:
 - name: my-router
   routes:
@@ -156,7 +181,15 @@ routers:
 
 *See what is a [router][docs.using-qovery.configuration.routing] to go further.*
 
-You also need to add the `EXPOSE {port}` instruction into your `Dockerfile`
+You also need to indicate on which port your application is running.
+
+**Option 1**
+
+Add `port` property in your `.qovery.yml` as above.
+
+**Option 2**
+
+Add the `EXPOSE {port}` instruction into your `Dockerfile`
 
 ```Dockerfile title="Expose"
 ...
@@ -220,3 +253,4 @@ The `depends_on` property, guarantee that your app will never start before other
 
 [docs.using-qovery.configuration.projects]: /docs/using-qovery/configuration/projects/
 [docs.using-qovery.configuration.routing]: /docs/using-qovery/configuration/routing/
+[urls.qovery_roadmap]: https://roadmap.qovery.com/

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-10-15"
+last_modified_on: "2021-01-26"
 title: Routing
 description: "Learn how to configure your custom routes on Qovery"
 ---
@@ -38,6 +38,7 @@ application:
   name: my-app-1
   project: my-project
   publicly_accessible: true
+  port: 8080
 routers:
 - name: main
   custom_domains:
@@ -63,6 +64,7 @@ application:
   name: my-app-1
   project: my-project
   publicly_accessible: true
+  port: 8080
 routers:
 - name: main
   custom_domains:
@@ -85,6 +87,7 @@ application:
   name: my-app-1
   project: my-project
   publicly_accessible: true
+  port: 8080
 routers:
 - name: main
   custom_domains:
@@ -101,6 +104,7 @@ application:
   name: my-app-2
   project: my-project
   publicly_accessible: true
+  port: 8080
 routers:
 - name: main
   custom_domains:

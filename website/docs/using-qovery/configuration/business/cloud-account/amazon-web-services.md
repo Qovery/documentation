@@ -174,7 +174,7 @@ The first time you set up your AWS account, Qovery creates a Kubernetes cluster 
 
 ### Managed services
 
-AWS provides managed services for [PostgreSQL][docs.using-qovery.configuration.databases.postgresql], [MySQL][docs.using-qovery.configuration.databases.mysql], [Redis][docs.using-qovery.configuration.databases.redis], [MongoDB][docs.using-qovery.configuration.databases.postgresql]. Qovery gives you access to those services when you set the [environment mode][docs.using-qovery.configuration.business.policy#environment-mode] to `Production`. In `Development` mode, Qovery provides containers equivalent, which is cheaper and faster to start.
+AWS provides managed services for [PostgreSQL][docs.using-qovery.configuration.databases.postgresql], [MySQL][docs.using-qovery.configuration.databases.mysql], [Redis][docs.using-qovery.configuration.databases.redis], [MongoDB][docs.using-qovery.configuration.databases.mongodb]. Qovery gives you access to those services when you set the [environment mode][docs.using-qovery.configuration.business.policy#environment-mode] to `Production`. In `Development` mode, Qovery provides containers equivalent, which is cheaper and faster to start.
 
 ### Security and compliance
 

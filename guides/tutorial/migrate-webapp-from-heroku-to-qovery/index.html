@@ -22,21 +22,21 @@
 <link rel="stylesheet" href="/styles.bb45c099.css">
 
 
-<link rel="preload" href="/styles.d6327c3e.js" as="script">
+<link rel="preload" href="/styles.fc6a41e2.js" as="script">
 
-<link rel="preload" href="/runtime~main.ab921860.js" as="script">
+<link rel="preload" href="/runtime~main.98752e04.js" as="script">
 
-<link rel="preload" href="/main.f2a96324.js" as="script">
+<link rel="preload" href="/main.d92012ae.js" as="script">
 
-<link rel="preload" href="/1.b3a5fb20.js" as="script">
+<link rel="preload" href="/1.e884040a.js" as="script">
 
-<link rel="preload" href="/2.6ed6e136.js" as="script">
+<link rel="preload" href="/2.c98d7db0.js" as="script">
 
-<link rel="preload" href="/3.258856f8.js" as="script">
+<link rel="preload" href="/3.e49c313a.js" as="script">
 
-<link rel="preload" href="/1c13b173.59b5843c.js" as="script">
+<link rel="preload" href="/1c13b173.334e5f3f.js" as="script">
 
-<link rel="preload" href="/1ae81319.663f44cf.js" as="script">
+<link rel="preload" href="/1ae81319.4d9608e2.js" as="script">
 
 </head>
 <body>
@@ -59,21 +59,21 @@ the database on Heroku, and making it the primary instance after migration. Hero
 tier, so for the purpose of the example, we take a simpler path and use different tools to migrate the data.</p><div class="alert alert--undefined alert--icon" role="alert"><i class="feather icon-info"></i><p>To run the migration successfully, you need a <code>psql</code> PostgreSQL client installed on your machine.</p></div><p>First, dump the data from your Heroku Postgres:</p><div class="mdxCodeBlock_iHAB"><div class="codeBlockContent_3RXF"><button type="button" aria-label="Copy code to clipboard" class="copyButton_1PCb">Copy</button><pre class="prism-code language-bash codeBlock_1wn8"><div class="codeBlockLines_3HrO" style="color:#393A34;background-color:#f6f8fa"><div class="token-line" style="color:#393A34"><span class="token plain">heroku pg:backups:download -a YOUR_APPLICATION_NAME</span></div><div class="token-line" style="color:#393A34"><span class="token plain">heroku pg:backups:capture -a YOUR_APPLICATION_NAME</span></div></div></pre></div></div><p>It results in creating a new <code>latest.dump</code> file, which you use to transfer data to Qovery.</p><p>To migrate the data to Qovery, run (replace all placeholders with values you get from running <code>qovery application env list -c</code>):</p><div class="mdxCodeBlock_iHAB"><div class="codeBlockContent_3RXF"><button type="button" aria-label="Copy code to clipboard" class="copyButton_1PCb">Copy</button><pre class="prism-code language-bash codeBlock_1wn8"><div class="codeBlockLines_3HrO" style="color:#393A34;background-color:#f6f8fa"><div class="token-line" style="color:#393A34"><span class="token plain">pg_restore -v -h </span><span class="token variable" style="color:#36acaa">$DATABASE_HOST</span><span class="token plain"> -U </span><span class="token variable" style="color:#36acaa">$DATABASE_USER</span><span class="token plain"> -d postgres latest.dump --no-owner</span></div></div></pre></div></div><p>In the browser, navigate to your application URL deployed on Qovery. Now you should see all the data you had in your database hosted on Heroku. Well done!</p><h2><a aria-hidden="true" tabindex="-1" class="anchor" id="whats-next"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#whats-next" title="Direct link to heading">#</a>What&#x27;s next</h2><a class="jump-to jump-to--undefined" href="/guides/getting-started/setting-custom-domain"><div class="jump-to--inner"><div class="jump-to--inner-2"><div class="jump-to--main">Setting Custom Domain</div><div class="jump-to--right"><i class="feather icon-chevron-right arrow"></i></div></div></div></a><a class="jump-to jump-to--undefined" href="/guides/advanced/using-multiple-environments"><div class="jump-to--inner"><div class="jump-to--inner-2"><div class="jump-to--main">Using Multiple Environments</div><div class="jump-to--right"><i class="feather icon-chevron-right arrow"></i></div></div></div></a></div></article></div></main></div><footer class="footer"><div class="container"><div class="row footer__links"><div class="col col--5 footer__col"><div class="margin-bottom--md"></div><div class="margin-bottom--md"><p>Qovery combines the power of Kubernetes, the reliability of AWS, and the simplicity of Heroku to deploy your apps.</p></div><div><a href="https://github.com/qovery" target="_blank"><i class="feather icon-github" alt="Qovery&#x27;s Github Repo"></i></a>    <a href="https://www.linkedin.com/company/qovery/" target="_blank"><i class="feather icon-rss" alt="Qovery&#x27;s Linkedin"></i></a>    <a href="https://twitter.com/qovery_" target="_blank"><i class="feather icon-twitter" alt="Qovery&#x27;s Twitter"></i></a>    <a href="https://discord.qovery.com" target="_blank"><i class="feather icon-message-circle" alt="Qovery&#x27;s Discord"></i></a></div></div><div class="col footer__col"><h4 class="footer__title">Resources</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" href="/docs">Documentation</a></li><li class="footer__item"><a aria-current="page" class="footer__link-item active" href="/guides">Guides</a></li><li class="footer__item"><a aria-current="page" class="footer__link-item active" href="/guides/tutorial">Tutorials</a></li><li class="footer__item"><a class="footer__link-item" href="/guides/engineering">Engineering</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/pricing" href="https://www.qovery.com/pricing">Pricing</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/enterprise" href="https://www.qovery.com/enterprise">Enterprise</a></li><li class="footer__item"><a class="footer__link-item" to="https://api.qovery.io/swagger-ui.html#" href="https://api.qovery.io/swagger-ui.html#">API</a></li><li class="footer__item"><a class="footer__link-item" to="https://github.com/Qovery" href="https://github.com/Qovery">Github</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Community</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://discord.qovery.com" href="https://discord.qovery.com">Discord</a></li><li class="footer__item"><a class="footer__link-item" to="https://roadmap.qovery.com" href="https://roadmap.qovery.com">Roadmap</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Company</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/blog" href="https://www.qovery.com/blog">Blog</a></li><li class="footer__item"><a class="footer__link-item" to="https://jobs.qovery.com" href="https://jobs.qovery.com">Jobs</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/team" href="https://www.qovery.com/team">Team</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/investors" href="https://www.qovery.com/investors">Investors</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/contact" href="https://www.qovery.com/contact">Contact</a></li></ul></div></div><div class="text--center"><small>© 2021 DESIGNED BY QOVERY | BACKED BY TECHSTARS | PROUD SILVER MEMBER OF CNCF AND LINUX FOUNDATION | QOVERY BY BIRDSIGHT - ALL RIGHTS RESERVED</small><br></div></div></footer>
 </div>
 
-<script src="/styles.d6327c3e.js"></script>
+<script src="/styles.fc6a41e2.js"></script>
 
-<script src="/runtime~main.ab921860.js"></script>
+<script src="/runtime~main.98752e04.js"></script>
 
-<script src="/main.f2a96324.js"></script>
+<script src="/main.d92012ae.js"></script>
 
-<script src="/1.b3a5fb20.js"></script>
+<script src="/1.e884040a.js"></script>
 
-<script src="/2.6ed6e136.js"></script>
+<script src="/2.c98d7db0.js"></script>
 
-<script src="/3.258856f8.js"></script>
+<script src="/3.e49c313a.js"></script>
 
-<script src="/1c13b173.59b5843c.js"></script>
+<script src="/1c13b173.334e5f3f.js"></script>
 
-<script src="/1ae81319.663f44cf.js"></script>
+<script src="/1ae81319.4d9608e2.js"></script>
 
 
 </body>

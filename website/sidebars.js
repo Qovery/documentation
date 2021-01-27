@@ -9,6 +9,14 @@ module.exports = {
                 "getting-started/how-qovery-works",
                 "getting-started/quickstart",
                 "getting-started/whats-next",
+                {
+                    type: 'category',
+                    label: 'Qovery vs. Other',
+                    items: [
+                        "getting-started/qovery-vs-other",
+                        "getting-started/qovery-vs-other/heroku",
+                    ],
+                },
             ],
         },
         {

@@ -9,6 +9,14 @@ module.exports = {
                 <%= metadata.links.fetch_id("docs.how-qovery-works").to_json %>,
                 <%= metadata.links.fetch_id("docs.quickstart").to_json %>,
                 <%= metadata.links.fetch_id("docs.whats-next").to_json %>,
+                {
+                    type: 'category',
+                    label: 'Qovery vs. Other',
+                    items: [
+                        <%= metadata.links.fetch_id("docs.qovery-vs-other").to_json %>,
+                        <%= metadata.links.fetch_id("docs.qovery-vs-other.heroku").to_json %>,
+                    ],
+                },
             ],
         },
         {

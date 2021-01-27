@@ -5,16 +5,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="update documentation with Buildpacks">
-      <change afterPath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other.md.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/heroku.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/heroku.md.erb" afterDir="false" />
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="add doc to compare Qovery to Heroku">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.meta/links.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/links.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/cloud-account/amazon-web-services.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/cloud-account/amazon-web-services.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/sidebars.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/sidebars.js.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.js.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/heroku.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/heroku.md.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -270,14 +264,7 @@
       <workItem from="1610192043097" duration="2235000" />
       <workItem from="1610200529183" duration="8460000" />
       <workItem from="1611649048548" duration="2246000" />
-      <workItem from="1611749551821" duration="14413000" />
-    </task>
-    <task id="LOCAL-00102" summary="update storage doc on deletion">
-      <created>1591693942607</created>
-      <option name="number" value="00102" />
-      <option name="presentableId" value="LOCAL-00102" />
-      <option name="project" value="LOCAL" />
-      <updated>1591693942608</updated>
+      <workItem from="1611749551821" duration="18398000" />
     </task>
     <task id="LOCAL-00103" summary="add kotlin server side article">
       <created>1595500605342</created>
@@ -615,7 +602,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611650770436</updated>
     </task>
-    <option name="localTasksCounter" value="151" />
+    <task id="LOCAL-00151" summary="add doc to compare Qovery to Heroku">
+      <created>1611767644508</created>
+      <option name="number" value="00151" />
+      <option name="presentableId" value="LOCAL-00151" />
+      <option name="project" value="LOCAL" />
+      <updated>1611767644508</updated>
+    </task>
+    <option name="localTasksCounter" value="152" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -701,7 +695,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="update databases - add &quot;supported versions&quot; section" />
     <MESSAGE value="hide section from hasura fullstack article" />
     <MESSAGE value="update storage doc on deletion" />
     <MESSAGE value="add kotlin server side article" />
@@ -726,6 +719,7 @@
     <MESSAGE value="update digital-ocean.md" />
     <MESSAGE value="update what-is-qovery.md" />
     <MESSAGE value="update documentation with Buildpacks" />
-    <option name="LAST_COMMIT_MESSAGE" value="update documentation with Buildpacks" />
+    <MESSAGE value="add doc to compare Qovery to Heroku" />
+    <option name="LAST_COMMIT_MESSAGE" value="add doc to compare Qovery to Heroku" />
   </component>
 </project>

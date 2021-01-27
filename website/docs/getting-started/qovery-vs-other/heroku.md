@@ -22,12 +22,12 @@ Here are the key differences between Qovery and Heroku.
 | Differences                     | Qovery                                     | Heroku                                                |
 |---------------------------------|--------------------------------------------|-------------------------------------------------------|
 | Hosting                         | Use **your** AWS account                   | You have to use Heroku hosting                        |
-| Built for...                    | Startups and scale-ups                     | Individual developer and very small team              |
+| Built for...                    | Startups and scale-ups                     | Individual developer and small team                   |
 | GitOps support                  | Yes                                        | Partially                                             |
 | Microservices support           | Yes                                        | No                                                    |
 | Database as first class citizen | Yes                                        | No                                                    |
 | Support                         | Live, Community, and Dedicated             | Community and Dedicated ($$$)                         |
-| Predictable cost                | Yes                                        | No                                                    |
+| Cost                            | Qovery keeps AWS cost at the lowest        | Yes but can be very expensive                         |
 | Vendor lock-in                  | No                                         | Yes                                                   |
 | Reversibility                   | Yes                                        | No                                                    |
 

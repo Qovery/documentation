@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-01-27"
+last_modified_on: "2021-01-28"
 title: Qovery vs. Heroku
 description: Discover what is the difference between Qovery and Heroku, and why you Qovery is the perfect Heroku alternative for your business.
 ---
@@ -27,7 +27,7 @@ Here are the key differences between Qovery and Heroku.
 | Microservices support           | Yes                                        | No                                                    |
 | Database as first class citizen | Yes                                        | No                                                    |
 | Support                         | Live, Community, and Dedicated             | Community and Dedicated ($$$)                         |
-| Cost                            | Qovery keeps AWS cost at the lowest        | Yes but can be very expensive                         |
+| Cost                            | Qovery keeps AWS cost at the lowest        | Very expensive                                        |
 | Vendor lock-in                  | No                                         | Yes                                                   |
 | Reversibility                   | Yes                                        | No                                                    |
 

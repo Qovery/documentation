@@ -5,9 +5,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="add doc to compare Qovery to Heroku">
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="update Qovery vs. Heroku">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other.md.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/heroku.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/heroku.md.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -264,14 +263,7 @@
       <workItem from="1610192043097" duration="2235000" />
       <workItem from="1610200529183" duration="8460000" />
       <workItem from="1611649048548" duration="2246000" />
-      <workItem from="1611749551821" duration="18398000" />
-    </task>
-    <task id="LOCAL-00103" summary="add kotlin server side article">
-      <created>1595500605342</created>
-      <option name="number" value="00103" />
-      <option name="presentableId" value="LOCAL-00103" />
-      <option name="project" value="LOCAL" />
-      <updated>1595500605343</updated>
+      <workItem from="1611749551821" duration="19185000" />
     </task>
     <task id="LOCAL-00104" summary="update kotlin server side article">
       <created>1595500922418</created>
@@ -609,7 +601,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611767644508</updated>
     </task>
-    <option name="localTasksCounter" value="152" />
+    <task id="LOCAL-00152" summary="update Qovery vs. Heroku">
+      <created>1611782818315</created>
+      <option name="number" value="00152" />
+      <option name="presentableId" value="LOCAL-00152" />
+      <option name="project" value="LOCAL" />
+      <updated>1611782818315</updated>
+    </task>
+    <option name="localTasksCounter" value="153" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -695,7 +694,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="hide section from hasura fullstack article" />
     <MESSAGE value="update storage doc on deletion" />
     <MESSAGE value="add kotlin server side article" />
     <MESSAGE value="update kotlin server side article" />
@@ -720,6 +718,7 @@
     <MESSAGE value="update what-is-qovery.md" />
     <MESSAGE value="update documentation with Buildpacks" />
     <MESSAGE value="add doc to compare Qovery to Heroku" />
-    <option name="LAST_COMMIT_MESSAGE" value="add doc to compare Qovery to Heroku" />
+    <MESSAGE value="update Qovery vs. Heroku" />
+    <option name="LAST_COMMIT_MESSAGE" value="update Qovery vs. Heroku" />
   </component>
 </project>

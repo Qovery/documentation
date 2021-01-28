@@ -22,6 +22,10 @@ Let's compare Qovery with other solutions
 
 <Jump to="/docs/getting-started/qovery-vs-other/heroku">Qovery vs. Heroku</Jump>
 
+## Jamstack platforms
+
+<Jump to="/docs/getting-started/qovery-vs-other/netlify">Qovery vs. Netlify</Jump>
+
 <!-- Qovery vs. ArgoCD -->
 <!-- Qovery vs. Netlify -->
 <!-- Qovery vs. Vercel -->

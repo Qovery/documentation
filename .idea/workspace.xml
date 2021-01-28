@@ -6,9 +6,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="update Qovery vs. Heroku">
+      <change afterPath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/netlify.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/netlify.md.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/heroku.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/heroku.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/heroku.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/heroku.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/sidebars.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/sidebars.js.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.js.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +108,7 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.vendoring.notification.had.been.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/website/docs/getting-started" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -117,11 +123,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other" />
       <recent name="$PROJECT_DIR$/website/docs/getting-started" />
       <recent name="$PROJECT_DIR$/website/static/img" />
       <recent name="$PROJECT_DIR$/scripts/generate/templates/_partials" />
       <recent name="$PROJECT_DIR$/website/docs/using-qovery/configuration/databases" />
-      <recent name="$PROJECT_DIR$/website/docs/using-qovery/configuration" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/website/guides/getting-started" />
@@ -264,14 +270,7 @@
       <workItem from="1610192043097" duration="2235000" />
       <workItem from="1610200529183" duration="8460000" />
       <workItem from="1611649048548" duration="2246000" />
-      <workItem from="1611749551821" duration="23179000" />
-    </task>
-    <task id="LOCAL-00106" summary="update kotlin server side article">
-      <created>1595501800141</created>
-      <option name="number" value="00106" />
-      <option name="presentableId" value="LOCAL-00106" />
-      <option name="project" value="LOCAL" />
-      <updated>1595501800141</updated>
+      <workItem from="1611749551821" duration="27717000" />
     </task>
     <task id="LOCAL-00107" summary="add: helm freeze engineering article">
       <created>1600932397129</created>
@@ -609,7 +608,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611821911457</updated>
     </task>
-    <option name="localTasksCounter" value="155" />
+    <task id="LOCAL-00155" summary="update Qovery vs. Heroku">
+      <created>1611830896717</created>
+      <option name="number" value="00155" />
+      <option name="presentableId" value="LOCAL-00155" />
+      <option name="project" value="LOCAL" />
+      <updated>1611830896717</updated>
+    </task>
+    <option name="localTasksCounter" value="156" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

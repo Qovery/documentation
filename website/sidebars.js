@@ -86,6 +86,7 @@ module.exports = {
                             label: 'Business',
                             items: [
                                 "using-qovery/configuration/business",
+                                "using-qovery/configuration/business/get-started",
                                 "using-qovery/configuration/business/policy",
                                 "using-qovery/configuration/business/organization",
                                 {

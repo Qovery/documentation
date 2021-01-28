@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-01-11"
+last_modified_on: "2021-01-28"
 title: "Digital Ocean (DO)"
 description: "Learn how to configure and plug your Digital Ocean (DO) account"
 ---
@@ -148,7 +148,7 @@ The first time you set up your Digital Ocean account, Qovery creates a Kubernete
 
 ### Managed services
 
-Digital Ocean provides managed services for [PostgreSQL][docs.using-qovery.configuration.databases.postgresql], [MySQL][docs.using-qovery.configuration.databases.mysql], [Redis][docs.using-qovery.configuration.databases.redis], [MongoDB][docs.using-qovery.configuration.databases.postgresql]. Qovery gives you access to those services when you set the [environment mode][docs.using-qovery.configuration.business.policy#environment-mode] to `Production`. In `Development` mode, Qovery provides containers equivalent, which is cheaper and faster to start.
+Digital Ocean provides managed services for [PostgreSQL][docs.using-qovery.configuration.databases.postgresql], [MySQL][docs.using-qovery.configuration.databases.mysql], [Redis][docs.using-qovery.configuration.databases.redis], [MongoDB][docs.using-qovery.configuration.databases.mongodb]. Qovery gives you access to those services when you set the [environment mode][docs.using-qovery.configuration.business.policy#environment-mode] to `Production`. In `Development` mode, Qovery provides containers equivalent, which is cheaper and faster to start.
 
 ### Security and compliance
 
@@ -175,6 +175,7 @@ Today, you can't migrate an environment from one region to another after it has 
 [docs.useful-links.faq#how-qovery-works-under-the-hood]: /docs/useful-links/faq/#how-qovery-works-under-the-hood
 [docs.using-qovery.configuration.business.organization]: /docs/using-qovery/configuration/business/organization/
 [docs.using-qovery.configuration.business.policy#environment-mode]: /docs/using-qovery/configuration/business/policy/#environment-mode
+[docs.using-qovery.configuration.databases.mongodb]: /docs/using-qovery/configuration/databases/mongodb/
 [docs.using-qovery.configuration.databases.mysql]: /docs/using-qovery/configuration/databases/mysql/
 [docs.using-qovery.configuration.databases.postgresql]: /docs/using-qovery/configuration/databases/postgresql/
 [docs.using-qovery.configuration.databases.redis]: /docs/using-qovery/configuration/databases/redis/

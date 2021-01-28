@@ -6,11 +6,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="update Qovery vs. Netlify">
+      <change afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/get-started.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/get-started.md.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/qovery_installation_waiting_state.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/qovery_select_cloud_provider.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/qovery_select_cloud_provider_region.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/heroku.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/heroku.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/heroku.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/heroku.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/netlify.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/netlify.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/netlify.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/netlify.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/main-concepts/business.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/main-concepts/business.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/main-concepts/business.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/main-concepts/business.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/cloud-account/amazon-web-services.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/cloud-account/amazon-web-services.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/cloud-account/digital-ocean.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/cloud-account/digital-ocean.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/organization.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/organization.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/organization.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/organization.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/sidebars.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/sidebars.js.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.js.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/static/img/qovery_create_organization.svg" beforeDir="false" afterPath="$PROJECT_DIR$/website/static/img/qovery_create_organization.svg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +116,7 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.vendoring.notification.had.been.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/website/static/img" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -119,11 +131,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/website/static/img" />
+      <recent name="$PROJECT_DIR$/website/docs/using-qovery/configuration/business" />
       <recent name="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other" />
       <recent name="$PROJECT_DIR$/website/docs/getting-started" />
-      <recent name="$PROJECT_DIR$/website/static/img" />
       <recent name="$PROJECT_DIR$/scripts/generate/templates/_partials" />
-      <recent name="$PROJECT_DIR$/website/docs/using-qovery/configuration/databases" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/website/guides/getting-started" />
@@ -266,14 +278,7 @@
       <workItem from="1610192043097" duration="2235000" />
       <workItem from="1610200529183" duration="8460000" />
       <workItem from="1611649048548" duration="2246000" />
-      <workItem from="1611749551821" duration="29274000" />
-    </task>
-    <task id="LOCAL-00108" summary="update: helm freeze engineering article">
-      <created>1600932648284</created>
-      <option name="number" value="00108" />
-      <option name="presentableId" value="LOCAL-00108" />
-      <option name="project" value="LOCAL" />
-      <updated>1600932648284</updated>
+      <workItem from="1611749551821" duration="35870000" />
     </task>
     <task id="LOCAL-00109" summary="update: business documentation">
       <created>1601556393648</created>
@@ -611,7 +616,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611851846160</updated>
     </task>
-    <option name="localTasksCounter" value="157" />
+    <task id="LOCAL-00157" summary="update Qovery vs. Netlify">
+      <created>1611854283993</created>
+      <option name="number" value="00157" />
+      <option name="presentableId" value="LOCAL-00157" />
+      <option name="project" value="LOCAL" />
+      <updated>1611854283993</updated>
+    </task>
+    <option name="localTasksCounter" value="158" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

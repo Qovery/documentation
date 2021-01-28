@@ -1,11 +1,14 @@
 ---
-last_modified_on: "2020-10-04"
+last_modified_on: "2021-01-28"
 title: Qovery Business ⭐️
 description: "Everything you need to know about Qovery Business concepts"
 sidebar_label: hidden
 hide_pagination: true
 ---
-**Qovery Community** allows developers to deploy applications and their dependencies without friction. It is a superpower
+
+import Jump from '@site/src/components/Jump';
+
+**Qovery Community** allows developers to deploy applications and their dependencies without frictions. It is a superpower
 in hands of developers, which allows them to focus on developing their applications instead of thinking about infrastructure
 and deployments.
 
@@ -27,7 +30,7 @@ costs and configuration. This is where Qovery Business comes in.
 ### Your applications, your cloud account
 One of the greatest benefits of moving to Business version is that your projects are deployed on your own cloud account.
 We take care of the whole process of setting up your environment - from bootstrapping Kubernetes clusters to application deployment.
-All we need is the access to your cloud account. Of course, it's highly customizable and you have the power to edit or override
+All we need is the access to your cloud account. Of course, it's highly customizable, and you have the power to edit or override
 the default behaviours.
 
 <p style={{textAlign: "left", fontWeight: "bold"}}>Add your cloud account</p>
@@ -36,8 +39,8 @@ the default behaviours.
 
 ### Your organization, your rules
 Each organization has its own unique approach to dealing with people, communication and teams. We value your uniqueness and thus
-we give you the ability to create very fine-grained rules that mirror your organization. Spliting responsibilities, creating teams,
-assigning roles, enforcing company-wide restrictions (e.g. allowing to use PostgreSQL only) and much more.
+we give you the ability to create very fine-grained rules that mirror your organization. Splitting responsibilities, creating teams,
+assigning roles, enforcing company-wide restrictions (e.g. allowing using PostgreSQL only) and much more.
 
 ### Platform that you would build for your company
 Building a cloud platform based on Kubernetes and other cloud-native technologies is a tremendous task. Doing it right might take months
@@ -50,7 +53,7 @@ of work of experienced engineers. With Qovery Business, you can shorten this tim
 <img src="/img/time-matters.svg" alt="Time Matters"/>
 
 ### Multi-cloud ready
-Qovery allows you to deploy to multiple clouds simultanously. Avoid vendor lock-in, optimize costs and become one of the first beneficiaries of real multi-cloud deployments.
+Qovery allows you to deploy to multiple clouds simultaneously. Avoid the vendor lock-in, optimize costs and become one of the first beneficiaries of real multi-cloud deployments.
 
 <img src="/img/multicloud.svg" alt="Multi-Cloud"/>
 
@@ -80,18 +83,20 @@ In case of any problems, Qovery automatically manages rollbacks to the last work
 
 <img src="https://s3.amazonaws.com/media-p.slid.es/uploads/1266307/images/7727622/env.jpg" />
 
-If DevOps team want to know what happens under the hood - we got them covered. Qovery provides all [Terraform][urls.terraform] and [Helm][url.helm] files, so DevOps enginners can make advanced adjustments
+If DevOps team want to know what happens under the hood - we got them covered. Qovery provides all [Terraform][urls.terraform] and [Helm][url.helm] files, so DevOps engineers can make advanced adjustments
 and see how the things work under the hood.
 
 ### Plug in External Services
 
-Your organization uses a service that is not oficially supported by Qovery? No worries. Our External Services plugin system allows you to easily add your services
+Your want to use a service that is not officially supported by Qovery? No worries. Our External Services plugin system allows you to easily add your services
 and consume them in your applications. Read more about this concept [here][docs.main-concepts.business.external-service].
 
 ### Monitor your platform
 
 Qovery is not a monitoring solution, yet it allows you to easily connect to third party monitoring systems like Datadog or New Relic. Qovery team prepared integrations
 that allows you to [start monitoring the platform][docs.main-concepts.business.monitoring] with just a few mouse clicks.
+
+<Jump to="/docs/using-qovery/configuration/business/get-started">Get started with Qovery Business</Jump>
 
 
 [docs.main-concepts.business.external-service]: /docs/main-concepts/business/external-service/

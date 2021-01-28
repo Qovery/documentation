@@ -19,17 +19,18 @@ We’ve built Qovery to help developers and businesses to focus on the product t
 ## In a nutshell
 Here are the key differences between Qovery and Heroku.
 
-| Differences                     | Qovery                                     | Heroku                                                |
-|---------------------------------|--------------------------------------------|-------------------------------------------------------|
-| Hosting                         | Use **your** AWS account                   | You have to use Heroku hosting                        |
-| Built for...                    | Startups and scale-ups                     | Individual developer and small team                   |
-| GitOps support                  | Yes                                        | Partially                                             |
-| Microservices support           | Yes                                        | No                                                    |
-| Database as first class citizen | Yes                                        | No                                                    |
-| Support                         | Live, Community, and Dedicated             | Community and Dedicated ($$$)                         |
-| Cost                            | Qovery keeps AWS cost at the lowest        | Very expensive                                        |
-| Vendor lock-in                  | No                                         | Yes                                                   |
-| Reversibility                   | Yes                                        | No                                                    |
+| Differences                       | Qovery                                     | Heroku                                                |
+|-----------------------------------|--------------------------------------------|-------------------------------------------------------|
+| Hosting                           | Use **your** AWS account                   | You have to use Heroku hosting                        |
+| Built for...                      | Startups and scale-ups                     | Individual developer and small team                   |
+| GitOps support                    | Yes                                        | Partially                                             |
+| Microservices support             | Yes                                        | No                                                    |
+| Infrastructure and DevOps control | Yes                                        | No                                                    |
+| Database as first class citizen   | Yes                                        | No                                                    |
+| Support                           | Live, Community, and Dedicated             | Community and Dedicated ($$$)                         |
+| Cost                              | Qovery keeps AWS cost at the lowest        | Very expensive                                        |
+| Vendor lock-in                    | No                                         | Yes                                                   |
+| Reversibility                     | Yes                                        | No                                                    |
 
 ## Qovery vs. Heroku: a detailed comparison
 ### Qovery runs on your AWS account
@@ -49,7 +50,7 @@ Please don't take our word for it; see some cost comparisons below
 | PostgreSQL for production  | $15 / month + managed PostgreSQL by AWS            | from 0$ to +$1000 month                                               |
 | Redis for development      | $15 / month                                        | from 0$ to +$1000 month                                               |
 | Redis for production       | $15 / month + managed Redis by AWS                 | from 0$ to +$1000 month                                               |
-| additional user            | $0                                                 | $10 / user / month                                                    |
+| Additional user            | $0                                                 | $10 / user / month                                                    |
 
 
 ### Cloud cost optimization
@@ -64,6 +65,12 @@ As Qovery runs on your AWS account, you are free to use your credits. We also wa
 
 ### Better performance and reliability
 As Qovery runs on your AWS account, You have to compare AWS to Heroku. Googling `Heroku vs. AWS performance and reliability` will find that benchmarks show that AWS provides better performance and reliability than Heroku at a lower cost.
+
+### Infrastructure and DevOps control
+
+* Heroku's infrastructure is hidden for good and bad reasons. The problem is that you have no control over it. Qovery relies on the managed services provided by the Cloud provider. You have full control of the type of resources you want to allocate and put your hands on if required. Qovery is transparent, where Heroku is a black box.
+
+* Heroku focuses on the developer needs only, Qovery focuses on the developer needs and provides full control to a DevOps team via a [plugin system][docs.main-concepts.business]. To go further than that, Qovery generates Terraform and Helm files (familiar to DevOps) to deploy the infrastructure and the developers' apps. If the DevOps is not satisfied by the default configuration of Qovery, they can change it.
 
 ### Qovery is built for privacy
 Qovery does not host your apps and your data. Your data are stored on your AWS account. Even your app logs are stored on your AWS account and encrypted. Privacy is the present and the future; that's why Qovery is privacy proof by design.
@@ -98,6 +105,7 @@ Qovery offers all its customers community and email support staffed by the same 
 So join us now!
 
 
+[docs.main-concepts.business]: /docs/main-concepts/business/
 [docs.main-concepts.environment]: /docs/main-concepts/environment/
 [docs.using-qovery.configuration.business.cloud-account.amazon-web-services]: /docs/using-qovery/configuration/business/cloud-account/amazon-web-services/
 [docs.using-qovery.configuration.business.cloud-account]: /docs/using-qovery/configuration/business/cloud-account/

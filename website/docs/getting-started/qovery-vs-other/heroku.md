@@ -37,7 +37,7 @@ Here are the key differences between Qovery and Heroku.
 Qovery runs on your AWS account, and this is the biggest difference with Heroku. The goal of Qovery is to simplify the access to the Cloud for any developer and company. Plug your AWS account into Qovery, and then you are ready to deploy your apps in just a few seconds! Qovery is installable on your AWS account in 20 minutes.
 
 * [Get started with Qovery on your AWS account][docs.using-qovery.configuration.business.cloud-account.amazon-web-services]
-* [See other Cloud providers][docs.using-qovery.configuration.business.cloud-account]
+* [See other supported Cloud providers][docs.using-qovery.configuration.business.cloud-account]
 
 ### Predictable cost
 
@@ -90,19 +90,17 @@ Low latency on your app means a better experience for your users. Being physical
 | West Asia           | Yes                          | Yes                              |
 | Australia           | Yes                          | Yes                              |
 
-### Forever free for individual developers and open-source projects
-At Qovery, we support individual developers and open-source projects. Why? Because without their hard work, Qovery will probably never exists. That's why we provide a generous free plan ([Qovery Community][urls.qovery_pricing]) to any developer that wants to host their apps on Qovery.
-
-Note: There is no hard restriction, and we prefer to trust our users on a fair usage than setting a hard limit. This is at the complete opposite of what Heroku does by [forcefully restart your apps every 24 hours](https://devcenter.heroku.com/articles/dynos#restarting).
-
 ### Customer focus
-Qovery offers all its customers community and email support staffed by the same world-class engineers who build the platform. Qovery’s product roadmap is public. You can submit feature requests and get notified as soon as we start working on them. This keeps us accountable and helps us understand your needs better.
+Qovery offers all its customers community and email support staffed by the same world-class engineers who build the platform. Qovery’s product roadmap is public. You can submit feature requests and get notified as soon as we start working on them. This keeps us accountable and helps us understand your needs better. Heroku does the opposite. They don't involve their users and take actions for their own purpose.
 
 ### No vendor lock-in
 1. Our [deployment engine][urls.qovery_engine] is open-source.
 2. Reversibility: Your apps run on your AWS account. If you are not satisfied with our product, we give you access to all generated configuration files (Terraform, Helm, and others) and keep running your infrastructure.
 
-So join us now!
+Where Heroku is a black box. They do everything they can to lock you and keep you forever.
+
+---
+Do you have any question? [Contact us][urls.qovery_contact_us] now!
 
 
 [docs.main-concepts.business]: /docs/main-concepts/business/
@@ -111,4 +109,3 @@ So join us now!
 [docs.using-qovery.configuration.business.cloud-account]: /docs/using-qovery/configuration/business/cloud-account/
 [urls.qovery_contact_us]: https://www.qovery.com/contact
 [urls.qovery_engine]: https://engine.qovery.com
-[urls.qovery_pricing]: https://www.qovery.com/pricing

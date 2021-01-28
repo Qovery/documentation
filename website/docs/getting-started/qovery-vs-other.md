@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-01-27"
+last_modified_on: "2021-01-28"
 title: Qovery vs. Other 🧐
 description: "Everything you need to know about Qovery vs. Other products"
 sidebar_label: hidden
@@ -27,6 +27,7 @@ Let's compare Qovery with other solutions
 <!-- Qovery vs. Vercel -->
 <!-- Qovery vs. Render -->
 <!-- Qovery vs. Fly.io -->
+<!-- Qovery vs. Cloud66 -->
 <!-- Qovery vs. Terraform -->
 <!-- Qovery vs. Waypoint -->
 <!-- Qovery vs. ECS -->

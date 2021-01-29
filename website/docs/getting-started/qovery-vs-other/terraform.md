@@ -29,9 +29,9 @@ Here are the key similarities and differences between Qovery and [Terraform](htt
 | Built for DevOps                  | Yes                                                  | Yes                                                   |
 | Built for developer               | Yes                                                  | No                                                    |
 | Infrastructure control            | Yes                                                  | Yes                                                   |
-| Deploy apps                       | Yes                                                  | No                                                    |
-| Database as first class citizen   | Yes                                                  | No                                                    |
-| GitOps support                    | Yes                                                  | No                                                    |
+| Designed to deploy apps           | Yes                                                  | No                                                    |
+| Native support of databases       | Yes                                                  | No                                                    |
+| GitOps CD support                 | Yes                                                  | Yes                                                   |
 | Branch preview                    | Yes                                                  | No                                                    |
 | RBAC                              | Yes                                                  | Yes                                                   |
 | Open-source                       | Partially ([deployment engine][urls.qovery_engine])  | Partially                                             |

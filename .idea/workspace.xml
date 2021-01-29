@@ -6,6 +6,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="update Qovery vs. Terraform">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/terraform.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/terraform.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/terraform.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/terraform.md.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -252,14 +254,7 @@
       <workItem from="1610200529183" duration="8460000" />
       <workItem from="1611649048548" duration="2246000" />
       <workItem from="1611749551821" duration="37202000" />
-      <workItem from="1611906758158" duration="4454000" />
-    </task>
-    <task id="LOCAL-00112" summary="update: business documentation">
-      <created>1601800838443</created>
-      <option name="number" value="00112" />
-      <option name="presentableId" value="LOCAL-00112" />
-      <option name="project" value="LOCAL" />
-      <updated>1601800838443</updated>
+      <workItem from="1611906758158" duration="5131000" />
     </task>
     <task id="LOCAL-00113" summary="update: business documentation">
       <created>1601821369201</created>
@@ -597,7 +592,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611931118743</updated>
     </task>
-    <option name="localTasksCounter" value="161" />
+    <task id="LOCAL-00161" summary="update Qovery vs. Terraform">
+      <created>1611931436464</created>
+      <option name="number" value="00161" />
+      <option name="presentableId" value="LOCAL-00161" />
+      <option name="project" value="LOCAL" />
+      <updated>1611931436464</updated>
+    </task>
+    <option name="localTasksCounter" value="162" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

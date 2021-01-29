@@ -16,6 +16,7 @@ module.exports = {
                         "getting-started/qovery-vs-other",
                         "getting-started/qovery-vs-other/heroku",
                         "getting-started/qovery-vs-other/netlify",
+                        "getting-started/qovery-vs-other/terraform",
                     ],
                 },
             ],

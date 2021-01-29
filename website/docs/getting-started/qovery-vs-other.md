@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-01-28"
+last_modified_on: "2021-01-29"
 title: Qovery vs. Other 🧐
 description: "Everything you need to know about Qovery vs. Other products"
 sidebar_label: hidden
@@ -25,6 +25,10 @@ Let's compare Qovery with other solutions
 ## Jamstack platforms
 
 <Jump to="/docs/getting-started/qovery-vs-other/netlify">Qovery vs. Netlify</Jump>
+
+## Infrastructure as Code
+
+<Jump to="/docs/getting-started/qovery-vs-other/terraform">Qovery vs. Terraform</Jump>
 
 <!-- Qovery vs. ArgoCD -->
 <!-- Qovery vs. Netlify -->

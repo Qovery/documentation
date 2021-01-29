@@ -5,15 +5,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="add business/get-started">
-      <change afterPath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/terraform.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/terraform.md.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/static/img/qovery_on_top_of_terraform_helm_kubernetes.svg" afterDir="false" />
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="add Qovery vs. Terraform">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/sidebars.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/sidebars.js.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.js.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/terraform.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/terraform.md.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -259,14 +253,7 @@
       <workItem from="1610200529183" duration="8460000" />
       <workItem from="1611649048548" duration="2246000" />
       <workItem from="1611749551821" duration="37202000" />
-      <workItem from="1611906758158" duration="3741000" />
-    </task>
-    <task id="LOCAL-00110" summary="update: business documentation">
-      <created>1601558272781</created>
-      <option name="number" value="00110" />
-      <option name="presentableId" value="LOCAL-00110" />
-      <option name="project" value="LOCAL" />
-      <updated>1601558272781</updated>
+      <workItem from="1611906758158" duration="4249000" />
     </task>
     <task id="LOCAL-00111" summary="update: business documentation">
       <created>1601578852312</created>
@@ -604,7 +591,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611868545080</updated>
     </task>
-    <option name="localTasksCounter" value="159" />
+    <task id="LOCAL-00159" summary="add Qovery vs. Terraform">
+      <created>1611929519762</created>
+      <option name="number" value="00159" />
+      <option name="presentableId" value="LOCAL-00159" />
+      <option name="project" value="LOCAL" />
+      <updated>1611929519763</updated>
+    </task>
+    <option name="localTasksCounter" value="160" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -690,7 +684,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="update kotlin server side article" />
     <MESSAGE value="add: helm freeze engineering article" />
     <MESSAGE value="update: helm freeze engineering article" />
     <MESSAGE value="update: remove `cloud_region` property from .qovery.yml" />
@@ -715,6 +708,7 @@
     <MESSAGE value="update Qovery vs. Heroku" />
     <MESSAGE value="update Qovery vs. Netlify" />
     <MESSAGE value="add business/get-started" />
-    <option name="LAST_COMMIT_MESSAGE" value="add business/get-started" />
+    <MESSAGE value="add Qovery vs. Terraform" />
+    <option name="LAST_COMMIT_MESSAGE" value="add Qovery vs. Terraform" />
   </component>
 </project>

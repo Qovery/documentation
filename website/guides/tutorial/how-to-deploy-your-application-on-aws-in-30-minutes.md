@@ -22,7 +22,7 @@ In this tutorial, I will explain step by step how to deploy your app on AWS in 3
 
      To make changes please edit the template located at:
 
-     website/guides/tutorial/how-to-deploy-any-application-on-aws.md.erb
+     website/guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes.md.erb
 -->
 
 ## Before you start

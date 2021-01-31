@@ -138,9 +138,16 @@ module.exports = {
         googleAnalytics: {
             trackingId: 'UA-129773960-5',
         },
+        posthog: {
+            apiKey: "OxbbcR7J3ohTXEDGfsIL9KDlq5Gs080sbgfjrWYIOvU",
+            appUrl: "https://ph.qovery.com",  // optional
+            enableInDevelopment: false,  // optional
+            // other options are passed to posthog-js init as is
+        }
     },
     presets: [],
     plugins: [
+        "posthog-docusaurus",
         [
             '@docusaurus/plugin-content-docs',
             {

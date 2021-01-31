@@ -36,7 +36,8 @@
     "svg.js": "^2.6.2",
     "titleize": "^2.1.0",
     "email-validator": "^2.0.4",
-    "jsonp": "^0.2.1"
+    "jsonp": "^0.2.1",
+    "posthog-docusaurus": "^1.0.3"
   },
   "browserslist": {
     "production": [

@@ -9,7 +9,7 @@ We’ve built Qovery to help developers and businesses to focus on the product t
 > Qovery is built on top of Terraform and extends its capabilities!
 
 <p align="center">
-  <img src="/img/qovery_on_top_of_terraform_helm_kubernetes.svg" style={{maxWidth: "400px"}} alt="Qovery extends Terraform, Helm and Kubernetes capabilities" />
+  <img src="/img/qovery_on_top_of_terraform_helm_kubernetes.svg" style={{maxWidth: "320px"}} alt="Qovery extends Terraform, Helm and Kubernetes capabilities" />
 </p>
 
 <!--

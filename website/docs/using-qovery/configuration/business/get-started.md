@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-01-28"
+last_modified_on: "2021-01-31"
 title: "Get Started"
 description: "Learn how to get started with Qovery Business"
 ---
@@ -40,13 +40,13 @@ In 4 steps only you can install Qovery on your Cloud provider account you only n
 3. Select the closest region from your users to have the best latency.
 
 <p align="center">
-  <img src="/img/qovery_select_cloud_provider_region.svg" alt="Qovery - Select your Cloud provider" />
+  <img src="/img/qovery_select_cloud_provider_region.svg" alt="Qovery - Select your Cloud provider region" />
 </p>
 
 4. Congrats! Qovery will be installed within 30 minutes 🎉.
 
 <p align="center">
-  <img src="/img/qovery_installation_waiting_state.svg" alt="Qovery - Select your Cloud provider" />
+  <img src="/img/qovery_installation_waiting_state.svg" alt="Qovery - Qovery installation in progress" />
 </p>
 
 ## What's next?

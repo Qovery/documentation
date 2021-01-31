@@ -1,0 +1,6 @@
+[[cloud_providers]]
+name = "aws"
+logo_path = "/img/logos/aws.svg"
+dark_logo_path = "/img/logos/aws.svg"
+
+

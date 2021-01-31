@@ -58,7 +58,8 @@
           metadata.languages.collect { |l| "language: #{l.name}" } +
           metadata.databases.collect { |d| "database: #{d.name}" } +
           metadata.frameworks.collect { |f| "framework: #{f.name}" } +
-          metadata.technologies.collect { |t| "technology: #{t.name}" }
+          metadata.technologies.collect { |t| "technology: #{t.name}" } +
+          metadata.cloud_providers.collect { |t| "cloud_provider: #{t.name}" }
         ) .to_json %>
       }
     },

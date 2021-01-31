@@ -5,10 +5,27 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="update Qovery vs. Terraform">
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="update &quot;what is qovery&quot; page">
+      <change afterPath="$PROJECT_DIR$/.meta/cloud_providers.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-any-application-on-aws.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-any-application-on-aws.md.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/aws-create-an-account.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/qovery_create_organization_dropdown.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/qovery_create_project.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/qovery_deploy_app_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/qovery_deploy_app_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/qovery_deploy_app_3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/qovery_deploy_app_4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/qovery_deploy_app_5.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_summary.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_summary.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/what-is-qovery.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/what-is-qovery.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.meta/.schemas/guides.json" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/.schemas/guides.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.meta/.schemas/guides.json.erb" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/.schemas/guides.json.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/util/metadata.rb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/util/metadata.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/terraform.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/terraform.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/terraform.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/terraform.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/get-started.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/get-started.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/get-started.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/business/get-started.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/metadata.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/metadata.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +34,9 @@
   </component>
   <component name="CodeInsightWorkspaceSettings">
     <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -118,10 +138,10 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/website/static/img" />
+      <recent name="$PROJECT_DIR$/.meta" />
+      <recent name="$PROJECT_DIR$/website/guides/tutorial" />
       <recent name="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other" />
       <recent name="$PROJECT_DIR$/website/docs/using-qovery/configuration/business" />
-      <recent name="$PROJECT_DIR$/website/docs/getting-started" />
-      <recent name="$PROJECT_DIR$/scripts/generate/templates/_partials" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/website/guides/getting-started" />
@@ -132,6 +152,17 @@
     </key>
   </component>
   <component name="RunManager" selected="npm.start">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/website/package.json" />
       <command value="run" />
@@ -254,14 +285,8 @@
       <workItem from="1610200529183" duration="8460000" />
       <workItem from="1611649048548" duration="2246000" />
       <workItem from="1611749551821" duration="37202000" />
-      <workItem from="1611906758158" duration="6501000" />
-    </task>
-    <task id="LOCAL-00114" summary="update: business documentation">
-      <created>1601839833432</created>
-      <option name="number" value="00114" />
-      <option name="presentableId" value="LOCAL-00114" />
-      <option name="project" value="LOCAL" />
-      <updated>1601839833432</updated>
+      <workItem from="1611906758158" duration="12794000" />
+      <workItem from="1612020449377" duration="10208000" />
     </task>
     <task id="LOCAL-00115" summary="update: business documentation">
       <created>1601892936533</created>
@@ -599,7 +624,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611932485845</updated>
     </task>
-    <option name="localTasksCounter" value="163" />
+    <task id="LOCAL-00163" summary="update &quot;what is qovery&quot; page">
+      <created>1611938082569</created>
+      <option name="number" value="00163" />
+      <option name="presentableId" value="LOCAL-00163" />
+      <option name="project" value="LOCAL" />
+      <updated>1611938082569</updated>
+    </task>
+    <option name="localTasksCounter" value="164" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -685,7 +717,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="update: helm freeze engineering article" />
     <MESSAGE value="update: remove `cloud_region` property from .qovery.yml" />
     <MESSAGE value="update: qovery-iam-aws.json" />
     <MESSAGE value="update: business documentation" />
@@ -710,6 +741,7 @@
     <MESSAGE value="add business/get-started" />
     <MESSAGE value="add Qovery vs. Terraform" />
     <MESSAGE value="update Qovery vs. Terraform" />
-    <option name="LAST_COMMIT_MESSAGE" value="update Qovery vs. Terraform" />
+    <MESSAGE value="update &quot;what is qovery&quot; page" />
+    <option name="LAST_COMMIT_MESSAGE" value="update &quot;what is qovery&quot; page" />
   </component>
 </project>

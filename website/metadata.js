@@ -1,4 +1,11 @@
 module.exports = {
+  "cloud_providers": [
+    {
+      "dark_logo_path": "/img/logos/aws.svg",
+      "logo_path": "/img/logos/aws.svg",
+      "name": "aws"
+    }
+  ],
   "databases": [
     {
       "dark_logo_path": "/img/logos/docker.svg",
@@ -303,6 +310,15 @@ module.exports = {
           "path": "website/guides/tutorial/url-shortener-api-with-kotlin.md",
           "series_position": null,
           "title": "URL Shortener API with Kotlin (Part 1/2)"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/tutorial/how-to-deploy-any-application-on-aws",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/how-to-deploy-any-application-on-aws.md",
+          "series_position": null,
+          "title": "Zero to Hero - How to deploy your app on AWS in 30 minutes"
         }
       ],
       "name": "tutorial",

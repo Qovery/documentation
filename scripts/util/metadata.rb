@@ -119,6 +119,7 @@ class Metadata
               :databases,
               :frameworks,
               :technologies,
+              :cloud_providers,
               :env_vars,
               :guides,
               :highlights,
@@ -151,6 +152,7 @@ class Metadata
     @databases = hash.fetch("databases").collect { |h| OpenStruct.new(h) }
     @frameworks = hash.fetch("frameworks").collect { |h| OpenStruct.new(h) }
     @technologies = hash.fetch("technologies").collect { |h| OpenStruct.new(h) }
+    @cloud_providers = hash.fetch("cloud_providers").collect { |h| OpenStruct.new(h) }
 
     # highlights
 
@@ -395,6 +397,7 @@ class Metadata
         databases: databases.deep_to_h,
         frameworks: frameworks.deep_to_h,
         technologies: technologies.deep_to_h,
+        cloud_providers: cloud_providers.deep_to_h,
         team: team.deep_to_h,
         transforms: transforms.deep_to_h,
         sinks: sinks.deep_to_h

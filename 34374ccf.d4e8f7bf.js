@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[38],{188:function(e){e.exports=JSON.parse('{"category":{"name":"engineering","title":"Engineering","description":"We share our engineering learning with all of you.","permalink":"/guides/engineering"}}')}}]);

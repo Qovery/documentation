@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[148],{299:function(e){e.exports=JSON.parse('{"allTagsPath":"/guides/tags","slug":"technology-kubernetes","name":"technology: kubernetes","count":2,"permalink":"/guides/tags/technology-kubernetes"}')}}]);

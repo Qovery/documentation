@@ -310,6 +310,15 @@ module.exports = {
           "path": "website/guides/tutorial/url-shortener-api-with-kotlin.md",
           "series_position": null,
           "title": "URL Shortener API with Kotlin (Part 1/2)"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes.md",
+          "series_position": null,
+          "title": "Zero to Hero - How to deploy your app on AWS in 30 minutes"
         }
       ],
       "name": "tutorial",

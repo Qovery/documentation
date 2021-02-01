@@ -5,11 +5,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="add article on how to deploy on your aws account">
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="add posthog">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docusaurus.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/docusaurus.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/website/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/website/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration.md.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,17 +134,6 @@
     </key>
   </component>
   <component name="RunManager" selected="npm.start">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/website/package.json" />
       <command value="run" />
@@ -270,14 +257,8 @@
       <workItem from="1611649048548" duration="2246000" />
       <workItem from="1611749551821" duration="37202000" />
       <workItem from="1611906758158" duration="12794000" />
-      <workItem from="1612020449377" duration="12254000" />
-    </task>
-    <task id="LOCAL-00117" summary="update: remove `cloud_region` property from .qovery.yml">
-      <created>1602493940209</created>
-      <option name="number" value="00117" />
-      <option name="presentableId" value="LOCAL-00117" />
-      <option name="project" value="LOCAL" />
-      <updated>1602493940210</updated>
+      <workItem from="1612020449377" duration="13250000" />
+      <workItem from="1612166440909" duration="17000" />
     </task>
     <task id="LOCAL-00118" summary="update: business documentation">
       <created>1602570434270</created>
@@ -615,7 +596,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612094456521</updated>
     </task>
-    <option name="localTasksCounter" value="166" />
+    <task id="LOCAL-00166" summary="add posthog">
+      <created>1612114884793</created>
+      <option name="number" value="00166" />
+      <option name="presentableId" value="LOCAL-00166" />
+      <option name="project" value="LOCAL" />
+      <updated>1612114884793</updated>
+    </task>
+    <option name="localTasksCounter" value="167" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -701,7 +689,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="update: qovery-iam-aws.json" />
     <MESSAGE value="update: business documentation" />
     <MESSAGE value="update: documentation" />
     <MESSAGE value="update: change footer" />
@@ -726,6 +713,7 @@
     <MESSAGE value="update Qovery vs. Terraform" />
     <MESSAGE value="update &quot;what is qovery&quot; page" />
     <MESSAGE value="add article on how to deploy on your aws account" />
-    <option name="LAST_COMMIT_MESSAGE" value="add article on how to deploy on your aws account" />
+    <MESSAGE value="add posthog" />
+    <option name="LAST_COMMIT_MESSAGE" value="add posthog" />
   </component>
 </project>

@@ -55,4 +55,4 @@ You can improve a template by [submitting a Pull Request][urls.qovery_templates_
 
 
 [guides.deploy-your-first-application]: /guides/getting-started/deploy-your-first-application/
-[urls.qovery_templates_repository]: https://github.com/Qovery/qovery-templates
+[urls.qovery_templates_repository]: https://github.com/Qovery-Templates

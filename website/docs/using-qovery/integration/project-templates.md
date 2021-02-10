@@ -30,4 +30,4 @@ The command will redirect you to the interactive web user interface where you ca
 Any idea of a new template? [Contributions are welcomed][urls.qovery_templates_repo].
 
 
-[urls.qovery_templates_repo]: https://github.com/qovery/qovery-templates
+[urls.qovery_templates_repo]: https://github.com/Qovery-Templates

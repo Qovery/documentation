@@ -150,10 +150,10 @@ See all log options with `qovery log -h`
 $ qovery log -f
 ```
 
-If you want to display logs of all applications in a given environment, use `qovery env log` instead:
+If you want to display logs of all applications in a given environment, use `qovery log --environment` instead:
 
 ```bash
-$ qovery env log
+$ qovery log --environment
 log-printer-gitlab | 2020-11-24T12:00:24.826Z
 log-printer-gitlab-v2 | 2020-11-24T12:00:25.027Z
 log-printer-gitlab    | 2020-11-24T12:00:25.827Z

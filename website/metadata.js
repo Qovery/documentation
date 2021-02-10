@@ -128,6 +128,15 @@ module.exports = {
           "path": "website/guides/getting-started/deploy-your-first-application.md",
           "series_position": null,
           "title": "Hello World. Deploy your first application."
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/getting-started/application-template",
+          "last_modified_on": null,
+          "path": "website/guides/getting-started/application-template.md",
+          "series_position": null,
+          "title": "Use application template"
         }
       ],
       "name": "getting-started",
@@ -256,15 +265,6 @@ module.exports = {
           "path": "website/guides/tutorial/graphql-api-with-hasura.md",
           "series_position": null,
           "title": "GraphQL API with Hasura"
-        },
-        {
-          "author_github": "https://github.com/pjeziorowski",
-          "description": null,
-          "id": "/tutorial/how-to-deploy-a-docker-container",
-          "last_modified_on": null,
-          "path": "website/guides/tutorial/how-to-deploy-a-docker-container.md",
-          "series_position": null,
-          "title": "How to deploy Docker containers?"
         },
         {
           "author_github": "https://github.com/evoxmusic",

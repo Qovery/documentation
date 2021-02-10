@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-12-04"
+last_modified_on: "2021-02-10"
 title: Redis
 description: "How to set up and use a Redis database"
 ---
@@ -32,8 +32,6 @@ databases:
 - name: select a name for your database
 - version: choose the version of the database
 - type: the database engine (redis in this case)
-
-Alternatively, if you are creating a new application, use `qovery init` to interactively add a database (the CLI asks if you need one).
 
 ## Supported versions
 

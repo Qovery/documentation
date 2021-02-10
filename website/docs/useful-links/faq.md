@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-10-14"
+last_modified_on: "2021-02-10"
 title: FAQ
 description: "Frequently Asked Questions"
 ---
@@ -13,7 +13,7 @@ Yes, absolutely. [Join our fantastic community on Discord][urls.qovery_chat] to 
 
 ### How does application build work?
 
-We [build and run your Dockerfile][guides.how-to-deploy-a-docker-container], so it's up to you to provide all the good instructions. If you have any trouble, we can assist you.
+We build and run your Dockerfile, so it's up to you to provide all the good instructions. If you have any trouble, we can assist you.
 
 ### How does Qovery manage databases?
 
@@ -53,7 +53,6 @@ Feel free to join our [Discord server][urls.qovery_chat] or contact us by email 
 [docs.main-concepts.environment]: /docs/main-concepts/environment/
 [docs.main-concepts.project]: /docs/main-concepts/project/
 [docs.project]: /docs/main-concepts/project/
-[guides.how-to-deploy-a-docker-container]: /guides/tutorial/how-to-deploy-a-docker-container/
 [urls.kubernetes]: https://kubernetes.io/
 [urls.qovery_chat]: https://discord.qovery.com
 [urls.qovery_enterprise]: https://www.qovery.com/business

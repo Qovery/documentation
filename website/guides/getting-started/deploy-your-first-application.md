@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-01-09"
+last_modified_on: "2021-02-10"
 $schema: "/.meta/.schemas/guides.json"
 title: Hello World. Deploy your first application.
 description: How to deploy your first application with Qovery
@@ -285,30 +285,19 @@ It's as simple as deploying a template, the difference is to choose `I already h
 
 You must provide your `Dockerfile`.
 
+<Alert type="info">
+
+You must provide your `Dockerfile` **OR** use [one provided by us][guides.application-template]
+
 </Alert>
 
-Deploying your existing application is as easy as running `qovery init` at the root of your project directory.
+Deploying your existing application is as easy as running `qovery init`.
 
 ```bash
 $ qovery init
 ```
-<CodeExplanation>
 
-* `qovery init` is an interactive command to generate the final `.qovery.yml`.
-* It must be run at the root of your project directory.
-* You must version your application with Git.
-
-</CodeExplanation>
-
-Then, **commit** and **push** your code
-
-```bash
-$ git add .qovery.yml Dockerfile
-$ git commit -m "add: .qovery.yml and Dockerfile to deploy on Qovery"
-$ git push -u origin master
-```
-
-That's it!
+The command will open an interactive project creator that will let you quickly bootstrap an application using one of existing templates or by connecting your own repository.
 
 </TabItem>
 
@@ -320,6 +309,7 @@ To deploy your application, it's as simple as that. In the following article, we
 
 
 [docs.cli#windows]: /docs/using-qovery/interface/cli/#windows
+[guides.application-template]: /guides/getting-started/application-template/
 [urls.authorize_qovery]: https://github.com/apps/qovery/installations/new
 [urls.brew]: https://brew.sh/
 [urls.github]: https://github.com

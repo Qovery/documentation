@@ -114,30 +114,19 @@ It's as simple as deploying a template, the difference is to choose `I already h
 
 You must provide your `Dockerfile`.
 
+<Alert type="info">
+
+You must provide your `Dockerfile` **OR** use [one provided by us][guides.application-template]
+
 </Alert>
 
-Deploying your existing application is as easy as running `qovery init` at the root of your project directory.
+Deploying your existing application is as easy as running `qovery init`.
 
 ```bash
 $ qovery init
 ```
-<CodeExplanation>
 
-* `qovery init` is an interactive command to generate the final `.qovery.yml`.
-* It must be run at the root of your project directory.
-* You must version your application with Git.
-
-</CodeExplanation>
-
-Then, **commit** and **push** your code
-
-```bash
-$ git add .qovery.yml Dockerfile
-$ git commit -m "add: .qovery.yml and Dockerfile to deploy on Qovery"
-$ git push -u origin master
-```
-
-That's it!
+The command will open an interactive project creator that will let you quickly bootstrap an application using one of existing templates or by connecting your own repository.
 
 </TabItem>
 

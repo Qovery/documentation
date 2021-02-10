@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-10-12"
+last_modified_on: "2021-02-10"
 $schema: "/.meta/.schemas/guides.json"
 title: Migrating application from Heroku to Qovery
 description: Tutorial how to migrate a webapp connected to PostgreSQL database from Heroku to Qovery
@@ -165,12 +165,6 @@ routers:
     paths:
     - /
 ```
-
-<Alert>
-
-For your future projects, you can use the `qovery init` command instead to configure your application.
-
-</Alert>
 
 The sample application uses `DATABASE_URL` environment variable to connect to PostgreSQL. To provide your app
 with correct database URL, create a `.env` file in the root of application repository with this content:

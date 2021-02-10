@@ -6,9 +6,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="fix: remove brokers dead link">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/heroku.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/heroku.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/heroku.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/heroku.md.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/docs/using-qovery/integration/project-templates.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/docs/using-qovery/integration/project-templates.md.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/guides/getting-started/application-template.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_database_info.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_database_info.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/useful-links/faq.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/useful-links/faq.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/useful-links/faq.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/useful-links/faq.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/databases/mongodb.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/databases/mongodb.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/databases/mysql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/databases/mysql.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/databases/postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/databases/postgresql.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/databases/redis.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/databases/redis.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/application-template.md.erb.deleted" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/application-template.md.erb.deleted" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/debugging.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/debugging.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/debugging.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/debugging.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/deploy-your-first-application.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/deploy-your-first-application.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/deploy-your-first-application.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/deploy-your-first-application.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-a-docker-container.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-a-docker-container.md.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/migrate-webapp-from-heroku-to-qovery.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/migrate-webapp-from-heroku-to-qovery.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/migrate-webapp-from-heroku-to-qovery.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/migrate-webapp-from-heroku-to-qovery.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/metadata.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/metadata.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,6 +101,10 @@
   <component name="KotlinMultiplatform">
     <allAvailableExecutables />
   </component>
+  <component name="KubernetesApiPersistence">
+    <option name="context" value="aws_eu_west_3_kube001" />
+    <option name="namespace" value="default" />
+  </component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="0qlt6lxg" />
   </component>
@@ -134,7 +155,7 @@
       <recent name="$PROJECT_DIR$/website/docs/using-qovery" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start">
+  <component name="RunManager">
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/website/package.json" />
       <command value="run" />
@@ -175,14 +196,6 @@
       <envs />
       <method v="2" />
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="npm.start" />
-        <item itemvalue="npm.swizzle" />
-        <item itemvalue="npm.deploy" />
-        <item itemvalue="npm.build" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="RustProjectSettings">
     <option name="toolchainHomeDirectory" value="$USER_HOME$/.cargo/bin" />
@@ -260,6 +273,7 @@
       <workItem from="1611906758158" duration="12794000" />
       <workItem from="1612020449377" duration="13250000" />
       <workItem from="1612166440909" duration="1298000" />
+      <workItem from="1612946995644" duration="371000" />
     </task>
     <task id="LOCAL-00119" summary="update: business documentation">
       <created>1602573192030</created>

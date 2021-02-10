@@ -128,15 +128,6 @@ module.exports = {
           "path": "website/guides/getting-started/deploy-your-first-application.md",
           "series_position": null,
           "title": "Hello World. Deploy your first application."
-        },
-        {
-          "author_github": "https://github.com/evoxmusic",
-          "description": null,
-          "id": "/getting-started/application-template",
-          "last_modified_on": null,
-          "path": "website/guides/getting-started/application-template.md",
-          "series_position": null,
-          "title": "Use application template"
         }
       ],
       "name": "getting-started",

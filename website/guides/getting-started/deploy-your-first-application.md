@@ -287,7 +287,7 @@ You must provide your `Dockerfile`.
 
 <Alert type="info">
 
-You must provide your `Dockerfile` **OR** use [one provided by us][guides.application-template]
+You must provide your `Dockerfile` **OR** use one provided by us.
 
 </Alert>
 
@@ -309,7 +309,6 @@ To deploy your application, it's as simple as that. In the following article, we
 
 
 [docs.cli#windows]: /docs/using-qovery/interface/cli/#windows
-[guides.application-template]: /guides/getting-started/application-template/
 [urls.authorize_qovery]: https://github.com/apps/qovery/installations/new
 [urls.brew]: https://brew.sh/
 [urls.github]: https://github.com

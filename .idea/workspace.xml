@@ -6,12 +6,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: update docs after removing a few CLI commands">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/application-template.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/application-template.md.erb.deleted" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/deploy-your-first-application.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/deploy-your-first-application.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/guides/getting-started/deploy-your-first-application.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/deploy-your-first-application.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/metadata.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/metadata.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -259,14 +254,7 @@
       <workItem from="1611906758158" duration="12794000" />
       <workItem from="1612020449377" duration="13250000" />
       <workItem from="1612166440909" duration="1298000" />
-      <workItem from="1612946995644" duration="2825000" />
-    </task>
-    <task id="LOCAL-00121" summary="update: qovery-iam-aws.json">
-      <created>1602576993766</created>
-      <option name="number" value="00121" />
-      <option name="presentableId" value="LOCAL-00121" />
-      <option name="project" value="LOCAL" />
-      <updated>1602576993766</updated>
+      <workItem from="1612946995644" duration="2984000" />
     </task>
     <task id="LOCAL-00122" summary="update: business documentation">
       <created>1602617460502</created>
@@ -604,7 +592,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612947593019</updated>
     </task>
-    <option name="localTasksCounter" value="170" />
+    <task id="LOCAL-00170" summary="chore: update docs after removing a few CLI commands">
+      <created>1612951367360</created>
+      <option name="number" value="00170" />
+      <option name="presentableId" value="LOCAL-00170" />
+      <option name="project" value="LOCAL" />
+      <updated>1612951367360</updated>
+    </task>
+    <option name="localTasksCounter" value="171" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

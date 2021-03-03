@@ -91,6 +91,10 @@ module.exports = {
                             to: 'https://discord.qovery.com',
                         },
                         {
+                            label: 'Community call',
+                            to: 'https://www.qovery.com/community-call',
+                        },
+                        {
                             label: 'Roadmap',
                             to: 'https://roadmap.qovery.com',
                         },

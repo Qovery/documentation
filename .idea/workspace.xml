@@ -5,9 +5,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: update docs after removing a few CLI commands">
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: update footer">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.meta/links.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/links.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/docusaurus.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/docusaurus.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/simplest-way-to-deploy-deno-with-database.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/simplest-way-to-deploy-deno-with-database.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -259,13 +261,7 @@
       <workItem from="1611906758158" duration="12794000" />
       <workItem from="1612020449377" duration="13250000" />
       <workItem from="1612166440909" duration="1298000" />
-    </task>
-    <task id="LOCAL-00119" summary="update: business documentation">
-      <created>1602573192030</created>
-      <option name="number" value="00119" />
-      <option name="presentableId" value="LOCAL-00119" />
-      <option name="project" value="LOCAL" />
-      <updated>1602573192030</updated>
+      <workItem from="1615720422274" duration="116000" />
     </task>
     <task id="LOCAL-00120" summary="update: business documentation">
       <created>1602576819984</created>
@@ -603,7 +599,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612166483539</updated>
     </task>
-    <option name="localTasksCounter" value="168" />
+    <task id="LOCAL-00168" summary="chore: update footer">
+      <created>1614787259157</created>
+      <option name="number" value="00168" />
+      <option name="presentableId" value="LOCAL-00168" />
+      <option name="project" value="LOCAL" />
+      <updated>1614787259157</updated>
+    </task>
+    <option name="localTasksCounter" value="169" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -689,7 +692,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="update: documentation" />
     <MESSAGE value="update: change footer" />
     <MESSAGE value="chore: add intercom plugin" />
     <MESSAGE value="improvement: add permission section to `deploy your first app page`" />
@@ -714,6 +716,7 @@
     <MESSAGE value="add article on how to deploy on your aws account" />
     <MESSAGE value="add posthog" />
     <MESSAGE value="fix: remove brokers dead link" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: remove brokers dead link" />
+    <MESSAGE value="chore: update footer" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: update footer" />
   </component>
 </project>

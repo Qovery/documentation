@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-01-09"
+last_modified_on: "2021-03-14"
 $schema: "/.meta/.schemas/guides.json"
 title: Simplest way to deploy your Deno application with MongoDB database
 description: Tutorial how to deploy a Deno app with MongoDB database with Qovery
@@ -360,7 +360,7 @@ Do you have any feedback about this tutorial? Let us know what you think on [Dis
 [docs.main-concepts.environment]: /docs/main-concepts/environment/
 [urls.authorize_qovery]: https://github.com/apps/qovery/installations/new
 [urls.brew]: https://brew.sh/
-[urls.deno]: https://deno.land/
+[urls.deno]: https://github.com/denoland/deno
 [urls.github]: https://github.com
 [urls.gitlab]: https://gitlab.com
 [urls.mongodb]: https://www.mongodb.com

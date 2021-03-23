@@ -65,7 +65,7 @@ Do not forget to commit and push your `.qovery.yml` changes to use your domain
 
 </Alert>
 
-### Domain validation
+### Validate a Domain
 
 To use you domain, you have to confirm that it is yours. Execute the command `qovery domain list` to list all domains of your [environment][docs.environment]:
 
@@ -83,7 +83,7 @@ Now, to validate a domain that is in `validation pending ` status, add a `CNAME`
 Qovery a few minutes to verify and complete the process. You can check the verification status using `qovery domain list`.
 
 
-### Domain validation
+### See my domains
 
 In order to know the custom domains existing on one of your applications, you can do it in 2 ways
 

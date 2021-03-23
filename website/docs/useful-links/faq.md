@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-02-10"
+last_modified_on: "2021-03-23"
 title: FAQ
 description: "Frequently Asked Questions"
 ---
@@ -38,6 +38,10 @@ Qovery is in beta but is stable enough to consider hosting your projects. Qovery
 ### Where are your servers located?
 
 Qovery relies on Cloud providers like AWS (Amazon Web Services), GCP (Google Cloud Platform) and Azure. For each [project][docs.project], and [environment][docs.environment] you can select the region (America, Europe, Asia) of your choice.
+
+### If I have N custom domains under the same root domain, do I need to create N CNAME records, or just creating one for the root domain is enough ?
+
+You have to create N CNAME, one per custom domain
 
 ### How Qovery works under the hood?
 

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-24"
+last_modified_on: "2021-03-23"
 title: "Domains"
 description: "Learn how to configure custom Domains on Qovery"
 ---
@@ -81,6 +81,24 @@ master | https://main-yenr7erjbs87dk4m-gtw.qovery.io | live               | none
 
 Now, to validate a domain that is in `validation pending ` status, add a `CNAME` record that is targeting the `VALIDATION DOMAIN` - `xxx-yyy-zzz.acme.com`. After doing so, it takes
 Qovery a few minutes to verify and complete the process. You can check the verification status using `qovery domain list`.
+
+
+### Domain validation
+
+In order to know the custom domains existing on one of your applications, you can do it in 2 ways
+
+#### Using the CLI:
+```bash title="List domains"
+qovery domain list
+```
+
+#### Using the Web UI
+
+On the summary page of your application, if you have custom domains they will be listed in the "Custom domains" section:
+
+<p align="center">
+  <img src="/img/application-custom-domains.png" alt="Custom domains list" />
+</p>
 
 
 [docs.environment]: /docs/main-concepts/environment/

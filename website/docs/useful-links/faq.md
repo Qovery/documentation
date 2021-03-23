@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-02-10"
+last_modified_on: "2021-03-23"
 title: FAQ
 description: "Frequently Asked Questions"
 ---
@@ -38,6 +38,24 @@ Qovery is in beta but is stable enough to consider hosting your projects. Qovery
 ### Where are your servers located?
 
 Qovery relies on Cloud providers like AWS (Amazon Web Services), GCP (Google Cloud Platform) and Azure. For each [project][docs.project], and [environment][docs.environment] you can select the region (America, Europe, Asia) of your choice.
+
+### If I have N custom domains under the same root domain, do I need to create N CNAME records, or just creating one for the root domain is enough ?
+
+You have to create N CNAME, one per custom domain
+
+### I have made actions on my AWS account and want to clean my organization in order to restart from scratch, how can I proceed ?
+
+If you want to remove Qovery infrastructure from your AWS account in order to restart from the beginning, or if you are leaving Qovery and want to delete Qovery infrastructure from your AWS account, you can do that buy clicking on "delete infrastraucture" on your Organization page:
+
+<p align="center">
+  <img src="/img/organization-delete-infra.png" alt="Delete Qovery infrastructure" />
+</p>
+
+The option is also available if you do not have any project;
+
+<p align="center">
+  <img src="/img/organization-delete-infra-2.png" alt="Delete Qovery infrastructure" />
+</p>
 
 ### How Qovery works under the hood?
 

@@ -74,7 +74,7 @@ qovery domain list
 ```plain title="OUTPUT"
 BRANCH | DOMAIN                                      | STATUS             | VALIDATION DOMAIN    | ROUTER NAME
 master | node.deimos.fr                              | validation pending | xxx-yyy-zzz.acme.com | main
-stage  | https://main-yenr7erjbs87dk4m-gtw.qovery.io | live               | none                 | my-second-router
+master | https://main-yenr7erjbs87dk4m-gtw.qovery.io | live               | none                 | my-second-router
 ```
 
 Now, to validate a domain that is in `validation pending ` status, add a `CNAME` record that is targeting the `VALIDATION DOMAIN` - `xxx-yyy-zzz.acme.com`. After doing so, it takes

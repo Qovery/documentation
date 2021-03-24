@@ -33,6 +33,13 @@ simple-example      up and running  https://yyy-xxx-app.qovery.io   1           
 
 You can use a custom domain name for any of your applications. Additionally, the domain name can be different in each environment (branch).
 
+<Alert type="info">
+
+Currently, if you want to have several domains on a same branch, it is not supported. The workaround is to have a second router.
+
+</Alert>
+
+
 ### Set a domain
 
 ```yaml title=".qovery.yml" {4-6}
@@ -67,7 +74,7 @@ qovery domain list
 ```plain title="OUTPUT"
 BRANCH | DOMAIN                                      | STATUS             | VALIDATION DOMAIN    | ROUTER NAME
 master | node.deimos.fr                              | validation pending | xxx-yyy-zzz.acme.com | main
-master | https://main-yenr7erjbs87dk4m-gtw.qovery.io | live               | none                 | main
+stage  | https://main-yenr7erjbs87dk4m-gtw.qovery.io | live               | none                 | my-second-router
 ```
 
 Now, to validate a domain that is in `validation pending ` status, add a `CNAME` record that is targeting the `VALIDATION DOMAIN` - `xxx-yyy-zzz.acme.com`. After doing so, it takes

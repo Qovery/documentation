@@ -95,6 +95,10 @@ module.exports = {
                             to: 'https://www.qovery.com/community-call',
                         },
                         {
+                            label: 'Goodies',
+                            to: 'https://shop.qovery.com',
+                        },
+                        {
                             label: 'Roadmap',
                             to: 'https://roadmap.qovery.com',
                         },

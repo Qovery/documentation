@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-01-09"
+last_modified_on: "2021-03-26"
 $schema: "/.meta/.schemas/guides.json"
 title: Multiple environments
 description: How to make use of Environments on Qovery
@@ -154,7 +154,14 @@ During the time your friend tests his code, your feature can not be finished and
 ### Qovery Environments to the rescue
 
 To solve this issue and enable software developers to work independently, Qovery introduces the concept of `Environments`.
-On Qovery, after you create a new branch for your new feature, you automatically get a completely separated, exact copy of your production environment (including all applications, databases, data, storage, and brokers).
+On Qovery, after you create a new branch for your new feature, you automatically get a completely separated copy of your production environment (including all applications, databases, storage, and brokers).
+
+<Alert type="info">
+
+Please note that data is not automatically copied, you have to populate the newly created databases yourself.
+
+</Alert>
+
 
 <p align="center">
     <img src="/img/multiple-environments-demo.png" alt="Deploying multiple Environments" />

@@ -38,6 +38,11 @@ Qovery is in beta but is stable enough to consider hosting your projects. Qovery
 
 Qovery relies on Cloud providers like AWS (Amazon Web Services), GCP (Google Cloud Platform) and Azure. For each [project][docs.project], and [environment][docs.environment] you can select the region (America, Europe, Asia) of your choice.
 
+### What is the IP address of Qovery? I would like to whitelist it on my side
+
+It is not possible to whitelist only one IP address as we have several nodes and they have different IP addresses. Your app can move to any of those nodes.
+In addition to that, nodes can be deleted/replaced with new ones and therefore have different IPs. Authentication based on an IP address is not a viable solution for any cloud-native solution like Qovery.
+
 ### If I have N custom domains under the same root domain, do I need to create N CNAME records, or just creating one for the root domain is enough ?
 
 You have to create N CNAME, one per custom domain

@@ -267,6 +267,15 @@ module.exports = {
           "title": "How to deploy a full-stack application composed of Hasura, PostgreSQL and Angular"
         },
         {
+          "author_github": "https://github.com/MacLikorne",
+          "description": null,
+          "id": "/tutorial/how-to-write-a-dockerfile",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/how-to-write-a-dockerfile.md",
+          "series_position": null,
+          "title": "How to write a Dockerfile"
+        },
+        {
           "author_github": "https://github.com/pjeziorowski",
           "description": null,
           "id": "/tutorial/migrate-webapp-from-heroku-to-qovery",
@@ -443,6 +452,14 @@ module.exports = {
       "id": "patryk",
       "keybase": "https://keybase.io/patryk",
       "name": "Patryk J."
+    },
+    {
+      "avatar": "https://github.com/maclikorne.png",
+      "bio": "Enzo is a Backend Developer at <a href=\"https://www.qovery.com\">Qovery</a>. ",
+      "github": "https://github.com/MacLikorne",
+      "id": "enzo",
+      "keybase": "https://keybase.io/enzo",
+      "name": "Enzo R."
     },
     {
       "avatar": "https://github.com/sileht.png",

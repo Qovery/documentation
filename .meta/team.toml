@@ -33,6 +33,16 @@ Patryk is an experienced Software Engineer, and a Backend Developer at <a href=\
 """
 
 [[team]]
+id = "enzo"
+avatar = "https://github.com/maclikorne.png"
+github = "https://github.com/MacLikorne"
+keybase = "https://keybase.io/enzo"
+name = "Enzo R."
+bio = """\
+Enzo is a Backend Developer at <a href=\"https://www.qovery.com\">Qovery</a>. \
+"""
+
+[[team]]
 id = "mehdi"
 avatar = "https://github.com/sileht.png"
 github = "https://github.com/sileht"

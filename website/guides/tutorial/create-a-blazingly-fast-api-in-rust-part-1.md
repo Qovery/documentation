@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-01-09"
+last_modified_on: "2021-04-22"
 $schema: "/.meta/.schemas/guides.json"
 title: Create a blazingly fast REST API in Rust (Part 1/2)
 description: How to create a blazingly fast REST API in Rust, with zero-cost abstraction and very low overhead - Part 1/2

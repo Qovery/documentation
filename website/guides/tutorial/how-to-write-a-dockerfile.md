@@ -8,12 +8,14 @@ tags: ["type: tutorial"]
 hide_pagination: true
 ---
 
+import Alert from '@site/src/components/Alert';
 import Jump from '@site/src/components/Jump';
 
 import Assumptions from '@site/src/components/Assumptions';
 
 
 With Qovery, there are two ways to build and deploy your application:
+
 1. Without a Dockerfile in your repository: your application is built with [Buildpacks](https://docs.qovery.com/docs/using-qovery/configuration/applications/#option-1-buildpacks)
 2. With a Dockerfile: sometimes Buildpacks won't fit your specific setup, and you'll have to write your Dockerfile.
 
@@ -91,7 +93,12 @@ COPY . .
 
 Here, the elements of your **root** folder from your current directory will be added inside the **/app** folder.
 
-Note: You can use your current repository relative path (**.** can be replaced by **./<my_source>**) if you want to add specific element (except the content of **.dockerignore**) to your image relative path (as we are already in the **/app** folder, we can use **./<my_destination>**).
+<Alert type="info">
+
+You can use your current repository relative path (**.** can be replaced by **./<my_source>**) if you want to add specific element (except the content of **.dockerignore**) to your image relative path (as we are already in the **/app** folder, we can use **./<my_destination>**).
+
+</Alert>
+
 
 ### RUN
 
@@ -123,7 +130,12 @@ RUN <my_command>
 EXPOSE <app_port>
 ```
 
-Note: typical mistakes are made application configuration side. Ensure your application will listen on all interfaces **0.0.0.0** and not only localhost **127.0.0.1**.
+<Alert type="info">
+
+Typical mistakes are made application configuration side. Ensure your application will listen on all interfaces **0.0.0.0** and not only localhost **127.0.0.1**.
+
+</Alert>
+
 
 ### CMD
 

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-04-15"
+last_modified_on: "2021-04-23"
 title: FAQ
 description: "Frequently Asked Questions"
 ---
@@ -9,7 +9,7 @@ A [project][docs.main-concepts.project] is the site that you're working on. Each
 
 ### Can you help me to deploy my application on Qovery?
 
-Yes, absolutely. [Join our fantastic community on Discord][urls.qovery_chat] to get the help of one of our team member.
+Yes, absolutely. [Join our fantastic community][urls.qovery_community] to get the help of our +2000 developers and Qovery team members.
 
 ### How does application build work?
 
@@ -41,7 +41,7 @@ Qovery relies on Cloud providers like AWS (Amazon Web Services), GCP (Google Clo
 
 ### What is the IP address of Qovery? I would like to whitelist it on my side
 
-It is not possible to whitelist only one IP address as we have several nodes and they have different IP addresses. Your app can move to any of those nodes.
+It is not possible to whitelist only one IP address as we have several nodes, and they have different IP addresses. Your app can move to any of those nodes.
 In addition to that, nodes can be deleted/replaced with new ones and therefore have different IPs. Authentication based on an IP address is not a viable solution for any cloud-native solution like Qovery.
 
 ### If I have N custom domains under the same root domain, do I need to create N CNAME records, or just creating one for the root domain is enough ?
@@ -64,7 +64,7 @@ The option is also available if you do not have any project;
 
 ### How Qovery works under the hood?
 
-TODO
+We will explain in details soon.
 
 ### How can I contact you?
 
@@ -78,5 +78,6 @@ Feel free to join our [Discord server][urls.qovery_chat] or contact us by email 
 [docs.project]: /docs/main-concepts/project/
 [urls.kubernetes]: https://kubernetes.io/
 [urls.qovery_chat]: https://discord.qovery.com
+[urls.qovery_community]: https://community.qovery.com/
 [urls.qovery_enterprise]: https://www.qovery.com/business
 [urls.qovery_roadmap]: https://roadmap.qovery.com/

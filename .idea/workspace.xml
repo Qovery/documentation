@@ -5,8 +5,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: update footer">
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: add goodies link">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.meta/links.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/links.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/useful-links/faq.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/useful-links/faq.md.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/docusaurus.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/docusaurus.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -113,7 +115,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -176,8 +178,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.start" />
         <item itemvalue="npm.swizzle" />
+        <item itemvalue="npm.start" />
         <item itemvalue="npm.deploy" />
         <item itemvalue="npm.build" />
       </list>
@@ -260,13 +262,7 @@
       <workItem from="1612020449377" duration="13250000" />
       <workItem from="1612166440909" duration="1298000" />
       <workItem from="1615720422274" duration="116000" />
-    </task>
-    <task id="LOCAL-00120" summary="update: business documentation">
-      <created>1602576819984</created>
-      <option name="number" value="00120" />
-      <option name="presentableId" value="LOCAL-00120" />
-      <option name="project" value="LOCAL" />
-      <updated>1602576819984</updated>
+      <workItem from="1619201682241" duration="837000" />
     </task>
     <task id="LOCAL-00121" summary="update: qovery-iam-aws.json">
       <created>1602576993766</created>
@@ -604,7 +600,14 @@
       <option name="project" value="LOCAL" />
       <updated>1614787259157</updated>
     </task>
-    <option name="localTasksCounter" value="169" />
+    <task id="LOCAL-00169" summary="chore: add goodies link">
+      <created>1616581590000</created>
+      <option name="number" value="00169" />
+      <option name="presentableId" value="LOCAL-00169" />
+      <option name="project" value="LOCAL" />
+      <updated>1616581590000</updated>
+    </task>
+    <option name="localTasksCounter" value="170" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -690,7 +693,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="update: change footer" />
     <MESSAGE value="chore: add intercom plugin" />
     <MESSAGE value="improvement: add permission section to `deploy your first app page`" />
     <MESSAGE value="feat: add `start_timeout` option in Applications" />
@@ -715,6 +717,7 @@
     <MESSAGE value="add posthog" />
     <MESSAGE value="fix: remove brokers dead link" />
     <MESSAGE value="chore: update footer" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: update footer" />
+    <MESSAGE value="chore: add goodies link" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: add goodies link" />
   </component>
 </project>

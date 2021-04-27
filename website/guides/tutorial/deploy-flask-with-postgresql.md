@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-01-09"
+last_modified_on: "2021-04-27"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy Flask with PostgreSQL with Qovery
 description: How to deploy a Flask application with the PostgreSQL database with Qovery
@@ -238,6 +238,11 @@ routers:
 
 ### Connect Flask to PostgreSQL
 Credentials of your database are available via environment variables. Qovery injects environment vars at the runtime.
+
+<Alert type="info">
+Qovery does not inject any variable in your .env file, this is to be done on your side
+</Alert>
+
 To list all the environment variables available to your application, execute
 
 ```bash

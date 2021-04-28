@@ -76,6 +76,11 @@ module.exports = {
       "dark_logo_path": "/img/logos/deno.svg",
       "logo_path": "/img/logos/deno.svg",
       "name": "deno"
+    },
+    {
+      "dark_logo_path": "/img/logos/strapi.svg",
+      "logo_path": "/img/logos/strapi.svg",
+      "name": "strapi"
     }
   ],
   "guides": {
@@ -256,6 +261,15 @@ module.exports = {
           "path": "website/guides/tutorial/graphql-api-with-hasura.md",
           "series_position": null,
           "title": "GraphQL API with Hasura"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/tutorial/how-to-deploy-strapi-with-postgresql",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/how-to-deploy-strapi-with-postgresql.md",
+          "series_position": null,
+          "title": "How to deploy Strapi with PostgreSQL"
         },
         {
           "author_github": "https://github.com/evoxmusic",

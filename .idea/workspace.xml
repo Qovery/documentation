@@ -6,8 +6,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: change FAQ and add community.qovery.com links">
+      <change afterPath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-strapi-with-postgresql.md.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.meta/links.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/links.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.meta/.schemas/guides.json" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/.schemas/guides.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.meta/frameworks.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/frameworks.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/metadata.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/metadata.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +107,7 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.vendoring.notification.had.been.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/website/static/img" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/website/guides/tutorial" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -119,9 +122,9 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/website/guides/tutorial" />
       <recent name="$PROJECT_DIR$/website/static/img" />
       <recent name="$PROJECT_DIR$/.meta" />
-      <recent name="$PROJECT_DIR$/website/guides/tutorial" />
       <recent name="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other" />
       <recent name="$PROJECT_DIR$/website/docs/using-qovery/configuration/business" />
     </key>
@@ -134,6 +137,17 @@
     </key>
   </component>
   <component name="RunManager" selected="npm.start">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/website/package.json" />
       <command value="run" />
@@ -176,8 +190,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.swizzle" />
         <item itemvalue="npm.start" />
+        <item itemvalue="npm.swizzle" />
         <item itemvalue="npm.deploy" />
         <item itemvalue="npm.build" />
       </list>
@@ -260,14 +274,8 @@
       <workItem from="1612020449377" duration="13250000" />
       <workItem from="1612166440909" duration="1298000" />
       <workItem from="1615720422274" duration="116000" />
-      <workItem from="1619201682241" duration="1250000" />
-    </task>
-    <task id="LOCAL-00122" summary="update: business documentation">
-      <created>1602617460502</created>
-      <option name="number" value="00122" />
-      <option name="presentableId" value="LOCAL-00122" />
-      <option name="project" value="LOCAL" />
-      <updated>1602617460502</updated>
+      <workItem from="1619201682241" duration="1489000" />
+      <workItem from="1619638106613" duration="1270000" />
     </task>
     <task id="LOCAL-00123" summary="update: documentation">
       <created>1602666692357</created>
@@ -605,7 +613,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619202744887</updated>
     </task>
-    <option name="localTasksCounter" value="171" />
+    <task id="LOCAL-00171" summary="chore: change FAQ and add community.qovery.com links">
+      <created>1619203583934</created>
+      <option name="number" value="00171" />
+      <option name="presentableId" value="LOCAL-00171" />
+      <option name="project" value="LOCAL" />
+      <updated>1619203583934</updated>
+    </task>
+    <option name="localTasksCounter" value="172" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

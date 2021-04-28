@@ -5,18 +5,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: add tutorial on how to deploy Strapi with PostgreSQL">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.meta/.schemas/guides.json" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/.schemas/guides.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.meta/technologies.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/technologies.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/how-to-write-a-dockerfile.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/how-to-write-a-dockerfile.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/how-to-write-a-dockerfile.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/how-to-write-a-dockerfile.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/migrate-webapp-from-heroku-to-qovery.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/migrate-webapp-from-heroku-to-qovery.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/migrate-webapp-from-heroku-to-qovery.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/migrate-webapp-from-heroku-to-qovery.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/the-easiest-way-to-deploy-microservices.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/the-easiest-way-to-deploy-microservices.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/the-easiest-way-to-deploy-microservices.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/the-easiest-way-to-deploy-microservices.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/metadata.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/metadata.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/theme/GuideItem/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/theme/GuideItem/index.js" afterDir="false" />
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: fix tutorial logos and update some tutorials">
+      <change afterPath="$PROJECT_DIR$/website/static/img/logos/strapi.svg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -281,14 +271,7 @@
       <workItem from="1612166440909" duration="1298000" />
       <workItem from="1615720422274" duration="116000" />
       <workItem from="1619201682241" duration="1489000" />
-      <workItem from="1619638106613" duration="1967000" />
-    </task>
-    <task id="LOCAL-00124" summary="update: documentation">
-      <created>1602757299822</created>
-      <option name="number" value="00124" />
-      <option name="presentableId" value="LOCAL-00124" />
-      <option name="project" value="LOCAL" />
-      <updated>1602757299822</updated>
+      <workItem from="1619638106613" duration="2207000" />
     </task>
     <task id="LOCAL-00125" summary="update: documentation">
       <created>1602847085602</created>
@@ -626,7 +609,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619647176537</updated>
     </task>
-    <option name="localTasksCounter" value="173" />
+    <task id="LOCAL-00173" summary="chore: fix tutorial logos and update some tutorials">
+      <created>1619647874333</created>
+      <option name="number" value="00173" />
+      <option name="presentableId" value="LOCAL-00173" />
+      <option name="project" value="LOCAL" />
+      <updated>1619647874333</updated>
+    </task>
+    <option name="localTasksCounter" value="174" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -712,7 +702,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="feat: add `start_timeout` option in Applications" />
     <MESSAGE value="feat: add `depends_on` Application property doc" />
     <MESSAGE value="update footer" />
     <MESSAGE value="update documentation (add redis)" />
@@ -737,6 +726,7 @@
     <MESSAGE value="chore: add goodies link" />
     <MESSAGE value="chore: change FAQ and add community.qovery.com links" />
     <MESSAGE value="chore: add tutorial on how to deploy Strapi with PostgreSQL" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: add tutorial on how to deploy Strapi with PostgreSQL" />
+    <MESSAGE value="chore: fix tutorial logos and update some tutorials" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: fix tutorial logos and update some tutorials" />
   </component>
 </project>

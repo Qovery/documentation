@@ -1,10 +1,10 @@
 ---
-last_modified_on: "2020-10-13"
+last_modified_on: "2021-04-29"
 $schema: "/.meta/.schemas/guides.json"
 title: The easiest way to deploy microservices
 description: How to deploy microservices in a very simple way
 author_github: https://github.com/evoxmusic
-tags: ["type: tutorial"]
+tags: ["type: tutorial", "technology: qovery"]
 hide_pagination: true
 ---
 

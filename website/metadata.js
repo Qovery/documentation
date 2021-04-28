@@ -499,6 +499,11 @@ module.exports = {
       "dark_logo_path": "/img/logos/kotlin.svg",
       "logo_path": "/img/logos/kotlin.svg",
       "name": "kotlin"
+    },
+    {
+      "dark_logo_path": "/img/logos/qovery.svg",
+      "logo_path": "/img/logos/qovery.svg",
+      "name": "qovery"
     }
   ],
   "transforms": {

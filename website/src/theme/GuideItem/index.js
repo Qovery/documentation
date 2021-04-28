@@ -26,6 +26,8 @@ function GuideItem(props) {
     const frameworkName = frameworkTag ? frameworkTag.value : null;
     const technologyTag = enrichedTags.find(tag => tag.category == 'technology');
     const technologyName = technologyTag ? technologyTag.value : null;
+    const cloudProviderTag = enrichedTags.find(tag => tag.category == 'cloud_provider');
+    const cloudProviderName = cloudProviderTag ? cloudProviderTag.value : null;
     const platformTag = enrichedTags.find(tag => tag.category == 'platform');
     const platformName = platformTag ? platformTag.value : null;
     const sourceTag = enrichedTags.find(tag => tag.category == 'source');
@@ -34,14 +36,15 @@ function GuideItem(props) {
     const sinkName = sinkTag ? sinkTag.value : null;
 
     const {siteConfig} = useDocusaurusContext();
-    const {metadata: {installation, sources, sinks, languages, frameworks, technologies}} = siteConfig.customFields;
+    const {metadata: {installation, sources, sinks, languages, frameworks, technologies, cloud_providers}} = siteConfig.customFields;
     const {platforms} = installation;
     const platform = platformName && platforms[platformName];
     const source = sourceName && sources[sourceName];
     const sink = sinkName && sinks[sinkName];
-    const language = languageName && languages.find(language => language.name === languageName);
-    const framework = frameworkName && frameworks.find(framework => framework.name === frameworkName);
-    const technology = technologyName && technologies.find(framework => framework.name === technologyName);
+    const language = languageName && languages.find(x => x.name === languageName);
+    const framework = frameworkName && frameworks.find(x => x.name === frameworkName);
+    const technology = technologyName && technologies.find(x => x.name === technologyName);
+    const cloudProvider = cloudProviderName && cloud_providers.find(x => x.name === cloudProviderName);
     const sourceIcon = (platform || source) !== null;
     const sinkIcon = sink != null;
 
@@ -58,6 +61,12 @@ function GuideItem(props) {
             sourceLogoPath = technology.dark_logo_path;
         } else {
             sourceLogoPath = technology.logo_path;
+        }
+    } else if (cloudProvider) {
+        if (isDarkTheme) {
+            sourceLogoPath = cloudProvider.dark_logo_path;
+        } else {
+            sourceLogoPath = cloudProvider.logo_path;
         }
     } else if (language) {
         if (isDarkTheme) {

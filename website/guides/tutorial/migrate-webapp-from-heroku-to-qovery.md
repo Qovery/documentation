@@ -1,10 +1,10 @@
 ---
-last_modified_on: "2021-02-10"
+last_modified_on: "2021-04-29"
 $schema: "/.meta/.schemas/guides.json"
 title: Migrating application from Heroku to Qovery
 description: Tutorial how to migrate a webapp connected to PostgreSQL database from Heroku to Qovery
 author_github: https://github.com/pjeziorowski
-tags: ["type: tutorial"]
+tags: ["type: tutorial", "technology: qovery"]
 hide_pagination: true
 ---
 
@@ -29,7 +29,7 @@ The application is a simple Node.js *Todo* web app that uses PostgreSQL as a per
 * You have a Qovery account and access to Qovery CLI
 * You have a [Github][urls.github] account
 
-If you have not installed the Qovery CLI yet, you can see steps to do it [here][docs.using-qovery.interface.cli#first-usage].
+If you have not installed the Qovery CLI yet, you can see steps to take [here][docs.using-qovery.interface.cli#first-usage].
 
 </Assumptions>
 

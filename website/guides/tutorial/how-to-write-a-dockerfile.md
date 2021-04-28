@@ -1,10 +1,10 @@
 ---
-last_modified_on: "2021-04-22"
+last_modified_on: "2021-04-29"
 $schema: "/.meta/.schemas/guides.json"
 title: How to write a Dockerfile
 description: How to write your first Dockerfile in order to deploy your application with Qovery
 author_github: https://github.com/MacLikorne
-tags: ["type: tutorial"]
+tags: ["type: tutorial", "technology: docker"]
 hide_pagination: true
 ---
 

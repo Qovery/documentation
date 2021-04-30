@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-04-27"
+last_modified_on: "2021-04-30"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy Laravel with MySQL with Qovery
 description: How to deploy a Laravel application with the MySQL database with Qovery
@@ -239,7 +239,7 @@ routers:
 ### Connect Laravel to MySQL
 Credentials of your database are available via environment variables. Qovery injects environment vars at the runtime.
 
-<Alert type="info">
+<Alert type="warning">
 Qovery does not inject any variable in your .env file, this is to be done on your side
 </Alert>
 

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-01-28"
+last_modified_on: "2021-04-30"
 title: "Amazon Web Services (AWS)"
 description: "Learn how to configure and plug your Amazon Web Services (AWS) account"
 ---
@@ -68,6 +68,13 @@ Go to `My Security Credentials`
 <li>
 
 Create `Admins` group **without any permissions**
+
+<Alert type="warning">
+
+The name of the group MUST be Admins. If you use another name, this will not work
+
+</Alert>
+
 
 <img src="/img/aws-create-group-1.jpg" />
 <img src="/img/aws-create-group-2.jpg" />

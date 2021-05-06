@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-04-29"
+last_modified_on: "2021-05-06"
 $schema: "/.meta/.schemas/guides.json"
 title: How to write a Dockerfile
 description: How to write your first Dockerfile in order to deploy your application with Qovery
@@ -23,7 +23,7 @@ In this article, we'll see, step by step, how to quickly write a proper Dockerfi
 
 <Assumptions name="guide">
 
-* You have installed the [Qovery CLI](https://docs.qovery.com/extending-qovery/cli)
+* You have installed the [Qovery CLI](https://docs.qovery.com/docs/using-qovery/interface/cli/)
 * You host your code on Github
 
 </Assumptions>

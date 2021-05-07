@@ -5,10 +5,15 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: fix tutorial logos and update some tutorials">
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: update header">
+      <change afterPath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-nuxtjs.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-nuxtjs.md.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/logos/nuxtjs.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docusaurus.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/docusaurus.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/pages/community.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/pages/community.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.meta/.schemas/guides.json" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/.schemas/guides.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.meta/frameworks.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/frameworks.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.meta/team.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/team.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/metadata.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/metadata.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +110,7 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.vendoring.notification.had.been.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/website/guides/tutorial" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/website/static/img/logos" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -120,11 +125,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/website/static/img/logos" />
       <recent name="$PROJECT_DIR$/website/guides/tutorial" />
       <recent name="$PROJECT_DIR$/website/static/img" />
       <recent name="$PROJECT_DIR$/.meta" />
       <recent name="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other" />
-      <recent name="$PROJECT_DIR$/website/docs/using-qovery/configuration/business" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/website/guides/getting-started" />
@@ -135,13 +140,15 @@
     </key>
   </component>
   <component name="RunManager" selected="npm.start">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -273,14 +280,8 @@
       <workItem from="1612166440909" duration="1298000" />
       <workItem from="1615720422274" duration="116000" />
       <workItem from="1619201682241" duration="1489000" />
-      <workItem from="1619638106613" duration="2834000" />
-    </task>
-    <task id="LOCAL-00126" summary="update: documentation">
-      <created>1602847419226</created>
-      <option name="number" value="00126" />
-      <option name="presentableId" value="LOCAL-00126" />
-      <option name="project" value="LOCAL" />
-      <updated>1602847419226</updated>
+      <workItem from="1619638106613" duration="3800000" />
+      <workItem from="1620417638227" duration="3561000" />
     </task>
     <task id="LOCAL-00127" summary="update: documentation">
       <created>1602847998871</created>
@@ -618,7 +619,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619648134631</updated>
     </task>
-    <option name="localTasksCounter" value="175" />
+    <task id="LOCAL-00175" summary="chore: update header">
+      <created>1619683668927</created>
+      <option name="number" value="00175" />
+      <option name="presentableId" value="LOCAL-00175" />
+      <option name="project" value="LOCAL" />
+      <updated>1619683668927</updated>
+    </task>
+    <option name="localTasksCounter" value="176" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -704,7 +712,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="feat: add `depends_on` Application property doc" />
     <MESSAGE value="update footer" />
     <MESSAGE value="update documentation (add redis)" />
     <MESSAGE value="update documentation" />
@@ -729,6 +736,7 @@
     <MESSAGE value="chore: change FAQ and add community.qovery.com links" />
     <MESSAGE value="chore: add tutorial on how to deploy Strapi with PostgreSQL" />
     <MESSAGE value="chore: fix tutorial logos and update some tutorials" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: fix tutorial logos and update some tutorials" />
+    <MESSAGE value="chore: update header" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: update header" />
   </component>
 </project>

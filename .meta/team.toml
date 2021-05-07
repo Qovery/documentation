@@ -53,3 +53,13 @@ Mehdi is Senior DevOps Engineer at <a href=\"https://www.qovery.com\">Qovery</a>
 development and managing infrastructures, Co-founder of <a href=\"https://mergify.io\">Mergify</a>, active member \
 of non-profit <a href=\"https://tetaneutral.net/\">Tetaneutral.net</a> ISP and Hosting provider, and he also likes to dance on crazy swing rhythm.
 """
+
+[[team]]
+id = "thibaut_david"
+avatar = "https://github.com/Stun3R.png"
+github = "https://github.com/Stun3R"
+keybase = "https://keybase.io/Stun3R"
+name = "Thibaut David"
+bio = """\
+Thibaut is an experienced developer, CTO of <a href=\"https://shelt.in\">Shelt.in</a> and active Qovery contributor. \
+"""

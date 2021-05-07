@@ -81,6 +81,11 @@ module.exports = {
       "dark_logo_path": "/img/logos/strapi.svg",
       "logo_path": "/img/logos/strapi.svg",
       "name": "strapi"
+    },
+    {
+      "dark_logo_path": "/img/logos/nuxtjs.svg",
+      "logo_path": "/img/logos/nuxtjs.svg",
+      "name": "nuxtjs"
     }
   ],
   "guides": {
@@ -261,6 +266,15 @@ module.exports = {
           "path": "website/guides/tutorial/graphql-api-with-hasura.md",
           "series_position": null,
           "title": "GraphQL API with Hasura"
+        },
+        {
+          "author_github": "https://github.com/Stun3R",
+          "description": null,
+          "id": "/tutorial/how-to-deploy-nuxtjs",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/how-to-deploy-nuxtjs.md",
+          "series_position": null,
+          "title": "How to deploy NuxtJS"
         },
         {
           "author_github": "https://github.com/evoxmusic",
@@ -482,6 +496,14 @@ module.exports = {
       "id": "mehdi",
       "keybase": "https://keybase.io/mehdi",
       "name": "Mehdi A."
+    },
+    {
+      "avatar": "https://github.com/Stun3R.png",
+      "bio": "Thibaut is an experienced developer, CTO of <a href=\"https://shelt.in\">Shelt.in</a> and active Qovery contributor. ",
+      "github": "https://github.com/Stun3R",
+      "id": "thibaut_david",
+      "keybase": "https://keybase.io/Stun3R",
+      "name": "Thibaut David"
     }
   ],
   "technologies": [

@@ -1,0 +1,114 @@
+---
+$schema: "/.meta/.schemas/guides.json"
+title: How to deploy NuxtJS
+description: This tutorial show you how to deploy NuxtJS in a few seconds
+author_github: https://github.com/Stun3R
+tags: ["type: tutorial", "framework: nuxtjs"]
+hide_pagination: true
+---
+import Alert from '@site/src/components/Alert';
+import Assumptions from '@site/src/components/Assumptions';
+import Jump from '@site/src/components/Jump';
+
+<Alert type="success">
+
+This tutorial has been created by [Stun3R](https://github.com/Stun3R) - CTO of [Shelt.in](https://shelt.in) and active Qovery contributor.
+
+</Alert>
+
+In this tutorial, you'll see how to initialize a NuxtJS application with server hosting target mode in the environment setup by Qovery.
+
+> Nuxt.js is a free and open source web application framework based on Vue.js, Node.js, Webpack and Babel.js. Nuxt is inspired by Next.js, which is a framework of similar purpose, based on React.js - Wikipedia
+
+# Initialize a NuxtJS project
+
+<Alert type="info">
+
+If you have a NuxtJS app ready to be deployed, go to the [deployment section](#deploy-your-nuxtjs-app).
+
+</Alert>
+
+1. Clone this [NuxtJS repository](https://github.com/Stun3R/qovery-nuxt).
+2. Initialize your cloned NuxtJS project by running:
+
+```bash
+yarn create nuxt-app nuxt-app
+```
+
+or
+
+```bash
+npx create-nuxt-app nuxt-app
+```
+
+3. Choose all the features you want to have in your NuxtJS app.
+
+<Alert type="warn">
+
+Choose `Server (Node.js hosting)` for the **Deployment target** and `None` for the **Version control system**
+
+</Alert>
+
+4. Try to run your project in local:
+
+```bash
+yarn develop
+```
+
+or
+
+```bash
+npm run develop
+```
+
+Now, you are ready to deploy it 💪
+
+# Deploy your NuxtJS app
+
+## Add a Dockerfile (optional)
+
+To deploy your app with Qovery, you can provide your own Dockerfile. However, for NodeJS app, the Dockerfile is optional. It's up to you to decide if you want to provide one or not. Here is a working Dockerfile example.
+
+```Dockerfile
+FROM node:14-alpine
+
+RUN mkdir -p /usr/src/nuxt-app
+WORKDIR /usr/src/nuxt-app
+
+RUN apk update && apk upgrade
+
+COPY ./nuxt-app /usr/src/nuxt-app/
+RUN yarn install --silent
+
+RUN yarn build
+
+EXPOSE 3000
+
+ENV NUXT_HOST=0.0.0.0
+ENV NUXT_PORT=3000
+
+# start the app
+CMD [ "yarn", "start" ]
+```
+
+## Deploy with Qovery
+
+### Sign up
+
+1. To Deploy with Qovery you need to create an account.
+
+<%= qovery_sign_up() %>
+
+2. Create a project.
+3. Select your Git repository.
+4. Click on **deploy**
+
+Tada, your NuxtJS app is deployed and fully operational.
+
+# Conclusion
+
+You can now use your NuxtJS app online and configure your [custom domain][guides.getting-started.setting-custom-domain].
+
+Happy coding.
+
+<Jump to="/guides/tutorial/">Tutorial</Jump>

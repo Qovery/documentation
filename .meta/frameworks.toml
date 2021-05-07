@@ -52,3 +52,8 @@ dark_logo_path = "/img/logos/deno.svg"
 name = "strapi"
 logo_path = "/img/logos/strapi.svg"
 dark_logo_path = "/img/logos/strapi.svg"
+
+[[frameworks]]
+name = "nuxtjs"
+logo_path = "/img/logos/nuxtjs.svg"
+dark_logo_path = "/img/logos/nuxtjs.svg"

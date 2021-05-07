@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[75],{225:function(a){a.exports=JSON.parse('{"allTagsPath":"/guides/tags","slug":"framework-flask","name":"framework: flask","count":1,"permalink":"/guides/tags/framework-flask"}')}}]);

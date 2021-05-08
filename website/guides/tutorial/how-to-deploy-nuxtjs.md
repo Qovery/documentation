@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-05-07"
+last_modified_on: "2021-05-08"
 $schema: "/.meta/.schemas/guides.json"
 title: How to deploy NuxtJS
 description: This tutorial show you how to deploy NuxtJS in a few seconds
@@ -21,9 +21,16 @@ This tutorial has been created by [Stun3R](https://github.com/Stun3R) - CTO of [
 
 </Alert>
 
-In this tutorial, you'll see how to initialize a NuxtJS application with server hosting target mode in the environment setup by Qovery.
+In this tutorial, you'll see how to initialize a NuxtJS application in the environment setup by Qovery.
 
 > Nuxt.js is a free and open source web application framework based on Vue.js, Node.js, Webpack and Babel.js. Nuxt is inspired by Next.js, which is a framework of similar purpose, based on React.js - Wikipedia
+
+Before start you have to choose between **Static Hosting** or **Server Hosting**:
+
+- **Static Hosting**: Statically render your Nuxt.js application and get all of the benefits of a universal app without a server. It will generate a static site.
+- **Server Hosting**: Good choice when you need an hosting that requires a server and is intended for SSR applications.
+
+Check the [nuxtjs documentation](https://nuxtjs.org/docs/2.x/features/deployment-targets) for more informations
 
 # Initialize a NuxtJS project
 
@@ -33,7 +40,18 @@ If you have a NuxtJS app ready to be deployed, go to the [deployment section](#d
 
 </Alert>
 
-1. Clone this [NuxtJS repository](https://github.com/Stun3R/qovery-nuxt).
+<Tabs
+  centered={true}
+  className={"rounded"}
+  defaultValue={"server"}
+  placeholder="Select your interface"
+  select={false}
+  size={null}
+  values={[{"group":"Interfaces","label":"Server Hosting","value":"server"},{"group":"Interfaces","label":"Static Hosting","value":"static"}]}>
+
+<TabItem value="server">
+
+1. Go to this [NuxtJS repository](https://github.com/Stun3R/qovery-nuxt) and select `Use this template`.
 2. Initialize your cloned NuxtJS project by running:
 
 ```bash
@@ -68,6 +86,49 @@ npm run develop
 
 Now, you are ready to deploy it 💪
 
+</TabItem>
+
+<TabItem value="static">
+
+1. Go to this [NuxtJS repository](https://github.com/Stun3R/qovery-nuxt-static) and select `Use this template`.
+2. Initialize your cloned NuxtJS project by running:
+
+```bash
+yarn create nuxt-app nuxt-app
+```
+
+or
+
+```bash
+npx create-nuxt-app nuxt-app
+```
+
+3. Choose all the features you want to have in your NuxtJS app.
+
+<Alert type="warn">
+
+Choose `Static (Static/Jamstack hosting)` for the **Deployment target** and `None` for the **Version control system**
+
+</Alert>
+
+4. Try to run your project in local:
+
+```bash
+yarn develop
+```
+
+or
+
+```bash
+npm run develop
+```
+
+Now, you are ready to deploy it 💪
+
+</TabItem>
+
+</Tabs>
+
 # Deploy your NuxtJS app
 
 <!--
@@ -81,6 +142,17 @@ Now, you are ready to deploy it 💪
 ## Add a Dockerfile (optional)
 
 To deploy your app with Qovery, you can provide your own Dockerfile. However, for NodeJS app, the Dockerfile is optional. It's up to you to decide if you want to provide one or not. Here is a working Dockerfile example.
+
+<Tabs
+  centered={true}
+  className={"rounded"}
+  defaultValue={"server"}
+  placeholder="Select your interface"
+  select={false}
+  size={null}
+  values={[{"group":"Interfaces","label":"Server Hosting","value":"server"},{"group":"Interfaces","label":"Static Hosting","value":"static"}]}>
+
+<TabItem value="server">
 
 ```Dockerfile
 FROM node:14-alpine
@@ -103,6 +175,38 @@ ENV NUXT_PORT=3000
 # start the app
 CMD [ "yarn", "start" ]
 ```
+
+</TabItem>
+
+<TabItem value="static">
+
+```Dockerfile
+### STAGE 1: Build ###
+FROM node:14-alpine as build
+
+RUN mkdir -p /usr/src/nuxt-app
+WORKDIR /usr/src/nuxt-app
+
+RUN apk update && apk upgrade
+
+COPY ./nuxt-app /usr/src/nuxt-app
+RUN yarn install --silent
+
+RUN yarn generate
+
+### STAGE 2: NGINX ###
+FROM nginx:stable-alpine
+
+COPY --from=build /usr/src/nuxt-app/dist /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+</TabItem>
+
+</Tabs>
 
 ## Deploy with Qovery
 

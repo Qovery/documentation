@@ -286,8 +286,6 @@ BUILT_IN | QOVERY_DATABASE_MY_DB_TYPE                               | MongoDB
 BUILT_IN | QOVERY_DATABASE_MY_DB_NAME                               | my-db
 ```
 
-The sample application is preconfigured to use those environment variables to connect to the database.
-
 Forking the application with `.qovery.yml` and a `Dockerfile` should trigger app deployment.
 
 See the deployment status by executing:

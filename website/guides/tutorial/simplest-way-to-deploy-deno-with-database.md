@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-04-30"
+last_modified_on: "2021-05-13"
 $schema: "/.meta/.schemas/guides.json"
 title: Simplest way to deploy your Deno application with MongoDB database
 description: Tutorial how to deploy a Deno app with MongoDB database with Qovery
@@ -285,8 +285,6 @@ BUILT_IN | QOVERY_DATABASE_MY_DB_VERSION                            | 3.6
 BUILT_IN | QOVERY_DATABASE_MY_DB_TYPE                               | MongoDB
 BUILT_IN | QOVERY_DATABASE_MY_DB_NAME                               | my-db
 ```
-
-The sample application is preconfigured to use those environment variables to connect to the database.
 
 Forking the application with `.qovery.yml` and a `Dockerfile` should trigger app deployment.
 

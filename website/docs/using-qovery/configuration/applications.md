@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-01-26"
+last_modified_on: "2021-05-13"
 title: "Applications"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -137,7 +137,7 @@ application:
 
 #### RAM
 
-To configure the number of CPUs that your app needs, you only need to add the `ram` option into the `.qovery.yml`
+To configure the RAM that your app needs, you only need to add the `ram` property into the `.qovery.yml`
 
 <Alert type="info">
 

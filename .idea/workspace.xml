@@ -5,15 +5,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: update header">
-      <change afterPath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-nuxtjs.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-nuxtjs.md.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/static/img/logos/nuxtjs.svg" afterDir="false" />
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: add &quot;how to deploy nuxtjs&quot; - contribution from Thibaut David">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.meta/.schemas/guides.json" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/.schemas/guides.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.meta/frameworks.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/frameworks.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.meta/team.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/team.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/metadata.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/metadata.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/applications.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/applications.md.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,19 +134,6 @@
     </key>
   </component>
   <component name="RunManager" selected="npm.start">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/website/package.json" />
       <command value="run" />
@@ -281,14 +262,8 @@
       <workItem from="1615720422274" duration="116000" />
       <workItem from="1619201682241" duration="1489000" />
       <workItem from="1619638106613" duration="3800000" />
-      <workItem from="1620417638227" duration="3561000" />
-    </task>
-    <task id="LOCAL-00127" summary="update: documentation">
-      <created>1602847998871</created>
-      <option name="number" value="00127" />
-      <option name="presentableId" value="LOCAL-00127" />
-      <option name="project" value="LOCAL" />
-      <updated>1602847998871</updated>
+      <workItem from="1620417638227" duration="4372000" />
+      <workItem from="1620939988462" duration="124000" />
     </task>
     <task id="LOCAL-00128" summary="update: change footer">
       <created>1603817476791</created>
@@ -626,7 +601,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619683668927</updated>
     </task>
-    <option name="localTasksCounter" value="176" />
+    <task id="LOCAL-00176" summary="chore: add &quot;how to deploy nuxtjs&quot; - contribution from Thibaut David">
+      <created>1620421249603</created>
+      <option name="number" value="00176" />
+      <option name="presentableId" value="LOCAL-00176" />
+      <option name="project" value="LOCAL" />
+      <updated>1620421249603</updated>
+    </task>
+    <option name="localTasksCounter" value="177" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -712,7 +694,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="update footer" />
     <MESSAGE value="update documentation (add redis)" />
     <MESSAGE value="update documentation" />
     <MESSAGE value="update documentation (missing URLs)" />
@@ -737,6 +718,7 @@
     <MESSAGE value="chore: add tutorial on how to deploy Strapi with PostgreSQL" />
     <MESSAGE value="chore: fix tutorial logos and update some tutorials" />
     <MESSAGE value="chore: update header" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: update header" />
+    <MESSAGE value="chore: add &quot;how to deploy nuxtjs&quot; - contribution from Thibaut David" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: add &quot;how to deploy nuxtjs&quot; - contribution from Thibaut David" />
   </component>
 </project>

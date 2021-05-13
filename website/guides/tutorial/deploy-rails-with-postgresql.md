@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-04-30"
+last_modified_on: "2021-05-13"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy Rails with PostgreSQL with Qovery
 description: How to deploy a Rails application with the PostgreSQL database with Qovery
@@ -268,8 +268,6 @@ BUILT_IN | QOVERY_DATABASE_MY_DB_VERSION                            | 11.5
 BUILT_IN | QOVERY_DATABASE_MY_DB_TYPE                               | PostgreSQL
 BUILT_IN | QOVERY_DATABASE_MY_DB_NAME                               | my-db
 ```
-
-The sample application is preconfigured to use those environment variables to connect to the database.
 
 Forking the application with `.qovery.yml` and a `Dockerfile` should trigger app deployment.
 

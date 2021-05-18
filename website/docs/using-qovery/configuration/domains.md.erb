@@ -55,7 +55,7 @@ So basically you do not have to make any complicated configuration on your end, 
 1.   ### Create a Qovery custom domain
 
     You will have to specify your custom domain in your qovery.yml file:
-    
+
     ```yaml title=".qovery.yml" {4-6}
     ...
     routers:
@@ -68,29 +68,29 @@ So basically you do not have to make any complicated configuration on your end, 
         paths:
         - /
     ```
-    
+
     Adding the highlighted lines like in the configuration file above exposes your application using your domain. Now commit and push your changes.
-    
+
     <Alert type="info">
-    
+
     Do not forget to commit and push your `.qovery.yml` changes to use your domain
-    
+
     </Alert>
 
 2.   ### Retrieve Qovery validation domain
 
     In order to see the custom domain you just created, execute the command `qovery domain list` to list all domains of your [environment][docs.environment]:
-    
+
     ```bash title="List domains"
     qovery domain list
     ```
-    
+
     ```plain title="OUTPUT"
     BRANCH | DOMAIN                                      | STATUS             | VALIDATION DOMAIN    | ROUTER NAME
     master | my.domain.tld                               | validation pending | xxx-yyy-zzz.acme.com | main
     master | https://main-yenr7erjbs87dk4m-gtw.qovery.io | live               | none                 | my-second-router
     ```
-    
+
     As you can see, your newly created domain is in status "validation pending".
     In order for it to be live and be able to use it, you have to confirm that it is yours, and create a CNAME record on your DNS provider.
     For this you will need the VALIDATION DOMAIN value, in our case: xxx-yyy-zzz.acme.com.
@@ -99,25 +99,39 @@ So basically you do not have to make any complicated configuration on your end, 
 
     Please go to your DNS provider interface and add a `CNAME` record that is targeting the `VALIDATION DOMAIN` - `xxx-yyy-zzz.acme.com` you just retrieved before.
 
+    <Alert type="info">
+
+    If you setup your DNS provider CDN proxy, please ensure the SSL/TLS encryption is end-to-end from client to server through your DNS provider.
+
+    How to do it:
+    <ul>
+      <li>
+        <p> Cloudflare: </p>
+        <img src='/img/cloudflare-CDN-setup.png' alt='Setup Clouflare SSL/TLS encryption.' />
+      </li>
+    </ul>
+
+    </Alert>
+
 4.   ### Check verification status of the Qovery custom domain
 
     After you added the CNAME record on your DNS, it takes Qovery a few minutes to verify and complete the process.
     In order to know if your custom domain is live or not, you  can check the verification status using `qovery domain list`.
-    
+
     ```bash title="List domains"
     qovery domain list
     ```
-    
+
     ```plain title="OUTPUT"
     BRANCH | DOMAIN                                      | STATUS             | VALIDATION DOMAIN    | ROUTER NAME
     master | my.domain.tld                               | live               | xxx-yyy-zzz.acme.com | main
     master | https://main-yenr7erjbs87dk4m-gtw.qovery.io | live               | none                 | my-second-router
     ```
     If the status is live, then you are all set!
-    
+
     Please note that from the Web UI you can find the custom domains associated to your app by going to the Summary tab of the concerned application page.
     They will be listed in the "Custom domains" section:
-    
+
     <p align="center">
       <img src="/img/application-custom-domains.png" alt="Custom domains list" />
     </p>

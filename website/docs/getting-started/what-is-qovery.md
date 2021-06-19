@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-01-29"
+last_modified_on: "2021-06-19"
 title: "What is Qovery?"
 description: "High-level description of the Qovery goals and mission."
 ---
@@ -44,7 +44,7 @@ Push your code - we handle the rest. From building your application to deploying
 
 </Steps>
 
-Qovery helps you to seamlessly deploy your full-stack and micro-services applications on [AWS][docs.using-qovery.configuration.business.cloud-account.amazon-web-services], and [few other Cloud providers][docs.using-qovery.configuration.business.cloud-account].
+Qovery helps you to seamlessly deploy your full-stack and micro-services applications on [AWS][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services], and [few other Cloud providers][docs.using-qovery.configuration.cloud-service-provider].
 
 ## Qovery vs. Other products
 See the differences of Qovery with Other solutions like [Heroku][docs.getting-started.qovery-vs-other.heroku], [Netlify][docs.getting-started.qovery-vs-other.netlify] or [Terraform][docs.getting-started.qovery-vs-other.terraform].
@@ -58,21 +58,21 @@ See the differences of Qovery with Other solutions like [Heroku][docs.getting-st
 
 On Qovery, every branch is an isolated environment. Creating a new Git branch results in a complete copy of your production environment, so developers can test new features quicker and introduce fewer bugs to production.
 
-[Read more][docs.main-concepts.environment]
+[Read more][docs.using-qovery.configuration.environment]
 
-### Use your own cloud account <BusinessBadge />
+### Use your own cloud account
 It is very convenient to deploy side projects and early stage applications on Qovery infrastructure. However, if your organization grows, you may want to run your business on your own cloud account to have greater control, reduce costs or use your cloud provider credits. In this case Qovery got you covered - not only it allows to deploy your environments on your own cloud account, but also it's provider agnostic, making it possible to deploy your production environment on more expensive, reliable cloud and use cheaper providers for your development envs.
 
-[Read more][docs.main-concepts.business.cloud-account]
+[Read more][docs.using-qovery.configuration.cloud-service-provider]
 
 <!---
 TODO - IMAGE - MULTIPLE CLOUD ACCOUNT DEPLOYMENTS
 -->
 
-### Bring your own CI <BusinessBadge />
+### Bring your own CI
 [Qovery Engine][urls.qovery_engine] can build your application Docker images. If your organization already use another CI solution, you can easily configure Qovery to use it instead. You can also configure where your application's Docker images are stored.
 
-[Read more][docs.main-concepts.business.build-platform]
+[Read more][docs.using-qovery.configuration.build-platform]
 
 <!---
 TODO - IMAGE - CIRCLE CI / JENKINS / ECR ETC.
@@ -103,9 +103,8 @@ Create teams, split responsibilities, manage privileges, enforce company-wide ru
 [docs.getting-started.qovery-vs-other.heroku]: /docs/getting-started/qovery-vs-other/heroku/
 [docs.getting-started.qovery-vs-other.netlify]: /docs/getting-started/qovery-vs-other/netlify/
 [docs.getting-started.qovery-vs-other.terraform]: /docs/getting-started/qovery-vs-other/terraform/
-[docs.main-concepts.business.build-platform]: /docs/main-concepts/business/build-platform/
-[docs.main-concepts.business.cloud-account]: /docs/main-concepts/business/cloud-account/
-[docs.main-concepts.environment]: /docs/main-concepts/environment/
-[docs.using-qovery.configuration.business.cloud-account.amazon-web-services]: /docs/using-qovery/configuration/business/cloud-account/amazon-web-services/
-[docs.using-qovery.configuration.business.cloud-account]: /docs/using-qovery/configuration/business/cloud-account/
+[docs.using-qovery.configuration.build-platform]: /docs/using-qovery/configuration/build-platform/
+[docs.using-qovery.configuration.cloud-service-provider.amazon-web-services]: /docs/using-qovery/configuration/cloud-service-provider/amazon-web-services/
+[docs.using-qovery.configuration.cloud-service-provider]: /docs/using-qovery/configuration/cloud-service-provider/
+[docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [urls.qovery_engine]: https://engine.qovery.com

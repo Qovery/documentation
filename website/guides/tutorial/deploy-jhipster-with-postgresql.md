@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-05-13"
+last_modified_on: "2021-06-19"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy JHipster with PostgreSQL with Qovery
 description: How to deploy a JHipster application with the PostgreSQL database with Qovery
@@ -297,7 +297,7 @@ Now, you can play with the sample application and commit & push your changes. Qo
 
 ## Bonuses (optional)
 ### Deploy the application on dev environments
-Qovery has a compelling feature known as "[environments][docs.main-concepts.environment]". Qovery supports the deployment of isolated development environments that reflect your Git branches. Environments are complete copies of all of your data, application, and services like databases. The Environment is useful for testing changes in isolation before merging them to your main branch.
+Qovery has a compelling feature known as "[environments][docs.using-qovery.configuration.environment]". Qovery supports the deployment of isolated development environments that reflect your Git branches. Environments are complete copies of all of your data, application, and services like databases. The Environment is useful for testing changes in isolation before merging them to your main branch.
 
 So, do you want to create a new feature, fix a bug, or make modifications without impacting the production or any other important environment? Type the following commands:
 
@@ -345,7 +345,7 @@ Do you have any feedback about this tutorial? Let us know what you think on [Dis
 
 
 [docs.cli#windows]: /docs/using-qovery/interface/cli/#windows
-[docs.main-concepts.environment]: /docs/main-concepts/environment/
+[docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [urls.authorize_qovery]: https://github.com/apps/qovery/installations/new
 [urls.brew]: https://brew.sh/
 [urls.github]: https://github.com

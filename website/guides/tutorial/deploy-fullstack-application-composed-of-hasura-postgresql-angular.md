@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-10-13"
+last_modified_on: "2021-06-19"
 $schema: "/.meta/.schemas/guides.json"
 title: How to deploy a full-stack application composed of Hasura, PostgreSQL and Angular
 description: State of the art full-stack application deployment with Qovery
@@ -59,7 +59,7 @@ You may have already heard about [Angular][urls.angular]. It is one of the most 
 
 ### Qovery
 
-[Qovery][urls.qovery] is a Container as a Service platform that helps developers deploy their applications in the Cloud in just a few seconds. Qovery is designed to deploy stateless and stateful applications - like [databases][docs.databases], and [storage][docs.storage]. And all of this, on any Cloud providers; More specifically AWS (Amazon Web Services), GCP (Google Cloud Platform), and Azure (Microsoft Cloud).
+[Qovery][urls.qovery] is a Container as a Service platform that helps developers deploy their applications in the Cloud in just a few seconds. Qovery is designed to deploy stateless and stateful applications - like [databases][docs.database], and [storage][docs.storage]. And all of this, on any Cloud providers; More specifically AWS (Amazon Web Services), GCP (Google Cloud Platform), and Azure (Microsoft Cloud).
 
 <p align="center">
   <img src="/img/deploy-fullstack-application-composed-of-hasura-postgresql-angular/qovery_with_background.jpg" alt="Qovery integrated with gitlab, github and bitbucket. And integrated with the Cloud providers" />
@@ -103,7 +103,7 @@ Authentication successful!
 
 <Alert type="info">
 
-With Qovery, you don't need to have a Cloud account to deploy on the Cloud provider and the region of your choice.
+With Qovery, you don't need to have a Cloud account to deploy on the Cloud service provider and the region of your choice.
 
 </Alert>
 
@@ -337,8 +337,8 @@ In this tutorial, we saw how to deploy a full-stack application composed of a fr
 <Jump to="/guides/tutorial/">Tutorial</Jump>
 
 
-[docs.databases]: /docs/using-qovery/configuration/databases/
-[docs.environment]: /docs/main-concepts/environment/
+[docs.database]: /docs/using-qovery/configuration/database/
+[docs.environment]: /docs/using-qovery/configuration/environment/
 [docs.storage]: /docs/using-qovery/configuration/storage/
 [docs.web-interface]: /docs/using-qovery/interface/web-interface/
 [urls.angular]: https://angular.io

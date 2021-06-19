@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-23"
+last_modified_on: "2021-06-19"
 title: Encryption
 description: End to end encryption for safe data transit and storage
 ---
@@ -24,6 +24,10 @@ Data in transit on Qovery controlled networks (e.g., between the application and
 ## Data storage
 
 All application data is encrypted by using encrypted storage (typically using an AES-256 block cipher). If you have specific audit requirements surrounding data at rest encryption, please [contact us][urls.qovery_contact_us].
+
+## Secrets
+
+All secrets data is encrypted by using salted AES-256.
 
 
 [urls.qovery_contact_us]: https://www.qovery.com/contact

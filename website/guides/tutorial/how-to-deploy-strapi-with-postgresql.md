@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-04-28"
+last_modified_on: "2021-06-19"
 $schema: "/.meta/.schemas/guides.json"
 title: How to deploy Strapi with PostgreSQL
 description: This tutorial show you how to deploy Strapi with PostgreSQL in a few steps
@@ -91,7 +91,7 @@ routers:
 
 <Alert type="success">
 
-For more information about the `.qovery.yml` file, please refer to [the Qovery application documentation][docs.using-qovery.configuration.applications].
+For more information about the `.qovery.yml` file, please refer to [the Qovery application documentation][docs.using-qovery.configuration.application].
 
 </Alert>
 
@@ -100,7 +100,7 @@ Alternatively, you can deploy your Strapi application with a PostgreSQL database
 
 ### 3. Add a Dockerfile (optional)
 
-By default, Qovery uses Buildpacks to build and run your Strapi application. But it is also possible to build and run your application by providing a `Dockerfile` (see [Qovery documentation][docs.using-qovery.configuration.applications#application-build] for more information).
+By default, Qovery uses Buildpacks to build and run your Strapi application. But it is also possible to build and run your application by providing a `Dockerfile` (see [Qovery documentation][docs.using-qovery.configuration.application#application-build] for more information).
 
 ### 4. Deploy
 
@@ -115,7 +115,7 @@ For vertical scaling, Qovery lets you upgrade your CPU and RAM per an instance. 
 <Jump to="/guides/tutorial/">Tutorial</Jump>
 
 
-[docs.using-qovery.configuration.applications#application-build]: /docs/using-qovery/configuration/applications/#application-build
-[docs.using-qovery.configuration.applications]: /docs/using-qovery/configuration/applications/
+[docs.using-qovery.configuration.application#application-build]: /docs/using-qovery/configuration/application/#application-build
+[docs.using-qovery.configuration.application]: /docs/using-qovery/configuration/application/
 [docs.using-qovery.interface.cli]: /docs/using-qovery/interface/cli/
 [urls.start_qovery]: https://start.qovery.com

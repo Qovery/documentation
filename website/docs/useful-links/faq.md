@@ -1,15 +1,15 @@
 ---
-last_modified_on: "2021-04-29"
+last_modified_on: "2021-06-19"
 title: FAQ
 description: "Frequently Asked Questions"
 ---
 ### What is the difference between a Project, Application, and Environment?
 
-A [project][docs.main-concepts.project] is the site that you're working on. Each project can contain multiple [applications][docs.main-concepts.application] and be deployed in multiple [environments][docs.main-concepts.environment]. An environment is a standalone copy of your site, including apps, databases, storage, data, and all other services. By default, `master` branch is the production environment, while all other branches can be set up as identical copies of the prod environment for testing purposes.
+A [project][docs.using-qovery.configuration.project] is the site that you're working on. Each project can contain multiple [applications][docs.using-qovery.configuration.application] and be deployed in multiple [environments][docs.using-qovery.configuration.environment]. An environment is a standalone copy of your site, including apps, databases, storage, data, and all other services. By default, `main` branch is the production environment, while all other branches can be set up as identical copies of the prod environment for testing purposes.
 
 ### Can you help me to deploy my application on Qovery?
 
-Yes, absolutely. [Join our fantastic community][urls.qovery_community] to get the help of our +2000 developers and Qovery team members.
+Yes, absolutely. [Join our fantastic community][urls.qovery_community] to get the help of our +5000 developers and Qovery team members.
 
 ### How does application build work?
 
@@ -71,11 +71,11 @@ We will explain in details soon.
 Feel free to join our [Discord server][urls.qovery_chat] or contact us by email at hello (at) qovery.com.
 
 
-[docs.environment]: /docs/main-concepts/environment/
-[docs.main-concepts.application]: /docs/main-concepts/application/
-[docs.main-concepts.environment]: /docs/main-concepts/environment/
-[docs.main-concepts.project]: /docs/main-concepts/project/
-[docs.project]: /docs/main-concepts/project/
+[docs.environment]: /docs/using-qovery/configuration/environment/
+[docs.project]: /docs/using-qovery/configuration/project/
+[docs.using-qovery.configuration.application]: /docs/using-qovery/configuration/application/
+[docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
+[docs.using-qovery.configuration.project]: /docs/using-qovery/configuration/project/
 [urls.kubernetes]: https://kubernetes.io/
 [urls.qovery_chat]: https://discord.qovery.com
 [urls.qovery_community]: https://community.qovery.com/

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-01-09"
+last_modified_on: "2021-06-19"
 title: CLI
 description: How to use the Qovery CLI (Command Line Interface)
 ---
@@ -13,7 +13,7 @@ Qovery provides a very easy to use CLI (Command Line Interface) designed to perf
 
 <Alert type="warning">
 
-When you type a command, the CLI is aware of your current [project][docs.main-concepts.project], [application][docs.main-concepts.application] and [environment][docs.main-concepts.environment]. Which is very convenient!
+When you type a command, the CLI is aware of your current [organization][docs.using-qovery.configuration.organization], [project][docs.using-qovery.configuration.project], [application][docs.using-qovery.configuration.application] and [environment][docs.using-qovery.configuration.environment]. Which is very convenient!
 
 </Alert>
 
@@ -171,19 +171,8 @@ Available Commands:
   application Perform application actions
   auth        Do authentication
   database    Perform database actions
-  deploy      Perform deploy actions
-  domain      Perform domain actions
-  environment Perform environment actions
   help        Help about any command
-  init        Do project initialization to use Qovery
-  log         Show application logs
-  project     Perform project actions
-  redeploy    Redeploys your application
-  run         Equivalent to 'docker build' and 'docker run' but with Qovery magic sauce
-  status      Show status from current project and environment
-  template    Perform templating actions
   upgrade     Upgrade Qovery CLI to latest version
-  validate    Validate the current config is valid
   version     Print version information for the Qovery CLI
 
 Flags:
@@ -206,13 +195,14 @@ Do you have any issue with Qovery CLI? [Open an issue](https://github.com/Qovery
 
 ## Deploy your first application
 
-Now that you have installed the CLI, check out [how to deploy your first application][guides.deploy-your-first-application]
+Now that you have installed the CLI check out [how to deploy your first application][guides.deploy-your-first-application]
 
 
 [docs.cli#windows]: /docs/using-qovery/interface/cli/#windows
-[docs.main-concepts.application]: /docs/main-concepts/application/
-[docs.main-concepts.environment]: /docs/main-concepts/environment/
-[docs.main-concepts.project]: /docs/main-concepts/project/
+[docs.using-qovery.configuration.application]: /docs/using-qovery/configuration/application/
+[docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
+[docs.using-qovery.configuration.organization]: /docs/using-qovery/configuration/organization/
+[docs.using-qovery.configuration.project]: /docs/using-qovery/configuration/project/
 [guides.deploy-your-first-application]: /guides/getting-started/deploy-your-first-application/
 [urls.authorize_qovery]: https://github.com/apps/qovery/installations/new
 [urls.brew]: https://brew.sh/

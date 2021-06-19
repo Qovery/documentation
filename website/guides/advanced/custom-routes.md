@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-01-26"
+last_modified_on: "2021-06-19"
 $schema: "/.meta/.schemas/guides.json"
 title: Custom routes
 description: How to set up custom routes in your project
@@ -258,7 +258,7 @@ At the end, `api.shopping.com`, `shopping.com` and `www.shopping.com` work as ex
 Happy custom routing.
 
 
-[docs.environment]: /docs/main-concepts/environment/
+[docs.environment]: /docs/using-qovery/configuration/environment/
 [docs.routing]: /docs/using-qovery/configuration/routing/
 [guides.deploy-your-first-application]: /guides/getting-started/deploy-your-first-application/
 [urls.qovery_chat]: https://discord.qovery.com

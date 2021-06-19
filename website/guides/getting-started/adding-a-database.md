@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-10-12"
+last_modified_on: "2021-06-19"
 $schema: "/.meta/.schemas/guides.json"
 title: Adding a database
 description: How to add a database to your application
@@ -29,7 +29,7 @@ Every application need to store data in a database at some point. In this guide,
 -->
 
 ## Tutorial
-Qovery supports most popular SQL and NoSQL databases (You can see the complete list [here][docs.databases]). In this tutorial we will deploy a PostgreSQL database.
+Qovery supports most popular SQL and NoSQL databases (You can see the complete list [here][docs.database]). In this tutorial we will deploy a PostgreSQL database.
 
 <Steps headingDepth={3}>
 <ol>
@@ -89,7 +89,7 @@ $ qovery status
 <li>
 
 ### Connect
-Now, we need to connect our application to our database. The credentials (URI, Username, Password ...) are available through [environment variables][docs.environment-variables]. They are injected by Qovery when your application runs.
+Now, we need to connect our application to our database. The credentials (URI, Username, Password ...) are available through [environment variables][docs.environment-variable]. They are injected by Qovery when your application runs.
 
 First, we need to list all the environment variables available for our application:
 
@@ -176,6 +176,6 @@ $ qovery status
 Congratulations, your application is connected to a PostgreSQL database. Now we will see how to add your custom domain to your service.
 
 
-[docs.databases]: /docs/using-qovery/configuration/databases/
-[docs.environment-variables]: /docs/using-qovery/configuration/environment-variables/
+[docs.database]: /docs/using-qovery/configuration/database/
+[docs.environment-variable]: /docs/using-qovery/configuration/environment-variable/
 [guides.deploy-your-first-application]: /guides/getting-started/deploy-your-first-application/

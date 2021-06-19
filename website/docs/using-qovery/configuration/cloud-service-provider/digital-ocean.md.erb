@@ -1,0 +1,135 @@
+---
+last_modified_on: "2021-01-10"
+title: "Digital Ocean (DO)"
+description: "Learn how to configure and plug your Digital Ocean (DO) account"
+---
+
+import Steps from '@site/src/components/Steps';
+import Alert from '@site/src/components/Alert';
+import Assumptions from '@site/src/components/Assumptions';
+
+Qovery lets you quickly deploy applications to your [Digital Ocean (DO)][urls.aws] account. No knowledge is needed, and it takes less than 20 minutes to install Qovery on your Digital Ocean account.
+
+<Alert type="info">
+
+Do you want to know more about how Qovery works on your Digital Ocean account? [Here][docs.useful-links.faq#how-qovery-works-under-the-hood] is explained how Qovery works under the hood.
+
+</Alert>
+
+<!--
+SCHEMA: Show a schema where Qovery is deployed on the account of the customer
+-->
+
+## Getting started
+
+<Assumptions>
+
+* You have a [Qovery][docs.using-qovery.interface] account
+* You have created an [Organization][docs.using-qovery.configuration.organization]
+* You have a Digital Ocean account
+
+</Assumptions>
+
+### Connect your Digital Ocean account
+
+To link your Digital Ocean account to Qovery you need to provide a Digital Ocean `access key id`, `secret access key` and a `personal access token`.
+
+<Alert type="info">
+
+You can link more than one Digital Ocean account. Qovery also support multiple Cloud providers within the same Organization. Meaning, you can balance your workload on different Cloud providers. [Read more][guides.advanced].
+
+</Alert>
+
+#### Create your Digital Ocean credentials - `access key id`, `secret access key` and `personal access token`.
+
+<Steps headingDepth={3}>
+<ol>
+
+<li>
+
+[Connect to your Digital Ocean console](https://cloud.digitalocean.com)
+
+</li>
+
+<li>
+
+Go to `API`
+<img src="/img/do-create-token-1.jpg" />
+
+</li>
+
+<li>
+
+<img src="/img/do-create-token-2.jpg" />
+
+</li>
+
+<li>
+
+<img src="/img/do-create-token-3.jpg" />
+
+</li>
+
+<li>
+
+Copy the generated `personal access token`.
+
+<img src="/img/do-create-token-4.jpg" />
+
+</li>
+
+<li>
+
+<img src="/img/do-create-token-5.jpg" />
+
+</li>
+
+<li>
+
+Copy the generated `access key id` and `secret access key`.
+
+<img src="/img/do-create-token-6.jpg" />
+
+</li>
+
+</ol>
+
+</Steps>
+
+Well done!! You now have your Digital Ocean `access key id`, `secret access key` and `personal token`; It's time to connect Qovery to your AWS account.
+
+#### Use Digital Ocean credentials with Qovery
+
+<%= qovery_web_interface_coming_soon %>
+
+### Remove your Digital Ocean account
+
+<%= qovery_web_interface_coming_soon %>
+
+### Delete Qovery from your Digital Ocean account
+
+To delete Qovery from your Digital Ocean account you must be authenticated as the Organization admin. Once your Digital Ocean account removed from Qovery, everything configured (VPC, Kubernetes, ...) by Qovery will be deleted forever.
+
+## Regions
+
+Qovery supports the following AWS regions:
+
+| | name        | description
+|-|-------------|--------------------------
+|🇺🇸| nyc-1      | New York DC1 (USA)
+|🇺🇸| nyc-3      | New York DC3 (USA)
+|🇺🇸| sfo-2      | San Francisco DC2 (USA)
+|🇺🇸| sfo-3      | San Francisco DC3 (USA)
+|🇳🇱| ams-3      | Amsterdam DC3 (Netherlands)
+|🇸🇬| sgp-1      | Singapore DC1 (Asia)
+|🇬🇧| lon-1      | London DC1 (UK)
+|🇩🇪| fra-1      | Frankfurt DC1 (Germany)
+|🇨🇦| tor-1      | Toronto DC1 (Canada)
+|🇮🇳| blr-1      | Bangalore DC1 (India)
+
+Qovery supports regions where [Digital Ocean Kubernetes](https://www.digitalocean.com/products/kubernetes/) is supported.
+
+<%= qovery_cloud_account_how_it_works('Digital Ocean') %>
+
+<%= qovery_cloud_account_faq('Digital Ocean') %>
+

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-01-31"
+last_modified_on: "2021-06-19"
 $schema: "/.meta/.schemas/guides.json"
 title: Zero to Hero - How to deploy your app on AWS in 30 minutes
 description: Step-by-step guide on how to deploy your app on AWS in 30 minutes. No AWS knowledge required.
@@ -61,7 +61,7 @@ To deploy your apps on your AWS account, we'll use [Qovery][urls.qovery]. Qovery
 
 #### Get your AWS API keys
 
-To install Qovery on your AWS account, the `secret access key` and `access key id` are required. Here is a comprehensive [step-by-step guide][docs.using-qovery.configuration.business.cloud-account.amazon-web-services#connect-your-aws-account] on how to generate your `secret access key` and `access key id`. If you already have those keys, then you can go to the next point.
+To install Qovery on your AWS account, the `secret access key` and `access key id` are required. Here is a comprehensive [step-by-step guide][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account] on how to generate your `secret access key` and `access key id`. If you already have those keys, then you can go to the next point.
 
 #### Connect to Qovery
 Using Qovery is as simple as connect with your *Github* or *Gitlab* account on [console.qovery.com][urls.start_qovery].
@@ -69,7 +69,7 @@ Using Qovery is as simple as connect with your *Github* or *Gitlab* account on [
 -> [Connect to Qovery][urls.start_qovery]
 
 #### Create your Organization
-The concept of an organization is similar to the Organization on GitHub ([read more][docs.main-concepts.business.organization]). It's good practice to name your organization like your Company or project. You can be part of multiple organizations. Then you can give permissions to teammates to get access to your organization and then collaborate.
+The concept of an organization is similar to the Organization on GitHub ([read more][docs.using-qovery.configuration.organization]). It's good practice to name your organization like your Company or project. You can be part of multiple organizations. Then you can give permissions to teammates to get access to your organization and then collaborate.
 
 <Alert type="info">
 
@@ -109,7 +109,7 @@ Congrats! Qovery will be installed within 30 minutes 🎉. In the meantime, you 
 </p>
 
 ### Deploy your application
-Once Qovery is installed on your AWS account, you have the possibility to create a [project][docs.main-concepts.project]. A project contains multiple apps on different environments (production, staging, dev). Learn more on the [project][docs.main-concepts.project] and [environment][docs.main-concepts.environment] concepts.
+Once Qovery is installed on your AWS account, you have the possibility to create a [project][docs.using-qovery.configuration.project]. A project contains multiple apps on different environments (production, staging, dev). Learn more on the [project][docs.using-qovery.configuration.project] and [environment][docs.using-qovery.configuration.environment] concepts.
 
 #### Create a project
 
@@ -159,10 +159,10 @@ Now you can see how you can [add a database][guides.getting-started.adding-a-dat
 
 
 [docs.getting-started.what-is-qovery]: /docs/getting-started/what-is-qovery/
-[docs.main-concepts.business.organization]: /docs/main-concepts/business/organization/
-[docs.main-concepts.environment]: /docs/main-concepts/environment/
-[docs.main-concepts.project]: /docs/main-concepts/project/
-[docs.using-qovery.configuration.business.cloud-account.amazon-web-services#connect-your-aws-account]: /docs/using-qovery/configuration/business/cloud-account/amazon-web-services/#connect-your-aws-account
+[docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account]: /docs/using-qovery/configuration/cloud-service-provider/amazon-web-services/#connect-your-aws-account
+[docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
+[docs.using-qovery.configuration.organization]: /docs/using-qovery/configuration/organization/
+[docs.using-qovery.configuration.project]: /docs/using-qovery/configuration/project/
 [guides.getting-started.adding-a-database]: /guides/getting-started/adding-a-database/
 [guides.getting-started.setting-custom-domain]: /guides/getting-started/setting-custom-domain/
 [urls.qovery]: https://www.qovery.com

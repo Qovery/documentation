@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-01-26"
+last_modified_on: "2021-06-19"
 title: Routing
 description: "Learn how to configure your custom routes on Qovery"
 ---
@@ -156,6 +156,6 @@ Every router on Qovery automatically gets a free `qovery.io` address which does 
 [Check out our guide][guides.custom-routes] to see an example
 
 
-[docs.environment]: /docs/main-concepts/environment/
+[docs.environment]: /docs/using-qovery/configuration/environment/
 [docs.routing]: /docs/using-qovery/configuration/routing/
 [guides.custom-routes]: /guides/advanced/custom-routes/

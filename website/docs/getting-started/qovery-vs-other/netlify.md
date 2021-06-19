@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-01-28"
+last_modified_on: "2021-06-19"
 title: Qovery vs. Netlify
 description: Discover what is the difference between Qovery and Netlify, and why Qovery is the perfect companion to Netlify.
 ---
@@ -58,8 +58,8 @@ Qovery runs on your AWS account, and this is a big difference with Netlify. The 
 
 This is the opposite on Netlify. You can't use your Cloud provider account to host your apps and data. You must use the hosting provided by Netlify.
 
-* [Get started with Qovery on your AWS account][docs.using-qovery.configuration.business.cloud-account.amazon-web-services]
-* [See other supported Cloud providers][docs.using-qovery.configuration.business.cloud-account]
+* [Get started with Qovery on your AWS account][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services]
+* [See other supported Cloud providers][docs.using-qovery.configuration.cloud-service-provider]
 
 ### Predictable cost
 
@@ -90,12 +90,12 @@ Netlify does not provide free credits to companies.
 
 * Netlify's infrastructure is hidden for good and bad reasons. The problem is that you have no control over it. Qovery relies on the managed services provided by the Cloud provider. You have full control of the type of resources you want to allocate and put your hands on if required. Qovery is transparent, where Netlify is a black box.
 
-* Netlify focuses on the developer needs only, Qovery focuses on the developer needs and provides full control to a DevOps team via a [plugin system][docs.main-concepts.business]. To go further than that, Qovery generates Terraform and Helm files (familiar to DevOps) to deploy the infrastructure and the developers' apps. If the DevOps is not satisfied by the default configuration of Qovery, they can change it.
+* Netlify focuses on the developer needs only, Qovery focuses on the developer needs and provides full control to a DevOps team via a plugin system. To go further than that, Qovery generates Terraform and Helm files (familiar to DevOps) to deploy the infrastructure and the developers' apps. If the DevOps is not satisfied by the default configuration of Qovery, they can change it.
 
 ### Qovery is built for privacy
 Qovery does not host your apps and your data. Your data are stored on your AWS account. Even your app logs are stored on your AWS account and encrypted. Privacy is the present, and the future; that's why Qovery is privacy proof by design.
 
-[read more][docs.main-concepts.environment]
+[read more][docs.using-qovery.configuration.environment]
 
 ### No vendor lock-in
 1. Our [deployment engine][urls.qovery_engine] is open-source.
@@ -107,9 +107,8 @@ Where Netlify is a black box. They do everything they can to lock you and keep y
 Do you have any question? [Contact us][urls.qovery_contact_us] now!
 
 
-[docs.main-concepts.business]: /docs/main-concepts/business/
-[docs.main-concepts.environment]: /docs/main-concepts/environment/
-[docs.using-qovery.configuration.business.cloud-account.amazon-web-services]: /docs/using-qovery/configuration/business/cloud-account/amazon-web-services/
-[docs.using-qovery.configuration.business.cloud-account]: /docs/using-qovery/configuration/business/cloud-account/
+[docs.using-qovery.configuration.cloud-service-provider.amazon-web-services]: /docs/using-qovery/configuration/cloud-service-provider/amazon-web-services/
+[docs.using-qovery.configuration.cloud-service-provider]: /docs/using-qovery/configuration/cloud-service-provider/
+[docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [urls.qovery_contact_us]: https://www.qovery.com/contact
 [urls.qovery_engine]: https://engine.qovery.com

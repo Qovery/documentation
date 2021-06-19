@@ -76,7 +76,7 @@ module.exports = {
                         },
                         {
                             label: 'API',
-                            to: 'https://api.qovery.com/swagger-ui.html#',
+                            to: 'https://api-doc.qovery.com',
                         },
                         {
                             label: 'Github',

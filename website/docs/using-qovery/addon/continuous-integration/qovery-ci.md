@@ -11,7 +11,7 @@ Qovery provides the Qovery CI which is free and available right now to test (opt
 
      To make changes please edit the template located at:
 
-     website/docs/using-qovery/configuration/build-platform/qovery-ci.md.erb
+     website/docs/using-qovery/addon/continuous-integration/qovery-ci.md.erb
 -->
 
 ## Configuration

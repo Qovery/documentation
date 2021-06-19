@@ -72,7 +72,7 @@ TODO - IMAGE - MULTIPLE CLOUD ACCOUNT DEPLOYMENTS
 ### Bring your own CI
 [Qovery Engine][urls.qovery_engine] can build your application Docker images. If your organization already use another CI solution, you can easily configure Qovery to use it instead. You can also configure where your application's Docker images are stored.
 
-[Read more][docs.using-qovery.configuration.build-platform]
+[Read more][docs.using-qovery.addon.continuous-integration]
 
 <!---
 TODO - IMAGE - CIRCLE CI / JENKINS / ECR ETC.
@@ -103,7 +103,7 @@ Create teams, split responsibilities, manage privileges, enforce company-wide ru
 [docs.getting-started.qovery-vs-other.heroku]: /docs/getting-started/qovery-vs-other/heroku/
 [docs.getting-started.qovery-vs-other.netlify]: /docs/getting-started/qovery-vs-other/netlify/
 [docs.getting-started.qovery-vs-other.terraform]: /docs/getting-started/qovery-vs-other/terraform/
-[docs.using-qovery.configuration.build-platform]: /docs/using-qovery/configuration/build-platform/
+[docs.using-qovery.addon.continuous-integration]: /docs/using-qovery/addon/continuous-integration/
 [docs.using-qovery.configuration.cloud-service-provider.amazon-web-services]: /docs/using-qovery/configuration/cloud-service-provider/amazon-web-services/
 [docs.using-qovery.configuration.cloud-service-provider]: /docs/using-qovery/configuration/cloud-service-provider/
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/

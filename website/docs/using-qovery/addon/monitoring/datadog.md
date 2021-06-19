@@ -11,7 +11,7 @@ Datadog is coming soon ([see when](https://roadmap.qovery.com/c/38-datadog)). Vo
 
      To make changes please edit the template located at:
 
-     website/docs/using-qovery/configuration/monitoring/datadog.md.erb
+     website/docs/using-qovery/addon/monitoring/datadog.md.erb
 -->
 
 ## Available Monitoring providers

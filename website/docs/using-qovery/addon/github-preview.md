@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-11-19"
+last_modified_on: "2021-06-19"
 title: "Github Preview"
 description: "See your application preview before merging a pull request"
 ---
@@ -18,7 +18,7 @@ Write your feature, push the code, open a pull request and see everything you ne
 
      To make changes please edit the template located at:
 
-     website/docs/using-qovery/integration/github-preview.md.erb
+     website/docs/using-qovery/addon/github-preview.md.erb
 -->
 
 ## Overview

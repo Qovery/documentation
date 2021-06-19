@@ -11,7 +11,7 @@ New Relic is coming soon ([see when](https://roadmap.qovery.com/c/39-new-relic))
 
      To make changes please edit the template located at:
 
-     website/docs/using-qovery/configuration/monitoring/new-relic.md.erb
+     website/docs/using-qovery/addon/monitoring/new-relic.md.erb
 -->
 
 ## Available Monitoring providers

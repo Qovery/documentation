@@ -73,27 +73,34 @@ module.exports = {
                                 <%= metadata.links.fetch_id("docs.using-qovery.configuration.cloud-service-provider.scaleway").to_json %>,
                             ],
                         },
+                    ]
+                },
+                {
+                    type: 'category',
+                    label: 'Addons',
+                    items: [
+                        <%= metadata.links.fetch_id("docs.using-qovery.addon").to_json %>,
                         {
                             type: 'category',
-                            label: 'Build Platform',
+                            label: 'Continuous Integration',
                             items: [
-                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.build-platform").to_json %>,
-                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.build-platform.qovery-ci").to_json %>,
-                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.build-platform.gitlab-ci").to_json %>,
-                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.build-platform.circle-ci").to_json %>,
-                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.build-platform.github-actions").to_json %>,
+                                <%= metadata.links.fetch_id("docs.using-qovery.addon.continuous-integration").to_json %>,
+                                <%= metadata.links.fetch_id("docs.using-qovery.addon.continuous-integration.qovery-ci").to_json %>,
+                                <%= metadata.links.fetch_id("docs.using-qovery.addon.continuous-integration.gitlab-ci").to_json %>,
+                                <%= metadata.links.fetch_id("docs.using-qovery.addon.continuous-integration.circle-ci").to_json %>,
+                                <%= metadata.links.fetch_id("docs.using-qovery.addon.continuous-integration.github-actions").to_json %>,
                             ],
                         },
                         {
                             type: 'category',
                             label: 'Container Registry',
                             items: [
-                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.container-registry").to_json %>,
-                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.container-registry.elastic-container-registry").to_json %>,
-                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.container-registry.azure-container-registry").to_json %>,
-                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.container-registry.digital-ocean-container-registry").to_json %>,
-                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.container-registry.scaleway-container-registry").to_json %>,
-                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.container-registry.docker-hub").to_json %>,
+                                <%= metadata.links.fetch_id("docs.using-qovery.addon.container-registry").to_json %>,
+                                <%= metadata.links.fetch_id("docs.using-qovery.addon.container-registry.elastic-container-registry").to_json %>,
+                                <%= metadata.links.fetch_id("docs.using-qovery.addon.container-registry.azure-container-registry").to_json %>,
+                                <%= metadata.links.fetch_id("docs.using-qovery.addon.container-registry.digital-ocean-container-registry").to_json %>,
+                                <%= metadata.links.fetch_id("docs.using-qovery.addon.container-registry.scaleway-container-registry").to_json %>,
+                                <%= metadata.links.fetch_id("docs.using-qovery.addon.container-registry.docker-hub").to_json %>,
                             ],
                         },
                         <%= metadata.links.fetch_id("docs.using-qovery.configuration.external-service").to_json %>,
@@ -101,20 +108,11 @@ module.exports = {
                             type: 'category',
                             label: 'Monitoring',
                             items: [
-                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.monitoring").to_json %>,
-                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.monitoring.datadog").to_json %>,
-                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.monitoring.new-relic").to_json %>,
+                                <%= metadata.links.fetch_id("docs.using-qovery.addon.monitoring").to_json %>,
+                                <%= metadata.links.fetch_id("docs.using-qovery.addon.monitoring.datadog").to_json %>,
+                                <%= metadata.links.fetch_id("docs.using-qovery.addon.monitoring.new-relic").to_json %>,
                             ],
                         },
-                    ]
-                },
-                {
-                    type: 'category',
-                    label: 'Integration',
-                    items: [
-                        <%= metadata.links.fetch_id("docs.using-qovery.integration").to_json %>,
-                        <%= metadata.links.fetch_id("docs.using-qovery.integration.github-preview").to_json %>,
-                        <%= metadata.links.fetch_id("docs.using-qovery.integration.ide-plugins").to_json %>,
                     ]
                 },
                 {

@@ -13,13 +13,13 @@ Google Container Registry is coming soon ([see when](https://roadmap.qovery.com/
 
      To make changes please edit the template located at:
 
-     website/docs/using-qovery/configuration/container-registry/google-cloud-registry.md.erb
+     website/docs/using-qovery/addon/container-registry/google-cloud-registry.md.erb
 -->
 
 ## Available Container Registries
 
-<Jump to="/docs/using-qovery/configuration/container-registry/elastic-container-registry">Elastic Container Registry (ECR)</Jump>
-<Jump to="/docs/using-qovery/configuration/container-registry/docker-hub">Docker Hub</Jump>
+<Jump to="/docs/using-qovery/addon/container-registry/elastic-container-registry">Elastic Container Registry (ECR)</Jump>
+<Jump to="/docs/using-qovery/addon/container-registry/docker-hub">Docker Hub</Jump>
 
 
 

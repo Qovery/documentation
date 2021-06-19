@@ -57,12 +57,12 @@ Which [Build Platform][docs.using-qovery.configuration.policy#build-platform] do
 
 Do you have a CI?
 * If you do, [see if Qovery supports your CI][docs.using-qovery.configuration.policy#build-platform].
-* If you do not, [Qovery provides a CI of the box][docs.using-qovery.configuration.build-platform.qovery-ci] (default).
+* If you do not, [Qovery provides a CI of the box][docs.using-qovery.addon.continuous-integration.qovery-ci] (default).
 
 ### Container registry
 
 In which [Container Registry][docs.using-qovery.configuration.policy#container-registry] the final container image must be pushed?
-You can choose the one you want [from this list][docs.using-qovery.configuration.container-registry]. By selecting the one provided by your Cloud provider, you avoid paying for outgoing traffic.
+You can choose the one you want [from this list][docs.using-qovery.addon.container-registry]. By selecting the one provided by your Cloud provider, you avoid paying for outgoing traffic.
 
 ### Environment mode
 
@@ -97,7 +97,7 @@ Go into [Cloud Service Provider][docs.using-qovery.configuration.cloud-service-p
 
 ### Monitoring
 
-Qovery allows you to add an [external monitoring solution][docs.using-qovery.configuration.monitoring] such as Datadog or Newrelic on the environment that match the policy. This makes it possible to monitor only what is strictly necessary.
+Qovery allows you to add an [external monitoring solution][docs.using-qovery.addon.monitoring] such as Datadog or Newrelic on the environment that match the policy. This makes it possible to monitor only what is strictly necessary.
 
 ### TTL (Time to Live)
 
@@ -136,11 +136,11 @@ This option indicates if you prefer to manually start an environment or not.
 <!-- TODO -->
 
 
-[docs.using-qovery.configuration.build-platform.qovery-ci]: /docs/using-qovery/configuration/build-platform/qovery-ci/
+[docs.using-qovery.addon.container-registry]: /docs/using-qovery/addon/container-registry/
+[docs.using-qovery.addon.continuous-integration.qovery-ci]: /docs/using-qovery/addon/continuous-integration/qovery-ci/
+[docs.using-qovery.addon.monitoring]: /docs/using-qovery/addon/monitoring/
 [docs.using-qovery.configuration.cloud-service-provider]: /docs/using-qovery/configuration/cloud-service-provider/
-[docs.using-qovery.configuration.container-registry]: /docs/using-qovery/configuration/container-registry/
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
-[docs.using-qovery.configuration.monitoring]: /docs/using-qovery/configuration/monitoring/
 [docs.using-qovery.configuration.policy#branch]: /docs/using-qovery/configuration/policy/#branch
 [docs.using-qovery.configuration.policy#build-platform]: /docs/using-qovery/configuration/policy/#build-platform
 [docs.using-qovery.configuration.policy#cluster]: /docs/using-qovery/configuration/policy/#cluster

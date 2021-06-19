@@ -73,27 +73,34 @@ module.exports = {
                                 "using-qovery/configuration/cloud-service-provider/scaleway",
                             ],
                         },
+                    ]
+                },
+                {
+                    type: 'category',
+                    label: 'Addons',
+                    items: [
+                        "using-qovery/addon",
                         {
                             type: 'category',
-                            label: 'Build Platform',
+                            label: 'Continuous Integration',
                             items: [
-                                "using-qovery/configuration/build-platform",
-                                "using-qovery/configuration/build-platform/qovery-ci",
-                                "using-qovery/configuration/build-platform/gitlab-ci",
-                                "using-qovery/configuration/build-platform/circle-ci",
-                                "using-qovery/configuration/build-platform/github-actions",
+                                "using-qovery/addon/continuous-integration",
+                                "using-qovery/addon/continuous-integration/qovery-ci",
+                                "using-qovery/addon/continuous-integration/gitlab-ci",
+                                "using-qovery/addon/continuous-integration/circle-ci",
+                                "using-qovery/addon/continuous-integration/github-actions",
                             ],
                         },
                         {
                             type: 'category',
                             label: 'Container Registry',
                             items: [
-                                "using-qovery/configuration/container-registry",
-                                "using-qovery/configuration/container-registry/elastic-container-registry",
-                                "using-qovery/configuration/container-registry/azure-container-registry",
-                                "using-qovery/configuration/container-registry/digital-ocean-container-registry",
-                                "using-qovery/configuration/container-registry/scaleway-container-registry",
-                                "using-qovery/configuration/container-registry/docker-hub",
+                                "using-qovery/addon/container-registry",
+                                "using-qovery/addon/container-registry/elastic-container-registry",
+                                "using-qovery/addon/container-registry/azure-container-registry",
+                                "using-qovery/addon/container-registry/digital-ocean-container-registry",
+                                "using-qovery/addon/container-registry/scaleway-container-registry",
+                                "using-qovery/addon/container-registry/docker-hub",
                             ],
                         },
                         "using-qovery/configuration/external-service",
@@ -101,20 +108,11 @@ module.exports = {
                             type: 'category',
                             label: 'Monitoring',
                             items: [
-                                "using-qovery/configuration/monitoring",
-                                "using-qovery/configuration/monitoring/datadog",
-                                "using-qovery/configuration/monitoring/new-relic",
+                                "using-qovery/addon/monitoring",
+                                "using-qovery/addon/monitoring/datadog",
+                                "using-qovery/addon/monitoring/new-relic",
                             ],
                         },
-                    ]
-                },
-                {
-                    type: 'category',
-                    label: 'Integration',
-                    items: [
-                        "using-qovery/integration",
-                        "using-qovery/integration/github-preview",
-                        "using-qovery/integration/ide-plugins",
                     ]
                 },
                 {

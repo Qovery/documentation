@@ -13,12 +13,12 @@ Circle CI is coming soon ([see when](https://roadmap.qovery.com/c/41-circle-ci))
 
      To make changes please edit the template located at:
 
-     website/docs/using-qovery/configuration/build-platform/circle-ci.md.erb
+     website/docs/using-qovery/addon/continuous-integration/circle-ci.md.erb
 -->
 
 ## Available Build platforms
 
-<Jump to="/docs/using-qovery/configuration/build-platform/qovery-ci">Qovery CI</Jump>
+<Jump to="/docs/using-qovery/addon/continuous-integration/qovery-ci">Qovery CI</Jump>
 
 
 

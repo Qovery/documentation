@@ -60,7 +60,7 @@ module.exports = {
                         <%= metadata.links.fetch_id("docs.using-qovery.configuration.domain").to_json %>,
                         <%= metadata.links.fetch_id("docs.using-qovery.configuration.storage").to_json %>,
                         <%= metadata.links.fetch_id("docs.using-qovery.configuration.routing").to_json %>,
-                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.policy").to_json %>,
+                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.deployment-rule").to_json %>,
                         {
                             type: 'category',
                             label: 'Cloud Service Provider',
@@ -136,14 +136,14 @@ module.exports = {
         },
         {
             type: 'category',
-            label: 'Useful Links',
+            label: 'Useful Resources',
             items: [
                 {
                     type: 'link',
                     label: 'API',
                     href: '<%= metadata.links.fetch_id("urls.qovery_swagger") %>'
                 },
-                <%= metadata.links.fetch_id("docs.useful-links.faq").to_json %>,
+                <%= metadata.links.fetch_id("docs.useful-resources.faq").to_json %>,
                 {
                     type: 'link',
                     label: 'Roadmap',
@@ -154,7 +154,7 @@ module.exports = {
                     label: 'Github',
                     href: '<%= metadata.links.fetch_id("urls.main_qovery_github") %>'
                 },
-                <%= metadata.links.fetch_id("docs.useful-links.help-and-support").to_json %>,
+                <%= metadata.links.fetch_id("docs.useful-resources.help-and-support").to_json %>,
             ],
         },
     ]

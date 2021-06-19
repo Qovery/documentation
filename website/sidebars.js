@@ -60,7 +60,7 @@ module.exports = {
                         "using-qovery/configuration/domain",
                         "using-qovery/configuration/storage",
                         "using-qovery/configuration/routing",
-                        "using-qovery/configuration/policy",
+                        "using-qovery/configuration/deployment-rule",
                         {
                             type: 'category',
                             label: 'Cloud Service Provider',
@@ -136,14 +136,14 @@ module.exports = {
         },
         {
             type: 'category',
-            label: 'Useful Links',
+            label: 'Useful Resources',
             items: [
                 {
                     type: 'link',
                     label: 'API',
                     href: 'https://api-doc.qovery.com'
                 },
-                "useful-links/faq",
+                "useful-resources/faq",
                 {
                     type: 'link',
                     label: 'Roadmap',
@@ -154,7 +154,7 @@ module.exports = {
                     label: 'Github',
                     href: 'https://github.com/qovery'
                 },
-                "useful-links/help-and-support",
+                "useful-resources/help-and-support",
             ],
         },
     ]

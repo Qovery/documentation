@@ -1,6 +1,6 @@
 ---
 last_modified_on: "2021-06-19"
-title: "Applications"
+title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
 import Jump from '@site/src/components/Jump';

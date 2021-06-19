@@ -1,6 +1,6 @@
 ---
 last_modified_on: "2021-06-19"
-title: "Projects"
+title: "Project"
 description: "Learn how to configure Projects on Qovery"
 ---
 import Jump from '@site/src/components/Jump';

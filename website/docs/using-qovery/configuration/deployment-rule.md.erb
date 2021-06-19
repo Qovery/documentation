@@ -1,13 +1,13 @@
 ---
 last_modified_on: "2020-08-31"
-title: "Policy"
+title: "Deployment rule"
 description: "Learn how to configure Policies in Qovery"
 ---
-Policy is a core concept of Qovery Business. It allows your team to customize the behaviours of the platform and adjust it perfectly to your organization's needs.
+Deployment rule is a core concept of Qovery Business. It allows your team to customize the behaviours of the platform and adjust it perfectly to your organization's needs.
 
 <img src="/img/policy-complete-flow.png"/>
 
-For instance, you can create a rule to deploy the `master` [environment][docs.using-qovery.configuration.environment] into the AWS Cloud provider and by all apps contained into this environment with your Circle CI account.
+For instance, you can create a rule to deploy the `main` [environment][docs.using-qovery.configuration.environment] into the AWS Cloud provider and by all apps contained into this environment with your Circle CI account.
 
 **Default policies are set-up when you create an organization for the first time**. Then you can start to use Qovery Business in seconds.
 
@@ -17,43 +17,43 @@ Here is an exhaustive list of available policies options:
 
 | option             | description                                                              | mandatory |
 |--------------------|--------------------------------------------------------------------------|-----------|
-| [branch][docs.using-qovery.configuration.policy#branch] | branch name predicate; can be a list of branches and * is allowed        | yes       |
-| [build platform][docs.using-qovery.configuration.policy#build-platform] | build platform to use to build and test the apps from the the environment | yes       |
-| [container registry][docs.using-qovery.configuration.policy#container-registry] | once build, the container image must be pushed into a container registry | yes       |
-| [environment mode][docs.using-qovery.configuration.policy#environment-mode] | what is the mode of the environment ("development" or "production"). This choice affect the kind of resources provisioned | yes |
-| [cluster][docs.using-qovery.configuration.policy#cluster] | on which cloud provider and cluster to run the environment | yes       |
-| [monitoring][docs.using-qovery.configuration.policy#monitoring] | what is the monitoring platform to use                                   | no        |
-| [TTL (Time To Live)][docs.using-qovery.configuration.policy#ttl-time-to-live] | set how long the environment can live at maximum                         | no        |
-| [startup cron][docs.using-qovery.configuration.policy#startup-cron] | set when an environment must be started                                  | no        |
-| [shutdown cron][docs.using-qovery.configuration.policy#shutdown-cron] | set when an environment must be shutdown                                 | no        |
-| [manual deployment][docs.using-qovery.configuration.policy#manual-deployment] | environment has to be manually started                                  | no        |
+| [branch][docs.using-qovery.configuration.deployment-rule#branch] | branch name predicate; can be a list of branches and * is allowed        | yes       |
+| [build platform][docs.using-qovery.configuration.deployment-rule#build-platform] | build platform to use to build and test the apps from the the environment | yes       |
+| [container registry][docs.using-qovery.configuration.deployment-rule#container-registry] | once build, the container image must be pushed into a container registry | yes       |
+| [environment mode][docs.using-qovery.configuration.deployment-rule#environment-mode] | what is the mode of the environment ("development" or "production"). This choice affect the kind of resources provisioned | yes |
+| [cluster][docs.using-qovery.configuration.deployment-rule#cluster] | on which cloud provider and cluster to run the environment | yes       |
+| [monitoring][docs.using-qovery.configuration.deployment-rule#monitoring] | what is the monitoring platform to use                                   | no        |
+| [TTL (Time To Live)][docs.using-qovery.configuration.deployment-rule#ttl-time-to-live] | set how long the environment can live at maximum                         | no        |
+| [startup cron][docs.using-qovery.configuration.deployment-rule#startup-cron] | set when an environment must be started                                  | no        |
+| [shutdown cron][docs.using-qovery.configuration.deployment-rule#shutdown-cron] | set when an environment must be shutdown                                 | no        |
+| [manual deployment][docs.using-qovery.configuration.deployment-rule#manual-deployment] | environment has to be manually started                                  | no        |
 
 Those options bring you the ability to compose your deployment flow depending on your business, economic and legal criteria.
 
 ### Branch
 
-What is the branch name that must match to apply this policy.
+What is the branch name that must match to apply this deployment rule.
 
 Examples:
-* `master`: if the branch name is `master` then match the policy.
-* `main`: if the branch name is `main` then match the policy.
-* `dev/*`: if the branch name starts with `dev/` then match the policy (eg. dev/123 , dev/chat).
-* `feat/*`: if the branch name starts with `feat/` then match the policy (eg. feat/123 , feat/billing).
-* `*`: any branch match the policy.
+* `master`: if the branch name is `master` then match the deployment rule.
+* `main`: if the branch name is `main` then match the deployment rule.
+* `dev/*`: if the branch name starts with `dev/` then match the deployment rule (eg. dev/123 , dev/chat).
+* `feat/*`: if the branch name starts with `feat/` then match the deployment rule (eg. feat/123 , feat/billing).
+* `*`: any branch match the deployment rule.
 
-One or more branch name per policy can be specified.
+One or more branch name per deployment rule can be specified.
 
 ### Build platform
 
-Which [Build Platform][docs.using-qovery.configuration.policy#build-platform] do you choose to build and test your apps matching the policy.
+Which [Build Platform][docs.using-qovery.configuration.deployment-rule#build-platform] do you choose to build and test your apps matching the deployment rule.
 
 Do you have a CI?
-* If you do, [see if Qovery supports your CI][docs.using-qovery.configuration.policy#build-platform].
+* If you do, [see if Qovery supports your CI][docs.using-qovery.configuration.deployment-rule#build-platform].
 * If you do not, [Qovery provides a CI of the box][docs.using-qovery.addon.continuous-integration.qovery-ci] (default).
 
 ### Container registry
 
-In which [Container Registry][docs.using-qovery.configuration.policy#container-registry] the final container image must be pushed?
+In which [Container Registry][docs.using-qovery.configuration.deployment-rule#container-registry] the final container image must be pushed?
 You can choose the one you want [from this list][docs.using-qovery.addon.container-registry]. By selecting the one provided by your Cloud provider, you avoid paying for outgoing traffic.
 
 ### Environment mode
@@ -89,7 +89,7 @@ Go into [Cloud Service Provider][docs.using-qovery.configuration.cloud-service-p
 
 ### Monitoring
 
-Qovery allows you to add an [external monitoring solution][docs.using-qovery.addon.monitoring] such as Datadog or Newrelic on the environment that match the policy. This makes it possible to monitor only what is strictly necessary.
+Qovery allows you to add an [external monitoring solution][docs.using-qovery.addon.monitoring] such as Datadog or Newrelic on the environment that match the deployment rule. This makes it possible to monitor only what is strictly necessary.
 
 ### TTL (Time to Live)
 
@@ -107,7 +107,7 @@ This option shutdown an environment at the specific date and time and can be rep
 
 This option indicates if you prefer to manually start an environment or not.
 
-<!-- ## Policy scenarios -->
+<!-- ## Deployment rule scenarios -->
 
 <!-- ### Reduce development environment costs -->
 

@@ -110,9 +110,9 @@ Backups from production environments are kept for 1 month if you need to recover
 
 ## MySQL backup
 
-Daily backups for your MySQL database are automatically done for [Production environments][docs.using-qovery.configuration.policy#environment-mode].
+Daily backups for your MySQL database are automatically done for [Production environments][docs.using-qovery.configuration.deployment-rule#environment-mode].
 
 
-[docs.using-qovery.configuration.policy#environment-mode]: /docs/using-qovery/configuration/policy/#environment-mode
+[docs.using-qovery.configuration.deployment-rule#environment-mode]: /docs/using-qovery/configuration/deployment-rule/#environment-mode
 [urls.qovery_chat]: https://discord.qovery.com
 [urls.start_qovery]: https://start.qovery.com

@@ -12,7 +12,7 @@ Qovery lets you quickly deploy applications to your [Digital Ocean (DO)][urls.aw
 
 <Alert type="info">
 
-Do you want to know more about how Qovery works on your Digital Ocean account? [Here][docs.useful-links.faq#how-qovery-works-under-the-hood] is explained how Qovery works under the hood.
+Do you want to know more about how Qovery works on your Digital Ocean account? [Here][docs.useful-resources.faq#how-qovery-works-under-the-hood] is explained how Qovery works under the hood.
 
 </Alert>
 
@@ -148,7 +148,7 @@ The first time you set up your Digital Ocean account, Qovery creates a Kubernete
 
 ### Managed services
 
-Digital Ocean provides managed services for [PostgreSQL][docs.using-qovery.configuration.database.postgresql], [MySQL][docs.using-qovery.configuration.database.mysql], [Redis][docs.using-qovery.configuration.database.redis], [MongoDB][docs.using-qovery.configuration.database.mongodb]. Qovery gives you access to those services when you set the [environment mode][docs.using-qovery.configuration.policy#environment-mode] to `Production`. In `Development` mode, Qovery provides containers equivalent, which is cheaper and faster to start.
+Digital Ocean provides managed services for [PostgreSQL][docs.using-qovery.configuration.database.postgresql], [MySQL][docs.using-qovery.configuration.database.mysql], [Redis][docs.using-qovery.configuration.database.redis], [MongoDB][docs.using-qovery.configuration.database.mongodb]. Qovery gives you access to those services when you set the [environment mode][docs.using-qovery.configuration.deployment-rule#environment-mode] to `Production`. In `Development` mode, Qovery provides containers equivalent, which is cheaper and faster to start.
 
 ### Security and compliance
 
@@ -172,13 +172,13 @@ We are probably testing the support of this region, please [contact us][urls.qov
 Today, you can't migrate an environment from one region to another after it has been created. Vote [here][urls.qovery_roadmap] if you need this feature.
 
 
-[docs.useful-links.faq#how-qovery-works-under-the-hood]: /docs/useful-links/faq/#how-qovery-works-under-the-hood
+[docs.useful-resources.faq#how-qovery-works-under-the-hood]: /docs/useful-resources/faq/#how-qovery-works-under-the-hood
 [docs.using-qovery.configuration.database.mongodb]: /docs/using-qovery/configuration/database/mongodb/
 [docs.using-qovery.configuration.database.mysql]: /docs/using-qovery/configuration/database/mysql/
 [docs.using-qovery.configuration.database.postgresql]: /docs/using-qovery/configuration/database/postgresql/
 [docs.using-qovery.configuration.database.redis]: /docs/using-qovery/configuration/database/redis/
+[docs.using-qovery.configuration.deployment-rule#environment-mode]: /docs/using-qovery/configuration/deployment-rule/#environment-mode
 [docs.using-qovery.configuration.organization]: /docs/using-qovery/configuration/organization/
-[docs.using-qovery.configuration.policy#environment-mode]: /docs/using-qovery/configuration/policy/#environment-mode
 [docs.using-qovery.interface]: /docs/using-qovery/interface/
 [guides.advanced]: /guides/advanced/
 [urls.aws]: https://aws.amazon.com

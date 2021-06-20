@@ -10,8 +10,8 @@ import Jump from '@site/src/components/Jump';
 
 In the following subsections, you'll learn how to use the web interface, and the  CLI (Command Line Interface) to deploy your application with Qovery.
 
+<Jump to="/docs/using-qovery/interface/cli/">Cli</Jump>
 <Jump to="/docs/using-qovery/interface/web-interface/">Web interface</Jump>
-<Jump to="/docs/using-qovery/interface/cli/">CLIs</Jump>
 
 
 

@@ -6,6 +6,11 @@ module.exports = {
             items: [
                 "getting-started",
                 "getting-started/what-is-qovery",
+                {
+                    type: 'link',
+                    label: 'Deploy my app',
+                    href: '/guides/getting-started/deploy-your-first-application'
+                },
                 "getting-started/features",
                 {
                     type: 'category',

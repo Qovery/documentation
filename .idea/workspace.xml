@@ -1,17 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand />
     <select />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="wip: update doc for v2">
-      <change afterPath="$PROJECT_DIR$/website/static/img/organization_members.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/change_organization.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/create_organization.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/delete_organization.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/delete_project.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/qovery_empty_state_project_list.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/organization.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/organization.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/organization.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/organization.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_deploy_app_web.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_deploy_app_web.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_summary.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_summary.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/getting-started.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/getting-started.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/what-is-qovery.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/what-is-qovery.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/security-and-compliance.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/security-and-compliance.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/security-and-compliance.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/security-and-compliance.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/addon.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/addon.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/addon.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/addon.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration.md.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/project.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/project.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/project.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/project.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/interface.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/interface.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/interface.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/interface.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/quickstart.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/quickstart.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/quickstart.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/quickstart.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/deploy-your-first-application.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/deploy-your-first-application.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/deploy-your-first-application.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/deploy-your-first-application.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/setting-custom-domain.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/setting-custom-domain.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/setting-custom-domain.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/setting-custom-domain.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/sidebars.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/sidebars.js.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.js.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -289,14 +316,7 @@
       <workItem from="1620417638227" duration="4372000" />
       <workItem from="1620939988462" duration="161000" />
       <workItem from="1623707885288" duration="24602000" />
-      <workItem from="1624139690193" duration="13669000" />
-    </task>
-    <task id="LOCAL-00137" summary="update documentation">
-      <created>1606069808857</created>
-      <option name="number" value="00137" />
-      <option name="presentableId" value="LOCAL-00137" />
-      <option name="project" value="LOCAL" />
-      <updated>1606069808857</updated>
+      <workItem from="1624139690193" duration="17939000" />
     </task>
     <task id="LOCAL-00138" summary="update footer">
       <created>1606397186782</created>
@@ -634,7 +654,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624198635778</updated>
     </task>
-    <option name="localTasksCounter" value="186" />
+    <task id="LOCAL-00186" summary="wip: update doc for v2">
+      <created>1624206783277</created>
+      <option name="number" value="00186" />
+      <option name="presentableId" value="LOCAL-00186" />
+      <option name="project" value="LOCAL" />
+      <updated>1624206783277</updated>
+    </task>
+    <option name="localTasksCounter" value="187" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

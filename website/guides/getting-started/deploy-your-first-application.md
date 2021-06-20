@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-02-10"
+last_modified_on: "2021-06-20"
 $schema: "/.meta/.schemas/guides.json"
 title: Hello World. Deploy your first application.
 description: How to deploy your first application with Qovery
@@ -7,10 +7,6 @@ series_position: 1
 author_github: https://github.com/evoxmusic
 tags: ["type: guide"]
 ---
-
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
-
 import Steps from '@site/src/components/Steps';
 import Alert from '@site/src/components/Alert';
 import CodeExplanation from '@site/src/components/CodeExplanation';
@@ -37,17 +33,6 @@ Qovery is an easy way to deploy a full-stack application. Meaning, you can deplo
 
 <ol>
 
-<Tabs
-centered={true}
-className={"rounded"}
-defaultValue={"web"}
-placeholder="Select your interface"
-select={false}
-size={null}
-values={[{"group":"Interfaces","label":"Web","value":"web"},{"group":"Interfaces","label":"CLI","value":"cli"}]}>
-
-<TabItem value="web">
-
 <li>
 
 ### Sign up
@@ -62,254 +47,30 @@ Sign in to the [Qovery web interface][urls.start_qovery].
 
 <li>
 
-### Deploy a templated app!
+### Deploy an app
 
 Here is a short video showing how to deploy your app with the [Qovery Web interface][urls.start_qovery].
 
 <div class="video-container">
   <p align="center">
-    <iframe width="800" height="600" src="https://www.youtube.com/embed/kdCt26vyzgs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+    <iframe src="https://www.loom.com/embed/c48c2e6351a3461482151bd0138e5a5e" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
     </iframe>
   </p>
 </div>
 
-Steps:
-* Create a project
-* Deploy an app
-
 
 </li>
-
-</TabItem>
-
-<TabItem value="cli">
-
-<li>
-
-### Install
-
-<Tabs
-  centered={true}
-  className={"rounded"}
-  defaultValue={"linux"}
-  placeholder="Select your OS"
-  select={false}
-  size={null}
-  values={[{"group":"Platforms","label":"Linux","value":"linux"},{"group":"Platforms","label":"MacOS","value":"macos"},{"group":"Platforms","label":"Windows","value":"windows"}]}>
-
-<TabItem value="linux">
-
-```bash
-# Download and install Qovery CLI on every Linux distribution
-$ curl -s https://get.qovery.com | sudo bash
-```
-
-</TabItem>
-
-<TabItem value="macos">
-
-<Tabs
-  centered={true}
-  className="rounded"
-  defaultValue="homebrew"
-  values={[{"label":"Homebrew","value":"homebrew"},{"label":"Manual","value":"manual"}]}>
-
-<TabItem value="homebrew">
-
-The common solution to install a command line binary on the MacOS is to use [Homebrew][urls.brew].
-
-```bash
-# Add Qovery brew repository
-$ brew tap Qovery/qovery-cli
-
-# Install the CLI
-$ brew install qovery-cli
-```
-
-</TabItem>
-
-<TabItem value="manual">
-
-```bash
-# Install the Qovery CLI on MacOS manually
-$ curl -s https://get.qovery.com | bash
-```
-
-</TabItem>
-
-</Tabs>
-
-</TabItem>
-
-<TabItem value="windows">
-
-<Tabs
-  centered={true}
-  className="rounded"
-  defaultValue="scoop"
-  values={[{"label":"Scoop","value":"scoop"},{"label":"Manual","value":"manual"}]}>
-
-<TabItem value="scoop">
-
-The classic way to install binaries on Windows is to use [Scoop][urls.scoop].
-
-```bash
-# Add Qovery bucket
-$ scoop bucket add qovery https://github.com/Qovery/scoop-qovery-cli
-
-# Install the CLI
-$ scoop install qovery-cli
-```
-
-</TabItem>
-
-<TabItem value="manual">
-
-Install the Qovery CLI on Windows manually by downloading the [latest realease][urls.qovery_cli_releases], and uncompress its content to
-`C:\Windows`.
-
-</TabItem>
-
-</Tabs>
-
-Few limitations exist on Windows: [read more][docs.cli#windows]
-
-</TabItem>
-
-</Tabs>
-
-</li>
-
-<li>
-
-### Sign up
-
-```bash
-# Sign up and sign in command
-$ qovery auth
-```
-
-<Alert type="info">
-
-If you are using an environment without access to GUI or a browser, you can use headless authentication instead:
-
-```bash
-# Sign up and sign in command
-$ qovery auth --headless
-```
-
-</Alert>
-
-Your browser window with sign-in options will open.
-
-<p align="center">
-  <img src="/img/qovery_signup.svg" alt="Qovery Sign-up page" />
-</p>
-
-Note: Qovery needs access to your account to be able to clone your repository for future application builds.
-
-[Click here][urls.authorize_qovery] to authorize Qovery to clone and build your applications.
-
-<p align="center">
-  <img src="/img/github_signup.svg" alt="Connect Github" />
-</p>
-
-Congratulations, you are logged-in.
-
-</li>
-
-<li>
-
-### Deploy a templated app!
-
-```bash title="Clone your forked application"
-# Change <your_name> with your Github account name
-$ git clone git@github.com:<your_name>/simple-example-node.git
-```
-
-Qovery has deployed the application, to get the deployment status:
-
-```bash
-# Move into the directory
-$ cd simple-example-node
-
-# Show the deployment status
-$ qovery status
-```
-
-Here is the output you should have. Is it not the case? [Contact us on Discord][urls.qovery_chat]
-
-```bash
-BRANCH NAME | STATUS  | ENDPOINTS          | APPLICATIONS        | DATABASES
-master      | running | https://domain.tld | simple-example-node | none
-
-APPLICATION NAME    | STATUS  | DATABASES
-simple-example-node | running | none
-```
-
-Voilà ! Your first templated app has been successfully deployed
-
-</li>
-
-</TabItem>
-
-</Tabs>
 
 </ol>
 </Steps>
 
-## Deploy your app!
-
-<Tabs
-centered={true}
-className={"rounded"}
-defaultValue={"web"}
-placeholder="Select your interface"
-select={false}
-size={null}
-values={[{"group":"Interfaces","label":"Web","value":"web"},{"group":"Interfaces","label":"CLI","value":"cli"}]}>
-
-<TabItem value="web">
-
-It's as simple as deploying a template, the difference is to choose `I already have an application` instead of `I want to use a template`.
-
-<p align="center">
-  <img src="/img/i-have-an-app.png" alt="Deploy your app with Qovery" />
-</p>
-
-</TabItem>
-
-<TabItem value="cli">
-
-<Alert type="info">
-
-You must provide your `Dockerfile` **OR** use one provided by us.
-
-</Alert>
-
-Deploying your existing application is as easy as running `qovery init`.
-
-```bash
-$ qovery init
-```
-
-The command will open an interactive project creator that will let you quickly bootstrap an application using one of existing templates or by connecting your own repository.
-
-</TabItem>
-
-</Tabs>
+That's it!
 
 ## Next Steps
 
 To deploy your application, it's as simple as that. In the following article, we will see how to add a database. Let's get started!
 
 
-[docs.cli#windows]: /docs/using-qovery/interface/cli/#windows
-[urls.authorize_qovery]: https://github.com/apps/qovery/installations/new
-[urls.brew]: https://brew.sh/
 [urls.github]: https://github.com
 [urls.gitlab]: https://gitlab.com
-[urls.qovery_chat]: https://discord.qovery.com
-[urls.qovery_cli_releases]: https://github.com/Qovery/qovery-cli/releases
-[urls.scoop]: https://scoop.sh/
 [urls.start_qovery]: https://start.qovery.com

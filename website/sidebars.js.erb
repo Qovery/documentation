@@ -6,6 +6,11 @@ module.exports = {
             items: [
                 <%= metadata.links.fetch_id("docs.getting-started").to_json %>,
                 <%= metadata.links.fetch_id("docs.what-is-qovery").to_json %>,
+                {
+                    type: 'link',
+                    label: 'Deploy my app',
+                    href: '<%= metadata.links.fetch_id("guides.getting-started.deploy-your-first-application") %>'
+                },
                 <%= metadata.links.fetch_id("docs.features").to_json %>,
                 {
                     type: 'category',

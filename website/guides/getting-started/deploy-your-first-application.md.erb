@@ -24,17 +24,6 @@ Qovery is an easy way to deploy a full-stack application. Meaning, you can deplo
 
 <ol>
 
-<Tabs
-centered={true}
-className={"rounded"}
-defaultValue={"web"}
-placeholder="Select your interface"
-select={false}
-size={null}
-values={[{"group":"Interfaces","label":"Web","value":"web"},{"group":"Interfaces","label":"CLI","value":"cli"}]}>
-
-<TabItem value="web">
-
 <li>
 
 ### Sign up
@@ -45,88 +34,17 @@ values={[{"group":"Interfaces","label":"Web","value":"web"},{"group":"Interfaces
 
 <li>
 
-### Deploy a templated app!
+### Deploy an app
 
 <%= qovery_deploy_app_web() %>
 
 
 </li>
 
-</TabItem>
-
-<TabItem value="cli">
-
-<li>
-
-### Install
-
-<%= qovery_install_cli() %>
-
-</li>
-
-<li>
-
-### Sign up
-
-<%= qovery_sign_up_cli() %>
-
-</li>
-
-<li>
-
-### Deploy a templated app!
-
-<%= qovery_deploy_app_cli() %>
-
-</li>
-
-</TabItem>
-
-</Tabs>
-
 </ol>
 </Steps>
 
-## Deploy your app!
-
-<Tabs
-centered={true}
-className={"rounded"}
-defaultValue={"web"}
-placeholder="Select your interface"
-select={false}
-size={null}
-values={[{"group":"Interfaces","label":"Web","value":"web"},{"group":"Interfaces","label":"CLI","value":"cli"}]}>
-
-<TabItem value="web">
-
-It's as simple as deploying a template, the difference is to choose `I already have an application` instead of `I want to use a template`.
-
-<p align="center">
-  <img src="/img/i-have-an-app.png" alt="Deploy your app with Qovery" />
-</p>
-
-</TabItem>
-
-<TabItem value="cli">
-
-<Alert type="info">
-
-You must provide your `Dockerfile` **OR** use one provided by us.
-
-</Alert>
-
-Deploying your existing application is as easy as running `qovery init`.
-
-```bash
-$ qovery init
-```
-
-The command will open an interactive project creator that will let you quickly bootstrap an application using one of existing templates or by connecting your own repository.
-
-</TabItem>
-
-</Tabs>
+That's it!
 
 ## Next Steps
 

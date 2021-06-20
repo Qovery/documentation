@@ -34,21 +34,18 @@ your applications in the Cloud.
 Setup your [AWS][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services]
 , [Digital Ocean][docs.using-qovery.configuration.cloud-service-provider.digital-ocean]
 and [Scaleway][docs.using-qovery.configuration.cloud-service-provider.scaleway] account.
-
 <p align="center">
   <img src="/img/cloud_service_providers_view.svg" alt="Deploy on your AWS, Digital Ocean and Scaleway account with Qovery" />
 </p>
 
 2. ### Connect your Git repository
 Qovery is fully integrated into Github, Gitlab, and Bitbucket.
-
 <p align="center">
   <img src="/img/connect_git_repository.svg" alt="Connect your Github repository" />
 </p>
 
 3. ### Your app is deployed
 Your application is up and running instantly
-
 <p align="center">
   <img src="/img/environment_deployed.svg" alt="Your Qovery environment is up and running" />
 </p>

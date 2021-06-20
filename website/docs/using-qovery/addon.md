@@ -10,9 +10,12 @@ import Jump from '@site/src/components/Jump';
 
 Qovery integrations improve developers' experience with Qovery and make their lives easier.
 
-This section shows several Qovery integrations. Some of them are maintained by the Qovery community and [open sourced][urls.main_qovery_github].
+This section shows several Qovery addons.
 
-<Jump to="/docs/using-qovery/addon/">Addons</Jump>
+<Jump to="/docs/using-qovery/addon/container-registry/">Container registry</Jump>
+<Jump to="/docs/using-qovery/addon/continuous-integration/">Continuous integration</Jump>
+<Jump to="/docs/using-qovery/addon/github-preview/">Github preview</Jump>
+<Jump to="/docs/using-qovery/addon/monitoring/">Monitoring</Jump>
 
 
-[urls.main_qovery_github]: https://github.com/qovery
+

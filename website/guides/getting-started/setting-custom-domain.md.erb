@@ -10,9 +10,9 @@ import Steps from '@site/src/components/Steps';
 import Assumptions from '@site/src/components/Assumptions';
 import Alert from '@site/src/components/Alert';
 
-Every application on Qovery automatically gets a free `qovery.io` address which does not change per branch.
-
-But you can also bring your own domains to Qovery easily. We handle TLS/SSL certificate creation and renewal, as well as automatic HTTP to HTTPS redirects for all your custom domains. Let’s learn how to set up your domains on Qovery!
+On Qovery, every application exposed publicly automatically gets a temporary `qovery.io` domain. You can also bring your domains to Qovery
+quickly. We handle TLS/SSL certificate creation and renewal, as well as automatic HTTP to HTTPS redirects for all your custom domains. Let’s
+learn how to set up your domains on Qovery!
 
 <Assumptions>
 
@@ -23,11 +23,7 @@ But you can also bring your own domains to Qovery easily. We handle TLS/SSL cert
 
 </Assumptions>
 
-<Alert type="warning">
-
-A custom domain is bound to a Git branch - [Read more][docs.routing] to understand the concepts behind.
-
-</Alert>
+Go to the [custom domain documentation][docs.using-qovery.configuration.domain] to know more on how it works in details.
 
 ## Tutorial
 
@@ -36,77 +32,31 @@ A custom domain is bound to a Git branch - [Read more][docs.routing] to understa
 
 <li>
 
-### Configuration
-Add to your `.qovery.yml` the following lines
+### Add the domain to your app
 
-```yaml title=".qovery.yml" {4-6}
-...
-routers:
-- name: main
-  custom_domains:
-  - branch: master
-    domain: my.domain.tld
-  routes:
-  - application_name: simple-example-node-with-postgresql
-    paths:
-    - /
-```
-
-Save the changes by committing and pushing your changes
-
-```bash
-$ git add .qovery.yml
-$ git commit -m "Add my custom domain into .qovery.yml"
-$ git push -u origin master
-```
+TODO
 
 </li>
+
 <li>
 
-### Validation
-Qovery needs to validate that the domain is yours. To do it, you need to target a CNAME that we generate for your custom domain. Get the target CNAME by executing:
+### Add a CNAME record to your domain
 
-```bash title="List all domains"
-qovery domain list
-```
-
-```bash title="Output"
-BRANCH | DOMAIN                                      | STATUS             | VALIDATION DOMAIN    | ROUTER NAME
-master | node.deimos.fr                              | validation pending | xxx-yyy-zzz.acme.com | main
-master | https://main-yenr7erjbs87dk4m-gtw.qovery.io | live               | none                 | main
-```
-
-At this point, you need to add a CNAME record that is targeting the validation domain `xxx-yyy-zzz.acme.com`
-
-<Alert type="info">
-
-You need to go on the web interface provided by your domain provider and create new domain record of type CNAME
-
-</Alert>
+TODO
 
 </li>
+
 <li>
 
-### Ready
-Once you’ve added your domain, it can take a few minutes to be verified on Qovery. You’ll see the domain verification status in green once everything is good to go.
+### Your domain is ready
 
-```bash title="List all domains"
-qovery domain list
-```
-
-```bash title="Output"
-BRANCH | DOMAIN                                      | STATUS | VALIDATION DOMAIN    | ROUTER NAME
-master | node.deimos.fr                              | live   | xxx-yyy-zzz.acme.com | main
-master | https://main-yenr7erjbs87dk4m-gtw.qovery.io | live   | none                 | main
-```
-
-You’re all set! Your custom domains will start pointing to your application, and we’ll continue to issue and renew SSL certificates for them as long as you’re using Qovery.
+TODO
 
 </li>
 
 </ol>
 </Steps>
 
-As always, if you run into any trouble, [find us on chat][urls.qovery_chat] we’ll be glad to help out.
+If you run into any trouble, [find us on Discord][urls.qovery_chat]. Our team and the community will be glad to help out.
 
 <%= subpages() %>

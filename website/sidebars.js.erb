@@ -6,8 +6,7 @@ module.exports = {
             items: [
                 <%= metadata.links.fetch_id("docs.getting-started").to_json %>,
                 <%= metadata.links.fetch_id("docs.what-is-qovery").to_json %>,
-                <%= metadata.links.fetch_id("docs.how-qovery-works").to_json %>,
-                <%= metadata.links.fetch_id("docs.whats-next").to_json %>,
+                <%= metadata.links.fetch_id("docs.features").to_json %>,
                 {
                     type: 'category',
                     label: 'Qovery vs. Other',
@@ -18,6 +17,7 @@ module.exports = {
                         <%= metadata.links.fetch_id("docs.qovery-vs-other.terraform").to_json %>,
                     ],
                 },
+                <%= metadata.links.fetch_id("docs.whats-next").to_json %>,
             ],
         },
         {

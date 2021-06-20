@@ -6,8 +6,7 @@ module.exports = {
             items: [
                 "getting-started",
                 "getting-started/what-is-qovery",
-                "getting-started/how-qovery-works",
-                "getting-started/whats-next",
+                "getting-started/features",
                 {
                     type: 'category',
                     label: 'Qovery vs. Other',
@@ -18,6 +17,7 @@ module.exports = {
                         "getting-started/qovery-vs-other/terraform",
                     ],
                 },
+                "getting-started/whats-next",
             ],
         },
         {

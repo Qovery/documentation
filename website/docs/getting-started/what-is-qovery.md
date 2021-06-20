@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-19"
+last_modified_on: "2021-06-20"
 title: "What is Qovery?"
 description: "High-level description of the Qovery goals and mission."
 ---
@@ -9,7 +9,10 @@ import Steps from '@site/src/components/Steps';
 
 import BusinessBadge from '@site/src/components/BusinessBadge';
 
-**Qovery** is a platform that combines the power of **Kubernetes**, the reliability of **AWS**, and the simplicity of **Heroku** to augment the developer experience. It accelerates and scales the application development cycle with zero infrastructure management investment.
+**Qovery** is a platform that combines the power of **Kubernetes**, the reliability of **AWS**, and the simplicity of **Heroku** to deploy
+your applications in the Cloud.
+
+> Qovery is the simplest way to deploy your full-stack apps in the Cloud
 
 <p align="center">
   <img src="/img/qovery_deploy_on_aws.svg" alt="Deploy on AWS with Qovery" />
@@ -23,88 +26,40 @@ import BusinessBadge from '@site/src/components/BusinessBadge';
      website/docs/getting-started/what-is-qovery.md.erb
 -->
 
-## How Qovery works
-
-> Push your code, Qovery handles the rest!
-
-Deploying an application with Qovery is as simple as pushing your code with Git.
+## From zero to production in 3 steps
 
 <Steps headingDepth={3} hideFeedbackQuestion>
 
-1. ### Connect your repository
-Qovery is fully integrated into Github, Bitbucket, and Gitlab. After you push your code, Qovery runs all the necessary steps to make your application available online.
+1. ### Connect your Cloud account
+Setup your [AWS][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services]
+, [Digital Ocean][docs.using-qovery.configuration.cloud-service-provider.digital-ocean]
+and [Scaleway][docs.using-qovery.configuration.cloud-service-provider.scaleway] account.
 
-2. ### Write your best code
-Using Qovery, all you need to do to grow your product is to implement business features. Focus on your code - no more tedious infrastructure management!
+<p align="center">
+  <img src="/img/cloud_service_providers_view.svg" alt="Deploy on your AWS, Digital Ocean and Scaleway account with Qovery" />
+</p>
 
-3. ### Push your code
-Push your code - we handle the rest. From building your application to deploying to multiple environments.
+2. ### Connect your Git repository
+Qovery is fully integrated into Github, Gitlab, and Bitbucket.
 
-<Jump to="/guides/getting-started/deploy-your-first-application">Deploy your first application</Jump>
+<p align="center">
+  <img src="/img/connect_git_repository.svg" alt="Connect your Github repository" />
+</p>
+
+3. ### Your app is deployed
+Your application is up and running instantly
+
+<p align="center">
+  <img src="/img/environment_deployed.svg" alt="Your Qovery environment is up and running" />
+</p>
+
+That's it!
 
 </Steps>
 
-Qovery helps you to seamlessly deploy your full-stack and micro-services applications on [AWS][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services], and [few other Cloud providers][docs.using-qovery.configuration.cloud-service-provider].
-
-## Qovery vs. Other products
-See the differences of Qovery with Other solutions like [Heroku][docs.getting-started.qovery-vs-other.heroku], [Netlify][docs.getting-started.qovery-vs-other.netlify] or [Terraform][docs.getting-started.qovery-vs-other.terraform].
-
-## Important features
-
-### One branch = one environment
-<p align="center">
-  <img src="/img/qovery_environments_x.svg" alt="Qovery environments" />
-</p>
-
-On Qovery, every branch is an isolated environment. Creating a new Git branch results in a complete copy of your production environment, so developers can test new features quicker and introduce fewer bugs to production.
-
-[Read more][docs.using-qovery.configuration.environment]
-
-### Use your own cloud account
-It is very convenient to deploy side projects and early stage applications on Qovery infrastructure. However, if your organization grows, you may want to run your business on your own cloud account to have greater control, reduce costs or use your cloud provider credits. In this case Qovery got you covered - not only it allows to deploy your environments on your own cloud account, but also it's provider agnostic, making it possible to deploy your production environment on more expensive, reliable cloud and use cheaper providers for your development envs.
-
-[Read more][docs.using-qovery.configuration.cloud-service-provider]
-
-<!---
-TODO - IMAGE - MULTIPLE CLOUD ACCOUNT DEPLOYMENTS
--->
-
-### Bring your own CI
-[Qovery Engine][urls.qovery_engine] can build your application Docker images. If your organization already use another CI solution, you can easily configure Qovery to use it instead. You can also configure where your application's Docker images are stored.
-
-[Read more][docs.using-qovery.addon.continuous-integration]
-
-<!---
-TODO - IMAGE - CIRCLE CI / JENKINS / ECR ETC.
--->
-
-<!---
-TODO - IMAGE - GIT -> APP -> DEPOY
--->
-
-## Why you should use Qovery?
-
-### The power of Kubernetes
-Under the hood, Qovery uses **containers** and **Kubernetes** to run applications. With us, your applications scale accordingly to your traffic and needs. We rely on major cloud providers to provide reliable infrastructure to make your applications highly available.
-
-### Reliable infrastructure
-What's more, we took on our shoulders the complexity of providing and managing other infrastructure requirements you need (like databases or message brokers), so you can focus merely on developing business features.
-
-### Simple and Powerful
-With Qovery, the cloud is simple again. Get all the benefits of using cloud and Kubernetes without dealing with its complexity. You don't need to hire infrastructure experts - configuring continuous integration, deployment, databases, message brokers, storage, DNS, SSL/TLS, VPCs, and many others - we do it all for you. On Qovery, you can spin up a set of microservices, databases, and other cloud services in minutes with a single Git push!
-
-###  Built for all developers
-Qovery is designed by developers for developers. Our goal is to make your life easier and allow you to move faster. Developer experience is at our heart. Building cloud-native applications was never that fast and simple!
-
-### Fully customizable for advanced business use cases
-Create teams, split responsibilities, manage privileges, enforce company-wide rules, deploy to multiple clouds, plug in your own CI solutions. Qovery Business allows you to bring your organization to the next level with ease.
+<Jump to="/guides/getting-started/deploy-your-first-application">Deploy your first application</Jump>
 
 
-[docs.getting-started.qovery-vs-other.heroku]: /docs/getting-started/qovery-vs-other/heroku/
-[docs.getting-started.qovery-vs-other.netlify]: /docs/getting-started/qovery-vs-other/netlify/
-[docs.getting-started.qovery-vs-other.terraform]: /docs/getting-started/qovery-vs-other/terraform/
-[docs.using-qovery.addon.continuous-integration]: /docs/using-qovery/addon/continuous-integration/
 [docs.using-qovery.configuration.cloud-service-provider.amazon-web-services]: /docs/using-qovery/configuration/cloud-service-provider/amazon-web-services/
-[docs.using-qovery.configuration.cloud-service-provider]: /docs/using-qovery/configuration/cloud-service-provider/
-[docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
-[urls.qovery_engine]: https://engine.qovery.com
+[docs.using-qovery.configuration.cloud-service-provider.digital-ocean]: /docs/using-qovery/configuration/cloud-service-provider/digital-ocean/
+[docs.using-qovery.configuration.cloud-service-provider.scaleway]: /docs/using-qovery/configuration/cloud-service-provider/scaleway/

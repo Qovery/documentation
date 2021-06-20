@@ -1,6 +1,6 @@
 ---
-last_modified_on: "2021-06-19"
-title: Addon
+last_modified_on: "2021-06-20"
+title: Addons
 description: "Useful addons to improve your Qovery workflow"
 sidebar_label: hidden
 hide_pagination: true

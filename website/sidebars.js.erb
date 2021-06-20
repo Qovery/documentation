@@ -7,7 +7,6 @@ module.exports = {
                 <%= metadata.links.fetch_id("docs.getting-started").to_json %>,
                 <%= metadata.links.fetch_id("docs.what-is-qovery").to_json %>,
                 <%= metadata.links.fetch_id("docs.how-qovery-works").to_json %>,
-                <%= metadata.links.fetch_id("docs.quickstart").to_json %>,
                 <%= metadata.links.fetch_id("docs.whats-next").to_json %>,
                 {
                     type: 'category',
@@ -117,9 +116,30 @@ module.exports = {
                 },
                 {
                     type: 'category',
+                    label: 'Quickstarts',
+                    items: [
+                        <%= metadata.links.fetch_id("docs.using-qovery.quickstart").to_json %>,
+                        <%= metadata.links.fetch_id("docs.using-qovery.quickstart.strapi").to_json %>,
+                    ]
+                },
+                {
+                    type: 'category',
                     label: 'Troubleshoot',
                     items: [
                         <%= metadata.links.fetch_id("docs.using-qovery.troubleshoot").to_json %>,
+                    ]
+                }
+            ],
+        },
+        {
+            type: 'category',
+            label: 'Community',
+            items: [
+                {
+                    type: 'category',
+                    label: 'Rewards',
+                    items: [
+                        <%= metadata.links.fetch_id("docs.community.reward").to_json %>,
                     ]
                 }
             ],

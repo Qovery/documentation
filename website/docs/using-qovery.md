@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-19"
+last_modified_on: "2021-06-20"
 title: Using Qovery
 description: "Everything you need to know to configure and use your applications on Qovery"
 sidebar_label: hidden
@@ -13,6 +13,7 @@ This section covers everything you need to know to configure and use your applic
 <Jump to="/docs/using-qovery/addon/">Addon</Jump>
 <Jump to="/docs/using-qovery/configuration/">Configuration</Jump>
 <Jump to="/docs/using-qovery/interface/">Interface</Jump>
+<Jump to="/docs/using-qovery/quickstart/">Quickstart</Jump>
 <Jump to="/docs/using-qovery/troubleshoot/">Troubleshoot</Jump>
 
 

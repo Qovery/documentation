@@ -7,7 +7,6 @@ module.exports = {
                 "getting-started",
                 "getting-started/what-is-qovery",
                 "getting-started/how-qovery-works",
-                "getting-started/quickstart",
                 "getting-started/whats-next",
                 {
                     type: 'category',
@@ -117,9 +116,30 @@ module.exports = {
                 },
                 {
                     type: 'category',
+                    label: 'Quickstarts',
+                    items: [
+                        "using-qovery/quickstart",
+                        "using-qovery/quickstart/strapi",
+                    ]
+                },
+                {
+                    type: 'category',
                     label: 'Troubleshoot',
                     items: [
                         "using-qovery/troubleshoot",
+                    ]
+                }
+            ],
+        },
+        {
+            type: 'category',
+            label: 'Community',
+            items: [
+                {
+                    type: 'category',
+                    label: 'Rewards',
+                    items: [
+                        "community/reward",
                     ]
                 }
             ],

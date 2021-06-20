@@ -5,7 +5,12 @@ description: "Learn how to configure Organizations on Qovery"
 ---
 import Assumptions from '@site/src/components/Assumptions';
 
-## Getting started
+An organization is a shared account where developers can collaborate across many projects at once. Owners and organization administrators
+can manage:
+
+- cloud accounts.
+- members access.
+- the billing.
 
 <Assumptions>
 
@@ -13,42 +18,89 @@ import Assumptions from '@site/src/components/Assumptions';
 
 </Assumptions>
 
-### Create an Organization
+## Create an Organization
 
-To create an Organization you need to use the [web interface][docs.using-qovery.interface.web-interface] and click on the top right, you'll
-have the button "create an organization".
+You need to create an organization the first time you use Qovery. You have to choose between the **Community**, **Startup** and **
+Enterprise** plan.
 
 <p align="center">
-  <img src="/img/qovery_create_organization.svg" alt="Qovery - Create an Organization" />
+  <img src="/img/create_organization.png" alt="Qovery - create an organization" />
 </p>
 
-### Link your app to a project within an Organization
+### How to choose between plans?
 
-To assign an application to a project within an organization, put the corresponding `organization` name, and the `project` name in
-the `.qovery.yml`:
+In a nutshell, use the **Community** plan to host your app for free ([see limitations][urls.qovery_pricing]), use the **Startup** or **
+Enterprise** plan to host your apps on your Cloud account without any limitations.
 
-```yaml title=".qovery.yml" {2}
-application:
-  organization: my-organization
-  project: project-x
-  name: my-application
-  publicly_accessible: true
-routers:
-- name: main
-  routes:
-  - application_name: my-application
-    paths:
-    - /
-```
+## Connect your Cloud account
 
-This configuration deploys the application in `my-project` project, within `my-organization` organization.
+<Alert type="info">
+
+This feature is only valid for paid plans -> **Startup** and **Enterprise** plans
+
+</Alert>
+
+Check out [this documentation][docs.using-qovery.configuration.cloud-service-provider] according to the Cloud service provider that you want
+to use.
 
 ## Organization members
 
-### Invite people
-
-You can invite someone by email, and a group of people by using the domain email.
+You can invite someone to join your organization by email. Then he will get access to your projects and will be able to contribute.
 
 <p align="center">
-  <img src="/img/qovery_organization_members.svg" alt="Qovery - List all members within an organization" />
+  <img src="/img/organization_members.png" alt="Qovery - List all members within an organization" />
+</p>
+
+### Roles
+
+Four roles within an organization exist:
+
+| Action | Owner | Admin | Developer | Viewer |
+|--------|-------|-------|-----------|--------|
+| Read organization | yes | yes | no | no |
+| Edit organization | yes | yes | no | no |
+| Delete organization | yes | no | no | no |
+| Manage billing | yes | yes | no | no | no |
+| Invite members | yes | yes | no | no | no |
+| Read project | yes | yes | yes | yes | yes |
+| Edit project | yes | yes | yes | no |
+| Delete project | yes | yes | no | no |
+| Read environment | yes | yes | yes | yes |
+| Edit production environment | yes | yes | no | no |
+| Edit development environment | yes | yes | yes | no |
+| Stop production environment | yes | yes | no | no |
+| Stop development environment | yes | yes | yes | no |
+| Delete production environment | yes | yes | no | no |
+| Delete development environment | yes | yes | yes | no |
+| Read application | yes | yes | yes | yes |
+| Edit production application | yes | yes | no | no |
+| Edit development application | yes | yes | yes | no |
+| Delete production application | yes | yes | no | no |
+| Delete development application | yes | yes | yes | no |
+| Read database | yes | yes | yes | no |
+| Edit production database | yes | yes | no | no |
+| Edit development database | yes | yes | yes | no |
+| Delete production database | yes | yes | no | no |
+| Delete development database | yes | yes | yes | no |
+
+## Change organization
+
+As a user, you can have access to one or many organizations. Use the dropdown in the top right navbar to change your organization.
+
+<p align="center">
+  <img src="/img/change_organization.png" alt="Qovery - change organization" />
+</p>
+
+## Delete organization
+
+<Alert type="danger">
+
+This is a non-recoverable operation. By deleting your organization, all your data are deleted.
+
+</Alert>
+
+To delete your organization, you need to go into the **Danger Zone** within your organization settings.
+
+<p align="center">
+  <img src="/img/delete_organization.png" alt="Qovery - delete organization" />
 </p>

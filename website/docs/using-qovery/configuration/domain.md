@@ -1,6 +1,6 @@
 ---
-last_modified_on: "2021-06-19"
-title: "Domains"
+last_modified_on: "2021-06-20"
+title: "Domain"
 description: "Learn how to configure custom Domains on Qovery"
 ---
 import Alert from '@site/src/components/Alert';

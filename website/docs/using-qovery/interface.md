@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-23"
+last_modified_on: "2021-06-20"
 title: Interface
 description: "Everything you need to know to use Qovery"
 sidebar_label: hidden
@@ -8,10 +8,10 @@ hide_pagination: true
 
 import Jump from '@site/src/components/Jump';
 
-In the following subsections, you'll learn how to use the CLI (Command Line Interface), and the web interface to deploy your application with Qovery.
+In the following subsections, you'll learn how to use the web interface, and the  CLI (Command Line Interface) to deploy your application with Qovery.
 
-<Jump to="/docs/using-qovery/interface/cli/">CLIs</Jump>
 <Jump to="/docs/using-qovery/interface/web-interface/">Web interface</Jump>
+<Jump to="/docs/using-qovery/interface/cli/">CLIs</Jump>
 
 
 

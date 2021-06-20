@@ -30,8 +30,8 @@ module.exports = {
                     label: 'Interface',
                     items: [
                         "using-qovery/interface",
-                        "using-qovery/interface/cli",
                         "using-qovery/interface/web-interface",
+                        "using-qovery/interface/cli",
                     ]
                 },
                 {

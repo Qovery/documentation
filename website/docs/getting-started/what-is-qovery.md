@@ -30,7 +30,7 @@ your applications in the Cloud.
 
 <Steps headingDepth={3} hideFeedbackQuestion>
 
-1. ### Connect your Cloud account
+1. ### Connect your Cloud account (only paid plans)
 Setup your [AWS][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services]
 , [Digital Ocean][docs.using-qovery.configuration.cloud-service-provider.digital-ocean]
 and [Scaleway][docs.using-qovery.configuration.cloud-service-provider.scaleway] account.

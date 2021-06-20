@@ -1,6 +1,6 @@
 ---
-last_modified_on: "2021-06-19"
-title: "Environment Variables"
+last_modified_on: "2021-06-20"
+title: "Environment Variable"
 description: "Learn how to configure Environment Variables on Qovery"
 ---
 

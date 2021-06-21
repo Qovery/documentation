@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-20"
+last_modified_on: "2021-06-22"
 title: "Environment Variable"
 description: "Learn how to configure Environment Variables on Qovery"
 ---
@@ -11,8 +11,8 @@ Qovery makes environment variables available to all services at runtime, as well
 <Alert type="warning">
 
 Environment Variables are not directly connected to [Environment][docs.using-qovery.configuration.environment] concept.
-- **Environment Variables**: represent variables you can store and retrieve in your applications
-- **Environments**: represent environments (apps, databases, and other services) associated with Git branches like `master`, `staging`, and others.
+- **Environment Variables**: represent variables you can store and retrieve in your applications.
+- **Environments**: represent environments with services (apps, databases, and other services).
 
 </Alert>
 
@@ -23,6 +23,16 @@ Environment Variables are not directly connected to [Environment][docs.using-qov
 
      website/docs/using-qovery/configuration/environment-variable.md.erb
 -->
+
+## Manage environment variable
+
+<Alert type="info">
+
+Do you need to keep secure your environment variable? Use [secret][docs.using-qovery.configuration.secret].
+
+</Alert>
+
+TODO
 
 ## Levels
 
@@ -42,12 +52,18 @@ You can override variables - the highest level variable win (e.g., `PROJECT` var
 </Alert>
 
 ## Built-in variables
-By default, every environment contains those variables:
+By default, every environment contains built-in variables:
 
 | Name       | Example     | Description     |
 |-------------|-----------|-----------------|
 | **QOVERY_BRANCH_NAME**     | master | Git branch name |
 | **QOVERY_IS_PRODUCTION** | true | Flag that indicates production environment |
+
+<Alert>
+
+You can not delete `BUILT_IN` variables, but you can override them!
+
+</Alert>
 
 ## Additional built-in variables
 
@@ -62,126 +78,19 @@ We use the following naming convention for additional built-in variables:
 QOVERY_<SERVICE_TYPE>_<NAME>_<SPEC>
 ```
 
-To demonstrate this, let's take a quick look on a simple database example:
-
-```yml title=".qovery.yml" {3-6}
-application:
-  ...
-databases:
-- type: postgresql
-  version: "10.10"
-  name: my-pg
-```
-
-Adding a database like in the example above results in adding the following environment variables to your application:
-
-| Name       | Example     | Description    |
-|-------------|-----------|-----------------|
-| QOVERY_**DATABASE_MY_PG_NAME**    | my-postgresql | Name of your PostgreSQL database |
-| QOVERY_**DATABASE_MY_PG_HOST**     | host.amazonaws.com | PostgreSQL host address |
-| QOVERY_**DATABASE_MY_PG_USERNAME** | username | PostgreSQL username |
-| QOVERY_**DATABASE_MY_PG_PASSWORD** | password | PostgreSQL password |
-| ... | ... | ... |
-
-## Add custom variables
-
-Adding environment variables with the CLI is very simple:
-
-```bash
-qovery project env add ENV_NAME ENV_VALUE
-qovery environment env add ENV_NAME ENV_VALUE
-qovery application env add ENV_NAME ENV_VALUE
-```
-
-<Alert>
-
-When you add Environment Variables using the CLI, you also specify the scope of a given variable, e.g.
-
-```bash {2}
-qovery project env add ENV_NAME ENV_VALUE
-qovery environment env add ENV_NAME ENV_VALUE
-qovery application env add ENV_NAME ENV_VALUE
-```
-
-The highlighted command adds a variable with `environment` scope.
-
-</Alert>
-
-<Alert type="danger">
-
-Qovery CLI is aware of your current directory and Git branch. Be sure you are in the correct application directory and Git branch (environment) before executing Qovery Environment Variables commands.
-
-</Alert>
-
-## List variables
-
-You can list environment variables of given application with single CLI command:
-
-```bash
-qovery application env list
-```
-
-```plain title="OUTPUT"
-SCOPE        KEY                                                   VALUE
-BUILT_IN     QOVERY_BRANCH_NAME                                    feature_a
-BUILT_IN     QOVERY_IS_PRODUCTION                                  false
-BUILT_IN     QOVERY_DATABASE_MY_POSTGRESQL_3498225_PASSWORD        xxxxxxxxxxxxxxxxxxxx
-BUILT_IN     QOVERY_DATABASE_MY_POSTGRESQL_3498225_USERNAME        superuser
-BUILT_IN     QOVERY_DATABASE_MY_POSTGRESQL_3498225_PORT            5432
-BUILT_IN     QOVERY_DATABASE_MY_POSTGRESQL_3498225_FQDN            your.fqdn.id.rds.amazonaws.com
-BUILT_IN     QOVERY_DATABASE_MY_POSTGRESQL_3498225_HOST            your.host.id.rds.amazonaws.com
-BUILT_IN     QOVERY_DATABASE_MY_POSTGRESQL_3498225_CONNECTION_URI  postgresql://user:pass@your.fqdn.id.rds.amazonaws.com:5432/postgres
-BUILT_IN     QOVERY_DATABASE_MY_POSTGRESQL_3498225_VERSION         11.5
-BUILT_IN     QOVERY_DATABASE_MY_POSTGRESQL_3498225_TYPE            POSTGRESQL
-BUILT_IN     QOVERY_DATABASE_MY_POSTGRESQL_3498225_NAME            my-postgresql-id
-PROJECT      my_custom_project_env                                 my_project_value
-ENVIRONMENT  DRY_RUN                                               true
-APPLICATION  enable_feature_a                                      true
-```
-
-Analogically to adding environment variables, while listing Environment Variables you also choose the scope of variables to list:
-
-```bash
-qovery application env list
-qovery project env list
-qovery environment env list
-```
-
-## Delete variables
-
-To delete an environment variable of application scope, run:
-
-```bash
-qovery application env delete MY_ENV_NAME
-```
-
-<Alert>
-
-You can not delete `BUILT_IN` variables, but you can override them!
-
-</Alert>
-
-## Override variables
+## Override variable
 
 As described in the levels' section, you can override existing variables. To do so, add a new Environment Variables with a higher level (e.g., add an `APPLICATION` level variable to override `PROJECT` variable for a given application).
 
-## Aliases
+> TODO screenshot override variable
+
+## Alias
 You can create an alias for the existing environment variable.
 
-Let's suppose that your application requires a `DATABASE_PASSWORD` variable. Qovery provides your application with `QOVERY_DATABASE_MY_POSTGRESQL_3498225_PASSWORD` variable with a database password.
-Instead of copy-pasting its value, you can create an alias to `QOVERY_DATABASE_MY_POSTGRESQL_3498225_PASSWORD`.
+Let's suppose that your application requires a `DATABASE_URL` variable. Qovery provides your application with `QOVERY_DATABASE_MY_POSTGRESQL_3498225_URL` variable with a database password.
+Instead of copy-pasting its value, you can create an alias to `QOVERY_DATABASE_MY_POSTGRESQL_3498225_URL`.
 
-```bash
-qovery application env add DATABASE_PASSWORD '$QOVERY_DATABASE_MY_POSTGRESQL_3498225_PASSWORD'
-```
-
-After executing the above command, your application can use `DATABASE_PASSWORD` variable to get a database password.
-
-The syntax for aliasing is:
-
-```bash
-... add NEW_VARIABLE_NAME `$OLD_VARIABLE_NAME`
-```
+> TODO screenshot alias
 
 ## .env file (dot env file)
 
@@ -210,21 +119,7 @@ MY_VAR_2=myValue2
 
 To add an environment variable to your `.env` file, edit it and add a new name=value pair on a new line.
 
-## Copy Qovery environment variables to your local .env file
-
-Sometimes you may want to use the same environment variable in both local and Qovery environments. For each environment variable that you want to add to your `.env` file, use the following command:
-
-```bash
-$ qovery application env list --dotenv >> .env
-```
-
-If you want to export the environment variables with secrets you can add `-c`
-
-```bash
-$ qovery application env list -c --dotenv >> .env
-```
-
-## Policies
+## Some rules
 
 * Environment variable keys should use only alphanumeric characters, and the underscore character (_) to ensure that they are accessible from all programming languages. Environment variable keys should not include the hyphen character.
 * Environment variable keys should not begin with a double underscore (__).
@@ -232,3 +127,4 @@ $ qovery application env list -c --dotenv >> .env
 
 
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
+[docs.using-qovery.configuration.secret]: /docs/using-qovery/configuration/secret/

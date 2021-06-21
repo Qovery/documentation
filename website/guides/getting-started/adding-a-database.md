@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-19"
+last_modified_on: "2021-06-21"
 $schema: "/.meta/.schemas/guides.json"
 title: Adding a database
 description: How to add a database to your application
@@ -11,11 +11,11 @@ import Steps from '@site/src/components/Steps';
 import Assumptions from '@site/src/components/Assumptions';
 import Alert from '@site/src/components/Alert';
 
-Every application need to store data in a database at some point. In this guide, you'll learn how to get a production grade database from Qovery in just a few seconds.
+Every application needs to store data in a database at some point. You'll learn how to get a production-grade database from Qovery in just a
+few seconds in this guide.
 
 <Assumptions>
 
-* You have installed the [Qovery CLI][guides.deploy-your-first-application]
 * You have already deployed an application with Qovery
 
 </Assumptions>
@@ -29,94 +29,44 @@ Every application need to store data in a database at some point. In this guide,
 -->
 
 ## Tutorial
-Qovery supports most popular SQL and NoSQL databases (You can see the complete list [here][docs.database]). In this tutorial we will deploy a PostgreSQL database.
+
+Qovery supports most popular SQL and NoSQL databases (You can see the complete list [here][docs.database]). In this guide we will deploy a
+PostgreSQL database and connect it to our NodeJS app.
 
 <Steps headingDepth={3}>
 <ol>
 
 <li>
 
-### Configuration
-To add a PostgreSQL to our application we simply need to put three mandatory lines in our `.qovery.yml` file as follow:
+### Add your PostgreSQL database
 
-```yaml
-...
-databases:
-- type: postgresql # database type
-  version: "11.5" # database version
-  name: my-db # database name (must be unique)
-...
-```
-
-<Alert type="info">
-Up to 16 databases can be added per application
-</Alert>
-
-Our complete `.qovery.yml` looks like this
-
-```yaml title=".qovery.yml"
-application:
-  name: simple-example-node
-  project: getting-started
-  publicly_accessible: true
-databases:
-- type: postgresql
-  version: "11.5"
-  name: my-db
-routers:
-- name: main
-  routes:
-  - application_name: simple-example-node
-    paths:
-    - /
-```
-
-To start the database you need to commit and push the modification of your `.qovery.yml` file.
-
-```bash
-$ git add .qovery.yml
-$ git commit -m "Add PostgreSQL database to .qovery.yml"
-$ git push -u origin master
-```
-
-Well done, your database will be ready within a few seconds. To check the readiness status:
-
-```bash
-$ qovery status
-```
+<div class="video-container">
+  <p align="center">
+    <iframe src="https://www.loom.com/embed/581db2e57ce1497b980dc1b47b14cd1d" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+    </iframe>
+  </p>
+</div>
 
 </li>
+
 <li>
 
-### Connect
-Now, we need to connect our application to our database. The credentials (URI, Username, Password ...) are available through [environment variables][docs.environment-variable]. They are injected by Qovery when your application runs.
+### Add an environment variable
 
-First, we need to list all the environment variables available for our application:
+<Alert type="warning">
 
-```bash
-# List all environment variables
-$ qovery application env list
-# By adding the arg option -c you can see the value of hidden fields
-```
+Creating an environment variable is not yet possible. It is coming soon.
 
-```bash title="Output"
-SCOPE    | KEY                                                      | VALUE
-BUILT_IN | QOVERY_JSON_B64                                          | <base64>
-BUILT_IN | QOVERY_BRANCH_NAME                                       | master
-BUILT_IN | QOVERY_IS_PRODUCTION                                     | false
-BUILT_IN | QOVERY_APPLICATION_SIMPLE_EXAMPLE_NODE_HOSTNAME          | <hidden>
-BUILT_IN | QOVERY_DATABASE_MY_DB_DATABASE                           | postgres
-BUILT_IN | QOVERY_DATABASE_MY_DB_PASSWORD                           | <hidden>
-BUILT_IN | QOVERY_DATABASE_MY_DB_USERNAME                           | <hidden>
-BUILT_IN | QOVERY_DATABASE_MY_DB_PORT                               | <hidden>
-BUILT_IN | QOVERY_DATABASE_MY_DB_FQDN                               | <hidden>
-BUILT_IN | QOVERY_DATABASE_MY_DB_HOST                               | <hidden>
-BUILT_IN | QOVERY_DATABASE_MY_DB_CONNECTION_URI_WITHOUT_CREDENTIALS | <hidden>
-BUILT_IN | QOVERY_DATABASE_MY_DB_CONNECTION_URI                     | <hidden>
-BUILT_IN | QOVERY_DATABASE_MY_DB_VERSION                            | 11.5
-BUILT_IN | QOVERY_DATABASE_MY_DB_TYPE                               | POSTGRESQL
-BUILT_IN | QOVERY_DATABASE_MY_DB_NAME                               | my-db
-```
+</Alert>
+
+</li>
+
+<li>
+
+### Connect your application
+
+Now, we need to connect our application to our database. The credentials (URI, Username, Password ...) are available
+through [environment variables][docs.environment-variable]. They are injected by Qovery when your application runs.
 
 To connect our NodeJS application to our PostgreSQL database, we only have to:
 
@@ -150,32 +100,14 @@ const pool = new Pool({
 Nothing more, well done! You can now be able to use your database.
 
 </li>
-<li>
 
-### Deploy
-Commit, and push your code, and you are done. Your application will be deployed.
-
-```bash
-$ git add app.js
-$ git commit -m "Update my code to use PostgreSQL"
-$ git push -u origin master
-```
-
-What the deployment status
-
-```bash
-$ qovery status
-```
-
-</li>
 </ol>
 </Steps>
 
 ## Next Steps
 
-Congratulations, your application is connected to a PostgreSQL database. Now we will see how to add your custom domain to your service.
+Congratulations, your application has access to your PostgreSQL database. Now we will see how to add your custom domain to your service.
 
 
 [docs.database]: /docs/using-qovery/configuration/database/
 [docs.environment-variable]: /docs/using-qovery/configuration/environment-variable/
-[guides.deploy-your-first-application]: /guides/getting-started/deploy-your-first-application/

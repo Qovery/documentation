@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-20"
+last_modified_on: "2021-06-22"
 title: "What is Qovery?"
 description: "High-level description of the Qovery goals and mission."
 ---
@@ -14,6 +14,11 @@ your applications in the Cloud.
 
 > Qovery is the simplest way to deploy your full-stack apps in the Cloud
 
+Qovery is an excellent solution for:
+- **Developer**: to stay focused on building the best product.
+- **DevOps**: to spend time on tasks that matter, building production and future-proof cloud infrastructure.
+- **CTO**: to accelerate their go-to-market, reduce their cloud cost, keep their team productive as it grows.
+
 <p align="center">
   <img src="/img/qovery_deploy_on_aws.svg" alt="Deploy on AWS with Qovery" />
 </p>
@@ -26,7 +31,7 @@ your applications in the Cloud.
      website/docs/getting-started/what-is-qovery.md.erb
 -->
 
-## From zero to production in 3 steps
+## Getting started in 3 steps
 
 <Steps headingDepth={3} hideFeedbackQuestion>
 

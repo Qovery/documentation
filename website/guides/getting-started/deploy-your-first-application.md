@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-20"
+last_modified_on: "2021-06-21"
 $schema: "/.meta/.schemas/guides.json"
 title: Hello World. Deploy your first application.
 description: How to deploy your first application with Qovery
@@ -28,7 +28,7 @@ Qovery is an easy way to deploy a full-stack application. Meaning, you can deplo
      website/guides/getting-started/deploy-your-first-application.md.erb
 -->
 
-## Step by step tutorial
+## Step-by-step tutorial
 <Steps headingDepth={3}>
 
 <ol>

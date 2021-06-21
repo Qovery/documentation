@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-20"
+last_modified_on: "2021-06-21"
 $schema: "/.meta/.schemas/guides.json"
 title: Custom domain
 description: How to set and use your own domain
@@ -43,15 +43,12 @@ Go to the [custom domain documentation][docs.using-qovery.configuration.domain] 
 
 ### Add the domain to your app
 
-TODO
-
-</li>
-
-<li>
-
-### Add a CNAME record to your domain
-
-TODO
+<div class="video-container">
+  <p align="center">
+    <iframe src="https://www.loom.com/embed/2855fc728b044b79bba072150795b076" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+    </iframe>
+  </p>
+</div>
 
 </li>
 
@@ -59,7 +56,7 @@ TODO
 
 ### Your domain is ready
 
-TODO
+You need to **restart** your app to make your custom domain available.
 
 </li>
 

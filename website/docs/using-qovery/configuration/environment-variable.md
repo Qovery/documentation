@@ -28,7 +28,7 @@ Environment Variables are not directly connected to [Environment][docs.using-qov
 
 <Alert type="info">
 
-Do you need to keep secure your environment variable? Use [secret][docs.using-qovery.configuration.secret].
+Do you need to keep secure your environment variable? Use [Secret][docs.using-qovery.configuration.secret] instead of *Environment Variable*.
 
 </Alert>
 

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-20"
+last_modified_on: "2021-06-24"
 title: Configuration
 description: "Everything you need to know to configure and deploy your applications on Qovery"
 sidebar_label: hidden
@@ -20,7 +20,6 @@ In the following subsections, you'll learn all you need to know to configure and
 <Jump to="/docs/using-qovery/configuration/external-service/">External service</Jump>
 <Jump to="/docs/using-qovery/configuration/organization/">Organization</Jump>
 <Jump to="/docs/using-qovery/configuration/project/">Project</Jump>
-<Jump to="/docs/using-qovery/configuration/routing/">Routing</Jump>
 <Jump to="/docs/using-qovery/configuration/secret/">Secret</Jump>
 <Jump to="/docs/using-qovery/configuration/storage/">Storage</Jump>
 

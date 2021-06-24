@@ -9,17 +9,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="wip: update doc for v2">
+      <change afterPath="$PROJECT_DIR$/website/guides/advanced/amazon-web-services.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/guides/advanced/amazon-web-services.md.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/guides/advanced/digital-ocean.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/guides/advanced/microservices.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/guides/advanced/microservices.md.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/guides/advanced/monorepository.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/guides/advanced/monorepository.md.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/create_environment_variable.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/environment_variables.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.meta/guides.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/guides.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.meta/links.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/links.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_summary.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_summary.md.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/docs/getting-started/what-is-qovery.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/what-is-qovery.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/application.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/application.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/application.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/application.md.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/environment-variable.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/environment-variable.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/environment-variable.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/environment-variable.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/adding-a-database.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/adding-a-database.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/adding-a-database.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/adding-a-database.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/deploy-your-first-application.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/deploy-your-first-application.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/deploy-your-first-application.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/deploy-your-first-application.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/setting-custom-domain.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/setting-custom-domain.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/setting-custom-domain.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/setting-custom-domain.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/routing.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/routing.md.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/custom-routes.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/custom-routes.md.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/microservices.md.erb.todo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/using-multiple-cloud-providers.md.erb.todo" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/digital-ocean.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/using-multiple-environments.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/staging-environment.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/using-multiple-environments.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/staging-environment.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/adding-a-database.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/create-a-database.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/adding-a-database.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/create-a-database.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/debugging.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/debugging.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/debugging.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/debugging.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/managing-environment-variables.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/managing-environment-variables.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/managing-environment-variables.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/managing-environment-variables.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/metadata.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/metadata.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/plugins/guides/guideUtils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/website/plugins/guides/guideUtils.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/sidebars.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/sidebars.js.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.js.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +148,7 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.vendoring.notification.had.been.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/website/static/img" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/website/guides/advanced" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -138,11 +166,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/website/guides/advanced" />
       <recent name="$PROJECT_DIR$/website/static/img" />
       <recent name="$PROJECT_DIR$/website/docs/getting-started" />
       <recent name="$PROJECT_DIR$/website/docs/using-qovery" />
       <recent name="$PROJECT_DIR$/website/docs/using-qovery/quickstart" />
-      <recent name="$PROJECT_DIR$/website/docs/using-qovery/configuration" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/website/docs/using-qovery" />
@@ -297,14 +325,7 @@
       <workItem from="1620417638227" duration="4372000" />
       <workItem from="1620939988462" duration="161000" />
       <workItem from="1623707885288" duration="24602000" />
-      <workItem from="1624139690193" duration="26282000" />
-    </task>
-    <task id="LOCAL-00139" summary="update footer">
-      <created>1606397373274</created>
-      <option name="number" value="00139" />
-      <option name="presentableId" value="LOCAL-00139" />
-      <option name="project" value="LOCAL" />
-      <updated>1606397373274</updated>
+      <workItem from="1624139690193" duration="34906000" />
     </task>
     <task id="LOCAL-00140" summary="update documentation">
       <created>1606405347805</created>
@@ -642,7 +663,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624227022776</updated>
     </task>
-    <option name="localTasksCounter" value="188" />
+    <task id="LOCAL-00188" summary="wip: update doc for v2">
+      <created>1624314183150</created>
+      <option name="number" value="00188" />
+      <option name="presentableId" value="LOCAL-00188" />
+      <option name="project" value="LOCAL" />
+      <updated>1624314183150</updated>
+    </task>
+    <option name="localTasksCounter" value="189" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

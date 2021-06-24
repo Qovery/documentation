@@ -59,7 +59,7 @@ export async function generateGuides(
             break;
 
           case 'getting-started':
-            description = 'Take Qovery from zero to production in under 10 minutes.';
+            description = 'Take Qovery from zero to production in less than 10 minutes.';
             break;
 
           case 'integrate':

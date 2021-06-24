@@ -92,16 +92,16 @@ module.exports = {
     "getting-started": {
       "children": {
       },
-      "description": "Take Qovery from zero to production in under 10 minutes.",
+      "description": "Take Qovery from zero to production in less than 10 minutes.",
       "guides": [
         {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
-          "id": "/getting-started/adding-a-database",
+          "id": "/getting-started/create-a-database",
           "last_modified_on": null,
-          "path": "website/guides/getting-started/adding-a-database.md",
+          "path": "website/guides/getting-started/create-a-database.md",
           "series_position": null,
-          "title": "Adding a database"
+          "title": "Create a database"
         },
         {
           "author_github": "https://github.com/evoxmusic",
@@ -122,7 +122,7 @@ module.exports = {
           "title": "Debugging"
         },
         {
-          "author_github": "https://github.com/pjeziorowski",
+          "author_github": "https://github.com/evoxmusic",
           "description": null,
           "id": "/getting-started/managing-environment-variables",
           "last_modified_on": null,
@@ -152,24 +152,51 @@ module.exports = {
         {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
-          "id": "/advanced/custom-routes",
+          "id": "/advanced/amazon-web-services",
           "last_modified_on": null,
-          "path": "website/guides/advanced/custom-routes.md",
+          "path": "website/guides/advanced/amazon-web-services.md",
           "series_position": null,
-          "title": "Custom routes"
+          "title": "Deploy your apps on your AWS account"
         },
         {
-          "author_github": "https://github.com/pjeziorowski",
+          "author_github": "https://github.com/evoxmusic",
           "description": null,
-          "id": "/advanced/using-multiple-environments",
+          "id": "/advanced/digital-ocean",
           "last_modified_on": null,
-          "path": "website/guides/advanced/using-multiple-environments.md",
+          "path": "website/guides/advanced/digital-ocean.md",
           "series_position": null,
-          "title": "Multiple environments"
+          "title": "Deploy your apps on your Digital Ocean account"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/advanced/microservices",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/microservices.md",
+          "series_position": null,
+          "title": "Microservices"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/advanced/monorepository",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/monorepository.md",
+          "series_position": null,
+          "title": "Mono repository"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/advanced/staging-environment",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/staging-environment.md",
+          "series_position": null,
+          "title": "Staging environment"
         }
       ],
       "name": "advanced",
-      "series": false,
+      "series": true,
       "title": "Advanced"
     },
     "tutorial": {

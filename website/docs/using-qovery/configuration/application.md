@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-19"
+last_modified_on: "2021-06-24"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -179,8 +179,6 @@ routers:
     - /
 ```
 
-*See what is a [router][docs.using-qovery.configuration.routing] to go further.*
-
 You also need to indicate on which port your application is running.
 
 **Option 1**
@@ -252,5 +250,4 @@ The `depends_on` property, guarantee that your app will never start before other
 
 
 [docs.using-qovery.configuration.project]: /docs/using-qovery/configuration/project/
-[docs.using-qovery.configuration.routing]: /docs/using-qovery/configuration/routing/
 [urls.qovery_roadmap]: https://roadmap.qovery.com/

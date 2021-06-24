@@ -63,7 +63,6 @@ module.exports = {
                         "using-qovery/configuration/secret",
                         "using-qovery/configuration/domain",
                         "using-qovery/configuration/storage",
-                        "using-qovery/configuration/routing",
                         "using-qovery/configuration/deployment-rule",
                         {
                             type: 'category',

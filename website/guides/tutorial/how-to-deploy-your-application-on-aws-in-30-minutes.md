@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-19"
+last_modified_on: "2021-06-24"
 $schema: "/.meta/.schemas/guides.json"
 title: Zero to Hero - How to deploy your app on AWS in 30 minutes
 description: Step-by-step guide on how to deploy your app on AWS in 30 minutes. No AWS knowledge required.
@@ -152,7 +152,7 @@ Your app is deployed and ready to be used by your users. And all of that from yo
 If you need to add another app to your project, you just need to repeat the latest steps 😎.
 
 ## What's next
-Now you can see how you can [add a database][guides.getting-started.adding-a-database] to your app or [set up your domain][guides.getting-started.setting-custom-domain].
+Now you can see how you can [add a database][guides.getting-started.create-a-database] to your app or [set up your domain][guides.getting-started.setting-custom-domain].
 
 <Jump to="/guides/getting-started/adding-a-database">Add a database</Jump>
 <Jump to="/guides/getting-started/setting-custom-domain">Set up your domain</Jump>
@@ -163,7 +163,7 @@ Now you can see how you can [add a database][guides.getting-started.adding-a-dat
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [docs.using-qovery.configuration.organization]: /docs/using-qovery/configuration/organization/
 [docs.using-qovery.configuration.project]: /docs/using-qovery/configuration/project/
-[guides.getting-started.adding-a-database]: /guides/getting-started/adding-a-database/
+[guides.getting-started.create-a-database]: /guides/getting-started/create-a-database/
 [guides.getting-started.setting-custom-domain]: /guides/getting-started/setting-custom-domain/
 [urls.qovery]: https://www.qovery.com
 [urls.qovery_chat]: https://discord.qovery.com

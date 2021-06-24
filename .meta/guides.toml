@@ -2,12 +2,12 @@
 title = "Getting Started"
 series = true
 description = """\
-Take Qovery from zero to production in under 10 minutes.\
+Take Qovery from zero to production in less than 10 minutes.\
 """
 
 [guides.advanced]
 title = "Advanced"
-series = false
+series = true
 description = """\
 Go beyond the basics, become a Qovery pro, and extract the full potential of Qovery.\
 """

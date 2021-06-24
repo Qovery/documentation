@@ -14,9 +14,10 @@ your applications in the Cloud.
 
 > Qovery is the simplest way to deploy your full-stack apps in the Cloud
 
-Qovery is an excellent solution for:
-- **Developer**: to stay focused on building the best product.
-- **DevOps**: to spend time on tasks that matter, building production and future-proof cloud infrastructure.
+Qovery is a product for:
+- **Developer**: to deploy their apps while staying focused on building the best product.
+- **DevOps**: to build future-proof production cloud infrastructure.
+- **Product Manager**: to deliver new features faster.
 - **CTO**: to accelerate their go-to-market, reduce their cloud cost, keep their team productive as it grows.
 
 <p align="center">

@@ -1,11 +1,11 @@
 ---
-last_modified_on: "2021-06-21"
+last_modified_on: "2021-06-25"
 $schema: "/.meta/.schemas/guides.json"
 title: Hello World. Deploy your first application.
 description: How to deploy your first application with Qovery
 series_position: 1
 author_github: https://github.com/evoxmusic
-tags: ["type: guide"]
+tags: ["type: guide", "technology: qovery"]
 ---
 import Steps from '@site/src/components/Steps';
 import Alert from '@site/src/components/Alert';

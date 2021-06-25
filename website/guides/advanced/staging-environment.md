@@ -1,10 +1,10 @@
 ---
-last_modified_on: "2021-06-24"
+last_modified_on: "2021-06-25"
 $schema: "/.meta/.schemas/guides.json"
 title: Staging environment
 description: How to create a staging environment with Qovery
 author_github: https://github.com/evoxmusic
-tags: ["type: guide"]
+tags: ["type: guide", "technology: qovery"]
 ---
 import Steps from '@site/src/components/Steps';
 import Assumptions from '@site/src/components/Assumptions';

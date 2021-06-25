@@ -1,11 +1,11 @@
 ---
-last_modified_on: "2021-06-24"
+last_modified_on: "2021-06-25"
 $schema: "/.meta/.schemas/guides.json"
 title: Environment variables
 description: How to manage environment variables in your projects and applications
 series_position: 4
 author_github: https://github.com/evoxmusic
-tags: ["type: guide"]
+tags: ["type: guide", "technology: qovery"]
 ---
 
 import Alert from '@site/src/components/Alert';

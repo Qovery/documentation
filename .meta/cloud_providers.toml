@@ -1,6 +1,14 @@
 [[cloud_providers]]
 name = "aws"
 logo_path = "/img/logos/aws.svg"
-dark_logo_path = "/img/logos/aws.svg"
+dark_logo_path = "/img/logos/aws_white.svg"
 
+[[cloud_providers]]
+name = "digital_ocean"
+logo_path = "/img/logos/digitalocean.svg"
+dark_logo_path = "/img/logos/digitalocean_white.svg"
 
+[[cloud_providers]]
+name = "scaleway"
+logo_path = "/img/logos/scaleway.svg"
+dark_logo_path = "/img/logos/scaleway_white.svg"

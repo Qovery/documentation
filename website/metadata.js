@@ -1,9 +1,19 @@
 module.exports = {
   "cloud_providers": [
     {
-      "dark_logo_path": "/img/logos/aws.svg",
+      "dark_logo_path": "/img/logos/aws_white.svg",
       "logo_path": "/img/logos/aws.svg",
       "name": "aws"
+    },
+    {
+      "dark_logo_path": "/img/logos/digitalocean_white.svg",
+      "logo_path": "/img/logos/digitalocean.svg",
+      "name": "digital_ocean"
+    },
+    {
+      "dark_logo_path": "/img/logos/scaleway_white.svg",
+      "logo_path": "/img/logos/scaleway.svg",
+      "name": "scaleway"
     }
   ],
   "databases": [
@@ -152,24 +162,6 @@ module.exports = {
         {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
-          "id": "/advanced/amazon-web-services",
-          "last_modified_on": null,
-          "path": "website/guides/advanced/amazon-web-services.md",
-          "series_position": null,
-          "title": "Deploy your apps on your AWS account"
-        },
-        {
-          "author_github": "https://github.com/evoxmusic",
-          "description": null,
-          "id": "/advanced/digital-ocean",
-          "last_modified_on": null,
-          "path": "website/guides/advanced/digital-ocean.md",
-          "series_position": null,
-          "title": "Deploy your apps on your Digital Ocean account"
-        },
-        {
-          "author_github": "https://github.com/evoxmusic",
-          "description": null,
           "id": "/advanced/microservices",
           "last_modified_on": null,
           "path": "website/guides/advanced/microservices.md",
@@ -193,6 +185,33 @@ module.exports = {
           "path": "website/guides/advanced/staging-environment.md",
           "series_position": null,
           "title": "Staging environment"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/advanced/amazon-web-services",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/amazon-web-services.md",
+          "series_position": null,
+          "title": "Use your AWS account"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/advanced/digital-ocean",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/digital-ocean.md",
+          "series_position": null,
+          "title": "Use your Digital Ocean account"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/advanced/scaleway",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/scaleway.md",
+          "series_position": null,
+          "title": "Use your Scaleway account"
         }
       ],
       "name": "advanced",

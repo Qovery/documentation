@@ -26,70 +26,21 @@ Check out [this video guide][guides.getting-started.create-a-database] to create
 
 TODO
 
-## Add a MongoDB database to your application
+## Modes
 
-To add a dedicated MongoDB instance to your existing application, simply add these lines to your configuration file:
+### Managed Service
 
-```yml title=".qovery.yml" {4-6}
-application:
-...
-databases:
-- type: mongodb
-  version: 4.2
-  name: my-mongodb
-```
+TODO
 
-- name: select a name for your database
-- version: choose the version of the database
-- type: the database engine (mongodb in this case)
+### Container
 
-## Supported versions
+TODO
 
-Here are the MongoDB versions supported by Qovery.
+## Link your MongoDB database to your application
 
-|Version|Supported|
-|---------|-------|
-|4.2|Yes|
+TODO
 
-|4.0|Yes|
-
-|3.6|Yes|
-
-
-
-Qovery does not support a new version of MongoDB yet? [Contact us][urls.qovery_chat]
-
-## Get access to your MongoDB database
-
-To get the connection information of your database, you can use the CLI:
-
-```bash
-qovery application env list -c
-```
-
-```plain title="OUTPUT"
-$ qovery application env list -c
-  SCOPE       | KEY                                                           | VALUE
---------------+---------------------------------------------------------------+-----------
-  BUILT_IN    | QOVERY_BRANCH_NAME                                            | master
-  BUILT_IN    | QOVERY_IS_PRODUCTION                                          | true
-  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_NAME                               | my-mongodb
-  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_TYPE                               | mongodb
-  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_VERSION                            | 4.2
-  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_CONNECTION_URI                     | <hidden>
-  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_CONNECTION_URI_WITHOUT_CREDENTIALS | <hidden>
-  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_HOST                               | <hidden>
-  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_FQDN                               | <hidden>
-  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_PORT                               | <hidden>
-  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_USERNAME                           | <hidden>
-  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_PASSWORD                           | <hidden>
-  BUILT_IN    | QOVERY_DATABASE_MY_MONGODB_DATABASE                           | mongodb
-```
-
-In the output, you get all data you need to use the database. Those environment variables are available in the runtime of your application.
-
-<Alert type="warning">
-Usage of TLS to connect to MongoDB is mandatory.
+<Alert type="danger">
 
 Your Docker image must contain the TLS certificate of the MongoDB cluster - it
 can be [downloaded here](https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem).
@@ -97,24 +48,31 @@ can be [downloaded here](https://s3.amazonaws.com/rds-downloads/rds-combined-ca-
 The application must be configured to use it. If you use the environment variable
 `QOVERY_DATABASE_MY_MONGODB_CONNECTION_URI`, you usually should have just append
 `&ssl_ca_certs=/path/to/the/rds-combined-ca-bundle.pem` to its value.
+
 </Alert>
 
+## Supported versions
 
-## Show MongoDB database status
+Qovery supports the following MongoDB versions.
 
-To know more about your database status, run:
+|Version|Supported|
+|---------|-------|
+|4.2|Yes|
+|4.0|Yes|
 
-```bash
-qovery status -c
-```
+## Credentials
 
-```plain title="OUTPUT"
-DATABASE NAME | STATUS  | TYPE    | VERSION | ENDPOINT | PORT     | USERNAME | PASSWORD | APPLICATIONS
-----------------+---------+---------+---------+----------+----------+----------+----------+-----------------
-  my-mongo      | running | mongodb | 4.2     | <hidden> | <hidden> | <hidden> | <hidden> | simple-example
-```
+TODO
 
-## Delete your MongoDB database
+## Manage logical databases
+
+TODO
+
+## Health check
+
+TODO
+
+## Delete your MongoDB instance
 
 <Alert type="danger">
 
@@ -133,11 +91,14 @@ Backups from production environments are kept for 1 month if you need to recover
 
 </Alert>
 
-## MongoDB backup
+## Backups
 
-Daily backups for your MongoDB database are automatically done for databases in managed mode.
+Daily backups for your Backups database are automatically done for databases in managed mode.
+
+## Scaling
+
+TODO
 
 
 [guides.getting-started.create-a-database]: /guides/getting-started/create-a-database/
-[urls.qovery_chat]: https://discord.qovery.com
 [urls.start_qovery]: https://start.qovery.com

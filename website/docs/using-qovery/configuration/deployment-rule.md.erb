@@ -1,16 +1,25 @@
 ---
 title: "Deployment Rule"
-description: "Learn how to configure Policies in Qovery"
+description: "Learn how to configure the lifecycle of your Environments"
 ---
-Deployment rule is a core concept of Qovery Business. It allows your team to customize the behaviours of the platform and adjust it perfectly to your organization's needs.
+A **Deployment Rule** lets you configure the lifecycle of your [Environments][docs.using-qovery.configuration.environment].
 
-<img src="/img/policy-complete-flow.png"/>
+## Environment lifecycle
 
-For instance, you can create a rule to deploy the `main` [environment][docs.using-qovery.configuration.environment] into the AWS Cloud provider and by all apps contained into this environment with your Circle CI account.
+### Start
 
-**Default policies are set-up when you create an organization for the first time**. Then you can start to use Qovery Business in seconds.
+TODO
 
-## Options
+### Shutdown
+
+TODO
+
+## Why using Deployment Rule?
+
+Using the Deployment Rules is a good practice to drastically **reduce your cost**. Indeed, Qovery knows how to optimize your Cloud resources
+when your applications are not running. Then you can expect to reduce your Cloud cost up to 60% by using the Deployment Rules.
+
+## Configuration
 
 Here is an exhaustive list of available policies options:
 
@@ -34,6 +43,7 @@ Those options bring you the ability to compose your deployment flow depending on
 What is the branch name that must match to apply this deployment rule.
 
 Examples:
+
 * `master`: if the branch name is `master` then match the deployment rule.
 * `main`: if the branch name is `main` then match the deployment rule.
 * `dev/*`: if the branch name starts with `dev/` then match the deployment rule (eg. dev/123 , dev/chat).
@@ -44,16 +54,19 @@ One or more branch name per deployment rule can be specified.
 
 ### Build platform
 
-Which [Build Platform][docs.using-qovery.configuration.deployment-rule#build-platform] do you choose to build and test your apps matching the deployment rule.
+Which [Build Platform][docs.using-qovery.configuration.deployment-rule#build-platform] do you choose to build and test your apps matching
+the deployment rule.
 
 Do you have a CI?
+
 * If you do, [see if Qovery supports your CI][docs.using-qovery.configuration.deployment-rule#build-platform].
 * If you do not, [Qovery provides a CI of the box][docs.using-qovery.addon.continuous-integration.qovery-ci] (default).
 
 ### Container registry
 
 In which [Container Registry][docs.using-qovery.configuration.deployment-rule#container-registry] the final container image must be pushed?
-You can choose the one you want [from this list][docs.using-qovery.addon.container-registry]. By selecting the one provided by your Cloud provider, you avoid paying for outgoing traffic.
+You can choose the one you want [from this list][docs.using-qovery.addon.container-registry]. By selecting the one provided by your Cloud
+provider, you avoid paying for outgoing traffic.
 
 ### Environment mode
 
@@ -64,6 +77,7 @@ Choose between `Production` and `Development` environment mode.
 A production environment is where the app is configured to be highly performant, and the database highly resilient.
 
 E.g., If you run a NodeJS app and a PostgreSQL database in production mode:
+
 * 3 NodeJS app instances run at minimum and auto-scale according to the CPU and the RAM usage.
 * for PostgreSQL, a managed database is used to provide the best performance and maximize the availability.
 
@@ -74,6 +88,7 @@ However, running in production cost much more than running in development mode.
 A development environment is where the app, and the database are configured to be cost effective.
 
 E.g., If you run a NodeJS app and a PostgreSQL database in development mode:
+
 * 1 NodeJS app instance run with the minimum CPU and RAM to avoid wasted resources.
 * for PostgreSQL, a containerized database with local storage to lower the cost at the price of a standard app.
 
@@ -81,47 +96,32 @@ However, running in production cost much more than running in development mode.
 
 ### Cluster
 
-In which Cluster your apps must run. If you have multiple clusters across different Cloud provider and regions, you can select the more appropriate.
-For instance, this is common to separate the production from the development applications.
+In which Cluster your apps must run. If you have multiple clusters across different Cloud provider and regions, you can select the more
+appropriate. For instance, this is common to separate the production from the development applications.
 
 Go into [Cloud Service Provider][docs.using-qovery.configuration.cloud-service-provider] to configure your clusters.
 
 ### Monitoring
 
-Qovery allows you to add an [external monitoring solution][docs.using-qovery.addon.monitoring] such as Datadog or Newrelic on the environment that match the deployment rule. This makes it possible to monitor only what is strictly necessary.
+Qovery allows you to add an [external monitoring solution][docs.using-qovery.addon.monitoring] such as Datadog or Newrelic on the
+environment that match the deployment rule. This makes it possible to monitor only what is strictly necessary.
 
 ### TTL (Time to Live)
 
-The Time to Live (TTL) option delete or pause an environment after some time automatically. The minimum value is 1 minute. For instance, you can automatically delete an environment after 2 hours of run if no git event happens in the meantime. This option helps to reduce Cloud cost.
+The Time to Live (TTL) option delete or pause an environment after some time automatically. The minimum value is 1 minute. For instance, you
+can automatically delete an environment after 2 hours of run if no git event happens in the meantime. This option helps to reduce Cloud
+cost.
 
 ### Startup cron
 
-This option wake up an environment at the specific date and time and can be repetitive. For instance, you can automatically start an environment from Monday to Friday at 8am PST. This option helps to reduce Cloud cost.
+This option wake up an environment at the specific date and time and can be repetitive. For instance, you can automatically start an
+environment from Monday to Friday at 8am PST. This option helps to reduce Cloud cost.
 
 ### Shutdown cron
 
-This option shutdown an environment at the specific date and time and can be repetitive. For instance, you can automatically shutdown an environment from Monday to Friday at 7pm PST. This option helps to reduce Cloud cost.
+This option shutdown an environment at the specific date and time and can be repetitive. For instance, you can automatically shutdown an
+environment from Monday to Friday at 7pm PST. This option helps to reduce Cloud cost.
 
 ### Manual deployment
 
 This option indicates if you prefer to manually start an environment or not.
-
-<!-- ## Deployment rule scenarios -->
-
-<!-- ### Reduce development environment costs -->
-
-<!-- SCHEMA: Create a schema where we see that environment are automatically startup and shutdown -->
-
-<!-- TODO -->
-
-<!-- ### Reduce the risk of production outage -->
-
-<!-- SCHEMA: Create a schema where we see that environment are deploy on different clusters depending if it is production or development -->
-
-<!-- TODO -->
-
-<!-- ### Synchronize the staging environment with the production environment -->
-
-<!-- SCHEMA: Create a schema where we see two environment in synchronization -->
-
-<!-- TODO -->

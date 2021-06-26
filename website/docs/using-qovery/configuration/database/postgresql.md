@@ -26,84 +26,41 @@ Check out [this video guide][guides.getting-started.create-a-database] to create
 
 TODO
 
-## Add a PostgreSQL database to your application
+## Modes
 
-To add a dedicated PostgreSQL instance to your existing application, simply add these lines to your configuration file:
+### Managed Service
 
-```yml title=".qovery.yml" {4-6}
-application:
-...
-databases:
-- type: postgresql
-  version: 12
-  name: my-postgresql
-```
+TODO
 
-- name: select a name for your database
-- version: choose the version of the database
-- type: the database engine (postgresql in this case)
+### Container
+
+TODO
+
+## Link your PostgreSQL database to your application
+
+TODO
 
 ## Supported versions
 
-Here are the PostgreSQL versions supported by Qovery.
+Qovery supports the following PostgreSQL versions.
 
 |Version|Supported|
 |---------|-------|
 |12|Yes|
 
-|11|Yes|
+## Credentials
 
-|10|Yes|
+TODO
 
+## Manage logical databases
 
+TODO
 
-Qovery does not support a new version of PostgreSQL yet? [Contact us][urls.qovery_chat]
+## Health check
 
-## Get access to your PostgreSQL database
+TODO
 
-To get the connection information of your database, you can use the CLI:
-
-```bash
-qovery application env list -c
-```
-
-```plain title="OUTPUT"
-$ qovery application env list -c
-  SCOPE       | KEY                                                           | VALUE
---------------+---------------------------------------------------------------+-----------
-  BUILT_IN    | QOVERY_BRANCH_NAME                                            | master
-  BUILT_IN    | QOVERY_IS_PRODUCTION                                          | true
-  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_NAME                               | my-postgresql
-  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_TYPE                               | postgresql
-  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_VERSION                            | 12
-  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_CONNECTION_URI                     | <hidden>
-  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_CONNECTION_URI_WITHOUT_CREDENTIALS | <hidden>
-  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_HOST                               | <hidden>
-  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_FQDN                               | <hidden>
-  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_PORT                               | <hidden>
-  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_USERNAME                           | <hidden>
-  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_PASSWORD                           | <hidden>
-  BUILT_IN    | QOVERY_DATABASE_MY_POSTGRESQL_DATABASE                           | postgresql
-```
-
-In the output, you get all data you need to use the database. Those environment variables are available in the runtime of your application.
-
-
-## Show PostgreSQL database status
-
-To know more about your database status, run:
-
-```bash
-qovery status -c
-```
-
-```plain title="OUTPUT"
-DATABASE NAME | STATUS  | TYPE    | VERSION | ENDPOINT | PORT     | USERNAME | PASSWORD | APPLICATIONS
-----------------+---------+---------+---------+----------+----------+----------+----------+-----------------
-  my-mongo      | running | postgresql | 12     | <hidden> | <hidden> | <hidden> | <hidden> | simple-example
-```
-
-## Delete your PostgreSQL database
+## Delete your PostgreSQL instance
 
 <Alert type="danger">
 
@@ -122,11 +79,14 @@ Backups from production environments are kept for 1 month if you need to recover
 
 </Alert>
 
-## PostgreSQL backup
+## Backups
 
-Daily backups for your PostgreSQL database are automatically done for databases in managed mode.
+Daily backups for your Backups database are automatically done for databases in managed mode.
+
+## Scaling
+
+TODO
 
 
 [guides.getting-started.create-a-database]: /guides/getting-started/create-a-database/
-[urls.qovery_chat]: https://discord.qovery.com
 [urls.start_qovery]: https://start.qovery.com

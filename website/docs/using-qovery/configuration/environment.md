@@ -1,7 +1,7 @@
 ---
-last_modified_on: "2021-06-25"
+last_modified_on: "2021-06-26"
 title: "Environment"
-description: "Learn how to configure your Environment on Qovery"
+description: "Learn how to configure your Environments on Qovery"
 ---
 import Jump from '@site/src/components/Jump';
 import Alert from '@site/src/components/Alert';
@@ -47,5 +47,18 @@ TODO
 ### Auto-delete environment
 TODO
 
+## Deployment rules
+
+The **Deployment Rules** lets you configure the lifecycle of your [Environments][docs.using-qovery.configuration.environment].
+
+<Alert type="info">
+
+Using **Deployment Rules** is a good practice to reduce your cost up to 60%.
+
+</Alert>
+
+Refer to the [Deployment Rule][docs.using-qovery.configuration.deployment-rule] documentation to know more.
 
 
+[docs.using-qovery.configuration.deployment-rule]: /docs/using-qovery/configuration/deployment-rule/
+[docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/

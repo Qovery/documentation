@@ -1,8 +1,11 @@
 ---
-last_modified_on: "2021-06-25"
+last_modified_on: "2021-06-26"
 title: "Project"
-description: "Learn how to configure Projects on Qovery"
+description: "Learn how to configure your Projects on Qovery"
 ---
+
+import Alert from '@site/src/components/Alert';
+
 import Jump from '@site/src/components/Jump';
 
 A project allows you to group a set of applications and their dependencies (databases & other services).
@@ -41,11 +44,21 @@ If you have no project to deploy but still want to give a try to Qovery, you can
 
 ## Deployment rules
 
-TODO
+The **Deployment Rules** lets you configure the lifecycle of your [Environments][docs.using-qovery.configuration.environment].
+
+<Alert type="info">
+
+Using **Deployment Rules** is a good practice to reduce your cost up to 60%.
+
+</Alert>
+
+Refer to the [Deployment Rule][docs.using-qovery.configuration.deployment-rule] documentation to know more.
 
 ## Addons
 
 TODO
 
 
+[docs.using-qovery.configuration.deployment-rule]: /docs/using-qovery/configuration/deployment-rule/
+[docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [docs.using-qovery.configuration.organization]: /docs/using-qovery/configuration/organization/

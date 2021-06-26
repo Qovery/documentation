@@ -26,82 +26,42 @@ Check out [this video guide][guides.getting-started.create-a-database] to create
 
 TODO
 
-## Add a Redis database to your application
+## Modes
 
-To add a dedicated Redis instance to your existing application, simply add these lines to your configuration file:
+### Managed Service
 
-```yml title=".qovery.yml" {4-6}
-application:
-...
-databases:
-- type: redis
-  version: 6
-  name: my-redis
-```
+TODO
 
-- name: select a name for your database
-- version: choose the version of the database
-- type: the database engine (redis in this case)
+### Container
+
+TODO
+
+## Link your Redis database to your application
+
+TODO
 
 ## Supported versions
 
-Here are the Redis versions supported by Qovery.
+Qovery supports the following Redis versions.
 
 |Version|Supported|
 |---------|-------|
 |6|Yes|
-
 |5|Yes|
 
+## Credentials
 
+TODO
 
-Qovery does not support a new version of Redis yet? [Contact us][urls.qovery_chat]
+## Manage logical databases
 
-## Get access to your Redis database
+TODO
 
-To get the connection information of your database, you can use the CLI:
+## Health check
 
-```bash
-qovery application env list -c
-```
+TODO
 
-```plain title="OUTPUT"
-$ qovery application env list -c
-  SCOPE       | KEY                                                           | VALUE
---------------+---------------------------------------------------------------+-----------
-  BUILT_IN    | QOVERY_BRANCH_NAME                                            | master
-  BUILT_IN    | QOVERY_IS_PRODUCTION                                          | true
-  BUILT_IN    | QOVERY_DATABASE_MY_REDIS_NAME                               | my-redis
-  BUILT_IN    | QOVERY_DATABASE_MY_REDIS_TYPE                               | redis
-  BUILT_IN    | QOVERY_DATABASE_MY_REDIS_VERSION                            | 6
-  BUILT_IN    | QOVERY_DATABASE_MY_REDIS_CONNECTION_URI                     | <hidden>
-  BUILT_IN    | QOVERY_DATABASE_MY_REDIS_CONNECTION_URI_WITHOUT_CREDENTIALS | <hidden>
-  BUILT_IN    | QOVERY_DATABASE_MY_REDIS_HOST                               | <hidden>
-  BUILT_IN    | QOVERY_DATABASE_MY_REDIS_FQDN                               | <hidden>
-  BUILT_IN    | QOVERY_DATABASE_MY_REDIS_PORT                               | <hidden>
-  BUILT_IN    | QOVERY_DATABASE_MY_REDIS_USERNAME                           | <hidden>
-  BUILT_IN    | QOVERY_DATABASE_MY_REDIS_PASSWORD                           | <hidden>
-  BUILT_IN    | QOVERY_DATABASE_MY_REDIS_DATABASE                           | redis
-```
-
-In the output, you get all data you need to use the database. Those environment variables are available in the runtime of your application.
-
-
-## Show Redis database status
-
-To know more about your database status, run:
-
-```bash
-qovery status -c
-```
-
-```plain title="OUTPUT"
-DATABASE NAME | STATUS  | TYPE    | VERSION | ENDPOINT | PORT     | USERNAME | PASSWORD | APPLICATIONS
-----------------+---------+---------+---------+----------+----------+----------+----------+-----------------
-  my-mongo      | running | redis | 6     | <hidden> | <hidden> | <hidden> | <hidden> | simple-example
-```
-
-## Delete your Redis database
+## Delete your Redis instance
 
 <Alert type="danger">
 
@@ -120,11 +80,14 @@ Backups from production environments are kept for 1 month if you need to recover
 
 </Alert>
 
-## Redis backup
+## Backups
 
-Daily backups for your Redis database are automatically done for databases in managed mode.
+Daily backups for your Backups database are automatically done for databases in managed mode.
+
+## Scaling
+
+TODO
 
 
 [guides.getting-started.create-a-database]: /guides/getting-started/create-a-database/
-[urls.qovery_chat]: https://discord.qovery.com
 [urls.start_qovery]: https://start.qovery.com

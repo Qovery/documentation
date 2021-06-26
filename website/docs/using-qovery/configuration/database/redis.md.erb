@@ -1,1 +1,77 @@
-<%= qovery_database_info("Redis", "redis", "Redis is an open source (BSD licensed), in-memory data structure store, used as a database, cache and message broker. It supports data structures such as strings, hashes, lists, sets, sorted sets with range queries, bitmaps, hyperloglogs, geospatial indexes with radius queries and streams.", ["6", "5"], nil) %>
+---
+title: Redis
+description: "How to set up and use a Redis database"
+---
+Redis is an open source (BSD licensed), in-memory data structure store, used as a database, cache and message broker. It supports data structures such as strings, hashes, lists, sets, sorted sets with range queries, bitmaps, hyperloglogs, geospatial indexes with radius queries and streams.
+
+<Alert type="info">
+
+Check out [this video guide][guides.getting-started.create-a-database] to create and deploy your first database
+
+</Alert>
+
+## Create a Redis database
+
+TODO
+
+## Modes
+
+### Managed Service
+
+TODO
+
+### Container
+
+TODO
+
+## Link your Redis database to your application
+
+TODO
+
+## Supported versions
+
+Qovery supports the following Redis versions.
+
+|Version|Supported|
+|---------|-------|
+|6|Yes|
+|5|Yes|
+
+## Credentials
+
+TODO
+
+## Manage logical databases
+
+TODO
+
+## Health check
+
+TODO
+
+## Delete your Redis instance
+
+<Alert type="danger">
+
+Delete action drops the service and its data!
+
+</Alert>
+
+To delete a database, you have to:
+
+- Remove it from the configuration file, commit and push.
+- Delete it manually (for security purpose) through the [Qovery web interface][urls.start_qovery].
+
+<Alert type="info">
+
+Backups from production environments are kept for 1 month if you need to recover.
+
+</Alert>
+
+## Backups
+
+Daily backups for your Backups database are automatically done for databases in managed mode.
+
+## Scaling
+
+TODO

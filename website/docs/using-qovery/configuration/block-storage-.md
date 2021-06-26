@@ -29,11 +29,19 @@ For most use cases, it is better to use [Object Storage][docs.using-qovery.confi
      website/docs/using-qovery/configuration/block-storage-.md.erb
 -->
 
-## When to use block storage
+## Use cases
 
-TODO
+### ✅ Good use cases
 
-## Types of block storage
+- For I/O intensive applications (E.g. database)
+- To store temporary files
+
+### ❌ Bad use cases
+
+- To store file > 1 TB
+- To expose files from an application (E.g. images)
+
+## Types of Block Storage
 
 Qovery Storage supports:
 

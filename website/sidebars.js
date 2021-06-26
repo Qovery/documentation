@@ -97,18 +97,6 @@ module.exports = {
                         },
                         {
                             type: 'category',
-                            label: 'Container Registry',
-                            items: [
-                                "using-qovery/addon/container-registry",
-                                "using-qovery/addon/container-registry/elastic-container-registry",
-                                "using-qovery/addon/container-registry/azure-container-registry",
-                                "using-qovery/addon/container-registry/digital-ocean-container-registry",
-                                "using-qovery/addon/container-registry/scaleway-container-registry",
-                                "using-qovery/addon/container-registry/docker-hub",
-                            ],
-                        },
-                        {
-                            type: 'category',
                             label: 'Monitoring',
                             items: [
                                 "using-qovery/addon/monitoring",
@@ -123,6 +111,7 @@ module.exports = {
                     label: 'Quickstarts',
                     items: [
                         "using-qovery/quickstart",
+                        "using-qovery/quickstart/hasura",
                         "using-qovery/quickstart/strapi",
                     ]
                 },

@@ -1,1 +1,76 @@
-<%= qovery_database_info("MySQL", "mysql", "MySQL is the world's most popular open source database. Whether you are a fast growing web property, technology ISV or large enterprise, MySQL can cost-effectively help you deliver high performance, scalable database applications. ", ["8.0", "5.7", "5.6", "5.5"], nil) %>
+---
+title: MySQL
+description: "How to set up and use a MySQL database"
+---
+MySQL is the world's most popular open source database. Whether you are a fast growing web property, technology ISV or large enterprise, MySQL can cost-effectively help you deliver high performance, scalable database applications.
+
+<Alert type="info">
+
+Check out [this video guide][guides.getting-started.create-a-database] to create and deploy your first database
+
+</Alert>
+
+## Create a MySQL database
+
+TODO
+
+## Modes
+
+### Managed Service
+
+TODO
+
+### Container
+
+TODO
+
+## Link your MySQL database to your application
+
+TODO
+
+## Supported versions
+
+Qovery supports the following MySQL versions.
+
+|Version|Supported|
+|---------|-------|
+|8.0|Yes|
+
+## Credentials
+
+TODO
+
+## Manage logical databases
+
+TODO
+
+## Health check
+
+TODO
+
+## Delete your MySQL instance
+
+<Alert type="danger">
+
+Delete action drops the service and its data!
+
+</Alert>
+
+To delete a database, you have to:
+
+- Remove it from the configuration file, commit and push.
+- Delete it manually (for security purpose) through the [Qovery web interface][urls.start_qovery].
+
+<Alert type="info">
+
+Backups from production environments are kept for 1 month if you need to recover.
+
+</Alert>
+
+## Backups
+
+Daily backups for your Backups database are automatically done for databases in managed mode.
+
+## Scaling
+
+TODO

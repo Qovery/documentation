@@ -1,8 +1,88 @@
-<%= qovery_database_info("MongoDB", "mongodb", "MongoDB is a cross-platform document-oriented database program. Classified as a NoSQL, MongoDB uses JSON-like documents with schema.", ["4.2", "4.0", "3.6"], "Usage of TLS to connect to MongoDB is mandatory.
+---
+title: MongoDB
+description: "How to set up and use a MongoDB database"
+---
+MongoDB is a cross-platform document-oriented database program. Classified as a NoSQL, MongoDB uses JSON-like documents with schema.
+
+<Alert type="info">
+
+Check out [this video guide][guides.getting-started.create-a-database] to create and deploy your first database
+
+</Alert>
+
+## Create a MongoDB database
+
+TODO
+
+## Modes
+
+### Managed Service
+
+TODO
+
+### Container
+
+TODO
+
+## Link your MongoDB database to your application
+
+TODO
+
+<Alert type="danger">
 
 Your Docker image must contain the TLS certificate of the MongoDB cluster - it
 can be [downloaded here](https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem).
 
 The application must be configured to use it. If you use the environment variable
 `QOVERY_DATABASE_MY_MONGODB_CONNECTION_URI`, you usually should have just append
-`&ssl_ca_certs=/path/to/the/rds-combined-ca-bundle.pem` to its value.") %>
+`&ssl_ca_certs=/path/to/the/rds-combined-ca-bundle.pem` to its value.
+
+</Alert>
+
+## Supported versions
+
+Qovery supports the following MongoDB versions.
+
+|Version|Supported|
+|---------|-------|
+|4.2|Yes|
+|4.0|Yes|
+
+## Credentials
+
+TODO
+
+## Manage logical databases
+
+TODO
+
+## Health check
+
+TODO
+
+## Delete your MongoDB instance
+
+<Alert type="danger">
+
+Delete action drops the service and its data!
+
+</Alert>
+
+To delete a database, you have to:
+
+- Remove it from the configuration file, commit and push.
+- Delete it manually (for security purpose) through the [Qovery web interface][urls.start_qovery].
+
+<Alert type="info">
+
+Backups from production environments are kept for 1 month if you need to recover.
+
+</Alert>
+
+## Backups
+
+Daily backups for your Backups database are automatically done for databases in managed mode.
+
+## Scaling
+
+TODO

@@ -97,18 +97,6 @@ module.exports = {
                         },
                         {
                             type: 'category',
-                            label: 'Container Registry',
-                            items: [
-                                <%= metadata.links.fetch_id("docs.using-qovery.addon.container-registry").to_json %>,
-                                <%= metadata.links.fetch_id("docs.using-qovery.addon.container-registry.elastic-container-registry").to_json %>,
-                                <%= metadata.links.fetch_id("docs.using-qovery.addon.container-registry.azure-container-registry").to_json %>,
-                                <%= metadata.links.fetch_id("docs.using-qovery.addon.container-registry.digital-ocean-container-registry").to_json %>,
-                                <%= metadata.links.fetch_id("docs.using-qovery.addon.container-registry.scaleway-container-registry").to_json %>,
-                                <%= metadata.links.fetch_id("docs.using-qovery.addon.container-registry.docker-hub").to_json %>,
-                            ],
-                        },
-                        {
-                            type: 'category',
                             label: 'Monitoring',
                             items: [
                                 <%= metadata.links.fetch_id("docs.using-qovery.addon.monitoring").to_json %>,
@@ -123,6 +111,7 @@ module.exports = {
                     label: 'Quickstarts',
                     items: [
                         <%= metadata.links.fetch_id("docs.using-qovery.quickstart").to_json %>,
+                        <%= metadata.links.fetch_id("docs.using-qovery.quickstart.hasura").to_json %>,
                         <%= metadata.links.fetch_id("docs.using-qovery.quickstart.strapi").to_json %>,
                     ]
                 },

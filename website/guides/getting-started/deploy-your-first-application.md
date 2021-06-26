@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-25"
+last_modified_on: "2021-06-26"
 $schema: "/.meta/.schemas/guides.json"
 title: Hello World. Deploy your first application.
 description: How to deploy your first application with Qovery
@@ -47,7 +47,7 @@ Sign in to the [Qovery web interface][urls.start_qovery].
 
 <li>
 
-### Deploy an app
+### Deploy your first application
 
 Here is a short video showing how to deploy your app with the [Qovery Web interface][urls.start_qovery].
 
@@ -58,13 +58,16 @@ Here is a short video showing how to deploy your app with the [Qovery Web interf
   </p>
 </div>
 
+<Alert type="success">
+
+That's it! your application is now deployed 💪
+
+</Alert>
 
 </li>
 
 </ol>
 </Steps>
-
-That's it!
 
 ## Next Steps
 

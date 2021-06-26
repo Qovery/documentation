@@ -9,17 +9,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="wip: update doc for v2">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/advanced/digital-ocean.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/digital-ocean.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/advanced/digital-ocean.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/digital-ocean.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/advanced/microservices.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/microservices.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/advanced/microservices.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/microservices.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/advanced/monorepository.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/monorepository.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/advanced/monorepository.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/monorepository.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/advanced/scaleway.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/scaleway.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/advanced/scaleway.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/scaleway.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/advanced/staging-environment.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/staging-environment.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/advanced/staging-environment.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/staging-environment.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/website/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/website/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,7 +143,7 @@
       <recent name="$PROJECT_DIR$/website/guides/getting-started" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.start">
+  <component name="RunManager" selected="npm.build">
     <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -208,10 +199,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.build" />
         <item itemvalue="npm.swizzle" />
         <item itemvalue="npm.start" />
         <item itemvalue="npm.deploy" />
-        <item itemvalue="npm.build" />
         <item itemvalue="npm.start" />
       </list>
     </recent_temporary>
@@ -299,13 +290,6 @@
       <workItem from="1620939988462" duration="161000" />
       <workItem from="1623707885288" duration="24602000" />
       <workItem from="1624139690193" duration="51846000" />
-    </task>
-    <task id="LOCAL-00144" summary="update documentation (missing URLs)">
-      <created>1607338952401</created>
-      <option name="number" value="00144" />
-      <option name="presentableId" value="LOCAL-00144" />
-      <option name="project" value="LOCAL" />
-      <updated>1607338952401</updated>
     </task>
     <task id="LOCAL-00145" summary="wip: article">
       <created>1609596302486</created>
@@ -643,7 +627,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624744324803</updated>
     </task>
-    <option name="localTasksCounter" value="193" />
+    <task id="LOCAL-00193" summary="wip: update doc for v2">
+      <created>1624745411586</created>
+      <option name="number" value="00193" />
+      <option name="presentableId" value="LOCAL-00193" />
+      <option name="project" value="LOCAL" />
+      <updated>1624745411586</updated>
+    </task>
+    <option name="localTasksCounter" value="194" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

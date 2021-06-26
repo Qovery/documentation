@@ -21,8 +21,11 @@
     "color": "^3.1.2",
     "d3-timer": "^1.0.9",
     "dateformat": "^3.0.3",
+    "email-validator": "^2.0.4",
     "humanize-string": "^2.1.0",
+    "jsonp": "^0.2.1",
     "pluralize": "^8.0.0",
+    "posthog-docusaurus": "^1.0.3",
     "prismjs": "^1.20.0",
     "qs": "^6.9.1",
     "react": "^16.8.4",
@@ -34,10 +37,7 @@
     "reading-time": "^1.2.0",
     "strftime": "^0.10.0",
     "svg.js": "^2.6.2",
-    "titleize": "^2.1.0",
-    "email-validator": "^2.0.4",
-    "jsonp": "^0.2.1",
-    "posthog-docusaurus": "^1.0.3"
+    "titleize": "^2.1.0"
   },
   "browserslist": {
     "production": [

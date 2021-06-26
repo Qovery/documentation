@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-19"
+last_modified_on: "2021-06-26"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy Laravel with MySQL with Qovery
 description: How to deploy a Laravel application with the MySQL database with Qovery
@@ -14,6 +14,12 @@ import TabItem from '@theme/TabItem';
 
 import Assumptions from '@site/src/components/Assumptions';
 import Alert from '@site/src/components/Alert';
+
+<Alert type="warning">
+
+WORK IN PROGRESS - THIS DOCUMENTATION IS OUTDATED
+
+</Alert>
 
 This tutorial show you how to deploy your [Laravel][urls.laravel] application with [MySQL][urls.mysql] database. Let's go!
 

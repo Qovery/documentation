@@ -3,6 +3,15 @@ last_modified_on: "2021-06-26"
 title: "Deployment Rule"
 description: "Learn how to configure the lifecycle of your Environments"
 ---
+
+import Alert from '@site/src/components/Alert';
+
+<Alert type="warning">
+
+WORK IN PROGRESS - THIS DOCUMENTATION IS OUTDATED
+
+</Alert>
+
 A **Deployment Rule** lets you configure the lifecycle of your [Environments][docs.using-qovery.configuration.environment].
 
 <!--

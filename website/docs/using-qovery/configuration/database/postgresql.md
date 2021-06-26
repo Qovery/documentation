@@ -6,6 +6,12 @@ description: "How to set up and use a PostgreSQL database"
 
 import Alert from '@site/src/components/Alert';
 
+<Alert type="warning">
+
+WORK IN PROGRESS - THIS DOCUMENTATION IS OUTDATED
+
+</Alert>
+
 PostgreSQL is a powerful, open source object-relational database system with over 30 years of active development that has earned it a strong reputation for reliability, feature robustness, and performance.
 
 <Alert type="info">

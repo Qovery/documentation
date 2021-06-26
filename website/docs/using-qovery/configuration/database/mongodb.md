@@ -6,6 +6,12 @@ description: "How to set up and use a MongoDB database"
 
 import Alert from '@site/src/components/Alert';
 
+<Alert type="warning">
+
+WORK IN PROGRESS - THIS DOCUMENTATION IS OUTDATED
+
+</Alert>
+
 MongoDB is a cross-platform document-oriented database program. Classified as a NoSQL, MongoDB uses JSON-like documents with schema.
 
 <Alert type="info">

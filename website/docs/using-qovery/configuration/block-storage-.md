@@ -6,6 +6,12 @@ description: "Learn how to configure block storage with your applications"
 
 import Alert from '@site/src/components/Alert';
 
+<Alert type="warning">
+
+WORK IN PROGRESS - THIS DOCUMENTATION IS OUTDATED
+
+</Alert>
+
 The default filesystem for applications running on Qovery is ephemeral. Application data isn’t persisted across deploys and restarts, which works just fine for most apps because they use managed databases to persist data.
 
 However, many applications need persistent disk storage that isn’t ephemeral. These include:

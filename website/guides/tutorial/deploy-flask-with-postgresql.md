@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-19"
+last_modified_on: "2021-06-26"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy Flask with PostgreSQL with Qovery
 description: How to deploy a Flask application with the PostgreSQL database with Qovery
@@ -14,6 +14,12 @@ import TabItem from '@theme/TabItem';
 
 import Assumptions from '@site/src/components/Assumptions';
 import Alert from '@site/src/components/Alert';
+
+<Alert type="warning">
+
+WORK IN PROGRESS - THIS DOCUMENTATION IS OUTDATED
+
+</Alert>
 
 This tutorial show you how to deploy your [Flask][urls.node_js] application with [PostgreSQL][urls.postgresql] database. Let's go!
 

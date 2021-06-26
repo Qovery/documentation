@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-24"
+last_modified_on: "2021-06-27"
 $schema: "/.meta/.schemas/guides.json"
 title: Zero to Hero - How to deploy your app on AWS in 30 minutes
 description: Step-by-step guide on how to deploy your app on AWS in 30 minutes. No AWS knowledge required.
@@ -10,6 +10,12 @@ hide_pagination: true
 import Alert from '@site/src/components/Alert';
 import Assumptions from '@site/src/components/Assumptions';
 import Jump from '@site/src/components/Jump';
+
+<Alert type="warning">
+
+WORK IN PROGRESS - THIS DOCUMENTATION IS OUTDATED
+
+</Alert>
 
 [Amazon Web Services](https://aws.amazon.com?ref=qovery) (AWS) is a platform that offers flexible, reliable, and scalable Cloud computing solutions. The platform is developed with a combination of infrastructure as a service (IaaS), platform as a service (PaaS), and packaged software as a service (SaaS) offerings. In 2021, thousands of companies host their apps on AWS. In 2006, AWS was composed of only 3 services (SQS, S3, EC2) that were simple to use. In 2021, more than 200 services and 2000 features exist, and deploying your app can take days.
 

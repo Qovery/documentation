@@ -6,6 +6,12 @@ description: "Learn how to configure Secrets on Qovery"
 
 import Alert from '@site/src/components/Alert';
 
+<Alert type="warning">
+
+WORK IN PROGRESS - THIS DOCUMENTATION IS OUTDATED
+
+</Alert>
+
 Qovery makes **Secrets** available to all services at runtime, as well as during builds and deploys.
 
 <!--

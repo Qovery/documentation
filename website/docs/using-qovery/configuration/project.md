@@ -8,6 +8,12 @@ import Alert from '@site/src/components/Alert';
 
 import Jump from '@site/src/components/Jump';
 
+<Alert type="warning">
+
+WORK IN PROGRESS - THIS DOCUMENTATION IS OUTDATED
+
+</Alert>
+
 A project allows you to group a set of applications and their dependencies (databases & other services).
 
 <Assumptions>

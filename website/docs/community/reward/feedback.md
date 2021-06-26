@@ -4,6 +4,14 @@ title: Feedback
 description: Make a product feedback on Qovery and get rewarded
 ---
 
+import Alert from '@site/src/components/Alert';
+
+<Alert type="warning">
+
+WORK IN PROGRESS - THIS DOCUMENTATION IS OUTDATED
+
+</Alert>
+
 TODO
 
 <!--

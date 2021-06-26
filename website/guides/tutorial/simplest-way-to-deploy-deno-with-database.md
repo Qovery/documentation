@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-19"
+last_modified_on: "2021-06-26"
 $schema: "/.meta/.schemas/guides.json"
 title: Simplest way to deploy your Deno application with MongoDB database
 description: Tutorial how to deploy a Deno app with MongoDB database with Qovery
@@ -39,6 +39,12 @@ Without further due, let's move on to next post section where we'll deploy a Den
 
 import Assumptions from '@site/src/components/Assumptions';
 import Alert from '@site/src/components/Alert';
+
+<Alert type="warning">
+
+WORK IN PROGRESS - THIS DOCUMENTATION IS OUTDATED
+
+</Alert>
 
 This tutorial show you how to deploy your [Deno][urls.deno] application with [MongoDB][urls.mongodb] database. Let's go!
 

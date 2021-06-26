@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-25"
+last_modified_on: "2021-06-26"
 $schema: "/.meta/.schemas/guides.json"
 title: Debugging
 description: How to debug your application
@@ -10,6 +10,12 @@ tags: ["type: guide", "technology: qovery"]
 import Steps from '@site/src/components/Steps';
 import Assumptions from '@site/src/components/Assumptions';
 import Alert from '@site/src/components/Alert';
+
+<Alert type="warning">
+
+WORK IN PROGRESS - THIS DOCUMENTATION IS OUTDATED
+
+</Alert>
 
 Your application is running, but something goes wrong? In this guide, you'll learn how to debug your application and solve your problem to
 make it running smoothly.

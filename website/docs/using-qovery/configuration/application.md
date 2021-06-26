@@ -6,6 +6,12 @@ description: "Learn how to configure your Application on Qovery"
 import Jump from '@site/src/components/Jump';
 import Alert from '@site/src/components/Alert';
 
+<Alert type="warning">
+
+WORK IN PROGRESS - THIS DOCUMENTATION IS OUTDATED
+
+</Alert>
+
 An **application** is part of a [Project][docs.using-qovery.configuration.project] within an [Environment][docs.using-qovery.configuration.environment] and is a container unit. Multiple applications can be part of the same [Environment][docs.using-qovery.configuration.environment], be connected to a set of dependencies (databases and other services), and can communicate with other applications within the same Environment.
 
 <!--

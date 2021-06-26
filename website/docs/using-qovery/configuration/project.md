@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-20"
+last_modified_on: "2021-06-25"
 title: "Project"
 description: "Learn how to configure Projects on Qovery"
 ---
@@ -38,6 +38,14 @@ If you have no project to deploy but still want to give a try to Qovery, you can
 <p align="center">
   <img src="/img/delete_project.png" alt="Qovery - delete a project" />
 </p>
+
+## Deployment rules
+
+TODO
+
+## Addons
+
+TODO
 
 
 [docs.using-qovery.configuration.organization]: /docs/using-qovery/configuration/organization/

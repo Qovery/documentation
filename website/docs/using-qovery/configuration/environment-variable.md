@@ -1,12 +1,18 @@
 ---
-last_modified_on: "2021-06-22"
+last_modified_on: "2021-06-26"
 title: "Environment Variable"
 description: "Learn how to configure Environment Variables on Qovery"
 ---
 
 import Alert from '@site/src/components/Alert';
 
-Qovery makes environment variables available to all services at runtime, as well as during builds and deploys.
+<Alert type="info">
+
+Do you need to keep secure your environment variable? Use [Secret][docs.using-qovery.configuration.secret] instead of *Environment Variable*.
+
+</Alert>
+
+Qovery makes **Environment Variables** available to all services at runtime, as well as during builds and deploys.
 
 <Alert type="warning">
 
@@ -24,13 +30,15 @@ Environment Variables are not directly connected to [Environment][docs.using-qov
      website/docs/using-qovery/configuration/environment-variable.md.erb
 -->
 
-## Manage environment variable
+## Create an Environment Variable
 
-<Alert type="info">
+TODO
 
-Do you need to keep secure your environment variable? Use [Secret][docs.using-qovery.configuration.secret] instead of *Environment Variable*.
+## Delete an Environment Variable
 
-</Alert>
+TODO
+
+## Update an Environment Variable
 
 TODO
 

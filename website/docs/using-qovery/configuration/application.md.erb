@@ -5,12 +5,15 @@ description: "Learn how to configure your Application on Qovery"
 import Jump from '@site/src/components/Jump';
 import Alert from '@site/src/components/Alert';
 
-An **application** is part of a project and is a container unit. Multiple applications can be part of the same [project][docs.using-qovery.configuration.project], be connected to a set of dependencies (databases and other services), and can communicate with other applications within the same project.
+An **application** is part of a [Project][docs.using-qovery.configuration.project] within an [Environment][docs.using-qovery.configuration.environment] and is a container unit. Multiple applications can be part of the same [Environment][docs.using-qovery.configuration.environment], be connected to a set of dependencies (databases and other services), and can communicate with other applications within the same Environment.
 
-To learn more about Application, read a high-level description of what Application concept means at Qovery.
-<Jump to="/docs/using-qovery/configuration/application">Application</Jump>
+## Create an Application
 
-## Creating Application
+<Alert type="info">
+
+Check out [this video guide][guides.getting-started.deploy-your-first-application] to create and deploy your first application
+
+</Alert>
 
 Creating a new project is as simple as choosing its name in your application configs(`.qovery.yml`):
 
@@ -27,16 +30,6 @@ Above snippet creates an application `myApp` within the project `myProject`.
 Qovery creates the project if it does not exist. If the project exists, Qovery adds your application into it.
 
 </Alert>
-
-## Renaming Application
-
-To give to your application a new name, just type `qovery application rename $NEW_NAME`, where `$NEW_NAME` is a placeholder for the new name you want to use.
-After it's done, you need to update your `.qovery.yml` configuration file to match your new application name.
-
-## configuration
-
-1. The `.qovery.yml` file is mandatory to run your Application with Qovery.
-2. The `Dockerfile` file is non-mandatory if your application is written in Ruby, Java, Node.JS, Python, Golang or PHP. More will be added. Suggest us to support a language [here][urls.qovery_roadmap]. If your language is not in the supported list, then you need to provide a `Dockerfile`.
 
 ### Application build
 
@@ -91,9 +84,13 @@ application:
 
 Configuration from above will make Qovery look for the Dockerfile in `my/folder/Dockerfile` path of your repository.
 
-### .qovery.yml
+## Delete an Application
 
-#### CPU
+TODO
+
+## Configuration
+
+### CPU
 
 To configure the number of CPUs that your app needs, you only need to add the `cpu` option into the `.qovery.yml`
 
@@ -126,7 +123,7 @@ application:
   cpu: 250m
 ```
 
-#### RAM
+### RAM
 
 To configure the RAM that your app needs, you only need to add the `ram` property into the `.qovery.yml`
 
@@ -152,7 +149,7 @@ application:
   ram: 1GB
 ```
 
-#### Publicly accessible
+### Public access
 
 To publicly expose your application you need to add the following lines into your `.qovery.yml`
 
@@ -188,7 +185,7 @@ EXPOSE 3000
 
 Your app is now publicly accessible through the auto generated endpoint.
 
-#### Long startup time
+### Long startup time
 
 Sometimes your application can take some time to start. E.g., when your app is performing database migration.
 By default, Qovery waits for 15 seconds to check if your app is running correctly. If it's not the case, your environment is rolled-back to the previous working version.
@@ -214,7 +211,7 @@ application:
 Seconds (s) and minutes (m) are accepted units.
 
 
-#### Define start order
+### Define start order
 
 Qovery gives you the power to have multiple apps within one environment. Sometimes it's necessary to one or multiple apps before others.
 By using `depends_on` property you can declare a list of apps your app is depending on.

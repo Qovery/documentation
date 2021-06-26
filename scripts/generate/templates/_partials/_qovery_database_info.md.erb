@@ -4,6 +4,16 @@ description: "How to set up and use a <%= dbName %> database"
 ---
 <%= dbDescription %>
 
+<Alert type="info">
+
+Check out [this video guide][guides.getting-started.create-a-database] to create and deploy your first database
+
+</Alert>
+
+## Create a <%= dbName %> database
+
+TODO
+
 ## Add a <%= dbName %> database to your application
 
 To add a dedicated <%= dbName %> instance to your existing application, simply add these lines to your configuration file:
@@ -28,6 +38,7 @@ Here are the <%= dbName %> versions supported by Qovery.
 |Version|Supported|
 |---------|-------|
 <% versions.each do |version| %>|<%= version %>|Yes|
+
 <% end %>
 
 Qovery does not support a new version of <%= dbName %> yet? [Contact us][urls.qovery_chat]
@@ -65,6 +76,7 @@ In the output, you get all data you need to use the database. Those environment 
 <%= dbSpecificAlert %>
 </Alert>
 <% end %>
+
 ## Show <%= dbName %> database status
 
 To know more about your database status, run:
@@ -81,15 +93,16 @@ DATABASE NAME | STATUS  | TYPE    | VERSION | ENDPOINT | PORT     | USERNAME | P
 
 ## Delete your <%= dbName %> database
 
-To delete a database, you have to:
-- Remove it from the configuration file, commit and push.
-- Delete it manually (for security purpose) through the [Qovery web interface][urls.start_qovery].
-
 <Alert type="danger">
 
 Delete action drops the service and its data!
 
 </Alert>
+
+To delete a database, you have to:
+
+- Remove it from the configuration file, commit and push.
+- Delete it manually (for security purpose) through the [Qovery web interface][urls.start_qovery].
 
 <Alert type="info">
 
@@ -99,4 +112,4 @@ Backups from production environments are kept for 1 month if you need to recover
 
 ## <%= dbName %> backup
 
-Daily backups for your <%= dbName %> database are automatically done for [Production environments][docs.using-qovery.configuration.deployment-rule#environment-mode].
+Daily backups for your <%= dbName %> database are automatically done for databases in managed mode.

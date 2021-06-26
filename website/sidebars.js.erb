@@ -62,7 +62,8 @@ module.exports = {
                         <%= metadata.links.fetch_id("docs.using-qovery.configuration.environment-variable").to_json %>,
                         <%= metadata.links.fetch_id("docs.using-qovery.configuration.secret").to_json %>,
                         <%= metadata.links.fetch_id("docs.using-qovery.configuration.domain").to_json %>,
-                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.storage").to_json %>,
+                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.block-storage-").to_json %>,
+                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.object-storage").to_json %>,
                         <%= metadata.links.fetch_id("docs.using-qovery.configuration.deployment-rule").to_json %>,
                         {
                             type: 'category',
@@ -106,7 +107,6 @@ module.exports = {
                                 <%= metadata.links.fetch_id("docs.using-qovery.addon.container-registry.docker-hub").to_json %>,
                             ],
                         },
-                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.external-service").to_json %>,
                         {
                             type: 'category',
                             label: 'Monitoring',
@@ -144,6 +144,10 @@ module.exports = {
                     label: 'Rewards',
                     items: [
                         <%= metadata.links.fetch_id("docs.community.reward").to_json %>,
+                        <%= metadata.links.fetch_id("docs.community.reward.feedback").to_json %>,
+                        <%= metadata.links.fetch_id("docs.community.reward.referral").to_json %>,
+                        <%= metadata.links.fetch_id("docs.community.reward.write-content").to_json %>,
+                        <%= metadata.links.fetch_id("docs.community.reward.ambassador").to_json %>,
                     ]
                 }
             ],

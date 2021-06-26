@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-19"
+last_modified_on: "2021-06-26"
 $schema: "/.meta/.schemas/guides.json"
 title: How to deploy a full-stack application composed of Hasura, PostgreSQL and Angular
 description: State of the art full-stack application deployment with Qovery
@@ -339,7 +339,7 @@ In this tutorial, we saw how to deploy a full-stack application composed of a fr
 
 [docs.database]: /docs/using-qovery/configuration/database/
 [docs.environment]: /docs/using-qovery/configuration/environment/
-[docs.storage]: /docs/using-qovery/configuration/storage/
+[docs.storage]: /docs/using-qovery/configuration/object-storage/
 [docs.web-interface]: /docs/using-qovery/interface/web-interface/
 [urls.angular]: https://angular.io
 [urls.github]: https://github.com

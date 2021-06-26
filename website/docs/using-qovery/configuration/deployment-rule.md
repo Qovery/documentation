@@ -1,6 +1,6 @@
 ---
-last_modified_on: "2021-06-19"
-title: "Deployment rule"
+last_modified_on: "2021-06-26"
+title: "Deployment Rule"
 description: "Learn how to configure Policies in Qovery"
 ---
 Deployment rule is a core concept of Qovery Business. It allows your team to customize the behaviours of the platform and adjust it perfectly to your organization's needs.

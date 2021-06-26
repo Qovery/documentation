@@ -62,7 +62,8 @@ module.exports = {
                         "using-qovery/configuration/environment-variable",
                         "using-qovery/configuration/secret",
                         "using-qovery/configuration/domain",
-                        "using-qovery/configuration/storage",
+                        "using-qovery/configuration/block-storage-",
+                        "using-qovery/configuration/object-storage",
                         "using-qovery/configuration/deployment-rule",
                         {
                             type: 'category',
@@ -106,7 +107,6 @@ module.exports = {
                                 "using-qovery/addon/container-registry/docker-hub",
                             ],
                         },
-                        "using-qovery/configuration/external-service",
                         {
                             type: 'category',
                             label: 'Monitoring',
@@ -144,6 +144,10 @@ module.exports = {
                     label: 'Rewards',
                     items: [
                         "community/reward",
+                        "community/reward/feedback",
+                        "community/reward/referral",
+                        "community/reward/write-content",
+                        "community/reward/ambassador",
                     ]
                 }
             ],

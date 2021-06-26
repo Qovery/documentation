@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-20"
+last_modified_on: "2021-06-25"
 title: "Organization"
 description: "Learn how to configure Organizations on Qovery"
 ---
@@ -115,6 +115,10 @@ To delete your organization, you need to go into the **Danger Zone** within your
 <p align="center">
   <img src="/img/delete_organization.png" alt="Qovery - delete organization" />
 </p>
+
+## Billing
+
+TODO
 
 
 [docs.using-qovery.configuration.cloud-service-provider]: /docs/using-qovery/configuration/cloud-service-provider/

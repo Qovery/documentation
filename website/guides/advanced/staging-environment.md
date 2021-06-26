@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-25"
+last_modified_on: "2021-06-27"
 $schema: "/.meta/.schemas/guides.json"
 title: Staging environment
 description: How to create a staging environment with Qovery
@@ -12,7 +12,7 @@ import Alert from '@site/src/components/Alert';
 
 <Alert type="warning">
 
-This guide is coming soon
+WORK IN PROGRESS - THIS DOCUMENTATION IS OUTDATED
 
 </Alert>
 

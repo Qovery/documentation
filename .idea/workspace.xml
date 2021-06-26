@@ -10,57 +10,16 @@
   <component name="ChangeListManager">
     <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="wip: update doc for v2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_how_to_deploy_x_with_y.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_how_to_deploy_x_with_y.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/community/reward/ambassador.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/community/reward/ambassador.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/community/reward/ambassador.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/community/reward/ambassador.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/community/reward/feedback.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/community/reward/feedback.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/community/reward/feedback.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/community/reward/feedback.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/community/reward/referral.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/community/reward/referral.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/community/reward/referral.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/community/reward/referral.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/community/reward/write-content.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/community/reward/write-content.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/community/reward/write-content.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/community/reward/write-content.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/application.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/application.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/application.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/application.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/block-storage-.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/block-storage-.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/block-storage-.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/block-storage-.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mongodb.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mongodb.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mongodb.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mongodb.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mysql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mysql.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mysql.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mysql.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/postgresql.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/postgresql.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/postgresql.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/redis.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/redis.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/redis.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/redis.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/deployment-rule.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/deployment-rule.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/deployment-rule.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/deployment-rule.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/domain.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/domain.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/domain.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/domain.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/environment-variable.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/environment-variable.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/environment-variable.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/environment-variable.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/environment.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/environment.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/environment.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/environment.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/object-storage.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/object-storage.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/object-storage.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/object-storage.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/project.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/project.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/project.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/project.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/secret.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/secret.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/secret.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/secret.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/quickstart/hasura.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/quickstart/hasura.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/quickstart/hasura.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/quickstart/hasura.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/quickstart/strapi.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/quickstart/strapi.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/quickstart/strapi.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/quickstart/strapi.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/debugging.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/debugging.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/debugging.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/debugging.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-django-with-postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-django-with-postgresql.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-flask-with-postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-flask-with-postgresql.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-gin-with-postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-gin-with-postgresql.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-jhipster-with-postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-jhipster-with-postgresql.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-laravel-with-mysql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-laravel-with-mysql.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-node-js-with-postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-node-js-with-postgresql.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-rails-with-postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-rails-with-postgresql.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-spring-boot-with-postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-spring-boot-with-postgresql.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/simplest-way-to-deploy-deno-with-database.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/simplest-way-to-deploy-deno-with-database.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/digital-ocean.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/digital-ocean.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/digital-ocean.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/digital-ocean.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/microservices.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/microservices.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/microservices.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/microservices.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/monorepository.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/monorepository.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/monorepository.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/monorepository.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/scaleway.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/scaleway.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/scaleway.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/scaleway.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/staging-environment.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/staging-environment.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/staging-environment.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/staging-environment.md.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -249,10 +208,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.start" />
         <item itemvalue="npm.swizzle" />
+        <item itemvalue="npm.start" />
         <item itemvalue="npm.deploy" />
         <item itemvalue="npm.build" />
+        <item itemvalue="npm.start" />
       </list>
     </recent_temporary>
   </component>

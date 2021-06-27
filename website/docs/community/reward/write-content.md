@@ -21,7 +21,8 @@ In this page, I explain how you can earn free credits by writing content.
 
 ## Criteria
 
-* The content must be original. (we will check)
+* The content must be related to Qovery.
+* The content must be original. (we check)
 * The content must contains at least 1000 words.
 * The content must be written in English (you can translate it).
 * You need to publish your content on at least one of the following medias:
@@ -29,6 +30,7 @@ In this page, I explain how you can earn free credits by writing content.
   - [Dev.To](https://dev.to/)
   - [Reddit](https://www.reddit.com/)
   - [HashNode](https://hashnode.com/)
+  - [Medium](https://medium.com/)
   - [IndieHackers](https://www.indiehackers.com/)
   - [HackerNews](https://news.ycombinator.com)
   - [Twitter](https://twitter.com)
@@ -38,9 +40,13 @@ In this page, I explain how you can earn free credits by writing content.
 
 Complete [this form][urls.qovery_submit_content_form].
 
+## What should I write?
+
+You can write on whatever you want, it must only be related to Qovery. Feedback, tutorials, use-cases... Anything you think that could be valuable to the developers community.
+
 ## Examples
 
-Here is a list of interesting articles that we are eager to see written by our community.
+Here is a list of interesting articles that we are eager to see written by our community. Obviously, those topics are just examples, you can write on the topic of your choice.
 
 ### Top rewarded content
 

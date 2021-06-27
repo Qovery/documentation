@@ -1,12 +1,15 @@
 ---
-last_modified_on: "2021-06-22"
+last_modified_on: "2021-06-27"
 title: "What is Qovery?"
 description: "High-level description of the Qovery goals and mission."
 ---
 
 import Jump from '@site/src/components/Jump';
-import Steps from '@site/src/components/Steps';
 
+import SVG from 'react-inlinesvg';
+import Steps from '@site/src/components/Steps';
+import Assumptions from '@site/src/components/Assumptions';
+import Alert from '@site/src/components/Alert';
 import BusinessBadge from '@site/src/components/BusinessBadge';
 
 **Qovery** is a platform that combines the power of **Kubernetes**, the reliability of **AWS**, and the simplicity of **Heroku** to deploy

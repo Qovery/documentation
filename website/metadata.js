@@ -162,6 +162,24 @@ module.exports = {
         {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
+          "id": "/advanced/amazon-web-services",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/amazon-web-services.md",
+          "series_position": null,
+          "title": "Deploy your apps on your AWS account"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/advanced/digital-ocean",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/digital-ocean.md",
+          "series_position": null,
+          "title": "Deploy your apps on your Digital Ocean account"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
           "id": "/advanced/microservices",
           "last_modified_on": null,
           "path": "website/guides/advanced/microservices.md",
@@ -215,7 +233,7 @@ module.exports = {
         }
       ],
       "name": "advanced",
-      "series": false,
+      "series": true,
       "title": "Advanced"
     },
     "tutorial": {

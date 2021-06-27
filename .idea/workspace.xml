@@ -9,8 +9,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="wip: update doc for v2">
-      <change beforePath="$PROJECT_DIR$/website/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/website/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/website/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/amazon-web-services.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/guide-amazon-web-services.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/amazon-web-services.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/guide-amazon-web-services.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/digital-ocean.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/guide-digital-ocean.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/digital-ocean.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/guide-digital-ocean.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/scaleway.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/guide-scaleway.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/scaleway.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/guide-scaleway.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/metadata.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/metadata.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,7 +40,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="366f3a82c0ca799293a1a0bf44f164f2295121f7" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -57,12 +63,12 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="v2_release" />
-                    <option name="lastUsedInstant" value="1623748299" />
+                    <option name="branchName" value="master" />
+                    <option name="lastUsedInstant" value="1624787094" />
                   </RecentBranch>
                   <RecentBranch>
-                    <option name="branchName" value="master" />
-                    <option name="lastUsedInstant" value="1604830509" />
+                    <option name="branchName" value="v2_release" />
+                    <option name="lastUsedInstant" value="1623748299" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="article/qovery-engine-rust-lib" />
@@ -199,11 +205,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.build" />
         <item itemvalue="npm.swizzle" />
         <item itemvalue="npm.start" />
         <item itemvalue="npm.deploy" />
-        <item itemvalue="npm.start" />
+        <item itemvalue="npm.build" />
+        <item itemvalue="npm.build" />
       </list>
     </recent_temporary>
   </component>

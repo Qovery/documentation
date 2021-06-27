@@ -189,33 +189,33 @@ module.exports = {
         {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
-          "id": "/advanced/amazon-web-services",
+          "id": "/advanced/guide-amazon-web-services",
           "last_modified_on": null,
-          "path": "website/guides/advanced/amazon-web-services.md",
+          "path": "website/guides/advanced/guide-amazon-web-services.md",
           "series_position": null,
           "title": "Use your AWS account"
         },
         {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
-          "id": "/advanced/digital-ocean",
+          "id": "/advanced/guide-digital-ocean",
           "last_modified_on": null,
-          "path": "website/guides/advanced/digital-ocean.md",
+          "path": "website/guides/advanced/guide-digital-ocean.md",
           "series_position": null,
           "title": "Use your Digital Ocean account"
         },
         {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
-          "id": "/advanced/scaleway",
+          "id": "/advanced/guide-scaleway",
           "last_modified_on": null,
-          "path": "website/guides/advanced/scaleway.md",
+          "path": "website/guides/advanced/guide-scaleway.md",
           "series_position": null,
           "title": "Use your Scaleway account"
         }
       ],
       "name": "advanced",
-      "series": true,
+      "series": false,
       "title": "Advanced"
     },
     "tutorial": {

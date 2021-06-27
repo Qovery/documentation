@@ -9,8 +9,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="wip: update doc for v2">
+      <change afterPath="$PROJECT_DIR$/website/docs/community/reward/video-record.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/docs/community/reward/video-record.md.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docusaurus.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/docusaurus.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.meta/links.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/links.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/community/reward.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/community/reward.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/community/reward/write-content.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/community/reward/write-content.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/community/reward/write-content.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/community/reward/write-content.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/sidebars.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/sidebars.js.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.js.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -290,13 +297,6 @@
       <workItem from="1620939988462" duration="161000" />
       <workItem from="1623707885288" duration="24602000" />
       <workItem from="1624139690193" duration="51846000" />
-    </task>
-    <task id="LOCAL-00152" summary="update Qovery vs. Heroku">
-      <created>1611782818315</created>
-      <option name="number" value="00152" />
-      <option name="presentableId" value="LOCAL-00152" />
-      <option name="project" value="LOCAL" />
-      <updated>1611782818315</updated>
     </task>
     <task id="LOCAL-00153" summary="update Qovery vs. Heroku">
       <created>1611816316504</created>
@@ -634,7 +634,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624826482266</updated>
     </task>
-    <option name="localTasksCounter" value="201" />
+    <task id="LOCAL-00201" summary="wip: update doc for v2">
+      <created>1624827049527</created>
+      <option name="number" value="00201" />
+      <option name="presentableId" value="LOCAL-00201" />
+      <option name="project" value="LOCAL" />
+      <updated>1624827049527</updated>
+    </task>
+    <option name="localTasksCounter" value="202" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

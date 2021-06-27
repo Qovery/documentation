@@ -23,6 +23,7 @@ In the following subsections, you'll learn how to give back to the Qovery commun
 <Jump to="/docs/community/reward/bug-report/">Bug report</Jump>
 <Jump to="/docs/community/reward/feedback/">Feedback</Jump>
 <Jump to="/docs/community/reward/referral/">Referral</Jump>
+<Jump to="/docs/community/reward/video-record/">Video record</Jump>
 <Jump to="/docs/community/reward/write-content/">Write content</Jump>
 
 

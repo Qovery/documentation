@@ -136,6 +136,7 @@ module.exports = {
                         "community/reward/feedback",
                         "community/reward/referral",
                         "community/reward/write-content",
+                        "community/reward/video-record",
                         "community/reward/bug-report",
                         "community/reward/ambassador",
                     ]

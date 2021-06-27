@@ -1,7 +1,7 @@
 ---
 last_modified_on: "2021-06-27"
-title: Feedback
-description: Make a product feedback on Qovery and get rewarded
+title: Bug Report
+description: Report a bug in Qovery and get rewarded
 ---
 
 import Alert from '@site/src/components/Alert';
@@ -19,16 +19,8 @@ TODO
 
      To make changes please edit the template located at:
 
-     website/docs/community/reward/feedback.md.erb
+     website/docs/community/reward/bug-report.md.erb
 -->
-
-## Private feedback
-
-TODO
-
-## Public feedback
-
-TODO
 
 ## FAQ
 

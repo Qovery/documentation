@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-26"
+last_modified_on: "2021-06-27"
 title: Rewards
 description: "Here is how you can give back to the Qovery community and get rewarded"
 sidebar_label: hidden
@@ -20,6 +20,7 @@ In the following subsections, you'll learn how to give back to the Qovery commun
 > Read [this post][urls.qovery_billing_context] to know more about the context of our rewards.
 
 <Jump to="/docs/community/reward/ambassador/">Ambassador</Jump>
+<Jump to="/docs/community/reward/bug-report/">Bug report</Jump>
 <Jump to="/docs/community/reward/feedback/">Feedback</Jump>
 <Jump to="/docs/community/reward/referral/">Referral</Jump>
 <Jump to="/docs/community/reward/write-content/">Write content</Jump>

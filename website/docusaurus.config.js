@@ -37,6 +37,7 @@ module.exports = {
                 //{to: 'blog/', label: 'Blog', position: 'left'},
                 //{to: 'community/', label: 'Community', position: 'right'},
                 // {to: 'releases/', label: 'Download', position: 'right'},
+                {href: 'https://www.qovery.com', label: "Home", position: 'right'},
                 {href: 'https://github.com/Qovery', label: "GitHub", position: 'right'},
             ],
         },

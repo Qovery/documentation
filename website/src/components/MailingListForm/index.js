@@ -5,9 +5,9 @@ import addToMailchimp from '@site/src/exports/mailchimp'
 
 import './styles.css';
 
-const DEFAULT_ERROR_MSG = "Could not subscribe :(" 
+const DEFAULT_ERROR_MSG = "Could not subscribe :("
 
-const MailingListForm = ({ block, buttonClass, center, description, size, width }) => {
+const MailingListForm = ({ block, buttonClass, center, description, subscriptionEnabled, size, width }) => {
 
   const [email, setEmail] = useState("")
   const [subscribed, setSubscribed] = useState(false)
@@ -41,17 +41,17 @@ const MailingListForm = ({ block, buttonClass, center, description, size, width 
     <div className={classnames('mailing-list', { 'mailing-list--block': block, 'mailing-list--center': center, [`mailing-list--${size}`]: size })}>
       {description !== false && (
         <div className="mailing-list--description">
-          The easiest way to stay up-to-date. One email on the 1st of every month. No spam, ever.
+            {description}
         </div>
       )}
-      {!subscribed &&
+      {subscriptionEnabled && !subscribed &&
         <form onSubmit={e => handleSubmit(e)} className={classnames("mailing-list--form")}>
           <input onChange={e => setEmail(e.target.value)} className={classnames('input', `input--${size}`)} name="email" placeholder="you@email.com" type="email" style={{ width: width }} />
           <button className={classnames('button', `button--${buttonClass || 'primary'}`, `button--${size}`)} type="submit">Subscribe</button>
         </form>}
         {err && <span className="badge badge--secondary">{errMsg}</span>}
       <div style={{ textAlign: 'center' }}>
-        {subscribed && <span className="badge badge--primary">Subscribed!</span>}
+        {subscriptionEnabled && subscribed && <span className="badge badge--primary">Subscribed!</span>}
       </div>
     </div>
   );

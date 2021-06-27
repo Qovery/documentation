@@ -8,14 +8,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="wip: update doc for v2">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/gh-pages.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/gh-pages.yml" afterDir="false" />
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="wip: update doc for v2&#10;chore: change domain from docs.qovery.com to hub.qovery.com">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.meta/links.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/links.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/qovery.spec.toml" beforeDir="false" afterPath="$PROJECT_DIR$/config/qovery.spec.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/useful-resources/faq.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/useful-resources/faq.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/useful-resources/help-and-support.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/useful-resources/help-and-support.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/docusaurus.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/docusaurus.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/components/MailingListForm/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/components/MailingListForm/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/pages/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/pages/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/src/pages/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/pages/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -295,13 +293,6 @@
       <workItem from="1620939988462" duration="161000" />
       <workItem from="1623707885288" duration="24602000" />
       <workItem from="1624139690193" duration="51846000" />
-    </task>
-    <task id="LOCAL-00150" summary="update documentation with Buildpacks">
-      <created>1611650770436</created>
-      <option name="number" value="00150" />
-      <option name="presentableId" value="LOCAL-00150" />
-      <option name="project" value="LOCAL" />
-      <updated>1611650770436</updated>
     </task>
     <task id="LOCAL-00151" summary="add doc to compare Qovery to Heroku">
       <created>1611767644508</created>
@@ -639,7 +630,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624802545987</updated>
     </task>
-    <option name="localTasksCounter" value="199" />
+    <task id="LOCAL-00199" summary="wip: update doc for v2&#10;chore: change domain from docs.qovery.com to hub.qovery.com">
+      <created>1624820002784</created>
+      <option name="number" value="00199" />
+      <option name="presentableId" value="LOCAL-00199" />
+      <option name="project" value="LOCAL" />
+      <updated>1624820002784</updated>
+    </task>
+    <option name="localTasksCounter" value="200" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -725,7 +723,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="update digital-ocean.md" />
     <MESSAGE value="update what-is-qovery.md" />
     <MESSAGE value="update documentation with Buildpacks" />
     <MESSAGE value="add doc to compare Qovery to Heroku" />
@@ -750,6 +747,7 @@
     <MESSAGE value="chore: change api doc link" />
     <MESSAGE value="wip: restructure the documentation tree" />
     <MESSAGE value="wip: update doc for v2" />
-    <option name="LAST_COMMIT_MESSAGE" value="wip: update doc for v2" />
+    <MESSAGE value="wip: update doc for v2&#10;chore: change domain from docs.qovery.com to hub.qovery.com" />
+    <option name="LAST_COMMIT_MESSAGE" value="wip: update doc for v2&#10;chore: change domain from docs.qovery.com to hub.qovery.com" />
   </component>
 </project>

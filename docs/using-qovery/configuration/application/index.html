@@ -24,27 +24,27 @@
 <link rel="stylesheet" href="/styles.697c0f13.css">
 
 
-<link rel="preload" href="/styles.35fc21e8.js" as="script">
+<link rel="preload" href="/styles.56a158e3.js" as="script">
 
-<link rel="preload" href="/runtime~main.371fd8e9.js" as="script">
+<link rel="preload" href="/runtime~main.c709306f.js" as="script">
 
-<link rel="preload" href="/main.4293a10c.js" as="script">
+<link rel="preload" href="/main.feebd2cf.js" as="script">
 
-<link rel="preload" href="/2.1ac53e87.js" as="script">
+<link rel="preload" href="/2.e5c5f9dd.js" as="script">
 
-<link rel="preload" href="/3.e7633dda.js" as="script">
+<link rel="preload" href="/3.badd93f4.js" as="script">
 
-<link rel="preload" href="/4.e1d6266b.js" as="script">
+<link rel="preload" href="/4.145a0a28.js" as="script">
 
-<link rel="preload" href="/1be78505.12a6d250.js" as="script">
+<link rel="preload" href="/1be78505.3cef9373.js" as="script">
 
 <link rel="preload" href="/20ac7829.81ae3516.js" as="script">
 
-<link rel="preload" href="/189.01303619.js" as="script">
+<link rel="preload" href="/190.c9fa924f.js" as="script">
 
-<link rel="preload" href="/17896441.a1e55987.js" as="script">
+<link rel="preload" href="/17896441.1ce48a12.js" as="script">
 
-<link rel="preload" href="/8d5726d6.1b80bfc3.js" as="script">
+<link rel="preload" href="/8d5726d6.184e1571.js" as="script">
 
 </head>
 <body>
@@ -56,27 +56,27 @@ By default, Qovery waits for 15 seconds to check if your app is running correctl
 By using <code>depends_on</code> property you can declare a list of apps your app is depending on.</p><p>Let&#x27;s take as example 3 apps:</p><ul><li>billing-api</li><li>user-api</li><li>frontend</li></ul><p>Where:</p><ul><li><strong>frontend</strong> depends on <strong>user-api</strong> and <strong>billing-api</strong>.</li></ul><div class="mdxCodeBlock_iHAB"><div style="color:#393A34;background-color:#f6f8fa" class="codeBlockTitle_2TQJ">Declare dependencies</div><div class="codeBlockContent_3RXF"><button type="button" aria-label="Copy code to clipboard" class="copyButton_1PCb copyButtonWithTitle_qt-P">Copy</button><pre class="prism-code language-yml codeBlock_1wn8 codeBlockWithTitle_1f_H"><div class="codeBlockLines_3HrO" style="color:#393A34;background-color:#f6f8fa"><div class="token-line" style="color:#393A34"><span class="token key atrule" style="color:#00a4db">application</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">name</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> frontend</span></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">project</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> myProject</span></div><div class="token-line docusaurus-highlight-code-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">depends_on</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span></div><div class="token-line docusaurus-highlight-code-line" style="color:#393A34"><span class="token plain">  </span><span class="token punctuation" style="color:#393A34">-</span><span class="token plain"> user</span><span class="token punctuation" style="color:#393A34">-</span><span class="token plain">api</span></div><div class="token-line docusaurus-highlight-code-line" style="color:#393A34"><span class="token plain">    billing</span><span class="token punctuation" style="color:#393A34">-</span><span class="token plain">api</span></div></div></pre></div></div><p>The <code>depends_on</code> property, guarantee that your app will never start before others that it depends on.</p></div></article></div><div class="paginator_3VDt"><nav class="pagination-nav"><div class="pagination-nav__item"><a class="pagination-nav__link" href="/docs/using-qovery/configuration/environment"><h5 class="pagination-nav__link--sublabel">Previous</h5><h4 class="pagination-nav__link--label">« Environment</h4></a></div><div class="pagination-nav__item pagination-nav__item--next"><a class="pagination-nav__link" href="/docs/using-qovery/configuration/database"><h5 class="pagination-nav__link--sublabel">Next</h5><h4 class="pagination-nav__link--label">Databases »</h4></a></div></nav></div></div><div class="rightCol_38kP"><div class="table-of-contents tableOfContents_tVyB"><div class="section"><div class="title">Contents</div><ul class="contents"><li><a href="#create-an-application" class="contents__link">Create an Application</a><ul><li><a href="#application-build" class="contents__link">Application build</a></li></ul></li><li><a href="#delete-an-application" class="contents__link">Delete an Application</a></li><li><a href="#configuration" class="contents__link">Configuration</a><ul><li><a href="#cpu" class="contents__link">CPU</a></li><li><a href="#ram" class="contents__link">RAM</a></li><li><a href="#public-access" class="contents__link">Public access</a></li><li><a href="#long-startup-time" class="contents__link">Long startup time</a></li><li><a href="#define-start-order" class="contents__link">Define start order</a></li></ul></li></ul></div><div class="section"><div class="title">Resources</div><ul class="contents"><li><a href="https://github.com/Qovery/documentation/edit/master/website/docs/using-qovery/configuration/application.md" class="contents__link" target="_blank"><i class="feather icon-edit-1"></i> Edit this page</a></li></ul></div></div></div></div></div></main></div></div><footer class="footer"><div class="container"><div class="row footer__links"><div class="col col--5 footer__col"><div class="margin-bottom--md"></div><div class="margin-bottom--md"><p>Qovery combines the power of Kubernetes, the reliability of AWS, and the simplicity of Heroku to deploy your apps.</p></div><div><a href="https://github.com/qovery" target="_blank"><i class="feather icon-github" alt="Qovery&#x27;s Github Repo"></i></a>    <a href="https://www.linkedin.com/company/qovery/" target="_blank"><i class="feather icon-rss" alt="Qovery&#x27;s Linkedin"></i></a>    <a href="https://twitter.com/qovery_" target="_blank"><i class="feather icon-twitter" alt="Qovery&#x27;s Twitter"></i></a>    <a href="https://discord.qovery.com" target="_blank"><i class="feather icon-message-circle" alt="Qovery&#x27;s Discord"></i></a></div></div><div class="col footer__col"><h4 class="footer__title">Resources</h4><ul class="footer__items"><li class="footer__item"><a aria-current="page" class="footer__link-item active" href="/docs">Documentation</a></li><li class="footer__item"><a class="footer__link-item" href="/guides">Guides</a></li><li class="footer__item"><a class="footer__link-item" href="/guides/tutorial">Tutorials</a></li><li class="footer__item"><a class="footer__link-item" href="/guides/engineering">Engineering</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/pricing" href="https://www.qovery.com/pricing">Pricing</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/enterprise" href="https://www.qovery.com/enterprise">Enterprise</a></li><li class="footer__item"><a class="footer__link-item" to="https://api-doc.qovery.com" href="https://api-doc.qovery.com">API</a></li><li class="footer__item"><a class="footer__link-item" to="https://github.com/Qovery" href="https://github.com/Qovery">Github</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Community</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://discord.qovery.com" href="https://discord.qovery.com">Discord</a></li><li class="footer__item"><a class="footer__link-item" to="https://community.qovery.com" href="https://community.qovery.com">Forum</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/community-call" href="https://www.qovery.com/community-call">Community call</a></li><li class="footer__item"><a class="footer__link-item" to="https://shop.qovery.com" href="https://shop.qovery.com">Goodies</a></li><li class="footer__item"><a class="footer__link-item" to="https://roadmap.qovery.com" href="https://roadmap.qovery.com">Roadmap</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Company</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/blog" href="https://www.qovery.com/blog">Blog</a></li><li class="footer__item"><a class="footer__link-item" to="https://jobs.qovery.com" href="https://jobs.qovery.com">Jobs</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/team" href="https://www.qovery.com/team">Team</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/investors" href="https://www.qovery.com/investors">Investors</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/contact" href="https://www.qovery.com/contact">Contact</a></li></ul></div></div><div class="text--center"><small>© 2021 DESIGNED BY QOVERY | BACKED BY TECHSTARS | PROUD SILVER MEMBER OF CNCF AND LINUX FOUNDATION | QOVERY BY BIRDSIGHT - ALL RIGHTS RESERVED</small><br></div></div></footer>
 </div>
 
-<script src="/styles.35fc21e8.js"></script>
+<script src="/styles.56a158e3.js"></script>
 
-<script src="/runtime~main.371fd8e9.js"></script>
+<script src="/runtime~main.c709306f.js"></script>
 
-<script src="/main.4293a10c.js"></script>
+<script src="/main.feebd2cf.js"></script>
 
-<script src="/2.1ac53e87.js"></script>
+<script src="/2.e5c5f9dd.js"></script>
 
-<script src="/3.e7633dda.js"></script>
+<script src="/3.badd93f4.js"></script>
 
-<script src="/4.e1d6266b.js"></script>
+<script src="/4.145a0a28.js"></script>
 
-<script src="/1be78505.12a6d250.js"></script>
+<script src="/1be78505.3cef9373.js"></script>
 
 <script src="/20ac7829.81ae3516.js"></script>
 
-<script src="/189.01303619.js"></script>
+<script src="/190.c9fa924f.js"></script>
 
-<script src="/17896441.a1e55987.js"></script>
+<script src="/17896441.1ce48a12.js"></script>
 
-<script src="/8d5726d6.1b80bfc3.js"></script>
+<script src="/8d5726d6.184e1571.js"></script>
 
 
 </body>

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-20"
+last_modified_on: "2021-06-27"
 title: FAQ
 description: "Frequently Asked Questions"
 ---
@@ -103,6 +103,6 @@ Feel free to join our [Discord server][urls.qovery_chat] or contact us by email 
 [docs.using-qovery.configuration.project]: /docs/using-qovery/configuration/project/
 [urls.kubernetes]: https://kubernetes.io/
 [urls.qovery_chat]: https://discord.qovery.com
-[urls.qovery_community]: https://community.qovery.com/
+[urls.qovery_community]: https://discuss.qovery.com/
 [urls.qovery_enterprise]: https://www.qovery.com/business
 [urls.qovery_roadmap]: https://roadmap.qovery.com/

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-20"
+last_modified_on: "2021-06-27"
 title: Help and Support
 description: "Get support from Qovery team"
 ---
@@ -12,4 +12,4 @@ There, you can discuss directly with our fantastic team as well as our wonderful
 
 
 [urls.qovery_chat]: https://discord.qovery.com
-[urls.qovery_community]: https://community.qovery.com/
+[urls.qovery_community]: https://discuss.qovery.com/

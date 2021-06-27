@@ -313,7 +313,7 @@ qovery_bug_issues = "https://github.com/qovery/documentation/issues?q=is%3Aopen+
 qovery_changelog = "https://github.com/qovery/documentation/blob/master/CHANGELOG.md"
 qovery_chat = "https://discord.qovery.com"
 qovery_code_of_conduct = "https://github.com/qovery/documentation/blob/master/README.md"
-qovery_community = "https://community.qovery.com/"
+qovery_community = "https://discuss.qovery.com/"
 qovery_debian_source_files = "https://github.com/qovery"
 qovery_docker_source_files = "https://github.com/qovery"
 qovery_docs = "https://docs.qovery.com"

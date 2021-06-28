@@ -9,7 +9,7 @@ import Alert from '@site/src/components/Alert';
 The **Write for the Community** referral program rewards you when you write content to share your knowledge using Qovery.
 More you give back to the community and more you get rewarded. [read more][urls.qovery_billing_context].
 
-In this page, I explain how you can earn free credits by writing content.
+In this page, I explain how you can earn free Qovery credits by writing content.
 
 <Alert type="success">
 
@@ -42,11 +42,11 @@ Earn up to $300 Qovery credits per article
   - [Twitter](https://twitter.com)
   - [DZone](https://dzone.com/)
 
-## How to submit my content?
+## How to submit my content
 
 Complete [this form][urls.qovery_submit_content_form].
 
-## What should I write?
+## What should I write
 
 You can write on whatever you want, it must only be related to Qovery. Feedback, tutorials, use-cases... Anything you think that could be valuable to the developers community.
 

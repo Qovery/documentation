@@ -9,7 +9,7 @@ import Alert from '@site/src/components/Alert';
 The **Video Record** referral program rewards you when you record a video to share your knowledge using Qovery.
 More you give back to the community and more you get rewarded. [read more][urls.qovery_billing_context].
 
-In this page, I explain how you can earn free credits by recording videos.
+In this page, I explain how you can earn free Qovery credits by recording videos.
 
 <Alert type="success">
 
@@ -33,11 +33,11 @@ Earn up to $300 Qovery credits per recorded video
 * The recorded video must be in English.
 * The recorded video must be hosted on your [Youtube](https://www.youtube.com) channel.
 
-## How to submit my video?
+## How to submit my video
 
 Complete [this form][urls.qovery_submit_video_form].
 
-## What should I record?
+## What should I record
 
 You can record whatever you want. It must only be related to Qovery. Feedback, tutorials, demo, use-cases... Anything you think that could be valuable to the developers' community.
 

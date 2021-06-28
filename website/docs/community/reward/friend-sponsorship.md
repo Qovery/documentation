@@ -9,7 +9,7 @@ import Alert from '@site/src/components/Alert';
 The **Friend Sponsorship** referral program rewards you when you recommend and invite a friend to join Qovery.
 More you invite friends and more you get rewarded. [read more][urls.qovery_billing_context].
 
-In this page, I explain how you can earn free credits by inviting friends.
+In this page, I explain how you can earn free Qovery credits by inviting friends.
 
 <Alert type="success">
 
@@ -30,7 +30,7 @@ Earn $15 Qovery credits both (referee and referrer) per invited friend.
 * The invited user is new on Qovery.
 * You have invited less than 4 friends. (contact us if you plan to invite more people)
 
-## How to invite a friend?
+## How to invite a friend
 
 Share your referral link via [your web console][urls.start_qovery].
 

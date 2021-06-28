@@ -56,7 +56,7 @@ Earn from $100 to $5000 Qovery credits per exploit.
 - Outdated DNS record pointing to system which does not belong to Qovery
 - Any DNS record outdated for less than 48 hours
 
-## Reward
+## Rewards
 
 - Minimum reward is $100 Qovery credits for security vulnerabilities.
 - Maximum reward is $3000 Qovery credits for security vulnerabilities.
@@ -97,7 +97,7 @@ You have 12 months to use your earned credits.
 
 ### Does credits are recurrent?
 
-Credits are only recurrent for granted [ambassadors][docs.community.reward.ambassador].
+Credits are only recurrent for granted [ambassadors][docs.community.become-an-ambassador].
 
 ### Can I be eligible to multiple rewards?
 
@@ -108,6 +108,6 @@ Absolutely.
 Absolutely 🙂.
 
 
-[docs.community.reward.ambassador]: /docs/community/reward/ambassador/
+[docs.community.become-an-ambassador]: /docs/community/become-an-ambassador/
 [urls.qovery_billing_context]: https://www.qovery.com/blog/how-qovery-billing-works
 [urls.qovery_submit_bug_bounty_form]: https://qovery.typeform.com/to/gp9v3CTN

@@ -19,7 +19,6 @@ In the following subsections, you'll learn how to give back to the Qovery commun
 
 > Read [this post][urls.qovery_billing_context] to know more about the context of our rewards.
 
-<Jump to="/docs/community/reward/ambassador/">Ambassador</Jump>
 <Jump to="/docs/community/reward/bug-bounty/">Bug bounty</Jump>
 <Jump to="/docs/community/reward/feedback/">Feedback</Jump>
 <Jump to="/docs/community/reward/friend-sponsorship/">Friend sponsorship</Jump>

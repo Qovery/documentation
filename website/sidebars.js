@@ -138,9 +138,9 @@ module.exports = {
                         "community/reward/write-content",
                         "community/reward/video-record",
                         "community/reward/bug-bounty",
-                        "community/reward/ambassador",
                     ]
-                }
+                },
+                "community/become-an-ambassador",
             ],
         },
         {

@@ -69,7 +69,7 @@ You have 12 months to use your earned credits.
 
 ### Does credits are recurrent?
 
-Credits are only recurrent for granted [ambassadors][docs.community.reward.ambassador].
+Credits are only recurrent for granted [ambassadors][docs.community.become-an-ambassador].
 
 ### Can I be eligible to multiple rewards?
 
@@ -80,6 +80,6 @@ Absolutely.
 Absolutely 🙂.
 
 
-[docs.community.reward.ambassador]: /docs/community/reward/ambassador/
+[docs.community.become-an-ambassador]: /docs/community/become-an-ambassador/
 [urls.qovery_billing_context]: https://www.qovery.com/blog/how-qovery-billing-works
 [urls.start_qovery]: https://start.qovery.com

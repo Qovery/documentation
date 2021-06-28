@@ -31,6 +31,7 @@ Earn up to $300 Qovery credits per recorded video
 * The recorded video must be original. (we check)
 * The recorded video length must be at least of 10 minutes.
 * The recorded video must be in English.
+* The recorded video and sound quality must be decent (not below 720p).
 * The recorded video must be hosted on your [Youtube](https://www.youtube.com) channel.
 
 ## How to submit my video
@@ -83,7 +84,7 @@ You have 12 months to use your earned credits.
 
 ### Does credits are recurrent?
 
-Credits are only recurrent for granted [ambassadors][docs.community.reward.ambassador].
+Credits are only recurrent for granted [ambassadors][docs.community.become-an-ambassador].
 
 ### Can I be eligible to multiple rewards?
 
@@ -94,6 +95,6 @@ Absolutely.
 Absolutely 🙂.
 
 
-[docs.community.reward.ambassador]: /docs/community/reward/ambassador/
+[docs.community.become-an-ambassador]: /docs/community/become-an-ambassador/
 [urls.qovery_billing_context]: https://www.qovery.com/blog/how-qovery-billing-works
 [urls.qovery_submit_video_form]: https://qovery.typeform.com/to/YE890XT0

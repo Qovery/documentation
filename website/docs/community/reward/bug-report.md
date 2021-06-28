@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-27"
+last_modified_on: "2021-06-28"
 title: Bug Report
 description: Report a bug in Qovery and get rewarded
 ---
@@ -34,7 +34,7 @@ It is a free credits that you can use on your Qovery Community and Startup plan.
 
 ### Can I pay to get more credits on my Community plan?
 
-No you can’t pay to get more credits on your Community plan
+No you can’t pay to get more credits on your Community plan. *Read the question below 👇 to get a more detailed response*.
 
 ### Why don't you allow users to pay their credits?
 
@@ -57,6 +57,10 @@ Credits are only recurrent for granted [ambassadors][docs.community.reward.ambas
 ### Can I be eligible to multiple rewards?
 
 Absolutely.
+
+### Can I use my free credits on my Startup and Enterprise plans?
+
+Absolutely 🙂.
 
 
 [docs.community.reward.ambassador]: /docs/community/reward/ambassador/

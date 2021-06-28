@@ -9,13 +9,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="wip: update doc for v2">
-      <change afterPath="$PROJECT_DIR$/website/docs/community/reward/video-record.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/docs/community/reward/video-record.md.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/docs/community/reward/friend-sponsorship.md.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.meta/links.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/links.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_reward_faq.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_reward_faq.md.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/docs/community/reward.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/community/reward.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/community/reward.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/community/reward.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/community/reward/ambassador.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/community/reward/ambassador.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/community/reward/bug-report.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/community/reward/bug-report.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/community/reward/feedback.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/community/reward/feedback.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/community/reward/referral.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/community/reward/friend-sponsorship.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/community/reward/referral.md.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/community/reward/video-record.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/community/reward/video-record.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/docs/community/reward/write-content.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/community/reward/write-content.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/community/reward/write-content.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/community/reward/write-content.md.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/sidebars.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/sidebars.js.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.js.erb" afterDir="false" />
     </list>
@@ -297,13 +302,6 @@
       <workItem from="1620939988462" duration="161000" />
       <workItem from="1623707885288" duration="24602000" />
       <workItem from="1624139690193" duration="51846000" />
-    </task>
-    <task id="LOCAL-00153" summary="update Qovery vs. Heroku">
-      <created>1611816316504</created>
-      <option name="number" value="00153" />
-      <option name="presentableId" value="LOCAL-00153" />
-      <option name="project" value="LOCAL" />
-      <updated>1611816316504</updated>
     </task>
     <task id="LOCAL-00154" summary="update Qovery vs. Heroku">
       <created>1611821911457</created>
@@ -641,7 +639,14 @@
       <option name="project" value="LOCAL" />
       <updated>1624827049527</updated>
     </task>
-    <option name="localTasksCounter" value="202" />
+    <task id="LOCAL-00202" summary="wip: update doc for v2">
+      <created>1624831169847</created>
+      <option name="number" value="00202" />
+      <option name="presentableId" value="LOCAL-00202" />
+      <option name="project" value="LOCAL" />
+      <updated>1624831169847</updated>
+    </task>
+    <option name="localTasksCounter" value="203" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

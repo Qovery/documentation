@@ -25,7 +25,7 @@ Earn $15 Qovery credits per product feedback. And up to $300 for [exceptional pu
      website/docs/community/reward/feedback.md.erb
 -->
 
-## Reward eligibility criteria
+## Eligibility
 
 * Maximum 1 private feedback every 2 months.
 * Maximum 3 public feedback every 2 months.

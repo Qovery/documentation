@@ -25,7 +25,7 @@ Earn up to $300 Qovery credits per recorded video
      website/docs/community/reward/video-record.md.erb
 -->
 
-## Reward eligibility criteria
+## Eligibility
 
 * The recorded video must be related to Qovery.
 * The recorded video must be original. (we check)

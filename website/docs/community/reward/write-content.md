@@ -25,7 +25,7 @@ Earn up to $300 Qovery credits per article
      website/docs/community/reward/write-content.md.erb
 -->
 
-## Reward eligibility criteria
+## Eligibility
 
 * The content must be related to Qovery.
 * The content must be original. (we check)

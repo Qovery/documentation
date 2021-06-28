@@ -137,7 +137,7 @@ module.exports = {
                         "community/reward/friend-sponsorship",
                         "community/reward/write-content",
                         "community/reward/video-record",
-                        "community/reward/bug-report",
+                        "community/reward/bug-bounty",
                         "community/reward/ambassador",
                     ]
                 }

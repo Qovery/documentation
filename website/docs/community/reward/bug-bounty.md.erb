@@ -1,0 +1,59 @@
+---
+title: Bug Bounty
+description: Report a bug in Qovery and get rewarded
+---
+
+Our team is committed to working with security experts across the globe to stay up to date with the latest security techniques. If you have discovered a security issue that you believe we should know about, we would welcome working with you. Please let us know about it and we'll make every effort to quickly correct the issue.
+
+<Alert type="success">
+
+Earn from $100 to $5000 Qovery credits per exploit.
+
+</Alert>
+
+## Eligibility
+
+- You must be the first reporter of the vulnerability.
+- You do not access data of other users and solely use your created accounts.
+- You may not publicly disclose the vulnerability prior to our resolution.
+- You provide a working proof of concept that exploits the security issue.
+- The exploit scopes are:
+  - Website related endpoints on `www.qovery.com` and `console.qovery.com`
+  - API related endpoints on `*.qovery.com` and `*.qovery.io`
+
+### Exclusions
+- Login/Logout CSRF
+- DDoS
+- Social engineering on customers or employees of Qovery
+- Self-XSS (we require evidence on how the XSS can be used to attack another Qovery user)
+- Miss of rate limits
+- Report from automated tools and scans
+- Vulnerabilities sending spam or unauthorised messages
+- Bugs in 3rd party software
+- X-Frame-Options related
+- Customer's sites
+- Relating to HSTS
+- DNSSEC
+- Missing security headers which do not lead directly to a vulnerability
+- Physical attack on the infrastructure
+- Theoretical attacks
+- Breaking of SSL/TLS trust
+- Compromising of browser/device (ex. computer sharing, physical access to a user's device, ...)
+- Vulnerabilities only affecting users of outdated or unpatched browsers and platforms
+- Password and account recovery policies, such as reset link expiration or password complexity
+- Vulnerabilities without solution on our side (HEIST, ...)
+- Outdated DNS record pointing to system which does not belong to Qovery
+- Any DNS record outdated for less than 48 hours
+
+## Reward
+
+- Minimum reward is $100 Qovery credits for security vulnerabilities.
+- Maximum reward is $3000 Qovery credits for security vulnerabilities.
+
+The reward depends on the vulnerability severity and will be paid via Qovery credits only. Issues without security impact are not eligible for a bounty, yet still welcomed and will be treated like any other report.
+
+## How to submit your exploit
+
+Complete [this form][urls.qovery_submit_bug_bounty_form] to share with us your exploit.
+
+<%= qovery_reward_faq() %>

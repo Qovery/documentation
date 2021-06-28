@@ -25,7 +25,7 @@ Earn $15 Qovery credits both (referee and referrer) per invited friend.
      website/docs/community/reward/friend-sponsorship.md.erb
 -->
 
-## Reward eligibility criteria
+## Eligibility
 
 * The invited user is new on Qovery.
 * You have invited less than 4 friends. (contact us if you plan to invite more people)

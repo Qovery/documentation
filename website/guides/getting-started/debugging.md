@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-26"
+last_modified_on: "2021-06-30"
 $schema: "/.meta/.schemas/guides.json"
 title: Debugging
 description: How to debug your application
@@ -10,12 +10,6 @@ tags: ["type: guide", "technology: qovery"]
 import Steps from '@site/src/components/Steps';
 import Assumptions from '@site/src/components/Assumptions';
 import Alert from '@site/src/components/Alert';
-
-<Alert type="warning">
-
-WORK IN PROGRESS - THIS DOCUMENTATION IS OUTDATED
-
-</Alert>
 
 Your application is running, but something goes wrong? In this guide, you'll learn how to debug your application and solve your problem to
 make it running smoothly.
@@ -38,19 +32,144 @@ Your application is running, but for some reason, it is not working as expected.
 
 ## Check the status of your app
 
-TODO
+To find out what is the status of your application, you can follow these steps:
+
+<Steps headingDepth={3}>
+
+<ol>
+<li>
+
+Navigate to [Console](https://console-beta.qovery.com)
+
+</li>
+<li>
+
+Choose your project and environment
+
+</li>
+<li>
+
+In environment overview, you can see the status of the whole environment as well as statuses of individual applications:
+
+<p align="center">
+  <img src="/img/debugging/debugging-1.png" alt="Debugging" />
+</p>
+
+- As you can see in the screenshot, the environment is `RUNNING`. 
+
+- `twitter-backend` and `my-db` application statuses are marked as green dots, which means they are up and running as well. 
+
+- On the other hand `my-mysql` database is marked with a gray dot, which means it was not deployed or is stopped.
+
+- If service crashes, it's status is marked with a red dot.
+
+</li>
+
+</ol>
+
+</Steps>
 
 ## Logs
 
-TODO
+If you need to see the log output of your application while it's running, follow these steps:
 
-## Rollback
+<Steps headingDepth={3}>
 
-TODO
+<ol>
+<li>
+
+Navigate to [Console](https://console-beta.qovery.com).
+
+</li>
+<li>
+
+Choose your project, environment, and application.
+
+</li>
+<li>
+
+In application overview, click `Show Logs` button
+
+<p align="center">
+  <img src="/img/debugging/debugging-3.png" alt="Debugging" />
+</p>
+
+This will open a view of your application logs:
+
+<p align="center">
+  <img src="/img/debugging/debugging-4.png" alt="Debugging" />
+</p>
+
+You can use this information to find out what causes your application to behave incorrectly.
+
+</li>
+</ol>
+
+</Steps>
+
+## Deployment Logs
+
+If your application fails to start, you can check what's the cause in it's deployment logs:
+
+<Steps headingDepth={3}>
+
+<ol>
+<li>
+
+Navigate to [Console](https://console-beta.qovery.com).
+
+</li>
+<li>
+
+Choose your project and environment.
+
+</li>
+<li>
+
+In environment overview, click `Show Logs` button:
+
+<p align="center">
+  <img src="/img/debugging/debugging-7.png" alt="Debugging" />
+</p>
+
+This will open a view of your deployment logs:
+
+<p align="center">
+  <img src="/img/debugging/debugging-8.png" alt="Debugging" />
+</p>
+
+This view provides insight into the build and deployment process. If anything goes wrong, you can see all the required information to fix the problem here.
+
+</li>
+</ol>
+
+</Steps>
 
 ## Monitoring
 
-TODO
+If you need more information about the resources consumed by your application, Qovery provides basic metrics about your CPU, memory and storage usage.
+
+<ol>
+<li>
+
+Navigate to [Console](https://console-beta.qovery.com).
+
+</li>
+<li>
+
+Choose your project, environment, and application.
+
+</li>
+<li>
+
+In the main application view, you can see charts and overview of your application resource consumption.
+
+<p align="center">
+  <img src="/img/debugging/debugging-6.png" alt="Debugging" />
+</p>
+
+</li>
+</ol>
 
 ## Alerting
 We highly recommend using tools like [Datadog][urls.datadog], [Sentry][urls.sentry] or [NewRelic][urls.new_relic] to manage your alerting.

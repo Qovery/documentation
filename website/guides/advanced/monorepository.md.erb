@@ -1,15 +1,57 @@
 ---
 $schema: "/.meta/.schemas/guides.json"
 title: Mono repository
-description: How to deploy mono repository app with Qovery
-author_github: https://github.com/evoxmusic
+description: How to deploy applications using Monorepository with Qovery
+author_github: https://github.com/pjeziorowski
 tags: ["type: guide", "technology: qovery"]
 ---
+Qovery provides a very simple way of working with [monorepositories](https://en.wikipedia.org/wiki/Monorepo).
+You can deploy multiple applications using the same git repository or deploy the same application in many different modes/configurations.
 
-<Alert type="warning">
+## Deploying multiple applications using one repository
 
-WORK IN PROGRESS - THIS DOCUMENTATION IS OUTDATED
+<p align="center">
+  <img src="/img/monorepo/monorepo-1.png" alt="Monorepository" />
+</p>
 
-</Alert>
+<p align="center">
+  <img src="/img/monorepo/monorepo-2.png" alt="Monorepository" />
+</p>
+
+As you see in the examples above, we used one repository (`poc-factory/tweetifier`) in two applications:
+
+- timescale
+- core
+
+All we need to do to deploy multiple applications using one repository is:
+
+1. Select application name
+2. Select our repository
+3. Select application root folder
+
+That's it, using monorepositories with Qovery is that simple. Those applications may be a part of the same project or different projects, it's all up to you and your configuration.
+Each commit to the repository will make sure all applications affected will be redeployed and up-to-date.
+
+## Deploying application with multiple configurations using one repository
+
+A special case of monorepository is a situation when one repository is used to deploy multiple applications with the same source code, but different configurations or modes. Application behavior depends on provided config, like environment variables and secrets.
+
+Qovery supports this case well. The steps do not differ much from the steps from previous example:
+
+<p align="center">
+    <img src="/img/monorepo/monorepo-3.png" alt="Monorepository" />
+</p>
+  
+<p align="center">
+    <img src="/img/monorepo/monorepo-4.png" alt="Monorepository" />
+</p>    
+
+As you see in the examples above, we used one repository (`poc-factory/tweetifier`) in two applications:
+
+- app-1
+- app-2
+
+Those applications use the same application root path - `/`, so they can be build using the same source code. To adjust the behavior of applications to meet your needs, use environment variables or secrets.
+It allows you to run multiple applications using the same source code in different modes.
 
 <%= subpages() %>

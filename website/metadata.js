@@ -169,7 +169,7 @@ module.exports = {
           "title": "Microservices"
         },
         {
-          "author_github": "https://github.com/evoxmusic",
+          "author_github": "https://github.com/pjeziorowski",
           "description": null,
           "id": "/advanced/monorepository",
           "last_modified_on": null,

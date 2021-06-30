@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-27"
+last_modified_on: "2021-06-30"
 $schema: "/.meta/.schemas/guides.json"
 title: Staging environment
 description: How to create a staging environment with Qovery
@@ -10,11 +10,41 @@ import Steps from '@site/src/components/Steps';
 import Assumptions from '@site/src/components/Assumptions';
 import Alert from '@site/src/components/Alert';
 
-<Alert type="warning">
+Very often before merging new changes to your production environment you'd like to test them live in a deployed environment that resembles your production. Doing so allows you to make sure that everything works as expected before releasing new changes to your clients.
+Achieving it with Qovery is very simple and works well even if your project is made out of many applications, e.g. multiple backend services, websites, databases and so on.
 
-WORK IN PROGRESS - THIS DOCUMENTATION IS OUTDATED
+### Creating a staging environment
 
-</Alert>
+1. Create a new environment
+
+<p align="center">
+  <img src="/img/staging/staging-4.png" alt="Staging Environment" />
+</p>
+
+2. Add your applications
+
+Choose your application names, git repositories, and branches you want to use for staging.
+
+<p align="center">
+  <img src="/img/staging/staging-1.png" alt="Staging Environment" />
+</p>
+
+<p align="center">
+  <img src="/img/staging/staging-2.png" alt="Staging Environment" />
+</p>
+
+3. Add required services/databases
+
+If your project requires databases, you can add them to your staging environment.
+
+<p align="center">
+  <img src="/img/staging/staging-3.png" alt="Staging Environment" />
+</p>
+
+Now, before merging new code to production, you can merge it first to your `staging` branch (or any other branch name you use for this purpose).
+New changes will be reflected in your `staging` environment, which is separate from your production.
+
+After making sure new changes work well, all you need to do to release them to your clients is to update your production branch with the commits you tested in your staging environment.
 
 
 

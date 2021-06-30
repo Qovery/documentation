@@ -1,16 +1,24 @@
 ---
-last_modified_on: "2021-06-26"
+last_modified_on: "2021-06-29"
 title: MongoDB
 description: "How to set up and use a MongoDB database"
 ---
 
 import Alert from '@site/src/components/Alert';
 
+import Assumptions from '@site/src/components/Assumptions';
+
 <Alert type="warning">
 
 WORK IN PROGRESS - THIS DOCUMENTATION IS OUTDATED
 
 </Alert>
+
+<Assumptions name="documentation">
+
+You have created an [Environment][docs.using-qovery.configuration.environment].
+
+</Assumptions>
 
 MongoDB is a cross-platform document-oriented database program. Classified as a NoSQL, MongoDB uses JSON-like documents with schema.
 
@@ -106,5 +114,6 @@ Daily backups for your Backups database are automatically done for databases in 
 TODO
 
 
+[docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [guides.getting-started.create-a-database]: /guides/getting-started/create-a-database/
 [urls.start_qovery]: https://start.qovery.com

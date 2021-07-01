@@ -108,10 +108,10 @@ Select your project, environment and application
 </li>
 <li>
 
-Select `Environment Variables` tab in the left panel and click `Create` button:
+Select `Environment Variables` tab in the left panel
 
 <p align="center">
-  <img src="/img/configuration/variables/var-1.png" alt="Variables" />
+  <img src="/img/configuration/variables/secret-2.png" alt="Variables" />
 </p>
 
 </li>
@@ -143,10 +143,10 @@ Select your project, environment and application
 </li>
 <li>
 
-Select `Environment Variables` tab in the left panel and click `Create` button:
+Select `Environment Variables` tab in the left panel
 
 <p align="center">
-  <img src="/img/configuration/variables/var-1.png" alt="Variables" />
+  <img src="/img/configuration/variables/secret-2.png" alt="Variables" />
 </p>
 
 </li>
@@ -192,7 +192,7 @@ Select your project, environment and application
 Select `Environment Variables` tab in the left panel
 
 <p align="center">
-  <img src="/img/configuration/variables/var-1.png" alt="Variables" />
+  <img src="/img/configuration/variables/secret-2.png" alt="Variables" />
 </p>
 
 </li>
@@ -247,7 +247,7 @@ Select your project, environment and application
 Select `Environment Variables` tab in the left panel
 
 <p align="center">
-  <img src="/img/configuration/variables/var-1.png" alt="Variables" />
+  <img src="/img/configuration/variables/secret-2.png" alt="Variables" />
 </p>
 
 </li>

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-30"
+last_modified_on: "2021-07-01"
 $schema: "/.meta/.schemas/guides.json"
 title: Debugging
 description: How to debug your application
@@ -170,6 +170,10 @@ In the main application view, you can see charts and overview of your applicatio
 
 </li>
 </ol>
+
+<Alert type="warning">
+  Historical metrics are coming soon!
+</Alert>
 
 ## Alerting
 We highly recommend using tools like [Datadog][urls.datadog], [Sentry][urls.sentry] or [NewRelic][urls.new_relic] to manage your alerting.

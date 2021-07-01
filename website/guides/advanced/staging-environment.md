@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-30"
+last_modified_on: "2021-07-01"
 $schema: "/.meta/.schemas/guides.json"
 title: Staging environment
 description: How to create a staging environment with Qovery
@@ -15,15 +15,28 @@ Achieving it with Qovery is very simple and works well even if your project is m
 
 ### Creating a staging environment
 
-1. Create a new environment
+<Steps headingDepth={3}>
+<ol>
+<li>
+
+Create a new environment
+
+<Alert type="info">
+  You can 
+  <a href="https://hub.qovery.com/docs/using-qovery/configuration/environment/#clone-environment"> clone your production environment </a> 
+  or follow the following steps to set up your staging environment manually.
+</Alert>
 
 <p align="center">
   <img src="/img/staging/staging-4.png" alt="Staging Environment" />
 </p>
 
-2. Add your applications
+</li>
 
-Choose your application names, git repositories, and branches you want to use for staging.
+<li>
+Add your applications
+
+Choose your application names, git repositories, and branches you want to use for staging. You can set up the same environment as you use for producion, or use the clone functionallity.
 
 <p align="center">
   <img src="/img/staging/staging-1.png" alt="Staging Environment" />
@@ -33,7 +46,13 @@ Choose your application names, git repositories, and branches you want to use fo
   <img src="/img/staging/staging-2.png" alt="Staging Environment" />
 </p>
 
-3. Add required services/databases
+As you can see in the screenshots, we used `staging` branches for our applications in staging environment. Applications in this environment will be deployed using source code from `staging` branches.
+
+</li>
+
+<li>
+
+Add required services/databases
 
 If your project requires databases, you can add them to your staging environment.
 
@@ -41,10 +60,28 @@ If your project requires databases, you can add them to your staging environment
   <img src="/img/staging/staging-3.png" alt="Staging Environment" />
 </p>
 
+</li>
+
+<li>
+
+
+Set up secrets and environment variables
+
+The last step you probably need to take is to set up other set of secrets and environment variables that are separate from your production.
+You can do it in your application `Environment Variables` section:
+
+<p align="center">
+  <img src="/img/staging/staging-6.png" alt="Staging Environment" />
+</p>
+
 Now, before merging new code to production, you can merge it first to your `staging` branch (or any other branch name you use for this purpose).
 New changes will be reflected in your `staging` environment, which is separate from your production.
 
 After making sure new changes work well, all you need to do to release them to your clients is to update your production branch with the commits you tested in your staging environment.
+
+</li>
+</ol>
+</Steps>
 
 
 

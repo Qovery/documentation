@@ -255,6 +255,8 @@ Linking database to your app will make sure it's up and running before your appl
 
 Example of secrets and environment variables injected into your app for the linked database:
 
+#### Database Secrets
+
 ```
 "QOVERY_DATABASE_MY_POSTGRESQL_DATABASE": "postgres"
 "QOVERY_DATABASE_MY_POSTGRESQL_PASSWORD": "xxx"

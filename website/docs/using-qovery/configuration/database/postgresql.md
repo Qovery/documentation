@@ -1,16 +1,24 @@
 ---
-last_modified_on: "2021-06-26"
+last_modified_on: "2021-06-29"
 title: PostgreSQL
 description: "How to set up and use a PostgreSQL database"
 ---
 
 import Alert from '@site/src/components/Alert';
 
+import Assumptions from '@site/src/components/Assumptions';
+
 <Alert type="warning">
 
 WORK IN PROGRESS - THIS DOCUMENTATION IS OUTDATED
 
 </Alert>
+
+<Assumptions name="documentation">
+
+You have created an [Environment][docs.using-qovery.configuration.environment].
+
+</Assumptions>
 
 PostgreSQL is a powerful, open source object-relational database system with over 30 years of active development that has earned it a strong reputation for reliability, feature robustness, and performance.
 
@@ -94,5 +102,6 @@ Daily backups for your Backups database are automatically done for databases in 
 TODO
 
 
+[docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [guides.getting-started.create-a-database]: /guides/getting-started/create-a-database/
 [urls.start_qovery]: https://start.qovery.com

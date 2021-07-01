@@ -9,8 +9,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="wip: update doc for v2">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docusaurus.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/docusaurus.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/environment_actions_dropdown.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/environment_create.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/environment_deployment_logs.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/environment_list.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/environment_running.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/environment_settings_general.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,6 +108,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -290,20 +295,6 @@
       <workItem from="1620939988462" duration="161000" />
       <workItem from="1623707885288" duration="24602000" />
       <workItem from="1624139690193" duration="51846000" />
-    </task>
-    <task id="LOCAL-00158" summary="add business/get-started">
-      <created>1611868545080</created>
-      <option name="number" value="00158" />
-      <option name="presentableId" value="LOCAL-00158" />
-      <option name="project" value="LOCAL" />
-      <updated>1611868545080</updated>
-    </task>
-    <task id="LOCAL-00159" summary="add Qovery vs. Terraform">
-      <created>1611929519762</created>
-      <option name="number" value="00159" />
-      <option name="presentableId" value="LOCAL-00159" />
-      <option name="project" value="LOCAL" />
-      <updated>1611929519763</updated>
     </task>
     <task id="LOCAL-00160" summary="update Qovery vs. Terraform">
       <created>1611931118743</created>
@@ -634,7 +625,21 @@
       <option name="project" value="LOCAL" />
       <updated>1624882535774</updated>
     </task>
-    <option name="localTasksCounter" value="207" />
+    <task id="LOCAL-00207" summary="wip: update doc for v2">
+      <created>1624902744904</created>
+      <option name="number" value="00207" />
+      <option name="presentableId" value="LOCAL-00207" />
+      <option name="project" value="LOCAL" />
+      <updated>1624902744904</updated>
+    </task>
+    <task id="LOCAL-00208" summary="wip: update doc for v2">
+      <created>1625063147973</created>
+      <option name="number" value="00208" />
+      <option name="presentableId" value="LOCAL-00208" />
+      <option name="project" value="LOCAL" />
+      <updated>1625063147973</updated>
+    </task>
+    <option name="localTasksCounter" value="209" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

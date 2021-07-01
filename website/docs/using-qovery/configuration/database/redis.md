@@ -1,16 +1,24 @@
 ---
-last_modified_on: "2021-06-26"
+last_modified_on: "2021-06-29"
 title: Redis
 description: "How to set up and use a Redis database"
 ---
 
 import Alert from '@site/src/components/Alert';
 
+import Assumptions from '@site/src/components/Assumptions';
+
 <Alert type="warning">
 
 WORK IN PROGRESS - THIS DOCUMENTATION IS OUTDATED
 
 </Alert>
+
+<Assumptions name="documentation">
+
+You have created an [Environment][docs.using-qovery.configuration.environment].
+
+</Assumptions>
 
 Redis is an open source (BSD licensed), in-memory data structure store, used as a database, cache and message broker. It supports data structures such as strings, hashes, lists, sets, sorted sets with range queries, bitmaps, hyperloglogs, geospatial indexes with radius queries and streams.
 
@@ -95,5 +103,6 @@ Daily backups for your Backups database are automatically done for databases in 
 TODO
 
 
+[docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [guides.getting-started.create-a-database]: /guides/getting-started/create-a-database/
 [urls.start_qovery]: https://start.qovery.com

@@ -58,6 +58,7 @@ Absolutely, you can be an ambassador and also win [rewards][docs.community.rewar
 ### What is an active member on Discord?
 
 An active member on Discord is a user that:
+- Be welcoming
 - Connects multiple times a week to our Discord.
 - Take the time to chat with other members.
 - Try to help as much as possible other users.
@@ -68,6 +69,7 @@ An active member on Discord is a user that:
 ### What is an active member on our Forum?
 
 An active member on our Forum is a user that:
+- Be welcoming
 - Connects multiple times a week to our Forum.
 - Take the time to respond to the questions from other members.
 - Give product feedback.
@@ -77,6 +79,10 @@ An active member on our Forum is a user that:
 ### How to contribute to the documentation?
 
 Is there anything that you see in the documentation that would be great to improve? Our [documentation][https://github.com/Qovery/documentation] is open-source. Feel free to contribute.
+
+### Do you have an official list of current ambassadors?
+
+Not yet, but maybe you can help us to create a beautiful one? :) [Reach me out][urls.qovery_chat]
 
 
 [docs.community.reward]: /docs/community/reward/

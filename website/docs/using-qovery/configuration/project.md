@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-26"
+last_modified_on: "2021-06-29"
 title: "Project"
 description: "Learn how to configure your Projects on Qovery"
 ---
@@ -7,6 +7,7 @@ description: "Learn how to configure your Projects on Qovery"
 import Alert from '@site/src/components/Alert';
 
 import Jump from '@site/src/components/Jump';
+import Assumptions from '@site/src/components/Assumptions';
 
 <Alert type="warning">
 
@@ -16,9 +17,9 @@ WORK IN PROGRESS - THIS DOCUMENTATION IS OUTDATED
 
 A project allows you to group a set of applications and their dependencies (databases & other services).
 
-<Assumptions>
+<Assumptions name="documentation">
 
-* You have created an [organization][docs.using-qovery.configuration.organization]
+* You have created an [Organization][docs.using-qovery.configuration.organization]
 
 </Assumptions>
 
@@ -43,6 +44,12 @@ To create a project you simply need to provide a name. It is also possible to pr
 If you have no project to deploy but still want to give a try to Qovery, you can create a demo project.
 
 ## Delete a project
+
+<Alert type="danger">
+
+This is a non-recoverable operation. By deleting your project, all your running applications and data within the project are deleted.
+
+</Alert>
 
 <p align="center">
   <img src="/img/delete_project.png" alt="Qovery - delete a project" />

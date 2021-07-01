@@ -219,7 +219,7 @@ Override the variable in the popup window:
 
 <Alert type="warning">
 
-You can only override environment variables of a highet scope, e.g. **Environment** scope variable can override **Project** variable, but can't override **Application** variable.
+You can only override environment variables of a higher scope, e.g. **Environment** scope variable can override **Project** variable, but can't override **Application** variable.
 
 </Alert>
 

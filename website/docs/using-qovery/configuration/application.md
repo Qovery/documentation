@@ -34,32 +34,6 @@ Check out [this video guide][guides.getting-started.deploy-your-first-applicatio
 
 </Alert>
 
-## Delete an Application
-
-<Steps headingDepth={3}>
-<ol>
-<li>
-
-Navigate to [Console](https://console-beta.qovery.com)
-
-</li>
-<li>
-
-Choose your application
-
-</li>
-<li>
-
-In application overview, click on the `Actions` button and remove the application
-
-<p align="center">
-  <img src="/img/configuration/application/app-1.png" alt="Application" />
-</p>
-
-</li>
-</ol>
-</Steps>
-
 ## Configuration
 
 ### General
@@ -122,10 +96,10 @@ CMD node ./bin/www
 After creating a Dockerfile, specify the location of your Dockerfile in `Dockefile path` field.
 
 <p align="center">
-  <img src="/img/configuration/application/app-12.png" alt="Dockerfile" />
+  <img src="/img/configuration/application/app-18.png" alt="Dockerfile" />
 </p>
 
-Configuration from above will make Qovery look for the Dockerfile in `/app1/Dockerfile` path of your repository (`Root Application Path` + `Dockerfile Path`).
+Configuration from above will make Qovery look for the Dockerfile in `/timescale/Dockerfile` path of your repository (`Root Application Path` + `Dockerfile Path`).
 
 ### Resources
 
@@ -135,7 +109,7 @@ To configure the number of CPUs that your app needs, adjust the setting in `Reso
 
 <Alert type="info">
 
-Default is 256m. Maximum you can set is 1CPU in `Community` version, and unlimited in `Startup` and higher plans.
+Default is 256m. Maximum you can set is 1CPU in **Community** version, and unlimited in **Startup** and higher plans.
 
 </Alert>
 
@@ -149,7 +123,7 @@ To configure the amout of RAM that your app needs, adjust the setting in `Resour
 
 <Alert type="info">
 
-Default is 256MB, maximum you can set is 512MB in `Community` version, and unlimited in `Startup` and higher plans.
+Default is 256MB, maximum you can set is 512MB in **Community** version, and unlimited in **Startup** and higher plans.
 
 </Alert>
 
@@ -225,6 +199,10 @@ You can also expose ports publicly - it makes them accessible over the public ne
   <img src="/img/configuration/application/app-15.png" alt="Application Ports" />
 </p>
 
+<Alert type="info">
+By default newly created ports are publicly exposed over HTTPS. You can change this setting in `Advanced` section.
+</Alert>
+
 ### Domains
 
 `Domain` section of your application configuration allows you to define a custom domain for your application.
@@ -275,6 +253,32 @@ The built-in variables follow the naming pattern: `QOVERY_DATABASE` + <your_db_n
 
 - `<your_db_name>` is the name of your database
 - `<type_of_variable>` is the type of variable we inject, e.g. `PASSWORD`, `VERSION`, `CONNECTION_URI` and so on.
+
+## Delete an Application
+
+<Steps headingDepth={3}>
+<ol>
+<li>
+
+Navigate to [Console](https://console-beta.qovery.com)
+
+</li>
+<li>
+
+Choose your application
+
+</li>
+<li>
+
+In application overview, click on the `Actions` button and remove the application
+
+<p align="center">
+  <img src="/img/configuration/application/app-1.png" alt="Application" />
+</p>
+
+</li>
+</ol>
+</Steps>
 
 
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/

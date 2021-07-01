@@ -353,6 +353,7 @@ vote_feature = "https://github.com/qovery/documentation/issues?q=is%3Aissue+is%3
 windows_service = "https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/new-service"
 zlib = "https://www.zlib.net"
 qovery_pricing = "https://www.qovery.com/pricing"
+qovery_community_call = "https://www.qovery.com/community-call"
 qovery_contact_us = "https://www.qovery.com/contact"
 qovery_enterprise = "https://www.qovery.com/business"
 qovery_contact_email = "mailto:hello@qovery.com"

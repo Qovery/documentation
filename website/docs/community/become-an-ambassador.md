@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-28"
+last_modified_on: "2021-07-01"
 title: Become an Ambassador
 description: Be a community ambassador and get highly rewarded
 ---
@@ -40,7 +40,7 @@ To become an ambassador, you need to check 2 of the following requirements:
 - Contribute to one of [our open-source projects][urls.qovery_repo].
 - Create tutorial on how to use Qovery.
 - Create video on how to use Qovery.
-- Be an active participant on our [Community Calls][https://www.qovery.com/community-call].
+- Be an active participant on our [Community Calls][urls.qovery_community_call].
 
 ## What are the benefits?
 
@@ -88,5 +88,6 @@ Not yet, but maybe you can help us to create a beautiful one? :) [Reach me out][
 [docs.community.reward]: /docs/community/reward/
 [urls.qovery_chat]: https://discord.qovery.com
 [urls.qovery_community]: https://discuss.qovery.com/
+[urls.qovery_community_call]: https://www.qovery.com/community-call
 [urls.qovery_repo]: https://github.com/qovery
 [urls.qovery_shop]: https://shop.qovery.com/

@@ -9,12 +9,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="wip: update doc for v2">
-      <change afterPath="$PROJECT_DIR$/website/static/img/environment_actions_dropdown.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/static/img/environment_create.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/static/img/environment_deployment_logs.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/static/img/environment_list.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/static/img/environment_running.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/static/img/environment_settings_general.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.meta/links.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/links.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/community/become-an-ambassador.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/community/become-an-ambassador.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/community/become-an-ambassador.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/community/become-an-ambassador.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/application.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/application.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/application.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/application.md.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -295,13 +295,6 @@
       <workItem from="1620939988462" duration="161000" />
       <workItem from="1623707885288" duration="24602000" />
       <workItem from="1624139690193" duration="51846000" />
-    </task>
-    <task id="LOCAL-00160" summary="update Qovery vs. Terraform">
-      <created>1611931118743</created>
-      <option name="number" value="00160" />
-      <option name="presentableId" value="LOCAL-00160" />
-      <option name="project" value="LOCAL" />
-      <updated>1611931118743</updated>
     </task>
     <task id="LOCAL-00161" summary="update Qovery vs. Terraform">
       <created>1611931436464</created>
@@ -639,7 +632,14 @@
       <option name="project" value="LOCAL" />
       <updated>1625063147973</updated>
     </task>
-    <option name="localTasksCounter" value="209" />
+    <task id="LOCAL-00209" summary="wip: update doc for v2">
+      <created>1625063521987</created>
+      <option name="number" value="00209" />
+      <option name="presentableId" value="LOCAL-00209" />
+      <option name="project" value="LOCAL" />
+      <updated>1625063521988</updated>
+    </task>
+    <option name="localTasksCounter" value="210" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

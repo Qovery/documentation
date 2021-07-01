@@ -1,17 +1,11 @@
 ---
-last_modified_on: "2021-06-29"
+last_modified_on: "2021-07-01"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
 import Jump from '@site/src/components/Jump';
 import Alert from '@site/src/components/Alert';
 import Assumptions from '@site/src/components/Assumptions';
-
-<Alert type="warning">
-
-WORK IN PROGRESS - THIS DOCUMENTATION IS OUTDATED
-
-</Alert>
 
 <Assumptions name="documentation">
 
@@ -52,6 +46,10 @@ Above snippet creates an application `myApp` within the project `myProject`.
 Qovery creates the project if it does not exist. If the project exists, Qovery adds your application into it.
 
 </Alert>
+
+# Settings
+
+## Resources
 
 ### Application build
 

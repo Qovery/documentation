@@ -39,10 +39,18 @@ Select your project, environment and application
 </li>
 <li>
 
-Select `Secrets` tab in the left panel and click `Create` button:
+Select `Environment Variables` tab in the left panel:
 
 <p align="center">
-  <img src="/img/configuration/variables/var-1.png" alt="Variables" />
+  <img src="/img/configuration/variables/secret-2.png" alt="Secret" />
+</p>
+
+<hr/>
+
+Switch to `Secret Variables` and click `Create` button:
+
+<p align="center">
+  <img src="/img/configuration/variables/secret.png" alt="Secret" />
 </p>
 
 </li>
@@ -100,16 +108,24 @@ Select your project, environment and application
 </li>
 <li>
 
-Select `Secrets` tab in the left panel and click `Create` button:
+Select `Environment Variables` tab in the left panel:
 
 <p align="center">
-  <img src="/img/configuration/variables/var-1.png" alt="Variables" />
+  <img src="/img/configuration/variables/secret-2.png" alt="Secret" />
+</p>
+
+<hr/>
+
+Switch to `Secret Variables`
+
+<p align="center">
+  <img src="/img/configuration/variables/secret.png" alt="Secret" />
 </p>
 
 </li>
 <li>
 
-Select variable you want to delete and click the `Delete` button:
+Select variable you want to delete and click the `Remove` button:
 
 <p align="center">
   <img src="/img/configuration/variables/var-3.png" alt="Delete Variables" />
@@ -135,13 +151,21 @@ Select your project, environment and application
 </li>
 <li>
 
-Select `Secrets` tab in the left panel and click `Create` button:
+Select `Environment Variables` tab in the left panel:
 
 <p align="center">
-  <img src="/img/configuration/variables/var-1.png" alt="Variables" />
+  <img src="/img/configuration/variables/secret-2.png" alt="Secret" />
 </p>
 
+<hr/>
+
+Switch to `Secret Variables`
+
+<p align="center">
+  <img src="/img/configuration/variables/secret.png" alt="Secret" />
+</p>
 </li>
+
 <li>
 
 Select variable you want to update and click the `Edit` button:
@@ -181,10 +205,18 @@ Select your project, environment and application
 </li>
 <li>
 
-Select `Secrets` tab in the left panel
+Select `Environment Variables` tab in the left panel:
 
 <p align="center">
-  <img src="/img/configuration/variables/var-1.png" alt="Variables" />
+  <img src="/img/configuration/variables/secret-2.png" alt="Secret" />
+</p>
+
+<hr/>
+
+Switch to `Secret Variables`
+
+<p align="center">
+  <img src="/img/configuration/variables/secret.png" alt="Secret" />
 </p>
 
 </li>
@@ -236,10 +268,18 @@ Select your project, environment and application
 </li>
 <li>
 
-Select `Secrets` tab in the left panel
+Select `Environment Variables` tab in the left panel:
 
 <p align="center">
-  <img src="/img/configuration/variables/var-1.png" alt="Variables" />
+  <img src="/img/configuration/variables/secret-2.png" alt="Secret" />
+</p>
+
+<hr/>
+
+Switch to `Secret Variables`
+
+<p align="center">
+  <img src="/img/configuration/variables/secret.png" alt="Secret" />
 </p>
 
 </li>

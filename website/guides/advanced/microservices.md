@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-30"
+last_modified_on: "2021-07-01"
 $schema: "/.meta/.schemas/guides.json"
 title: Microservices
 description: How to deploy microservices with Qovery
@@ -39,7 +39,7 @@ If your backend is made out of more than one application, very often they will n
 <ol>
 <li>
 
-This guide assumes your applications are deployed. If you don't know how to deploy your app, [check our guide](https://hub.qovery.com/guides/getting-started/deploy-your-first-application/#step-by-step-tutorial).
+This guide assumes your applications are deployed. If you don't know how to deploy your app, [check our guide][guides.getting-started.deploy-your-first-application#step-by-step-tutorial].
 
 </li>
 <li>
@@ -48,7 +48,7 @@ Assuming you have two backend applications:
 - `firstapp`
 - `secondapp`
 
-You can send requests from one application to another using values injected automatically by Qovery into your environment variables. 
+You can send requests from one application to another using values injected automatically by Qovery into your [environment variables][docs.using-qovery.configuration.environment-variable]. 
 
 Examplary Node.js code snippet:
 
@@ -65,7 +65,7 @@ axios.get(secondAppAddress + '/api/users')
   });
 ```
 
-As you can see in the example, you can communicate with your second application using Qovery-injected built-in environment variable.
+As you can see in the example, you can communicate with your second application using Qovery-injected [built-in environment variable][docs.using-qovery.configuration.environment-variable#built-in-variables].
 The second application does not have to be publicly accessible - your applications communicate safely inside the internal network.
 
 To target another application in your environment, use the built-in environment variables following this naming pattern:
@@ -141,4 +141,6 @@ export default axios.create({
 </Steps>
 
 
-
+[docs.using-qovery.configuration.environment-variable#built-in-variables]: /docs/using-qovery/configuration/environment-variable/#built-in-variables
+[docs.using-qovery.configuration.environment-variable]: /docs/using-qovery/configuration/environment-variable/
+[guides.getting-started.deploy-your-first-application#step-by-step-tutorial]: /guides/getting-started/deploy-your-first-application/#step-by-step-tutorial

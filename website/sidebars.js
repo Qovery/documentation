@@ -6,11 +6,7 @@ module.exports = {
             items: [
                 "getting-started",
                 "getting-started/what-is-qovery",
-                {
-                    type: 'link',
-                    label: 'Deploy my app',
-                    href: '/guides/getting-started/deploy-your-first-application'
-                },
+                "getting-started/deploy-my-app",
                 "getting-started/features",
                 {
                     type: 'category',
@@ -61,8 +57,6 @@ module.exports = {
                         },
                         "using-qovery/configuration/environment-variable",
                         "using-qovery/configuration/secret",
-                        "using-qovery/configuration/domain",
-                        "using-qovery/configuration/block-storage-",
                         "using-qovery/configuration/object-storage",
                         "using-qovery/configuration/deployment-rule",
                         {

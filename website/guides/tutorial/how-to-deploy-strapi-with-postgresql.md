@@ -100,7 +100,7 @@ Alternatively, you can deploy your Strapi application with a PostgreSQL database
 
 ### 3. Add a Dockerfile (optional)
 
-By default, Qovery uses Buildpacks to build and run your Strapi application. But it is also possible to build and run your application by providing a `Dockerfile` (see [Qovery documentation][docs.using-qovery.configuration.application#application-build] for more information).
+By default, Qovery uses Buildpacks to build and run your Strapi application. But it is also possible to build and run your application by providing a `Dockerfile` (see [Qovery documentation][docs.using-qovery.configuration.application#build-mode] for more information).
 
 ### 4. Deploy
 
@@ -115,7 +115,7 @@ For vertical scaling, Qovery lets you upgrade your CPU and RAM per an instance. 
 <Jump to="/guides/tutorial/">Tutorial</Jump>
 
 
-[docs.using-qovery.configuration.application#application-build]: /docs/using-qovery/configuration/application/#application-build
+[docs.using-qovery.configuration.application#build-mode]: /docs/using-qovery/configuration/application/#build-mode
 [docs.using-qovery.configuration.application]: /docs/using-qovery/configuration/application/
 [docs.using-qovery.interface.cli]: /docs/using-qovery/interface/cli/
 [urls.start_qovery]: https://start.qovery.com

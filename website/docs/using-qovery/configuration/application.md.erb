@@ -6,12 +6,6 @@ import Jump from '@site/src/components/Jump';
 import Alert from '@site/src/components/Alert';
 import Assumptions from '@site/src/components/Assumptions';
 
-<Alert type="warning">
-
-WORK IN PROGRESS - THIS DOCUMENTATION IS OUTDATED
-
-</Alert>
-
 <Assumptions name="documentation">
 
 You have created an [Environment][docs.using-qovery.configuration.environment].
@@ -28,23 +22,51 @@ Check out [this video guide][guides.getting-started.deploy-your-first-applicatio
 
 </Alert>
 
-Creating a new project is as simple as choosing its name in your application configs(`.qovery.yml`):
+## Delete an Application
 
-```yml {2}
-application:
-  name: myApp
-  project: myProject
-```
+<Steps headingDepth={3}>
+<ol>
+<li>
 
-Above snippet creates an application `myApp` within the project `myProject`.
+Navigate to [Console](https://console-beta.qovery.com)
+
+</li>
+<li>
+
+Choose your application
+
+</li>
+<li>
+
+In application overview, click on the `Actions` button and remove the application
+
+<p align="center">
+  <img src="/img/configuration/application/app-1.png" alt="Application" />
+</p>
+
+</li>
+</ol>
+</Steps>
+
+## Configuration
+
+### General
+
+General settings allow you to set up your application name, git repository and build mode.
+
+#### Git Repository
+
+- Configure your repository URL (it can be hosted on Github or Gitlab, Bitbucket support coming soon).
+- Select branch that Qovery should use for builds in this environment
+- Select `Root Application Path` - base folder in which the application resides in your repository
 
 <Alert type="info">
 
-Qovery creates the project if it does not exist. If the project exists, Qovery adds your application into it.
+Qovery supports monorepositories, you can deploy multiple apps using single repository. [For details, see our advanced guide.][guides.advanced.monorepository]
 
 </Alert>
 
-### Application build
+### Build Mode
 
 #### Option 1: Buildpacks
 
@@ -81,170 +103,157 @@ EXPOSE 3000
 CMD node ./bin/www
 ```
 
-To validate it you can run `qovery run` - Note: you need to have Docker running on your computer.
+After creating a Dockerfile, specify the location of your Dockerfile in `Dockefile path` field.
 
-#### Custom Dockerfile location
+<p align="center">
+  <img src="/img/configuration/application/app-12.png" alt="Dockerfile" />
+</p>
 
-To specify the location of your Dockerfile, use `dockerfile` field in your `.qovery.yml`.
+Configuration from above will make Qovery look for the Dockerfile in `/app1/Dockerfile` path of your repository (`Root Application Path` + `Dockerfile Path`).
 
-```yml {5}
-application:
-  name: myApp
-  project: myProject
-  cpu: 1
-  dockerfile: my/folder/Dockerfile
-```
+### Resources
 
-Configuration from above will make Qovery look for the Dockerfile in `my/folder/Dockerfile` path of your repository.
+#### CPU
 
-## Delete an Application
-
-TODO
-
-## Configuration
-
-### CPU
-
-To configure the number of CPUs that your app needs, you only need to add the `cpu` option into the `.qovery.yml`
+To configure the number of CPUs that your app needs, adjust the setting in `Resources` section of application configuration.
 
 <Alert type="info">
 
-Default is 256m
+Default is 256m. Maximum you can set is 1CPU in `Community` version, and unlimited in `Startup` and higher plans.
 
 </Alert>
 
-```yml {4}
-application:
-  name: myApp
-  project: myProject
-  cpu: 1
-```
+<p align="center">
+  <img src="/img/configuration/application/app-13.png" alt="CPU" />
+</p>
 
-Accepted values are Integer and Millis CPU.
+#### RAM
 
-```yml {4} title="2 CPUs requested"
-application:
-  name: myApp
-  project: myProject
-  cpu: 2
-```
-
-```yml {4} title="1/4 of CPU requested"
-application:
-  name: myApp
-  project: myProject
-  cpu: 250m
-```
-
-### RAM
-
-To configure the RAM that your app needs, you only need to add the `ram` property into the `.qovery.yml`
+To configure the amout of RAM that your app needs, adjust the setting in `Resources` section of application configuration.
 
 <Alert type="info">
 
-Default is 512MB
+Default is 256MB, maximum you can set is 512MB in `Community` version, and unlimited in `Startup` and higher plans.
 
 </Alert>
 
-```yml {4}
-application:
-  name: myApp
-  project: myProject
-  ram: 256MB
-```
+<p align="center">
+  <img src="/img/configuration/application/app-14.png" alt="RAM" />
+</p>
 
-Accepted values are MB (mega bytes) and GB (giga bytes)
-
-```yml {4} title="1 GB requested"
-application:
-  name: myApp
-  project: myProject
-  ram: 1GB
-```
-
-### Public access
-
-To publicly expose your application you need to add the following lines into your `.qovery.yml`
-
-```yml {4-11} title="publicly expose my application and route the traffic into it"
-application:
-  name: myApp
-  project: myProject
-  publicly_accessible: true
-  port: 8080
-routers:
-- name: my-router
-  routes:
-  - application_name: myApp
-    paths:
-    - /
-```
-
-You also need to indicate on which port your application is running.
-
-**Option 1**
-
-Add `port` property in your `.qovery.yml` as above.
-
-**Option 2**
-
-Add the `EXPOSE {port}` instruction into your `Dockerfile`
-
-```Dockerfile title="Expose"
-...
-EXPOSE 3000
-...
-```
-
-Your app is now publicly accessible through the auto generated endpoint.
-
-### Long startup time
-
-Sometimes your application can take some time to start. E.g., when your app is performing database migration.
-By default, Qovery waits for 15 seconds to check if your app is running correctly. If it's not the case, your environment is rolled-back to the previous working version.
-
-To prevent this, you can change the startup time:
-
-```yml {4} title="Change the start timeout to 5 minutes"
-application:
-  name: myApp
-  project: myProject
-  start_timeout: 600s
-```
-
-or
-
-```yml {4} title="Change the start timeout to 5 minutes"
-application:
-  name: myApp
-  project: myProject
-  start_timeout: 5m
-```
-
-Seconds (s) and minutes (m) are accepted units.
-
-
-### Define start order
+### Dependencies
 
 Qovery gives you the power to have multiple apps within one environment. Sometimes it's necessary to one or multiple apps before others.
-By using `depends_on` property you can declare a list of apps your app is depending on.
+By using `Dependency` configuration you can declare a list of apps your app is depending on.
 
-Let's take as example 3 apps:
+<p align="center">
+  <img src="/img/configuration/application/app-6.png" alt="Application Dependencies" />
+</p>
 
-- billing-api
-- user-api
-- frontend
+Setting up application dependencies will make sure all the dependencies are running before your application starts.
 
-Where:
-- **frontend** depends on **user-api** and **billing-api**.
+### Storage
 
-```yml {4-6} title="Declare dependencies"
-application:
-  name: frontend
-  project: myProject
-  depends_on:
-  - user-api
-    billing-api
+#### Block Storage
+
+The default filesystem for applications running on Qovery is ephemeral. Application data isn’t persisted across deploys and restarts, which works just fine for most apps because they use managed databases to persist data.
+
+However, many applications need persistent disk storage that isn’t ephemeral. These include:
+
+* Blogging platforms and CMSs like WordPress, Ghost, and Strapi.
+* Collaboration apps like Mattermost, GitLab, and Discourse.
+
+This is where Qovery block Storage comes in. Qovery applications can use storage to store data that persists across deploys and restarts, making it easy to deploy stateful applications.
+
+<Alert type="warning">
+
+For most use cases, it is better to use [Object Storage][docs.using-qovery.configuration.object-storage] instead of Block Storage.
+
+</Alert>
+
+###### Use cases
+
+###### ✅ Good use cases
+
+- For I/O intensive applications (E.g. database)
+- To store temporary files
+
+###### ❌ Bad use cases
+
+- To store file > 1 TB
+- To expose files from an application (E.g. images)
+
+##### Types of Block Storage
+
+Qovery Storage supports:
+
+|Type|Max IOPS|Max Throughput|Min Size|Max Size|Use cases|
+|----|--------|--------------|--------|--------|---------|
+|fast_ssd|64000|1GB/s|5GB|10GB `Community` / 1TB `Startup` plans|Critical business applications that require sustained IOPS like databases|
+
+##### Configuration
+
+You can set up your Block Storage in `Storage` section of your application configuration.
+
+<p align="center">
+  <img src="/img/configuration/application/app-7.png" alt="Application Storage" />
+</p>
+
+### Ports
+
+Most of application needs to be accessed by other services inside or outside of your environment. To set up the access,
+declare ports your application uses. Internal ports are available internally inside your environment for other services to use.
+You can also expose ports publicly - it makes them accessible over the public network.
+
+<p align="center">
+  <img src="/img/configuration/application/app-15.png" alt="Application Ports" />
+</p>
+
+### Domains
+
+`Domain` section of your application configuration allows you to define a custom domain for your application.
+
+<p align="center">
+  <img src="/img/configuration/application/app-16.png" alt="Application Domains" />
+</p>
+
+After setting up a custom domain, you'll see a `Value` that you need to set up as `CNAME` record in your domain registrar.
+
+<Alert type="info">
+
+[We prepared a guide and video tutorial that explains how to set up your custom domain.][guides.getting-started.setting-custom-domain]
+
+</Alert>
+
+Setting up the `CNAME` on domain provider side will make your app accessible through your custom domain on Qovery.
+
+### Database
+
+To access your database in your application, link it to your application in `Database` section of your application configuration.
+
+<p align="center">
+  <img src="/img/configuration/application/app-10.png" alt="Application Databases" />
+</p>
+
+Linking database to your app will make sure it's up and running before your application starts. It will also ensure that database secrets and other important information are injected as secrets into your application.
+
+Example of secrets and environment variables injected into your app for the linked database:
+
+```
+"QOVERY_DATABASE_MY_POSTGRESQL_DATABASE": "postgres"
+"QOVERY_DATABASE_MY_POSTGRESQL_PASSWORD": "xxx"
+"QOVERY_DATABASE_MY_POSTGRESQL_USERNAME": "superuser"
+"QOVERY_DATABASE_MY_POSTGRESQL_PORT": "5432"
+"QOVERY_DATABASE_MY_POSTGRESQL_FQDN": "my-postgresq-y1irp3nmdzj32yjl-svc.cnuxtlki1yn9.eu-west-3.rds.amazonaws.com"
+"QOVERY_DATABASE_MY_POSTGRESQL_HOST": "my-postgresq-y1irp3nmdzj32yjl-svc.cnuxtlki1yn9.eu-west-3.rds.amazonaws.com"
+"QOVERY_DATABASE_MY_POSTGRESQL_CONNECTION_URI_WITHOUT_CREDENTIALS": "postgresql://my-postgresq-y1irp3nmdzj32yjl-svc.cnuxtlki1yn9.eu-west-3.rds.amazonaws.com:5432/postgres"
+"QOVERY_DATABASE_MY_POSTGRESQL_CONNECTION_URI": "postgresql://superuser:xxx@my-postgresq-y1irp3nmdzj32yjl-svc.cnuxtlki1yn9.eu-west-3.rds.amazonaws.com:5432/postgres"
+"QOVERY_DATABASE_MY_POSTGRESQL_VERSION": "11.5"
+"QOVERY_DATABASE_MY_POSTGRESQL_TYPE": "POSTGRESQL"
+"QOVERY_DATABASE_MY_POSTGRESQL_NAME": "my-postgresql"
 ```
 
-The `depends_on` property, guarantee that your app will never start before others that it depends on.
+The built-in variables follow the naming pattern: `QOVERY_DATABASE` + <your_db_name> + <type_of_variable> where:
+
+- `<your_db_name>` is the name of your database
+- `<type_of_variable>` is the type of variable we inject, e.g. `PASSWORD`, `VERSION`, `CONNECTION_URI` and so on.

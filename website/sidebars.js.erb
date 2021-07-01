@@ -6,11 +6,7 @@ module.exports = {
             items: [
                 <%= metadata.links.fetch_id("docs.getting-started").to_json %>,
                 <%= metadata.links.fetch_id("docs.what-is-qovery").to_json %>,
-                {
-                    type: 'link',
-                    label: 'Deploy my app',
-                    href: '<%= metadata.links.fetch_id("guides.getting-started.deploy-your-first-application") %>'
-                },
+                <%= metadata.links.fetch_id("docs.deploy-my-app").to_json %>,
                 <%= metadata.links.fetch_id("docs.features").to_json %>,
                 {
                     type: 'category',
@@ -61,8 +57,6 @@ module.exports = {
                         },
                         <%= metadata.links.fetch_id("docs.using-qovery.configuration.environment-variable").to_json %>,
                         <%= metadata.links.fetch_id("docs.using-qovery.configuration.secret").to_json %>,
-                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.domain").to_json %>,
-                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.block-storage-").to_json %>,
                         <%= metadata.links.fetch_id("docs.using-qovery.configuration.object-storage").to_json %>,
                         <%= metadata.links.fetch_id("docs.using-qovery.configuration.deployment-rule").to_json %>,
                         {

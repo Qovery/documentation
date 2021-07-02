@@ -33,8 +33,8 @@ your development environments to a cheaper cloud account, while still keeping yo
 
 ## Rule Levels
 
-You can set up your Rules at **Project** and **Environment** level. Rules set up at the Project level will be automatically applied to Environment you select in the rule.
-If, however, the default settings applied by the Project level rule does not meet your needs, you are allowed to override the settings at the Environment level.
+You can set up your Rules at **Project** and **Environment** level. Rules set up at the Project level will be automatically applied to **newly created** Environments you target in the rule.
+If, however, the default settings applied by the Project level rule does not meet your needs, you are allowed to override the settings at the Environment level later on.
 
 ## Project Deployment Rules
 
@@ -78,7 +78,10 @@ In the popup, select **Deployment Rules** and add **New**:
 
 ### Mode
 
-Selecting rule mode allows you to: TODO
+Selecting Mode allows you to choose the type of services provisioned in your environments. It's a great way to optimize your cloud expenses:
+
+- `PRODUCTION` mode will provision reliable, production-ready services. It will make sure your production is covered with backups, high uptime, and stability
+- `DEVELOPMENT` mode will provision services in development mode, e.g. Qovery will deploy cheap, containarized versions of databases, to avoid provisioning costly, cloud-provider managed services
 
 ### Cluster
 
@@ -104,7 +107,7 @@ Start and stop section allow you to precisely set up when the environments insid
 
 **Example use cases**
 
-- delete your development environments during the weekend
+- shut down your development environments during the weekend
 - deploy additional environments during peak hours
 
 <br/>
@@ -164,11 +167,11 @@ In environment overview, click **Settings** button:
 
 ### Mode
 
-Mode settings allow you to override the default Mode rule applied from your Project rules. However, this settings may be only updated when the enviornment is not running.
+Displays the mode of your environment. This field is not editable after the enviornment was provisioned.
 
 ### Cluster
 
-Cluster settings allow you to override the default Cluster assigned to your enviornment by the Project rules. This settings may be only updated when the enviornment is not running.
+Displays the cluster assigned to your environment. This is not editable after the enviornment was provisioned.
 
 <p align="center">
   <img src="/img/configuration/deployment/deploy-6.png" alt="Deployments" />

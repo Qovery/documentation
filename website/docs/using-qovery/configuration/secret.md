@@ -7,8 +7,8 @@ description: "Learn how to configure Secrets on Qovery"
 import Alert from '@site/src/components/Alert';
 import Steps from '@site/src/components/Steps';
 
-If your projects and applcations rely on sensitive data like credentials, API keys, certificates, the best way to store them are **Secrets**. The difference between
-**Environment Variables** and Secrets is that Secrets are safely encrypted and thier values can not be retrived via Qovery API - they are only accessible for your application during build and runtime.
+If your projects and applications rely on sensitive data like credentials, API keys, certificates, the best way to store them is **Secrets**. The difference between
+**Environment Variables** and Secrets is that Secrets are safely encrypted, and their values can not be retrieved via Qovery API - they are only accessible for your application during build and runtime.
 
 <Alert type="info">
 
@@ -24,7 +24,7 @@ Qovery makes **Secrets** available to all services at runtime, as well as during
      website/docs/using-qovery/configuration/secret.md.erb
 -->
 
-## Create an Secret
+## Create a Secret
 
 <Steps headingDepth={3}>
 <ol>
@@ -57,7 +57,7 @@ Switch to `Secret Variables` and click `Create` button:
 </li>
 <li>
 
-Select name and value of your new secret
+Select the name and value of your new secret
 
 <p align="center">
   <img src="/img/configuration/variables/var-2.png" alt="Variables" />
@@ -93,7 +93,7 @@ Additionally, there is one more `BUILT_IN` scope that is used for variables inje
 </ol>
 </Steps>
 
-## Delete an Secret
+## Delete a Secret
 
 <Steps headingDepth={3}>
 <ol>
@@ -136,7 +136,7 @@ Select variable you want to delete and click the `Remove` button:
 </ol>
 </Steps>
 
-## Update an Secret
+## Update a Secret
 
 <Steps headingDepth={3}>
 <ol>
@@ -252,7 +252,7 @@ You can only override secrets of a higher scope, e.g. **Environment** scope vari
 
 You can create an alias for the existing secret.
 
-Let's suppose that your application requires a `DATABASE_URL` variable. Qovery provides your application with `QOVERY_DATABASE_MY_POSTGRESQL_3498225_URL` variable with a database password.
+Let's suppose that your application requires a `DATABASE_URL` variable. Qovery provides your application with the `QOVERY_DATABASE_MY_POSTGRESQL_3498225_URL` variable with a database password.
 Instead of copy-pasting its value, you can create an alias to `QOVERY_DATABASE_MY_POSTGRESQL_3498225_URL`.
 
 <Steps headingDepth={3}>
@@ -339,7 +339,7 @@ QOVERY_<SERVICE_TYPE>_<NAME>_<SPEC>
 
 ## Additional Rules
 
-* Secret keys should use only alphanumeric characters, and the underscore character (_) to ensure that they are accessible from all programming languages. Secret keys should not include the hyphen character.
+* Secret keys should use only alphanumeric characters and the underscore character (_) to ensure that they are accessible from all programming languages. Secret keys should not include the hyphen character.
 * Secret keys should not begin with a double underscore (__).
 * A Secret’s key should not begin with QOVERY_ unless it is set by the Qovery platform itself.
 

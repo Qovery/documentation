@@ -26,32 +26,32 @@ when your applications are not running. Then you can expect to reduce your Cloud
 
 ### Time optimization
 
-Configuring your environments, managing, starting, shutting down, it all takes the valuable time from your developers. Deployment Rules allow you
-to declaratively set up how your resources should be used, and let Qovery do the dirty job, allowing your employees to focus on important things.
+Configuring your environments, managing, starting, shutting down all takes valuable time from your developers. Deployment Rules allow you
+to declaratively set up how your resources should be used, let Qovery do the dirty job, allowing your employees to focus on important things.
 
 ### Examples
 
 #### Shutting down environments
 
-Developers in your company work from 9-to-5, five days a week. During the weekend, at night, and off the working hours, keeping all development environments running
-may be a huge expsense that gives you no benefits. 
+Developers in your company work from 9-to-5, five days a week. During the weekend, at night, and of the working hours, keeping all development environments running
+may be a huge expense that gives you no benefits. 
 
 Deployment Rules address this problem very effectively - all you need to do is to define when you need your environments to be running,
 and let us handle the rest. Qovery will start and stop your services for you to make sure your cloud spending is optimized and wise.
 
 #### Using cheaper cloud providers
 
-Running your development environments on expensive cloud providers might not be the best way to spend your money. Depoyment Rules allow you to deploy
-your development environments to a cheaper cloud account, while still keeping your production using the most reliable services provided by the more expensive cloud provider.
+Running your development environments on expensive cloud providers might not be the best way to spend your money. Deployment Rules allow you to deploy
+your development environments to a cheaper cloud account while still keeping your production using the most reliable services provided by the more expensive cloud provider.
 
 ## Rule Levels
 
-You can set up your Rules at **Project** and **Environment** level. Rules set up at the Project level will be automatically applied to **newly created** Environments you target in the rule.
+You can set up your Rules at **Project** and **Environment** levels. Rules set up at the Project level will be automatically applied to **newly created** Environments you target in the rule.
 If, however, the default settings applied by the Project level rule does not meet your needs, you are allowed to override the settings at the Environment level later on.
 
 ## Project Deployment Rules
 
-Declaring deployment rules at the project level allows you to apply reasonable defaults to all newly created environments. After a new environment within a project is created, rules from the Project at are applied to the Environment. However, to keep thigs flexible, Qovery allows you to override the rules after enviornment creation at the Environment level, in Environment settings.
+Declaring deployment rules at the project level allows you to apply reasonable defaults to all newly created environments. After a new environment within a project is created, rules from the Project are applied to the Environment. However, to keep things flexible, Qovery allows you to override the rules after environment creation at the Environment level, in Environment settings.
 
 ### Project Rules Configuration
 
@@ -94,11 +94,11 @@ In the popup, select **Deployment Rules** and add **New**:
 Selecting Mode allows you to choose the type of services provisioned in your environments. It's a great way to optimize your cloud expenses:
 
 - `PRODUCTION` mode will provision reliable, production-ready services. It will make sure your production is covered with backups, high uptime, and stability
-- `DEVELOPMENT` mode will provision services in development mode, e.g. Qovery will deploy cheap, containarized versions of databases, to avoid provisioning costly, cloud-provider managed services
+- `DEVELOPMENT` mode will provide services in development mode, e.g. Qovery will deploy cheap, containerized versions of databases to avoid provisioning costly, cloud-provider managed services
 
 ### Cluster
 
-Selecting the cluster allows you control to which cluster your environments in the project will be deployed to.
+Selecting the cluster allows you to control to which cluster your environments in the project will be deployed to.
 
 **Example use cases**
 - deploy your development environments on a cheap cloud provider
@@ -112,11 +112,11 @@ Selecting the cluster allows you control to which cluster your environments in t
 
 ### Auto-deploy
 
-**Auto deploy** allows you to control if your applications should be by default automatically updated after receiving new commits.
+**Auto deploy** allows you to control if your applications should be, by default, automatically updated after receiving new commits.
 
 ### Start & Stop
 
-Start and stop section allow you to precisely set up when the environments inside the project should be deployed and cleaned up.
+The start and stop section allow you to precisely set up when the environments inside the project should be deployed and cleaned up.
 
 **Example use cases**
 
@@ -133,7 +133,7 @@ This option allows you to specify which environments should be affected by the g
   <img src="/img/configuration/deployment/deploy-4.png" alt="Deployments" />
 </p>
 
-It takes a regex expression as a parameter and based on that decides which rule should be applied to a newly created environment.
+It takes a regex expression as a parameter and, based on that, decides which rule should be applied to a newly created environment.
 
 <Alert type="info">
 
@@ -148,7 +148,7 @@ You can override the Rule applied by Project to Environment in Environment setti
 
 ## Environment Deployment Rules
 
-Setting up Deployment Rules at the Enviornment level allows you to make all necessesary adjustments applied by your default rules from the Project level.
+Setting up Deployment Rules at the Enviornment level allows you to make all necessary adjustments applied by your default rules from the Project level.
 
 ### Environment Rules Configuration
 
@@ -180,11 +180,11 @@ In environment overview, click **Settings** button:
 
 ### Mode
 
-Displays the mode of your environment. This field is not editable after the enviornment was provisioned.
+Displays the mode of your environment. This field is not editable after the environment was provisioned.
 
 ### Cluster
 
-Displays the cluster assigned to your environment. This is not editable after the enviornment was provisioned.
+Displays the cluster assigned to your environment. This is not editable after the environment was provisioned.
 
 <p align="center">
   <img src="/img/configuration/deployment/deploy-6.png" alt="Deployments" />
@@ -202,7 +202,7 @@ Displays the cluster assigned to your environment. This is not editable after th
 
 ### Start & Stop
 
-Start and stop section allow you to override the default settings applied by the project rule to precisely set up when the environment should be deployed and cleaned up.
+The start and stop section allow you to override the default settings applied by the project rule to precisely set up when the environment should be deployed and cleaned up.
 
 <p align="center">
   <img src="/img/configuration/deployment/deploy-8.png" alt="Deployments" />

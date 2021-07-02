@@ -40,7 +40,7 @@ General settings allow you to set up your application name, git repository and b
 
 <Alert type="info">
 
-Qovery supports monorepositories, you can deploy multiple apps using single repository. [For details, see our advanced guide.][guides.advanced.monorepository]
+Qovery supports monorepositories, you can deploy multiple apps using a single repository. [For details, see our advanced guide.][guides.advanced.monorepository]
 
 </Alert>
 
@@ -48,7 +48,7 @@ Qovery supports monorepositories, you can deploy multiple apps using single repo
 
 #### Option 1: Buildpacks
 
-To simplify application build for the developer, Qovery supports [Buildpacks](https://buildpacks.io) out of the box. Buildpacks determine the build process for an app, and which assets and runtimes should be made available to your code at runtime. If your complex apps are running multiple languages, you can also use multiple buildpacks within a single app.
+To simplify the application build for the developer, Qovery supports [Buildpacks](https://buildpacks.io) out of the box. Buildpacks determine the build process for an app and which assets and runtimes should be made available to your code at runtime. If your complex apps are running multiple languages, you can also use multiple buildpacks within a single app.
 Meaning, as a developer, you don't need to write a `Dockerfile` to build and run your app. Qovery Buildpacks takes care of everything for you.
 
 **Supported languages**
@@ -93,11 +93,11 @@ Configuration from above will make Qovery look for the Dockerfile in `/timescale
 
 #### CPU
 
-To configure the number of CPUs that your app needs, adjust the setting in `Resources` section of application configuration.
+To configure the number of CPUs that your app needs, adjust the setting in the `Resources` section of the application configuration.
 
 <Alert type="info">
 
-Default is 256m. Maximum you can set is 1CPU in **Community** version, and unlimited in **Startup** and higher plans.
+Default is 256m. The maximum you can set is 1CPU in **Community** version and unlimited in **Startup** and higher plans.
 
 </Alert>
 
@@ -107,7 +107,7 @@ Default is 256m. Maximum you can set is 1CPU in **Community** version, and unlim
 
 #### RAM
 
-To configure the amout of RAM that your app needs, adjust the setting in `Resources` section of application configuration.
+To configure the amount of RAM that your app needs, adjust the setting in `Resources` section of the application configuration.
 
 <Alert type="info">
 
@@ -122,7 +122,7 @@ Default is 256MB, maximum you can set is 512MB in **Community** version, and unl
 ### Dependencies
 
 Qovery gives you the power to have multiple apps within one environment. Sometimes it's necessary to one or multiple apps before others.
-By using `Dependency` configuration you can declare a list of apps your app is depending on.
+By using the `Dependency` configuration, you can declare a list of apps your app is depending on.
 
 <p align="center">
   <img src="/img/configuration/application/app-6.png" alt="Application Dependencies" />
@@ -179,8 +179,8 @@ You can set up your Block Storage in `Storage` section of your application confi
 
 ### Ports
 
-Most of application needs to be accessed by other services inside or outside of your environment. To set up the access,
-declare ports your application uses. Internal ports are available internally inside your environment for other services to use.
+Most of the application needs to be accessed by other services inside or outside of your environment. To set up the access,
+declare the ports your application uses. Internal ports are available internally inside your environment for other services to use.
 You can also expose ports publicly - it makes them accessible over the public network.
 
 <p align="center">
@@ -188,7 +188,7 @@ You can also expose ports publicly - it makes them accessible over the public ne
 </p>
 
 <Alert type="info">
-By default newly created ports are publicly exposed over HTTPS. You can change this setting in `Advanced` section.
+By default, newly created ports are publicly exposed over HTTPS. You can change this setting in the `Advanced` section.
 </Alert>
 
 ### Domains
@@ -199,7 +199,7 @@ By default newly created ports are publicly exposed over HTTPS. You can change t
   <img src="/img/configuration/application/app-16.png" alt="Application Domains" />
 </p>
 
-After setting up a custom domain, you'll see a `Value` that you need to set up as `CNAME` record in your domain registrar.
+After setting up a custom domain, you'll see a `Value` that you need to set up as a `CNAME` record in your domain registrar.
 
 <Alert type="info">
 
@@ -207,17 +207,17 @@ After setting up a custom domain, you'll see a `Value` that you need to set up a
 
 </Alert>
 
-Setting up the `CNAME` on domain provider side will make your app accessible through your custom domain on Qovery.
+Setting up the `CNAME` on the domain provider side will make your app accessible through your custom domain on Qovery.
 
 ### Database
 
-To access your database in your application, link it to your application in `Database` section of your application configuration.
+To access your database in your application, link it to your application in the `Database` section of your application configuration.
 
 <p align="center">
   <img src="/img/configuration/application/app-10.png" alt="Application Databases" />
 </p>
 
-Linking database to your app will make sure it's up and running before your application starts. It will also ensure that database secrets and other important information are injected as secrets into your application.
+Linking the database to your app will make sure it's up and running before your application starts. It will also ensure that database secrets and other important information are injected as secrets into your application.
 
 Example of secrets and environment variables injected into your app for the linked database:
 
@@ -270,7 +270,7 @@ Choose your application
 </li>
 <li>
 
-In application overview, click on the `Actions` button and remove the application
+In the application overview, click on the `Actions` button and remove the application.
 
 <p align="center">
   <img src="/img/configuration/application/app-1.png" alt="Application" />

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-01"
+last_modified_on: "2021-07-02"
 title: "Environment Variable"
 description: "Learn how to configure Environment Variables on Qovery"
 ---
@@ -56,7 +56,7 @@ Select `Environment Variables` tab in the left panel and click `Create` button:
 </li>
 <li>
 
-Select name and value of your new environment variable
+Select the name and value of your new environment variable
 
 <p align="center">
   <img src="/img/configuration/variables/var-2.png" alt="Variables" />
@@ -108,7 +108,7 @@ Select your project, environment and application
 </li>
 <li>
 
-Select `Environment Variables` tab in the left panel
+Select the `Environment Variables` tab in the left panel
 
 <p align="center">
   <img src="/img/configuration/variables/secret-2.png" alt="Variables" />
@@ -143,7 +143,7 @@ Select your project, environment and application
 </li>
 <li>
 
-Select `Environment Variables` tab in the left panel
+Select the `Environment Variables` tab in the left panel
 
 <p align="center">
   <img src="/img/configuration/variables/secret-2.png" alt="Variables" />
@@ -189,7 +189,7 @@ Select your project, environment and application
 </li>
 <li>
 
-Select `Environment Variables` tab in the left panel
+Select the `Environment Variables` tab in the left panel
 
 <p align="center">
   <img src="/img/configuration/variables/secret-2.png" alt="Variables" />
@@ -227,7 +227,7 @@ You can only override environment variables of a higher scope, e.g. **Environmen
 
 You can create an alias for the existing environment variable.
 
-Let's suppose that your application requires a `DATABASE_URL` variable. Qovery provides your application with `QOVERY_DATABASE_MY_POSTGRESQL_3498225_URL` variable with a database password.
+Let's suppose that your application requires a `DATABASE_URL` variable. Qovery provides your application with the `QOVERY_DATABASE_MY_POSTGRESQL_3498225_URL` variable with a database password.
 Instead of copy-pasting its value, you can create an alias to `QOVERY_DATABASE_MY_POSTGRESQL_3498225_URL`.
 
 <Steps headingDepth={3}>
@@ -244,7 +244,7 @@ Select your project, environment and application
 </li>
 <li>
 
-Select `Environment Variables` tab in the left panel
+Select the `Environment Variables` tab in the left panel
 
 <p align="center">
   <img src="/img/configuration/variables/secret-2.png" alt="Variables" />
@@ -306,7 +306,7 @@ QOVERY_<SERVICE_TYPE>_<NAME>_<SPEC>
 
 ## Additional Rules
 
-* Environment variable keys should use only alphanumeric characters, and the underscore character (_) to ensure that they are accessible from all programming languages. Environment variable keys should not include the hyphen character.
+* Environment variable keys should use only alphanumeric characters and the underscore character (_) to ensure they are accessible from all programming languages. Environment variable keys should not include the hyphen character.
 * Environment variable keys should not begin with a double underscore (__).
 * An environment variable’s key should not begin with QOVERY_ unless it is set by the Qovery platform itself.
 

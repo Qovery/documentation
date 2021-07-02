@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-01"
+last_modified_on: "2021-07-02"
 title: MongoDB
 description: "How to set up and use a MongoDB database"
 ---
@@ -61,7 +61,7 @@ Click `Add Database` button
 Select database type, name and version
 
 <p align="center">
-  <img src="/img/configuration/database/db-2.png" alt="Database" />
+  <img src="/img/configuration/database/mongo-1.png" alt="Database" />
 </p>
 
 </li>
@@ -110,7 +110,7 @@ Qovery supports the following MongoDB versions.
 You can adjust the version of your database in `General` section of database settings:
 
 <p align="center">
-  <img src="/img/configuration/database/db-6.png" alt="Database Version" />
+  <img src="/img/configuration/database/mongo-2.png" alt="Database Version" />
 </p>
 
 #### Accessibility
@@ -123,7 +123,7 @@ To make your database secure, you may decide not to expose it publicly.
 You can configure the accessibility settings in `General` section of database settings:
 
 <p align="center">
-  <img src="/img/configuration/database/db-6.png" alt="Database Accessibility" />
+  <img src="/img/configuration/database/mongo-2.png" alt="Database Accessibility" />
 </p>
 
 ### Resources
@@ -195,7 +195,7 @@ Select your environment and database
 In database overview, click on `Action` remove button
 
 <p align="center">
-  <img src="/img/configuration/database/db-8.png" alt="Database Remove" />
+  <img src="/img/configuration/database/mongo-3.png" alt="Database Remove" />
 </p>
 
 </li>

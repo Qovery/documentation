@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-01"
+last_modified_on: "2021-07-02"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -254,6 +254,18 @@ The built-in variables follow the naming pattern: `QOVERY_DATABASE` + <your_db_n
 - `<your_db_name>` is the name of your database
 - `<type_of_variable>` is the type of variable we inject, e.g. `PASSWORD`, `VERSION`, `CONNECTION_URI` and so on.
 
+## Environment Variables
+
+To learn how to set up environment variables in your projects and applications, navigate to [configuring Environment Variables][docs.using-qovery.configuration.environment-variable] section.
+
+## Secrets
+
+To learn how to set up secrets in your projects and applications, navigate to [configuring Secrets][docs.using-qovery.configuration.secret] section.
+
+## Logs
+
+To learn how to display your application logs, navigate to [logs section in our Debugging guide][guides.getting-started.debugging#logs]
+
 ## Delete an Application
 
 <Steps headingDepth={3}>
@@ -281,10 +293,13 @@ In application overview, click on the `Actions` button and remove the applicatio
 </Steps>
 
 
+[docs.using-qovery.configuration.environment-variable]: /docs/using-qovery/configuration/environment-variable/
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [docs.using-qovery.configuration.object-storage]: /docs/using-qovery/configuration/object-storage/
 [docs.using-qovery.configuration.project]: /docs/using-qovery/configuration/project/
+[docs.using-qovery.configuration.secret]: /docs/using-qovery/configuration/secret/
 [guides.advanced.monorepository]: /guides/advanced/monorepository/
+[guides.getting-started.debugging#logs]: /guides/getting-started/debugging/#logs
 [guides.getting-started.deploy-your-first-application]: /guides/getting-started/deploy-your-first-application/
 [guides.getting-started.setting-custom-domain]: /guides/getting-started/setting-custom-domain/
 [urls.qovery_roadmap]: https://roadmap.qovery.com/

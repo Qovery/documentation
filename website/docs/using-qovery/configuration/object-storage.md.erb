@@ -2,29 +2,248 @@
 title: "Object Storage"
 description: "Learn how to configure object storage with your applications"
 ---
-<Alert type="warning">
-
-WORK IN PROGRESS - THIS DOCUMENTATION IS OUTDATED
-
-</Alert>
-
 The default filesystem for applications running on Qovery is ephemeral. Application data isn’t persisted across deploys and restarts, which works just fine for most apps because they use managed databases to persist data.
+If, however, your application needs persistent storage across restarts or needs to store large amounts of data that doesn't really fit well to be stored in databases, Object Storage might fit your needs.
 
-However, many applications need persistent disk storage that isn’t ephemeral. These include:
+**Examples of applications**:
 
-* Blogging platforms and CMSs like WordPress, Ghost, and Strapi.
-* Collaboration apps like Mattermost, GitLab, and Discourse.
-
-This is where Qovery block Storage comes in. Qovery applications can use storage to store data that persists across deploys and restarts, making it easy to deploy stateful applications.
+- Music streaming services like Spotify
+- Photo-heavy apps like Instagram, Facebook
+- Storing backups/archives over long periods
 
 ## Use cases
 
 ### ✅ Good use cases
 
-- To store file > 1 TB
+- Storing large amounts of read-only data
 - High availability
+- High scalability
+- Unstructured data like music, photos, videos
+- Geographical distribution of data
 
 ### ❌ Bad use cases
 
-- For I/O intensive applications (E.g. database)
-- To store temporary files
+- For I/O intensive applications (e.g. databases)
+- Frequent data updates
+- Temporary files
+- Transactional data
+
+## Pros & Cons
+
+### Pros
+
+- Reduce infrastructure costs of storing data
+- Reduce management time because of the easiness of scalability
+
+### Cons
+
+- Not suited for frequently changing data
+- Eventual consistency of data might be not enough for certain types of applications that require strong consistency
+
+## Using Object Storage
+
+Using Object Storage with Qovery is very simple. All you need to do is to set up a **bucket** in the cloud provider of your choice
+and configure your application to use it using secrets or environment variables.
+
+### AWS
+
+<Steps headingDepth={3}>
+<ol>
+<li>
+
+Navigate to [AWS S3 Console](https://s3.console.aws.amazon.com/s3/home)
+
+</li>
+<li>
+
+Click **Create bucket** button
+
+<p align="center">
+  <img src="/img/configuration/objectstorage/aws-1.png" alt="Storage" />
+</p>
+
+</li>
+<li>
+
+Set up your bucket settings, like name, permissions, cloud region
+
+</li>
+
+<li>
+
+Connect your application to your bucket (example using Node.js)
+
+```javascript
+// Load dependencies
+const aws = require('aws-sdk');
+const express = require('express');
+const multer = require('multer');
+const multerS3 = require('multer-s3');
+
+const app = express();
+
+// Set S3 endpoint to AWS S3 in correct region
+const endpoint = new aws.Endpoint('s3.us-east-2.amazonaws.com');
+const s3 = new aws.S3({
+  endpoint: endpoint
+});
+
+// Change bucket property to your Bucket name
+const upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: 'your-bucket-here',
+    acl: 'public-read',
+    key: function (request, file, cb) {
+      console.log(file);
+      cb(null, file.originalname);
+    }
+  })
+}).array('upload', 1);
+```
+
+If your bucket access is secured, all you need to do is to set up those environment variables in your application:
+
+- AWS_ACCESS_KEY_ID
+- AWS_SECRET_ACCESS_KEY
+
+You can set up secrets in your application by [following our guide][guides.getting-started.managing-environment-variables].
+    
+</li>
+
+</ol>
+</Steps>
+
+### Digital Ocean
+
+<Steps headingDepth={3}>
+<ol>
+<li>
+
+Navigate to [DO Console](https://cloud.digitalocean.com/projects)
+
+</li>
+<li>
+
+Click **Create**, and **Spaces** button
+
+<p align="center">
+  <img src="/img/configuration/objectstorage/do-1.png" alt="Storage" />
+</p>
+
+</li>
+<li>
+
+Set up your bucket settings, like name, permissions, cloud region
+
+</li>
+<li>
+
+Connect your application to your bucket (DO Spaces are AWS S3 compatible, this is why we use S3 client in the example):
+
+```javascript
+// Load dependencies
+const aws = require('aws-sdk');
+const express = require('express');
+const multer = require('multer');
+const multerS3 = require('multer-s3');
+
+const app = express();
+
+// Set S3 endpoint to DigitalOcean Spaces in correct region
+const endpoint = new aws.Endpoint('nyc3.digitaloceanspaces.com');
+const s3 = new aws.S3({
+  endpoint: endpoint
+});
+
+// Change bucket property to your Space name
+const upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: 'your-space-here',
+    acl: 'public-read',
+    key: function (request, file, cb) {
+      console.log(file);
+      cb(null, file.originalname);
+    }
+  })
+}).array('upload', 1);
+```
+
+If your bucket is private, all you need to do is to set up those environment variables for your application:
+
+- AWS_ACCESS_KEY_ID
+- AWS_SECRET_ACCESS_KEY
+
+You can find your secrets in your Space configuration. You can set up secrets in your application by [following our guide][guides.getting-started.managing-environment-variables].
+
+</li>
+</ol>
+</Steps>
+
+### Scaleway
+
+<Steps headingDepth={3}>
+<ol>
+<li>
+
+Navigate to [Scaleway Console](https://console.scaleway.com/object-storage/buckets)
+
+</li>
+<li>
+
+Click **Create**, and **Spaces** button
+
+<p align="center">
+  <img src="/img/configuration/objectstorage/scaleway-1.png" alt="Storage" />
+</p>
+
+</li>
+<li>
+
+Set up your bucket settings, like name, permissions, cloud region
+
+</li>
+<li>
+
+Connect your application to your bucket (Scaleway Buckets are partly AWS S3 compatible, this is why we use S3 client in the example):
+
+```javascript
+// Load dependencies
+const aws = require('aws-sdk');
+const express = require('express');
+const multer = require('multer');
+const multerS3 = require('multer-s3');
+
+const app = express();
+
+// Set S3 endpoint to Scaleway Bucket in correct region
+const endpoint = new aws.Endpoint('https://s3.fr-par.scw.cloud.');
+const s3 = new aws.S3({
+  endpoint: endpoint
+});
+
+// Change bucket property to your Bucket name
+const upload = multer({
+  storage: multerS3({
+    s3: s3,
+    bucket: 'your-bucket-here',
+    acl: 'public-read',
+    key: function (request, file, cb) {
+      console.log(file);
+      cb(null, file.originalname);
+    }
+  })
+}).array('upload', 1);
+```
+
+If your bucket is private, all you need to do is to set up those environment variables for your application:
+
+- AWS_ACCESS_KEY_ID
+- AWS_SECRET_ACCESS_KEY
+
+Follow [Scaleway guide](https://www.scaleway.com/en/docs/object-storage-with-s3cmd/#-Retrieving-your-Credentials) to get your credentials. You can set up secrets in your application by [following our guide][guides.getting-started.managing-environment-variables].
+
+</li>
+</ol>
+</Steps>

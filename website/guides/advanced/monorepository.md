@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-01"
+last_modified_on: "2021-07-02"
 $schema: "/.meta/.schemas/guides.json"
 title: Mono repository
 description: How to deploy applications using Monorepository with Qovery
@@ -51,7 +51,7 @@ Navigate to application settings
 
 <li>
 
-To deploy multiple apps using one repository set up the app to target your monorepo. Additionally, you need to set up the folder in which your application resides.
+To deploy multiple apps using one repository, set up the app to target your monorepo. Additionally, you need to set up the folder in which your application resides.
 
 ### First application
 
@@ -72,13 +72,13 @@ As you see in the examples above, we used one repository (`poc-factory/tweetifie
 
 All we need to do to deploy multiple applications using one repository is:
 
-- Select application name
+- Select the application name
 - Select our repository
-- Select application root folder
+- Select the application root folder
 
-That's it, using monorepositories with Qovery is that simple. 
+That's it. Using monorepositories with Qovery is that simple. 
 
-Those applications may be a part of the same project or different projects, it's all up to you and your configuration.
+Those applications may be a part of the same project or different projects; it's all up to you and your configuration.
 
 <Alert type="info">
   Each commit to the repository will make sure all applications affected will be redeployed and up-to-date.
@@ -90,9 +90,9 @@ Those applications may be a part of the same project or different projects, it's
 
 ## Deploying application with multiple configurations using one repository
 
-A special case of monorepository is a situation when one repository is used to deploy multiple applications with the same source code, but different configurations or modes. Application behavior depends on provided config, like environment variables and secrets.
+A special case of monorepository is a situation when one repository is used to deploy multiple applications with the same source code but different configurations or modes. Application behaviour depends on provided config, like environment variables and secrets.
 
-Qovery supports this case well. The steps do not differ much from the steps from previous example:
+Qovery supports this case well. The steps do not differ much from the steps from the previous example:
 
 <Steps headingDepth={3}>
 <ol>

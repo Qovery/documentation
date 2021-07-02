@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-26"
+last_modified_on: "2021-07-02"
 title: "Databases"
 description: "Learn how to configure Databases on Qovery"
 sidebar_label: hidden
@@ -10,7 +10,7 @@ import Jump from '@site/src/components/Jump';
 
 Qovery provides access to the most popular SQL and NoSQL databases.
 
-For each database, we rely on the most popular major database cloud providers like AWS. Reliability and resiliency is at the heart of their services, so you don't have to worry about your data on Qovery.
+For each database, we rely on the most popular major database cloud providers like AWS. Reliability and resiliency are at the heart of their services, so you don't have to worry about your data on Qovery.
 
 <Jump to="/docs/using-qovery/configuration/database/mongodb/">Mongodb</Jump>
 <Jump to="/docs/using-qovery/configuration/database/mysql/">Mysql</Jump>

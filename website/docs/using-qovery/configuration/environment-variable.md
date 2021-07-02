@@ -1,16 +1,11 @@
 ---
-last_modified_on: "2021-06-26"
+last_modified_on: "2021-07-02"
 title: "Environment Variable"
 description: "Learn how to configure Environment Variables on Qovery"
 ---
 
 import Alert from '@site/src/components/Alert';
-
-<Alert type="warning">
-
-WORK IN PROGRESS - THIS DOCUMENTATION IS OUTDATED
-
-</Alert>
+import Steps from '@site/src/components/Steps';
 
 <Alert type="info">
 
@@ -18,7 +13,7 @@ Do you need to keep secure your environment variable? Use [Secret][docs.using-qo
 
 </Alert>
 
-Qovery makes **Environment Variables** available to all services at runtime, as well as during builds and deploys.
+Qovery makes **Environment Variables** available to your services at runtime, as well as during builds and deploys.
 
 <Alert type="warning">
 
@@ -38,15 +33,244 @@ Environment Variables are not directly connected to [Environment][docs.using-qov
 
 ## Create an Environment Variable
 
-TODO
+<Steps headingDepth={3}>
+<ol>
+<li>
+
+Navigate to [Console](https://console-beta.qovery.com)
+
+</li>
+<li>
+
+Select your project, environment and application
+
+</li>
+<li>
+
+Select `Environment Variables` tab in the left panel and click `Create` button:
+
+<p align="center">
+  <img src="/img/configuration/variables/var-1.png" alt="Variables" />
+</p>
+
+</li>
+<li>
+
+Select the name and value of your new environment variable
+
+<p align="center">
+  <img src="/img/configuration/variables/var-2.png" alt="Variables" />
+</p>
+
+### Scopes
+
+<Alert type="info">
+
+Qovery provides three scopes of environment variables:
+- Project
+- Environment
+- Application
+
+<br/>
+
+Additionally, there is one more `BUILT_IN` scope that is used for variables injected automatically by Qovery.
+
+
+**Project** environment variables are visible in the whole project.
+
+**Environment** environment variables are visible for all apps inside one environment.
+
+**Application** environment variables are visible only in one application.
+
+**BUILT_IN** variables are automatically injected to selected applications by Qovery.
+
+[Read more in Levels section][docs.configuration.environment-variable#levels]
+
+</Alert>
+
+</li>
+</ol>
+</Steps>
 
 ## Delete an Environment Variable
 
-TODO
+<Steps headingDepth={3}>
+<ol>
+<li>
+
+Navigate to [Console](https://console-beta.qovery.com)
+
+</li>
+<li>
+
+Select your project, environment and application
+
+</li>
+<li>
+
+Select the `Environment Variables` tab in the left panel
+
+<p align="center">
+  <img src="/img/configuration/variables/secret-2.png" alt="Variables" />
+</p>
+
+</li>
+<li>
+
+Select variable you want to delete and click the `Delete` button:
+
+<p align="center">
+  <img src="/img/configuration/variables/var-3.png" alt="Delete Variables" />
+</p>
+
+</li>
+</ol>
+</Steps>
 
 ## Update an Environment Variable
 
-TODO
+<Steps headingDepth={3}>
+<ol>
+<li>
+
+Navigate to [Console](https://console-beta.qovery.com)
+
+</li>
+<li>
+
+Select your project, environment and application
+
+</li>
+<li>
+
+Select the `Environment Variables` tab in the left panel
+
+<p align="center">
+  <img src="/img/configuration/variables/secret-2.png" alt="Variables" />
+</p>
+
+</li>
+<li>
+
+Select variable you want to update and click the `Edit` button:
+
+<p align="center">
+  <img src="/img/configuration/variables/var-4.png" alt="Update Variables" />
+</p>
+
+</li>
+<li>
+
+Update the variable in the popup window:
+
+<p align="center">
+  <img src="/img/configuration/variables/var-5.png" alt="Update Variables" />
+</p>
+
+</li>
+</ol>
+</Steps>
+
+## Override Environment Variable
+
+If you want to override a value of an environment variable, follow those steps:
+
+<Steps headingDepth={3}>
+<ol>
+<li>
+
+Navigate to [Console](https://console-beta.qovery.com)
+
+</li>
+<li>
+
+Select your project, environment and application
+
+</li>
+<li>
+
+Select the `Environment Variables` tab in the left panel
+
+<p align="center">
+  <img src="/img/configuration/variables/secret-2.png" alt="Variables" />
+</p>
+
+</li>
+<li>
+
+Select variable you want to override and click the `Override` button:
+
+<p align="center">
+  <img src="/img/configuration/variables/var-6.png" alt="Override Variables" />
+</p>
+
+</li>
+<li>
+
+Override the variable in the popup window:
+
+<p align="center">
+  <img src="/img/configuration/variables/var-7.png" alt="Override Variables" />
+</p>
+
+</li>
+</ol>
+</Steps>
+
+<Alert type="warning">
+
+You can only override environment variables of a higher scope, e.g. **Environment** scope variable can override **Project** variable, but can't override **Application** variable.
+
+</Alert>
+
+## Alias Environment Variable
+
+You can create an alias for the existing environment variable.
+
+Let's suppose that your application requires a `DATABASE_URL` variable. Qovery provides your application with the `QOVERY_DATABASE_MY_POSTGRESQL_3498225_URL` variable with a database password.
+Instead of copy-pasting its value, you can create an alias to `QOVERY_DATABASE_MY_POSTGRESQL_3498225_URL`.
+
+<Steps headingDepth={3}>
+<ol>
+<li>
+
+Navigate to [Console](https://console-beta.qovery.com)
+
+</li>
+<li>
+
+Select your project, environment and application
+
+</li>
+<li>
+
+Select the `Environment Variables` tab in the left panel
+
+<p align="center">
+  <img src="/img/configuration/variables/secret-2.png" alt="Variables" />
+</p>
+
+</li>
+<li>
+
+Select variable you want to alias and click the `Alias` button:
+
+<p align="center">
+  <img src="/img/configuration/variables/var-8.png" alt="ALias Variables" />
+</p>
+
+</li>
+<li>
+
+Alias the variable in the popup window:
+
+<p align="center">
+  <img src="/img/configuration/variables/var-9.png" alt="Alias Variables" />
+</p>
+
+</li>
+</ol>
+</Steps>
 
 ## Levels
 
@@ -59,12 +283,6 @@ There are four levels of Environment Variables. Each type differs in scope - you
 | **ENVIRONMENT** | 3 | Variables at the environment level are shared across all applications of the project in one, given environment |
 | **APPLICATION** | 4 | Variables available for one application in one environment |
 
-<Alert>
-
-You can override variables - the highest level variable win (e.g., `PROJECT` variable can override `BUILT_IN` variable).
-
-</Alert>
-
 ## Built-in variables
 By default, every environment contains built-in variables:
 
@@ -72,12 +290,6 @@ By default, every environment contains built-in variables:
 |-------------|-----------|-----------------|
 | **QOVERY_BRANCH_NAME**     | master | Git branch name |
 | **QOVERY_IS_PRODUCTION** | true | Flag that indicates production environment |
-
-<Alert>
-
-You can not delete `BUILT_IN` variables, but you can override them!
-
-</Alert>
 
 ## Additional built-in variables
 
@@ -92,53 +304,13 @@ We use the following naming convention for additional built-in variables:
 QOVERY_<SERVICE_TYPE>_<NAME>_<SPEC>
 ```
 
-## Override variable
+## Additional Rules
 
-As described in the levels' section, you can override existing variables. To do so, add a new Environment Variables with a higher level (e.g., add an `APPLICATION` level variable to override `PROJECT` variable for a given application).
-
-> TODO screenshot override variable
-
-## Alias
-You can create an alias for the existing environment variable.
-
-Let's suppose that your application requires a `DATABASE_URL` variable. Qovery provides your application with `QOVERY_DATABASE_MY_POSTGRESQL_3498225_URL` variable with a database password.
-Instead of copy-pasting its value, you can create an alias to `QOVERY_DATABASE_MY_POSTGRESQL_3498225_URL`.
-
-> TODO screenshot alias
-
-## .env file (dot env file)
-
-When running your application, you will typically use a set of environment variables to capture the configuration of the application. For example: say your app uses a logger to debug what's going on. You would want to put your logger in debug mode.
-
-The `.env` file lets you capture all the environment variables that you need in order to run your application locally. When you start your application using `qovery run`, the `.env` file is read, and each name/value pair is inserted into the environment, to mimic the action of environment variables.
-
-### View you application's environment variables
-
-To view all of your application’s environment variables, type `qovery application env list`.
-
-### Look at the contents of your .env file
-
-```bash
-$ cat .env
-```
-
-Here's an example `.env` file:
-
-```bash
-LOGGER=debug
-MY_VAR_2=myValue2
-```
-
-### Add an environment variable to your .env file
-
-To add an environment variable to your `.env` file, edit it and add a new name=value pair on a new line.
-
-## Some rules
-
-* Environment variable keys should use only alphanumeric characters, and the underscore character (_) to ensure that they are accessible from all programming languages. Environment variable keys should not include the hyphen character.
+* Environment variable keys should use only alphanumeric characters and the underscore character (_) to ensure they are accessible from all programming languages. Environment variable keys should not include the hyphen character.
 * Environment variable keys should not begin with a double underscore (__).
 * An environment variable’s key should not begin with QOVERY_ unless it is set by the Qovery platform itself.
 
 
+[docs.configuration.environment-variable#levels]: /docs/using-qovery/configuration/environment-variable/#levels
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [docs.using-qovery.configuration.secret]: /docs/using-qovery/configuration/secret/

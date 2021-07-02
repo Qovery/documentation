@@ -1,18 +1,13 @@
 ---
-last_modified_on: "2021-06-29"
+last_modified_on: "2021-07-02"
 title: MySQL
 description: "How to set up and use a MySQL database"
 ---
 
 import Alert from '@site/src/components/Alert';
+import Steps from '@site/src/components/Steps';
 
 import Assumptions from '@site/src/components/Assumptions';
-
-<Alert type="warning">
-
-WORK IN PROGRESS - THIS DOCUMENTATION IS OUTDATED
-
-</Alert>
 
 <Assumptions name="documentation">
 
@@ -38,23 +33,72 @@ Check out [this video guide][guides.getting-started.create-a-database] to create
 
 ## Create a MySQL database
 
-TODO
+<Steps headingDepth={3}>
+<ol>
+<li>
 
-## Modes
+Navigate to [Console](https://console-beta.qovery.com)
 
-### Managed Service
+</li>
+<li>
 
-TODO
+Select your project and environment
 
-### Container
+</li>
 
-TODO
+<li>
 
-## Link your MySQL database to your application
+Click `Add Database` button
 
-TODO
+<p align="center">
+  <img src="/img/configuration/database/db-1.png" alt="Database" />
+</p>
 
-## Supported versions
+</li>
+
+<li>
+
+Select database type, name and version
+
+<p align="center">
+  <img src="/img/configuration/database/mysql-1.png" alt="Database" />
+</p>
+
+</li>
+
+<li>
+
+Deploy the database using `Action` deploy button
+
+<p align="center">
+  <img src="/img/configuration/database/db-3.png" alt="Database" />
+</p>
+
+</li>
+
+</ol>
+</Steps>
+
+## Configuration
+
+### General
+
+#### Modes
+
+Databases can operate in two modes:
+
+- Managed
+- Container
+
+**Managed** databases are perfect for production - they are provided and managed by major cloud providers like AWS to make sure your production data is well managed.
+
+**Container** databases are managed by Qovery as Docker containers with attached persistent storage. They are perfect for development and testing, as they are significantly cheaper than services provided by cloud providers.
+
+<Alert type="warning">
+    Managed databases are supported only in `Startup` plans, it's not available in the `Community` version.
+</Alert>
+
+#### Versions
 
 Qovery supports the following MySQL versions.
 
@@ -62,17 +106,57 @@ Qovery supports the following MySQL versions.
 |---------|-------|
 |8.0|Yes|
 
+
+You can adjust the version of your database in `General` section of database settings:
+
+<p align="center">
+  <img src="/img/configuration/database/mysql-2.png" alt="Database Version" />
+</p>
+
+#### Accessibility
+
+To make your database secure, you may decide not to expose it publicly.
+
+- **Public** access will make your database accessible via the public network
+- **Private** access will make your database accessible only by applications in your environment
+
+You can configure the accessibility settings in `General` section of database settings:
+
+<p align="center">
+  <img src="/img/configuration/database/mysql-2.png" alt="Database Accessibility" />
+</p>
+
+### Resources
+
+#### CPU
+
+To tweak CPU configuration of your database, navigate to `Resource` section in database settings:
+
+<p align="center">
+  <img src="/img/configuration/database/db-4.png" alt="Database CPU" />
+</p>
+
+#### Memory
+
+To tweak RAM configuration of your database, navigate to `Resource` section in database settings:
+
+<p align="center">
+  <img src="/img/configuration/database/db-5.png" alt="Database Memory" />
+</p>
+
+#### Storage
+
+To tweak the disk space assigned to your database, navigate to `Resource` section in the database settings:
+
+<p align="center">
+  <img src="/img/configuration/database/db-7.png" alt="Database Storage" />
+</p>
+
 ## Credentials
 
-TODO
-
-## Manage logical databases
-
-TODO
-
-## Health check
-
-TODO
+To access your database in your application, [link it to your database][docs.using-qovery.configuration.application#database].
+Qovery will inject all environment variables and secrets you need to connect your app to your database.
+To see all the secrets injected for your application, see [database secrets section][docs.using-qovery.configuration.application#database-secrets].
 
 ## Delete your MySQL instance
 
@@ -82,26 +166,33 @@ Delete action drops the service and its data!
 
 </Alert>
 
-To delete a database, you have to:
+<Steps headingDepth={3}>
+<ol>
+<li>
 
-- Remove it from the configuration file, commit and push.
-- Delete it manually (for security purpose) through the [Qovery web interface][urls.start_qovery].
+Navigate to [Console](https://console-beta.qovery.com)
 
-<Alert type="info">
+</li>
+<li>
 
-Backups from production environments are kept for 1 month if you need to recover.
+Select your environment and database
 
-</Alert>
+</li>
 
-## Backups
+<li>
 
-Daily backups for your Backups database are automatically done for databases in managed mode.
+In database overview, click on `Action` remove button
 
-## Scaling
+<p align="center">
+  <img src="/img/configuration/database/mysql-3.png" alt="Database Remove" />
+</p>
 
-TODO
+</li>
+</ol>
+</Steps>
 
 
+[docs.using-qovery.configuration.application#database-secrets]: /docs/using-qovery/configuration/application/#database-secrets
+[docs.using-qovery.configuration.application#database]: /docs/using-qovery/configuration/application/#database
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [guides.getting-started.create-a-database]: /guides/getting-started/create-a-database/
-[urls.start_qovery]: https://start.qovery.com

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-26"
+last_modified_on: "2021-07-01"
 title: Configuration
 description: "Everything you need to know to configure and deploy your applications on Qovery"
 sidebar_label: hidden
@@ -11,11 +11,9 @@ import Jump from '@site/src/components/Jump';
 In the following subsections, you'll learn all you need to know to configure and deploy your apps on Qovery.
 
 <Jump to="/docs/using-qovery/configuration/application/">Application</Jump>
-<Jump to="/docs/using-qovery/configuration/block-storage-/">Block storage </Jump>
 <Jump to="/docs/using-qovery/configuration/cloud-service-provider/">Cloud service provider</Jump>
 <Jump to="/docs/using-qovery/configuration/database/">Database</Jump>
 <Jump to="/docs/using-qovery/configuration/deployment-rule/">Deployment rule</Jump>
-<Jump to="/docs/using-qovery/configuration/domain/">Domain</Jump>
 <Jump to="/docs/using-qovery/configuration/environment-variable/">Environment variable</Jump>
 <Jump to="/docs/using-qovery/configuration/environment/">Environment</Jump>
 <Jump to="/docs/using-qovery/configuration/object-storage/">Object storage</Jump>

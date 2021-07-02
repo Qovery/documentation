@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-01"
+last_modified_on: "2021-07-02"
 $schema: "/.meta/.schemas/guides.json"
 title: Debugging
 description: How to debug your application
@@ -59,9 +59,9 @@ In environment overview, you can see the status of the whole environment as well
 
 - `twitter-backend` and `my-db` application statuses are marked as green dots, which means they are up and running as well. 
 
-- On the other hand `my-mysql` database is marked with a gray dot, which means it was not deployed or is stopped.
+- On the other hand, the `my-mysql` database is marked with a grey dot, which means it was not deployed or is stopped.
 
-- If service crashes, it's status is marked with a red dot.
+- If the service crashes, its status is marked with a red dot.
 
 </li>
 
@@ -88,7 +88,7 @@ Choose your project, environment, and application.
 </li>
 <li>
 
-In application overview, click `Show Logs` button
+In the application overview, click the `Show Logs` button
 
 <p align="center">
   <img src="/img/debugging/debugging-3.png" alt="Debugging" />
@@ -109,7 +109,7 @@ You can use this information to find out what causes your application to behave 
 
 ## Deployment Logs
 
-If your application fails to start, you can check what's the cause in it's deployment logs:
+If your application fails to start, you can check what's the cause in its deployment logs:
 
 <Steps headingDepth={3}>
 
@@ -162,7 +162,7 @@ Choose your project, environment, and application.
 </li>
 <li>
 
-In the main application view, you can see charts and overview of your application resource consumption.
+In the main application view, you can see charts and an overview of your application resource consumption.
 
 <p align="center">
   <img src="/img/debugging/debugging-6.png" alt="Debugging" />
@@ -177,7 +177,7 @@ In the main application view, you can see charts and overview of your applicatio
 
 ## Alerting
 We highly recommend using tools like [Datadog][urls.datadog], [Sentry][urls.sentry] or [NewRelic][urls.new_relic] to manage your alerting.
-Qovery will provide easy integrations in a coming release. Check out our [roadmap][urls.qovery_roadmap]
+Qovery will provide easy integrations in the coming release. Check out our [roadmap][urls.qovery_roadmap]
 
 Do you need any help? [Reach us on Discord][urls.qovery_chat]
 

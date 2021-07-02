@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-01"
+last_modified_on: "2021-07-02"
 $schema: "/.meta/.schemas/guides.json"
 title: Staging environment
 description: How to create a staging environment with Qovery
@@ -10,7 +10,7 @@ import Steps from '@site/src/components/Steps';
 import Assumptions from '@site/src/components/Assumptions';
 import Alert from '@site/src/components/Alert';
 
-Very often before merging new changes to your production environment you'd like to test them live in a deployed environment that resembles your production. Doing so allows you to make sure that everything works as expected before releasing new changes to your clients.
+Very often, before merging new changes to your production environment, you'd like to test them live in a deployed environment that resembles your production. Doing so allows you to make sure that everything works as expected before releasing new changes to your clients.
 Achieving it with Qovery is very simple and works well even if your project is made out of many applications, e.g. multiple backend services, websites, databases and so on.
 
 ### Creating a staging environment
@@ -36,7 +36,7 @@ Create a new environment
 <li>
 Add your applications
 
-Choose your application names, git repositories, and branches you want to use for staging. You can set up the same environment as you use for producion, or use the clone functionallity.
+Choose your application names, git repositories, and branches you want to use for staging. You can set up the same environment as you use for production or use the clone functionality.
 
 <p align="center">
   <img src="/img/staging/staging-1.png" alt="Staging Environment" />
@@ -46,7 +46,7 @@ Choose your application names, git repositories, and branches you want to use fo
   <img src="/img/staging/staging-2.png" alt="Staging Environment" />
 </p>
 
-As you can see in the screenshots, we used `staging` branches for our applications in staging environment. Applications in this environment will be deployed using source code from `staging` branches.
+As you can see in the screenshots, we used `staging` branches for our applications in the staging environment. Applications in this environment will be deployed using source code from `staging` branches.
 
 </li>
 
@@ -67,7 +67,7 @@ If your project requires databases, you can [add them to your staging environmen
 
 [Set up secrets and environment variables][guides.getting-started.managing-environment-variables]
 
-The last step you probably need to take is to set up other set of secrets and environment variables that are separate from your production.
+The last step you probably need to take is to set up another set of secrets and environment variables that are separate from your production.
 You can do it in your application `Environment Variables` section:
 
 <p align="center">

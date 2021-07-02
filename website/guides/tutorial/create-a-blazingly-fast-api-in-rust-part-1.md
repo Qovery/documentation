@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-19"
+last_modified_on: "2021-07-01"
 $schema: "/.meta/.schemas/guides.json"
 title: Create a blazingly fast REST API in Rust (Part 1/2)
 description: How to create a blazingly fast REST API in Rust, with zero-cost abstraction and very low overhead - Part 1/2
@@ -840,7 +840,7 @@ curl -X DELETE https://main-gxbuagyvgnkbrp5l-gtw.qovery.io/tweets/<change_with_a
 
 <Alert type="info">
 
-You can [add your custom domain][docs.domain]
+You can [add your custom domain][guides.getting-started.setting-custom-domain]
 
 </Alert>
 
@@ -864,7 +864,7 @@ Do you want to know more about Rust?
 
 
 [docs.cli#windows]: /docs/using-qovery/interface/cli/#windows
-[docs.domain]: /docs/using-qovery/configuration/domain/
+[guides.getting-started.setting-custom-domain]: /guides/getting-started/setting-custom-domain/
 [urls.authorize_qovery]: https://github.com/apps/qovery/installations/new
 [urls.brew]: https://brew.sh/
 [urls.postgresql]: https://www.postgresql.org

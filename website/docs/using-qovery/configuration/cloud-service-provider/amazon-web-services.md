@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-19"
+last_modified_on: "2021-07-02"
 title: "Amazon Web Services (AWS)"
 description: "Learn how to configure and plug your Amazon Web Services (AWS) account"
 ---
@@ -181,7 +181,7 @@ The first time you set up your AWS account, Qovery creates a Kubernetes cluster 
 
 ### Managed services
 
-AWS provides managed services for [PostgreSQL][docs.using-qovery.configuration.database.postgresql], [MySQL][docs.using-qovery.configuration.database.mysql], [Redis][docs.using-qovery.configuration.database.redis], [MongoDB][docs.using-qovery.configuration.database.mongodb]. Qovery gives you access to those services when you set the [environment mode][docs.using-qovery.configuration.deployment-rule#environment-mode] to `Production`. In `Development` mode, Qovery provides containers equivalent, which is cheaper and faster to start.
+AWS provides managed services for [PostgreSQL][docs.using-qovery.configuration.database.postgresql], [MySQL][docs.using-qovery.configuration.database.mysql], [Redis][docs.using-qovery.configuration.database.redis], [MongoDB][docs.using-qovery.configuration.database.mongodb]. Qovery gives you access to those services when you set the [environment mode][docs.using-qovery.configuration.deployment-rule#environment-deployment-rules] to `Production`. In `Development` mode, Qovery provides containers equivalent, which is cheaper and faster to start.
 
 ### Security and compliance
 
@@ -211,7 +211,7 @@ Today, you can't migrate an environment from one region to another after it has 
 [docs.using-qovery.configuration.database.mysql]: /docs/using-qovery/configuration/database/mysql/
 [docs.using-qovery.configuration.database.postgresql]: /docs/using-qovery/configuration/database/postgresql/
 [docs.using-qovery.configuration.database.redis]: /docs/using-qovery/configuration/database/redis/
-[docs.using-qovery.configuration.deployment-rule#environment-mode]: /docs/using-qovery/configuration/deployment-rule/#environment-mode
+[docs.using-qovery.configuration.deployment-rule#environment-deployment-rules]: /docs/using-qovery/configuration/deployment-rule/#environment-deployment-rules
 [docs.using-qovery.configuration.organization]: /docs/using-qovery/configuration/organization/
 [docs.using-qovery.interface]: /docs/using-qovery/interface/
 [guides.advanced]: /guides/advanced/

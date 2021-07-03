@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-28"
+last_modified_on: "2021-07-03"
 title: Friend Sponsorship
 description: Invite a friend to join Qovery and get both rewarded
 ---
@@ -45,9 +45,9 @@ Share your referral link via [your web console][urls.start_qovery].
 
 Read [this post][urls.qovery_billing_context] to know more about it.
 
-### What is the "Qovery credits"?
+### What are "Qovery credits"?
 
-It is a free credits that you can use on your Qovery Community and Startup plan.
+They are free credits that you can use on your Qovery Community and Startup plan.
 
 ### Can I pay to get more credits on my Community plan?
 
@@ -63,11 +63,11 @@ We notify you to give back to the community to get more credits. If you have not
 1. 48 hours, Qovery will shut down your applications.
 2. 30 days, Qovery will permanently delete your applications
 
-### How long I have to use my free credits?
+### How long I do have to use my free credits?
 
 You have 12 months to use your earned credits.
 
-### Does credits are recurrent?
+### Are credits recurrent?
 
 Credits are only recurrent for granted [ambassadors][docs.community.become-an-ambassador].
 

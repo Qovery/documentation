@@ -10,11 +10,6 @@
   <component name="ChangeListManager">
     <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="wip: update doc for v2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.meta/links.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/links.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/community/become-an-ambassador.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/community/become-an-ambassador.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/community/become-an-ambassador.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/community/become-an-ambassador.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/application.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/application.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/application.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/application.md.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +33,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="366f3a82c0ca799293a1a0bf44f164f2295121f7" />
+        <entry key="$PROJECT_DIR$" value="develop" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -62,7 +57,11 @@
                 <list>
                   <RecentBranch>
                     <option name="branchName" value="master" />
-                    <option name="lastUsedInstant" value="1624787094" />
+                    <option name="lastUsedInstant" value="1625242584" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="develop" />
+                    <option name="lastUsedInstant" value="1625206521" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="v2_release" />
@@ -208,7 +207,7 @@
         <item itemvalue="npm.start" />
         <item itemvalue="npm.deploy" />
         <item itemvalue="npm.build" />
-        <item itemvalue="npm.build" />
+        <item itemvalue="npm.swizzle" />
       </list>
     </recent_temporary>
   </component>

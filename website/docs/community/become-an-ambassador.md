@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-01"
+last_modified_on: "2021-07-04"
 title: Become an Ambassador
 description: Be a community ambassador and get highly rewarded
 ---
@@ -78,7 +78,7 @@ An active member on our Forum is a user that:
 
 ### How to contribute to the documentation?
 
-Is there anything that you see in the documentation that would be great to improve? Our [documentation](https://github.com/Qovery/documentation) is open-source. Feel free to contribute.
+Is there anything that you see in the documentation that would be great to improve? Our [documentation][urls.qovery_github_documentation] is open-source. Feel free to contribute.
 
 ### Do you have an official list of current ambassadors?
 
@@ -89,5 +89,6 @@ Not yet, but maybe you can help us to create a beautiful one? :) [Reach me out][
 [urls.qovery_chat]: https://discord.qovery.com
 [urls.qovery_community]: https://discuss.qovery.com/
 [urls.qovery_community_call]: https://www.qovery.com/community-call
+[urls.qovery_github_documentation]: https://github.com/Qovery/documentation
 [urls.qovery_repo]: https://github.com/qovery
 [urls.qovery_shop]: https://shop.qovery.com/

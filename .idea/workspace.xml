@@ -8,8 +8,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="wip: update doc for v2">
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: apply changes submitted by Aggis">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.meta/links.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/links.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/community/become-an-ambassador.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/community/become-an-ambassador.md.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -294,13 +296,6 @@
       <workItem from="1620939988462" duration="161000" />
       <workItem from="1623707885288" duration="24602000" />
       <workItem from="1624139690193" duration="51846000" />
-    </task>
-    <task id="LOCAL-00161" summary="update Qovery vs. Terraform">
-      <created>1611931436464</created>
-      <option name="number" value="00161" />
-      <option name="presentableId" value="LOCAL-00161" />
-      <option name="project" value="LOCAL" />
-      <updated>1611931436464</updated>
     </task>
     <task id="LOCAL-00162" summary="update Qovery vs. Terraform">
       <created>1611932485845</created>
@@ -638,7 +633,14 @@
       <option name="project" value="LOCAL" />
       <updated>1625063521988</updated>
     </task>
-    <option name="localTasksCounter" value="210" />
+    <task id="LOCAL-00210" summary="chore: apply changes submitted by Aggis">
+      <created>1625315686869</created>
+      <option name="number" value="00210" />
+      <option name="presentableId" value="LOCAL-00210" />
+      <option name="project" value="LOCAL" />
+      <updated>1625315686869</updated>
+    </task>
+    <option name="localTasksCounter" value="211" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -724,7 +726,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="update what-is-qovery.md" />
     <MESSAGE value="update documentation with Buildpacks" />
     <MESSAGE value="add doc to compare Qovery to Heroku" />
     <MESSAGE value="update Qovery vs. Heroku" />
@@ -749,6 +750,7 @@
     <MESSAGE value="wip: restructure the documentation tree" />
     <MESSAGE value="wip: update doc for v2&#10;chore: change domain from docs.qovery.com to hub.qovery.com" />
     <MESSAGE value="wip: update doc for v2" />
-    <option name="LAST_COMMIT_MESSAGE" value="wip: update doc for v2" />
+    <MESSAGE value="chore: apply changes submitted by Aggis" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: apply changes submitted by Aggis" />
   </component>
 </project>

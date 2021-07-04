@@ -78,7 +78,7 @@ An active member on our Forum is a user that:
 
 ### How to contribute to the documentation?
 
-Is there anything that you see in the documentation that would be great to improve? Our [documentation][https://github.com/Qovery/documentation] is open-source. Feel free to contribute.
+Is there anything that you see in the documentation that would be great to improve? Our [documentation](https://github.com/Qovery/documentation) is open-source. Feel free to contribute.
 
 ### Do you have an official list of current ambassadors?
 

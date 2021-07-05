@@ -1,9 +1,9 @@
 ---
-last_modified_on: "2021-07-02"
+last_modified_on: "2021-07-05"
 $schema: "/.meta/.schemas/guides.json"
-title: Microservices
-description: How to deploy microservices with Qovery
-author_github: https://github.com/evoxmusic
+title: Deploying backend and frontend apps
+description: How to deploy backend and frontend apps with Qovery
+author_github: https://github.com/pjeziorowski
 tags: ["type: guide", "technology: qovery"]
 ---
 import Steps from '@site/src/components/Steps';

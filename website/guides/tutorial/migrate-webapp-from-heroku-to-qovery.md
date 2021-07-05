@@ -130,10 +130,18 @@ Otherwise, you can try to deploy and migrate our sample application to get exper
 
 Create a new project
 
+<p align="center">
+  <img src="/img/heroku/heroku-2.png" alt="Migrate from Heroku" />
+</p>
+
 </li>
 <li>
 
 Create a new environment
+
+<p align="center">
+  <img src="/img/heroku/heroku-3.png" alt="Migrate from Heroku" />
+</p>
 
 </li>
 <li>

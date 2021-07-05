@@ -162,6 +162,15 @@ module.exports = {
         {
           "author_github": "https://github.com/pjeziorowski",
           "description": null,
+          "id": "/advanced/deploy-backend-and-frontend-apps",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/deploy-backend-and-frontend-apps.md",
+          "series_position": null,
+          "title": "Deploying backend and frontend apps"
+        },
+        {
+          "author_github": "https://github.com/pjeziorowski",
+          "description": null,
           "id": "/advanced/microservices",
           "last_modified_on": null,
           "path": "website/guides/advanced/microservices.md",

@@ -150,7 +150,7 @@ Create a Github or Gitlab repository with the sample code
 
 <li>
 
-Add a new application linked to your repository
+Add a new application linked to your repository. If you don't know how to create a new app, [check our guide][guides.getting-started.deploy-your-first-application#step-by-step-tutorial].
 
 </li>
 
@@ -201,6 +201,7 @@ In this tutorial, we saw how to deploy a full-stack application composed of a fr
 [docs.environment]: /docs/using-qovery/configuration/environment/
 [docs.storage]: /docs/using-qovery/configuration/object-storage/
 [docs.web-interface]: /docs/using-qovery/interface/web-interface/
+[guides.getting-started.deploy-your-first-application#step-by-step-tutorial]: /guides/getting-started/deploy-your-first-application/#step-by-step-tutorial
 [guides.tutorial.graphql-api-with-hasura#hasura-deployment-on-qovery]: /guides/tutorial/graphql-api-with-hasura/#hasura-deployment-on-qovery
 [urls.angular]: https://angular.io
 [urls.github]: https://github.com

@@ -751,6 +751,20 @@ Use the forked repository (and branch master) while creating the application in 
 
 <li>
 
+After the application is created: 
+
+- Navigate application settings
+- Select **Port**
+- Add port **9090**
+
+<p align="left">
+    <img src="/img/micro/micros-1.png" alt="Microservices" />
+</p>
+
+</li>
+
+<li>
+
 ### Deploy a database
 
 Create and deploy a new database (name it **my-pql-db** to follow the guide flawlessly)

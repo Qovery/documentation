@@ -707,6 +707,10 @@ class Templates
     render("#{partials_path}/_qovery_sign_up.md", binding).strip
   end
 
+  def qovery_use_docker()
+    render("#{partials_path}/_qovery_use_docker.md", binding).strip
+  end
+
   def qovery_add_app(repo_url, branch)
     render("#{partials_path}/_qovery_add_app.md", binding).strip
   end

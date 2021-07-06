@@ -117,8 +117,6 @@ Then, we link the client to our server by modifying the *uri* variable into `src
 const uri = "https://api.tld.com";
 //...
 ```
-#
-Under the hood
 You can find the correct URL in Hasura application Environment Variable section ([learn more about env variables][docs.configuration.environment-variable]).
 
 Finally, we can now fetch data from our GraphQL backend with the following code:

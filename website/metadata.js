@@ -379,15 +379,6 @@ module.exports = {
         {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
-          "id": "/tutorial/the-easiest-way-to-deploy-microservices",
-          "last_modified_on": null,
-          "path": "website/guides/tutorial/the-easiest-way-to-deploy-microservices.md",
-          "series_position": null,
-          "title": "The easiest way to deploy microservices"
-        },
-        {
-          "author_github": "https://github.com/evoxmusic",
-          "description": null,
           "id": "/tutorial/url-shortener-api-with-kotlin",
           "last_modified_on": null,
           "path": "website/guides/tutorial/url-shortener-api-with-kotlin.md",

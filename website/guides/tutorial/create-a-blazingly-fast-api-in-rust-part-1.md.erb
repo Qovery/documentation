@@ -536,110 +536,36 @@ Qovery is going to help you to deploy your application in a few seconds. Let's d
 
 <%= qovery_sign_up() %>
 
-Qovery needs two files at the root of your project to deploy an application:
+### Deploying the app
 
-* `.qovery.yml` to declare the dependencies that your application need (E.g PostgreSQL).
-* `Dockerfile` to build and run your application.
+<Steps headingDepth={3}>
+<ol>
+<%= qovery_add_app("https://github.com/evoxmusic/twitter-clone-rust", "master") %>
 
-<Tabs
-  centered={false}
-  className={"square"}
-  defaultValue={".qovery.yml"}
-  select={false}
-  size={null}
-  values={[{"group":"Files","label":".qovery.yml","value":".qovery.yml"},{"group":"Files","label":"Dockerfile","value":"Dockerfile"}]}>
+<li>
 
-<TabItem value=".qovery.yml">
+### Deploy a database
 
-```bash title=".qovery.yml"
-application:
-  name: twitter-clone-rust
-  project: Twitter-Clone
-  publicly_accessible: true
-databases:
-- type: postgresql
-  version: "11.5"
-  name: my-postgresql-8628210
-routers:
-- name: main
-  routes:
-  - application_name: twitter-clone-rust
-    paths:
-    - /
-```
+Create and deploy a new database (name it **my-pql-db** to follow the guide flawlessly)
 
-</TabItem>
+To learn how to do it, you can [follow this guide][guides.getting-started.create-a-database]
 
-<TabItem value="Dockerfile">
+</li>
 
-```bash title="Dockerfile"
-# build stage
-FROM rust:latest as cargo-build
+<%= qovery_link_db() %>
 
-RUN apt-get update && apt-get install musl-tools -y
-RUN rustup target add x86_64-unknown-linux-musl
+<%= qovery_deploy_app() %>
 
-WORKDIR /usr/src/app
-COPY . .
+</ol>
+</Steps>
 
-RUN RUSTFLAGS=-Clinker=musl-gcc cargo build --release --target=x86_64-unknown-linux-musl
-
-###################
-# final stage
-FROM alpine:latest
-
-RUN addgroup -g 1000 app
-RUN adduser -D -s /bin/sh -u 1000 -G app app
-
-WORKDIR /home/app/bin/
-COPY --from=cargo-build /usr/src/app/target/x86_64-unknown-linux-musl/release/twitter-clone-rust .
-
-RUN chown app:app twitter-clone-rust
-USER app
-
-EXPOSE 9090
-
-CMD ["./twitter-clone-rust"]
-```
-
-</TabItem>
-
-</Tabs>
-
-Now, commit and push your `.qovery.yml` and `Dockerfile`:
-
-```bash title="Git commit and push"
-$ git add .qovery.yml Dockerfile
-$ git commit -m "add .qovery.yml Dockerfile"
-$ git push -u origin master
-```
-
-```bash title="Create DATABASE_URL env var"
-$ qovery project env add DATABASE_URL '$QOVERY_DATABASE_MY_POSTGRESQL_8628210_CONNECTION_URI'
-```
-
-Congratulations, you have deployed your application.
+Congratulations, you have deployed your application!
 
 ## Live test
 
-To test our deployed API, execute the following command to find your API root URL:
+<%= qovery_open_app() %>
 
-```bash title="Get our API root URL"
-$ qovery status
-```
-
-```bash title="Output"
-BRANCH NAME | STATUS  | ENDPOINTS                                   | APPLICATIONS       | DATABASES
-master      | running | https://main-gxbuagyvgnkbrp5l-gtw.qovery.io | twitter-clone-rust | my-postgresql-8628210
-
-APPLICATION NAME   | STATUS  | DATABASES
-twitter-clone-rust | running | my-postgresql-8628210
-
-DATABASE NAME         | STATUS  | TYPE       | VERSION | ENDPOINT | PORT     | USERNAME | PASSWORD | APPLICATIONS
-my-postgresql-8628210 | running | POSTGRESQL | 11.5    | <hidden> | <hidden> | <hidden> | <hidden> | twitter-clone-rust
-```
-
-Then, we can test it with the following CURL commands:
+Then, we can test it with the following CURL commands (replace the app URL with your own):
 
 ```bash title="Curl commands to test our deployed API"
 # create a tweet

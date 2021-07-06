@@ -707,6 +707,22 @@ class Templates
     render("#{partials_path}/_qovery_sign_up.md", binding).strip
   end
 
+  def qovery_add_app(repo_url, branch)
+    render("#{partials_path}/_qovery_add_app.md", binding).strip
+  end
+
+  def qovery_deploy_app()
+    render("#{partials_path}/_qovery_deploy_app.md", binding).strip
+  end
+
+  def qovery_open_app()
+    render("#{partials_path}/_qovery_open_app.md", binding).strip
+  end
+
+  def qovery_link_db()
+    render("#{partials_path}/_qovery_link_db.md", binding).strip
+  end
+
   def qovery_database_info(dbName, dbId, dbDescription, versions, dbSpecificAlert)
     render("#{partials_path}/_qovery_database_info.md", binding).strip
   end

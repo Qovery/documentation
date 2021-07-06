@@ -177,15 +177,7 @@ pg_restore -v -h $QOVERY_DATABASE_MY_POSTGRESQL_HOST -U $QOVERY_DATABASE_MY_POST
 
 <li>
 
-Deploy app on Qovery
-
-All you have to do now is to navigate to your application and click **Deploy** button
-
-<p align="center">
-  <img src="/img/heroku/heroku-1.png" alt="Migrate from Heroku" />
-</p>
-
-That's it. Watch the status and wait till the app is deployed.
+<%= qovery_deploy_app() %>
 
 After it's done, click on **Action** and **Open** button to navigate to your app. It should be up and running with all the data from Heroku migrated to Qovery!
 

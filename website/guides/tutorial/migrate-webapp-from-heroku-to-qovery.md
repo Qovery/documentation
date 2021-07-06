@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-05"
+last_modified_on: "2021-07-06"
 $schema: "/.meta/.schemas/guides.json"
 title: Migrating application from Heroku to Qovery
 description: Tutorial how to migrate a webapp connected to PostgreSQL database from Heroku to Qovery
@@ -193,15 +193,19 @@ pg_restore -v -h $QOVERY_DATABASE_MY_POSTGRESQL_HOST -U $QOVERY_DATABASE_MY_POST
 
 <li>
 
-Deploy app on Qovery
+<li>
+
+### Deploy the app on Qovery
 
 All you have to do now is to navigate to your application and click **Deploy** button
 
 <p align="center">
-  <img src="/img/heroku/heroku-1.png" alt="Migrate from Heroku" />
+  <img src="/img/heroku/heroku-1.png" alt="Deploy App" />
 </p>
 
 That's it. Watch the status and wait till the app is deployed.
+
+</li>
 
 After it's done, click on **Action** and **Open** button to navigate to your app. It should be up and running with all the data from Heroku migrated to Qovery!
 

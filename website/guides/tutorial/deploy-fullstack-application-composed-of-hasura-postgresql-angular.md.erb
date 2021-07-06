@@ -69,105 +69,7 @@ A full-stack application refers to multiple applications working all-together as
 
 ### Quick deployment
 
-<Steps headingDepth={3}>
-
-<ol>
-
-<li>
-
-The first thing to do is to create a directory and move into it
-```bash
-# create a directory and move into it
-$ mkdir my-hasura-backend && cd my-hasura-backend
-```
-
-Connect to your Qovery account:
-```bash
-# Github, Bitbucket, Gitlab seamless authentication
-$ qovery auth
-Opening your browser, waiting for your authentication...
-Authentication successful!
-```
-
-<Alert type="info">
-
-With Qovery, you don't need to have a Cloud account to deploy on the Cloud service provider and the region of your choice.
-
-</Alert>
-
-Then, we need to generate the files required to make Hasura running on Qovery
-```bash
-# Generate the .qovery.yml and the Dockerfile from the official Hasura template
-$ qovery init -t hasura
-```
-
-</li>
-<li>
-
-Finally, we commit and push our changes to deploy Hasura with PostgreSQL (Yes PostgreSQL is handled by Qovery ;))
-```bash
-# Git commit and push your code
-$ git add --all
-$ git commit -m "first commit"
-$ git push -u origin master
-
-# Your Hasura application is live!
-```
-
-</li>
-
-<li>
-
-Check your deployment status with:
-```bash
-$ qovery status
-```
-
-</li>
-
-</ol>
-</Steps>
-
-That's it, our Hasura backend and PostgreSQL are deployed and ready to be used.
-
-### Under the hood
-The command `qovery init -t hasura` generates 3 mandatory files to deploy Hasura and PostgreSQL with the right configuration.
-
-The `.qovery.yml` file - which is the description file indicating what dependencies your application needs to run. In our case a PostgreSQL database, but we also added two custom domains for the master and dev environments.
-
-```yaml title=".qovery.yml"
-application:
-  name: hasura
-  project: MyProjectName
-databases:
-- type: postgresql
-  version: 11
-  name: my-psql-db
-routers:
-- name: main
-  custom_domains:
-  - branch: master
-    domain: api.tld.com
-  - branch: dev
-    domain: api-dev.tld.com
-  routes:
-  - application_name: hasura
-    paths:
-    - /*
-```
-
-The `Dockerfile` file - to build and run Hasura from the Docker image provided by the Hasura Core team.
-
-```bash title="Dockerfile"
-FROM hasura/graphql-engine:v1.2.2
-EXPOSE 8080
-```
-
-Finally, the `.env` (dot env) file - to link Hasura to the database
-
-```bash title=".env"
-HASURA_GRAPHQL_DATABASE_URL=$QOVERY_DATABASE_MY_POSTGRESQL_DATABASE_CONNECTION_URI
-```
+To deploy Hasura to Qovery, follow steps from [this guide][guides.tutorial.graphql-api-with-hasura#hasura-deployment-on-qovery].
 
 ### Hasura web interface
 Once the Hasura application and the PostgreSQL database running, we can get access to the Hasura web interface to set-up our GraphQL API.
@@ -175,6 +77,8 @@ Once the Hasura application and the PostgreSQL database running, we can get acce
 <p align="center">
   <img src="/img/deploy-fullstack-application-composed-of-hasura-postgresql-angular/hasura_web_interface.png" alt="Hasura web interface to configure the data model" />
 </p>
+
+<%= qovery_open_app() %>
 
 ## Angular
 
@@ -197,8 +101,9 @@ Then, we link the client to our server by modifying the *uri* variable into `src
 const uri = "https://api.tld.com";
 //...
 ```
-
-You can find the correct URL to use by using `qovery status` - *ENDPOINTS*
+#
+Under the hood
+You can find the correct URL in Hasura application Environment Variable section ([learn more about env variables][docs.configuration.environment-variable]).
 
 Finally, we can now fetch data from our GraphQL backend with the following code:
 
@@ -225,80 +130,20 @@ export class HomeComponent implements OnInit {
 
 <li>
 
-Like we did for Hasura, we have to create the `.qovery.yml` and the `Dockerfile` files
-```bash
-# move into my angular project
-$ cd my-angular-frontend
-
-# Generate the .qovery.yml
-$ qovery init
-```
-
-</li>
-<li>
-
-Then, we commit and push our changes to deploy Angular
-```bash
-# Git commit and push your code
-$ git add --all
-$ git commit -m "first commit"
-$ git push -u origin master
-
-# Your Angular application is live!
-```
+Create a Github or Gitlab repository with the sample code
 
 </li>
 
 <li>
 
-Check your deployment status with:
-```bash
-$ qovery status
-```
+Add a new application linked to your repository
 
 </li>
+
+<%= qovery_deploy_app() %>
 
 </ol>
 </Steps>
-
-### Under the hood
-Two files at the root of our project are mandatories to deploy our Angular application - the `.qovery.yml` and the `Dockerfile` files.
-
-```yaml title=".qovery.yml"
-application:
-  name: angular
-  project: MyProjectName
-routers:
-- name: frontend
-  custom_domains:
-  - branch: master
-    domain: tld.com
-  routes:
-  - application_name: frontend
-    paths:
-    - /*
-```
-
-<Alert type="info">
-
-`project` is the matching key to get the Hasura, PostgreSQL and Angular within the same project.
-
-</Alert>
-
-```bash title="Dockerfile"
-### STAGE 1: Build ###
-FROM node:14.3-alpine AS build
-WORKDIR /usr/src/app
-COPY package.json package-lock.json ./
-RUN npm install
-COPY . .
-RUN npm run build
-
-### STAGE 2: Run ###
-FROM nginx:1.19-alpine
-EXPOSE 80
-COPY --from=build /usr/src/app/dist/my-angular-app /usr/share/nginx/html
-```
 
 ## Demo
 Now, let's look at the final result...

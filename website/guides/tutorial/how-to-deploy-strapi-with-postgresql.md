@@ -106,7 +106,7 @@ To add storage, go to your Strapi application **Settings**:
 
 <li>
 
-Setup your Strapi configuration:
+### Setup your Strapi configuration:
 
 To use PostgreSQL provided by Qovery, you can use the built-in secrets and environment variables.
 You can read more about environment variables and secrets in our [configuration section][docs.configuration.environment-variable].

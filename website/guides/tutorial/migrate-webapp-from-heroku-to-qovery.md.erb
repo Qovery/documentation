@@ -110,34 +110,18 @@ Otherwise, you can try to deploy and migrate our sample application to get exper
 [Sign in to Qovery Console](https://console.qovery.com)
 
 </li>
+
+<%= qovery_add_app("https://github.com/qovery/migrate-webapp-from-heroku-to-qovery.git", "master") %>
+
 <li>
 
-Create a new project
+Create and deploy a new database
 
-<p align="center">
-  <img src="/img/heroku/heroku-2.png" alt="Migrate from Heroku" />
-</p>
+<Alert type="warning">
 
-</li>
-<li>
+Name the database **MY_POSTGRESQL** to follow the guide flawlessly
 
-Create a new environment
-
-<p align="center">
-  <img src="/img/heroku/heroku-3.png" alt="Migrate from Heroku" />
-</p>
-
-</li>
-<li>
-
-Create a new application
-
-To follow the guide, [you can fork and use our example repository](https://github.com/qovery/migrate-webapp-from-heroku-to-qovery.git)
-
-</li>
-<li>
-
-Create and deploy a new database (name it **MY_POSTGRESQL** to follow the guide flawlessly)
+</Alert>
 
 To learn how to do it, you can [follow this guide][guides.getting-started.create-a-database]
 
@@ -172,6 +156,8 @@ To migrate the data to Qovery, run (replace all the values with secrets listed i
 ```bash
 pg_restore -v -h $QOVERY_DATABASE_MY_POSTGRESQL_HOST -U $QOVERY_DATABASE_MY_POSTGRESQL_USER -d postgres latest.dump --no-owner
 ```
+
+[Learn more about secrets here][docs.using-qovery.configuration.secret]
 
 </li>
 

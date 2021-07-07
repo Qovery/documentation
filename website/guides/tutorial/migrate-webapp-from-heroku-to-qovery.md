@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-06"
+last_modified_on: "2021-07-07"
 $schema: "/.meta/.schemas/guides.json"
 title: Migrating application from Heroku to Qovery
 description: Tutorial how to migrate a webapp connected to PostgreSQL database from Heroku to Qovery
@@ -126,34 +126,50 @@ Otherwise, you can try to deploy and migrate our sample application to get exper
 [Sign in to Qovery Console](https://console.qovery.com)
 
 </li>
+
 <li>
 
-Create a new project
+### Create a new project
 
 <p align="center">
   <img src="/img/heroku/heroku-2.png" alt="Migrate from Heroku" />
 </p>
 
 </li>
+
 <li>
 
-Create a new environment
+### Create a new environment
 
 <p align="center">
   <img src="/img/heroku/heroku-3.png" alt="Migrate from Heroku" />
 </p>
 
 </li>
+
 <li>
 
-Create a new application
+### Create a new application
 
-To follow the guide, [you can fork and use our example repository](https://github.com/qovery/migrate-webapp-from-heroku-to-qovery.git)
+To follow the guide, [you can fork and use our repository](https://github.com/qovery/migrate-webapp-from-heroku-to-qovery.git)
+
+Use the forked repository (and branch master) while creating the application in the repository field:
+
+<p align="center">
+  <img src="/img/rust/rust.png" alt="Migrate from Heroku" />
+</p>
 
 </li>
+
 <li>
 
-Create and deploy a new database (name it **MY_POSTGRESQL** to follow the guide flawlessly)
+Create and deploy a new database
+
+<Alert type="warning">
+
+Name the database **MY_POSTGRESQL** to follow the guide flawlessly
+
+</Alert>
 
 To learn how to do it, you can [follow this guide][guides.getting-started.create-a-database]
 
@@ -189,6 +205,8 @@ To migrate the data to Qovery, run (replace all the values with secrets listed i
 pg_restore -v -h $QOVERY_DATABASE_MY_POSTGRESQL_HOST -U $QOVERY_DATABASE_MY_POSTGRESQL_USER -d postgres latest.dump --no-owner
 ```
 
+[Learn more about secrets here][docs.using-qovery.configuration.secret]
+
 </li>
 
 <li>
@@ -220,5 +238,6 @@ After it's done, click on **Action** and **Open** button to navigate to your app
 <Jump to="/guides/advanced/using-multiple-environments">Using Multiple Environments</Jump>
 
 
+[docs.using-qovery.configuration.secret]: /docs/using-qovery/configuration/secret/
 [guides.getting-started.create-a-database]: /guides/getting-started/create-a-database/
 [urls.github]: https://github.com

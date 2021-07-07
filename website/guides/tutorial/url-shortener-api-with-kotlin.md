@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-05"
+last_modified_on: "2021-07-07"
 $schema: "/.meta/.schemas/guides.json"
 title: URL Shortener API with Kotlin (Part 1/2)
 description: Create a URL shortener API with Kotlin, the micro-framework Ktor and PostgreSQL
@@ -418,7 +418,7 @@ We have to replace the Hash Table used to store the data by the PostgreSQL datab
 
 [Qovery](https://www.qovery.com) is going to help us to deploy the final application in the Cloud without the need to configure the CI/CD, network, security, load balancing, database and all the DevOps tasks
 
-> Qovery is a Container as a Service platform for developer - developers can deploy their application in the Cloud in just a few seconds
+> Qovery is a deployment platform that helps all developers to deploy their applications in the Cloud in just a few seconds
 
 <Assumptions name="tutorial">
 
@@ -594,29 +594,42 @@ Congratulations, you are logged-in.
 
 <Steps headingDepth={3}>
 <ol>
+
 <li>
 
-Create a new project
+### Create a new project
 
 <p align="center">
   <img src="/img/heroku/heroku-2.png" alt="Migrate from Heroku" />
 </p>
 
 </li>
+
 <li>
 
-Create a new environment
+### Create a new environment
 
 <p align="center">
   <img src="/img/heroku/heroku-3.png" alt="Migrate from Heroku" />
 </p>
 
 </li>
+
 <li>
 
-Create a new application
+### Create a new application
 
 To follow the guide, [you can fork and use our repository](https://github.com/evoxmusic/ktor-url-shortener.git)
+
+Use the forked repository (and branch master) while creating the application in the repository field:
+
+<p align="center">
+  <img src="/img/rust/rust.png" alt="Migrate from Heroku" />
+</p>
+
+</li>
+
+<li>
 
 After the application is created: 
 
@@ -636,7 +649,11 @@ This will expose your application and make accessible in the public internet.
 
 ### Deploy a database
 
-Create and deploy a new database (name it **my-pql-db** to follow the guide flawlessly).
+Create and deploy a new database.
+
+<Alert type="warning">
+Name the new database **my-pql-db** to follow the guide flawlessly
+</Alert>
 
 To learn how to do it, you can [follow this guide][guides.getting-started.create-a-database].
 
@@ -644,7 +661,11 @@ To learn how to do it, you can [follow this guide][guides.getting-started.create
 
 Qovery add dynamically all required environment variables to connect to the database at the runtime of the container.
 
-You can list them all in **Environment Variables** section in your application overview, as described in [envs guide][guides.getting-started.managing-environment-variables].
+You can list them all in **Environment Variables** **Secrets** section in your application overview, as described in [envs guide][guides.getting-started.managing-environment-variables].
+
+<p align="center">
+  <img src="/img/db-envs.png" alt="DB Secrets" />
+</p>
 
 To use them:
 
@@ -678,6 +699,10 @@ To get public URL to the application, open application details and click on **Ac
 
 <p align="center">
   <img src="/img/deploy-env-1.png" alt="Kotlin URL Shortener" />
+</p>
+
+<p align="center">
+  <img src="/img/open-app.png" alt="Kotlin URL Shortener" />
 </p>
 
 ## Conclusion

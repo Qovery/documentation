@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-06"
+last_modified_on: "2021-07-07"
 $schema: "/.meta/.schemas/guides.json"
 title: Create a blazingly fast REST API in Rust (Part 1/2)
 description: How to create a blazingly fast REST API in Rust, with zero-cost abstraction and very low overhead - Part 1/2
@@ -767,7 +767,13 @@ After the application is created:
 
 ### Deploy a database
 
-Create and deploy a new database (name it **my-pql-db** to follow the guide flawlessly)
+Create and deploy a new database
+
+<Alert type="warning">
+
+Name the database **my-pql-db** to follow the guide flawlessly
+
+</Alert>
 
 To learn how to do it, you can [follow this guide][guides.getting-started.create-a-database]
 

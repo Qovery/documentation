@@ -106,6 +106,15 @@ To add storage, go to your Strapi application **Settings**:
 
 <li>
 
+Setup your Strapi configuration:
+
+To use PostgreSQL provided by Qovery, you can use the built-in secrets and environment variables.
+You can read more about environment variables and secrets in our [configuration section][docs.configuration.environment-variable].
+
+</li>
+
+<li>
+
 ### Deploy the app on Qovery
 
 All you have to do now is to navigate to your application and click **Deploy** button
@@ -130,5 +139,6 @@ To open the application in your browser, click on **Action** and **Open** button
 <Jump to="/guides/tutorial/">Tutorial</Jump>
 
 
+[docs.configuration.environment-variable]: /docs/using-qovery/configuration/environment-variable/
 [guides.getting-started.create-a-database]: /guides/getting-started/create-a-database/
 [urls.start_qovery]: https://start.qovery.com

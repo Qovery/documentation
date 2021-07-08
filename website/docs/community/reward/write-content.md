@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-03"
+last_modified_on: "2021-07-09"
 title: Write Content
 description: Write content and get rewarded
 ---
@@ -42,11 +42,11 @@ Earn up to $300 Qovery credits per article
   - [Twitter](https://twitter.com)
   - [DZone](https://dzone.com/)
 
-## How to submit my content
+## How to submit my content?
 
 Complete [this form][urls.qovery_submit_content_form].
 
-## What should I write
+## What should I write?
 
 You can write on whatever you want, it must only be related to Qovery. Feedback, tutorials, use-cases... Anything you think that could be valuable to the developers community.
 

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-03"
+last_modified_on: "2021-07-09"
 title: Video Record
 description: Record a video of Qovery and get rewarded
 ---
@@ -34,11 +34,11 @@ Earn up to $300 Qovery credits per recorded video
 * The recorded video and sound quality must be decent (not below 720p).
 * The recorded video must be hosted on your [Youtube](https://www.youtube.com) channel.
 
-## How to submit my video
+## How to submit my video?
 
 Complete [this form][urls.qovery_submit_video_form].
 
-## What should I record
+## What should I record?
 
 You can record whatever you want. It must only be related to Qovery. Feedback, tutorials, demo, use-cases... Anything you think that could be valuable to the developers' community.
 

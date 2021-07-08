@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-03"
+last_modified_on: "2021-07-09"
 title: Feedback
 description: Share your feedback on Qovery and get rewarded
 ---
@@ -31,7 +31,7 @@ Earn $15 Qovery credits per product feedback. And up to $300 for [exceptional pu
 * Maximum 3 public feedback every 2 months.
 * We accept only honest feedback - positive and negative.
 
-## How to share your feedback
+## How to share your feedback?
 
 To improve Qovery, we need to have your user feedback.
 

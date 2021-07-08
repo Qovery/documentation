@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-03"
+last_modified_on: "2021-07-09"
 title: Friend Sponsorship
 description: Invite a friend to join Qovery and get both rewarded
 ---
@@ -30,7 +30,7 @@ Earn $15 Qovery credits both (referee and referrer) per invited friend.
 * The invited user is new on Qovery.
 * You have invited less than 4 friends. (contact us if you plan to invite more people)
 
-## How to invite a friend
+## How to invite a friend?
 
 Share your referral link via [your web console][urls.start_qovery].
 

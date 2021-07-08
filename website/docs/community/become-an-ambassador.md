@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-04"
+last_modified_on: "2021-07-09"
 title: Become an Ambassador
 description: Be a community ambassador and get highly rewarded
 ---
@@ -42,12 +42,17 @@ To become an ambassador, you need to check 2 of the following requirements:
 - Create video on how to use Qovery.
 - Be an active participant on our [Community Calls][urls.qovery_community_call].
 
-## What are the benefits?
+## Benefits
 
 - Get the Qovery [welcome pack][urls.qovery_shop] 😎.
 - $150 monthly recurrent Qovery credits to host your apps for free.
 - Early Qovery access.
 - Direct communication with the Qovery team.
+
+## How to apply?
+
+Complete [this form][urls.qovery_ambassador_application_form] to request becoming an ambassador.
+Your profile will be analyzed and submitted to our existing ambassadors for validation.
 
 ## FAQ
 
@@ -86,6 +91,7 @@ Not yet, but maybe you can help us to create a beautiful one? :) [Reach me out][
 
 
 [docs.community.reward]: /docs/community/reward/
+[urls.qovery_ambassador_application_form]: https://qovery.typeform.com/to/WrWxWR9t
 [urls.qovery_chat]: https://discord.qovery.com
 [urls.qovery_community]: https://discuss.qovery.com/
 [urls.qovery_community_call]: https://www.qovery.com/community-call

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-07"
+last_modified_on: "2021-07-08"
 $schema: "/.meta/.schemas/guides.json"
 title: Migrating application from Heroku to Qovery
 description: Tutorial how to migrate a webapp connected to PostgreSQL database from Heroku to Qovery
@@ -151,9 +151,9 @@ Otherwise, you can try to deploy and migrate our sample application to get exper
 
 ### Create a new application
 
-To follow the guide, [you can fork and use our repository](https://github.com/qovery/migrate-webapp-from-heroku-to-qovery.git)
+To follow the guide, [you can fork and use our repository][https://github.com/qovery/migrate-webapp-from-heroku-to-qovery.git]
 
-Use the forked repository (and branch master) while creating the application in the repository field:
+Use the forked repository (and branch **master**) while creating the application in the repository field:
 
 <p align="center">
   <img src="/img/rust/rust.png" alt="Migrate from Heroku" />

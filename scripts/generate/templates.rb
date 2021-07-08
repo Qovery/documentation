@@ -695,7 +695,7 @@ class Templates
     render("#{partials_path}/_qovery_build_platform_coming_soon.md", binding).strip
   end
 
-  def qovery_how_to_deploy_x_with_y(x, x_url, x_sample_application_url, y, y_url, y_version)
+  def qovery_how_to_deploy_x_with_y(x, x_url, x_sample_application_url, y, y_url, y_version, port, x_sample_application_url_env_file_url)
     render("#{partials_path}/_qovery_how_to_deploy_x_with_y.md", binding).strip
   end
 
@@ -713,6 +713,14 @@ class Templates
 
   def qovery_add_app(repo_url, branch)
     render("#{partials_path}/_qovery_add_app.md", binding).strip
+  end
+
+  def qovery_add_port(port)
+    render("#{partials_path}/_qovery_add_port.md", binding).strip
+  end
+
+  def qovery_add_db(name, version)
+    render("#{partials_path}/_qovery_add_db.md", binding).strip
   end
 
   def qovery_deploy_app()

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-06"
+last_modified_on: "2021-07-08"
 $schema: "/.meta/.schemas/guides.json"
 title: GraphQL API with Hasura
 description: How to build and deploy realtime GraphQL APIs in a few minutes
@@ -82,9 +82,9 @@ If you have any questions regarding this post or other things, feel free to reac
 
 ### Create a new application
 
-To follow the guide, [you can fork and use our repository](https://github.com/Qovery/hasura.git)
+To follow the guide, [you can fork and use our repository][https://github.com/Qovery/hasura.git]
 
-Use the forked repository (and branch main) while creating the application in the repository field:
+Use the forked repository (and branch **main**) while creating the application in the repository field:
 
 <p align="center">
   <img src="/img/rust/rust.png" alt="Migrate from Heroku" />

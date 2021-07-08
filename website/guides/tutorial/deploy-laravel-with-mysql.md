@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-26"
+last_modified_on: "2021-07-08"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy Laravel with MySQL with Qovery
 description: How to deploy a Laravel application with the MySQL database with Qovery
@@ -9,17 +9,12 @@ hide_pagination: true
 ---
 
 import Jump from '@site/src/components/Jump';
+import Steps from '@site/src/components/Steps';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 import Assumptions from '@site/src/components/Assumptions';
 import Alert from '@site/src/components/Alert';
-
-<Alert type="warning">
-
-WORK IN PROGRESS - THIS DOCUMENTATION IS OUTDATED
-
-</Alert>
 
 This tutorial show you how to deploy your [Laravel][urls.laravel] application with [MySQL][urls.mysql] database. Let's go!
 
@@ -206,141 +201,137 @@ Congratulations, you are logged-in.
 ## Deployment
 
 ### Laravel sample application
-Get a local copy of the [Laravel sample project][urls.sample_laravel_with_mysql] by forking it.
+Get a copy of the sample source code of [Laravel sample project][urls.sample_laravel_with_mysql] by forking it.
 
-### Configure your project
-To deploy your Laravel application connected to a MySQL, you need to have a `.qovery.yml` file, and a `Dockerfile` (both provided in the sample project) at the root of your project.
+To deploy your Laravel application connected to a **MySQL**, you can use our sample code and follow the configuration steps.
 
-<Alert>
-The .qovery.yml file describes all the dependencies that your application needs (e.g., MySQL) to work smoothly
+In this example we are using **MySQL** **v8.0**.
+
+<Steps headingDepth={3}>
+<ol>
+
+<li>
+
+### Create a new project
+
+<p align="center">
+  <img src="/img/heroku/heroku-2.png" alt="Migrate from Heroku" />
+</p>
+
+</li>
+
+<li>
+
+### Create a new environment
+
+<p align="center">
+  <img src="/img/heroku/heroku-3.png" alt="Migrate from Heroku" />
+</p>
+
+</li>
+
+<li>
+
+### Create a new application
+
+To follow the guide, [you can fork and use our repository][urls.sample_laravel_with_mysql]
+
+Use the forked repository (and branch **master**) while creating the application in the repository field:
+
+<p align="center">
+  <img src="/img/rust/rust.png" alt="Migrate from Heroku" />
+</p>
+
+</li>
+
+<li>
+
+After the application is created: 
+
+- Navigate application settings
+- Select **Port**
+- Add port ** 80 **
+
+<p align="left">
+    <img src="/img/micro/micros-1.png" alt="Microservices" />
+</p>
+
+</li>
+
+<li>
+
+### Deploy a database
+
+In your envioronment view, click on **Add** and **Database** buttons:
+
+<p align="center">
+  <img src="/img/template-add-db.png" alt="Template DB" />
+</p>
+
+In the popup window while adding a database, choose your name, select **MySQL** and **8.0** version.
+
+<p align="center">
+  <img src="/img/template-db.png" alt="Template DB" />
+</p>
+
+<Alert type="info">
+
+To learn how to add a database in more details, you can [follow this guide][guides.getting-started.create-a-database].
+
 </Alert>
 
-In this example we are using MySQL v8.0
+</li>
 
-After forking the sample application, you can check the content of `.qovery.yml`:
-
-```bash
-$ cat .qovery.yml
-```
-
-```yaml title=".qovery.yml"
-application:
-  name: my-application
-  project: my-project
-  publicly_accessible: true
-databases:
-- type: mysql
-  version: "8.0"
-  name: my-db
-routers:
-- name: main
-  routes:
-  - application_name: my-application
-    paths:
-    - /
-```
-
-[Authorize the Qovery Github application][urls.authorize_qovery] to get access to your Github account. Once done, all new commits you push to your forked repository will trigger new deployments of the application.
+<li>
 
 ### Connect Laravel to MySQL
-Credentials of your database are available via environment variables. Qovery injects environment vars at the runtime.
 
-<Alert type="warning">
-Qovery does not inject any variable in your .env file, this is to be done on your side
+Credentials of your database are available via **Environment Variables** and **Secrets**. Qovery injects environment vars at the runtime.
+
+You can learn more about environment variables and secrets [here][docs.configuration.environment-variable].
+
+To list all the environment variables available to your application, you can open **Environment Variables** and **Secret** tabs in your application window:
+
+<p align="center">
+  <img src="/img/configuration/variables/secret-2.png" alt="Secret" />
+</p>
+
+<Alert type="info">
+
+In the **Secrets** section, you'll see all names of injected database secrets, including those for the previously created database.
+To connect the app to the database, you need to setup the application to use those secrets.
+
+All you have to do is to open and edit [database configuration file][urls.sample_laravel_with_mysql_env_file] in your forked repository.
+Replace all the **QOVERY_DATABSE_XXX** variables with values you have in your own environment. Those variable keys contain your database ID, this is why you need to update the file. 
+
+*TIP: you could also make use of **Variable Aliases** to change the name of used environment variables in your application. [Learn more here][docs.using-qovery.configuration.secret#alias-secret].*
+
 </Alert>
 
-To list all the environment variables available to your application, execute
+</li>
 
-```bash
-# List all environment variables
-$ qovery project env list
-```
+<li>
 
-```bash title="Output"
-SCOPE    | KEY                                                      | VALUE
-BUILT_IN | QOVERY_JSON_B64                                          | <base64>
-BUILT_IN | QOVERY_BRANCH_NAME                                       | master
-BUILT_IN | QOVERY_IS_PRODUCTION                                     | true
-BUILT_IN | QOVERY_MY_APPLICATION_HOSTNAME                           | <hidden>
-BUILT_IN | QOVERY_DATABASE_MY_DB_DATABASE                           | <hidden>
-BUILT_IN | QOVERY_DATABASE_MY_DB_PASSWORD                           | <hidden>
-BUILT_IN | QOVERY_DATABASE_MY_DB_USERNAME                           | <hidden>
-BUILT_IN | QOVERY_DATABASE_MY_DB_PORT                               | <hidden>
-BUILT_IN | QOVERY_DATABASE_MY_DB_FQDN                               | <hidden>
-BUILT_IN | QOVERY_DATABASE_MY_DB_HOST                               | <hidden>
-BUILT_IN | QOVERY_DATABASE_MY_DB_CONNECTION_URI_WITHOUT_CREDENTIALS | <hidden>
-BUILT_IN | QOVERY_DATABASE_MY_DB_CONNECTION_URI                     | <hidden>
-BUILT_IN | QOVERY_DATABASE_MY_DB_VERSION                            | 8.0
-BUILT_IN | QOVERY_DATABASE_MY_DB_TYPE                               | MySQL
-BUILT_IN | QOVERY_DATABASE_MY_DB_NAME                               | my-db
-```
+### Deploy the app on Qovery
 
-Forking the application with `.qovery.yml` and a `Dockerfile` should trigger app deployment.
+All you have to do now is to navigate to your application and click **Deploy** button
 
-See the deployment status by executing:
+<p align="center">
+  <img src="/img/heroku/heroku-1.png" alt="Deploy App" />
+</p>
 
-```bash
-# Show your deployment status
-$ qovery status
-```
+That's it. Watch the status and wait till the app is deployed.
 
-```bash title="Output"
-BRANCH NAME | STATUS  | ENDPOINTS                                   | APPLICATIONS    | DATABASES
-master      | running | https://main-abcdefgh12345678-gtw.qovery.io | my-application  | my-db
+</li>
 
-APPLICATION NAME  | STATUS  | DATABASES
-my-application    | running | my-db
+</ol>
+</Steps>
 
-DATABASE NAME    | STATUS  | TYPE       | VERSION | ENDPOINT | PORT     | USERNAME | PASSWORD | APPLICATIONS
-my-db            | running | MYSQL      | 8.0     | <hidden> | <hidden> | <hidden> | <hidden> | my-application
-```
-
-When your application `status` is `running`, you can use a browser or `curl` to access its endpoints.
+Congratulations! Your environment with [Laravel][urls.laravel] application and [MySQL][urls.mysql] database should be in progress.
 
 ## Trigger a new deployment
 
 Now, you can play with the sample application and commit & push your changes. Qovery detects your actions and triggers new builds and application deployments. Any change you make will be reflected in your deployed application automatically.
-
-## Bonuses (optional)
-### Deploy the application on dev environments
-Qovery has a compelling feature known as "[environments][docs.using-qovery.configuration.environment]". Qovery supports the deployment of isolated development environments that reflect your Git branches. Environments are complete copies of all of your data, application, and services like databases. The Environment is useful for testing changes in isolation before merging them to your main branch.
-
-So, do you want to create a new feature, fix a bug, or make modifications without impacting the production or any other important environment? Type the following commands:
-
-```bash
-$ git checkout -b feat_foo
-$ git push -u origin feat_foo
-
-# show deployment status
-$ qovery status
-```
-
-```bash title="Output"
-BRANCH NAME | STATUS  | ENDPOINTS                                   | APPLICATIONS    | DATABASES
-feat_foo    | running | https://main-yenr7erjbs87dk4m-gtw.qovery.io | my-application  | my-db
-
-APPLICATION NAME      | STATUS  | DATABASES
-docker-simple-example | running | my-db
-
-DATABASE NAME  | STATUS  | TYPE       | VERSION | ENDPOINT | PORT     | USERNAME | PASSWORD | APPLICATIONS
-my-db          | running | MySQL      | 8.0     | <hidden> | <hidden> | <hidden> | <hidden> | my-application
-```
-
-<Jump to="/guides/advanced/using-multiple-environments">Multiple Environments</Jump>
-
-### Test the Laravel application locally
-The Qovery motto is: if your application runs locally, it runs well on Qovery, too. To test if your application is running locally, execute the following command:
-
-<Alert>
-The Docker runtime is required
-</Alert>
-
-```bash
-$ qovery run
-```
-
-Note: `qovery run` connects your application to the MySQL database on Qovery.
-
 
 ## Conclusion
 Congratulations! Now, you know how to deploy your Laravel app with MySQL in just a few steps.
@@ -353,7 +344,9 @@ Do you have any feedback about this tutorial? Let us know what you think on [Dis
 
 
 [docs.cli#windows]: /docs/using-qovery/interface/cli/#windows
-[docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
+[docs.configuration.environment-variable]: /docs/using-qovery/configuration/environment-variable/
+[docs.using-qovery.configuration.secret#alias-secret]: /docs/using-qovery/configuration/secret/#alias-secret
+[guides.getting-started.create-a-database]: /guides/getting-started/create-a-database/
 [urls.authorize_qovery]: https://github.com/apps/qovery/installations/new
 [urls.brew]: https://brew.sh/
 [urls.github]: https://github.com
@@ -363,5 +356,6 @@ Do you have any feedback about this tutorial? Let us know what you think on [Dis
 [urls.qovery_chat]: https://discord.qovery.com
 [urls.qovery_cli_releases]: https://github.com/Qovery/qovery-cli/releases
 [urls.sample_laravel_with_mysql]: https://github.com/Qovery/docker-simple-example-laravel
+[urls.sample_laravel_with_mysql_env_file]: https://github.com/Qovery/docker-simple-example-laravel/blob/master/project/config/database.php
 [urls.scoop]: https://scoop.sh/
 [urls.start_qovery]: https://start.qovery.com

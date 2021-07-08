@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-07"
+last_modified_on: "2021-07-08"
 $schema: "/.meta/.schemas/guides.json"
 title: Create a blazingly fast REST API in Rust (Part 1/2)
 description: How to create a blazingly fast REST API in Rust, with zero-cost abstraction and very low overhead - Part 1/2
@@ -739,9 +739,9 @@ Congratulations, you are logged-in.
 
 ### Create a new application
 
-To follow the guide, [you can fork and use our repository](https://github.com/evoxmusic/twitter-clone-rust)
+To follow the guide, [you can fork and use our repository][https://github.com/evoxmusic/twitter-clone-rust]
 
-Use the forked repository (and branch master) while creating the application in the repository field:
+Use the forked repository (and branch **master**) while creating the application in the repository field:
 
 <p align="center">
   <img src="/img/rust/rust.png" alt="Migrate from Heroku" />

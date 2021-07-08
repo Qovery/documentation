@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[60],{212:function(e){e.exports=JSON.parse('{"permalink":"/guides","page":1,"guidesPerPage":1,"totalPages":1,"totalCount":33,"previousPage":"/guides","nextPage":"/guides"}')}}]);

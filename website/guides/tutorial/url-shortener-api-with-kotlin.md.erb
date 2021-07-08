@@ -402,88 +402,63 @@ We have to replace the Hash Table used to store the data by the PostgreSQL datab
 
 [Qovery](https://www.qovery.com) is going to help us to deploy the final application in the Cloud without the need to configure the CI/CD, network, security, load balancing, database and all the DevOps tasks
 
-> Qovery is a Container as a Service platform for developer - developers can deploy their application in the Cloud in just a few seconds
+> Qovery is a deployment platform that helps all developers to deploy their applications in the Cloud in just a few seconds
 
 <Assumptions name="tutorial">
 
-* Your code need to be hosted on Github
-* You need to [accept the Qovery Github app](https://github.com/apps/qovery/installations/new)
+* Your code need to be hosted on Github/Gitlab
 * [Package your Ktor application to build and run it on Docker](https://ktor.io/quickstart/quickstart/docker.html)
 
 </Assumptions>
 
 <%= qovery_sign_up() %>
 
-### Configuration
+### Create an application
 
-To deploy on Qovery, two files are mandatories
+<Steps headingDepth={3}>
+<ol>
 
-.qovery.yml - a very simple way to declare the dependencies that you need (e.g: PostgreSQL) and where you want to run it (here on AWS and eu-west-3 / Paris)
+<%= qovery_add_app("https://github.com/evoxmusic/ktor-url-shortener.git", "master") %>
 
-```yaml
-application:
-  name: api
-  project: url-shortener
-  publicly_accessible: true
-databases:
-  - type: postgresql
-    version: "11.5"
-    name: my-pql-db
-routers:
-  - name: main
-    routes:
-      - application_name: api
-        paths:
-          - /*
-```
+<li>
 
-Dockerfile - to build and run your application on Qovery
+After the application is created: 
 
-```bash
-FROM openjdk:8-jre-alpine
+- Navigate application settings
+- Select **Port**
+- Add port 8080
 
-ENV APPLICATION_USER ktor
-RUN adduser -D -g '' $APPLICATION_USER
+<p align="left">
+    <img src="/img/micro/micros-1.png" alt="Microservices" />
+</p>
 
-RUN mkdir /app
-RUN chown -R $APPLICATION_USER /app
+This will expose your application and make accessible in the public internet.
 
-USER $APPLICATION_USER
+</li>
+</ol>
+</Steps>
 
-COPY ./build/libs/ktor-url-shortener.jar /app/ktor-url-shortener.jar
-WORKDIR /app
+### Deploy a database
 
-CMD ["java", "-server", "-XX:+UnlockExperimentalVMOptions", "-XX:+UseCGroupMemoryLimitForHeap", "-XX:InitialRAMFraction=2", "-XX:MinRAMFraction=2", "-XX:MaxRAMFraction=2", "-XX:+UseG1GC", "-XX:MaxGCPauseMillis=100", "-XX:+UseStringDeduplication", "-jar", "ktor-url-shortener.jar"]
-```
+Create and deploy a new database.
+
+<Alert type="warning">
+Name the new database **my-pql-db** to follow the guide flawlessly
+</Alert>
+
+To learn how to do it, you can [follow this guide][guides.getting-started.create-a-database].
 
 ### Connect to PostgreSQL
 
 Qovery add dynamically all required environment variables to connect to the database at the runtime of the container.
 
-To list all of them
+You can list them all in **Environment Variables** **Secrets** section in your application overview, as described in [envs guide][guides.getting-started.managing-environment-variables].
 
-```bash
-$ qovery application env list
-  SCOPE    | KEY                                                          | VALUE
-  BUILT_IN | QOVERY_JSON_B64                                              | <base64>
-  BUILT_IN | QOVERY_BRANCH_NAME                                           | with_postgresql
-  BUILT_IN | QOVERY_IS_PRODUCTION                                         | false
-  BUILT_IN | QOVERY_DATABASE_MY_PQL_DB_NAME                               | my-pql-db
-  BUILT_IN | QOVERY_DATABASE_MY_PQL_DB_TYPE                               | POSTGRESQL
-  BUILT_IN | QOVERY_DATABASE_MY_PQL_DB_VERSION                            | 11.5
-  BUILT_IN | QOVERY_DATABASE_MY_PQL_DB_CONNECTION_URI                     | <hidden>
-  BUILT_IN | QOVERY_DATABASE_MY_PQL_DB_CONNECTION_URI_WITHOUT_CREDENTIALS | <hidden>
-  BUILT_IN | QOVERY_DATABASE_MY_PQL_DB_HOST                               | <hidden>
-  BUILT_IN | QOVERY_DATABASE_MY_PQL_DB_FQDN                               | <hidden>
-  BUILT_IN | QOVERY_DATABASE_MY_PQL_DB_PORT                               | <hidden>
-  BUILT_IN | QOVERY_DATABASE_MY_PQL_DB_USERNAME                           | <hidden>
-  BUILT_IN | QOVERY_DATABASE_MY_PQL_DB_PASSWORD                           | <hidden>
-  BUILT_IN | QOVERY_DATABASE_MY_PQL_DB_DATABASE                           | postgres
-  BUILT_IN | QOVERY_APPLICATION_API_HOSTNAME                              | <hidden>
-  BUILT_IN | QOVERY_APPLICATION_API_HOST                                  | <hidden>
-```
+<p align="center">
+  <img src="/img/db-envs.png" alt="DB Secrets" />
+</p>
 
-To use them
+To use them:
 
 ```kotlin
 fun initDatabase() {
@@ -505,27 +480,21 @@ fun initDatabase() {
 
 ### Deploy
 
-Deploying your app with Qovery is as simple as commit and push your code.
+To deploy your application and database, click **Action** and **Deploy** button in your environments list view:
 
-```bash
-$ git add .qovery.yml Dockerfile
-$ git commit -m "add .qovery.yml and Dockerfile files"
-$ git push -u origin master
-```
+<p align="center">
+  <img src="/img/deploy-env.png" alt="Kotlin URL Shortener" />
+</p>
 
-To get the public URL
+To get public URL to the application, open application details and click on **Action** **Open**.
 
-```bash
-$ qovery status
-  BRANCH NAME     | STATUS  | ENDPOINTS                                   | APPLICATIONS | DATABASES | BROKERS | STORAGE
-  with_postgresql | running | https://qavcgggy6g6dlkbj-main-gtw.qovery.io | 1            | 1         | 0       | 0
+<p align="center">
+  <img src="/img/deploy-env-1.png" alt="Kotlin URL Shortener" />
+</p>
 
-  APPLICATION NAME | STATUS  | ENDPOINT                                                | DATABASES | BROKERS | STORAGE
-  api              | running | https://ete6bq97amj9n82c-qavcgggy6g6dlkbj-app.qovery.io | 1         | 0       | 0
-
-  DATABASE NAME | STATUS  | TYPE       | VERSION | ENDPOINT | PORT     | USERNAME | PASSWORD | APPLICATIONS
-  my-pql-db     | running | POSTGRESQL | 11.5    | <hidden> | <hidden> | <hidden> | <hidden> | api
-```
+<p align="center">
+  <img src="/img/open-app.png" alt="Kotlin URL Shortener" />
+</p>
 
 ## Conclusion
 

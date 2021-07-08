@@ -160,7 +160,16 @@ module.exports = {
       "description": "Go beyond the basics, become a Qovery pro, and extract the full potential of Qovery.",
       "guides": [
         {
-          "author_github": "https://github.com/evoxmusic",
+          "author_github": "https://github.com/pjeziorowski",
+          "description": null,
+          "id": "/advanced/deploy-backend-and-frontend-apps",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/deploy-backend-and-frontend-apps.md",
+          "series_position": null,
+          "title": "Deploying backend and frontend apps"
+        },
+        {
+          "author_github": "https://github.com/pjeziorowski",
           "description": null,
           "id": "/advanced/microservices",
           "last_modified_on": null,
@@ -240,15 +249,6 @@ module.exports = {
           "path": "website/guides/tutorial/deploy-django-with-postgresql.md",
           "series_position": null,
           "title": "Deploy Django with PostgreSQL with Qovery"
-        },
-        {
-          "author_github": "https://github.com/evoxmusic",
-          "description": null,
-          "id": "/tutorial/deploy-flask-with-postgresql",
-          "last_modified_on": null,
-          "path": "website/guides/tutorial/deploy-flask-with-postgresql.md",
-          "series_position": null,
-          "title": "Deploy Flask with PostgreSQL with Qovery"
         },
         {
           "author_github": "https://github.com/pjeziorowski",
@@ -366,15 +366,6 @@ module.exports = {
           "path": "website/guides/tutorial/simplest-way-to-deploy-deno-with-database.md",
           "series_position": null,
           "title": "Simplest way to deploy your Deno application with MongoDB database"
-        },
-        {
-          "author_github": "https://github.com/evoxmusic",
-          "description": null,
-          "id": "/tutorial/the-easiest-way-to-deploy-microservices",
-          "last_modified_on": null,
-          "path": "website/guides/tutorial/the-easiest-way-to-deploy-microservices.md",
-          "series_position": null,
-          "title": "The easiest way to deploy microservices"
         },
         {
           "author_github": "https://github.com/evoxmusic",

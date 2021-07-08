@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-04-29"
+last_modified_on: "2021-07-08"
 $schema: "/.meta/.schemas/guides.json"
 title: Migrating application from Heroku to Qovery
 description: Tutorial how to migrate a webapp connected to PostgreSQL database from Heroku to Qovery
@@ -26,10 +26,8 @@ The application is a simple Node.js *Todo* web app that uses PostgreSQL as a per
 <Assumptions name="guide">
 
 * You are familiar with Heroku basics, have a Heroku account and access to Heroku CLI
-* You have a Qovery account and access to Qovery CLI
-* You have a [Github][urls.github] account
-
-If you have not installed the Qovery CLI yet, you can see steps to take [here][docs.using-qovery.interface.cli#first-usage].
+* You have a Qovery account
+* You have a [Github or Gitlab][urls.github] account
 
 </Assumptions>
 
@@ -120,109 +118,66 @@ Otherwise, you can try to deploy and migrate our sample application to get exper
 
 ## Migrating the application from Heroku to Qovery
 
-<Alert>
+<Steps headingDepth={3}>
+<ol>
 
-Contents of the `Dockerfile` and `.qovery.yml` assumes that you migrate our sample application
+<li>
+
+[Sign in to Qovery Console](https://console.qovery.com)
+
+</li>
+
+<li>
+
+### Create a new project
+
+<p align="center">
+  <img src="/img/heroku/heroku-2.png" alt="Migrate from Heroku" />
+</p>
+
+</li>
+
+<li>
+
+### Create a new environment
+
+<p align="center">
+  <img src="/img/heroku/heroku-3.png" alt="Migrate from Heroku" />
+</p>
+
+</li>
+
+<li>
+
+### Create a new application
+
+To follow the guide, [you can fork and use our repository][https://github.com/qovery/migrate-webapp-from-heroku-to-qovery.git]
+
+Use the forked repository (and branch **master**) while creating the application in the repository field:
+
+<p align="center">
+  <img src="/img/rust/rust.png" alt="Migrate from Heroku" />
+</p>
+
+</li>
+
+<li>
+
+Create and deploy a new database
+
+<Alert type="warning">
+
+Name the database **MY_POSTGRESQL** to follow the guide flawlessly
 
 </Alert>
 
-### Dockerize the application
+To learn how to do it, you can [follow this guide][guides.getting-started.create-a-database]
 
-As Qovery uses Docker for the runtime of applications, you need first to Dockerize the application. To do so,
-create a file named `Dockerfile` in the root of application repository with the following content:
+</li>
 
-```dockerfile title="Dockerfile"
-FROM node:10-alpine
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . /app
-EXPOSE 8080
-CMD ["npm", "start"]
-```
+<li>
 
-If you want to learn more about Docker, you can read our introductory article:
-
-<Jump to="/guides/tutorial/how-to-deploy-a-docker-container/">Docker Containers</Jump>
-
-### Initialize Qovery
-
-To set up the application for Qovery deployment with a PostgreSQL database, create a `.qovery.yml` file in the root of the project with the following content:
-
-```yml title=".qovery.yml"
-application:
-  name: node-todo-app
-  project: migrate-from-heroku
-  publicly_accessible: true
-databases:
-- type: postgresql
-  version: "11.5"
-  name: my-postgresql-database
-routers:
-- name: main
-  routes:
-  - application_name: node-todo-app
-    paths:
-    - /
-```
-
-The sample application uses `DATABASE_URL` environment variable to connect to PostgreSQL. To provide your app
-with correct database URL, create a `.env` file in the root of application repository with this content:
-
-```plain title=".env"
-DATABASE_URL=$QOVERY_DATABASE_MY_POSTGRESQL_DATABASE_CONNECTION_URI
-```
-
-Adding this file populates the `DATABASE_URL` environment variable (that is consumed often on Heroku)
-with database URL provided by Qovery.
-
-### Deploy the application to Qovery
-
-All you need to do to deploy the application to Qovery is to commit and push a repository containing `Dockerfile` and `.qovery.yml` to Github.
-Qovery needs access to this repository to build and deploy the application.
-
-1. [Create a Github repository](https://github.com/new)
-
-2. Remove current git configuration from the repository you cloned:
-```bash
-rm -rf .git
-```
-
-3. Initialize a new repository and commit all files:
-```
-git init
-git add .
-git commit -m "Deploying to Qovery"
-```
-
-4. Push the local repository to the newly created Github repo (replace placeholders in the code below):
-```bash
-git remote add origin https://github.com/$YOUR_NAME/$YOUR_REPOSITORY_NAME.git
-git push -u origin master
-```
-
-Good job! It's all you need to do to deploy your application with a database to Qovery.
-To confirm that your application is, in fact, deploying, run `qovery status`.
-
-The output of the above command could look like this:
-
-```bash title="Output"
-BRANCH NAME       | STATUS  | ENDPOINTS                                   | APPLICATIONS    | DATABASES
-master            | running | https:/your.app.url.qovery.io               | node-todo-app   | my-postgresql-database
-
-APPLICATION NAME  | STATUS  | DATABASES
-node-todo-app     | running | my-postgresql-database
-
-DATABASE NAME            | STATUS  | TYPE         | VERSION  | ENDPOINT | PORT     | USERNAME | PASSWORD | APPLICATIONS
-my-postgresql-database   | running | POSTGRESQL   | 11.5     | <hidden> | <hidden> | <hidden> | <hidden> | node-todo-app
-```
-
-The application should be deployed in a few minutes. When it's status is `running`, open the browser
-using address specified in the `ENDPOINTS` section of `qovery status` output.
-
-You should see the same application you previously deployed to Heroku, yet without the data from the database.
-
-### Migrate PostgreSQL data
+Migrate PostgreSQL data
 
 There are multiple paths you could take to migrate your data from Heroku Postgres to Qovery.
 For production usage for the shortest downtime you would probably want to configure Qovery PostgreSQL as a replica to
@@ -244,13 +199,38 @@ heroku pg:backups:capture -a YOUR_APPLICATION_NAME
 
 It results in creating a new `latest.dump` file, which you use to transfer data to Qovery.
 
-To migrate the data to Qovery, run (replace all placeholders with values you get from running `qovery application env list -c`):
+To migrate the data to Qovery, run (replace all the values with secrets listed in your application `Secrets` tab):
 
 ```bash
-pg_restore -v -h $DATABASE_HOST -U $DATABASE_USER -d postgres latest.dump --no-owner
+pg_restore -v -h $QOVERY_DATABASE_MY_POSTGRESQL_HOST -U $QOVERY_DATABASE_MY_POSTGRESQL_USER -d postgres latest.dump --no-owner
 ```
 
-In the browser, navigate to your application URL deployed on Qovery. Now you should see all the data you had in your database hosted on Heroku. Well done!
+[Learn more about secrets here][docs.using-qovery.configuration.secret]
+
+</li>
+
+<li>
+
+<li>
+
+### Deploy the app on Qovery
+
+All you have to do now is to navigate to your application and click **Deploy** button
+
+<p align="center">
+  <img src="/img/heroku/heroku-1.png" alt="Deploy App" />
+</p>
+
+That's it. Watch the status and wait till the app is deployed.
+
+</li>
+
+After it's done, click on **Action** and **Open** button to navigate to your app. It should be up and running with all the data from Heroku migrated to Qovery!
+
+</li>
+
+</ol>
+</Steps>
 
 ## What's next
 
@@ -258,5 +238,6 @@ In the browser, navigate to your application URL deployed on Qovery. Now you sho
 <Jump to="/guides/advanced/using-multiple-environments">Using Multiple Environments</Jump>
 
 
-[docs.using-qovery.interface.cli#first-usage]: /docs/using-qovery/interface/cli/#first-usage
+[docs.using-qovery.configuration.secret]: /docs/using-qovery/configuration/secret/
+[guides.getting-started.create-a-database]: /guides/getting-started/create-a-database/
 [urls.github]: https://github.com

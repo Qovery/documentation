@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-01"
+last_modified_on: "2021-07-08"
 $schema: "/.meta/.schemas/guides.json"
 title: Create a blazingly fast REST API in Rust (Part 1/2)
 description: How to create a blazingly fast REST API in Rust, with zero-cost abstraction and very low overhead - Part 1/2
@@ -8,6 +8,7 @@ tags: ["type: tutorial", "language: rust"]
 hide_pagination: true
 ---
 
+import Steps from '@site/src/components/Steps';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -710,110 +711,120 @@ Congratulations, you are logged-in.
 
 </Tabs>
 
-Qovery needs two files at the root of your project to deploy an application:
+### Deploying the app
 
-* `.qovery.yml` to declare the dependencies that your application need (E.g PostgreSQL).
-* `Dockerfile` to build and run your application.
+<Steps headingDepth={3}>
+<ol>
+<li>
 
-<Tabs
-  centered={false}
-  className={"square"}
-  defaultValue={".qovery.yml"}
-  select={false}
-  size={null}
-  values={[{"group":"Files","label":".qovery.yml","value":".qovery.yml"},{"group":"Files","label":"Dockerfile","value":"Dockerfile"}]}>
+### Create a new project
 
-<TabItem value=".qovery.yml">
+<p align="center">
+  <img src="/img/heroku/heroku-2.png" alt="Migrate from Heroku" />
+</p>
 
-```bash title=".qovery.yml"
-application:
-  name: twitter-clone-rust
-  project: Twitter-Clone
-  publicly_accessible: true
-databases:
-- type: postgresql
-  version: "11.5"
-  name: my-postgresql-8628210
-routers:
-- name: main
-  routes:
-  - application_name: twitter-clone-rust
-    paths:
-    - /
-```
+</li>
 
-</TabItem>
+<li>
 
-<TabItem value="Dockerfile">
+### Create a new environment
 
-```bash title="Dockerfile"
-# build stage
-FROM rust:latest as cargo-build
+<p align="center">
+  <img src="/img/heroku/heroku-3.png" alt="Migrate from Heroku" />
+</p>
 
-RUN apt-get update && apt-get install musl-tools -y
-RUN rustup target add x86_64-unknown-linux-musl
+</li>
 
-WORKDIR /usr/src/app
-COPY . .
+<li>
 
-RUN RUSTFLAGS=-Clinker=musl-gcc cargo build --release --target=x86_64-unknown-linux-musl
+### Create a new application
 
-###################
-# final stage
-FROM alpine:latest
+To follow the guide, [you can fork and use our repository][https://github.com/evoxmusic/twitter-clone-rust]
 
-RUN addgroup -g 1000 app
-RUN adduser -D -s /bin/sh -u 1000 -G app app
+Use the forked repository (and branch **master**) while creating the application in the repository field:
 
-WORKDIR /home/app/bin/
-COPY --from=cargo-build /usr/src/app/target/x86_64-unknown-linux-musl/release/twitter-clone-rust .
+<p align="center">
+  <img src="/img/rust/rust.png" alt="Migrate from Heroku" />
+</p>
 
-RUN chown app:app twitter-clone-rust
-USER app
+</li>
 
-EXPOSE 9090
+<li>
 
-CMD ["./twitter-clone-rust"]
-```
+After the application is created: 
 
-</TabItem>
+- Navigate application settings
+- Select **Port**
+- Add port **9090**
 
-</Tabs>
+<p align="left">
+    <img src="/img/micro/micros-1.png" alt="Microservices" />
+</p>
 
-Now, commit and push your `.qovery.yml` and `Dockerfile`:
+</li>
 
-```bash title="Git commit and push"
-$ git add .qovery.yml Dockerfile
-$ git commit -m "add .qovery.yml Dockerfile"
-$ git push -u origin master
-```
+<li>
 
-```bash title="Create DATABASE_URL env var"
-$ qovery project env add DATABASE_URL '$QOVERY_DATABASE_MY_POSTGRESQL_8628210_CONNECTION_URI'
-```
+### Deploy a database
 
-Congratulations, you have deployed your application.
+Create and deploy a new database
+
+<Alert type="warning">
+
+Name the database **my-pql-db** to follow the guide flawlessly
+
+</Alert>
+
+To learn how to do it, you can [follow this guide][guides.getting-started.create-a-database]
+
+</li>
+
+<li>
+
+### Add the database to the application
+
+In application overview, select **Settings**
+
+<p align="center">
+  <img src="/img/open-settings.png" alt="Open Settings" />
+</p>
+
+Switch to **Database**, pick your database and **Save**
+
+<p align="center">
+  <img src="/img/link-db.png" alt="Link Database" />
+</p>
+
+</li>
+
+<li>
+
+### Deploy the app on Qovery
+
+All you have to do now is to navigate to your application and click **Deploy** button
+
+<p align="center">
+  <img src="/img/heroku/heroku-1.png" alt="Deploy App" />
+</p>
+
+That's it. Watch the status and wait till the app is deployed.
+
+</li>
+
+</ol>
+</Steps>
+
+Congratulations, you have deployed your application!
 
 ## Live test
 
-To test our deployed API, execute the following command to find your API root URL:
+To open the application in your browser, click on **Action** and **Open** buttons in your application overview:
 
-```bash title="Get our API root URL"
-$ qovery status
-```
+<p align="center">
+  <img src="/img/deploy-env-1.png" alt="Open App" />
+</p>
 
-```bash title="Output"
-BRANCH NAME | STATUS  | ENDPOINTS                                   | APPLICATIONS       | DATABASES
-master      | running | https://main-gxbuagyvgnkbrp5l-gtw.qovery.io | twitter-clone-rust | my-postgresql-8628210
-
-APPLICATION NAME   | STATUS  | DATABASES
-twitter-clone-rust | running | my-postgresql-8628210
-
-DATABASE NAME         | STATUS  | TYPE       | VERSION | ENDPOINT | PORT     | USERNAME | PASSWORD | APPLICATIONS
-my-postgresql-8628210 | running | POSTGRESQL | 11.5    | <hidden> | <hidden> | <hidden> | <hidden> | twitter-clone-rust
-```
-
-Then, we can test it with the following CURL commands:
+Then, we can test it with the following CURL commands (replace the app URL with your own):
 
 ```bash title="Curl commands to test our deployed API"
 # create a tweet
@@ -864,6 +875,7 @@ Do you want to know more about Rust?
 
 
 [docs.cli#windows]: /docs/using-qovery/interface/cli/#windows
+[guides.getting-started.create-a-database]: /guides/getting-started/create-a-database/
 [guides.getting-started.setting-custom-domain]: /guides/getting-started/setting-custom-domain/
 [urls.authorize_qovery]: https://github.com/apps/qovery/installations/new
 [urls.brew]: https://brew.sh/

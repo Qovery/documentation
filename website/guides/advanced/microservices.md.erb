@@ -1,7 +1,7 @@
 ---
 $schema: "/.meta/.schemas/guides.json"
-title: Deploying backend and frontend apps
-description: How to deploy backend and frontend apps with Qovery
+title: Microservices
+description: How to deploy microservices with Qovery
 author_github: https://github.com/pjeziorowski
 tags: ["type: guide", "technology: qovery"]
 ---
@@ -9,45 +9,169 @@ import Steps from '@site/src/components/Steps';
 import Assumptions from '@site/src/components/Assumptions';
 import Alert from '@site/src/components/Alert';
 
-Your project grows, and you need multiple backend applications to meet your needs? Are you building a fullstack application with backend, frontend, databases or other services?
-In this guide, you will learn how to set up multiple applications projects with Qovery.
-
 <Assumptions>
 
 * You have already deployed an application with Qovery
+* You are familiar with the concept of Microservices
 
 </Assumptions>
+
+In this guide, we'll deploy a set of microservices, a database and a frontend UI application that consumes our public API.
+Our backend microservices will communicate on a secure internal network, not accessible from the outside.
+Our front-end application will consume the API only from the publicly exposed application.
+
+The schema of what we want to achieve:
+
+<p align="left">
+    <img src="/img/micro/micros.jpg" alt="Microservices" />
+</p>
+
+As you can see in the picture: 
+
+- we have two backend applications (**App A** and **App B**)
+- one of them (**App B**) connected to a database
+- **App A** exposes a public API that is consumed by API clients (our frontend application run in users browsers).
+- additionally, we host our frontend application (**UI**) on Qovery so that users can access it directly in their browsers.
 
 What differentiates Qovery from most other similar platforms is its first-class support of microservices. At Qovery, your project can be easily
 composed of multiple applications. It's up to you to decide how to build your system, but Qovery enables you to easily and safely communicate between your backend applications, databases, and frontend websites.
 
-## Communicate backend applications
 
-If your backend is made out of more than one application, very often, they will need to communicate with each other. The following steps will show you how to set up backend microservices communication at Qovery:
+
 
 <Steps headingDepth={3}>
 
 <ol>
 <li>
 
-This guide assumes your applications are deployed. If you don't know how to deploy your app, [check our guide][guides.getting-started.deploy-your-first-application#step-by-step-tutorial].
+## Deploy Application A
+
+<Alert type="info">
+
+This guide assumes you already know how to deploy applications. If you have any problems, refer to [this video guide][guides.getting-started.deploy-your-first-application].
+
+</Alert >
+
+In the first step, deploy an application named **APP_A** in your environment.
+
+Assumptions:
+
+- The app exposes REST API over HTTP on port 8080
+- The app name is **APP_A**
+
+After the application is created, let's expose the API publicly - it will be used later on by our frontend application.
+
+### Exposing public API
+
+- Navigate to **APP_A** application settings
+- Select **Port**
+- Add port 8080
+
+<p align="left">
+    <img src="/img/micro/micros-1.png" alt="Microservices" />
+</p>
+
+This is it. By default, Qovery exposes your ports publicly over HTTPS on port 443, so the app should be publicly accessible and reachable later on by our frontend application.
 
 </li>
 <li>
 
-Assuming you have two backend applications:
-- `firstapp`
-- `secondapp`
+## Deploy Application B
 
-You can send requests from one application to another using values injected automatically by Qovery into your [environment variables][docs.using-qovery.configuration.environment-variable]. 
+In the second step, deploy an application named **APP_B** in your environment.
 
-Examplary Node.js code snippet:
+Assumptions:
+
+- The app exposes REST API over HTTP on port 8080
+- The app name is **APP_B**
+- The app is ready to use a PostgreSQL client to connect to a PostgreSQL database
+
+Steps to do:
+
+- Navigate to **APP_B** application settings
+- Select **Port**
+- Add port 8080
+- Click **Advanced** settings in the 8080 port
+- Remove the check from the **Publicly Accessible** field
+
+<p align="left">
+    <img src="/img/micro/micros-2.png" alt="Microservices" />
+</p>
+
+<Alert type="info">
+
+It will make your **APP_B** application not reachable publicly. It will be only reachable on the internal network by other microservices in your environment.
+
+</Alert>
+
+</li>
+<li>
+
+## Deploy Database
+
+In this step, we'll deploy a PostgreSQL database that we'll consume in **APP_B** in the next step.
+
+- Navigate to the environment in which you previously deployed your apps
+- Create a new PostgreSQL database named **MY_DB**
+
+<Alert type="info">
+
+This guide assumes you already know how to deploy databases. If you have any problems, refer to [this video guide][guides.getting-started.create-a-database].
+
+</Alert >
+
+</li>
+<li>
+
+## Use the database
+
+In this step, we'll make use of our database in **APP_B**
+
+All you need to do to consume your database in **APP_B** is to configure your PostgreSQL client to use `BUILT_IN` secrets injected by Qovery.
+You can read more about this concept [here][docs.using-qovery.configuration.secret#additional-built-in-variables].
+
+If your **APP_B** is a Node.js application, this examplary code snippet will work well:
+
+```javascript
+const { Client } = require('pg')
+
+const client = new Client({
+  host: process.env.QOVERY_DATABASE_MY_DB_HOST,
+  port: process.env.QOVERY_DATABASE_MY_DB_PORT,
+  user: process.env.QOVERY_DATABASE_MY_DB_USER,
+  password: process.env.QOVERY_DATABASE_MY_DB_PASSWORD,
+})
+
+client.connect(err => {
+  if (err) {
+    console.error('connection error', err.stack)
+  } else {
+    console.log('connected')
+  }
+})
+```
+
+This is it! After deploying the database, application and executing the code snippet, you should see the message `connected`.
+
+We made use of `BUILT_IN` variables injected by Qovery to make it easy to consume all the services within the environment.
+
+</li>
+<li>
+
+## Consume internal APIs
+
+In this step, we'll use the private API of our **APP_B** in our **APP_A** over a private network.
+We have already configured everything to make it work. The only missing step is the configuration in **APP_A** - it needs to know how to access our **APP_B**.
+
+In the example below, we'll use Node.js and `axios` to create an HTTP client able to consume the API of **APP_B**:
+
+Now, you can configure your HTTP client in the frontend application to target your backend API:
 
 ```javascript
 const axios = require('axios');
-const secondAppAddress = "http://" + process.env.QOVERY_FIRSTAPP_HOST
+const appBAddress = "http://" + process.env.QOVERY_APPLICATION_APP_B_HOST + ":" + process.env.QOVERY_APPLICATION_APP_B_PORT
 
-axios.get(secondAppAddress + '/api/users')
+axios.get(appBAddress + '/api/users')
   .then(response => {
     console.log(response.data);
   })
@@ -56,81 +180,46 @@ axios.get(secondAppAddress + '/api/users')
   });
 ```
 
-As you can see in the example, you can communicate with your second application using Qovery-injected [built-in environment variable][docs.using-qovery.configuration.environment-variable#built-in-variables].
-The second application does not have to be publicly accessible - your applications communicate safely inside the internal network.
+This is it! **Every request using the API client we have just configured will consume the API of **APP_B** over the secure, internal network.**
 
-To target another application in your environment, use the built-in environment variables following this naming pattern:
-
-`QOVERY_YOUR_APP_NAME_HOST` where `YOUR_APP_NAME` is your application name.
-
-</li>
-</ol>
-
-</Steps>
-
-## Consume your API in your frondend application
-
-Qovery allows you to host your backend applications, databases, but also frontend apps like React/Angular/Vue SPAs or server-side rendered UIs.
-The following steps will show you how to consume your API in your frontend application.
-
-<Steps headingDepth={3}>
-
-<ol>
-<li>
-
-Deploy your frontend application. If you don't know how to do it, you can take a look at the guide [how to delpoy Nuxt.js application.](https://docs.qovery.com/guides/tutorial/how-to-deploy-nuxtjs/)
+Once again, we used the `BUILT_IN` secrets. Read more about them [here][docs.using-qovery.configuration.secret#built-in-variables]
 
 </li>
 <li>
 
-Expose your backend API.
+## Consume the public API in the frontend application
 
-To be able to consume your API from your frontend application, your backend API needs to be exposed publicly. To do so, navigate to your backend application settings:
+In this step, we'll deploy a frontend application and consume our public API exposed by **APP_A**.
 
-<p align="center">
-    <img src="/img/microservices/microservices-1.png" alt="Microservices" />
-</p>
+In the first step, create and deploy your frontend application. If you don't know how to do it, you can take a look at the guide [how to delpoy Nuxt.js application.](https://docs.qovery.com/guides/tutorial/how-to-deploy-nuxtjs/)
 
-And declare a port of your server:
-
-<p align="center">
-    <img src="/img/microservices/microservices-2.png" alt="Microservices" />
-</p>
-
-By default declaring a port exposes your app to public access (you can change it in port's advanced settings).
-
-</li>
-
-<li>
-
-Setup API address in your frontend application.
-
-After exposing your application, you can get it's address in your frontend application using `process.env` as follows (Nuxt.js example):
+After the application is deployed, we can easily configure it to consume our public API. All we need to do is to make use of the `BUILT_IN` secrets. See how to achieve it in a Nuxt.js example below:
 
 ```javascript
 export default {
   env: {
-    apiUrl: process.env.QOVERY_YOUR_APP_NAME_URL || 'http://localhost:3000'
+    apiUrl: process.env.QOVERY_APPLICATION_APP_A_URL
   }
 }
 ```
-
-Now, you can configure your HTTP client in the frontend application to target your backend API:
 
 ```javascript
 import axios from 'axios'
 
 export default axios.create({
-  baseURL: process.env.baseUrl
+  baseURL: process.env.apiUrl
 })
 ```
 
-</li>
+After providing the configuration from above, our frontend application will be able to consume the API exposed by the publicly exposed **APP_A**.
 
+</li>
 </ol>
 
 </Steps>
 
+## Summary
 
+In this guide, we deployed two microservices that communicate over the internal network. We also deployed a frontend application that makes use of a public API exposed by one of our applications. At the same time, we deployed a database and connected it to the second of our backend microservices.
 
 <%= subpages() %>

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-05-26"
+last_modified_on: "2021-07-08"
 $schema: "/.meta/.schemas/guides.json"
 title: GraphQL API with Hasura
 description: How to build and deploy realtime GraphQL APIs in a few minutes
@@ -9,6 +9,7 @@ hide_pagination: true
 ---
 
 import Jump from '@site/src/components/Jump';
+import Steps from '@site/src/components/Steps';
 
 Before we dive deep into details, I'll **quickly describe the tools I used** to build and deploy a realtime GraphQL API and tell you **why you should fall in love with GraphQL** and all the tools I used.
 
@@ -52,23 +53,135 @@ Qovery is also a great fit for Hasura - its **free plan allows you to deploy Has
 If you have any questions regarding this post or other things, feel free to reach me on [Discord](https://discord.qovery.com).
 
 ## Hasura deployment on Qovery
-Deploying Hasura on Qovery is really easy. All you have to do is to bootstrap a project using Qovery CLI in a Git repository & export environment variables required by Hasura.
 
-1/ Bootstrap a project with Qovery CLI (the script will ask you for project and application name, which you can choose as you like)
-```bash
-qovery init -t hasura
-```
-2/ Commit and push your changes
-```
-git add .
-git commit -m "Deploy Hasura on Qovery"
-git push -u origin master
-```
-**Well done!** After pushing changes, Postgres and Hasura deployment will start. You can use `‍qovery status --watch` to track the progress. Once the deployment is done, you’ll see your Hasura application URL in the status:
-![Qovery Status](https://uploads-ssl.webflow.com/5de176c0d41c9b4a1dbbb0aa/5e8d9e3c75a7e46396d483d9_status.png)
+<Steps headingDepth={3}>
+
+<ol>
+
+<li>
+
+### Create a new project
+
+<p align="center">
+  <img src="/img/heroku/heroku-2.png" alt="Migrate from Heroku" />
+</p>
+
+</li>
+
+<li>
+
+### Create a new environment
+
+<p align="center">
+  <img src="/img/heroku/heroku-3.png" alt="Migrate from Heroku" />
+</p>
+
+</li>
+
+<li>
+
+### Create a new application
+
+To follow the guide, [you can fork and use our repository][https://github.com/Qovery/hasura.git]
+
+Use the forked repository (and branch **main**) while creating the application in the repository field:
+
+<p align="center">
+  <img src="/img/rust/rust.png" alt="Migrate from Heroku" />
+</p>
+
+</li>
+
+<li>
+
+### Deploy a database
+
+Create and deploy a new database (name it **my-pql-db** to follow the guide flawlessly)
+
+To learn how to do it, you can [follow this guide][guides.getting-started.create-a-database]
+
+</li>
+
+<li>
+
+### Add the database to the application
+
+In application overview, select **Settings**
+
+<p align="center">
+  <img src="/img/open-settings.png" alt="Open Settings" />
+</p>
+
+Switch to **Database**, pick your database and **Save**
+
+<p align="center">
+  <img src="/img/link-db.png" alt="Link Database" />
+</p>
+
+</li>
+
+<li>
+
+</li>
+
+<li>
+
+### Use Dockerfile
+
+In application overview, select **Settings**
+
+<p align="center">
+  <img src="/img/open-settings.png" alt="Open Settings" />
+</p>
+
+In the **Build Mode**, select **Dockerfile** and set Dockerfile path as `Dockerfile`
+
+</li>
+
+<li>
+
+### Setup Hasura
+
+We need to add two environment variables to our Hasura application:
+
+First, go to your application envioronment variables and add `HASURA_GRAPHQL_ENABLE_CONSOLE` variable with value `true`.
+
+Then, select secrets tab, and create an alias to `QOVERY_DATABASE_MY_PQL_DB_CONNECTION_URI` named `HASURA_GRAPHQL_DATABASE_URL`.
+
+You can read more about environment variables in our [configuration section][docs.configuration.environment-variable].
+
+</li>
+
+<li>
+
+### Deploy the app on Qovery
+
+All you have to do now is to navigate to your application and click **Deploy** button
+
+<p align="center">
+  <img src="/img/heroku/heroku-1.png" alt="Deploy App" />
+</p>
+
+That's it. Watch the status and wait till the app is deployed.
+
+</li>
+
+</ol>
+
+</Steps>
+
+**Well done!** After a while, your Hasura app should be up and running.
 
 ## Creating realtime GraphQL APIs
-Navigate to your Hasura application URL and choose Data tab in the console:
+
+To open the application in your browser, click on **Action** and **Open** buttons in your application overview:
+
+<p align="center">
+  <img src="/img/deploy-env-1.png" alt="Open App" />
+</p>
+
+Navigate to your Hasura application URL and choose Data tab in the console.
+
 ![Hasura Console](https://uploads-ssl.webflow.com/5de176c0d41c9b4a1dbbb0aa/5e8d9e5e4788f066d395e4ac_data-tab.png)
 In this section we'll configure our data model. Now, click on the **Create Table** button.
 
@@ -160,4 +273,5 @@ Using this stack saves you tons of time. Deploying it on Qovery is extremely eas
 <Jump to="/guides/tutorial/">Tutorial</Jump>
 
 
-
+[docs.configuration.environment-variable]: /docs/using-qovery/configuration/environment-variable/
+[guides.getting-started.create-a-database]: /guides/getting-started/create-a-database/

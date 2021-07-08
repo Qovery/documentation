@@ -246,6 +246,8 @@ Use the forked repository (and branch **master**) while creating the application
 
 <li>
 
+### Select application port
+
 After the application is created: 
 
 - Navigate application settings
@@ -253,19 +255,27 @@ After the application is created:
 - Add port ** 3000 **
 
 <p align="left">
-    <img src="/img/micro/micros-1.png" alt="Microservices" />
+    <img src="/img/micro/micros-1.png" alt="Port" />
 </p>
 
 </li>
 
 <li>
 
-### Deploy a database
+### Use Dockerfile
+
+In the settings **General** section, set **Build Mode** to Dockerfile and set Dockerfile path as "Dockerfile"
+
+</li>
+
+<li>
+
+### Deploy a PostgreSQL database
 
 In your envioronment view, click on **Add** and **Database** buttons:
 
 <p align="center">
-  <img src="/img/template-add-db.png" alt="Template DB" />
+  <img src="/img/template-add-db.png" alt="Template DB Rails" />
 </p>
 
 In the popup window while adding a database, choose your name, select **PostgreSQL** and **11.5** version.
@@ -276,7 +286,7 @@ In the popup window while adding a database, choose your name, select **PostgreS
 
 <Alert type="info">
 
-To learn how to add a database in more details, you can [follow this guide][guides.getting-started.create-a-database].
+To learn how to add a PostgreSQL database in more details, you can [follow this guide][guides.getting-started.create-a-database].
 
 </Alert>
 
@@ -286,11 +296,11 @@ To learn how to add a database in more details, you can [follow this guide][guid
 
 ### Connect Rails to PostgreSQL
 
-Credentials of your database are available via **Environment Variables** and **Secrets**. Qovery injects environment vars at the runtime.
+Credentials of your PostgreSQL database are available via **Environment Variables** and **Secrets**. Qovery injects environment vars at the runtime.
 
 You can learn more about environment variables and secrets [here][docs.configuration.environment-variable].
 
-To list all the environment variables available to your application, you can open **Environment Variables** and **Secret** tabs in your application window:
+To list all the environment variables available to your Rails application, you can open **Environment Variables** and **Secret** tabs in your application window:
 
 <p align="center">
   <img src="/img/configuration/variables/secret-2.png" alt="Secret" />
@@ -298,13 +308,13 @@ To list all the environment variables available to your application, you can ope
 
 <Alert type="info">
 
-In the **Secrets** section, you'll see all names of injected database secrets, including those for the previously created database.
-To connect the app to the database, you need to setup the application to use those secrets.
+In the **Secrets** section, you'll see all names of injected database secrets, including those for the previously created PostgreSQL database.
+To connect the Rails app to the PostgreSQL database, you need to setup the application to use those secrets.
 
 All you have to do is to open and edit [database configuration file][urls.sample_rails_with_postgresql_env_file] in your forked repository.
-Replace all the **QOVERY_DATABSE_XXX** variables with values you have in your own environment. Those variable keys contain your database ID, this is why you need to update the file. 
+Replace all the **QOVERY_DATABASE_XXX** variables with values you have in your own environment. Those variable keys contain your database ID, this is why you need to update the file. 
 
-*TIP: you could also make use of **Variable Aliases** to change the name of used environment variables in your application. [Learn more here][docs.using-qovery.configuration.secret#alias-secret].*
+*TIP: you could also make use of **Variable Aliases** to change the name of used environment variables in your Rails application. [Learn more here][docs.using-qovery.configuration.secret#alias-secret].*
 
 </Alert>
 
@@ -331,12 +341,12 @@ Congratulations! Your environment with [Rails][urls.rails] application and [Post
 
 ## Trigger a new deployment
 
-Now, you can play with the sample application and commit & push your changes. Qovery detects your actions and triggers new builds and application deployments. Any change you make will be reflected in your deployed application automatically.
+Now, you can play with the sample Rails application and commit & push your changes. Qovery detects your actions and triggers new builds and application deployments. Any change you make will be reflected in your deployed application automatically.
 
 ## Conclusion
 Congratulations! Now, you know how to deploy your Rails app with PostgreSQL in just a few steps.
 
-Do you have any feedback about this tutorial? Let us know what you think on [Discord][urls.qovery_chat], and join our wonderful dev community of +600 devs.
+Do you have any feedback about this tutorial? Let us know what you think on [Discord][urls.qovery_chat], and join our wonderful dev community of +5500 devs.
 
 <Jump to="/guides/tutorial/">Tutorial</Jump>
 

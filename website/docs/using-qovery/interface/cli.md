@@ -9,12 +9,12 @@ import TabItem from '@theme/TabItem';
 
 import Alert from '@site/src/components/Alert';
 
-Qovery provides a very easy to use CLI (Command Line Interface) designed to perfectly fit the developer workflow.
+Qovery provides a very easy to use CLI (Command Line Interface) designed to fit the developer workflow perfectly.
 The purpose of the CLI is to integrate seamlessly with your development workflow:
 
 1. Write code
 2. Commit
-3. **Qovery** - deploy new version of your application
+3. **Qovery** - deploy a new version of your application
 4. **Qovery CLI** - check the status of your application
 5. **Qovery CLI** - debug your application
 6. Repeat
@@ -182,7 +182,7 @@ Flags:
 
 ## Context
 
-Context command lets you configure the CLI to work with your choosen application. Before executing other commands, you need first to set up the context.
+Context command lets you configure the CLI to work with your chosen application. Before executing other commands, you need first to set up the context.
 The context is then remembered and used by the CLI. You can configure a new context anytime by running the `qovery context set` command.
 
 ### Set New Context
@@ -281,7 +281,7 @@ Qovery: Opening https://console.qovery.com/platform/organization/your-org/projec
 
 ## Support
 
-Do you have any issue with Qovery CLI? [Open an issue](https://github.com/Qovery/qovery-cli/issues).
+Do you have any issues with Qovery CLI? [Open an issue](https://github.com/Qovery/qovery-cli/issues).
 
 
 [urls.authorize_qovery]: https://github.com/apps/qovery/installations/new

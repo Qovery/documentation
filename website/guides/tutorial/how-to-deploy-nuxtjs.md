@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-05-08"
+last_modified_on: "2021-07-15"
 $schema: "/.meta/.schemas/guides.json"
 title: How to deploy NuxtJS
 description: This tutorial show you how to deploy NuxtJS in a few seconds
@@ -327,8 +327,6 @@ Install the Qovery CLI on Windows manually by downloading the [latest realease][
 
 </Tabs>
 
-Few limitations exist on Windows: [read more][docs.cli#windows]
-
 </TabItem>
 
 </Tabs>
@@ -361,8 +359,6 @@ Your browser window with sign-in options will open.
   <img src="/img/qovery_signup.svg" alt="Qovery Sign-up page" />
 </p>
 
-Note: Qovery needs access to your account to be able to clone your repository for future application builds.
-
 [Click here][urls.authorize_qovery] to authorize Qovery to clone and build your applications.
 
 <p align="center">
@@ -392,7 +388,6 @@ Happy coding.
 <Jump to="/guides/tutorial/">Tutorial</Jump>
 
 
-[docs.cli#windows]: /docs/using-qovery/interface/cli/#windows
 [guides.getting-started.setting-custom-domain]: /guides/getting-started/setting-custom-domain/
 [urls.authorize_qovery]: https://github.com/apps/qovery/installations/new
 [urls.brew]: https://brew.sh/

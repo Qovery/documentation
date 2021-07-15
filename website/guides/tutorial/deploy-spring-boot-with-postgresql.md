@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-08"
+last_modified_on: "2021-07-15"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy Spring Boot with PostgreSQL with Qovery
 description: How to deploy a Spring Boot application with the PostgreSQL database with Qovery
@@ -148,8 +148,6 @@ Install the Qovery CLI on Windows manually by downloading the [latest realease][
 
 </Tabs>
 
-Few limitations exist on Windows: [read more][docs.cli#windows]
-
 </TabItem>
 
 </Tabs>
@@ -181,8 +179,6 @@ Your browser window with sign-in options will open.
 <p align="center">
   <img src="/img/qovery_signup.svg" alt="Qovery Sign-up page" />
 </p>
-
-Note: Qovery needs access to your account to be able to clone your repository for future application builds.
 
 [Click here][urls.authorize_qovery] to authorize Qovery to clone and build your applications.
 
@@ -351,7 +347,6 @@ Do you have any feedback about this tutorial? Let us know what you think on [Dis
 <Jump to="/guides/tutorial/">Tutorial</Jump>
 
 
-[docs.cli#windows]: /docs/using-qovery/interface/cli/#windows
 [docs.configuration.environment-variable]: /docs/using-qovery/configuration/environment-variable/
 [docs.using-qovery.configuration.secret#alias-secret]: /docs/using-qovery/configuration/secret/#alias-secret
 [guides.getting-started.create-a-database]: /guides/getting-started/create-a-database/

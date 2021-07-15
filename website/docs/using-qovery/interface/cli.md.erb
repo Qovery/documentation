@@ -4,13 +4,15 @@ description: How to use the Qovery CLI (Command Line Interface)
 ---
 import Alert from '@site/src/components/Alert';
 
-Qovery provides a very easy to use CLI (Command Line Interface) designed to perfectly fit the developer workflow.
+Qovery provides a very easy to use CLI (Command Line Interface) designed to fit the developer workflow perfectly.
+The purpose of the CLI is to integrate seamlessly with your development workflow:
 
-<Alert type="warning">
-
-The CLI has not been updated yet to work with the latest version of Qovery.
-
-</Alert>
+1. Write code
+2. Commit
+3. **Qovery** - deploy a new version of your application
+4. **Qovery CLI** - check the status of your application
+5. **Qovery CLI** - debug your application
+6. Repeat
 
 ## First usage
 
@@ -31,37 +33,125 @@ $ qovery help
 ```
 
 ```bash title="Help output"
-The qovery command line interface lets you manage your Qovery environment.
+$ qovery help
+A Command-line interface of Qovery platform
 
 Usage:
   qovery [command]
 
 Available Commands:
-  application Perform application actions
-  auth        Do authentication
-  database    Perform database actions
+  auth        Log in to Qovery
+  completion  Generate the autocompletion script for the specified shell
+  console     A brief description of your command
+  context     Setup the CLI context
   help        Help about any command
-  upgrade     Upgrade Qovery CLI to latest version
+  log         Displays application logs
+  status      A brief description of your command
   version     Print version information for the Qovery CLI
 
 Flags:
-      --debug   Enable debugging when true.
-  -h, --help    help for qovery
-
-Use "qovery [command] --help" for more information about a command.
+  -h, --help   help for qovery
 ```
 
-## Limitations
+## Context
 
-### Windows
+Context command lets you configure the CLI to work with your chosen application. Before executing other commands, you need first to set up the context.
+The context is then remembered and used by the CLI. You can configure a new context anytime by running the `qovery context set` command.
 
-**ANSI Color codes**: *Powershell* does not natively support ANSI color codes. [Some tricks exist to make it work](https://stackoverflow.com/a/51681675/560638).
-The more accessible it is to use `qovery <command> | Out-Host` when you need to show colors.
+### Set New Context
+
+To set a new context, type `qovery context set`:
+
+```bash
+$ qovery context set
+Qovery: Current context:
+Organization | Qovery      
+Project      | test       
+Environment  | development
+Application  | website    
+
+Qovery: Select new context
+Organization:
+✔ Qovery
+Project:
+✔ admin
+Environment:
+✔ main
+Application:
+✔ app
+
+Qovery: New context:
+Organization | Qovery
+Project      | admin 
+Environment  | main  
+Application  | app  
+```
+
+### Print Current Context
+
+```bash
+$ qovery context
+Qovery: Current context:
+Organization | Qovery
+Project      | admin 
+Environment  | main  
+Application  | app   
+
+Qovery: You can set a new context using 'qovery context set'. 
+```
+
+## Log
+
+Log command allows you to display the application logs.
+
+```bash
+$ qovery log
+  TIME                    MESSAGE
+  Jul 15 08:46:13.019717       at /usr/src/app/autoFunctions/levels.js:17:16
+  Jul 15 08:46:13.019721       at Array.forEach (<anonymous>)
+  Jul 15 08:46:13.019724       at Timeout._onTimeout (/usr/src/app/autoFunctions/levels.js:15:14)
+  Jul 15 08:46:13.019728       at listOnTimeout (internal/timers.js:557:17)
+  # ... the rest of logs
+```
+
+By default, the last 1000 logs is displayed.
+
+### Follow Logs
+
+To make the CLI follow your logs, use `-f` flag:
+
+```bash
+$ qovery log -f
+  TIME                    MESSAGE
+  Jul 15 08:46:13.019717       at /usr/src/app/autoFunctions/levels.js:17:16
+  Jul 15 08:46:13.019721       at Array.forEach (<anonymous>)
+  Jul 15 08:46:13.019724       at Timeout._onTimeout (/usr/src/app/autoFunctions/levels.js:15:14)
+  Jul 15 08:46:13.019728       at listOnTimeout (internal/timers.js:557:17)
+  # ... the rest of logs
+```
+
+This will make the CLI follow your application logs and append any new logs till you use `CTRL+C`.
+
+## Status
+
+Status command lets you print the basic status of your application.
+
+```bash
+$ qovery status
+15 Jul 21 10:55 CEST
+Application | Backend
+Status      | RUNNING
+```
+
+## Console
+
+Console command quickly opens the Qovery Console in your browser to let you display more information about your application.
+
+```bash
+$ qovery status
+Qovery: Opening https://console.qovery.com/platform/organization/your-org/projects/your-proj/environments/your-env/applications/your-app/summary
+```
 
 ## Support
 
-Do you have any issue with Qovery CLI? [Open an issue](https://github.com/Qovery/qovery-cli/issues).
-
-## Deploy your first application
-
-Now that you have installed the CLI check out [how to deploy your first application][guides.deploy-your-first-application]
+Do you have any issues with Qovery CLI? [Open an issue](https://github.com/Qovery/qovery-cli/issues).

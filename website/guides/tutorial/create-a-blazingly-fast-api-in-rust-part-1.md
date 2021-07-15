@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-08"
+last_modified_on: "2021-07-15"
 $schema: "/.meta/.schemas/guides.json"
 title: Create a blazingly fast REST API in Rust (Part 1/2)
 description: How to create a blazingly fast REST API in Rust, with zero-cost abstraction and very low overhead - Part 1/2
@@ -661,8 +661,6 @@ Install the Qovery CLI on Windows manually by downloading the [latest realease][
 
 </Tabs>
 
-Few limitations exist on Windows: [read more][docs.cli#windows]
-
 </TabItem>
 
 </Tabs>
@@ -694,8 +692,6 @@ Your browser window with sign-in options will open.
 <p align="center">
   <img src="/img/qovery_signup.svg" alt="Qovery Sign-up page" />
 </p>
-
-Note: Qovery needs access to your account to be able to clone your repository for future application builds.
 
 [Click here][urls.authorize_qovery] to authorize Qovery to clone and build your applications.
 
@@ -874,7 +870,6 @@ Do you want to know more about Rust?
 <Jump to="/guides/tutorial/">Tutorial</Jump>
 
 
-[docs.cli#windows]: /docs/using-qovery/interface/cli/#windows
 [guides.getting-started.create-a-database]: /guides/getting-started/create-a-database/
 [guides.getting-started.setting-custom-domain]: /guides/getting-started/setting-custom-domain/
 [urls.authorize_qovery]: https://github.com/apps/qovery/installations/new

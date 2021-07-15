@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-08"
+last_modified_on: "2021-07-15"
 $schema: "/.meta/.schemas/guides.json"
 title: URL Shortener API with Kotlin (Part 1/2)
 description: Create a URL shortener API with Kotlin, the micro-framework Ktor and PostgreSQL
@@ -540,8 +540,6 @@ Install the Qovery CLI on Windows manually by downloading the [latest realease][
 
 </Tabs>
 
-Few limitations exist on Windows: [read more][docs.cli#windows]
-
 </TabItem>
 
 </Tabs>
@@ -573,8 +571,6 @@ Your browser window with sign-in options will open.
 <p align="center">
   <img src="/img/qovery_signup.svg" alt="Qovery Sign-up page" />
 </p>
-
-Note: Qovery needs access to your account to be able to clone your repository for future application builds.
 
 [Click here][urls.authorize_qovery] to authorize Qovery to clone and build your applications.
 
@@ -714,7 +710,6 @@ We have seen that creating an URL shortener API with Ktor and Kotlin is extremel
 <Jump to="/guides/tutorial/">Tutorial</Jump>
 
 
-[docs.cli#windows]: /docs/using-qovery/interface/cli/#windows
 [guides.getting-started.create-a-database]: /guides/getting-started/create-a-database/
 [guides.getting-started.managing-environment-variables]: /guides/getting-started/managing-environment-variables/
 [urls.authorize_qovery]: https://github.com/apps/qovery/installations/new

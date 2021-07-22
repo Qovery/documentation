@@ -1,16 +1,11 @@
 # Generate
 
-The `make generate` command auto-generates files across the Vector repository
-(mostly documentation). This folder contains all of the inner-workings of that
-command.
+The `make generate` command auto-generates files across the documentation.
 
 ## Metadata
 
-To start, you should be familiar with the Vector [`/.meta`](/.meta) directory.
-This directory contains various metadata about the Vector project as a whole,
-mostly configuration details but also link definitions and more. Its content is
-loaded via the [`./util/metadata.rb`](./util/metadata.rb) file and represented
-as an object.
+This directory contains various metadata about the Qivery docs,
+mostly configuration details but also link definitions and more. Its content is loaded via the [`./util/metadata.rb`](./util/metadata.rb) file and represented as an object.
 
 ## Templates
 

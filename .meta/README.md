@@ -1,7 +1,6 @@
 # Meta Directory
 
-The `.meta` director represents metadata for the Qovery project as a whole.
-It is primarily used to auto-generate files across the repo via:
+The `.meta` director represents metadata for the Qovery project as a whole. It is primarily used to auto-generate files across the repo via:
 
     make generate
 

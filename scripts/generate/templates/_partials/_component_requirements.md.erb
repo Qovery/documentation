@@ -17,7 +17,7 @@
 * This component must be provided access to the configured file system.
 <%- end -%>
 <%- if requirements.journalctl -%>
-* The `journalctl` binary is required, this is the interface Vector uses to retrieve JournalD logs. See the ["Communication Strategy" section][<%= component_short_link(component) %>#communication-strategy] for more info.
+* The `journalctl` binary is required, this is the interface Qovery uses to retrieve JournalD logs. See the ["Communication Strategy" section][<%= component_short_link(component) %>#communication-strategy] for more info.
 * The Vector user must be part of the `systemd-journal` group in order to execute the `journalctl` binary. See the ["User Permissions" section][<%= component_short_link(component) %>#user-permissions] for more info.
 <%- end -%>
 <%- if requirements.kafka -%>

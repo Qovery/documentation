@@ -58,10 +58,10 @@ $ cd qovery-openapi-spec
 #### Generate the client code
 
 ```bash
-$ npm run generate -- $LANGUAGE
+$ QOVERY_CLIENT_LANGUAGE=go npm run generate
 ```
 
-where: **$LANGUAGE** is the [language of your choice](https://github.com/OpenAPITools/openapi-generator#overview).
+where: **$QOVERY_CLIENT_LANGUAGE** is the [language of your choice](https://github.com/OpenAPITools/openapi-generator#overview).
 
 </li>
 

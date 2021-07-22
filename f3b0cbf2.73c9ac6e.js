@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[175],{327:function(o){o.exports=JSON.parse('{"allTagsPath":"/guides/tags","slug":"technology-kotlin","name":"technology: kotlin","count":1,"permalink":"/guides/tags/technology-kotlin"}')}}]);

@@ -244,6 +244,15 @@ module.exports = {
         {
           "author_github": "https://github.com/pjeziorowski",
           "description": null,
+          "id": "/tutorial/generate-qovery-api-client",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/generate-qovery-api-client.md",
+          "series_position": null,
+          "title": "Creating API clients using OpenAPI Tools"
+        },
+        {
+          "author_github": "https://github.com/pjeziorowski",
+          "description": null,
           "id": "/tutorial/deploy-django-with-postgresql",
           "last_modified_on": null,
           "path": "website/guides/tutorial/deploy-django-with-postgresql.md",

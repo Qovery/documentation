@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-29"
+last_modified_on: "2021-07-22"
 title: "Project"
 description: "Learn how to configure your Projects on Qovery"
 ---
@@ -8,12 +8,6 @@ import Alert from '@site/src/components/Alert';
 
 import Jump from '@site/src/components/Jump';
 import Assumptions from '@site/src/components/Assumptions';
-
-<Alert type="warning">
-
-WORK IN PROGRESS - THIS DOCUMENTATION IS OUTDATED
-
-</Alert>
 
 A project allows you to group a set of applications and their dependencies (databases & other services).
 

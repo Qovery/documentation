@@ -96,6 +96,11 @@ module.exports = {
       "dark_logo_path": "/img/logos/nuxtjs.svg",
       "logo_path": "/img/logos/nuxtjs.svg",
       "name": "nuxtjs"
+    },
+    {
+      "dark_logo_path": "/img/logos/discordpy.svg",
+      "logo_path": "/img/logos/discordpy.svg",
+      "name": "discordpy"
     }
   ],
   "guides": {
@@ -312,6 +317,15 @@ module.exports = {
           "path": "website/guides/tutorial/graphql-api-with-hasura.md",
           "series_position": null,
           "title": "GraphQL API with Hasura"
+        },
+        {
+          "author_github": "https://github.com/Aggis15",
+          "description": null,
+          "id": "/tutorial/create-and-deploy-python-discord-bot",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/create-and-deploy-python-discord-bot.md",
+          "series_position": null,
+          "title": "How to create and deploy a Discord bot in Python"
         },
         {
           "author_github": "https://github.com/Stun3R",

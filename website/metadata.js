@@ -555,6 +555,14 @@ module.exports = {
       "id": "thibaut_david",
       "keybase": "https://keybase.io/Stun3R",
       "name": "Thibaut David"
+    },
+    {
+      "avatar": "https://github.com/Aggis15.png",
+      "bio": "Angelos is a self-taught programmer using Python, Qovery ambassador and contributor. ",
+      "github": "https://github.com/Aggis15",
+      "id": "Aggis15",
+      "keybase": "https://keybase.io/Aggis15",
+      "name": "Angelos Rinas"
     }
   ],
   "technologies": [

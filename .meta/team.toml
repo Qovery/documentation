@@ -63,3 +63,13 @@ name = "Thibaut David"
 bio = """\
 Thibaut is an experienced developer, CTO of <a href=\"https://shelt.in\">Shelt.in</a> and active Qovery contributor. \
 """
+
+[[team]]
+id = "Aggis15"
+avatar = "https://github.com/Aggis15.png"
+github = "https://github.com/Aggis15"
+keybase = "https://keybase.io/Aggis15"
+name = "Angelos Rinas"
+bio = """\
+Angelos is a self-taught programmer using Python, Qovery ambassador and contributor. \
+"""

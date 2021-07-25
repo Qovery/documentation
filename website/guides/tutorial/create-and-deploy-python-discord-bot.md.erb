@@ -16,20 +16,20 @@ This tutorial was created by [Aggis](https://github.com/Aggis15) - Active Qovery
 
 </Alert>
 
-In this guide, you'll learn how to create a very simple Discord bot in Python that will respond to messages and how you can host it with Qovery.
+Discord bots are rather famous lately for their flexibilty and ease to make simple ones, provided you have the needed knowlegde. In this guide, you'll learn how to create a very simple Discord bot in Python that will respond to messages and how you can host it with Qovery.
 
-> Discord.py is a famous Python package you can use for creating complex bots made in Python that can do everything Discord's API supports. It's flexible and easy to use
+> Discord.py is a famous Python package you can use for creating complex bots made in Python that can do everything Discord's API supports. It's flexible and easy to use.
 
-# Installing the required libraries
+## Installing the required libraries
 
 <Alert type="info">
     
-If you already have Discord.py and python-dotenv installed, you can move on to [the next step](#write-your-discord-bot)
+If you already have Discord.py and python-dotenv installed, you can move on to the Write your Discord bot section.
 
 </Alert>
     
 Start by opening a command prompt, then type the following command:
-    
+
 ```bash
 python3 -m pip install -U discord.py python-dotenv
 ```
@@ -38,7 +38,7 @@ This will fetch the latest version of both packages from PyPI. If you run into a
 
 Now you are ready to write your Discord bot! 
 
-# Get your Bot token
+## Get your Bot token
 
 1. Head back to the browser, and go to the [Discord developer portal](https://www.discord.com/developers). Here you are going to log in with your account, and click on New Application on the top right. From there, give your bot a name. It can be anything you like.
 
@@ -54,11 +54,11 @@ Now you are ready to write your Discord bot!
         <img src="/img/discordpy-tutorial.png" alt="Discord Portal" /> 
 </p>
 
-# Write your discord bot
+## Write your discord bot
 
 <Alert type="info">
 
-If you want to know more about the discordpy library and the many functions it has, you can take a look at their [documentation](https://discordpy.readthedocs.io/en/stable/)
+If you want to know more about the discordpy library and the many functions it has, you can take a look at their [documentation](https://discordpy.readthedocs.io/en/stable/).
 
 </Alert>
 
@@ -72,7 +72,7 @@ If you want to know more about the discordpy library and the many functions it h
 
 5. Now we get to the coding part. Start by importing all the needed libraries, it's as simple as: 
 
-```
+```python
 import os
 import discord
 from dotenv import load_dotenv
@@ -80,35 +80,123 @@ from dotenv import load_dotenv
 
 6. Initialize the dotenv library by adding the following line below:
 
-```
+```python
 load_dotenv()
 ```
 
-7. Now go back to the .env file and create a new variable called token and paste your token.
+7. Now go back to the .env file and create a new variable called token and paste your token:
 
-```
+```python
 token=your_token_here
 ```
 
 8. After that, you're ready to import the value from the file. Go ahead and add this line to your code:
 
-```
+```python
 token = os.getenv("token")
 ```
 
 9. Now we get to actually code the bot. Start by initializing the client. To do that, it's as simple as:
 
-```
+```python
 client = discord.Client()
 ```
 
 10. Then, we're going to be adding a very simple function where the client will say something in the console when the bot is ready. To do this, you can add this function to your code:
 
-```
+```python
 @client.event
 async def on_ready():
+# Print this when the bot starts up for the first time.
     print(f'{client.user} has connected to Discord!')
 ```
 
 11. Now, we can make a simple function where the bot will respond to someone when they say hello. The following code is responsible for that:
 
+```python
+@client.event
+async def on_message(message):
+# Ignore messages from the bot itself so that there's no conflict.
+    if message.author == client.user:
+        return
+# Respond to hello.
+    if message.content == 'hello':
+        await message.channel.send("Hi there!")
+```
+
+12. Lastly, we're going to need to make the bot run when we run our file. Add this line to your code:
+
+```python
+client.run(token)
+```
+
+The finalized code should look something like this:
+
+```python
+import os
+import discord
+from dotenv import load_dotenv
+
+load_dotenv()
+
+token = os.getenv("token")
+
+client = discord.Client()
+
+@client.event
+async def on_ready():
+    print(f"{client.user} has connected to Discord!")
+
+@client.event
+async def on_message(message):
+    if message.author == client.user:
+        return
+
+    if message.content == 'hello':
+        await message.channel.send("Hi there!")
+
+client.run(token)
+```
+
+### Write a Dockerfile
+
+In order to host your bot to Qovery, you're going to need a very simple Dockerfile. This one should be sufficient enough for this simple application.
+
+```Dockerfile
+FROM python:3
+
+WORKDIR /app
+
+COPY . .
+
+RUN python3 -m pip install -U discord.py python-dotenv
+
+CMD python -u ./main.py
+```
+
+For more complex applications and a more in depth look in Dockerfiles, you can check out [this](https://hub.qovery.com/guides/tutorial/how-to-write-a-dockerfile/) tutorial.
+
+### Final Steps
+
+All that's left now is adding all your files (except the `.env` file) in your git repo. I'm not going to go in depth in this tutorial since that's not the purpose of this tutorial, but there are plenty of guides online.
+
+
+## Hosting your bot with Qovery
+
+1. Sign up to Qovery.
+
+<%= qovery_sign_up() %>
+
+2. Create a new project, and choose your git repo.
+
+3. Go to your app, select Environment Variables, then add your token. This will make sure the token is injected during runtime so the bot can start without any issues.
+
+4. Go back to your app, then settings, and select Dockerfile as the build mode. Qovery will automatically choose the Dockerfile.
+
+5. Click deploy and your bot should be deployed in the next few minutes. 
+
+Your bot is now online!
+
+Should you run into any issues, feel free to join the [Qovery Discord server](https://discord.qovery.com) and ask for help there!
+
+<Jump to="/guides/tutorial/">Tutorial</Jump>

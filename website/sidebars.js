@@ -128,6 +128,7 @@ module.exports = {
                     items: [
                         "community/reward",
                         "community/reward/feedback",
+                        "community/reward/follow-qovery",
                         "community/reward/friend-sponsorship",
                         "community/reward/write-content",
                         "community/reward/video-record",

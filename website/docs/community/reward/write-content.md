@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-09"
+last_modified_on: "2021-07-26"
 title: Write Content
 description: Write content and get rewarded
 ---
@@ -13,7 +13,7 @@ In this page, I explain how you can earn free Qovery credits by writing content.
 
 <Alert type="success">
 
-Earn up to $300 Qovery credits per article
+Earn up to $300 Qovery credits per article.
 
 </Alert>
 
@@ -29,9 +29,9 @@ Earn up to $300 Qovery credits per article
 
 * The content must be related to Qovery.
 * The content must be original. (we check)
-* The content must contains at least 1000 words.
+* The content must contain at least 1000 words.
 * The content must be written in English (you can translate it).
-* You need to publish your content on at least one of the following medias:
+* You need to publish your content on at least one of the following websites:
   - Your personal blog
   - [Dev.To](https://dev.to/)
   - [Reddit](https://www.reddit.com/)

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2020-04-23"
+last_modified_on: "2021-07-26"
 title: Backup and Restore
 description: Your data are safe and can be easily restored
 ---
@@ -23,7 +23,7 @@ When containers' applications are successfully built, **all containers are kept 
 
 ### Services
 
-Take a look at the desired service to know how they are backup.
+Take a look at the desired service to know how they are backed up.
 
 ## Restore
 

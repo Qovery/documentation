@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-09"
+last_modified_on: "2021-07-26"
 title: Become an Ambassador
 description: Be a community ambassador and get highly rewarded
 ---
@@ -10,7 +10,7 @@ Qovery is awesome because our community members turns Qovery into a fantastic pl
 
 <Alert type="success">
 
-Become an ambassador and host 10 apps for free and for ever.
+Become an ambassador and host 10 apps for free, forever.
 
 </Alert>
 
@@ -23,16 +23,16 @@ Become an ambassador and host 10 apps for free and for ever.
 -->
 
 ## What is an ambassador?
-An ambassador is an active community member that help the other community members in:
-- using Qovery.
-- programming.
-- technical topics.
+An ambassador is an active community member who would help the other community members in:
+- Using Qovery.
+- Programming.
+- Technical topics.
 
 on [Discord][urls.qovery_chat] and our [forum][urls.qovery_community].
 
 ## How to become an ambassador?
 
-To become an ambassador, you need to check 2 of the following requirements:
+To become an ambassador, you need to qualify for atleast 2 of the following requirements:
 
 - Be an active member on the [Forum][urls.qovery_community].
 - Be an active member on [Discord][urls.qovery_chat].

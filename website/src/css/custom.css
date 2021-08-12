@@ -2128,7 +2128,7 @@ ul.tabs.rounded li.tab-item.tab-item--active {
  */
 
 html[data-theme="dark"] {
-    --ifm-background-color: #151B2B;
+    --ifm-background-color: #131326;
     --ifm-background-color-rgb: 55, 56, 85;
     --ifm-color-blue: #e9eafa;
     --ifm-color-content-secondary: var(--ifm-color-emphasis-600);

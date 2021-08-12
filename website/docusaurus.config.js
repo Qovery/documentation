@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
     title: 'Qovery',
-    tagline: 'The simplest way to deploy your full-stack apps in the Cloud',
+    tagline: 'The simplest way to deploy your apps in the Cloud',
     url: 'https://hub.qovery.com',
     baseUrl: '/',
     favicon: 'img/logo-square.svg',

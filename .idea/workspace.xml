@@ -8,15 +8,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="fix: typo">
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: update brand identity">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/docusaurus.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/docusaurus.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/src/css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/website/src/css/custom.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/static/img/logo-dark.svg" beforeDir="false" afterPath="$PROJECT_DIR$/website/static/img/logo-dark.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/static/img/logo-light.svg" beforeDir="false" afterPath="$PROJECT_DIR$/website/static/img/logo-light.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/static/img/logo-square.svg" beforeDir="false" afterPath="$PROJECT_DIR$/website/static/img/logo-square.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/static/img/logos/qovery.svg" beforeDir="false" afterPath="$PROJECT_DIR$/website/static/img/logos/qovery.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/static/img/open-graph.png" beforeDir="false" afterPath="$PROJECT_DIR$/website/static/img/open-graph.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,17 +171,6 @@
     </key>
   </component>
   <component name="RunManager" selected="npm.build">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/website/package.json" />
       <command value="run" />
@@ -324,14 +307,8 @@
       <workItem from="1626510909186" duration="1000" />
       <workItem from="1626796706169" duration="4836000" />
       <workItem from="1628094977969" duration="78000" />
-      <workItem from="1628784990218" duration="1316000" />
-    </task>
-    <task id="LOCAL-00167" summary="fix: remove brokers dead link">
-      <created>1612166483539</created>
-      <option name="number" value="00167" />
-      <option name="presentableId" value="LOCAL-00167" />
-      <option name="project" value="LOCAL" />
-      <updated>1612166483539</updated>
+      <workItem from="1628784990218" duration="1865000" />
+      <workItem from="1628873986880" duration="107000" />
     </task>
     <task id="LOCAL-00168" summary="chore: update footer">
       <created>1614787259157</created>
@@ -669,7 +646,14 @@
       <option name="project" value="LOCAL" />
       <updated>1625900668219</updated>
     </task>
-    <option name="localTasksCounter" value="216" />
+    <task id="LOCAL-00216" summary="chore: update brand identity">
+      <created>1628786381691</created>
+      <option name="number" value="00216" />
+      <option name="presentableId" value="LOCAL-00216" />
+      <option name="project" value="LOCAL" />
+      <updated>1628786381691</updated>
+    </task>
+    <option name="localTasksCounter" value="217" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -755,7 +739,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="add business/get-started" />
     <MESSAGE value="add Qovery vs. Terraform" />
     <MESSAGE value="update Qovery vs. Terraform" />
     <MESSAGE value="update &quot;what is qovery&quot; page" />
@@ -780,6 +763,7 @@
     <MESSAGE value="chore: update env variables docs to include demo video" />
     <MESSAGE value="chore: add link to apply as an ambassador" />
     <MESSAGE value="fix: typo" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: typo" />
+    <MESSAGE value="chore: update brand identity" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: update brand identity" />
   </component>
 </project>

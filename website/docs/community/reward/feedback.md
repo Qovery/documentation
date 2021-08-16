@@ -111,4 +111,4 @@ Absolutely 🙂.
 
 [docs.community.become-an-ambassador]: /docs/community/become-an-ambassador/
 [urls.qovery_billing_context]: https://www.qovery.com/blog/how-qovery-billing-works
-[urls.qovery_submit_feedback_form]: https://qovery.typeform.com/to/YAc9eWZv
+[urls.qovery_submit_feedback_form]: https://qovery.typeform.com/to/KwiNKRoo

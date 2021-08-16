@@ -159,6 +159,8 @@ Qovery supports the following AWS regions:
 |🇸🇬| ap-southeast-1 | Asia Pacific (Singapore)
 |🇦🇺| ap-southeast-2 | Asia Pacific (Sydney)
 |🇨🇦| ca-central-1   | Canada (Toronto)
+|🇨🇳| cn-north-1     | China (Beijing)
+|🇨🇳| cn-northwest-1 | China (Ningxia)
 |🇩🇪| eu-central-1   | Europe (Frankfurt)
 |🇮🇪| eu-west-1      | Europe (Ireland)
 |🏴󠁧󠁢󠁥󠁮󠁧󠁿| eu-west-2      | Europe (London)

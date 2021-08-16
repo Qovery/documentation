@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-02"
+last_modified_on: "2021-08-16"
 title: "Amazon Web Services (AWS)"
 description: "Learn how to configure and plug your Amazon Web Services (AWS) account"
 ---
@@ -158,7 +158,7 @@ Qovery supports the following AWS regions:
 |🇯🇵| ap-northeast-3 | Asia Pacific (Osaka)
 |🇸🇬| ap-southeast-1 | Asia Pacific (Singapore)
 |🇦🇺| ap-southeast-2 | Asia Pacific (Sydney)
-|🇨🇦| ca-central-1   | Canada (Central)
+|🇨🇦| ca-central-1   | Canada (Toronto)
 |🇩🇪| eu-central-1   | Europe (Frankfurt)
 |🇮🇪| eu-west-1      | Europe (Ireland)
 |🏴󠁧󠁢󠁥󠁮󠁧󠁿| eu-west-2      | Europe (London)

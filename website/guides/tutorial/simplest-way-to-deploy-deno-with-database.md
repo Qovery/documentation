@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-15"
+last_modified_on: "2021-08-16"
 $schema: "/.meta/.schemas/guides.json"
 title: Simplest way to deploy your Deno application with MongoDB database
 description: Tutorial how to deploy a Deno app with MongoDB database with Qovery
@@ -294,6 +294,12 @@ In the popup window while adding a database, choose your name, select **MongoDB*
 
 <p align="center">
   <img src="/img/template-db.png" alt="Template DB" />
+</p>
+
+In the end, click on your added database - in the new screen you'll be able to find the **Deploy** button:
+
+<p align="center">
+  <img src="/img/template-deploy-db.png" alt="Template DB" />
 </p>
 
 <Alert type="info">

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-15"
+last_modified_on: "2021-08-16"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy Gin with PostgreSQL with Qovery
 description: How to deploy a Gin application with the PostgreSQL database with Qovery
@@ -278,6 +278,12 @@ In the popup window while adding a database, choose your name, select **PostgreS
 
 <p align="center">
   <img src="/img/template-db.png" alt="Template DB" />
+</p>
+
+In the end, click on your added database - in the new screen you'll be able to find the **Deploy** button:
+
+<p align="center">
+  <img src="/img/template-deploy-db.png" alt="Template DB" />
 </p>
 
 <Alert type="info">

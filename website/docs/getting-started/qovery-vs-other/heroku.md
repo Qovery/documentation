@@ -1,8 +1,10 @@
 ---
-last_modified_on: "2021-06-19"
+last_modified_on: "2021-08-17"
 title: Qovery vs. Heroku
 description: Discover what is the difference between Qovery and Heroku, and why Qovery is the perfect Heroku alternative for your business.
 ---
+
+import Alert from '@site/src/components/Alert';
 
 We’ve built Qovery to help developers and businesses to focus on the product they are building instead of managing their Cloud infrastructure. Our customers often tell us Qovery is the Platform-as-a-Service solution they would have made for their company. This page explains why so many former Heroku customers consider Qovery to be the best Heroku alternative.
 
@@ -57,13 +59,18 @@ Please don't take our word for it; see some cost comparisons below
 
 | Cost for...                | Qovery                                             | Heroku                                                                |
 |----------------------------|----------------------------------------------------|-----------------------------------------------------------------------|
-| 10 apps with 1GB of RAM    | $150 / month + managed Kubernetes by AWS           | $500 / month                                                          |
-| PostgreSQL for development | $15 / month                                        | from 0$ to +$1000 month                                               |
-| PostgreSQL for production  | $15 / month + managed PostgreSQL by AWS            | from 0$ to +$1000 month                                               |
-| Redis for development      | $15 / month                                        | from 0$ to +$1000 month                                               |
-| Redis for production       | $15 / month + managed Redis by AWS                 | from 0$ to +$1000 month                                               |
-| Additional user            | $0                                                 | $10 / user / month                                                    |
+| 10 apps with 1GB of RAM    | $0                                                 | $500 / month                                                          |
+| PostgreSQL for development | $0                                                 | from 0$ to +$1000 month                                               |
+| PostgreSQL for production  | $0                                                 | from 0$ to +$1000 month                                               |
+| Redis for development      | $0                                                 | from 0$ to +$1000 month                                               |
+| Redis for production       | $0                                                 | from 0$ to +$1000 month                                               |
+| Additional user            | $40 per user/month                                 | $10 / user / month                                                    |
 
+<Alert type="info">
+
+Qovery does not include your Cloud cost
+
+</Alert>
 
 ### Cloud cost optimization
 Where Heroku makes you consume more and more resources to spend more, Qovery does the opposite. We earn money because you use and love Qovery. And to fulfill our mission, we help you to reduce your Cloud cost by doing simple operations like:

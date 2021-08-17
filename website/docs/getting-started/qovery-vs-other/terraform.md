@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-19"
+last_modified_on: "2021-08-17"
 title: Qovery vs. Terraform
 description: Discover what is the difference between Qovery and Terraform, and how Qovery extends the power of Terraform.
 ---
@@ -57,19 +57,6 @@ Qovery runs on your AWS account. The goal of Qovery is to simplify the access to
 
 ### Qovery extends Terraform
 Qovery focuses on the developer needs and provides full control to a DevOps team via a plugin system. To go further than that, Qovery generates Terraform and Helm files (familiar to DevOps) to deploy the infrastructure and the developers' apps. If the DevOps is not satisfied by the default configuration of Qovery, they can change it.
-
-### Predictable cost
-
-Please don't take our word for it; see some cost comparisons below
-
-| Cost for...                | Qovery                                             |
-|----------------------------|----------------------------------------------------|
-| 10 apps with 1GB of RAM    | $150 / month + managed Kubernetes by AWS           |
-| PostgreSQL for development | $15 / month                                        |
-| PostgreSQL for production  | $15 / month + managed PostgreSQL by AWS            |
-| Redis for development      | $15 / month                                        |
-| Redis for production       | $15 / month + managed Redis by AWS                 |
-| Additional user            | $0                                                 |
 
 ### Cloud cost optimization
 Qovery helps you to optimize your Cloud cost by

@@ -8,8 +8,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="fix: AWS regions ca-central-1 = Toronto">
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/amazon-web-services.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/amazon-web-services.md.erb" afterDir="false" />
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: add chinese AWS regions">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/heroku.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/heroku.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/heroku.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/heroku.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/netlify.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/netlify.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/netlify.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/netlify.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/terraform.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/terraform.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/terraform.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/terraform.md.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -307,21 +313,7 @@
       <workItem from="1626796706169" duration="4836000" />
       <workItem from="1628094977969" duration="78000" />
       <workItem from="1628784990218" duration="1865000" />
-      <workItem from="1628873986880" duration="1070000" />
-    </task>
-    <task id="LOCAL-00170" summary="chore: change FAQ and add community.qovery.com links">
-      <created>1619202744887</created>
-      <option name="number" value="00170" />
-      <option name="presentableId" value="LOCAL-00170" />
-      <option name="project" value="LOCAL" />
-      <updated>1619202744887</updated>
-    </task>
-    <task id="LOCAL-00171" summary="chore: change FAQ and add community.qovery.com links">
-      <created>1619203583934</created>
-      <option name="number" value="00171" />
-      <option name="presentableId" value="LOCAL-00171" />
-      <option name="project" value="LOCAL" />
-      <updated>1619203583934</updated>
+      <workItem from="1628873986880" duration="3068000" />
     </task>
     <task id="LOCAL-00172" summary="chore: add tutorial on how to deploy Strapi with PostgreSQL">
       <created>1619647176537</created>
@@ -652,7 +644,21 @@
       <option name="project" value="LOCAL" />
       <updated>1629128042423</updated>
     </task>
-    <option name="localTasksCounter" value="219" />
+    <task id="LOCAL-00219" summary="chore: add chinese AWS regions">
+      <created>1629128287354</created>
+      <option name="number" value="00219" />
+      <option name="presentableId" value="LOCAL-00219" />
+      <option name="project" value="LOCAL" />
+      <updated>1629128287354</updated>
+    </task>
+    <task id="LOCAL-00220" summary="chore: add chinese AWS regions">
+      <created>1629128301335</created>
+      <option name="number" value="00220" />
+      <option name="presentableId" value="LOCAL-00220" />
+      <option name="project" value="LOCAL" />
+      <updated>1629128301335</updated>
+    </task>
+    <option name="localTasksCounter" value="221" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -738,7 +744,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="update &quot;what is qovery&quot; page" />
     <MESSAGE value="add article on how to deploy on your aws account" />
     <MESSAGE value="add posthog" />
     <MESSAGE value="fix: remove brokers dead link" />
@@ -763,6 +768,7 @@
     <MESSAGE value="chore: update brand identity" />
     <MESSAGE value="fix: docsearch" />
     <MESSAGE value="fix: AWS regions ca-central-1 = Toronto" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: AWS regions ca-central-1 = Toronto" />
+    <MESSAGE value="chore: add chinese AWS regions" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: add chinese AWS regions" />
   </component>
 </project>

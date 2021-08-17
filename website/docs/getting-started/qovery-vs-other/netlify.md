@@ -1,8 +1,10 @@
 ---
-last_modified_on: "2021-06-19"
+last_modified_on: "2021-08-17"
 title: Qovery vs. Netlify
 description: Discover what is the difference between Qovery and Netlify, and why Qovery is the perfect companion to Netlify.
 ---
+
+import Alert from '@site/src/components/Alert';
 
 We’ve built Qovery to help developers and businesses to focus on the product they are building instead of managing their Cloud infrastructure. Our customers often tell us Qovery is the Platform-as-a-Service solution they would have made for their company. This page explains why so many users compare Qovery to Netlify and what are the similarities and differences.
 
@@ -63,16 +65,18 @@ This is the opposite on Netlify. You can't use your Cloud provider account to ho
 
 ### Predictable cost
 
-Please don't take our word for it; see some cost comparisons below
+Please don't take our word for it; see some cost comparisons below.
 
 | Cost for...                | Qovery                                             | Netlify                                                               |
 |----------------------------|----------------------------------------------------|-----------------------------------------------------------------------|
-| 10 apps with 1GB of RAM    | $150 / month + managed Kubernetes by AWS           | $500 / month                                                          |
-| PostgreSQL for development | $15 / month                                        | Not supported                                                         |
-| PostgreSQL for production  | $15 / month + managed PostgreSQL by AWS            | Not supported                                                         |
-| Redis for development      | $15 / month                                        | Not supported                                                         |
-| Redis for production       | $15 / month + managed Redis by AWS                 | Not supported                                                         |
-| Additional user            | $0                                                 | From $19 to $99 / user / month                                        |
+| 10 apps with 1GB of RAM    | $0                                                 | $500/month                                                            |
+| Additional user            | $40 per user/month                                 | From $19 to $99 per user/month                                        |
+
+<Alert type="info">
+
+Qovery does not include your Cloud cost
+
+</Alert>
 
 ### Cloud cost optimization
 Qovery and Netlify have the same spirit concerning Cloud cost optimization. But with Qovery, you can go a step further in Cloud cost optimization by:

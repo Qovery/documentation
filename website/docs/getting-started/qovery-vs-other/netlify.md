@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-08-17"
+last_modified_on: "2021-08-18"
 title: Qovery vs. Netlify
 description: Discover what is the difference between Qovery and Netlify, and why Qovery is the perfect companion to Netlify.
 ---
@@ -69,8 +69,10 @@ Please don't take our word for it; see some cost comparisons below.
 
 | Cost for...                | Qovery                                             | Netlify                                                               |
 |----------------------------|----------------------------------------------------|-----------------------------------------------------------------------|
-| 10 apps with 1GB of RAM    | $0                                                 | $500/month                                                            |
-| Additional user            | $40 per user/month                                 | From $19 to $99 per user/month                                        |
+| 10 apps with 1GB of RAM    | $159/month or $229/month                           | $500/month                                                            |
+| 100 apps with 1GB of RAM   | $159/month or $229/month                           | $5000/month                                                           |
+| Application deployments    | $5 per 100 deployments                             | $0                                                                    |
+| Additional user            | $0                                                 | From $19 to $99 per user/month                                        |
 
 <Alert type="info">
 

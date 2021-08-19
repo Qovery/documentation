@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-08-18"
+last_modified_on: "2021-08-19"
 title: Qovery vs. Heroku
 description: Discover what is the difference between Qovery and Heroku, and why Qovery is the perfect Heroku alternative for your business.
 ---
@@ -59,8 +59,8 @@ Please don't take our word for it; see some cost comparisons below
 
 | Cost for...                | Qovery                                             | Heroku                                                                |
 |----------------------------|----------------------------------------------------|-----------------------------------------------------------------------|
-| 10 apps with 1GB of RAM    | $159/month or $229/month                           | $500/month                                                            |
-| 100 apps with 1GB of RAM   | $159/month or $229/month                           | $5000/month                                                            |
+| 10 apps with 1GB of RAM    | from $0/month to $499/month                        | $500/month                                                            |
+| 100 apps with 1GB of RAM   | from $0/month to $499/month                        | $5000/month                                                            |
 | PostgreSQL for development | $0                                                 | from 0$ to +$1000 month                                               |
 | PostgreSQL for production  | $0                                                 | from 0$ to +$1000 month                                               |
 | Redis for development      | $0                                                 | from 0$ to +$1000 month                                               |

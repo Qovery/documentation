@@ -220,7 +220,6 @@
         <item itemvalue="npm.start" />
         <item itemvalue="npm.deploy" />
         <item itemvalue="npm.build" />
-        <item itemvalue="npm.swizzle" />
       </list>
     </recent_temporary>
   </component>
@@ -311,14 +310,7 @@
       <workItem from="1626796706169" duration="4836000" />
       <workItem from="1628094977969" duration="78000" />
       <workItem from="1628784990218" duration="1865000" />
-      <workItem from="1628873986880" duration="4534000" />
-    </task>
-    <task id="LOCAL-00173" summary="chore: fix tutorial logos and update some tutorials">
-      <created>1619647874333</created>
-      <option name="number" value="00173" />
-      <option name="presentableId" value="LOCAL-00173" />
-      <option name="project" value="LOCAL" />
-      <updated>1619647874333</updated>
+      <workItem from="1628873986880" duration="5419000" />
     </task>
     <task id="LOCAL-00174" summary="chore: fix tutorial logos and update some tutorials">
       <created>1619648134631</created>
@@ -656,7 +648,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629218979752</updated>
     </task>
-    <option name="localTasksCounter" value="222" />
+    <task id="LOCAL-00222" summary="chore: update comparisons pages">
+      <created>1629291875254</created>
+      <option name="number" value="00222" />
+      <option name="presentableId" value="LOCAL-00222" />
+      <option name="project" value="LOCAL" />
+      <updated>1629291875255</updated>
+    </task>
+    <option name="localTasksCounter" value="223" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

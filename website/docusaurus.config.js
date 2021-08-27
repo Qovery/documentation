@@ -153,8 +153,8 @@ module.exports = {
             trackingId: 'UA-129773960-5',
         },
         posthog: {
-            apiKey: "OxbbcR7J3ohTXEDGfsIL9KDlq5Gs080sbgfjrWYIOvU", // required key for ph (can be public)
-            appUrl: "https://ph.qovery.com",  // optional
+            apiKey: "phc_IgdG1K2GveDUte1gJ6hlwNbFHCv9nViWETUyLMU7ciq", // required key for ph (can be public)
+            appUrl: "https://phprox.qovery.com",  // optional
             enableInDevelopment: false,  // optional
             // other options are passed to posthog-js init as is
         }

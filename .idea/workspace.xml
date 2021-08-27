@@ -10,10 +10,7 @@
   <component name="ChangeListManager">
     <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: update comparisons pages">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/heroku.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/heroku.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/heroku.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/heroku.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/netlify.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/netlify.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/netlify.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/getting-started/qovery-vs-other/netlify.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docusaurus.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/docusaurus.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -310,14 +307,10 @@
       <workItem from="1626796706169" duration="4836000" />
       <workItem from="1628094977969" duration="78000" />
       <workItem from="1628784990218" duration="1865000" />
-      <workItem from="1628873986880" duration="5419000" />
-    </task>
-    <task id="LOCAL-00174" summary="chore: fix tutorial logos and update some tutorials">
-      <created>1619648134631</created>
-      <option name="number" value="00174" />
-      <option name="presentableId" value="LOCAL-00174" />
-      <option name="project" value="LOCAL" />
-      <updated>1619648134631</updated>
+      <workItem from="1628873986880" duration="5699000" />
+      <workItem from="1629554235013" duration="84000" />
+      <workItem from="1629556410484" duration="421000" />
+      <workItem from="1630050118779" duration="484000" />
     </task>
     <task id="LOCAL-00175" summary="chore: update header">
       <created>1619683668927</created>
@@ -655,7 +648,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629291875255</updated>
     </task>
-    <option name="localTasksCounter" value="223" />
+    <task id="LOCAL-00223" summary="chore: update comparisons pages">
+      <created>1629409377523</created>
+      <option name="number" value="00223" />
+      <option name="presentableId" value="LOCAL-00223" />
+      <option name="project" value="LOCAL" />
+      <updated>1629409377523</updated>
+    </task>
+    <option name="localTasksCounter" value="224" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

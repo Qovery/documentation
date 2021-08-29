@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-08"
+last_modified_on: "2021-08-29"
 $schema: "/.meta/.schemas/guides.json"
 title: GraphQL API with Hasura
 description: How to build and deploy realtime GraphQL APIs in a few minutes
@@ -82,7 +82,7 @@ If you have any questions regarding this post or other things, feel free to reac
 
 ### Create a new application
 
-To follow the guide, [you can fork and use our repository][https://github.com/Qovery/hasura.git]
+To follow the guide, <a href="https://github.com/Qovery/hasura.git">you can fork and use our repository</a>
 
 Use the forked repository (and branch **main**) while creating the application in the repository field:
 

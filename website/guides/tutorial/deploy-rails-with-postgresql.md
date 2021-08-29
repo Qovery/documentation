@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-08-16"
+last_modified_on: "2021-08-29"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy Rails with PostgreSQL with Qovery
 description: How to deploy a Rails application with the PostgreSQL database with Qovery
@@ -230,7 +230,7 @@ In this example we are using **PostgreSQL** **v11.5**.
 
 ### Create a new application
 
-To follow the guide, [you can fork and use our repository][urls.sample_rails_with_postgresql]
+To follow the guide, <a href="urls.sample_rails_with_postgresql">you can fork and use our repository</a>
 
 Use the forked repository (and branch **master**) while creating the application in the repository field:
 

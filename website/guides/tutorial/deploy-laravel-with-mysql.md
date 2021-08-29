@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-08-16"
+last_modified_on: "2021-08-29"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy Laravel with MySQL with Qovery
 description: How to deploy a Laravel application with the MySQL database with Qovery
@@ -230,7 +230,7 @@ In this example we are using **MySQL** **v8.0**.
 
 ### Create a new application
 
-To follow the guide, [you can fork and use our repository][urls.sample_laravel_with_mysql]
+To follow the guide, <a href="urls.sample_laravel_with_mysql">you can fork and use our repository</a>
 
 Use the forked repository (and branch **master**) while creating the application in the repository field:
 

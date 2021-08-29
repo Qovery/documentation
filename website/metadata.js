@@ -373,13 +373,13 @@ module.exports = {
           "title": "How to write a Dockerfile"
         },
         {
-          "author_github": "https://github.com/pjeziorowski",
+          "author_github": "https://github.com/evoxmusic",
           "description": null,
-          "id": "/tutorial/migrate-webapp-from-heroku-to-qovery",
+          "id": "/tutorial/migrate-your-application-from-heroku-to-aws",
           "last_modified_on": null,
-          "path": "website/guides/tutorial/migrate-webapp-from-heroku-to-qovery.md",
+          "path": "website/guides/tutorial/migrate-your-application-from-heroku-to-aws.md",
           "series_position": null,
-          "title": "Migrating application from Heroku to Qovery"
+          "title": "Migrate your application from Heroku to AWS"
         },
         {
           "author_github": "https://github.com/pjeziorowski",

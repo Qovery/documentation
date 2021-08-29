@@ -1,10 +1,10 @@
 ---
-last_modified_on: "2021-07-08"
+last_modified_on: "2021-08-29"
 $schema: "/.meta/.schemas/guides.json"
-title: Migrating application from Heroku to Qovery
-description: Tutorial how to migrate a webapp connected to PostgreSQL database from Heroku to Qovery
-author_github: https://github.com/pjeziorowski
-tags: ["type: tutorial", "technology: qovery"]
+title: Migrate your application from Heroku to AWS
+description: Tutorial on how to migrate your application from Heroku to AWS with a PostgreSQL database
+author_github: https://github.com/evoxmusic
+tags: ["type: tutorial", "cloud_provider: aws"]
 hide_pagination: true
 ---
 
@@ -16,10 +16,10 @@ import TabItem from '@theme/TabItem';
 
 import Assumptions from '@site/src/components/Assumptions';
 
-This tutorial describes how to migrate your web application running on Heroku to Qovery. In the article, you learn how to
+This tutorial describes how to migrate your web application running on Heroku to AWS with Qovery. In the article, you learn how to
 migrate a Node.js application connected to Heroku Postgres as a backing service on the Heroku platform. It covers all required
-steps you need to take to deploy your application on Qovery and transfer your data from Heroku Postgres to the database managed
-by Qovery.
+steps you need to take to deploy your application on AWS and transfer your data from Heroku Postgres to the database managed
+by AWS via Qovery.
 
 The application is a simple Node.js *Todo* web app that uses PostgreSQL as a persistence layer.
 
@@ -28,6 +28,7 @@ The application is a simple Node.js *Todo* web app that uses PostgreSQL as a per
 * You are familiar with Heroku basics, have a Heroku account and access to Heroku CLI
 * You have a Qovery account
 * You have a [Github or Gitlab][urls.github] account
+* You have [configured your AWS account][guides.advanced.guide-amazon-web-services] on Qovery
 
 </Assumptions>
 
@@ -36,11 +37,11 @@ The application is a simple Node.js *Todo* web app that uses PostgreSQL as a per
 <Tabs
   centered={true}
   className={"rounded"}
-  defaultValue={"deploy"}
+  defaultValue={"dontDeploy"}
   placeholder="Don't deploy sample application"
   select={false}
   size={null}
-  values={[{"group":"Platforms","label":"I don't want to deploy the sample application","value":"dontDeploy"},{"group":"Platforms","label":"I want to deploy the sample application","value":"deploy"}]}>
+  values={[{"group":"Platforms","label":"I want to migrate my application","value":"dontDeploy"},{"group":"Platforms","label":"I want to deploy a sample application","value":"deploy"}]}>
 
 <TabItem value="dontDeploy">
 
@@ -56,7 +57,7 @@ Otherwise, you can try to deploy and migrate our sample application to get exper
 
      To make changes please edit the template located at:
 
-     website/guides/tutorial/migrate-webapp-from-heroku-to-qovery.md.erb
+     website/guides/tutorial/migrate-your-application-from-heroku-to-aws.md.erb
 -->
 
 ## Deploying the sample application to Heroku
@@ -116,7 +117,7 @@ Otherwise, you can try to deploy and migrate our sample application to get exper
 
 </Tabs>
 
-## Migrating the application from Heroku to Qovery
+## Migrating the application from Heroku to AWS
 
 <Steps headingDepth={3}>
 <ol>
@@ -151,7 +152,7 @@ Otherwise, you can try to deploy and migrate our sample application to get exper
 
 ### Create a new application
 
-To follow the guide, [you can fork and use our repository][https://github.com/qovery/migrate-webapp-from-heroku-to-qovery.git]
+To follow the guide, <a href="https://github.com/qovery/migrate-webapp-from-heroku-to-qovery.git">you can fork and use our repository</a>
 
 Use the forked repository (and branch **master**) while creating the application in the repository field:
 
@@ -179,8 +180,8 @@ To learn how to do it, you can [follow this guide][guides.getting-started.create
 
 Migrate PostgreSQL data
 
-There are multiple paths you could take to migrate your data from Heroku Postgres to Qovery.
-For production usage for the shortest downtime you would probably want to configure Qovery PostgreSQL as a replica to
+There are multiple paths you could take to migrate your data from Heroku Postgres to AWS.
+For production usage for the shortest downtime you would probably want to configure PostgreSQL as a replica to
 the database on Heroku, and making it the primary instance after migration. Heroku does not support this in its free
 tier, so for the purpose of the example, we take a simpler path and use different tools to migrate the data.
 
@@ -197,9 +198,9 @@ heroku pg:backups:download -a YOUR_APPLICATION_NAME
 heroku pg:backups:capture -a YOUR_APPLICATION_NAME
 ```
 
-It results in creating a new `latest.dump` file, which you use to transfer data to Qovery.
+It results in creating a new `latest.dump` file, which you use to transfer data to AWS PostgreSQL.
 
-To migrate the data to Qovery, run (replace all the values with secrets listed in your application `Secrets` tab):
+To migrate the data to your AWS PostgreSQL, run (replace all the values with secrets listed in your application `Secrets` tab):
 
 ```bash
 pg_restore -v -h $QOVERY_DATABASE_MY_POSTGRESQL_HOST -U $QOVERY_DATABASE_MY_POSTGRESQL_USER -d postgres latest.dump --no-owner
@@ -225,7 +226,7 @@ That's it. Watch the status and wait till the app is deployed.
 
 </li>
 
-After it's done, click on **Action** and **Open** button to navigate to your app. It should be up and running with all the data from Heroku migrated to Qovery!
+After it's done, click on **Action** and **Open** button to navigate to your app. It should be up and running with all the data from Heroku migrated to AWS!
 
 </li>
 
@@ -239,5 +240,6 @@ After it's done, click on **Action** and **Open** button to navigate to your app
 
 
 [docs.using-qovery.configuration.secret]: /docs/using-qovery/configuration/secret/
+[guides.advanced.guide-amazon-web-services]: /guides/advanced/guide-amazon-web-services/
 [guides.getting-started.create-a-database]: /guides/getting-started/create-a-database/
 [urls.github]: https://github.com

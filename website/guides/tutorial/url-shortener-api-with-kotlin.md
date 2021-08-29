@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-15"
+last_modified_on: "2021-08-29"
 $schema: "/.meta/.schemas/guides.json"
 title: URL Shortener API with Kotlin (Part 1/2)
 description: Create a URL shortener API with Kotlin, the micro-framework Ktor and PostgreSQL
@@ -615,7 +615,7 @@ Congratulations, you are logged-in.
 
 ### Create a new application
 
-To follow the guide, [you can fork and use our repository][https://github.com/evoxmusic/ktor-url-shortener.git]
+To follow the guide, <a href="https://github.com/evoxmusic/ktor-url-shortener.git">you can fork and use our repository</a>
 
 Use the forked repository (and branch **master**) while creating the application in the repository field:
 

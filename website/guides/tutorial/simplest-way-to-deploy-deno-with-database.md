@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-08-16"
+last_modified_on: "2021-08-29"
 $schema: "/.meta/.schemas/guides.json"
 title: Simplest way to deploy your Deno application with MongoDB database
 description: Tutorial how to deploy a Deno app with MongoDB database with Qovery
@@ -246,7 +246,7 @@ In this example we are using **MongoDB** **v3.6**.
 
 ### Create a new application
 
-To follow the guide, [you can fork and use our repository][urls.sample_deno_with_mongodb]
+To follow the guide, <a href="urls.sample_deno_with_mongodb">you can fork and use our repository</a>
 
 Use the forked repository (and branch **master**) while creating the application in the repository field:
 

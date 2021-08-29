@@ -428,6 +428,15 @@ module.exports = {
           "title": "Feedback - Kotlin on the server-side - the good, and the bad"
         },
         {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/engineering/how-to-migrate-posthog-self-hosted-to-posthog-cloud",
+          "last_modified_on": null,
+          "path": "website/guides/engineering/how-to-migrate-posthog-self-hosted-to-posthog-cloud.md",
+          "series_position": null,
+          "title": "How to migrate your PostHog self-hosted to PostHog Cloud"
+        },
+        {
           "author_github": "https://github.com/deimosfr",
           "description": null,
           "id": "/engineering/basic-network-isolation-in-kubernetes",
@@ -594,6 +603,11 @@ module.exports = {
       "dark_logo_path": "/img/logos/qovery.svg",
       "logo_path": "/img/logos/qovery.svg",
       "name": "qovery"
+    },
+    {
+      "dark_logo_path": "/img/logos/posthog.svg",
+      "logo_path": "/img/logos/posthog.svg",
+      "name": "posthog"
     }
   ],
   "transforms": {

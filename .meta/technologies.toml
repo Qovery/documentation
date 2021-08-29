@@ -17,3 +17,8 @@ dark_logo_path = "/img/logos/kotlin.svg"
 name = "qovery"
 logo_path = "/img/logos/qovery.svg"
 dark_logo_path = "/img/logos/qovery.svg"
+
+[[technologies]]
+name = "posthog"
+logo_path = "/img/logos/posthog.svg"
+dark_logo_path = "/img/logos/posthog.svg"

@@ -1,0 +1,186 @@
+---
+$schema: "/.meta/.schemas/guides.json"
+title: How to migrate your PostHog self-hosted to PostHog Cloud
+description: This guide explains how to migrate your self-hosted PostHog instance to the Cloud version. PostHog is an open-source product analytics tool.
+author_github: https://github.com/evoxmusic
+tags: ["type: engineering", "technology: posthog"]
+hide_pagination: true
+---
+import Assumptions from '@site/src/components/Assumptions';
+
+[PostHog][urls.posthog] is an open-source product analytics tool that we use at Qovery to improve the developer experience. PostHog is similar to famous proprietary product analytics tools like Mixpanel, Heap, Amplitude.
+
+> If you are not yet using it, give it a try with [Qovery][urls.qovery] or PostHog Cloud version.
+
+At Qovery, we were using PostHog self-hosted for 8 months in production. It was running nicely on Qovery (yes, we deployed PostHog with Qovery 😎 *#eatYourOwnDogFood*), but we decided to move to the PostHog Cloud. Here are the two main reasons why we decided to make this move:
+
+1. **To support the PostHog project**: Because we love their product, keeping them by using their Cloud version makes complete sense to us.
+2. **Stay focus on our business**: Using the self-hosted version of PostHog requires you to spend time to maintain it. Meaning, you have to handle the upgrade yourself and make sure the service is up and running all day long.
+
+## How to migrate
+
+Looking at their documentation, there is no guide to migrate from PostHog self-hosted to their Cloud version. I asked them the procedure on Slack, and Paolo from the PostHog team responded that it should not be too complicated to transfer the data by fetching the data from the PostHog source and pushing them to the PostHog destination via the web API.
+
+<p align="center">
+  <img src="/img/posthog-migration/paolo-response-on-slack.png" alt="Paolo responded on Slack" />
+</p>
+
+So the idea was to make a Python script to fetch the data from our self-hosted PostHog instance and forward the data to the PostHog Cloud version.
+
+(Self-hosted PostHog) <--[fetch event data via web API]-- Python Script --[send event data via web API]--> (PostHog Cloud)
+
+### Before migrating
+
+As I know that we have more than one million events to send, I notified the PostHog support team that we are going to migrate our self-hosted version. Just in case they have to adjust their infrastructure. Who knows :) Paolo (once again, he is everywhere 🙂) responded to me and was super proactive.
+
+<p align="center">
+  <img src="/img/posthog-migration/support-chat-1.png" alt="Paolo responded on the support chat" />
+</p>
+
+<p align="center">
+  <img src="/img/posthog-migration/support-chat-2.png" alt="Paolo responded on the support chat" />
+</p>
+
+> I encourage you to always keep informed the support team of a service when you are about migrate. They can help you. It was the case here with PostHog support team.
+
+## We can migrate now
+
+To migrate I made a simple Python 3.6+ script using no external dependencies. Only HTTP requests and that's it.
+
+<Alert type="info">
+  This script is compatible with Python 3.6+
+</Alert>
+
+```python
+#!/usr/bin/env python
+import copy
+import time
+import uuid
+from urllib.parse import urlparse
+
+import requests
+
+# Your source PostHog instance
+source_posthog_scheme_and_host = 'https://posthog.your-domain.tld'
+
+# Generate a personal API key to read the data from your source PostHog instance
+source_api_key = 'xxx'
+
+# Your project API key provided by PostHog in your project settings
+dest_project_api_key = 'xxx'
+
+
+def is_valid(key: str, data: dict) -> bool:
+    """
+    Helper function to check if the value is empty or none
+    :param key: data key to check
+    :param value: dict
+    :return: true if valid (not empty, None), false otherwise
+    """
+    if key not in data or not data[key] or str(data[key]).strip().lower() == 'none':
+        return False
+
+    return True
+
+
+def clean_source_data(results: [dict]) -> [dict]:
+    """
+    Clean up data from PostHog source
+    Note: this function do not mutate `results`
+    :param results:
+    :return:
+    """
+    _results = []
+    if not results:
+        return _results
+
+    distinct_id = 'distinct_id'
+
+    for result in results:
+        data = copy.deepcopy(result)
+        del data['id']
+
+        if not is_valid(distinct_id, data):
+            data[distinct_id] = str(uuid.uuid4())
+
+        if 'properties' in data:
+            properties = data['properties']
+            if not is_valid(distinct_id, properties):
+                # copy distinct_id value from the parent object
+                properties[distinct_id] = data[distinct_id]
+
+        _results.append(data)
+
+    return _results
+
+
+def capture(data: [dict], count: int = 0):
+    """
+    Function to send data to the dest PostHog instance
+    :param data:
+    :param count:
+    :return:
+    """
+    res = requests.post('https://app.posthog.com/capture', json={'api_key': dest_project_api_key, 'batch': data},
+                        headers={'Content-type': 'application/json'})
+
+    if res.status_code != 200:
+        if count >= 100:
+            print('retry exceeded')
+            exit(1)
+        time.sleep(3)
+        print('Retry sending data (status code: {}) to dest PostHog with data {}'.format(res.status_code, data))
+        return capture(data, count + 1)
+
+    return res
+
+
+def get_source_data() -> dict:
+    headers = {'Authorization': 'Bearer {}'.format(source_api_key)}
+
+    url = '{}/api/event'.format(source_posthog_scheme_and_host)
+
+    with open('posthog_completed_urls', 'a') as f:
+        while 1:
+            query = urlparse(url).query
+            if query:
+                # PostHog return weird next URL with tons of 'before' params
+                url = '{}/api/event?before={}'.format(source_posthog_scheme_and_host, query.split('=')[-1])
+
+            res = requests.get(url, headers=headers)
+            if res.status_code == 200:
+                j_res = res.json()
+                _data = clean_source_data(j_res['results'])
+
+                yield _data
+
+                f.write(url + '\n')
+                url = j_res['next']
+            else:
+                print('Retry fetching events (status code: {}) from PostHog source with URL {}'.format(res.status_code, url))
+                time.sleep(3)
+
+
+if __name__ == '__main__':
+    for data in get_source_data():
+        capture(data)
+        print('{} lines migrated'.format(len(data)))
+
+    print('ok')
+```
+
+<Alert type="warning">
+Before running the migration script, I strongly recommend making your apps sending the data to the PostHog Cloud instance before and wait that the old instance stop receiving new events.
+</Alert>
+
+1. Copy this script.
+2. Change the value of the variables `source_posthog_scheme_and_host`, `source_api_key`, `dest_project_api_key`
+3. Run the script and wait until it is done 👌
+
+## Wrapping up
+
+The migration goes smoothly and took 1 day because we had more than 1 million events. We are super excited to use PostHog Cloud. It is fast and efficient for improving the developer experience on Qovery. Any questions about our usage of PostHog? [Join our Discord][urls.qovery_chat] to chat about it.
+
+Resources:
+- [PostHog][urls.posthog]: open source product analytics tool.
+- [Qovery][urls.qovery]: the simplest way to deploy your apps on AWS.

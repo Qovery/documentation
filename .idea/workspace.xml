@@ -8,9 +8,19 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: update comparisons pages">
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: update posthog">
+      <change afterPath="$PROJECT_DIR$/website/guides/engineering/how-to-migrate-posthog-self-hosted-to-posthog-cloud.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/guides/engineering/how-to-migrate-posthog-self-hosted-to-posthog-cloud.md.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/logos/posthog.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/logos/posthog_white.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/posthog-migration/paolo-response-on-slack.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/posthog-migration/support-chat-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/posthog-migration/support-chat-2.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docusaurus.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/docusaurus.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.meta/.schemas/guides.json" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/.schemas/guides.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.meta/links.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/links.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.meta/technologies.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/technologies.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/metadata.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/metadata.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,7 +148,7 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.vendoring.notification.had.been.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/website/static/img" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/website/static/img/logos" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -156,11 +166,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/website/static/img/logos" />
       <recent name="$PROJECT_DIR$/website/static/img" />
       <recent name="$PROJECT_DIR$/website/docs/community/reward" />
       <recent name="$PROJECT_DIR$/scripts/generate/templates/_partials" />
       <recent name="$PROJECT_DIR$/website/docs/using-qovery/quickstart" />
-      <recent name="$PROJECT_DIR$/website/docs/using-qovery/configuration" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/website/docs/community" />
@@ -171,6 +181,17 @@
     </key>
   </component>
   <component name="RunManager" selected="npm.build">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/website/package.json" />
       <command value="run" />
@@ -310,14 +331,8 @@
       <workItem from="1628873986880" duration="5699000" />
       <workItem from="1629554235013" duration="84000" />
       <workItem from="1629556410484" duration="421000" />
-      <workItem from="1630050118779" duration="484000" />
-    </task>
-    <task id="LOCAL-00175" summary="chore: update header">
-      <created>1619683668927</created>
-      <option name="number" value="00175" />
-      <option name="presentableId" value="LOCAL-00175" />
-      <option name="project" value="LOCAL" />
-      <updated>1619683668927</updated>
+      <workItem from="1630050118779" duration="1006000" />
+      <workItem from="1630223979280" duration="3684000" />
     </task>
     <task id="LOCAL-00176" summary="chore: add &quot;how to deploy nuxtjs&quot; - contribution from Thibaut David">
       <created>1620421249603</created>
@@ -655,7 +670,14 @@
       <option name="project" value="LOCAL" />
       <updated>1629409377523</updated>
     </task>
-    <option name="localTasksCounter" value="224" />
+    <task id="LOCAL-00224" summary="chore: update posthog">
+      <created>1630050630805</created>
+      <option name="number" value="00224" />
+      <option name="presentableId" value="LOCAL-00224" />
+      <option name="project" value="LOCAL" />
+      <updated>1630050630805</updated>
+    </task>
+    <option name="localTasksCounter" value="225" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -741,7 +763,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="add posthog" />
     <MESSAGE value="fix: remove brokers dead link" />
     <MESSAGE value="chore: update footer" />
     <MESSAGE value="chore: add goodies link" />
@@ -766,6 +787,7 @@
     <MESSAGE value="fix: AWS regions ca-central-1 = Toronto" />
     <MESSAGE value="chore: add chinese AWS regions" />
     <MESSAGE value="chore: update comparisons pages" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: update comparisons pages" />
+    <MESSAGE value="chore: update posthog" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: update posthog" />
   </component>
 </project>

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-08-16"
+last_modified_on: "2021-08-30"
 title: "Amazon Web Services (AWS)"
 description: "Learn how to configure and plug your Amazon Web Services (AWS) account"
 ---
@@ -61,7 +61,7 @@ You can link more than one AWS account. Qovery also support multiple Cloud provi
 <li>
 
 Go to `My Security Credentials`
-<img src="/img/aws-my-security-credentials.jpg" />
+<img src="/img/aws-my-security-credentials.png" />
 
 </li>
 

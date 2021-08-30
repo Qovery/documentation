@@ -1,12 +1,12 @@
 ---
-last_modified_on: "2021-07-26"
-title: Friend Sponsorship
+last_modified_on: "2021-08-30"
+title: Referral Program
 description: Invite a friend to join Qovery and get both rewarded
 ---
 
 import Alert from '@site/src/components/Alert';
 
-The **Friend Sponsorship** referral program rewards you when you recommend and invite a friend to join Qovery.
+The referral program rewards you when you recommend and invite a friend to join Qovery.
 More you invite friends and more you get rewarded. [read more][urls.qovery_billing_context].
 
 In this page, I explain how you can earn free Qovery credits by inviting friends.

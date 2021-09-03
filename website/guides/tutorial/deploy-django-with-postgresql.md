@@ -1,7 +1,7 @@
 ---
-last_modified_on: "2021-08-29"
+last_modified_on: "2021-09-03"
 $schema: "/.meta/.schemas/guides.json"
-title: Deploy Django with PostgreSQL with Qovery
+title: Deploy Django with PostgreSQL
 description: How to deploy a Django application with the PostgreSQL database with Qovery
 author_github: https://github.com/pjeziorowski
 tags: ["type: tutorial", "framework: django", "language: python", "database: postgresql"]

@@ -8,9 +8,22 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: modify article on heroku&#10;fix bad repo link">
-      <change afterPath="$PROJECT_DIR$/website/static/img/img.png" afterDir="false" />
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: update aws guide">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-django-with-postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-django-with-postgresql.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-django-with-postgresql.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-django-with-postgresql.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-gin-with-postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-gin-with-postgresql.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-gin-with-postgresql.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-gin-with-postgresql.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-jhipster-with-postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-jhipster-with-postgresql.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-jhipster-with-postgresql.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-jhipster-with-postgresql.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-laravel-with-mysql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-laravel-with-mysql.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-laravel-with-mysql.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-laravel-with-mysql.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-node-js-with-postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-node-js-with-postgresql.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-node-js-with-postgresql.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-node-js-with-postgresql.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-rails-with-postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-rails-with-postgresql.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-rails-with-postgresql.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-rails-with-postgresql.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-spring-boot-with-postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-spring-boot-with-postgresql.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-spring-boot-with-postgresql.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-spring-boot-with-postgresql.md.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -171,15 +184,13 @@
     </key>
   </component>
   <component name="RunManager" selected="npm.build">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -325,14 +336,9 @@
       <workItem from="1629556410484" duration="421000" />
       <workItem from="1630050118779" duration="1006000" />
       <workItem from="1630223979280" duration="4422000" />
-      <workItem from="1630271625607" duration="2511000" />
-    </task>
-    <task id="LOCAL-00178" summary="fix gemfile">
-      <created>1623828158366</created>
-      <option name="number" value="00178" />
-      <option name="presentableId" value="LOCAL-00178" />
-      <option name="project" value="LOCAL" />
-      <updated>1623828158366</updated>
+      <workItem from="1630271625607" duration="2874000" />
+      <workItem from="1630393372506" duration="24000" />
+      <workItem from="1630690165516" duration="431000" />
     </task>
     <task id="LOCAL-00179" summary="chore: change api doc link">
       <created>1624130495118</created>
@@ -670,7 +676,14 @@
       <option name="project" value="LOCAL" />
       <updated>1630272602265</updated>
     </task>
-    <option name="localTasksCounter" value="227" />
+    <task id="LOCAL-00227" summary="chore: update aws guide">
+      <created>1630358500809</created>
+      <option name="number" value="00227" />
+      <option name="presentableId" value="LOCAL-00227" />
+      <option name="project" value="LOCAL" />
+      <updated>1630358500809</updated>
+    </task>
+    <option name="localTasksCounter" value="228" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -756,7 +769,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="chore: add goodies link" />
     <MESSAGE value="chore: change FAQ and add community.qovery.com links" />
     <MESSAGE value="chore: add tutorial on how to deploy Strapi with PostgreSQL" />
     <MESSAGE value="chore: fix tutorial logos and update some tutorials" />
@@ -781,6 +793,7 @@
     <MESSAGE value="chore: update posthog" />
     <MESSAGE value="chore: add posthog migration article" />
     <MESSAGE value="chore: modify article on heroku&#10;fix bad repo link" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: modify article on heroku&#10;fix bad repo link" />
+    <MESSAGE value="chore: update aws guide" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: update aws guide" />
   </component>
 </project>

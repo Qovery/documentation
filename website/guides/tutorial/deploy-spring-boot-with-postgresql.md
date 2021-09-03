@@ -1,7 +1,7 @@
 ---
-last_modified_on: "2021-08-29"
+last_modified_on: "2021-09-03"
 $schema: "/.meta/.schemas/guides.json"
-title: Deploy Spring Boot with PostgreSQL with Qovery
+title: Deploy Spring Boot with PostgreSQL
 description: How to deploy a Spring Boot application with the PostgreSQL database with Qovery
 author_github: https://github.com/evoxmusic
 tags: ["type: tutorial", "framework: springboot", "language: java", "database: postgresql"]

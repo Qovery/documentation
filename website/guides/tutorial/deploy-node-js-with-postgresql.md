@@ -1,7 +1,7 @@
 ---
-last_modified_on: "2021-08-29"
+last_modified_on: "2021-09-03"
 $schema: "/.meta/.schemas/guides.json"
-title: Deploy NodeJS with PostgreSQL with Qovery
+title: Deploy NodeJS with PostgreSQL
 description: How to deploy a NodeJS application with the PostgreSQL database with Qovery
 author_github: https://github.com/evoxmusic
 tags: ["type: tutorial", "framework: nodejs", "language: javascript", "database: postgresql"]

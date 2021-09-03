@@ -1,7 +1,7 @@
 ---
-last_modified_on: "2021-08-29"
+last_modified_on: "2021-09-03"
 $schema: "/.meta/.schemas/guides.json"
-title: Deploy Laravel with MySQL with Qovery
+title: Deploy Laravel with MySQL
 description: How to deploy a Laravel application with the MySQL database with Qovery
 author_github: https://github.com/evoxmusic
 tags: ["type: tutorial", "framework: laravel", "language: php", "database: mysql"]

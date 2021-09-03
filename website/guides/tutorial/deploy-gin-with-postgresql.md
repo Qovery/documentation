@@ -1,7 +1,7 @@
 ---
-last_modified_on: "2021-08-29"
+last_modified_on: "2021-09-03"
 $schema: "/.meta/.schemas/guides.json"
-title: Deploy Gin with PostgreSQL with Qovery
+title: Deploy Gin with PostgreSQL
 description: How to deploy a Gin application with the PostgreSQL database with Qovery
 author_github: https://github.com/pjeziorowski
 tags: ["type: tutorial", "framework: gin", "language: go", "database: postgresql"]

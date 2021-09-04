@@ -116,7 +116,7 @@ Otherwise, you can try to deploy and migrate our sample application to get exper
 
 <li>
 
-Create and deploy a new database
+### Create and deploy a new database
 
 <Alert type="warning">
 
@@ -130,7 +130,7 @@ To learn how to do it, you can [follow this guide][guides.getting-started.create
 
 <li>
 
-Migrate PostgreSQL data
+### Migrate PostgreSQL data
 
 There are multiple paths you could take to migrate your data from Heroku Postgres to AWS.
 For production usage for the shortest downtime you would probably want to configure PostgreSQL as a replica to
@@ -162,16 +162,12 @@ pg_restore -v -h $QOVERY_DATABASE_MY_POSTGRESQL_HOST -U $QOVERY_DATABASE_MY_POST
 
 </li>
 
-<li>
+</ol>
+</Steps>
 
 <%= qovery_deploy_app() %>
 
 After it's done, click on **Action** and **Open** button to navigate to your app. It should be up and running with all the data from Heroku migrated to AWS!
-
-</li>
-
-</ol>
-</Steps>
 
 ## What's next
 

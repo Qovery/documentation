@@ -14,7 +14,7 @@ This tutorial show you how to deploy your [<%= x %>][<%= x_url %>] application w
 
 <%= qovery_sign_up() %>
 
-## Deployment
+## <%= x %> application
 
 ### <%= x %> sample application
 Get a copy of the sample source code of [<%= x %> sample project][<%= x_sample_application_url %>] by forking it.
@@ -34,15 +34,23 @@ In this example we are using **<%= y %>** **v<%= y_version %>**.
 
 ### Use Dockerfile
 
-In the settings **General** section, set **Build Mode** to Dockerfile and set Dockerfile path as "Dockerfile"
+In the settings **General** section, set **Build Mode** to Dockerfile and set Dockerfile path as "Dockerfile". Then **save** your change.
 
 </li>
+
+</ol>
+</Steps>
+
+## <%= y %>
+
+<Steps headingDepth={3}>
+<ol>
 
 <li>
 
 ### Deploy a <%= y %> database
 
-In your envioronment view, click on **Add** and **Database** buttons:
+In your environment view, click on **Add** and **Database** buttons:
 
 <p align="center">
   <img src="/img/template-add-db.png" alt="Template DB <%= x %>" />
@@ -70,7 +78,7 @@ To learn how to add a <%= y %> database in more details, you can [follow this gu
 
 <li>
 
-### Connect <%= x %> to <%= y %>
+### Connect your <%= x %> application to <%= y %>
 
 Credentials of your <%= y %> database are available via **Environment Variables** and **Secrets**. Qovery injects environment vars at the runtime.
 
@@ -88,7 +96,7 @@ In the **Secrets** section, you'll see all names of injected database secrets, i
 To connect the <%= x %> app to the <%= y %> database, you need to setup the application to use those secrets.
 
 All you have to do is to open and edit [database configuration file][<%= x_sample_application_url_env_file_url %>] in your forked repository.
-Replace all the **QOVERY_DATABASE_XXX** variables with values you have in your own environment. Those variable keys contain your database ID, this is why you need to update the file. 
+Replace all the **QOVERY_DATABASE_XXX** variables with values you have in your own environment. Those variable keys contain your database ID, this is why you need to update the file.
 
 *TIP: you could also make use of **Variable Aliases** to change the name of used environment variables in your <%= x %> application. [Learn more here][docs.using-qovery.configuration.secret#alias-secret].*
 
@@ -96,10 +104,10 @@ Replace all the **QOVERY_DATABASE_XXX** variables with values you have in your o
 
 </li>
 
-<%= qovery_deploy_app() %>
-
 </ol>
 </Steps>
+
+<%= qovery_deploy_app() %>
 
 Congratulations! Your environment with [<%= x %>][<%= x_url %>] application and [<%= y %>][<%= y_url %>] database should be in progress.
 

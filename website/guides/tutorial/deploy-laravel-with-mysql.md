@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-09-03"
+last_modified_on: "2021-09-04"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy Laravel with MySQL
 description: How to deploy a Laravel application with the MySQL database with Qovery
@@ -194,7 +194,7 @@ Congratulations, you are logged-in.
 
 </Tabs>
 
-## Deployment
+## Laravel application
 
 ### Laravel sample application
 Get a copy of the sample source code of [Laravel sample project][urls.sample_laravel_with_mysql] by forking it.
@@ -260,15 +260,23 @@ After the application is created:
 
 ### Use Dockerfile
 
-In the settings **General** section, set **Build Mode** to Dockerfile and set Dockerfile path as "Dockerfile"
+In the settings **General** section, set **Build Mode** to Dockerfile and set Dockerfile path as "Dockerfile". Then **save** your change.
 
 </li>
+
+</ol>
+</Steps>
+
+## MySQL
+
+<Steps headingDepth={3}>
+<ol>
 
 <li>
 
 ### Deploy a MySQL database
 
-In your envioronment view, click on **Add** and **Database** buttons:
+In your environment view, click on **Add** and **Database** buttons:
 
 <p align="center">
   <img src="/img/template-add-db.png" alt="Template DB Laravel" />
@@ -296,7 +304,7 @@ To learn how to add a MySQL database in more details, you can [follow this guide
 
 <li>
 
-### Connect Laravel to MySQL
+### Connect your Laravel application to MySQL
 
 Credentials of your MySQL database are available via **Environment Variables** and **Secrets**. Qovery injects environment vars at the runtime.
 
@@ -314,7 +322,7 @@ In the **Secrets** section, you'll see all names of injected database secrets, i
 To connect the Laravel app to the MySQL database, you need to setup the application to use those secrets.
 
 All you have to do is to open and edit [database configuration file][urls.sample_laravel_with_mysql_env_file] in your forked repository.
-Replace all the **QOVERY_DATABASE_XXX** variables with values you have in your own environment. Those variable keys contain your database ID, this is why you need to update the file. 
+Replace all the **QOVERY_DATABASE_XXX** variables with values you have in your own environment. Those variable keys contain your database ID, this is why you need to update the file.
 
 *TIP: you could also make use of **Variable Aliases** to change the name of used environment variables in your Laravel application. [Learn more here][docs.using-qovery.configuration.secret#alias-secret].*
 
@@ -322,9 +330,10 @@ Replace all the **QOVERY_DATABASE_XXX** variables with values you have in your o
 
 </li>
 
-<li>
+</ol>
+</Steps>
 
-### Deploy the app on Qovery
+## Deploy your application
 
 All you have to do now is to navigate to your application and click **Deploy** button
 
@@ -333,11 +342,6 @@ All you have to do now is to navigate to your application and click **Deploy** b
 </p>
 
 That's it. Watch the status and wait till the app is deployed.
-
-</li>
-
-</ol>
-</Steps>
 
 Congratulations! Your environment with [Laravel][urls.laravel] application and [MySQL][urls.mysql] database should be in progress.
 

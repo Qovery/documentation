@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-09-03"
+last_modified_on: "2021-09-04"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy NodeJS with PostgreSQL
 description: How to deploy a NodeJS application with the PostgreSQL database with Qovery
@@ -194,7 +194,7 @@ Congratulations, you are logged-in.
 
 </Tabs>
 
-## Deployment
+## NodeJS application
 
 ### NodeJS sample application
 Get a copy of the sample source code of [NodeJS sample project][urls.sample_node_js_with_postgresql] by forking it.
@@ -260,15 +260,23 @@ After the application is created:
 
 ### Use Dockerfile
 
-In the settings **General** section, set **Build Mode** to Dockerfile and set Dockerfile path as "Dockerfile"
+In the settings **General** section, set **Build Mode** to Dockerfile and set Dockerfile path as "Dockerfile". Then **save** your change.
 
 </li>
+
+</ol>
+</Steps>
+
+## PostgreSQL
+
+<Steps headingDepth={3}>
+<ol>
 
 <li>
 
 ### Deploy a PostgreSQL database
 
-In your envioronment view, click on **Add** and **Database** buttons:
+In your environment view, click on **Add** and **Database** buttons:
 
 <p align="center">
   <img src="/img/template-add-db.png" alt="Template DB NodeJS" />
@@ -296,7 +304,7 @@ To learn how to add a PostgreSQL database in more details, you can [follow this 
 
 <li>
 
-### Connect NodeJS to PostgreSQL
+### Connect your NodeJS application to PostgreSQL
 
 Credentials of your PostgreSQL database are available via **Environment Variables** and **Secrets**. Qovery injects environment vars at the runtime.
 
@@ -314,7 +322,7 @@ In the **Secrets** section, you'll see all names of injected database secrets, i
 To connect the NodeJS app to the PostgreSQL database, you need to setup the application to use those secrets.
 
 All you have to do is to open and edit [database configuration file][urls.sample_node_js_with_postgresql_env_file] in your forked repository.
-Replace all the **QOVERY_DATABASE_XXX** variables with values you have in your own environment. Those variable keys contain your database ID, this is why you need to update the file. 
+Replace all the **QOVERY_DATABASE_XXX** variables with values you have in your own environment. Those variable keys contain your database ID, this is why you need to update the file.
 
 *TIP: you could also make use of **Variable Aliases** to change the name of used environment variables in your NodeJS application. [Learn more here][docs.using-qovery.configuration.secret#alias-secret].*
 
@@ -322,9 +330,10 @@ Replace all the **QOVERY_DATABASE_XXX** variables with values you have in your o
 
 </li>
 
-<li>
+</ol>
+</Steps>
 
-### Deploy the app on Qovery
+## Deploy your application
 
 All you have to do now is to navigate to your application and click **Deploy** button
 
@@ -333,11 +342,6 @@ All you have to do now is to navigate to your application and click **Deploy** b
 </p>
 
 That's it. Watch the status and wait till the app is deployed.
-
-</li>
-
-</ol>
-</Steps>
 
 Congratulations! Your environment with [NodeJS][urls.node_js] application and [PostgreSQL][urls.postgresql] database should be in progress.
 

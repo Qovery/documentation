@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-08-29"
+last_modified_on: "2021-09-04"
 $schema: "/.meta/.schemas/guides.json"
 title: Create a blazingly fast REST API in Rust (Part 1/2)
 description: How to create a blazingly fast REST API in Rust, with zero-cost abstraction and very low overhead - Part 1/2
@@ -793,9 +793,7 @@ Switch to **Database**, pick your database and **Save**
 
 </li>
 
-<li>
-
-### Deploy the app on Qovery
+## Deploy your application
 
 All you have to do now is to navigate to your application and click **Deploy** button
 
@@ -804,8 +802,6 @@ All you have to do now is to navigate to your application and click **Deploy** b
 </p>
 
 That's it. Watch the status and wait till the app is deployed.
-
-</li>
 
 </ol>
 </Steps>

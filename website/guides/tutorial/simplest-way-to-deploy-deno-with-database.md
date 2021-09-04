@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-08-29"
+last_modified_on: "2021-09-04"
 $schema: "/.meta/.schemas/guides.json"
 title: Simplest way to deploy your Deno application with MongoDB database
 description: Tutorial how to deploy a Deno app with MongoDB database with Qovery
@@ -210,7 +210,7 @@ Congratulations, you are logged-in.
 
 </Tabs>
 
-## Deployment
+## Deno application
 
 ### Deno sample application
 Get a copy of the sample source code of [Deno sample project][urls.sample_deno_with_mongodb] by forking it.
@@ -276,15 +276,23 @@ After the application is created:
 
 ### Use Dockerfile
 
-In the settings **General** section, set **Build Mode** to Dockerfile and set Dockerfile path as "Dockerfile"
+In the settings **General** section, set **Build Mode** to Dockerfile and set Dockerfile path as "Dockerfile". Then **save** your change.
 
 </li>
+
+</ol>
+</Steps>
+
+## MongoDB
+
+<Steps headingDepth={3}>
+<ol>
 
 <li>
 
 ### Deploy a MongoDB database
 
-In your envioronment view, click on **Add** and **Database** buttons:
+In your environment view, click on **Add** and **Database** buttons:
 
 <p align="center">
   <img src="/img/template-add-db.png" alt="Template DB Deno" />
@@ -312,7 +320,7 @@ To learn how to add a MongoDB database in more details, you can [follow this gui
 
 <li>
 
-### Connect Deno to MongoDB
+### Connect your Deno application to MongoDB
 
 Credentials of your MongoDB database are available via **Environment Variables** and **Secrets**. Qovery injects environment vars at the runtime.
 
@@ -330,7 +338,7 @@ In the **Secrets** section, you'll see all names of injected database secrets, i
 To connect the Deno app to the MongoDB database, you need to setup the application to use those secrets.
 
 All you have to do is to open and edit [database configuration file][urls.sample_deno_with_mongodb_env_file] in your forked repository.
-Replace all the **QOVERY_DATABASE_XXX** variables with values you have in your own environment. Those variable keys contain your database ID, this is why you need to update the file. 
+Replace all the **QOVERY_DATABASE_XXX** variables with values you have in your own environment. Those variable keys contain your database ID, this is why you need to update the file.
 
 *TIP: you could also make use of **Variable Aliases** to change the name of used environment variables in your Deno application. [Learn more here][docs.using-qovery.configuration.secret#alias-secret].*
 
@@ -338,9 +346,10 @@ Replace all the **QOVERY_DATABASE_XXX** variables with values you have in your o
 
 </li>
 
-<li>
+</ol>
+</Steps>
 
-### Deploy the app on Qovery
+## Deploy your application
 
 All you have to do now is to navigate to your application and click **Deploy** button
 
@@ -349,11 +358,6 @@ All you have to do now is to navigate to your application and click **Deploy** b
 </p>
 
 That's it. Watch the status and wait till the app is deployed.
-
-</li>
-
-</ol>
-</Steps>
 
 Congratulations! Your environment with [Deno][urls.deno] application and [MongoDB][urls.mongodb] database should be in progress.
 

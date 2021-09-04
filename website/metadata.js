@@ -262,7 +262,7 @@ module.exports = {
           "last_modified_on": null,
           "path": "website/guides/tutorial/deploy-django-with-postgresql.md",
           "series_position": null,
-          "title": "Deploy Django with PostgreSQL with Qovery"
+          "title": "Deploy Django with PostgreSQL"
         },
         {
           "author_github": "https://github.com/pjeziorowski",
@@ -271,7 +271,7 @@ module.exports = {
           "last_modified_on": null,
           "path": "website/guides/tutorial/deploy-gin-with-postgresql.md",
           "series_position": null,
-          "title": "Deploy Gin with PostgreSQL with Qovery"
+          "title": "Deploy Gin with PostgreSQL"
         },
         {
           "author_github": "https://github.com/pjeziorowski",
@@ -280,7 +280,7 @@ module.exports = {
           "last_modified_on": null,
           "path": "website/guides/tutorial/deploy-jhipster-with-postgresql.md",
           "series_position": null,
-          "title": "Deploy JHipster with PostgreSQL with Qovery"
+          "title": "Deploy JHipster with PostgreSQL"
         },
         {
           "author_github": "https://github.com/evoxmusic",
@@ -289,7 +289,7 @@ module.exports = {
           "last_modified_on": null,
           "path": "website/guides/tutorial/deploy-laravel-with-mysql.md",
           "series_position": null,
-          "title": "Deploy Laravel with MySQL with Qovery"
+          "title": "Deploy Laravel with MySQL"
         },
         {
           "author_github": "https://github.com/evoxmusic",
@@ -298,7 +298,7 @@ module.exports = {
           "last_modified_on": null,
           "path": "website/guides/tutorial/deploy-node-js-with-postgresql.md",
           "series_position": null,
-          "title": "Deploy NodeJS with PostgreSQL with Qovery"
+          "title": "Deploy NodeJS with PostgreSQL"
         },
         {
           "author_github": "https://github.com/pjeziorowski",
@@ -307,7 +307,7 @@ module.exports = {
           "last_modified_on": null,
           "path": "website/guides/tutorial/deploy-rails-with-postgresql.md",
           "series_position": null,
-          "title": "Deploy Rails with PostgreSQL with Qovery"
+          "title": "Deploy Rails with PostgreSQL"
         },
         {
           "author_github": "https://github.com/evoxmusic",
@@ -316,7 +316,7 @@ module.exports = {
           "last_modified_on": null,
           "path": "website/guides/tutorial/deploy-spring-boot-with-postgresql.md",
           "series_position": null,
-          "title": "Deploy Spring Boot with PostgreSQL with Qovery"
+          "title": "Deploy Spring Boot with PostgreSQL"
         },
         {
           "author_github": "https://github.com/pjeziorowski",

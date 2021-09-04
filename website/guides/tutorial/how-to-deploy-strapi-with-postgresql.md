@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-07"
+last_modified_on: "2021-09-04"
 $schema: "/.meta/.schemas/guides.json"
 title: How to deploy Strapi with PostgreSQL
 description: This tutorial show you how to deploy Strapi with PostgreSQL in a few steps
@@ -113,9 +113,7 @@ You can read more about environment variables and secrets in our [configuration 
 
 </li>
 
-<li>
-
-### Deploy the app on Qovery
+## Deploy your application
 
 All you have to do now is to navigate to your application and click **Deploy** button
 
@@ -124,8 +122,6 @@ All you have to do now is to navigate to your application and click **Deploy** b
 </p>
 
 That's it. Watch the status and wait till the app is deployed.
-
-</li>
 
 To open the application in your browser, click on **Action** and **Open** buttons in your application overview:
 

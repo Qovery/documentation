@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-08-29"
+last_modified_on: "2021-09-04"
 $schema: "/.meta/.schemas/guides.json"
 title: Migrate your application from Heroku to AWS
 description: Tutorial on how to migrate your application from Heroku to AWS with a PostgreSQL database
@@ -164,7 +164,7 @@ Use the forked repository (and branch **master**) while creating the application
 
 <li>
 
-Create and deploy a new database
+### Create and deploy a new database
 
 <Alert type="warning">
 
@@ -178,7 +178,7 @@ To learn how to do it, you can [follow this guide][guides.getting-started.create
 
 <li>
 
-Migrate PostgreSQL data
+### Migrate PostgreSQL data
 
 There are multiple paths you could take to migrate your data from Heroku Postgres to AWS.
 For production usage for the shortest downtime you would probably want to configure PostgreSQL as a replica to
@@ -210,11 +210,10 @@ pg_restore -v -h $QOVERY_DATABASE_MY_POSTGRESQL_HOST -U $QOVERY_DATABASE_MY_POST
 
 </li>
 
-<li>
+</ol>
+</Steps>
 
-<li>
-
-### Deploy the app on Qovery
+## Deploy your application
 
 All you have to do now is to navigate to your application and click **Deploy** button
 
@@ -224,14 +223,7 @@ All you have to do now is to navigate to your application and click **Deploy** b
 
 That's it. Watch the status and wait till the app is deployed.
 
-</li>
-
 After it's done, click on **Action** and **Open** button to navigate to your app. It should be up and running with all the data from Heroku migrated to AWS!
-
-</li>
-
-</ol>
-</Steps>
 
 ## What's next
 

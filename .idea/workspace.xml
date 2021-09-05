@@ -8,22 +8,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: add gcp and azure coming soon">
-      <change afterPath="$PROJECT_DIR$/website/static/img/create_organization.jpg" afterDir="false" />
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: update documentation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mongodb.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mongodb.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mongodb.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mongodb.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mysql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mysql.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mysql.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mysql.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/postgresql.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/postgresql.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/postgresql.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/redis.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/redis.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/redis.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/redis.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/organization.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/organization.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/organization.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/organization.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/static/img/create_organization.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_reward_faq.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_reward_faq.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/application.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/application.md.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -329,14 +317,7 @@
       <workItem from="1630393372506" duration="24000" />
       <workItem from="1630690165516" duration="745000" />
       <workItem from="1630732701382" duration="1793000" />
-      <workItem from="1630845977600" duration="3854000" />
-    </task>
-    <task id="LOCAL-00182" summary="wip: restructure the documentation tree">
-      <created>1624139465375</created>
-      <option name="number" value="00182" />
-      <option name="presentableId" value="LOCAL-00182" />
-      <option name="project" value="LOCAL" />
-      <updated>1624139465376</updated>
+      <workItem from="1630845977600" duration="4070000" />
     </task>
     <task id="LOCAL-00183" summary="wip: restructure the documentation tree">
       <created>1624179290595</created>
@@ -674,7 +655,14 @@
       <option name="project" value="LOCAL" />
       <updated>1630850314483</updated>
     </task>
-    <option name="localTasksCounter" value="231" />
+    <task id="LOCAL-00231" summary="chore: update documentation">
+      <created>1630852409415</created>
+      <option name="number" value="00231" />
+      <option name="presentableId" value="LOCAL-00231" />
+      <option name="project" value="LOCAL" />
+      <updated>1630852409415</updated>
+    </task>
+    <option name="localTasksCounter" value="232" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -760,7 +748,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="chore: update header" />
     <MESSAGE value="chore: add &quot;how to deploy nuxtjs&quot; - contribution from Thibaut David" />
     <MESSAGE value="fix typo reported by a user on Discord" />
     <MESSAGE value="fix gemfile" />
@@ -785,6 +772,7 @@
     <MESSAGE value="chore: change title for gen articles" />
     <MESSAGE value="chore: make changes based on Albane' feedback" />
     <MESSAGE value="chore: add gcp and azure coming soon" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: add gcp and azure coming soon" />
+    <MESSAGE value="chore: update documentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: update documentation" />
   </component>
 </project>

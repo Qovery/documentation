@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-02"
+last_modified_on: "2021-09-05"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -109,7 +109,7 @@ To configure the number of CPUs that your app needs, adjust the setting in the `
 
 <Alert type="info">
 
-Default is 256m. The maximum you can set is 1CPU in **Community** version and unlimited in **Startup** and higher plans.
+Default is 256m. The maximum you can set is 1CPU in **Community** version and unlimited in [paid plans][urls.qovery_pricing].
 
 </Alert>
 
@@ -123,7 +123,7 @@ To configure the amount of RAM that your app needs, adjust the setting in `Resou
 
 <Alert type="info">
 
-Default is 256MB, maximum you can set is 512MB in **Community** version, and unlimited in **Startup** and higher plans.
+Default is 256MB, maximum you can set is 512MB in **Community** version, and unlimited in [paid plans][urls.qovery_pricing].
 
 </Alert>
 
@@ -179,7 +179,7 @@ Qovery Storage supports:
 
 |Type|Max IOPS|Max Throughput|Min Size|Max Size|Use cases|
 |----|--------|--------------|--------|--------|---------|
-|fast_ssd|64000|1GB/s|5GB|10GB `Community` / 1TB `Startup` plans|Critical business applications that require sustained IOPS like databases|
+|fast_ssd|64000|1GB/s|5GB|10GB `Community` / 1TB paid plans|Critical business applications that require sustained IOPS like databases|
 
 ##### Configuration
 
@@ -302,4 +302,5 @@ In the application overview, click on the `Actions` button and remove the applic
 [guides.getting-started.debugging#logs]: /guides/getting-started/debugging/#logs
 [guides.getting-started.deploy-your-first-application]: /guides/getting-started/deploy-your-first-application/
 [guides.getting-started.setting-custom-domain]: /guides/getting-started/setting-custom-domain/
+[urls.qovery_pricing]: https://www.qovery.com/pricing
 [urls.qovery_roadmap]: https://roadmap.qovery.com/

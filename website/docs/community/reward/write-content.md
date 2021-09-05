@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-26"
+last_modified_on: "2021-09-05"
 title: Write Content
 description: Write content and get rewarded
 ---
@@ -81,7 +81,7 @@ Read [this post][urls.qovery_billing_context] to know more about it.
 
 ### What are "Qovery credits"?
 
-They are free credits that you can use on your Qovery Community and Startup plan.
+They are free credits that you can use on your [paid][urls.qovery_pricing] and Community plans.
 
 ### Can I pay to get more credits on my Community plan?
 
@@ -109,11 +109,12 @@ Credits are only recurrent for granted [ambassadors][docs.community.become-an-am
 
 Absolutely.
 
-### Can I use my free credits on my Startup and Enterprise plans?
+### Can I use my free credits on my Professional, Business and Enterprise plans?
 
 Absolutely 🙂.
 
 
 [docs.community.become-an-ambassador]: /docs/community/become-an-ambassador/
 [urls.qovery_billing_context]: https://www.qovery.com/blog/how-qovery-billing-works
+[urls.qovery_pricing]: https://www.qovery.com/pricing
 [urls.qovery_submit_content_form]: https://qovery.typeform.com/to/UgtCg11y

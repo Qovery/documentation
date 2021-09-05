@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-02"
+last_modified_on: "2021-09-05"
 title: PostgreSQL
 description: "How to set up and use a PostgreSQL database"
 ---
@@ -95,19 +95,27 @@ Databases can operate in two modes:
 **Container** databases are managed by Qovery as Docker containers with attached persistent storage. They are perfect for development and testing, as they are significantly cheaper than services provided by cloud providers.
 
 <Alert type="warning">
-    Managed databases are supported only in `Startup` plans, it's not available in the `Community` version.
+    Managed databases are supported only in [paid plans][urls.qovery_pricing], it's not available in the `Community` version.
 </Alert>
 
 #### Versions
 
 Qovery supports the following PostgreSQL versions.
 
-|Version|Supported|
-|---------|-------|
-|12|Yes|
-|11|Yes|
-|10|Yes|
-|9|Yes|
+|Cloud provider|Version|Container supported|Managed supported|
+|--------------|---------|-------|---------------------------|
+|AWS|12|Yes|Yes|
+|AWS|11|Yes|Yes|
+|AWS|10|Yes|Yes|
+|AWS|9|Yes|Yes|
+|Digital Ocean|12|Yes|Soon|
+|Digital Ocean|11|Yes|Soon|
+|Digital Ocean|10|Yes|Soon|
+|Digital Ocean|9|Yes|Soon|
+|Scaleway|12|Yes|No|
+|Scaleway|11|Yes|No|
+|Scaleway|10|Yes|No|
+|Scaleway|9|Yes|No|
 
 You can adjust the version of your database in `General` section of database settings:
 
@@ -198,3 +206,4 @@ In database overview, click on `Action` remove button
 [docs.using-qovery.configuration.application#database]: /docs/using-qovery/configuration/application/#database
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [guides.getting-started.create-a-database]: /guides/getting-started/create-a-database/
+[urls.qovery_pricing]: https://www.qovery.com/pricing

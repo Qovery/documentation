@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-30"
+last_modified_on: "2021-09-05"
 title: "Organization"
 description: "Learn how to configure Organizations on Qovery"
 ---
@@ -31,23 +31,26 @@ can manage:
 
 ## Create an Organization
 
-You need to create an organization the first time you use Qovery. You have to choose between the **Community**, **Startup** and **
-Enterprise** plan.
+You need to create an organization the first time you use Qovery. You have to choose between the **Free**, **Professional**, **Business** and **Enterprise**.
 
 <p align="center">
-  <img src="/img/create_organization.png" alt="Qovery - create an organization" />
+  <img src="/img/create_organization.jpg" alt="Qovery - create an organization" />
 </p>
 
 ### How to choose between plans?
 
-In a nutshell, use the **Community** plan to host your app for free ([see limitations][urls.qovery_pricing]), use the **Startup** or **
-Enterprise** plan to host your apps on your Cloud account without any limitations.
+In a nutshell:
+
+- **Free**, **Professional**, **Business** and **Enterprise** plans: to deploy on your Cloud account.
+- **Community**: to get free hosting for your hobby project.
+
+Get more info [here][urls.qovery_pricing].
 
 ## Connect your Cloud account
 
 <Alert type="info">
 
-This feature is only valid for paid plans -> **Startup** and **Enterprise** plans
+This feature is only valid for paid plans -> **Free**, **Professional**, **Business** and **Enterprise** plans.
 
 </Alert>
 

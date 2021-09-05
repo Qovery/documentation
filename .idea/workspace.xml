@@ -8,28 +8,22 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: make changes based on Albane' feedback">
-      <change afterPath="$PROJECT_DIR$/website/guides/advanced/guide-google-cloud-platform.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/guides/advanced/guide-google-cloud-platform.md.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/guides/advanced/guide-microsoft-azure.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/guides/advanced/guide-microsoft-azure.md.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/static/img/logos/azure.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/static/img/logos/azure_white.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/static/img/logos/gcp.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/static/img/logos/gcp_white.svg" afterDir="false" />
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: add gcp and azure coming soon">
+      <change afterPath="$PROJECT_DIR$/website/static/img/create_organization.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.meta/.schemas/guides.json" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/.schemas/guides.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.meta/cloud_providers.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/cloud_providers.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.meta/links.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/links.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/advanced/guide-amazon-web-services.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/guide-amazon-web-services.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/advanced/guide-amazon-web-services.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/guide-amazon-web-services.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/advanced/guide-digital-ocean.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/guide-digital-ocean.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/advanced/guide-digital-ocean.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/guide-digital-ocean.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/advanced/guide-scaleway.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/guide-scaleway.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/advanced/guide-scaleway.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/guide-scaleway.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mongodb.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mongodb.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mongodb.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mongodb.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mysql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mysql.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mysql.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mysql.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/postgresql.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/postgresql.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/postgresql.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/redis.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/redis.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/redis.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/redis.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/organization.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/organization.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/organization.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/organization.md.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/metadata.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/metadata.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/static/img/create_organization.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,7 +151,7 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.vendoring.notification.had.been.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/website/static/img/logos" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/website/static/img" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -175,9 +169,9 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/website/static/img" />
       <recent name="$PROJECT_DIR$/website/static/img/logos" />
       <recent name="$PROJECT_DIR$/website/guides/advanced" />
-      <recent name="$PROJECT_DIR$/website/static/img" />
       <recent name="$PROJECT_DIR$/website/docs/community/reward" />
       <recent name="$PROJECT_DIR$/scripts/generate/templates/_partials" />
     </key>
@@ -335,14 +329,7 @@
       <workItem from="1630393372506" duration="24000" />
       <workItem from="1630690165516" duration="745000" />
       <workItem from="1630732701382" duration="1793000" />
-      <workItem from="1630845977600" duration="2027000" />
-    </task>
-    <task id="LOCAL-00181" summary="wip: restructure the documentation tree">
-      <created>1624138755848</created>
-      <option name="number" value="00181" />
-      <option name="presentableId" value="LOCAL-00181" />
-      <option name="project" value="LOCAL" />
-      <updated>1624138755848</updated>
+      <workItem from="1630845977600" duration="3854000" />
     </task>
     <task id="LOCAL-00182" summary="wip: restructure the documentation tree">
       <created>1624139465375</created>
@@ -680,7 +667,14 @@
       <option name="project" value="LOCAL" />
       <updated>1630734087876</updated>
     </task>
-    <option name="localTasksCounter" value="230" />
+    <task id="LOCAL-00230" summary="chore: add gcp and azure coming soon">
+      <created>1630850314482</created>
+      <option name="number" value="00230" />
+      <option name="presentableId" value="LOCAL-00230" />
+      <option name="project" value="LOCAL" />
+      <updated>1630850314483</updated>
+    </task>
+    <option name="localTasksCounter" value="231" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -766,7 +760,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="chore: fix tutorial logos and update some tutorials" />
     <MESSAGE value="chore: update header" />
     <MESSAGE value="chore: add &quot;how to deploy nuxtjs&quot; - contribution from Thibaut David" />
     <MESSAGE value="fix typo reported by a user on Discord" />
@@ -791,6 +784,7 @@
     <MESSAGE value="chore: update aws guide" />
     <MESSAGE value="chore: change title for gen articles" />
     <MESSAGE value="chore: make changes based on Albane' feedback" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: make changes based on Albane' feedback" />
+    <MESSAGE value="chore: add gcp and azure coming soon" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: add gcp and azure coming soon" />
   </component>
 </project>

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-02"
+last_modified_on: "2021-09-05"
 title: Redis
 description: "How to set up and use a Redis database"
 ---
@@ -95,17 +95,21 @@ Databases can operate in two modes:
 **Container** databases are managed by Qovery as Docker containers with attached persistent storage. They are perfect for development and testing, as they are significantly cheaper than services provided by cloud providers.
 
 <Alert type="warning">
-    Managed databases are supported only in `Startup` plans, it's not available in the `Community` version.
+    Managed databases are supported only in [paid plans][urls.qovery_pricing], it's not available in the `Community` version.
 </Alert>
 
 #### Versions
 
 Qovery supports the following Redis versions.
 
-|Version|Supported|
-|---------|-------|
-|6|Yes|
-|5|Yes|
+|Cloud provider|Version|Container supported|Managed supported|
+|--------------|---------|-------|---------------------------|
+|AWS|6|Yes|Yes|
+|AWS|5|Yes|Yes|
+|Digital Ocean|6|Yes|Soon|
+|Digital Ocean|5|Yes|Soon|
+|Scaleway|6|Yes|No|
+|Scaleway|5|Yes|No|
 
 You can adjust the version of your database in `General` section of database settings:
 
@@ -196,3 +200,4 @@ In database overview, click on `Action` remove button
 [docs.using-qovery.configuration.application#database]: /docs/using-qovery/configuration/application/#database
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [guides.getting-started.create-a-database]: /guides/getting-started/create-a-database/
+[urls.qovery_pricing]: https://www.qovery.com/pricing

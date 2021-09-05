@@ -21,6 +21,9 @@ In this tutorial, I will explain step by step how to deploy your app on AWS in 3
 1. This tutorial is perfect for anyone interested into deploying their apps on AWS seamlessly.
 2. If you have any question or suggestion on this tutorial, please contact us via [this form][urls.qovery_contact_us] or [Discord][urls.qovery_chat].
 
+### What is Qovery
+Qovery is a platform that makes your app deployment on AWS very simple. The installation of Qovery on your AWS account takes approximately 30 minutes. Then you're ready to deploy your apps "a la" Heroku-like. [Read more about Qovery][docs.getting-started.what-is-qovery].
+
 ### Why you should use AWS
 * You need a reliable hosting platform.
 * You want to stay focus on what you are building.
@@ -34,9 +37,8 @@ In this tutorial, I will explain step by step how to deploy your app on AWS in 3
 
 Let's start!
 
-## Step-by-step tutorial
-
-### Create an account on AWS
+# Install Qovery on AWS
+## Create an AWS account
 
 *If you already have an AWS account, you can go to the next point.*
 
@@ -44,19 +46,18 @@ Before creating an AWS account, I'd recommend contacting AWS to see if you are e
 
 <img src="/img/aws-create-an-account.jpg" alt="Create an account on AWS" />
 
-### Install Qovery on AWS
-To deploy your apps on your AWS account, we'll use [Qovery][urls.qovery]. Qovery is a Continuous Deployment platform that makes app deployment on AWS very simple (see "[What is Qovery][docs.getting-started.what-is-qovery]"). The installation of Qovery on your AWS account takes approximately 30 minutes. Then you're ready to deploy your apps "a la" Heroku-like.
-
-#### Get your AWS API keys
+### Get your AWS API keys
 
 To install Qovery on your AWS account, the `secret access key` and `access key id` are required. Here is a comprehensive [step-by-step guide][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account] on how to generate your `secret access key` and `access key id`. If you already have those keys, then you can go to the next point.
 
-#### Connect to Qovery
+## Configure Qovery
+
+### Sign-up to Qovery
 Using Qovery is as simple as connect with your *Github* or *Gitlab* account on [console.qovery.com][urls.start_qovery].
 
 -> [Connect to Qovery][urls.start_qovery]
 
-#### Create your Organization
+### Create your Organization
 
 <Alert type="info">
 
@@ -77,7 +78,7 @@ To deploy on your AWS account, you have to choose between **Free**, **Profession
   <img src="/img/create_organization.jpg" alt="Qovery - Create an Organization and select the plan" />
 </p>
 
-#### Install Qovery on your AWS account
+### Install Qovery on your AWS account
 
 1/ Go to your organization settings by clicking on the "cog" icon next to your organization name.
 
@@ -118,7 +119,7 @@ Choose a region close to where your users will use your applications to have bet
 Congrats! Qovery will be installed within 30 minutes 🎉. You will be notified when it is all good.
 In the meantime, you can take a look at our [guide section][guides.getting-started].
 
-### Deploy your application
+## Deploy your application
 Once Qovery is installed on your AWS account, you have the possibility to deploy your application. Take a look to [our guide][guides.getting-started] on how to [deploy your first application][guides.getting-started.deploy-your-first-application] with Qovery.
 
 <Jump to="/guides/getting-started/deploy-your-first-application">Deploy your first application</Jump>

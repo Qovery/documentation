@@ -8,16 +8,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: update documentation">
-      <change afterPath="$PROJECT_DIR$/website/static/img/organization_settings_add_credentials.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/static/img/organization_settings_cluster_resources.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/static/img/organization_settings_clusters_aws.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/static/img/organization_settings_clusters_empty.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/static/img/organization_settings_create_cluster.jpg" afterDir="false" />
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: update AWS + Qovery doc">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/metadata.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/metadata.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -323,14 +317,7 @@
       <workItem from="1630393372506" duration="24000" />
       <workItem from="1630690165516" duration="745000" />
       <workItem from="1630732701382" duration="1793000" />
-      <workItem from="1630845977600" duration="8346000" />
-    </task>
-    <task id="LOCAL-00184" summary="wip: restructure the documentation tree">
-      <created>1624182333222</created>
-      <option name="number" value="00184" />
-      <option name="presentableId" value="LOCAL-00184" />
-      <option name="project" value="LOCAL" />
-      <updated>1624182333222</updated>
+      <workItem from="1630845977600" duration="8940000" />
     </task>
     <task id="LOCAL-00185" summary="wip: update doc for v2">
       <created>1624198635778</created>
@@ -668,7 +655,14 @@
       <option name="project" value="LOCAL" />
       <updated>1630852614262</updated>
     </task>
-    <option name="localTasksCounter" value="233" />
+    <task id="LOCAL-00233" summary="chore: update AWS + Qovery doc">
+      <created>1630859778512</created>
+      <option name="number" value="00233" />
+      <option name="presentableId" value="LOCAL-00233" />
+      <option name="project" value="LOCAL" />
+      <updated>1630859778512</updated>
+    </task>
+    <option name="localTasksCounter" value="234" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -754,7 +748,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="chore: add &quot;how to deploy nuxtjs&quot; - contribution from Thibaut David" />
     <MESSAGE value="fix typo reported by a user on Discord" />
     <MESSAGE value="fix gemfile" />
     <MESSAGE value="chore: change api doc link" />
@@ -779,6 +772,7 @@
     <MESSAGE value="chore: make changes based on Albane' feedback" />
     <MESSAGE value="chore: add gcp and azure coming soon" />
     <MESSAGE value="chore: update documentation" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: update documentation" />
+    <MESSAGE value="chore: update AWS + Qovery doc" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: update AWS + Qovery doc" />
   </component>
 </project>

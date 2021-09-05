@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[83],{234:function(a){a.exports=JSON.parse('{"allTagsPath":"/guides/tags","slug":"database-mongodb","name":"database: mongodb","count":1,"permalink":"/guides/tags/database-mongodb"}')}}]);

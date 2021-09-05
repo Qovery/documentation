@@ -1,7 +1,7 @@
 ---
-last_modified_on: "2021-06-19"
-title: "Azure"
-description: "Learn how to configure and plug your Azure account"
+last_modified_on: "2021-09-05"
+title: "Microsoft Azure"
+description: "Learn how to configure and plug your Microsoft Azure account"
 ---
 
 import Jump from '@site/src/components/Jump';
@@ -13,7 +13,7 @@ Azure is coming soon ([see when](https://roadmap.qovery.com/c/32-support-azure))
 
      To make changes please edit the template located at:
 
-     website/docs/using-qovery/configuration/cloud-service-provider/azure.md.erb
+     website/docs/using-qovery/configuration/cloud-service-provider/microsoft-azure.md.erb
 -->
 
 ## Available Cloud Service Providers

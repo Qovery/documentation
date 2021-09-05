@@ -65,7 +65,7 @@ module.exports = {
                             items: [
                                 "using-qovery/configuration/cloud-service-provider",
                                 "using-qovery/configuration/cloud-service-provider/amazon-web-services",
-                                "using-qovery/configuration/cloud-service-provider/azure",
+                                "using-qovery/configuration/cloud-service-provider/microsoft-azure",
                                 "using-qovery/configuration/cloud-service-provider/google-cloud-platform",
                                 "using-qovery/configuration/cloud-service-provider/digital-ocean",
                                 "using-qovery/configuration/cloud-service-provider/scaleway",

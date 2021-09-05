@@ -113,7 +113,13 @@ Choose a region close to where your users will use your applications to have bet
   <img src="/img/organization_settings_add_credentials.jpg" alt="Set your cloud credentials" />
 </p>
 
-4/ Under the hood, Qovery uses a managed Kubernetes ([AWS EKS](https://aws.amazon.com/eks)) to run your applications. You need to specify the
+4/ Under the hood, Qovery uses a managed Kubernetes ([AWS EKS](https://aws.amazon.com/eks)) to run your applications. You need to specify the CPU and RAM you want per node, and the min/max number of nodes. Qovery will keep low the number of nodes and will only scale up your nodes if your applications really need to scale.
+
+<Alert type="success">
+
+Qovery optimizes and keep your AWS costs low.
+
+</Alert>
 
 <p align="center">
   <img src="/img/organization_settings_cluster_resources.jpg" alt="Set your cluster resources" />

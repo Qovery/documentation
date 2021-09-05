@@ -8,24 +8,27 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: change title for gen articles">
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: make changes based on Albane' feedback">
+      <change afterPath="$PROJECT_DIR$/website/guides/advanced/guide-google-cloud-platform.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/guides/advanced/guide-google-cloud-platform.md.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/guides/advanced/guide-microsoft-azure.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/guides/advanced/guide-microsoft-azure.md.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/logos/azure.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/logos/azure_white.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/logos/gcp.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/logos/gcp_white.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_deploy_app.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_deploy_app.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_how_to_deploy_x_with_y.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_how_to_deploy_x_with_y.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/create-a-blazingly-fast-api-in-rust-part-1.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/create-a-blazingly-fast-api-in-rust-part-1.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-django-with-postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-django-with-postgresql.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-fullstack-application-composed-of-hasura-postgresql-angular.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-fullstack-application-composed-of-hasura-postgresql-angular.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-gin-with-postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-gin-with-postgresql.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-jhipster-with-postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-jhipster-with-postgresql.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-laravel-with-mysql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-laravel-with-mysql.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-node-js-with-postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-node-js-with-postgresql.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-rails-with-postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-rails-with-postgresql.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/deploy-spring-boot-with-postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/deploy-spring-boot-with-postgresql.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/graphql-api-with-hasura.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/graphql-api-with-hasura.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-strapi-with-postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-strapi-with-postgresql.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/migrate-your-application-from-heroku-to-aws.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/migrate-your-application-from-heroku-to-aws.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/migrate-your-application-from-heroku-to-aws.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/migrate-your-application-from-heroku-to-aws.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/simplest-way-to-deploy-deno-with-database.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/simplest-way-to-deploy-deno-with-database.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.meta/.schemas/guides.json" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/.schemas/guides.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.meta/cloud_providers.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/cloud_providers.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.meta/links.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/links.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/guide-amazon-web-services.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/guide-amazon-web-services.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/guide-amazon-web-services.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/guide-amazon-web-services.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/guide-digital-ocean.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/guide-digital-ocean.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/guide-digital-ocean.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/guide-digital-ocean.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/guide-scaleway.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/guide-scaleway.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/guide-scaleway.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/guide-scaleway.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes.md.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/metadata.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/metadata.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -173,10 +176,10 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/website/static/img/logos" />
+      <recent name="$PROJECT_DIR$/website/guides/advanced" />
       <recent name="$PROJECT_DIR$/website/static/img" />
       <recent name="$PROJECT_DIR$/website/docs/community/reward" />
       <recent name="$PROJECT_DIR$/scripts/generate/templates/_partials" />
-      <recent name="$PROJECT_DIR$/website/docs/using-qovery/quickstart" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/website/docs/community" />
@@ -331,14 +334,8 @@
       <workItem from="1630271625607" duration="2874000" />
       <workItem from="1630393372506" duration="24000" />
       <workItem from="1630690165516" duration="745000" />
-      <workItem from="1630732701382" duration="1321000" />
-    </task>
-    <task id="LOCAL-00180" summary="wip: restructure the documentation tree">
-      <created>1624137818191</created>
-      <option name="number" value="00180" />
-      <option name="presentableId" value="LOCAL-00180" />
-      <option name="project" value="LOCAL" />
-      <updated>1624137818191</updated>
+      <workItem from="1630732701382" duration="1793000" />
+      <workItem from="1630845977600" duration="2027000" />
     </task>
     <task id="LOCAL-00181" summary="wip: restructure the documentation tree">
       <created>1624138755848</created>
@@ -676,7 +673,14 @@
       <option name="project" value="LOCAL" />
       <updated>1630690620987</updated>
     </task>
-    <option name="localTasksCounter" value="229" />
+    <task id="LOCAL-00229" summary="chore: make changes based on Albane' feedback">
+      <created>1630734087876</created>
+      <option name="number" value="00229" />
+      <option name="presentableId" value="LOCAL-00229" />
+      <option name="project" value="LOCAL" />
+      <updated>1630734087876</updated>
+    </task>
+    <option name="localTasksCounter" value="230" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -762,7 +766,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="chore: add tutorial on how to deploy Strapi with PostgreSQL" />
     <MESSAGE value="chore: fix tutorial logos and update some tutorials" />
     <MESSAGE value="chore: update header" />
     <MESSAGE value="chore: add &quot;how to deploy nuxtjs&quot; - contribution from Thibaut David" />
@@ -787,6 +790,7 @@
     <MESSAGE value="chore: modify article on heroku&#10;fix bad repo link" />
     <MESSAGE value="chore: update aws guide" />
     <MESSAGE value="chore: change title for gen articles" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: change title for gen articles" />
+    <MESSAGE value="chore: make changes based on Albane' feedback" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: make changes based on Albane' feedback" />
   </component>
 </project>

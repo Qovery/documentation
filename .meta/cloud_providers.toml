@@ -12,3 +12,13 @@ dark_logo_path = "/img/logos/digitalocean_white.svg"
 name = "scaleway"
 logo_path = "/img/logos/scaleway.svg"
 dark_logo_path = "/img/logos/scaleway_white.svg"
+
+[[cloud_providers]]
+name = "gcp"
+logo_path = "/img/logos/gcp.svg"
+dark_logo_path = "/img/logos/gcp_white.svg"
+
+[[cloud_providers]]
+name = "azure"
+logo_path = "/img/logos/azure.svg"
+dark_logo_path = "/img/logos/azure_white.svg"

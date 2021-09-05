@@ -14,6 +14,16 @@ module.exports = {
       "dark_logo_path": "/img/logos/scaleway_white.svg",
       "logo_path": "/img/logos/scaleway.svg",
       "name": "scaleway"
+    },
+    {
+      "dark_logo_path": "/img/logos/gcp_white.svg",
+      "logo_path": "/img/logos/gcp.svg",
+      "name": "gcp"
+    },
+    {
+      "dark_logo_path": "/img/logos/azure_white.svg",
+      "logo_path": "/img/logos/azure.svg",
+      "name": "azure"
     }
   ],
   "databases": [
@@ -165,6 +175,51 @@ module.exports = {
       "description": "Go beyond the basics, become a Qovery pro, and extract the full potential of Qovery.",
       "guides": [
         {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/advanced/guide-amazon-web-services",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/guide-amazon-web-services.md",
+          "series_position": null,
+          "title": "Deploy on your AWS account"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/advanced/guide-microsoft-azure",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/guide-microsoft-azure.md",
+          "series_position": null,
+          "title": "Deploy on your Azure account"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/advanced/guide-digital-ocean",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/guide-digital-ocean.md",
+          "series_position": null,
+          "title": "Deploy on your Digital Ocean account"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/advanced/guide-google-cloud-platform",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/guide-google-cloud-platform.md",
+          "series_position": null,
+          "title": "Deploy on your GCP account"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/advanced/guide-scaleway",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/guide-scaleway.md",
+          "series_position": null,
+          "title": "Deploy on your Scaleway account"
+        },
+        {
           "author_github": "https://github.com/pjeziorowski",
           "description": null,
           "id": "/advanced/deploy-backend-and-frontend-apps",
@@ -199,33 +254,6 @@ module.exports = {
           "path": "website/guides/advanced/staging-environment.md",
           "series_position": null,
           "title": "Staging environment"
-        },
-        {
-          "author_github": "https://github.com/evoxmusic",
-          "description": null,
-          "id": "/advanced/guide-amazon-web-services",
-          "last_modified_on": null,
-          "path": "website/guides/advanced/guide-amazon-web-services.md",
-          "series_position": null,
-          "title": "Use your AWS account"
-        },
-        {
-          "author_github": "https://github.com/evoxmusic",
-          "description": null,
-          "id": "/advanced/guide-digital-ocean",
-          "last_modified_on": null,
-          "path": "website/guides/advanced/guide-digital-ocean.md",
-          "series_position": null,
-          "title": "Use your Digital Ocean account"
-        },
-        {
-          "author_github": "https://github.com/evoxmusic",
-          "description": null,
-          "id": "/advanced/guide-scaleway",
-          "last_modified_on": null,
-          "path": "website/guides/advanced/guide-scaleway.md",
-          "series_position": null,
-          "title": "Use your Scaleway account"
         }
       ],
       "name": "advanced",

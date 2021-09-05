@@ -1,7 +1,7 @@
 ---
-last_modified_on: "2021-06-27"
+last_modified_on: "2021-09-05"
 $schema: "/.meta/.schemas/guides.json"
-title: Use your Digital Ocean account
+title: Deploy on your Digital Ocean account
 description: How to configure and deploy your apps on your Digital Ocean account with Qovery
 author_github: https://github.com/evoxmusic
 tags: ["type: guide", "cloud_provider: digital_ocean"]

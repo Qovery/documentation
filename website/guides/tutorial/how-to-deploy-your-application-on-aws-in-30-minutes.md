@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-27"
+last_modified_on: "2021-09-05"
 $schema: "/.meta/.schemas/guides.json"
 title: Zero to Hero - How to deploy your app on AWS in 30 minutes
 description: Step-by-step guide on how to deploy your app on AWS in 30 minutes. No AWS knowledge required.
@@ -38,7 +38,7 @@ In this tutorial, I will explain step by step how to deploy your app on AWS in 3
 * Lead developer and CTO.
 * Anybody interested into deploying apps on AWS in the simplest way.
 
-2. If you have any question or suggestion on this tutorial, please contact me via [this form][urls.qovery_contact_us] or [Discord][urls.qovery_chat] :)
+2. If you have any question or suggestion on this tutorial, please contact us via [this form][urls.qovery_contact_us] or [Discord][urls.qovery_chat] :)
 
 ### Why you should use AWS
 * You need to focus on what you are building.

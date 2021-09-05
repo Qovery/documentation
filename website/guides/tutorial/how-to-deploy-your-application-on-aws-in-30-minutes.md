@@ -1,8 +1,8 @@
 ---
 last_modified_on: "2021-09-05"
 $schema: "/.meta/.schemas/guides.json"
-title: Zero to Hero - How to deploy your app on AWS in 30 minutes
-description: Step-by-step guide on how to deploy your app on AWS in 30 minutes. No AWS knowledge required.
+title: Zero to Hero - How to deploy your apps on AWS in 30 minutes
+description: Step-by-step guide on how to deploy your apps on AWS in 30 minutes. No AWS knowledge required.
 author_github: https://github.com/evoxmusic
 tags: ["type: tutorial", "cloud_provider: aws"]
 hide_pagination: true
@@ -10,12 +10,6 @@ hide_pagination: true
 import Alert from '@site/src/components/Alert';
 import Assumptions from '@site/src/components/Assumptions';
 import Jump from '@site/src/components/Jump';
-
-<Alert type="warning">
-
-WORK IN PROGRESS - THIS DOCUMENTATION IS OUTDATED
-
-</Alert>
 
 [Amazon Web Services](https://aws.amazon.com?ref=qovery) (AWS) is a platform that offers flexible, reliable, and scalable Cloud computing solutions. The platform is developed with a combination of infrastructure as a service (IaaS), platform as a service (PaaS), and packaged software as a service (SaaS) offerings. In 2021, thousands of companies host their apps on AWS. In 2006, AWS was composed of only 3 services (SQS, S3, EC2) that were simple to use. In 2021, more than 200 services and 2000 features exist, and deploying your app can take days.
 
@@ -33,22 +27,19 @@ In this tutorial, I will explain step by step how to deploy your app on AWS in 3
 
 ## Before you start
 
-1. This tutorial is perfect for:
-* Junior/experienced/expert developer.
-* Lead developer and CTO.
-* Anyone interested into deploying apps on AWS seamlessly.
-
+1. This tutorial is perfect for anyone interested into deploying their apps on AWS seamlessly.
 2. If you have any question or suggestion on this tutorial, please contact us via [this form][urls.qovery_contact_us] or [Discord][urls.qovery_chat].
 
 ### Why you should use AWS
 * You need a reliable hosting platform.
+* You want to stay focus on what you are building.
 * You need to speed up your Go-To-Market and Product Market Fit.
-* You plan to be the next unicorn 🦄 ;)
+* You plan to be the next unicorn 🦄
 
 ### Why you should not use AWS
-* You are building a side project.
+* You are building a hobby project.
 * You are looking for a cheap hosting provider.
-* You dislike Amazon.
+* You do not want to use Amazon services.
 
 Let's start!
 
@@ -63,7 +54,7 @@ Before creating an AWS account, I'd recommend contacting AWS to see if you are e
 <img src="/img/aws-create-an-account.jpg" alt="Create an account on AWS" />
 
 ### Install Qovery on AWS
-To deploy your apps on your AWS account, we'll use [Qovery][urls.qovery]. Qovery is a Continuous Deployment platform that makes app deployment on AWS very simple (see "[What is Qovery][docs.getting-started.what-is-qovery]"). The installation of Qovery on your AWS account takes approximately 30 minutes. Then you're ready to deploy your apps "a la" Heroku like.
+To deploy your apps on your AWS account, we'll use [Qovery][urls.qovery]. Qovery is a Continuous Deployment platform that makes app deployment on AWS very simple (see "[What is Qovery][docs.getting-started.what-is-qovery]"). The installation of Qovery on your AWS account takes approximately 30 minutes. Then you're ready to deploy your apps "a la" Heroku-like.
 
 #### Get your AWS API keys
 
@@ -75,101 +66,79 @@ Using Qovery is as simple as connect with your *Github* or *Gitlab* account on [
 -> [Connect to Qovery][urls.start_qovery]
 
 #### Create your Organization
-The concept of an organization is similar to the Organization on GitHub ([read more][docs.using-qovery.configuration.organization]). It's good practice to name your organization like your Company or project. You can be part of multiple organizations. Then you can give permissions to teammates to get access to your organization and then collaborate.
 
 <Alert type="info">
 
-By default, you have access to the `QoveryCommunity` organization which is free hosting for individual developers.
+You can skip this step if you already have an Organization.
 
 </Alert>
 
-Create an Organization by clicking on the top right dropdown menu.
+An organization is a shared account where developers can collaborate across many projects at once. Owners and organization administrators can manage:
+- Cloud accounts.
+- Members access.
+- Billing.
+
+[Read more][docs.using-qovery.configuration.organization] about Organizations
+
+To deploy on your AWS account, you have to choose between **Free**, **Professional** and **Business** plan for your organization.
 
 <p align="center">
-  <img src="/img/qovery_create_organization_dropdown.svg" alt="Qovery - Create an Organization - dropdown" />
+  <img src="/img/create_organization.jpg" alt="Qovery - Create an Organization and select the plan" />
 </p>
 
-Then give a name and a logo (optional) to your organization.
+#### Install Qovery on your AWS account
+
+1/ Go to your organization settings by clicking on the "cog" icon next to your organization name.
 
 <p align="center">
-  <img src="/img/qovery_create_organization.svg" alt="Qovery - Create an Organization" />
+  <img src="/img/organization_settings_clusters_empty.jpg" alt="Go your organization settings > clusters" />
 </p>
 
-#### Launch the Qovery installation
-Select your Cloud provider where you want to use Qovery and insert the required Credentials.
+2/ Create a cluster, select *Amazon Web Services* and the region where you want to deploy your apps.
+
+<Alert type="success">
+
+Choose a region close to where your users will use your applications to have better performances.
+
+</Alert>
 
 <p align="center">
-  <img src="/img/qovery_select_cloud_provider.svg" alt="Qovery - Select your Cloud provider" />
+  <img src="/img/organization_settings_create_cluster.jpg" alt="Create a cluster" />
 </p>
 
-Select the closest region from your users to have the best latency.
+3/ Set your AWS credentials. (Check out [this guide][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services] if you have no AWS credentials).
 
 <p align="center">
-  <img src="/img/qovery_select_cloud_provider_region.svg" alt="Qovery - Select your Cloud provider region" />
+  <img src="/img/organization_settings_add_credentials.jpg" alt="Set your cloud credentials" />
 </p>
 
-Congrats! Qovery will be installed within 30 minutes 🎉. In the meantime, you can take a look at what happens on your AWS account - an EKS is spawning with Qovery.
+4/ Under the hood, Qovery uses a managed Kubernetes ([AWS EKS](https://aws.amazon.com/eks)) to run your applications. You need to specify the
 
 <p align="center">
-  <img src="/img/qovery_installation_waiting_state.svg" alt="Qovery - Qovery installation is in progress" />
+  <img src="/img/organization_settings_cluster_resources.jpg" alt="Set your cluster resources" />
 </p>
+
+5/ Click on **Save** and **Deploy**.
+
+<p align="center">
+  <img src="/img/organization_settings_clusters_aws.jpg" alt="AWS cluster is now available" />
+</p>
+
+Congrats! Qovery will be installed within 30 minutes 🎉. You will be notified when it is all good.
+In the meantime, you can take a look at our [guide section][guides.getting-started].
 
 ### Deploy your application
-Once Qovery is installed on your AWS account, you have the possibility to create a [project][docs.using-qovery.configuration.project]. A project contains multiple apps on different environments (production, staging, dev). Learn more on the [project][docs.using-qovery.configuration.project] and [environment][docs.using-qovery.configuration.environment] concepts.
+Once Qovery is installed on your AWS account, you have the possibility to deploy your application. Take a look to [our guide][guides.getting-started] on how to [deploy your first application][guides.getting-started.deploy-your-first-application] with Qovery.
 
-#### Create a project
-
-Give a name to your project. **Pro-tips:** *In my `Qovery` organization I have a project `ProductAnalytics` and a project `Application`. If you don't plan to have multiple projects, then give the name of your app.*
-
-<p align="center">
-  <img src="/img/qovery_create_project.png" alt="Qovery - create a project" />
-</p>
-
-#### Deploy your app
-To deploy your app on AWS with Qovery, it is as simple as selecting your Github or Gitlab repository. Nothing more :)
-Everything is configured for you, even the SSL/TLS and your domain.
-
-Select the repository of the app you want to deploy.
-<p align="center">
-  <img src="/img/qovery_deploy_app_1.png" alt="Qovery - select the repository of your app" />
-</p>
-
-Give a name to your app.
-<p align="center">
-  <img src="/img/qovery_deploy_app_2.png" alt="Qovery - give a name to your app" />
-</p>
-
-Optional: You can deploy a database or attach a storage to your app in one-click.
-<p align="center">
-  <img src="/img/qovery_deploy_app_3.png" alt="Qovery - deploy a database or attach a storage to your app" />
-</p>
-
-Then deploy your app by clicking on "Deploy".
-<p align="center">
-  <img src="/img/qovery_deploy_app_4.png" alt="Qovery - deploy your app" />
-</p>
-
-Your app is deployed and ready to be used by your users. And all of that from your AWS account! 🎉
-<p align="center">
-  <img src="/img/qovery_deploy_app_5.png" alt="Qovery - the app is deployed" />
-</p>
-
-If you need to add another app to your project, you just need to repeat the latest steps 😎.
-
-## What's next
-Now you can see how you can [add a database][guides.getting-started.create-a-database] to your app or [set up your domain][guides.getting-started.setting-custom-domain].
-
-<Jump to="/guides/getting-started/adding-a-database">Add a database</Jump>
-<Jump to="/guides/getting-started/setting-custom-domain">Set up your domain</Jump>
+<Jump to="/guides/getting-started/deploy-your-first-application">Deploy your first application</Jump>
 
 
 [docs.getting-started.what-is-qovery]: /docs/getting-started/what-is-qovery/
 [docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account]: /docs/using-qovery/configuration/cloud-service-provider/amazon-web-services/#connect-your-aws-account
-[docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
+[docs.using-qovery.configuration.cloud-service-provider.amazon-web-services]: /docs/using-qovery/configuration/cloud-service-provider/amazon-web-services/
 [docs.using-qovery.configuration.organization]: /docs/using-qovery/configuration/organization/
-[docs.using-qovery.configuration.project]: /docs/using-qovery/configuration/project/
-[guides.getting-started.create-a-database]: /guides/getting-started/create-a-database/
-[guides.getting-started.setting-custom-domain]: /guides/getting-started/setting-custom-domain/
+[guides.getting-started.deploy-your-first-application]: /guides/getting-started/deploy-your-first-application/
+[guides.getting-started]: /guides/getting-started/
 [urls.qovery]: https://www.qovery.com
 [urls.qovery_chat]: https://discord.qovery.com
 [urls.qovery_contact_us]: https://www.qovery.com/contact

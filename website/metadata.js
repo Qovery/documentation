@@ -434,7 +434,7 @@ module.exports = {
           "last_modified_on": null,
           "path": "website/guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes.md",
           "series_position": null,
-          "title": "Zero to Hero - How to deploy your app on AWS in 30 minutes"
+          "title": "Zero to Hero - How to deploy your apps on AWS in 30 minutes"
         }
       ],
       "name": "tutorial",

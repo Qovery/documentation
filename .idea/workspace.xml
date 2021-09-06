@@ -8,18 +8,19 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: update AWS + Qovery doc">
-      <change afterPath="$PROJECT_DIR$/website/static/img/organization_settings_clusters_scaleway.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/static/img/scaleway-create-an-account.jpg" afterDir="false" />
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: add scaleway guide">
+      <change afterPath="$PROJECT_DIR$/website/static/img/scw-create-credentials-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/scw-create-credentials-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/scw-create-credentials-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/scw-create-credentials-4.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/azure.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/azure.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/microsoft-azure.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/advanced/guide-scaleway.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/guide-scaleway.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/advanced/guide-scaleway.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/guide-scaleway.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/sidebars.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/sidebars.js.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.js.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.meta/links.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/links.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/amazon-web-services.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/amazon-web-services.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/amazon-web-services.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/amazon-web-services.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/digital-ocean.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/digital-ocean.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/digital-ocean.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/digital-ocean.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/scaleway.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/scaleway.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/scaleway.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/scaleway.md.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -336,14 +337,7 @@
       <workItem from="1630393372506" duration="24000" />
       <workItem from="1630690165516" duration="745000" />
       <workItem from="1630732701382" duration="1793000" />
-      <workItem from="1630845977600" duration="12677000" />
-    </task>
-    <task id="LOCAL-00186" summary="wip: update doc for v2">
-      <created>1624206783277</created>
-      <option name="number" value="00186" />
-      <option name="presentableId" value="LOCAL-00186" />
-      <option name="project" value="LOCAL" />
-      <updated>1624206783277</updated>
+      <workItem from="1630845977600" duration="17338000" />
     </task>
     <task id="LOCAL-00187" summary="wip: update doc for v2">
       <created>1624227022776</created>
@@ -681,7 +675,14 @@
       <option name="project" value="LOCAL" />
       <updated>1630860506796</updated>
     </task>
-    <option name="localTasksCounter" value="235" />
+    <task id="LOCAL-00235" summary="chore: add scaleway guide">
+      <created>1630869605846</created>
+      <option name="number" value="00235" />
+      <option name="presentableId" value="LOCAL-00235" />
+      <option name="project" value="LOCAL" />
+      <updated>1630869605846</updated>
+    </task>
+    <option name="localTasksCounter" value="236" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -767,7 +768,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="fix typo reported by a user on Discord" />
     <MESSAGE value="fix gemfile" />
     <MESSAGE value="chore: change api doc link" />
     <MESSAGE value="wip: restructure the documentation tree" />
@@ -792,6 +792,7 @@
     <MESSAGE value="chore: add gcp and azure coming soon" />
     <MESSAGE value="chore: update documentation" />
     <MESSAGE value="chore: update AWS + Qovery doc" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: update AWS + Qovery doc" />
+    <MESSAGE value="chore: add scaleway guide" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: add scaleway guide" />
   </component>
 </project>

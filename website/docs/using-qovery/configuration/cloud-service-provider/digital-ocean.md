@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-02"
+last_modified_on: "2021-09-06"
 title: "Digital Ocean (DO)"
 description: "Learn how to configure and plug your Digital Ocean (DO) account"
 ---
@@ -8,7 +8,7 @@ import Steps from '@site/src/components/Steps';
 import Alert from '@site/src/components/Alert';
 import Assumptions from '@site/src/components/Assumptions';
 
-Qovery lets you quickly deploy applications to your [Digital Ocean (DO)][urls.aws] account. No knowledge is needed, and it takes less than 20 minutes to install Qovery on your Digital Ocean account.
+Qovery lets you quickly deploy applications to your [Digital Ocean (DO)][urls.digital_ocean] account. No knowledge needed, and it takes less than 20 minutes to install Qovery on your Digital Ocean account.
 
 <Alert type="info">
 
@@ -104,7 +104,7 @@ Copy the generated `access key id` and `secret access key`.
 
 </Steps>
 
-Well done!! You now have your Digital Ocean `access key id`, `secret access key` and `personal token`; It's time to connect Qovery to your AWS account.
+Well done!! You now have your Digital Ocean `access key id`, `secret access key` and `personal token`; It's time to connect Qovery to your Digital Ocean account.
 
 #### Use Digital Ocean credentials with Qovery
 
@@ -116,7 +116,14 @@ Well done!! You now have your Digital Ocean `access key id`, `secret access key`
 
 ### Delete Qovery from your Digital Ocean account
 
-To delete Qovery from your Digital Ocean account you must be authenticated as the Organization admin. Once your Digital Ocean account removed from Qovery, everything configured (VPC, Kubernetes, ...) by Qovery will be deleted forever.
+<Alert type="warning">
+
+Your applications and your data will be deleted.
+
+</Alert>
+
+To delete Qovery from your Digital Ocean account you must be the owner of the Organization.
+Once your Digital Ocean account removed from Qovery, everything configured (VPC, Kubernetes, ...) by Qovery will be deleted forever.
 
 ## Regions
 
@@ -181,7 +188,7 @@ Today, you can't migrate an environment from one region to another after it has 
 [docs.using-qovery.configuration.organization]: /docs/using-qovery/configuration/organization/
 [docs.using-qovery.interface]: /docs/using-qovery/interface/
 [guides.advanced]: /guides/advanced/
-[urls.aws]: https://aws.amazon.com
+[urls.digital_ocean]: https://www.digitalocean.com
 [urls.qovery_chat]: https://discord.qovery.com
 [urls.qovery_contact_us]: https://www.qovery.com/contact
 [urls.qovery_roadmap]: https://roadmap.qovery.com/

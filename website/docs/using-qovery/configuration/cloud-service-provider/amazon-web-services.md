@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-08-30"
+last_modified_on: "2021-09-06"
 title: "Amazon Web Services (AWS)"
 description: "Learn how to configure and plug your Amazon Web Services (AWS) account"
 ---
@@ -7,7 +7,7 @@ import Steps from '@site/src/components/Steps';
 import Alert from '@site/src/components/Alert';
 import Assumptions from '@site/src/components/Assumptions';
 
-Qovery lets you quickly deploy applications to your [Amazon Web Services (AWS)][urls.aws] account. No knowledge is needed, and it takes less than 20 minutes to install Qovery on your AWS account.
+Qovery lets you quickly deploy applications to your [Amazon Web Services (AWS)][urls.aws] account. No knowledge needed, and it takes less than 20 minutes to install Qovery on your AWS account.
 
 <Alert type="info">
 
@@ -124,7 +124,14 @@ Well done!! You now have your AWS `access key id` and `secret access key` and yo
 
 ### Delete Qovery from your AWS account
 
-To delete Qovery from your AWS account you must be authenticated as the Organization admin. Once your AWS account removed from Qovery, everything configured (VPC, Kubernetes, ...) by Qovery will be deleted forever.
+<Alert type="warning">
+
+Your applications and your data will be deleted.
+
+</Alert>
+
+To delete Qovery from your AWS account you must be the owner of the Organization.
+Once your AWS account removed from Qovery, everything configured (VPC, Kubernetes, ...) by Qovery will be deleted forever.
 
 ### IAM permissions
 

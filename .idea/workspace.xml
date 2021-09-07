@@ -8,19 +8,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: add scaleway guide">
-      <change afterPath="$PROJECT_DIR$/website/static/img/scw-create-credentials-1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/static/img/scw-create-credentials-2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/static/img/scw-create-credentials-3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/static/img/scw-create-credentials-4.jpg" afterDir="false" />
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: add scaleway doc to generate credentials">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.meta/links.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/links.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/amazon-web-services.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/amazon-web-services.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/amazon-web-services.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/amazon-web-services.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/digital-ocean.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/digital-ocean.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/digital-ocean.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/digital-ocean.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/scaleway.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/scaleway.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/scaleway.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/scaleway.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docusaurus.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/docusaurus.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/guide-digital-ocean.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/guide-digital-ocean.md.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -337,14 +328,7 @@
       <workItem from="1630393372506" duration="24000" />
       <workItem from="1630690165516" duration="745000" />
       <workItem from="1630732701382" duration="1793000" />
-      <workItem from="1630845977600" duration="17338000" />
-    </task>
-    <task id="LOCAL-00187" summary="wip: update doc for v2">
-      <created>1624227022776</created>
-      <option name="number" value="00187" />
-      <option name="presentableId" value="LOCAL-00187" />
-      <option name="project" value="LOCAL" />
-      <updated>1624227022776</updated>
+      <workItem from="1630845977600" duration="19437000" />
     </task>
     <task id="LOCAL-00188" summary="wip: update doc for v2">
       <created>1624314183150</created>
@@ -682,7 +666,14 @@
       <option name="project" value="LOCAL" />
       <updated>1630869605846</updated>
     </task>
-    <option name="localTasksCounter" value="236" />
+    <task id="LOCAL-00236" summary="chore: add scaleway doc to generate credentials">
+      <created>1630957856169</created>
+      <option name="number" value="00236" />
+      <option name="presentableId" value="LOCAL-00236" />
+      <option name="project" value="LOCAL" />
+      <updated>1630957856169</updated>
+    </task>
+    <option name="localTasksCounter" value="237" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -768,7 +759,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="fix gemfile" />
     <MESSAGE value="chore: change api doc link" />
     <MESSAGE value="wip: restructure the documentation tree" />
     <MESSAGE value="wip: update doc for v2&#10;chore: change domain from docs.qovery.com to hub.qovery.com" />
@@ -793,6 +783,7 @@
     <MESSAGE value="chore: update documentation" />
     <MESSAGE value="chore: update AWS + Qovery doc" />
     <MESSAGE value="chore: add scaleway guide" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: add scaleway guide" />
+    <MESSAGE value="chore: add scaleway doc to generate credentials" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: add scaleway doc to generate credentials" />
   </component>
 </project>

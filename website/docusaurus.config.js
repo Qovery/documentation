@@ -29,8 +29,8 @@ module.exports = {
             },
             links: [
                 // {to: 'components/', label: 'Components', position: 'left'},
-                {to: 'docs/', label: 'Docs', position: 'left'},
                 {to: 'guides/', label: 'Guides', position: 'left'},
+                {to: 'docs/', label: 'Docs', position: 'left'},
                 {to: 'guides/tutorial', label: 'Tutorials', position: 'left'},
                 {href: 'https://discuss.qovery.com', label: 'Forum', position: 'left'},
                 //{to: 'blog/', label: 'Blog', position: 'left'},

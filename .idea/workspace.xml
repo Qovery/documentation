@@ -8,12 +8,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: change sidebar">
-      <change afterPath="$PROJECT_DIR$/website/static/img/digital-ocean-create-an-account.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/static/img/organization_settings_clusters_digital_ocean.jpg" afterDir="false" />
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: add digital ocean guide">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/advanced/guide-digital-ocean.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/guide-digital-ocean.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/advanced/guide-digital-ocean.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/guide-digital-ocean.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/amazon-web-services.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/amazon-web-services.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/amazon-web-services.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/amazon-web-services.md.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,18 +171,7 @@
       <recent name="$PROJECT_DIR$/website/guides/getting-started" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.build">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="npm.start">
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/website/package.json" />
       <command value="run" />
@@ -227,8 +214,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.swizzle" />
         <item itemvalue="npm.start" />
+        <item itemvalue="npm.swizzle" />
         <item itemvalue="npm.deploy" />
         <item itemvalue="npm.build" />
       </list>
@@ -330,14 +317,8 @@
       <workItem from="1630393372506" duration="24000" />
       <workItem from="1630690165516" duration="745000" />
       <workItem from="1630732701382" duration="1793000" />
-      <workItem from="1630845977600" duration="22251000" />
-    </task>
-    <task id="LOCAL-00189" summary="wip: update doc for v2">
-      <created>1624570993517</created>
-      <option name="number" value="00189" />
-      <option name="presentableId" value="LOCAL-00189" />
-      <option name="project" value="LOCAL" />
-      <updated>1624570993517</updated>
+      <workItem from="1630845977600" duration="23893000" />
+      <workItem from="1631363977630" duration="154000" />
     </task>
     <task id="LOCAL-00190" summary="wip: update doc for v2">
       <created>1624651151451</created>
@@ -675,7 +656,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631019468273</updated>
     </task>
-    <option name="localTasksCounter" value="238" />
+    <task id="LOCAL-00238" summary="chore: add digital ocean guide">
+      <created>1631043905193</created>
+      <option name="number" value="00238" />
+      <option name="presentableId" value="LOCAL-00238" />
+      <option name="project" value="LOCAL" />
+      <updated>1631043905193</updated>
+    </task>
+    <option name="localTasksCounter" value="239" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -761,7 +749,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="wip: restructure the documentation tree" />
     <MESSAGE value="wip: update doc for v2&#10;chore: change domain from docs.qovery.com to hub.qovery.com" />
     <MESSAGE value="wip: update doc for v2" />
     <MESSAGE value="chore: apply changes submitted by Aggis" />
@@ -786,6 +773,7 @@
     <MESSAGE value="chore: add scaleway guide" />
     <MESSAGE value="chore: add scaleway doc to generate credentials" />
     <MESSAGE value="chore: change sidebar" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: change sidebar" />
+    <MESSAGE value="chore: add digital ocean guide" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: add digital ocean guide" />
   </component>
 </project>

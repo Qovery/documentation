@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-09-06"
+last_modified_on: "2021-09-11"
 title: "Amazon Web Services (AWS)"
 description: "Learn how to configure and plug your Amazon Web Services (AWS) account"
 ---
@@ -98,11 +98,16 @@ Go to the last step and copy your `access key id` and `secret access key`.
 
 <li>
 
+<Alert type="warning">
+
+<a href="/files/qovery-iam-aws.json">Download IAM permissions JSON</a>
+
+</Alert>
+
 Setup<a href="/files/qovery-iam-aws.json"> IAM permissions</a> to the `qovery` user.
+
 <img src="/img/aws-add-policy-1.jpg" />
 <img src="/img/aws-add-policy-2.jpg" />
-
-<a href="/files/qovery-iam-aws.json">Download permissions JSON</a>
 <img src="/img/aws-add-policy-3.jpg" />
 <img src="/img/aws-add-policy-4.jpg" />
 

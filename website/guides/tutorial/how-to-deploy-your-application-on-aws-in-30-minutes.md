@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-09-05"
+last_modified_on: "2021-09-12"
 $schema: "/.meta/.schemas/guides.json"
 title: Zero to Hero - How to deploy your apps on AWS in 30 minutes
 description: Step-by-step guide on how to deploy your apps on AWS in 30 minutes. No AWS knowledge required.
@@ -46,7 +46,16 @@ Qovery is a platform that makes your app deployment on AWS very simple. The inst
 
 Let's start!
 
-# Install Qovery on AWS
+# Video: Install Qovery on AWS
+
+<div class="video-container">
+  <p align="center">
+    <iframe src="https://www.loom.com/embed/16702511c2d14e60b164be63d5234dbe" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+    </iframe>
+  </p>
+</div>
+
+# Step-by-step: Install Qovery on AWS
 ## Create an AWS account
 
 *If you already have an AWS account, you can go to the next point.*

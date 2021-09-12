@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-09-11"
+last_modified_on: "2021-09-12"
 title: "Amazon Web Services (AWS)"
 description: "Learn how to configure and plug your Amazon Web Services (AWS) account"
 ---
@@ -156,31 +156,31 @@ Qovery required IAM permissions to create, update and managed the infrastructure
 
 Qovery supports the following AWS regions:
 
-| | name             | description
-|-|------------------|-------------------------------
-|🇺🇸| us-west-2      | US West (Oregon)
-|🇺🇸| us-east-2      | US East (Ohio)
-|🇺🇸| us-east-1      | US East (N. Virginia)
-|🇺🇸| us-west-1      | US West (N. California)
-|🇿🇦| af-south-1     | Africa (Cape Town)
-|🇭🇰| ap-east-1      | Asia Pacific (Hong Kong)
-|🇮🇳| ap-south-1     | Asia Pacific (Mumbai)
-|🇯🇵| ap-northeast-1 | Asia Pacific (Tokyo)
-|🇰🇷| ap-northeast-2 | Asia Pacific (Seoul)
-|🇯🇵| ap-northeast-3 | Asia Pacific (Osaka)
-|🇸🇬| ap-southeast-1 | Asia Pacific (Singapore)
-|🇦🇺| ap-southeast-2 | Asia Pacific (Sydney)
-|🇨🇦| ca-central-1   | Canada (Toronto)
-|🇨🇳| cn-north-1     | China (Beijing)
-|🇨🇳| cn-northwest-1 | China (Ningxia)
-|🇩🇪| eu-central-1   | Europe (Frankfurt)
-|🇮🇪| eu-west-1      | Europe (Ireland)
-|🏴󠁧󠁢󠁥󠁮󠁧󠁿| eu-west-2      | Europe (London)
-|🇫🇷| eu-west-3      | Europe (Paris)
-|🇮🇹| eu-south-1     | Europe (Milan)
-|🇸🇪| eu-north-1     | Europe (Stockholm)
-|🇧🇭| me-south-1     | Middle East (Bahrain)
-|🇧🇷| sa-east-1      | South America (São Paulo)
+| | name             | description | supported |
+|-|------------------|-------------------------------|----------------------------
+|🇺🇸| us-west-2      | US West (Oregon) | Yes
+|🇺🇸| us-east-2      | US East (Ohio) | Yes
+|🇺🇸| us-east-1      | US East (N. Virginia) | Yes
+|🇺🇸| us-west-1      | US West (N. California) | No (Only 2 Availability Zone)
+|🇿🇦| af-south-1     | Africa (Cape Town) | Yes
+|🇭🇰| ap-east-1      | Asia Pacific (Hong Kong) | Yes
+|🇮🇳| ap-south-1     | Asia Pacific (Mumbai) | Yes
+|🇯🇵| ap-northeast-1 | Asia Pacific (Tokyo) | Yes
+|🇰🇷| ap-northeast-2 | Asia Pacific (Seoul) | Yes
+|🇯🇵| ap-northeast-3 | Asia Pacific (Osaka) | Yes
+|🇸🇬| ap-southeast-1 | Asia Pacific (Singapore) | Yes
+|🇦🇺| ap-southeast-2 | Asia Pacific (Sydney) | Yes
+|🇨🇦| ca-central-1   | Canada (Toronto) | Yes
+|🇨🇳| cn-north-1     | China (Beijing) | Yes
+|🇨🇳| cn-northwest-1 | China (Ningxia) | Yes
+|🇩🇪| eu-central-1   | Europe (Frankfurt) | Yes
+|🇮🇪| eu-west-1      | Europe (Ireland) | Yes
+|🏴󠁧󠁢󠁥󠁮󠁧󠁿| eu-west-2      | Europe (London) | Yes
+|🇫🇷| eu-west-3      | Europe (Paris) | Yes
+|🇮🇹| eu-south-1     | Europe (Milan) | Yes
+|🇸🇪| eu-north-1     | Europe (Stockholm) | Yes
+|🇧🇭| me-south-1     | Middle East (Bahrain) | Yes
+|🇧🇷| sa-east-1      | South America (São Paulo) | Yes
 
 Qovery supports regions where [Amazon EKS](https://aws.amazon.com/eks) is supported.
 

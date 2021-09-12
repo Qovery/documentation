@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-09-12"
+last_modified_on: "2021-09-13"
 $schema: "/.meta/.schemas/guides.json"
 title: Zero to Hero - How to deploy your apps on AWS in 30 minutes
 description: Step-by-step guide on how to deploy your apps on AWS in 30 minutes. No AWS knowledge required.
@@ -48,6 +48,12 @@ Let's start!
 
 # Video: Install Qovery on AWS
 
+<Alert type="info">
+
+Follow [this guide][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account] to create your AWS credentials
+
+</Alert>
+
 <div class="video-container">
   <p align="center">
     <iframe src="https://www.loom.com/embed/16702511c2d14e60b164be63d5234dbe" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
@@ -65,6 +71,12 @@ Before creating an AWS account, I'd recommend contacting AWS to see if you are e
 <img src="/img/aws-create-an-account.jpg" alt="Create an account on AWS" />
 
 ### Get your AWS API keys
+
+<Alert type="info">
+
+Follow [this guide][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account] to create your AWS credentials
+
+</Alert>
 
 To install Qovery on your AWS account, the `secret access key` and `access key id` are required. Here is a comprehensive [step-by-step guide][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account] on how to generate your `secret access key` and `access key id`. If you already have those keys, then you can go to the next point.
 

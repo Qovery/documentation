@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-09-07"
+last_modified_on: "2021-09-13"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy on your Digital Ocean account
 description: How to configure and deploy your apps on your Digital Ocean account with Qovery
@@ -56,6 +56,12 @@ Before creating a Digital Ocean account, I'd recommend contacting Digital Ocean 
 <img src="/img/digital-ocean-create-an-account.jpg" alt="Create an account on Digital Ocean" />
 
 ### Get your Digital Ocean API keys
+
+<Alert type="info">
+
+Follow [this guide][docs.using-qovery.configuration.cloud-service-provider.digital-ocean] to create your Digital Ocean credentials
+
+</Alert>
 
 To install Qovery on your Digital Ocean account, the `project id`, `secret access key` and `access key id` are required. Here is a comprehensive [step-by-step guide][docs.using-qovery.configuration.cloud-service-provider.digital-ocean] on how to generate your `secret access key` and `access key id`. If you already have those keys, then you can go to the next point.
 

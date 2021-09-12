@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-09-05"
+last_modified_on: "2021-09-13"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy on your Scaleway account
 description: How to configure and deploy your apps on your Scaleway account with Qovery
@@ -58,6 +58,12 @@ Before creating a Scaleway account, I'd recommend contacting Scaleway to see if 
 <img src="/img/scaleway-create-an-account.jpg" alt="Create an account on Scaleway" />
 
 ### Get your Scaleway API keys
+
+<Alert type="info">
+
+Follow [this guide][docs.using-qovery.configuration.cloud-service-provider.scaleway] to create your Scaleway credentials
+
+</Alert>
 
 To install Qovery on your Scaleway account, the `project id`, `secret access key` and `access key id` are required. Here is a comprehensive [step-by-step guide][docs.using-qovery.configuration.cloud-service-provider.scaleway] on how to generate your `secret access key` and `access key id`. If you already have those keys, then you can go to the next point.
 

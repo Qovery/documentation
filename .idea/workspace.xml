@@ -8,11 +8,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: update AWS doc">
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: update cloud provider guides">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/advanced/guide-digital-ocean.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/guide-digital-ocean.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/advanced/guide-scaleway.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/guide-scaleway.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.meta/links.toml" beforeDir="false" afterPath="$PROJECT_DIR$/.meta/links.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/community/reward/feedback.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/community/reward/feedback.md.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -320,21 +319,7 @@
       <workItem from="1630732701382" duration="1793000" />
       <workItem from="1630845977600" duration="23893000" />
       <workItem from="1631363977630" duration="704000" />
-      <workItem from="1631459527450" duration="1353000" />
-    </task>
-    <task id="LOCAL-00193" summary="wip: update doc for v2">
-      <created>1624745411586</created>
-      <option name="number" value="00193" />
-      <option name="presentableId" value="LOCAL-00193" />
-      <option name="project" value="LOCAL" />
-      <updated>1624745411586</updated>
-    </task>
-    <task id="LOCAL-00194" summary="wip: update doc for v2">
-      <created>1624793834363</created>
-      <option name="number" value="00194" />
-      <option name="presentableId" value="LOCAL-00194" />
-      <option name="project" value="LOCAL" />
-      <updated>1624793834363</updated>
+      <workItem from="1631459527450" duration="2286000" />
     </task>
     <task id="LOCAL-00195" summary="wip: update doc for v2">
       <created>1624794290904</created>
@@ -665,7 +650,21 @@
       <option name="project" value="LOCAL" />
       <updated>1631485063216</updated>
     </task>
-    <option name="localTasksCounter" value="242" />
+    <task id="LOCAL-00242" summary="chore: update cloud provider guides">
+      <created>1631486478918</created>
+      <option name="number" value="00242" />
+      <option name="presentableId" value="LOCAL-00242" />
+      <option name="project" value="LOCAL" />
+      <updated>1631486478918</updated>
+    </task>
+    <task id="LOCAL-00243" summary="chore: update cloud provider guides">
+      <created>1631486746097</created>
+      <option name="number" value="00243" />
+      <option name="presentableId" value="LOCAL-00243" />
+      <option name="project" value="LOCAL" />
+      <updated>1631486746097</updated>
+    </task>
+    <option name="localTasksCounter" value="244" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -751,7 +750,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="chore: apply changes submitted by Geshan" />
     <MESSAGE value="chore: update env variables docs to include demo video" />
     <MESSAGE value="chore: add link to apply as an ambassador" />
     <MESSAGE value="fix: typo" />
@@ -776,6 +774,7 @@
     <MESSAGE value="chore: update IAM" />
     <MESSAGE value="chore: update AWS zones" />
     <MESSAGE value="chore: update AWS doc" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: update AWS doc" />
+    <MESSAGE value="chore: update cloud provider guides" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: update cloud provider guides" />
   </component>
 </project>

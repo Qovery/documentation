@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-09-06"
+last_modified_on: "2021-09-16"
 title: "Scaleway (SCW)"
 description: "Learn how to configure and plug your Scaleway (SCW) account"
 ---
@@ -41,6 +41,13 @@ SCHEMA: Show a schema where Qovery is deployed on the account of the customer
 ### Connect your Scaleway account
 
 To link your Scaleway account to Qovery you need to provide a Scaleway `access key id`, `secret access key` and a `project id`.
+
+<Alert type="warning">
+
+If your Scaleway account is new, you need to open a ticket to the Scaleway support to unlock your Quota. You can post the following message:
+"Hello, I am going to deploy my applications on Scaleway with Qovery. Can you increase my quota for Kubernetes?"
+
+</Alert>
 
 <Alert type="info">
 

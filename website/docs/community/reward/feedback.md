@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-09-05"
+last_modified_on: "2021-09-15"
 title: Feedback
 description: Share your feedback on Qovery and get rewarded
 ---
@@ -55,7 +55,7 @@ Here is a list of good medias where you can share your love of Qovery:
 - [DZone](https://dzone.com/)
 
 
-Complete [this form][urls.qovery_submit_feedback_form] to share with us the feedback that you made and get rewarded.
+Complete [this form][urls.qovery_submit_public_feedback_form] to share with us the feedback that you made and get rewarded.
 
 ### Exceptional public feedback
 
@@ -113,3 +113,4 @@ Absolutely 🙂.
 [urls.qovery_billing_context]: https://www.qovery.com/blog/how-qovery-billing-works
 [urls.qovery_pricing]: https://www.qovery.com/pricing
 [urls.qovery_submit_feedback_form]: https://qovery.typeform.com/to/YAc9eWZv
+[urls.qovery_submit_public_feedback_form]: https://qovery.typeform.com/to/KwiNKRoo

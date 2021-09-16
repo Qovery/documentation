@@ -22,3 +22,8 @@ dark_logo_path = "/img/logos/qovery.svg"
 name = "posthog"
 logo_path = "/img/logos/posthog.svg"
 dark_logo_path = "/img/logos/posthog.svg"
+
+[[technologies]]
+name = "terraform"
+logo_path = "/img/logos/terraform.svg"
+dark_logo_path = "/img/logos/terraform.svg"

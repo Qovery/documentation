@@ -485,6 +485,15 @@ module.exports = {
         {
           "author_github": "https://github.com/deimosfr",
           "description": null,
+          "id": "/engineering/terraform-not-the-golden-hammer",
+          "last_modified_on": null,
+          "path": "website/guides/engineering/terraform-not-the-golden-hammer.md",
+          "series_position": null,
+          "title": "Terraform - Not the Golden Hammer"
+        },
+        {
+          "author_github": "https://github.com/deimosfr",
+          "description": null,
           "id": "/engineering/helm-freeze-manage-helm-charts-with-ease",
           "last_modified_on": null,
           "path": "website/guides/engineering/helm-freeze-manage-helm-charts-with-ease.md",
@@ -645,6 +654,11 @@ module.exports = {
       "dark_logo_path": "/img/logos/posthog.svg",
       "logo_path": "/img/logos/posthog.svg",
       "name": "posthog"
+    },
+    {
+      "dark_logo_path": "/img/logos/terraform.svg",
+      "logo_path": "/img/logos/terraform.svg",
+      "name": "terraform"
     }
   ],
   "transforms": {

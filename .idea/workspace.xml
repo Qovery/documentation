@@ -8,10 +8,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="fix: public feedback url">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/community/reward/feedback.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/community/reward/feedback.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/scaleway.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/scaleway.md" afterDir="false" />
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: update documentation">
       <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/scaleway.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/scaleway.md.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -320,14 +317,7 @@
       <workItem from="1630732701382" duration="1793000" />
       <workItem from="1630845977600" duration="23893000" />
       <workItem from="1631363977630" duration="704000" />
-      <workItem from="1631459527450" duration="3236000" />
-    </task>
-    <task id="LOCAL-00196" summary="wip: update doc for v2">
-      <created>1624800665496</created>
-      <option name="number" value="00196" />
-      <option name="presentableId" value="LOCAL-00196" />
-      <option name="project" value="LOCAL" />
-      <updated>1624800665496</updated>
+      <workItem from="1631459527450" duration="3384000" />
     </task>
     <task id="LOCAL-00197" summary="wip: update doc for v2">
       <created>1624801238601</created>
@@ -665,7 +655,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631736299221</updated>
     </task>
-    <option name="localTasksCounter" value="245" />
+    <task id="LOCAL-00245" summary="chore: update documentation">
+      <created>1631778659066</created>
+      <option name="number" value="00245" />
+      <option name="presentableId" value="LOCAL-00245" />
+      <option name="project" value="LOCAL" />
+      <updated>1631778659066</updated>
+    </task>
+    <option name="localTasksCounter" value="246" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -765,7 +762,6 @@
     <MESSAGE value="chore: change title for gen articles" />
     <MESSAGE value="chore: make changes based on Albane' feedback" />
     <MESSAGE value="chore: add gcp and azure coming soon" />
-    <MESSAGE value="chore: update documentation" />
     <MESSAGE value="chore: update AWS + Qovery doc" />
     <MESSAGE value="chore: add scaleway guide" />
     <MESSAGE value="chore: add scaleway doc to generate credentials" />
@@ -776,6 +772,7 @@
     <MESSAGE value="chore: update AWS doc" />
     <MESSAGE value="chore: update cloud provider guides" />
     <MESSAGE value="fix: public feedback url" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: public feedback url" />
+    <MESSAGE value="chore: update documentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: update documentation" />
   </component>
 </project>

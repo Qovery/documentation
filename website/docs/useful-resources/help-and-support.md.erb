@@ -2,9 +2,58 @@
 title: Help and Support
 description: "Get support from Qovery team"
 ---
+import Accordion from '@site/src/components/Accordion';
+
 If you need any help, you can:
 
 - join our [Qovery Discord Server][urls.qovery_chat].
 - join our [Qovery Community Forum][urls.qovery_community].
 
 There, you can discuss directly with our fantastic team as well as our wonderful community!
+
+# Troubleshooting
+
+This section covers the most common issues that can be encountered while using Qovery. Its goal is to provide information on
+how to proceed with encountered errors and describe steps required to solve them if applicable.
+
+The section is divided into categories per cloud provider (AWS, GCP, Azure...). **Qovery** section is not related to any of the cloud providers - errors from this category describe issues of the Qovery platform itself.
+
+## Qovery
+
+### Git Submodules
+
+**Error Message**:
+
+```
+Error message: Error while checkout submodules from repository https://github.com/user/repo.git.
+Error: Error { code: -1, klass: 23, message: "authentication required but no callback set" }
+```
+
+**Problem**:
+
+There are limitations with the support for Git Submodules. Only public Submodules over HTTPS or private with embedded basic authentication are supported.
+
+**Solution**:
+
+Follow our [Git Submodules guide][guides.tutorial.working-with-git-submodules] to make your application working with Git Submodules on Qovery.
+
+## Digital Ocean
+
+<Accordion>
+
+
+</Accordion>
+
+## Amazon Web Services
+
+<Accordion>
+
+
+</Accordion>
+
+## Scaleway
+
+<Accordion>
+
+
+</Accordion>

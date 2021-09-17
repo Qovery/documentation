@@ -437,6 +437,15 @@ module.exports = {
           "title": "URL Shortener API with Kotlin (Part 1/2)"
         },
         {
+          "author_github": "https://github.com/pjeziorowski",
+          "description": null,
+          "id": "/tutorial/working-with-git-submodules",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/working-with-git-submodules.md",
+          "series_position": null,
+          "title": "Working with Git Submodules"
+        },
+        {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
           "id": "/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes",

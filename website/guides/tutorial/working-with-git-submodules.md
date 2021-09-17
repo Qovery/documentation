@@ -1,0 +1,101 @@
+---
+last_modified_on: "2021-09-17"
+$schema: "/.meta/.schemas/guides.json"
+title: Working with Git Submodules
+description: How to use Git Submodules on Qovery
+author_github: https://github.com/pjeziorowski
+tags: ["type: tutorial", "technology: qovery"]
+hide_pagination: true
+---
+
+import Alert from '@site/src/components/Alert';
+
+Some applications use **Git Submodules** to resolve their dependencies. Git submodules are a feature of the Git SCM that allow you to include the files of one Git repository into another.
+This short guide will explain how to use Git Submodules on Qovery.
+
+### Example
+
+To include the **Foo** source code into the **Bar** project, use the following commands:
+
+```bash
+$ cd ~/code/Bar
+
+$ git submodule add https://github.com/myusername/Foo somefolder/Foo
+Cloning into 'somefolder/Foo'...
+remote: Counting objects: 26, done.
+remote: Compressing objects: 100% (17/17), done.
+remote: Total 26 (delta 8), reused 19 (delta 5)
+Unpacking objects: 100% (26/26), done.
+```
+
+This would create a new submodule called **Foo** and place **Foo** code into **somefolder/Foo** directory of **Bar** app.
+
+After a Git Submodule is added locally, you need to commit it to your app repository:
+
+```bash
+$ git commit -am "adding a submodule"
+[master 314ef62] adding a submodule
+2 files changed, 4 insertions(+)
+```
+
+Committed submodule source code can be used by your application and is available in Qovery CI/CD build/deployment pipeline.
+
+### Limitations
+
+#### Private Submodules
+
+Qovery does not have access to locally available credentials, so if you want to use some way of authentication, the only available
+way as of now is to use HTTP basic authentication URL scheme:
+
+<Alert type="info">
+
+Note the embedded credentials in the URL
+
+</Alert>
+
+```bash
+$ git submodule add https://username:password@github.com/myusername/FooBar
+```
+
+This adds a private Git Submodule to the application while still allowing it to resolve in non-local environments.
+
+<Alert type="warning">
+
+Since the credentials are stored in plaintext in the `.git/submodules` directory, you need to consider if it meets your security requirements.
+
+</Alert>
+
+#### SSH / Git protocol Submodules
+
+At the moment, SSH or Git submodules are not supported. If you want to use a submodule, please make sure you use HTTPS (check the content of the `.git/submodules` file).
+
+**Not** supported - SSH:
+
+```
+[submodule "path/to/module"]
+    url = ssh://user/repo
+```
+
+**Not** supported - Git:
+
+```
+[submodule "path/to/module"]
+    url = git://github.com/torvalds/linux.git
+```
+
+**Supported** - HTTPS:
+
+```
+[submodule "path/to/module"]
+    url = https://github.com/myusername/FooBar
+```
+
+**Supported** - HTTPS with embedded basic authentication:
+
+```
+[submodule "path/to/module"]
+    url = https://username:password@github.com/myusername/FooBar
+```
+
+
+

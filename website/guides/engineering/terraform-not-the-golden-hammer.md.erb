@@ -1,0 +1,232 @@
+---
+$schema: "/.meta/.schemas/guides.json"
+title: Terraform - Not the Golden Hammer
+description: Feedbacks about mixed usages (Cloud Providers, Kubernetes...)
+author_github: https://github.com/deimosfr
+tags: ["type: engineering", "technology: terraform"]
+hide_pagination: true
+---
+import Assumptions from '@site/src/components/Assumptions';
+
+Terraform is maybe, the most well-known solution to deploy cloud providers' services. It's a fantastic tool, easily usable, with descriptive language (DSL) called HCL, team-oriented, supporting tons of cloud providers, etc.
+
+On paper, it's an attractive solution. And it's easy to start delegating more and more responsibilities to Terraform, as it's like a swiss knife; it knows how to perform several kinds of actions against several varieties of technologies.
+
+Qovery is a platform to help developers to deploy their app on their cloud account in a few minutes ([check it out](https://www.qovery.com/)). Before deploying an app, Qovery needs to deploy a few services (cloud provider side) where the app code will be hosted. To do so, we decided to use Terraform. The main reasons are:
+* Terraform is the industry standard to deploy cloud services.
+* Qovery Engine is open source (https://github.com/Qovery/engine), and we wanted to use something that anyone could easily contribute to.
+* Terraform is maintained by HashiCorp and by Cloud providers themself (trust of good quality and integration)
+
+At the beginning of Qovery, we took shortcuts. We needed to go fast. Using Terraform as the golden hammer was our shortcut. Based on our past experiences, we knew the golden hammer didn't exist. We've seen many companies struggling when they start needing customization. In the end, you pay the price of using non-adapted tools!
+
+So we were playing with the clock, as we knew it wouldn't fit in the mid/long run but did not precisely know when it would happen.
+
+This article is a return of experience, explaining where, when, and how you should use Terraform.
+
+## How we used Terraform
+
+### HCL
+
+First thing to understand is how Terraform works. It's a DSL as I mentionned earlier, the code looks like this:
+
+```hcl
+resource "scaleway_k8s_cluster" "kubernetes_cluster" {
+  name    = var.kubernetes_cluster_name
+  version = var.scaleway_ks_version
+  cni     = "cilium"
+
+  autoscaler_config {
+    disable_scale_down = true
+    estimator = "binpacking"
+    scale_down_delay_after_add = "10m"
+    balance_similar_node_groups = true
+  }
+
+  auto_upgrade {
+    enable = true
+    maintenance_window_day = "any"
+    maintenance_window_start_hour = 3
+  }
+}
+```
+
+As you can see, it's easily readable and understandable. It supports AWS, DigitalOcean, Scaleway, and so many other cloud providers.
+
+### GitOps and team usage
+
+You can add this kind of code in a git repository and work with your team members on the same codebase.
+
+When you run terraform against the Terraform code you've written, it will generate a tfstate file locally containing the information of what it has managed, keeping track of what it owns.
+
+Working with Terraform in a team with parallel deployments is not the default Terraform behavior. You will have to configure a remote backend (s3+dynamodb, for example) to store the tfstate file.
+
+```hcl
+terraform {
+  backend "s3" {
+    access_key = xxx
+    secret_key = xxx
+    bucket = xxx
+    key =xxx.tfstate"
+    dynamodb_table = xxx
+    region = xxx
+  }
+}
+```
+
+You'll then have a shared lock mechanism to avoid more than one person applying a change to the same resources.
+
+
+### tfstate
+When you run terraform, it first refreshes the content of the state file, comparing what is deployed and what is stored into the tfstate file. It allows Terraform only to perform change actions on what is different from the tfstate file. It's very efficient.
+
+
+### Helm management
+
+Helm doesn't only know how to work with several cloud providers but also knows how to talk to Kubernetes, Helm...the list is...HUGE! As you can see on the provider list (https://registry.terraform.io/browse/providers), there are +1.3k providers available!
+
+So we were using it for Helm. Why? Because it's super useful to create something on a cloud provider (like an IAM account), get the results from Terraform, and directly inject them as Helm variables.
+
+To show how easy it is:
+
+```hcl
+# Create user and attach policy
+
+resource "aws_iam_user" "iam_eks_loki" {
+  name = "qovery-logs-${var.kubernetes_cluster_id}"
+  tags = local.tags_eks
+}
+
+resource "aws_iam_access_key" "iam_eks_loki" {
+  user    = aws_iam_user.iam_eks_loki.name
+}
+
+resource "aws_iam_policy" "loki_s3_policy" {
+  name = aws_iam_user.iam_eks_loki.name
+  description = "Policy for logs storage"
+
+  policy = <<POLICY
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "s3:*",
+            "Resource": "*"
+        }
+    ]
+}
+POLICY
+}
+
+resource "aws_iam_user_policy_attachment" "s3_loki_attachment" {
+  user       = aws_iam_user.iam_eks_loki.name
+  policy_arn = aws_iam_policy.loki_s3_policy.arn
+}
+
+# Deploy chart with user API credentials
+
+resource "helm_release" "loki" {
+  name = "loki"
+  chart = "common/charts/loki"
+  namespace = "logging"
+  create_namespace = true
+  atomic = true
+
+  set {
+    name = "config.storage_config.aws.access_key_id"
+    value = aws_iam_access_key.iam_eks_loki.id
+  }
+
+  set {
+    name = "config.storage_config.aws.secret_access_key"
+    value = aws_iam_access_key.iam_eks_loki.secret
+  }
+
+ ...
+
+  depends_on = [
+    aws_iam_user.iam_eks_loki,
+    aws_iam_access_key.iam_eks_loki,
+    aws_s3_bucket.loki_bucket,
+    aws_iam_policy.loki_s3_policy,
+    aws_iam_user_policy_attachment.s3_loki_attachment,
+    aws_eks_cluster.eks_cluster,
+  ]
+}
+```
+
+
+And it supports the removal and upgrades for sure!
+
+## Problems facing
+
+At this time, we had the golden hammer, we were super happy about what we achieved with the time invested. We were able to deploy on cloud providers (AWS/DigitalOcean), use Cloudflare, deploy with Helm and perform some operations with Kubernetes. Everything only with Terraform! So what could go wrong?
+
+### Heterogeneous resources management
+
+The way Terraform manages resources is not homogeneous. Here are a few examples:
+* When you run Terraform against AWS on the subnets part, it will create (anytime you deploy) the missing subnets
+* For some resources like RDS or EKS, it won't check if the resource already exists or not. So if it's missing, nothing is going to happen as it's marked are deployed in the tfstate file
+* Same for Helm chart deployed, for example, they are marked as deployed, so no update will be performed on it until you change something
+
+So until you experienced one of those cases, it's hard to know if a resource (which is not there) will be re-created or not.
+
+### (Too) Strong dependencies
+
+Let me give a frustrating example, let's say I want to deploy:
+
+1. A Kubernetes cluster (EKS) on AWS
+2. DNS name on Cloudflare
+3. Helm charts on this EKS cluster
+
+I specify dependencies in Terraform with this exact order. I run the “terraform apply” command to deploy this stack. A few min later, wowww it works, that is amazing, I'm super excited!
+
+A few days later, I need more resources so I update the number of worker nodes in EKS. I run once again the “terraform apply” command. But for some reason, Cloudflare API doesn't answer and I got completely stuck there without the possibility to update with Terraform this field because of linked dependencies.
+
+Same for Helm, I've multiplied the number of charts I wanted to deploy. If for some reason I have a problem with some, I may be unable to update values I wanted to update on others' charts, even if it shouldn't be that important.
+
+**I just wanted a dependency order of deployment, not a so hard dependency between all of them for any kind of updates.**
+
+The link between all declared is strong, so strong that you may be blocked until the problem is resolved (by a third-party provider or a manual fix from you). **In case of issues, when you need to go fast, it can be a real issue, drastically slowing down the resolution of your problems.**
+
+### No automatic reconciliation
+
+Those who already used a configuration manager (Puppet, Ansible, Chef…), are familiar with the automatic reconciliation. Just run it against your infrastructure and you'll be sure about the end result if you have any doubts. You'll get what you've asked for!
+
+**On terraform it's different, because of the tfstate. All of the deployed elements are stored in the tfstate, re-running terraform won't update resources that are supposed to be in a specific state but are not.**
+
+This is where the biggest behavior comes in with Terraform compared to configuration managers.
+
+### Automatic import
+When you deploy resources and something goes wrong (like an API returns a timeout failure, but in the end, you have your resource deployed), Terraform won't store the info in the state file as it shouldn't exist. Unfortunately, the resource exists and next time you will run “terraform apply”, you'll face a “resource already exists” message.
+
+There is, unfortunately, no way to automatically recover it automatically. You need to “import” each resource one by one (https://www.terraform.io/docs/cli/commands/import.html).
+
+This is not convenient at all if you have a team of dedicated Ops/DevOps/SRE managing it, who will fix it manually. But in the case your want it to be 100% automatic, it is a problem.
+
+## Advises and suggestion
+### Split
+If you want to let Terraform manage several kinds of different resources, I strongly advise to split into different state files and do not link them all together.
+
+This is not convenient at first because you're losing the strong link between all of them, but you can overcome this issue with data sources (https://www.terraform.io/docs/language/data-sources/index.html).
+
+You'll also need some tooling around it to manage the flow (in which order all of them have to run).
+
+### Outsource
+
+This is the choice we've made at Qovery, we only kept the minimum useful to Terraform, so the Cloud part.
+
+Everything Helm/Kubernetes related are managed by our Engine. This has a lot of advantages (will talk about it in a dedicated post):
+* more flexibility
+* restricting Terraform to what he's really good at
+* linked resources are strong and they are really strong cloud-only provider side
+* we better fine-grained manage helm lifecycle
+
+## Conclusion
+
+If today, someone is asking me: “Should I use Terraform to deploy cloud providers infrastructures or services?”. I would definitively say “YES”.
+
+But I'll mention that depending on how strong should be the automatization requested behind it, splitting or delegating some parts of what should be achieved. It has to come in the balance at a very early stage.
+
+
+<Jump to="/guides/engineering/">Engineering</Jump>

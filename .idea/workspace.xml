@@ -10,7 +10,7 @@
   <component name="ChangeListManager">
     <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: update documentation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/scaleway.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/scaleway.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/engineering/terraform-not-the-golden-hammer.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/engineering/terraform-not-the-golden-hammer.md.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -318,14 +318,7 @@
       <workItem from="1630732701382" duration="1793000" />
       <workItem from="1630845977600" duration="23893000" />
       <workItem from="1631363977630" duration="704000" />
-      <workItem from="1631459527450" duration="3921000" />
-    </task>
-    <task id="LOCAL-00198" summary="wip: update doc for v2">
-      <created>1624802545987</created>
-      <option name="number" value="00198" />
-      <option name="presentableId" value="LOCAL-00198" />
-      <option name="project" value="LOCAL" />
-      <updated>1624802545987</updated>
+      <workItem from="1631459527450" duration="4923000" />
     </task>
     <task id="LOCAL-00199" summary="wip: update doc for v2&#10;chore: change domain from docs.qovery.com to hub.qovery.com">
       <created>1624820002784</created>
@@ -663,7 +656,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631778721754</updated>
     </task>
-    <option name="localTasksCounter" value="247" />
+    <task id="LOCAL-00247" summary="chore: update documentation">
+      <created>1631782548674</created>
+      <option name="number" value="00247" />
+      <option name="presentableId" value="LOCAL-00247" />
+      <option name="project" value="LOCAL" />
+      <updated>1631782548674</updated>
+    </task>
+    <option name="localTasksCounter" value="248" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

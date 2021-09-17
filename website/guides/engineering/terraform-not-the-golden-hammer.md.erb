@@ -1,6 +1,6 @@
 ---
 $schema: "/.meta/.schemas/guides.json"
-title: Terraform - Not the Golden Hammer
+title: Terraform is Not the Golden Hammer
 description: Feedbacks about mixed usages (Cloud Providers, Kubernetes...)
 author_github: https://github.com/deimosfr
 tags: ["type: engineering", "technology: terraform"]
@@ -8,7 +8,7 @@ hide_pagination: true
 ---
 import Assumptions from '@site/src/components/Assumptions';
 
-Terraform is maybe, the most well-known solution to deploy cloud providers' services. It's a fantastic tool, easily usable, with descriptive language (DSL) called HCL, team-oriented, supporting tons of cloud providers, etc.
+Terraform is probably the most used tool to deploy cloud services. It's a fantastic tool, easily usable, with descriptive language (DSL) called HCL, team-oriented, supporting tons of cloud providers, etc.
 
 On paper, it's an attractive solution. And it's easy to start delegating more and more responsibilities to Terraform, as it's like a swiss knife; it knows how to perform several kinds of actions against several varieties of technologies.
 
@@ -181,7 +181,7 @@ Let me give a frustrating example, let's say I want to deploy:
 
 I specify dependencies in Terraform with this exact order. I run the “terraform apply” command to deploy this stack. A few min later, wowww it works, that is amazing, I'm super excited!
 
-A few days later, I need more resources so I update the number of worker nodes in EKS. I run once again the “terraform apply” command. But for some reason, Cloudflare API doesn't answer and I got completely stuck there without the possibility to update with Terraform this field because of linked dependencies.
+A few days later, I need more resources, so I update the number of worker nodes in EKS. I run once again the “terraform apply” command. But for some reason, Cloudflare API doesn't answer and I got completely stuck there without the possibility to update with Terraform this field because of linked dependencies.
 
 Same for Helm, I've multiplied the number of charts I wanted to deploy. If for some reason I have a problem with some, I may be unable to update values I wanted to update on others' charts, even if it shouldn't be that important.
 
@@ -191,9 +191,9 @@ The link between all declared is strong, so strong that you may be blocked until
 
 ### No automatic reconciliation
 
-Those who already used a configuration manager (Puppet, Ansible, Chef…), are familiar with the automatic reconciliation. Just run it against your infrastructure and you'll be sure about the end result if you have any doubts. You'll get what you've asked for!
+Those who already used a configuration manager (Puppet, Ansible, Chef…), are familiar with the automatic reconciliation. Just run it against your infrastructure, and you'll be sure about the end result if you have any doubts. You'll get what you've asked for!
 
-**On terraform it's different, because of the tfstate. All of the deployed elements are stored in the tfstate, re-running terraform won't update resources that are supposed to be in a specific state but are not.**
+**On terraform it's different, because of the tfstate. All the deployed elements are stored in the tfstate, re-running terraform won't update resources that are supposed to be in a specific state but are not.**
 
 This is where the biggest behavior comes in with Terraform compared to configuration managers.
 
@@ -218,8 +218,8 @@ This is the choice we've made at Qovery, we only kept the minimum useful to Terr
 
 Everything Helm/Kubernetes related are managed by our Engine. This has a lot of advantages (will talk about it in a dedicated post):
 * more flexibility
-* restricting Terraform to what he's really good at
-* linked resources are strong and they are really strong cloud-only provider side
+* restricting Terraform to what he's perfect at
+* linked resources are strong, and they are really strong cloud-only provider side
 * we better fine-grained manage helm lifecycle
 
 ## Conclusion

@@ -1,7 +1,7 @@
 ---
-last_modified_on: "2021-09-16"
+last_modified_on: "2021-09-17"
 $schema: "/.meta/.schemas/guides.json"
-title: Terraform - Not the Golden Hammer
+title: Terraform is Not the Golden Hammer
 description: Feedbacks about mixed usages (Cloud Providers, Kubernetes...)
 author_github: https://github.com/deimosfr
 tags: ["type: engineering", "technology: terraform"]
@@ -12,16 +12,16 @@ import Jump from '@site/src/components/Jump';
 
 import Assumptions from '@site/src/components/Assumptions';
 
-Terraform is maybe, the most well-known solution to deploy cloud providers' services. It's a fantastic tool, easily usable, with descriptive language (DSL) called HCL, team-oriented, supporting tons of cloud providers, etc.
+Terraform is probably the most used tool to deploy cloud services. It's a fantastic tool, easily usable, with descriptive language (DSL) called HCL, team-oriented, supporting tons of cloud providers, etc.
 
 On paper, it's an attractive solution. And it's easy to start delegating more and more responsibilities to Terraform, as it's like a swiss knife; it knows how to perform several kinds of actions against several varieties of technologies.
 
 Qovery is a platform to help developers to deploy their app on their cloud account in a few minutes ([check it out](https://www.qovery.com/)). Before deploying an app, Qovery needs to deploy a few services (cloud provider side) where the app code will be hosted. To do so, we decided to use Terraform. The main reasons are:
-* Terraform is the industry standard to deploy cloud services
-* Qovery Engine is open source (https://github.com/Qovery/engine), and we wanted to use something that anyone could easily contribute to
+* Terraform is the industry standard to deploy cloud services.
+* Qovery Engine is open source (https://github.com/Qovery/engine), and we wanted to use something that anyone could easily contribute to.
 * Terraform is maintained by HashiCorp and by Cloud providers themself (trust of good quality and integration)
 
-At the beginning of Qovery, we took shortcuts. We needed to go fast. Using Terraform as the golden hammer was our shortcut. Based on our past experiences, we knew the golden hammer didn't exist. We've seen many companies struggling when they start needing customization. In the end, you pay the price of using inappropriate tools!
+At the beginning of Qovery, we took shortcuts. We needed to go fast. Using Terraform as the golden hammer was our shortcut. Based on our past experiences, we knew the golden hammer didn't exist. We've seen many companies struggling when they start needing customization. In the end, you pay the price of using non-adapted tools!
 
 So we were playing with the clock, as we knew it wouldn't fit in the mid/long run but did not precisely know when it would happen.
 
@@ -193,7 +193,7 @@ Let me give a frustrating example, let's say I want to deploy:
 
 I specify dependencies in Terraform with this exact order. I run the “terraform apply” command to deploy this stack. A few min later, wowww it works, that is amazing, I'm super excited!
 
-A few days later, I need more resources so I update the number of worker nodes in EKS. I run once again the “terraform apply” command. But for some reason, Cloudflare API doesn't answer and I got completely stuck there without the possibility to update with Terraform this field because of linked dependencies.
+A few days later, I need more resources, so I update the number of worker nodes in EKS. I run once again the “terraform apply” command. But for some reason, Cloudflare API doesn't answer and I got completely stuck there without the possibility to update with Terraform this field because of linked dependencies.
 
 Same for Helm, I've multiplied the number of charts I wanted to deploy. If for some reason I have a problem with some, I may be unable to update values I wanted to update on others' charts, even if it shouldn't be that important.
 
@@ -203,9 +203,9 @@ The link between all declared is strong, so strong that you may be blocked until
 
 ### No automatic reconciliation
 
-Those who already used a configuration manager (Puppet, Ansible, Chef…), are familiar with the automatic reconciliation. Just run it against your infrastructure and you'll be sure about the end result if you have any doubts. You'll get what you've asked for!
+Those who already used a configuration manager (Puppet, Ansible, Chef…), are familiar with the automatic reconciliation. Just run it against your infrastructure, and you'll be sure about the end result if you have any doubts. You'll get what you've asked for!
 
-**On terraform it's different, because of the tfstate. All of the deployed elements are stored in the tfstate, re-running terraform won't update resources that are supposed to be in a specific state but are not.**
+**On terraform it's different, because of the tfstate. All the deployed elements are stored in the tfstate, re-running terraform won't update resources that are supposed to be in a specific state but are not.**
 
 This is where the biggest behavior comes in with Terraform compared to configuration managers.
 
@@ -230,8 +230,8 @@ This is the choice we've made at Qovery, we only kept the minimum useful to Terr
 
 Everything Helm/Kubernetes related are managed by our Engine. This has a lot of advantages (will talk about it in a dedicated post):
 * more flexibility
-* restricting Terraform to what he's really good at
-* linked resources are strong and they are really strong cloud-only provider side
+* restricting Terraform to what he's perfect at
+* linked resources are strong, and they are really strong cloud-only provider side
 * we better fine-grained manage helm lifecycle
 
 ## Conclusion

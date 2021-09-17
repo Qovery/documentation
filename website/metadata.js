@@ -489,7 +489,7 @@ module.exports = {
           "last_modified_on": null,
           "path": "website/guides/engineering/terraform-not-the-golden-hammer.md",
           "series_position": null,
-          "title": "Terraform - Not the Golden Hammer"
+          "title": "Terraform is Not the Golden Hammer"
         },
         {
           "author_github": "https://github.com/deimosfr",

@@ -385,6 +385,15 @@ module.exports = {
         {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
+          "id": "/tutorial/how-to-deploy-a-rust-rest-api-application-on-aws-with-ease",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/how-to-deploy-a-rust-rest-api-application-on-aws-with-ease.md",
+          "series_position": null,
+          "title": "How to deploy a Rust REST API application on AWS with ease"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
           "id": "/tutorial/deploy-fullstack-application-composed-of-hasura-postgresql-angular",
           "last_modified_on": null,
           "path": "website/guides/tutorial/deploy-fullstack-application-composed-of-hasura-postgresql-angular.md",

@@ -9,8 +9,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: update documentation">
+      <change afterPath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-a-rust-rest-api-application-on-aws-with-ease.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-a-rust-rest-api-application-on-aws-with-ease.md.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/rust_prime_number_app.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/rust_prime_number_app_deployed.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/rust_prime_number_environment.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/static/img/rust_prime_number_project.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/engineering/terraform-not-the-golden-hammer.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/engineering/terraform-not-the-golden-hammer.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/metadata.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/metadata.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,10 +163,10 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/website/static/img" />
+      <recent name="$PROJECT_DIR$/website/guides/tutorial" />
       <recent name="$PROJECT_DIR$/website/static/img/logos" />
       <recent name="$PROJECT_DIR$/website/guides/advanced" />
       <recent name="$PROJECT_DIR$/website/docs/community/reward" />
-      <recent name="$PROJECT_DIR$/scripts/generate/templates/_partials" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/website/docs/community" />
@@ -171,6 +177,17 @@
     </key>
   </component>
   <component name="RunManager" selected="npm.start">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/website/package.json" />
       <command value="run" />
@@ -318,14 +335,9 @@
       <workItem from="1630732701382" duration="1793000" />
       <workItem from="1630845977600" duration="23893000" />
       <workItem from="1631363977630" duration="704000" />
-      <workItem from="1631459527450" duration="4923000" />
-    </task>
-    <task id="LOCAL-00199" summary="wip: update doc for v2&#10;chore: change domain from docs.qovery.com to hub.qovery.com">
-      <created>1624820002784</created>
-      <option name="number" value="00199" />
-      <option name="presentableId" value="LOCAL-00199" />
-      <option name="project" value="LOCAL" />
-      <updated>1624820002784</updated>
+      <workItem from="1631459527450" duration="5459000" />
+      <workItem from="1631905701772" duration="13000" />
+      <workItem from="1631907990462" duration="11613000" />
     </task>
     <task id="LOCAL-00200" summary="wip: update doc for v2">
       <created>1624826482265</created>
@@ -663,7 +675,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631782548674</updated>
     </task>
-    <option name="localTasksCounter" value="248" />
+    <task id="LOCAL-00248" summary="chore: update documentation">
+      <created>1631862291381</created>
+      <option name="number" value="00248" />
+      <option name="presentableId" value="LOCAL-00248" />
+      <option name="project" value="LOCAL" />
+      <updated>1631862291381</updated>
+    </task>
+    <option name="localTasksCounter" value="249" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

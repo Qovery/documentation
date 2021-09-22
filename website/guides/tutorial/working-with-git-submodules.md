@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-09-17"
+last_modified_on: "2021-09-22"
 $schema: "/.meta/.schemas/guides.json"
 title: Working with Git Submodules
 description: How to use Git Submodules on Qovery
@@ -61,6 +61,7 @@ This adds a private Git Submodule to the application while still allowing it to 
 
 <Alert type="warning">
 
+This solution is not recommended to be used by inexprienced users.
 Since the credentials are stored in plaintext in the `.git/submodules` directory, you need to consider if it meets your security requirements.
 
 </Alert>

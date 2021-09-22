@@ -410,6 +410,15 @@ module.exports = {
           "title": "How to use Github Organizations with Qovery"
         },
         {
+          "author_github": "https://github.com/Aggis15",
+          "description": null,
+          "id": "/tutorial/how-to-use-the-qovery-api",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/how-to-use-the-qovery-api.md",
+          "series_position": null,
+          "title": "How to use the Qovery API"
+        },
+        {
           "author_github": "https://github.com/MacLikorne",
           "description": null,
           "id": "/tutorial/how-to-write-a-dockerfile",

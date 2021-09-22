@@ -8,10 +8,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: add article on how to deploy a rust rest api">
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chre: edit Aggis API article">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/guides/tutorial/how-to-use-the-qovery-api.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/how-to-use-the-qovery-api.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/how-to-use-the-qovery-api.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/how-to-use-the-qovery-api.md.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -346,21 +345,7 @@
       <workItem from="1631363977630" duration="704000" />
       <workItem from="1631459527450" duration="5459000" />
       <workItem from="1631905701772" duration="13000" />
-      <workItem from="1631907990462" duration="20308000" />
-    </task>
-    <task id="LOCAL-00201" summary="wip: update doc for v2">
-      <created>1624827049527</created>
-      <option name="number" value="00201" />
-      <option name="presentableId" value="LOCAL-00201" />
-      <option name="project" value="LOCAL" />
-      <updated>1624827049527</updated>
-    </task>
-    <task id="LOCAL-00202" summary="wip: update doc for v2">
-      <created>1624831169847</created>
-      <option name="number" value="00202" />
-      <option name="presentableId" value="LOCAL-00202" />
-      <option name="project" value="LOCAL" />
-      <updated>1624831169847</updated>
+      <workItem from="1631907990462" duration="21310000" />
     </task>
     <task id="LOCAL-00203" summary="wip: update doc for v2">
       <created>1624866646370</created>
@@ -691,7 +676,21 @@
       <option name="project" value="LOCAL" />
       <updated>1631980054251</updated>
     </task>
-    <option name="localTasksCounter" value="250" />
+    <task id="LOCAL-00250" summary="chre: edit Aggis API article">
+      <created>1632336608287</created>
+      <option name="number" value="00250" />
+      <option name="presentableId" value="LOCAL-00250" />
+      <option name="project" value="LOCAL" />
+      <updated>1632336608287</updated>
+    </task>
+    <task id="LOCAL-00251" summary="chre: edit Aggis API article">
+      <created>1632336833729</created>
+      <option name="number" value="00251" />
+      <option name="presentableId" value="LOCAL-00251" />
+      <option name="project" value="LOCAL" />
+      <updated>1632336833729</updated>
+    </task>
+    <option name="localTasksCounter" value="252" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -777,7 +776,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="fix: typo" />
     <MESSAGE value="chore: update brand identity" />
     <MESSAGE value="fix: docsearch" />
     <MESSAGE value="fix: AWS regions ca-central-1 = Toronto" />
@@ -802,6 +800,7 @@
     <MESSAGE value="fix: public feedback url" />
     <MESSAGE value="chore: update documentation" />
     <MESSAGE value="chore: add article on how to deploy a rust rest api" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: add article on how to deploy a rust rest api" />
+    <MESSAGE value="chre: edit Aggis API article" />
+    <option name="LAST_COMMIT_MESSAGE" value="chre: edit Aggis API article" />
   </component>
 </project>

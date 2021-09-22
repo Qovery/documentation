@@ -17,7 +17,7 @@ import Jump from '@site/src/components/Jump';
 
 <Alert type="info">
 
-Important note: this tutorial is a temporary workaround to consume the Qovery API - an official way by creating a secured token will be provided soon.
+Important note: this tutorial is a temporary workaround to consume the Qovery API - an official way will be provided soon.
 
 </Alert>
 

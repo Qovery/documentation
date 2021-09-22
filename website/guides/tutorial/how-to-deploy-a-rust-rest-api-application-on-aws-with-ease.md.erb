@@ -1,0 +1,307 @@
+---
+$schema: "/.meta/.schemas/guides.json"
+title: How to deploy a Rust REST API application on AWS with ease
+description: In this article, you will learn how to deploy a Rust REST API application on AWS with ease
+author_github: https://github.com/evoxmusic
+tags: ["type: tutorial", "language: rust"]
+hide_pagination: true
+---
+import Alert from '@site/src/components/Alert';
+import Assumptions from '@site/src/components/Assumptions';
+import Jump from '@site/src/components/Jump';
+
+> [Fast, reliable, productive - Pick three](https://github.com/rust-lang/www.rust-lang.org/issues/419#issuecomment-443418587) | Rust's slogan
+
+Rust is a systems programming language that runs blazingly fast, prevents segfaults, and guarantees thread safety.
+
+In this article, you will learn how to deploy a Rust API easily in a few steps. This article is separate into two parts:
+
+* Create a Rust REST API app
+* Dockerized our Rust REST API app
+* Deploy our Rust REST API app on AWS
+
+<Assumptions>
+
+* Rust installed on your system (instructions [here](https://www.rust-lang.org/learn/get-started))
+* You have an AWS account
+* You have a GitHub account
+
+</Assumptions>
+
+Let's go!
+
+## Create a Rust REST API app
+
+<Alert type="info">
+
+Check out the Rust REST API repo [here](https://github.com/evoxmusic/rust-prime-number-api). You can fork it!
+
+</Alert>
+
+To illustrate the deployment of our Rust API application, we are going to create an API to know if a number is prime number. Let's create our Rust project using cargo
+
+```bash title="create our rust project"
+cargo new --bin rust-prime-number-api
+```
+
+Now you must have a `rust-prime-number-api` folder with 2 files:
+- `Cargo.toml`
+- `src/main.rs`
+
+To build our Rust REST API we are going to use Rocket - a web framework for Rust that makes it simple to write fast web application.
+
+Add the `rocket` and `serde` (JSON serializer/deserializer) dependencies to your `Cargo.toml`, then run `cargo fetch` (optional) to update your local dependencies.
+
+```toml title="Cargo.toml" {9-12}
+[package]
+name = "rust-prime-number-api"
+version = "0.1.0"
+authors = ["Romaric Philogene <evoxmusic@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+rocket = { version = "0.5.0-rc.1", features = ["json"] }
+serde = { version = "1.0.130", features = ["derive"] }
+serde_json = "1.0.68"
+```
+
+Put inside your `src/main.rs` the following Rust code
+
+```rust title="src/main.rs"
+#[macro_use]
+extern crate rocket;
+
+use rocket::serde::json::Json;
+use serde::Serialize;
+use std::time::SystemTime;
+use std::net::{IpAddr, Ipv4Addr};
+
+#[derive(Serialize)]
+struct NumberResponse {
+    number: u64,
+    is_prime_number: bool,
+    execution_time_in_micros: u128
+}
+
+#[get("/")]
+fn index() -> &'static str {
+    "This is my Rust prime number REST API"
+}
+
+#[get("/isPrime?<number>")]
+fn get_is_prime(number: u64) -> Json<NumberResponse> {
+    let now = SystemTime::now();
+
+    Json(NumberResponse {
+        number,
+        is_prime_number: is_prime(number),
+        execution_time_in_micros: now.elapsed().unwrap().as_micros(),
+    })
+}
+
+fn is_prime(n: u64) -> bool {
+    if n <= 1 {
+        return false;
+    }
+
+    for a in 2..n {
+        if n % a == 0 {
+            return false;
+        }
+    }
+
+    true
+}
+
+#[rocket::main]
+async fn main() {
+    let mut config = rocket::config::Config::default();
+    config.address = IpAddr::V4(Ipv4Addr::new(0, 0, 0, 0));
+
+    let _ = rocket::build()
+        .configure(config)
+        .mount("/", routes![index, get_is_prime])
+        .launch()
+        .await;
+}
+```
+
+Run `cargo run` and you are supposed to get the following output
+
+```bash
+🔧 Configured for debug.
+   >> address: 0.0.0.0
+   >> port: 8000
+   >> workers: 16
+   >> ident: Rocket
+   >> keep-alive: 5s
+   >> limits: bytes = 8KiB, data-form = 2MiB, file = 1MiB, form = 32KiB, json = 1MiB, msgpack = 1MiB, string = 8KiB
+   >> tls: disabled
+   >> temp dir: /var/folders/td/bjr48yg96gd2xgd3s44fg40c0000gn/T/
+   >> log level: normal
+   >> cli colors: true
+   >> shutdown: ctrlc = true, force = true, signals = [SIGTERM], grace = 2s, mercy = 3s
+🛰  Routes:
+   >> (index) GET /
+   >> (get_is_prime) GET /isPrime?<number>
+📡 Fairings:
+   >> Shield (liftoff, response, singleton)
+🛡️ Shield:
+   >> X-Frame-Options: SAMEORIGIN
+   >> Permissions-Policy: interest-cohort=()
+   >> X-Content-Type-Options: nosniff
+🚀 Rocket has launched from http://127.0.0.1:8000
+```
+
+You can try your Rust REST API by opening `http://127.0.0.1:8000/isPrime?number=9293029022983991` in your browser.
+
+```json
+{
+  "number": 9293029022983992,
+  "is_prime_number": false,
+  "execution_time_in_micros": 942894
+}
+```
+
+Let's now containerized our app with Docker to deploy it on our AWS account.
+
+## Dockerized our Rust REST API app
+
+To run our Rust app we need to provide a valid Dockerfile. If you are not familiar with Docker, you can take a look to [this article][guides.tutorial.how-to-write-a-dockerfile]. Here is the content of our Dockerfile.
+
+<Alert type="success">
+
+Our Dockerfile contains a multi-stage build. That is why we have two `FROM` instructions.
+Our final container image is optimized to be as light as possible.
+
+</Alert>
+
+```Dockerfile title="Dockerfile"
+####################################################################################################
+## Builder
+####################################################################################################
+FROM rust:latest AS builder
+
+RUN rustup target add x86_64-unknown-linux-musl
+RUN apt update && apt install -y musl-tools musl-dev
+RUN update-ca-certificates
+
+# Create appuser
+ENV USER=app
+ENV UID=10001
+
+RUN adduser \
+    --disabled-password \
+    --gecos "" \
+    --home "/nonexistent" \
+    --shell "/sbin/nologin" \
+    --no-create-home \
+    --uid "${UID}" \
+    "${USER}"
+
+WORKDIR /app
+
+COPY ./ .
+
+RUN cargo build --target x86_64-unknown-linux-musl --release
+
+####################################################################################################
+## Final image
+####################################################################################################
+FROM scratch
+
+# Import from builder.
+COPY --from=builder /etc/passwd /etc/passwd
+COPY --from=builder /etc/group /etc/group
+
+WORKDIR /app
+
+# Copy our build
+COPY --from=builder /app/target/x86_64-unknown-linux-musl/release/rust-prime-number-api ./
+
+# Use an unprivileged user.
+USER app:app
+
+CMD ["/app/rust-prime-number-api"]
+```
+
+## Deploy our Rust REST API app on AWS
+
+To deploy our Rust app on AWS we are going to use Qovery. Qovery is the simplest way to deploy any app on AWS. It is the perfect candidate to deploy our Rust REST API in a few steps.
+
+### Sign up into Qovery
+
+First, you need to sign up or sign in on Qovery.
+
+<%= qovery_sign_up() %>
+
+### Connect your AWS account
+
+To connect your AWS account check out [this guide][guides.tutorial.how-to-deploy-your-application-on-aws-in-30-minutes].
+
+<Alert type="success">
+
+Qovery installation on your AWS account takes up to 30 minutes. You will be notified by email when it is over.
+
+</Alert>
+
+### Deploy our Rust REST API app
+
+Once your AWS account is set-up, you can deploy your Rust app by..
+
+Creating a project `prime number`.
+
+<p align="center">
+  <img src="/img/rust_prime_number_project.png" alt="Create a project" />
+</p>
+
+Creating an environment `prod`.
+
+<p align="center">
+  <img src="/img/rust_prime_number_environment.png" alt="Create an environment" />
+</p>
+
+Creating an app by selecting your Rust app repository, build mode > **Dockerfile**, and the port **8000**.
+
+<p align="center">
+  <img src="/img/rust_prime_number_app.png" alt="Create an app" />
+</p>
+
+And deploy! That's it 🔥... nothing more. Our Rust REST API app is ready
+
+<p align="center">
+  <img src="/img/rust_prime_number_app_deployed.png" alt="Our app is deployed" />
+</p>
+
+Check out this video to see how I quickly deploy my Rust REST API with Qovery.
+
+<div class="video-container">
+  <p align="center">
+    <iframe src="https://www.loom.com/embed/7ae48d3383da40159d8aa97c23aadb3e" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+    </iframe>
+  </p>
+</div>
+
+Watch this video showing the final result 👇
+
+<div class="video-container">
+  <p align="center">
+    <iframe src="https://www.loom.com/embed/30cc34ef166a4fdaaeb0a9e864bf7836" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+    </iframe>
+  </p>
+</div>
+
+## Wrapping up
+
+Rust combined to Rocket web framework turns building REST API super easy. Deploying your Rust app on AWS with Qovery is as simple as selecting your GitHub repository. Nothing more. Hope you liked it.
+
+## Useful resources
+
+* [Source code](https://github.com/evoxmusic/rust-prime-number-api)
+* [Rocket framework](https://rocket.rs)
+* [The Rust programming language book](https://doc.rust-lang.org/book/) (Free)
+* [Rust Circle CI](https://circleci.com/blog/rust-cd/)
+
+<Jump to="/guides/tutorial/">Tutorial</Jump>

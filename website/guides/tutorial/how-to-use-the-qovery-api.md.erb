@@ -10,11 +10,13 @@ import Alert from '@site/src/components/Alert';
 import Assumptions from '@site/src/components/Assumptions';
 import Jump from '@site/src/components/Jump';
 
-<Alert>
+<Alert type="info">
 
-The Qovery API can be used to create personal integrations that will help you manage your projects on Qovery. They work just like normal HTTP requests and require a bit of knowledge working with APIs.
+Important note: this tutorial is a temporary workaround to consume the Qovery API - an official way by creating a secured token will be provided soon.
 
 </Alert>
+
+The Qovery API can be used to create personal integrations that will help you manage your projects on Qovery. They work just like normal HTTP requests and require a bit of knowledge working with APIs.
 
 Let's get started!!
 
@@ -22,7 +24,7 @@ Let's get started!!
 
 <Alert>
 
-The Qovery API works by using authorization keys. Currently it is only possible to get a key by monitoring your network traffic (nothing to be afraid of, everything will be explained below) and getting one from there. You will also need to change the key rather frequently as that changes everytime. The Qovery team is working on improving this process!
+The Qovery API works by using authorization keys. Currently, it is only possible to get a key by monitoring your network traffic (nothing to be afraid of, everything will be explained below) and getting one from there. You will also need to change the key rather frequently as that changes everytime. The Qovery team is working on improving this process!
 
 </Alert>
 
@@ -41,7 +43,7 @@ The Qovery API works by using authorization keys. Currently it is only possible 
 5) Now, refresh your page, and look for a random request (usually from api.qovery.com), then click on it to inspect it's body. Once you do, you'll see that it has a header as a token.
 
 <p align="center">
-        <img src="/img/Network_Tab_API_Guide.png" alt="Network Tab" /> 
+        <img src="/img/Network_Tab_API_Guide.png" alt="Network Tab" />
 </p>
 
 6) Copy the token, then move to the next section.
@@ -94,7 +96,7 @@ With this method, you can also grab your organization ID, project ID and environ
 3) If everything was done correctly, Postman (or the tool you are using) should output all the information regarding your application.
 
 <p align="center">
-        <img src="/img/API_Request_Result_API_Guide.png" alt="Final Result" /> 
+        <img src="/img/API_Request_Result_API_Guide.png" alt="Final Result" />
 </p>
 
 ## Common mistakes

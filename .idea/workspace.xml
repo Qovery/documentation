@@ -8,15 +8,10 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: update documentation">
-      <change afterPath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-a-rust-rest-api-application-on-aws-with-ease.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-a-rust-rest-api-application-on-aws-with-ease.md.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/static/img/rust_prime_number_app.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/static/img/rust_prime_number_app_deployed.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/static/img/rust_prime_number_environment.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/static/img/rust_prime_number_project.png" afterDir="false" />
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: add article on how to deploy a rust rest api">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/metadata.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/metadata.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/how-to-use-the-qovery-api.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/how-to-use-the-qovery-api.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/how-to-use-the-qovery-api.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/how-to-use-the-qovery-api.md.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,24 +88,38 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/website/sidebars.js.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/docs/using-qovery/configuration/organization.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/website/guides/getting-started/managing-environment-variables.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/.meta/cloud_providers.toml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/.meta/links.toml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/website/docs/using-qovery/configuration/environment.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/website/guides/tutorial/create-a-blazingly-fast-api-in-rust-part-1.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/website/docs/using-qovery/configuration/application.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_summary.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/website/guides/getting-started/create-a-database.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/website/guides/advanced/guide-scaleway.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/website/docusaurus.config.js" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/website/metadata.js.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/website/guides/advanced/guide-digital-ocean.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/website/guides/engineering/terraform-not-the-golden-hammer.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/website/docs/community/reward/friend-sponsorship.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/digital-ocean.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/amazon-web-services.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/docs/community/reward/feedback.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/docs/community/become-an-ambassador.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/docs/using-qovery/configuration/database/redis.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/website/guides/getting-started/managing-environment-variables.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/docs/community/reward/write-content.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mongodb.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/.meta/links.toml" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/docs/community/reward/video-record.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/website/docs/using-qovery/configuration/environment.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/scaleway.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-a-rust-rest-api-application-on-aws-with-ease.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/docs/community/reward/bug-bounty.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/website/docs/using-qovery/configuration/application.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/microsoft-azure.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_reward_faq.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_summary.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-nuxtjs.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mysql.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/website/docusaurus.config.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/docs/using-qovery/configuration/project.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/docs/using-qovery/configuration/environment-variable.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/website/docs/community/reward/friend-sponsorship.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
   </component>
   <component name="JsFlowSettings">
     <service-enabled>true</service-enabled>
@@ -144,7 +153,7 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.vendoring.notification.had.been.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/website/static/img" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/website/guides/tutorial" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -162,8 +171,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/website/static/img" />
       <recent name="$PROJECT_DIR$/website/guides/tutorial" />
+      <recent name="$PROJECT_DIR$/website/static/img" />
       <recent name="$PROJECT_DIR$/website/static/img/logos" />
       <recent name="$PROJECT_DIR$/website/guides/advanced" />
       <recent name="$PROJECT_DIR$/website/docs/community/reward" />
@@ -337,14 +346,7 @@
       <workItem from="1631363977630" duration="704000" />
       <workItem from="1631459527450" duration="5459000" />
       <workItem from="1631905701772" duration="13000" />
-      <workItem from="1631907990462" duration="11613000" />
-    </task>
-    <task id="LOCAL-00200" summary="wip: update doc for v2">
-      <created>1624826482265</created>
-      <option name="number" value="00200" />
-      <option name="presentableId" value="LOCAL-00200" />
-      <option name="project" value="LOCAL" />
-      <updated>1624826482266</updated>
+      <workItem from="1631907990462" duration="20308000" />
     </task>
     <task id="LOCAL-00201" summary="wip: update doc for v2">
       <created>1624827049527</created>
@@ -682,7 +684,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631862291381</updated>
     </task>
-    <option name="localTasksCounter" value="249" />
+    <task id="LOCAL-00249" summary="chore: add article on how to deploy a rust rest api">
+      <created>1631980054250</created>
+      <option name="number" value="00249" />
+      <option name="presentableId" value="LOCAL-00249" />
+      <option name="project" value="LOCAL" />
+      <updated>1631980054251</updated>
+    </task>
+    <option name="localTasksCounter" value="250" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -768,7 +777,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="chore: add link to apply as an ambassador" />
     <MESSAGE value="fix: typo" />
     <MESSAGE value="chore: update brand identity" />
     <MESSAGE value="fix: docsearch" />
@@ -793,6 +801,7 @@
     <MESSAGE value="chore: update cloud provider guides" />
     <MESSAGE value="fix: public feedback url" />
     <MESSAGE value="chore: update documentation" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: update documentation" />
+    <MESSAGE value="chore: add article on how to deploy a rust rest api" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: add article on how to deploy a rust rest api" />
   </component>
 </project>

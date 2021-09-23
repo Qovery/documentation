@@ -144,6 +144,7 @@ module.exports = {
             items: [
                 "security-and-compliance",
                 "security-and-compliance/backup-and-restore",
+                "security-and-compliance/community-fair-use-policy",
                 "security-and-compliance/encryption",
                 "security-and-compliance/gdpr",
             ],

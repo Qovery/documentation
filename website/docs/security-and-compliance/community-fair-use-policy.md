@@ -46,7 +46,7 @@ Qovery runs automated scans for torrent traffic and other activities that may br
 
 All the rules are created for the good of **Qovery Community**. As community applications are deployed on our servers, we can not allow for any illegal activity to happen as it would put in danger the stability of all applications of our community members. Rules were introduced to protect fair users.
 
-## Professional Plans
+## Professional Usage
 
 All projects deployed in any of the **Professional Plans** (the ones where applications are hosted on your own cloud account) are not subject to the rules from above.
 Professional plans imply that your applications are deployed on your own cloud account, so the choice (and responsibility) of the type of applications you deploy is completely yours.

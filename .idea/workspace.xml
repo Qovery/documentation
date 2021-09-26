@@ -9,21 +9,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="wip: work on &quot;Qovery for DevOps&quot;">
-      <change afterPath="$PROJECT_DIR$/website/docs/devops/configuration-infrastructure.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/docs/devops/configuration-infrastructure.md.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/docs/devops/configuration-infrastructure/domain.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/docs/devops/configuration-infrastructure/domain.md.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/docs/devops/configuration-infrastructure/kubernetes.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/docs/devops/configuration-infrastructure/kubernetes.md.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/docs/devops/configuration-infrastructure/load-balancer.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/docs/devops/configuration-infrastructure/load-balancer.md.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/docs/devops/infrastructure-as-code.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/docs/devops/infrastructure-as-code.md.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/docs/devops/configuration-infrastructure/observability.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/docs/devops/configuration-infrastructure/observability.md.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/docs/devops/configuration-infrastructure/qovery-engine.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/website/docs/devops/configuration-infrastructure/qovery-engine.md.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/devops/how-qovery-works-under-the-hood.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/devops/how-qovery-works-under-the-hood.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/devops/how-qovery-works-under-the-hood.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/devops/how-qovery-works-under-the-hood.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/devops/configuration-infrastructure.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/devops/configuration-infrastructure.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/devops/configuration-infrastructure/domain.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/devops/configuration-infrastructure/custom-domain.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/devops/configuration-infrastructure/domain.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/devops/configuration-infrastructure/custom-domain.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/devops/configuration-infrastructure/kubernetes.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/devops/configuration-infrastructure/kubernetes.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/devops/configuration-infrastructure/kubernetes.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/devops/configuration-infrastructure/kubernetes.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/devops/configuration-infrastructure/load-balancer.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/devops/configuration-infrastructure/load-balancer.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/devops/configuration-infrastructure/load-balancer.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/devops/configuration-infrastructure/load-balancer.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/devops/how-qovery-works-under-the-hood.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/devops/how-qovery-works-under-the-hood.md.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/devops/infrastructure-as-code.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/devops/infrastructure-as-code.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/devops/infrastructure-as-code.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/devops/infrastructure-as-code.md.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/docs/devops/qovery-for-devops-introduction.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/devops/qovery-for-devops-introduction.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/organization.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/organization.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/devops/qovery-for-devops-introduction.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/devops/qovery-for-devops-introduction.md.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/sidebars.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/sidebars.js.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.js.erb" afterDir="false" />
     </list>
@@ -172,7 +175,7 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.vendoring.notification.had.been.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/website/docs/devops" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/website/docs/devops/configuration-infrastructure" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -190,11 +193,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/website/docs/devops/configuration-infrastructure" />
       <recent name="$PROJECT_DIR$/website/docs/devops" />
       <recent name="$PROJECT_DIR$/website/docs/devops/configuration" />
       <recent name="$PROJECT_DIR$/website/docs" />
       <recent name="$PROJECT_DIR$/website/guides/tutorial" />
-      <recent name="$PROJECT_DIR$/website/static/img" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/website/docs/devops" />
@@ -366,14 +369,9 @@
       <workItem from="1631459527450" duration="5459000" />
       <workItem from="1631905701772" duration="13000" />
       <workItem from="1631907990462" duration="27035000" />
-      <workItem from="1632587230204" duration="6552000" />
-    </task>
-    <task id="LOCAL-00205" summary="wip: update doc for v2">
-      <created>1624875208824</created>
-      <option name="number" value="00205" />
-      <option name="presentableId" value="LOCAL-00205" />
-      <option name="project" value="LOCAL" />
-      <updated>1624875208824</updated>
+      <workItem from="1632587230204" duration="12646000" />
+      <workItem from="1632688884065" duration="9000" />
+      <workItem from="1632688902477" duration="1546000" />
     </task>
     <task id="LOCAL-00206" summary="wip: update doc for v2">
       <created>1624882535774</created>
@@ -711,7 +709,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632659876515</updated>
     </task>
-    <option name="localTasksCounter" value="254" />
+    <task id="LOCAL-00254" summary="wip: work on &quot;Qovery for DevOps&quot;">
+      <created>1632663805085</created>
+      <option name="number" value="00254" />
+      <option name="presentableId" value="LOCAL-00254" />
+      <option name="project" value="LOCAL" />
+      <updated>1632663805086</updated>
+    </task>
+    <option name="localTasksCounter" value="255" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

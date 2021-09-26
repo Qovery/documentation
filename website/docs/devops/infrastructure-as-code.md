@@ -26,13 +26,19 @@ TODO
 
 TODO
 
-## Golang
+* Show examples
+
+## Go client
 
 TODO
+
+* Show code example in using Qovery golang client
 
 ## API
 
 TODO
+
+* Show commands in using the Qovery REST API
 
 
 

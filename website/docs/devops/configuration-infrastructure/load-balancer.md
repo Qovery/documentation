@@ -7,5 +7,9 @@ import Assumptions from '@site/src/components/Assumptions';
 
 TODO
 
+* Introduce what is a Load Balancer
+* Introduce where load balancer are used on Qovery
+* Introduce how we use NGINX as MUX
+
 
 

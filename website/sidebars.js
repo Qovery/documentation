@@ -129,12 +129,13 @@ module.exports = {
           label: 'Configuration',
           items: [
             "devops/configuration-infrastructure",
+            "devops/configuration-infrastructure/kubernetes",
+            "devops/configuration-infrastructure/custom-domain",
             "devops/configuration-infrastructure/load-balancer",
-            "devops/configuration-infrastructure/domain",
-            "devops/configuration-infrastructure/kubernetes"
+            "devops/configuration-infrastructure/observability",
+            "devops/configuration-infrastructure/qovery-engine",
           ]
-        },
-        "devops/how-qovery-works-under-the-hood",
+        }
       ],
     },
     {

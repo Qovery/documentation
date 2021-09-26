@@ -10,9 +10,11 @@ import Jump from '@site/src/components/Jump';
 
 In the following subsections, you'll learn all you need to know to configure and fine tune Qovery on your infrastructure.
 
-<Jump to="/docs/devops/configuration-infrastructure/domain/">Domain</Jump>
+<Jump to="/docs/devops/configuration-infrastructure/custom-domain/">Custom domain</Jump>
 <Jump to="/docs/devops/configuration-infrastructure/kubernetes/">Kubernetes</Jump>
 <Jump to="/docs/devops/configuration-infrastructure/load-balancer/">Load balancer</Jump>
+<Jump to="/docs/devops/configuration-infrastructure/observability/">Observability</Jump>
+<Jump to="/docs/devops/configuration-infrastructure/qovery-engine/">Qovery engine</Jump>
 
 
 

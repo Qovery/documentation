@@ -129,12 +129,13 @@ module.exports = {
           label: 'Configuration',
           items: [
             <%= metadata.links.fetch_id("docs.devops.configuration-infrastructure").to_json %>,
+            <%= metadata.links.fetch_id("docs.devops.configuration-infrastructure.kubernetes").to_json %>,
+            <%= metadata.links.fetch_id("docs.devops.configuration-infrastructure.custom-domain").to_json %>,
             <%= metadata.links.fetch_id("docs.devops.configuration-infrastructure.load-balancer").to_json %>,
-            <%= metadata.links.fetch_id("docs.devops.configuration-infrastructure.domain").to_json %>,
-            <%= metadata.links.fetch_id("docs.devops.configuration-infrastructure.kubernetes").to_json %>
+            <%= metadata.links.fetch_id("docs.devops.configuration-infrastructure.observability").to_json %>,
+            <%= metadata.links.fetch_id("docs.devops.configuration-infrastructure.qovery-engine").to_json %>,
           ]
-        },
-        <%= metadata.links.fetch_id("docs.devops.how-qovery-works-under-the-hood").to_json %>,
+        }
       ],
     },
     {

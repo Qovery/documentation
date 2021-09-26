@@ -123,6 +123,17 @@ module.exports = {
       label: 'Qovery for DevOps',
       items: [
         "devops/qovery-for-devops-introduction",
+        "devops/infrastructure-as-code",
+        {
+          type: 'category',
+          label: 'Configuration',
+          items: [
+            "devops/configuration-infrastructure",
+            "devops/configuration-infrastructure/load-balancer",
+            "devops/configuration-infrastructure/domain",
+            "devops/configuration-infrastructure/kubernetes"
+          ]
+        },
         "devops/how-qovery-works-under-the-hood",
       ],
     },

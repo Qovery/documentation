@@ -123,6 +123,17 @@ module.exports = {
       label: 'Qovery for DevOps',
       items: [
         <%= metadata.links.fetch_id("docs.devops.qovery-for-devops-introduction").to_json %>,
+        <%= metadata.links.fetch_id("docs.devops.infrastructure-as-code").to_json %>,
+        {
+          type: 'category',
+          label: 'Configuration',
+          items: [
+            <%= metadata.links.fetch_id("docs.devops.configuration-infrastructure").to_json %>,
+            <%= metadata.links.fetch_id("docs.devops.configuration-infrastructure.load-balancer").to_json %>,
+            <%= metadata.links.fetch_id("docs.devops.configuration-infrastructure.domain").to_json %>,
+            <%= metadata.links.fetch_id("docs.devops.configuration-infrastructure.kubernetes").to_json %>
+          ]
+        },
         <%= metadata.links.fetch_id("docs.devops.how-qovery-works-under-the-hood").to_json %>,
       ],
     },

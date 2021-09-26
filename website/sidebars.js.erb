@@ -1,176 +1,184 @@
 module.exports = {
-    docs: [
+  docs: [
+    {
+      type: 'category',
+      label: 'Getting Started',
+      items: [
+        <%= metadata.links.fetch_id("docs.getting-started").to_json %>,
+        <%= metadata.links.fetch_id("docs.what-is-qovery").to_json %>,
+        <%= metadata.links.fetch_id("docs.deploy-my-app").to_json %>,
+        <%= metadata.links.fetch_id("docs.features").to_json %>,
         {
-            type: 'category',
-            label: 'Getting Started',
-            items: [
-                <%= metadata.links.fetch_id("docs.getting-started").to_json %>,
-                <%= metadata.links.fetch_id("docs.what-is-qovery").to_json %>,
-                <%= metadata.links.fetch_id("docs.deploy-my-app").to_json %>,
-                <%= metadata.links.fetch_id("docs.features").to_json %>,
-                {
-                    type: 'category',
-                    label: 'Qovery vs. Other',
-                    items: [
-                        <%= metadata.links.fetch_id("docs.qovery-vs-other").to_json %>,
-                        <%= metadata.links.fetch_id("docs.qovery-vs-other.heroku").to_json %>,
-                        <%= metadata.links.fetch_id("docs.qovery-vs-other.netlify").to_json %>,
-                        <%= metadata.links.fetch_id("docs.qovery-vs-other.terraform").to_json %>,
-                    ],
-                },
-                <%= metadata.links.fetch_id("docs.whats-next").to_json %>,
-            ],
+          type: 'category',
+          label: 'Qovery vs. Other',
+          items: [
+            <%= metadata.links.fetch_id("docs.qovery-vs-other").to_json %>,
+            <%= metadata.links.fetch_id("docs.qovery-vs-other.heroku").to_json %>,
+            <%= metadata.links.fetch_id("docs.qovery-vs-other.netlify").to_json %>,
+            <%= metadata.links.fetch_id("docs.qovery-vs-other.terraform").to_json %>,
+          ],
+        },
+        <%= metadata.links.fetch_id("docs.whats-next").to_json %>,
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Using Qovery',
+      items: [
+        <%= metadata.links.fetch_id("docs.using-qovery").to_json %>,
+        {
+          type: 'category',
+          label: 'Interface',
+          items: [
+            <%= metadata.links.fetch_id("docs.using-qovery.interface").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.interface.web-interface").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.interface.cli").to_json %>,
+          ]
         },
         {
-            type: 'category',
-            label: 'Using Qovery',
-            items: [
-                <%= metadata.links.fetch_id("docs.using-qovery").to_json %>,
-                {
-                    type: 'category',
-                    label: 'Interface',
-                    items: [
-                        <%= metadata.links.fetch_id("docs.using-qovery.interface").to_json %>,
-                        <%= metadata.links.fetch_id("docs.using-qovery.interface.web-interface").to_json %>,
-                        <%= metadata.links.fetch_id("docs.using-qovery.interface.cli").to_json %>,
-                    ]
-                },
-                {
-                    type: 'category',
-                    label: 'Configuration',
-                    items: [
-                        <%= metadata.links.fetch_id("docs.using-qovery.configuration").to_json %>,
-                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.organization").to_json %>,
-                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.project").to_json %>,
-                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.environment").to_json %>,
-                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.application").to_json %>,
-                        {
-                            type: 'category',
-                            label: 'Database',
-                            items: [
-                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.database").to_json %>,
-                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.database.postgresql").to_json %>,
-                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.database.mysql").to_json %>,
-                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.database.mongodb").to_json %>,
-                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.database.redis").to_json %>,
-                            ],
-                        },
-                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.environment-variable").to_json %>,
-                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.secret").to_json %>,
-                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.object-storage").to_json %>,
-                        <%= metadata.links.fetch_id("docs.using-qovery.configuration.deployment-rule").to_json %>,
-                        {
-                            type: 'category',
-                            label: 'Cloud Service Provider',
-                            items: [
-                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.cloud-service-provider").to_json %>,
-                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.cloud-service-provider.amazon-web-services").to_json %>,
-                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.cloud-service-provider.microsoft-azure").to_json %>,
-                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.cloud-service-provider.google-cloud-platform").to_json %>,
-                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.cloud-service-provider.digital-ocean").to_json %>,
-                                <%= metadata.links.fetch_id("docs.using-qovery.configuration.cloud-service-provider.scaleway").to_json %>,
-                            ],
-                        },
-                    ]
-                },
-                {
-                    type: 'category',
-                    label: 'Addons',
-                    items: [
-                        <%= metadata.links.fetch_id("docs.using-qovery.addon").to_json %>,
-                        {
-                            type: 'category',
-                            label: 'Continuous Integration',
-                            items: [
-                                <%= metadata.links.fetch_id("docs.using-qovery.addon.continuous-integration").to_json %>,
-                                <%= metadata.links.fetch_id("docs.using-qovery.addon.continuous-integration.qovery-ci").to_json %>,
-                                <%= metadata.links.fetch_id("docs.using-qovery.addon.continuous-integration.gitlab-ci").to_json %>,
-                                <%= metadata.links.fetch_id("docs.using-qovery.addon.continuous-integration.circle-ci").to_json %>,
-                                <%= metadata.links.fetch_id("docs.using-qovery.addon.continuous-integration.github-actions").to_json %>,
-                            ],
-                        },
-                        {
-                            type: 'category',
-                            label: 'Monitoring',
-                            items: [
-                                <%= metadata.links.fetch_id("docs.using-qovery.addon.monitoring").to_json %>,
-                                <%= metadata.links.fetch_id("docs.using-qovery.addon.monitoring.datadog").to_json %>,
-                                <%= metadata.links.fetch_id("docs.using-qovery.addon.monitoring.new-relic").to_json %>,
-                            ],
-                        },
-                    ]
-                },
-                {
-                    type: 'category',
-                    label: 'Quickstarts',
-                    items: [
-                        <%= metadata.links.fetch_id("docs.using-qovery.quickstart").to_json %>,
-                        <%= metadata.links.fetch_id("docs.using-qovery.quickstart.hasura").to_json %>,
-                        <%= metadata.links.fetch_id("docs.using-qovery.quickstart.strapi").to_json %>,
-                    ]
-                },
-                {
-                    type: 'category',
-                    label: 'Troubleshoot',
-                    items: [
-                        <%= metadata.links.fetch_id("docs.using-qovery.troubleshoot").to_json %>,
-                    ]
-                }
-            ],
+          type: 'category',
+          label: 'Configuration',
+          items: [
+            <%= metadata.links.fetch_id("docs.using-qovery.configuration").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.configuration.organization").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.configuration.project").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.configuration.environment").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.configuration.application").to_json %>,
+            {
+              type: 'category',
+              label: 'Database',
+              items: [
+                <%= metadata.links.fetch_id("docs.using-qovery.configuration.database").to_json %>,
+                <%= metadata.links.fetch_id("docs.using-qovery.configuration.database.postgresql").to_json %>,
+                <%= metadata.links.fetch_id("docs.using-qovery.configuration.database.mysql").to_json %>,
+                <%= metadata.links.fetch_id("docs.using-qovery.configuration.database.mongodb").to_json %>,
+                <%= metadata.links.fetch_id("docs.using-qovery.configuration.database.redis").to_json %>,
+              ],
+            },
+            <%= metadata.links.fetch_id("docs.using-qovery.configuration.environment-variable").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.configuration.secret").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.configuration.object-storage").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.configuration.deployment-rule").to_json %>,
+            {
+              type: 'category',
+              label: 'Cloud Service Provider',
+              items: [
+                <%= metadata.links.fetch_id("docs.using-qovery.configuration.cloud-service-provider").to_json %>,
+                <%= metadata.links.fetch_id("docs.using-qovery.configuration.cloud-service-provider.amazon-web-services").to_json %>,
+                <%= metadata.links.fetch_id("docs.using-qovery.configuration.cloud-service-provider.microsoft-azure").to_json %>,
+                <%= metadata.links.fetch_id("docs.using-qovery.configuration.cloud-service-provider.google-cloud-platform").to_json %>,
+                <%= metadata.links.fetch_id("docs.using-qovery.configuration.cloud-service-provider.digital-ocean").to_json %>,
+                <%= metadata.links.fetch_id("docs.using-qovery.configuration.cloud-service-provider.scaleway").to_json %>,
+              ],
+            },
+          ]
         },
         {
-            type: 'category',
-            label: 'Community',
-            items: [
-                {
-                    type: 'category',
-                    label: 'Rewards',
-                    items: [
-                        <%= metadata.links.fetch_id("docs.community.reward").to_json %>,
-                        <%= metadata.links.fetch_id("docs.community.reward.feedback").to_json %>,
-                        <%= metadata.links.fetch_id("docs.community.reward.follow-qovery").to_json %>,
-                        <%= metadata.links.fetch_id("docs.community.reward.friend-sponsorship").to_json %>,
-                        <%= metadata.links.fetch_id("docs.community.reward.write-content").to_json %>,
-                        <%= metadata.links.fetch_id("docs.community.reward.video-record").to_json %>,
-                        <%= metadata.links.fetch_id("docs.community.reward.bug-bounty").to_json %>,
-                    ]
-                },
-                <%= metadata.links.fetch_id("docs.community.become-an-ambassador").to_json %>,
-            ],
+          type: 'category',
+          label: 'Addons',
+          items: [
+            <%= metadata.links.fetch_id("docs.using-qovery.addon").to_json %>,
+            {
+              type: 'category',
+              label: 'Continuous Integration',
+              items: [
+                <%= metadata.links.fetch_id("docs.using-qovery.addon.continuous-integration").to_json %>,
+                <%= metadata.links.fetch_id("docs.using-qovery.addon.continuous-integration.qovery-ci").to_json %>,
+                <%= metadata.links.fetch_id("docs.using-qovery.addon.continuous-integration.gitlab-ci").to_json %>,
+                <%= metadata.links.fetch_id("docs.using-qovery.addon.continuous-integration.circle-ci").to_json %>,
+                <%= metadata.links.fetch_id("docs.using-qovery.addon.continuous-integration.github-actions").to_json %>,
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Monitoring',
+              items: [
+                <%= metadata.links.fetch_id("docs.using-qovery.addon.monitoring").to_json %>,
+                <%= metadata.links.fetch_id("docs.using-qovery.addon.monitoring.datadog").to_json %>,
+                <%= metadata.links.fetch_id("docs.using-qovery.addon.monitoring.new-relic").to_json %>,
+              ],
+            },
+          ]
         },
         {
-            type: 'category',
-            label: 'Security and Compliance',
-            items: [
-                <%= metadata.links.fetch_id("docs.security-and-compliance").to_json %>,
-                <%= metadata.links.fetch_id("docs.security-and-compliance.backup-and-restore").to_json %>,
-                <%= metadata.links.fetch_id("docs.security-and-compliance.community-fair-use-policy").to_json %>,
-                <%= metadata.links.fetch_id("docs.security-and-compliance.encryption").to_json %>,
-                <%= metadata.links.fetch_id("docs.security-and-compliance.gdpr").to_json %>,
-            ],
+          type: 'category',
+          label: 'Quickstarts',
+          items: [
+            <%= metadata.links.fetch_id("docs.using-qovery.quickstart").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.quickstart.hasura").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.quickstart.strapi").to_json %>,
+          ]
         },
         {
-            type: 'category',
-            label: 'Useful Resources',
-            items: [
-                {
-                    type: 'link',
-                    label: 'API',
-                    href: '<%= metadata.links.fetch_id("urls.qovery_swagger") %>'
-                },
-                <%= metadata.links.fetch_id("docs.useful-resources.faq").to_json %>,
-                {
-                    type: 'link',
-                    label: 'Roadmap',
-                    href: '<%= metadata.links.fetch_id("urls.qovery_roadmap") %>'
-                },
-                {
-                    type: 'link',
-                    label: 'Github',
-                    href: '<%= metadata.links.fetch_id("urls.main_qovery_github") %>'
-                },
-                <%= metadata.links.fetch_id("docs.useful-resources.help-and-support").to_json %>,
-            ],
+          type: 'category',
+          label: 'Troubleshoot',
+          items: [
+            <%= metadata.links.fetch_id("docs.using-qovery.troubleshoot").to_json %>,
+          ]
+        }
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Qovery for DevOps',
+      items: [
+        <%= metadata.links.fetch_id("docs.devops.qovery-for-devops-introduction").to_json %>,
+        <%= metadata.links.fetch_id("docs.devops.how-qovery-works-under-the-hood").to_json %>,
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Community',
+      items: [
+        {
+          type: 'category',
+          label: 'Rewards',
+          items: [
+            <%= metadata.links.fetch_id("docs.community.reward").to_json %>,
+            <%= metadata.links.fetch_id("docs.community.reward.feedback").to_json %>,
+            <%= metadata.links.fetch_id("docs.community.reward.follow-qovery").to_json %>,
+            <%= metadata.links.fetch_id("docs.community.reward.friend-sponsorship").to_json %>,
+            <%= metadata.links.fetch_id("docs.community.reward.write-content").to_json %>,
+            <%= metadata.links.fetch_id("docs.community.reward.video-record").to_json %>,
+            <%= metadata.links.fetch_id("docs.community.reward.bug-bounty").to_json %>,
+          ]
         },
-    ]
+        <%= metadata.links.fetch_id("docs.community.become-an-ambassador").to_json %>,
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Security and Compliance',
+      items: [
+        <%= metadata.links.fetch_id("docs.security-and-compliance").to_json %>,
+        <%= metadata.links.fetch_id("docs.security-and-compliance.backup-and-restore").to_json %>,
+        <%= metadata.links.fetch_id("docs.security-and-compliance.community-fair-use-policy").to_json %>,
+        <%= metadata.links.fetch_id("docs.security-and-compliance.encryption").to_json %>,
+        <%= metadata.links.fetch_id("docs.security-and-compliance.gdpr").to_json %>,
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Useful Resources',
+      items: [
+        {
+          type: 'link',
+          label: 'API',
+          href: '<%= metadata.links.fetch_id("urls.qovery_swagger") %>'
+        },
+        <%= metadata.links.fetch_id("docs.useful-resources.faq").to_json %>,
+        {
+          type: 'link',
+          label: 'Roadmap',
+          href: '<%= metadata.links.fetch_id("urls.qovery_roadmap") %>'
+        },
+        {
+          type: 'link',
+          label: 'Github',
+          href: '<%= metadata.links.fetch_id("urls.main_qovery_github") %>'
+        },
+        <%= metadata.links.fetch_id("docs.useful-resources.help-and-support").to_json %>,
+      ],
+    },
+  ]
 };

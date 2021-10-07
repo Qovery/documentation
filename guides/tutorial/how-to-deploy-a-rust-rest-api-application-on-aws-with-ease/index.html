@@ -24,21 +24,21 @@
 <link rel="stylesheet" href="/styles.846259e1.css">
 
 
-<link rel="preload" href="/styles.54a1b806.js" as="script">
+<link rel="preload" href="/styles.10133815.js" as="script">
 
-<link rel="preload" href="/runtime~main.2f6b30c1.js" as="script">
+<link rel="preload" href="/runtime~main.e5e4c79e.js" as="script">
 
-<link rel="preload" href="/main.06311b25.js" as="script">
+<link rel="preload" href="/main.68ca0d81.js" as="script">
 
-<link rel="preload" href="/1.7132ff0b.js" as="script">
+<link rel="preload" href="/1.80573634.js" as="script">
 
-<link rel="preload" href="/2.7fc120ee.js" as="script">
+<link rel="preload" href="/2.76c0adce.js" as="script">
 
-<link rel="preload" href="/3.f59542a6.js" as="script">
+<link rel="preload" href="/3.962db7e8.js" as="script">
 
-<link rel="preload" href="/1c13b173.e3db155f.js" as="script">
+<link rel="preload" href="/1c13b173.07a80d3c.js" as="script">
 
-<link rel="preload" href="/3da71a70.dafcc369.js" as="script">
+<link rel="preload" href="/3da71a70.be586160.js" as="script">
 
 </head>
 <body>
@@ -73,21 +73,21 @@ Our final container image is optimized to be as light as possible.</p></div><div
 </span></div><div class="token-line" style="color:#393A34"><span class="token plain">CMD [&quot;/app/rust-prime-number-api&quot;]</span></div></div></pre></div></div><h2><a aria-hidden="true" tabindex="-1" class="anchor" id="deploy-our-rust-rest-api-app-on-aws"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#deploy-our-rust-rest-api-app-on-aws" title="Direct link to heading">#</a>Deploy our Rust REST API app on AWS</h2><p>To deploy our Rust app on AWS we are going to use Qovery. Qovery is the simplest way to deploy any app on AWS. It is the perfect candidate to deploy our Rust REST API in a few steps.</p><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="sign-up-into-qovery"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#sign-up-into-qovery" title="Direct link to heading">#</a>Sign up into Qovery</h3><p>First, you need to sign up or sign in on Qovery.</p><div class="margin-bottom--md"><div class="tabs--centered"><ul role="tablist" aria-orientation="horizontal" class="tabs rounded"><li role="tab" tabindex="0" aria-selected="true" class="tab-item tab-item--active">Web</li><li role="tab" tabindex="0" aria-selected="false" class="tab-item">CLI</li></ul></div></div><li><p>Sign in to the <a href="https://start.qovery.com">Qovery web interface</a>.</p><p align="center"><a href="https://start.qovery.com"><img src="/img/qovery_signup.svg" alt="Qovery Sign-up page"></a></p></li><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="connect-your-aws-account"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#connect-your-aws-account" title="Direct link to heading">#</a>Connect your AWS account</h3><p>To connect your AWS account check out <a href="/guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes/">this guide</a>.</p><div class="alert alert--success alert--icon" role="alert"><i class="feather icon-check-circle"></i><p>Qovery installation on your AWS account takes up to 30 minutes. You will be notified by email when it is over.</p></div><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="deploy-our-rust-rest-api-app"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#deploy-our-rust-rest-api-app" title="Direct link to heading">#</a>Deploy our Rust REST API app</h3><p>Once your AWS account is set-up, you can deploy your Rust app by..</p><p>Creating a project <code>prime number</code>.</p><p align="center"><img src="/img/rust_prime_number_project.png" alt="Create a project"></p><p>Creating an environment <code>prod</code>.</p><p align="center"><img src="/img/rust_prime_number_environment.png" alt="Create an environment"></p><p>Creating an app by selecting your Rust app repository, build mode &gt; <strong>Dockerfile</strong>, and the port <strong>8000</strong>.</p><p align="center"><img src="/img/rust_prime_number_app.png" alt="Create an app"></p><p>And deploy! That&#x27;s it 🔥... nothing more. Our Rust REST API app is ready</p><p align="center"><img src="/img/rust_prime_number_app_deployed.png" alt="Our app is deployed"></p><p>Check out this video to see how I quickly deploy my Rust REST API with Qovery.</p><div class="video-container"><p align="center"><iframe src="https://www.loom.com/embed/7ae48d3383da40159d8aa97c23aadb3e" width="100%" height="100%" frameborder="0"></iframe></p></div><p>Watch this video showing the final result 👇</p><div class="video-container"><p align="center"><iframe src="https://www.loom.com/embed/30cc34ef166a4fdaaeb0a9e864bf7836" width="100%" height="100%" frameborder="0"></iframe></p></div><h2><a aria-hidden="true" tabindex="-1" class="anchor" id="wrapping-up"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#wrapping-up" title="Direct link to heading">#</a>Wrapping up</h2><p>Rust combined to Rocket web framework turns building REST API super easy. Deploying your Rust app on AWS with Qovery is as simple as selecting your GitHub repository. Nothing more. Hope you liked it.</p><h2><a aria-hidden="true" tabindex="-1" class="anchor" id="useful-resources"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#useful-resources" title="Direct link to heading">#</a>Useful resources</h2><ul><li><a href="https://github.com/evoxmusic/rust-prime-number-api">Source code</a></li><li><a href="https://rocket.rs">Rocket framework</a></li><li><a href="https://doc.rust-lang.org/book/">The Rust programming language book</a> (Free)</li><li><a href="https://circleci.com/blog/rust-cd/">Rust Circle CI</a></li></ul><a aria-current="page" class="jump-to jump-to--undefined active" href="/guides/tutorial/"><div class="jump-to--inner"><div class="jump-to--inner-2"><div class="jump-to--main">Tutorial</div><div class="jump-to--right"><i class="feather icon-chevron-right arrow"></i></div></div></div></a></div></article></div></main></div><footer class="footer"><div class="container"><div class="row footer__links"><div class="col col--5 footer__col"><div class="margin-bottom--md"></div><div class="margin-bottom--md"><p>Qovery combines the power of Kubernetes, the reliability of AWS, and the simplicity of Heroku to deploy your apps.</p></div><div><a href="https://github.com/qovery" target="_blank"><i class="feather icon-github" alt="Qovery&#x27;s Github Repo"></i></a>    <a href="https://www.linkedin.com/company/qovery/" target="_blank"><i class="feather icon-rss" alt="Qovery&#x27;s Linkedin"></i></a>    <a href="https://twitter.com/qovery_" target="_blank"><i class="feather icon-twitter" alt="Qovery&#x27;s Twitter"></i></a>    <a href="https://discord.qovery.com" target="_blank"><i class="feather icon-message-circle" alt="Qovery&#x27;s Discord"></i></a></div></div><div class="col footer__col"><h4 class="footer__title">Resources</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" href="/docs">Documentation</a></li><li class="footer__item"><a aria-current="page" class="footer__link-item active" href="/guides">Guides</a></li><li class="footer__item"><a aria-current="page" class="footer__link-item active" href="/guides/tutorial">Tutorials</a></li><li class="footer__item"><a class="footer__link-item" href="/guides/engineering">Engineering</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/pricing" href="https://www.qovery.com/pricing">Pricing</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/enterprise" href="https://www.qovery.com/enterprise">Enterprise</a></li><li class="footer__item"><a class="footer__link-item" to="https://api-doc.qovery.com" href="https://api-doc.qovery.com">API</a></li><li class="footer__item"><a class="footer__link-item" to="https://github.com/Qovery" href="https://github.com/Qovery">Github</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Community</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://discord.qovery.com" href="https://discord.qovery.com">Discord</a></li><li class="footer__item"><a class="footer__link-item" to="https://community.qovery.com" href="https://community.qovery.com">Forum</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/community-call" href="https://www.qovery.com/community-call">Community call</a></li><li class="footer__item"><a class="footer__link-item" to="https://shop.qovery.com" href="https://shop.qovery.com">Goodies</a></li><li class="footer__item"><a class="footer__link-item" to="https://roadmap.qovery.com" href="https://roadmap.qovery.com">Roadmap</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Company</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/blog" href="https://www.qovery.com/blog">Blog</a></li><li class="footer__item"><a class="footer__link-item" to="https://jobs.qovery.com" href="https://jobs.qovery.com">Jobs</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/team" href="https://www.qovery.com/team">Team</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/investors" href="https://www.qovery.com/investors">Investors</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/contact" href="https://www.qovery.com/contact">Contact</a></li></ul></div></div><div class="text--center"><small>© 2021 DESIGNED BY QOVERY | BACKED BY TECHSTARS | PROUD SILVER MEMBER OF CNCF AND LINUX FOUNDATION | QOVERY BY BIRDSIGHT - ALL RIGHTS RESERVED</small><br></div></div></footer>
 </div>
 
-<script src="/styles.54a1b806.js"></script>
+<script src="/styles.10133815.js"></script>
 
-<script src="/runtime~main.2f6b30c1.js"></script>
+<script src="/runtime~main.e5e4c79e.js"></script>
 
-<script src="/main.06311b25.js"></script>
+<script src="/main.68ca0d81.js"></script>
 
-<script src="/1.7132ff0b.js"></script>
+<script src="/1.80573634.js"></script>
 
-<script src="/2.7fc120ee.js"></script>
+<script src="/2.76c0adce.js"></script>
 
-<script src="/3.f59542a6.js"></script>
+<script src="/3.962db7e8.js"></script>
 
-<script src="/1c13b173.e3db155f.js"></script>
+<script src="/1c13b173.07a80d3c.js"></script>
 
-<script src="/3da71a70.dafcc369.js"></script>
+<script src="/3da71a70.be586160.js"></script>
 
 
 </body>

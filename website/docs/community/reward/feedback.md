@@ -13,7 +13,7 @@ In this page, I explain how you can earn free Qovery credits by sharing your fee
 
 <Alert type="success">
 
-Earn $15 Qovery credits per product feedback. And up to $300 for [exceptional public feedback](#exceptional-public-feedback).
+Earn up to $300 for [exceptional public feedback](#exceptional-public-feedback).
 
 </Alert>
 
@@ -27,7 +27,6 @@ Earn $15 Qovery credits per product feedback. And up to $300 for [exceptional pu
 
 ## Eligibility
 
-* Maximum 1 private feedback every 2 months.
 * Maximum 3 public feedback every 2 months.
 * We accept only honest feedback - positive and negative.
 

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-26"
+last_modified_on: "2021-10-07"
 title: Rewards
 description: "Here is how you can give back to the Qovery community and get rewarded"
 sidebar_label: hidden
@@ -21,8 +21,6 @@ In the following subsections, you'll learn how to give back to the Qovery commun
 
 <Jump to="/docs/community/reward/bug-bounty/">Bug bounty</Jump>
 <Jump to="/docs/community/reward/feedback/">Feedback</Jump>
-<Jump to="/docs/community/reward/follow-qovery/">Follow qovery</Jump>
-<Jump to="/docs/community/reward/friend-sponsorship/">Friend sponsorship</Jump>
 <Jump to="/docs/community/reward/video-record/">Video record</Jump>
 <Jump to="/docs/community/reward/write-content/">Write content</Jump>
 

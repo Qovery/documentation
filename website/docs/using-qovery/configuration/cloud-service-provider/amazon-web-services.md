@@ -169,6 +169,8 @@ Or copy it from below:
 
 </Alert>
 
+**Then, follow the arrows in AWS console to create AWS credentials with required IAM permissions:**
+
 <img src="/img/aws-add-policy-1.jpg" />
 <img src="/img/aws-add-policy-2.jpg" />
 <img src="/img/aws-add-policy-3.jpg" />

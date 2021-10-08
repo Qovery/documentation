@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-09-15"
+last_modified_on: "2021-10-07"
 title: Feedback
 description: Share your feedback on Qovery and get rewarded
 ---
@@ -13,7 +13,7 @@ In this page, I explain how you can earn free Qovery credits by sharing your fee
 
 <Alert type="success">
 
-Earn $15 Qovery credits per product feedback. And up to $300 for [exceptional public feedback](#exceptional-public-feedback).
+Earn up to $300 for [exceptional public feedback](#exceptional-public-feedback).
 
 </Alert>
 
@@ -27,17 +27,12 @@ Earn $15 Qovery credits per product feedback. And up to $300 for [exceptional pu
 
 ## Eligibility
 
-* Maximum 1 private feedback every 2 months.
 * Maximum 3 public feedback every 2 months.
 * We accept only honest feedback - positive and negative.
 
 ## How to share your feedback?
 
 To improve Qovery, we need to have your user feedback.
-
-### Private feedback
-
-You may want to share your feedback only with the Qovery team. Complete [this form][urls.qovery_submit_feedback_form] to give your private feedback. You will get rewarded $15 per feedback.
 
 ### Public feedback
 
@@ -112,5 +107,4 @@ Absolutely 🙂.
 [docs.community.become-an-ambassador]: /docs/community/become-an-ambassador/
 [urls.qovery_billing_context]: https://www.qovery.com/blog/how-qovery-billing-works
 [urls.qovery_pricing]: https://www.qovery.com/pricing
-[urls.qovery_submit_feedback_form]: https://qovery.typeform.com/to/YAc9eWZv
 [urls.qovery_submit_public_feedback_form]: https://qovery.typeform.com/to/KwiNKRoo

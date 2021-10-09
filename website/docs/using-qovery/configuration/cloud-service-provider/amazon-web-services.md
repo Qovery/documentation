@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-10-08"
+last_modified_on: "2021-10-09"
 title: "Amazon Web Services (AWS)"
 description: "Learn how to configure and plug your Amazon Web Services (AWS) account"
 ---
@@ -251,12 +251,16 @@ Qovery supports regions where [Amazon EKS](https://aws.amazon.com/eks) is suppor
 
 ## How Qovery works on AWS
 
-Qovery is an abstraction layer on top of AWS and Kubernetes. Qovery manages the configuration of AWS account, and helps your to deploy production ready apps in seconds.
+Qovery is an abstraction layer on top of AWS and Kubernetes. Qovery manages the configuration of AWS account, and helps you to deploy production ready apps in seconds.
 To make it works, Qovery rely on Kubernetes for stateless apps (containers), and  AWS for stateful apps (databases, storage...).
+
+[Read more][docs.devops.qovery-for-devops-introduction] on how Qovery works behind the scene.
 
 ### Kubernetes
 
 The first time you set up your AWS account, Qovery creates a Kubernetes cluster in your chosen region. Qovery managed it for you - no action required. It takes ~15 minutes to configure and bootstrap a Kubernetes cluster. Once bootstrapped, your Kubernetes cluster runs the Qovery app and is ready to deploy your applications.
+
+[Read more][docs.devops.infrastructure-config.kubernetes] on how Qovery works with Kubernetes.
 
 ### Managed services
 
@@ -268,6 +272,7 @@ Qovery runs your Kubernetes cluster and is autonomous to manage your application
 - Your configuration are stored on your AWS account.
 - Your configuration is encrypted on your AWS account.
 - Qovery can't access to your data.
+- Suppose Qovery stops to run, your applications are not impacted.
 
 ## FAQ
 
@@ -284,6 +289,8 @@ We are probably testing the support of this region, please [contact us][urls.qov
 Today, you can't migrate an environment from one region to another after it has been created. Vote [here][urls.qovery_roadmap] if you need this feature.
 
 
+[docs.devops.infrastructure-config.kubernetes]: /docs/devops/infrastructure-config/kubernetes/
+[docs.devops.qovery-for-devops-introduction]: /docs/devops/qovery-for-devops-introduction/
 [docs.useful-resources.faq#how-qovery-works-under-the-hood]: /docs/useful-resources/faq/#how-qovery-works-under-the-hood
 [docs.using-qovery.configuration.cloud-service-provider.amazon-web-services]: /docs/using-qovery/configuration/cloud-service-provider/amazon-web-services/
 [docs.using-qovery.configuration.database.mongodb]: /docs/using-qovery/configuration/database/mongodb/

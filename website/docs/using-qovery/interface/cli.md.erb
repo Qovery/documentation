@@ -4,7 +4,16 @@ description: How to use the Qovery CLI (Command Line Interface)
 ---
 import Alert from '@site/src/components/Alert';
 
+<Alert type="success">
+
+Use Infrastructure as Code (IaC) with [Terraform][docs.devops.infrastructure-as-code.terraform] and our [REST API][docs.devops.infrastructure-as-code.rest-api] to manage Qovery and deploy your apps.
+
+</Alert>
+
 Qovery provides a very easy to use CLI (Command Line Interface) designed to fit the developer workflow perfectly.
+
+----
+
 The purpose of the CLI is to integrate seamlessly with your development workflow:
 
 1. Write code
@@ -13,6 +22,8 @@ The purpose of the CLI is to integrate seamlessly with your development workflow
 4. **Qovery CLI** - check the status of your application
 5. **Qovery CLI** - debug your application
 6. Repeat
+
+---
 
 ## First usage
 
@@ -65,10 +76,10 @@ To set a new context, type `qovery context set`:
 ```bash
 $ qovery context set
 Qovery: Current context:
-Organization | Qovery      
-Project      | test       
+Organization | Qovery
+Project      | test
 Environment  | development
-Application  | website    
+Application  | website
 
 Qovery: Select new context
 Organization:
@@ -82,9 +93,9 @@ Application:
 
 Qovery: New context:
 Organization | Qovery
-Project      | admin 
-Environment  | main  
-Application  | app  
+Project      | admin
+Environment  | main
+Application  | app
 ```
 
 ### Print Current Context
@@ -93,11 +104,11 @@ Application  | app
 $ qovery context
 Qovery: Current context:
 Organization | Qovery
-Project      | admin 
-Environment  | main  
-Application  | app   
+Project      | admin
+Environment  | main
+Application  | app
 
-Qovery: You can set a new context using 'qovery context set'. 
+Qovery: You can set a new context using 'qovery context set'.
 ```
 
 ## Log

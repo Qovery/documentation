@@ -1,9 +1,18 @@
 ---
-last_modified_on: "2021-09-26"
+last_modified_on: "2021-10-09"
 title: "Custom Domain"
 description: "Learn how to configure and fine tune your domains on Qovery"
 ---
+
+import Alert from '@site/src/components/Alert';
+
 import Assumptions from '@site/src/components/Assumptions';
+
+<Alert type="warning">
+
+Work in progress
+
+</Alert>
 
 TODO
 
@@ -12,7 +21,7 @@ TODO
 
      To make changes please edit the template located at:
 
-     website/docs/devops/configuration-infrastructure/custom-domain.md.erb
+     website/docs/devops/infrastructure-config/custom-domain.md.erb
 -->
 
 ## TLS / SSL

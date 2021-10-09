@@ -123,17 +123,25 @@ module.exports = {
       label: 'Qovery for DevOps',
       items: [
         "devops/qovery-for-devops-introduction",
-        "devops/infrastructure-as-code",
+        {
+          type: 'category',
+          label: 'Infrastructure as Code',
+          items: [
+            "devops/infrastructure-as-code",
+            "devops/infrastructure-as-code/terraform",
+            "devops/infrastructure-as-code/rest-api",
+          ]
+        },
         {
           type: 'category',
           label: 'Configuration',
           items: [
-            "devops/configuration-infrastructure",
-            "devops/configuration-infrastructure/kubernetes",
-            "devops/configuration-infrastructure/custom-domain",
-            "devops/configuration-infrastructure/load-balancer",
-            "devops/configuration-infrastructure/observability",
-            "devops/configuration-infrastructure/qovery-engine",
+            "devops/infrastructure-config",
+            "devops/infrastructure-config/kubernetes",
+            "devops/infrastructure-config/custom-domain",
+            "devops/infrastructure-config/load-balancer",
+            "devops/infrastructure-config/observability",
+            "devops/infrastructure-config/qovery-engine",
           ]
         }
       ],
@@ -148,8 +156,6 @@ module.exports = {
           items: [
             "community/reward",
             "community/reward/feedback",
-            "community/reward/follow-qovery",
-            "community/reward/friend-sponsorship",
             "community/reward/write-content",
             "community/reward/video-record",
             "community/reward/bug-bounty",
@@ -175,7 +181,7 @@ module.exports = {
       items: [
         {
           type: 'link',
-          label: 'API',
+          label: 'API documentation',
           href: 'https://api-doc.qovery.com'
         },
         "useful-resources/faq",

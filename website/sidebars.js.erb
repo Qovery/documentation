@@ -123,17 +123,25 @@ module.exports = {
       label: 'Qovery for DevOps',
       items: [
         <%= metadata.links.fetch_id("docs.devops.qovery-for-devops-introduction").to_json %>,
-        <%= metadata.links.fetch_id("docs.devops.infrastructure-as-code").to_json %>,
+        {
+          type: 'category',
+          label: 'Infrastructure as Code',
+          items: [
+            <%= metadata.links.fetch_id("docs.devops.infrastructure-as-code").to_json %>,
+            <%= metadata.links.fetch_id("docs.devops.infrastructure-as-code.terraform").to_json %>,
+            <%= metadata.links.fetch_id("docs.devops.infrastructure-as-code.rest-api").to_json %>,
+          ]
+        },
         {
           type: 'category',
           label: 'Configuration',
           items: [
-            <%= metadata.links.fetch_id("docs.devops.configuration-infrastructure").to_json %>,
-            <%= metadata.links.fetch_id("docs.devops.configuration-infrastructure.kubernetes").to_json %>,
-            <%= metadata.links.fetch_id("docs.devops.configuration-infrastructure.custom-domain").to_json %>,
-            <%= metadata.links.fetch_id("docs.devops.configuration-infrastructure.load-balancer").to_json %>,
-            <%= metadata.links.fetch_id("docs.devops.configuration-infrastructure.observability").to_json %>,
-            <%= metadata.links.fetch_id("docs.devops.configuration-infrastructure.qovery-engine").to_json %>,
+            <%= metadata.links.fetch_id("docs.devops.infrastructure-config").to_json %>,
+            <%= metadata.links.fetch_id("docs.devops.infrastructure-config.kubernetes").to_json %>,
+            <%= metadata.links.fetch_id("docs.devops.infrastructure-config.custom-domain").to_json %>,
+            <%= metadata.links.fetch_id("docs.devops.infrastructure-config.load-balancer").to_json %>,
+            <%= metadata.links.fetch_id("docs.devops.infrastructure-config.observability").to_json %>,
+            <%= metadata.links.fetch_id("docs.devops.infrastructure-config.qovery-engine").to_json %>,
           ]
         }
       ],
@@ -148,8 +156,6 @@ module.exports = {
           items: [
             <%= metadata.links.fetch_id("docs.community.reward").to_json %>,
             <%= metadata.links.fetch_id("docs.community.reward.feedback").to_json %>,
-            <%= metadata.links.fetch_id("docs.community.reward.follow-qovery").to_json %>,
-            <%= metadata.links.fetch_id("docs.community.reward.friend-sponsorship").to_json %>,
             <%= metadata.links.fetch_id("docs.community.reward.write-content").to_json %>,
             <%= metadata.links.fetch_id("docs.community.reward.video-record").to_json %>,
             <%= metadata.links.fetch_id("docs.community.reward.bug-bounty").to_json %>,
@@ -175,7 +181,7 @@ module.exports = {
       items: [
         {
           type: 'link',
-          label: 'API',
+          label: 'API documentation',
           href: '<%= metadata.links.fetch_id("urls.qovery_swagger") %>'
         },
         <%= metadata.links.fetch_id("docs.useful-resources.faq").to_json %>,

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-09-05"
+last_modified_on: "2021-10-09"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -73,7 +73,6 @@ Meaning, as a developer, you don't need to write a `Dockerfile` to build and run
 | Python     | any     |
 | Javascript | any     |
 | Typescript | any     |
-| Python     | any     |
 | Golang     | any     |
 | PHP        | any     |
 
@@ -266,6 +265,20 @@ To learn how to set up secrets in your projects and applications, navigate to [c
 
 To learn how to display your application logs, navigate to [logs section in our Debugging guide][guides.getting-started.debugging#logs]
 
+## SSH
+
+To connect to your application via SSH, you need to install the [Qovery CLI][docs.using-qovery.interface.cli] and run:
+
+```bash
+$ qovery application ssh <your app ID>
+```
+
+If you have multiple instances running.
+
+```bash
+$ qovery application ssh <your app ID> <instance ID>
+```
+
 ## Delete an Application
 
 <Steps headingDepth={3}>
@@ -298,6 +311,7 @@ In the application overview, click on the `Actions` button and remove the applic
 [docs.using-qovery.configuration.object-storage]: /docs/using-qovery/configuration/object-storage/
 [docs.using-qovery.configuration.project]: /docs/using-qovery/configuration/project/
 [docs.using-qovery.configuration.secret]: /docs/using-qovery/configuration/secret/
+[docs.using-qovery.interface.cli]: /docs/using-qovery/interface/cli/
 [guides.advanced.monorepository]: /guides/advanced/monorepository/
 [guides.getting-started.debugging#logs]: /guides/getting-started/debugging/#logs
 [guides.getting-started.deploy-your-first-application]: /guides/getting-started/deploy-your-first-application/

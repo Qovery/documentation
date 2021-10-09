@@ -1,8 +1,17 @@
 ---
-last_modified_on: "2021-06-20"
+last_modified_on: "2021-10-09"
 title: Web interface
 description: How to use the Qovery web interface
 ---
+
+import Alert from '@site/src/components/Alert';
+
+<Alert type="success">
+
+Use Infrastructure as Code (IaC) with [Terraform][docs.devops.infrastructure-as-code.terraform] and our [REST API][docs.devops.infrastructure-as-code.rest-api] to manage Qovery and deploy your apps.
+
+</Alert>
+
 Qovery provides a [management console][urls.start_qovery] which allows you to interact with your projects and manage your environments.
 
 <!--
@@ -28,5 +37,7 @@ Sign in to the [Qovery web interface][urls.start_qovery].
 Now that you have signed up on the web interface, check out [how to deploy your first application][guides.deploy-your-first-application]
 
 
+[docs.devops.infrastructure-as-code.rest-api]: /docs/devops/infrastructure-as-code/rest-api/
+[docs.devops.infrastructure-as-code.terraform]: /docs/devops/infrastructure-as-code/terraform/
 [guides.deploy-your-first-application]: /guides/getting-started/deploy-your-first-application/
 [urls.start_qovery]: https://start.qovery.com

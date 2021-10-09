@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-09-16"
+last_modified_on: "2021-10-09"
 title: "Scaleway (SCW)"
 description: "Learn how to configure and plug your Scaleway (SCW) account"
 ---
@@ -135,12 +135,16 @@ Qovery supports regions where [Scaleway Kubernetes (Kapsule)](https://www.scalew
 
 ## How Qovery works on Scaleway
 
-Qovery is an abstraction layer on top of Scaleway and Kubernetes. Qovery manages the configuration of Scaleway account, and helps your to deploy production ready apps in seconds.
+Qovery is an abstraction layer on top of Scaleway and Kubernetes. Qovery manages the configuration of Scaleway account, and helps you to deploy production ready apps in seconds.
 To make it works, Qovery rely on Kubernetes for stateless apps (containers), and  Scaleway for stateful apps (databases, storage...).
+
+[Read more][docs.devops.qovery-for-devops-introduction] on how Qovery works behind the scene.
 
 ### Kubernetes
 
 The first time you set up your Scaleway account, Qovery creates a Kubernetes cluster in your chosen region. Qovery managed it for you - no action required. It takes ~15 minutes to configure and bootstrap a Kubernetes cluster. Once bootstrapped, your Kubernetes cluster runs the Qovery app and is ready to deploy your applications.
+
+[Read more][docs.devops.infrastructure-config.kubernetes] on how Qovery works with Kubernetes.
 
 ### Managed services
 
@@ -152,6 +156,7 @@ Qovery runs your Kubernetes cluster and is autonomous to manage your application
 - Your configuration are stored on your Scaleway account.
 - Your configuration is encrypted on your Scaleway account.
 - Qovery can't access to your data.
+- Suppose Qovery stops to run, your applications are not impacted.
 
 ## FAQ
 
@@ -168,6 +173,8 @@ We are probably testing the support of this region, please [contact us][urls.qov
 Today, you can't migrate an environment from one region to another after it has been created. Vote [here][urls.qovery_roadmap] if you need this feature.
 
 
+[docs.devops.infrastructure-config.kubernetes]: /docs/devops/infrastructure-config/kubernetes/
+[docs.devops.qovery-for-devops-introduction]: /docs/devops/qovery-for-devops-introduction/
 [docs.useful-resources.faq#how-qovery-works-under-the-hood]: /docs/useful-resources/faq/#how-qovery-works-under-the-hood
 [docs.using-qovery.configuration.database.mongodb]: /docs/using-qovery/configuration/database/mongodb/
 [docs.using-qovery.configuration.database.mysql]: /docs/using-qovery/configuration/database/mysql/

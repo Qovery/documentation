@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-09-12"
+last_modified_on: "2021-10-08"
 title: "Amazon Web Services (AWS)"
 description: "Learn how to configure and plug your Amazon Web Services (AWS) account"
 ---
@@ -98,13 +98,78 @@ Go to the last step and copy your `access key id` and `secret access key`.
 
 <li>
 
+
+Setup<a href="/files/qovery-iam-aws.json"> IAM permissions</a> to the `qovery` user.
+
 <Alert type="warning">
 
 <a href="/files/qovery-iam-aws.json">Download IAM permissions JSON</a>
 
+<hr/>
+
+Or copy it from below:
+
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:*",
+                "s3:*",
+                "cloudwatch:*",
+                "autoscaling:*",
+                "application-autoscaling:*",
+                "elasticloadbalancing:*",
+                "organizations:DescribeAccount",
+                "organizations:DescribeOrganization",
+                "organizations:DescribeOrganizationalUnit",
+                "organizations:DescribePolicy",
+                "organizations:ListChildren",
+                "organizations:ListParents",
+                "organizations:ListPoliciesForTarget",
+                "organizations:ListRoots",
+                "organizations:ListPolicies",
+                "organizations:ListTargetsForPolicy",
+                "dynamodb:*",
+                "ecr:*",
+                "ec2:*",
+                "elasticache:*",
+                "cloudtrail:LookupEvents",
+                "kms:DescribeKey",
+                "kms:ListAliases",
+                "dynamodb:*",
+                "tag:GetResources",
+                "rds:*",
+                "ecs:*",
+                "eks:*",
+                "logs:*",
+                "events:DescribeRule",
+                "events:DeleteRule",
+                "events:ListRuleNamesByTarget",
+                "events:ListTargetsByRule",
+                "events:PutRule",
+                "events:PutTargets",
+                "es:AddTags",
+                "es:RemoveTags",
+                "es:ListTags",
+                "es:DeleteElasticsearchDomain",
+                "es:DescribeElasticsearchDomain",
+                "es:CreateElasticsearchDomain",
+                "events:RemoveTargets",
+                "kms:*"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+```
+
 </Alert>
 
-Setup<a href="/files/qovery-iam-aws.json"> IAM permissions</a> to the `qovery` user.
+**Then, follow the arrows in AWS console to create AWS credentials with required IAM permissions:**
 
 <img src="/img/aws-add-policy-1.jpg" />
 <img src="/img/aws-add-policy-2.jpg" />

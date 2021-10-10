@@ -9,7 +9,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="wip: work on &quot;Qovery for DevOps&quot;">
-      <change beforePath="$PROJECT_DIR$/website/docs/useful-resources/faq.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/useful-resources/faq.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/devops/infra-config.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/devops/infra-config.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/devops/infrastructure-config.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/devops/infrastructure-config.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/devops/infrastructure-config.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/devops/infrastructure-config/custom-domain.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/devops/infrastructure-config/custom-domain.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/devops/infrastructure-config/custom-domain.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/devops/infrastructure-config/custom-domain.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/devops/infrastructure-config/kubernetes.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/devops/infrastructure-config/kubernetes.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/devops/infrastructure-config/kubernetes.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/devops/infrastructure-config/kubernetes.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/devops/infrastructure-config/load-balancer.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/devops/infrastructure-config/load-balancer.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/devops/infrastructure-config/observability.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/devops/infrastructure-config/observability.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/devops/infrastructure-config/qovery-agent.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/devops/infrastructure-config/qovery-agent.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/devops/infrastructure-config/qovery-engine.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/devops/infrastructure-config/qovery-engine.md.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +106,7 @@
     <setting file="file://$PROJECT_DIR$/website/docs/community/reward/bug-bounty.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/guides/getting-started/create-a-database.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/docs/using-qovery/configuration/organization.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/website/docs/devops/infra-config.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/website/docs/devops/infrastructure-config.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/docs/using-qovery/configuration/application.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mongodb.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/docs/devops/infrastructure-as-code.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
@@ -368,13 +379,6 @@
       <workItem from="1633293231476" duration="15904000" />
       <workItem from="1633767764368" duration="10250000" />
       <workItem from="1633810717616" duration="15964000" />
-    </task>
-    <task id="LOCAL-00209" summary="wip: update doc for v2">
-      <created>1625063521987</created>
-      <option name="number" value="00209" />
-      <option name="presentableId" value="LOCAL-00209" />
-      <option name="project" value="LOCAL" />
-      <updated>1625063521988</updated>
     </task>
     <task id="LOCAL-00210" summary="chore: apply changes submitted by Aggis">
       <created>1625315686869</created>
@@ -712,7 +716,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633874755514</updated>
     </task>
-    <option name="localTasksCounter" value="258" />
+    <task id="LOCAL-00258" summary="wip: work on &quot;Qovery for DevOps&quot;">
+      <created>1633874936570</created>
+      <option name="number" value="00258" />
+      <option name="presentableId" value="LOCAL-00258" />
+      <option name="project" value="LOCAL" />
+      <updated>1633874936570</updated>
+    </task>
+    <option name="localTasksCounter" value="259" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-10-06"
+last_modified_on: "2021-10-10"
 title: "Observability"
 description: "Learn how to configure and fine tune Observability on your infrastructure with Qovery"
 ---
@@ -13,8 +13,6 @@ import Assumptions from '@site/src/components/Assumptions';
 Work in progress
 
 </Alert>
-
-TODO
 
 
 

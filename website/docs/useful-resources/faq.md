@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-27"
+last_modified_on: "2021-10-10"
 title: FAQ
 description: "Frequently Asked Questions"
 ---
@@ -89,13 +89,14 @@ Create teams, split responsibilities, manage privileges, enforce company-wide ru
 
 ## How Qovery works under the hood?
 
-We will explain in details soon.
+[Here][docs.devops.qovery-for-devops-introduction] is a detailed explanation on how Qovery works under the hood.
 
 ## How can I contact you?
 
 Feel free to join our [Discord server][urls.qovery_chat] or contact us by email at hello (at) qovery.com.
 
 
+[docs.devops.qovery-for-devops-introduction]: /docs/devops/qovery-for-devops-introduction/
 [docs.environment]: /docs/using-qovery/configuration/environment/
 [docs.project]: /docs/using-qovery/configuration/project/
 [docs.using-qovery.configuration.application]: /docs/using-qovery/configuration/application/

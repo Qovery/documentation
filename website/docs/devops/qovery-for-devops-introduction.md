@@ -6,9 +6,7 @@ description: "How Qovery works under the hood and how to use it when you are a D
 
 import Alert from '@site/src/components/Alert';
 
-Qovery is the state-of-the-art deployment platform that any DevOps would build for their company.
-Beyond application deployment, Qovery was tailored to run production workload with a maximum uptime.
-It is the perfect solution to make your developers autonomous in deploying their applications and still keep the flexibility and control.
+Qovery is the state-of-the-art deployment platform that any DevOps would build for their company. Beyond application deployment, Qovery is tailored to run production workload with maximum uptime. It is the perfect solution to make your developers autonomous in deploying their applications and keeping flexibility and control.
 
 Qovery is the perfect product for DevOps who want to:
 - Build an internal Platform as a Service (PaaS) with outstanding experience for developers.

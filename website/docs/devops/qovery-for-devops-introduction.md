@@ -62,8 +62,8 @@ All your applications and your data run in your cloud account. The [Qovery Engin
 | [External DNS](https://github.com/kubernetes-sigs/external-dns) | yes | no | Tool to configure external DNS for Kubernetes services |
 | [Cert Manager](https://github.com/jetstack/cert-manager) | yes | no | Tool to provision and manage TLS certificates on Kubernetes |
 | [Loki](https://github.com/grafana/loki) | yes | yes | Tool to aggregate Kubernetes logs. Qovery Agent fetch logs from Loki in real-time |
-| [Grafana](https://github.com/grafana/grafana) | yes | yes | TODO |
-| [NGINX ingress](https://kubernetes.github.io/ingress-nginx/) | yes | no | TODO |
+| [Grafana](https://github.com/grafana/grafana) | yes | yes | Product to visualize metrics and logs from infrastructure and app services |
+| [NGINX ingress](https://github.com/kubernetes/ingress-nginx/) | yes | no | NGINX ingress controller for Kubernetes |
 
 [Check out](https://github.com/Qovery/engine/blob/main/lib/helm-freeze.yaml) the list of services installed on your infrastructure.
 

@@ -44,7 +44,7 @@ Qovery needs to install a few services on your cloud account to work. Some of th
   <img src="/img/devops/qovery-infra-and-your-infra.svg" alt="Your infrastructure is completely isolated from the qovery control plane" />
 </p>
 
-All your applications and your data run in your cloud account. The [Qovery Engine][docs.devops.infrastructure-config.qovery-engine], [Qovery Agent][docs.devops.infrastructure-config.qovery-agent], and [Kubernetes][docs.devops.infrastructure-config.kubernetes] are the three main services running on your infrastructure to run your applications. The Qovery Engine and the Qovery Agent receive remote instructions from the control plane via a secured GRPC/TLS connection initiated. Qovery infrastructure and your infrastructure are completely isolated from each other. Qovery has been designed to never impact your infrastructure in case of any outage and security breach.
+All your applications and your data run in your cloud account. The [Qovery Engine][docs.devops.infrastructure-config.qovery-engine], [Qovery Agent][docs.devops.infrastructure-config.qovery-agent], and [Kubernetes][docs.devops.infrastructure-config.kubernetes] are the three main services running on your infrastructure to run your applications. The Qovery Engine and the Qovery Agent receive remote instructions from the control plane via a secured gRPC/TLS connection initiated. Qovery infrastructure and your infrastructure are completely isolated from each other. Qovery has been designed to never impact your infrastructure in case of any outage and security breach.
 
 ### Qovery infrastructure services
 

@@ -1,18 +1,111 @@
 ---
 title: Introduction
-description: "How Qovery works under the hood and how to use it when you are a DevOps "
+description: "How Qovery works under the hood and how to use it when you are a DevOps"
 ---
 
-<Alert type="warning">
+Qovery is the state-of-the-art deployment platform that any DevOps would build for their company.
+Beyond application deployment, Qovery was tailored to run production workload with a maximum uptime.
+It is the perfect solution to make your developers autonomous in deploying their applications and still keep the flexibility and control.
 
-Work in progress
+Qovery is the perfect product for DevOps who want to:
+- Build an internal Platform as a Service (PaaS) with outstanding experience for developers.
+- Build development, staging and production environments.
+- Make developers productive and autonomous, while keeping the control on what they do.
+- Save more than 18 months
+
+# How Qovery works
+
+Qovery is an abstraction layer on top of the most promising tools (Kubernetes, Terraform, Helm...) and cloud service providers (AWS, Digital Ocean, Scaleway...). The goal of Qovery is to provide production-ready platform layer to build on top of it.
+
+## Your cloud infrastructure with Qovery
+
+<Alert type="info">
+
+Check out our guides on how to install Qovery on your [AWS][guides.advanced.guide-amazon-web-services], [Digital Ocean][guides.advanced.guide-digital-ocean] and [Scaleway][guides.advanced.guide-scaleway] account.
 
 </Alert>
 
-Qovery is the state-of-the-art continuous deployment platform that any DevOps would build for their company.
+Qovery needs to install a few services on your cloud account to work. Some of them are required and others optional.
 
-✅ What *Qovery for DevOps* is good for:
-- TODO
+<p align="center">
+  <img src="/img/devops/qovery-infra-and-your-infra.svg" alt="Your infrastructure is completely isolated from the qovery control plane" />
+</p>
 
-❌ What *Qovery for DevOps* is not good for:
-- TODO
+All your applications and your data run in your cloud account. The [Qovery Engine][docs.devops.infrastructure-config.qovery-engine], [Qovery Agent][docs.devops.infrastructure-config.qovery-agent], and [Kubernetes][docs.devops.infrastructure-config.kubernetes] are the three main services running on your infrastructure to run your applications. The Qovery Engine and the Qovery Agent receive remote instructions from the control plane via a secured GRPC/TLS connection initiated. Qovery infrastructure and your infrastructure are completely isolated from each other. Qovery has been designed to never impacts your infrastructure in case of any outage and security breach.
+
+### Qovery infrastructure services
+
+| Service | Open-source | Optional | Description |
+|--------|-------------|-------------|-----------|
+| Qovery Control Plane | yes | no | Service to manage user authentication. authorization, and the whole Qovery business logic |
+| [Qovery API](https://api-doc.qovery.com/) | no | no | API to programmatically interact with Qovery |
+| Qovery Web Interface | soon | yes | Web application to interact with Qovery |
+
+### Services installed on your infrastructure
+
+| Service | Open-source | Optional | Description |
+|--------|-------------|-------------|-----------|
+| [Qovery Engine][urls.qovery_engine] | yes | no | Transactional deployment service in charge of maintaining your infrastructure and deploying applications with all the dependencies |
+| Qovery Agent | soon | no | Service to forward application logs, services status and real-time metrics to the Qovery Control Plane |
+| [Kubernetes](https://github.com/kubernetes/kubernetes) | yes | no | Product to run and scale containers. Qovery runs your application on your cloud managed Kubernetes |
+| [External DNS](https://github.com/kubernetes-sigs/external-dns) | yes | no | Tool to configure external DNS for Kubernetes services |
+| [Cert Manager](https://github.com/jetstack/cert-manager) | yes | no | Tool to provision and manage TLS certificates on Kubernetes |
+| [Loki](https://github.com/grafana/loki) | yes | yes | Tool to aggregate Kubernetes logs. Qovery Agent fetch logs from Loki in real-time |
+| [Grafana](https://github.com/grafana/grafana) | yes | yes | TODO |
+| [NGINX ingress](https://kubernetes.github.io/ingress-nginx/) | yes | no | TODO |
+
+[Check out](https://github.com/Qovery/engine/blob/main/lib/helm-freeze.yaml) the list of services installed on your infrastructure.
+
+<!--
+### Tools
+| [Qovery CLI](https://github.com/Qovery/qovery-cli) | yes | yes | Command Line Interface to interact with Qovery |
+| [Helm](https://github.com/helm/helm) | yes | no | Tool to install and manage Kubernetes applications. Qovery dynamically uses Helm to install your applications |
+| [Terraform](https://github.com/hashicorp/terraform) | yes | no | Tool to safely and predictably create, change, and improve cloud infrastructure. Qovery dynamically uses Terraform to bootstrap and maintain your infrastructure. |
+-->
+
+## Application and database deployment
+
+Here is an example of what happen in details when you deploy a **NodeJS application** with a **PostgreSQL database** in **production** on **AWS** with Qovery.
+
+<p align="center">
+  <img src="/img/devops/from-build-to-scale-schema.svg" alt="Schema from build to scale with Qovery" />
+</p>
+
+| Stage | Step | Qovery service | Description |
+|-------|------|---------------|-------------|
+| Auth | Git push received | Control plane | Qovery receives your git commit via Github/Gitlab/Bitbucket webhooks
+| Auth | Check permissions | Control plane | Qovery checks permissions to proceed app deployment or not
+| Build | Build container |  Engine | Qovery builds your NodeJS app into container |
+| Build | Push container |  Engine | Qovery push the container into your container registry |
+| Deploy | Deploy PostgreSQL |  Engine | Qovery match the PostgreSQL version with AWS RDS PostgreSQL and deploy it on your AWS account |
+| Deploy | Configure PostgreSQL network | Engine | Qovery configure the network of your AWS RDS PostgreSQL to make it accessible from your application |
+| Deploy | Check PostgreSQL | Engine | Qovery checks your AWS RDS PostgreSQL is well deployed and running |
+| Deploy | Deploy container | Engine | Qovery deploys your container on your Kubernetes cluster |
+| Deploy | Configure container network | Engine | Qovery configure the network of your container to make it accessible from outside |
+| Deploy | Load balancer | Engine | Qovery deploys a load balancer and bind it to your application |
+| Deploy | DNS | Engine | Qovery assign a domain to your application |
+| Deploy | TLS | Engine | Qovery request a TLS certificate and bind it to your domain and application |
+| Deploy | Check container | Engine | Qovery checks your container is well deployed and accessible via internet |
+| Run | Run database |  Engine | Qovery monitor your AWS RDS PostgreSQL database |
+| Run | Run container | Engine | Qovery runs your container on Kubernetes and ensure it has the maximum uptime |
+| Run | Metrics | Agent | Qovery watch your application and database metrics and forward them to the Qovery Control Plane |
+| Run | Notification | Control plane | Qovery notifies the user on the successful app and db deployment |
+| Scale | Agent | Scale container | Qovery scale your containers depending on the CPU and custom metrics |
+
+<Alert type="info">
+
+Suppose something goes wrong while deploying your application. Qovery rollbacks your app to return in a consistent state.
+
+</Alert>
+
+## Integrations
+
+Qovery lets you integrates any tool that you already have or need. There is no limitations has Qovery runs on Kubernetes and your cloud service provider. Check out our [configuration][docs.devops.infrastructure-config] section
+
+## What's next
+
+In the next section we explain how you can manage Qovery via [Terraform][docs.devops.infrastructure-as-code.terraform] and our [REST API][docs.devops.infrastructure-as-code.rest-api].
+
+In our [configuration][docs.devops.infrastructure-config] section you will learn how to:
+- Fine-tune every single piece (Kubernetes, Load balancer, Databases...) of your infrastructure.
+- Extend Qovery capabilities.

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-10-09"
+last_modified_on: "2021-10-10"
 title: Terraform
 description: "How to use Terraform (IaC) to manage Qovery resources"
 ---
@@ -18,7 +18,7 @@ Qovery integrates with Terraform to create a complete workflow with a strong dev
 
 For Terraform 0.13 and later, please include this:
 
-```terraform title="main.tf"
+```hcl title="main.tf"
 terraform {
   required_providers {
     qovery = {
@@ -49,7 +49,7 @@ resource "qovery_cluster" "prod-cluster" {
 
 Here is an example on how to deploy a container application and a PostgreSQL database:
 
-```terraform title="main.tf"
+```hcl title="main.tf"
 resource "qovery_project" "my project" {
   cluster = "prod-cluster"
   environments {

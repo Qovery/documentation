@@ -6,6 +6,7 @@ module.exports = {
       items: [
         <%= metadata.links.fetch_id("docs.getting-started").to_json %>,
         <%= metadata.links.fetch_id("docs.what-is-qovery").to_json %>,
+        <%= metadata.links.fetch_id("docs.install-qovery").to_json %>,
         <%= metadata.links.fetch_id("docs.deploy-my-app").to_json %>,
         <%= metadata.links.fetch_id("docs.features").to_json %>,
         {
@@ -23,7 +24,7 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Using Qovery',
+      label: 'For Developers',
       items: [
         <%= metadata.links.fetch_id("docs.using-qovery").to_json %>,
         {
@@ -120,7 +121,7 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Qovery for DevOps',
+      label: 'For DevOps',
       items: [
         <%= metadata.links.fetch_id("docs.devops.qovery-for-devops-introduction").to_json %>,
         {
@@ -142,6 +143,7 @@ module.exports = {
             <%= metadata.links.fetch_id("docs.devops.infrastructure-config.load-balancer").to_json %>,
             <%= metadata.links.fetch_id("docs.devops.infrastructure-config.observability").to_json %>,
             <%= metadata.links.fetch_id("docs.devops.infrastructure-config.qovery-engine").to_json %>,
+            <%= metadata.links.fetch_id("docs.devops.infrastructure-config.qovery-agent").to_json %>,
           ]
         }
       ],

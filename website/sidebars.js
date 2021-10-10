@@ -6,6 +6,7 @@ module.exports = {
       items: [
         "getting-started",
         "getting-started/what-is-qovery",
+        "getting-started/install-qovery",
         "getting-started/deploy-my-app",
         "getting-started/features",
         {
@@ -23,7 +24,7 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Using Qovery',
+      label: 'For Developers',
       items: [
         "using-qovery",
         {
@@ -120,7 +121,7 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Qovery for DevOps',
+      label: 'For DevOps',
       items: [
         "devops/qovery-for-devops-introduction",
         {
@@ -142,6 +143,7 @@ module.exports = {
             "devops/infrastructure-config/load-balancer",
             "devops/infrastructure-config/observability",
             "devops/infrastructure-config/qovery-engine",
+            "devops/infrastructure-config/qovery-agent",
           ]
         }
       ],

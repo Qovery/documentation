@@ -1,9 +1,18 @@
 ---
-last_modified_on: "2021-10-09"
+last_modified_on: "2021-10-10"
 title: "Kubernetes"
 description: "Learn how to configure and fine tune Kubernetes on Qovery"
 ---
+
+import Alert from '@site/src/components/Alert';
+
 import Assumptions from '@site/src/components/Assumptions';
+
+<Alert type="warning">
+
+Work in progress
+
+</Alert>
 
 TODO
 

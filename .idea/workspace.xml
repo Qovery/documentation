@@ -9,7 +9,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="wip: work on &quot;Qovery for DevOps&quot;">
+      <change afterPath="$PROJECT_DIR$/website/static/img/devops/qovery-on-top-of-kubernetes-and-terraform.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/devops/qovery-for-devops-introduction.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/devops/qovery-for-devops-introduction.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/docs/devops/qovery-for-devops-introduction.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/devops/qovery-for-devops-introduction.md.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -370,13 +372,6 @@
       <workItem from="1633767764368" duration="10250000" />
       <workItem from="1633810717616" duration="15964000" />
     </task>
-    <task id="LOCAL-00213" summary="chore: add link to apply as an ambassador">
-      <created>1625781833205</created>
-      <option name="number" value="00213" />
-      <option name="presentableId" value="LOCAL-00213" />
-      <option name="project" value="LOCAL" />
-      <updated>1625781833205</updated>
-    </task>
     <task id="LOCAL-00214" summary="fix: typo">
       <created>1625900147792</created>
       <option name="number" value="00214" />
@@ -713,7 +708,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633881602211</updated>
     </task>
-    <option name="localTasksCounter" value="262" />
+    <task id="LOCAL-00262" summary="wip: work on &quot;Qovery for DevOps&quot;">
+      <created>1633882687475</created>
+      <option name="number" value="00262" />
+      <option name="presentableId" value="LOCAL-00262" />
+      <option name="project" value="LOCAL" />
+      <updated>1633882687475</updated>
+    </task>
+    <option name="localTasksCounter" value="263" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

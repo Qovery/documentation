@@ -113,7 +113,7 @@ Suppose something goes wrong while deploying your application. Qovery rollbacks 
 
 ## Integrations
 
-Qovery lets you integrates any tool that you already have or need. There is no limitations has Qovery runs on Kubernetes and your cloud service provider. Check out our [configuration][docs.devops.infrastructure-config] section
+Qovery lets you integrates any tool that you already have or need. There is no limitations as Qovery runs on Kubernetes and your cloud service provider. Check out our [configuration][docs.devops.infrastructure-config] section
 
 ## What's next
 

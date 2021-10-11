@@ -8,10 +8,14 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="wip: work on &quot;Qovery for DevOps&quot;">
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: update postgresql and mysql doc for scaleway">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mongodb.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mongodb.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mysql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mysql.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mysql.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mysql.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/postgresql.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/postgresql.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/postgresql.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/redis.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/redis.md.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -371,13 +375,6 @@
       <workItem from="1633767764368" duration="10250000" />
       <workItem from="1633810717616" duration="15964000" />
     </task>
-    <task id="LOCAL-00216" summary="chore: update brand identity">
-      <created>1628786381691</created>
-      <option name="number" value="00216" />
-      <option name="presentableId" value="LOCAL-00216" />
-      <option name="project" value="LOCAL" />
-      <updated>1628786381691</updated>
-    </task>
     <task id="LOCAL-00217" summary="fix: docsearch">
       <created>1628874099804</created>
       <option name="number" value="00217" />
@@ -714,7 +711,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633888580612</updated>
     </task>
-    <option name="localTasksCounter" value="265" />
+    <task id="LOCAL-00265" summary="chore: update postgresql and mysql doc for scaleway">
+      <created>1633939539295</created>
+      <option name="number" value="00265" />
+      <option name="presentableId" value="LOCAL-00265" />
+      <option name="project" value="LOCAL" />
+      <updated>1633939539295</updated>
+    </task>
+    <option name="localTasksCounter" value="266" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -800,7 +804,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="fix: docsearch" />
     <MESSAGE value="fix: AWS regions ca-central-1 = Toronto" />
     <MESSAGE value="chore: add chinese AWS regions" />
     <MESSAGE value="chore: update comparisons pages" />
@@ -825,6 +828,7 @@
     <MESSAGE value="chore: add article on how to deploy a rust rest api" />
     <MESSAGE value="chre: edit Aggis API article" />
     <MESSAGE value="wip: work on &quot;Qovery for DevOps&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="wip: work on &quot;Qovery for DevOps&quot;" />
+    <MESSAGE value="chore: update postgresql and mysql doc for scaleway" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: update postgresql and mysql doc for scaleway" />
   </component>
 </project>

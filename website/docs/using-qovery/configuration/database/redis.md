@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-09-05"
+last_modified_on: "2021-10-11"
 title: Redis
 description: "How to set up and use a Redis database"
 ---
@@ -95,7 +95,9 @@ Databases can operate in two modes:
 **Container** databases are managed by Qovery as Docker containers with attached persistent storage. They are perfect for development and testing, as they are significantly cheaper than services provided by cloud providers.
 
 <Alert type="warning">
-    Managed databases are supported only in [paid plans][urls.qovery_pricing], it's not available in the `Community` version.
+
+Managed databases are supported only in [paid plans][urls.qovery_pricing], it's not available in the `Community` version.
+
 </Alert>
 
 #### Versions

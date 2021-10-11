@@ -10,12 +10,6 @@
   <component name="ChangeListManager">
     <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: update postgresql and mysql doc for scaleway">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mongodb.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mongodb.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mysql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mysql.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mysql.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mysql.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/postgresql.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/postgresql.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/postgresql.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/postgresql.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/redis.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/database/redis.md.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -375,13 +369,6 @@
       <workItem from="1633767764368" duration="10250000" />
       <workItem from="1633810717616" duration="15964000" />
     </task>
-    <task id="LOCAL-00217" summary="fix: docsearch">
-      <created>1628874099804</created>
-      <option name="number" value="00217" />
-      <option name="presentableId" value="LOCAL-00217" />
-      <option name="project" value="LOCAL" />
-      <updated>1628874099804</updated>
-    </task>
     <task id="LOCAL-00218" summary="fix: AWS regions ca-central-1 = Toronto">
       <created>1629128042423</created>
       <option name="number" value="00218" />
@@ -718,7 +705,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633939539295</updated>
     </task>
-    <option name="localTasksCounter" value="266" />
+    <task id="LOCAL-00266" summary="chore: update postgresql and mysql doc for scaleway">
+      <created>1633939714955</created>
+      <option name="number" value="00266" />
+      <option name="presentableId" value="LOCAL-00266" />
+      <option name="project" value="LOCAL" />
+      <updated>1633939714955</updated>
+    </task>
+    <option name="localTasksCounter" value="267" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

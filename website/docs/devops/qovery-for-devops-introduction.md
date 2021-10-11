@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-10-10"
+last_modified_on: "2021-10-11"
 title: Introduction
 description: "How Qovery works under the hood and how to use it when you are a DevOps"
 ---
@@ -113,7 +113,7 @@ Suppose something goes wrong while deploying your application. Qovery rollbacks 
 
 ## Integrations
 
-Qovery lets you integrates any tool that you already have or need. There is no limitations has Qovery runs on Kubernetes and your cloud service provider. Check out our [configuration][docs.devops.infrastructure-config] section
+Qovery lets you integrates any tool that you already have or need. There is no limitations as Qovery runs on Kubernetes and your cloud service provider. Check out our [configuration][docs.devops.infrastructure-config] section
 
 ## What's next
 

@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[189],{340:function(o){o.exports=JSON.parse('{"allTagsPath":"/guides/tags","slug":"technology-docker","name":"technology: docker","count":3,"permalink":"/guides/tags/technology-docker"}')}}]);

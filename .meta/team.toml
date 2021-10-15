@@ -73,3 +73,26 @@ name = "Angelos Rinas"
 bio = """\
 Angelos is a self-taught programmer using Python, Qovery ambassador and contributor. \
 """
+
+[[team]]
+id = "james_walker"
+avatar = "https://github.com/ilmiont.png"
+github = "https://github.com/ilmiont"
+keybase = "https://keybase.io/ilmiont"
+name = "James Walker"
+bio = """\
+James Walker is the founder of Heron Web, a UK-based digital agency providing bespoke software development services to SMEs. \
+He has experience managing complete end-to-end web development workflows with DevOps, CI/CD, Docker, and Kubernetes.
+"""
+
+[[team]]
+id = "dhiraj_kumar"
+avatar = "https://github.com/Dhirajkumar55.png"
+github = "https://github.com/Dhirajkumar55"
+keybase = "https://keybase.io/Dhirajkumar55"
+name = "Dhiraj Kumar"
+bio = """\
+Dhiraj Kumar has 10+ years of experience in Python and \
+Machine learning. I specialize in Data analytics and Machine learning using python. My Primary Expertise includes Python, Flask, Django, \
+Pandas, NumPy, SciKit-Learn, NLP, Docker, Machine Learning, Deep Learning, Chatbot, NLP, Spark, AWS, C#, and Azure
+"""

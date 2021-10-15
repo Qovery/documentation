@@ -356,6 +356,15 @@ module.exports = {
           "title": "GraphQL API with Hasura"
         },
         {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/tutorial/how-to-build-a-cloud-version-of-your-open-source-software-part-1",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/how-to-build-a-cloud-version-of-your-open-source-software-part-1.md",
+          "series_position": null,
+          "title": "How to Build a Cloud Version of Your Open Source Software - Part 1"
+        },
+        {
           "author_github": "https://github.com/Aggis15",
           "description": null,
           "id": "/tutorial/create-and-deploy-python-discord-bot",
@@ -483,6 +492,15 @@ module.exports = {
       "description": "We share our engineering learning with all of you. ",
       "guides": [
         {
+          "author_github": "https://github.com/ilmiont",
+          "description": null,
+          "id": "/engineering/best-practices-and-tips-for-writing-a-dockerfile",
+          "last_modified_on": null,
+          "path": "website/guides/engineering/best-practices-and-tips-for-writing-a-dockerfile.md",
+          "series_position": null,
+          "title": "Best Practices and Tips for Writing a Dockerfile"
+        },
+        {
           "author_github": "https://github.com/pjeziorowski",
           "description": null,
           "id": "/engineering/feedback-kotlin-on-the-server-side",
@@ -517,6 +535,15 @@ module.exports = {
           "path": "website/guides/engineering/terraform-not-the-golden-hammer.md",
           "series_position": null,
           "title": "Terraform is Not the Golden Hammer"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/engineering/the-best-tool-for-monitoring-your-docker-container",
+          "last_modified_on": null,
+          "path": "website/guides/engineering/the-best-tool-for-monitoring-your-docker-container.md",
+          "series_position": null,
+          "title": "The Best Tools for Monitoring Your Docker Container"
         },
         {
           "author_github": "https://github.com/deimosfr",
@@ -654,6 +681,22 @@ module.exports = {
       "id": "Aggis15",
       "keybase": "https://keybase.io/Aggis15",
       "name": "Angelos Rinas"
+    },
+    {
+      "avatar": "https://github.com/ilmiont.png",
+      "bio": "James Walker is the founder of Heron Web, a UK-based digital agency providing bespoke software development services to SMEs. He has experience managing complete end-to-end web development workflows with DevOps, CI/CD, Docker, and Kubernetes.\n",
+      "github": "https://github.com/ilmiont",
+      "id": "james_walker",
+      "keybase": "https://keybase.io/ilmiont",
+      "name": "James Walker"
+    },
+    {
+      "avatar": "https://github.com/Dhirajkumar55.png",
+      "bio": "Dhiraj Kumar has 10+ years of experience in Python and Machine learning. I specialize in Data analytics and Machine learning using python. My Primary Expertise includes Python, Flask, Django, Pandas, NumPy, SciKit-Learn, NLP, Docker, Machine Learning, Deep Learning, Chatbot, NLP, Spark, AWS, C#, and Azure\n",
+      "github": "https://github.com/Dhirajkumar55",
+      "id": "dhiraj_kumar",
+      "keybase": "https://keybase.io/Dhirajkumar55",
+      "name": "Dhiraj Kumar"
     }
   ],
   "technologies": [

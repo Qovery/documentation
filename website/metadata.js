@@ -362,7 +362,7 @@ module.exports = {
           "last_modified_on": null,
           "path": "website/guides/tutorial/how-to-build-a-cloud-version-of-your-open-source-software-part-1.md",
           "series_position": null,
-          "title": "How to Build a Cloud Version of Your Open Source Software - Part 1"
+          "title": "How to Build a Cloud Version of Your Open Source Software - A Case Study with AppWrite - Part 1"
         },
         {
           "author_github": "https://github.com/Aggis15",

@@ -62,3 +62,8 @@ dark_logo_path = "/img/logos/nuxtjs.svg"
 name = "discordpy"
 logo_path = "/img/logos/discordpy.svg"
 dark_logo_path = "/img/logos/discordpy.svg"
+
+[[frameworks]]
+name = "sinatra"
+logo_path = "/img/logos/sinatra.svg"
+dark_logo_path = "/img/logos/sinatra.svg"

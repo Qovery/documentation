@@ -76,6 +76,19 @@ module.exports = {
         },
         {
           type: 'category',
+          label: 'Languages',
+          items: [
+              "using-qovery/languages",
+              "using-qovery/languages/nodejs",
+              "using-qovery/languages/java",
+              "using-qovery/languages/go",
+              "using-qovery/languages/python",
+              "using-qovery/languages/ruby",
+              "using-qovery/languages/php",
+              ],
+        },
+        {
+          type: 'category',
           label: 'Addons',
           items: [
             "using-qovery/addon",

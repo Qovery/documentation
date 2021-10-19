@@ -76,6 +76,19 @@ module.exports = {
         },
         {
           type: 'category',
+          label: 'Languages',
+          items: [
+              <%= metadata.links.fetch_id("docs.using-qovery.languages").to_json %>,
+              <%= metadata.links.fetch_id("docs.using-qovery.languages.nodejs").to_json %>,
+              <%= metadata.links.fetch_id("docs.using-qovery.languages.java").to_json %>,
+              <%= metadata.links.fetch_id("docs.using-qovery.languages.go").to_json %>,
+              <%= metadata.links.fetch_id("docs.using-qovery.languages.python").to_json %>,
+              <%= metadata.links.fetch_id("docs.using-qovery.languages.ruby").to_json %>,
+              <%= metadata.links.fetch_id("docs.using-qovery.languages.php").to_json %>,
+              ],
+        },
+        {
+          type: 'category',
           label: 'Addons',
           items: [
             <%= metadata.links.fetch_id("docs.using-qovery.addon").to_json %>,

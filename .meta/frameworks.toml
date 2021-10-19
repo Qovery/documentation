@@ -67,3 +67,8 @@ dark_logo_path = "/img/logos/discordpy.svg"
 name = "sinatra"
 logo_path = "/img/logos/sinatra.svg"
 dark_logo_path = "/img/logos/sinatra.svg"
+
+[[frameworks]]
+name = "meilisearch"
+logo_path = "/img/logos/meilisearch.svg"
+dark_logo_path = "/img/logos/meilisearch.svg"

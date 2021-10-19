@@ -703,6 +703,10 @@ class Templates
     render("#{partials_path}/_qovery_quickstart.md", binding).strip
   end
 
+  def _qovery_quickstart_docker(framework, framework_label, repo_url, port, tech_tag)
+    render("#{partials_path}/_qovery_quickstart_docker.md", binding).strip
+  end
+
   def qovery_status_output(branch, application, database)
     render("#{partials_path}/_qovery_status_output.md", binding).strip
   end

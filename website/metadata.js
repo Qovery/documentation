@@ -116,6 +116,11 @@ module.exports = {
       "dark_logo_path": "/img/logos/sinatra.svg",
       "logo_path": "/img/logos/sinatra.svg",
       "name": "sinatra"
+    },
+    {
+      "dark_logo_path": "/img/logos/meilisearch.svg",
+      "logo_path": "/img/logos/meilisearch.svg",
+      "name": "meilisearch"
     }
   ],
   "guides": {
@@ -381,6 +386,15 @@ module.exports = {
         {
           "author_github": "https://github.com/pjeziorowski",
           "description": null,
+          "id": "/tutorial/quickstart-meilisearch",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/quickstart-meilisearch.md",
+          "series_position": null,
+          "title": "Getting started with Meilisearch on Qovery"
+        },
+        {
+          "author_github": "https://github.com/pjeziorowski",
+          "description": null,
           "id": "/tutorial/quickstart-node",
           "last_modified_on": null,
           "path": "website/guides/tutorial/quickstart-node.md",
@@ -395,6 +409,15 @@ module.exports = {
           "path": "website/guides/tutorial/quickstart-rails.md",
           "series_position": null,
           "title": "Getting started with Rails on Qovery"
+        },
+        {
+          "author_github": "https://github.com/pjeziorowski",
+          "description": null,
+          "id": "/tutorial/quickstart-rust-rocket",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/quickstart-rust-rocket.md",
+          "series_position": null,
+          "title": "Getting started with Rust on Qovery"
         },
         {
           "author_github": "https://github.com/pjeziorowski",

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-26"
+last_modified_on: "2021-10-21"
 title: Quickstarts
 description: "Quickstart to deploy your project with Qovery"
 sidebar_label: hidden
@@ -11,6 +11,10 @@ import Jump from '@site/src/components/Jump';
 In the following subsections, you'll learn how to deploy your application with Qovery.
 
 <Jump to="/docs/using-qovery/quickstart/hasura/">Hasura</Jump>
+<Jump to="/docs/using-qovery/quickstart/meilisearch/">Meilisearch</Jump>
+<Jump to="/docs/using-qovery/quickstart/nodejs/">Nodejs</Jump>
+<Jump to="/docs/using-qovery/quickstart/rust/">Rust</Jump>
+<Jump to="/docs/using-qovery/quickstart/spring/">Spring</Jump>
 <Jump to="/docs/using-qovery/quickstart/strapi/">Strapi</Jump>
 
 

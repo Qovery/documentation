@@ -121,6 +121,10 @@ module.exports = {
             "using-qovery/quickstart",
             "using-qovery/quickstart/hasura",
             "using-qovery/quickstart/strapi",
+            "using-qovery/quickstart/meilisearch",
+            "using-qovery/quickstart/nodejs",
+            "using-qovery/quickstart/rust",
+            "using-qovery/quickstart/spring",
           ]
         },
         {

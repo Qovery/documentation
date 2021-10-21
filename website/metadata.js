@@ -111,6 +111,16 @@ module.exports = {
       "dark_logo_path": "/img/logos/discordpy.svg",
       "logo_path": "/img/logos/discordpy.svg",
       "name": "discordpy"
+    },
+    {
+      "dark_logo_path": "/img/logos/sinatra.svg",
+      "logo_path": "/img/logos/sinatra.svg",
+      "name": "sinatra"
+    },
+    {
+      "dark_logo_path": "/img/logos/meilisearch.svg",
+      "logo_path": "/img/logos/meilisearch.svg",
+      "name": "meilisearch"
     }
   ],
   "guides": {
@@ -345,6 +355,96 @@ module.exports = {
           "path": "website/guides/tutorial/deploy-spring-boot-with-postgresql.md",
           "series_position": null,
           "title": "Deploy Spring Boot with PostgreSQL"
+        },
+        {
+          "author_github": "https://github.com/pjeziorowski",
+          "description": null,
+          "id": "/tutorial/quickstart-django",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/quickstart-django.md",
+          "series_position": null,
+          "title": "Getting started with Django on Qovery"
+        },
+        {
+          "author_github": "https://github.com/pjeziorowski",
+          "description": null,
+          "id": "/tutorial/quickstart-go",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/quickstart-go.md",
+          "series_position": null,
+          "title": "Getting started with Golang on Qovery"
+        },
+        {
+          "author_github": "https://github.com/pjeziorowski",
+          "description": null,
+          "id": "/tutorial/quickstart-laravel",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/quickstart-laravel.md",
+          "series_position": null,
+          "title": "Getting started with Laravel on Qovery"
+        },
+        {
+          "author_github": "https://github.com/pjeziorowski",
+          "description": null,
+          "id": "/tutorial/quickstart-meilisearch",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/quickstart-meilisearch.md",
+          "series_position": null,
+          "title": "Getting started with Meilisearch on Qovery"
+        },
+        {
+          "author_github": "https://github.com/pjeziorowski",
+          "description": null,
+          "id": "/tutorial/quickstart-node",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/quickstart-node.md",
+          "series_position": null,
+          "title": "Getting started with NodeJS on Qovery"
+        },
+        {
+          "author_github": "https://github.com/pjeziorowski",
+          "description": null,
+          "id": "/tutorial/quickstart-rails",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/quickstart-rails.md",
+          "series_position": null,
+          "title": "Getting started with Rails on Qovery"
+        },
+        {
+          "author_github": "https://github.com/pjeziorowski",
+          "description": null,
+          "id": "/tutorial/quickstart-rust-rocket",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/quickstart-rust-rocket.md",
+          "series_position": null,
+          "title": "Getting started with Rust on Qovery"
+        },
+        {
+          "author_github": "https://github.com/pjeziorowski",
+          "description": null,
+          "id": "/tutorial/quickstart-scala",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/quickstart-scala.md",
+          "series_position": null,
+          "title": "Getting started with Scala on Qovery"
+        },
+        {
+          "author_github": "https://github.com/pjeziorowski",
+          "description": null,
+          "id": "/tutorial/quickstart-sinatra",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/quickstart-sinatra.md",
+          "series_position": null,
+          "title": "Getting started with Sinatra on Qovery"
+        },
+        {
+          "author_github": "https://github.com/pjeziorowski",
+          "description": null,
+          "id": "/tutorial/quickstart-springboot",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/quickstart-springboot.md",
+          "series_position": null,
+          "title": "Getting started with Spring Boot on Qovery"
         },
         {
           "author_github": "https://github.com/pjeziorowski",
@@ -605,6 +705,11 @@ module.exports = {
       "dark_logo_path": "/img/logos/ruby.svg",
       "logo_path": "/img/logos/ruby.svg",
       "name": "ruby"
+    },
+    {
+      "dark_logo_path": "/img/logos/scala.svg",
+      "logo_path": "/img/logos/scala.svg",
+      "name": "scala"
     }
   ],
   "latest_highlight": {

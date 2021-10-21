@@ -76,6 +76,19 @@ module.exports = {
         },
         {
           type: 'category',
+          label: 'Languages',
+          items: [
+              "using-qovery/languages",
+              "using-qovery/languages/nodejs",
+              "using-qovery/languages/java",
+              "using-qovery/languages/go",
+              "using-qovery/languages/python",
+              "using-qovery/languages/ruby",
+              "using-qovery/languages/php",
+              ],
+        },
+        {
+          type: 'category',
           label: 'Addons',
           items: [
             "using-qovery/addon",
@@ -108,6 +121,12 @@ module.exports = {
             "using-qovery/quickstart",
             "using-qovery/quickstart/hasura",
             "using-qovery/quickstart/strapi",
+            "using-qovery/quickstart/meilisearch",
+            "using-qovery/quickstart/nodejs",
+            "using-qovery/quickstart/rust",
+            "using-qovery/quickstart/spring",
+            "using-qovery/quickstart/django",
+            "using-qovery/quickstart/rails",
           ]
         },
         {

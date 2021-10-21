@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-10-09"
+last_modified_on: "2021-10-18"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -200,6 +200,18 @@ You can also expose ports publicly - it makes them accessible over the public ne
 
 <Alert type="info">
 By default, newly created ports are publicly exposed over HTTPS. You can change this setting in the `Advanced` section.
+</Alert>
+
+#### Exposing Applications
+
+Before your application is exposed to the internet, Qovery needs to know what **PORT** to listen on to expose your app. Qovery does try to do it's best to do this automatically for you however, there are cases when we can't.
+
+You can configure your application to use the **PORT** environment variable by adding the **PORT** on your application env variables page.
+
+<Alert type="warning">
+
+A Note on Listening IPs: It's best for your application to listen on `0.0.0.0:$PORT`. While most things work with `127.0.0.1` and `localhost`, some do not (NodeJS for example)
+
 </Alert>
 
 ### Domains

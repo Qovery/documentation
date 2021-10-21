@@ -37,3 +37,8 @@ dark_logo_path = "/img/logos/go.svg"
 name = "ruby"
 logo_path = "/img/logos/ruby.svg"
 dark_logo_path = "/img/logos/ruby.svg"
+
+[[languages]]
+name = "scala"
+logo_path = "/img/logos/scala.svg"
+dark_logo_path = "/img/logos/scala.svg"

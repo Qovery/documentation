@@ -699,6 +699,14 @@ class Templates
     render("#{partials_path}/_qovery_how_to_deploy_x_with_y.md", binding).strip
   end
 
+  def _qovery_quickstart(framework, framework_label, repo_url, port, tech_tag, description)
+    render("#{partials_path}/_qovery_quickstart.md", binding).strip
+  end
+
+  def _qovery_quickstart_docker(framework, framework_label, repo_url, port, tech_tag, description)
+    render("#{partials_path}/_qovery_quickstart_docker.md", binding).strip
+  end
+
   def qovery_status_output(branch, application, database)
     render("#{partials_path}/_qovery_status_output.md", binding).strip
   end

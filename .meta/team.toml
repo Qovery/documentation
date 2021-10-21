@@ -87,12 +87,22 @@ He has experience managing complete end-to-end web development workflows with De
 
 [[team]]
 id = "dhiraj_kumar"
-avatar = "https://github.com/Dhirajkumar55.png"
-github = "https://github.com/Dhirajkumar55"
-keybase = "https://keybase.io/Dhirajkumar55"
+avatar = "https://github.com/Qovery.png"
+github = "https://github.com/dhiraj_kumar"
+keybase = "https://keybase.io/dhiraj_kumar"
 name = "Dhiraj Kumar"
 bio = """\
 Dhiraj Kumar has 10+ years of experience in Python and \
 Machine learning. I specialize in Data analytics and Machine learning using python. My Primary Expertise includes Python, Flask, Django, \
 Pandas, NumPy, SciKit-Learn, NLP, Docker, Machine Learning, Deep Learning, Chatbot, NLP, Spark, AWS, C#, and Azure
+"""
+
+[[team]]
+id = "shingai_zivuku"
+avatar = "https://github.com/Qovery.png"
+github = "https://github.com/shingai_zivuku"
+keybase = "https://keybase.io/shingai_zivuku"
+name = "Shingai Zivuku"
+bio = """\
+Shingai Zivuku is a softwage engineer passionated by the cloud.
 """

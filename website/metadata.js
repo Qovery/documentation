@@ -646,6 +646,15 @@ module.exports = {
           "title": "The Best Tools for Monitoring Your Docker Container"
         },
         {
+          "author_github": "https://github.com/ilmiont",
+          "description": null,
+          "id": "/engineering/the-complete-guide-to-aws-load-balancers",
+          "last_modified_on": null,
+          "path": "website/guides/engineering/the-complete-guide-to-aws-load-balancers.md",
+          "series_position": null,
+          "title": "The Complete Guide To AWS Load Balancers"
+        },
+        {
           "author_github": "https://github.com/deimosfr",
           "description": null,
           "id": "/engineering/helm-freeze-manage-helm-charts-with-ease",
@@ -796,12 +805,20 @@ module.exports = {
       "name": "James Walker"
     },
     {
-      "avatar": "https://github.com/Dhirajkumar55.png",
+      "avatar": "https://github.com/Qovery.png",
       "bio": "Dhiraj Kumar has 10+ years of experience in Python and Machine learning. I specialize in Data analytics and Machine learning using python. My Primary Expertise includes Python, Flask, Django, Pandas, NumPy, SciKit-Learn, NLP, Docker, Machine Learning, Deep Learning, Chatbot, NLP, Spark, AWS, C#, and Azure\n",
-      "github": "https://github.com/Dhirajkumar55",
+      "github": "https://github.com/dhiraj_kumar",
       "id": "dhiraj_kumar",
-      "keybase": "https://keybase.io/Dhirajkumar55",
+      "keybase": "https://keybase.io/dhiraj_kumar",
       "name": "Dhiraj Kumar"
+    },
+    {
+      "avatar": "https://github.com/Qovery.png",
+      "bio": "Shingai Zivuku is a softwage engineer passionated by the cloud.\n",
+      "github": "https://github.com/shingai_zivuku",
+      "id": "shingai_zivuku",
+      "keybase": "https://keybase.io/shingai_zivuku",
+      "name": "Shingai Zivuku"
     }
   ],
   "technologies": [

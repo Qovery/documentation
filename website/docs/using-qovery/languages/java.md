@@ -1,11 +1,11 @@
 ---
-last_modified_on: "2021-10-19"
+last_modified_on: "2021-10-21"
 title: Java
 description: Learn how to build your Java application with Buildpacks on Qovery
 ---
 
 The [Java buildpack](https://github.com/heroku/heroku-buildpack-java) detects if your
-build is Java by looking for a `pom.xml` file. If found, Maven will download all
+build is Java by looking for a `pom.xml` or `build.gradle` file. If found, Maven/Gradle will download all
 dependencies and build the project.
 
 <!--
@@ -60,6 +60,7 @@ Because we use Cloudnative Buildpacks, the `pom.xml` file needs to have a compat
 You can specify a Java version by adding a file called system.properties to your application.
 
 Then set a java.runtime.version in the file:
+
 ```
 java.runtime.version=13
 ```

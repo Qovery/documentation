@@ -125,6 +125,8 @@ module.exports = {
             "using-qovery/quickstart/nodejs",
             "using-qovery/quickstart/rust",
             "using-qovery/quickstart/spring",
+            "using-qovery/quickstart/django",
+            "using-qovery/quickstart/rails",
           ]
         },
         {

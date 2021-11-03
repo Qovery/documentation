@@ -621,6 +621,15 @@ module.exports = {
         {
           "author_github": "https://github.com/deimosfr",
           "description": null,
+          "id": "/engineering/how_we_extended_helm_lifecycle_with_rust",
+          "last_modified_on": null,
+          "path": "website/guides/engineering/how_we_extended_helm_lifecycle_with_rust.md",
+          "series_position": null,
+          "title": "How we extended Helm lifecycle with Rust"
+        },
+        {
+          "author_github": "https://github.com/deimosfr",
+          "description": null,
           "id": "/engineering/basic-network-isolation-in-kubernetes",
           "last_modified_on": null,
           "path": "website/guides/engineering/basic-network-isolation-in-kubernetes.md",
@@ -646,7 +655,7 @@ module.exports = {
           "title": "The Best Tools for Monitoring Your Docker Container"
         },
         {
-          "author_github": "https://github.com/ilmiont",
+          "author_github": "https://github.com/shingai_zivuku",
           "description": null,
           "id": "/engineering/the-complete-guide-to-aws-load-balancers",
           "last_modified_on": null,
@@ -826,6 +835,11 @@ module.exports = {
       "dark_logo_path": "/img/logos/kubernetes_white.svg",
       "logo_path": "/img/logos/kubernetes.svg",
       "name": "kubernetes"
+    },
+    {
+      "dark_logo_path": "/img/logos/helm_white.svg",
+      "logo_path": "/img/logos/helm.svg",
+      "name": "helm"
     },
     {
       "dark_logo_path": "/img/logos/docker.svg",

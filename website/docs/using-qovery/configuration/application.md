@@ -108,7 +108,7 @@ To configure the number of CPUs that your app needs, adjust the setting in the `
 
 <Alert type="info">
 
-Default is 256m. The maximum you can set is 1CPU in **Community** version and unlimited in [paid plans][urls.qovery_pricing].
+Default is 0.25CPU. The maximum you can set is 1CPU in **Community** version and unlimited in [paid plans][urls.qovery_pricing].
 
 </Alert>
 

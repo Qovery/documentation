@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[54],{205:function(e){e.exports=JSON.parse('{"allTagsPath":"/guides/tags","slug":"type-engineering","name":"type: engineering","count":8,"permalink":"/guides/tags/type-engineering"}')}}]);

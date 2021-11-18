@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-10-09"
+last_modified_on: "2021-11-18"
 title: CLI
 description: How to use the Qovery CLI (Command Line Interface)
 ---
@@ -286,7 +286,7 @@ Status      | RUNNING
 Console command quickly opens the Qovery Console in your browser to let you display more information about your application.
 
 ```bash
-$ qovery status
+$ qovery console
 Qovery: Opening https://console.qovery.com/platform/organization/your-org/projects/your-proj/environments/your-env/applications/your-app/summary
 ```
 

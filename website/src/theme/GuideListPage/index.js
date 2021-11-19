@@ -24,8 +24,8 @@ function Guides({filtering, items}) {
         const advancedCategory = advancedGuides[0].content.metadata.categories[0];
         const tutorialGuides = items.filter(item => item.content.metadata.categories[0].name == 'tutorial');
         const tutorialCategory = tutorialGuides[0].content.metadata.categories[0];
-        const engineeringGuides = items.filter(item => item.content.metadata.categories[0].name == 'engineering');
-        const engineeringCategory = engineeringGuides[0].content.metadata.categories[0];
+        // const engineeringGuides = items.filter(item => item.content.metadata.categories[0].name == 'engineering');
+        // const engineeringCategory = engineeringGuides[0].content.metadata.categories[0];
         //const integrationGuides = items.filter(item => item.content.metadata.categories[0].name == 'integrate');
         //const integrationCategory = integrationGuides[0].content.metadata.categories[0];
 
@@ -44,11 +44,11 @@ function Guides({filtering, items}) {
                     {tutorialCategory.description && <div className="sub-title">{tutorialCategory.description}</div>}
                     <GuideItems items={tutorialGuides} large={true}/>
                 </section>
-                <section>
-                    <AnchoredH2 id={engineeringCategory.permalink}>{engineeringCategory.title}</AnchoredH2>
-                    {engineeringCategory.description && <div className="sub-title">{engineeringCategory.description}</div>}
-                    <GuideItems items={engineeringGuides} large={true}/>
-                </section>
+                {/*<section>*/}
+                {/*    <AnchoredH2 id={engineeringCategory.permalink}>{engineeringCategory.title}</AnchoredH2>*/}
+                {/*    {engineeringCategory.description && <div className="sub-title">{engineeringCategory.description}</div>}*/}
+                {/*    <GuideItems items={engineeringGuides} large={true}/>*/}
+                {/*</section>*/}
                 {/*<section>
           <AnchoredH2 id={integrationCategory.permalink}>{integrationCategory.title}</AnchoredH2>
           {integrationCategory.description && <div className="sub-title">{integrationCategory.description}</div>}

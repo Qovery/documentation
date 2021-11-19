@@ -546,6 +546,15 @@ module.exports = {
           "title": "Migrate your application from Heroku to AWS"
         },
         {
+          "author_github": "https://github.com/l0ck3",
+          "description": null,
+          "id": "/tutorial/aws-vpc-peering-with-qovery",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/aws-vpc-peering-with-qovery.md",
+          "series_position": null,
+          "title": "Setup VPC peering on AWS with Qovery"
+        },
+        {
           "author_github": "https://github.com/pjeziorowski",
           "description": null,
           "id": "/tutorial/simplest-way-to-deploy-deno-with-database",
@@ -780,6 +789,14 @@ module.exports = {
       "id": "enzo",
       "keybase": "https://keybase.io/enzo",
       "name": "Enzo R."
+    },
+    {
+      "avatar": "https://github.com/l0ck3.png",
+      "bio": "Yann is a Developer Experience Engineer at <a href=\"https://www.qovery.com\">Qovery</a>. He has 15+ years of experience in development and SRE.\n",
+      "github": "https://github.com/l0ck3",
+      "id": "yann",
+      "keybase": "https://keybase.io/l0ck3",
+      "name": "Yann I."
     },
     {
       "avatar": "https://github.com/sileht.png",

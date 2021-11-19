@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-10-21"
+last_modified_on: "2021-11-19"
 $schema: "/.meta/.schemas/guides.json"
 title: Getting started with Rust on Qovery
 description: How to quickly deploy a Rust app on Qovery
@@ -29,7 +29,7 @@ In the tutorial, we will use a sample application ready to be deployed on Qovery
 
 ## App Setup
 
-In [Qovery Console](https://console.qovery.com), choose or create your project and environment. Then, add a new application:
+In [Qovery Console](https://start.qovery.com), choose or create your project and environment. Then, add a new application:
 
 <p>
     <img src="/img/quickstart-1.png" alt="Rust" />

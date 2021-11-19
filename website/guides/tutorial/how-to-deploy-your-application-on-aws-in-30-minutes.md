@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-09-13"
+last_modified_on: "2021-11-19"
 $schema: "/.meta/.schemas/guides.json"
 title: Zero to Hero - How to deploy your apps on AWS in 30 minutes
 description: Step-by-step guide on how to deploy your apps on AWS in 30 minutes. No AWS knowledge required.
@@ -83,7 +83,7 @@ To install Qovery on your AWS account, the `secret access key` and `access key i
 ## Configure Qovery
 
 ### Sign-up to Qovery
-Using Qovery is as simple as connect with your *Github* or *Gitlab* account on [console.qovery.com][urls.start_qovery].
+Using Qovery is as simple as connect with your *Github* or *Gitlab* account on [start.qovery.com][urls.start_qovery].
 
 -> [Connect to Qovery][urls.start_qovery]
 

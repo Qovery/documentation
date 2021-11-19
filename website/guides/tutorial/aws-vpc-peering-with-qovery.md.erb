@@ -1,0 +1,163 @@
+---
+$schema: "/.meta/.schemas/guides.json"
+title: Setup VPC peering on AWS with Qovery
+description: How to peer a Qovery VPC with an existing VPC on AWS
+author_github: https://github.com/l0ck3
+tags: ["type: tutorial", "cloud_provider: aws"]
+hide_pagination: true
+---
+import Alert from '@site/src/components/Alert';
+import Assumptions from '@site/src/components/Assumptions';
+import Jump from '@site/src/components/Jump';
+
+
+While Qovery is all you need to deploy and run your applications in AWS, you might have existing resources in another VPC that you want to access from your Qovery applications.
+This tutorial will show you how to set up VPC peering between the Qovery VPC and an existing one in your account.
+
+<Assumptions name="guide">
+
+* You have an existing AWS VPC with a resource you need to access, like an RDS database
+* You have a [Qovery cluster ready on your AWS account](https://hub.qovery.com/guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes)
+
+</Assumptions>
+
+## Goal 
+
+In this tutorial, we will connect an existing VPC on our AWS account with the VPC of a Qovery managed cluster. 
+We should then be able to deploy an application using a PostgreSQL RDS instance in our existing VPC.
+
+<Steps headingDepth={3}>
+
+<ol>
+
+<li>
+
+#### Gather the necessary information
+Before we begin, you will need to gather some information. It is recommended that you keep this information at hand in a file for convenience.
+
+##### Your existing VPC ID
+
+To get your existing VPC ID in your AWS console, go to: `VPC > Your VPCs`, find the VPC you would like to use as a peering target, and copy its ID
+
+<p align="center">
+  <img src="/img/aws-vpc-peering-with-qovery/vpc-console-1.png" alt="AWS console VPC list" />
+</p>
+
+
+##### The Qovery VPC ID
+
+You can use the same method to get the Qovery VPC ID. It should be named `qovery-eks-workers`. 
+
+</li>
+
+##### The CIDR ranges of both VPCs
+
+You can find the CIDR ranges of each VPC in the console.
+
+<Alert type="warning">
+    Make sure the CIDR blocks of your two VPCs don't overlap or you won't be able to create the peering connection.
+</Alert>
+
+<p align="center">
+  <img src="/img/aws-vpc-peering-with-qovery/find-cidr.png" alt="AWS console VPC CIDR ranges" />
+</p>
+
+<li>
+
+#### Create a peering connection
+
+> A VPC peering connection is a networking connection between two VPCs that enables you to route traffic between them privately.
+
+In the AWS console, go to `VPC > Peering connections` and click on `Create peering connection`
+
+- Give it a name
+- As a requester, select your Qovery VPC
+- As an accepter, select your existing VPC
+- Click on `Create peering connection`
+
+<br/>
+
+<p align="center">
+    <img src="/img/aws-vpc-peering-with-qovery/peering-form.png" alt="AWS create VPC peering form" />
+</p>    
+
+</li>
+
+<li>
+
+#### Accept the peering request
+
+Once created, the peering connection needs to be accepted. 
+On the peering connection view, click on `Actions` then `Accept request`
+
+<p align="center">
+    <img src="/img/aws-vpc-peering-with-qovery/accept-peering-request.png" alt="AWS accept VPC peering request" />
+</p>    
+
+You should see your peering connection marked as `Active`
+
+<p align="center">
+    <img src="/img/aws-vpc-peering-with-qovery/peering-active.png" alt="AWS VPC peering active" />
+</p>    
+
+</li>
+
+<li>
+
+#### Update route tables
+
+In the AWS console, go to `VPC > Route Tables`.
+You can filter the list using the IDs you noted at step 1 to find the routes table for each VPC.
+
+For your Qovery VPC edit the `qovery-eks-workers` route table:
+
+<p align="center">
+    <img src="/img/aws-vpc-peering-with-qovery/qovery-rt.png" alt="AWS VPC Qovery Route Table" />
+</p>    
+
+Click on the `Edit routes` button then `Add route`. 
+
+<p align="center">
+    <img src="/img/aws-vpc-peering-with-qovery/qovery-rt-add.png" alt="AWS VPC Qovery Route Table add route" />
+</p> 
+
+- As a destination, enter the CIDR of your existing VPC
+- As a target, select the Peering connection you created earlier
+
+Click `Save changes`.
+
+Do the same for your existing VPC, using the Qovery VPC CIDR.
+
+</li>
+
+<li>
+
+#### Update the security groups
+
+Our two VPCs are now connected, but we still need to update the security groups to allow communication between the Qovery applications and your existing resources.
+
+What rules to put on your security groups depends on what you are trying to achieve. 
+In our case, we would like to access an RDS instance from our Qovery applications.
+
+We will edit the RDS security group in our existing VPC to add an inbound rule allowing PostgreSQL traffic from our Qovery instances: 
+
+
+<p align="center">
+    <img src="/img/aws-vpc-peering-with-qovery/pg-inbound-rule.png" alt="AWS Security Group inbound rules" />
+</p> 
+
+</li>
+
+<li>
+
+#### Deploy an application
+
+You should now be able to deploy an application using the RDS PostgreSQL database on your Qovery cluster.
+Refer to [this guide][guides.getting-started.deploy-your-first-application] if you need help deploying an application on Qovery.
+
+
+</li>
+
+</ol>
+
+</Steps>

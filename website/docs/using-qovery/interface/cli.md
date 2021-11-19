@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-11-18"
+last_modified_on: "2021-11-19"
 title: CLI
 description: How to use the Qovery CLI (Command Line Interface)
 ---

@@ -43,6 +43,17 @@ Enzo is a Backend Developer at <a href=\"https://www.qovery.com\">Qovery</a>. \
 """
 
 [[team]]
+id = "yann"
+avatar = "https://github.com/l0ck3.png"
+github = "https://github.com/l0ck3"
+keybase = "https://keybase.io/l0ck3"
+name = "Yann I."
+bio = """\
+Yann is a Developer Experience Engineer at <a href=\"https://www.qovery.com\">Qovery</a>. \
+He has 15+ years of experience in development and SRE.
+"""
+
+[[team]]
 id = "mehdi"
 avatar = "https://github.com/sileht.png"
 github = "https://github.com/sileht"

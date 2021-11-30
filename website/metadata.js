@@ -584,6 +584,15 @@ module.exports = {
         {
           "author_github": "https://github.com/pjeziorowski",
           "description": null,
+          "id": "/tutorial/aws-sqs-lambda-with-qovery",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/aws-sqs-lambda-with-qovery.md",
+          "series_position": null,
+          "title": "Using Amazon SQS and Lambda on Qovery"
+        },
+        {
+          "author_github": "https://github.com/pjeziorowski",
+          "description": null,
           "id": "/tutorial/working-with-git-submodules",
           "last_modified_on": null,
           "path": "website/guides/tutorial/working-with-git-submodules.md",

@@ -31,7 +31,7 @@ In this guide, we'll create a backend microservice that sends messages on an eve
 - We will use Qovery-managed backend application workers to process events from the queue
 
 <p align="center">
-  <img src="../aws-sqs-lambda-with-qovery/1.png" alt="AWS SQS Lambda" />
+  <img src="/img/aws-sqs-lambda-with-qovery/1.png" alt="AWS SQS Lambda" />
 </p>
 
 As for now, Qovery does not natively integrate with AWS Lambda and SQS, but the integration part is quite easy, and we will go through it in the following steps.
@@ -45,13 +45,13 @@ Let's get started.
 Open `Amazon SQS` service in AWS Console and click on `Create Queue`
 
 <p align="center">
-  <img src="../aws-sqs-lambda-with-qovery/2.png" alt="AWS SQS Lambda" />
+  <img src="/img/aws-sqs-lambda-with-qovery/2.png" alt="AWS SQS Lambda" />
 </p>
 
 We will use the `Standard` queue and leave all the settings in defaults for now. Type in the name of the queue and click `Create`.
 
 <p align="center">
-  <img src="../aws-sqs-lambda-with-qovery/3.png" alt="AWS SQS Lambda" />
+  <img src="/img/aws-sqs-lambda-with-qovery/3.png" alt="AWS SQS Lambda" />
 </p>
 
 ## Create Message Producer
@@ -80,7 +80,7 @@ client.send(command).then(
 To deploy the app on Qovery, all you need to do is to fork the repository from above and create a new app adding port `3000`:
 
 <p align="center">
-  <img src="../aws-sqs-lambda-with-qovery/4.png" alt="AWS SQS Lambda" />
+  <img src="/img/aws-sqs-lambda-with-qovery/4.png" alt="AWS SQS Lambda" />
 </p>
 
 Afterwards, we need to add two environment variables:
@@ -91,11 +91,11 @@ Afterwards, we need to add two environment variables:
 You can add them in `Environment Variebles` `Secret` section in your application settings:
 
 <p align="center">
-  <img src="../aws-sqs-lambda-with-qovery/5.png" alt="AWS SQS Lambda" />
+  <img src="/img/aws-sqs-lambda-with-qovery/5.png" alt="AWS SQS Lambda" />
 </p>
 
 <p align="center">
-  <img src="../aws-sqs-lambda-with-qovery/6.png" alt="AWS SQS Lambda" />
+  <img src="/img/aws-sqs-lambda-with-qovery/6.png" alt="AWS SQS Lambda" />
 </p>
 
 After all the setup is all done, click the `Deploy` button - the application will be shortly deployed.
@@ -105,7 +105,7 @@ After all the setup is all done, click the `Deploy` button - the application wil
 In AWS Console, open `AWS Lambda` panel.
 
 <p align="center">
-  <img src="../aws-sqs-lambda-with-qovery/7.png" alt="AWS SQS Lambda" />
+  <img src="/img/aws-sqs-lambda-with-qovery/7.png" alt="AWS SQS Lambda" />
 </p>
 
 For the sake of the guide, we will use a simple `hello-world` lambda from AWS serverless app repository.
@@ -113,7 +113,7 @@ For the sake of the guide, we will use a simple `hello-world` lambda from AWS se
 Browse the app repository and pick the `hello-world` function as shown in the screenshot above, and deploy the function
 
 <p align="center">
-  <img src="../aws-sqs-lambda-with-qovery/8.png" alt="AWS SQS Lambda" />
+  <img src="/img/aws-sqs-lambda-with-qovery/8.png" alt="AWS SQS Lambda" />
 </p>
 
 ## Create Lambda Trigger
@@ -121,13 +121,13 @@ Browse the app repository and pick the `hello-world` function as shown in the sc
 To make our Lambdas consume messages from SQS, we will need to add a `Lambda Trigger` in the SQS configuration.
 
 <p align="center">
-  <img src="../aws-sqs-lambda-with-qovery/9.png" alt="AWS SQS Lambda" />
+  <img src="/img/aws-sqs-lambda-with-qovery/9.png" alt="AWS SQS Lambda" />
 </p>
 
 Click on `Configure Lambda Function Trigger` as shown in the screenshot above and select your lambda function from the dropdown, then save the changes:
 
 <p align="center">
-  <img src="../aws-sqs-lambda-with-qovery/10.png" alt="AWS SQS Lambda" />
+  <img src="/img/aws-sqs-lambda-with-qovery/10.png" alt="AWS SQS Lambda" />
 </p>
 
 ## Configure Permissions
@@ -137,7 +137,7 @@ Let's now grant our Lambda functions access to the SQS queue we created before.
 In our lambda view, click on `Configure`:
 
 <p align="center">
-  <img src="../aws-sqs-lambda-with-qovery/11.png" alt="AWS SQS Lambda" />
+  <img src="/img/aws-sqs-lambda-with-qovery/11.png" alt="AWS SQS Lambda" />
 </p>
 
 Then, click on a role in `Execution role` to get redirected to a view where we can alter our Lambda permissions.
@@ -145,13 +145,13 @@ Then, click on a role in `Execution role` to get redirected to a view where we c
 In the role summary screen, click on `Edit policy` next to `helloWorldrolePolicy`
 
 <p align="center">
-  <img src="../aws-sqs-lambda-with-qovery/12.png" alt="AWS SQS Lambda" />
+  <img src="/img/aws-sqs-lambda-with-qovery/12.png" alt="AWS SQS Lambda" />
 </p>
 
 In the `SQS` section, grant permissions to all Read/Write options in the `Actions` `Access level` and accept the changes:
 
 <p align="center">
-  <img src="../aws-sqs-lambda-with-qovery/13.png" alt="AWS SQS Lambda" />
+  <img src="/img/aws-sqs-lambda-with-qovery/13.png" alt="AWS SQS Lambda" />
 </p>
 
 ## Test Lambda as an SQS Consumer Flow
@@ -159,19 +159,19 @@ In the `SQS` section, grant permissions to all Read/Write options in the `Action
 To push messages to our SQS queue from the backend app deployed on Qovery, click on the `Open` button in the application we deployed in the previous step. It will redirect you to the API endpoint exposed by the backend app - the logic inside the application is made so that it sends messages to the SQS queue.
 
 <p align="center">
-  <img src="../aws-sqs-lambda-with-qovery/14.png" alt="AWS SQS Lambda" />
+  <img src="/img/aws-sqs-lambda-with-qovery/14.png" alt="AWS SQS Lambda" />
 </p>
 
 Now, in the `Monitoring` section of SQS in AWS Console, we will see messages received on metrics charts:
 
 <p align="center">
-  <img src="../aws-sqs-lambda-with-qovery/15.png" alt="AWS SQS Lambda" />
+  <img src="/img/aws-sqs-lambda-with-qovery/15.png" alt="AWS SQS Lambda" />
 </p>
 
 To validate that our consumer Lambdas processed the messages, navigate to your lambda `Monitor` panel:
 
 <p align="center">
-  <img src="../aws-sqs-lambda-with-qovery/16.png" alt="AWS SQS Lambda" />
+  <img src="/img/aws-sqs-lambda-with-qovery/16.png" alt="AWS SQS Lambda" />
 </p>
 
 In the `Invocations` chart, you'll notice that our Lambda was triggered several times by the messages sent over the SQS.

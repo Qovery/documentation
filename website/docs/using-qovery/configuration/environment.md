@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-30"
+last_modified_on: "2021-12-01"
 title: "Environment"
 description: "Learn how to configure your Environments on Qovery"
 ---
@@ -66,6 +66,8 @@ Sometimes **Preview Environment** are also known as **Ephemeral Environment**, *
 </Alert>
 
 Creating a **Preview Environment** is similar to create a casual Environment.
+
+Refer to the [Preview Environment][docs.using-qovery.configuration.preview-env] documentation to know more.
 
 ## Build and Deployment logs
 
@@ -203,5 +205,6 @@ To delete your environment, you must go in the `settings` > `general` and delete
 [docs.using-qovery.configuration.deployment-rule]: /docs/using-qovery/configuration/deployment-rule/
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [docs.using-qovery.configuration.organization#roles]: /docs/using-qovery/configuration/organization/#roles
+[docs.using-qovery.configuration.preview-env]: /docs/using-qovery/configuration/preview-env/
 [docs.using-qovery.configuration.project]: /docs/using-qovery/configuration/project/
 [urls.qovery_roadmap]: https://roadmap.qovery.com/

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-10-09"
+last_modified_on: "2021-12-01"
 title: "Scaleway (SCW)"
 description: "Learn how to configure and plug your Scaleway (SCW) account"
 ---
@@ -158,6 +158,13 @@ Qovery runs your Kubernetes cluster and is autonomous to manage your application
 - Qovery can't access to your data.
 - Suppose Qovery stops to run, your applications are not impacted.
 
+## Stop a cluster 
+
+Once your cluster is running, you might want to pause it for a while in order to save money when you don't need it (weekends, night...). 
+
+[Read more][docs.using-qovery.configuration.stop-cluster]
+
+
 ## FAQ
 
 ### How to choose a region?
@@ -182,6 +189,7 @@ Today, you can't migrate an environment from one region to another after it has 
 [docs.using-qovery.configuration.database.redis]: /docs/using-qovery/configuration/database/redis/
 [docs.using-qovery.configuration.deployment-rule#environment-deployment-rules]: /docs/using-qovery/configuration/deployment-rule/#environment-deployment-rules
 [docs.using-qovery.configuration.organization]: /docs/using-qovery/configuration/organization/
+[docs.using-qovery.configuration.stop-cluster]: /docs/using-qovery/configuration/stop-cluster/
 [docs.using-qovery.interface]: /docs/using-qovery/interface/
 [guides.advanced]: /guides/advanced/
 [urls.qovery_chat]: https://discord.qovery.com

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-10-21"
+last_modified_on: "2021-11-30"
 title: Django
 description: Getting started with Django and Qovery
 ---

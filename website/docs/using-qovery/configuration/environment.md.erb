@@ -44,6 +44,28 @@ When you start using Qovery heavily, your environment list can look like this
 
 An Environment can be automatically created when you create Pull Requests, and Git Branches. [See the Deployment Rule section](#deployment-rules) below.
 
+## Edit environment general settings
+
+General settings of an environment can be updated in the settings panel. Your can access to it by clicking on the `SETTINGS` button. 
+
+<p align="center">
+  <img src="/img/env-setting-button.png" alt="Environment settings button" />
+</p>
+
+On the `General` tab, you will be able to update your environment name. It will also display the environment mode and the cluster assigned to your environment. 
+
+<p align="center">
+  <img src="/img/env-setting-panel.png" alt="Environment settings button" />
+</p>
+
+<Alert type="info">
+
+Please note that environment type and associated cluster are not editable after the environment was provisioned.
+
+Refer to the [Types of environment](#types-of-environment) section below to learn more about environment modes. 
+
+</Alert>
+
 ## Preview environment
 
 > Use Preview Environment to get early feedback on your application changes.
@@ -182,8 +204,8 @@ This is a non-recoverable operation. By deleting your environment, all your runn
 
 </Alert>
 
-To delete your environment, you must go in the `settings` > `general` and delete your Environment.
+To delete your environment, you must go in the `settings` > `Danger zone` and delete your Environment.
 
 <p align="center">
-  <img src="/img/environment_settings_general.png" alt="Environment general settings" />
+  <img src="/img/env-danger-zone.png" alt="Environment danger zone" />
 </p>

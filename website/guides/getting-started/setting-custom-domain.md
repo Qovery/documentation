@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-01"
+last_modified_on: "2021-12-08"
 $schema: "/.meta/.schemas/guides.json"
 title: Custom domain
 description: How to set and use your own domain
@@ -17,10 +17,8 @@ learn how to set up your domains on Qovery!
 
 <Assumptions>
 
-* You have installed the [Qovery CLI][guides.deploy-your-first-application]
 * You have a domain
 * You have the permission to add a [CNAME](https://en.wikipedia.org/wiki/CNAME_record) record to your domain
-* You have deployed your application by using the `master` Git branch
 
 </Assumptions>
 
@@ -64,5 +62,4 @@ You need to **restart** your app to make your custom domain available.
 If you run into any trouble, [find us on Discord][urls.qovery_chat]. Our team and the community will be glad to help out.
 
 
-[guides.deploy-your-first-application]: /guides/getting-started/deploy-your-first-application/
 [urls.qovery_chat]: https://discord.qovery.com

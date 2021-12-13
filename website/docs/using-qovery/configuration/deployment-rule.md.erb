@@ -78,7 +78,7 @@ In the popup, select **Deployment Rules** and add **New**:
 
 ### Mode
 
-Selecting Mode allows you to choose the type of services provisioned in your environments. It's a great way to optimize your cloud expenses:
+Selecting Mode allows you to choose the type of services provisioned in your environments. It is a great way to optimize your cloud expenses:
 
 - `PRODUCTION` mode will provision reliable, production-ready services. It will make sure your production is covered with backups, high uptime, and stability
 - `DEVELOPMENT` mode will provide services in development mode, e.g. Qovery will deploy cheap, containerized versions of databases to avoid provisioning costly, cloud-provider managed services
@@ -99,7 +99,11 @@ Selecting the cluster allows you to control to which cluster your environments i
 
 ### Auto-deploy
 
-**Auto deploy** allows you to control if your applications should be, by default, automatically updated after receiving new commits.
+**Auto deploy** feature allows you to control if your applications should be, by default, automatically updated after receiving new commits.
+
+### Auto-delete
+
+**Auto-delete** feature allows you to control if your applications should be, by default, automatically deleted after branch merging or deletion.
 
 ### Start & Stop
 
@@ -179,13 +183,18 @@ Displays the cluster assigned to your environment. This is not editable after th
 
 ### Deployment
 
+<p align="center">
+  <img src="/img/configuration/deployment/deploy-7.png" alt="Deployments" />
+</p>
+
+
 ### Auto-deploy
 
 **Auto deploy** allows you to override the default settings applied by the project rule related to if your applications should be by default automatically updated after receiving new commits.
 
-<p align="center">
-  <img src="/img/configuration/deployment/deploy-7.png" alt="Deployments" />
-</p>
+### Auto-delete
+
+**Auto-delete** feature allows you to control if your applications should be, by default, automatically deleted after branch merging or deletion.
 
 ### Start & Stop
 

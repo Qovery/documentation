@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-22"
+last_modified_on: "2021-12-13"
 title: "Project"
 description: "Learn how to configure your Projects on Qovery"
 ---
@@ -36,6 +36,20 @@ To create a project you simply need to provide a name. It is also possible to pr
 ### Demo project
 
 If you have no project to deploy but still want to give a try to Qovery, you can create a demo project.
+
+## Edit project general settings
+
+General settings of a project can be updated in the settings panel. You can access to it by clicking on the `SETTINGS` button. 
+
+<p align="center">
+  <img src="/img/project-setting-button.png" alt="Project settings button" />
+</p>
+
+On the `General` tab, you will be able to update the name and the description of your project. 
+
+<p align="center">
+  <img src="/img/project-setting-panel.png" alt="Project settings button" />
+</p>
 
 ## Delete a project
 

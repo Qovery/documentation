@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-11-30"
+last_modified_on: "2021-12-13"
 title: "Environment"
 description: "Learn how to configure your Environments on Qovery"
 ---
@@ -55,7 +55,7 @@ An Environment can be automatically created when you create Pull Requests, and G
 
 ## Edit environment general settings
 
-General settings of an environment can be updated in the settings panel. Your can access to it by clicking on the `SETTINGS` button. 
+General settings of an environment can be updated in the settings panel. You can access to it by clicking on the `SETTINGS` button. 
 
 <p align="center">
   <img src="/img/env-setting-button.png" alt="Environment settings button" />

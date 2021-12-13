@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-10-09"
+last_modified_on: "2021-12-13"
 title: "Amazon Web Services (AWS)"
 description: "Learn how to configure and plug your Amazon Web Services (AWS) account"
 ---
@@ -182,7 +182,7 @@ Or copy it from below:
 
 </Steps>
 
-Well done!! You now have your AWS `access key id` and `secret access key` and your permissions are setups; It's time to connect Qovery to your AWS account.
+Well done!! You now have your AWS `access key id` and `secret access key` and your permissions are setups; It is time to connect Qovery to your AWS account.
 
 #### Use AWS credentials with Qovery
 
@@ -248,6 +248,80 @@ Qovery supports the following AWS regions:
 |🇧🇷| sa-east-1      | South America (São Paulo) | Yes
 
 Qovery supports regions where [Amazon EKS](https://aws.amazon.com/eks) is supported.
+
+## Manually configure VPC subnet
+
+VPC subnet is automatically defined by Qovery on cluster creation. However, you may want to choose your own VPC subnet, for example to perform VPC Peering. 
+
+<Alert type="info">
+
+If you want to perform VPC Peering with Qovery, please refer to our guide [VPC Peering with Qovery](https://hub.qovery.com/guides/tutorial/aws-vpc-peering-with-qovery/) to be assisted step by step. 
+
+</Alert>
+
+During the adding of a new cluster in your organization, you will have the opportunity to choose and set up the features of your cluster. In this list of features, you can activate the `VPC subnet` feature and choose in the drop-down menu the subnet you want to use. 
+
+<p align="center">
+  <img src="/img/cluster-vpc-subnet.png" alt="VPC subnet cluster" />
+</p>
+
+<Alert type="warning">
+
+You will not be able to activate/deactivate these features once the cluster has been deployed for the first time.
+
+</Alert>
+
+## Configure routing table
+
+You may want to create and edit a network routing table to perform VPC peering. This can be done by accessing to the parameters of a cluster, in the settings of your organization. 
+
+<Steps headingDepth={3}>
+<ol>
+<li>
+
+Go in the settings of your organization.
+
+<p align="center">
+  <img src="/img/organization-setting.png" alt="Organization setting" />
+</p>
+
+</li>
+<li>
+
+Go in the `Cluster` tab and in the `...` menu of a cluster to access to its `Settings`.
+
+<p align="center">
+  <img src="/img/cluster-setting.png" alt="Cluster setting" />
+</p>
+
+</li>
+<li>
+
+In the Cluster setting modal, go in `Network` tab.
+
+<p align="center">
+  <img src="/img/network-cluster.png" alt="Cluster network settings" />
+</p>
+
+</li>
+<li>
+
+Add a line to the routing table by clicking on the `Add route` button. In this modal, you can specify the Target, the Destination and add a description to justify the new route.
+
+<p align="center">
+  <img src="/img/routing-table.png" alt="Routing table" />
+</p>
+
+</li>
+</ol>
+</Steps>
+
+
+<Alert type="info">
+
+If you want to perform VPC Peering with Qovery, please refer to our guide [VPC Peering with Qovery](https://hub.qovery.com/guides/tutorial/aws-vpc-peering-with-qovery/) to be assisted step by step. 
+
+</Alert>
 
 ## How Qovery works on AWS
 

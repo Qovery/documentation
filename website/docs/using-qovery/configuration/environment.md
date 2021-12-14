@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-12-13"
+last_modified_on: "2021-12-14"
 title: "Environment"
 description: "Learn how to configure your Environments on Qovery"
 ---
@@ -55,7 +55,7 @@ An Environment can be automatically created when you create Pull Requests, and G
 
 ## Edit environment general settings
 
-General settings of an environment can be updated in the settings panel. You can access to it by clicking on the `SETTINGS` button. 
+General settings of an environment can be updated in the settings panel. Your can access to it by clicking on the `SETTINGS` button. 
 
 <p align="center">
   <img src="/img/env-setting-button.png" alt="Environment settings button" />
@@ -196,6 +196,20 @@ Using **Deployment Rules** is a good practice to reduce your cost up to 60%.
 </Alert>
 
 Refer to the [Deployment Rule][docs.using-qovery.configuration.deployment-rule] documentation to know more.
+
+## Deployments history
+
+You can easily access to the deployments history of your environment by clicking on deployment `history button` in `Action` menu.
+
+<p align="center">
+  <img src="/img/deployment-history-access.png" alt="Deployment history button access" />
+</p>
+
+This page allows you to view the history of all previous deployments of your environment and their status. By clicking on the extension button, you will also be able to view the services deployed in the environment and their deployment status. 
+
+<p align="center">
+  <img src="/img/deployment-history.png" alt="Deployment history list" />
+</p>
 
 ## Delete an environment
 

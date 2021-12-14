@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-12-13"
+last_modified_on: "2021-12-14"
 title: "Amazon Web Services (AWS)"
 description: "Learn how to configure and plug your Amazon Web Services (AWS) account"
 ---
@@ -255,7 +255,7 @@ VPC subnet is automatically defined by Qovery on cluster creation. However, you 
 
 <Alert type="info">
 
-If you want to perform VPC Peering with Qovery, please refer to our guide [VPC Peering with Qovery](https://hub.qovery.com/guides/tutorial/aws-vpc-peering-with-qovery/) to be assisted step by step. 
+If you want to perform VPC Peering with Qovery, please refer to our guide [VPC Peering with Qovery][guides.tutorial.aws-vpc-peering-with-qovery] to be assisted step by step. 
 
 </Alert>
 
@@ -319,7 +319,7 @@ Add a line to the routing table by clicking on the `Add route` button. In this m
 
 <Alert type="info">
 
-If you want to perform VPC Peering with Qovery, please refer to our guide [VPC Peering with Qovery](https://hub.qovery.com/guides/tutorial/aws-vpc-peering-with-qovery/) to be assisted step by step. 
+If you want to perform VPC Peering with Qovery, please refer to our guide [VPC Peering with Qovery][guides.tutorial.aws-vpc-peering-with-qovery] to be assisted step by step. 
 
 </Alert>
 
@@ -375,6 +375,7 @@ Today, you can't migrate an environment from one region to another after it has 
 [docs.using-qovery.configuration.organization]: /docs/using-qovery/configuration/organization/
 [docs.using-qovery.interface]: /docs/using-qovery/interface/
 [guides.advanced]: /guides/advanced/
+[guides.tutorial.aws-vpc-peering-with-qovery]: /guides/tutorial/aws-vpc-peering-with-qovery/
 [urls.aws]: https://aws.amazon.com
 [urls.qovery_chat]: https://discord.qovery.com
 [urls.qovery_contact_us]: https://www.qovery.com/contact

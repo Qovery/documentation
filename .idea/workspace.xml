@@ -8,9 +8,17 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="fix: stuff">
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/setting-custom-domain.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/setting-custom-domain.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/addon/continuous-integration/circle-ci.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/addon/continuous-integration/circle-ci.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/addon/continuous-integration/github-actions.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/addon/continuous-integration/github-actions.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/addon/continuous-integration/gitlab-ci.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/addon/continuous-integration/gitlab-ci.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/addon/monitoring/datadog.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/addon/monitoring/datadog.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/addon/monitoring/new-relic.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/addon/monitoring/new-relic.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/google-cloud-platform.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/google-cloud-platform.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/microsoft-azure.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/microsoft-azure.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/guide-google-cloud-platform.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/guide-google-cloud-platform.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/advanced/guide-microsoft-azure.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/advanced/guide-microsoft-azure.md.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +56,7 @@
     </file-type-list>
   </component>
   <component name="GitToolBoxStore">
-    <option name="projectConfigVersion" value="2" />
+    <option name="projectConfigVersion" value="4" />
     <option name="recentBranches">
       <RecentBranches>
         <option name="branchesForRepo">
@@ -202,7 +210,7 @@
       <recent name="$PROJECT_DIR$/website/docs/using-qovery/addon" />
     </key>
   </component>
-  <component name="RunManager" selected="Ruby.build">
+  <component name="RunManager" selected="npm.build">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -418,14 +426,8 @@
       <workItem from="1637253088933" duration="3751000" />
       <workItem from="1637357563354" duration="34000" />
       <workItem from="1638270858473" duration="26000" />
-      <workItem from="1638993339210" duration="4867000" />
-    </task>
-    <task id="LOCAL-00225" summary="chore: add posthog migration article">
-      <created>1630227794723</created>
-      <option name="number" value="00225" />
-      <option name="presentableId" value="LOCAL-00225" />
-      <option name="project" value="LOCAL" />
-      <updated>1630227794723</updated>
+      <workItem from="1638993339210" duration="6359000" />
+      <workItem from="1639471390542" duration="2273000" />
     </task>
     <task id="LOCAL-00226" summary="chore: modify article on heroku&#10;fix bad repo link">
       <created>1630272602265</created>
@@ -763,7 +765,14 @@
       <option name="project" value="LOCAL" />
       <updated>1637280648348</updated>
     </task>
-    <option name="localTasksCounter" value="274" />
+    <task id="LOCAL-00274" summary="fix: setting-custom-domain.md.erb">
+      <created>1638998513360</created>
+      <option name="number" value="00274" />
+      <option name="presentableId" value="LOCAL-00274" />
+      <option name="project" value="LOCAL" />
+      <updated>1638998513361</updated>
+    </task>
+    <option name="localTasksCounter" value="275" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -849,7 +858,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="chore: add posthog migration article" />
     <MESSAGE value="chore: modify article on heroku&#10;fix bad repo link" />
     <MESSAGE value="chore: update aws guide" />
     <MESSAGE value="chore: change title for gen articles" />
@@ -874,6 +882,7 @@
     <MESSAGE value="chore: add part 1 article" />
     <MESSAGE value="chore: add article &quot;the complete guide to aws load balancers&quot;" />
     <MESSAGE value="fix: stuff" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: stuff" />
+    <MESSAGE value="fix: setting-custom-domain.md.erb" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: setting-custom-domain.md.erb" />
   </component>
 </project>

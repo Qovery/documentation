@@ -521,6 +521,15 @@ module.exports = {
         {
           "author_github": "https://github.com/pjeziorowski",
           "description": null,
+          "id": "/tutorial/preview-envs-on-aws",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/preview-envs-on-aws.md",
+          "series_position": null,
+          "title": "How to get Preview Environments on AWS in a few minutes"
+        },
+        {
+          "author_github": "https://github.com/pjeziorowski",
+          "description": null,
           "id": "/tutorial/github-organization-repository-access",
           "last_modified_on": null,
           "path": "website/guides/tutorial/github-organization-repository-access.md",

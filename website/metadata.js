@@ -521,9 +521,9 @@ module.exports = {
         {
           "author_github": "https://github.com/pjeziorowski",
           "description": null,
-          "id": "/tutorial/preview-envs-on-aws",
+          "id": "/tutorial/blazingly-fast-preview-environments-for-nextjs-nodejs-and-mongodb-on-aws",
           "last_modified_on": null,
-          "path": "website/guides/tutorial/preview-envs-on-aws.md",
+          "path": "website/guides/tutorial/blazingly-fast-preview-environments-for-nextjs-nodejs-and-mongodb-on-aws.md",
           "series_position": null,
           "title": "How to get Preview Environments on AWS in a few minutes"
         },

@@ -1,8 +1,8 @@
 ---
 last_modified_on: "2021-12-14"
 $schema: "/.meta/.schemas/guides.json"
-title: How to get Preview Environments on AWS in a few minutes
-description: How to make use of Preview Environments on AWS in no time
+title: Blazingly fast Preview Environments for NextJS, NodeJS, and MongoDB on AWS
+description: Blazingly fast Preview Environments for NextJS, NodeJS, and MongoDB on AWS
 author_github: https://github.com/pjeziorowski
 tags: ["type: tutorial", "cloud_provider: aws"]
 hide_pagination: true

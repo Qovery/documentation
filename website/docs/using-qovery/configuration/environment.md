@@ -128,7 +128,7 @@ Environment clone is convenient for those use cases:
 <ol>
 <li>
 
-Navigate to [Console](https://console-beta.qovery.com)
+Navigate to [Console][urls.qovery_console]
 
 </li>
 <li>
@@ -265,3 +265,4 @@ To delete your environment, you must go in the `settings` > `Danger zone` and de
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [docs.using-qovery.configuration.organization#roles]: /docs/using-qovery/configuration/organization/#roles
 [docs.using-qovery.configuration.project]: /docs/using-qovery/configuration/project/
+[urls.qovery_console]: https://console.qovery.com

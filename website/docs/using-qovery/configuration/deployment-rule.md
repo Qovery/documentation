@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-12-13"
+last_modified_on: "2021-12-15"
 title: "Deployment Rule"
 description: "Learn how to configure the lifecycle of your Environments"
 ---
@@ -59,7 +59,7 @@ Declaring deployment rules at the project level allows you to apply reasonable d
 <ol>
 <li>
 
-Navigate to [Console](https://console-beta.qovery.com)
+Navigate to [Console][urls.qovery_console]
 
 </li>
 <li>
@@ -160,7 +160,7 @@ Setting up Deployment Rules at the Enviornment level allows you to make all nece
 <ol>
 <li>
 
-Navigate to [Console](https://console-beta.qovery.com)
+Navigate to [Console][urls.qovery_console]
 
 </li>
 <li>
@@ -224,3 +224,4 @@ The start and stop section allow you to override the default settings applied by
 
 
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
+[urls.qovery_console]: https://console.qovery.com

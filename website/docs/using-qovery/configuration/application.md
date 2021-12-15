@@ -297,7 +297,7 @@ $ qovery application ssh <your app ID> <instance ID>
 <ol>
 <li>
 
-Navigate to [Console](https://console-beta.qovery.com)
+Navigate to [Console][urls.qovery_console]
 
 </li>
 <li>
@@ -332,7 +332,7 @@ Once you click, this pannel will appear and you will be able to choose the versi
 <ol>
 <li>
 
-Navigate to [Console](https://console-beta.qovery.com)
+Navigate to [Console][urls.qovery_console]
 
 </li>
 <li>
@@ -363,5 +363,6 @@ In the application overview, click on the `Actions` button and remove the applic
 [guides.getting-started.debugging#logs]: /guides/getting-started/debugging/#logs
 [guides.getting-started.deploy-your-first-application]: /guides/getting-started/deploy-your-first-application/
 [guides.getting-started.setting-custom-domain]: /guides/getting-started/setting-custom-domain/
+[urls.qovery_console]: https://console.qovery.com
 [urls.qovery_pricing]: https://www.qovery.com/pricing
 [urls.qovery_roadmap]: https://roadmap.qovery.com/

@@ -1,8 +1,11 @@
 ---
-last_modified_on: "2021-12-14"
+last_modified_on: "2021-12-15"
 title: "Environment"
 description: "Learn how to configure your Environments on Qovery"
 ---
+
+import Steps from '@site/src/components/Steps';
+
 import Jump from '@site/src/components/Jump';
 import Alert from '@site/src/components/Alert';
 import Assumptions from '@site/src/components/Assumptions';
@@ -110,11 +113,6 @@ Click on the `show logs` button to watch your deployment logs in real-time.
 
 Cloning an environment is possible if you want to create an Environment from another one.
 
-<Alert type="warning">
-
-Data is not copied. [Vote here][urls.qovery_roadmap] if you need this feature.
-
-</Alert>
 
 <p align="center">
   <img src="/img/environment_actions_dropdown.jpg" alt="Environment actions dropdown" />
@@ -123,6 +121,41 @@ Data is not copied. [Vote here][urls.qovery_roadmap] if you need this feature.
 Environment clone is convenient for those use cases:
 - Make a demo without impacting the original Environment.
 - Validating a feature that needs to reflect the original Environment.
+
+## Update an Environment 
+
+<Steps headingDepth={3}>
+<ol>
+<li>
+
+Navigate to [Console](https://console-beta.qovery.com)
+
+</li>
+<li>
+
+Choose your environment
+
+</li>
+<li>
+
+In the environment overview, click on the `Actions` button and `Update all`.
+
+<p align="center">
+  <img src="/img/configuration/application/update-all.png" alt="Application" />
+</p>
+
+</li>
+<li>
+
+Once you click, this pannel will appear and you will be able to select the environments you wish to update. 
+
+<p align="center">
+  <img src="/img/configuration/application/update-all2.png" alt="Application" />
+</p>
+
+</li>
+</ol>
+</Steps>
 
 ## Types of environment
 
@@ -232,4 +265,3 @@ To delete your environment, you must go in the `settings` > `Danger zone` and de
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [docs.using-qovery.configuration.organization#roles]: /docs/using-qovery/configuration/organization/#roles
 [docs.using-qovery.configuration.project]: /docs/using-qovery/configuration/project/
-[urls.qovery_roadmap]: https://roadmap.qovery.com/

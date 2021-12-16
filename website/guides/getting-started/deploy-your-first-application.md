@@ -53,7 +53,7 @@ Here is a short video showing how to deploy your app with the [Qovery Web interf
 
 <div class="video-container">
   <p align="center">
-    <iframe src="https://www.loom.com/embed/1d22969f2eec43e98280a2183840ac73" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+    <iframe src="https://www.loom.com/embed/464c7b6f062e4e59bbd57ec238f88665" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
     </iframe>
   </p>
 </div>

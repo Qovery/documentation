@@ -8,10 +8,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="">
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: change old deploy app and AWS videos with the John's one">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_deploy_app_web.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_deploy_app_web.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/deploy-your-first-application.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/deploy-your-first-application.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -427,14 +428,7 @@
       <workItem from="1637357563354" duration="34000" />
       <workItem from="1638270858473" duration="26000" />
       <workItem from="1638993339210" duration="6359000" />
-      <workItem from="1639471390542" duration="5510000" />
-    </task>
-    <task id="LOCAL-00227" summary="chore: update aws guide">
-      <created>1630358500809</created>
-      <option name="number" value="00227" />
-      <option name="presentableId" value="LOCAL-00227" />
-      <option name="project" value="LOCAL" />
-      <updated>1630358500809</updated>
+      <workItem from="1639471390542" duration="6302000" />
     </task>
     <task id="LOCAL-00228" summary="chore: change title for gen articles">
       <created>1630690620987</created>
@@ -772,7 +766,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639475611236</updated>
     </task>
-    <option name="localTasksCounter" value="276" />
+    <task id="LOCAL-00276" summary="chore: change old deploy app and AWS videos with the John's one">
+      <created>1639655089506</created>
+      <option name="number" value="00276" />
+      <option name="presentableId" value="LOCAL-00276" />
+      <option name="project" value="LOCAL" />
+      <updated>1639655089506</updated>
+    </task>
+    <option name="localTasksCounter" value="277" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -858,7 +859,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="chore: update aws guide" />
     <MESSAGE value="chore: change title for gen articles" />
     <MESSAGE value="chore: make changes based on Albane' feedback" />
     <MESSAGE value="chore: add gcp and azure coming soon" />
@@ -883,6 +883,7 @@
     <MESSAGE value="fix: stuff" />
     <MESSAGE value="fix: setting-custom-domain.md.erb" />
     <MESSAGE value="fix: roadmap links" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: roadmap links" />
+    <MESSAGE value="chore: change old deploy app and AWS videos with the John's one" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: change old deploy app and AWS videos with the John's one" />
   </component>
 </project>

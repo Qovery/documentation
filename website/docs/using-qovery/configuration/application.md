@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-11-19"
+last_modified_on: "2021-12-15"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -291,13 +291,48 @@ If you have multiple instances running.
 $ qovery application ssh <your app ID> <instance ID>
 ```
 
+## Update/ Rollback  an Application
+
+<Steps headingDepth={3}>
+<ol>
+<li>
+
+Navigate to [Console][urls.qovery_console]
+
+</li>
+<li>
+
+Choose your application
+
+</li>
+<li>
+
+In the application overview, click on the `Actions` button and `Rollback and Update`.
+
+<p align="center">
+  <img src="/img/configuration/application/rollback-update.png" alt="Application" />
+</p>
+
+</li>
+<li>
+
+Once you click, this pannel will appear and you will be able to choose the version you wish to update/rollback.
+
+<p align="center">
+  <img src="/img/configuration/application/rollback-update2.png" alt="Application" />
+</p>
+
+</li>
+</ol>
+</Steps>
+
 ## Delete an Application
 
 <Steps headingDepth={3}>
 <ol>
 <li>
 
-Navigate to [Console](https://console-beta.qovery.com)
+Navigate to [Console][urls.qovery_console]
 
 </li>
 <li>
@@ -328,5 +363,6 @@ In the application overview, click on the `Actions` button and remove the applic
 [guides.getting-started.debugging#logs]: /guides/getting-started/debugging/#logs
 [guides.getting-started.deploy-your-first-application]: /guides/getting-started/deploy-your-first-application/
 [guides.getting-started.setting-custom-domain]: /guides/getting-started/setting-custom-domain/
+[urls.qovery_console]: https://console.qovery.com
 [urls.qovery_pricing]: https://www.qovery.com/pricing
 [urls.qovery_roadmap]: https://roadmap.qovery.com/

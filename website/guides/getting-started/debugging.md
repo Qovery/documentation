@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-02"
+last_modified_on: "2021-12-15"
 $schema: "/.meta/.schemas/guides.json"
 title: Debugging
 description: How to debug your application
@@ -39,7 +39,7 @@ To find out what is the status of your application, you can follow these steps:
 <ol>
 <li>
 
-Navigate to [Console](https://console-beta.qovery.com)
+Navigate to [Console][urls.qovery_console]
 
 </li>
 <li>
@@ -78,7 +78,7 @@ If you need to see the log output of your application while it's running, follow
 <ol>
 <li>
 
-Navigate to [Console](https://console-beta.qovery.com).
+Navigate to [Console][urls.qovery_console]
 
 </li>
 <li>
@@ -116,7 +116,7 @@ If your application fails to start, you can check what's the cause in its deploy
 <ol>
 <li>
 
-Navigate to [Console](https://console-beta.qovery.com).
+Navigate to [Console][urls.qovery_console]
 
 </li>
 <li>
@@ -152,7 +152,7 @@ If you need more information about the resources consumed by your application, Q
 <ol>
 <li>
 
-Navigate to [Console](https://console-beta.qovery.com).
+Navigate to [Console][urls.qovery_console]
 
 </li>
 <li>
@@ -185,5 +185,6 @@ Do you need any help? [Reach us on Discord][urls.qovery_chat]
 [urls.datadog]: https://www.datadoghq.com
 [urls.new_relic]: https://newrelic.com/
 [urls.qovery_chat]: https://discord.qovery.com
+[urls.qovery_console]: https://console.qovery.com
 [urls.qovery_roadmap]: https://roadmap.qovery.com/
 [urls.sentry]: https://sentry.io/

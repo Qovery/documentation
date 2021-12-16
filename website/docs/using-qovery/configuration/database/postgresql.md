@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-10-11"
+last_modified_on: "2021-12-15"
 title: PostgreSQL
 description: "How to set up and use a PostgreSQL database"
 ---
@@ -37,7 +37,7 @@ Check out [this video guide][guides.getting-started.create-a-database] to create
 <ol>
 <li>
 
-Navigate to [Console](https://console-beta.qovery.com)
+Navigate to [Console][urls.qovery_console]
 
 </li>
 <li>
@@ -185,7 +185,7 @@ Delete action drops the service and its data!
 <ol>
 <li>
 
-Navigate to [Console](https://console-beta.qovery.com)
+Navigate to [Console][urls.qovery_console]
 
 </li>
 <li>
@@ -211,4 +211,5 @@ In database overview, click on `Action` remove button
 [docs.using-qovery.configuration.application#database]: /docs/using-qovery/configuration/application/#database
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [guides.getting-started.create-a-database]: /guides/getting-started/create-a-database/
+[urls.qovery_console]: https://console.qovery.com
 [urls.qovery_pricing]: https://www.qovery.com/pricing

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-02"
+last_modified_on: "2021-12-15"
 $schema: "/.meta/.schemas/guides.json"
 title: Mono repository
 description: How to deploy applications using Monorepository with Qovery
@@ -29,7 +29,7 @@ You can deploy multiple applications using the same git repository or deploy the
 <ol>
 <li>
 
-Navigate to [Console](https://console-beta.qovery.com)
+Navigate to [Console][urls.qovery_console]
 
 </li>
 
@@ -98,7 +98,7 @@ Qovery supports this case well. The steps do not differ much from the steps from
 <ol>
 <li>
 
-Navigate to [Console](https://console-beta.qovery.com)
+Navigate to [Console][urls.qovery_console]
 
 </li>
 
@@ -156,3 +156,4 @@ You can set up secret or env variables in your application `Environment Variable
 
 
 [docs.using-qovery.configuration.environment-variable]: /docs/using-qovery/configuration/environment-variable/
+[urls.qovery_console]: https://console.qovery.com

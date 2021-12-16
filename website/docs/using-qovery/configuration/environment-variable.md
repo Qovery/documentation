@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-07"
+last_modified_on: "2021-12-15"
 title: "Environment Variable"
 description: "Learn how to configure Environment Variables on Qovery"
 ---
@@ -46,7 +46,7 @@ Here is a short video to show how to use environment variables.
 <ol>
 <li>
 
-Navigate to [Console](https://console-beta.qovery.com)
+Navigate to [Console][urls.qovery_console]
 
 </li>
 <li>
@@ -107,7 +107,7 @@ Additionally, there is one more `BUILT_IN` scope that is used for variables inje
 <ol>
 <li>
 
-Navigate to [Console](https://console-beta.qovery.com)
+Navigate to [Console][urls.qovery_console]
 
 </li>
 <li>
@@ -142,7 +142,7 @@ Select variable you want to delete and click the `Delete` button:
 <ol>
 <li>
 
-Navigate to [Console](https://console-beta.qovery.com)
+Navigate to [Console][urls.qovery_console]
 
 </li>
 <li>
@@ -188,7 +188,7 @@ If you want to override a value of an environment variable, follow those steps:
 <ol>
 <li>
 
-Navigate to [Console](https://console-beta.qovery.com)
+Navigate to [Console][urls.qovery_console]
 
 </li>
 <li>
@@ -243,7 +243,7 @@ Instead of copy-pasting its value, you can create an alias to `QOVERY_DATABASE_M
 <ol>
 <li>
 
-Navigate to [Console](https://console-beta.qovery.com)
+Navigate to [Console][urls.qovery_console]
 
 </li>
 <li>
@@ -323,3 +323,4 @@ QOVERY_<SERVICE_TYPE>_<NAME>_<SPEC>
 [docs.configuration.environment-variable#levels]: /docs/using-qovery/configuration/environment-variable/#levels
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [docs.using-qovery.configuration.secret]: /docs/using-qovery/configuration/secret/
+[urls.qovery_console]: https://console.qovery.com

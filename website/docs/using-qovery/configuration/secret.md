@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-02"
+last_modified_on: "2021-12-15"
 title: "Secrets"
 description: "Learn how to configure Secrets on Qovery"
 ---
@@ -30,7 +30,7 @@ Qovery makes **Secrets** available to all services at runtime, as well as during
 <ol>
 <li>
 
-Navigate to [Console](https://console-beta.qovery.com)
+Navigate to [Console][urls.qovery_console]
 
 </li>
 <li>
@@ -99,7 +99,7 @@ Additionally, there is one more `BUILT_IN` scope that is used for variables inje
 <ol>
 <li>
 
-Navigate to [Console](https://console-beta.qovery.com)
+Navigate to [Console][urls.qovery_console]
 
 </li>
 <li>
@@ -142,7 +142,7 @@ Select variable you want to delete and click the `Remove` button:
 <ol>
 <li>
 
-Navigate to [Console](https://console-beta.qovery.com)
+Navigate to [Console][urls.qovery_console]
 
 </li>
 <li>
@@ -196,7 +196,7 @@ If you want to override a value of an secret, follow those steps:
 <ol>
 <li>
 
-Navigate to [Console](https://console-beta.qovery.com)
+Navigate to [Console][urls.qovery_console]
 
 </li>
 <li>
@@ -259,7 +259,7 @@ Instead of copy-pasting its value, you can create an alias to `QOVERY_DATABASE_M
 <ol>
 <li>
 
-Navigate to [Console](https://console-beta.qovery.com)
+Navigate to [Console][urls.qovery_console]
 
 </li>
 <li>
@@ -345,3 +345,4 @@ QOVERY_<SERVICE_TYPE>_<NAME>_<SPEC>
 
 
 [docs.configuration.environment-variable#levels]: /docs/using-qovery/configuration/environment-variable/#levels
+[urls.qovery_console]: https://console.qovery.com

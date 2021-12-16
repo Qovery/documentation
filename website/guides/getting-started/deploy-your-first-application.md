@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-26"
+last_modified_on: "2021-12-16"
 $schema: "/.meta/.schemas/guides.json"
 title: Hello World. Deploy your first application.
 description: How to deploy your first application with Qovery
@@ -53,7 +53,7 @@ Here is a short video showing how to deploy your app with the [Qovery Web interf
 
 <div class="video-container">
   <p align="center">
-    <iframe src="https://www.loom.com/embed/c48c2e6351a3461482151bd0138e5a5e" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+    <iframe src="https://www.loom.com/embed/1d22969f2eec43e98280a2183840ac73" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
     </iframe>
   </p>
 </div>

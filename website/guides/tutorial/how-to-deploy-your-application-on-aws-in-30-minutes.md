@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-11-19"
+last_modified_on: "2021-12-16"
 $schema: "/.meta/.schemas/guides.json"
 title: Zero to Hero - How to deploy your apps on AWS in 30 minutes
 description: Step-by-step guide on how to deploy your apps on AWS in 30 minutes. No AWS knowledge required.
@@ -56,7 +56,7 @@ Follow [this guide][docs.using-qovery.configuration.cloud-service-provider.amazo
 
 <div class="video-container">
   <p align="center">
-    <iframe src="https://www.loom.com/embed/16702511c2d14e60b164be63d5234dbe" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+    <iframe src="https://www.loom.com/embed/3450aa0c4122467892cd7c6e1fc85f6e" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
     </iframe>
   </p>
 </div>

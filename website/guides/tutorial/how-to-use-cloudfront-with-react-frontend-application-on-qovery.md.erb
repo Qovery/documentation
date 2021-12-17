@@ -1,0 +1,141 @@
+---
+$schema: "/.meta/.schemas/guides.json"
+title: How to use AWS CloudFront with React frontend applicatin on Qovery
+description: Setting up AWS CloudFront for frontend apps on Qovery
+author_github: https://github.com/pjeziorowski
+tags: ["type: tutorial", "cloud_provider: aws"]
+hide_pagination: true
+---
+import Alert from '@site/src/components/Alert';
+import Assumptions from '@site/src/components/Assumptions';
+import Jump from '@site/src/components/Jump';
+
+> If you'd like to use Cloudflare instead of CloudFront as your CDN, check out [this article][guides.tutorial.how-to-use-cloudflare-on-qovery].
+
+Frontend apps primarily consist of static content which goes unchanged. Web pages that contain static assets are essentially prebuilt, which makes it efficiently quicker to grab and render content. Their static nature makes them a perfect use case for CDNs and caching systems on edge servers is as it boosts the web page performance and user experience with the system.
+
+## Stack
+
+For our frontend stack, we'll use a React app that is served as static files using Nginx.
+
+## Frontend Application
+
+To bootstrap the application skeleton, we use `create-react-app`:
+
+```bash
+npx create-react-app my-app
+```
+
+Then, we add a `Dockerfile` to configure how to build the application image:
+
+```docker
+FROM node:14-alpine AS builder
+ENV NODE_ENV production
+
+# Add a work directory
+WORKDIR /app
+# Cache and Install dependencies
+COPY package.json .
+COPY yarn.lock .
+RUN yarn install --production
+# Copy app files
+COPY . .
+# Build the app
+RUN yarn build
+
+# Bundle static assets with nginx
+FROM nginx:1.21.0-alpine as production
+ENV NODE_ENV production
+# Copy built assets from builder
+COPY --from=builder /app/build /usr/share/nginx/html
+# Add your nginx.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Expose port
+EXPOSE 80
+# Start nginx
+CMD ["nginx", "-g", "daemon off;"]
+```
+
+The last step - let's configure our Nginx server by adding a `nginx.conf` file with the following content:
+
+```bash
+server {
+  listen 80;
+
+  location / {
+    root /usr/share/nginx/html/;
+    include /etc/nginx/mime.types;
+    try_files $uri $uri/ /index.html;
+  }
+}
+```
+
+## Deployment
+
+Now, to deploy the app, create a new application on Qovery with the following configuration:
+
+- Port - `80`
+- Build Mode - `Docker`
+- Keep other options in default settings
+
+After the app is created and configured as above, you can safely run the app deployment. After a few minutes when the app is running, click on the `Open` button:
+
+<p align="center">
+  <img src="/img/cloudfront/1.png" alt="CloudFront" />
+</p>
+
+## CloudFront
+
+To set up CloudFront as a CDN, first, navigate to CloudFront service in AWS console and click on the new distribution button:
+
+<p align="center">
+  <img src="/img/cloudfront/2.png" alt="CloudFront" />
+</p>
+
+In settings, choose an origin (URL to your frontend app hosted on Qovery):
+
+<p align="center">
+  <img src="/img/cloudfront/3.png" alt="CloudFront" />
+</p>
+
+You can also tweak other settings or leave them in their defaults:
+
+<p align="center">
+  <img src="/img/cloudfront/4.png" alt="CloudFront" />
+</p>
+
+Additionally, you can assign an alternate domain to your application in `Alternate domain name`:
+
+<p align="center">
+  <img src="/img/cloudfront/5.png" alt="CloudFront" />
+</p>
+
+Adding an alternate domain requires it having a certificate - click on the `Request certificate` button, type your alternate domain name and use DNS for validation method:
+
+<p align="center">
+  <img src="/img/cloudfront/6.png" alt="CloudFront" />
+</p>
+
+Request the certificate. In the end, you will see a screen with settings you need to set up in your domain name provider:
+
+<p align="center">
+  <img src="/img/cloudfront/7.png" alt="CloudFront" />
+</p>
+
+Copy them and save them in your DNS provider settings:
+
+<p align="center">
+  <img src="/img/cloudfront/8.png" alt="CloudFront" />
+</p>
+
+After it's done, you should be granted a certificate - go back to CloudFront Distribution settings, and pick the certificate for your alternate domain name from the list:
+
+<p align="center">
+  <img src="/img/cloudfront/9.png" alt="CloudFront" />
+</p>
+
+In the end, you should end up with a CloudFront set up with your app on Qovery and using an alternate domain name. Now it's time for you to tweak the CloudFront settings to meet your needs.
+
+<p align="center">
+  <img src="/img/cloudfront/10.png" alt="CloudFront" />
+</p>

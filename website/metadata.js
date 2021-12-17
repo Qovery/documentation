@@ -530,6 +530,24 @@ module.exports = {
         {
           "author_github": "https://github.com/pjeziorowski",
           "description": null,
+          "id": "/tutorial/how-to-use-cloudfront-with-react-frontend-application-on-qovery",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/how-to-use-cloudfront-with-react-frontend-application-on-qovery.md",
+          "series_position": null,
+          "title": "How to use AWS CloudFront with React frontend applicatin on Qovery"
+        },
+        {
+          "author_github": "https://github.com/pjeziorowski",
+          "description": null,
+          "id": "/tutorial/how-to-use-cloudflare-on-qovery",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/how-to-use-cloudflare-on-qovery.md",
+          "series_position": null,
+          "title": "How to use Cloudflare on Qovery"
+        },
+        {
+          "author_github": "https://github.com/pjeziorowski",
+          "description": null,
           "id": "/tutorial/github-organization-repository-access",
           "last_modified_on": null,
           "path": "website/guides/tutorial/github-organization-repository-access.md",

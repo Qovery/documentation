@@ -1,7 +1,7 @@
 ---
 last_modified_on: "2021-12-17"
 $schema: "/.meta/.schemas/guides.json"
-title: How to use AWS CloudFront with React frontend applicatin on Qovery
+title: How to use CloudFront with a React frontend application on Qovery
 description: Setting up AWS CloudFront for frontend apps on Qovery
 author_github: https://github.com/pjeziorowski
 tags: ["type: tutorial", "cloud_provider: aws"]
@@ -11,7 +11,7 @@ import Alert from '@site/src/components/Alert';
 import Assumptions from '@site/src/components/Assumptions';
 import Jump from '@site/src/components/Jump';
 
-> If you'd like to use Cloudflare instead of CloudFront as your CDN, check out [this article][guides.tutorial.how-to-use-cloudflare-on-qovery].
+> If you'd like to use Cloudflare instead of CloudFront as your CDN, check out [this article][guides.tutorial.setting-up-cloudflare-and-custom-domain-on-qovery].
 
 Frontend apps primarily consist of static content which goes unchanged. Web pages that contain static assets are essentially prebuilt, which makes it efficiently quicker to grab and render content. Their static nature makes them a perfect use case for CDNs and caching systems on edge servers is as it boosts the web page performance and user experience with the system.
 
@@ -150,4 +150,4 @@ In the end, you should end up with a CloudFront set up with your app on Qovery a
 </p>
 
 
-[guides.tutorial.how-to-use-cloudflare-on-qovery]: /guides/tutorial/how-to-use-cloudflare-on-qovery/
+[guides.tutorial.setting-up-cloudflare-and-custom-domain-on-qovery]: /guides/tutorial/setting-up-cloudflare-and-custom-domain-on-qovery/

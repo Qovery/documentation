@@ -534,16 +534,7 @@ module.exports = {
           "last_modified_on": null,
           "path": "website/guides/tutorial/how-to-use-cloudfront-with-react-frontend-application-on-qovery.md",
           "series_position": null,
-          "title": "How to use AWS CloudFront with React frontend applicatin on Qovery"
-        },
-        {
-          "author_github": "https://github.com/pjeziorowski",
-          "description": null,
-          "id": "/tutorial/how-to-use-cloudflare-on-qovery",
-          "last_modified_on": null,
-          "path": "website/guides/tutorial/how-to-use-cloudflare-on-qovery.md",
-          "series_position": null,
-          "title": "How to use Cloudflare on Qovery"
+          "title": "How to use CloudFront with a React frontend application on Qovery"
         },
         {
           "author_github": "https://github.com/pjeziorowski",
@@ -580,6 +571,15 @@ module.exports = {
           "path": "website/guides/tutorial/migrate-your-application-from-heroku-to-aws.md",
           "series_position": null,
           "title": "Migrate your application from Heroku to AWS"
+        },
+        {
+          "author_github": "https://github.com/pjeziorowski",
+          "description": null,
+          "id": "/tutorial/setting-up-cloudflare-and-custom-domain-on-qovery",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/setting-up-cloudflare-and-custom-domain-on-qovery.md",
+          "series_position": null,
+          "title": "Setting up Cloudflare and Custom Domain on Qovery"
         },
         {
           "author_github": "https://github.com/l0ck3",

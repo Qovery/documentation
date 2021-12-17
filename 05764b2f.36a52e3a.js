@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[9],{156:function(a){a.exports=JSON.parse('{"allTagsPath":"/guides/tags","slug":"framework-sinatra","name":"framework: sinatra","count":1,"permalink":"/guides/tags/framework-sinatra"}')}}]);

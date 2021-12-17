@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[55],{206:function(a){a.exports=JSON.parse('{"allTagsPath":"/guides/tags","slug":"framework-django","name":"framework: django","count":2,"permalink":"/guides/tags/framework-django"}')}}]);

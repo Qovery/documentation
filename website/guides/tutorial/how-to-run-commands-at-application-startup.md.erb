@@ -1,0 +1,115 @@
+---
+$schema: "/.meta/.schemas/guides.json"
+title: How to run commands before the application starts
+description: How to run commands before a Qovery application starts
+author_github: https://github.com/l0ck3
+tags: ["type: tutorial", "technology: qovery"]
+hide_pagination: true
+---
+import Alert from '@site/src/components/Alert';
+import Assumptions from '@site/src/components/Assumptions';
+import Jump from '@site/src/components/Jump';
+
+Running your applications on Qovery is pretty straightforward, but there are many cases where you will need to run some tasks before your application starts, like running database migrations, and it might not be obvious how to do it.
+
+<Assumptions name="guide">
+
+* Your app is running in Dockerfile mode.
+
+</Assumptions>
+
+## Goal 
+
+This tutorial will cover how to run tasks when your application is starting. We'll use the case of a database migration with Ruby on Rails, but the same principle can be applied for any framework or command you need to run.
+
+<Steps headingDepth={3}>
+
+<ol>
+
+<li>
+
+#### Add an entrypoint script
+
+The first thing to do is to add an entrypoint script. We'll add it to a docker directory at the project's root, but you can put it anywhere you want.
+
+Let's create the docker/entrypoint.sh with the following content:
+
+```bash
+#! /bin/sh
+
+bundle exec rails db:migrate
+
+if [[ $? != 0 ]]; then
+
+echo
+echo "== Failed to migrate. Running setup first."
+echo
+
+bundle exec rails db:setup
+
+fi
+
+# Execute the given or default command:
+
+exec "$@"
+```
+
+This script will execute the Rails database migration script. If it fails because the database doesn't exist, it will run the setup command instead.
+
+The last line is necessary to execute the main command of your Dockerfile.
+
+</li>
+
+<li>
+
+#### Give execution permission to the entrypoint script
+
+You can give execution permission to this file with the following command:
+
+`chmod +x docker/entrypoint.sh`
+
+</li>
+
+<li>
+
+#### Add the entrypoint to your Dockerfile
+
+You will now need to add an ENTRYPOINT instruction to your Dockerfile. (Make sure the entrypoint.sh file is copied to the image somewhere)
+
+```bash
+# ...
+
+# Dockerfile content omitted for brevity
+
+# ...
+
+ENTRYPOINT ["./docker/entrypoint.sh"]
+
+EXPOSE 3000
+
+CMD ["rails", "server", "-p", "3000", "-b", "0.0.0.0"]
+```
+
+You can learn more about Docker entrypoints here: https://docs.docker.com/engine/reference/builder/#entrypoint
+
+</li>
+
+<li>
+
+#### Deploy your application
+
+You can now commit and push your changes to your Git repository. The instructions you specified in the [entrypoint.sh](http://entrypoint.sh/) file will be executed before the application starts.
+
+</li>
+
+</ol>
+</Steps>
+
+<Alert type="warning">
+  Make sure the instructions in the entrypoint are idempotent if you set up autoscaling to run one more instance of the application. These instructions will be executed for each instance of your application    
+</Alert>
+
+<Alert type="info">
+  Soon Qovery will allow you to add Lifecycle hooks and shell access, which will allow you to handle this kind of requirement even easier.
+</Alert>
+

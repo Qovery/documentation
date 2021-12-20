@@ -58,6 +58,10 @@ This script will execute the Rails database migration script. If it fails becaus
 
 The last line is necessary to execute the main command of your Dockerfile.
 
+<Alert type="warning">
+  These instructions will be executed on each running instances of your application. If you're running multiple instances (or autoscaling), make sure instructions in the entrypoint are idempotent.
+</Alert>
+
 </li>
 
 <li>
@@ -105,11 +109,7 @@ You can now commit and push your changes to your Git repository. The instruction
 </ol>
 </Steps>
 
-<Alert type="warning">
-  Make sure the instructions in the entrypoint are idempotent if you set up autoscaling to run one more instance of the application. These instructions will be executed for each instance of your application    
-</Alert>
-
 <Alert type="info">
-  Soon Qovery will allow you to add Lifecycle hooks and shell access, which will allow you to handle this kind of requirement even easier.
+  Lifecycle hooks and shell access will shortly be available on Qovery. You'll be able to manage this more conveniently.
 </Alert>
 

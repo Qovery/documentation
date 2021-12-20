@@ -528,6 +528,15 @@ module.exports = {
           "title": "How to deploy a full-stack application composed of Hasura, PostgreSQL and Angular"
         },
         {
+          "author_github": "https://github.com/l0ck3",
+          "description": null,
+          "id": "/tutorial/how-to-run-commands-at-application-startup",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/how-to-run-commands-at-application-startup.md",
+          "series_position": null,
+          "title": "How to run commands before the application starts"
+        },
+        {
           "author_github": "https://github.com/pjeziorowski",
           "description": null,
           "id": "/tutorial/how-to-use-cloudfront-with-react-frontend-application-on-qovery",

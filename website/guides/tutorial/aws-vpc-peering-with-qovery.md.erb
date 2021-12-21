@@ -21,6 +21,16 @@ This tutorial will show you how to set up VPC peering between the Qovery VPC and
 
 </Assumptions>
 
+<Alert type="warning">
+    Make sure the CIDR blocks of your two VPCs don't overlap. AWS won't allow the peering connection otherwise.
+    <br /><br />
+    To match this requirement, you can customize the Qovery VPC CIDR at cluster creation:
+    <br /><br />
+    <p align="center">
+        <img src="/img/aws-vpc-peering-with-qovery/custom-cidr.png" alt="Customise Qovery CIDR" />
+    </p>
+</Alert>
+
 ## Goal 
 
 In this tutorial, we will connect an existing VPC on our AWS account with the VPC of a Qovery managed cluster. 
@@ -43,24 +53,26 @@ To get your existing VPC ID in your AWS console, go to: `VPC > Your VPCs`, find 
   <img src="/img/aws-vpc-peering-with-qovery/vpc-console-1.png" alt="AWS console VPC list" />
 </p>
 
-
 ##### The Qovery VPC ID
 
-You can use the same method to get the Qovery VPC ID. It should be named `qovery-eks-workers`. 
-
-</li>
+You can use the same method to get the Qovery VPC ID. It should be named qovery-eks-workers.
 
 ##### The CIDR ranges of both VPCs
 
-You can find the CIDR ranges of each VPC in the console.
+The CIDR range of the Qovery VCP is the one you selected at the creation of the cluster. 
+You can find it in the cluster settings on the Qovery console, under the `Network` tab:
 
-<Alert type="warning">
-    Make sure the CIDR blocks of your two VPCs don't overlap or you won't be able to create the peering connection.
-</Alert>
+<p align="center">
+  <img src="/img/aws-vpc-peering-with-qovery/custom-cidr-show.png" alt="Qovery cluster custom CIDR" />
+</p>
+
+
+You can find the CIDR ranges of the existing VPC in the AWS console.
 
 <p align="center">
   <img src="/img/aws-vpc-peering-with-qovery/find-cidr.png" alt="AWS console VPC CIDR ranges" />
 </p>
+</li>
 
 <li>
 
@@ -100,19 +112,21 @@ You should see your peering connection marked as `Active`
     <img src="/img/aws-vpc-peering-with-qovery/peering-active.png" alt="AWS VPC peering active" />
 </p>    
 
+Take note of the peering connection ID. You will need it later.
+
 </li>
 
 <li>
 
-#### Update route tables
+#### Update existing VPC route table
 
 In the AWS console, go to `VPC > Route Tables`.
 You can filter the list using the IDs you noted at step 1 to find the routes table for each VPC.
 
-For your Qovery VPC edit the `qovery-eks-workers` route table:
+For your existing VPC edit the route table:
 
 <p align="center">
-    <img src="/img/aws-vpc-peering-with-qovery/qovery-rt.png" alt="AWS VPC Qovery Route Table" />
+    <img src="/img/aws-vpc-peering-with-qovery/existing-rt.png" alt="AWS VPC Route Table" />
 </p>    
 
 Click on the `Edit routes` button then `Add route`. 
@@ -121,12 +135,40 @@ Click on the `Edit routes` button then `Add route`.
     <img src="/img/aws-vpc-peering-with-qovery/qovery-rt-add.png" alt="AWS VPC Qovery Route Table add route" />
 </p> 
 
-- As a destination, enter the CIDR of your existing VPC
+- As a destination, enter the CIDR of your Qovery VPC
 - As a target, select the Peering connection you created earlier
 
 Click `Save changes`.
 
-Do the same for your existing VPC, using the Qovery VPC CIDR.
+<Alert type="warning">
+    Do not alter existing routes. Make sure you are adding a new one.
+</Alert>
+
+</li>
+
+<li>
+
+#### Update Qovery VPC route table
+
+This part needs to be done through the Qovery console. 
+
+<Alert type="warning">
+    Do not alter edit the Qovery VPC route table directly on the AWS console. Your changes would be lost next time we update your cluster.
+</Alert>
+
+In the cluster settings, under the `Network` tab, click `ADD ROUTE`
+
+<p align="center">
+    <img src="/img/aws-vpc-peering-with-qovery/qovery-rt.png" alt="AWS VPC Qovery Route Table add route" />
+</p> 
+
+- As a destination, enter the CIDR of your existing VPC
+- As a target, enter the ID of the peering connection you created earlier
+- You can put anything you want as a description.
+
+<p align="center">
+    <img src="/img/aws-vpc-peering-with-qovery/qovery-rt-added.png" alt="AWS VPC Qovery Route Table add route" />
+</p> 
 
 </li>
 
@@ -161,3 +203,5 @@ Refer to [this guide][guides.getting-started.deploy-your-first-application] if y
 </ol>
 
 </Steps>
+
+You can learn more about VPC peering on AWS here: https://docs.aws.amazon.com/vpc/latest/peering/what-is-vpc-peering.html

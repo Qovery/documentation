@@ -102,6 +102,7 @@ You will be able to have those information:
 <p></p>
 
 </li>
+<li>
 
 ##### The CIDR ranges of both VPCs
 
@@ -115,7 +116,6 @@ You will be able to have those information:
 </p>
 
 </li>
-
 <li>
 
 #### Create a peering connection
@@ -136,7 +136,6 @@ In the AWS console, go to `VPC > Peering connections` and click on `Create peeri
 </p>    
 
 </li>
-
 <li>
 
 #### Accept the peering request

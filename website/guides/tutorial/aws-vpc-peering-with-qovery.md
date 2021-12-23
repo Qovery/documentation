@@ -106,16 +106,6 @@ You will be able to have those information:
 ##### The CIDR ranges of both VPCs
 
 
-The CIDR range of the Qovery VPC is the one you selected at the creation of the cluster. 
-You can find it in the cluster settings on the Qovery console, under the `Network` tab:
-
-<p align="center">
-  <img src="/img/aws-vpc-peering-with-qovery/custom-cidr-show.png" alt="Qovery cluster custom CIDR" />
-</p>
-
-
-The CIDR range of the existing VPC in the AWS console can be found:
-
 <Alert type="warning">
     Make sure the CIDR blocks of your two VPCs don't overlap or you won't be able to create the peering connection.
 </Alert>
@@ -123,6 +113,7 @@ The CIDR range of the existing VPC in the AWS console can be found:
 <p align="center">
   <img src="/img/aws-vpc-peering-with-qovery/find-cidr.png" alt="AWS console VPC CIDR ranges" />
 </p>
+
 </li>
 
 <li>
@@ -193,7 +184,9 @@ Click on the `Edit routes` button then `Add route`.
 
 Click `Save changes`.
 
-Do the same for your existing VPC, using the Qovery VPC CIDR.
+<Alert type="warning">
+    Do not alter existing routes. Make sure you are adding a new one.
+</Alert>
 
 </li>
 
@@ -204,7 +197,7 @@ Do the same for your existing VPC, using the Qovery VPC CIDR.
 This part needs to be done through the Qovery console. 
 
 <Alert type="warning">
-    Do not alter edit the Qovery VPC route table directly on the AWS console. Your changes would be lost next time we update your cluster.
+    Make sure you are adding a new route. Do not edit or remove existing routes to avoid service interruption.
 </Alert>
 
 In the cluster settings, under the `Network` tab, click `ADD ROUTE`

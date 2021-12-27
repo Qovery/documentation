@@ -1,7 +1,7 @@
 ---
 last_modified_on: "2021-12-27"
 $schema: "/.meta/.schemas/guides.json"
-title: How to Build a Cloud Version of Your Open Source Software - A Case Study with AppWrite - Part 2
+title: How to Build a Cloud Version of Your Open Source Software - A Case Study with AppWrite - Part 3
 description: Open-source eat the world. More and more great open-source projects are used. One standard method to make those products financially sustainable is to provide a managed version. Meaning, you can enjoy using their product without the hassle of managing the product updates, the backups, the security, and the scaling. This guide will attempt to explain how to build a cloud-managed version of an open-source project.
 author_github: https://github.com/pjeziorowski
 tags: ["type: tutorial", "technology: qovery"]

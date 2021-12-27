@@ -591,6 +591,15 @@ module.exports = {
           "title": "How to write a Dockerfile"
         },
         {
+          "author_github": "https://github.com/pjeziorowski",
+          "description": null,
+          "id": "/tutorial/managing-env-variables-in-create-react-app",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/managing-env-variables-in-create-react-app.md",
+          "series_position": null,
+          "title": "Managing Environment Variables in React (create-react-app)"
+        },
+        {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
           "id": "/tutorial/migrate-your-application-from-heroku-to-aws",

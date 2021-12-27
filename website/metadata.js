@@ -476,20 +476,20 @@ module.exports = {
         {
           "author_github": "https://github.com/pjeziorowski",
           "description": null,
-          "id": "/tutorial/how-to-build-a-cloud-version-of-your-open-source-software-part-3",
+          "id": "/tutorial/how-to-build-a-cloud-version-of-your-open-source-software-part-2",
           "last_modified_on": null,
-          "path": "website/guides/tutorial/how-to-build-a-cloud-version-of-your-open-source-software-part-3.md",
+          "path": "website/guides/tutorial/how-to-build-a-cloud-version-of-your-open-source-software-part-2.md",
           "series_position": null,
           "title": "How to Build a Cloud Version of Your Open Source Software - A Case Study with AppWrite - Part 2"
         },
         {
           "author_github": "https://github.com/pjeziorowski",
           "description": null,
-          "id": "/tutorial/how-to-build-a-cloud-version-of-your-open-source-software-part-2",
+          "id": "/tutorial/how-to-build-a-cloud-version-of-your-open-source-software-part-3",
           "last_modified_on": null,
-          "path": "website/guides/tutorial/how-to-build-a-cloud-version-of-your-open-source-software-part-2.md",
+          "path": "website/guides/tutorial/how-to-build-a-cloud-version-of-your-open-source-software-part-3.md",
           "series_position": null,
-          "title": "How to Build a Cloud Version of Your Open Source Software - A Case Study with AppWrite - Part 2"
+          "title": "How to Build a Cloud Version of Your Open Source Software - A Case Study with AppWrite - Part 3"
         },
         {
           "author_github": "https://github.com/Aggis15",

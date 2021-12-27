@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[197],{347:function(t){t.exports=JSON.parse('{"allTagsPath":"/guides/tags","slug":"type-tutorial","name":"type: tutorial","count":33,"permalink":"/guides/tags/type-tutorial"}')}}]);

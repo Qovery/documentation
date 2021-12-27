@@ -548,6 +548,15 @@ module.exports = {
         {
           "author_github": "https://github.com/pjeziorowski",
           "description": null,
+          "id": "/tutorial/data-seeding-in-postgres",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/data-seeding-in-postgres.md",
+          "series_position": null,
+          "title": "How to seed a Postgres database on a dev environment"
+        },
+        {
+          "author_github": "https://github.com/pjeziorowski",
+          "description": null,
           "id": "/tutorial/how-to-use-cloudfront-with-react-frontend-application-on-qovery",
           "last_modified_on": null,
           "path": "website/guides/tutorial/how-to-use-cloudfront-with-react-frontend-application-on-qovery.md",

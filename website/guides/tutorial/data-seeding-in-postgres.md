@@ -54,26 +54,23 @@ Keep in mind that the script should be idempotent as there are chances it will b
 In the next step, we’ll create a script that will be used to connect to the database and seed the data.
 
 ```jsx
-const { Client } = require('pg')
 const fs = require('fs')
+const { Pool } = require('pg')
 
 require("dotenv").config()
-
 const databaseUrl = process.env.DATABASE_URL || 'postgresql://localhost:5432/test';
-const client = new Client({ connectionString: databaseUrl });
-client.connect()
+const pool = new Pool({
+    connectionString: databaseUrl,
+})
 
-if (process.env.NODE_ENV != 'production') {
-		const seedQuery = fs.readFileSync('./seeding.sql', { encoding: 'utf8' })
-    client.query(seedQuery, [], (err, res) => {
-        if (err) throw err
+if (process.env.NODE_ENV !== 'production') {
+    const seedQuery = fs.readFileSync('db/seeding.sql', { encoding: 'utf8' })
+    pool.query(seedQuery, (err, res) => {
+        console.log(err, res)
         console.log('Seeding Completed!')
+        pool.end()
     })
-} else {
-    console.log('Production - skipping database seeding')
 }
-
-client.end()
 ```
 
 The script connects to our Postgres instance, reads the seeding SQL, and makes the required updates. It does it only for non-prod environments thanks to the `NODE_ENV` environment variable.
@@ -93,19 +90,40 @@ To seed the data, we’ll use `ENTRYPOINT` in our `Dockerfile`. For more details
 ```docker
 FROM node:16
 
+# Create app directory
 WORKDIR /usr/src/app
+
+# Install app dependencies
+# A wildcard is used to ensure both package.json AND package-lock.json are copied
+# where available (npm@5+)
 COPY package*.json ./
+
 RUN npm install
+# If you are building your code for production
+# RUN npm ci --only=production
+
+# Bundle app source
 COPY . .
 
 EXPOSE 3000
 
-ENTRYPOINT ["npm", "run, "seed"]
+ENTRYPOINT ["./entrypoint.sh"]
 
 CMD [ "node", "bin/www" ]
+
 ```
 
-The entry point will make sure our script is executed on each environment where the app container runs.
+Add `entrypoint.sh` file to be executed on each environment where the app container runs:
+
+```bash
+#! /bin/sh
+
+node db/index.js
+
+# Execute the given or default command:
+
+exec "$@"
+```
 
 ## Example
 

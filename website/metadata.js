@@ -591,6 +591,15 @@ module.exports = {
           "title": "How to write a Dockerfile"
         },
         {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/tutorial/import-your-environment-variables-with-the-qovery-cli",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/import-your-environment-variables-with-the-qovery-cli.md",
+          "series_position": null,
+          "title": "Import your environment variables with the Qovery CLI"
+        },
+        {
           "author_github": "https://github.com/pjeziorowski",
           "description": null,
           "id": "/tutorial/managing-env-variables-in-create-react-app",

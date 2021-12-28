@@ -1,0 +1,130 @@
+---
+$schema: "/.meta/.schemas/guides.json"
+title: Import your environment variables with the Qovery CLI
+description: How to import your environment variables and secrets from your dotenv file with the Qovery CLI
+author_github: https://github.com/evoxmusic
+tags: ["type: tutorial", "technology: qovery"]
+hide_pagination: true
+---
+import Alert from '@site/src/components/Alert';
+import Assumptions from '@site/src/components/Assumptions';
+import Jump from '@site/src/components/Jump';
+
+<Alert type="info">
+
+The web console will integrate the dotenv file import feature for Q1 2022.
+
+</Alert>
+
+When dealing with dozens of environment variables, it can be tedious to import them one by one. This is where the Qovery CLI with the env vars import feature helps. In this tutorial, you will learn how to import your environment variables and secrets via the Qovery CLI.
+
+<Assumptions>
+
+- Your dotenv (`.env`) file is [compliant to the following specs](https://smartmob-rfc.readthedocs.io/en/latest/2-dotenv.html)
+- You have created your application in Qovery
+
+</Assumptions>
+
+## Install Qovery CLI
+
+<%= qovery_install_cli() %>
+
+## Set your context
+
+Once you are authenticated with `qovery auth`, you must choose the application where you want to set the environment variables with the command `qovery context set`.
+
+```bash title="connect to qovery"
+$ qovery auth
+```
+
+```bash title="set the context"
+~/Desktop $ qovery context set
+Qovery: Current context:
+Organization | Qovery Community
+Project      | posthog
+Environment  | prod
+Application  | proxy
+
+Qovery: Select new context
+Organization:
+✔ Qovery Realm
+Project:
+✔ Posthog
+Environment:
+✔ prod
+Application:
+✔ nginx-proxy
+
+Qovery: New context:
+Organization | Qovery Realm
+Project      | Posthog
+Environment  | prod
+Application  | nginx-proxy
+```
+
+## Import
+
+With Qovery, you make the distinction between Environment Variables and Secrets. Basically, the value of a Secret is encrypted and cannot be revealed.
+
+Let's say that we have the following dotenv file `.env.development` that we want to import:
+
+```text title=.env.development
+STRAPI_API_KEY=x.xxyyyzzz
+COLOR_BACKGROUND=fff
+AUTH0_API_KEY_SECRET=0xb33f
+API_URL=https://api.mytld.com
+```
+
+The `STRAPI_API_KEY` and `AUTH0_API_KEY_SECRET` are Secrets. `COLOR_BACKGROUND` and `API_URL` are Environment Variables.
+
+### Environment Variables
+
+<Alert type="info">
+
+[Check out the documentation][docs.using-qovery.configuration.environment-variable] to learn more on how Environment Variables works.
+
+</Alert>
+
+To import the Environment Variables from this file we run the command `qovery env import <dotenv file>` and we select the environment variables to import:
+
+```bash
+$ qovery env import .env.development
+
+Qovery: dot env file to import: '.env.development'
+? Do you want to import Environment Variables or Secrets? Secrets
+? What environment variables do you want to import?  [Use arrows to move, space to select, <right> to all, <left> to none, type to filter]
+  [x]  COLOR_BACKGROUND=fff
+  [ ]  AUTH0_API_KEY_SECRET=0xb33f
+> [x]  API_URL=https://api.mytld.com
+  [ ]  STRAPI_API_KEY=x.xxyyyzzz
+```
+
+Once validated you will see the following import validation:
+
+```bash
+? What environment variables do you want to import? COLOR_BACKGROUND=fff, API_URL=https://api.mytld.com
+Qovery: ✅ Secrets successfully imported!
+```
+
+If during the import something goes wrong, you will see the errors and why it failed.
+
+### Secrets
+
+<Alert type="info">
+
+[Check out the documentation][docs.using-qovery.configuration.secret] to learn more on how Secrets works.
+
+</Alert>
+
+To import the Secrets, you need to run the same command `qovery env import <dotenv file>` and select the secrets to import.
+
+Once validated you will see the following import validation:
+
+```bash
+? What environment variables do you want to import? STRAPI_API_KEY=x.xxyyyzzz, AUTH0_API_KEY_SECRET=0xb33
+Qovery: ✅ Secrets successfully imported!
+```
+
+## Check
+
+Open your environment variables console to check that everything has been set correctly.

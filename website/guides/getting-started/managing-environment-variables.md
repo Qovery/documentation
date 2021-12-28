@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-07"
+last_modified_on: "2021-12-28"
 $schema: "/.meta/.schemas/guides.json"
 title: Environment variables
 description: How to manage environment variables in your projects and applications
@@ -117,7 +117,14 @@ This guide was an introduction on how to use the Environment Variables. To know 
 about [Environment Variables][docs.using-qovery.configuration.environment-variable] and [Secrets][docs.using-qovery.configuration.secret],
 go to our [detailed documentation][docs.using-qovery.configuration].
 
+<Alert type="info">
+
+Do you want to bulk import your Environment Variables? [Check out this tutorial][guides.tutorial.import-your-environment-variables-with-the-qovery-cli]
+
+</Alert>
+
 
 [docs.using-qovery.configuration.environment-variable]: /docs/using-qovery/configuration/environment-variable/
 [docs.using-qovery.configuration.secret]: /docs/using-qovery/configuration/secret/
 [docs.using-qovery.configuration]: /docs/using-qovery/configuration/
+[guides.tutorial.import-your-environment-variables-with-the-qovery-cli]: /guides/tutorial/import-your-environment-variables-with-the-qovery-cli/

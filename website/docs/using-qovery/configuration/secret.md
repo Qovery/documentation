@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-12-15"
+last_modified_on: "2021-12-28"
 title: "Secrets"
 description: "Learn how to configure Secrets on Qovery"
 ---
@@ -25,6 +25,12 @@ Qovery makes **Secrets** available to all services at runtime, as well as during
 -->
 
 ## Create a Secret
+
+<Alert type="info">
+
+Do you want to bulk import your Secrets? [Check out this tutorial][guides.tutorial.import-your-environment-variables-with-the-qovery-cli]
+
+</Alert>
 
 <Steps headingDepth={3}>
 <ol>
@@ -345,4 +351,5 @@ QOVERY_<SERVICE_TYPE>_<NAME>_<SPEC>
 
 
 [docs.configuration.environment-variable#levels]: /docs/using-qovery/configuration/environment-variable/#levels
+[guides.tutorial.import-your-environment-variables-with-the-qovery-cli]: /guides/tutorial/import-your-environment-variables-with-the-qovery-cli/
 [urls.qovery_console]: https://console.qovery.com

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-12-27"
+last_modified_on: "2021-12-28"
 $schema: "/.meta/.schemas/guides.json"
 title: How to seed a Postgres database on a dev environment
 description: How to automatically inject data into your development Postgres databases
@@ -30,19 +30,17 @@ In the first step, let’s create an idempotent script that will seed our develo
 ```sql
 DROP TABLE IF EXISTS _USER;
 
-CREATE TABLE _USER(ID INT PRIMARY KEY NOT NULL,
-                                      FIRST_NAME VARCHAR(255) NOT NULL,
-                                                              LAST_NAME VARCHAR(50) NOT NULL);
+CREATE TABLE _USER(
+  ID INT PRIMARY KEY NOT NULL,
+  FIRST_NAME VARCHAR(255) NOT NULL,
+  LAST_NAME VARCHAR(50) NOT NULL
+);
 
 INSERT INTO _USER (ID, FIRST_NAME, LAST_NAME)
-VALUES (1,
-        'John',
-        'Doe');
+VALUES (1, 'John', 'Doe');
 
 INSERT INTO _USER (ID, FIRST_NAME, LAST_NAME)
-VALUES (2,
-        'Alice',
-        'Wonderland');
+VALUES (2, 'Alice', 'Wonderland');
 ```
 
 The example above contains only a single table - the SQL script is specific to your application, so you’ll have to create your own that reflects the schema and database state you would expect in the dev environment.

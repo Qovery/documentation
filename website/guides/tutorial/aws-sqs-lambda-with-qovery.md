@@ -1,8 +1,8 @@
 ---
-last_modified_on: "2021-11-30"
+last_modified_on: "2021-12-28"
 $schema: "/.meta/.schemas/guides.json"
 title: Using Amazon SQS and Lambda on Qovery
-description: How to integrate Amazon SQS and Lambda on Qover
+description: How to integrate Amazon SQS and Lambda on Qovery
 author_github: https://github.com/pjeziorowski
 tags: ["type: tutorial", "cloud_provider: aws"]
 hide_pagination: true

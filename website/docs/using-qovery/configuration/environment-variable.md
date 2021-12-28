@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-12-15"
+last_modified_on: "2021-12-28"
 title: "Environment Variable"
 description: "Learn how to configure Environment Variables on Qovery"
 ---
@@ -41,6 +41,12 @@ Here is a short video to show how to use environment variables.
 -->
 
 ## Create an Environment Variable
+
+<Alert type="info">
+
+Do you want to bulk import your Environment Variables? [Check out this tutorial][guides.tutorial.import-your-environment-variables-with-the-qovery-cli]
+
+</Alert>
 
 <Steps headingDepth={3}>
 <ol>
@@ -323,4 +329,5 @@ QOVERY_<SERVICE_TYPE>_<NAME>_<SPEC>
 [docs.configuration.environment-variable#levels]: /docs/using-qovery/configuration/environment-variable/#levels
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [docs.using-qovery.configuration.secret]: /docs/using-qovery/configuration/secret/
+[guides.tutorial.import-your-environment-variables-with-the-qovery-cli]: /guides/tutorial/import-your-environment-variables-with-the-qovery-cli/
 [urls.qovery_console]: https://console.qovery.com

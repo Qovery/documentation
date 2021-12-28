@@ -9,20 +9,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/website/guides/tutorial/import-your-environment-variables-with-the-qovery-cli.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/website/guides/tutorial/import-your-environment-variables-with-the-qovery-cli.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/environment-variable.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/environment-variable.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/environment-variable.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/environment-variable.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/secret.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/secret.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/configuration/secret.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/configuration/secret.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/managing-environment-variables.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/managing-environment-variables.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/getting-started/managing-environment-variables.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/getting-started/managing-environment-variables.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/aws-sqs-lambda-with-qovery.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/aws-sqs-lambda-with-qovery.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/aws-sqs-lambda-with-qovery.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/aws-sqs-lambda-with-qovery.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/data-seeding-in-postgres.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/data-seeding-in-postgres.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/data-seeding-in-postgres.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/data-seeding-in-postgres.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/metadata.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/metadata.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/import-your-environment-variables-with-the-qovery-cli.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/import-your-environment-variables-with-the-qovery-cli.md.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/website/package-lock.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/website/yarn.lock" beforeDir="false" />
     </list>
@@ -446,14 +433,7 @@
       <workItem from="1638270858473" duration="26000" />
       <workItem from="1638993339210" duration="6359000" />
       <workItem from="1639471390542" duration="10430000" />
-      <workItem from="1640682521551" duration="5065000" />
-    </task>
-    <task id="LOCAL-00229" summary="chore: make changes based on Albane' feedback">
-      <created>1630734087876</created>
-      <option name="number" value="00229" />
-      <option name="presentableId" value="LOCAL-00229" />
-      <option name="project" value="LOCAL" />
-      <updated>1630734087876</updated>
+      <workItem from="1640682521551" duration="5577000" />
     </task>
     <task id="LOCAL-00230" summary="chore: add gcp and azure coming soon">
       <created>1630850314482</created>
@@ -791,7 +771,14 @@
       <option name="project" value="LOCAL" />
       <updated>1639687162101</updated>
     </task>
-    <option name="localTasksCounter" value="278" />
+    <task id="LOCAL-00278" summary="feat: add article explaining how to import env vars with the CLI">
+      <created>1640687619796</created>
+      <option name="number" value="00278" />
+      <option name="presentableId" value="LOCAL-00278" />
+      <option name="project" value="LOCAL" />
+      <updated>1640687619796</updated>
+    </task>
+    <option name="localTasksCounter" value="279" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -876,7 +863,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="chore: change title for gen articles" />
     <MESSAGE value="chore: make changes based on Albane' feedback" />
     <MESSAGE value="chore: add gcp and azure coming soon" />
     <MESSAGE value="chore: update AWS + Qovery doc" />
@@ -901,6 +887,7 @@
     <MESSAGE value="fix: setting-custom-domain.md.erb" />
     <MESSAGE value="fix: roadmap links" />
     <MESSAGE value="chore: change old deploy app and AWS videos with the John's one" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: change old deploy app and AWS videos with the John's one" />
+    <MESSAGE value="feat: add article explaining how to import env vars with the CLI" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add article explaining how to import env vars with the CLI" />
   </component>
 </project>

@@ -91,7 +91,7 @@ To import the Environment Variables from this file we run the command `qovery en
 $ qovery env import .env.development
 
 Qovery: dot env file to import: '.env.development'
-? Do you want to import Environment Variables or Secrets? Secrets
+? Do you want to import Environment Variables or Secrets? Environment Variables
 ? What environment variables do you want to import?  [Use arrows to move, space to select, <right> to all, <left> to none, type to filter]
   [x]  COLOR_BACKGROUND=fff
   [ ]  AUTH0_API_KEY_SECRET=0xb33f
@@ -103,7 +103,7 @@ Once validated you will see the following import validation:
 
 ```bash
 ? What environment variables do you want to import? COLOR_BACKGROUND=fff, API_URL=https://api.mytld.com
-Qovery: ✅ Secrets successfully imported!
+Qovery: ✅ Environment Variables successfully imported!
 ```
 
 If during the import something goes wrong, you will see the errors and why it failed.
@@ -117,6 +117,18 @@ If during the import something goes wrong, you will see the errors and why it fa
 </Alert>
 
 To import the Secrets, you need to run the same command `qovery env import <dotenv file>` and select the secrets to import.
+
+```bash
+$ qovery env import .env.development
+
+Qovery: dot env file to import: '.env.development'
+? Do you want to import Environment Variables or Secrets? Secrets
+? What environment variables do you want to import?  [Use arrows to move, space to select, <right> to all, <left> to none, type to filter]
+  [ ]  COLOR_BACKGROUND=fff
+  [x]  AUTH0_API_KEY_SECRET=0xb33f
+  [ ]  API_URL=https://api.mytld.com
+> [x]  STRAPI_API_KEY=x.xxyyyzzz
+```
 
 Once validated you will see the following import validation:
 

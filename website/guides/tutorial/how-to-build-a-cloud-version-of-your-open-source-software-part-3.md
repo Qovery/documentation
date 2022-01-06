@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-12-27"
+last_modified_on: "2022-01-06"
 $schema: "/.meta/.schemas/guides.json"
 title: How to Build a Cloud Version of Your Open Source Software - A Case Study with AppWrite - Part 3
 description: Open-source eat the world. More and more great open-source projects are used. One standard method to make those products financially sustainable is to provide a managed version. Meaning, you can enjoy using their product without the hassle of managing the product updates, the backups, the security, and the scaling. This guide will attempt to explain how to build a cloud-managed version of an open-source project.
@@ -35,7 +35,7 @@ yarn create next-app --example with-tailwindcss frontend
 
 We use `Tailwind` for styling, so the command above bootstraps a `Next.js` app with TailwindCSS already set up.
 
-After the scaffolding is created, create a new remote Git repository on Github or Gitlab with the application code.
+After the scaffolding is created, create a new remote Git repository on Github, Gitlab or Bitbucket with the application code.
 
 For building and deploying the app on Qovery, we’ll use Docker - to dockerize the application please add a `Dockerfile` with the following content:
 

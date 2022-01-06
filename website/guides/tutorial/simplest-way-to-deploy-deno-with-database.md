@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-09-04"
+last_modified_on: "2022-01-06"
 $schema: "/.meta/.schemas/guides.json"
 title: Simplest way to deploy your Deno application with MongoDB database
 description: Tutorial how to deploy a Deno app with MongoDB database with Qovery
@@ -45,7 +45,7 @@ This tutorial show you how to deploy your [Deno][urls.deno] application with [Mo
 <Assumptions name="guide">
 
 * Your Operating System is macOS / Windows / Linux
-* You have a [Github][urls.github] or [Gitlab][urls.gitlab] account
+* You have a [Github][urls.github], [Gitlab][urls.gitlab] or [Bitbucket][urls.bitbucket] account
 
 </Assumptions>
 
@@ -375,6 +375,7 @@ Do you have any feedback about this tutorial? Let us know what you think on [Dis
 [docs.using-qovery.configuration.secret#alias-secret]: /docs/using-qovery/configuration/secret/#alias-secret
 [guides.getting-started.create-a-database]: /guides/getting-started/create-a-database/
 [urls.authorize_qovery]: https://github.com/apps/qovery/installations/new
+[urls.bitbucket]: https://bitbucket.com
 [urls.brew]: https://brew.sh/
 [urls.deno]: https://github.com/denoland/deno
 [urls.github]: https://github.com

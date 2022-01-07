@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-11-19"
+last_modified_on: "2022-01-07"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -45,6 +45,8 @@ General settings allow you to set up your application name, git repository and b
 - Configure your repository URL (it can be hosted on Github or Gitlab, Bitbucket support coming soon).
 - Select branch that Qovery should use for builds in this environment
 - Select `Root Application Path` - base folder in which the application resides in your repository
+
+if your repository contains private submodule, you need to provide an ssh key for Qovery to access it, via [secrets](#secrets)
 
 <p align="center">
   <img src="/img/configuration/application/app-17.png" alt="CPU" />
@@ -272,6 +274,23 @@ To learn how to set up environment variables in your projects and applications, 
 ## Secrets
 
 To learn how to set up secrets in your projects and applications, navigate to [configuring Secrets][docs.using-qovery.configuration.secret] section.
+
+If you have a repository with private submodules.
+We can get them if you give us an ssh key.
+
+To do so, just add:
+
+  ```bash
+  GIT_SSH_KEY_xxx
+```
+for the private key
+
+and
+
+```bash
+GIT_SSH_PASSPHRASE_xxx
+```
+ for the passphrase if there is one
 
 ## Logs
 

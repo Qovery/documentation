@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-12-15"
+last_modified_on: "2022-01-06"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -42,7 +42,7 @@ General settings allow you to set up your application name, git repository and b
 
 #### Git Repository
 
-- Configure your repository URL (it can be hosted on Github or Gitlab, Bitbucket support coming soon).
+- Configure your repository URL (it can be hosted on Github, Gitlab or Bitbucket).
 - Select branch that Qovery should use for builds in this environment
 - Select `Root Application Path` - base folder in which the application resides in your repository
 

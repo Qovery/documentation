@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-09-04"
+last_modified_on: "2022-01-06"
 $schema: "/.meta/.schemas/guides.json"
 title: How to deploy a full-stack application composed of Hasura, PostgreSQL and Angular
 description: State of the art full-stack application deployment with Qovery
@@ -72,7 +72,7 @@ A full-stack application refers to multiple applications working all-together as
 
 <Assumptions>
 
-* You host your code on [Github][urls.github] or [Gitlab][urls.gitlab]
+* You host your code on [Github][urls.github], [Gitlab][urls.gitlab] or [Bitbucket][urls.bitbucket]
 * You have signed up to [Qovery][urls.start_qovery]
 
 </Assumptions>
@@ -200,6 +200,7 @@ In this tutorial, we saw how to deploy a full-stack application composed of a fr
 [guides.getting-started.deploy-your-first-application#step-by-step-tutorial]: /guides/getting-started/deploy-your-first-application/#step-by-step-tutorial
 [guides.tutorial.graphql-api-with-hasura#hasura-deployment-on-qovery]: /guides/tutorial/graphql-api-with-hasura/#hasura-deployment-on-qovery
 [urls.angular]: https://angular.io
+[urls.bitbucket]: https://bitbucket.com
 [urls.github]: https://github.com
 [urls.gitlab]: https://gitlab.com
 [urls.graphql]: https://graphql.org

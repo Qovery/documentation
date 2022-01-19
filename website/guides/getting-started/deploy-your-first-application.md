@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-12-16"
+last_modified_on: "2022-01-06"
 $schema: "/.meta/.schemas/guides.json"
 title: Hello World. Deploy your first application.
 description: How to deploy your first application with Qovery
@@ -16,7 +16,7 @@ Qovery is an easy way to deploy a full-stack application. Meaning, you can deplo
 
 <Assumptions>
 
-* You have a [Github][urls.github] or [Gitlab][urls.gitlab] account
+* You have a [Github][urls.github], [Gitlab][urls.gitlab] or [Bitbucket][urls.bitbucket] account
 
 </Assumptions>
 
@@ -74,6 +74,7 @@ That's it! your application is now deployed 💪
 To deploy your application, it's as simple as that. In the following article, we will see how to add a database. Let's get started!
 
 
+[urls.bitbucket]: https://bitbucket.com
 [urls.github]: https://github.com
 [urls.gitlab]: https://gitlab.com
 [urls.start_qovery]: https://start.qovery.com

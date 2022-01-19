@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-09-04"
+last_modified_on: "2022-01-06"
 $schema: "/.meta/.schemas/guides.json"
 title: How to deploy Strapi with PostgreSQL
 description: This tutorial show you how to deploy Strapi with PostgreSQL in a few steps
@@ -62,7 +62,7 @@ Visit [the Qovery dashboard][urls.start_qovery] to create an account if you don'
 
 ### Create a new application
 
-Select your Github or Gitlab repository where your Strapi app is located:
+Select your Github, Gitlab or Bitbucket repository where your Strapi app is located:
 
 <p align="center">
   <img src="/img/rust/rust.png" alt="Migrate from Heroku" />

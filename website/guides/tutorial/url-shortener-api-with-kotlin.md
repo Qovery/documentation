@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-08-29"
+last_modified_on: "2022-01-06"
 $schema: "/.meta/.schemas/guides.json"
 title: URL Shortener API with Kotlin (Part 1/2)
 description: Create a URL shortener API with Kotlin, the micro-framework Ktor and PostgreSQL
@@ -422,7 +422,7 @@ We have to replace the Hash Table used to store the data by the PostgreSQL datab
 
 <Assumptions name="tutorial">
 
-* Your code need to be hosted on Github/Gitlab
+* Your code need to be hosted on Github/Gitlab/Bitbucket
 * [Package your Ktor application to build and run it on Docker](https://ktor.io/quickstart/quickstart/docker.html)
 
 </Assumptions>

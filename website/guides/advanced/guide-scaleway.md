@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-09-13"
+last_modified_on: "2022-01-06"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy on your Scaleway account
 description: How to configure and deploy your apps on your Scaleway account with Qovery
@@ -70,7 +70,7 @@ To install Qovery on your Scaleway account, the `project id`, `secret access key
 ## Configure Qovery
 
 ### Sign-up to Qovery
-Using Qovery is as simple as connect with your *Github* or *Gitlab* account on [console.qovery.com][urls.start_qovery].
+Using Qovery is as simple as connect with your *Github*, *Gitlab* or *Bitbucket* account on [console.qovery.com][urls.start_qovery].
 
 -> [Connect to Qovery][urls.start_qovery]
 

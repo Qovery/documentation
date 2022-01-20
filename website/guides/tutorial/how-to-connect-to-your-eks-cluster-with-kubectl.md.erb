@@ -1,0 +1,214 @@
+---
+$schema: "/.meta/.schemas/guides.json"
+title: How to connect to your EKS cluster with kubectl
+description: How to connect to your EKS cluster using kubectl
+author_github: https://github.com/l0ck3
+tags: ["type: tutorial", "cloud_provider: aws"]
+hide_pagination: true
+---
+import Alert from '@site/src/components/Alert';
+import Assumptions from '@site/src/components/Assumptions';
+import Jump from '@site/src/components/Jump';
+
+Qovery makes it easy to create an EKS cluster on your AWS account and manage the deployment of applications on it. But you still might want to execute operations on it via `kubectl` like you would on any other Kubernetes cluster.
+
+<Assumptions name="guide">
+
+* You have an existing EKS cluster manages by Qovery
+* You have deployed an application on this cluster with Qovery
+
+</Assumptions>
+
+<Alert type="warning">
+  Be aware that any operation you do manually on your cluster could conflict with Qovery. We would advise to not use this method for anything else than connecting to a container with `kubectl exec`
+</Alert>
+
+## Goal
+
+This tutorial will show you how to access a Qovery managed cluster on AWS with `kubectl` and shell into a running application container.
+
+<Steps headingDepth={3}>
+
+<ol>
+
+<li>
+
+#### Install and configure your toolchain
+
+**kubectl**
+
+To interact with your cluster, you will need `kubectl` installed.
+[https://kubernetes.io/docs/tasks/tools/](https://kubernetes.io/docs/tasks/tools/)
+
+**AWS CLI**
+
+The AWS CLI must be installed and configured on your machine.
+[https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)
+
+**aws-iam-authenticator**
+
+This will allow `kubectl` to connect to your EKS cluster using IAM.
+[https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html)
+</li>
+
+<li>
+
+#### Add your IAM user to the Admin group
+
+Since `kubectl` will use IAM to authenticate, you need to add your IAM user (the one the AWS CLI is authenticated with) to the `Admins` group you created when setting up Qovery.
+
+<p align="center">
+  <img src="/img/how-to-connect-to-your-eks-cluster-with-kubectl/1.png" alt="AWS console - add admin user" />
+</p>
+</li>
+
+<li>
+
+#### Download the Kubeconfig file
+
+To connect to your EKS cluster you will need to set a context to `kubectl`. This is done with a `Kubeconfig` file.
+
+When installing a new cluster, Qovery stores it in an S3 bucket on your account.
+
+Go to S3, find the Qovery bucket, and download the file. The bucket should be named something like `qovery-kubeconfigs-<cluster ID>.yaml`.
+
+<p align="center">
+  <img src="/img/how-to-connect-to-your-eks-cluster-with-kubectl/2.png" alt="AWS console - get Kubeconfig" />
+</p>
+</li>
+
+
+<li>
+
+#### Set the context for kubectl
+
+To set the context for kubectl, run the following command:
+
+```bash
+export KUBECONFIG=<path to the kubeconfig file you downloaded>
+```
+
+You can check that it works with a kubectl command. For example:
+
+```bash
+kubectl get nodes
+```
+
+You are good to go if you see an output like the following:
+
+```bash
+NAME              STATUS   ROLES    AGE   VERSION
+zb81b1cd4-ub667   Ready    <none>   14d   v1.19.15
+zb81b1cd4-ujkm8   Ready    <none>   24d   v1.19.15
+zb81b1cd4-ujkmc   Ready    <none>   24d   v1.19.15
+```
+</li>
+
+
+<li>
+
+#### Get your application namespace
+
+When you deploy an application, Qovery will create a separate namespace for each environment on your Kubernetes cluster.
+
+You can get the list of the namespaces on your cluster using the following command:
+
+```bash
+kubectl get namespaces
+```
+
+You will get an output similar to this one:
+
+```bash
+NAME                  STATUS        AGE
+cert-manager          Active        44d
+default               Active        44d
+kube-node-lease       Active        44d
+kube-public           Active        44d
+kube-system           Active        44d
+logging               Active        44d
+nginx-ingress         Active        44d
+prometheus            Active        44d
+qovery                Active        44d
+z0121531e-zb2daee81   Active        35d
+z016bd165-zeb51c37e   Active        31d
+```
+
+The Qovery application namespaces are the ones begining with `z`.
+
+In case you have several environments running, to identify the right one:
+
+- Go to the Qovery console
+- Go to the right environment
+
+In your URL bar you'll have something like:
+
+`https://console.qovery.com/platform/organization/<organisation id>/projects/<project id>/environments/<environment id>/applications`
+
+
+<p align="center">
+  <img src="/img/how-to-connect-to-your-eks-cluster-with-kubectl/3.png" alt="Qovery console - environment" />
+</p>
+
+The environment namespace is defined the following way: `z<project short ID>-z<environment short ID>`.
+
+The short ID is the first section of the ID. For example, given the following ID: `e0aabc0d-99cb-4867-ad39-332d6162c32c`, the short ID will be `e0aabc0d`.
+
+The following environment URL: `https://console.qovery.com/platform/organization/<organisation ID>/projects/e0aabc0d-99cb-4867-ad39-332d6162c32c/environments/b91d2eb8-a850-49b5-8626-ade7afc4a28b/applications`
+would translate to the following namespace: `ze0aabc0d-zb91d2eb8`.
+</li>
+
+<li>
+
+#### Identify the right application pod(s)
+
+To list the pods running in your environment namespace, run the following command:
+
+```bash
+kubectl get pods --namespace <your namespace>
+```
+
+The output should be similar to this one:
+
+```bash
+NAME                             READY   STATUS    RESTARTS   AGE
+app-z2fc29b74-5db6745975-nrw8v   1/1     Running   0          29h
+app-zabbcf976-74f969f848-kzp87   1/1     Running   0          29h
+```
+
+The same principle goes for finding the right application pod. Go to the application page on the Qovery console.
+
+You'll get an URL looking like this:
+
+`https://console.qovery.com/platform/organization/<organisation ID>/projects/<project ID>/environments/<environment ID>/applications/abbcf976-27a1-4531-9cdd-e4d15d7b2c27/summary`
+
+Get the short ID of our application, in our case `abbcf976` which means the application pod name will start with `app-zabbcf976`.
+
+In case you setup your app to run multiple replicas, it is possible that you see several pods begining with the same string. You can pick any of them.
+
+In our case the right pod corresponding to our application would be `app-zabbcf976-74f969f848-kzp87`.
+</li>
+
+<li>
+
+#### Shell into the container
+
+To get a shell access to the container running inside the application pod, all you have to do is:
+
+```bash
+kubectl exec -ti --namespace <your namespace> <your pod name> -- sh
+```
+
+This will open a shell inside of your application container. You can now execute any command you need.
+</li>
+</ol>
+
+</Steps>
+
+## Conclusion
+
+Qovery helps you manage your Kubernetes cluster and deploy your applications on it while still giving you the power of a full access to your cluster.
+
+<Alert type="note">
+  Soon you will be able to achieve the same thing through the Qovery CLI.
+</Alert>

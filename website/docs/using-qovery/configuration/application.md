@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-01-07"
+last_modified_on: "2022-01-20"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -280,8 +280,8 @@ We can get them if you give us an ssh key.
 
 To do so, just add:
 
-  ```bash
-  GIT_SSH_KEY_xxx
+```bash
+GIT_SSH_KEY_xxx
 ```
 for the private key
 
@@ -291,6 +291,10 @@ and
 GIT_SSH_PASSPHRASE_xxx
 ```
  for the passphrase if there is one
+
+We will take the ssh keys in the environment starting with GIT_SSH_KEY and you can have multiples ssh private keys. 
+
+In the exemple above, _xxx represent a name that you might want to add to categorize your key (ex: _PRODUCTION)
 
 ## Logs
 

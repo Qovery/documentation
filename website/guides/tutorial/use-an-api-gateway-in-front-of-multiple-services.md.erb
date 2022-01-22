@@ -71,6 +71,7 @@ location ~* ^/?(.*)$ {
 ```
 
 Here are the explanation of those rules:
+
 1. All the traffic matching the path `/api/billing/*` is redirect to the BILLING backend.
 2. All the traffic matching the path `/api/messaging/*` is redirect to the MESSAGING backend.
 3. All the traffic matching the path `/api/*` is redirect to the CORE backend.

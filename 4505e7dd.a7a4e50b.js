@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[77],{228:function(e){e.exports=JSON.parse('{"allTagsPath":"/guides/tags","slug":"cloud-provider-azure","name":"cloud_provider: azure","count":1,"permalink":"/guides/tags/cloud-provider-azure"}')}}]);

@@ -24,27 +24,27 @@
 <link rel="stylesheet" href="/styles.846259e1.css">
 
 
-<link rel="preload" href="/styles.d826c1de.js" as="script">
+<link rel="preload" href="/styles.68e2fac5.js" as="script">
 
-<link rel="preload" href="/runtime~main.acf9075f.js" as="script">
+<link rel="preload" href="/runtime~main.f21651b1.js" as="script">
 
-<link rel="preload" href="/main.a5832a5f.js" as="script">
+<link rel="preload" href="/main.62da70aa.js" as="script">
 
-<link rel="preload" href="/2.71c61702.js" as="script">
+<link rel="preload" href="/2.e28bfa34.js" as="script">
 
-<link rel="preload" href="/3.aec5f178.js" as="script">
+<link rel="preload" href="/3.122cc2c9.js" as="script">
 
-<link rel="preload" href="/4.fa32f876.js" as="script">
+<link rel="preload" href="/4.b55bb698.js" as="script">
 
-<link rel="preload" href="/1be78505.f3abda89.js" as="script">
+<link rel="preload" href="/1be78505.bcd23494.js" as="script">
 
 <link rel="preload" href="/20ac7829.1351e7cf.js" as="script">
 
-<link rel="preload" href="/270.3297fc4e.js" as="script">
+<link rel="preload" href="/272.df98cebd.js" as="script">
 
-<link rel="preload" href="/17896441.03aadbe4.js" as="script">
+<link rel="preload" href="/17896441.a4ad5406.js" as="script">
 
-<link rel="preload" href="/a8111c4e.80fd9e59.js" as="script">
+<link rel="preload" href="/a8111c4e.ee5476aa.js" as="script">
 
 </head>
 <body>
@@ -55,27 +55,27 @@
 </span></div><div class="token-line" style="color:#393A34"><span class="token plain">resource &quot;qovery_cluster&quot; &quot;prod-cluster&quot; {</span></div><div class="token-line" style="color:#393A34"><span class="token plain">  name = &quot;prod cluster&quot;</span></div><div class="token-line" style="color:#393A34"><span class="token plain">  cloud_provider = &quot;AWS&quot;</span></div><div class="token-line" style="color:#393A34"><span class="token plain">  region = &quot;us-east-2&quot;</span></div><div class="token-line" style="color:#393A34"><span class="token plain">  cpu_per_node = 4</span></div><div class="token-line" style="color:#393A34"><span class="token plain">  ram_in_gb_per_node = 8</span></div><div class="token-line" style="color:#393A34"><span class="token plain">  min_nodes = 3</span></div><div class="token-line" style="color:#393A34"><span class="token plain">  max_nodes = 10</span></div><div class="token-line" style="color:#393A34"><span class="token plain">  credentials {</span></div><div class="token-line" style="color:#393A34"><span class="token plain">    access_key_id = &quot;&lt;your-aws-access-key-id&gt;&quot;</span></div><div class="token-line" style="color:#393A34"><span class="token plain">    secret_access_key = &quot;&lt;your-aws-secret-access-key&gt;&quot;</span></div><div class="token-line" style="color:#393A34"><span class="token plain">  }</span></div><div class="token-line" style="color:#393A34"><span class="token plain">}</span></div></div></pre></div></div><p>Here is an example on how to deploy a container application and a PostgreSQL database:</p><div class="mdxCodeBlock_iHAB"><div style="color:#393A34;background-color:#f6f8fa" class="codeBlockTitle_2TQJ">main.tf</div><div class="codeBlockContent_3RXF"><button type="button" aria-label="Copy code to clipboard" class="copyButton_1PCb copyButtonWithTitle_qt-P">Copy</button><pre class="prism-code language-hcl codeBlock_1wn8 codeBlockWithTitle_1f_H"><div class="codeBlockLines_3HrO" style="color:#393A34;background-color:#f6f8fa"><div class="token-line" style="color:#393A34"><span class="token plain">resource &quot;qovery_project&quot; &quot;my project&quot; {</span></div><div class="token-line" style="color:#393A34"><span class="token plain">  cluster = &quot;prod-cluster&quot;</span></div><div class="token-line" style="color:#393A34"><span class="token plain">  environments {</span></div><div class="token-line" style="color:#393A34"><span class="token plain">    &quot;prod-env&quot; = {</span></div><div class="token-line" style="color:#393A34"><span class="token plain">      name = &quot;prod&quot;</span></div><div class="token-line" style="color:#393A34"><span class="token plain">      mode = &quot;production&quot;</span></div><div class="token-line" style="color:#393A34"><span class="token plain">      applications = {</span></div><div class="token-line" style="color:#393A34"><span class="token plain">        &quot;my-backend-app&quot; = {</span></div><div class="token-line" style="color:#393A34"><span class="token plain">          name = &quot;backend&quot;</span></div><div class="token-line" style="color:#393A34"><span class="token plain">          git_url = &quot;https://github.com/evoxmusic/ShortMe-URL-Shortener&quot;</span></div><div class="token-line" style="color:#393A34"><span class="token plain">          branch = &quot;master&quot;</span></div><div class="token-line" style="color:#393A34"><span class="token plain">          build_mode = &quot;dockerfile&quot;</span></div><div class="token-line" style="color:#393A34"><span class="token plain">          dockerfile_path = &quot;/Dockerfile&quot;</span></div><div class="token-line" style="color:#393A34"><span class="token plain">          cpu = 1</span></div><div class="token-line" style="color:#393A34"><span class="token plain">          ram_in_gb = 0.25</span></div><div class="token-line" style="color:#393A34"><span class="token plain">          min_instances = 1</span></div><div class="token-line" style="color:#393A34"><span class="token plain">          max_instances = 1</span></div><div class="token-line" style="color:#393A34"><span class="token plain">          ports = {</span></div><div class="token-line" style="color:#393A34"><span class="token plain">            &quot;http&quot; = {</span></div><div class="token-line" style="color:#393A34"><span class="token plain">              protocol = &quot;web-api&quot;</span></div><div class="token-line" style="color:#393A34"><span class="token plain">              local_port = 5555</span></div><div class="token-line" style="color:#393A34"><span class="token plain">              exposed_port = 443</span></div><div class="token-line" style="color:#393A34"><span class="token plain">            }</span></div><div class="token-line" style="color:#393A34"><span class="token plain">          }</span></div><div class="token-line" style="color:#393A34"><span class="token plain">          environment_variables = {</span></div><div class="token-line" style="color:#393A34"><span class="token plain">            &quot;key&quot; = &quot;value&quot;</span></div><div class="token-line" style="color:#393A34"><span class="token plain">          }</span></div><div class="token-line" style="color:#393A34"><span class="token plain">        }</span></div><div class="token-line" style="color:#393A34"><span class="token plain">      }</span></div><div class="token-line" style="color:#393A34"><span class="token plain">      databases = {</span></div><div class="token-line" style="color:#393A34"><span class="token plain">        &quot;my-psql-db&quot; = {</span></div><div class="token-line" style="color:#393A34"><span class="token plain">          name = &quot;psql&quot;</span></div><div class="token-line" style="color:#393A34"><span class="token plain">          type = &quot;postgresql&quot;</span></div><div class="token-line" style="color:#393A34"><span class="token plain">          version = &quot;13&quot;</span></div><div class="token-line" style="color:#393A34"><span class="token plain">          mode = &quot;managed&quot;</span></div><div class="token-line" style="color:#393A34"><span class="token plain">          cpu = 1</span></div><div class="token-line" style="color:#393A34"><span class="token plain">          ram_in_gb = 1</span></div><div class="token-line" style="color:#393A34"><span class="token plain">        }</span></div><div class="token-line" style="color:#393A34"><span class="token plain">      }</span></div><div class="token-line" style="color:#393A34"><span class="token plain">    }</span></div><div class="token-line" style="color:#393A34"><span class="token plain">  }</span></div><div class="token-line" style="color:#393A34"><span class="token plain">}</span></div></div></pre></div></div></div></article></div><div class="paginator_3VDt"><nav class="pagination-nav"><div class="pagination-nav__item"><a aria-current="page" class="pagination-nav__link active" href="/docs/devops/infrastructure-as-code"><h5 class="pagination-nav__link--sublabel">Previous</h5><h4 class="pagination-nav__link--label">« Infrastructure as Code</h4></a></div><div class="pagination-nav__item pagination-nav__item--next"><a class="pagination-nav__link" href="/docs/devops/infrastructure-as-code/rest-api"><h5 class="pagination-nav__link--sublabel">Next</h5><h4 class="pagination-nav__link--label">REST API »</h4></a></div></nav></div></div><div class="rightCol_38kP"><div class="table-of-contents tableOfContents_tVyB"><div class="section"><div class="title">Resources</div><ul class="contents"><li><a href="https://github.com/Qovery/documentation/edit/master/website/docs/devops/infrastructure-as-code/terraform.md" class="contents__link" target="_blank"><i class="feather icon-edit-1"></i> Edit this page</a></li></ul></div></div></div></div></div></main></div></div><footer class="footer"><div class="container"><div class="row footer__links"><div class="col col--5 footer__col"><div class="margin-bottom--md"></div><div class="margin-bottom--md"><p>Qovery combines the power of Kubernetes, the reliability of AWS, and the simplicity of Heroku to deploy your apps.</p></div><div><a href="https://github.com/qovery" target="_blank"><i class="feather icon-github" alt="Qovery&#x27;s Github Repo"></i></a>    <a href="https://www.linkedin.com/company/qovery/" target="_blank"><i class="feather icon-rss" alt="Qovery&#x27;s Linkedin"></i></a>    <a href="https://twitter.com/qovery_" target="_blank"><i class="feather icon-twitter" alt="Qovery&#x27;s Twitter"></i></a>    <a href="https://discord.qovery.com" target="_blank"><i class="feather icon-message-circle" alt="Qovery&#x27;s Discord"></i></a></div></div><div class="col footer__col"><h4 class="footer__title">Resources</h4><ul class="footer__items"><li class="footer__item"><a aria-current="page" class="footer__link-item active" href="/docs">Documentation</a></li><li class="footer__item"><a class="footer__link-item" href="/guides">Guides</a></li><li class="footer__item"><a class="footer__link-item" href="/guides/tutorial">Tutorials</a></li><li class="footer__item"><a class="footer__link-item" href="/guides/engineering">Engineering</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/pricing" href="https://www.qovery.com/pricing">Pricing</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/enterprise" href="https://www.qovery.com/enterprise">Enterprise</a></li><li class="footer__item"><a class="footer__link-item" to="https://api-doc.qovery.com" href="https://api-doc.qovery.com">API</a></li><li class="footer__item"><a class="footer__link-item" to="https://github.com/Qovery" href="https://github.com/Qovery">Github</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Community</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://discord.qovery.com" href="https://discord.qovery.com">Discord</a></li><li class="footer__item"><a class="footer__link-item" to="https://community.qovery.com" href="https://community.qovery.com">Forum</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/community-call" href="https://www.qovery.com/community-call">Community call</a></li><li class="footer__item"><a class="footer__link-item" to="https://shop.qovery.com" href="https://shop.qovery.com">Goodies</a></li><li class="footer__item"><a class="footer__link-item" to="https://roadmap.qovery.com" href="https://roadmap.qovery.com">Roadmap</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Company</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/blog" href="https://www.qovery.com/blog">Blog</a></li><li class="footer__item"><a class="footer__link-item" to="https://jobs.qovery.com" href="https://jobs.qovery.com">Jobs</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/team" href="https://www.qovery.com/team">Team</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/investors" href="https://www.qovery.com/investors">Investors</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/contact" href="https://www.qovery.com/contact">Contact</a></li></ul></div></div><div class="text--center"><small>© 2022 DESIGNED BY QOVERY | BACKED BY TECHSTARS | PROUD SILVER MEMBER OF CNCF AND LINUX FOUNDATION | QOVERY BY BIRDSIGHT - ALL RIGHTS RESERVED</small><br></div></div></footer>
 </div>
 
-<script src="/styles.d826c1de.js"></script>
+<script src="/styles.68e2fac5.js"></script>
 
-<script src="/runtime~main.acf9075f.js"></script>
+<script src="/runtime~main.f21651b1.js"></script>
 
-<script src="/main.a5832a5f.js"></script>
+<script src="/main.62da70aa.js"></script>
 
-<script src="/2.71c61702.js"></script>
+<script src="/2.e28bfa34.js"></script>
 
-<script src="/3.aec5f178.js"></script>
+<script src="/3.122cc2c9.js"></script>
 
-<script src="/4.fa32f876.js"></script>
+<script src="/4.b55bb698.js"></script>
 
-<script src="/1be78505.f3abda89.js"></script>
+<script src="/1be78505.bcd23494.js"></script>
 
 <script src="/20ac7829.1351e7cf.js"></script>
 
-<script src="/270.3297fc4e.js"></script>
+<script src="/272.df98cebd.js"></script>
 
-<script src="/17896441.03aadbe4.js"></script>
+<script src="/17896441.a4ad5406.js"></script>
 
-<script src="/a8111c4e.80fd9e59.js"></script>
+<script src="/a8111c4e.ee5476aa.js"></script>
 
 
 </body>

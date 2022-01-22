@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-01-06"
+last_modified_on: "2022-01-22"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy on your Scaleway account
 description: How to configure and deploy your apps on your Scaleway account with Qovery
@@ -132,6 +132,15 @@ Qovery optimizes and keep your Scaleway costs low.
 <p align="center">
   <img src="/img/organization_settings_cluster_resources.jpg" alt="Set your cluster resources" />
 </p>
+
+<Alert type="info">
+Qovery might use some temporary free resources on your Kubernetes cluster to perform spotted maintenance operations (e.g. : cluster version upgrades). 
+This is why we recommend a cluster setup with:
+<ul>
+  <li>at least 20% difference between the minimum and the maximum number of nodes;</li>
+  <li>at least 5 nodes as the maximum number of nodes of your cluster;</li>
+</ul>
+</Alert>
 
 5/ Click on **Save** and **Deploy**.
 

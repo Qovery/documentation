@@ -10,12 +10,6 @@ import Alert from '@site/src/components/Alert';
 import Assumptions from '@site/src/components/Assumptions';
 import Jump from '@site/src/components/Jump';
 
-<Alert type="alert">
-
-WORK IN PROGRESS
-
-</Alert>
-
 <Alert type="info">
 
 In Q4 2022, Qovery will integrate an *API gateway* service. In the meantime, you can use this tutorial to use an API gateway in front of your apps.
@@ -101,17 +95,31 @@ Commit and push your changes. Then go to the [Qovery web console][urls.start_qov
 
 For our gateway, we need to create 3 [environment variable aliases][docs.using-qovery.configuration.environment-variable#alias-environment-variable] corresponding to the internal network names of our applications.
 
-* `XXX` -> ALIAS -> `BILLING_BACKEND` with scope `ENVIRONMENT`
-* `YYY` -> ALIAS -> `MESSAGING_BACKEND` with scope `ENVIRONMENT`
-* `ZZZ` -> ALIAS -> `CORE_BACKEND` with scope `ENVIRONMENT`
+* `XXX_HOST_INTERNAL` -> ALIAS -> `BILLING_BACKEND` with scope `ENVIRONMENT`
+* `YYY_HOST_INTERNAL` -> ALIAS -> `MESSAGING_BACKEND` with scope `ENVIRONMENT`
+* `ZZZ_HOST_INTERNAL` -> ALIAS -> `CORE_BACKEND` with scope `ENVIRONMENT`
 
-One more environment variable must be added for the API Gateway.
 
-* If your environment runs on AWS: `KUBERNETES_DNS_SERVICE_IP` with value `127.0.0.1` and scope `ENVIRONMENT`
-* If your environment runs on Digital Ocean: `KUBERNETES_DNS_SERVICE_IP` with value `127.0.0.1` and scope `ENVIRONMENT`
-* If your environment runs on Scaleway: `KUBERNETES_DNS_SERVICE_IP` with value `127.0.0.1` and scope `ENVIRONMENT`
+### How to find the correct environment variable
+
+When you have multiple applications within the same environment, it is difficult to find the appropriate environment variable. A workaround is to:
+
+1. Go to one of your application
+2. Find the ID of your application in your URL `https://console.qovery.com/platform/organization/xxx/projects/yyy/environments/zzz/applications/082e36c4-7fbb-42b2-9046-37ccce21616a/variables`
+3. Truncate your application ID and take the first segment. For `082e36c4-7fbb-42b2-9046-37ccce21616a` it is `082e36c4`
+4. Add the letter z in front of id `Z082e36c4`.
+5. All the environment variables containing `Z082e36c4` are attached to the corresponding app.
+
+<Alert type="info">
+
+A future product update will fix this experience issue.
+
+</Alert>
+
+## Set up custom domain
+
+Add a custom domain to expose your API gateway with the domain of your choice. Check out [this documentation][docs.using-qovery.configuration.application#domains] to set up your domain.
 
 ## Deploy API Gateway
 
-TODO
-
+Once everything is set up, you can deploy your application.

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-01-21"
+last_modified_on: "2022-01-22"
 $schema: "/.meta/.schemas/guides.json"
 title: Zero to Hero - How to deploy your apps on AWS in 30 minutes
 description: Step-by-step guide on how to deploy your apps on AWS in 30 minutes. No AWS knowledge required.

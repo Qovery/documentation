@@ -663,6 +663,15 @@ module.exports = {
           "title": "URL Shortener API with Kotlin (Part 1/2)"
         },
         {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/tutorial/use-an-api-gateway-in-front-of-multiple-services",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/use-an-api-gateway-in-front-of-multiple-services.md",
+          "series_position": null,
+          "title": "Use an API gateway in front of multiple services"
+        },
+        {
           "author_github": "https://github.com/pjeziorowski",
           "description": null,
           "id": "/tutorial/aws-sqs-lambda-with-qovery",

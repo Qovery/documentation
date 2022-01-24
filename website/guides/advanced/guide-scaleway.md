@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-01-21"
+last_modified_on: "2022-01-22"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy on your Scaleway account
 description: How to configure and deploy your apps on your Scaleway account with Qovery

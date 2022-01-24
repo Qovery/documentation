@@ -253,6 +253,16 @@ The built-in variables follow the naming pattern: `QOVERY_DATABASE` + <your_db_n
 - `<your_db_name>` is the name of your database
 - `<type_of_variable>` is the type of variable we inject, e.g. `PASSWORD`, `VERSION`, `CONNECTION_URI` and so on.
 
+### Network
+
+#### Persistant sessions
+
+A user of your application will be redirected by the load balancer to the same instance each time he accesses to it.
+
+<p align="center">
+  <img src="/img/sticky-session.png" alt="Sticky session" />
+</p>
+
 ## Environment Variables
 
 To learn how to set up environment variables in your projects and applications, navigate to [configuring Environment Variables][docs.using-qovery.configuration.environment-variable] section.

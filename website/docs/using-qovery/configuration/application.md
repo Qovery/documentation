@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-12-15"
+last_modified_on: "2022-01-24"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -264,6 +264,16 @@ The built-in variables follow the naming pattern: `QOVERY_DATABASE` + <your_db_n
 
 - `<your_db_name>` is the name of your database
 - `<type_of_variable>` is the type of variable we inject, e.g. `PASSWORD`, `VERSION`, `CONNECTION_URI` and so on.
+
+### Network
+
+#### Persistant sessions
+
+A user of your application will be redirected by the load balancer to the same instance each time he accesses to it.
+
+<p align="center">
+  <img src="/img/sticky-session.png" alt="Sticky session" />
+</p>
 
 ## Environment Variables
 

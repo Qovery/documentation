@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-09-13"
+last_modified_on: "2022-01-22"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy on your Digital Ocean account
 description: How to configure and deploy your apps on your Digital Ocean account with Qovery
@@ -68,7 +68,7 @@ To install Qovery on your Digital Ocean account, the `project id`, `secret acces
 ## Configure Qovery
 
 ### Sign-up to Qovery
-Using Qovery is as simple as connect with your *GitHub* or *Gitlab* account on [console.qovery.com][urls.start_qovery].
+Using Qovery is as simple as connect with your *GitHub*, *Gitlab* or *Bitbucket* account on [console.qovery.com][urls.start_qovery].
 
 -> [Connect to Qovery][urls.start_qovery]
 
@@ -130,6 +130,15 @@ Qovery optimizes and keep your Digital Ocean costs low.
 <p align="center">
   <img src="/img/organization_settings_cluster_resources.jpg" alt="Set your cluster resources" />
 </p>
+
+<Alert type="info">
+Qovery might use some temporary free resources on your Kubernetes cluster to perform spotted maintenance operations (e.g. : cluster version upgrades). 
+This is why we recommend a cluster setup with:
+<ul>
+  <li>at least 20% difference between the minimum and the maximum number of nodes;</li>
+  <li>at least 5 nodes as the maximum number of nodes of your cluster;</li>
+</ul>
+</Alert>
 
 5/ Click on **Save** and **Deploy**.
 

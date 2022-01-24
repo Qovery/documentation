@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-09-04"
+last_modified_on: "2022-01-06"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy Spring Boot with PostgreSQL
 description: How to deploy a Spring Boot application with the PostgreSQL database with Qovery
@@ -21,7 +21,7 @@ This tutorial show you how to deploy your [Spring Boot][urls.spring_boot] applic
 <Assumptions name="guide">
 
 * Your Operating System is macOS / Windows / Linux
-* You have a [Github][urls.github] or [Gitlab][urls.gitlab] account
+* You have a [Github][urls.github], [Gitlab][urls.gitlab] or [Bitbucket][urls.bitbucket] account
 
 </Assumptions>
 
@@ -361,6 +361,7 @@ Do you have any feedback about this tutorial? Let us know what you think on [Dis
 [docs.using-qovery.configuration.secret#alias-secret]: /docs/using-qovery/configuration/secret/#alias-secret
 [guides.getting-started.create-a-database]: /guides/getting-started/create-a-database/
 [urls.authorize_qovery]: https://github.com/apps/qovery/installations/new
+[urls.bitbucket]: https://bitbucket.com
 [urls.brew]: https://brew.sh/
 [urls.github]: https://github.com
 [urls.gitlab]: https://gitlab.com

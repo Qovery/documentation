@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-12-16"
+last_modified_on: "2022-01-22"
 $schema: "/.meta/.schemas/guides.json"
 title: Zero to Hero - How to deploy your apps on AWS in 30 minutes
 description: Step-by-step guide on how to deploy your apps on AWS in 30 minutes. No AWS knowledge required.
@@ -83,7 +83,7 @@ To install Qovery on your AWS account, the `secret access key` and `access key i
 ## Configure Qovery
 
 ### Sign-up to Qovery
-Using Qovery is as simple as connect with your *Github* or *Gitlab* account on [start.qovery.com][urls.start_qovery].
+Using Qovery is as simple as connect with your *Github*, *Gitlab* or *Bitbucket* account on [start.qovery.com][urls.start_qovery].
 
 -> [Connect to Qovery][urls.start_qovery]
 
@@ -145,6 +145,15 @@ Qovery optimizes and keep your AWS costs low.
 <p align="center">
   <img src="/img/organization_settings_cluster_resources.jpg" alt="Set your cluster resources" />
 </p>
+
+<Alert type="info">
+Qovery might use some temporary free resources on your Kubernetes cluster to perform spotted maintenance operations (e.g. : cluster version upgrades). 
+This is why we recommend a cluster setup with:
+<ul>
+  <li>at least 20% difference between the minimum and the maximum number of nodes;</li>
+  <li>at least 5 nodes as the maximum number of nodes of your cluster;</li>
+</ul>
+</Alert>
 
 5/ Click on **Save** and **Deploy**.
 

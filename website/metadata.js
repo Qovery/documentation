@@ -492,6 +492,15 @@ module.exports = {
           "title": "How to Build a Cloud Version of Your Open Source Software - A Case Study with AppWrite - Part 3"
         },
         {
+          "author_github": "https://github.com/l0ck3",
+          "description": null,
+          "id": "/tutorial/how-to-connect-to-your-eks-cluster-with-kubectl",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/how-to-connect-to-your-eks-cluster-with-kubectl.md",
+          "series_position": null,
+          "title": "How to connect to your EKS cluster with kubectl"
+        },
+        {
           "author_github": "https://github.com/Aggis15",
           "description": null,
           "id": "/tutorial/create-and-deploy-python-discord-bot",
@@ -652,6 +661,15 @@ module.exports = {
           "path": "website/guides/tutorial/url-shortener-api-with-kotlin.md",
           "series_position": null,
           "title": "URL Shortener API with Kotlin (Part 1/2)"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/tutorial/use-an-api-gateway-in-front-of-multiple-services",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/use-an-api-gateway-in-front-of-multiple-services.md",
+          "series_position": null,
+          "title": "Use an API gateway in front of multiple services"
         },
         {
           "author_github": "https://github.com/pjeziorowski",

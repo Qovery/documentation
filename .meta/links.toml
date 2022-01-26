@@ -382,3 +382,7 @@ qovery_submit_bug_bounty_form = "https://qovery.typeform.com/to/gp9v3CTN"
 qovery_ambassador_application_form = "https://qovery.typeform.com/to/WrWxWR9t"
 qovery_github_documentation = "https://github.com/Qovery/documentation"
 qovery_blog_tf_golden_hammer = "https://hub.qovery.com/guides/engineering/terraform-not-the-golden-hammer/"
+
+[links.tutorials]
+
+kubectl_eks = "/guides/tutorial/how-to-connect-to-your-eks-cluster-with-kubectl"

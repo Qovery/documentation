@@ -494,6 +494,15 @@ module.exports = {
         {
           "author_github": "https://github.com/l0ck3",
           "description": null,
+          "id": "/tutorial/how-to-connect-to-a-managed-mongodb-instance-on-aws",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/how-to-connect-to-a-managed-mongodb-instance-on-aws.md",
+          "series_position": null,
+          "title": "How to connect to a managed MongoDB instance on AWS"
+        },
+        {
+          "author_github": "https://github.com/l0ck3",
+          "description": null,
           "id": "/tutorial/how-to-connect-to-your-eks-cluster-with-kubectl",
           "last_modified_on": null,
           "path": "website/guides/tutorial/how-to-connect-to-your-eks-cluster-with-kubectl.md",

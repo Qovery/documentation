@@ -510,6 +510,15 @@ module.exports = {
           "title": "How to connect to your EKS cluster with kubectl"
         },
         {
+          "author_github": "https://github.com/l0ck3",
+          "description": null,
+          "id": "/tutorial/how-to-create-an-rds-instance-through-aws-console",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/how-to-create-an-rds-instance-through-aws-console.md",
+          "series_position": null,
+          "title": "How to create an RDS instance through the AWS console"
+        },
+        {
           "author_github": "https://github.com/Aggis15",
           "description": null,
           "id": "/tutorial/create-and-deploy-python-discord-bot",

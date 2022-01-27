@@ -23,7 +23,7 @@ Public endpoint for managed MongoDB instance will be available in Q1 2022. This 
 <Assumptions name="guide">
 
 - You have a managed MongoDB instance up and running
-- You have access to your Kubernetes cluster through kubectl
+- You have access to your Kubernetes cluster through kubectl: [see how here][guides.tutorial.how-to-connect-to-your-eks-cluster-with-kubectl]
 
 </Assumptions>
 
@@ -128,4 +128,4 @@ Since 127.0.0.1 is not listed in the certificate, you need to allow invalid cert
 </Steps>
 
 
-
+[guides.tutorial.how-to-connect-to-your-eks-cluster-with-kubectl]: /guides/tutorial/how-to-connect-to-your-eks-cluster-with-kubectl/

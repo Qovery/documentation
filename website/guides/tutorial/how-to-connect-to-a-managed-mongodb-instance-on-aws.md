@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-01-26"
+last_modified_on: "2022-01-27"
 $schema: "/.meta/.schemas/guides.json"
 title: How to connect to a managed MongoDB instance on AWS
 description: How to connect to a managed MongoDB instance on AWS from your local client.
@@ -113,6 +113,7 @@ The credentials are available on the Qovery console.
 
 ```bash
 mongosh --host 127.0.0.1  \
+  --port ${LOCAL_PORT} \
   --username <username>  \
   --tls --tlsCAFile <path to downloaded PEM>/rds-combined-ca-bundle.pem \
   --tlsAllowInvalidCertificates

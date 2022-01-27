@@ -101,6 +101,7 @@ The credentials are available on the Qovery console.
 
 ```bash
 mongosh --host 127.0.0.1  \
+  --port ${LOCAL_PORT} \
   --username <username>  \
   --tls --tlsCAFile <path to downloaded PEM>/rds-combined-ca-bundle.pem \
   --tlsAllowInvalidCertificates

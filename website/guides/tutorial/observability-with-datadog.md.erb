@@ -64,18 +64,20 @@ Create a `datadog-values.yaml` file with the following content:
 
 ```yaml
 datadog:
-  clusterName: <CLUSTER NAME>
+  clusterName: qovery-dx-cluster
 
-# datadog.site -- The site of the Datadog intake to send Agent data to
-## Set to 'datadoghq.eu' to send data to the EU site.
-site: #datadoghq.eu
+  # datadog.site -- The site of the Datadog intake to send Agent data to
+  ## Set to 'datadoghq.eu' to send data to the EU site.
+  site: datadoghq.eu
 
-logs:
-  enabled: true
-  containerCollectAll: true
+  logs:
+    enabled: true
+    containerCollectAll: true
 
-apm:
-  portEnabled: true
+  apm:
+    enabled: true
+  
+  containerExcludeLogs: "kube_namespace:kube-system kube_namespace:qovery kube_namespace:cert-manager kube_namespace:nginx-ingress kube_namespace:logging kube_namespace:prometheus"
 ```
 
 - Replace `<CLUSTER NAME>` with a meaningful name to identify your cluster.

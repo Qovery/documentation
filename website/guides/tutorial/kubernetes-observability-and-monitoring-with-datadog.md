@@ -2,7 +2,7 @@
 last_modified_on: "2022-01-28"
 $schema: "/.meta/.schemas/guides.json"
 title: Kubernetes observability and monitoring with Datadog
-description: How to integrate DataDog with Qovery.
+description: How to integrate Datadog with Kubernetes on Qovery.
 author_github: https://github.com/l0ck3
 tags: ["type: tutorial", "technology: qovery"]
 hide_pagination: true
@@ -14,8 +14,8 @@ import Alert from '@site/src/components/Alert';
 import Assumptions from '@site/src/components/Assumptions';
 import Jump from '@site/src/components/Jump';
 
-While Qovery will soon provide basic metrics on apps resources usage, you might need a more advanced view on what happens on your infrastructure. There are many solutions on the market, one of them being DataDog. 
-DataDog is one of the leading platforms for monitoring and observability, and it's pretty easy to integrate it with Qovery.
+While Qovery will soon provide basic metrics on apps resources usage, you might need a more advanced view on what happens on your infrastructure. There are many solutions on the market, one of them being Datadog. 
+Datadog is one of the leading platforms for monitoring and observability, and it's pretty easy to integrate it with Qovery.
 
 <Assumptions name="guide">
 
@@ -35,7 +35,7 @@ DataDog is one of the leading platforms for monitoring and observability, and it
 
 ## Goal
 
-In this tutorial, we will install the DataDog agent on a Qovery cluster to gather metrics about infrastructure and applications.
+In this tutorial, we will install the Datadog agent on a Qovery cluster to gather metrics about infrastructure and applications.
 
 <Steps headingDepth={3}>  
 
@@ -45,7 +45,7 @@ In this tutorial, we will install the DataDog agent on a Qovery cluster to gathe
 
 #### Create a Datadog Account
 
- The first step is to create an account on DataDog: https://www.datadoghq.com.
+ The first step is to create an account on Datadog: https://www.datadoghq.com.
 
  You will be prompted to enter some information. An important decision you have to make is which site to use. It will determine where your data get stored.
  
@@ -94,15 +94,15 @@ datadog:
 - Replace `<CLUSTER NAME>` with a meaningful name to identify your cluster.
 - Set the `site` value corresponding to the one you selected upon account creation (you can find the information under `1 > With Helm V3 > --set datadog.site=<YOUR SITE VALUE>`)
 
-There are many other values you can set. For advanced usage, check: https://github.com/DataDog/helm-charts/blob/main/charts/datadog/values.yaml
+There are many other values you can set. For advanced usage, check: https://github.com/Datadog/helm-charts/blob/main/charts/datadog/values.yaml
 
 </li>
 
 <li>
 
-#### Install DataDog agent in your cluster
+#### Install Datadog agent in your cluster
 
-The DataDog agent is a program that will collect data from your cluster and forward it to DataDog. 
+The Datadog agent is a program that will collect data from your cluster and forward it to Datadog. 
 We'll install it uning `Helm`.
 
 First add the `datadog` Helm repository and update your local list:
@@ -154,7 +154,7 @@ datadog-agent-s5r5r                                 3/3     Running   0         
 
 #### Finish Setup
 
-Once DataDog receives your data, you should be able to click `Next` on the wizard. You might need to refresh the page in some cases. It can take a couple minutes before your data is ready.
+Once Datadog receives your data, you should be able to click `Next` on the wizard. You might need to refresh the page in some cases. It can take a couple minutes before your data is ready.
 
 You will then arrive on `Step 4`
 
@@ -171,7 +171,7 @@ You can skip this part if you're not interested in monitoring your cloud account
 
 ## Conclusion 
 
-You now have DataDog agent running on your Qovery cluster. You can check their `Getting Started` guide to familiarize yourself with the product: https://docs.datadoghq.com/fr/getting_started.
+You now have Datadog agent running on your Qovery cluster. You can check their `Getting Started` guide to familiarize yourself with the product: https://docs.datadoghq.com/fr/getting_started.
 
 
 [guides.tutorial.how-to-connect-to-your-eks-cluster-with-kubectl]: /guides/tutorial/how-to-connect-to-your-eks-cluster-with-kubectl/

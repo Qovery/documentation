@@ -1,0 +1,161 @@
+---
+$schema: "/.meta/.schemas/guides.json"
+title: Observability with DataDog
+description: How to integrate DataDog with Qovery.
+author_github: https://github.com/l0ck3
+tags: ["type: tutorial", "technology: qovery"]
+hide_pagination: true
+---
+
+import Alert from '@site/src/components/Alert';
+import Assumptions from '@site/src/components/Assumptions';
+import Jump from '@site/src/components/Jump';
+
+While Qovery will soon provide basic metrics on apps resources usage, you might need a more advanced view on what happens on your infrastructure. There are many solutions on the market, one of them being DataDog. 
+DataDog is one of the leading platforms for monitoring and observability, and it's pretty easy to integrate it with Qovery.
+
+<Assumptions name="guide">
+
+- You have a Qovery cluster running
+- You have access to your Kubernetes cluster through kubectl: [see how here][guides.tutorial.how-to-connect-to-your-eks-cluster-with-kubectl]
+- Helm v3 is installed on your machine: https://helm.sh/docs/intro/install/
+
+</Assumptions>
+
+## Goal
+
+In this tutorial, we will install the DataDog agent on a Qovery cluster to gather metrics about infrastructure and applications.
+
+<Steps headingDepth={3}>  
+
+<ol>
+
+<li>
+
+#### Create a Datadog Account
+
+ The first step is to create an account on DataDog: https://www.datadoghq.com.
+
+ You will be prompted to enter some information. An important decision you have to make is which site to use. It will determine where your data get stored.
+ 
+ Warning: You can't migrate your data between regions, so chose carefully. More information here: https://docs.datadoghq.com/fr/getting_started/site/
+
+<p align="center">
+  <img src="/img/observability-with-datadog/0.png" alt="Datadog - Console" />
+</p>    
+
+After signup, you will be redirected to a wizard. Fill-in the information until you get to step 3.
+
+</li>
+
+<li>
+
+#### Prepare the agent Helm chart values
+
+When you get to step 3, `Agent Setup`, select `Kubernetes` in the list.
+
+<p align="center">
+  <img src="/img/observability-with-datadog/1.png" alt="Datadog - Console" />
+</p>    
+
+This screen shows you all the information you need to install the agent.
+
+Create a `datadog-values.yaml` file with the following content:
+
+```yaml
+datadog:
+  clusterName: <CLUSTER NAME>
+
+# datadog.site -- The site of the Datadog intake to send Agent data to
+## Set to 'datadoghq.eu' to send data to the EU site.
+site: #datadoghq.eu
+
+logs:
+  enabled: true
+  containerCollectAll: true
+
+apm:
+  portEnabled: true
+```
+
+- Replace `<CLUSTER NAME>` with a meaningful name to identify your cluster.
+- Set the `site` value corresponding to the one you selected upon account creation (you can find the information under `1 > With Helm V3 > --set datadog.site=<YOUR SITE VALUE>`)
+
+There are many other values you can set. For advanced usage, check: https://github.com/DataDog/helm-charts/blob/main/charts/datadog/values.yaml
+
+</li>
+
+<li>
+
+#### Install DataDog agent in your cluster
+
+The DataDog agent is a program that will collect data from your cluster and forward it to DataDog. 
+We'll install it uning `Helm`.
+
+First add the `datadog` Helm repository and update your local list:
+
+```bash
+helm repo add datadog https://helm.datadoghq.com
+helm repo update
+```
+
+Then we will install the agent in the `datadog` namespace:
+
+```bash
+helm install datadog-agent \ 
+  -n datadog --create-namespace \
+  -f <PATH TO datadog-values.yaml> \
+  --set datadog.apiKey='<API KEY>' \
+  datadog/datadog
+```
+
+- Edit the path to the `datadog-values.yaml` file you created
+- Replace `<API KEY>` with your actual API KEY. You can find it under `1 > With Helm V3 > --set datadog.apiKey=<API KEY>`
+
+</li>
+
+<li>
+
+#### Check the agent is running properly
+
+Wait for a minute then run the following command:
+
+```bash
+k get pods -n datadog
+```
+
+If the installation was successful, you should see an output similar to this one: 
+
+```bash
+NAME                                                READY   STATUS    RESTARTS   AGE
+datadog-agent-2xhsv                                 3/3     Running   0          1m
+datadog-agent-cluster-agent-7f8bddd44-pwjnl         1/1     Running   0          1m
+datadog-agent-kube-state-metrics-577fcf6778-kc2gk   1/1     Running   0          1m
+datadog-agent-qfsl2                                 3/3     Running   0          1m
+datadog-agent-s5r5r                                 3/3     Running   0          1m
+``` 
+
+</li>
+
+<li>
+
+#### Finish Setup
+
+Once DataDog receives your data, you should be able to click `Next` on the wizard. You might need to refresh the page in some cases. It can take a couple minutes before your data is ready.
+
+You will then arrive on `Step 4`
+
+<p align="center">
+  <img src="/img/observability-with-datadog/2.png" alt="Datadog - Console" />
+</p>     
+
+You can skip this part if you're not interested in monitoring your cloud account.
+
+</li>
+
+</ol>
+</Steps>
+
+## Conclusion 
+
+You now have DataDog agent running on your Qovery cluster. You can check their `Getting Started` guide to familiarize yourself with the product: https://docs.datadoghq.com/fr/getting_started.

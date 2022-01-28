@@ -645,6 +645,15 @@ module.exports = {
           "title": "Migrate your application from Heroku to AWS"
         },
         {
+          "author_github": "https://github.com/l0ck3",
+          "description": null,
+          "id": "/tutorial/observability-with-datadog",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/observability-with-datadog.md",
+          "series_position": null,
+          "title": "Observability with DataDog"
+        },
+        {
           "author_github": "https://github.com/pjeziorowski",
           "description": null,
           "id": "/tutorial/setting-up-cloudflare-and-custom-domain-on-qovery",

@@ -627,6 +627,15 @@ module.exports = {
           "title": "Import your environment variables with the Qovery CLI"
         },
         {
+          "author_github": "https://github.com/l0ck3",
+          "description": null,
+          "id": "/tutorial/kubernetes-observability-and-monitoring-with-datadog",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/kubernetes-observability-and-monitoring-with-datadog.md",
+          "series_position": null,
+          "title": "Kubernetes observability and monitoring with Datadog"
+        },
+        {
           "author_github": "https://github.com/pjeziorowski",
           "description": null,
           "id": "/tutorial/managing-env-variables-in-create-react-app",
@@ -643,15 +652,6 @@ module.exports = {
           "path": "website/guides/tutorial/migrate-your-application-from-heroku-to-aws.md",
           "series_position": null,
           "title": "Migrate your application from Heroku to AWS"
-        },
-        {
-          "author_github": "https://github.com/l0ck3",
-          "description": null,
-          "id": "/tutorial/observability-with-datadog",
-          "last_modified_on": null,
-          "path": "website/guides/tutorial/observability-with-datadog.md",
-          "series_position": null,
-          "title": "Observability with DataDog"
         },
         {
           "author_github": "https://github.com/pjeziorowski",

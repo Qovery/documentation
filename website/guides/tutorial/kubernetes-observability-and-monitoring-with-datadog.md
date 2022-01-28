@@ -1,7 +1,7 @@
 ---
 last_modified_on: "2022-01-28"
 $schema: "/.meta/.schemas/guides.json"
-title: Observability with DataDog
+title: Kubernetes observability and monitoring with Datadog
 description: How to integrate DataDog with Qovery.
 author_github: https://github.com/l0ck3
 tags: ["type: tutorial", "technology: qovery"]
@@ -30,7 +30,7 @@ DataDog is one of the leading platforms for monitoring and observability, and it
 
      To make changes please edit the template located at:
 
-     website/guides/tutorial/observability-with-datadog.md.erb
+     website/guides/tutorial/kubernetes-observability-and-monitoring-with-datadog.md.erb
 -->
 
 ## Goal
@@ -52,7 +52,7 @@ In this tutorial, we will install the DataDog agent on a Qovery cluster to gathe
  Warning: You can't migrate your data between regions, so chose carefully. More information here: https://docs.datadoghq.com/fr/getting_started/site/
 
 <p align="center">
-  <img src="/img/observability-with-datadog/0.png" alt="Datadog - Console" />
+  <img src="/img/kubernetes-observability-and-monitoring-with-datadog/0.png" alt="Datadog - Console" />
 </p>    
 
 After signup, you will be redirected to a wizard. Fill-in the information until you get to step 3.
@@ -66,7 +66,7 @@ After signup, you will be redirected to a wizard. Fill-in the information until 
 When you get to step 3, `Agent Setup`, select `Kubernetes` in the list.
 
 <p align="center">
-  <img src="/img/observability-with-datadog/1.png" alt="Datadog - Console" />
+  <img src="/img/kubernetes-observability-and-monitoring-with-datadog/1.png" alt="Datadog - Console" />
 </p>    
 
 This screen shows you all the information you need to install the agent.
@@ -159,7 +159,7 @@ Once DataDog receives your data, you should be able to click `Next` on the wizar
 You will then arrive on `Step 4`
 
 <p align="center">
-  <img src="/img/observability-with-datadog/2.png" alt="Datadog - Console" />
+  <img src="/img/kubernetes-observability-and-monitoring-with-datadog/2.png" alt="Datadog - Console" />
 </p>     
 
 You can skip this part if you're not interested in monitoring your cloud account.

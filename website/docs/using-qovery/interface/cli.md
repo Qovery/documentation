@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-11-19"
+last_modified_on: "2022-01-31"
 title: CLI
 description: How to use the Qovery CLI (Command Line Interface)
 ---
@@ -289,6 +289,43 @@ Console command quickly opens the Qovery Console in your browser to let you disp
 $ qovery console
 Qovery: Opening https://console.qovery.com/platform/organization/your-org/projects/your-proj/environments/your-env/applications/your-app/summary
 ```
+
+## Shell
+
+Shell command allows you to open an ssh connection with the container where your application is running. 
+
+```bash
+$ qovery shell
+Qovery: Select organization
+Organization:
+✔ Qovery tests AWS
+Qovery: Select project
+Project:
+✔ Test Project
+Qovery: Select environment
+Environment:
+✔ test-environment
+Qovery: Select application
+Application:
+✔ test-application
+/ # ls
+bin                   media                 srv
+dev                   mnt                   sys
+docker-entrypoint.d   opt                   tmp
+docker-entrypoint.sh  proc                  usr
+etc                   root                  var
+home                  run                   www
+lib                   sbin
+```
+<Alert type="info">
+Keep in mind these limitations when using this feature:
+<ul>
+  <li>Install a process reaper as pid one in your container (i.e: dumb-init), as you may leave zoombie process in your container if your shell terminate unproperly (i.e: ctrl+c, cnx restart). This is a known issue with kubernetes exec to leave process alive after attach is closed;</li>
+  <li>if your application is configured to run with more than one instance, you will be able to connect only to the oldest POD running one of your instances;</li>
+  <li>shell is force closed after [1 hour, 10Mb transmitted];</li>
+  <li>we use SH by default. To have auto-completion, start bash.</li>
+</ul>
+</Alert>
 
 ## Support
 

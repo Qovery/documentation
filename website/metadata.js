@@ -494,11 +494,29 @@ module.exports = {
         {
           "author_github": "https://github.com/l0ck3",
           "description": null,
+          "id": "/tutorial/how-to-connect-to-a-managed-mongodb-instance-on-aws",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/how-to-connect-to-a-managed-mongodb-instance-on-aws.md",
+          "series_position": null,
+          "title": "How to connect to a managed MongoDB instance on AWS"
+        },
+        {
+          "author_github": "https://github.com/l0ck3",
+          "description": null,
           "id": "/tutorial/how-to-connect-to-your-eks-cluster-with-kubectl",
           "last_modified_on": null,
           "path": "website/guides/tutorial/how-to-connect-to-your-eks-cluster-with-kubectl.md",
           "series_position": null,
           "title": "How to connect to your EKS cluster with kubectl"
+        },
+        {
+          "author_github": "https://github.com/l0ck3",
+          "description": null,
+          "id": "/tutorial/how-to-create-an-rds-instance-through-aws-console",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/how-to-create-an-rds-instance-through-aws-console.md",
+          "series_position": null,
+          "title": "How to create an RDS instance through the AWS console"
         },
         {
           "author_github": "https://github.com/Aggis15",
@@ -607,6 +625,15 @@ module.exports = {
           "path": "website/guides/tutorial/import-your-environment-variables-with-the-qovery-cli.md",
           "series_position": null,
           "title": "Import your environment variables with the Qovery CLI"
+        },
+        {
+          "author_github": "https://github.com/l0ck3",
+          "description": null,
+          "id": "/tutorial/kubernetes-observability-and-monitoring-with-datadog",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/kubernetes-observability-and-monitoring-with-datadog.md",
+          "series_position": null,
+          "title": "Kubernetes observability and monitoring with Datadog"
         },
         {
           "author_github": "https://github.com/pjeziorowski",

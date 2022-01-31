@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-09-22"
+last_modified_on: "2022-01-26"
 $schema: "/.meta/.schemas/guides.json"
 title: Working with Git Submodules
 description: How to use Git Submodules on Qovery
@@ -40,12 +40,12 @@ $ git commit -am "adding a submodule"
 
 Committed submodule source code can be used by your application and is available in Qovery CI/CD build/deployment pipeline.
 
-### Limitations
+### Private Submodules
 
-#### Private Submodules
+Qovery does not have access to locally available credentials, so if you want to use some way of authentication, there are two ways to achieve it.
 
-Qovery does not have access to locally available credentials, so if you want to use some way of authentication, the only available
-way as of now is to use HTTP basic authentication URL scheme:
+
+#### Use HTTP basic authentication URL scheme:
 
 <Alert type="info">
 
@@ -61,41 +61,29 @@ This adds a private Git Submodule to the application while still allowing it to 
 
 <Alert type="warning">
 
-This solution is not recommended to be used by inexprienced users.
-Since the credentials are stored in plaintext in the `.git/submodules` directory, you need to consider if it meets your security requirements.
+This solution is not recommended.
+Since the credentials are stored in plaintext in the `.git/submodules` directory, you should prefer the SSH / Git option.
 
 </Alert>
 
 #### SSH / Git protocol Submodules
 
-At the moment, SSH or Git submodules are not supported. If you want to use a submodule, please make sure you use HTTPS (check the content of the `.git/submodules` file).
+For Qovery to be able to access those private submodules when cloning your application repository, you need to add a secret named `GIT_SSH_KEY_xxx`, 
+(where xxx can be replaced by anything), containing a private SSH key with access to your Git repository.
 
-**Not** supported - SSH:
+
+SSH:
 
 ```
 [submodule "path/to/module"]
     url = ssh://user/repo
 ```
 
-**Not** supported - Git:
+Git:
 
 ```
 [submodule "path/to/module"]
     url = git://github.com/torvalds/linux.git
-```
-
-**Supported** - HTTPS:
-
-```
-[submodule "path/to/module"]
-    url = https://github.com/myusername/FooBar
-```
-
-**Supported** - HTTPS with embedded basic authentication:
-
-```
-[submodule "path/to/module"]
-    url = https://username:password@github.com/myusername/FooBar
 ```
 
 

@@ -44,6 +44,18 @@ Qovery supports monorepositories, you can deploy multiple apps using a single re
 
 </Alert>
 
+<Alert type="warning">
+
+If your repository contains private submodules using SSH protocole, you will need to add a secret beginning with GIT_SSH_KEY_, containing a private SSH key with access rights to your sumbodules repositories.
+
+Secret names examples:
+
+- GIT_SSH_KEY_GITHUB
+- GIT_SSH_KEY_GITLAB
+- GIT_SSH_KEY_MYAPP
+
+</Alert>
+
 #### Build Mode
 
 #### Option 1: Buildpacks

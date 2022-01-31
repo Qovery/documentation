@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-10-21"
+last_modified_on: "2022-01-26"
 title: Quickstarts
 description: "Quickstart to deploy your project with Qovery"
 sidebar_label: hidden

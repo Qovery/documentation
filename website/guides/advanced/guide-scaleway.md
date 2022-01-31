@@ -134,7 +134,7 @@ Qovery optimizes and keep your Scaleway costs low.
 </p>
 
 <Alert type="info">
-Qovery might use some temporary free resources on your Kubernetes cluster to perform spotted maintenance operations (e.g. : cluster version upgrades). 
+Qovery might use some temporary free resources on your Kubernetes cluster to perform spotted maintenance operations (e.g. : cluster version upgrades).
 This is why we recommend a cluster setup with:
 <ul>
   <li>at least 20% difference between the minimum and the maximum number of nodes;</li>

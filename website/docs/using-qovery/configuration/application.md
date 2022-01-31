@@ -1,6 +1,5 @@
----
-last_modified_on: "2022-01-24"
 
+last_modified_on: "2022-01-26"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -54,6 +53,18 @@ General settings allow you to set up your application name, git repository and b
 <Alert type="info">
 
 Qovery supports monorepositories, you can deploy multiple apps using a single repository. [For details, see our advanced guide.][guides.advanced.monorepository]
+
+</Alert>
+
+<Alert type="warning">
+
+If your repository contains private submodules using SSH protocole, you will need to add a secret beginning with GIT_SSH_KEY_, containing a private SSH key with access rights to your sumbodules repositories.
+
+Secret names examples:
+
+- GIT_SSH_KEY_GITHUB
+- GIT_SSH_KEY_GITLAB
+- GIT_SSH_KEY_MYAPP
 
 </Alert>
 

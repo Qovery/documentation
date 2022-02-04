@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-12-15"
+last_modified_on: "2022-02-04"
 title: "Environment"
 description: "Learn how to configure your Environments on Qovery"
 ---
@@ -58,13 +58,13 @@ An Environment can be automatically created when you create Pull Requests, and G
 
 ## Edit environment general settings
 
-General settings of an environment can be updated in the settings panel. Your can access to it by clicking on the `SETTINGS` button. 
+General settings of an environment can be updated in the settings panel. Your can access to it by clicking on the `SETTINGS` button.
 
 <p align="center">
   <img src="/img/env-setting-button.png" alt="Environment settings button" />
 </p>
 
-On the `General` tab, you will be able to update your environment name. It will also display the environment mode and the cluster assigned to your environment. 
+On the `General` tab, you will be able to update your environment name. It will also display the environment mode and the cluster assigned to your environment.
 
 <p align="center">
   <img src="/img/env-setting-panel.png" alt="Environment settings button" />
@@ -74,7 +74,7 @@ On the `General` tab, you will be able to update your environment name. It will 
 
 Please note that environment type and associated cluster are not editable after the environment was provisioned.
 
-Refer to the [Types of environment](#types-of-environment) section below to learn more about environment modes. 
+Refer to the [Types of environment](#types-of-environment) section below to learn more about environment modes.
 
 </Alert>
 
@@ -91,6 +91,13 @@ Sometimes **Preview Environment** are also known as **Ephemeral Environment**, *
 </Alert>
 
 Creating a **Preview Environment** is similar to create a casual Environment.
+
+<div class="video-container">
+  <p align="center">
+    <iframe src="https://www.loom.com/embed/146276efc71942a7a3d8fb44359e1470" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+    </iframe>
+  </p>
+</div>
 
 ## Build and Deployment logs
 
@@ -122,7 +129,7 @@ Environment clone is convenient for those use cases:
 - Make a demo without impacting the original Environment.
 - Validating a feature that needs to reflect the original Environment.
 
-## Update an Environment 
+## Update an Environment
 
 <Steps headingDepth={3}>
 <ol>
@@ -147,7 +154,7 @@ In the environment overview, click on the `Actions` button and `Update all`.
 </li>
 <li>
 
-Once you click, this pannel will appear and you will be able to select the environments you wish to update. 
+Once you click, this pannel will appear and you will be able to select the environments you wish to update.
 
 <p align="center">
   <img src="/img/configuration/application/update-all2.png" alt="Application" />
@@ -238,7 +245,7 @@ You can easily access to the deployments history of your environment by clicking
   <img src="/img/deployment-history-access.png" alt="Deployment history button access" />
 </p>
 
-This page allows you to view the history of all previous deployments of your environment and their status. By clicking on the extension button, you will also be able to view the services deployed in the environment and their deployment status. 
+This page allows you to view the history of all previous deployments of your environment and their status. By clicking on the extension button, you will also be able to view the services deployed in the environment and their deployment status.
 
 <p align="center">
   <img src="/img/deployment-history.png" alt="Deployment history list" />

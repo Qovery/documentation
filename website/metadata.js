@@ -357,6 +357,15 @@ module.exports = {
           "title": "Deploy Rails with PostgreSQL"
         },
         {
+          "author_github": "https://github.com/l0ck3",
+          "description": null,
+          "id": "/tutorial/deploy-rails-with-postgresql-and-sidekiq",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/deploy-rails-with-postgresql-and-sidekiq.md",
+          "series_position": null,
+          "title": "Deploy Rails with PostgreSQL and Sidekiq"
+        },
+        {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
           "id": "/tutorial/deploy-spring-boot-with-postgresql",

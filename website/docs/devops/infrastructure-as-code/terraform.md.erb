@@ -6,7 +6,7 @@ description: "How to use Terraform (IaC) to manage Qovery resources"
 
 <Alert type="warning">
 
-[Contact us][urls.qovery_contact_us] to get early access to our Terraform provider
+Check out our [Terraform Provider on GitHub](https://github.com/Qovery/terraform-provider-qovery).
 
 </Alert>
 
@@ -24,68 +24,47 @@ terraform {
   required_version = ">= 0.13"
 }
 
+# Configure the Qovery provider
 provider "qovery" {
   token = "<your-qovery-token>"
 }
 
-resource "qovery_cluster" "prod-cluster" {
-  name = "prod cluster"
-  cloud_provider = "AWS"
-  region = "us-east-2"
+resource "qovery_organization" "my_organization" {
+  name = "MyOrganization"
+  plan = "FREE"
+}
+
+resource "qovery_aws_credentials" "my_aws_creds" {
+  organization_id   = qovery_organization.my_organization.id
+  name              = "my_aws_creds"
+  access_key_id     = "<your-aws-access-key-id>"
+  secret_access_key = "<your-aws-secret-access-key>"
+
+  depends_on = [
+    qovery_organization.my_organization
+  ]
+}
+
+resource "qovery_cluster" "my_cluster" {
+  organization_id = qovery_organization.my_organization.id
+  credentials_id  = qovery_aws_credentials.my_aws_creds.id
+  name            = "test_terraform_provider"
+  cloud_provider  = "AWS"
+  region          = "eu-west-3"
   cpu_per_node = 4
   ram_in_gb_per_node = 8
   min_nodes = 3
   max_nodes = 10
-  credentials {
-    access_key_id = "<your-aws-access-key-id>"
-    secret_access_key = "<your-aws-secret-access-key>"
-  }
+
+  depends_on = [
+    qovery_organization.my_organization,
+    qovery_aws_credentials.my_aws_creds
+  ]
 }
 ```
 
-Here is an example on how to deploy a container application and a PostgreSQL database:
+Here is an example on how to deploy a container application and a Postgres database:
 
 ```hcl title="main.tf"
-resource "qovery_project" "my project" {
-  cluster = "prod-cluster"
-  environments {
-    "prod-env" = {
-      name = "prod"
-      mode = "production"
-      applications = {
-        "my-backend-app" = {
-          name = "backend"
-          git_url = "https://github.com/evoxmusic/ShortMe-URL-Shortener"
-          branch = "master"
-          build_mode = "dockerfile"
-          dockerfile_path = "/Dockerfile"
-          cpu = 1
-          ram_in_gb = 0.25
-          min_instances = 1
-          max_instances = 1
-          ports = {
-            "http" = {
-              protocol = "web-api"
-              local_port = 5555
-              exposed_port = 443
-            }
-          }
-          environment_variables = {
-            "key" = "value"
-          }
-        }
-      }
-      databases = {
-        "my-psql-db" = {
-          name = "psql"
-          type = "postgresql"
-          version = "13"
-          mode = "managed"
-          cpu = 1
-          ram_in_gb = 1
-        }
-      }
-    }
-  }
-}
+Check out Github Repo
 ```

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-02-11"
+last_modified_on: "2022-02-12"
 title: Terraform
 description: "How to use Terraform (IaC) to manage Qovery resources"
 ---
@@ -8,9 +8,9 @@ import Alert from '@site/src/components/Alert';
 
 [Terraform](https://www.terraform.io) is an open-source infrastructure as code software (IaC) tool that provides a consistent CLI workflow to manage hundreds of cloud services. Terraform codifies cloud APIs into declarative configuration files.
 
-<Alert type="warning">
+<Alert type="success">
 
-Check out our [Terraform Provider on GitHub](https://github.com/Qovery/terraform-provider-qovery).
+Check out our Terraform Provider on [Terraform Registry](https://registry.terraform.io/providers/Qovery/qovery/latest/docs) and [GitHub](https://github.com/Qovery/terraform-provider-qovery).
 
 </Alert>
 
@@ -67,11 +67,12 @@ resource "qovery_cluster" "my_cluster" {
 }
 ```
 
-Here is an example on how to deploy a container application and a Postgres database:
+Read our [Qovery Terraform Provider announcement article](https://www.qovery.com/blog/the-qovery-terraform-provider-is-available-now)
 
-```hcl title="main.tf"
-Check out Github Repo
-```
+Resources:
+
+- [Qovery Terraform Registry](https://registry.terraform.io/providers/Qovery/qovery/latest/docs)
+- [Qovery Terraform Provider source code](https://github.com/Qovery/terraform-provider-qovery)
 
 
 

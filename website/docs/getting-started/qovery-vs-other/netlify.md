@@ -1,12 +1,12 @@
 ---
-last_modified_on: "2021-08-19"
+last_modified_on: "2022-02-13"
 title: Qovery vs. Netlify
 description: Discover what is the difference between Qovery and Netlify, and why Qovery is the perfect companion to Netlify.
 ---
 
 import Alert from '@site/src/components/Alert';
 
-We’ve built Qovery to help developers and businesses to focus on the product they are building instead of managing their Cloud infrastructure. Our customers often tell us Qovery is the Platform-as-a-Service solution they would have made for their company. This page explains why so many users compare Qovery to Netlify and what are the similarities and differences.
+We’ve built Qovery to help developers to focus on the product they are building instead of managing their Cloud infrastructure. Our customers often tell us Qovery is the Platform-as-a-Service solution they would have made for their company. This page explains why so many users compare Qovery to Netlify and what are the similarities and differences.
 
 > Qovery is the Netlify for backend!
 
@@ -23,26 +23,26 @@ Here are the key similarities and differences between Qovery and [Netlify](https
 
 See the similarities above
 
-| Similarities                      | Qovery                                     | Netlify                                               |
-|-----------------------------------|--------------------------------------------|-------------------------------------------------------|
-| Built for...                      | Startups, scale-ups, enterprises           | Startups, scale-ups, enterprises                      |
-| GitOps support                    | Yes                                        | Yes                                                   |
-| Branch preview                    | Yes                                        | Yes                                                   |
-| RBAC                              | Yes                                        | Yes                                                   |
-| Predictable Cost                  | Yes                                        | Yes                                                   |
+| Similarities                      | Qovery                   | Netlify                  |
+|-----------------------------------|--------------------------|--------------------------|
+| Built for...                      | Startups and Enterprises | Startups and Enterprises |
+| GitOps support                    | Yes                      | Yes                      |
+| Branch preview                    | Yes                      | Yes                      |
+| RBAC                              | Yes                      | Yes                      |
+| Predictable Cost                  | Yes                      | Yes                      |
 
 See the differences above
 
-| Differences                       | Qovery                                     | Netlify                                               |
-|-----------------------------------|--------------------------------------------|-------------------------------------------------------|
-| Hosting                           | Use **your** AWS account                   | You have to use Netlify hosting                       |
-| Microservices support             | Yes                                        | No                                                    |
-| Serverless support                | No                                         | Yes                                                   |
-| Infrastructure and DevOps control | Yes                                        | No                                                    |
-| Database as first class citizen   | Yes                                        | No                                                    |
-| Support                           | Live, Community, and Dedicated             | Community and Dedicated ($$$)                         |
-| Vendor lock-in                    | No                                         | Yes                                                   |
-| Simple reversibility              | Yes                                        | No                                                    |
+| Differences                       | Qovery                                    | Netlify                         |
+|-----------------------------------|-------------------------------------------|---------------------------------|
+| Hosting                           | Use **your** AWS account                  | You have to use Netlify hosting |
+| Microservices support             | Yes                                       | No                              |
+| Serverless support                | No                                        | Yes                             |
+| Infrastructure and DevOps control | Yes                                       | No                              |
+| Database as first class citizen   | Yes                                       | No                              |
+| Support                           | Community and Dedicated                   | Community and Dedicated         |
+| Vendor lock-in                    | No                                        | Yes                             |
+| Simple reversibility              | Yes                                       | No                              |
 
 ### When to choose Netlify
 * You want to deploy a simple web app.
@@ -67,16 +67,16 @@ This is the opposite on Netlify. You can't use your Cloud provider account to ho
 
 Please don't take our word for it; see some cost comparisons below.
 
-| Cost for...                | Qovery                                             | Netlify                                                               |
-|----------------------------|----------------------------------------------------|-----------------------------------------------------------------------|
-| 10 apps with 1GB of RAM    | from $0/month to $499/month                        | $500/month                                                            |
-| 100 apps with 1GB of RAM   | from $0/month to $499/month                        | $5000/month                                                           |
-| Application deployments    | $5 per 100 deployments                             | $0                                                                    |
-| Additional user            | $0                                                 | From $19 to $99 per user/month                                        |
+| Cost for...                | Qovery                  | Netlify                                                               |
+|----------------------------|-------------------------|-----------------------------------------------------------------------|
+| 10 apps with 1GB of RAM    | $0                      | $500/month                                                            |
+| 100 apps with 1GB of RAM   | $0                      | $5000/month                                                           |
+| Application deployments    | $50 per 100 deployments | $0                                                                    |
+| Additional user            | $0                      | From $19 to $99 per user/month                                        |
 
 <Alert type="info">
 
-Qovery does not include your Cloud cost
+Qovery does not include your Cloud costs
 
 </Alert>
 

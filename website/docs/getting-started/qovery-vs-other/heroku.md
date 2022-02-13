@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-08-19"
+last_modified_on: "2022-02-13"
 title: Qovery vs. Heroku
 description: Discover what is the difference between Qovery and Heroku, and why Qovery is the perfect Heroku alternative for your business.
 ---
@@ -21,18 +21,18 @@ We’ve built Qovery to help developers and businesses to focus on the product t
 ## In a nutshell
 Here are the key differences between Qovery and [Heroku](https://www.heroku.com).
 
-| Differences                       | Qovery                                     | Heroku                                                |
-|-----------------------------------|--------------------------------------------|-------------------------------------------------------|
-| Hosting                           | Use **your** AWS account                   | You have to use Heroku hosting                        |
-| Built for...                      | Startups, scale-ups and enterprises        | Individual developer and small team                   |
-| GitOps support                    | Yes                                        | Partially                                             |
-| Microservices support             | Yes                                        | No                                                    |
-| Infrastructure and DevOps control | Yes                                        | No                                                    |
-| Database as first class citizen   | Yes                                        | No                                                    |
-| Support                           | Live, Community, and Dedicated             | Community and Dedicated ($$$)                         |
-| Cost                              | Qovery keeps AWS cost at the lowest        | Very expensive                                        |
-| Vendor lock-in                    | No                                         | Yes                                                   |
-| Simple reversibility              | Yes                                        | No                                                    |
+| Differences                       | Qovery                              | Heroku                            |
+|-----------------------------------|-------------------------------------|-----------------------------------|
+| Hosting                           | Use **your** AWS account            | You have to use Heroku hosting    |
+| Built for...                      | Startups and Enterprises            | Individual developer and Startups |
+| GitOps support                    | Yes                                 | Partially                         |
+| Microservices support             | Yes                                 | No                                |
+| Infrastructure and DevOps control | Yes                                 | No                                |
+| Database as first class citizen   | Yes                                 | No                                |
+| Support                           | Community and Dedicated             | Community and Dedicated           |
+| Cost                              | Qovery keeps AWS cost at the lowest | Very expensive                    |
+| Vendor lock-in                    | No                                  | Yes                               |
+| Simple reversibility              | Yes                                 | No                                |
 
 ### When to choose Heroku
 * You are looking for a hosting platform
@@ -57,20 +57,20 @@ This is the opposite on Heroku. You can't use your Cloud provider account to hos
 
 Please don't take our word for it; see some cost comparisons below
 
-| Cost for...                | Qovery                                             | Heroku                                                                |
-|----------------------------|----------------------------------------------------|-----------------------------------------------------------------------|
-| 10 apps with 1GB of RAM    | from $0/month to $499/month                        | $500/month                                                            |
-| 100 apps with 1GB of RAM   | from $0/month to $499/month                        | $5000/month                                                            |
-| PostgreSQL for development | $0                                                 | from 0$ to +$1000 month                                               |
-| PostgreSQL for production  | $0                                                 | from 0$ to +$1000 month                                               |
-| Redis for development      | $0                                                 | from 0$ to +$1000 month                                               |
-| Redis for production       | $0                                                 | from 0$ to +$1000 month                                               |
-| Application deployments    | $5 per 100 deployments                             | $0                                                                    |
-| Additional user            | $0                                                 | $10/user/month                                                        |
+| Cost for...              | Qovery                    | Heroku                                                                |
+|--------------------------|---------------------------|-----------------------------------------------------------------------|
+| 10 apps with 1GB of RAM  | $0                        | $500/month                                                            |
+| 100 apps with 1GB of RAM | $0                        | $5000/month                                                           |
+| Postgres for development | $0                        | from 0$ to +$1000 month                                               |
+| Postgres for production  | $0                        | from 0$ to +$1000 month                                               |
+| Redis for development    | $0                        | from 0$ to +$1000 month                                               |
+| Redis for production     | $0                        | from 0$ to +$1000 month                                               |
+| Application deployments  | $50 per 100 deployments   | $0                                                                    |
+| Additional user          | $0                        | $10/user/month                                                        |
 
 <Alert type="info">
 
-Qovery does not include your Cloud cost
+Qovery does not include your Cloud costs
 
 </Alert>
 
@@ -103,15 +103,15 @@ Qovery does not host your apps and your data. Your data are stored on your AWS a
 ### Qovery covers all regions
 Low latency on your app means a better experience for your users. Being physically close to them is critical. That's why Qovery is available all around the world. Thanks to AWS and its global coverage.
 
-| Region              | Qovery                       | Heroku                           |
-|---------------------|------------------------------|----------------------------------|
-| North America       | Yes                          | Yes                              |
-| South America       | Yes                          | **No**                           |
-| Europe              | Yes                          | Yes                              |
-| Africa              | Yes                          | **No**                           |
-| East Asia           | Yes                          | **No**                           |
-| West Asia           | Yes                          | Yes                              |
-| Australia           | Yes                          | Yes                              |
+| Region        | Qovery                       | Heroku    |
+|---------------|------------------------------|-----------|
+| North America | Yes                          | Yes       |
+| South America | Yes                          | **No**    |
+| Europe        | Yes                          | Yes       |
+| Africa        | Yes                          | **No**    |
+| East Asia     | Yes                          | **No**    |
+| West Asia     | Yes                          | **No**    |
+| Asia Pacific  | Yes                          | **No**    |
 
 ### Customer focus
 Qovery offers all its customers community and email support staffed by the same world-class engineers who build the platform. Qovery’s product roadmap is public. You can submit feature requests and get notified as soon as we start working on them. This keeps us accountable and helps us understand your needs better. Heroku does the opposite. They don't involve their users and take actions for their own purpose.

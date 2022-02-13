@@ -9,6 +9,7 @@ guides = "/guides/"
 [links.urls]
 qovery = "https://www.qovery.com"
 qovery_console = "https://console.qovery.com"
+qovery_preview_environments = "https://www.qovery.com/preview-environments"
 start_qovery = "https://start.qovery.com"
 mysql = "https://www.mysql.com"
 hasura = "https://hasura.io"

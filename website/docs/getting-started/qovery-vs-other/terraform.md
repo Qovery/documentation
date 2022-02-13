@@ -1,12 +1,20 @@
 ---
-last_modified_on: "2021-08-17"
+last_modified_on: "2022-02-13"
 title: Qovery vs. Terraform
 description: Discover what is the difference between Qovery and Terraform, and how Qovery extends the power of Terraform.
 ---
 
+import Alert from '@site/src/components/Alert';
+
 We’ve built Qovery to help developers and businesses to focus on the product they are building instead of managing their Cloud infrastructure. Our customers often tell us Qovery is the Platform-as-a-Service solution they would have made for their company. This page explains why so many users compare Qovery to Terraform and what are the similarities and differences.
 
 > Qovery is built on top of Terraform and extends its capabilities!
+
+<Alert type="success">
+
+Check out the [Qovery Terraform provider][docs.devops.infrastructure-as-code.terraform]
+
+</Alert>
 
 <p align="center">
   <img src="/img/qovery_on_top_of_terraform_helm_kubernetes.svg" style={{maxWidth: "320px"}} alt="Qovery extends Terraform, Helm and Kubernetes capabilities" />
@@ -23,20 +31,19 @@ We’ve built Qovery to help developers and businesses to focus on the product t
 ## In a nutshell
 Here are the key similarities and differences between Qovery and [Terraform](https://www.terraform.io).
 
-| Features                          | Qovery                                               | Terraform                                             |
-|-----------------------------------|------------------------------------------------------|-------------------------------------------------------|
-| Built for...                      | Startups, scale-ups, enterprises                     | Startups, scale-ups, enterprises                      |
-| Built for DevOps                  | Yes                                                  | Yes                                                   |
-| Built for developer               | Yes                                                  | No                                                    |
-| Infrastructure control            | Yes                                                  | Yes                                                   |
-| Designed to deploy apps           | Yes                                                  | No                                                    |
-| Native support of databases       | Yes                                                  | No                                                    |
-| GitOps CD support                 | Yes                                                  | Yes                                                   |
-| Branch preview                    | Yes                                                  | No                                                    |
-| RBAC                              | Yes                                                  | Yes                                                   |
-| Open-source                       | Partially ([deployment engine][urls.qovery_engine])  | Partially                                             |
-| Vendor lock-in                    | No                                                   | No                                                    |
-| Support                           | Live, Community, and Dedicated                       | Community and Dedicated ($$$)                         |
+| Features                                                 | Qovery                      | Terraform                |
+|----------------------------------------------------------|-----------------------------|--------------------------|
+| Built for...                                             | Startups and Enterprises    | Startups and Enterprises |
+| DevOps friendly                                          | Yes                         | Yes                      |
+| Developers friendly                                      | Yes                         | No                       |
+| Infrastructure control                                   | Yes                         | Yes                      |
+| Designed to deploy apps                                  | Yes                         | No                       |
+| Native support of databases                              | Yes                         | No                       |
+| GitOps CD support                                        | Yes                         | Yes                      |
+| [Preview environments][urls.qovery_preview_environments] | Yes                         | No                       |
+| Open-source                                              | [Yes][urls.qovery_engine]   | Yes                      |
+| Vendor lock-in                                           | No                          | No                       |
+| Support                                                  | Community and Dedicated     | Community and Dedicated  |
 
 ### When to choose Terraform
 * You need a fine-grained control of your Cloud infrastructure.
@@ -84,8 +91,10 @@ Qovery does not host your apps and your data. Your data are stored on your AWS a
 Do you have any question? [Contact us][urls.qovery_contact_us] now!
 
 
+[docs.devops.infrastructure-as-code.terraform]: /docs/devops/infrastructure-as-code/terraform/
 [docs.using-qovery.configuration.cloud-service-provider.amazon-web-services]: /docs/using-qovery/configuration/cloud-service-provider/amazon-web-services/
 [docs.using-qovery.configuration.cloud-service-provider]: /docs/using-qovery/configuration/cloud-service-provider/
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [urls.qovery_contact_us]: https://www.qovery.com/contact
 [urls.qovery_engine]: https://engine.qovery.com
+[urls.qovery_preview_environments]: https://www.qovery.com/preview-environments

@@ -27,6 +27,44 @@ Here is a short video to show how to use environment variables.
   </p>
 </div>
 
+## Levels
+
+There are four levels of Environment Variables. Each type differs in scope - you can create variables bound to application, environment, or project.
+
+| Scope       | Level     | Description     |
+|-------------|-----------|-----------------|
+| **BUILT_IN**    | 1 | Automatically generated variables based on your configuration (e.g., requested databases) propagated to all projects, environments, and applications|
+| **PROJECT**     | 2 | Variables at the project level are shared across all environments and all applications of the project|
+| **ENVIRONMENT** | 3 | Variables at the environment level are shared across all applications of the project in one, given environment |
+| **APPLICATION** | 4 | Variables available for one application in one environment |
+
+## Built-in variables
+By default, every environment contains built-in variables:
+
+| Name       | Example     | Description     |
+|-------------|-----------|-----------------|
+| **QOVERY_BRANCH_NAME**     | master | Git branch name |
+| **QOVERY_IS_PRODUCTION** | true | Flag that indicates production environment |
+
+## Additional built-in variables
+
+For any added service (database, broker, storage), your application receives additional built-in variables. These can be used, for example, to connect
+to the database.
+
+**Naming Convention**:
+
+We use the following naming convention for additional built-in variables:
+
+```
+QOVERY_<SERVICE_TYPE>_<NAME>_<SPEC>
+```
+
+## Additional Rules
+
+* Environment variable keys should use only alphanumeric characters and the underscore character (_) to ensure they are accessible from all programming languages. Environment variable keys should not include the hyphen character.
+* Environment variable keys should not begin with a double underscore (__).
+* An environment variable’s key should not begin with QOVERY_ unless it is set by the Qovery platform itself.
+
 ## Create an Environment Variable
 
 <Alert type="info">
@@ -274,40 +312,127 @@ Alias the variable in the popup window:
 </ol>
 </Steps>
 
-## Levels
+## Import environment variables
 
-There are four levels of Environment Variables. Each type differs in scope - you can create variables bound to application, environment, or project.
+You can add a set of environment variables into Qovery by importing an `.env` file.  The `.env` file contains a list of your environment variables, in a `MY_KEY = VALUE` format.
 
-| Scope       | Level     | Description     |
-|-------------|-----------|-----------------|
-| **BUILT_IN**    | 1 | Automatically generated variables based on your configuration (e.g., requested databases) propagated to all projects, environments, and applications|
-| **PROJECT**     | 2 | Variables at the project level are shared across all environments and all applications of the project|
-| **ENVIRONMENT** | 3 | Variables at the environment level are shared across all applications of the project in one, given environment |
-| **APPLICATION** | 4 | Variables available for one application in one environment |
+To import environment variables into your Qovery environment, follow the steps below.
 
-## Built-in variables
-By default, every environment contains built-in variables:
+<Steps headingDepth={3}>
+<ol>
+<li>
 
-| Name       | Example     | Description     |
-|-------------|-----------|-----------------|
-| **QOVERY_BRANCH_NAME**     | master | Git branch name |
-| **QOVERY_IS_PRODUCTION** | true | Flag that indicates production environment |
+On an application page, click on the `Environment variable` tabs > `Import` button.
 
-## Additional built-in variables
+<p align="center">
+  <img src="/img/configuration/variables/import-button.png" alt="Import button" />
+</p>
 
-For any added service (database, broker, storage), your application receives additional built-in variables. These can be used, for example, to connect
-to the database.
+</li>
+<li>
 
-**Naming Convention**:
+Drag & Drop the `.env` file into the modal, or click on the interface to open the file explorer.
 
-We use the following naming convention for additional built-in variables:
+<p align="center">
+  <img src="/img/configuration/variables/import-load.png" alt="Loading interface" />
+</p>
 
-```
-QOVERY_<SERVICE_TYPE>_<NAME>_<SPEC>
-```
+</li>
+<li>
 
-## Additional Rules
+The file is loaded and a new modal is displayed, where you can configure the import of your variables.
 
-* Environment variable keys should use only alphanumeric characters and the underscore character (_) to ensure they are accessible from all programming languages. Environment variable keys should not include the hyphen character.
-* Environment variable keys should not begin with a double underscore (__).
-* An environment variable’s key should not begin with QOVERY_ unless it is set by the Qovery platform itself.
+<p align="center">
+  <img src="/img/configuration/variables/import-file-loaded.png" alt="Import configuration" />
+</p>
+
+**Overwrites variables**
+
+When this option is enabled, if an existing variable and an imported variable share the same name, the existing value will be overwritten by the imported one. 
+If the option is disabled, the imported value will be ignored. 
+However, to avoid conflicts in the architecture of your environment variables, some of them will intentionally not be imported.
+To understand how we handle conflicts, please take a look to the [Importation conflicts](#importation-conflicts) section.
+
+**Configure variables import**
+
+On this modal, you can define for each variable the following parameters:
+
+- **name**: upate variable name
+- **Value**: update variable value
+- **Scope**: Specify the scope in which you want to import the variable
+- **Secret**: Specify if this value is considered as a secret or not
+
+**Preset variables**
+
+To help you import a large number of variables quickly, you can predefine scope and secret settings.
+This will change the scope and secret value of all listed variables.
+If the secret and scope of one or more specific variables are subsequently updated, this will not change the predefined setting.
+
+</li>
+<li>
+
+When you have finished the configuration, click on the `Import` button.
+
+</li>
+<li>
+
+A pop-up message is displayed to inform you that your environment variables have been imported. 
+
+<p align="center">
+  <img src="/img/configuration/variables/import-done.png" alt="Import button" />
+</p>
+
+</li>
+</ol>
+</Steps>
+
+### Importation conflicts
+
+To avoid conflicts between already existing and imported environment variables, some of them will not be imported, even if the overwrite option is activated. 
+The different cases are described below. 
+
+#### Imported variable has same name as BUILT_IN variable 
+
+| Type       | Name            | Value     | Scope       |
+|------------|-----------------|-----------|-------------|
+| ** Existing variables **     |           |             |
+| VALUE      | MY_VAR          | 42        | Built_in    |
+| ** Variables to import **    |           |             |
+| VALUE      | MY_VAR          | 10        | Application |
+
+Built_in environment variables are generated and managed by Qovery and will not be overwritten, even if the `overwriting` option is activated.
+
+#### Imported variable has same name as an existing ALIAS 
+
+| Type       | Name            | Value     | Scope       |
+|------------|-----------------|-----------|-------------|
+| ** Existing variables **     |           |             |
+| VALUE      | MY_VAR          | 42        | Environment |
+| ALIAS      | MY_VAR_ALIAS    | MY_VAR    | Application |
+| ** Variables to import **    |           |             |
+| VALUE      | MY_VAR_ALIAS    | 10        | Application |
+
+The value cannot be rewritten because the link between the original variable and the alias would be lost. 
+
+#### Imported variable has same name as an existing secret (or vice versa)
+
+| Type       | Name            | Value     | Scope       | Secret     |
+|------------|-----------------|-----------|-------------|------------|
+| ** Existing variables **     |           |             |            |
+| VALUE      | MY_VAR          | 1         | Application | Ye         |
+| ** Variables to import **    |           |             |            |
+| VALUE      | MY_VAR          | 2         | Application | No         |
+
+The value cannot be imported because this will overwrite the existing secret.
+
+### Overwriting and limitations
+
+Some overwriting cases are not supported for now. They are summarized in the following table. 
+
+| Existing variable scope      | Imported variable scope               | Supported  |
+|------------------------------|---------------------------------------|------------|
+| PROJECT                      | PROJECT / ENVIRONMENT / APPLICATION   | YES        |
+| ENVIRONMENT                  | PROJECT                               | NO         |
+| ENVIRONMENT                  | ENVIRONMENT / APPLICATION             | YES        |
+| APPLICATION                  | PROJECT / ENVIRONMENT                 | NO         |
+| APPLICATION                  | APPLICATION                           | YES        |

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-02-10"
+last_modified_on: "2022-02-16"
 title: Addons
 description: "Useful addons to improve your Qovery workflow"
 sidebar_label: hidden
@@ -12,12 +12,10 @@ Qovery integrations improve developers' experience with Qovery and make their li
 
 This section shows several Qovery addons.
 
-<Jump to="/docs/getting-started/deploy-my-app/">Deploy my app</Jump>
-<Jump to="/docs/getting-started/features/">Features</Jump>
-<Jump to="/docs/getting-started/install-qovery/">Install qovery</Jump>
-<Jump to="/docs/getting-started/qovery-vs-other/">Qovery vs other</Jump>
-<Jump to="/docs/getting-started/what-is-qovery/">What is qovery</Jump>
-<Jump to="/docs/getting-started/whats-next/">Whats next</Jump>
+<Jump to="/docs/using-qovery/addon/container-registry/">Container registry</Jump>
+<Jump to="/docs/using-qovery/addon/continuous-integration/">Continuous integration</Jump>
+<Jump to="/docs/using-qovery/addon/github-preview/">Github preview</Jump>
+<Jump to="/docs/using-qovery/addon/monitoring/">Monitoring</Jump>
 
 
 

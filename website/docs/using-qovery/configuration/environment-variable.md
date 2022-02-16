@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-02-10"
+last_modified_on: "2022-02-16"
 title: "Environment Variable"
 description: "Learn how to configure Environment Variables on Qovery"
 ---
@@ -327,7 +327,7 @@ Alias the variable in the popup window:
 
 ## Import environment variables
 
-You can add a set of environment variables into Qovery by importing and `.env` file.  The `.env` file contains a list of your environment variables, in a `MY_KEY = VALUE` format.
+You can add a set of environment variables into Qovery by importing an `.env` file.  The `.env` file contains a list of your environment variables, in a `MY_KEY = VALUE` format.
 
 To import environment variables into your Qovery environment, follow the steps below.
 

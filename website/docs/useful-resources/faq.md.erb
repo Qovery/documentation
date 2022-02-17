@@ -6,42 +6,42 @@ description: "Frequently Asked Questions"
 
 A [project][docs.using-qovery.configuration.project] is the site that you're working on. Each project can contain multiple [applications][docs.using-qovery.configuration.application] and be deployed in multiple [environments][docs.using-qovery.configuration.environment]. An environment is a standalone copy of your site, including apps, databases, storage, data, and all other services. By default, `main` branch is the production environment, while all other branches can be set up as identical copies of the prod environment for testing purposes.
 
-## Can you help me to deploy my application on Qovery?
+## How does application build works?
 
-Yes, absolutely. [Join our fantastic community][urls.qovery_community] to get the help of our +5000 developers and Qovery team members.
-
-## How does application build work?
-
-We build and run your Dockerfile, so it's up to you to provide all the good instructions. If you have any trouble, we can assist you.
+Basically, Qovery deploys your application as a container. Check out the detailed explanation of what is going on behind the scene [here][docs.devops.qovery-for-devops-introduction#application-and-database-deployment]
 
 ## How does Qovery manage databases?
 
-Qovery relies on the managed databases provided by the Cloud provider of your choice (AWS, GCP, Azure). So it's highly reliable. For development usage, we rely on a single instance database running inside a container (to keep the cost low for development purposes). But, we guarantee the safety of the data and the availability.
+Qovery provides `managed` and `container` modes for your databases. Basically, `managed` mode relies on the managed database provided by the cloud provider. E.g. if you choose `Postgres` with the `managed` mode while your environment is running on AWS, then Qovery provides an [AWS RDS](https://aws.amazon.com/rds) instance. Please check out our [database section][docs.using-qovery.configuration.database] for further details.
 
 ## Does Qovery replace Kubernetes?
 
-Behind the scene, Qovery uses [Kubernetes][urls.kubernetes]. Qovery adds a simplification layer on top of Kubernetes to make it accessible to any developer. Qovery is installable on your Kubernetes clusters with the Enterprise version. [Read more][urls.qovery_enterprise]
+Behind the scene, Qovery uses [Kubernetes][urls.kubernetes]. Qovery extends Kubernetes to make it accessible to any developer teams.
+Important: Qovery does not modify Kubernetes. It only deploys his services in a `qovery` Kubernetes namespace.
 
 ## Does Qovery support mono repository?
 
-We expect to support mono repository as soon as possible. Please do [upvote for mono repository support in our roadmap][urls.qovery_roadmap].
+Yes, absolutely! Check out [our monorepo guide][guides.advanced.monorepository].
+
+## Does Qovery support microservices?
+
+Yes, absolutely! Check out [our microservices guide][guides.advanced.microservices].
+
+## What Git providers do you support?
+
+GitHub, GitLab, BitBucket.
+
+## Do you support GitHub Enterprise or Gitlab Self-hosted?
+
+Not at the moment, but you can upvote for this feature in [our roadmap][urls.qovery_roadmap].
 
 ## Does Qovery support private Git repository ?
 
-Yes, absolutely.
+Yes, absolutely!
 
-## What resources are provided with Free plan ?
+## What is the IP address of my Kubernetes cluster?
 
-Free plan comes with 10GB of storage, 1GB of RAM and 1 vCPU.
-
-## Where are your servers located?
-
-Qovery relies on Cloud providers like AWS (Amazon Web Services), GCP (Google Cloud Platform) and Azure. For each [project][docs.project], and [environment][docs.environment] you can select the region (America, Europe, Asia) of your choice.
-
-## What is the IP address of Qovery? I would like to whitelist it on my side
-
-It is not possible to whitelist only one IP address as we have several nodes, and they have different IP addresses. Your app can move to any of those nodes.
-In addition to that, nodes can be deleted/replaced with new ones and therefore have different IPs. Authentication based on an IP address is not a viable solution for any cloud-native solution like Qovery.
+Static IP is only supported for Kubernetes clusters running on AWS. You can enable the option in the feature settings of your cluster.
 
 ## If I have N custom domains under the same root domain, do I need to create N CNAME records, or just creating one for the root domain is enough ?
 

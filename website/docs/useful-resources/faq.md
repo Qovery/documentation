@@ -56,9 +56,33 @@ Static IP is only supported for Kubernetes clusters running on AWS. You can enab
 
 You have to create N CNAME, one per custom domain
 
+## How do you support new Kubernetes version?
+
+The Qovery team manages your Kubernetes cluster's upgrade, and you don't have to think about it. Upgrades from one minor Kubernetes version to another require a good amount of tests to make sure everything goes smoothly with zero interruptions for your app. This is why Qovery always provides 1 or 2 minor versions below the last one offered by the cloud provider. Our goal is to guarantee you the maximum uptime.
+
+## What do you do when a vulnerability is found?
+
+Security is our main concern. When a vulnerability is found, here are the actions that we take:
+
+1. We quickly identify how significant is the impact of the vulnerability.
+2. We look at how we can solve or mitigate the vulnerability.
+3. We transparently communicate with our customers on the vulnerability to help them take the right actions.
+
+## Can I have access to my Kubernetes cluster?
+
+Absolutely, you can follow [this guide][guides.tutorial.how-to-connect-to-your-eks-cluster-with-kubectl].
+
+## Can I have access to my application with a shell?
+
+Absolutely, check out our [CLI][docs.using-qovery.interface.cli#shell] and the `qovery shell` command.
+
+## How application auto-scaling works?
+
+Take a look at [our application documentation][docs.using-qovery.configuration.application#auto-scaling].
+
 ## I have made actions on my AWS account and want to clean my organization in order to restart from scratch, how can I proceed ?
 
-If you want to remove Qovery infrastructure from your AWS account in order to restart from the beginning, or if you are leaving Qovery and want to delete Qovery infrastructure from your AWS account, you can do that buy clicking on "delete infrastraucture" on your Organization page:
+If you want to remove Qovery infrastructure from your AWS accounts in order to restart from the beginning, or if you are leaving Qovery and want to delete Qovery infrastructure from your AWS account, you can do that by clicking on "delete infrastructure" on your Organization page:
 
 <p align="center">
   <img src="/img/organization-delete-infra.png" alt="Delete Qovery infrastructure" />
@@ -98,12 +122,15 @@ Feel free to join our [Discord server][urls.qovery_chat] or contact us by email 
 
 [docs.devops.qovery-for-devops-introduction#application-and-database-deployment]: /docs/devops/qovery-for-devops-introduction/#application-and-database-deployment
 [docs.devops.qovery-for-devops-introduction]: /docs/devops/qovery-for-devops-introduction/
+[docs.using-qovery.configuration.application#auto-scaling]: /docs/using-qovery/configuration/application/#auto-scaling
 [docs.using-qovery.configuration.application]: /docs/using-qovery/configuration/application/
 [docs.using-qovery.configuration.database]: /docs/using-qovery/configuration/database/
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [docs.using-qovery.configuration.project]: /docs/using-qovery/configuration/project/
+[docs.using-qovery.interface.cli#shell]: /docs/using-qovery/interface/cli/#shell
 [guides.advanced.microservices]: /guides/advanced/microservices/
 [guides.advanced.monorepository]: /guides/advanced/monorepository/
+[guides.tutorial.how-to-connect-to-your-eks-cluster-with-kubectl]: /guides/tutorial/how-to-connect-to-your-eks-cluster-with-kubectl/
 [urls.kubernetes]: https://kubernetes.io/
 [urls.qovery_chat]: https://discord.qovery.com
 [urls.qovery_roadmap]: https://roadmap.qovery.com/

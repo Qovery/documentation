@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-02-08"
+last_modified_on: "2022-02-17"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -145,6 +145,11 @@ Default is 256MB, maximum you can set is 512MB in **Community** version, and unl
   <img src="/img/configuration/application/app-14.png" alt="RAM" />
 </p>
 
+#### Auto-scaling
+
+Application auto-scaling is based on real-time CPU consumption. When your app goes above 60% of CPU consumption for 5 minutes, your app will be auto-scaled and more instances will be added. It is transparent.
+You can adjust the minimum and maximum of instances you need in your application settings. Qovery runs your application on Kubernetes and relies on [metrics-server](https://github.com/kubernetes-sigs/metrics-server) service to auto-scale your app.
+
 ### Dependencies
 
 Qovery gives you the power to have multiple apps within one environment. Sometimes it's necessary to one or multiple apps before others.
@@ -282,7 +287,7 @@ The built-in variables follow the naming pattern: `QOVERY_DATABASE` + <your_db_n
 
 ### Network
 
-#### Persistant sessions
+#### Persistent sessions
 
 A user of your application will be redirected by the load balancer to the same instance each time he accesses to it.
 
@@ -341,7 +346,7 @@ In the application overview, click on the `Actions` button and `Rollback and Upd
 </li>
 <li>
 
-Once you click, this pannel will appear and you will be able to choose the version you wish to update/rollback.
+Once you click, this panel will appear, and you will be able to choose the version you wish to update/rollback.
 
 <p align="center">
   <img src="/img/configuration/application/rollback-update2.png" alt="Application" />

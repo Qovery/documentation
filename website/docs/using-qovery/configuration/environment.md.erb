@@ -22,17 +22,33 @@ Applications and databases from an Environment are isolated from other Environme
 
 ## Create an environment
 
-The first time you create a project, you need to add your first environment manually.
+You can create a new environment by clicking on the `Create environment` button of the Project page. A modal will appear that will allow you to specify following parameters
+
+* **name**: Give a name to your environment that is easily recognizable by anyone from your team. It is good practice to name your environment `production`, `main` or `master`, `staging`, `dev`, `fix/xxx`, `feat/xxx`, depending on the purpose of your environment.
+* **mode**: Specify environment mode. See [Types of environment](#types-of-environment) section. 
+* **cluster** : Specify the organization cluster on which this new environment will be deployed. 
 
 <p align="center">
-  <img src="/img/environment_create.png" alt="Create an environment" />
+  <img src="/img/create-env.png" alt="Create an environment" />
 </p>
 
-Give a name to your environment that is easily recognizable by anyone from your team.
+### Deployment rules and automatic option. 
+
+By default, `mode` and `cluster` parameters are set as "automatic". 
+
+If `Automatic` option is specified for one or both of these parameters, deployment rules will automatically select the `cluster` and the `mode` you specified in it.
+
+If you chose to specify a cluster and/or a mode during the environment creation, the deploymment rules will also be applied, but the `cluster` and the `mode` will be overwritten by the one you just specified. 
+
+If you let `Automatic` option and that no deployment rule catch this new environment, the default `mode` and `cluster` will be applied. 
+
+<p align="center">
+  <img src="/img/create-env-auto.png" alt="Create an environment" />
+</p>
 
 <Alert type="info">
 
-It is good practice to use `production`, `main` or `master`, `staging`, `dev`, `fix/xxx`, `feat/xxx`, depending on the purpose of your environment.
+To learn more about the deployment rules, take a look to the [See the Deployment Rule section](#deployment-rules).
 
 </Alert>
 
@@ -41,8 +57,6 @@ When you start using Qovery heavily, your environment list can look like this
 <p align="center">
   <img src="/img/environment_list.png" alt="List of environments" />
 </p>
-
-An Environment can be automatically created when you create Pull Requests, and Git Branches. [See the Deployment Rule section](#deployment-rules) below.
 
 ## Edit environment general settings
 
@@ -154,23 +168,16 @@ Once you click, this pannel will appear and you will be able to select the envir
 
 ## Types of environment
 
-Two modes are possible for an Environment - `production` and `development`. The difference between the `production` and `development` modes are the permissions. [Read more][docs.using-qovery.configuration.organization#roles].
+You can define a specific mode for an environment, to label it and share with others in the organization how to use it.
+Here is the mode you should set depending of the use of your Environment.
 
-| mode | description |
-|------|-------------|
-| production | this environment mode protects from destructive actions and get access to sensitive information - only possible by an admin |
-| development | this environment mode makes it easy to destroy an environment - possible by an admin and developer |
-
-To know more about the permissions - go to the [Organization configuration][docs.using-qovery.configuration.organization#roles].
-
-Here is the mode you should set depending on your Environment.
-
-| environment type | recommended mode | why |
+| environment mode | recommended mode | why |
 |-------------|------------------|-----|
-| production | production | Production environment should not be stopped or deleted by anyone - so to protect it we recommend using `production` mode |
-| staging | production | Staging environment reflects how things work and is sometimes as critical as production for companies. Using `production` mode is then recommended. |
-| feature | development | Feature environment is a working environment that could be stopped and deleted by anyone. It is not "business critical" and can be set in `development` mode. |
-| fix | development | Fix environment is similar to a Feature environment. It is not "business critical" and can be set in `development` mode. |
+| production | Production environment should not be stopped or deleted by anyone. |
+| Staging | Staging environment reflects how things work and is sometimes as critical as production for companies. |
+| Development | Develoment environment is a working environment that could be used to develop and test new features and fixes. |
+
+Moreover, Preview environment mode will be automatically set as `Preview`.
 
 ## Advanced features
 

@@ -8,10 +8,23 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/website/guides/tutorial/import-your-environment-variables-with-the-qovery-cli.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/guides/tutorial/import-your-environment-variables-with-the-qovery-cli.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/yarn.lock" beforeDir="false" />
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: add `qovery token` CLI command">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/devops/infrastructure-as-code.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/devops/infrastructure-as-code.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/devops/infrastructure-as-code/rest-api.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/interface/rest-api.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/devops/infrastructure-as-code/rest-api.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/interface/rest-api.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/devops/qovery-for-devops-introduction.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/devops/qovery-for-devops-introduction.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/devops/qovery-for-devops-introduction.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/devops/qovery-for-devops-introduction.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/addon/continuous-integration/github-actions.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/addon/continuous-integration/github-actions.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/addon/continuous-integration/github-actions.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/addon/continuous-integration/github-actions.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/interface.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/interface.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/interface.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/interface.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/interface/cli.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/interface/cli.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/interface/cli.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/interface/cli.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/interface/web-interface.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/interface/web-interface.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/interface/web-interface.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/interface/web-interface.md.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/sidebars.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/website/sidebars.js.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.js.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +107,11 @@
     <setting file="file://$PROJECT_DIR$/website/docs/devops/infrastructure-config/observability.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/docs/devops/infrastructure-config/kubernetes.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/guides/advanced/guide-scaleway.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_sign_up.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_reward_faq.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_install_cli.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/website/guides/tutorial/import-your-environment-variables-with-the-qovery-cli.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/website/guides/tutorial/how-to-use-cloudfront-with-react-frontend-application-on-qovery.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/docs/using-qovery/configuration/environment-variable.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/docs/community/reward/feedback.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/docs/using-qovery/configuration/secret.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
@@ -111,22 +128,27 @@
     <setting file="file://$PROJECT_DIR$/website/docs/using-qovery/configuration.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/guides/tutorial/create-a-blazingly-fast-api-in-rust-part-1.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mysql.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/website/guides/tutorial/aws-sqs-lambda-with-qovery.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/docs/using-qovery/configuration/database/redis.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/docs/using-qovery/configuration/database/mongodb.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/website/guides/tutorial/aws-vpc-peering-with-qovery.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/metadata.js.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/scaleway.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/amazon-web-services.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/docusaurus.config.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-a-rust-rest-api-application-on-aws-with-ease.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/sidebars.js.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/website/package.json" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/docs/using-qovery/configuration/cloud-service-provider/digital-ocean.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/sidebars.js" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/guides/advanced/guide-digital-ocean.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/website/guides/tutorial/how-to-run-commands-at-application-startup.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/guides/advanced/guide-microsoft-azure.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/docs/devops/infrastructure-config/custom-domain.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/docs/using-qovery.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/.meta/cloud_providers.toml" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/website/guides/tutorial/data-seeding-in-postgres.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/guides/getting-started/managing-environment-variables.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/docs/using-qovery/addon/continuous-integration/circle-ci.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/website/docs/using-qovery/addon/continuous-integration/github-actions.md.erb" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" root2="FORCE_HIGHLIGHTING" />
@@ -182,7 +204,7 @@
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.vendoring.notification.had.been.shown" value="true" />
     <property name="go.watchers.conflict.with.on.save.actions.check.performed" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/website/guides/tutorial" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/website/static/img/apigateway" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -201,18 +223,18 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/website/static/img/apigateway" />
       <recent name="$PROJECT_DIR$/website/guides/tutorial" />
       <recent name="$PROJECT_DIR$/website/guides/engineering" />
       <recent name="$PROJECT_DIR$/website/static/img/oss-cloud-managed/part-1" />
       <recent name="$PROJECT_DIR$/website/static/img/oss-cloud-managed" />
-      <recent name="$PROJECT_DIR$/website/docs/getting-started" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/website/docs/using-qovery/interface" />
       <recent name="$PROJECT_DIR$/website/guides/engineering" />
       <recent name="$PROJECT_DIR$/website/docs/devops" />
       <recent name="$PROJECT_DIR$/website/docs/community" />
       <recent name="$PROJECT_DIR$/website/docs/using-qovery" />
-      <recent name="$PROJECT_DIR$/website/docs/using-qovery/addon" />
     </key>
   </component>
   <component name="RunManager" selected="npm.start">
@@ -433,91 +455,13 @@
       <workItem from="1638270858473" duration="26000" />
       <workItem from="1638993339210" duration="6359000" />
       <workItem from="1639471390542" duration="10430000" />
-      <workItem from="1640682521551" duration="5577000" />
-    </task>
-    <task id="LOCAL-00230" summary="chore: add gcp and azure coming soon">
-      <created>1630850314482</created>
-      <option name="number" value="00230" />
-      <option name="presentableId" value="LOCAL-00230" />
-      <option name="project" value="LOCAL" />
-      <updated>1630850314483</updated>
-    </task>
-    <task id="LOCAL-00231" summary="chore: update documentation">
-      <created>1630852409415</created>
-      <option name="number" value="00231" />
-      <option name="presentableId" value="LOCAL-00231" />
-      <option name="project" value="LOCAL" />
-      <updated>1630852409415</updated>
-    </task>
-    <task id="LOCAL-00232" summary="chore: update documentation">
-      <created>1630852614262</created>
-      <option name="number" value="00232" />
-      <option name="presentableId" value="LOCAL-00232" />
-      <option name="project" value="LOCAL" />
-      <updated>1630852614262</updated>
-    </task>
-    <task id="LOCAL-00233" summary="chore: update AWS + Qovery doc">
-      <created>1630859778512</created>
-      <option name="number" value="00233" />
-      <option name="presentableId" value="LOCAL-00233" />
-      <option name="project" value="LOCAL" />
-      <updated>1630859778512</updated>
-    </task>
-    <task id="LOCAL-00234" summary="chore: update AWS + Qovery doc">
-      <created>1630860506796</created>
-      <option name="number" value="00234" />
-      <option name="presentableId" value="LOCAL-00234" />
-      <option name="project" value="LOCAL" />
-      <updated>1630860506796</updated>
-    </task>
-    <task id="LOCAL-00235" summary="chore: add scaleway guide">
-      <created>1630869605846</created>
-      <option name="number" value="00235" />
-      <option name="presentableId" value="LOCAL-00235" />
-      <option name="project" value="LOCAL" />
-      <updated>1630869605846</updated>
-    </task>
-    <task id="LOCAL-00236" summary="chore: add scaleway doc to generate credentials">
-      <created>1630957856169</created>
-      <option name="number" value="00236" />
-      <option name="presentableId" value="LOCAL-00236" />
-      <option name="project" value="LOCAL" />
-      <updated>1630957856169</updated>
-    </task>
-    <task id="LOCAL-00237" summary="chore: change sidebar">
-      <created>1631019468273</created>
-      <option name="number" value="00237" />
-      <option name="presentableId" value="LOCAL-00237" />
-      <option name="project" value="LOCAL" />
-      <updated>1631019468273</updated>
-    </task>
-    <task id="LOCAL-00238" summary="chore: add digital ocean guide">
-      <created>1631043905193</created>
-      <option name="number" value="00238" />
-      <option name="presentableId" value="LOCAL-00238" />
-      <option name="project" value="LOCAL" />
-      <updated>1631043905193</updated>
-    </task>
-    <task id="LOCAL-00239" summary="chore: update IAM">
-      <created>1631364170857</created>
-      <option name="number" value="00239" />
-      <option name="presentableId" value="LOCAL-00239" />
-      <option name="project" value="LOCAL" />
-      <updated>1631364170857</updated>
-    </task>
-    <task id="LOCAL-00240" summary="chore: update AWS zones">
-      <created>1631459639467</created>
-      <option name="number" value="00240" />
-      <option name="presentableId" value="LOCAL-00240" />
-      <option name="project" value="LOCAL" />
-      <updated>1631459639467</updated>
-    </task>
-    <task id="LOCAL-00241" summary="chore: update AWS doc">
-      <created>1631485063216</created>
-      <option name="number" value="00241" />
-      <option name="presentableId" value="LOCAL-00241" />
-      <option name="project" value="LOCAL" />
-      <updated>1631485063216</updated>
+      <workItem from="1640682521551" duration="6792000" />
+      <workItem from="1641284243822" duration="2487000" />
+      <workItem from="1642888951830" duration="49000" />
+      <workItem from="1642889034302" duration="14265000" />
+      <workItem from="1644009046055" duration="750000" />
+      <workItem from="1644567570369" duration="12763000" />
+      <workItem from="1645608489845" duration="3761000" />
     </task>
     <task id="LOCAL-00242" summary="chore: update cloud provider guides">
       <created>1631486478918</created>
@@ -778,7 +722,91 @@
       <option name="project" value="LOCAL" />
       <updated>1640687619796</updated>
     </task>
-    <option name="localTasksCounter" value="279" />
+    <task id="LOCAL-00279" summary="feat: add article explaining how to import env vars with the CLI">
+      <created>1640688124299</created>
+      <option name="number" value="00279" />
+      <option name="presentableId" value="LOCAL-00279" />
+      <option name="project" value="LOCAL" />
+      <updated>1640688124299</updated>
+    </task>
+    <task id="LOCAL-00280" summary="wip: article on the api gateway">
+      <created>1642895128141</created>
+      <option name="number" value="00280" />
+      <option name="presentableId" value="LOCAL-00280" />
+      <option name="project" value="LOCAL" />
+      <updated>1642895128142</updated>
+    </task>
+    <task id="LOCAL-00281" summary="wip: article on the api gateway">
+      <created>1642895529249</created>
+      <option name="number" value="00281" />
+      <option name="presentableId" value="LOCAL-00281" />
+      <option name="project" value="LOCAL" />
+      <updated>1642895529249</updated>
+    </task>
+    <task id="LOCAL-00282" summary="wip: article on the api gateway">
+      <created>1642937484055</created>
+      <option name="number" value="00282" />
+      <option name="presentableId" value="LOCAL-00282" />
+      <option name="project" value="LOCAL" />
+      <updated>1642937484055</updated>
+    </task>
+    <task id="LOCAL-00283" summary="add preview env video">
+      <created>1644009192532</created>
+      <option name="number" value="00283" />
+      <option name="presentableId" value="LOCAL-00283" />
+      <option name="project" value="LOCAL" />
+      <updated>1644009192533</updated>
+    </task>
+    <task id="LOCAL-00284" summary="chore: update Terraform doc and example">
+      <created>1644567917522</created>
+      <option name="number" value="00284" />
+      <option name="presentableId" value="LOCAL-00284" />
+      <option name="project" value="LOCAL" />
+      <updated>1644567917522</updated>
+    </task>
+    <task id="LOCAL-00285" summary="chore: update terraform.md">
+      <created>1644659664488</created>
+      <option name="number" value="00285" />
+      <option name="presentableId" value="LOCAL-00285" />
+      <option name="project" value="LOCAL" />
+      <updated>1644659664488</updated>
+    </task>
+    <task id="LOCAL-00286" summary="chore: update qovery vs terraform">
+      <created>1644749704678</created>
+      <option name="number" value="00286" />
+      <option name="presentableId" value="LOCAL-00286" />
+      <option name="project" value="LOCAL" />
+      <updated>1644749704678</updated>
+    </task>
+    <task id="LOCAL-00287" summary="chore: update heroku and netlify pages">
+      <created>1644750623619</created>
+      <option name="number" value="00287" />
+      <option name="presentableId" value="LOCAL-00287" />
+      <option name="project" value="LOCAL" />
+      <updated>1644750623619</updated>
+    </task>
+    <task id="LOCAL-00288" summary="chore: update FAQ">
+      <created>1645085513175</created>
+      <option name="number" value="00288" />
+      <option name="presentableId" value="LOCAL-00288" />
+      <option name="project" value="LOCAL" />
+      <updated>1645085513175</updated>
+    </task>
+    <task id="LOCAL-00289" summary="chore: update FAQ">
+      <created>1645094619358</created>
+      <option name="number" value="00289" />
+      <option name="presentableId" value="LOCAL-00289" />
+      <option name="project" value="LOCAL" />
+      <updated>1645094619358</updated>
+    </task>
+    <task id="LOCAL-00290" summary="chore: update faq">
+      <created>1645096451991</created>
+      <option name="number" value="00290" />
+      <option name="presentableId" value="LOCAL-00290" />
+      <option name="project" value="LOCAL" />
+      <updated>1645096451991</updated>
+    </task>
+    <option name="localTasksCounter" value="291" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -863,14 +891,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="chore: make changes based on Albane' feedback" />
-    <MESSAGE value="chore: add gcp and azure coming soon" />
-    <MESSAGE value="chore: update AWS + Qovery doc" />
-    <MESSAGE value="chore: add scaleway guide" />
-    <MESSAGE value="chore: add scaleway doc to generate credentials" />
-    <MESSAGE value="chore: change sidebar" />
-    <MESSAGE value="chore: add digital ocean guide" />
-    <MESSAGE value="chore: update IAM" />
     <MESSAGE value="chore: update AWS zones" />
     <MESSAGE value="chore: update AWS doc" />
     <MESSAGE value="chore: update cloud provider guides" />
@@ -888,6 +908,14 @@
     <MESSAGE value="fix: roadmap links" />
     <MESSAGE value="chore: change old deploy app and AWS videos with the John's one" />
     <MESSAGE value="feat: add article explaining how to import env vars with the CLI" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: add article explaining how to import env vars with the CLI" />
+    <MESSAGE value="wip: article on the api gateway" />
+    <MESSAGE value="add preview env video" />
+    <MESSAGE value="chore: update Terraform doc and example" />
+    <MESSAGE value="chore: update terraform.md" />
+    <MESSAGE value="chore: update qovery vs terraform" />
+    <MESSAGE value="chore: update heroku and netlify pages" />
+    <MESSAGE value="chore: update FAQ" />
+    <MESSAGE value="chore: update faq" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: update faq" />
   </component>
 </project>

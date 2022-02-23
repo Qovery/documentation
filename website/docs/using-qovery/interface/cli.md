@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-01-31"
+last_modified_on: "2022-02-23"
 title: CLI
 description: How to use the Qovery CLI (Command Line Interface)
 ---
@@ -11,7 +11,7 @@ import Alert from '@site/src/components/Alert';
 
 <Alert type="success">
 
-Use Infrastructure as Code (IaC) with [Terraform][docs.devops.infrastructure-as-code.terraform] and our [REST API][docs.devops.infrastructure-as-code.rest-api] to manage Qovery and deploy your apps.
+Use Infrastructure as Code (IaC) with [Terraform][docs.devops.infrastructure-as-code.terraform] and our [REST API][docs.using-qovery.interface.rest-api] to manage Qovery and deploy your apps.
 
 </Alert>
 
@@ -315,13 +315,28 @@ Keep in mind these limitations when using this feature:
 </ul>
 </Alert>
 
+## Generate API token
+
+To use the Qovery API you will need to generate a JWT authentication token. To generate an API token you can install the CLI and type
+
+```bash
+$ qovery token
+
+Qovery: Select organization
+Organization:
+✔ My Organization
+Qovery: ---- Never share this authentication token and keep it secure ----
+Qovery: xxx.yyyzzzzJWTtoken
+Qovery: ---- Never share this authentication token and keep it secure ----
+```
+
 ## Support
 
 Do you have any issues with Qovery CLI? [Open an issue](https://github.com/Qovery/qovery-cli/issues).
 
 
-[docs.devops.infrastructure-as-code.rest-api]: /docs/devops/infrastructure-as-code/rest-api/
 [docs.devops.infrastructure-as-code.terraform]: /docs/devops/infrastructure-as-code/terraform/
+[docs.using-qovery.interface.rest-api]: /docs/using-qovery/interface/rest-api/
 [urls.authorize_qovery]: https://github.com/apps/qovery/installations/new
 [urls.brew]: https://brew.sh/
 [urls.qovery_cli_releases]: https://github.com/Qovery/qovery-cli/releases

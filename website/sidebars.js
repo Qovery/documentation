@@ -34,6 +34,7 @@ module.exports = {
             "using-qovery/interface",
             "using-qovery/interface/web-interface",
             "using-qovery/interface/cli",
+            "using-qovery/interface/rest-api",
           ]
         },
         {
@@ -149,7 +150,6 @@ module.exports = {
           items: [
             "devops/infrastructure-as-code",
             "devops/infrastructure-as-code/terraform",
-            "devops/infrastructure-as-code/rest-api",
           ]
         },
         {

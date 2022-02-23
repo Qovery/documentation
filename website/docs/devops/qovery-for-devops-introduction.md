@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-10-11"
+last_modified_on: "2022-02-23"
 title: Introduction
 description: "How Qovery works under the hood and how to use it when you are a DevOps"
 ---
@@ -117,19 +117,19 @@ Qovery lets you integrates any tool that you already have or need. There is no l
 
 ## What's next
 
-In the next section we explain how you can manage Qovery via [Terraform][docs.devops.infrastructure-as-code.terraform] and our [REST API][docs.devops.infrastructure-as-code.rest-api].
+In the next section we explain how you can manage Qovery via [Terraform][docs.devops.infrastructure-as-code.terraform] and our [REST API][docs.using-qovery.interface.rest-api].
 
 In our [configuration][docs.devops.infrastructure-config] section you will learn how to:
 - Fine-tune every single piece (Kubernetes, Load balancer, Databases...) of your infrastructure.
 - Extend Qovery capabilities.
 
 
-[docs.devops.infrastructure-as-code.rest-api]: /docs/devops/infrastructure-as-code/rest-api/
 [docs.devops.infrastructure-as-code.terraform]: /docs/devops/infrastructure-as-code/terraform/
 [docs.devops.infrastructure-config.kubernetes]: /docs/devops/infrastructure-config/kubernetes/
 [docs.devops.infrastructure-config.qovery-agent]: /docs/devops/infrastructure-config/qovery-agent/
 [docs.devops.infrastructure-config.qovery-engine]: /docs/devops/infrastructure-config/qovery-engine/
 [docs.devops.infrastructure-config]: /docs/devops/infrastructure-config/
+[docs.using-qovery.interface.rest-api]: /docs/using-qovery/interface/rest-api/
 [guides.advanced.guide-amazon-web-services]: /guides/advanced/guide-amazon-web-services/
 [guides.advanced.guide-digital-ocean]: /guides/advanced/guide-digital-ocean/
 [guides.advanced.guide-scaleway]: /guides/advanced/guide-scaleway/

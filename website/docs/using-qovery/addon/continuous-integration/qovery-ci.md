@@ -1,7 +1,7 @@
 ---
-last_modified_on: "2021-06-19"
+last_modified_on: "2022-02-23"
 title: "Qovery CI"
-description: "Learn how to configure and plug your Qovery CI account"
+description: "Learn how to configure the Qovery CI"
 ---
 
 Qovery provides the Qovery CI which is free and available right now to test (optional) and build your applications.

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-19"
+last_modified_on: "2022-02-23"
 title: "Continuous Integration"
 description: "Learn how to configure and plug in Build Platforms"
 sidebar_label: hidden
@@ -25,7 +25,7 @@ import Jump from '@site/src/components/Jump';
 
 ### I don't find my Continuous Integration platform, what should I do?
 
-Your CI platform is probably going to be supported in the near future. [Contact us][urls.qovery_contact_us] to see how we can help you.
+Your CI platform is probably going to be officially supported in the near future. In the meantime, you can use our [REST API][docs.using-qovery.interface.rest-api] and make the integration yourself (it is super easy).
 
 
-[urls.qovery_contact_us]: https://www.qovery.com/contact
+[docs.using-qovery.interface.rest-api]: /docs/using-qovery/interface/rest-api/

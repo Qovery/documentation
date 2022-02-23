@@ -13,4 +13,16 @@ hide_pagination: true
 
 ### I don't find my Monitoring provider, what should I do?
 
-Your Monitoring provider is probably going to be supported in the near future. [Contact us][urls.qovery_contact_us] to see how we can help you.
+Basically, Qovery relies on Kubernetes to run your apps. Meaning, Qovery will support your monitoring solution if their maintainers provide a [Helm Chart][urls.helm].
+
+If your monitoring platform provides a Helm Chart, then you can:
+
+1. Connect to your Qovery Kubernetes cluster.
+2. Install the helm chart.
+
+<Alert type="info">
+
+Helm is a Kubernetes package manager.
+
+</Alert>
+

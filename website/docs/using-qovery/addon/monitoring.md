@@ -1,11 +1,12 @@
 ---
-last_modified_on: "2021-06-19"
+last_modified_on: "2022-02-23"
 title: "Monitoring"
 description: "Learn how to configure your Monitoring provider in Qovery"
 sidebar_label: hidden
 hide_pagination: true
 ---
 
+import Alert from '@site/src/components/Alert';
 import Jump from '@site/src/components/Jump';
 
 <Jump to="/docs/using-qovery/addon/monitoring/datadog">Datadog</Jump>
@@ -23,7 +24,18 @@ import Jump from '@site/src/components/Jump';
 
 ### I don't find my Monitoring provider, what should I do?
 
-Your Monitoring provider is probably going to be supported in the near future. [Contact us][urls.qovery_contact_us] to see how we can help you.
+Basically, Qovery relies on Kubernetes to run your apps. Meaning, Qovery will support your monitoring solution if their maintainers provide a [Helm Chart][urls.helm].
+
+If your monitoring platform provides a Helm Chart, then you can:
+
+1. Connect to your Qovery Kubernetes cluster.
+2. Install the helm chart.
+
+<Alert type="info">
+
+Helm is a Kubernetes package manager.
+
+</Alert>
 
 
-[urls.qovery_contact_us]: https://www.qovery.com/contact
+[urls.helm]: https://helm.sh

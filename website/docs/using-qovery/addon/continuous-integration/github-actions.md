@@ -153,5 +153,6 @@ exit 0
 
 Feel free to share your custom scripts with us, and we'll be happy to share them with the community. Contact us on [our forum][urls.qovery_forum].
 
+
 [docs.using-qovery.interface.cli#generate-api-token]: /docs/using-qovery/interface/cli/#generate-api-token
 [urls.qovery_forum]: https://discuss.qovery.com/

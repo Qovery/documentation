@@ -8,23 +8,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="chore: add `qovery token` CLI command">
+    <list default="true" id="fb46f125-03fe-4ccd-a180-616a386a14d4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/devops/infrastructure-as-code.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/devops/infrastructure-as-code.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/devops/infrastructure-as-code/rest-api.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/interface/rest-api.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/devops/infrastructure-as-code/rest-api.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/interface/rest-api.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/devops/qovery-for-devops-introduction.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/devops/qovery-for-devops-introduction.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/devops/qovery-for-devops-introduction.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/devops/qovery-for-devops-introduction.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/addon/continuous-integration/github-actions.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/addon/continuous-integration/github-actions.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/addon/continuous-integration/github-actions.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/addon/continuous-integration/github-actions.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/interface.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/interface.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/interface.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/interface.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/interface/cli.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/interface/cli.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/interface/cli.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/interface/cli.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/interface/web-interface.md" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/interface/web-interface.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/docs/using-qovery/interface/web-interface.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/docs/using-qovery/interface/web-interface.md.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/sidebars.js" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/website/sidebars.js.erb" beforeDir="false" afterPath="$PROJECT_DIR$/website/sidebars.js.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_continuous_integration_common_scenarios.md.erb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/generate/templates/_partials/_qovery_continuous_integration_common_scenarios.md.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,6 +182,7 @@
     <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="TF_FMT" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="TEXT" />
     <property name="go.format.on.save.advertiser.fired" value="true" />
@@ -204,7 +191,7 @@
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.vendoring.notification.had.been.shown" value="true" />
     <property name="go.watchers.conflict.with.on.save.actions.check.performed" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/website/static/img/apigateway" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/scripts/generate/templates/_partials" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -223,11 +210,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/scripts/generate/templates/_partials" />
       <recent name="$PROJECT_DIR$/website/static/img/apigateway" />
       <recent name="$PROJECT_DIR$/website/guides/tutorial" />
       <recent name="$PROJECT_DIR$/website/guides/engineering" />
       <recent name="$PROJECT_DIR$/website/static/img/oss-cloud-managed/part-1" />
-      <recent name="$PROJECT_DIR$/website/static/img/oss-cloud-managed" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/website/docs/using-qovery/interface" />
@@ -461,42 +448,7 @@
       <workItem from="1642889034302" duration="14265000" />
       <workItem from="1644009046055" duration="750000" />
       <workItem from="1644567570369" duration="12763000" />
-      <workItem from="1645608489845" duration="3761000" />
-    </task>
-    <task id="LOCAL-00242" summary="chore: update cloud provider guides">
-      <created>1631486478918</created>
-      <option name="number" value="00242" />
-      <option name="presentableId" value="LOCAL-00242" />
-      <option name="project" value="LOCAL" />
-      <updated>1631486478918</updated>
-    </task>
-    <task id="LOCAL-00243" summary="chore: update cloud provider guides">
-      <created>1631486746097</created>
-      <option name="number" value="00243" />
-      <option name="presentableId" value="LOCAL-00243" />
-      <option name="project" value="LOCAL" />
-      <updated>1631486746097</updated>
-    </task>
-    <task id="LOCAL-00244" summary="fix: public feedback url">
-      <created>1631736299220</created>
-      <option name="number" value="00244" />
-      <option name="presentableId" value="LOCAL-00244" />
-      <option name="project" value="LOCAL" />
-      <updated>1631736299221</updated>
-    </task>
-    <task id="LOCAL-00245" summary="chore: update documentation">
-      <created>1631778659066</created>
-      <option name="number" value="00245" />
-      <option name="presentableId" value="LOCAL-00245" />
-      <option name="project" value="LOCAL" />
-      <updated>1631778659066</updated>
-    </task>
-    <task id="LOCAL-00246" summary="chore: update documentation">
-      <created>1631778721754</created>
-      <option name="number" value="00246" />
-      <option name="presentableId" value="LOCAL-00246" />
-      <option name="project" value="LOCAL" />
-      <updated>1631778721754</updated>
+      <workItem from="1645608489845" duration="14042000" />
     </task>
     <task id="LOCAL-00247" summary="chore: update documentation">
       <created>1631782548674</created>
@@ -806,7 +758,42 @@
       <option name="project" value="LOCAL" />
       <updated>1645096451991</updated>
     </task>
-    <option name="localTasksCounter" value="291" />
+    <task id="LOCAL-00291" summary="chore: add `qovery token` CLI command">
+      <created>1645622880315</created>
+      <option name="number" value="00291" />
+      <option name="presentableId" value="LOCAL-00291" />
+      <option name="project" value="LOCAL" />
+      <updated>1645622880316</updated>
+    </task>
+    <task id="LOCAL-00292" summary="feat: update monitoring pages">
+      <created>1645624811905</created>
+      <option name="number" value="00292" />
+      <option name="presentableId" value="LOCAL-00292" />
+      <option name="project" value="LOCAL" />
+      <updated>1645624811905</updated>
+    </task>
+    <task id="LOCAL-00293" summary="chore: update monitoring page">
+      <created>1645626110728</created>
+      <option name="number" value="00293" />
+      <option name="presentableId" value="LOCAL-00293" />
+      <option name="project" value="LOCAL" />
+      <updated>1645626110728</updated>
+    </task>
+    <task id="LOCAL-00294" summary="chore: start updating CI doc pages">
+      <created>1645655619106</created>
+      <option name="number" value="00294" />
+      <option name="presentableId" value="LOCAL-00294" />
+      <option name="project" value="LOCAL" />
+      <updated>1645655619106</updated>
+    </task>
+    <task id="LOCAL-00295" summary="chore: update CI doc pages">
+      <created>1645737769228</created>
+      <option name="number" value="00295" />
+      <option name="presentableId" value="LOCAL-00295" />
+      <option name="project" value="LOCAL" />
+      <updated>1645737769228</updated>
+    </task>
+    <option name="localTasksCounter" value="296" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -891,11 +878,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="chore: update AWS zones" />
-    <MESSAGE value="chore: update AWS doc" />
-    <MESSAGE value="chore: update cloud provider guides" />
-    <MESSAGE value="fix: public feedback url" />
-    <MESSAGE value="chore: update documentation" />
     <MESSAGE value="chore: add article on how to deploy a rust rest api" />
     <MESSAGE value="chre: edit Aggis API article" />
     <MESSAGE value="chore: update postgresql and mysql doc for scaleway" />
@@ -916,6 +898,11 @@
     <MESSAGE value="chore: update heroku and netlify pages" />
     <MESSAGE value="chore: update FAQ" />
     <MESSAGE value="chore: update faq" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: update faq" />
+    <MESSAGE value="chore: add `qovery token` CLI command" />
+    <MESSAGE value="feat: update monitoring pages" />
+    <MESSAGE value="chore: update monitoring page" />
+    <MESSAGE value="chore: start updating CI doc pages" />
+    <MESSAGE value="chore: update CI doc pages" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: update CI doc pages" />
   </component>
 </project>

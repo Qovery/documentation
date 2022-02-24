@@ -747,6 +747,10 @@ class Templates
     render("#{partials_path}/_qovery_database_info.md", binding).strip
   end
 
+  def qovery_continuous_integration_common_scenarios
+    render("#{partials_path}/_qovery_continuous_integration_common_scenarios.md", binding).strip
+  end
+
   def qovery_install_cli
     render("#{partials_path}/_qovery_install_cli.md", binding).strip
   end

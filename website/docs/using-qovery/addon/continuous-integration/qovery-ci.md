@@ -14,137 +14,21 @@ Qovery provides the Qovery CI which is free and available right now to test (opt
      website/docs/using-qovery/addon/continuous-integration/qovery-ci.md.erb
 -->
 
-## Scenarios
+## Configuration
 
-Those scenarios can be copy/paste and adapted to your usage. Do not forget to [generate a Qovery API token][docs.using-qovery.interface.cli#generate-api-token] to use them.
+The Qovery CI use your regular Dockerfile to build and test your application.
 
-### Deploy your application with a specific commit ID
+### Performance
 
-```shell
-#!/usr/bin/env sh
+You can tune the performance of your Qovery CI through the web interface. The main attributes that you can tune are:
+- the number of **CPUs**. Default: 1 CPU
+- the total **RAM**. Default: 2 GB
 
-APP_COMMIT_ID="TO CHANGE WITH YOUR APP COMMIT ID TO DEPLOY"
-ENVIRONMENT_ID="TO CHANGE WITH YOUR ENVIRONMENT ID"
-APPLICATION_ID="TO CHANGE WITH YOUR APPLICATION ID"
-QOVERY_API_TOKEN="TO CHANGE"
+Which is enough for most applications.
 
-set -e
+### Instances
 
-# if the command did not succeed, then the job will just failed
-# Doc: https://api-doc.qovery.com/#operation/deployApplication
-result=$(curl -sb -X POST -H 'Content-type: application/json' -H "Authorization: Bearer $QOVERY_API_TOKEN" \
-    -d "{\"git_commit_id\": \"$APP_COMMIT_ID\"}" "https://api.qovery.com/application/$APPLICATION_ID/deploy")
-
-echo $result
-
-timeoutInSeconds=3600
-endTime=$(($(date +%s) + timeoutInSeconds))
-
-## wait for successful deployment
-while [ "$(date +%s)" -lt $endTime ]; do
-    # check deployment status
-    # Doc: https://api-doc.qovery.com/#operation/getProjectEnvironmentStatus
-    current_state=$(curl -sb -X GET -H 'Content-type: application/json' -H "Authorization: Bearer $QOVERY_API_TOKEN" \
-      "https://api.qovery.com/environment/$ENVIRONMENT_ID/status" | jq -r .state)
-
-    if [ "RUNNING" = "$current_state" ]; then
-      break
-    fi
-
-    # shellcheck disable=SC2039
-    if [[ "$current_state" =~ ^"ERROR_.*" ]]; then
-      echo "deployment error with current state: $(current_state) - connect to https://console.qovery.com" > /dev/stderr
-      exit 1
-    fi
-
-    printf "environment state: $current_state\n"
-
-    sleep 5 # wait to check again
-done
-
-## keep going
-exit 0
-```
-
-### Create a Preview Environment for your Pull-Request
-
-```shell
-#!/usr/bin/env sh
-
-PROJECT_ID="TO CHANGE"
-BASE_ENVIRONMENT="name of environment TO CHANGE"
-QOVERY_API_TOKEN="TO CHANGE"
-
-set -e
-
-baseEnvironmentId=$(curl -sb -X GET -H 'Content-type: application/json' -H "Authorization: Bearer $QOVERY_API_TOKEN" \
-    "https://api.qovery.com/project/$PROJECT_ID/environment" | jq -r ".results[] | select(.name==\"$BASE_ENVIRONMENT\") | .id")
-
-# clone the environment base on the correct right branch
-newEnvironmentId=$(curl -sb -X POST -d "{\"name\": \"[PR] $BRANCH_NAME\"}" -H 'Content-type: application/json' -H "Authorization: Bearer $QOVERY_API_TOKEN" \
-    "https://api.qovery.com/environment/$baseEnvironmentId/clone" | jq -r ".id")
-
-# get all apps from env
-apps=$(curl -sb -X GET -H 'Content-type: application/json' -H "Authorization: Bearer $QOVERY_API_TOKEN" \
-         "https://api.qovery.com/environment/$newEnvironmentId/application" | jq -r ".")
-
-echo "$apps" | jq -c '.results[]' | while read row; do
-    # get complete app JSON and clear necessary fields, otherwise the Qovery API returns 4xx
-    app=$(echo "$row" | jq -r ".git_repository.branch=\"$BRANCH_NAME\"" | jq -r "del(.environment)" | jq -r "del(.created_at)" \
-        | jq -r "del(.id)" | jq -r "del(.updated_at)" | jq -r "del(.git_repository.url)" \
-        | jq -r "del(.git_repository.deployed_commit_id)" | jq -r "del(.git_repository.deployed_commit_date)" \
-        | jq -r "del(.git_repository.deployed_commit_contributor)" | jq -r "del(.git_repository.deployed_commit_tag)" \
-        | jq -r "del(.git_repository.provider)" | jq -r "del(.git_repository.owner)" | jq -r "del(.git_repository.has_access)" \
-        | jq -r "del(.git_repository.name)" | jq -r "del(.maximum_cpu)" | jq -r "del(.maximum_memory)" | jq -r "del(.ports[].name)" \
-        | jq -r "del(.storage)" | jq -r "del(.git_repository.root_path)")
-
-    appId=$(echo "$app" | jq -r '.id')
-
-    # escape double quotes
-    formatApp=$(echo "$app" | jq -c '.' | sed 's/"/\\"/g')
-
-    # update app via Qovery API
-    savedApp=$(curl -sb -X PUT -d "$formatApp" -H 'Content-type: application/json' -H "Authorization: Bearer $QOVERY_API_TOKEN" \
-             "https://api.qovery.com/application/$appId" | jq -r '.')
-done
-
-# deploy env
-result=$(curl -sb -X POST -H 'Content-type: application/json' -H "Authorization: Bearer $QOVERY_API_TOKEN" \
-    "https://api.qovery.com/environment/$newEnvironmentId/deploy")
-
-timeoutInSeconds=3600
-endTime=$(($(date +%s) + timeoutInSeconds))
-
-## wait for successful deployment
-while [ "$(date +%s)" -lt $endTime ]; do
-    # check deployment status
-    # Doc: https://api-doc.qovery.com/#operation/getProjectEnvironmentStatus
-    current_state=$(curl -sb -X GET -H 'Content-type: application/json' -H "Authorization: Bearer $QOVERY_API_TOKEN" \
-      "https://api.qovery.com/environment/$newEnvironmentId/status" | jq -r .state)
-
-    if [ "RUNNING" = "$current_state" ]; then
-      break
-    fi
-
-    # shellcheck disable=SC2039
-    if [[ "$current_state" =~ ^".*_ERROR" ]]; then
-      echo "deployment error with current state: $(current_state) - connect to https://console.qovery.com" > /dev/stderr
-      exit 1
-    fi
-
-    printf "environment state: $current_state\n"
-
-    sleep 5 # wait to check again
-done
-
-## keep going
-exit 0
-```
-
-### Any other scenario?
-
-Feel free to share your custom scripts with us, and we'll be happy to share them with the community. Contact us on [our forum][urls.qovery_forum].
+The number of Qovery CI instances is auto-scaled, depending on the number of tasks queued. The limit is to 50 Qovery CI instances per Kubernetes cluster. Each instance runs only a single "task" at the same time.
 
 
-[docs.using-qovery.interface.cli#generate-api-token]: /docs/using-qovery/interface/cli/#generate-api-token
-[urls.qovery_forum]: https://discuss.qovery.com/
+

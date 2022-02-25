@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-12-28"
+last_modified_on: "2022-02-25"
 $schema: "/.meta/.schemas/guides.json"
 title: Setup VPC peering on AWS with Qovery
 description: How to peer a Qovery VPC with an existing VPC on AWS
@@ -43,10 +43,10 @@ This tutorial will show you how to set up VPC peering between the Qovery VPC and
      website/guides/tutorial/aws-vpc-peering-with-qovery.md.erb
 -->
 
-## Goal 
+## Goal
 
-In this tutorial, we will connect an existing VPC on our AWS account with the VPC of a Qovery managed cluster. 
-We should then be able to deploy an application using a PostgreSQL RDS instance in our existing VPC.
+In this tutorial, we will connect an existing VPC on our AWS accounts with the VPC of a Qovery managed cluster.
+We should then be able to deploy an application using a PostgresSQL RDS instance in our existing VPC.
 
 <Steps headingDepth={3}>
 
@@ -60,12 +60,12 @@ Before we begin, you will need to gather some information. It is recommended tha
 
 At the end of this step 1, you should have those elements:
 
-| Name | Content |
-|------|---------|
-| **VPC source CIDR** | x.x.x.x/x |
-| **VPC source name** | vpc-xxx |
+| Name                     | Content   |
+|--------------------------|-----------|
+| **VPC source CIDR**      | x.x.x.x/x |
+| **VPC source name**      | vpc-xxx   |
 | **VPC destination CIDR** | y.y.y.y/y |
-| **VPC destination name** | vpc-yyy |
+| **VPC destination name** | vpc-yyy   |
 
 Keep in mind the following convention:
 * Existing VPC: your current VPC infrastructure (not managed by Qovery)
@@ -79,10 +79,10 @@ To get your existing VPC ID in your AWS console, go to: `VPC > Your VPCs`, find 
 
 You will be able to have those information:
 
-| Name | Content |
-|------|---------|
-| **VPC destination CIDR** | x.x.x.x/x |
-| **VPC destination name** | vpc-xxx |
+| Name | Content    |
+|------|------------|
+| **VPC destination CIDR** | x.x.x.x/x  |
+| **VPC destination name** | vpc-xxx    |
 
 <p align="center">
   <img src="/img/aws-vpc-peering-with-qovery/vpc-console-1.png" alt="AWS console VPC list" />
@@ -133,25 +133,25 @@ In the AWS console, go to `VPC > Peering connections` and click on `Create peeri
 
 <p align="center">
     <img src="/img/aws-vpc-peering-with-qovery/peering-form.png" alt="AWS create VPC peering form" />
-</p>    
+</p>
 
 </li>
 <li>
 
 #### Accept the peering request
 
-Once created, the peering connection needs to be accepted. 
+Once created, the peering connection needs to be accepted.
 On the peering connection view, click on `Actions` then `Accept request`
 
 <p align="center">
     <img src="/img/aws-vpc-peering-with-qovery/accept-peering-request.png" alt="AWS accept VPC peering request" />
-</p>    
+</p>
 
 You should see your peering connection marked as `Active`
 
 <p align="center">
     <img src="/img/aws-vpc-peering-with-qovery/peering-active.png" alt="AWS VPC peering active" />
-</p>    
+</p>
 
 <Alert type="info">
 <b>Take note of the peering connection ID. You will need it later.</b>
@@ -163,20 +163,22 @@ You should see your peering connection marked as `Active`
 
 #### Update existing VPC route table
 
-In the AWS console of your existing VPC, go to `VPC > Route Tables`.
-You can filter the list using the IDs you noted at step 1 to find the routes table for your existing VPC.
+In the AWS console of your **non Qovery VPC**, go to `VPC > Route Tables`.
+You can filter the list using the IDs you noted at step 1 to find the routing table for your existing VPC.
+
+> Thanks Kevin M. for your contribution here 😊
 
 For your existing VPC edit the route table:
 
 <p align="center">
     <img src="/img/aws-vpc-peering-with-qovery/existing-rt.png" alt="AWS VPC Qovery Route Table" />
-</p>    
+</p>
 
-Click on the `Edit routes` button then `Add route`. 
+Click on the `Edit routes` button then `Add route`.
 
 <p align="center">
     <img src="/img/aws-vpc-peering-with-qovery/existing-rt-add.png" alt="AWS VPC Qovery Route Table add route" />
-</p> 
+</p>
 
 - As a destination, enter the CIDR of your Qovery VPC
 - As a target, select the `Peering connection` you created earlier
@@ -193,7 +195,7 @@ Click `Save changes`.
 
 #### Update Qovery VPC route table
 
-This part needs to be done through the Qovery console. 
+This part needs to be done through the Qovery console.
 
 <Alert type="warning">
     Make sure you are adding a new route. Do not edit or remove existing routes to avoid service interruption.
@@ -203,7 +205,7 @@ In the cluster settings, under the `Network` tab, click `ADD ROUTE`
 
 <p align="center">
     <img src="/img/aws-vpc-peering-with-qovery/qovery-rt.png" alt="AWS VPC Qovery Route Table add route" />
-</p> 
+</p>
 
 - As a destination, enter the CIDR of your existing VPC
 - As a target, enter the ID of the peering connection you created earlier
@@ -211,7 +213,13 @@ In the cluster settings, under the `Network` tab, click `ADD ROUTE`
 
 <p align="center">
     <img src="/img/aws-vpc-peering-with-qovery/qovery-rt-added.png" alt="AWS VPC Qovery Route Table add route" />
-</p> 
+</p>
+
+<Alert type="warning">
+
+You need to update your cluster to apply the configuration change. Click on the cluster ellipsis > "update".
+
+</Alert>
 
 </li>
 
@@ -221,15 +229,15 @@ In the cluster settings, under the `Network` tab, click `ADD ROUTE`
 
 Our two VPCs are now connected, but we still need to update the security groups to allow communication between the Qovery applications and your existing resources.
 
-What rules to put on your security groups depends on what you are trying to achieve. 
+What rules to put on your security groups depends on what you are trying to achieve.
 In our case, we would like to access an RDS instance from our Qovery applications.
 
-We will edit the RDS security group in our existing VPC to add an inbound rule allowing PostgreSQL traffic from our Qovery instances: 
+We will edit the RDS security group in our existing VPC to add an inbound rule allowing PostgreSQL traffic from our Qovery instances:
 
 
 <p align="center">
     <img src="/img/aws-vpc-peering-with-qovery/pg-inbound-rule.png" alt="AWS Security Group inbound rules" />
-</p> 
+</p>
 
 </li>
 

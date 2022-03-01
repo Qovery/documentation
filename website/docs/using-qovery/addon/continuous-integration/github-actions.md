@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-02-24"
+last_modified_on: "2022-03-01"
 title: "GitHub Actions"
 description: "Learn how to connect GitHub Actions to Qovery"
 ---
@@ -10,7 +10,7 @@ Using GitHub Actions with Qovery is super powerful and gives you the ability to 
 
 <Alert type="success">
 
-Checkout the [Qovery GitHub Actions](https://github.com/Qovery/qovery-github-actions for simple scenarios
+Checkout the [Qovery GitHub Actions](https://github.com/Qovery/qovery-github-actions) for simple scenarios
 
 </Alert>
 

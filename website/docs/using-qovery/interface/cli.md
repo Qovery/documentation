@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-02-23"
+last_modified_on: "2022-03-02"
 title: CLI
 description: How to use the Qovery CLI (Command Line Interface)
 ---
@@ -317,7 +317,13 @@ Keep in mind these limitations when using this feature:
 
 ## Generate API token
 
-To use the Qovery API you will need to generate a JWT authentication token. To generate an API token you can install the CLI and type
+To use the Qovery API you will need to generate an authentication token. To generate an API token you can install the CLI and type
+
+<Alert type="warning">
+
+Never share your API token with anyone.
+
+</Alert>
 
 ```bash
 $ qovery token
@@ -325,10 +331,22 @@ $ qovery token
 Qovery: Select organization
 Organization:
 ✔ My Organization
+Choose a token name
+Token name: Romaric
+Choose a token description
+Token description: used for Github Actions
 Qovery: ---- Never share this authentication token and keep it secure ----
-Qovery: xxx.yyyzzzzJWTtoken
+Qovery: qov_4LnEg2wFxxxxxHObGSQ22rjBZZyyyySgyR6Y_2500882691
 Qovery: ---- Never share this authentication token and keep it secure ----
 ```
+
+To use your token and list your organizations.
+
+```shell
+curl -X GET -H 'Authorization: token qov_4LnEg2wFxxxxxHObGSQ22rjBZZyyyySgyR6Y_2500882691' https://api.qovery.com/organization
+```
+
+Check out our [API documentation][urls.qovery_swagger]
 
 ## Support
 
@@ -340,4 +358,5 @@ Do you have any issues with Qovery CLI? [Open an issue](https://github.com/Qover
 [urls.authorize_qovery]: https://github.com/apps/qovery/installations/new
 [urls.brew]: https://brew.sh/
 [urls.qovery_cli_releases]: https://github.com/Qovery/qovery-cli/releases
+[urls.qovery_swagger]: https://api-doc.qovery.com
 [urls.scoop]: https://scoop.sh/

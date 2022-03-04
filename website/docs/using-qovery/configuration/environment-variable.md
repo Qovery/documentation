@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-02-16"
+last_modified_on: "2022-03-04"
 title: "Environment Variable"
 description: "Learn how to configure Environment Variables on Qovery"
 ---
@@ -44,20 +44,21 @@ Here is a short video to show how to use environment variables.
 
 There are four levels of Environment Variables. Each type differs in scope - you can create variables bound to application, environment, or project.
 
-| Scope       | Level     | Description     |
-|-------------|-----------|-----------------|
-| **BUILT_IN**    | 1 | Automatically generated variables based on your configuration (e.g., requested databases) propagated to all projects, environments, and applications|
-| **PROJECT**     | 2 | Variables at the project level are shared across all environments and all applications of the project|
-| **ENVIRONMENT** | 3 | Variables at the environment level are shared across all applications of the project in one, given environment |
-| **APPLICATION** | 4 | Variables available for one application in one environment |
+| Scope           | Level     | Description                                                                                                                                          |
+|-----------------|-----------|------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **BUILT_IN**    | 1         | Automatically generated variables based on your configuration (e.g., requested databases) propagated to all projects, environments, and applications |
+| **PROJECT**     | 2         | Variables at the project level are shared across all environments and all applications of the project                                                |
+| **ENVIRONMENT** | 3         | Variables at the environment level are shared across all applications of the project in one, given environment                                       |
+| **APPLICATION** | 4         | Variables available for one application in one environment                                                                                           |
 
 ## Built-in variables
 By default, every environment contains built-in variables:
 
-| Name       | Example     | Description     |
-|-------------|-----------|-----------------|
-| **QOVERY_BRANCH_NAME**     | master | Git branch name |
-| **QOVERY_IS_PRODUCTION** | true | Flag that indicates production environment |
+| Name                        | Description            |
+|-----------------------------|------------------------|
+| **QOVERY_PROJECT_ID**       | Current project ID     |
+| **QOVERY_ENVIRONMENT_ID**   | Current environment ID |
+| **QOVERY_APPLICATION_ID**   | Current application ID |
 
 ## Additional built-in variables
 
@@ -69,7 +70,7 @@ to the database.
 We use the following naming convention for additional built-in variables:
 
 ```
-QOVERY_<SERVICE_TYPE>_<NAME>_<SPEC>
+QOVERY_<SERVICE_TYPE>_<SERVICE_ID>_<SPEC>
 ```
 
 ## Additional Rules
@@ -135,7 +136,7 @@ Additionally, there is one more `BUILT_IN` scope that is used for variables inje
 
 **Application** environment variables are visible only in one application.
 
-**BUILT_IN** variables are automatically injected to selected applications by Qovery.
+**Built in** variables are automatically injected to selected applications by Qovery.
 
 [Read more in Levels section][docs.configuration.environment-variable#levels]
 
@@ -361,8 +362,8 @@ The file is loaded and a new modal is displayed, where you can configure the imp
 
 **Overwrites variables**
 
-When this option is enabled, if an existing variable and an imported variable share the same name, the existing value will be overwritten by the imported one. 
-If the option is disabled, the imported value will be ignored. 
+When this option is enabled, if an existing variable and an imported variable share the same name, the existing value will be overwritten by the imported one.
+If the option is disabled, the imported value will be ignored.
 However, to avoid conflicts in the architecture of your environment variables, some of them will intentionally not be imported.
 To understand how we handle conflicts, please take a look to the [Importation conflicts](#importation-conflicts) section.
 
@@ -389,7 +390,7 @@ When you have finished the configuration, click on the `Import` button.
 </li>
 <li>
 
-A pop-up message is displayed to inform you that your environment variables have been imported. 
+A pop-up message is displayed to inform you that your environment variables have been imported.
 
 <p align="center">
   <img src="/img/configuration/variables/import-done.png" alt="Import button" />
@@ -401,10 +402,10 @@ A pop-up message is displayed to inform you that your environment variables have
 
 ### Importation conflicts
 
-To avoid conflicts between already existing and imported environment variables, some of them will not be imported, even if the overwrite option is activated. 
-The different cases are described below. 
+To avoid conflicts between already existing and imported environment variables, some of them will not be imported, even if the overwrite option is activated.
+The different cases are described below.
 
-#### Imported variable has same name as BUILT_IN variable 
+#### Imported variable has same name as BUILT_IN variable
 
 | Type       | Name            | Value     | Scope       |
 |------------|-----------------|-----------|-------------|
@@ -415,7 +416,7 @@ The different cases are described below.
 
 Built_in environment variables are generated and managed by Qovery and will not be overwritten, even if the `overwriting` option is activated.
 
-#### Imported variable has same name as an existing ALIAS 
+#### Imported variable has same name as an existing ALIAS
 
 | Type       | Name            | Value     | Scope       |
 |------------|-----------------|-----------|-------------|
@@ -425,7 +426,7 @@ Built_in environment variables are generated and managed by Qovery and will not 
 | ** Variables to import **    |           |             |
 | VALUE      | MY_VAR_ALIAS    | 10        | Application |
 
-The value cannot be rewritten because the link between the original variable and the alias would be lost. 
+The value cannot be rewritten because the link between the original variable and the alias would be lost.
 
 #### Imported variable has same name as an existing secret (or vice versa)
 
@@ -440,7 +441,7 @@ The value cannot be imported because this will overwrite the existing secret.
 
 ### Overwriting and limitations
 
-Some overwriting cases are not supported for now. They are summarized in the following table. 
+Some overwriting cases are not supported for now. They are summarized in the following table.
 
 | Existing variable scope      | Imported variable scope               | Supported  |
 |------------------------------|---------------------------------------|------------|

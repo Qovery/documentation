@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-03-02"
+last_modified_on: "2022-03-06"
 title: CLI
 description: How to use the Qovery CLI (Command Line Interface)
 ---
@@ -343,7 +343,7 @@ Qovery: ---- Never share this authentication token and keep it secure ----
 To use your token and list your organizations.
 
 ```shell
-curl -X GET -H 'Authorization: token qov_4LnEg2wFxxxxxHObGSQ22rjBZZyyyySgyR6Y_2500882691' https://api.qovery.com/organization
+curl -X GET -H 'Authorization: Token qov_4LnEg2wFxxxxxHObGSQ22rjBZZyyyySgyR6Y_2500882691' https://api.qovery.com/organization
 ```
 
 Check out our [API documentation][urls.qovery_swagger]

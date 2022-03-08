@@ -528,15 +528,6 @@ module.exports = {
           "title": "How to create an RDS instance through the AWS console"
         },
         {
-          "author_github": "https://github.com/Aggis15",
-          "description": null,
-          "id": "/tutorial/create-and-deploy-python-discord-bot",
-          "last_modified_on": null,
-          "path": "website/guides/tutorial/create-and-deploy-python-discord-bot.md",
-          "series_position": null,
-          "title": "How to create and deploy a Discord bot in Python"
-        },
-        {
           "author_github": "https://github.com/Stun3R",
           "description": null,
           "id": "/tutorial/how-to-deploy-nuxtjs",

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-11-26"
+last_modified_on: "2022-03-09"
 $schema: "/.meta/.schemas/guides.json"
 title: How to Build a Cloud Version of Your Open Source Software - A Case Study with AppWrite - Part 2
 description: Open-source eat the world. More and more great open-source projects are used. One standard method to make those products financially sustainable is to provide a managed version. Meaning, you can enjoy using their product without the hassle of managing the product updates, the backups, the security, and the scaling. This guide will attempt to explain how to build a cloud-managed version of an open-source project.
@@ -33,7 +33,7 @@ For all business logic, we will use the `Async Actions` feature of Hasura. In th
 
 ## Hosting AppWrite Cloud
 
-Besides hosting all the managed AppWrite projects of AppWrite Cloud users, Qovery can also host the whole AppWrite Cloud backend itself. Indeed, in this case study, we'll go through all the steps required to deploy AppWrite Cloud on Qovery.
+Besides, hosting all the managed AppWrite projects of AppWrite Cloud users, Qovery can also host the whole AppWrite Cloud backend itself. Indeed, in this case study, we'll go through all the steps required to deploy AppWrite Cloud on Qovery.
 
 ## Deploying AppWrite Cloud on Qovery
 
@@ -51,12 +51,12 @@ To deploy Hasura, fork this repository [https://github.com/Qovery/hasura](https
 - `HASURA_GRAPHQL_ADMIN_SECRET` - your Hasura admin secret (value up to you)
 - `HASURA_GRAPHQL_JWT_SECRET`
 
-    ```graphql
-    {
-    	"type": "HS256",
-    	"key": "$KEY"
-    }
-    ```
+```graphql
+{
+  "type": "HS256",
+  "key": "$KEY"
+}
+```
 
 - where `$KEY` is a minimum 32 character long string
 - `HASURA_GRAPHQL_DATABASE_URL` - an alias to your previously created PostgreSQL URL
@@ -277,21 +277,21 @@ To do so, all we need to do is to follow a few simple steps:
 1. Navigate to the Hasura GraphQL API application in Qovery Console
 2. Click `Add` button and select `Custom Domain`
 
-    <p align="center">
-      <img src="/img/appwrite-2-7.png" alt="AppWrite Qovery Case Study" />
-    </p>
+<p align="center">
+  <img src="/img/appwrite-2-7.png" alt="AppWrite Qovery Case Study" />
+</p>
 
 3. Type the name of desired domain, click `Add` and copy the `Value` displayed in the box below
 
-    <p align="center">
-      <img src="/img/appwrite-2-8.png" alt="AppWrite Qovery Case Study" />
-    </p>
+<p align="center">
+  <img src="/img/appwrite-2-8.png" alt="AppWrite Qovery Case Study" />
+</p>
 
 4. Add a `CNAME` record with value copied in the previous step in your domain provider DNS management settings
 
-    <p align="center">
-      <img src="/img/appwrite-2-9.png" alt="AppWrite Qovery Case Study" />
-    </p>
+<p align="center">
+  <img src="/img/appwrite-2-9.png" alt="AppWrite Qovery Case Study" />
+</p>
 
 5. Restart `Hasura` application
 

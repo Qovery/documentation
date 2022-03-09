@@ -16,7 +16,7 @@ set -e
 
 # if the command did not succeed, then the job will just failed
 # Doc: https://api-doc.qovery.com/#operation/deployApplication
-result=$(curl -sb -X POST -H 'Content-type: application/json' -H "Authorization: Bearer $QOVERY_API_TOKEN" \
+result=$(curl -sb -X POST -H 'Content-type: application/json' -H "Authorization: Token $QOVERY_API_TOKEN" \
     -d "{\"git_commit_id\": \"$APP_COMMIT_ID\"}" "https://api.qovery.com/application/$APPLICATION_ID/deploy")
 
 echo $result
@@ -28,7 +28,7 @@ endTime=$(($(date +%s) + timeoutInSeconds))
 while [ "$(date +%s)" -lt $endTime ]; do
     # check deployment status
     # Doc: https://api-doc.qovery.com/#operation/getProjectEnvironmentStatus
-    current_state=$(curl -sb -X GET -H 'Content-type: application/json' -H "Authorization: Bearer $QOVERY_API_TOKEN" \
+    current_state=$(curl -sb -X GET -H 'Content-type: application/json' -H "Authorization: Token $QOVERY_API_TOKEN" \
       "https://api.qovery.com/environment/$ENVIRONMENT_ID/status" | jq -r .state)
 
     if [ "RUNNING" = "$current_state" ]; then
@@ -61,15 +61,15 @@ QOVERY_API_TOKEN="TO CHANGE"
 
 set -e
 
-baseEnvironmentId=$(curl -sb -X GET -H 'Content-type: application/json' -H "Authorization: Bearer $QOVERY_API_TOKEN" \
+baseEnvironmentId=$(curl -sb -X GET -H 'Content-type: application/json' -H "Authorization: Token $QOVERY_API_TOKEN" \
     "https://api.qovery.com/project/$PROJECT_ID/environment" | jq -r ".results[] | select(.name==\"$BASE_ENVIRONMENT\") | .id")
 
 # clone the environment base on the correct right branch
-newEnvironmentId=$(curl -sb -X POST -d "{\"name\": \"[PR] $BRANCH_NAME\"}" -H 'Content-type: application/json' -H "Authorization: Bearer $QOVERY_API_TOKEN" \
+newEnvironmentId=$(curl -sb -X POST -d "{\"name\": \"[PR] $BRANCH_NAME\"}" -H 'Content-type: application/json' -H "Authorization: Token $QOVERY_API_TOKEN" \
     "https://api.qovery.com/environment/$baseEnvironmentId/clone" | jq -r ".id")
 
 # get all apps from env
-apps=$(curl -sb -X GET -H 'Content-type: application/json' -H "Authorization: Bearer $QOVERY_API_TOKEN" \
+apps=$(curl -sb -X GET -H 'Content-type: application/json' -H "Authorization: Token $QOVERY_API_TOKEN" \
          "https://api.qovery.com/environment/$newEnvironmentId/application" | jq -r ".")
 
 echo "$apps" | jq -c '.results[]' | while read row; do
@@ -88,12 +88,12 @@ echo "$apps" | jq -c '.results[]' | while read row; do
     formatApp=$(echo "$app" | jq -c '.' | sed 's/"/\\"/g')
 
     # update app via Qovery API
-    savedApp=$(curl -sb -X PUT -d "$formatApp" -H 'Content-type: application/json' -H "Authorization: Bearer $QOVERY_API_TOKEN" \
+    savedApp=$(curl -sb -X PUT -d "$formatApp" -H 'Content-type: application/json' -H "Authorization: Token $QOVERY_API_TOKEN" \
              "https://api.qovery.com/application/$appId" | jq -r '.')
 done
 
 # deploy env
-result=$(curl -sb -X POST -H 'Content-type: application/json' -H "Authorization: Bearer $QOVERY_API_TOKEN" \
+result=$(curl -sb -X POST -H 'Content-type: application/json' -H "Authorization: Token $QOVERY_API_TOKEN" \
     "https://api.qovery.com/environment/$newEnvironmentId/deploy")
 
 timeoutInSeconds=3600
@@ -103,7 +103,7 @@ endTime=$(($(date +%s) + timeoutInSeconds))
 while [ "$(date +%s)" -lt $endTime ]; do
     # check deployment status
     # Doc: https://api-doc.qovery.com/#operation/getProjectEnvironmentStatus
-    current_state=$(curl -sb -X GET -H 'Content-type: application/json' -H "Authorization: Bearer $QOVERY_API_TOKEN" \
+    current_state=$(curl -sb -X GET -H 'Content-type: application/json' -H "Authorization: Token $QOVERY_API_TOKEN" \
       "https://api.qovery.com/environment/$newEnvironmentId/status" | jq -r .state)
 
     if [ "RUNNING" = "$current_state" ]; then

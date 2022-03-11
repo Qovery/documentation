@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-12-15"
+last_modified_on: "2022-03-11"
 title: "Deployment Rule"
 description: "Learn how to configure the lifecycle of your Environments"
 ---
@@ -89,14 +89,18 @@ In the popup, select **Deployment Rules** and add **New**:
 
 ### General
 
-### Mode
+#### Mode
 
-Selecting Mode allows you to choose the type of services provisioned in your environments. It is a great way to optimize your cloud expenses:
+Selecting Mode allows you to labelize the environment. 
 
-- `PRODUCTION` mode will provision reliable, production-ready services. It will make sure your production is covered with backups, high uptime, and stability
-- `DEVELOPMENT` mode will provide services in development mode, e.g. Qovery will deploy cheap, containerized versions of databases to avoid provisioning costly, cloud-provider managed services
+<Alert type="info">
 
-### Cluster
+To learn more about the environment modes, take a look to the [Type of environments](docs.using-qovery.configuration.environment#type-of-environment) section.
+
+</Alert>
+
+
+#### Cluster
 
 Selecting the cluster allows you to control to which cluster your environments in the project will be deployed to.
 
@@ -108,40 +112,44 @@ Selecting the cluster allows you to control to which cluster your environments i
   <img src="/img/configuration/deployment/deploy-3.png" alt="Deployments" />
 </p>
 
+</li>
+<li>
+
 ### Deployment
 
-### Auto-deploy
+#### Auto-deploy
 
 **Auto deploy** feature allows you to control if your applications should be, by default, automatically updated after receiving new commits.
 
-### Auto-delete
+#### Auto-delete
 
 **Auto-delete** feature allows you to control if your applications should be, by default, automatically deleted after branch merging or deletion.
 
-### Start & Stop
+#### Start & Stop
 
 The start and stop section allow you to precisely set up when the environments inside the project should be deployed and cleaned up.
 
-**Example use cases**
+**Use cases examples**
 
 - shut down your development environments during the weekend
 - deploy additional environments during peak hours
 
 <br/>
 
+</li>
+<li>
+
 ### Target Future Environment
 
 This option allows you to specify which environments should be affected by the given deployment rule.
 
 <p align="center">
-  <img src="/img/configuration/deployment/deploy-4.png" alt="Deployments" />
+  <img src="/img/deploy-4.png" alt="Deployments" />
 </p>
-
-It takes a regex expression as a parameter and, based on that, decides which rule should be applied to a newly created environment.
 
 <Alert type="info">
 
-You can override the Rule applied by Project to Environment in Environment settings. Rules configured at the Project level are defaults applied for Environments when they are first created, but you can fine-tune and adjust environments to your needs afterwards.
+To learn how to write a rule thanks to the wildcards, take a look to the [wildcards sections](#wildcards).
 
 </Alert>
 
@@ -149,6 +157,41 @@ You can override the Rule applied by Project to Environment in Environment setti
 </ol>
 
 </Steps>
+
+### Rules priority 
+
+Since you can define several rules, it is possible that an environment is targeted by more than one of them.
+In order to define which rule applies first to your new environments, you can reorder the list of rules in the deployment setting window. 
+Starting from the top, the rules are ranked from highest to lowest priority. 
+
+<p align="center">
+  <img src="/img/rules-priority.png" alt="Reorder priority rules" />
+</p>
+
+### Wildcards
+
+Wildcards will allow you to specify the environments you want your deployment rule to target. 
+
+You can use the following characters to specify your rule. 
+
+| wildcard |         behavior        |                will match               |
+|:--------:|:-----------------------:|:---------------------------------------:|
+| ?        | Any one character       | "A", "B", "c", "z", etc.                |
+| ??       | Any two characters      | "AA", "AZ", "zz", etc.                  |
+| ???      | Any three characters    | "Jet", "AAA", "ccc", etc.               |
+| *        | Any characters          | "apple", "APPLE", "A100", etc.          |
+| *th      | Ends in "th"            | "bath", "fourth", etc.                  |
+| c*       | Starts with "c"         | "Cat", "CAB", "cindy", "candy", etc.    |
+| ?*       | At least one character  | "a", "b", "ab", "ABCD", etc.            |
+| ???-??   | 5 characters with hypen | "ABC-99","100-ZT", etc.                 |
+| *xyz*    | Contains "xyz"          | "code is XYZ", "100-XYZ", "XyZ90", etc. |
+
+For example, the rule `Prod_Env_*` will target the environment named:
+- `Prod_Env_1`
+- `Prod_Env_feature`
+
+But will not target the environment named:
+- `Staging_Env_1`
 
 ## Environment Deployment Rules
 

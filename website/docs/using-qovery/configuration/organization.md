@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-10-08"
+last_modified_on: "2022-03-11"
 title: "Organization"
 description: "Learn how to configure Organizations on Qovery"
 ---
@@ -46,16 +46,26 @@ In a nutshell:
 
 Get more info [here][urls.qovery_pricing].
 
-## Connect your Cloud account
+## Manage your clusters
 
-<Alert type="info">
+With Qovery, you can manage multiple clusters in your organizations settings and deploy your project environments and services on the one you want. 
 
-This feature is only valid for paid plans -> **Free**, **Professional**, **Business** and **Enterprise** plans.
+In the settings of your organization, you will be able to add, stop, update the settings and delete a cluster. 
 
-</Alert>
+<p align="center">
+  <img src="/img/multi-clusters.png" alt="Qovery - Manage multiple clusters in your organization" />
+</p>
 
 Check out [this documentation][docs.using-qovery.configuration.cloud-service-provider] according to the Cloud service provider that you want
 to use.
+
+#### What is the default cluster? 
+
+The default cluster is the first cluster you installed in your organization. 
+
+When you create a new environment and you leave the `mode` and `cluster` parameters set to the value `Automatic`, it will be targeted by one of your project rules. However, if no project rules target them, they will be deployed on the default cluster. 
+
+Check out [this documentation][docs.using-qovery.configuration.project] to learn more about the deployment rules. 
 
 ## Organization members
 
@@ -131,5 +141,6 @@ To know more on how much Qovery costs - see our [pricing page][urls.qovery_prici
 
 
 [docs.using-qovery.configuration.cloud-service-provider]: /docs/using-qovery/configuration/cloud-service-provider/
+[docs.using-qovery.configuration.project]: /docs/using-qovery/configuration/project/
 [docs.using-qovery.interface]: /docs/using-qovery/interface/
 [urls.qovery_pricing]: https://www.qovery.com/pricing

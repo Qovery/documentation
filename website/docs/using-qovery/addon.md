@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-02-16"
+last_modified_on: "2022-03-15"
 title: Addons
 description: "Useful addons to improve your Qovery workflow"
 sidebar_label: hidden

@@ -375,6 +375,15 @@ module.exports = {
           "title": "Deploy Spring Boot with PostgreSQL"
         },
         {
+          "author_github": "https://github.com/l0ck3",
+          "description": null,
+          "id": "/tutorial/deploy-temporalio",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/deploy-temporalio.md",
+          "series_position": null,
+          "title": "Deploy Temporal.io"
+        },
+        {
           "author_github": "https://github.com/pjeziorowski",
           "description": null,
           "id": "/tutorial/quickstart-django",

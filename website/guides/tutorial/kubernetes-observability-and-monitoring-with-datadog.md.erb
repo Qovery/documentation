@@ -74,11 +74,14 @@ datadog:
     enabled: true
     containerCollectAll: true
 
+  # Set to false if you are not using APM.
   apm:
     enabled: true
   
   containerExcludeLogs: "kube_namespace:kube-system kube_namespace:qovery kube_namespace:cert-manager kube_namespace:nginx-ingress kube_namespace:logging kube_namespace:prometheus"
 
+# You can remove this part if you are not using APM.
+# Note that it it will be enabled for all your applications.
 clusterAgent:
   admissionController:
     enabled: true
@@ -128,7 +131,7 @@ helm install datadog-agent \
 Wait for a minute then run the following command:
 
 ```bash
-k get pods -n datadog
+kubectl get pods -n datadog
 ```
 
 If the installation was successful, you should see an output similar to this one: 
@@ -157,6 +160,8 @@ You will then arrive on `Step 4`
 </p>     
 
 You can skip this part if you're not interested in monitoring your cloud account.
+
+Finally, restart your applications if you are using APM.
 
 </li>
 

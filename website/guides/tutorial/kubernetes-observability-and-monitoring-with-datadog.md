@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-01-28"
+last_modified_on: "2022-03-16"
 $schema: "/.meta/.schemas/guides.json"
 title: Kubernetes observability and monitoring with Datadog
 description: How to integrate Datadog with Kubernetes on Qovery.
@@ -89,6 +89,11 @@ datadog:
     enabled: true
   
   containerExcludeLogs: "kube_namespace:kube-system kube_namespace:qovery kube_namespace:cert-manager kube_namespace:nginx-ingress kube_namespace:logging kube_namespace:prometheus"
+
+clusterAgent:
+  admissionController:
+    enabled: true
+    mutateUnlabelled: true
 ```
 
 - Replace `<CLUSTER NAME>` with a meaningful name to identify your cluster.

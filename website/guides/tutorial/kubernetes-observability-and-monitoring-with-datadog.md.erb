@@ -78,6 +78,11 @@ datadog:
     enabled: true
   
   containerExcludeLogs: "kube_namespace:kube-system kube_namespace:qovery kube_namespace:cert-manager kube_namespace:nginx-ingress kube_namespace:logging kube_namespace:prometheus"
+
+clusterAgent:
+  admissionController:
+    enabled: true
+    mutateUnlabelled: true
 ```
 
 - Replace `<CLUSTER NAME>` with a meaningful name to identify your cluster.

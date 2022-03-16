@@ -377,11 +377,11 @@ module.exports = {
         {
           "author_github": "https://github.com/l0ck3",
           "description": null,
-          "id": "/tutorial/deploy-temporalio",
+          "id": "/tutorial/deploy-temporal-on-kubernetes",
           "last_modified_on": null,
-          "path": "website/guides/tutorial/deploy-temporalio.md",
+          "path": "website/guides/tutorial/deploy-temporal-on-kubernetes.md",
           "series_position": null,
-          "title": "Deploy Temporal.io"
+          "title": "Deploy Temporal on Kubernetes"
         },
         {
           "author_github": "https://github.com/pjeziorowski",

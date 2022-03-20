@@ -4,7 +4,7 @@ $schema: "/.meta/.schemas/guides.json"
 title: How to integrate Qovery with GitHub actions
 description: How to integrate Qovery with GitHub actions
 author_github: https://github.com/l0ck3
-tags: ["type: tutorial", "framework: rails", "language: ruby", "database: postgresql"]
+tags: ["type: tutorial", "technology: github"]
 hide_pagination: true
 ---
 

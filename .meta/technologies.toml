@@ -32,3 +32,8 @@ dark_logo_path = "/img/logos/posthog.svg"
 name = "terraform"
 logo_path = "/img/logos/terraform.svg"
 dark_logo_path = "/img/logos/terraform.svg"
+
+[[technologies]]
+name = "github"
+logo_path = "/img/logos/github.png"
+dark_logo_path = "/img/logos/github.svg"

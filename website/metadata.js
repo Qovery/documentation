@@ -955,6 +955,11 @@ module.exports = {
       "dark_logo_path": "/img/logos/terraform.svg",
       "logo_path": "/img/logos/terraform.svg",
       "name": "terraform"
+    },
+    {
+      "dark_logo_path": "/img/logos/github.svg",
+      "logo_path": "/img/logos/github.png",
+      "name": "github"
     }
   ],
   "transforms": {

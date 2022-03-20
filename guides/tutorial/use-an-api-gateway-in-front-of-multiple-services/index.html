@@ -24,21 +24,21 @@
 <link rel="stylesheet" href="/styles.fe327016.css">
 
 
-<link rel="preload" href="/styles.4ca9d1c6.js" as="script">
+<link rel="preload" href="/styles.cd15318f.js" as="script">
 
-<link rel="preload" href="/runtime~main.c24dbaee.js" as="script">
+<link rel="preload" href="/runtime~main.f0a7f644.js" as="script">
 
-<link rel="preload" href="/main.0b0cf1f8.js" as="script">
+<link rel="preload" href="/main.050b2df0.js" as="script">
 
-<link rel="preload" href="/1.27f4ab1a.js" as="script">
+<link rel="preload" href="/1.c652aba4.js" as="script">
 
-<link rel="preload" href="/2.d1026f3f.js" as="script">
+<link rel="preload" href="/2.5d9fb4bd.js" as="script">
 
-<link rel="preload" href="/3.c10e9a2b.js" as="script">
+<link rel="preload" href="/3.fbcefbf5.js" as="script">
 
-<link rel="preload" href="/1c13b173.5e207d0f.js" as="script">
+<link rel="preload" href="/1c13b173.cf8bcc7d.js" as="script">
 
-<link rel="preload" href="/35d9179e.84450673.js" as="script">
+<link rel="preload" href="/35d9179e.99d34804.js" as="script">
 
 </head>
 <body>
@@ -53,21 +53,21 @@ Our route configuration file looks like this:</p><div class="mdxCodeBlock_iHAB">
 </span></div><div class="token-line" style="color:#393A34"><span class="token plain">location ~* ^/?(.*)$ {</span></div><div class="token-line" style="color:#393A34"><span class="token plain">    proxy_pass http://$CORE_BACKEND$request_uri;</span></div><div class="token-line" style="color:#393A34"><span class="token plain">}</span></div></div></pre></div></div><p>Here are the explanation of those rules:</p><ol><li>All the traffic matching the path <code>/api/billing/*</code> is redirect to the BILLING backend.</li><li>All the traffic matching the path <code>/api/messaging/*</code> is redirect to the MESSAGING backend.</li><li>All the traffic matching the path <code>/api/*</code> is redirect to the CORE backend.</li><li>All the traffic by default is redirected to the CORE backend.</li></ol><p>Notes:</p><ol><li>The rule definition order is from the first to the last to apply. If there is a conflicting rule, then the first matched applies.</li><li>The internal network is in HTTP, that is why the value of the <code>proxy_pass</code> directive starts with <code>http://</code>.</li><li>The connections on <code>api.foo.bar</code> are in HTTPS.</li><li>You can make complex rules like the one below:</li></ol><div class="mdxCodeBlock_iHAB"><div style="color:#393A34;background-color:#f6f8fa" class="codeBlockTitle_2TQJ">more complex rule</div><div class="codeBlockContent_3RXF"><button type="button" aria-label="Copy code to clipboard" class="copyButton_1PCb copyButtonWithTitle_qt-P">Copy</button><pre class="prism-code language-text codeBlock_1wn8 codeBlockWithTitle_1f_H"><div class="codeBlockLines_3HrO" style="color:#393A34;background-color:#f6f8fa"><div class="token-line" style="color:#393A34"><span class="token plain">location ~* ^/api/v1/user/(.*)/app/(.*)/index/(.*)/search/?(.*)$ {</span></div><div class="token-line" style="color:#393A34"><span class="token plain">    proxy_pass http://$CORE_BACKEND/api/v1/user/$1/app/$2/index/$3/search/$4$is_args$args;</span></div><div class="token-line" style="color:#393A34"><span class="token plain">}</span></div></div></pre></div></div><h2><a aria-hidden="true" tabindex="-1" class="anchor" id="create-api-gateway-app"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#create-api-gateway-app" title="Direct link to heading">#</a>Create API Gateway app</h2><p>Commit and push your changes. Then go to the <a href="https://start.qovery.com">Qovery web console</a>, and add your API gateway inside the same environment of your applications.</p><ul><li>Build mode: Dockerfile</li><li>Port: 80</li></ul><h2><a aria-hidden="true" tabindex="-1" class="anchor" id="add-environment-variables"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#add-environment-variables" title="Direct link to heading">#</a>Add environment variables</h2><p>For our gateway, we need to create 3 <a href="/docs/using-qovery/configuration/environment-variable/#alias-environment-variable">environment variable aliases</a> corresponding to the internal network names of our applications.</p><ul><li><code>XXX_HOST_INTERNAL</code> -&gt; ALIAS -&gt; <code>BILLING_BACKEND</code> with scope <code>ENVIRONMENT</code></li><li><code>YYY_HOST_INTERNAL</code> -&gt; ALIAS -&gt; <code>MESSAGING_BACKEND</code> with scope <code>ENVIRONMENT</code></li><li><code>ZZZ_HOST_INTERNAL</code> -&gt; ALIAS -&gt; <code>CORE_BACKEND</code> with scope <code>ENVIRONMENT</code></li></ul><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="how-to-find-the-correct-environment-variable"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#how-to-find-the-correct-environment-variable" title="Direct link to heading">#</a>How to find the correct environment variable</h3><p>When you have multiple applications within the same environment, it is difficult to find the appropriate environment variable. A workaround is to:</p><ol><li>Go to one of your application</li><li>Find the ID of your application in your URL <code>https://console.qovery.com/platform/organization/xxx/projects/yyy/environments/zzz/applications/082e36c4-7fbb-42b2-9046-37ccce21616a/variables</code></li><li>Truncate your application ID and take the first segment. For <code>082e36c4-7fbb-42b2-9046-37ccce21616a</code> it is <code>082e36c4</code></li><li>Add the letter z in front of id <code>Z082e36c4</code>.</li><li>All the environment variables containing <code>Z082e36c4</code> are attached to the corresponding app.</li></ol><div class="alert alert--info alert--icon" role="alert"><i class="feather icon-info"></i><p>A future product update will fix this experience issue.</p></div><h2><a aria-hidden="true" tabindex="-1" class="anchor" id="set-up-custom-domain"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#set-up-custom-domain" title="Direct link to heading">#</a>Set up custom domain</h2><p>Add a custom domain to expose your API gateway with the domain of your choice. Check out <a href="/docs/using-qovery/configuration/application/#domains">this documentation</a> to set up your domain.</p><h2><a aria-hidden="true" tabindex="-1" class="anchor" id="deploy-api-gateway"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#deploy-api-gateway" title="Direct link to heading">#</a>Deploy API Gateway</h2><p>Once everything is set up, you can deploy your application.</p></div></article></div></main></div><footer class="footer"><div class="container"><div class="row footer__links"><div class="col col--5 footer__col"><div class="margin-bottom--md"></div><div class="margin-bottom--md"><p>Qovery combines the power of Kubernetes, the reliability of AWS, and the simplicity of Heroku to deploy your apps.</p></div><div><a href="https://github.com/qovery" target="_blank"><i class="feather icon-github" alt="Qovery&#x27;s Github Repo"></i></a>    <a href="https://www.linkedin.com/company/qovery/" target="_blank"><i class="feather icon-rss" alt="Qovery&#x27;s Linkedin"></i></a>    <a href="https://twitter.com/qovery_" target="_blank"><i class="feather icon-twitter" alt="Qovery&#x27;s Twitter"></i></a>    <a href="https://discord.qovery.com" target="_blank"><i class="feather icon-message-circle" alt="Qovery&#x27;s Discord"></i></a></div></div><div class="col footer__col"><h4 class="footer__title">Resources</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" href="/docs">Documentation</a></li><li class="footer__item"><a aria-current="page" class="footer__link-item active" href="/guides">Guides</a></li><li class="footer__item"><a aria-current="page" class="footer__link-item active" href="/guides/tutorial">Tutorials</a></li><li class="footer__item"><a class="footer__link-item" href="/guides/engineering">Engineering</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/pricing" href="https://www.qovery.com/pricing">Pricing</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/enterprise" href="https://www.qovery.com/enterprise">Enterprise</a></li><li class="footer__item"><a class="footer__link-item" to="https://api-doc.qovery.com" href="https://api-doc.qovery.com">API</a></li><li class="footer__item"><a class="footer__link-item" to="https://github.com/Qovery" href="https://github.com/Qovery">Github</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Community</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://discord.qovery.com" href="https://discord.qovery.com">Discord</a></li><li class="footer__item"><a class="footer__link-item" to="https://community.qovery.com" href="https://community.qovery.com">Forum</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/community-call" href="https://www.qovery.com/community-call">Community call</a></li><li class="footer__item"><a class="footer__link-item" to="https://shop.qovery.com" href="https://shop.qovery.com">Goodies</a></li><li class="footer__item"><a class="footer__link-item" to="https://roadmap.qovery.com" href="https://roadmap.qovery.com">Roadmap</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Company</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/blog" href="https://www.qovery.com/blog">Blog</a></li><li class="footer__item"><a class="footer__link-item" to="https://jobs.qovery.com" href="https://jobs.qovery.com">Jobs</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/team" href="https://www.qovery.com/team">Team</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/investors" href="https://www.qovery.com/investors">Investors</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/contact" href="https://www.qovery.com/contact">Contact</a></li></ul></div></div><div class="text--center"><small>© 2022 DESIGNED BY QOVERY | BACKED BY TECHSTARS | PROUD SILVER MEMBER OF CNCF AND LINUX FOUNDATION | QOVERY BY BIRDSIGHT - ALL RIGHTS RESERVED</small><br></div></div></footer>
 </div>
 
-<script src="/styles.4ca9d1c6.js"></script>
+<script src="/styles.cd15318f.js"></script>
 
-<script src="/runtime~main.c24dbaee.js"></script>
+<script src="/runtime~main.f0a7f644.js"></script>
 
-<script src="/main.0b0cf1f8.js"></script>
+<script src="/main.050b2df0.js"></script>
 
-<script src="/1.27f4ab1a.js"></script>
+<script src="/1.c652aba4.js"></script>
 
-<script src="/2.d1026f3f.js"></script>
+<script src="/2.5d9fb4bd.js"></script>
 
-<script src="/3.c10e9a2b.js"></script>
+<script src="/3.fbcefbf5.js"></script>
 
-<script src="/1c13b173.5e207d0f.js"></script>
+<script src="/1c13b173.cf8bcc7d.js"></script>
 
-<script src="/35d9179e.84450673.js"></script>
+<script src="/35d9179e.99d34804.js"></script>
 
 
 </body>

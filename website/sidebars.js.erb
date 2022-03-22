@@ -171,17 +171,6 @@ module.exports = {
       type: 'category',
       label: 'Community',
       items: [
-        {
-          type: 'category',
-          label: 'Rewards',
-          items: [
-            <%= metadata.links.fetch_id("docs.community.reward").to_json %>,
-            <%= metadata.links.fetch_id("docs.community.reward.feedback").to_json %>,
-            <%= metadata.links.fetch_id("docs.community.reward.write-content").to_json %>,
-            <%= metadata.links.fetch_id("docs.community.reward.video-record").to_json %>,
-            <%= metadata.links.fetch_id("docs.community.reward.bug-bounty").to_json %>,
-          ]
-        },
         <%= metadata.links.fetch_id("docs.community.become-an-ambassador").to_json %>,
       ],
     },

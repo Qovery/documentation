@@ -171,17 +171,6 @@ module.exports = {
       type: 'category',
       label: 'Community',
       items: [
-        {
-          type: 'category',
-          label: 'Rewards',
-          items: [
-            "community/reward",
-            "community/reward/feedback",
-            "community/reward/write-content",
-            "community/reward/video-record",
-            "community/reward/bug-bounty",
-          ]
-        },
         "community/become-an-ambassador",
       ],
     },

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-26"
+last_modified_on: "2022-03-22"
 title: Become an Ambassador
 description: Be a community ambassador and get highly rewarded
 ---
@@ -56,10 +56,6 @@ Your profile will be analyzed and submitted to our existing ambassadors for vali
 
 ## FAQ
 
-### Can I be an ambassador and win rewards?
-
-Absolutely, you can be an ambassador and also win [rewards][docs.community.reward]. So you cumulate your Qovery credits.
-
 ### What is an active member on Discord?
 
 An active member on Discord is a user that:
@@ -90,7 +86,6 @@ Is there anything that you see in the documentation that would be great to impro
 Not yet, but maybe you can help us to create a beautiful one? :) [Reach me out][urls.qovery_chat]
 
 
-[docs.community.reward]: /docs/community/reward/
 [urls.qovery_ambassador_application_form]: https://qovery.typeform.com/to/WrWxWR9t
 [urls.qovery_chat]: https://discord.qovery.com
 [urls.qovery_community]: https://discuss.qovery.com/

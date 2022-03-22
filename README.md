@@ -58,12 +58,11 @@ After making changes to the template, run `make generate USE_CONTAINER=none` in 
 
 ## Rewards for contribution
 
-Want to help the community and [get great rewards](https://hub.qovery.com/docs/community/reward/) at the same time? Contribute to Qovery documentation! 
+Want to help the community and? Contribute to Qovery documentation! 
 Qovery Community plan is charged by contributions to the community - you can get free credits to host your applications by contributing in many ways - including by writing or fixing the docs!
 
-Learn more about our reward system:
+Learn more about our system:
 - [How Qovery Billing Works](https://www.qovery.com/blog/how-qovery-billing-works)
-- [Rewards](https://hub.qovery.com/docs/community/reward/)
 
 
 

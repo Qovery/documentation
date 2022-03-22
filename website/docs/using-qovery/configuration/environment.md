@@ -270,7 +270,7 @@ To cancel a deployment, click on `Cancel deployment` in the `Action` menu of you
 
 <Alert type="info">
 
-Only the environment building step, during the deployment phase, can be canceled at this time. This means that the action of cancelling the deployment may result in an error. The deployment of your environment will continue.
+A deployment can be cancelled only if the application is in the building step. If you try to cancel a deployment while the application has already been built, the cancel operation will fail and the deployment will continue.
 
 </Alert>
 

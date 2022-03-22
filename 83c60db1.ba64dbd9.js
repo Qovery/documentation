@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[140],{290:function(a){a.exports=JSON.parse('{"allTagsPath":"/guides/tags","slug":"cloud-provider-scaleway","name":"cloud_provider: scaleway","count":1,"permalink":"/guides/tags/cloud-provider-scaleway"}')}}]);

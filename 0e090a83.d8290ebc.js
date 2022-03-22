@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[21],{168:function(s){s.exports=JSON.parse('{"allTagsPath":"/guides/tags","slug":"framework-discordpy","name":"framework: discordpy","count":1,"permalink":"/guides/tags/framework-discordpy"}')}}]);

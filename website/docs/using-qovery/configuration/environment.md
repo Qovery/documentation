@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-02-21"
+last_modified_on: "2022-03-22"
 title: "Environment"
 description: "Learn how to configure your Environments on Qovery"
 ---
@@ -257,6 +257,22 @@ This page allows you to view the history of all previous deployments of your env
 <p align="center">
   <img src="/img/deployment-history.png" alt="Deployment history list" />
 </p>
+
+## Cancel an environment deployment 
+
+It may happen that you launch an unwanted deployment (setting error, wrong commit deployed, etc.) and you want to cancel the deployment, rather than waiting for the action to be completed and then performing a rollback, which can be time consuming. 
+
+To cancel a deployment, click on `Cancel deployment` in the `Action` menu of your environment. 
+
+<p align="center">
+  <img src="/img/cancel-deployment.png" alt="Cancel deployment Action button" />
+</p>
+
+<Alert type="info">
+
+A deployment can be cancelled only if the application is in the building step. If you try to cancel a deployment while the application has already been built, the cancel operation will fail and the deployment will continue.
+
+</Alert>
 
 ## Delete an environment
 

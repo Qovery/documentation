@@ -579,7 +579,7 @@ module.exports = {
           "last_modified_on": null,
           "path": "website/guides/tutorial/how-to-integrate-qovery-with-github-actions.md",
           "series_position": null,
-          "title": "How to integrate Qovery with GitHub actions"
+          "title": "How to integrate Qovery with GitHub Actions"
         },
         {
           "author_github": "https://github.com/l0ck3",

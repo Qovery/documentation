@@ -360,11 +360,12 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Install modules
-      run: yarn
-    - name: Run tests
-      run: yarn test
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install modules
+        run: yarn
+      - name: Run tests
+        run: yarn test
   deploy:
     needs: test
     runs-on: ubuntu-latest
@@ -383,11 +384,13 @@ jobs:
   add-run-id-to-env-name:
     needs: deploy
     runs-on: ubuntu-latest
+    name: Add Workflow execution ID to env name
     env:
-      environment-id: ${{ inputs.environment-id }}
-      qovery-api-token: ${{ secrets.api-token }}
+      ENVIRONMENT_ID: ${{ inputs.environment-id }}
+      QOVERY_API_TOKEN: ${{ secrets.api-token }}
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v3
       - name: Add Workflow execution ID to env name
         run: ./.github/scripts/add-run-id-to-env-name.sh
         shell: bash

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-03-23"
+last_modified_on: "2022-03-24"
 $schema: "/.meta/.schemas/guides.json"
 title: How to integrate Qovery with GitHub Actions
 description: How to integrate Qovery with GitHub Actions
@@ -390,14 +390,15 @@ jobs:
           qovery-application-ids: ${{ inputs.application-ids }}
           qovery-api-token: ${{ secrets.api-token }}
   add-run-id-to-env-name:
+    needs: deploy
     runs-on: ubuntu-latest
     env:
       environment-id: ${{ inputs.environment-id }}
       qovery-api-token: ${{ secrets.api-token }}
     steps:
       - uses: actions/checkout@v2
-      - name: Create preview environment on Qovery
-        run: ./.github/scripts/create-preview-environment.sh
+      - name: Add Workflow execution ID to env name
+        run: ./.github/scripts/add-run-id-to-env-name.sh
         shell: bash
 ```
 </li>

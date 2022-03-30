@@ -155,7 +155,20 @@ This is why we recommend a cluster setup with:
 Congrats! Qovery will be installed within 30 minutes 🎉. You will be notified when it is all good.
 In the meantime, you can take a look at our [guide section][guides.getting-started].
 
+6/ Enable cluster sync with SSO account
+
+If you're using SSO for your AWS account deploying the Qovery cluster you have to add some infos in the *aws-auth configmap* in kube-system namespace.
+Connect to your cluster and edit the *aws-auth configmap* in order to add the following code in the mapRoles section:
+
+```yaml
+- rolearn: arn:aws:iam::843237546537:role/AWSReservedSSO_AdministratorAccess_53b82e109c5e2cac
+  username: "{{SessionName}}"
+  groups:
+  - system:masters
+```
+
 ## Deploy your application
 Once Qovery is installed on your AWS account, you have the possibility to deploy your application. Take a look to [our guide][guides.getting-started] on how to [deploy your first application][guides.getting-started.deploy-your-first-application] with Qovery.
 
 <Jump to="/guides/getting-started/deploy-your-first-application">Deploy your first application</Jump>
+

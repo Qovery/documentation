@@ -157,11 +157,11 @@ In the meantime, you can take a look at our [guide section][guides.getting-start
 
 6/ Enable cluster sync with SSO account
 
-If you're using SSO for your AWS account deploying the Qovery cluster you have to add some infos in the *aws-auth configmap* in kube-system namespace.
+If you're using SSO for your AWS account deploying the Qovery cluster you have to add some infos in the *aws-auth configmap* in `kube-system` namespace.
 Connect to your cluster and edit the *aws-auth configmap* in order to add the following code in the mapRoles section:
 
 ```yaml
-- rolearn: arn:aws:iam::843237546537:role/AWSReservedSSO_AdministratorAccess_53b82e109c5e2cac
+- rolearn: arn:aws:iam::<iam_id>:role/AWSReservedSSO_AdministratorAccess_<the_role_id>
   username: "{{SessionName}}"
   groups:
   - system:masters

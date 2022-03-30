@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-03-15"
+last_modified_on: "2022-03-30"
 title: Configuration
 description: "Everything you need to know to configure and fine tune Qovery on your infrastructure"
 sidebar_label: hidden

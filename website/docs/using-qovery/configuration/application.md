@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-04-05"
+last_modified_on: "2022-04-07"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -220,6 +220,10 @@ You can also expose ports publicly - it makes them accessible over the public ne
 
 <Alert type="info">
 By default, newly created ports are publicly exposed over HTTPS. You can change this setting in the `Advanced` section.
+</Alert>
+
+<Alert type="info">
+Qovery determines the readiness of your service based on the availability of the declared port. If your application does not open this port within 10 minutes, the associated container will be shut down
 </Alert>
 
 #### Exposing Applications

@@ -43,10 +43,6 @@ The application must be configured to use it. If you use the environment variabl
 
 </Alert>
 
-<<<<<<< HEAD
 Have a look at the [Database page][docs.using-qovery.configuration.database] to know more about the database setup.
-=======
->>>>>>> 5135e8d2b53d5e8764fed46e421beb680cc4e438
-
 
 [docs.using-qovery.configuration.database]: /docs/using-qovery/configuration/database/

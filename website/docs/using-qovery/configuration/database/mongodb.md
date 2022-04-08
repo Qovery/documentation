@@ -16,7 +16,7 @@ MongoDB is a cross-platform document-oriented database program. Classified as a 
      website/docs/using-qovery/configuration/database/mongodb.md.erb
 -->
 
-## Versions
+## Supported Versions
 
 Qovery supports the following MongoDB versions.
 
@@ -44,5 +44,6 @@ The application must be configured to use it. If you use the environment variabl
 </Alert>
 
 Have a look at the [Database page][docs.using-qovery.configuration.database] to know more about the database setup.
+
 
 [docs.using-qovery.configuration.database]: /docs/using-qovery/configuration/database/

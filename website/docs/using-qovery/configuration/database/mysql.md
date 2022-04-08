@@ -14,7 +14,11 @@ MySQL is the world's most popular open source database. Whether you are a fast g
      website/docs/using-qovery/configuration/database/mysql.md.erb
 -->
 
+<<<<<<< HEAD
 ## Supported Versions
+=======
+## Versions
+>>>>>>> 5135e8d2b53d5e8764fed46e421beb680cc4e438
 
 Qovery supports the following MySQL versions.
 
@@ -30,7 +34,12 @@ Qovery supports the following MySQL versions.
 |Scaleway|5.7|Yes|No|
 |Scaleway|5.6|Yes|No|
 
+<<<<<<< HEAD
 Have a look at the [Database page][docs.using-qovery.configuration.database] to know more about the database setup.
 
 
 [docs.using-qovery.configuration.database]: /docs/using-qovery/configuration/database/
+=======
+
+
+>>>>>>> 5135e8d2b53d5e8764fed46e421beb680cc4e438

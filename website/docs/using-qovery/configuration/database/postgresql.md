@@ -14,7 +14,11 @@ PostgreSQL is a powerful, open source object-relational database system with ove
      website/docs/using-qovery/configuration/database/postgresql.md.erb
 -->
 
+<<<<<<< HEAD
 ## Supported Versions
+=======
+## Versions
+>>>>>>> 5135e8d2b53d5e8764fed46e421beb680cc4e438
 
 Qovery supports the following PostgreSQL versions.
 
@@ -36,8 +40,13 @@ Qovery supports the following PostgreSQL versions.
 |Scaleway|10|Yes|Yes|
 |Scaleway|9|Yes|No|
 
+<<<<<<< HEAD
 
 Have a look at the [Database page][docs.using-qovery.configuration.database] to know more about the database setup.
 
 
 [docs.using-qovery.configuration.database]: /docs/using-qovery/configuration/database/
+=======
+
+
+>>>>>>> 5135e8d2b53d5e8764fed46e421beb680cc4e438

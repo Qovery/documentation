@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-12-15"
+last_modified_on: "2022-04-20"
 $schema: "/.meta/.schemas/guides.json"
 title: Debugging
 description: How to debug your application
@@ -99,6 +99,22 @@ This will open a view of your application logs:
 <p align="center">
   <img src="/img/debugging/debugging-4.png" alt="Debugging" />
 </p>
+
+The interface will show you:
+<ol>
+<li>
+Timestamp: the timestamp of the message
+</li>
+<li>
+Pod Name: the name of the kubernetes pod where your application is running (to distinguish the instance in case of multi-instance app). If you want to follow a specific pod, you can filter the logs by clicking on the pod name
+</li>
+<li>
+Commit Id: the commit id of the application running on this POD
+</li>
+<li>
+Message: the log message
+</li>
+</ol>
 
 You can use this information to find out what causes your application to behave incorrectly.
 

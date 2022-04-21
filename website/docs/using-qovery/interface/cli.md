@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-03-06"
+last_modified_on: "2022-04-21"
 title: CLI
 description: How to use the Qovery CLI (Command Line Interface)
 ---
@@ -345,6 +345,11 @@ To use your token and list your organizations.
 ```shell
 curl -X GET -H 'Authorization: Token qov_4LnEg2wFxxxxxHObGSQ22rjBZZyyyySgyR6Y_2500882691' https://api.qovery.com/organization
 ```
+<Alert type="info">
+
+If you get a 424 error while trying to programmaticaly create new applications, please make sure that the Organization Owner has access to the repository you are configuring for your app.
+
+</Alert>
 
 Check out our [API documentation][urls.qovery_swagger]
 

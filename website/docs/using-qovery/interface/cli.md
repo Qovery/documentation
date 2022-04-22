@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-04-21"
+last_modified_on: "2022-04-22"
 title: CLI
 description: How to use the Qovery CLI (Command Line Interface)
 ---
@@ -347,9 +347,10 @@ curl -X GET -H 'Authorization: Token qov_4LnEg2wFxxxxxHObGSQ22rjBZZyyyySgyR6Y_25
 ```
 <Alert type="info">
 
-If you get a 424 error while trying to programmaticaly create new applications, please make sure that the Organization Owner has access to the repository you are configuring for your app.
+The token can be used to interact programmatically with our API (directly, via our Terraform Provider etc..)
+If you get a 424 error while trying to create new applications from one of your git repository, please make sure that the Organization Owner has access to the repository you are configuring for your app.
 
-</Alert>
+</Alert> 
 
 Check out our [API documentation][urls.qovery_swagger]
 

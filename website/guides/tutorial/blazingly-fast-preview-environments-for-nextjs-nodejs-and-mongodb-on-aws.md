@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-12-14"
+last_modified_on: "2022-04-22"
 $schema: "/.meta/.schemas/guides.json"
 title: Blazingly fast Preview Environments for NextJS, NodeJS, and MongoDB on AWS
 description: Blazingly fast Preview Environments for NextJS, NodeJS, and MongoDB on AWS
@@ -221,6 +221,12 @@ Let's now create a new branch in our repository and create a pull request to our
 
 <p align="center">
   <img src="/img/aws-preview-envs/8.png" alt="AWS Preview Environments" />
+</p>
+
+Once the PR is created, an automatic comment has been dropped on our PR to let us know that the new preview environment has been created.
+
+<p align="center">
+  <img src="/img/aws-preview-envs/14.png" alt="AWS Preview Environments" />
 </p>
 
 Now, when we display environments in our project, we will see that a new environment for the pull request is being deployed:

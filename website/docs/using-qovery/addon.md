@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-03-15"
+last_modified_on: "2022-04-05"
 title: Addons
 description: "Useful addons to improve your Qovery workflow"
 sidebar_label: hidden
@@ -12,9 +12,7 @@ Qovery integrations improve developers' experience with Qovery and make their li
 
 This section shows several Qovery addons.
 
-<Jump to="/docs/using-qovery/addon/container-registry/">Container registry</Jump>
 <Jump to="/docs/using-qovery/addon/continuous-integration/">Continuous integration</Jump>
-<Jump to="/docs/using-qovery/addon/github-preview/">Github preview</Jump>
 <Jump to="/docs/using-qovery/addon/monitoring/">Monitoring</Jump>
 
 

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-03-30"
+last_modified_on: "2022-04-29"
 $schema: "/.meta/.schemas/guides.json"
 title: Zero to Hero - How to deploy your apps on AWS in 30 minutes
 description: Step-by-step guide on how to deploy your apps on AWS in 30 minutes. No AWS knowledge required.
@@ -134,7 +134,8 @@ Choose a region close to where your users will use your applications to have bet
   <img src="/img/organization_settings_add_credentials.jpg" alt="Set your cloud credentials" />
 </p>
 
-4/ Under the hood, Qovery uses a managed Kubernetes ([AWS EKS](https://aws.amazon.com/eks)) to run your applications. You need to specify the CPU and RAM you want per node, and the min/max number of nodes. Qovery will keep low the number of nodes and will only scale up your nodes if your applications really need to scale.
+4/ Under the hood, Qovery uses a managed Kubernetes ([AWS EKS](https://aws.amazon.com/eks)) to run your applications. You need to specify the instance type that you would like to use and the min/max number of nodes. Qovery will keep low the number of nodes and will only scale up your nodes if your applications really need to scale.
+If you don't know which instance type to chose, have a look at the AWS instance list or use the helper to chose the right instance based on your CPU/RAM needs.
 
 <Alert type="success">
 

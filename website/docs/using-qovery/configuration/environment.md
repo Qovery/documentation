@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-03-22"
+last_modified_on: "2022-05-03"
 title: "Environment"
 description: "Learn how to configure your Environments on Qovery"
 ---
@@ -100,7 +100,7 @@ The purpose of an Environment is to manage a bunch of applications that are work
 
 <Alert type="info">
 
-Sometimes **Preview Environment** are also known as **Ephemeral Environment**, **Temporary Environment**, **Development Environment**.
+Sometimes **Preview Environment** are also known as **Ephemeral Environment**, **Temporary Environment**, **Development Environment**;
 
 </Alert>
 

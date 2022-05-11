@@ -35,9 +35,9 @@ resource "qovery_organization" "my_organization" {
 }
 
 resource "qovery_aws_credentials" "my_aws_creds" {
-  organization_id   = qovery_organization.my_organization.id
-  name              = "my_aws_creds"
-  access_key_id     = "<your-aws-access-key-id>"
+  organization_id = qovery_organization.my_organization.id
+  name = "my_aws_creds"
+  access_key_id = "<your-aws-access-key-id>"
   secret_access_key = "<your-aws-secret-access-key>"
 
   depends_on = [
@@ -47,14 +47,13 @@ resource "qovery_aws_credentials" "my_aws_creds" {
 
 resource "qovery_cluster" "my_cluster" {
   organization_id = qovery_organization.my_organization.id
-  credentials_id  = qovery_aws_credentials.my_aws_creds.id
-  name            = "test_terraform_provider"
-  cloud_provider  = "AWS"
-  region          = "eu-west-3"
-  cpu_per_node = 4
-  ram_in_gb_per_node = 8
-  min_nodes = 3
-  max_nodes = 10
+  credentials_id = qovery_aws_credentials.my_aws_creds.id
+  name = "test_terraform_provider"
+  cloud_provider = "AWS"
+  region = "eu-west-3"
+  instance_type = "T3A_MEDIUM"
+  min_running_nodes = 3
+  max_running_nodes = 10
 
   depends_on = [
     qovery_organization.my_organization,

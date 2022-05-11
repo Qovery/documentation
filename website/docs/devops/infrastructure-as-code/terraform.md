@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-02-12"
+last_modified_on: "2022-05-11"
 title: Terraform
 description: "How to use Terraform (IaC) to manage Qovery resources"
 ---
@@ -55,10 +55,9 @@ resource "qovery_cluster" "my_cluster" {
   name            = "test_terraform_provider"
   cloud_provider  = "AWS"
   region          = "eu-west-3"
-  cpu_per_node = 4
-  ram_in_gb_per_node = 8
-  min_nodes = 3
-  max_nodes = 10
+  instance_type   = "T3A_MEDIUM"
+  min_running_nodes = 3
+  max_running_nodes = 10
 
   depends_on = [
     qovery_organization.my_organization,

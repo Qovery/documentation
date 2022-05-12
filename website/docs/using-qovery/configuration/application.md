@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-04-07"
+last_modified_on: "2022-05-12"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -298,6 +298,20 @@ A user of your application will be redirected by the load balancer to the same i
 <p align="center">
   <img src="/img/sticky-session.png" alt="Sticky session" />
 </p>
+
+## Advanced Settings
+
+To further fine-tune your Qovery infrastructure at application level, you can set advanced settings through the Qovery API endpoint.
+
+<Alert type="info">
+Advanced settings are not available in the Qovery console yet.
+</Alert>
+
+The advanced settings currently available are:
+
+|Advanced Setting|Type|Description|
+|--------------|---------|---------------------------|
+|deployment.delay_start_time_sec|integer|Allows you to specify a waiting period, in seconds, between the moment your application is deployed and the moment it can receive traffic.|
 
 ## Environment Variables
 

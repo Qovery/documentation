@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-03-22"
+last_modified_on: "2022-05-13"
 title: "Environment"
 description: "Learn how to configure your Environments on Qovery"
 ---
@@ -145,36 +145,64 @@ Environment clone is convenient for those use cases:
 
 ## Update an Environment
 
+Qovery can detect when a running application is not using the latest version of the code available in its Git repository. 
+To solve this, you can update your applications at environment level:
+
 <Steps headingDepth={3}>
 <ol>
 <li>
 
-Navigate to [Console][urls.qovery_console]
+Access your [Qovery Console][urls.qovery_console].
 
 </li>
 <li>
 
-Choose your environment
-
-</li>
-<li>
-
-In the environment overview, click on the `Actions` button and `Update all`.
-
+Select a project:
 <p align="center">
-  <img src="/img/configuration/application/update-all.png" alt="Application" />
+  <img src="/img/configuration/application/Project_Selection.png" alt="Application" />
 </p>
 
 </li>
 <li>
 
-Once you click, this pannel will appear and you will be able to select the environments you wish to update.
+Select an environment:
 
 <p align="center">
-  <img src="/img/configuration/application/update-all2.png" alt="Application" />
+  <img src="/img/configuration/application/Environment_Selection.png" alt="Application" />
 </p>
 
 </li>
+<li>
+
+In the environment overview, click `Actions`:
+<p align="center">
+  <img src="/img/configuration/application/Actions_on_Environment.png" alt="Application" />
+</p>
+
+The `Actions` menu unfolds.
+
+</li>
+<li>
+
+Select `Update All`:
+<p align="center">
+  <img src="/img/configuration/application/Environment_Update_All.png" alt="Application" />
+</p>
+
+The `Update environment` window opens.
+
+</li>
+<li>
+
+Select the application(s) you want to update and click `Update`:
+
+<p align="center">
+  <img src="/img/configuration/application/Update_Environment_Window.png" alt="Application" />
+</p>
+
+The selected applications are updated based on the latest version of the code available in their Git repositories. 
+</li>
+
 </ol>
 </Steps>
 

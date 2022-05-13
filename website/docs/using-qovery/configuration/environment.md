@@ -152,26 +152,10 @@ To solve this, you can update your applications at environment level:
 <ol>
 <li>
 
-Access your [Qovery Console][urls.qovery_console].
+In the [Qovery Console][urls.qovery_console], access your environment.
 
 </li>
-<li>
 
-Select a project:
-<p align="center">
-  <img src="/img/configuration/application/Project_Selection.png" alt="Application" />
-</p>
-
-</li>
-<li>
-
-Select an environment:
-
-<p align="center">
-  <img src="/img/configuration/application/Environment_Selection.png" alt="Application" />
-</p>
-
-</li>
 <li>
 
 In the environment overview, click `Actions`:

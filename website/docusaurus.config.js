@@ -109,6 +109,10 @@ module.exports = {
                             label: 'Roadmap',
                             to: 'https://roadmap.qovery.com',
                         },
+                        {
+                          label: 'Replibyte',
+                          to: 'https://github.com/Qovery/replibyte',
+                        },
                     ],
                 },
                 {

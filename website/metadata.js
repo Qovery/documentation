@@ -609,15 +609,6 @@ module.exports = {
           "title": "How to seed a Postgres database on a dev environment"
         },
         {
-          "author_github": "https://github.com/evoxmusic",
-          "description": null,
-          "id": "/tutorial/how-to-seed-real-data-in-postgres-from-with-replibyte",
-          "last_modified_on": null,
-          "path": "website/guides/tutorial/how-to-seed-real-data-in-postgres-from-with-replibyte.md",
-          "series_position": null,
-          "title": "How to seed your Postgres dev database with real data from your production"
-        },
-        {
           "author_github": "https://github.com/pjeziorowski",
           "description": null,
           "id": "/tutorial/how-to-use-cloudfront-with-react-frontend-application-on-qovery",

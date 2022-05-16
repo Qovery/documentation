@@ -311,9 +311,9 @@ The advanced settings currently available are:
 
 |Advanced Setting|Type|Description|Use Case|
 |--------------|---------|---------------------------|---------------------------|
-|deployment.delay_start_time_sec|integer|Allows you to specify a waiting period, in seconds, between the application container start and the first application status check (`initialDelaySeconds` Kubernetes probe setting).|When an application is running but not completely available yet, scaling it up can become impossible, resulting in new deployment failures. In this case, allowing additional time for the application to start can resolve the issue. 
+|deployment.delay_start_time_sec|integer|Allows you to specify a waiting period, in seconds, between the application container start and the first application status check (`initialDelaySeconds` Kubernetes probe setting).|Allowing additional time for the application to start can be useful when boot time usually takes too long (due to long boot operations), or when the application opens the port before being ready to receive traffic on it (due to a still ongoing boot operation).
 
-## Environment Variables
+## Environment Variable
 
 To learn how to set up environment variables in your projects and applications, navigate to [configuring Environment Variables][docs.using-qovery.configuration.environment-variable] section.
 

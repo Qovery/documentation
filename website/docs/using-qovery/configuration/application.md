@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-05-12"
+last_modified_on: "2022-05-16"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -309,9 +309,9 @@ Advanced settings are not available in the Qovery console yet.
 
 The advanced settings currently available are:
 
-|Advanced Setting|Type|Description|
-|--------------|---------|---------------------------|
-|deployment.delay_start_time_sec|integer|Allows you to specify a waiting period, in seconds, between the moment your application is deployed and the moment it can receive traffic.|
+|Advanced Setting|Type|Description|Use Case|
+|--------------|---------|---------------------------|---------------------------|
+|deployment.delay_start_time_sec|integer|Allows you to specify a waiting period, in seconds, between the application container start and the first application status check (`initialDelaySeconds` Kubernetes probe setting).|When an application is running but not completely available yet, scaling it up can become impossible, resulting in new deployment failures. In this case, allowing additional time for the application to start can resolve the issue. 
 
 ## Environment Variables
 

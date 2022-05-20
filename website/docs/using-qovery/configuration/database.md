@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-04-08"
+last_modified_on: "2022-05-20"
 title: "Databases"
 description: "Learn how to configure Databases on Qovery"
 sidebar_label: hidden
@@ -164,9 +164,9 @@ To tweak the disk space assigned to your database, navigate to `Resource` sectio
 
 ## Credentials
 
-To access your database in your application, [link it to your database][docs.using-qovery.configuration.application#database].
 Qovery will inject all environment variables and secrets you need to connect your app to your database.
 To see all the secrets injected for your application, see [database secrets section][docs.using-qovery.configuration.application#database-secrets].
+To access your database from your application, [have a look at this section][docs.using-qovery.configuration.application#database].
 
 ## Delete your database instance
 

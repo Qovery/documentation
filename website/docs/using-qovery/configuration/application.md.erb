@@ -246,33 +246,23 @@ Setting up the `CNAME` on the domain provider side will make your app accessible
 
 ### Database
 
-To access your database in your application, link it to your application in the `Database` section of your application configuration.
+To access your database from your application, you can use the BUILT_IN environment variables and secrets that have been automatically created by Qovery during the database creation process. You can find them within the Environment Variable section of your applicaiton.
 
-<p align="center">
-  <img src="/img/configuration/application/app-10.png" alt="Application Databases" />
-</p>
+To match the naming convention used in your code for the database connection parameters, you can [create an alias][docs.using-qovery.configuration.environment-variable#alias-environment-variable] of the variable so that you don't need to change your code.
 
-Linking the database to your app will make sure it's up and running before your application starts. It will also ensure that database secrets and other important information are injected as secrets into your application.
-
-Example of secrets and environment variables injected into your app for the linked database:
+Example of secrets and environment variables injected into your app for each created database:
 
 #### Database Secrets
 
 ```
-"QOVERY_DATABASE_MY_POSTGRESQL_DATABASE": "postgres"
-"QOVERY_DATABASE_MY_POSTGRESQL_PASSWORD": "xxx"
-"QOVERY_DATABASE_MY_POSTGRESQL_USERNAME": "superuser"
-"QOVERY_DATABASE_MY_POSTGRESQL_PORT": "5432"
-"QOVERY_DATABASE_MY_POSTGRESQL_FQDN": "my-postgresq-y1irp3nmdzj32yjl-svc.cnuxtlki1yn9.eu-west-3.rds.amazonaws.com"
-"QOVERY_DATABASE_MY_POSTGRESQL_HOST": "my-postgresq-y1irp3nmdzj32yjl-svc.cnuxtlki1yn9.eu-west-3.rds.amazonaws.com"
-"QOVERY_DATABASE_MY_POSTGRESQL_CONNECTION_URI_WITHOUT_CREDENTIALS": "postgresql://my-postgresq-y1irp3nmdzj32yjl-svc.cnuxtlki1yn9.eu-west-3.rds.amazonaws.com:5432/postgres"
-"QOVERY_DATABASE_MY_POSTGRESQL_CONNECTION_URI": "postgresql://superuser:xxx@my-postgresq-y1irp3nmdzj32yjl-svc.cnuxtlki1yn9.eu-west-3.rds.amazonaws.com:5432/postgres"
-"QOVERY_DATABASE_MY_POSTGRESQL_VERSION": "11.5"
-"QOVERY_DATABASE_MY_POSTGRESQL_TYPE": "POSTGRESQL"
-"QOVERY_DATABASE_MY_POSTGRESQL_NAME": "my-postgresql"
+"QOVERY_POSTGRESQL_Z14324SAS_PASSWORD": "XXX"
+"QOVERY_POSTGRESQL_Z14324SAS_DATABASE_LOGIN": "superuser"
+"QOVERY_POSTGRESQL_Z14324SAS_DATABASE_PORT": "5432"
+"QOVERY_POSTGRESQL_Z14324SAS_DATABASE_NAME": "mydb"
+"QOVERY_POSTGRESQL_Z14324SAS_DATABASE_HOST": "my-postgresq-y1irp3nmdzj32yjl-svc.cnuxtlki1yn9.eu-west-3.rds.amazonaws.com"
 ```
 
-The built-in variables follow the naming pattern: `QOVERY_DATABASE` + <your_db_name> + <type_of_variable> where:
+The built-in variables follow the naming pattern: `QOVERY_DATABASETYPE` + <your_db_name> + <type_of_variable> where:
 
 - `<your_db_name>` is the name of your database
 - `<type_of_variable>` is the type of variable we inject, e.g. `PASSWORD`, `VERSION`, `CONNECTION_URI` and so on.

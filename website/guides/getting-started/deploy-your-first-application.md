@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-01-06"
+last_modified_on: "2022-05-19"
 $schema: "/.meta/.schemas/guides.json"
 title: Hello World. Deploy your first application.
 description: How to deploy your first application with Qovery
@@ -47,6 +47,27 @@ Sign in to the [Qovery web interface][urls.start_qovery].
 
 <li>
 
+### Install Qovery on your AWS account
+
+<Alert type="info">
+
+Do you want to deploy your apps on another cloud service provider than AWS? Click [here][guides.advanced]
+
+</Alert>
+
+Here is a video showing how to install Qovery on your AWS account. (Check out our written tutorial [here][guides.advanced.guide-amazon-web-services])
+
+<div class="video-container">
+  <p align="center">
+    <iframe src="https://www.loom.com/embed/3450aa0c4122467892cd7c6e1fc85f6e" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+    </iframe>
+  </p>
+</div>
+
+</li>
+
+<li>
+
 ### Deploy your first application
 
 Here is a short video showing how to deploy your app with the [Qovery Web interface][urls.start_qovery].
@@ -60,7 +81,7 @@ Here is a short video showing how to deploy your app with the [Qovery Web interf
 
 <Alert type="success">
 
-That's it! your application is now deployed 💪
+That's it! your application is now deployed on your AWS account 💪
 
 </Alert>
 
@@ -74,6 +95,8 @@ That's it! your application is now deployed 💪
 To deploy your application, it's as simple as that. In the following article, we will see how to add a database. Let's get started!
 
 
+[guides.advanced.guide-amazon-web-services]: /guides/advanced/guide-amazon-web-services/
+[guides.advanced]: /guides/advanced/
 [urls.bitbucket]: https://bitbucket.com
 [urls.github]: https://github.com
 [urls.gitlab]: https://gitlab.com

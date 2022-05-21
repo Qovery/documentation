@@ -30,7 +30,7 @@ General settings allow you to set up your application name, git repository and b
 
 #### Git Repository
 
-- Configure your repository URL (it can be hosted on Github, Gitlab or Bitbucket).
+- Configure your repository URL (it can be hosted on GitHub, GitLab or Bitbucket).
 - Select branch that Qovery should use for builds in this environment
 - Select `Root Application Path` - base folder in which the application resides in your repository
 
@@ -40,13 +40,13 @@ General settings allow you to set up your application name, git repository and b
 
 <Alert type="info">
 
-Qovery supports monorepositories, you can deploy multiple apps using a single repository. [For details, see our advanced guide.][guides.advanced.monorepository]
+Qovery supports mono repositories, you can deploy multiple apps using a single repository. [For details, see our advanced guide.][guides.advanced.monorepository]
 
 </Alert>
 
 <Alert type="warning">
 
-If your repository contains private submodules using SSH protocole, you will need to add a secret beginning with GIT_SSH_KEY_, containing a private SSH key with access rights to your sumbodules repositories.
+If your repository contains private submodules using SSH protocol, you will need to add a secret beginning with GIT_SSH_KEY_, containing a private SSH key with access rights to your sumbodules repositories.
 
 Secret names examples:
 
@@ -287,9 +287,9 @@ Advanced settings are not available in the Qovery console yet.
 
 The advanced settings currently available are:
 
-|Advanced Setting|Type|Description|Use Case|
-|--------------|---------|---------------------------|---------------------------|
-|deployment.delay_start_time_sec|integer|Allows you to specify a waiting period, in seconds, between the application container start and the first application status check (`initialDelaySeconds` Kubernetes probe setting).|Allowing additional time for the application to start can be useful when boot time usually takes too long (due to long boot operations), or when the application opens the port before being ready to receive traffic on it (due to a still ongoing boot operation).
+| Advanced Setting                | Type    | Description                                                                                                                                                                          | Use Case                                                                                                                                                                                                                                                             |
+|---------------------------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| deployment.delay_start_time_sec | integer | Allows you to specify a waiting period, in seconds, between the application container start and the first application status check (`initialDelaySeconds` Kubernetes probe setting). | Allowing additional time for the application to start can be useful when boot time usually takes too long (due to long boot operations), or when the application opens the port before being ready to receive traffic on it (due to a still ongoing boot operation). |
 
 ## Environment Variable
 
@@ -307,7 +307,7 @@ To learn how to display your application logs, navigate to [logs section in our 
 
 To connect to your application via SSH, please use the via the [Qovery SSH command][docs.using-qovery.interface.cli] available on our CLI.
 
-## Update/ Rollback  an Application
+## Update and Rollback
 
 <Steps headingDepth={3}>
 <ol>

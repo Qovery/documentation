@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-12-28"
+last_modified_on: "2022-05-20"
 $schema: "/.meta/.schemas/guides.json"
 title: Import your environment variables with the Qovery CLI
 description: How to import your environment variables and secrets from your dotenv file with the Qovery CLI
@@ -17,7 +17,7 @@ import Jump from '@site/src/components/Jump';
 
 <Alert type="info">
 
-The web console will integrate the dotenv file import feature for Q1 2022.
+The Qovery Web Interface support `.env` (dot env) file import now. [Check out the documentation][docs.using-qovery.configuration.environment-variable#import-environment-variables]
 
 </Alert>
 
@@ -241,6 +241,7 @@ Qovery: ✅ Secrets successfully imported!
 Open your environment variables console to check that everything has been set correctly.
 
 
+[docs.using-qovery.configuration.environment-variable#import-environment-variables]: /docs/using-qovery/configuration/environment-variable/#import-environment-variables
 [docs.using-qovery.configuration.environment-variable]: /docs/using-qovery/configuration/environment-variable/
 [docs.using-qovery.configuration.secret]: /docs/using-qovery/configuration/secret/
 [urls.brew]: https://brew.sh/

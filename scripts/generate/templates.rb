@@ -663,6 +663,10 @@ class Templates
     render("#{partials_path}/_qovery_summary.md", binding).strip
   end
 
+  def dockerfile_templates
+    render("#{partials_path}/_dockerfile_templates.md", binding).strip
+  end
+
   def qovery_reward_faq
     render("#{partials_path}/_qovery_reward_faq.md", binding).strip
   end
@@ -765,6 +769,10 @@ class Templates
 
   def qovery_deploy_app_cli
     render("#{partials_path}/_qovery_deploy_app_cli.md", binding).strip
+  end
+
+  def qovery_install_cluster_aws
+    render("#{partials_path}/_qovery_install_cluster_aws.md", binding).strip
   end
 
   def qovery_deploy_app_web

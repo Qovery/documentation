@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-01-06"
+last_modified_on: "2022-05-18"
 $schema: "/.meta/.schemas/guides.json"
 title: Simplest way to deploy your Deno application with MongoDB database
 description: Tutorial how to deploy a Deno app with MongoDB database with Qovery
@@ -48,6 +48,8 @@ This tutorial show you how to deploy your [Deno][urls.deno] application with [Mo
 * You have a [Github][urls.github], [Gitlab][urls.gitlab] or [Bitbucket][urls.bitbucket] account
 
 </Assumptions>
+
+> ➡️. Do you migrate from Heroku to AWS? Read [this tutorial][guides.tutorial.migrate-your-application-from-heroku-to-aws] ⬅️
 
 ## Steps to deploy Deno with Qovery
 
@@ -374,6 +376,7 @@ Do you have any feedback about this tutorial? Let us know what you think on [Dis
 [docs.configuration.environment-variable]: /docs/using-qovery/configuration/environment-variable/
 [docs.using-qovery.configuration.secret#alias-secret]: /docs/using-qovery/configuration/secret/#alias-secret
 [guides.getting-started.create-a-database]: /guides/getting-started/create-a-database/
+[guides.tutorial.migrate-your-application-from-heroku-to-aws]: /guides/tutorial/migrate-your-application-from-heroku-to-aws/
 [urls.authorize_qovery]: https://github.com/apps/qovery/installations/new
 [urls.bitbucket]: https://bitbucket.com
 [urls.brew]: https://brew.sh/

@@ -574,6 +574,15 @@ We are finally ready to deploy my applications on AWS!
   </p>
 </div>
 
+Watch the final result 😎
+
+<div class="video-container">
+  <p align="center">
+    <iframe src="https://www.loom.com/embed/da31c21f9c104eae9270e4c4db59055e" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+    </iframe>
+  </p>
+</div>
+
 ## FAQ by Heroku users
 
 ### How to create a custom domain?

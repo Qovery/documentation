@@ -319,7 +319,8 @@ qovery context set
 # import your Heroku environment variables
 heroku config --app <your_heroku_app_name> --json | \
   qovery env parse --heroku-json > heroku.env && \
-  qovery env import heroku.env
+  qovery env import heroku.env && \
+  rm heroku.env
 
 Qovery: dot env file to import: 'heroku.env'
 ? Do you want to import Environment Variables or Secrets? Environment Variables

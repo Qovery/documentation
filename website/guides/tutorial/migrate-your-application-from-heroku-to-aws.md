@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-05-21"
+last_modified_on: "2022-05-22"
 $schema: "/.meta/.schemas/guides.json"
 title: Migrate your application from Heroku to AWS
 description: Guide on how to migrate all your applications from Heroku to AWS with your databases
@@ -499,9 +499,11 @@ qovery auth
 qovery context set
 
 # import your Heroku environment variables
-heroku config --app <your_heroku_app_name> --json | qovery env import --heroku-json
+heroku config --app <your_heroku_app_name> --json | \
+  qovery env parse --heroku-json > heroku.env && \
+  qovery env import heroku.env
 
-Qovery: Heroku environment variables import from JSON
+Qovery: dot env file to import: 'heroku.env'
 ? Do you want to import Environment Variables or Secrets? Environment Variables
 ? What environment variables do you want to import?  [Use arrows to move, space to select, <right> to all, <left> to none, type to filter]
   [x]  GREETINGS=hello world

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-05-13"
+last_modified_on: "2022-05-25"
 title: Configuration
 description: "Everything you need to know to configure and deploy your applications on Qovery"
 sidebar_label: hidden

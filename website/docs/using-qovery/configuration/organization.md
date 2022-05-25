@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-03-11"
+last_modified_on: "2022-05-25"
 title: "Organization"
 description: "Learn how to configure Organizations on Qovery"
 ---
@@ -48,24 +48,25 @@ Get more info [here][urls.qovery_pricing].
 
 ## Manage your clusters
 
-With Qovery, you can manage multiple clusters in your organizations settings and deploy your project environments and services on the one you want. 
+With Qovery, you can manage multiple clusters in your organizations settings. You can then deploy your project environments and services to the cluster of your choice.
 
-In the settings of your organization, you will be able to add, stop, update the settings and delete a cluster. 
+In the settings of your organization, you can add, stop and delete a cluster, as well as update its settings.
 
 <p align="center">
   <img src="/img/multi-clusters.png" alt="Qovery - Manage multiple clusters in your organization" />
 </p>
 
-Check out [this documentation][docs.using-qovery.configuration.cloud-service-provider] according to the Cloud service provider that you want
-to use.
+For more information, see [Clusters][docs.using-qovery.configuration.clusters].
 
 #### What is the default cluster? 
 
 The default cluster is the first cluster you installed in your organization. 
 
-When you create a new environment and you leave the `mode` and `cluster` parameters set to the value `Automatic`, it will be targeted by one of your project rules. However, if no project rules target them, they will be deployed on the default cluster. 
+When you create a new environment and leave the `mode` and `cluster` parameters set to the value `Automatic`, your environment is deployed to:
+* the cluster defined in one of [your project rules][docs.using-qovery.configuration.deployment-rule#environment-deployment-rules],
+* or to the default cluster if no project rule applies.
 
-Check out [this documentation][docs.using-qovery.configuration.project] to learn more about the deployment rules. 
+For more information on deployment rules, see [Project][docs.using-qovery.configuration.project].
 
 ## Organization members
 
@@ -140,7 +141,8 @@ To know more on how much Qovery costs - see our [pricing page][urls.qovery_prici
 </Alert>
 
 
-[docs.using-qovery.configuration.cloud-service-provider]: /docs/using-qovery/configuration/cloud-service-provider/
+[docs.using-qovery.configuration.clusters]: /docs/using-qovery/configuration/clusters/
+[docs.using-qovery.configuration.deployment-rule#environment-deployment-rules]: /docs/using-qovery/configuration/deployment-rule/#environment-deployment-rules
 [docs.using-qovery.configuration.project]: /docs/using-qovery/configuration/project/
 [docs.using-qovery.interface]: /docs/using-qovery/interface/
 [urls.qovery_pricing]: https://www.qovery.com/pricing

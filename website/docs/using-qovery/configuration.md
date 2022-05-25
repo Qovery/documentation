@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-03-15"
+last_modified_on: "2022-05-25"
 title: Configuration
 description: "Everything you need to know to configure and deploy your applications on Qovery"
 sidebar_label: hidden
@@ -12,6 +12,7 @@ In the following subsections, you'll learn all you need to know to configure and
 
 <Jump to="/docs/using-qovery/configuration/application/">Application</Jump>
 <Jump to="/docs/using-qovery/configuration/cloud-service-provider/">Cloud service provider</Jump>
+<Jump to="/docs/using-qovery/configuration/clusters/">Clusters</Jump>
 <Jump to="/docs/using-qovery/configuration/database/">Database</Jump>
 <Jump to="/docs/using-qovery/configuration/deployment-rule/">Deployment rule</Jump>
 <Jump to="/docs/using-qovery/configuration/environment-variable/">Environment variable</Jump>

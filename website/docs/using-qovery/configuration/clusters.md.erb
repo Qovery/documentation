@@ -10,40 +10,84 @@ import Jump from '@site/src/components/Jump';
 import Alert from '@site/src/components/Alert';
 import Assumptions from '@site/src/components/Assumptions';
 
+## About Clusters
 
-When referring to clusters in the [Qovery Console][urls.qovery_console], we mean Kubernetes clusters. A Kubernetes cluster is a collection of node machines that allows you to run containerized applications. It is usually made up of:
-* **Pods**: a pod represents one instance of an application in Kubernetes. It hosts one or several containers, as well as storage resources and network IPs. Pods are the smallest deployable objects in Kubernetes, and they are deployed to worker nodes.
-* **Worker Nodes**: worker nodes run your applications and workloads. A worker node contains one or several pods, a container runtime (responsible for running containers), a kubelet agent (to check that containers are healthy and running in a pod), and a kube-proxy (to ensure seamless communication between the components of the cluster).
-* a **Control Plane** (or **Master Node**): the control plane manages the worker nodes. It contains an API server (to query and modify the state of the cluster objects), a controller manager (to check that the current state of the cluster objects is as desired), a cloud controller manager (a controller manager for cloud provider-specific implementations), a scheduler (to assign pods to worker nodes) and an etcd key-value store (to store all the cluster objects).
-A robust cluster can have several control planes, preferably in various geographical locations.
+This section brings you answers to all the questions our users usually ask about clusters:
+
+* [What is a cluster?][docs.using-qovery.configuration.clusters#what-is-a-cluster]
+* [Why do I need a cluster?][docs.using-qovery.configuration.clusters#why-do-i-need-a-cluster]
+* [How do I set up a cluster?][docs.using-qovery.configuration.clusters#how-do-i-set-up-a-cluster]
+* [What are the different instance types available when creating a cluster?][docs.using-qovery.configuration.clusters#what-are-the-different-instance-types-available-when-creating-a-cluster]
+* [How does Qovery handle cluster updates and upgrades?][docs.using-qovery.configuration.clusters#how-does-qovery-handle-cluster-updates-and-upgrades]
+
+### What is a cluster?
+
+At Qovery, when we refer to clusters, we mean Kubernetes clusters. A Kubernetes cluster is a collection of node machines that allows you to run containerized applications. It is usually made up of:
+
+* **Pods**: think of a pod as one instance of your application. Pods are the smallest deployable objects in Kubernetes, and they are hosted by worker nodes.
+* **Worker Nodes**: worker nodes essentially run your applications and workloads. When you create a cluster from your Qovery Console, it generates the set up of worker nodes (also called “instances”, “EC2 instances” for AWS users, or “droplets” for DigitalOcean users). 
+Qovery allows you to define worker nodes settings, so that you end up deploying the right type of instances on your infrastructure based on your CPU, memory, storage and network performance needs. 
+* a **Control Plane** (or **Master Node**): the control plane manages the worker nodes. Since we deploy managed Kubernetes services, the control plane is handled exclusively by your cloud provider, and left untouched by Qovery.
+
+<p align="center">
+  <img src="/img/configuration/clusters/Overview_of_a_Cluster.png" alt="Application" />
+</p>
 
 For more information on Kubernetes clusters, see [the Kubernetes documentation](https://kubernetes.io/docs/concepts/overview/components/).
 
+### Why do I need a cluster?
+
+Qovery is built on top of Kubernetes, which means we need Kubernetes clusters to be able to deploy and run your applications. 
+
+Thanks to clusters, you can easily deploy several (and many) instances of the same application, so that if one fails, the others can instantly take over. Also, clusters can auto-scale, meaning that the number of worker nodes in a cluster can automatically go up or down as traffic fluctuates on your application(s), thus ensuring high availability and performance. Clusters are also extremely useful [to isolate your production environment from your staging environment](https://www.qovery.com/blog/how-to-isolate-your-production-from-staging-with-kubernetes). 
+
+In short, through the use of clusters, Kubernetes provides you with a resilient, flexible and powerful infrastructure, fit for production environment needs and requirements. And with the help of Qovery, setting up and maintaining your Kubernetes clusters has never been easier.
+
+### How do I set up a cluster?
+
+For step-by-step guidelines on how to set up a cluster on your cloud provider account using the [Qovery Console][urls.qovery_console], see [Creating a Cluster][docs.using-qovery.configuration.clusters#creating-a-cluster].
+
+### What are the different instance types available when creating a cluster?
+
+The range of instance types available at cluster creation depends on your cloud provider:
+ 
+* AWS offers over 400 instance types. You can [view their details on the official AWS website](https://aws.amazon.com/ec2/instance-types/), as well as [their pricing](https://aws.amazon.com/ec2/pricing/on-demand/).
+* DigitalOcean offers 5 different plans according to the instance types (aka “droplets”) you need. You can view [details and pricing on the official DigitalOcean website](https://docs.digitalocean.com/products/droplets/#plans-and-pricing).
+* Scaleway also offers a wide range of instance types, [whose details and pricing you can view on the official Scaleway website](https://www.scaleway.com/en/pricing/).
+
+<Alert type="info">
+
+Qovery does not currently support all the instance types provided by each cloud provider. But the good news is, you can request an additional instance type [directly from the Qovery forum](https://discuss.qovery.com/c/questions-and-answers/13). Make sure you give enough details as to why you need a specific instance type, and we will implement it as swiftly as we can!
+ 
+</Alert>
+
+<Alert type="warning">
+
+The total cost of a cluster is not solely determined by the number of worker nodes and their individual pricing. Additional costs are to be expected on your cloud provider’s end (expenses related to network, storage, and any other features provided by your cloud provider). For instance, AWS users will be charged for managed Kubernetes services. Please contact your cloud provider for more information.
+ 
+</Alert>
+
+### How does Qovery handle cluster updates and upgrades?
+
+As far as cluster updates and upgrades to a newer version of Kubernetes are concerned, our Qovery engineering team handles everything in due time, so you don’t even need to think about it! 
+
+<Alert type="info">
+
+You may notice that Qovery does not provide you with the latest Kubernetes version offered by your cloud provider. This is due to the high amount of testing we need to perform to ensure smooth upgrades with no interruptions for your applications. Our priority is always to guarantee you maximum uptime.
+ 
+</Alert>
+
+## Managing your Clusters with Qovery
+
 From the [Qovery Console][urls.qovery_console], you can manage the settings of the clusters you want to run on your infrastructure. The clusters are then created (or updated) by the cloud provider that hosts them.
 
-<!--
-     THIS FILE IS AUTOGENERATED!
+### Creating a Cluster
 
-     To make changes please edit the template located at:
+* To create a cluster as an AWS user, see [Install a New Cluster on Qovery for AWS Users][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#install-a-new-cluster-on-qovery].
+* To create a cluster as a Digital Ocean (DO) user, see [Install a New Cluster on Qovery for Digital Ocean Users][docs.using-qovery.configuration.cloud-service-provider.digital-ocean#install-a-new-cluster-on-qovery].
+* To create a cluster as a Scaleway (SCW) user, see [Install a New Cluster on Qovery for Scaleway Users][docs.using-qovery.configuration.cloud-service-provider.scaleway#install-a-new-cluster-on-qovery].
 
-     website/docs/using-qovery/configuration/clusters.md.erb
--->
-
-<!--
-     THIS FILE IS AUTOGENERATED!
-
-     To make changes please edit the template located at:
-
-     website/docs/using-qovery/configuration/clusters.md.erb
--->
-
-## Creating a Cluster
-
-* To create a cluster as an AWS user, see [Install a New Cluster on Qovery for AWS Users][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services].
-* To create a cluster as a Digital Ocean (DO) user, see [Install a New Cluster on Qovery for Digital Ocean Users][docs.using-qovery.configuration.cloud-service-provider.digital-ocean].
-* To create a cluster as a Scaleway (SCW) user, see [Install a New Cluster on Qovery for Scaleway Users][docs.using-qovery.configuration.cloud-service-provider.scaleway].
-
-## Managing your Cluster Settings
+### Managing your Cluster Settings
 
 To manage the settings of an existing cluster:
 
@@ -56,11 +100,19 @@ Open your [Qovery Console][urls.qovery_console].
 </li>
 <li>
 
-Access your Organization settings:
-
+On the top right hand-side of the screen, click the cogwheel icon to access your Organization settings:
 
 <p align="center">
-  <img src="/img/configuration/clusters/Organization_Settings_Access.png" alt="Application" />
+  <img src="/img/configuration/clusters/Organization_Settings_Access_Button.png" alt="Application" />
+</p>
+
+</li>
+<li>
+
+In the `Organization settings` menu, click `Clusters`:
+
+<p align="center">
+  <img src="/img/configuration/clusters/Cluster_Settings_Tab.png" alt="Application" />
 </p>
 
 </li>
@@ -75,7 +127,7 @@ To view your cluster options, click `...`:
 </li>
 <li>
 
-In the dropdown menu, select `Settings`:
+In the dropdown menu, click `Settings`:
 
 <p align="center">
   <img src="/img/configuration/clusters/Cluster_Settings_Access.png" alt="Application" />
@@ -87,53 +139,62 @@ The cluster settings window opens.
 </ol>
 </Steps>
 
-### General Information
+#### General Information
 
 The `General Information` tab allows you to define high-level information on your cluster:
 
 <p align="center">
-  <img src="/img/configuration/clusters/Cluster_General_Information.png" alt="Application" />
+  <img src="/img/configuration/clusters/General_Information_Window.png" alt="Application" />
 </p>
 
-| Item | Description |
-|------------|---------|
-| Cluster name | To enter or edit the name of your cluster.|
-| Description | To enter or edit the description of your cluster.|
-| Auto-update | (View-only, defined at cluster creation) To check if the Auto-update feature is enabled on your cluster. When the Auto-update is enabled, your cluster is automatically deployed again whenever a change is made to it.|
-| Cloud Provider | (View-only, defined at cluster creation) To check which cloud provider your cluster is hosted by.|
-| Region | (View-only, defined at cluster creation) To check which geographical location your cluster is hosted in.|
+|Item|Description|
+|--------------|---------------------------|
+|Cluster Name|To enter or edit the name of your cluster.|
+|Description|To enter or edit the description of your cluster.|
+|Cloud Provider|*(View-only, defined at cluster creation)* To check which cloud provider your cluster is hosted by.|
+|Region|*(View-only, defined at cluster creation)* To check which geographical location your cluster is hosted in.|
 
 #### Credentials
 
 To allow Qovery to quickly deploy your applications, you need to install it on your cloud provider account. To do so:
 
-  * as an AWS user, see [Connect your AWS account][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account].
-  * as a Digital Ocean (DO) user, see [Connect your Digital Ocean account][docs.using-qovery.configuration.cloud-service-provider.digital-ocean#connect-your-digital-ocean-account].
-  * as a Scaleway user, see [Connect your Scaleway account][docs.using-qovery.configuration.cloud-service-provider.scaleway#connect-your-scaleway-account].
+* as an AWS user, see [Connect your AWS account][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account].
+* as a Digital Ocean (DO) user, see [Connect your Digital Ocean account][docs.using-qovery.configuration.cloud-service-provider.digital-ocean#connect-your-digital-ocean-account].
+* as a Scaleway user, see [Connect your Scaleway account][docs.using-qovery.configuration.cloud-service-provider.scaleway#connect-your-scaleway-account].
 
-You then need to finalize the connection between Qovery and your cloud provider account from the [Qovery Console][urls.qovery_console]. 
-To do so:
+You then need to finalize the connection between Qovery and your cloud provider account from the [Qovery Console][urls.qovery_console]. To do so:
 
 <Steps headingDepth={3}>
 <ol>
 <li>
 
-In [your cluster settings][docs.using-qovery.configuration.clusters#managing-your-cluster-settings], access the `Credentials` tab and click `Add`:
+In [your cluster settings][docs.using-qovery.configuration.clusters#managing-your-cluster-settings], access the `Credentials` tab and click `Edit`:
 
 <p align="center">
-      <img src="/img/configuration/clusters/Credentials_Window.png" alt="Application" />
-    </p>
+  <img src="/img/configuration/clusters/Editing_Cluster_Credentials.png" alt="Application" />
+</p>
 
-The `New Credentials` window opens:
+The `Edit Credentials` window opens:
 
 <p align="center">
-      <img src="/img/configuration/clusters/New_Credentials_Window.png" alt="Application" />
-    </p>
+  <img src="/img/configuration/clusters/Edit_Credentials.png" alt="Application" />
+</p>
 
 </li>
 <li>
 
-In the `Access Key ID` and `Secret Access Key` fields, enter the credentials you created on your cloud provider account.
+In the `Name` field, enter a name for your credentials.
+
+</li>
+<li>
+
+In the two dedicated fields, enter the credentials you created on your cloud provider account:
+
+|Account Provider|Field Labels|
+|--------------|---------------------------|
+|AWS|`Access Key` and `Secret Access Key`|
+|DigitalOcean|`Spaces Access Key` and `Spaces Secret Key`|
+|Scaleway|`Scaleway Access Key` and `Scaleway Project ID`|
 
 </li>
 <li>
@@ -146,11 +207,9 @@ Qovery is now connected to your cloud provider account.
 </ol>
 </Steps>
 
-    
 #### Resources
 
-Qovery allows you to define the resources you want to allocate to your cluster. 
-To do so:
+Qovery allows you to define the resources you want to allocate to your cluster. To do so:
 
 <Steps headingDepth={3}>
 <ol>
@@ -159,59 +218,105 @@ To do so:
 In [your cluster settings][docs.using-qovery.configuration.clusters#managing-your-cluster-settings], access the `Resources` tab:
 
 <p align="center">
-<img src="/img/configuration/clusters/Cluster_Resources.png" alt="Application" />
+  <img src="/img/configuration/clusters/Cluster_Resources.png" alt="Application" />
 </p>
 
 </li>
-
 <li>
 
-In the `Instance type` dropdown menu, select the type of worker nodes you want to deploy on your cluster:
+In the `Instance type` dropdown menu, select the type of [worker nodes][docs.using-qovery.configuration.clusters#what-is-a-cluster] you want to deploy to your cluster:
 
 <p align="center">
   <img src="/img/configuration/clusters/Instance_Type_Selection.png" alt="Application" />
 </p>
 
 <Alert type="info">
+The selected instance type applies to all the worker nodes hosted by the cluster. 
 
-  If an instance type is missing, it means that either Qovery or your cloud provider does not support it yet. 
-  Also, available instance types are not currently filtered based on the region you selected for your cluster.
+Also, please note that the list of available instance types is not filtered based on the region of the cluster.
+
+Qovery does not currently support all the instance types provided by each cloud provider. For more information, see [What are the different instance types available when creating a cluster?][docs.using-qovery.configuration.clusters#what-are-the-different-instance-types-available-when-creating-a-cluster]
 
 </Alert>
 
-  </li>
-  <li>
+<Alert type="warning">
+Instance type selection from your Qovery Console has direct consequences on your cloud provider’s bill. While Qovery allows you to switch to a different instance type whenever you want, it is your sole responsibility to keep an eye on your infrastructure costs, especially when you want to upsize.
 
-  (Optional) Click the `Instance type selection helper` toggle if you need help to pick the best instance type for your needs. This allows you to input the desired CPU and/or RAM per worker node on your cluster, and the `Instance type` field value is updated accordingly.
-  
-  </li>
-  <li>
+For more information on the instance types provided by each cloud provider and their associated pricing, see [What are the different instance types available when creating a cluster?][docs.using-qovery.configuration.clusters#what-are-the-different-instance-types-available-when-creating-a-cluster]
 
-In the `Node disk size (GB)` field, enter the disk capacity you want to allocate to your worker nodes (i.e how much data, in gigabytes, you want each worker node to be able to hold).
+Also, before downsizing, you need to ensure that your applications will still have enough resources to run correctly.
 
-  </li>
-  <li>
+</Alert>
+
+</li>
+<li>
+
+*(Optional)* Click the `Instance type selection helper` toggle if you need help to pick the best instance type for your needs. This allows you to input the desired CPU and/or RAM per worker node on your cluster, and the `Instance type` field value is updated accordingly:
+
+<p align="center">
+  <img src="/img/configuration/clusters/Instance_Type_Selection_Helper.png" alt="Application" />
+</p>
+
+</li>
+<li>
+
+*(AWS users only)* In the `Node disk size (GB)` field, enter the disk capacity you want to allocate to your worker nodes (meaning how much data, in gigabytes, you want each worker node to be able to hold).
+
+</li>
+<li>
 
 On the `Node` scale, define the range of worker nodes you want to deploy to your cluster.
 
-  <Alert type="info">
+<Alert type="info">
 
-  The lowest value corresponds to the number of worker nodes running on your infrastructure at any time, while the highest value corresponds to the maximum number of worker nodes that can automatically be deployed as traffic grows. 
-  For more information, see [Auto-scaling][docs.using-qovery.configuration.application#auto-scaling].
+The lowest number is the number of worker nodes running on your infrastructure at any time, while the highest number is the maximum number of worker nodes that can automatically be deployed as traffic grows.
+
+Please note that a minimum of 3 worker nodes is required to deploy your cluster.
 
 </Alert>
 
-  </li>
-  <li>
+</li>
+<li>
 
 Click `Save`.
 
-  </li>
-  </ol>
+</li>
+</ol>
 </Steps>
 
 #### Features
 
+The `Features` tab in your cluster settings allows you to check if the **Static IP** and **Custom VPC subnet** features are enabled on your cluster.
 
+##### Static IP
 
+<Alert type="info">
+
+The **Static IP** feature is currently only available to AWS users. 
+It can only be enabled at cluster creation.
+
+</Alert>
+
+By default, when it is created, your cluster is allocated an external public IP address. For improved security and control, the **Static IP** feature allows you to ensure that outbound traffic from your cluster uses a specific IP address.
+
+<Alert type="info">
+
+If you work in a sensitive business area such as financial technology, enabling the **Static IP** feature can help fulfill the security requirements of some of the external services you use, therefore making it easier for you to get whitelisted by them.
+
+</Alert>
+
+##### Custom VPC Subnet
+
+<Alert type="info">
+
+The **Custom VPC Subnet** feature is currently only available to AWS users. 
+It can only be enabled at cluster creation.
+
+</Alert>
+
+Virtual Private Cloud (VPC) peering allows you to set up a connection between your Qovery VPC and another VPC on your AWS account. This way, you can access resources stored on your AWS VPC directly from your Qovery applications.
+
+A VPC can only be used if it has at least one range of IP addresses called a **subnet**. When you create a cluster, Qovery automatically picks a default subnet for it. However, to perform VPC peering, you may want to define which specific VPC subnet you want to use, so that you can avoid any conflicting settings. To do so, you can enable the **Custom VPC Subnet** feature on your cluster. For more information on how to set up VPC peering, [see our dedicated tutorial](https://hub.qovery.com/guides/tutorial/aws-vpc-peering-with-qovery/).
 #### Network
+
+The `Network` tab in your cluster settings allows you to update your Qovery VPC route table so that you can perform VPC peering. For step-by-step guidelines on how to set up VPC peering, [see our dedicated tutorial](https://hub.qovery.com/guides/tutorial/aws-vpc-peering-with-qovery/).

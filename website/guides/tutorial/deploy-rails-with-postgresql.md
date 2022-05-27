@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-01-06"
+last_modified_on: "2022-05-27"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy Rails with PostgreSQL
 description: How to deploy a Rails application with the PostgreSQL database with Qovery
@@ -51,7 +51,7 @@ This tutorial show you how to deploy your [Rails][urls.rails] application with [
 Sign in to the [Qovery web interface][urls.start_qovery].
 
 <p align="center">
-  <a href="https://start.qovery.com"><img src="/img/qovery_signup.svg" alt="Qovery Sign-up page" /></a>
+  <a href="https://onboarding.qovery.com/"><img src="/img/Qovery_Sign_Up_Page.png" alt="Qovery Sign-up page" /></a>
 </p>
 
 </li>

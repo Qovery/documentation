@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-05-11"
+last_modified_on: "2022-05-13"
 title: Terraform
 description: "How to use Terraform (IaC) to manage Qovery resources"
 ---
@@ -39,9 +39,9 @@ resource "qovery_organization" "my_organization" {
 }
 
 resource "qovery_aws_credentials" "my_aws_creds" {
-  organization_id   = qovery_organization.my_organization.id
-  name              = "my_aws_creds"
-  access_key_id     = "<your-aws-access-key-id>"
+  organization_id = qovery_organization.my_organization.id
+  name = "my_aws_creds"
+  access_key_id = "<your-aws-access-key-id>"
   secret_access_key = "<your-aws-secret-access-key>"
 
   depends_on = [
@@ -51,11 +51,11 @@ resource "qovery_aws_credentials" "my_aws_creds" {
 
 resource "qovery_cluster" "my_cluster" {
   organization_id = qovery_organization.my_organization.id
-  credentials_id  = qovery_aws_credentials.my_aws_creds.id
-  name            = "test_terraform_provider"
-  cloud_provider  = "AWS"
-  region          = "eu-west-3"
-  instance_type   = "T3A_MEDIUM"
+  credentials_id = qovery_aws_credentials.my_aws_creds.id
+  name = "test_terraform_provider"
+  cloud_provider = "AWS"
+  region = "eu-west-3"
+  instance_type = "T3A_MEDIUM"
   min_running_nodes = 3
   max_running_nodes = 10
 

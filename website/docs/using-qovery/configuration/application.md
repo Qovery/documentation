@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-05-16"
+last_modified_on: "2022-05-19"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -301,7 +301,7 @@ A user of your application will be redirected by the load balancer to the same i
 
 ## Advanced Settings
 
-To further fine-tune your Qovery infrastructure at application level, you can set advanced settings through the Qovery API endpoint.
+To further fine-tune your Qovery infrastructure at application level, you can set advanced settings through [the Qovery API endpoint](https://api-doc.qovery.com/#tag/Application-Configuration/operation/getAdvancedSettings).
 
 <Alert type="info">
 Advanced settings are not available in the Qovery console yet.

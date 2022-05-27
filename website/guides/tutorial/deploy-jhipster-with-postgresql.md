@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-05-18"
+last_modified_on: "2022-05-27"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy JHipster with PostgreSQL
 description: How to deploy a JHipster application with the PostgreSQL database with Qovery
@@ -53,7 +53,7 @@ This tutorial show you how to deploy your [JHipster][urls.jhipster] application 
 Sign in to the [Qovery web interface][urls.start_qovery].
 
 <p align="center">
-  <a href="https://start.qovery.com"><img src="/img/qovery_signup.svg" alt="Qovery Sign-up page" /></a>
+  <a href="https://onboarding.qovery.com/"><img src="/img/Qovery_Sign_Up_Page.png" alt="Qovery Sign-up page" /></a>
 </p>
 
 </li>
@@ -246,7 +246,7 @@ Use the forked repository (and branch **master**) while creating the application
 
 ### Select application port
 
-After the application is created: 
+After the application is created:
 
 - Navigate application settings
 - Select **Port**

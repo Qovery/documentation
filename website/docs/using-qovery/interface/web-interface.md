@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-02-23"
+last_modified_on: "2022-05-27"
 title: Web interface
 description: How to use the Qovery web interface
 ---
@@ -22,15 +22,21 @@ Qovery provides a [management console][urls.start_qovery] which allows you to in
      website/docs/using-qovery/interface/web-interface.md.erb
 -->
 
-## First usage
-
-### Sign up
+## First sign-up
 
 Sign in to the [Qovery web interface][urls.start_qovery].
 
 <p align="center">
-  <a href="https://start.qovery.com"><img src="/img/qovery_signup.svg" alt="Qovery Sign-up page" /></a>
+  <a href="https://onboarding.qovery.com/"><img src="/img/Qovery_Sign_Up_Page.png" alt="Qovery Sign-up page" /></a>
 </p>
+
+<Alert type="info">
+
+When you first sign into the Qovery Console, you need to provide your Git provider account credentials. This allows you to later take advantage of a Single Sign-On process through your Git provider. However, by default, Qovery is then allowed to access all the resources stored on your Git provider account. 
+
+For better control, as a Github user, you can install the Qovery Github App, and define which Github repositories Qovery can access. For more information, see [Managing Git Permissions with the Qovery Github App][docs.using-qovery.configuration.organization#managing-git-permissions-using-the-qovery-github-app].
+
+</Alert>
 
 ## Deploy your first application
 
@@ -38,6 +44,7 @@ Now that you have signed up on the web interface, check out [how to deploy your 
 
 
 [docs.devops.infrastructure-as-code.terraform]: /docs/devops/infrastructure-as-code/terraform/
+[docs.using-qovery.configuration.organization#managing-git-permissions-using-the-qovery-github-app]: /docs/using-qovery/configuration/organization/#managing-git-permissions-using-the-qovery-github-app
 [docs.using-qovery.interface.rest-api]: /docs/using-qovery/interface/rest-api/
 [guides.deploy-your-first-application]: /guides/getting-started/deploy-your-first-application/
 [urls.start_qovery]: https://start.qovery.com

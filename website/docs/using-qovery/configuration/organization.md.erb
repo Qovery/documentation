@@ -22,7 +22,7 @@ can manage:
 You need to create an organization the first time you use Qovery. You have to choose between the **Free**, **Professional**, **Business** and **Enterprise**.
 
 <p align="center">
-  <img src="/img/create_organization.jpg" alt="Qovery - create an organization" />
+  <img src="/img/configuration/organization/create_organization.jpg" alt="Qovery - create an organization" />
 </p>
 
 ### How to choose between plans?
@@ -41,7 +41,7 @@ With Qovery, you can manage multiple clusters in your organizations settings. Yo
 In the settings of your organization, you can add, stop and delete a cluster, as well as update its settings.
 
 <p align="center">
-  <img src="/img/multi-clusters.png" alt="Qovery - Manage multiple clusters in your organization" />
+  <img src="/img/configuration/organization/multi-clusters.png" alt="Qovery - Manage multiple clusters in your organization" />
 </p>
 
 For more information, see [Clusters][docs.using-qovery.configuration.clusters].
@@ -61,7 +61,7 @@ For more information on deployment rules, see [Project][docs.using-qovery.config
 You can invite someone to join your organization by email. Then he will get access to your projects and will be able to contribute.
 
 <p align="center">
-  <img src="/img/organization_members.png" alt="Qovery - List all members within an organization" />
+  <img src="/img/configuration/organization/organization_members.png" alt="Qovery - List all members within an organization" />
 </p>
 
 ### Roles
@@ -98,15 +98,15 @@ Four roles within an organization exist:
 | Delete production database | yes | yes | no | no |
 | Delete development database | yes | yes | yes | no |
 
-## Change organization
+## Change an Organization
 
 As a user, you can have access to one or many organizations. Use the dropdown in the top right navbar to change your organization.
 
 <p align="center">
-  <img src="/img/change_organization.png" alt="Qovery - change organization" />
+  <img src="/img/configuration/organization/change_organization.png" alt="Qovery - change organization" />
 </p>
 
-## Delete organization
+## Delete an Organization
 
 <Alert type="danger">
 
@@ -117,8 +117,180 @@ This is a non-recoverable operation. By deleting your organization, all your dat
 To delete your organization, you need to go into the **Danger Zone** within your organization settings.
 
 <p align="center">
-  <img src="/img/delete_organization.png" alt="Qovery - delete organization" />
+  <img src="/img/configuration/organization/delete_organization.png" alt="Qovery - delete organization" />
 </p>
+
+## Managing Git Permissions Using the Qovery Github App
+
+When you first sign into the [Qovery Console][urls.qovery_console], you need to provide your Git provider account credentials. This allows you to later take advantage of a Single Sign-On process through your Git provider. 
+However, by default, Qovery is then allowed to access all the resources stored on your Git provider account. 
+
+For better control, as a Github user, you can install the **Qovery Github App**, and define which Github repositories Qovery can access.
+
+### Installing the Qovery Github App
+
+To install the **Qovery Github App**:
+
+<Steps headingDepth={3}>
+<ol>
+<li>
+
+Open your [Qovery Console][urls.qovery_console] and access your organization settings:
+
+<p align="center">
+  <img src="/img/configuration/clusters/Organization_Settings_Access_Button.png" alt="Qovery - delete organization" />
+</p>
+
+<Alert type="info">
+
+You can only link one Github Organization to your Qovery Organization through the **Qovery Github App**. 
+Also, once the **Qovery Github App** is installed, all the members of your Qovery Organization will only have access to the repositories linked to your **Qovery Github App**.
+
+</Alert>
+
+</li>
+<li>
+
+In the `Organization settings` menu, click `Git Permission`:
+
+<p align="center">
+  <img src="/img/configuration/organization/Git_Permissions_Tab.png" alt="Application" />
+</p>
+
+</li>
+<li>
+
+Below your Git provider account click `Install Github Application to manage permission`:
+
+<p align="center">
+  <img src="/img/configuration/organization/Installing_Github_App.png" alt="Application" />
+</p>
+
+A new window opens in your browser so you can install the **Qovery Github App** on your Github account.
+</li>
+<li>
+
+Click the Github account on which you want to install the **Qovery Github App**:
+
+<p align="center">
+  <img src="/img/configuration/organization/Install_GithubApp_Access.png" alt="Application" />
+</p>
+
+</li>
+<li>
+
+Click `Only select repositories` and, in the dropdown menu, define which Github repositories you want to give Qovery access to:
+
+
+<p align="center">
+  <img src="/img/configuration/organization/Repositories_Selection.png" alt="Application" />
+</p>
+
+<Alert type="info">
+
+You need to give Qovery access to any Github repository linked to an existing Qovery application. 
+Failure to do so will result in the loss of some functionalities (update, auto-deploy, preview environments, etc.).
+
+</Alert>
+
+</li>
+<li>
+
+To confirm, click `Install & Authorize`:
+
+<p align="center">
+  <img src="/img/configuration/organization/Confirmation_Window_GithubApp.png" alt="Application" />
+</p>
+
+You are redirected to your Qovery Console, where the list of authorized Github repositories is updated.
+
+<Alert type="info">
+
+You can update or revoke access to one or multiple Github repositories at any time. To do so, in the `Git Permission` tab, click `Manage Permission` below your Git provider account, and repeat the selection process on the Github website.
+
+</Alert>
+
+</li>
+</ol>
+</Steps>
+
+### Uninstalling the Qovery Github App
+
+<Alert type="info">
+
+Uninstalling the **Qovery Github App** only becomes possible once you have deleted all the Qovery applications linked to your Github account, regardless of whether they were created using the **Qovery Github App** or your Github user account directly.
+
+</Alert>
+
+To uninstall the **Qovery Github App**:
+
+<Steps headingDepth={3}>
+<ol>
+<li>
+
+Open your [Qovery Console][urls.qovery_console] and access your organization settings:
+
+<p align="center">
+  <img src="/img/configuration/clusters/Organization_Settings_Access_Button.png" alt="Qovery - delete organization" />
+</p>
+
+</li>
+<li>
+
+In the `Organization settings` menu, click `Git Permission`:
+
+<p align="center">
+  <img src="/img/configuration/organization/Git_Permissions_Tab.png" alt="Application" />
+</p>
+
+</li>
+<li>
+
+Next to your Git provider account, click `Disconnect`:
+
+<p align="center">
+  <img src="/img/configuration/organization/Github_App_Disconnect.png" alt="Application" />
+</p>
+
+The list of authorized Github repositories is updated, meaning Qovery now has access to all of your Github repositories again.
+</li>
+<li>
+
+From your browser, access your Github account and open your `Settings`:
+
+<p align="center">
+  <img src="/img/configuration/organization/Github_Settings.png" alt="Application" />
+</p>
+
+</li>
+<li>
+
+In the navigation menu, click `Applications`:
+
+
+<p align="center">
+  <img src="/img/configuration/organization/Github_Applications_Menu.png" alt="Application" />
+</p>
+
+</li>
+<li>
+
+At the bottom of the page, click `Uninstall`:
+
+<p align="center">
+  <img src="/img/configuration/organization/GithubApp_Uninstall_Finalize.png" alt="Application" />
+</p>
+
+A confirmation pop-up window opens.
+</li>
+<li>
+
+Click `OK`:
+
+The **Qovery Github App** is uninstalled.
+</li>
+</ol>
+</Steps>
 
 ## Billing
 

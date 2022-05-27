@@ -45,6 +45,7 @@ module.exports = {
             "using-qovery/configuration/organization",
             "using-qovery/configuration/project",
             "using-qovery/configuration/environment",
+            "using-qovery/configuration/clusters",
             "using-qovery/configuration/application",
             {
               type: 'category',

@@ -1,0 +1,170 @@
+<Tabs
+centered={false}
+className={"square"}
+defaultValue={"rails"}
+select={false}
+size={null}
+values={[{"group":"Files","label":"Rails","value":"rails"},{"group":"Files","label":"NodeJS","value":"nodejs"},{"group":"Files","label":"React","value":"react"},{"group":"Files","label":"VueJS","value":"vuejs"},{"group":"Files","label":"NextJS","value":"nextjs"},{"group":"Files","label":"Golang","value":"golang"},{"group":"Files","label":"Flask","value":"flask"},{"group":"Files","label":"Django","value":"django"},{"group":"Files","label":"Laravel","value":"laravel"},{"group":"Files","label":"Symfony","value":"symfony"},{"group":"Files","label":"Spring","value":"spring"},{"group":"Files","label":"Rust","value":"rust"}]}>
+
+<TabItem value="rails">
+
+Here is the Dockerfile for your Rails application listening on the PORT 3000
+
+```shell title="Dockerfile"
+# syntax=docker/dockerfile:1
+FROM ruby:2.7
+RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
+WORKDIR /myapp
+COPY Gemfile Gemfile
+COPY Gemfile.lock Gemfile.lock
+RUN bundle install
+
+COPY . .
+
+EXPOSE 3000
+
+# Configure the main process to run when running the image
+CMD ["rails", "server", "-b", "0.0.0.0", "-p", "3000"]
+```
+
+<details>
+
+<summary>Dockerfile for Sidekiq</summary>
+
+Here is the Dockerfile for your Rails app running as a worker mode with Sidekiq.
+
+<Alert type="info">
+
+There is no listening port since it is consuming resources from a queuing system (E.g. Redis)
+
+</Alert>
+
+```shell title="Dockerfile for Sidekiq"
+# syntax=docker/dockerfile:1
+FROM ruby:2.7
+RUN apt-get update -qq && apt-get install -y nodejs postgresql-client # add mysql client if you need to
+WORKDIR /myapp
+COPY Gemfile Gemfile
+COPY Gemfile.lock Gemfile.lock
+RUN bundle install
+
+COPY . .
+
+CMD ["bundle", "exec", "sidekiq"]
+```
+
+</details>
+
+</TabItem>
+
+<TabItem value="nodejs">
+
+```shell
+
+TODO
+
+```
+
+</TabItem>
+
+<TabItem value="react">
+
+```shell
+
+TODO
+
+```
+
+</TabItem>
+
+<TabItem value="vuejs">
+
+```shell
+
+TODO
+
+```
+
+</TabItem>
+
+<TabItem value="nextjs">
+
+```shell
+
+TODO
+
+```
+
+</TabItem>
+
+<TabItem value="golang">
+
+```shell
+
+TODO
+
+```
+
+</TabItem>
+
+<TabItem value="flask">
+
+```shell
+
+TODO
+
+```
+
+</TabItem>
+
+<TabItem value="django">
+
+```shell
+
+TODO
+
+```
+
+</TabItem>
+
+<TabItem value="laravel">
+
+```shell
+
+TODO
+
+```
+
+</TabItem>
+
+<TabItem value="symfony">
+
+```shell
+
+TODO
+
+```
+
+</TabItem>
+
+<TabItem value="spring">
+
+```shell
+
+TODO
+
+```
+
+</TabItem>
+
+<TabItem value="rust">
+
+```shell
+
+TODO
+
+```
+
+</TabItem>
+
+</Tabs>

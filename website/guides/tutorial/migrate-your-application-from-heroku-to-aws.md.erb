@@ -1,175 +1,455 @@
 ---
 $schema: "/.meta/.schemas/guides.json"
 title: Migrate your application from Heroku to AWS
-description: Tutorial on how to migrate your application from Heroku to AWS with a PostgreSQL database
+description: Guide on how to migrate all your applications from Heroku to AWS with your databases
 author_github: https://github.com/evoxmusic
 tags: ["type: tutorial", "cloud_provider: aws"]
 hide_pagination: true
 ---
+import Tabs from '@theme/Tabs';
 import Assumptions from '@site/src/components/Assumptions';
 
-This tutorial describes how to migrate your web application running on Heroku to AWS with Qovery. In the article, you learn how to
-migrate a Node.js application connected to Heroku Postgres as a backing service on the Heroku platform. It covers all required
-steps you need to take to deploy your application on AWS and transfer your data from Heroku Postgres to the database managed
-by AWS via Qovery.
+This guide describes how to migrate your application running on Heroku to AWS with Qovery. It covers all required steps you need to take to deploy your application on AWS and transfer your data from Heroku Postgres to the database managed by AWS via Qovery.
 
-The application is a simple Node.js *Todo* web app that uses PostgreSQL as a persistence layer.
+> Please contact us via [our forum][urls.qovery_forum] if you experience any problem while migrating from Heroku to AWS with Qovery.
 
 <Assumptions name="guide">
 
 * You are familiar with Heroku basics, have a Heroku account and access to Heroku CLI
-* You have a Qovery account
-* You have a [Github or Gitlab][urls.github] account
-* You have [configured your AWS account][guides.advanced.guide-amazon-web-services] on Qovery
+* You have [sign in on Qovery][urls.start_qovery]
+* You have [set up your AWS account][guides.advanced.guide-amazon-web-services] with Qovery
 
 </Assumptions>
 
-<hr />
+## Migration Steps
+
+1. [Use Buildpacks or Create your Dockerfile](#1-create-your-dockerfile-or-use-buildpacks)
+2. [Create resources on Qovery](#2-create-resources-on-qovery)
+3. [Configure Environment Variables and Secrets](#3-configure-your-environment-variables-and-secrets)
+4. [Copy data from your Heroku databases to your AWS databases](#4-copy-data-from-your-heroku-databases-to-your-aws-databases)
+5. [Deploy your apps](#5-deploy-your-apps)
+6. [FAQ by Heroku users](#faq-by-heroku-users)
+
+## 1. Create your Dockerfile or Use Buildpacks
+
+Qovery supports two ways to build and run your application coming from Heroku:
+
+1. Buildpacks
+2. Docker
+
+Both options build a container image that is runnable by a container engine (E.g. Docker). Qovery runs containers on Kubernetes.
+
+Choose the option that better fits you:
 
 <Tabs
-  centered={true}
-  className={"rounded"}
-  defaultValue={"dontDeploy"}
-  placeholder="Don't deploy sample application"
-  select={false}
-  size={null}
-  values={[{"group":"Platforms","label":"I want to migrate my application","value":"dontDeploy"},{"group":"Platforms","label":"I want to deploy a sample application","value":"deploy"}]}>
+centered={true}
+className={"rounded"}
+defaultValue={"buildpacks"}
+placeholder="Use Buildpacks or Create your Dockerfile"
+select={false}
+size={null}
+values={[{"group":"Platforms","label":"Use Buildpacks","value":"buildpacks"},{"group":"Platforms","label":"Create your Dockerfile","value":"dockerfile"}]}>
 
-<TabItem value="dontDeploy">
+<TabItem value="dockerfile">
 
-If you have an existing app, you do not have to deploy our sample application to benefit from this guide.
-Otherwise, you can try to deploy and migrate our sample application to get experience.
+> Are you familiar with Dockerfile? If not, I do recommend reading [this article][guides.tutorial.how-to-write-a-dockerfile].
+
+Here we will create our Dockerfiles to build and run our applications. Qovery will handle the build and the run of your applications, but need to have at least a Dockerfile to do it.
+
+### Choose your Dockerfile template
+
+To get started,
+
+#### Find Dockerfile template
+
+Pick one Dockerfile template according to the programming language or framework you are using for your app:
+
+<Alert type="info">
+
+Your framework or language is missing? Open a thread on [our forum][urls.qovery_forum], and we will provide you one.
+
+</Alert>
+
+<%= dockerfile_templates() %>
+
+#### Copy template
+
+Copy your Dockerfile at the root of your project. By convention, you can name your file `Dockerfile`. If you already have a Dockerfile, feel free to name it `Dockerfile.qovery`. If you are using multiple Dockerfile for Qovery, feel free to give a name like `Dockerfile-sidekiq.qovery`.
+
+<Alert type="info">
+
+Read [this forum post](https://discuss.qovery.com/t/904) to know how to use the same Dockerfile with different CMD parameters.
+
+</Alert>
+
+For our example of migrating a Rails app and a Rails Sidekiq app, I will have at the root of my project a `Dockerfile.qovery` and a `Dockerfile-sidekiq.qovery`.
+
+### Test your Dockerfile
+
+<Assumptions>
+
+You need to [install Docker](https://docs.docker.com/get-docker/) to test your Dockerfile
+
+</Assumptions>
+
+To test your Dockerfile we will locally our container. You just need to run the following commands:
+
+<Alert type="warning">
+
+Don't forget the `.` (dot) at the end of the `docker build` command.
+
+</Alert>
+
+```shell
+docker build -f Dockerfile.qovery .
+```
+
+If everything goes well you should get the finale image ID at the end of the output.
+
+```shell
+[+] Building 19.0s (16/16) FINISHED
+ => [internal] load build definition from Dockerfile                                       0.0s
+ => => transferring dockerfile: 37B                                                        0.0s
+ => [internal] load .dockerignore                                                          0.0s
+ ...
+ => [7/7] COPY . .                                                                         0.2s
+ => exporting to image                                                                     0.0s
+ => exporting layers                                                                       0.4s
+ => writing image sha256:a0f90a6ec8bc4036a7b268479a0c0773ca324ba2de11fdef31309650743f4055  0.0s
+```
+
+To run your image you can run:
+
+```shell
+docker run a0f90a6ec8bc4036a7b268479a0c0773ca324ba2de11fdef31309650743f4055
+```
+
+If your app required a database to starts, then it can be normal that it fails to start. Otherwise, if your app is supposed to start and does not, then you will need to fix the issue and rebuild your app with `docker build -f Dockerfile.qovery .`
+
+<Alert type="info">
+
+This step is one of the most complex, but once you successfully build your application with Docker, your app will run anywhere (not only on AWS with Qovery).
+
+</Alert>
+
+Any error while building your container image? 2 solutions:
+
+1. Read the error message and try to understand from where the problem is coming from. You can "Google" the error if it is not related to your code.
+2. Open a thread on [our forum][urls.qovery_forum] if you don't find the answer there, we will be happy to assist you.
+
+### Environment variables at the build time
+
+Does your app use some environment variables at the build time? Then you will need to modify your Dockerfile to includes the environment variables. Let's imagine your app uses the environment variable `CONTENT_API_KEY`, then you will need to add the following instructions in your Dockerfile:
+
+```shell title="Dockerfile with environment variables"
+...
+ARG CONTENT_API_KEY
+ENV CONTENT_API_KEY $CONTENT_API_KEY
+...
+```
+
+The value of the `CONTENT_API_KEY` environment variable will be taken from the specified environment variables in Qovery.
+
+<Alert type="success">
+
+Qovery injects Environment Variables and Secrets at the build and run time of your app.
+
+</Alert>
+
+### Add your Dockerfile to Git
+
+Now, add your new Dockerfile to git with the following commands:
+
+```shell
+git add Dockerfile.qovery
+git commit -m "Add Qovery Dockerfile"
+git push origin
+```
+
+### Loop
+
+If you have multiple applications to deploy, create a Dockerfile for each of them.
 
 </TabItem>
 
-<TabItem value="deploy">
+<TabItem value="buildpacks">
 
-## Deploying the sample application to Heroku
+[Buildpacks](https://buildpacks.io/) automatically detects the language and the framework your application is using. Buildpacks builds and runs your app. Here is the list of [supported languages and frameworks][docs.using-qovery.configuration.application#option-1-buildpacks].
 
-<Steps headingDepth={3}>
+<Alert type="warning">
 
-  1. Log in to Heroku using the CLI:
-  ```bash
-  heroku login --interactive
-  ```
+We do recommend using Docker to keep the full control of what's going on behind the scene. Buildpacks is a great technology but difficult to debug when something goes wrong. You can try deploying your apps on AWS with Qovery with Buildpacks, if you do not succeed, we do recommend switching for Docker.
 
-  2. Clone the application repository:
-  ```bash
-  git clone https://github.com/qovery/migrate-webapp-from-heroku-to-qovery.git
-  ```
+</Alert>
 
-  3. Move to the directory of the cloned repository:
-  ```bash
-  cd migrate-webapp-from-heroku-to-qovery
-  ```
-  The repository is made of a few simple components:
-    - `index.js` - Node.js script for setting up the web application.
-    - `package.json` - File determining app's dependencies.
-    - `Procfile` - File required to run the app on Heroku. It determines the command executed on the application startup.
-    - `views` - Directory with the HTML served by the app.
+### Limitations
 
-  4. Create a Heroku app:
-  ```bash
-  heroku create
-  ```
+Here are some limitations due to our Buildpacks implementation:
 
-  5. Add Heroku PostgreSQL to your application:
-  ```bash
-  heroku addons:create heroku-postgresql:hobby-dev
-  ```
+* Qovery Buildpacks does not support Procfile with multiple commands at the moment.
+* Qovery does not support custom Buildpacks.
 
-  6. Deploy the application:
-  ```
-  git push heroku master
-  ```
-
-  7. Check your application URL:
-  ```bash
-  heroku info
-  ```
-
-  8. In the browser, navigate to your application's URL - you'll see a simple view with a *Todo* app:
-  <p align="center">
-    <img src="/img/todo-app-example.png" alt="Connect Github" />
-  </p>
-
-  9. Create a few *Todo* tasks in the UI to make sure you have sample data in the database.
-
-</Steps>
+Those limitations will be solved in the coming months.
 
 </TabItem>
 
 </Tabs>
 
-## Migrating the application from Heroku to AWS
+## 2. Create resources on Qovery
 
-<Steps headingDepth={3}>
-<ol>
+### Application
 
-<li>
+<Alert type="info">
 
-[Sign in to Qovery Console](https://console.qovery.com)
+Are you a new Qovery user? Watch [this tutorial][guides.getting-started.deploy-your-first-application] to learn how to deploy your first app.
 
-</li>
+</Alert>
 
-<%= qovery_add_app("https://github.com/qovery/migrate-webapp-from-heroku-to-qovery.git", "master") %>
+<div class="video-container">
+  <p align="center">
+    <iframe src="https://www.loom.com/embed/9246ae68c68f42debc3d5183d2b4f7f8" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+    </iframe>
+  </p>
+</div>
 
-<li>
+Steps:
 
-### Create and deploy a new database
+1. Connect to the [Qovery console][urls.start_qovery].
+2. Create your [Organization][docs.using-qovery.configuration.organization] and your [Project][docs.using-qovery.configuration.project].
+3. Create an environment with the name `production` (it can be changed after).
+4. Create an application and give it a name (you can give the name of your repo if you have no idea)
+5. Select your app repository from your GitHub, GitLab or Bitbucket.
+6. Select the branch you want to deploy.
+7. Select the Build mode for `Buildpacks` or `Dockerfile` according to what you want.
+8. Specify the local listening port of your application.
+9. Click on "create"
+
+Congrats! Your application is created 🎉
 
 <Alert type="warning">
 
-Name the database **MY_POSTGRESQL** to follow the guide flawlessly
+Your application is created but not deployed yet! You can configure the vCPU, Memory, Environment Variables... before deploying it. If you want to deploy it before finishing the configuration you can click on "Actions" > "Deploy".
 
 </Alert>
 
-To learn how to do it, you can [follow this guide][guides.getting-started.create-a-database]
+If you deploy an app from a mono-repository, we have a must-read guide for you [here][guides.advanced.monorepository].
 
-</li>
+### Database
 
-<li>
+<Alert type="info">
 
-### Migrate PostgreSQL data
-
-There are multiple paths you could take to migrate your data from Heroku Postgres to AWS.
-For production usage for the shortest downtime you would probably want to configure PostgreSQL as a replica to
-the database on Heroku, and making it the primary instance after migration. Heroku does not support this in its free
-tier, so for the purpose of the example, we take a simpler path and use different tools to migrate the data.
-
-<Alert>
-
-To run the migration successfully, you need a `psql` PostgreSQL client installed on your machine.
+Are you a new Qovery user? Watch [this tutorial][guides.getting-started.create-a-database] to learn how to deploy your database.
 
 </Alert>
 
-First, dump the data from your Heroku Postgres:
+Here are the steps to deploy your database:
 
-```bash
-heroku pg:backups:download -a YOUR_APPLICATION_NAME
-heroku pg:backups:capture -a YOUR_APPLICATION_NAME
+<Assumptions>
+
+* You have created an application before
+
+</Assumptions>
+
+<div class="video-container">
+  <p align="center">
+    <iframe src="https://www.loom.com/embed/d7e10be0e5964f6799b158dc631bbbd1" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+    </iframe>
+  </p>
+</div>
+
+Steps:
+
+1. Go to your `production` environment.
+2. Add your database by clicking on "Add" > "Database".
+3. Select the database (PostgreSQL, MySQL, MongoDB, Redis..) and the version you want to deploy.
+4. Select [Managed or Container mode][docs.using-qovery.configuration.database#general] for your database.
+5. Select `Public` accessibility (set `Private` if you don't want to restore your data from an existing Heroku database).
+
+Congrats! Your database is created as well 🎉
+
+If you use MongoDB Atlas, or an existing database on AWS that you want to connect to your application deployed by Qovery. Check out [our tutorial about VPC peering][guides.tutorial.aws-vpc-peering-with-qovery] and how to securely connect to your existing database.
+
+## 3. Configure your Environment Variables and Secrets
+
+Qovery makes the difference between an [Environment Variable][docs.using-qovery.configuration.environment-variable] and a [Secret][docs.using-qovery.configuration.secret]. Basically, a Secret is similar to an Environment Variable but the value is encrypted and can't be revealed. Both are injected as environment variables during the build and the run of your applications.
+
+<Alert type="info">
+
+I recommend reading our [Getting Started with Environment Variables][guides.getting-started.managing-environment-variables] guide.
+
+</Alert>
+
+To extract your environment variables from Heroku, we recommend using the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) and exporting all the environment variables and secrets in an .env (dot env) file. Qovery supports the [import of a dot env file][guides.tutorial.import-your-environment-variables-with-the-qovery-cli] via the Qovery web interface and the Qovery CLI.
+
+<Alert type="warning">
+
+If you use Buildpacks for one of your app AND you have indicated a local listening port of your application, you will need to add an environment variable `PORT` with the value of your port to make your application starting properly. Otherwise, Qovery will fail to deploy your app!
+
+</Alert>
+
+[Export your environment variable via the Heroku CLI](https://devcenter.heroku.com/articles/config-vars#view-current-config-var-values) with the command:
+
+```shell
+# To install Heroku CLI: https://devcenter.heroku.com/articles/heroku-cli
+heroku config
+
+GREETINGS: hello world
+STRIPE_API_KEY: xxx-yyy-zzz
+IS_PRODUCTION: true
 ```
 
-It results in creating a new `latest.dump` file, which you use to transfer data to AWS PostgreSQL.
+Then you can create your environment variables via the web interface (watch the video below)
 
-To migrate the data to your AWS PostgreSQL, run (replace all the values with secrets listed in your application `Secrets` tab):
+<div class="video-container">
+  <p align="center">
+    <iframe src="https://www.loom.com/embed/50899d7fa3d84a418f0db69f54f970d3" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+    </iframe>
+  </p>
+</div>
 
-```bash
-pg_restore -v -h $QOVERY_DATABASE_MY_POSTGRESQL_HOST -U $QOVERY_DATABASE_MY_POSTGRESQL_USER -d postgres latest.dump --no-owner
+Or via the [Qovery CLI][docs.using-qovery.interface.cli]:
+
+```shell title="Import Heroku environment variables with the Qovery CLI"
+# auth yourself
+qovery auth
+
+# selection the app where you want to import your environment variables
+qovery context set
+
+# import your Heroku environment variables
+heroku config --app <your_heroku_app_name> --json | \
+  qovery env parse --heroku-json > heroku.env && \
+  qovery env import heroku.env && \
+  rm heroku.env
+
+Qovery: dot env file to import: 'heroku.env'
+? Do you want to import Environment Variables or Secrets? Environment Variables
+? What environment variables do you want to import?  [Use arrows to move, space to select, <right> to all, <left> to none, type to filter]
+  [x]  GREETINGS=hello world
+  [ ]  STRIPE_API_KEY=xxx-yyy-zzz
+> [x]  IS_PRODUCTION=true
+
+Qovery: ✅ Environment Variables successfully imported!
 ```
 
-[Learn more about secrets here][docs.using-qovery.configuration.secret]
+<Alert type="warning">
 
-</li>
+Import sensitive data (E.g. API keys, credentials...) as `Secret` and not `Environment Variable`.
 
-</ol>
-</Steps>
+</Alert>
 
-<%= qovery_deploy_app() %>
+### Connect your frontend app to your backend app
 
-After it's done, click on **Action** and **Open** button to navigate to your app. It should be up and running with all the data from Heroku migrated to AWS!
+To connect your frontend app your backend app we will create an [environment variable alias][docs.using-qovery.configuration.environment-variable#alias-environment-variable].
 
-## What's next
+Here is how to create a frontend app:
 
-<Jump to="/guides/getting-started/setting-custom-domain">Setting Custom Domain</Jump>
-<Jump to="/guides/advanced/using-multiple-environments">Using Multiple Environments</Jump>
+<div class="video-container">
+  <p align="center">
+    <iframe src="https://www.loom.com/embed/bafbbda93bd64d04afb3189bf4a1a201" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+    </iframe>
+  </p>
+</div>
+
+And now how to connect your frontend app with your backend app:
+
+<div class="video-container">
+  <p align="center">
+    <iframe src="https://www.loom.com/embed/f820925f2175465f9271b97ef414bb42" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+    </iframe>
+  </p>
+</div>
+
+You can also take a look at [this forum reply](https://discuss.qovery.com/t/918) to learn how to do it.
+
+
+### Connect your backend app to your database
+
+Same as connecting your frontend app to your backend app, you can create an environment variable alias `DATABASE_URL` for the *built-in* secret finishing with `_DATABASE_URL_INTERNAL`.
+
+<Alert type="warning">
+
+Create an alias on `_DATABASE_URL_INTERNAL` and not `_DATABASE_URL`
+
+</Alert>
+
+<div class="video-container">
+  <p align="center">
+    <iframe src="https://www.loom.com/embed/59f8368eb3c14796a807c7e39e9c0ab0" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+    </iframe>
+  </p>
+</div>
+
+## 4. Copy data from your Heroku databases to your AWS databases
+
+*Coming soon with [Replibyte](https://www.replibyte.com)*
+
+## 5. Deploy your apps!
+
+We are finally ready to deploy my applications on AWS!
+
+<div class="video-container">
+  <p align="center">
+    <iframe src="https://www.loom.com/embed/0589d2f2aa4149edb605dc23f4efd23d" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+    </iframe>
+  </p>
+</div>
+
+Watch the final result 😎
+
+<div class="video-container">
+  <p align="center">
+    <iframe src="https://www.loom.com/embed/da31c21f9c104eae9270e4c4db59055e" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+    </iframe>
+  </p>
+</div>
+
+## FAQ by Heroku users
+
+### How to create a custom domain?
+
+Check out the documentation on [how to configure your custom domain][guides.getting-started.setting-custom-domain].
+
+### How to monitor my apps?
+
+We do recommend using [Datadog](https://www.datadoghq.com) or any other monitoring products for monitoring your apps deployed by Qovery. Check out [our tutorial on how to install Datadog][guides.tutorial.kubernetes-observability-and-monitoring-with-datadog].
+
+### Do you have Heroku "Review App" equivalent?
+
+Yes, it's what we call [Preview Environment][docs.using-qovery.configuration.environment#preview-environment]
+
+### How to rollback?
+
+Check out the [app rollback documentation][docs.using-qovery.configuration.application#update-and-rollback]
+
+### How auto-scaling works?
+
+Check out the [app auto-scaling documentation][docs.using-qovery.configuration.application#auto-scaling]
+
+### How to manage database migration?
+
+Check out [our forum reply](https://discuss.qovery.com/t/951)
+
+### Is it possible to get a shell / connect to my app?
+
+Yes, with the Qovery CLI and the command `qovery shell`. [Check out the documentation][docs.using-qovery.interface.cli#shell].
+
+### Can I use Terraform and Infrastructure as Code?
+
+Absolutely, we have a [Qovery Terraform provider][docs.devops.infrastructure-as-code.terraform] available.
+
+### How can I connect my app to MongoDB Atlas?
+
+If you use MongoDB Atlas check out [our tutorial about VPC peering][guides.tutorial.aws-vpc-peering-with-qovery] and how to securely connect to your existing MongoDB Atlas database.
+
+### How can I connect my app to an AWS service not managed by Qovery?
+
+If you want to connect your app to an AWS service not managed by Qovery, check out [our tutorial about VPC peering][guides.tutorial.aws-vpc-peering-with-qovery] and how to securely connect to this AWS service.
+
+----
+
+If you have a common question about Qovery, we have a more general [FAQ section][docs.useful-resources.faq] available.
+
+## Wrapping up
+
+Congrats! You have migrated from Heroku to AWS. Feel free to check out our [forum][urls.qovery_forum] and open a thread if you have any question.

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-12-28"
+last_modified_on: "2022-05-14"
 $schema: "/.meta/.schemas/guides.json"
 title: How to seed a Postgres database on a dev environment
 description: How to automatically inject data into your development Postgres databases
@@ -10,6 +10,12 @@ hide_pagination: true
 import Alert from '@site/src/components/Alert';
 import Assumptions from '@site/src/components/Assumptions';
 import Jump from '@site/src/components/Jump';
+
+<Alert type="info">
+
+Consider using [Replibyte][urls.replibyte] to seed your development database with real data
+
+</Alert>
 
 The goal of this article is to go through the process of seeding data into development environments on Qovery. Seeding the data into dev environments may help you set up clean development environments and thus speed up the development lifecycle in your team. It can be extremely useful for cloning and creating new environments or using the `Preview Environment` feature on Qovery.
 
@@ -172,4 +178,4 @@ When you open the logs of the deployment, you’ll see the seed data injection l
 </p>
 
 
-
+[urls.replibyte]: https://www.replibyte.com

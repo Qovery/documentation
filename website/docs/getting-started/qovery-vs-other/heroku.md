@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-02-13"
+last_modified_on: "2022-05-20"
 title: Qovery vs. Heroku
 description: Discover what is the difference between Qovery and Heroku, and why Qovery is the perfect Heroku alternative for your business.
 ---
@@ -122,6 +122,10 @@ Qovery offers all its customers community and email support staffed by the same 
 
 Where Heroku is a black box. They do everything they can to lock you and keep you forever.
 
+## What's next
+
+[Learn how to migrate from Heroku to AWS with Qovery][guides.tutorial.migrate-your-application-from-heroku-to-aws].
+
 ---
 Do you have any question? [Contact us][urls.qovery_contact_us] now!
 
@@ -129,5 +133,6 @@ Do you have any question? [Contact us][urls.qovery_contact_us] now!
 [docs.using-qovery.configuration.cloud-service-provider.amazon-web-services]: /docs/using-qovery/configuration/cloud-service-provider/amazon-web-services/
 [docs.using-qovery.configuration.cloud-service-provider]: /docs/using-qovery/configuration/cloud-service-provider/
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
+[guides.tutorial.migrate-your-application-from-heroku-to-aws]: /guides/tutorial/migrate-your-application-from-heroku-to-aws/
 [urls.qovery_contact_us]: https://www.qovery.com/contact
 [urls.qovery_engine]: https://engine.qovery.com

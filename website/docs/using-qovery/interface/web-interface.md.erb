@@ -11,11 +11,17 @@ Use Infrastructure as Code (IaC) with [Terraform][docs.devops.infrastructure-as-
 
 Qovery provides a [management console][urls.start_qovery] which allows you to interact with your projects and manage your environments.
 
-## First usage
-
-### Sign up
+## First sign-up
 
 <%= qovery_sign_up_web() %>
+
+<Alert type="info">
+
+When you first sign into the Qovery Console, you need to provide your Git provider account credentials. This allows you to later take advantage of a Single Sign-On process through your Git provider. However, by default, Qovery is then allowed to access all the resources stored on your Git provider account. 
+
+For better control, as a Github user, you can install the Qovery Github App, and define which Github repositories Qovery can access. For more information, see [Managing Git Permissions with the Qovery Github App][docs.using-qovery.configuration.organization#managing-git-permissions-using-the-qovery-github-app].
+
+</Alert>
 
 ## Deploy your first application
 

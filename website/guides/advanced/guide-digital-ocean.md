@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-01-22"
+last_modified_on: "2022-05-27"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy on your Digital Ocean account
 description: How to configure and deploy your apps on your Digital Ocean account with Qovery
@@ -90,7 +90,7 @@ An organization is a shared account where developers can collaborate across many
 To deploy on your Digital Ocean account, you have to choose between **Free**, **Professional** and **Business** plan for your organization.
 
 <p align="center">
-  <img src="/img/create_organization.jpg" alt="Qovery - Create an Organization and select the plan" />
+  <img src="/img/configuration/organization/create_organization.jpg" alt="Qovery - Create an Organization and select the plan" />
 </p>
 
 ### Install Qovery on your Digital Ocean account

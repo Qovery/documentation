@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-04-29"
+last_modified_on: "2022-05-27"
 $schema: "/.meta/.schemas/guides.json"
 title: Zero to Hero - How to deploy your apps on AWS in 30 minutes
 description: Step-by-step guide on how to deploy your apps on AWS in 30 minutes. No AWS knowledge required.
@@ -105,7 +105,7 @@ An organization is a shared account where developers can collaborate across many
 To deploy on your AWS account, you have to choose between **Free**, **Professional** and **Business** plan for your organization.
 
 <p align="center">
-  <img src="/img/create_organization.jpg" alt="Qovery - Create an Organization and select the plan" />
+  <img src="/img/configuration/organization/create_organization.jpg" alt="Qovery - Create an Organization and select the plan" />
 </p>
 
 ### Install Qovery on your AWS account

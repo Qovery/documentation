@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-05-27"
+last_modified_on: "2022-05-29"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy Django with PostgreSQL
 description: How to deploy a Django application with the PostgreSQL database with Qovery
@@ -246,7 +246,7 @@ Use the forked repository (and branch **master**) while creating the application
 
 ### Select application port
 
-After the application is created:
+After the application is created: 
 
 - Navigate application settings
 - Select **Port**

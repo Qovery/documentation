@@ -276,6 +276,24 @@ module.exports = {
       "description": "Simple step-by-step tutorials. ",
       "guides": [
         {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/tutorial/getting-started-with-preview-environments-on-aws-for-advanced-users",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/getting-started-with-preview-environments-on-aws-for-advanced-users.md",
+          "series_position": null,
+          "title": "(Advanced) Getting Started with Preview Environments on AWS"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/tutorial/getting-started-with-preview-environments-on-aws-for-beginners",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/getting-started-with-preview-environments-on-aws-for-beginners.md",
+          "series_position": null,
+          "title": "(Beginner) Getting Started with Preview Environments on AWS"
+        },
+        {
           "author_github": "https://github.com/pjeziorowski",
           "description": null,
           "id": "/tutorial/blazingly-fast-preview-environments-for-nextjs-nodejs-and-mongodb-on-aws",

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-05-27"
+last_modified_on: "2022-05-29"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy Laravel with MySQL
 description: How to deploy a Laravel application with the MySQL database with Qovery
@@ -246,7 +246,7 @@ Use the forked repository (and branch **master**) while creating the application
 
 ### Select application port
 
-After the application is created:
+After the application is created: 
 
 - Navigate application settings
 - Select **Port**

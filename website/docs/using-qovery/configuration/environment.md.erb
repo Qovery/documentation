@@ -25,22 +25,22 @@ Applications and databases from an Environment are isolated from other Environme
 You can create a new environment by clicking on the `Create environment` button of the Project page. A modal will appear that will allow you to specify following parameters
 
 * **name**: Give a name to your environment that is easily recognizable by anyone from your team. It is good practice to name your environment `production`, `main` or `master`, `staging`, `dev`, `fix/xxx`, `feat/xxx`, depending on the purpose of your environment.
-* **mode**: Specify environment mode. See [Types of environment](#types-of-environment) section. 
-* **cluster** : Specify the organization cluster on which this new environment will be deployed. 
+* **mode**: Specify environment mode. See [Types of environment](#types-of-environment) section.
+* **cluster** : Specify the organization cluster on which this new environment will be deployed.
 
 <p align="center">
   <img src="/img/create-env.png" alt="Create an environment" />
 </p>
 
-### Deployment rules and automatic option. 
+### Deployment rules and automatic option.
 
-By default, `mode` and `cluster` parameters are set as "automatic". 
+By default, `mode` and `cluster` parameters are set as "automatic".
 
 If `Automatic` option is specified for one or both of these parameters, deployment rules will automatically select the `cluster` and the `mode` you specified in it.
 
-If you chose to specify a cluster and/or a mode during the environment creation, the deploymment rules will also be applied, but the `cluster` and the `mode` will be overwritten by the one you just specified. 
+If you chose to specify a cluster and/or a mode during the environment creation, the deploymment rules will also be applied, but the `cluster` and the `mode` will be overwritten by the one you just specified.
 
-If you let `Automatic` option and that no deployment rule catch this new environment, the default `mode` and `cluster` will be applied. 
+If you let `Automatic` option and that no deployment rule catch this new environment, the default `mode` and `cluster` will be applied.
 
 <p align="center">
   <img src="/img/create-env-auto.png" alt="Create an environment" />
@@ -86,11 +86,13 @@ Refer to the [Types of environment](#types-of-environment) section below to lear
 
 The purpose of an Environment is to manage a bunch of applications that are working all together. Your production environment runs 24/7, where your other environments may not need to run all day long. E.g. you may need to run Environments to get early feedback on your application changes before the changes are merged into production. This is what we call **Preview Environment**.
 
-<Alert type="info">
+<Alert type="success">
 
-Sometimes **Preview Environment** are also known as **Ephemeral Environment**, **Temporary Environment**, **Development Environment**.
+Check out [this step-by-step guide to get started with the Preview Environments][guides.tutorial.getting-started-with-preview-environments-on-aws-for-beginners]
 
 </Alert>
+
+> Sometimes **Preview Environment** are also known as **Ephemeral Environment**, **Temporary Environment**, **Development Environment**.
 
 Creating a **Preview Environment** is similar to create a casual Environment.
 
@@ -133,7 +135,7 @@ Environment clone is convenient for those use cases:
 
 ## Update an Environment
 
-Qovery can detect when a running application is not using the latest version of the code available in its Git repository. 
+Qovery can detect when a running application is not using the latest version of the code available in its Git repository.
 To solve this, you can update your applications at environment level:
 
 <Steps headingDepth={3}>
@@ -172,7 +174,7 @@ Select the application(s) you want to update and click `Update`:
   <img src="/img/configuration/application/Update_Environment_Window.png" alt="Application" />
 </p>
 
-The selected applications are updated based on the latest version of the code available in their Git repositories. 
+The selected applications are updated based on the latest version of the code available in their Git repositories.
 </li>
 
 </ol>
@@ -258,11 +260,11 @@ This page allows you to view the history of all previous deployments of your env
   <img src="/img/deployment-history.png" alt="Deployment history list" />
 </p>
 
-## Cancel an environment deployment 
+## Cancel an environment deployment
 
-It may happen that you launch an unwanted deployment (setting error, wrong commit deployed, etc.) and you want to cancel the deployment, rather than waiting for the action to be completed and then performing a rollback, which can be time consuming. 
+It may happen that you launch an unwanted deployment (setting error, wrong commit deployed, etc.) and you want to cancel the deployment, rather than waiting for the action to be completed and then performing a rollback, which can be time consuming.
 
-To cancel a deployment, click on `Cancel deployment` in the `Action` menu of your environment. 
+To cancel a deployment, click on `Cancel deployment` in the `Action` menu of your environment.
 
 <p align="center">
   <img src="/img/cancel-deployment.png" alt="Cancel deployment Action button" />

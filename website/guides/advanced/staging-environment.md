@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-02"
+last_modified_on: "2022-05-29"
 $schema: "/.meta/.schemas/guides.json"
 title: Staging environment
 description: How to create a staging environment with Qovery
@@ -13,6 +13,12 @@ import Alert from '@site/src/components/Alert';
 Very often, before merging new changes to your production environment, you'd like to test them live in a deployed environment that resembles your production. Doing so allows you to make sure that everything works as expected before releasing new changes to your clients.
 Achieving it with Qovery is very simple and works well even if your project is made out of many applications, e.g. multiple backend services, websites, databases and so on.
 
+<Alert type="info">
+
+Are you interested in using the Preview Environments feature? [Check out this guide][guides.tutorial.getting-started-with-preview-environments-on-aws-for-beginners].
+
+</Alert>
+
 ### Creating a staging environment
 
 <Steps headingDepth={3}>
@@ -22,8 +28,8 @@ Achieving it with Qovery is very simple and works well even if your project is m
 Create a new environment
 
 <Alert type="info">
-  You can 
-  <a href="https://hub.qovery.com/docs/using-qovery/configuration/environment/#clone-environment"> clone your production environment </a> 
+  You can
+  <a href="https://hub.qovery.com/docs/using-qovery/configuration/environment/#clone-environment"> clone your production environment </a>
   or follow the following steps to set up your staging environment manually.
 </Alert>
 
@@ -86,3 +92,4 @@ After making sure new changes work well, all you need to do to release them to y
 
 [guides.getting-started.create-a-database]: /guides/getting-started/create-a-database/
 [guides.getting-started.managing-environment-variables]: /guides/getting-started/managing-environment-variables/
+[guides.tutorial.getting-started-with-preview-environments-on-aws-for-beginners]: /guides/tutorial/getting-started-with-preview-environments-on-aws-for-beginners/

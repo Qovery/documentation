@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-05-27"
+last_modified_on: "2022-05-29"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy NodeJS with PostgreSQL
 description: How to deploy a NodeJS application with the PostgreSQL database with Qovery

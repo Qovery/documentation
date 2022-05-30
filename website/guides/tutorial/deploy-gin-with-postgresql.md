@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-05-27"
+last_modified_on: "2022-05-29"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy Gin with PostgreSQL
 description: How to deploy a Gin application with the PostgreSQL database with Qovery

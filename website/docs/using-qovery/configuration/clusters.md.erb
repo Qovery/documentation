@@ -320,3 +320,256 @@ A VPC can only be used if it has at least one range of IP addresses called a **s
 #### Network
 
 The `Network` tab in your cluster settings allows you to update your Qovery VPC route table so that you can perform VPC peering. For step-by-step guidelines on how to set up VPC peering, [see our dedicated tutorial](https://hub.qovery.com/guides/tutorial/aws-vpc-peering-with-qovery/).
+
+### Performing Actions on your Clusters
+
+Qovery allows you to [update][docs.using-qovery.configuration.clusters#updating-a-cluster], [stop][docs.using-qovery.configuration.clusters#stopping-a-cluster], [restart][docs.using-qovery.configuration.clusters#restarting-a-cluster] or [delete][docs.using-qovery.configuration.clusters#deleting-a-cluster] your clusters at organization level. To access these actions:
+
+<Steps headingDepth={3}>
+<ol>
+<li>
+
+Open your [Qovery Console][urls.qovery_console].
+
+</li>
+<li>
+
+On the top right hand-side of the screen, click the cogwheel icon to access your Organization settings:
+
+<p align="center">
+  <img src="/img/configuration/clusters/Organization_Settings_Access_Button.png" alt="Application" />
+</p>
+
+</li>
+<li>
+
+In the `Organization settings` menu, click `Clusters`:
+
+<p align="center">
+  <img src="/img/configuration/clusters/Cluster_Settings_Tab.png" alt="Application" />
+</p>
+
+</li>
+<li>
+
+To view your cluster options, click `...`:
+
+<p align="center">
+  <img src="/img/configuration/clusters/Cluster_Actions_Menu.png" alt="Application" />
+</p>
+
+A dropdown menu unfolds, featuring all the actions available on your cluster:
+
+
+<p align="center">
+  <img src="/img/configuration/clusters/Cluster_Actions_Menu.png" alt="Application" />
+</p>
+
+
+</li>
+
+</ol>
+</Steps>
+
+#### Updating a Cluster
+
+To update a cluster:
+
+<Steps headingDepth={3}>
+<ol>
+<li>
+
+Access [your cluster options][docs.using-qovery.configuration.clusters#performing-actions-on-your-clusters].
+
+</li>
+<li>
+
+In the dropdown menu, click `Update`:
+
+<p align="center">
+  <img src="/img/configuration/clusters/Cluster_Update.png" alt="Application" />
+</p>
+
+A confirmation pop-up window opens.
+
+</li>
+<li>
+
+In the dedicated field, enter the name of your cluster:
+
+<p align="center">
+  <img src="/img/configuration/clusters/Cluster_Update_Confirmation.png" alt="Application" />
+</p>
+
+</li>
+<li>
+
+Click `Update`.
+
+Your cluster update is launched, and the status of your cluster turns to `Updating...`:
+
+<p align="center">
+  <img src="/img/configuration/clusters/Cluster_Status_Updating.png" alt="Application" />
+</p>
+
+Once the update is complete, the status dot next to your cluster turns to green:
+
+<p align="center">
+  <img src="/img/configuration/clusters/Cluster_Update_Complete.png" alt="Application" />
+</p>
+
+</li>
+</ol>
+</Steps>
+
+#### Stopping a Cluster
+
+To stop a cluster:
+
+<Steps headingDepth={3}>
+<ol>
+<li>
+
+Access [your cluster options][docs.using-qovery.configuration.clusters#performing-actions-on-your-clusters].
+
+</li>
+<li>
+
+In the dropdown menu, click `Stop`:
+
+<p align="center">
+  <img src="/img/configuration/clusters/Stop_Cluster.png" alt="Application" />
+</p>
+
+A confirmation pop-up window opens.
+
+</li>
+<li>
+
+In the dedicated field, enter the name of your cluster:
+
+<p align="center">
+  <img src="/img/configuration/clusters/Cluster_Stop_Confirmation.png" alt="Application" />
+</p>
+
+</li>
+<li>
+
+Click `Stop`.
+
+Your cluster is being stopped, and its status turns to `Pausing...`:
+
+<p align="center">
+  <img src="/img/configuration/clusters/Cluster_Pausing_Status.png" alt="Application" />
+</p>
+
+Once the stop is complete, the status dot next to your cluster turns to grey, and the status of your cluster turns to `Paused`:
+
+<p align="center">
+  <img src="/img/configuration/clusters/Cluster_Stop_Complete.png" alt="Application" />
+</p>
+
+</li>
+</ol>
+</Steps>
+
+#### Restarting a Cluster
+
+To restart a cluster:
+
+<Steps headingDepth={3}>
+<ol>
+<li>
+
+Access [your cluster options][docs.using-qovery.configuration.clusters#performing-actions-on-your-clusters].
+
+</li>
+<li>
+
+In the dropdown menu, click `Resume`:
+
+<p align="center">
+  <img src="/img/configuration/clusters/Restarting_Cluster.png" alt="Application" />
+</p>
+
+A confirmation pop-up window opens.
+
+</li>
+<li>
+
+In the dedicated field, enter the name of your cluster:
+
+<p align="center">
+  <img src="/img/configuration/clusters/Cluster_Update_Confirmation.png" alt="Application" />
+</p>
+
+</li>
+<li>
+
+Click `Update`.
+
+Your cluster is launched again, and the status of your cluster turns to `Updating...`:
+
+<p align="center">
+  <img src="/img/configuration/clusters/Cluster_Status_Updating.png" alt="Application" />
+</p>
+
+Once your cluster has restarted, the status dot next to your cluster turns to green:
+
+<p align="center">
+  <img src="/img/configuration/clusters/Cluster_Update_Complete.png" alt="Application" />
+</p>
+
+</li>
+</ol>
+</Steps>
+
+
+
+#### Deleting a Cluster 
+
+To delete a cluster:
+
+<Steps headingDepth={3}>
+<ol>
+<li>
+
+Access [your cluster options][docs.using-qovery.configuration.clusters#performing-actions-on-your-clusters].
+
+</li>
+<li>
+
+In the dropdown menu, click `Remove Cluster`:
+
+<p align="center">
+  <img src="/img/configuration/clusters/Cluster_Removal.png" alt="Application" />
+</p>
+
+A confirmation pop-up window opens.
+
+</li>
+<li>
+
+In the dedicated field, enter the name of your cluster:
+
+<p align="center">
+  <img src="/img/configuration/clusters/Cluster_Deletion_Confirmation.png" alt="Application" />
+</p>
+
+</li>
+<li>
+
+Click `Delete`.
+
+Your cluster is being deleted, and its status turns to `Deleting...`:
+
+<p align="center">
+  <img src="/img/configuration/clusters/Cluster_Deleting_Status.png" alt="Application" />
+</p>
+
+Once the deletion is complete, the cluster is removed from your organization settings.
+
+</li>
+</ol>
+</Steps>
+

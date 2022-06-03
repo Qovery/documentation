@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-04-26"
+last_modified_on: "2022-06-03"
 $schema: "/.meta/.schemas/guides.json"
 title: How to integrate Qovery with GitHub Actions
 description: Learn how to integrate Qovery with GitHub Actions
@@ -12,7 +12,7 @@ import Steps from '@site/src/components/Steps';
 import Alert from '@site/src/components/Alert';
 import Assumptions from '@site/src/components/Assumptions';
 
-Getting starting with Qovery is easy. Just plug your Git repository, and you can deploy your application directly.
+Getting started with Qovery is easy. Just plug your Git repository, and you can deploy your application directly.
 But in some cases you will want a more advanced CI workflow where some steps need to happen before deployment.
 
 One of the CI tools you can use for that matter is GitHub Actions.

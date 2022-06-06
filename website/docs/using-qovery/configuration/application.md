@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-05-28"
+last_modified_on: "2022-06-06"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -258,26 +258,29 @@ Setting up the `CNAME` on the domain provider side will make your app accessible
 
 ### Database
 
-To access your database from your application, you can use the BUILT_IN environment variables and secrets that have been automatically created by Qovery during the database creation process. You can find them within the Environment Variable section of your application.
+To access a database managed by Qovery from your application, you can use the BUILT_IN environment variables and secrets that have been automatically created by Qovery during the database creation process. You can find all the BUILT_IN variables on the Qovery console within the Environment Variable section of your application ([see the credentials and connectivity section for the full list][docs.using-qovery.configuration.database#credentials-and-connectivity]).
 
-To match the naming convention used in your code for the database connection parameters, you can [create an alias][docs.using-qovery.configuration.environment-variable#alias-environment-variable] of the variable so that you don't need to change your code.
+In order to match the naming convention of the database connection variables used in your code, you can [create an alias][docs.using-qovery.configuration.environment-variable#alias-environment-variable] for each variable in the Qovery console so that you don't need to change your code.
 
-Example of secrets and environment variables injected into your app for each created database:
+Once you have defined an alias for each variable, you can redeploy the application and check that it has finally access to the database.
 
-#### Database Secrets
+#### Example
+You have created a postgres database on the Qovery console. Within the code of your application you need some environment variables containing the connection parameters of the database: DATABASE_URL, DATABASE_USER, DATABASE_PASSWORD, DATABASE_PORT, DATABASE_NAME
 
+```python title="example.py"
+DB_NAME = os.getenv("DATABASE_NAME", "nemo")
+DB_USER = os.getenv("DATABASE_USER", "nemo")
+DB_PASSWORD = os.getenv("DATABASE_PASSWORD", "password")
+DB_HOST = os.getenv("DATABASE_HOST", "localhost")
+DB_PORT = os.getenv("DATABASE_PORT", "5432")
 ```
-"QOVERY_POSTGRESQL_Z14324SAS_PASSWORD": "XXX"
-"QOVERY_POSTGRESQL_Z14324SAS_DATABASE_LOGIN": "superuser"
-"QOVERY_POSTGRESQL_Z14324SAS_DATABASE_PORT": "5432"
-"QOVERY_POSTGRESQL_Z14324SAS_DATABASE_NAME": "mydb"
-"QOVERY_POSTGRESQL_Z14324SAS_DATABASE_HOST": "my-postgresq-y1irp3nmdzj32yjl-svc.cnuxtlki1yn9.eu-west-3.rds.amazonaws.com"
-```
 
-The built-in variables follow the naming pattern: `QOVERY_DATABASETYPE` + <your_db_name> + <type_of_variable> where:
+To match your internal naming convention, you can create aliases for each of the corresponding variables in this way:
 
-- `<your_db_name>` is the name of your database
-- `<type_of_variable>` is the type of variable we inject, e.g. `PASSWORD`, `VERSION`, `CONNECTION_URI` and so on.
+<p align="center">
+  <img src="/img/configuration/application/database-alias.png" alt="Env Var Aliases" />
+</p>
+
 
 ### Network
 
@@ -381,6 +384,7 @@ In the application overview, click on the `Actions` button and remove the applic
 </Steps>
 
 
+[docs.using-qovery.configuration.database#credentials-and-connectivity]: /docs/using-qovery/configuration/database/#credentials-and-connectivity
 [docs.using-qovery.configuration.environment-variable#alias-environment-variable]: /docs/using-qovery/configuration/environment-variable/#alias-environment-variable
 [docs.using-qovery.configuration.environment-variable]: /docs/using-qovery/configuration/environment-variable/
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/

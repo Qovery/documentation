@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-06-03"
+last_modified_on: "2022-06-07"
 title: "Clusters"
 description: "Learn how to configure your Kubernetes clusters on Qovery"
 ---
@@ -331,7 +331,16 @@ The `Network` tab in your cluster settings allows you to update your Qovery VPC 
 
 ### Performing Actions on your Clusters
 
-Qovery allows you to [update][docs.using-qovery.configuration.clusters#updating-a-cluster], [stop][docs.using-qovery.configuration.clusters#stopping-a-cluster], [restart][docs.using-qovery.configuration.clusters#restarting-a-cluster] or [delete][docs.using-qovery.configuration.clusters#deleting-a-cluster] your clusters at organization level. To access these actions:
+Qovery allows you to [update][docs.using-qovery.configuration.clusters#updating-a-cluster], [stop][docs.using-qovery.configuration.clusters#stopping-a-cluster], [restart][docs.using-qovery.configuration.clusters#restarting-a-cluster] or [delete][docs.using-qovery.configuration.clusters#deleting-a-cluster] your clusters at organization level. 
+
+| Action                | Description    |
+|---------------------------------|---------|
+|[Updating a cluster][docs.using-qovery.configuration.clusters#updating-a-cluster]| To redeploy your cluster after a change has been made to it.|
+|[Stopping a cluster][docs.using-qovery.configuration.clusters#stopping-a-cluster]| To temporarily stop your cluster. This does not stop any services you may have subscribed to via your cloud provider. For more information, see [Stopping a cluster][docs.using-qovery.configuration.clusters#stopping-a-cluster].|
+|[Restarting a cluster][docs.using-qovery.configuration.clusters#restarting-a-cluster]| To redeploy your cluster after it has been temporarily stopped.|
+|[Deleting a cluster][docs.using-qovery.configuration.clusters#deleting-a-cluster]| To delete your cluster. This is final and, if done properly, removes all the costs associated to the cluster. For more information, see [Deleting a cluster][docs.using-qovery.configuration.clusters#deleting-a-cluster].|
+
+To access these actions:
 
 <Steps headingDepth={3}>
 <ol>
@@ -381,7 +390,7 @@ A dropdown menu unfolds, featuring all the actions available on your cluster:
 
 #### Updating a Cluster
 
-To update a cluster:
+To update a cluster so that it is redeployed with all the changes made to it:
 
 <Steps headingDepth={3}>
 <ol>
@@ -432,7 +441,17 @@ Once the update is complete, the status dot next to your cluster turns to green:
 
 #### Stopping a Cluster
 
-To stop a cluster:
+Qovery allows you to temporarily stop your cluster instead of deleting it. 
+
+<Alert type="warning">
+
+When you stop a cluster from the Qovery console, only the workers nodes managed by Qovery are stopped. If you have subscribed to services via your cloud provider (load balancing, storage system, or any other managed services), they will remain active and you will be charged for them.
+For more information, please contact your cloud provider.
+To permanently delete a cluster and all its associated costs, see [Deleting a Cluster][docs.using-qovery.configuration.clusters#deleting-a-cluster].
+
+</Alert>
+
+To temporarily stop a cluster:
 
 <Steps headingDepth={3}>
 <ol>
@@ -483,7 +502,7 @@ Once the stop is complete, the status dot next to your cluster turns to grey, an
 
 #### Restarting a Cluster
 
-To restart a cluster:
+To restart a cluster after it has been temporarily stopped:
 
 <Steps headingDepth={3}>
 <ol>
@@ -536,6 +555,13 @@ Once your cluster has restarted, the status dot next to your cluster turns to gr
 
 #### Deleting a Cluster 
 
+<Alert type="warning">
+
+Deleting a cluster from the Qovery console is final, and cuts all associated costs on your cloud provider's end.
+To only temporarily stop a cluster, see [Stopping a Cluster][docs.using-qovery.configuration.clusters#stopping-a-cluster].
+
+</Alert>
+
 To delete a cluster:
 
 <Steps headingDepth={3}>
@@ -580,6 +606,48 @@ Once the deletion is complete, the cluster is removed from your organization set
 </li>
 </ol>
 </Steps>
+
+#### Cleaning up a Cluster from your AWS Account  
+
+<Alert type="warning">
+
+The following troubleshooting procedure is intended for AWS users who did not properly delete their cluster before revoking Qovery's access to their platform.
+
+To properly delete your clusters and avoid any unexpected issues or costs, see [Deleting a Cluster][docs.using-qovery.configuration.clusters#deleting-a-cluster].
+
+</Alert>
+
+To clean up a Qovery cluster from your cloud provider account:
+
+<Steps headingDepth={3}>
+  <ol>
+  <li>
+
+Go to `AWS Console`>`Services`>`Management & Governance`>`Resource Groups & Tag Editor`> `Create Resource Group`:
+
+<p align="center">
+<img src="/img/configuration/clusters/AWS_Console_Cluster_Cleanup.jpg" alt="Application" />
+</p>
+  </li>
+  <li>
+
+  In the `Group type` area, select `Tag based`.
+
+  </li>
+  <li>
+
+  In the `Tags` field of the `Grouping criteria` area, enter `ClusterId` and click `Add`.
+
+  </li>
+  <li>
+
+  Click `Preview Resources`.
+
+  All your Qovery clusters are now displayed in the `Group resources` table, and you can delete them by hand.
+
+  </li>
+  </ol>
+  </Steps>
 
 
 [docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account]: /docs/using-qovery/configuration/cloud-service-provider/amazon-web-services/#connect-your-aws-account

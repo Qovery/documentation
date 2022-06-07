@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-05-31"
+last_modified_on: "2022-06-03"
 title: "Clusters"
 description: "Learn how to configure your Kubernetes clusters on Qovery"
 ---
@@ -38,7 +38,7 @@ Qovery allows you to define worker nodes settings, so that you end up deploying 
 * a **Control Plane** (or **Master Node**): the control plane manages the worker nodes. Since we deploy managed Kubernetes services, the control plane is handled exclusively by your cloud provider, and left untouched by Qovery.
 
 <p align="center">
-  <img src="/img/configuration/clusters/Overview_of_a_Cluster.png" alt="Application" />
+  <img src="/img/configuration/clusters/cluster-overview.jpg" alt="Application" />
 </p>
 
 For more information on Kubernetes clusters, see [the Kubernetes documentation](https://kubernetes.io/docs/concepts/overview/components/).

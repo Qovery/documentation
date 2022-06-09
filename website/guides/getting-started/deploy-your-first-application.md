@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-06-03"
+last_modified_on: "2022-06-07"
 $schema: "/.meta/.schemas/guides.json"
 title: Hello World. Deploy your first application.
 description: How to deploy your first application with Qovery

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-05-20"
+last_modified_on: "2022-06-06"
 title: "Databases"
 description: "Learn how to configure Databases on Qovery"
 sidebar_label: hidden
@@ -162,11 +162,29 @@ To tweak the disk space assigned to your database, navigate to `Resource` sectio
   <img src="/img/configuration/database/db-7.png" alt="Database Storage" />
 </p>
 
-## Credentials
+## Credentials and connectivity
 
-Qovery will inject all environment variables and secrets you need to connect your app to your database.
-To see all the secrets injected for your application, see [database secrets section][docs.using-qovery.configuration.application#database-secrets].
-To access your database from your application, [have a look at this section][docs.using-qovery.configuration.application#database].
+When a database is created in your environment, Qovery will automatically create and inject a set of BUILT_IN environment variables containing all the parameters necessary to your application to connect to the database.
+
+This is the list of environment variables and secrets that will be automatically created:
+
+| Name                | Description    | Example |                                                                                                                                                                          
+|---------------------------------|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| QOVERY_`<DATABASE_TYPE>`_`<DBID>`_DEFAULT_DATABASE_NAME | Env Var containing the default database name | postgres |
+| QOVERY_`<DATABASE_TYPE>`_`<DBID>`_HOST | Env Var containing the external hostname of the database (if you need access from the outside and the DB is configured with visibility "PUBLIC") | zf5206c84-postgresql.oom.sh |
+| QOVERY_`<DATABASE_TYPE>`_`<DBID>`_HOST_INTERNAL | Env Var containing the internal hostname of the database (if you need access it from within the cluster network) | zf5206c84-postgresql |
+| QOVERY_`<DATABASE_TYPE>`_`<DBID>`_LOGIN | Env Var containing the username of the DB | superuser |
+| QOVERY_`<DATABASE_TYPE>`_`<DBID>`_PORT | Env Var containing the port to be used for connecting to the DB | 5432 |
+| QOVERY_`<DATABASE_TYPE>`_`<DBID>`_HOST | Secret containing the external URI to be used for connecting to the DB (if you need access from the outside and the DB is configured with visibility "PUBLIC") | sql://root:xxxx@z4a58c1e2-postgresql.oom.sh:27017/admin |
+| QOVERY_`<DATABASE_TYPE>`_`<DBID>`_HOST_INTERNAL | Secret containing the internal URI to be used for connecting to the DB (if you need access it from within the cluster network) | sql://root:xxxx@z4a58c1e2-postgresql:27017/admin |
+| QOVERY_`<DATABASE_TYPE>`_`<DBID>`_PASSWORD | Secret containing the password of the DB | dbsecret |
+
+Please note that the built-in variables follow the naming pattern: `QOVERY_DATABASETYPE` + <your_db_name> + <type_of_variable> where:
+
+- `<your_db_name>` is the name of your database
+- `<type_of_variable>` is the type of variable we inject, e.g. `PASSWORD`, `VERSION`, `CONNECTION_URI` and so on.
+
+To know how to access your database from your application, [have a look at the database section][docs.using-qovery.configuration.application#database].
 
 ## Delete your database instance
 
@@ -210,7 +228,6 @@ In database overview, click on `Action` remove button
 </Steps>
 
 
-[docs.using-qovery.configuration.application#database-secrets]: /docs/using-qovery/configuration/application/#database-secrets
 [docs.using-qovery.configuration.application#database]: /docs/using-qovery/configuration/application/#database
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [guides.getting-started.create-a-database]: /guides/getting-started/create-a-database/

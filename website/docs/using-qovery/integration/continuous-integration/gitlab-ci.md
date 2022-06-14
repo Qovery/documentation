@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-03-09"
+last_modified_on: "2022-06-15"
 title: "Gitlab CI"
 description: "Learn how to connect Gitlab CI to Qovery"
 ---
@@ -25,7 +25,7 @@ qovery:
 
      To make changes please edit the template located at:
 
-     website/docs/using-qovery/addon/continuous-integration/gitlab-ci.md.erb
+     website/docs/using-qovery/integration/continuous-integration/gitlab-ci.md.erb
 -->
 
 ## Scenarios

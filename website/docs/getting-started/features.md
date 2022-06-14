@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-20"
+last_modified_on: "2022-06-15"
 title: "Features"
 description: "Find out what are the most important features of Qovery"
 ---
@@ -37,20 +37,20 @@ Run as many environments as you need to stay confident in releasing new features
 
 [Read more][docs.using-qovery.configuration.environment]
 
-## Extend Qovery with your tools
+## Extend Qovery with integrations
 
 <p align="center">
   <img src="/img/addons_list.png" alt="Extend Qovery with tons of addons" />
 </p>
 
-Extend the power of Qovery in using your tools. Integrates Qovery with [Gitlab CI][docs.using-qovery.addon.continuous-integration.gitlab-ci]
-, [Datadog][docs.using-qovery.addon.monitoring.datadog], and many other addons.
+Extend the power of Qovery in using your tools. Integrates Qovery with [Gitlab CI][docs.using-qovery.integration.continuous-integration.gitlab-ci]
+, [Datadog][docs.using-qovery.integration.monitoring.datadog], and many other addons.
 
-[Read more][docs.using-qovery.addon]
+[Read more][docs.using-qovery.integration]
 
 
-[docs.using-qovery.addon.continuous-integration.gitlab-ci]: /docs/using-qovery/addon/continuous-integration/gitlab-ci/
-[docs.using-qovery.addon.monitoring.datadog]: /docs/using-qovery/addon/monitoring/datadog/
-[docs.using-qovery.addon]: /docs/using-qovery/addon/
 [docs.using-qovery.configuration.cloud-service-provider]: /docs/using-qovery/configuration/cloud-service-provider/
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
+[docs.using-qovery.integration.continuous-integration.gitlab-ci]: /docs/using-qovery/integration/continuous-integration/gitlab-ci/
+[docs.using-qovery.integration.monitoring.datadog]: /docs/using-qovery/integration/monitoring/datadog/
+[docs.using-qovery.integration]: /docs/using-qovery/integration/

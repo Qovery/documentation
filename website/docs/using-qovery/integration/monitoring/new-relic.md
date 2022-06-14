@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-02-23"
+last_modified_on: "2022-06-15"
 title: "New Relic"
 description: "Learn how to configure and plug your New Relic account"
 ---
@@ -13,7 +13,7 @@ NewRelic is a recommended product to monitor and track down your application per
 
      To make changes please edit the template located at:
 
-     website/docs/using-qovery/addon/monitoring/new-relic.md.erb
+     website/docs/using-qovery/integration/monitoring/new-relic.md.erb
 -->
 
 ## Install NewRelic

@@ -81,41 +81,14 @@ module.exports = {
           type: 'category',
           label: 'Languages',
           items: [
-              <%= metadata.links.fetch_id("docs.using-qovery.languages").to_json %>,
-              <%= metadata.links.fetch_id("docs.using-qovery.languages.nodejs").to_json %>,
-              <%= metadata.links.fetch_id("docs.using-qovery.languages.java").to_json %>,
-              <%= metadata.links.fetch_id("docs.using-qovery.languages.go").to_json %>,
-              <%= metadata.links.fetch_id("docs.using-qovery.languages.python").to_json %>,
-              <%= metadata.links.fetch_id("docs.using-qovery.languages.ruby").to_json %>,
-              <%= metadata.links.fetch_id("docs.using-qovery.languages.php").to_json %>,
-              ],
-        },
-        {
-          type: 'category',
-          label: 'Addons',
-          items: [
-            <%= metadata.links.fetch_id("docs.using-qovery.addon").to_json %>,
-            {
-              type: 'category',
-              label: 'Continuous Integration',
-              items: [
-                <%= metadata.links.fetch_id("docs.using-qovery.addon.continuous-integration").to_json %>,
-                <%= metadata.links.fetch_id("docs.using-qovery.addon.continuous-integration.qovery-ci").to_json %>,
-                <%= metadata.links.fetch_id("docs.using-qovery.addon.continuous-integration.gitlab-ci").to_json %>,
-                <%= metadata.links.fetch_id("docs.using-qovery.addon.continuous-integration.circle-ci").to_json %>,
-                <%= metadata.links.fetch_id("docs.using-qovery.addon.continuous-integration.github-actions").to_json %>,
-              ],
-            },
-            {
-              type: 'category',
-              label: 'Monitoring',
-              items: [
-                <%= metadata.links.fetch_id("docs.using-qovery.addon.monitoring").to_json %>,
-                <%= metadata.links.fetch_id("docs.using-qovery.addon.monitoring.datadog").to_json %>,
-                <%= metadata.links.fetch_id("docs.using-qovery.addon.monitoring.new-relic").to_json %>,
-              ],
-            },
-          ]
+            <%= metadata.links.fetch_id("docs.using-qovery.languages").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.languages.nodejs").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.languages.java").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.languages.go").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.languages.python").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.languages.ruby").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.languages.php").to_json %>,
+          ],
         },
         {
           type: 'category',
@@ -130,6 +103,33 @@ module.exports = {
             <%= metadata.links.fetch_id("docs.using-qovery.quickstart.spring").to_json %>,
             <%= metadata.links.fetch_id("docs.using-qovery.quickstart.django").to_json %>,
             <%= metadata.links.fetch_id("docs.using-qovery.quickstart.rails").to_json %>,
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Integrations',
+          items: [
+            <%= metadata.links.fetch_id("docs.using-qovery.integration").to_json %>,
+            {
+              type: 'category',
+              label: 'Continuous Integration',
+              items: [
+                <%= metadata.links.fetch_id("docs.using-qovery.integration.continuous-integration").to_json %>,
+                <%= metadata.links.fetch_id("docs.using-qovery.integration.continuous-integration.qovery-ci").to_json %>,
+                <%= metadata.links.fetch_id("docs.using-qovery.integration.continuous-integration.github-actions").to_json %>,
+                <%= metadata.links.fetch_id("docs.using-qovery.integration.continuous-integration.gitlab-ci").to_json %>,
+                <%= metadata.links.fetch_id("docs.using-qovery.integration.continuous-integration.circle-ci").to_json %>,
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Monitoring',
+              items: [
+                <%= metadata.links.fetch_id("docs.using-qovery.integration.monitoring").to_json %>,
+                <%= metadata.links.fetch_id("docs.using-qovery.integration.monitoring.datadog").to_json %>,
+                <%= metadata.links.fetch_id("docs.using-qovery.integration.monitoring.new-relic").to_json %>,
+              ],
+            },
           ]
         },
         {
@@ -167,24 +167,6 @@ module.exports = {
             <%= metadata.links.fetch_id("docs.devops.infrastructure-config.qovery-agent").to_json %>,
           ]
         }
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Community',
-      items: [
-        {
-          type: 'category',
-          label: 'Rewards',
-          items: [
-            <%= metadata.links.fetch_id("docs.community.reward").to_json %>,
-            <%= metadata.links.fetch_id("docs.community.reward.feedback").to_json %>,
-            <%= metadata.links.fetch_id("docs.community.reward.write-content").to_json %>,
-            <%= metadata.links.fetch_id("docs.community.reward.video-record").to_json %>,
-            <%= metadata.links.fetch_id("docs.community.reward.bug-bounty").to_json %>,
-          ]
-        },
-        <%= metadata.links.fetch_id("docs.community.become-an-ambassador").to_json %>,
       ],
     },
     {

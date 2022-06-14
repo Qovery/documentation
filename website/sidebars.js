@@ -81,41 +81,14 @@ module.exports = {
           type: 'category',
           label: 'Languages',
           items: [
-              "using-qovery/languages",
-              "using-qovery/languages/nodejs",
-              "using-qovery/languages/java",
-              "using-qovery/languages/go",
-              "using-qovery/languages/python",
-              "using-qovery/languages/ruby",
-              "using-qovery/languages/php",
-              ],
-        },
-        {
-          type: 'category',
-          label: 'Addons',
-          items: [
-            "using-qovery/addon",
-            {
-              type: 'category',
-              label: 'Continuous Integration',
-              items: [
-                "using-qovery/addon/continuous-integration",
-                "using-qovery/addon/continuous-integration/qovery-ci",
-                "using-qovery/addon/continuous-integration/gitlab-ci",
-                "using-qovery/addon/continuous-integration/circle-ci",
-                "using-qovery/addon/continuous-integration/github-actions",
-              ],
-            },
-            {
-              type: 'category',
-              label: 'Monitoring',
-              items: [
-                "using-qovery/addon/monitoring",
-                "using-qovery/addon/monitoring/datadog",
-                "using-qovery/addon/monitoring/new-relic",
-              ],
-            },
-          ]
+            "using-qovery/languages",
+            "using-qovery/languages/nodejs",
+            "using-qovery/languages/java",
+            "using-qovery/languages/go",
+            "using-qovery/languages/python",
+            "using-qovery/languages/ruby",
+            "using-qovery/languages/php",
+          ],
         },
         {
           type: 'category',
@@ -130,6 +103,33 @@ module.exports = {
             "using-qovery/quickstart/spring",
             "using-qovery/quickstart/django",
             "using-qovery/quickstart/rails",
+          ]
+        },
+        {
+          type: 'category',
+          label: 'Integrations',
+          items: [
+            "using-qovery/integration",
+            {
+              type: 'category',
+              label: 'Continuous Integration',
+              items: [
+                "using-qovery/integration/continuous-integration",
+                "using-qovery/integration/continuous-integration/qovery-ci",
+                "using-qovery/integration/continuous-integration/github-actions",
+                "using-qovery/integration/continuous-integration/gitlab-ci",
+                "using-qovery/integration/continuous-integration/circle-ci",
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Monitoring',
+              items: [
+                "using-qovery/integration/monitoring",
+                "using-qovery/integration/monitoring/datadog",
+                "using-qovery/integration/monitoring/new-relic",
+              ],
+            },
           ]
         },
         {
@@ -167,24 +167,6 @@ module.exports = {
             "devops/infrastructure-config/qovery-agent",
           ]
         }
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Community',
-      items: [
-        {
-          type: 'category',
-          label: 'Rewards',
-          items: [
-            "community/reward",
-            "community/reward/feedback",
-            "community/reward/write-content",
-            "community/reward/video-record",
-            "community/reward/bug-bounty",
-          ]
-        },
-        "community/become-an-ambassador",
       ],
     },
     {

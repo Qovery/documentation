@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-01-11"
+last_modified_on: "2022-06-13"
 title: "Amazon Web Services (AWS)"
 description: "Learn how to configure and plug your Amazon Web Services (AWS) account"
 ---
@@ -186,98 +186,53 @@ Well done!! You now have your AWS `access key id` and `secret access key` and yo
 
 #### Install a new cluster on Qovery
 
-You will be able to use the credentials you just generated when creating a cluster via the Qovery console. This cluster will be linked to your Qovery organization.
-Follow these steps to create a new cluster. 
+Intro about differences between K3s & EKS + need to add credentials.
+
+##### Creating a K3s cluster 
 
 <Steps headingDepth={3}>
-
 <ol>
 
 <li>
 
-Go to your organizations settings.
-<img src="/img/organization-setting.png" />
+Access your organization settings:
 
 </li>
-
 <li>
 
-On this page, you will be able to see the information and status or your clusters. 
-
-Click on `Add cluster` button.  
-
-<img src="/img/add-cluster.png" />
+Click `Add Cluster`.
+The `Create cluster` window opens.
 
 </li>
-
 <li>
 
-A modal is displayed, where you can specify the name of your cluster and the Cloud Provider. 
-
-Select the following Cloud Provider: `Amazon Web Services`.
-
-Once you have selected the cloud provider, you will be able to define the Region of your Cluster. 
-
-<img src="/img/aws-select-provider.png" />
+Enter a name for your cluster and select its usage (production, staging or development).
 
 </li>
-
-
 <li>
 
-Here you can choose to set your cluster credentials straight away or later. To set them now, select the `Do you want to set credentials?` option.
-
-If you have already set credentials on another cluster, they have been linked to your Qovery account and can be reused here. Just click on the one you want to use in the drop-down list.
-
-If you want to use other credentials (or if you do not have any defined), click `+ new credentials` in the drop-down list. 
-
-<img src="/img/aws-config-creds.png" />
+Select your cloud provider and the region in which you want your cluster to be hosted. 
 
 </li>
-
 <li>
 
-A new modal pops up where you can specify the `Name of the certificate`, the `Access key identifier` and the `Secret access key`.
-
-<img src="/img/aws-new-creds.png" />
-
-Click on `Save`to save the new credential and then `Next`.
-
-</li>
-
-<li>
-
-On this step, you can select specific features you want to activate or deactivate on the cluster. 
-
-<img src="/img/cluster-features.png" />
+In the `Credentials` menu, select credentials and click `Next`.
 
 <Alert type="warning">
 
-You will not be able to activate/deactivate these features once the cluster has been deployed for the first time.
+The credentials you need to select are those you created on your cloud provider account (see the related procedures: [here for AWS users][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account], and [there for Scaleway users][docs.using-qovery.configuration.cloud-service-provider.scaleway#connect-your-scaleway-account].  If you have never registered those credentials from your Qovery Console before, click `Edit` to do so. Otherwise, you can just select the credentials from the `Credentials` menu.
 
 </Alert>
 
 </li>
 
-<li>
-
-Once your new cluster is created, it will be listed in the cluster list. If you have finished configuring your cluster, click on the `...` and `Install` menu to start the cluster installation. 
-
-<img src="/img/install-cluster.png" />
-
-</li>
-
-<li>
-
-Your cluster is now installing!
-
-<img src="/img/installing-cluster.png" />
-
-</li>
-
 </ol>
-
 </Steps>
+
+
+##### Creating a Managed Kubernetes Service cluster
+
+
 
 ### Remove your AWS account
 
@@ -457,7 +412,9 @@ Today, you can't migrate an environment from one region to another after it has 
 [docs.devops.infrastructure-config.kubernetes]: /docs/devops/infrastructure-config/kubernetes/
 [docs.devops.qovery-for-devops-introduction]: /docs/devops/qovery-for-devops-introduction/
 [docs.useful-resources.faq#how-qovery-works-under-the-hood]: /docs/useful-resources/faq/#how-qovery-works-under-the-hood
+[docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account]: /docs/using-qovery/configuration/cloud-service-provider/amazon-web-services/#connect-your-aws-account
 [docs.using-qovery.configuration.cloud-service-provider.amazon-web-services]: /docs/using-qovery/configuration/cloud-service-provider/amazon-web-services/
+[docs.using-qovery.configuration.cloud-service-provider.scaleway#connect-your-scaleway-account]: /docs/using-qovery/configuration/cloud-service-provider/scaleway/#connect-your-scaleway-account
 [docs.using-qovery.configuration.database.mongodb]: /docs/using-qovery/configuration/database/mongodb/
 [docs.using-qovery.configuration.database.mysql]: /docs/using-qovery/configuration/database/mysql/
 [docs.using-qovery.configuration.database.postgresql]: /docs/using-qovery/configuration/database/postgresql/

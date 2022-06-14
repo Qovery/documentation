@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-06-07"
+last_modified_on: "2022-06-13"
 title: "Clusters"
 description: "Learn how to configure your Kubernetes clusters on Qovery"
 ---
@@ -94,6 +94,129 @@ From the [Qovery Console][urls.qovery_console], you can manage the settings of t
 * To create a cluster as an AWS user, see [Install a New Cluster on Qovery for AWS Users][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#install-a-new-cluster-on-qovery].
 * To create a cluster as a Digital Ocean (DO) user, see [Install a New Cluster on Qovery for Digital Ocean Users][docs.using-qovery.configuration.cloud-service-provider.digital-ocean#install-a-new-cluster-on-qovery].
 * To create a cluster as a Scaleway (SCW) user, see [Install a New Cluster on Qovery for Scaleway Users][docs.using-qovery.configuration.cloud-service-provider.scaleway#install-a-new-cluster-on-qovery].
+
+Intro about differences between K3s & EKS + need to add credentials.
+
+##### Creating a K3s cluster 
+
+<Steps headingDepth={3}>
+<ol>
+
+<li>
+
+Access your organization settings:
+
+</li>
+<li>
+
+Click `Add Cluster`.
+The `Create cluster` window opens.
+
+</li>
+<li>
+
+Enter a name for your cluster and select its usage (production, staging or development).
+
+</li>
+<li>
+
+Select your cloud provider and the region in which you want your cluster to be hosted. 
+
+</li>
+<li>
+
+In the `Credentials` menu, select credentials and click `Next`.
+
+<Alert type="info">
+
+The credentials you need to select are those you created on your cloud provider account (see related procedures: [here for AWS users][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account], and [there for Scaleway users][docs.using-qovery.configuration.cloud-service-provider.scaleway#connect-your-scaleway-account].  If you have never registered those credentials from your Qovery Console before, click `Edit` to do so. Otherwise, you can just select the credentials from the `Credentials` menu.
+
+</Alert>
+
+The `Set Resources` window opens.
+
+</li>
+<li>
+
+In the `Kubernetes` field, select `K3s (Single instance only - development purpose`.
+
+</li>
+<li>
+
+In the `Instance type` field, select the type of worker node you want to deploy to your cluster.
+
+<Alert type="info">
+
+Please note that the list of available instance types is updated according to what is selected in the `Kubernetes` field. Also, the list is not filtered based on the region of the cluster.
+
+Qovery does not currently support all the instance types provided by each cloud provider. For more information, see [What are the different instance types available when creating a cluster?][docs.using-qovery.configuration.clusters#what-are-the-different-instance-types-available-when-creating-a-cluster].
+
+</Alert>
+
+<Alert type="warning">
+Instance type selection from your Qovery Console has direct consequences on your cloud provider’s bill. While Qovery allows you to switch to a different instance type whenever you want, it is your sole responsibility to keep an eye on your infrastructure costs, especially when you want to upsize.
+
+For more information on the instance types provided by each cloud provider and their associated pricing, see [What are the different instance types available when creating a cluster?][docs.using-qovery.configuration.clusters#what-are-the-different-instance-types-available-when-creating-a-cluster].
+
+Also, before downsizing, you need to ensure that your applications will still have enough resources to run correctly.
+
+</Alert>
+
+</li>
+<li>
+
+*(Optional)* Click the `Instance type selection helper` toggle if you need help to pick the best instance type for your needs. This allows you to input the desired CPU and/or RAM per worker node on your cluster, and the `Instance type` field value is updated accordingly:
+
+<p align="center">
+  <img src="/img/configuration/clusters/Instance_Type_Selection_Helper.png" alt="Application" />
+</p>
+
+</li>
+<li>
+
+In the `Node disk size (GB)` field, enter the disk capacity you want to allocate to your worker node (meaning how much data, in gigabytes, you want your worker node to be able to hold).
+
+<Alert type="info">
+
+The `Node` scale is read-only since K3s clusters are single node clusters.
+
+At the bottom of the window, you can view a cost estimate based on the instance type selected.
+
+</Alert>
+
+</li>
+<li>
+
+Click `Save`.
+
+</li>
+<li>
+
+To enable Qovery or yourself to freely manage your cluster regardless of your cloud provider, in the `Set SSH Key` window, enter a SSH key, and click `Save`.
+
+<Alert type="info">
+
+For information on how to generate a SSH key, see ???
+Although you can enter a SSH key later from your cluster settings, it is recommended to perform this task at cluster creation to avoid any downtime.
+
+</Alert>
+
+</li>
+<li>
+
+In the `Ready to install your cluster` window, check that the displayed summary and cost are correct, and click `Install`.
+Your cluster is now installing. It is displayed in your organization settings:
+
+Once the cluster is properly installed, its status turns to green.
+
+</li>
+</ol>
+</Steps>
+
+
+##### Creating a Managed Kubernetes Service cluster
+
+
 
 ### Managing your Cluster Settings
 
@@ -250,7 +373,7 @@ Qovery does not currently support all the instance types provided by each cloud 
 <Alert type="warning">
 Instance type selection from your Qovery Console has direct consequences on your cloud provider’s bill. While Qovery allows you to switch to a different instance type whenever you want, it is your sole responsibility to keep an eye on your infrastructure costs, especially when you want to upsize.
 
-For more information on the instance types provided by each cloud provider and their associated pricing, see [What are the different instance types available when creating a cluster?][docs.using-qovery.configuration.clusters#what-are-the-different-instance-types-available-when-creating-a-cluster]
+For more information on the instance types provided by each cloud provider and their associated pricing, see [What are the different instance types available when creating a cluster?][docs.using-qovery.configuration.clusters#what-are-the-different-instance-types-available-when-creating-a-cluster].
 
 Also, before downsizing, you need to ensure that your applications will still have enough resources to run correctly.
 
@@ -375,13 +498,7 @@ To view your cluster options, click `...`:
   <img src="/img/configuration/clusters/Cluster_Actions_Menu.png" alt="Application" />
 </p>
 
-A dropdown menu unfolds, featuring all the actions available on your cluster:
-
-
-<p align="center">
-  <img src="/img/configuration/clusters/Cluster_Actions_Menu.png" alt="Application" />
-</p>
-
+A dropdown menu unfolds, featuring all the actions available on your cluster.
 
 </li>
 

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-06-06"
+last_modified_on: "2022-06-13"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -282,8 +282,6 @@ To match your internal naming convention, you can create aliases for each of the
 </p>
 
 
-### Network
-
 #### Persistent sessions
 
 A user of your application will be redirected by the load balancer to the same instance each time he accesses to it.
@@ -291,20 +289,6 @@ A user of your application will be redirected by the load balancer to the same i
 <p align="center">
   <img src="/img/sticky-session.png" alt="Sticky session" />
 </p>
-
-## Advanced Settings
-
-To further fine-tune your Qovery infrastructure at application level, you can set advanced settings through [the Qovery API endpoint](https://api-doc.qovery.com/#tag/Application-Configuration/operation/getAdvancedSettings).
-
-<Alert type="info">
-Advanced settings are not available in the Qovery console yet.
-</Alert>
-
-The advanced settings currently available are:
-
-| Advanced Setting                | Type    | Description                                                                                                                                                                          | Use Case                                                                                                                                                                                                                                                             |
-|---------------------------------|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| deployment.delay_start_time_sec | integer | Allows you to specify a waiting period, in seconds, between the application container start and the first application status check (`initialDelaySeconds` Kubernetes probe setting). | Allowing additional time for the application to start can be useful when boot time usually takes too long (due to long boot operations), or when the application opens the port before being ready to receive traffic on it (due to a still ongoing boot operation). |
 
 ## Environment Variable
 
@@ -328,7 +312,7 @@ To connect to your application via SSH, please use the via the [Qovery SSH comma
 <ol>
 <li>
 
-Navigate to [Console][urls.qovery_console]
+Navigate to [Console][urls.qovery_console].
 
 </li>
 <li>

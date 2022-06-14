@@ -47,6 +47,7 @@ module.exports = {
             "using-qovery/configuration/environment",
             "using-qovery/configuration/clusters",
             "using-qovery/configuration/application",
+            "using-qovery/configuration/advanced-settings",
             {
               type: 'category',
               label: 'Database',

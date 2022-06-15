@@ -126,8 +126,23 @@ When you first sign into the [Qovery Console][urls.qovery_console], you need to 
 However, by default, Qovery is then allowed to access all the resources stored on your Git provider account. 
 
 For better control, as a Github user, you can install the **Qovery Github App**, and define which Github repositories Qovery can access.
+<Alert type="info">
+
+You can only link one Github Organization to your Qovery Organization through the **Qovery Github App**. 
+Also, once the **Qovery Github App** is installed, all the members of your Qovery Organization will only have access to the repositories linked to your **Qovery Github App**.
+
+</Alert>
 
 ### Installing the Qovery Github App
+
+
+<Alert type="warning">
+
+If you have already one or more application running on your Qovery Organization, please make sure to give the **Qovery Github App** access to their repositories. If a repository is missing, you might experience a loss of functionalities for those applications (update, auto-deploy, preview environments, etc.).
+
+</Alert>
+
+
 
 To install the **Qovery Github App**:
 
@@ -140,13 +155,6 @@ Open your [Qovery Console][urls.qovery_console] and access your organization set
 <p align="center">
   <img src="/img/configuration/clusters/Organization_Settings_Access_Button.png" alt="Qovery - delete organization" />
 </p>
-
-<Alert type="info">
-
-You can only link one Github Organization to your Qovery Organization through the **Qovery Github App**. 
-Also, once the **Qovery Github App** is installed, all the members of your Qovery Organization will only have access to the repositories linked to your **Qovery Github App**.
-
-</Alert>
 
 </li>
 <li>
@@ -214,13 +222,77 @@ You can update or revoke access to one or multiple Github repositories at any ti
 </ol>
 </Steps>
 
-### Uninstalling the Qovery Github App
+### Managing the Github permissions
 
-<Alert type="info">
+To add or remove the access to one of your repositories:
 
-Uninstalling the **Qovery Github App** only becomes possible once you have deleted all the Qovery applications linked to your Github account, regardless of whether they were created using the **Qovery Github App** or your Github user account directly.
+<Steps headingDepth={3}>
+<ol>
+<li>
+
+Open your [Qovery Console][urls.qovery_console] and access your organization settings:
+
+<p align="center">
+  <img src="/img/configuration/clusters/Organization_Settings_Access_Button.png" alt="Qovery - delete organization" />
+</p>
+
+</li>
+<li>
+
+In the `Organization settings` menu, click `Git Permission`:
+
+<p align="center">
+  <img src="/img/configuration/organization/Git_Permissions_Tab.png" alt="Application" />
+</p>
+
+</li>
+<li>
+
+Next to your Git provider account, click `Manage permission`:
+
+<p align="center">
+  <img src="/img/configuration/organization/Github_App_Disconnect.png" alt="Application" />
+</p>
+
+</li>
+
+<li>
+
+Click the Github account on which you want to manage the **Qovery Github App** access:
+
+<p align="center">
+  <img src="/img/configuration/organization/Install_GithubApp_Access.png" alt="Application" />
+</p>
+
+</li>
+<li>
+
+Add or remove the repositories you want to give Qovery access to:
+
+
+<p align="center">
+  <img src="/img/configuration/organization/Repositories_Selection.png" alt="Application" />
+</p>
+
+<Alert type="warning">
+
+Rremoving access to a Github repository linked to an existing Qovery application will result in the loss of some functionalities for that application (update, auto-deploy, preview environments, etc.).
 
 </Alert>
+
+</li>
+
+</ol>
+</Steps>
+
+### Uninstalling the Qovery Github App
+
+<Alert type="warning">
+
+Uninstalling the **Qovery Github App** will result in a loss of some functionalities for all your applications (update, auto-deploy, preview environments, etc.).
+
+</Alert>
+
 
 To uninstall the **Qovery Github App**:
 

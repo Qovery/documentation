@@ -12,8 +12,12 @@ Qovery integrations improve developers' experience with Qovery and make their li
 
 This section shows several Qovery integrations.
 
+<Jump to="/docs/using-qovery/integration/api-integration/">Api integration</Jump>
 <Jump to="/docs/using-qovery/integration/continuous-integration/">Continuous integration</Jump>
 <Jump to="/docs/using-qovery/integration/monitoring/">Monitoring</Jump>
+<Jump to="/docs/using-qovery/integration/slack/">Slack</Jump>
+<Jump to="/docs/using-qovery/integration/terraform-integration/">Terraform integration</Jump>
+<Jump to="/docs/using-qovery/integration/webhook/">Webhook</Jump>
 
 
 

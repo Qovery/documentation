@@ -1,0 +1,102 @@
+---
+last_modified_on: "2020-10-04"
+title: "Slack"
+description: "Learn how to connect Qovery to your Slack workspace"
+---
+
+If you'd like to automatically notify your team on a Slack workspace whenever a change has occurred on your apps, this Integration will help you out. You can choose which actions should trigger messages on your Slack workspace.
+
+Here are the steps that we are going through:
+
+1. Create a Slack app
+2. Create a Webhook
+3. Setup Webhook in Qovery
+4. Try it!
+
+## 1. Create a Slack app
+
+Go to the [Slack page to create apps](https://api.slack.com/apps?new_app=1) and create a new app. C
+
+<p align="center">
+  <img src="/img/slack/create-app-slack-1.png" alt="Create a slack app - step 1" />
+</p>
+
+Create a Slack app from scratch.
+
+<p align="center">
+  <img src="/img/slack/create-app-slack-2.png" alt="Create a slack app - step 2" />
+</p>
+
+all it `Qovery` and connect it to the workspace of your choice.
+
+<p align="center">
+  <img src="/img/slack/create-app-slack-3.png" alt="Create a slack app - step 3" />
+</p>
+
+Feel free to use an image from [here](https://raw.githubusercontent.com/Qovery/public-resources/master/qovery_square_new_logo_with_margin.png) as the app's logo.
+
+<p align="center">
+  <img src="/img/slack/create-app-slack-4.png" alt="Create a slack app - step 4" />
+</p>
+
+## 2. Create Webhook
+
+Go to the `Incoming Webhooks` page for your newly-created app and toggle `Activate Incoming Webhooks` to turn it on.
+
+<p align="center">
+  <img src="/img/slack/create-webhook-1.png" alt="Create a webhook integration on Slack - step 1" />
+</p>
+
+Then click on `Add New Webhook to Workspace`
+
+<p align="center">
+  <img src="/img/slack/create-webhook-2.png" alt="Create a webhook integration on Slack - step 2" />
+</p>
+
+and select the channel that the notifications will be posted to:
+
+<p align="center">
+  <img src="/img/slack/create-webhook-3.png" alt="Create a webhook integration on Slack - step 3" />
+</p>
+
+Copy the webhook URL
+
+<p align="center">
+  <img src="/img/slack/create-webhook-4.png" alt="Create a webhook integration on Slack - step 4" />
+</p>
+
+
+## 3. Create Webhook in Qovery
+
+To create a webhook in Qovery you need to:
+
+1. Install the [Qovery CLI][docs.using-qovery.interface.cli]
+2. Generate an [API Token][docs.using-qovery.interface.cli#generate-api-token]
+3. Run the following CURL command:
+
+```bash
+curl -X POST -H 'Content-type: application/json' -H 'Authorization: Token <Your API Token>' -d \
+'{"description": "slack notifications", "target_url": "https://hooks.slack.com/services/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", "events": ["DEPLOYMENT_STARTED", "DEPLOYMENT_CANCELLED", "DEPLOYMENT_SUCCESSFUL", "DEPLOYMENT_FAILURE"], "kind": "SLACK", "enabled": true}' \
+"https://api.qovery.com/organization/141c07c8-0dd9-4623-983b-3fdd61867255/webhook"
+```
+
+You must receive a REST response from the API if it's all good!
+
+### Considerations
+
+- You can have multiple webhooks targeting different Slack channels
+- You can specify the events that you want to receive. E.g. if you just want to be notified when a deployment failed, then use `"events": ["DEPLOYMENT_FAILURE"]`. All the events and the description are available [on our API doc](https://api-doc.qovery.com/#tag/Organization-Webhook/operation/createOrganizationWebhook).
+- You can turn off or delete your webhooks at any time with [this API call](https://api-doc.qovery.com/#tag/Organization-Webhook/operation/deleteOrganizationWebhook).
+- The Qovery web interface will integrate the Webhook configuration :)
+
+Check out [this page][docs.using-qovery.integration.webhook] for further details on how to use the WebHook API.
+
+## 4. Try it!
+
+Launch a deployment with Qovery, and you will see a message like the one below appearing in your Slack channel 🎉
+
+<p align="center">
+  <img src="/img/slack/try-it.png" alt="Qovery Slack notification" />
+</p>
+
+Open a thread on [our forum][urls.qovery_forum] if you have any questions.

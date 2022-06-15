@@ -110,6 +110,8 @@ module.exports = {
           label: 'Integrations',
           items: [
             <%= metadata.links.fetch_id("docs.using-qovery.integration").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.integration.slack").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.integration.terraform-integration").to_json %>,
             {
               type: 'category',
               label: 'Continuous Integration',
@@ -130,6 +132,8 @@ module.exports = {
                 <%= metadata.links.fetch_id("docs.using-qovery.integration.monitoring.new-relic").to_json %>,
               ],
             },
+            <%= metadata.links.fetch_id("docs.using-qovery.integration.webhook").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.integration.api-integration").to_json %>,
           ]
         },
         {

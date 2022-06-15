@@ -110,6 +110,8 @@ module.exports = {
           label: 'Integrations',
           items: [
             "using-qovery/integration",
+            "using-qovery/integration/slack",
+            "using-qovery/integration/terraform-integration",
             {
               type: 'category',
               label: 'Continuous Integration',
@@ -130,6 +132,8 @@ module.exports = {
                 "using-qovery/integration/monitoring/new-relic",
               ],
             },
+            "using-qovery/integration/webhook",
+            "using-qovery/integration/api-integration",
           ]
         },
         {

@@ -117,9 +117,12 @@ Check out [this page][docs.using-qovery.integration.webhook] for further details
 
 Launch a deployment with Qovery, and you will see a message like the one below appearing in your Slack channel 🎉
 
-<p align="center">
-  <img src="/img/slack/try-it.png" alt="Qovery Slack notification" />
-</p>
+<div class="video-container">
+  <p align="center">
+    <iframe src="https://www.loom.com/embed/903ef59767ad4f95a59219d631a66d59" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+    </iframe>
+  </p>
+</div>
 
 Open a thread on [our forum][urls.qovery_forum] if you have any questions.
 

@@ -80,13 +80,27 @@ To create a webhook in Qovery you need to:
 
 1. Install the [Qovery CLI][docs.using-qovery.interface.cli]
 2. Generate an [API Token][docs.using-qovery.interface.cli#generate-api-token]
-3. Run the following CURL command:
+3. Copy the following CURL command:
 
 ```bash
 curl -X POST -H 'Content-type: application/json' -H 'Authorization: Token <Your API Token>' -d \
-'{"description": "slack notifications", "target_url": "https://hooks.slack.com/services/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", "events": ["DEPLOYMENT_STARTED", "DEPLOYMENT_CANCELLED", "DEPLOYMENT_SUCCESSFUL", "DEPLOYMENT_FAILURE"], "kind": "SLACK", "enabled": true}' \
-"https://api.qovery.com/organization/141c07c8-0dd9-4623-983b-3fdd61867255/webhook"
+'{"description": "slack notifications", "target_url": "<Your Slack Webhook URL>", "events": ["DEPLOYMENT_STARTED", "DEPLOYMENT_CANCELLED", "DEPLOYMENT_SUCCESSFUL", "DEPLOYMENT_FAILURE"], "kind": "SLACK", "enabled": true}' \
+"https://api.qovery.com/organization/{Your Organization ID}/webhook"
 ```
+
+4. Replace `<Your API Token>` with your Qovery API token
+5. Replace `<Your Slack Webhook URL>` with your Slack Webhook URL
+6. Replace `{Your Organization ID}` with your Qovery organization ID.
+7. Run the complete CURL command in your terminal.
+
+<details>
+
+<summary>Learn how to get your Organization ID</summary>
+
+Your Organization ID is the first ID in your [console.qovery.com][urls.start_qovery] URL. E.g. for `https://console.qovery.com/platform/organization/70c9a78d-454b-41dc-8478-d1f95bd08fd7/projects` the Organization ID is `70c9a78d-454b-41dc-8478-d1f95bd08fd7`
+
+</details>
+<br/>
 
 You must receive a REST response from the API if it's all good!
 
@@ -114,3 +128,4 @@ Open a thread on [our forum][urls.qovery_forum] if you have any questions.
 [docs.using-qovery.interface.cli#generate-api-token]: /docs/using-qovery/interface/cli/#generate-api-token
 [docs.using-qovery.interface.cli]: /docs/using-qovery/interface/cli/
 [urls.qovery_forum]: https://discuss.qovery.com/
+[urls.start_qovery]: https://start.qovery.com

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-06-15"
+last_modified_on: "2022-06-16"
 title: "Organization"
 description: "Learn how to configure Organizations on Qovery"
 ---
@@ -30,24 +30,44 @@ can manage:
      website/docs/using-qovery/configuration/organization.md.erb
 -->
 
-## Create an Organization
+## Creating an Organization
 
-You need to create an organization the first time you use Qovery. You have to choose between the **Free**, **Professional**, **Business** and **Enterprise**.
+When signing up for Qovery, you need to create an organization. You can choose between 4 plans: **Free**, **Professional**, **Business** and **Enterprise**:
 
 <p align="center">
-  <img src="/img/configuration/organization/create_organization.jpg" alt="Qovery - create an organization" />
+  <img src="/img/configuration/organization/Qovery_Pricing_Plans.png" alt="Qovery Pricing Plans" />
 </p>
 
-### How to choose between plans?
+For more information, see [our pricing page] [urls.qovery_pricing].
 
-In a nutshell:
+Once you have chosen a plan, you need to sign in through your Git provider (Github, Gitlab or Bitbucket). Your organization is then created. 
 
-- **Free**, **Professional**, **Business** and **Enterprise** plans: to deploy on your Cloud account.
-- **Community**: to get free hosting for your hobby project.
+To  manage your organization settings from the [Qovery Console][urls.qovery_console], click the cogwheel icon on the top right of the screen:
 
-Get more info [here][urls.qovery_pricing].
+<p align="center">
+  <img src="/img/configuration/clusters/Organization_Settings_Access_Button.png" alt="Organization Settings Access" />
+</p>
 
-## Manage your clusters
+In the `General Information` tab:
+
+<p align="center">
+  <img src="/img/configuration/organization/General_Information_Organization_Settings.png" alt="Organization Settings Access" />
+</p>
+
+* **Company name**: enter the name of your company.
+* **Description**: enter a description of your organization.
+* **Website**: enter the website of your company.
+* **Admin contact emails**: enter one or several email adresses (separated by commas) on which you want to receive important communications from Qovery.
+
+<Alert type="info">
+
+We will **only** use your admin contact email details to send you communications about infrastructure outages, maintenance updates, and weekly and monthly usage reports.
+
+</Alert>
+
+Don't forget to click `Update` to save your organization information!
+
+## Managing your clusters
 
 With Qovery, you can manage multiple clusters in your organizations settings. You can then deploy your project environments and services to the cluster of your choice.
 
@@ -58,6 +78,7 @@ In the settings of your organization, you can add, stop and delete a cluster, as
 </p>
 
 For more information, see [Clusters][docs.using-qovery.configuration.clusters].
+
 
 #### What is the default cluster? 
 
@@ -156,7 +177,6 @@ If you have already one or more applications running on your Qovery Organization
 </Alert>
 
 
-
 To install the **Qovery Github App**:
 
 <Steps headingDepth={3}>
@@ -166,8 +186,10 @@ To install the **Qovery Github App**:
 Open your [Qovery Console][urls.qovery_console] and access your organization settings:
 
 <p align="center">
-  <img src="/img/configuration/clusters/Organization_Settings_Access_Button.png" alt="Qovery - delete organization" />
+  <img src="/img/configuration/clusters/Organization_Settings_Access_Button.png" alt="How to access your organization settings" />
 </p>
+
+test
 
 </li>
 <li>

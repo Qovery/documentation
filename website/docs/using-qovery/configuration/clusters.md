@@ -43,6 +43,30 @@ Qovery allows you to define worker nodes settings, so that you end up deploying 
 
 For more information on Kubernetes clusters, see [the Kubernetes documentation](https://kubernetes.io/docs/concepts/overview/components/).
 
+Qovery allows you to create:
+
+* *(AWS users only)* K3s (AWS EC2) single node clusters.
+* EKS (Kubernetes Managed) multiple node clusters.
+
+|                    | K3s Cluster                                                                                 | EKS Cluster                                                                                                         |
+|--------------------|---------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------|
+| **Starting Cost**  | 20$/month                                                                                   | 200$/month                                                                                                          |
+| **Usage**          | Hobby projects, trying out Qovery, deploying preview environments on AWS.                   | Hosting professional applications in production (resilient, scalable and powerful infrastructure).                  |
+
+
+<Alert type="warning">
+
+K3s clusters are [deployed on one AWS availability zone](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-availability-zones). Therefore, if a network or power disruption happens on the availability zone where your K3s instance is running, your applications will no longer be available until it is solved. 
+
+This is why we do not recommend installing K3s clusters to run professional applications in a production environment.
+ 
+</Alert>
+
+For information on how to install:
+
+* *(AWS users only)* a K3s cluster, see [Creating a K3s Cluster (Single node cluster)][docs.using-qovery.configuration.clusters#creating-a-k3s-cluster-single-node-cluster]. 
+* an EKS cluster, see [Creating an EKS Cluster (Multiple Node cluster)][docs.using-qovery.configuration.clusters#creating-an-eks-cluster-multiple-node-cluster].
+
 ### Why do I need a cluster?
 
 Qovery is built on top of Kubernetes, which means we need Kubernetes clusters to be able to deploy and run your applications. 
@@ -93,31 +117,15 @@ From the [Qovery Console][urls.qovery_console], you can manage the settings of t
 
 Qovery allows you to create:
 
-* K3s (AWS EC2) single node clusters.
-* EKS (Kubernetes Managed) multiple node clusters.
+* *(AWS users only)* K3s (AWS EC2) single node clusters. For information on how to install a K3s cluster, see [Creating a K3s Cluster (Single Node Cluster)][docs.using-qovery.configuration.clusters#creating-a-k3s-cluster-single-node-cluster].
 
-|                    | K3s Cluster                                                                                 | EKS Cluster                                                                                                         |
-|--------------------|---------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------|
-| **Starting Cost**  | 20$/month                                                                                   | 200$/month                                                                                                          |
-| **Usage**          | Hobby projects, trying out Qovery, deploying preview environments on AWS.                   | Hosting professional applications in production (resilient, scalable and powerful infrastructure).                  |
-
-
-<Alert type="warning">
-
-There are fewer availability zones for K3s clusters than for EKS clusters. Therefore, if a network or power disruption happens on the availability zone where your K3s instance is running, your applications will no longer be available until it is solved. 
-
-This is why we do not recommend installing K3s clusters to run professional applications in a production environment.
+* EKS (Kubernetes Managed) multiple node clusters. For information on how to install an EKS cluster, see [Creating an EKS Cluster (Multiple Node Cluster) ][docs.using-qovery.configuration.clusters#creating-an-eks-cluster-multiple-node-cluster]
  
-</Alert>
+If you need help to pick your cluster type, see [What is a cluster?][docs.using-qovery.configuration.clusters#what-is-a-cluster].
 
-For information on how to install:
+#### Creating a K3s Cluster (Single Node Cluster)
 
-* a K3s cluster, see [Creating a K3s Cluster (Single node cluster)][docs.using-qovery.configuration.clusters#creating-a-k3s-cluster-single-node-cluster]. 
-* an EKS cluster, see [Creating an EKS Cluster (Multiple Node cluster)][docs.using-qovery.configuration.clusters#creating-an-eks-cluster-multiple-node-cluster].
-
-#### Creating a K3s Cluster (Single node cluster)
-
-To create a K3s cluster:
+To create a K3s cluster (only available to AWS users):
 
 <Steps headingDepth={3}>
 <ol>
@@ -155,7 +163,7 @@ In the `Create Cluster` window:
 * `Enter cluster name`: enter the name of your choice for your cluster.
 * `Cloud provider`: select your cloud provider.
 * `Region`: select the geographical area in which you want your cluster to be hosted.
-* `Credentials`: select the select [the credentials generated on your cloud provider account][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account].
+* `Credentials`: select the select [the credentials generated on your cloud provider account][docs.using-qovery.configuration.cloud-service-provider].
 
 <br />
 
@@ -246,9 +254,9 @@ Your cluster is now displayed in your organization settings, featuring the `Inst
 </ol>
 </Steps>
 
-#### Creating an EKS Cluster (Multiple Node cluster)
+#### Creating an EKS Cluster (Multiple Node Cluster)
 
-To create an EKS cluster:
+To create an EKS (Kubernetes Managed) cluster:
 
 <Steps headingDepth={3}>
 <ol>
@@ -1030,6 +1038,7 @@ Your SSH key is now linked to your cluster.
 [docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account]: /docs/using-qovery/configuration/cloud-service-provider/amazon-web-services/#connect-your-aws-account
 [docs.using-qovery.configuration.cloud-service-provider.digital-ocean#connect-your-digital-ocean-account]: /docs/using-qovery/configuration/cloud-service-provider/digital-ocean/#connect-your-digital-ocean-account
 [docs.using-qovery.configuration.cloud-service-provider.scaleway#connect-your-scaleway-account]: /docs/using-qovery/configuration/cloud-service-provider/scaleway/#connect-your-scaleway-account
+[docs.using-qovery.configuration.cloud-service-provider]: /docs/using-qovery/configuration/cloud-service-provider/
 [docs.using-qovery.configuration.clusters#creating-a-cluster]: /docs/using-qovery/configuration/clusters/#creating-a-cluster
 [docs.using-qovery.configuration.clusters#creating-a-k3s-cluster-single-node-cluster]: /docs/using-qovery/configuration/clusters/#creating-a-k3s-cluster-single-node-cluster
 [docs.using-qovery.configuration.clusters#creating-an-eks-cluster-multiple-node-cluster]: /docs/using-qovery/configuration/clusters/#creating-an-eks-cluster-multiple-node-cluster

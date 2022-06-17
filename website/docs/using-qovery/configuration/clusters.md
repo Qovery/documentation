@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-06-07"
+last_modified_on: "2022-06-16"
 title: "Clusters"
 description: "Learn how to configure your Kubernetes clusters on Qovery"
 ---
@@ -42,6 +42,30 @@ Qovery allows you to define worker nodes settings, so that you end up deploying 
 </p>
 
 For more information on Kubernetes clusters, see [the Kubernetes documentation](https://kubernetes.io/docs/concepts/overview/components/).
+
+Qovery allows you to create:
+
+* *(AWS users only)* K3s (AWS EC2) single node clusters.
+* EKS (Kubernetes Managed) multiple node clusters.
+
+|                    | K3s Cluster                                                                                 | EKS Cluster                                                                                                         |
+|--------------------|---------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------|
+| **Starting Cost**  | 20$/month                                                                                   | 200$/month                                                                                                          |
+| **Usage**          | Hobby projects, trying out Qovery, deploying preview environments on AWS.                   | Hosting professional applications in production (resilient, scalable and powerful infrastructure).                  |
+
+
+<Alert type="warning">
+
+K3s clusters are [deployed on one AWS availability zone](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-availability-zones). Therefore, if a network or power disruption happens on the availability zone where your K3s instance is running, your applications will no longer be available until it is solved. 
+
+This is why we do not recommend installing K3s clusters to run professional applications in a production environment.
+ 
+</Alert>
+
+For information on how to install:
+
+* *(AWS users only)* a K3s cluster, see [Creating a K3s Cluster (Single node cluster)][docs.using-qovery.configuration.clusters#creating-a-k3s-cluster-single-node-cluster]. 
+* an EKS cluster, see [Creating an EKS Cluster (Multiple Node cluster)][docs.using-qovery.configuration.clusters#creating-an-eks-cluster-multiple-node-cluster].
 
 ### Why do I need a cluster?
 
@@ -91,11 +115,288 @@ From the [Qovery Console][urls.qovery_console], you can manage the settings of t
 
 ### Creating a Cluster
 
-* To create a cluster as an AWS user, see [Install a New Cluster on Qovery for AWS Users][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#install-a-new-cluster-on-qovery].
-* To create a cluster as a Digital Ocean (DO) user, see [Install a New Cluster on Qovery for Digital Ocean Users][docs.using-qovery.configuration.cloud-service-provider.digital-ocean#install-a-new-cluster-on-qovery].
-* To create a cluster as a Scaleway (SCW) user, see [Install a New Cluster on Qovery for Scaleway Users][docs.using-qovery.configuration.cloud-service-provider.scaleway#install-a-new-cluster-on-qovery].
+Qovery allows you to create:
 
-### Managing your Cluster Settings
+* *(AWS users only)* K3s (AWS EC2) single node clusters. For information on how to install a K3s cluster, see [Creating a K3s Cluster (Single Node Cluster)][docs.using-qovery.configuration.clusters#creating-a-k3s-cluster-single-node-cluster].
+
+* EKS (Kubernetes Managed) multiple node clusters. For information on how to install an EKS cluster, see [Creating an EKS Cluster (Multiple Node Cluster) ][docs.using-qovery.configuration.clusters#creating-an-eks-cluster-multiple-node-cluster]
+ 
+If you need help to pick your cluster type, see [What is a cluster?][docs.using-qovery.configuration.clusters#what-is-a-cluster].
+
+#### Creating a K3s Cluster (Single Node Cluster)
+
+To create a K3s cluster (only available to AWS users):
+
+<Steps headingDepth={3}>
+<ol>
+<li>
+
+Open your [Qovery Console][urls.qovery_console].
+
+</li>
+<li>
+
+On the top right hand-side of the screen, click the cogwheel icon to access your Organization settings:
+
+<p align="center">
+  <img src="/img/configuration/clusters/Organization_Settings_Access_Button.png" alt="Application" />
+</p>
+
+</li>
+<li>
+
+Click `Add Cluster`:
+
+<p align="center">
+  <img src="/img/configuration/clusters/Add_Cluster_Button.png" alt="Application" />
+</p>
+
+</li>
+<li>
+
+In the `Create Cluster` window:
+
+<p align="center">
+  <img src="/img/configuration/clusters/Create_Cluster_Window.png" alt="Application" />
+</p>
+
+* `Enter cluster name`: enter the name of your choice for your cluster.
+* `Cloud provider`: select your cloud provider.
+* `Region`: select the geographical area in which you want your cluster to be hosted.
+* `Credentials`: select the select [the credentials generated on your cloud provider account][docs.using-qovery.configuration.cloud-service-provider].
+
+<br />
+
+<Alert type="info">
+
+If this is the first time you are using these credentials on your Qovery Console, click the `Credentials` field, and select `New Credentials` to register them.
+ 
+</Alert>
+
+To confirm, click `Next`.
+
+</li>
+<li>
+
+In the `Set Resources` window:
+
+<p align="center">
+  <img src="/img/configuration/clusters/Set_Resources_Window_EC2.png" alt="Application" />
+</p>
+
+* `Kubernetes`: select `BETA - EC2 K3S (single instance only - dev purpose)`.
+* `Instance type`: select the type of [worker node][docs.using-qovery.configuration.clusters#what-is-a-cluster] you want to deploy to your cluster:
+
+<br />
+
+<Alert type="info">
+
+Please note that the list of available instance types is updated based on what is selected in the `Kubernetes` field. Also, the list is not filtered based on the region of the cluster.
+
+Qovery does not currently support all the instance types provided by each cloud provider. For more information, see [What are the different instance types available when creating a cluster?][docs.using-qovery.configuration.clusters#what-are-the-different-instance-types-available-when-creating-a-cluster]
+
+</Alert>
+
+<Alert type="warning">
+Instance type selection from your Qovery Console has direct consequences on your cloud provider’s bill. While Qovery allows you to switch to a different instance type whenever you want, it is your sole responsibility to keep an eye on your infrastructure costs, especially when you want to upsize.
+
+For more information on the instance types provided by each cloud provider and their associated pricing, see [What are the different instance types available when creating a cluster?][docs.using-qovery.configuration.clusters#what-are-the-different-instance-types-available-when-creating-a-cluster]
+
+Also, before downsizing, you need to ensure that your applications will still have enough resources to run correctly.
+
+</Alert>
+
+* *(Optional)* `Instance type selection helper`: click this toggle if you need help to pick the best instance type for your needs. This allows you to input the desired CPU and/or RAM per worker node on your cluster, and the `Instance type` field value is updated accordingly.
+
+* `Node disk size (GB)`: enter the disk capacity you want to allocate to your worker node (meaning how much data, in gigabytes, you want your worker node to be able to hold).
+
+<Alert type="info">
+
+At the bottom of the window, you can see an estimate of the cost associated with the selected instance type.
+
+</Alert>
+
+To confirm, click `Next`. 
+
+</li>
+<li>
+
+In the `Set SSH Key` window:
+
+<p align="center">
+  <img src="/img/configuration/clusters/SSH_Key_Window.png" alt="SSH Key Window" />
+</p> 
+
+Enter your SSH key and click `Create`.
+
+<Alert type="info">
+
+The SSH key enables you (or Qovery on your behalf) to freely manage your cluster. For information on how to generate an SSH key, see [Generating an SSH Key for your K3s Cluster][docs.using-qovery.configuration.clusters#generating-an-ssh-key-for-your-k3s-cluster].
+
+You can add an SSH key to your cluster settings later, however it is recommended to do it at cluster creation to avoid downtime.
+
+</Alert>
+
+</li>
+<li>
+
+In the `Ready to install your cluster` window, check that the services needed to install your cluster are correct, and click `Install`:
+
+<p align="center">
+  <img src="/img/configuration/clusters/Ready_To_Install_Window.png" alt="Ready to Install Window" />
+</p>
+
+A pop-up window opens to confirm that your cluster is installing. 
+
+Your cluster is now displayed in your organization settings, featuring the `Installing...` status (orange status). Once your cluster is properly installed, its status turns to green.
+
+</li>
+</ol>
+</Steps>
+
+#### Creating an EKS Cluster (Multiple Node Cluster)
+
+To create an EKS (Kubernetes Managed) cluster:
+
+<Steps headingDepth={3}>
+<ol>
+<li>
+
+Open your [Qovery Console][urls.qovery_console].
+
+</li>
+<li>
+
+On the top right hand-side of the screen, click the cogwheel icon to access your Organization settings:
+
+<p align="center">
+  <img src="/img/configuration/clusters/Organization_Settings_Access_Button.png" alt="Application" />
+</p>
+
+</li>
+<li>
+
+Click `Add Cluster`:
+
+<p align="center">
+  <img src="/img/configuration/clusters/Add_Cluster_Button.png" alt="Application" />
+</p>
+
+</li>
+<li>
+
+In the `Create Cluster` window: 
+
+<p align="center">
+  <img src="/img/configuration/clusters/Create_Cluster_Window.png" alt="Application" />
+</p>
+
+* `Enter cluster name`: enter the name of your choice for your cluster.
+* `Cloud provider`: select your cloud provider.
+* `Region`: select the geographical area in which you want your cluster to be hosted.
+* `Credentials`: select the select [the credentials generated on your cloud provider account][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account].
+
+<br />
+
+<Alert type="info">
+
+If this is the first time you are using these credentials on your Qovery Console, click the `Credentials` field, and select `New Credentials` to register them.
+ 
+</Alert>
+
+To confirm, click `Next`.
+
+</li>
+<li>
+
+In the `Set Resources` window:
+
+<p align="center">
+  <img src="/img/configuration/clusters/Set_Resources_Window_EKS.png" alt="Application" />
+</p>
+
+* `Kubernetes`: select `EKS (Multiple node cluster`.
+* `Instance type`: select the type of [worker nodes][docs.using-qovery.configuration.clusters#what-is-a-cluster] you want to deploy to your cluster:
+
+<br />
+
+<Alert type="info">
+
+Please note that the list of available instance types is updated based on what is selected in the `Kubernetes` field. Also, the list is not filtered based on the region of the cluster.
+
+Qovery does not currently support all the instance types provided by each cloud provider. For more information, see [What are the different instance types available when creating a cluster?][docs.using-qovery.configuration.clusters#what-are-the-different-instance-types-available-when-creating-a-cluster]
+
+</Alert>
+
+<Alert type="warning">
+Instance type selection from your Qovery Console has direct consequences on your cloud provider’s bill. While Qovery allows you to switch to a different instance type whenever you want, it is your sole responsibility to keep an eye on your infrastructure costs, especially when you want to upsize.
+
+For more information on the instance types provided by each cloud provider and their associated pricing, see [What are the different instance types available when creating a cluster?][docs.using-qovery.configuration.clusters#what-are-the-different-instance-types-available-when-creating-a-cluster]
+
+Also, before downsizing, you need to ensure that your applications will still have enough resources to run correctly.
+
+</Alert>
+
+* *(Optional)* `Instance type selection helper`: click this toggle if you need help to pick the best instance type for your needs. This allows you to input the desired CPU and/or RAM per worker node on your cluster, and the `Instance type` field value is updated accordingly.
+
+* `Node disk size (GB)`: enter the disk capacity you want to allocate to your worker nodes (meaning how much data, in gigabytes, you want your worker nodes to be able to hold).
+
+<Alert type="info">
+
+At the bottom of the window, you can see an estimate of the cost associated with the selected instance type.
+
+</Alert>
+
+* `Node`: on the scale, you can define the range of worker nodes you want to deploy to your cluster.
+
+<br />
+
+<Alert type="info">
+
+The lowest number is the number of worker nodes running on your infrastructure at any time, while the highest number is the maximum number of worker nodes that can automatically be deployed as traffic grows.
+
+Please note that a minimum of 3 worker nodes is required to deploy your EKS cluster.
+
+At the bottom of the window, you can see an estimate of the cost associated with the selected instance type.
+
+</Alert>
+
+To confirm, click `Next`. 
+
+</li>
+<li>
+
+*(Optional)* In the `Features` window, select the features you want to enable on your cluster and click `Create`: 
+
+<p align="center">
+  <img src="/img/configuration/clusters/Features_Window.png" alt="Application" />
+</p>
+
+<Alert type="info">
+
+For more information, see [Features][docs.using-qovery.configuration.clusters#features]. 
+
+</Alert>  
+
+</li>
+<li>
+
+In the `Ready to install your cluster` window, check that the services needed to install your cluster are correct, and click `Install`:
+
+<p align="center">
+  <img src="/img/configuration/clusters/Ready_To_Install_Window.png" alt="Ready to Install Window" />
+</p>
+
+A pop-up window opens to confirm that your cluster is installing. 
+
+Your cluster is now displayed in your organization settings, featuring the `Installing...` status (orange status). Once your cluster is properly installed, its status turns to green.
+
+</li>
+</ol>
+</Steps>
+
+
+#### Managing your Cluster Settings
 
 To manage the settings of an existing cluster:
 
@@ -232,14 +533,14 @@ In [your cluster settings][docs.using-qovery.configuration.clusters#managing-you
 </li>
 <li>
 
-In the `Instance type` dropdown menu, select the type of [worker nodes][docs.using-qovery.configuration.clusters#what-is-a-cluster] you want to deploy to your cluster:
+In the `Instance type` dropdown menu, select the type of [worker node(s)][docs.using-qovery.configuration.clusters#what-is-a-cluster] you want to deploy to your cluster:
 
 <p align="center">
   <img src="/img/configuration/clusters/Instance_Type_Selection.png" alt="Application" />
 </p>
 
 <Alert type="info">
-The selected instance type applies to all the worker nodes hosted by the cluster. 
+If your cluster is an EKS cluster, the selected instance type applies to all its worker nodes. 
 
 Also, please note that the list of available instance types is not filtered based on the region of the cluster.
 
@@ -268,18 +569,20 @@ Also, before downsizing, you need to ensure that your applications will still ha
 </li>
 <li>
 
-*(AWS users only)* In the `Node disk size (GB)` field, enter the disk capacity you want to allocate to your worker nodes (meaning how much data, in gigabytes, you want each worker node to be able to hold).
+*(AWS users only)* In the `Node disk size (GB)` field, enter the disk capacity you want to allocate to your worker node(s) (meaning how much data, in gigabytes, you want each worker node to be able to hold).
 
 </li>
 <li>
 
-On the `Node` scale, define the range of worker nodes you want to deploy to your cluster.
+*(EKS users only)* On the `Node` scale, define the range of worker nodes you want to deploy to your cluster.
 
 <Alert type="info">
 
 The lowest number is the number of worker nodes running on your infrastructure at any time, while the highest number is the maximum number of worker nodes that can automatically be deployed as traffic grows.
 
-Please note that a minimum of 3 worker nodes is required to deploy your cluster.
+Please note that a minimum of 3 worker nodes is required to deploy your [EKS cluster][docs.using-qovery.configuration.clusters#creating-a-cluster]. 
+
+[K3s clusters][docs.using-qovery.configuration.clusters#creating-a-cluster] can only have one node.
 
 </Alert>
 
@@ -649,15 +952,99 @@ Go to `AWS Console`>`Services`>`Management & Governance`>`Resource Groups & Tag 
   </ol>
   </Steps>
 
+  ## Generating an SSH Key for your K3s Cluster
+
+  To allow Qovery or yourself to connect remotely to your K3s instance and manage it, you need to generate an SSH key and add it to your cluster settings. To do so:
+
+  <Steps headingDepth={3}>
+  <ol>
+  <li>
+
+ On your computer, open a terminal.
+
+  </li>
+  <li>
+
+  Run `ssh-keygen -t`, followed by the key type and an optional comment. 
+  
+<Alert type="info">
+
+This comment is included in the .pub file that is created. You may want to use an email address for the comment.
+
+</Alert>
+
+For example, you can enter `ssh-keygen -t rsa -b 2048 -C "<comment>"`.
+
+  </li>
+  <li>
+
+Press `Enter`. 
+
+You should get an output similar to:
+
+```
+{
+  Generating public/private ed25519 key pair.
+  Enter file in which to save the key (/home/user/.ssh/id_ed25519):
+}
+```
+
+  </li>
+  <li>
+
+  Accept the suggested filename and directory, unless you want to save your SSH key in a specific directory where you store other keys.
+
+  </li>
+  <li>
+
+  Enter a passphrase:
+
+  ```
+{
+   Enter passphrase (empty for no passphrase):
+   Enter same passphrase again:
+}
+```
+
+  A confirmation is displayed, including information about where your files are stored.
+
+  </li>
+ <li>
+
+ You can add your SSH key at cluster creation (see [Creating a Cluster][docs.using-qovery.configuration.clusters#creating-a-cluster]), or later from your cluster settings. 
+ 
+ To do so, on your [Qovery Console][urls.qovery_console], access [your cluster options][docs.using-qovery.configuration.clusters#performing-actions-on-your-clusters] and click `Settings`:
+
+  <p align="center">
+  <img src="/img/configuration/clusters/Cluster_Settings_Option.png" alt="Application" />
+</p>
+
+  </li>
+<li>
+
+In the `Remote Access` tab, enter your SSH key and click `Save`: 
+
+  <p align="center">
+  <img src="/img/configuration/clusters/Remote_Access_Tab.png" alt="Application" />
+</p>
+
+Your SSH key is now linked to your cluster.
+
+  </li>
+  </ol>
+  </Steps>
+
 
 [docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account]: /docs/using-qovery/configuration/cloud-service-provider/amazon-web-services/#connect-your-aws-account
-[docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#install-a-new-cluster-on-qovery]: /docs/using-qovery/configuration/cloud-service-provider/amazon-web-services/#install-a-new-cluster-on-qovery
 [docs.using-qovery.configuration.cloud-service-provider.digital-ocean#connect-your-digital-ocean-account]: /docs/using-qovery/configuration/cloud-service-provider/digital-ocean/#connect-your-digital-ocean-account
-[docs.using-qovery.configuration.cloud-service-provider.digital-ocean#install-a-new-cluster-on-qovery]: /docs/using-qovery/configuration/cloud-service-provider/digital-ocean/#install-a-new-cluster-on-qovery
 [docs.using-qovery.configuration.cloud-service-provider.scaleway#connect-your-scaleway-account]: /docs/using-qovery/configuration/cloud-service-provider/scaleway/#connect-your-scaleway-account
-[docs.using-qovery.configuration.cloud-service-provider.scaleway#install-a-new-cluster-on-qovery]: /docs/using-qovery/configuration/cloud-service-provider/scaleway/#install-a-new-cluster-on-qovery
+[docs.using-qovery.configuration.cloud-service-provider]: /docs/using-qovery/configuration/cloud-service-provider/
 [docs.using-qovery.configuration.clusters#creating-a-cluster]: /docs/using-qovery/configuration/clusters/#creating-a-cluster
+[docs.using-qovery.configuration.clusters#creating-a-k3s-cluster-single-node-cluster]: /docs/using-qovery/configuration/clusters/#creating-a-k3s-cluster-single-node-cluster
+[docs.using-qovery.configuration.clusters#creating-an-eks-cluster-multiple-node-cluster]: /docs/using-qovery/configuration/clusters/#creating-an-eks-cluster-multiple-node-cluster
 [docs.using-qovery.configuration.clusters#deleting-a-cluster]: /docs/using-qovery/configuration/clusters/#deleting-a-cluster
+[docs.using-qovery.configuration.clusters#features]: /docs/using-qovery/configuration/clusters/#features
+[docs.using-qovery.configuration.clusters#generating-an-ssh-key-for-your-k3s-cluster]: /docs/using-qovery/configuration/clusters/#generating-an-ssh-key-for-your-k3s-cluster
 [docs.using-qovery.configuration.clusters#how-do-i-set-up-a-cluster]: /docs/using-qovery/configuration/clusters/#how-do-i-set-up-a-cluster
 [docs.using-qovery.configuration.clusters#how-does-qovery-handle-cluster-updates-and-upgrades]: /docs/using-qovery/configuration/clusters/#how-does-qovery-handle-cluster-updates-and-upgrades
 [docs.using-qovery.configuration.clusters#managing-your-cluster-settings]: /docs/using-qovery/configuration/clusters/#managing-your-cluster-settings

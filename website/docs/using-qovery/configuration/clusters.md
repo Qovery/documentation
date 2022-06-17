@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-06-16"
+last_modified_on: "2022-06-17"
 title: "Clusters"
 description: "Learn how to configure your Kubernetes clusters on Qovery"
 ---
@@ -46,6 +46,13 @@ For more information on Kubernetes clusters, see [the Kubernetes documentation](
 Qovery allows you to create:
 
 * *(AWS users only)* K3s (AWS EC2) single node clusters.
+
+<Alert type="info">
+
+K3s (AWS EC2) clusters will be released soon. Keep an eye on our email/forum communications and documentation updates not to miss them!
+
+</Alert>
+
 * EKS (Kubernetes Managed) multiple node clusters.
 
 |                    | K3s Cluster                                                                                 | EKS Cluster                                                                                                         |
@@ -119,11 +126,23 @@ Qovery allows you to create:
 
 * *(AWS users only)* K3s (AWS EC2) single node clusters. For information on how to install a K3s cluster, see [Creating a K3s Cluster (Single Node Cluster)][docs.using-qovery.configuration.clusters#creating-a-k3s-cluster-single-node-cluster].
 
+<Alert type="info">
+
+K3s (AWS EC2) clusters will be released soon. Keep an eye on our email/forum communications and documentation updates not to miss them!
+
+</Alert>
+
 * EKS (Kubernetes Managed) multiple node clusters. For information on how to install an EKS cluster, see [Creating an EKS Cluster (Multiple Node Cluster) ][docs.using-qovery.configuration.clusters#creating-an-eks-cluster-multiple-node-cluster]
  
 If you need help to pick your cluster type, see [What is a cluster?][docs.using-qovery.configuration.clusters#what-is-a-cluster].
 
 #### Creating a K3s Cluster (Single Node Cluster)
+
+<Alert type="info">
+
+K3s (AWS EC2) clusters will be released soon. Keep an eye on our email/forum communications and documentation updates not to miss tem!
+
+</Alert>
 
 To create a K3s cluster (only available to AWS users):
 
@@ -953,6 +972,12 @@ Go to `AWS Console`>`Services`>`Management & Governance`>`Resource Groups & Tag 
   </Steps>
 
   ## Generating an SSH Key for your K3s Cluster
+
+  <Alert type="info">
+
+K3s (AWS EC2) clusters will be released soon. Keep an eye on our email/forum communications and documentation updates not to miss them!
+
+</Alert>
 
   To allow Qovery or yourself to connect remotely to your K3s instance and manage it, you need to generate an SSH key and add it to your cluster settings. To do so:
 

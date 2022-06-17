@@ -92,7 +92,7 @@ An organization is a shared account where developers can collaborate across many
 To deploy on your Scaleway account, you have to choose between **Free**, **Professional** and **Business** plan for your organization.
 
 <p align="center">
-  <img src="/img/create_organization.jpg" alt="Qovery - Create an Organization and select the plan" />
+  <img src="/img/configuration/organization/Qovery_Pricing_Plans.png" alt="Qovery - Create an Organization and select the plan" />
 </p>
 
 ### Install Qovery on your Scaleway account

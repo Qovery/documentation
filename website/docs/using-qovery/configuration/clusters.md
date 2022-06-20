@@ -243,13 +243,9 @@ To confirm, click `Next`.
 In the `Set SSH Key` window:
 
 <p align="center">
-<<<<<<< HEAD
-  <img src="/img/configuration/clusters/SSH_Key_Window.png" alt="SSH Key Window" />
-</p>
-=======
+
   <img src="/img/configuration/clusters/ssh-key-window.jpg" alt="SSH Key Window" />
 </p> 
->>>>>>> d463e1c6a (updated some screenshots)
 
 Enter a public SSH key and click `Create`.
 
@@ -989,13 +985,8 @@ You should get an output similar to:
   </li>
  <li>
 
-<<<<<<< HEAD
- You can add your SSH key at cluster creation (see [Creating a Cluster][docs.using-qovery.configuration.clusters#creating-a-cluster]), or later from your cluster settings.
-
-=======
  You can add the generated public SSH key at cluster creation (see [Creating a Cluster][docs.using-qovery.configuration.clusters#creating-a-cluster]), or later from your cluster settings. 
  
->>>>>>> d463e1c6a (updated some screenshots)
  To do so, on your [Qovery Console][urls.qovery_console], access [your cluster options][docs.using-qovery.configuration.clusters#performing-actions-on-your-clusters] and click `Settings`:
 
   <p align="center">

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-06-13"
+last_modified_on: "2022-06-20"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -196,9 +196,9 @@ For most use cases, it is better to use [Object Storage][docs.using-qovery.confi
 
 Qovery Storage supports:
 
-|Type|Max IOPS|Max Throughput|Min Size|Max Size|Use cases|
-|----|--------|--------------|--------|--------|---------|
-|fast_ssd|64000|1GB/s|5GB|10GB `Community` / 1TB paid plans|Critical business applications that require sustained IOPS like databases|
+| Type     | Max IOPS | Max Throughput | Min Size | Max Size                          | Use cases                                                                 |
+|----------|----------|----------------|----------|-----------------------------------|---------------------------------------------------------------------------|
+| fast_ssd | 64000    | 1GB/s          | 5GB      | 10GB `Community` / 1TB paid plans | Critical business applications that require sustained IOPS like databases |
 
 ##### Configuration
 

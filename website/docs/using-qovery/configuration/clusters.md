@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-06-17"
+last_modified_on: "2022-06-20"
 title: "Clusters"
 description: "Learn how to configure your Kubernetes clusters on Qovery"
 ---
@@ -33,8 +33,8 @@ This section brings you answers to all the questions our users usually ask about
 At Qovery, when we refer to clusters, we mean Kubernetes clusters. A Kubernetes cluster is a collection of node machines that allows you to run containerized applications. It is usually made up of:
 
 * **Pods**: think of a pod as one instance of your application. Pods are the smallest deployable objects in Kubernetes, and they are hosted by worker nodes.
-* **Worker Nodes**: worker nodes essentially run your applications and workloads. When you create a cluster from your Qovery Console, it generates the set up of worker nodes (also called “instances”, “EC2 instances” for AWS users, or “droplets” for DigitalOcean users). 
-Qovery allows you to define worker nodes settings, so that you end up deploying the right type of instances on your infrastructure based on your CPU, memory, storage and network performance needs. 
+* **Worker Nodes**: worker nodes essentially run your applications and workloads. When you create a cluster from your Qovery Console, it generates the set up of worker nodes (also called “instances”, “EC2 instances” for AWS users, or “droplets” for DigitalOcean users).
+Qovery allows you to define worker nodes settings, so that you end up deploying the right type of instances on your infrastructure based on your CPU, memory, storage and network performance needs.
 * a **Control Plane** (or **Master Node**): the control plane manages the worker nodes. Since we deploy managed Kubernetes services, the control plane is handled exclusively by your cloud provider, and left untouched by Qovery.
 
 <p align="center">
@@ -63,22 +63,22 @@ K3s (AWS EC2) clusters will be released soon. Keep an eye on our email/forum com
 
 <Alert type="warning">
 
-K3s clusters are [deployed on one AWS availability zone](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-availability-zones). Therefore, if a network or power disruption happens on the availability zone where your K3s instance is running, your applications will no longer be available until it is solved. 
+K3s clusters are [deployed on one AWS availability zone](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-availability-zones). Therefore, if a network or power disruption happens on the availability zone where your K3s instance is running, your applications will no longer be available until it is solved.
 
 This is why we do not recommend installing K3s clusters to run professional applications in a production environment.
- 
+
 </Alert>
 
 For information on how to install:
 
-* *(AWS users only)* a K3s cluster, see [Creating a K3s Cluster (Single node cluster)][docs.using-qovery.configuration.clusters#creating-a-k3s-cluster-single-node-cluster]. 
+* *(AWS users only)* a K3s cluster, see [Creating a K3s Cluster (Single node cluster)][docs.using-qovery.configuration.clusters#creating-a-k3s-cluster-single-node-cluster].
 * an EKS cluster, see [Creating an EKS Cluster (Multiple Node cluster)][docs.using-qovery.configuration.clusters#creating-an-eks-cluster-multiple-node-cluster].
 
 ### Why do I need a cluster?
 
-Qovery is built on top of Kubernetes, which means we need Kubernetes clusters to be able to deploy and run your applications. 
+Qovery is built on top of Kubernetes, which means we need Kubernetes clusters to be able to deploy and run your applications.
 
-Thanks to clusters, you can easily deploy several (and many) instances of the same application, so that if one fails, the others can instantly take over. Also, clusters can auto-scale, meaning that the number of worker nodes in a cluster can automatically go up or down as traffic fluctuates on your application(s), thus ensuring high availability and performance. Clusters are also extremely useful [to isolate your production environment from your staging environment](https://www.qovery.com/blog/how-to-isolate-your-production-from-staging-with-kubernetes). 
+Thanks to clusters, you can easily deploy several (and many) instances of the same application, so that if one fails, the others can instantly take over. Also, clusters can auto-scale, meaning that the number of worker nodes in a cluster can automatically go up or down as traffic fluctuates on your application(s), thus ensuring high availability and performance. Clusters are also extremely useful [to isolate your production environment from your staging environment](https://www.qovery.com/blog/how-to-isolate-your-production-from-staging-with-kubernetes).
 
 In short, through the use of clusters, Kubernetes provides you with a resilient, flexible and powerful infrastructure, fit for production environment needs and requirements. And with the help of Qovery, setting up and maintaining your Kubernetes clusters has never been easier.
 
@@ -89,7 +89,7 @@ For step-by-step guidelines on how to set up a cluster on your cloud provider ac
 ### What are the different instance types available when creating a cluster?
 
 The range of instance types available at cluster creation depends on your cloud provider:
- 
+
 * AWS offers over 400 instance types. You can [view their details on the official AWS website](https://aws.amazon.com/ec2/instance-types/), as well as [their pricing](https://aws.amazon.com/ec2/pricing/on-demand/).
 * DigitalOcean offers 5 different plans according to the instance types (aka “droplets”) you need. You can view [details and pricing on the official DigitalOcean website](https://docs.digitalocean.com/products/droplets/#plans-and-pricing).
 * Scaleway also offers a wide range of instance types, [whose details and pricing you can view on the official Scaleway website](https://www.scaleway.com/en/pricing/).
@@ -97,23 +97,23 @@ The range of instance types available at cluster creation depends on your cloud 
 <Alert type="info">
 
 Qovery does not currently support all the instance types provided by each cloud provider. But the good news is, you can request an additional instance type [directly from the Qovery forum](https://discuss.qovery.com/c/questions-and-answers/13). Make sure you give enough details as to why you need a specific instance type, and we will implement it as swiftly as we can!
- 
+
 </Alert>
 
 <Alert type="warning">
 
 The total cost of a cluster is not solely determined by the number of worker nodes and their individual pricing. Additional costs are to be expected on your cloud provider’s end (expenses related to network, storage, and any other features provided by your cloud provider). For instance, AWS users will be charged for managed Kubernetes services. Please contact your cloud provider for more information.
- 
+
 </Alert>
 
 ### How does Qovery handle cluster updates and upgrades?
 
-As far as cluster updates and upgrades to a newer version of Kubernetes are concerned, our Qovery engineering team handles everything in due time, so you don’t even need to think about it! 
+As far as cluster updates and upgrades to a newer version of Kubernetes are concerned, our Qovery engineering team handles everything in due time, so you don’t even need to think about it!
 
 <Alert type="info">
 
 You may notice that Qovery does not provide you with the latest Kubernetes version offered by your cloud provider. This is due to the high amount of testing we need to perform to ensure smooth upgrades with no interruptions for your applications. Our priority is always to guarantee you maximum uptime.
- 
+
 </Alert>
 
 ## Managing your Clusters with Qovery
@@ -133,7 +133,7 @@ K3s (AWS EC2) clusters will be released soon. Keep an eye on our email/forum com
 </Alert>
 
 * EKS (Kubernetes Managed) multiple node clusters. For information on how to install an EKS cluster, see [Creating an EKS Cluster (Multiple Node Cluster) ][docs.using-qovery.configuration.clusters#creating-an-eks-cluster-multiple-node-cluster]
- 
+
 If you need help to pick your cluster type, see [What is a cluster?][docs.using-qovery.configuration.clusters#what-is-a-cluster].
 
 #### Creating a K3s Cluster (Single Node Cluster)
@@ -189,7 +189,7 @@ In the `Create Cluster` window:
 <Alert type="info">
 
 If this is the first time you are using these credentials on your Qovery Console, click the `Credentials` field, and select `New Credentials` to register them.
- 
+
 </Alert>
 
 To confirm, click `Next`.
@@ -235,7 +235,7 @@ At the bottom of the window, you can see an estimate of the cost associated with
 
 </Alert>
 
-To confirm, click `Next`. 
+To confirm, click `Next`.
 
 </li>
 <li>
@@ -244,13 +244,13 @@ In the `Set SSH Key` window:
 
 <p align="center">
   <img src="/img/configuration/clusters/SSH_Key_Window.png" alt="SSH Key Window" />
-</p> 
+</p>
 
 Enter your SSH key and click `Create`.
 
 <Alert type="info">
 
-The SSH key enables you (or Qovery on your behalf) to freely manage your cluster. For information on how to generate an SSH key, see [Generating an SSH Key for your K3s Cluster][docs.using-qovery.configuration.clusters#generating-an-ssh-key-for-your-k3s-cluster].
+The SSH key enables you (or Qovery on your behalf) to freely manage your cluster. For information on how to generate an SSH key, see [Generating an SSH Key for your K3s Cluster][#generating-an-ssh-key-for-your-k3s-cluster].
 
 You can add an SSH key to your cluster settings later, however it is recommended to do it at cluster creation to avoid downtime.
 
@@ -265,7 +265,7 @@ In the `Ready to install your cluster` window, check that the services needed to
   <img src="/img/configuration/clusters/Ready_To_Install_Window.png" alt="Ready to Install Window" />
 </p>
 
-A pop-up window opens to confirm that your cluster is installing. 
+A pop-up window opens to confirm that your cluster is installing.
 
 Your cluster is now displayed in your organization settings, featuring the `Installing...` status (orange status). Once your cluster is properly installed, its status turns to green.
 
@@ -304,7 +304,7 @@ Click `Add Cluster`:
 </li>
 <li>
 
-In the `Create Cluster` window: 
+In the `Create Cluster` window:
 
 <p align="center">
   <img src="/img/configuration/clusters/Create_Cluster_Window.png" alt="Application" />
@@ -320,7 +320,7 @@ In the `Create Cluster` window:
 <Alert type="info">
 
 If this is the first time you are using these credentials on your Qovery Console, click the `Credentials` field, and select `New Credentials` to register them.
- 
+
 </Alert>
 
 To confirm, click `Next`.
@@ -380,12 +380,12 @@ At the bottom of the window, you can see an estimate of the cost associated with
 
 </Alert>
 
-To confirm, click `Next`. 
+To confirm, click `Next`.
 
 </li>
 <li>
 
-*(Optional)* In the `Features` window, select the features you want to enable on your cluster and click `Create`: 
+*(Optional)* In the `Features` window, select the features you want to enable on your cluster and click `Create`:
 
 <p align="center">
   <img src="/img/configuration/clusters/Features_Window.png" alt="Application" />
@@ -393,9 +393,9 @@ To confirm, click `Next`.
 
 <Alert type="info">
 
-For more information, see [Features][docs.using-qovery.configuration.clusters#features]. 
+For more information, see [Features][docs.using-qovery.configuration.clusters#features].
 
-</Alert>  
+</Alert>
 
 </li>
 <li>
@@ -406,7 +406,7 @@ In the `Ready to install your cluster` window, check that the services needed to
   <img src="/img/configuration/clusters/Ready_To_Install_Window.png" alt="Ready to Install Window" />
 </p>
 
-A pop-up window opens to confirm that your cluster is installing. 
+A pop-up window opens to confirm that your cluster is installing.
 
 Your cluster is now displayed in your organization settings, featuring the `Installing...` status (orange status). Once your cluster is properly installed, its status turns to green.
 
@@ -559,7 +559,7 @@ In the `Instance type` dropdown menu, select the type of [worker node(s)][docs.u
 </p>
 
 <Alert type="info">
-If your cluster is an EKS cluster, the selected instance type applies to all its worker nodes. 
+If your cluster is an EKS cluster, the selected instance type applies to all its worker nodes.
 
 Also, please note that the list of available instance types is not filtered based on the region of the cluster.
 
@@ -599,7 +599,7 @@ Also, before downsizing, you need to ensure that your applications will still ha
 
 The lowest number is the number of worker nodes running on your infrastructure at any time, while the highest number is the maximum number of worker nodes that can automatically be deployed as traffic grows.
 
-Please note that a minimum of 3 worker nodes is required to deploy your [EKS cluster][docs.using-qovery.configuration.clusters#creating-a-cluster]. 
+Please note that a minimum of 3 worker nodes is required to deploy your [EKS cluster][docs.using-qovery.configuration.clusters#creating-a-cluster].
 
 [K3s clusters][docs.using-qovery.configuration.clusters#creating-a-cluster] can only have one node.
 
@@ -622,7 +622,7 @@ The `Features` tab in your cluster settings allows you to check if the **Static 
 
 <Alert type="info">
 
-The **Static IP** feature is currently only available to AWS users. 
+The **Static IP** feature is currently only available to AWS users.
 It can only be enabled at cluster creation.
 
 </Alert>
@@ -639,7 +639,7 @@ If you work in a sensitive business area such as financial technology, enabling 
 
 <Alert type="info">
 
-The **Custom VPC Subnet** feature is currently only available to AWS users. 
+The **Custom VPC Subnet** feature is currently only available to AWS users.
 It can only be enabled at cluster creation.
 
 </Alert>
@@ -653,7 +653,7 @@ The `Network` tab in your cluster settings allows you to update your Qovery VPC 
 
 ### Performing Actions on your Clusters
 
-Qovery allows you to [update][docs.using-qovery.configuration.clusters#updating-a-cluster], [stop][docs.using-qovery.configuration.clusters#stopping-a-cluster], [restart][docs.using-qovery.configuration.clusters#restarting-a-cluster] or [delete][docs.using-qovery.configuration.clusters#deleting-a-cluster] your clusters at organization level. 
+Qovery allows you to [update][docs.using-qovery.configuration.clusters#updating-a-cluster], [stop][docs.using-qovery.configuration.clusters#stopping-a-cluster], [restart][docs.using-qovery.configuration.clusters#restarting-a-cluster] or [delete][docs.using-qovery.configuration.clusters#deleting-a-cluster] your clusters at organization level.
 
 | Action                | Description    |
 |---------------------------------|---------|
@@ -763,7 +763,7 @@ Once the update is complete, the status dot next to your cluster turns to green:
 
 #### Stopping a Cluster
 
-Qovery allows you to temporarily stop your cluster instead of deleting it. 
+Qovery allows you to temporarily stop your cluster instead of deleting it.
 
 <Alert type="warning">
 
@@ -875,7 +875,7 @@ Once your cluster has restarted, the status dot next to your cluster turns to gr
 
 
 
-#### Deleting a Cluster 
+#### Deleting a Cluster
 
 <Alert type="warning">
 
@@ -929,7 +929,7 @@ Once the deletion is complete, the cluster is removed from your organization set
 </ol>
 </Steps>
 
-#### Cleaning up a Cluster from your AWS Account  
+#### Cleaning up a Cluster from your AWS Account
 
 <Alert type="warning">
 
@@ -971,7 +971,7 @@ Go to `AWS Console`>`Services`>`Management & Governance`>`Resource Groups & Tag 
   </ol>
   </Steps>
 
-  ## Generating an SSH Key for your K3s Cluster
+## Generating an SSH Key for your K3s Cluster
 
   <Alert type="info">
 
@@ -990,8 +990,8 @@ K3s (AWS EC2) clusters will be released soon. Keep an eye on our email/forum com
   </li>
   <li>
 
-  Run `ssh-keygen -t`, followed by the key type and an optional comment. 
-  
+  Run `ssh-keygen -t`, followed by the key type and an optional comment.
+
 <Alert type="info">
 
 This comment is included in the .pub file that is created. You may want to use an email address for the comment.
@@ -1003,7 +1003,7 @@ For example, you can enter `ssh-keygen -t rsa -b 2048 -C "<comment>"`.
   </li>
   <li>
 
-Press `Enter`. 
+Press `Enter`.
 
 You should get an output similar to:
 
@@ -1036,8 +1036,8 @@ You should get an output similar to:
   </li>
  <li>
 
- You can add your SSH key at cluster creation (see [Creating a Cluster][docs.using-qovery.configuration.clusters#creating-a-cluster]), or later from your cluster settings. 
- 
+ You can add your SSH key at cluster creation (see [Creating a Cluster][docs.using-qovery.configuration.clusters#creating-a-cluster]), or later from your cluster settings.
+
  To do so, on your [Qovery Console][urls.qovery_console], access [your cluster options][docs.using-qovery.configuration.clusters#performing-actions-on-your-clusters] and click `Settings`:
 
   <p align="center">
@@ -1047,7 +1047,7 @@ You should get an output similar to:
   </li>
 <li>
 
-In the `Remote Access` tab, enter your SSH key and click `Save`: 
+In the `Remote Access` tab, enter your SSH key and click `Save`:
 
   <p align="center">
   <img src="/img/configuration/clusters/Remote_Access_Tab.png" alt="Application" />
@@ -1069,7 +1069,6 @@ Your SSH key is now linked to your cluster.
 [docs.using-qovery.configuration.clusters#creating-an-eks-cluster-multiple-node-cluster]: /docs/using-qovery/configuration/clusters/#creating-an-eks-cluster-multiple-node-cluster
 [docs.using-qovery.configuration.clusters#deleting-a-cluster]: /docs/using-qovery/configuration/clusters/#deleting-a-cluster
 [docs.using-qovery.configuration.clusters#features]: /docs/using-qovery/configuration/clusters/#features
-[docs.using-qovery.configuration.clusters#generating-an-ssh-key-for-your-k3s-cluster]: /docs/using-qovery/configuration/clusters/#generating-an-ssh-key-for-your-k3s-cluster
 [docs.using-qovery.configuration.clusters#how-do-i-set-up-a-cluster]: /docs/using-qovery/configuration/clusters/#how-do-i-set-up-a-cluster
 [docs.using-qovery.configuration.clusters#how-does-qovery-handle-cluster-updates-and-upgrades]: /docs/using-qovery/configuration/clusters/#how-does-qovery-handle-cluster-updates-and-upgrades
 [docs.using-qovery.configuration.clusters#managing-your-cluster-settings]: /docs/using-qovery/configuration/clusters/#managing-your-cluster-settings

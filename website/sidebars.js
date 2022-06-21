@@ -77,6 +77,13 @@ module.exports = {
             },
           ]
         },
+		 {
+      type: 'category',
+      label: 'Platform Monitoring',
+      items: [
+        "using-qovery/platform-monitoring",
+      ],
+    },
         {
           type: 'category',
           label: 'Languages',
@@ -209,3 +216,4 @@ module.exports = {
     },
   ]
 };
+

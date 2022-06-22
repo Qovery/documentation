@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-06-21"
+last_modified_on: "2022-06-22"
 title: Using Qovery
 description: "Everything you need to know to configure and use your applications on Qovery"
 sidebar_label: hidden
@@ -14,8 +14,9 @@ This section covers everything you need to know to configure and use your applic
 <Jump to="/docs/using-qovery/integration/">Integration</Jump>
 <Jump to="/docs/using-qovery/interface/">Interface</Jump>
 <Jump to="/docs/using-qovery/languages/">Languages</Jump>
-<Jump to="/docs/using-qovery/platform-monitoring/">Platform monitoring</Jump>
+<Jump to="/docs/using-qovery/observability/">Observability</Jump>
 <Jump to="/docs/using-qovery/quickstart/">Quickstart</Jump>
+<Jump to="/docs/using-qovery/running-and-deployment-statuses/">Running and deployment statuses</Jump>
 <Jump to="/docs/using-qovery/troubleshoot/">Troubleshoot</Jump>
 
 

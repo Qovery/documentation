@@ -1,12 +1,12 @@
 ---
-title: "Run and Deployment Statuses"
-description: "Learn how to monitor your deployments, environments, and services"
+title: "Running and Deployment Statuses"
+description: "Learn how to monitor your running and deployment statuses"
 ---
 import Jump from '@site/src/components/Jump';
 import Alert from '@site/src/components/Alert';
 import Assumptions from '@site/src/components/Assumptions';
 
-From any environment window on your [Qovery Console][urls.qovery_console], you can monitor your environments, services and deployments:
+From any environment window on your [Qovery Console][urls.qovery_console], you can monitor the running and deployment status of your environments and services.
 
 <p align="center">
   <img src="/img/monitoring/Run_Deployment_Statuses.jpg" alt="Application" />
@@ -14,10 +14,10 @@ From any environment window on your [Qovery Console][urls.qovery_console], you c
 
 |  Item    | Description                                                                                                                                                                         |
 |----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1        | The dot next to the name of the environment shows its overall status. <br />  For more information, see [Environment Statuses][docs.using-qovery.platform-monitoring#environment-statuses].|                                                                           
-| 2        | The dot in the `Service` column shows the status of the related service. <br /> For more information, see [Service Statuses][docs.using-qovery.platform-monitoring#service-statuses].|
-| 3        | The label next to the name of the environment shows the overall status of your deployments in that specific environment. <br /> For more information, see [Deployment Statuses][docs.using-qovery.platform-monitoring#deployment-statuses].|
-| 4        | The label in the `Service` column shows the deployment status of the related service. <br /> For more information, see [Deployment Statuses][docs.using-qovery.platform-monitoring#deployment-statuses].|
+| 1        | The dot next to the name of the environment shows its overall status. <br />  For more information, see [Environment Statuses][docs.using-qovery.running-and-deployment-statuses#environment-statuses].|                                                                           
+| 2        | The dot in the `Service` column shows the status of the related service. <br /> For more information, see [Service Statuses][docs.using-qovery.running-and-deployment-statuses#service-statuses].|
+| 3        | The label next to the name of the environment shows the overall status of your deployments in that specific environment. <br /> For more information, see [Deployment Statuses][docs.using-qovery.running-and-deployment-statuses#deployment-statuses].|
+| 4        | The label in the `Service` column shows the deployment status of the related service. <br /> For more information, see [Deployment Statuses][docs.using-qovery.running-and-deployment-statuses#deployment-statuses].|
 
 # Run Statuses
 
@@ -65,9 +65,9 @@ Here are all the possible service statuses:
 
 When you access an environment on your [Qovery Console][urls.qovery_console], you can check:
 
-* **the overall status of your deployments in that specific environment**, thanks to the label displayed next to the environment name. This status is computed based on all the deployment statuses of the services in that specific environment.
+* **the overall status of your deployments in that specific environment**, thanks to the label displayed next to the environment name. This corresponds to the status of the last deployment performed on the environment.
 
-* **the deployment status of each service in that specific environment**, thanks to the label displayed in the `Service` column. This status is computed based on all the deployment statuses of the application instances in that specific service.
+* **the deployment status of each service in that specific environment**, thanks to the label displayed in the `Service` column. This corresponds to the status of the last deployment performed on the service.
 
 <Alert type="info">
 
@@ -95,7 +95,9 @@ Just because an error arised during deployment does not mean your application is
 ** OK, but what really happens when I redeploy an application?**
 
 
-When deploying a new version of an application, Qovery waits until the new version is up-and-running before killing the previous one. Likewise, when deploying a new version of a multi-instance application, Qovery follows the following workflow:
+When deploying a new version of an application, Qovery applies a rolling restart methodology. This means that Qovery waits until the new version of the application is up-and-running before killing the previous one. 
+
+Likewise, when deploying a new version of a multi-instance application, Qovery follows the following workflow:
 
 1) Deploy new version of instance \#1.
 
@@ -106,3 +108,4 @@ When deploying a new version of an application, Qovery waits until the new versi
 4) New version of instance \#2 is running => kill previous version of instance \#2.
 
 And so on...
+

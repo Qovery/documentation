@@ -79,9 +79,9 @@ module.exports = {
         },
 		 {
       type: 'category',
-      label: 'Platform Monitoring',
+      label: 'Observability',
       items: [
-        "using-qovery/platform-monitoring",
+        "using-qovery/running-and-deployment-statuses",
       ],
     },
         {

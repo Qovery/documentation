@@ -77,6 +77,13 @@ module.exports = {
             },
           ]
         },
+		 {
+      type: 'category',
+      label: 'Observability',
+      items: [
+        "using-qovery/running-and-deployment-statuses",
+      ],
+    },
         {
           type: 'category',
           label: 'Languages',
@@ -209,3 +216,4 @@ module.exports = {
     },
   ]
 };
+

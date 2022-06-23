@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-06-22"
+last_modified_on: "2022-06-23"
 title: "Webhooks"
 description: "Learn how to use Qovery Webhooks"
 ---
@@ -41,11 +41,11 @@ Generate an [API Token][docs.using-qovery.interface.cli#generate-api-token].
 </li>
 <li>
 
-Enter the following cURL command:
+Enter a cURL command similar to this:
 
 ```bash
 curl -X POST -H 'Content-type: application/json' -H 'Authorization: Token <Your API Token>' -d \
-'{"description": "slack notifications", "target_url": "<Your External Application Webhook URL>", "events": ["DEPLOYMENT_STARTED", "DEPLOYMENT_CANCELLED", "DEPLOYMENT_SUCCESSFUL", "DEPLOYMENT_FAILURE"], "kind": "SLACK", "enabled": true}' \
+'{"description": "notifications on my external application", "target_url": "<Your External Application Webhook URL>", "events": ["DEPLOYMENT_STARTED", "DEPLOYMENT_CANCELLED", "DEPLOYMENT_SUCCESSFUL", "DEPLOYMENT_FAILURE"], "kind": "name of my external application", "enabled": true}' \
 "https://api.qovery.com/organization/{Your Organization ID}/webhook"
 ```
 
@@ -54,7 +54,7 @@ Where you need to replace:
 * `<Your API Token>` with your Qovery API token.
 * `<Your External Application Webhook URL>` with the webhook URL provided by the external application you want to receive notifications on.
 * `{Your Organization ID}` with the ID of the Qovery organization you want to create the webhook on.
-* and the request information [with the right parameters for your needs](https://api-doc.qovery.com/#tag/Organization-Webhook/operation/createOrganizationWebhook).
+* and the request details with customized [information and parameters](https://api-doc.qovery.com/#tag/Organization-Webhook/operation/createOrganizationWebhook), depending on which kind of notifications you want to receive and on which external application.
 
 </li>
 </ol>
@@ -67,7 +67,6 @@ Via the Qovery API, you can also:
 * [Edit your webhooks](https://api-doc.qovery.com/#tag/Organization-Webhook/operation/editOrganizationWebhook).
 * [Delete your webhooks](https://api-doc.qovery.com/#tag/Organization-Webhook/operation/deleteOrganizationWebhook).
 * [Display a list of your existing webhooks and their configuration](https://api-doc.qovery.com/#tag/Organization-Webhook/operation/listOrganizationWebHooks).
-* Display information about the latest executions of your webhooks for troubleshooting purposes.
 
 
 [docs.using-qovery.integration.slack]: /docs/using-qovery/integration/slack/

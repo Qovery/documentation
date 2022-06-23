@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-02-17"
+last_modified_on: "2022-06-23"
 title: FAQ
 description: "Frequently Asked Questions"
 ---
@@ -44,13 +44,15 @@ GitHub, GitLab, BitBucket.
 
 Not at the moment, but you can upvote for this feature in [our roadmap][urls.qovery_roadmap].
 
-## Does Qovery support private Git repository ?
+## Does Qovery support private Git repository?
 
 Yes, absolutely!
 
-## What is the IP address of my Kubernetes cluster?
+## Which IP address does my cluster use to communicate externally over the Internet?
 
-Static IP is only supported for Kubernetes clusters running on AWS. You can enable the option in the feature settings of your cluster.
+There isn't just one public cluster IP adress dedicated to external communication. However, [worker nodes][docs.using-qovery.configuration.clusters#what-is-a-cluster] inside your cluster are automatically allocated public IPs, which are used by default for communication between the nodes themselves and the outside world. You can view those default public IPs in the configuration details of your node groups.
+
+For improved security and control, the `Static IP` feature allows you to ensure that outbound traffic from your cluster uses a specific IP address. For more information on the `Static IP` feature and how to enable it at cluster creation, see [Static IP][docs.using-qovery.configuration.clusters#static-ip].
 
 ## If I have N custom domains under the same root domain, do I need to create N CNAME records, or just creating one for the root domain is enough ?
 
@@ -110,6 +112,8 @@ Feel free to join our [Discord server][urls.qovery_chat] or contact us by email 
 [docs.devops.qovery-for-devops-introduction]: /docs/devops/qovery-for-devops-introduction/
 [docs.using-qovery.configuration.application#auto-scaling]: /docs/using-qovery/configuration/application/#auto-scaling
 [docs.using-qovery.configuration.application]: /docs/using-qovery/configuration/application/
+[docs.using-qovery.configuration.clusters#static-ip]: /docs/using-qovery/configuration/clusters/#static-ip
+[docs.using-qovery.configuration.clusters#what-is-a-cluster]: /docs/using-qovery/configuration/clusters/#what-is-a-cluster
 [docs.using-qovery.configuration.database]: /docs/using-qovery/configuration/database/
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [docs.using-qovery.configuration.project]: /docs/using-qovery/configuration/project/

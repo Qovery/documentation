@@ -1,10 +1,78 @@
 ---
-last_modified_on: "2022-06-15"
-title: "Webhook"
-description: "Learn how to use Qovery Webhook"
+last_modified_on: "2022-06-23"
+title: "Webhooks"
+description: "Learn how to use Qovery Webhooks"
 ---
 
-WIP
+import Alert from '@site/src/components/Alert';
+import Steps from '@site/src/components/Steps';
+
+Qovery allows you to create webhooks at organization-level so that, when an event happens on an environment within your organization, you can get notified on external applications (for instance, [Slack][docs.using-qovery.integration.slack]).
+
+You can trigger webhooks when:
+
+* A deployment has started in the environment.
+* A deployment has been successful in the environment.
+* A deployment has been cancelled in the environment.
+* A deployment has failed in the environment.
+
+<Alert type="info">
+
+Webhooks are not available in the Qovery console yet, but you can create and manage them via the Qovery API.
+
+</Alert>
+
+# Creating a Webhook
+
+To create a webhook via the Qovery API:
+
+<Steps headingDepth={3}>
+<ol>
+<li>
+
+Install the [Qovery CLI][docs.using-qovery.interface.cli].
+
+</li>
+<li>
+
+Generate an [API Token][docs.using-qovery.interface.cli#generate-api-token].
+
+</li>
+<li>
+
+Enter a cURL command similar to this:
+
+```bash
+curl -X POST -H 'Content-type: application/json' -H 'Authorization: Token <Your API Token>' -d \
+'{"description": "slack notifications", "target_url": "<Your Slack Webhook URL>", "events": ["DEPLOYMENT_STARTED", "DEPLOYMENT_CANCELLED", "DEPLOYMENT_SUCCESSFUL", "DEPLOYMENT_FAILURE"], "kind": "SLACK", "enabled": true}' \
+"https://api.qovery.com/organization/{Your Organization ID}/webhook"
+```
+The above command is used to create a webhook to [get notifications on Slack][docs.using-qovery.integration.slack] whenever a deployment has been started, cancelled, successful or failed.
+
+To customize the command so that it fits your specific needs:
+
+* Replace `<Your API Token>` with your actual Qovery API token.
+* With the `"description"` parameter, enter a self-explanatory description of what your webhook does (in the example, `"description": "slack notifications"` clearly states that the webhook triggers notifications on Slack).
+* Replace `<Your Slack Webhook URL>` with the webhook URL provided by the external application you want to receive notifications on.
+* With the `"events"` parameter, list all the events you want to be notified of.
+* With the `"kind"` parameter, specify which kind of webhook you want to create. At the moment you can specify : `"kind": "STANDARD"` to create a generic webhook, or `"kind": "SLACK"` to create [a Slack webhook][docs.using-qovery.integration.slack].
+* Replace `{Your Organization ID}` with the ID of the Qovery organization you want to create your webhook on.
+
+For information on all the parameters you can set depending on which kind of notifications you want to receive and on which external application, see our [Qovery API Documentation] (https://api-doc.qovery.com/#tag/Organization-Webhook/operation/createOrganizationWebhook).
+
+</li>
+</ol>
+</Steps>
+
+# Managing your Webhooks
+
+Via the Qovery API, you can also:
+
+* [Edit your webhooks](https://api-doc.qovery.com/#tag/Organization-Webhook/operation/editOrganizationWebhook).
+* [Delete your webhooks](https://api-doc.qovery.com/#tag/Organization-Webhook/operation/deleteOrganizationWebhook).
+* [Display a list of your existing webhooks and their configuration](https://api-doc.qovery.com/#tag/Organization-Webhook/operation/listOrganizationWebHooks).
 
 
-
+[docs.using-qovery.integration.slack]: /docs/using-qovery/integration/slack/
+[docs.using-qovery.interface.cli#generate-api-token]: /docs/using-qovery/interface/cli/#generate-api-token
+[docs.using-qovery.interface.cli]: /docs/using-qovery/interface/cli/

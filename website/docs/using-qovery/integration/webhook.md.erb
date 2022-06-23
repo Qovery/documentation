@@ -4,14 +4,25 @@ title: "Webhooks"
 description: "Learn how to use Qovery Webhooks"
 ---
 
-Qovery allows you to create webhooks at organization-level so that, when an important event happens on an environment within your organization, you can get notified on external applications. For instance, you can get notifications on Slack whenever:
+Qovery allows you to create webhooks at organization-level so that, when an event happens on an environment within your organization, you can get notified on external applications (for instance, [Slack][docs.using-qovery.integration.slack]).
 
-* an environment is created, successfully deployed, stopped or when it failed to deploy.
-* a deployment started in the environment.
+You can trigger webhooks when:
 
-For more information on the Qovery-Slack integration and how to create related webhooks, see [Slack][docs.using-qovery.integration.slack]. 
+* An environment is created.
+* An environment is successfully deployed.
+* An environment is stopped.
+* An environment failed to deploy.
+* A deployment started in the environment.
 
-You can configure all your webhooks from the [Qovery API endpoint](https://api-doc.qovery.com/#tag/Organization-Webhook/operation/listOrganizationWebHooks). To do so:
+<Alert type="info">
+
+Webhooks are not available in the Qovery console yet, but you can create and manage them via the Qovery API.
+
+</Alert>
+
+# Creating a Webhook
+
+To create a webhook via the Qovery API:
 
 <Steps headingDepth={3}>
 <ol>
@@ -27,183 +38,31 @@ Generate an [API Token][docs.using-qovery.interface.cli#generate-api-token].
 </li>
 <li>
 
-Enter CURL commands using the parameters below.
+Enter the following cURL command:
+
+```bash
+curl -X POST -H 'Content-type: application/json' -H 'Authorization: Token <Your API Token>' -d \
+'{"description": "slack notifications", "target_url": "<Your External Application Webhook URL>", "events": ["DEPLOYMENT_STARTED", "DEPLOYMENT_CANCELLED", "DEPLOYMENT_SUCCESSFUL", "DEPLOYMENT_FAILURE"], "kind": "SLACK", "enabled": true}' \
+"https://api.qovery.com/organization/{Your Organization ID}/webhook"
+```
+
+Where you need to replace:
+
+* `<Your API Token>` with your Qovery API token.
+* `<Your External Application Webhook URL>` with the webhook URL provided by the external application you want to receive notifications on.
+* `{Your Organization ID}` with the ID of the Qovery organization you want to create the webhook on.
+* and the request details [with the right parameters for your needs](https://api-doc.qovery.com/#tag/Organization-Webhook/operation/createOrganizationWebhook).
 
 </li>
 </ol>
 </Steps>
 
-<Alert type="info">
+# Managing your Webhooks
 
-Webhooks are not available in the Qovery console yet.
+Via the Qovery API, you can also:
 
-</Alert>
-
-# Creating an Organization Webhook
-
-You can create an organization webhook using the following parameters:
-
-## Path Parameters
-
-### organizationId
-
-| Type    | Description                                                                                        | Mandatory  | 
-|---------|----------------------------------------------------------------------------------------------------|------------|
-| string  | Allows you to specify the name of the Qovery organization you want the webhook to be installed on. | Yes        |
-
-## Query Parameters
-
-### kind
-
-| Type    | Description                                                  | Possible Values                                                                                                                |  Mandatory  | 
-|---------|--------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|-------------|
-| string  | Allows you to define the type of webhook you want to create. | `STANDARD` <br /> `SLACK` (to push notifications to Slack, in this case the `target_url` must be a Slack-compatible endpoint). | Yes         |
-
-### target_url
-
-| Type    | Description                                                                                                                                               |  Mandatory  | 
-|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|-------------|
-| string  | Allows you to set the public HTTP or HTTPS endpoint that will receive the specified events. <br /> The target URL must start with `http://` or `https://`.| Yes         |
-
-### target_secret
-
-| Type    | Description                                                                                                                           |  Mandatory  | 
-|---------|---------------------------------------------------------------------------------------------------------------------------------------|-------------| 
-| string  | Allows you to [define a secret][docs.using-qovery.configuration.secret] to be used during each webhook call to protect sensitive data.| No          |
-
-### description
-
-| Type    | Description                                                                                 |  Mandatory  | 
-|---------|---------------------------------------------------------------------------------------------|-------------| 
-| string  | Allows you to enter a description for your webhook, so that you know exactly what it is for.| No          |
-
-### enabled
-
-| Type    | Description                                 |  Mandatory  | 
-|---------|---------------------------------------------|-------------| 
-| boolean | Allows you to turn your endpoint on or off. | No          |
-
-### events
-
-| Type             | Description                                                                                                               |  Possible Values                                                                                          |  Mandatory  | 
-|------------------|---------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|-------------| 
-| Array of strings | Allows you to specify which events will trigger a webhook call (meaning, which events you want to get notifications for). | `DEPLOYMENT_STARTED` <br/> `DEPLOYMENT_CANCELLED` <br/> `DEPLOYMENT_FAILURE` <br/> `DEPLOYMENT_SUCCESSFUL`| Yes         |
-
-### project_id_filter
-
-| Type             | Description                                                                      | Mandatory  | 
-|------------------|----------------------------------------------------------------------------------|------------|
-| Array of strings | Allows you to filter which project(s) you want webhook calls to be triggered on. | No         |
-
-### environment_types_filter
-
-| Type             | Description                                                                          | Possible Values                                                   | Mandatory | 
-|------------------|--------------------------------------------------------------------------------------|-------------------------------------------------------------------|-----------| 
-| Array of strings | Allows you to filter which environment(s) you want webhook calls to be triggered on. |`DEPLOYMENT` <br /> `PREVIEW` <br /> `PRODUCTION` <br /> `STAGING` | No        |
-
-# Getting an Organization Webhook
-
-For troubleshooting purposes, you can retrieve past organization webhook call executions as well as their execution status. To do so, use the following parameters:
-
-## Path Parameters
-
-### organizationId
-
-| Type    | Description                                                                                           | Mandatory  | 
-|---------|-------------------------------------------------------------------------------------------------------|------------|
-| string  | Allows you to specify the name of the Qovery organization linked to the webhook you want to retrieve. | Yes        |
-
-### webhookId
-
-| Type    | Description                                                       | Mandatory  | 
-|---------|-------------------------------------------------------------------|------------|
-| string  | Allows you to specify the ID of the webhook you want to retrieve. | Yes        |
-
-
-# Editing an Organization Webhook
-
-You can edit an existing organization webhook using the following parameters:
-
-## Path Parameters
-
-### organizationId
-
-| Type    | Description                                                                                       | Mandatory  | 
-|---------|---------------------------------------------------------------------------------------------------|------------|
-| string  | Allows you to specify the name of the Qovery organization linked to the webhook you want to edit. | Yes        |
-
-### webhookId
-
-| Type    | Description                                                   | Mandatory  | 
-|---------|---------------------------------------------------------------|------------|
-| string  | Allows you to specify the ID of the webhook you want to edit. | Yes        |
-
-## Query Parameters
-
-### kind
-
-| Type    | Description                                  | Possible Values                                                                                                                |  Mandatory  | 
-|---------|----------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|-------------|
-| string  | Allows you to edit the type of your webhook. | `STANDARD` <br /> `SLACK` (to push notifications to Slack, in this case the `target_url` must be a Slack-compatible endpoint). | Yes         |
-
-### target_url
-
-| Type    | Description                                                                                                                                                |  Mandatory  | 
-|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------|
-| string  | Allows you to edit the public HTTP or HTTPS endpoint that will receive the specified events. <br /> The target URL must start with `http://` or `https://`.| Yes         |
-
-### target_secret
-
-| Type    | Description                                                                                                                           |  Mandatory  | 
-|---------|---------------------------------------------------------------------------------------------------------------------------------------|-------------| 
-| string  | Allows you to [edit the secret][docs.using-qovery.configuration.secret] to be used during each webhook call to protect sensitive data.| No          |
-
-### description
-
-| Type    | Description                                         |  Mandatory  | 
-|---------|-----------------------------------------------------|-------------| 
-| string  | Allows you to edit the description of your webhook. | No          |
-
-### enabled
-
-| Type    | Description                                 |  Mandatory  | 
-|---------|---------------------------------------------|-------------| 
-| boolean | Allows you to turn your endpoint on or off. | No          |
-
-### events
-
-| Type             | Description                                                                                                               |  Possible Values                                                                                          |  Mandatory  | 
-|------------------|---------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------|-------------| 
-| Array of strings | Allows you to specify which events will trigger a webhook call (meaning, which events you want to get notifications for). | `DEPLOYMENT_STARTED` <br/> `DEPLOYMENT_CANCELLED` <br/> `DEPLOYMENT_FAILURE` <br/> `DEPLOYMENT_SUCCESSFUL`| Yes         |
-
-### project_id_filter
-
-| Type             | Description                                                                      | Mandatory  | 
-|------------------|----------------------------------------------------------------------------------|------------|
-| Array of strings | Allows you to filter which project(s) you want webhook calls to be triggered on. | No         |
-
-### environment_types_filter
-
-| Type             | Description                                                                          | Possible Values                                                   | Mandatory | 
-|------------------|--------------------------------------------------------------------------------------|-------------------------------------------------------------------|-----------| 
-| Array of strings | Allows you to filter which environment(s) you want webhook calls to be triggered on. |`DEPLOYMENT` <br /> `PREVIEW` <br /> `PRODUCTION` <br /> `STAGING` | No        |
-
-
-# Deleting an Organization Webhook
-
-You can delete an organization webhook using the following parameters:
-
-## Path Parameters
-
-### organizationId
-
-| Type    | Description                                                                                         | Mandatory  | 
-|---------|-----------------------------------------------------------------------------------------------------|------------|
-| string  | Allows you to specify the name of the Qovery organization linked to the webhook you want to delete. | Yes        |
-
-###  webhookId
-
-| Type    | Description                                                     | Mandatory  | 
-|---------|-----------------------------------------------------------------|------------|
-| string  | Allows you to specify the ID of the webhook you want to delete. | Yes        |
+* [Edit your webhooks](https://api-doc.qovery.com/#tag/Organization-Webhook/operation/editOrganizationWebhook).
+* [Delete your webhooks](https://api-doc.qovery.com/#tag/Organization-Webhook/operation/deleteOrganizationWebhook).
+* [Display a list of your existing webhooks and their configuration](https://api-doc.qovery.com/#tag/Organization-Webhook/operation/listOrganizationWebHooks).
+* Display information about the latest executions of your webhooks for troubleshooting purposes.
 

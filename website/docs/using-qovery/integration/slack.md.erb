@@ -96,6 +96,40 @@ Your Organization ID is the first ID in your [console.qovery.com][urls.start_qov
 
 You must receive a REST response from the API if it's all good!
 
+You can also add the properties:
+
+* `project_names_filter` to send events for project matching the name and...
+* `environment_types_filter`to send events for environments matching the type.
+
+### Other examples
+
+Here is another example to send webhook events only for production and staging environments
+
+```bash
+curl -X POST -H 'Content-type: application/json' -H 'Authorization: Token <Your API Token>' -d \
+'{"description": "slack notifications", "target_url": "<Your Slack Webhook URL>", "environment_types_filter": ["PRODUCTION", "STAGING"], "events": ["DEPLOYMENT_STARTED", "DEPLOYMENT_CANCELLED", "DEPLOYMENT_SUCCESSFUL", "DEPLOYMENT_FAILURE"], "kind": "SLACK", "enabled": true}' \
+"https://api.qovery.com/organization/{Your Organization ID}/webhook"
+```
+
+Note that `environment_types_filter`:
+
+* is a list
+* accepts `PRODUCTION`, `DEVELOPMENT`, `STAGING`, `PREVIEW`
+
+And one more example to send webhook events only for project with names starting by `product` or equal to `analytics`
+
+```bash
+curl -X POST -H 'Content-type: application/json' -H 'Authorization: Token <Your API Token>' -d \
+'{"description": "slack notifications", "target_url": "<Your Slack Webhook URL>", "project_names_filter": ["product*", "analytics"], "events": ["DEPLOYMENT_STARTED", "DEPLOYMENT_CANCELLED", "DEPLOYMENT_SUCCESSFUL", "DEPLOYMENT_FAILURE"], "kind": "SLACK", "enabled": true}' \
+"https://api.qovery.com/organization/{Your Organization ID}/webhook"
+```
+
+Note that `project_names_filter`:
+
+* is a list
+* is not case-sensitive
+* accepts wildcard
+
 ### Considerations
 
 - You can have multiple webhooks targeting different Slack channels

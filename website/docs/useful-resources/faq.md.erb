@@ -2,7 +2,7 @@
 title: FAQ
 description: "Frequently Asked Questions"
 ---
-## What is the difference between a Project, Application, and Environment?
+## What is the difference between a Project, an Application, and an Environment?
 
 A [project][docs.using-qovery.configuration.project] is the site that you're working on. Each project can contain multiple [applications][docs.using-qovery.configuration.application] and be deployed in multiple [environments][docs.using-qovery.configuration.environment]. An environment is a standalone copy of your site, including apps, databases, storage, data, and all other services. By default, `main` branch is the production environment, while all other branches can be set up as identical copies of the prod environment for testing purposes.
 
@@ -35,13 +35,15 @@ GitHub, GitLab, BitBucket.
 
 Not at the moment, but you can upvote for this feature in [our roadmap][urls.qovery_roadmap].
 
-## Does Qovery support private Git repository ?
+## Does Qovery support private Git repository?
 
 Yes, absolutely!
 
-## What is the IP address of my Kubernetes cluster?
+## Which IP address does my cluster use to communicate externally over the Internet?
 
-Static IP is only supported for Kubernetes clusters running on AWS. You can enable the option in the feature settings of your cluster.
+There isn't just one public cluster IP adress dedicated to external communication. However, [worker nodes][docs.using-qovery.configuration.clusters#what-is-a-cluster] inside your cluster each have a public IP automatically attached to them. You can view those default public IPs in the details of your worker nodes (EC2 instances for AWS users) which belong to the node group in your cluster.
+
+For improved security and control, the `Static IP` feature allows you to ensure that outbound traffic from your cluster uses specific IP addresses. For more information on the `Static IP` feature and how to enable it at cluster creation, see [Static IP][docs.using-qovery.configuration.clusters#static-ip].
 
 ## If I have N custom domains under the same root domain, do I need to create N CNAME records, or just creating one for the root domain is enough ?
 

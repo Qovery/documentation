@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-06-20"
+last_modified_on: "2022-06-24"
 title: "Clusters"
 description: "Learn how to configure your Kubernetes clusters on Qovery"
 ---
@@ -627,7 +627,7 @@ It can only be enabled at cluster creation.
 
 </Alert>
 
-By default, when it is created, your cluster is allocated an external public IP address. For improved security and control, the **Static IP** feature allows you to ensure that outbound traffic from your cluster uses a specific IP address.
+By default, when your cluster is created, its worker nodes are allocated public IP addresses, which are used for external communication. For improved security and control, the **Static IP** feature allows you to ensure that outbound traffic from your cluster uses specific IP addresses.
 
 <Alert type="info">
 

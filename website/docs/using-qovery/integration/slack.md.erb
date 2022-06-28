@@ -4,75 +4,122 @@ title: "Slack"
 description: "Learn how to connect Qovery to your Slack workspace"
 ---
 
-If you'd like to automatically notify your team on a Slack workspace whenever a change has occurred on your apps, this Integration will help you out. You can choose which actions should trigger messages on your Slack workspace.
+import Alert from '@site/src/components/Alert';
+
+If you'd like to automatically notify your team on a Slack workspace whenever a change has occurred on your apps, this integration will help you out. You can choose which actions should trigger messages on your Slack workspace.
 
 Here are the steps that we are going through:
 
-1. [Create a Slack app](#1-create-a-slack-app)
+1. [Create a Slack App](#1-create-a-slack-app)
 2. [Create a Webhook](#2-create-webhook)
-3. [Setup Webhook in Qovery](#3-create-webhook-in-qovery)
+3. [Setup a Webhook in Qovery](#3-create-webhook-in-qovery)
 4. [Try it!](#4-try-it)
 
-## 1. Create a Slack app
+## 1. Create a Slack App
 
-Go to the [Slack page to create apps](https://api.slack.com/apps?new_app=1) and create a new app. C
+<Steps headingDepth={3}>
+<ol>
+<li>
+
+Go to the [Slack page to create apps](https://api.slack.com/apps?new_app=1) and create a new app:
 
 <p align="center">
   <img src="/img/slack/create-app-slack-1.png" alt="Create a slack app - step 1" />
 </p>
 
-Create a Slack app from scratch.
+</li>
+<li>
+
+Create a Slack app from scratch:
 
 <p align="center">
   <img src="/img/slack/create-app-slack-2.png" alt="Create a slack app - step 2" />
 </p>
 
-all it `Qovery` and connect it to the workspace of your choice.
+</li>
+<li>
+
+Call it `Qovery` and connect it to the workspace of your choice:
 
 <p align="center">
   <img src="/img/slack/create-app-slack-3.png" alt="Create a slack app - step 3" />
 </p>
 
-Feel free to use an image from [here](https://raw.githubusercontent.com/Qovery/public-resources/master/qovery_square_new_logo_with_margin.png) as the app's logo.
+</li>
+<li>
+
+Feel free to use an image from [here](https://raw.githubusercontent.com/Qovery/public-resources/master/qovery_square_new_logo_with_margin.png) as the app's logo:
 
 <p align="center">
   <img src="/img/slack/create-app-slack-4.png" alt="Create a slack app - step 4" />
 </p>
 
-## 2. Create Webhook
+</li>
+</ol>
+</Steps>
 
-Go to the `Incoming Webhooks` page for your newly-created app and toggle `Activate Incoming Webhooks` to turn it on.
+## 2. Create a Webhook
+
+<Steps headingDepth={3}>
+<ol>
+<li>
+
+Go to the `Incoming Webhooks` page for your newly-created app and toggle `Activate Incoming Webhooks` to turn it on:
 
 <p align="center">
   <img src="/img/slack/create-webhook-1.png" alt="Create a webhook integration on Slack - step 1" />
 </p>
 
-Then click on `Add New Webhook to Workspace`
+</li>
+<li>
+
+Click on `Add New Webhook to Workspace`:
 
 <p align="center">
   <img src="/img/slack/create-webhook-2.png" alt="Create a webhook integration on Slack - step 2" />
 </p>
 
-and select the channel that the notifications will be posted to:
+</li>
+<li>
+
+Select the channel that the notifications will be posted to:
 
 <p align="center">
   <img src="/img/slack/create-webhook-3.png" alt="Create a webhook integration on Slack - step 3" />
 </p>
 
-Copy the webhook URL
+</li>
+<li>
+
+Copy the webhook URL:
 
 <p align="center">
   <img src="/img/slack/create-webhook-4.png" alt="Create a webhook integration on Slack - step 4" />
 </p>
 
+</li>
+</ol>
+</Steps>
 
-## 3. Create Webhook in Qovery
+## 3. Create a Webhook in Qovery
 
-To create a webhook in Qovery you need to:
+To create a webhook in Qovery:
 
-1. Install the [Qovery CLI][docs.using-qovery.interface.cli]
-2. Generate an [API Token][docs.using-qovery.interface.cli#generate-api-token]
-3. Copy the following CURL command:
+<Steps headingDepth={3}>
+<ol>
+<li>
+
+Install the [Qovery CLI][docs.using-qovery.interface.cli].
+
+</li>
+<li>
+
+Generate an [API Token][docs.using-qovery.interface.cli#generate-api-token].
+
+</li>
+<li>
+
+Copy the following cURL command:
 
 ```bash
 curl -X POST -H 'Content-type: application/json' -H 'Authorization: Token <Your API Token>' -d \
@@ -80,10 +127,20 @@ curl -X POST -H 'Content-type: application/json' -H 'Authorization: Token <Your 
 "https://api.qovery.com/organization/{Your Organization ID}/webhook"
 ```
 
-4. Replace `<Your API Token>` with your Qovery API token
-5. Replace `<Your Slack Webhook URL>` with your Slack Webhook URL
-6. Replace `{Your Organization ID}` with your Qovery organization ID.
-7. Run the complete CURL command in your terminal.
+</li>
+<li>
+
+Replace `<Your API Token>` with your Qovery API token.
+
+</li>
+<li>
+
+Replace `<Your Slack Webhook URL>` with your Slack Webhook URL.
+
+</li>
+<li>
+
+Replace `{Your Organization ID}` with your Qovery organization ID.
 
 <details>
 
@@ -92,18 +149,32 @@ curl -X POST -H 'Content-type: application/json' -H 'Authorization: Token <Your 
 Your Organization ID is the first ID in your [console.qovery.com][urls.start_qovery] URL. E.g. for `https://console.qovery.com/platform/organization/70c9a78d-454b-41dc-8478-d1f95bd08fd7/projects` the Organization ID is `70c9a78d-454b-41dc-8478-d1f95bd08fd7`
 
 </details>
-<br/>
+
+</li>
+<li>
+
+Run the complete cURL command in your terminal.
 
 You must receive a REST response from the API if it's all good!
 
-You can also add the properties:
+</li>
+</ol>
+</Steps>
 
-* `project_names_filter` to send events for project matching the name and...
-* `environment_types_filter`to send events for environments matching the type.
+### Filter your Event Notifications
 
-### Other examples
+You can also add the following properties to your cURL command:
 
-Here is another example to send webhook events only for production and staging environments
+* `project_names_filter` to only get notified about events happening in projects whose IDs match the specified filter.
+* `environment_types_filter` to only get notified about events happening on one or several specific types of environments.
+
+<Alert type="info">
+
+These 2 properties can be used together. For more information on how to use them, see [Webhooks] [docs.using-qovery.integration.webhook].
+
+</Alert>
+
+Here is an example of command to send webhook events only for production and staging environments:
 
 ```bash
 curl -X POST -H 'Content-type: application/json' -H 'Authorization: Token <Your API Token>' -d \
@@ -111,12 +182,7 @@ curl -X POST -H 'Content-type: application/json' -H 'Authorization: Token <Your 
 "https://api.qovery.com/organization/{Your Organization ID}/webhook"
 ```
 
-Note that `environment_types_filter`:
-
-* is a list
-* accepts `PRODUCTION`, `DEVELOPMENT`, `STAGING`, `PREVIEW`
-
-And one more example to send webhook events only for project with names starting by `product` or equal to `analytics`
+And another to send webhook events only for project with names starting by `product` or equal to `analytics`:
 
 ```bash
 curl -X POST -H 'Content-type: application/json' -H 'Authorization: Token <Your API Token>' -d \
@@ -124,18 +190,12 @@ curl -X POST -H 'Content-type: application/json' -H 'Authorization: Token <Your 
 "https://api.qovery.com/organization/{Your Organization ID}/webhook"
 ```
 
-Note that `project_names_filter`:
-
-* is a list
-* is not case-sensitive
-* accepts wildcard
-
 ### Considerations
 
-- You can have multiple webhooks targeting different Slack channels
+- You can have multiple webhooks targeting different Slack channels.
 - You can specify the events that you want to receive. E.g. if you just want to be notified when a deployment failed, then use `"events": ["DEPLOYMENT_FAILURE"]`. All the events and the description are available [on our API doc](https://api-doc.qovery.com/#tag/Organization-Webhook/operation/createOrganizationWebhook).
 - You can turn off or delete your webhooks at any time with [this API call](https://api-doc.qovery.com/#tag/Organization-Webhook/operation/deleteOrganizationWebhook).
-- The Qovery web interface will integrate the Webhook configuration :)
+- The Qovery web interface will integrate the Webhook configuration. :)
 
 Check out [this page][docs.using-qovery.integration.webhook] for further details on how to use the WebHook API.
 

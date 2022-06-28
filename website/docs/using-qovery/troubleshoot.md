@@ -6,6 +6,15 @@ sidebar_label: hidden
 hide_pagination: true
 ---
 
+import Alert from '@site/src/components/Alert';
+import Steps from '@site/src/components/Steps';
+
+<Alert type="info">
+
+In this guide, you'll find common mistakes, and how to resolve them. If you don't find what you need here, [please use the forum](https://discuss.qovery.com/).
+
+</Alert>
+
 # Common application deployment issues
 
 <!--
@@ -29,6 +38,7 @@ That means your application may not able to start, or has started but takes too 
 
 Here are the possible reasons for starting issues you should check:
 
+<Steps headingDepth={3}>
 <ol>
 <li>
 
@@ -46,6 +56,7 @@ Your application can take a long time to start and succeed in the end. If it's e
 
 </li>
 </ol>
+</Steps>
 
 # More
 You are looking to troubleshoot your application with Qovery? [Read this very short guide][guides.debugging]

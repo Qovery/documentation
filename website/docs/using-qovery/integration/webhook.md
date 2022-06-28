@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-06-24"
+last_modified_on: "2022-06-28"
 title: "Webhooks"
 description: "Learn how to use Qovery Webhooks"
 ---
@@ -22,7 +22,7 @@ Webhooks are not available in the Qovery console yet, but you can create and man
 
 </Alert>
 
-# Creating a Webhook
+# Creating an Incoming Webhook on Slack
 
 To create a webhook via the Qovery API:
 
@@ -57,7 +57,7 @@ Here is how you can customize the command so that it fits your specific needs:
 | `"description"`              | Enter a self-explanatory description of what your webhook does. In the example, `"description": "slack notifications"` clearly states that the webhook triggers notifications on Slack.                                                                                                                                                                                                                                                                                                          | 
 | `<Your Slack Webhook URL>`   | Replace with the webhook URL provided by the external application you want to receive notifications on.                                                                                                                                                                                                                                                                                                                                                                                          |   
 | `"environment_types_filter"` | *(Optional)* If you only want to get notified about events happening on one or several specific type(s) or environment(s), you can provide a list using the following possible values: `"PRODUCTION"`, `"DEVELOPMENT"`, `"STAGING"` and `"PREVIEW"`. <br /> <br /> Please note that `"environment_types_filter"` can be used together with `"project_names_filter"`.                                                                                                                             |
-| `"project_names_filter"`     | *(Optional)* If you only want to get notified about events happening in one or several specific projects, you can provide a list of project names that will act as a filter. Notifications will then only be triggered for projects whose ID matches or, if you're using a wildcard, starts with one of the values from your list. <br /> <br /> Please note that `"project_names_filter"` is not case-sensitive, accepts wildcards, and can be used together with `"environment_types_filter"`. |
+| `"project_names_filter"`     | *(Optional)* If you only want to get notified about events happening in one or several specific projects, you can provide a list of project names that will act as a filter. Notifications will then only be triggered for projects whose names match or, if you're using a wildcard, start with one of the values from your list. <br /> <br /> Please note that `"project_names_filter"` is not case-sensitive, accepts wildcards, and can be used together with `"environment_types_filter"`. |
 | `"events"`                   | List all the events you want to be notified about.                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | `"kind"`                     | Specify which kind of webhook you want to create. At the moment, you can specify : `"kind": "STANDARD"` to create a generic webhook, or `"kind": "SLACK"` to create [a Slack webhook][docs.using-qovery.integration.slack].                                                                                                                                                                                                                                                                      |
 | `{Your Organization ID}`     | Replace with the ID of the Qovery organization you want to create your webhook on.                                                                                                                                                                                                                                                                                                                                                                                                               | 

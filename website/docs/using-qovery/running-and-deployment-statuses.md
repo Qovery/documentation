@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-06-24"
+last_modified_on: "2022-06-29"
 title: "Running and Deployment Statuses"
 description: "Learn how to monitor your running and deployment statuses"
 ---
@@ -13,12 +13,12 @@ From any environment window on your [Qovery Console][urls.qovery_console], you c
   <img src="/img/monitoring/Run_Deployment_Statuses.jpg" alt="Application" />
 </p>
 
-| Item | Description                                                                                                                                                                                            |
-|------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1    | The dot next to the name of the environment shows its overall status. <br />  For more information, see [Environment Statuses][#environment-statuses].                                                 |
-| 2    | The dot in the `Service` column shows the status of the related service. <br /> For more information, see [Service Statuses][#service-statuses].                                                       |
-| 3    | The label next to the name of the environment shows the overall status of your deployments in that specific environment. <br /> For more information, see [Deployment Statuses][#deployment-statuses]. |
-| 4    | The label in the `Service` column shows the deployment status of the related service. <br /> For more information, see [Deployment Statuses][#deployment-statuses].                                    |
+| Item | Description                                                                                                                                                                                                                                              |
+|------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 1    | The dot next to the name of the environment shows its overall status. <br />  For more information, see [Environment Statuses][docs.using-qovery.running-and-deployment-statuses#environment-statuses].                                                  |
+| 2    | The dot in the `Service` column shows the status of the related service. <br /> For more information, see [Service Statuses][docs.using-qovery.running-and-deployment-statuses#service-statuses].                                                        |
+| 3    | The label next to the name of the environment shows the overall status of your deployments in that specific environment. <br /> For more information, see [Deployment Statuses][docs.using-qovery.running-and-deployment-statuses#deployment-statuses].  |                                   
+| 4    | The label in the `Service` column shows the deployment status of the related service. <br /> For more information, see [Deployment Statuses][docs.using-qovery.running-and-deployment-statuses#deployment-statuses].                                     |
 
 # Run Statuses
 
@@ -65,7 +65,7 @@ Here are all the possible service statuses:
 | STOPPED *(Gray dot)*      | All the application instances are stopped.                                                                               |
 | STARTING *(Loading Icon)* | At least 1 application instance is starting.                                                                             |
 | STOPPING *(Loading Icon)* | At least 1 application instance is stopping.                                                                             |
-| RUNNING *(Green dot)*     | All application instances are running correctly.                                                                       |
+| RUNNING *(Green dot)*     | All application instances are running correctly.                                                                         |
 | ERROR *(Red dot)*         | All application instances are in error status.                                                                           |
 | WARNING *(Orange dot)*    | *(Valid for multi-instance applications only)* At least 1 application instance is in error status (but not all of them). |
 
@@ -119,4 +119,7 @@ Likewise, when deploying a new version of a multi-instance application, Qovery f
 And so on...
 
 
+[docs.using-qovery.running-and-deployment-statuses#deployment-statuses]: /docs/using-qovery/running-and-deployment-statuses/#deployment-statuses
+[docs.using-qovery.running-and-deployment-statuses#environment-statuses]: /docs/using-qovery/running-and-deployment-statuses/#environment-statuses
+[docs.using-qovery.running-and-deployment-statuses#service-statuses]: /docs/using-qovery/running-and-deployment-statuses/#service-statuses
 [urls.qovery_console]: https://console.qovery.com

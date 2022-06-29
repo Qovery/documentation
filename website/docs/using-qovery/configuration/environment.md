@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-05-31"
+last_modified_on: "2022-06-29"
 title: "Environment"
 description: "Learn how to configure your Environments on Qovery"
 ---
@@ -128,7 +128,7 @@ When you create a preview environment as a Github user, Qovery automatically dis
 
 ## Build and Deployment logs
 
-Sometimes, you need to have a closer look on what is going on while an operation (see [statuses](#environment-statuses) below) is in progress.
+Sometimes, you need to have a closer look on what is going on while an operation (see [statuses](docs.using-qovery.configuration.environment#environment-statuses)) is in progress.
 
 <div class="video-container">
   <p align="center">

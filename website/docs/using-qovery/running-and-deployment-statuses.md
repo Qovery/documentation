@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-06-29"
+last_modified_on: "2022-06-30"
 title: "Running and Deployment Statuses"
 description: "Learn how to monitor your running and deployment statuses"
 ---
@@ -17,7 +17,7 @@ From any environment window on your [Qovery Console][urls.qovery_console], you c
 |------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 1    | The dot next to the name of the environment shows its overall status. <br />  For more information, see [Environment Statuses][docs.using-qovery.running-and-deployment-statuses#environment-statuses].                                                  |
 | 2    | The dot in the `Service` column shows the status of the related service. <br /> For more information, see [Service Statuses][docs.using-qovery.running-and-deployment-statuses#service-statuses].                                                        |
-| 3    | The label next to the name of the environment shows the overall status of your deployments in that specific environment. <br /> For more information, see [Deployment Statuses][docs.using-qovery.running-and-deployment-statuses#deployment-statuses].  |                                   
+| 3    | The label next to the name of the environment shows the overall status of your deployments in that specific environment. <br /> For more information, see [Deployment Statuses][docs.using-qovery.running-and-deployment-statuses#deployment-statuses].  |
 | 4    | The label in the `Service` column shows the deployment status of the related service. <br /> For more information, see [Deployment Statuses][docs.using-qovery.running-and-deployment-statuses#deployment-statuses].                                     |
 
 # Run Statuses

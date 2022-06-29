@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-06-28"
+last_modified_on: "2022-06-30"
 title: Troubleshoot
 description: "Everything you need to troubleshoot your application with Qovery"
 sidebar_label: hidden
@@ -53,6 +53,35 @@ Ensure your application is not listening onto localhost (127.0.0.1) or a specifi
 <li>
 
 Your application can take a long time to start and succeed in the end. If it's expected, you don't want to see those messages in your logs and fix this issue, you should configure the behavior of the desired probe. For example delay the time to check from 30s to 60s. All options are [available here][docs.using-qovery.configuration.advanced-settings#kubernetes-probes].
+
+</li>
+</ol>
+</Steps>
+
+## During a managed database delete, I've this error: SnapshotQuotaExceeded
+
+This errors occurs because Qovery creates a snapshot before the delete of the database. This to avoid a user mistake who delete a database accidentally.
+
+To fix this issue, you have 2 solutions:
+
+<Steps headingDepth={3}>
+<ol>
+<li>
+
+You certainly have useless snapshots, from old databases or old ones you don't want to keep anymore. Delete them directly from your Cloud Provider web interface. Here is an example on AWS:
+
+* Search for the database service (here RDS)
+* Select the Snapshots menu
+* Select the snapshots to delete
+
+<p align="center">
+  <img src="/img/configuration/database/db-snaptshots-quotas-exceed.png" alt="Database snapshots" />
+</p>
+
+</li>
+<li>
+
+Open a ticket to the Cloud Provider support, and as to raise this limit.
 
 </li>
 </ol>

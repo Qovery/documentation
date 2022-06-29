@@ -251,7 +251,7 @@ Enter a public SSH key and click `Create`.
 
 <Alert type="info">
 
-The SSH key enables you (or Qovery on your behalf) to freely manage your cluster. For information on how to generate an SSH key, see [Generating an SSH Key for Your K3s Cluster][docs.using-qovery.configuration.clusters#generating-an-ssh-key-for-your-k3s-cluster].
+The SSH key enables you (or Qovery on your behalf) to freely manage your cluster. For information on how to generate an SSH key, see [Generating an SSH Key for Your Cluster][docs.using-qovery.configuration.clusters#generating-an-ssh-key-for-your-cluster].
 
 You can add an SSH key to your cluster settings later, however it is recommended to do it at cluster creation to avoid downtime.
 
@@ -920,7 +920,7 @@ To clean up a Qovery cluster from your cloud provider account, go to `AWS Consol
 | 4    | Click `Preview Resources`. <br /> All your Qovery clusters are now displayed in the `Group resources` table, and you can delete them by hand.|
 
 
-## Generating an SSH Key for your K3s Cluster
+## Generating an SSH Key for Your Cluster
 
   <Alert type="info">
 
@@ -1020,7 +1020,7 @@ Your SSH key is now linked to your cluster.
 [docs.using-qovery.configuration.clusters#creating-an-eks-cluster-multiple-node-cluster]: /docs/using-qovery/configuration/clusters/#creating-an-eks-cluster-multiple-node-cluster
 [docs.using-qovery.configuration.clusters#deleting-a-cluster]: /docs/using-qovery/configuration/clusters/#deleting-a-cluster
 [docs.using-qovery.configuration.clusters#features]: /docs/using-qovery/configuration/clusters/#features
-[docs.using-qovery.configuration.clusters#generating-an-ssh-key-for-your-k3s-cluster]: /docs/using-qovery/configuration/clusters/#generating-an-ssh-key-for-your-k3s-cluster
+[docs.using-qovery.configuration.clusters#generating-an-ssh-key-for-your-cluster]: /docs/using-qovery/configuration/clusters/#generating-an-ssh-key-for-your-cluster
 [docs.using-qovery.configuration.clusters#how-do-i-set-up-a-cluster]: /docs/using-qovery/configuration/clusters/#how-do-i-set-up-a-cluster
 [docs.using-qovery.configuration.clusters#how-does-qovery-handle-cluster-updates-and-upgrades]: /docs/using-qovery/configuration/clusters/#how-does-qovery-handle-cluster-updates-and-upgrades
 [docs.using-qovery.configuration.clusters#managing-your-cluster-settings]: /docs/using-qovery/configuration/clusters/#managing-your-cluster-settings

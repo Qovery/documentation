@@ -116,7 +116,7 @@ When you create a preview environment as a Github user, Qovery automatically dis
 
 ## Build and Deployment logs
 
-Sometimes, you need to have a closer look on what is going on while an operation (see [statuses](#environment-statuses) below) is in progress.
+Sometimes, you need to have a closer look on what is going on while an operation (see [Environment Statuses](docs.using-qovery.running-and-deployment-statuses#environment-statuses) is in progress.
 
 <div class="video-container">
   <p align="center">
@@ -215,35 +215,6 @@ Auto-Deploy environment feature allows you to control if your applications shoul
 ### Auto-delete environment
 
 Auto-delete environment feature allows you to control if your applications should be, by default, automatically deleted after branch merging or deletion. This feature is part of the [Environment deployment rules][docs.using-qovery.configuration.deployment-rule] feature.
-
-## Environment statuses
-
-An Environment is a machine-state. Here is a list of the different statuses that your Environment can get.
-
-<Alert type="info">
-
-To get more details on what is going on - check out your environment [deployment logs](#build-and-deployment-logs).
-
-</Alert>
-
-| state | description |
-|--------|-------------|
-| READY | Your environment has been initialized and is ready to received its first applications |
-| QUEUED | A deployment task has been received and your environment is about deploying it. The task has been queued and can take some times to be processed. |
-| BUILDING | The build of one or several application(s) of your environment is in progress |
-| BUILD_ERROR | Something goes wrong during the build of your applications or databases |
-| BUILT | One or several application(s) of your environment are built |
-| DEPLOYING | The deployment of one or several application(s) of your environment is in progress |
-| DEPLOYMENT_ERROR | Something goes wrong during the deployment of your applications or databases |
-| DEPLOYED | One or several application(s) of your environment are deployed |
-| STOPPING | The shutdown of one or several application(s) of your environment is in progress |
-| STOP_ERROR | Something goes wrong during the shutdown of your applications or databases |
-| STOPPED | One or several application(s) of your environment are stopped |
-| DELETING | The deletion of one or several application(s) of your environment is in progress |
-| DELETE_ERROR | Something goes wrong during the deletion of your applications or databases |
-| DELETED | One or several application(s) of your environment are deleted |
-| RUNNING | Your applications and databases are running |
-| RUNNING_ERROR | Something goes wrong during the run of your applications |
 
 ## Deployment rules
 

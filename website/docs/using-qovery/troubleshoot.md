@@ -89,17 +89,17 @@ Open a ticket to the Cloud Provider support, and as to raise this limit.
 
 ## I don't have Qovery access anymore, how could I delete Qovery deployed resources on my AWS account?
 
-Unfortunatley there is no automatic way to do it with Qovery once we don't have access. However, AWS provides an easy way to retrieve those resources, so you can manually perform the delete. To do so, go on the AWS web console, and search for "Resource Groups & Tag Editor" service, then:
+Unfortunately, there is no automatic way to do it with Qovery once we don't have access. However, AWS provides an easy way to retrieve those resources, so you can manually perform the delete. To do so, go on the AWS web console, and search for "Resource Groups & Tag Editor" service, then:
 
 <p Valign="center">
-  <img src="/img/configuration/aws_resource_groups.png" alt="Resource groups search by tag" />
+  <img src="/img/aws_resource_groups.png" alt="Resource groups search by tag" />
 </p>
 
 1. Click on "Create Resource Group".
 2. In Tags, enter: "ClusterLongId".
-3. In Optional Tag value, enter the Qovery cluster ID. If you don't have it, let AWS suggest it for you. If you have Qovery deployed elements remainings, it will propose the Cluster long ID automatically.
+3. In the "Optional Tag value", enter the Qovery cluster ID. If you don't have it, let AWS suggest it for you. If you have Qovery deployed elements remainings, it will propose the Cluster long ID automatically.
 4. Click on "Add".
-5. You should see the filter with information you just entered.
+5. You should see the filter with the information you just entered.
 6. Click on "Preview groups resources".
 7. You'll have all elements deployed by Qovery and you can delete what you want.
 

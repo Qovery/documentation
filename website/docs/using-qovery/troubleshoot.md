@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-07-01"
+last_modified_on: "2022-07-05"
 title: Troubleshoot
 description: "Everything you need to troubleshoot your application with Qovery"
 sidebar_label: hidden
@@ -58,6 +58,30 @@ Your application can take a long time to start and succeed in the end. If it's e
 </ol>
 </Steps>
 
+## 0/x nodes are available: x insufficient cpu/ram
+
+If you encounter this kind of error during an application deployment phase:
+
+```bash
+0/1 nodes are available: 1 Insufficient cpu.
+```
+
+That means your cluster does not have enough resources left to deploy your application or database. Moreover, the cluster auto-scaler cannot be triggered since it has already reached the maximum number of instances for your cluster.
+
+Here are the possible solutions you can apply:
+
+* Reduce the resources (CPU/RAM) used by your existing/new applications. Have a review of the deployed applications and see if you can save up some resources by reducing their CPU/RAM consumption. Remember to re-deploy the applications when you edit the resource. Have a look at [the resource section for more information][docs.using-qovery.configuration.application#resources].
+
+* Select a bigger instance type for your cluster (in terms of CPU/RAM). By increasing it, it will unlock the deployment of your application (since new resources have been added). Check your [cluster settings][docs.using-qovery.configuration.clusters#managing-your-cluster-settings], and change the instance type of your cluster.
+
+* Increase the maximum number of nodes of your cluster. By increasing it, it will allow the cluster autoscaler to add a new node and allow the deployment of your application (since new resources have been added). Check your [cluster settings][docs.using-qovery.configuration.clusters#managing-your-cluster-settings], and increase the maximum number of nodes of your cluster.
+
+<Alert type="info">
+
+Please note that by increasing the number of nodes OR by selecting a bigger instance type you will increase your cloud provider cost. For more information, have a look at our [cluster section][docs.using-qovery.configuration.clusters#what-are-the-different-instance-types-available-when-creating-a-cluster].
+
+</Alert>
+
 ## During a managed database delete, I've this error: SnapshotQuotaExceeded
 
 This errors occurs because Qovery creates a snapshot before the delete of the database. This to avoid a user mistake who delete a database accidentally.
@@ -111,4 +135,7 @@ You are looking to troubleshoot your application with Qovery? [Read this very sh
 
 [docs.using-qovery.configuration.advanced-settings#kubernetes-probes]: /docs/using-qovery/configuration/advanced-settings/#kubernetes-probes
 [docs.using-qovery.configuration.application#ports]: /docs/using-qovery/configuration/application/#ports
+[docs.using-qovery.configuration.application#resources]: /docs/using-qovery/configuration/application/#resources
+[docs.using-qovery.configuration.clusters#managing-your-cluster-settings]: /docs/using-qovery/configuration/clusters/#managing-your-cluster-settings
+[docs.using-qovery.configuration.clusters#what-are-the-different-instance-types-available-when-creating-a-cluster]: /docs/using-qovery/configuration/clusters/#what-are-the-different-instance-types-available-when-creating-a-cluster
 [guides.debugging]: /guides/getting-started/debugging/

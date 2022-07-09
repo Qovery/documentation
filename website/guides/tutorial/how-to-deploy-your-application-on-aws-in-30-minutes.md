@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-04-29"
+last_modified_on: "2022-07-09"
 $schema: "/.meta/.schemas/guides.json"
 title: Zero to Hero - How to deploy your apps on AWS in 30 minutes
 description: Step-by-step guide on how to deploy your apps on AWS in 30 minutes. No AWS knowledge required.
@@ -31,7 +31,7 @@ In this tutorial, I will explain step by step how to deploy your app on AWS in 3
 2. If you have any question or suggestion on this tutorial, please contact us via [this form][urls.qovery_contact_us] or [Discord][urls.qovery_chat].
 
 ### What is Qovery
-Qovery is a platform that makes your app deployment on AWS very simple. The installation of Qovery on your AWS account takes approximately 30 minutes. Then you're ready to deploy your apps "a la" Heroku-like. [Read more about Qovery][docs.getting-started.what-is-qovery].
+Qovery is a platform that makes your app deployment on AWS very simple. The installation of Qovery on your AWS account takes approximately 30 minutes. Then you're ready to deploy your apps "à la" Heroku-like.
 
 ### Why you should use AWS
 * You need a reliable hosting platform.
@@ -183,7 +183,6 @@ Once Qovery is installed on your AWS account, you have the possibility to deploy
 <Jump to="/guides/getting-started/deploy-your-first-application">Deploy your first application</Jump>
 
 
-[docs.getting-started.what-is-qovery]: /docs/getting-started/what-is-qovery/
 [docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account]: /docs/using-qovery/configuration/cloud-service-provider/amazon-web-services/#connect-your-aws-account
 [docs.using-qovery.configuration.cloud-service-provider.amazon-web-services]: /docs/using-qovery/configuration/cloud-service-provider/amazon-web-services/
 [docs.using-qovery.configuration.organization]: /docs/using-qovery/configuration/organization/

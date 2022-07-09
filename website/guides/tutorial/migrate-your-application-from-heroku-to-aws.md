@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-05-22"
+last_modified_on: "2022-07-09"
 $schema: "/.meta/.schemas/guides.json"
 title: Migrate your application from Heroku to AWS
 description: Guide on how to migrate all your applications from Heroku to AWS with your databases
@@ -618,7 +618,7 @@ Yes, with the Qovery CLI and the command `qovery shell`. [Check out the document
 
 ### Can I use Terraform and Infrastructure as Code?
 
-Absolutely, we have a [Qovery Terraform provider][docs.devops.infrastructure-as-code.terraform] available.
+Absolutely, we have a [Qovery Terraform provider][docs.using-qovery.integration.terraform] available.
 
 ### How can I connect my app to MongoDB Atlas?
 
@@ -637,7 +637,6 @@ If you have a common question about Qovery, we have a more general [FAQ section]
 Congrats! You have migrated from Heroku to AWS. Feel free to check out our [forum][urls.qovery_forum] and open a thread if you have any question.
 
 
-[docs.devops.infrastructure-as-code.terraform]: /docs/devops/infrastructure-as-code/terraform/
 [docs.useful-resources.faq]: /docs/useful-resources/faq/
 [docs.using-qovery.configuration.application#auto-scaling]: /docs/using-qovery/configuration/application/#auto-scaling
 [docs.using-qovery.configuration.application#option-1-buildpacks]: /docs/using-qovery/configuration/application/#option-1-buildpacks
@@ -649,6 +648,7 @@ Congrats! You have migrated from Heroku to AWS. Feel free to check out our [foru
 [docs.using-qovery.configuration.organization]: /docs/using-qovery/configuration/organization/
 [docs.using-qovery.configuration.project]: /docs/using-qovery/configuration/project/
 [docs.using-qovery.configuration.secret]: /docs/using-qovery/configuration/secret/
+[docs.using-qovery.integration.terraform]: /docs/using-qovery/integration/terraform/
 [docs.using-qovery.interface.cli#shell]: /docs/using-qovery/interface/cli/#shell
 [docs.using-qovery.interface.cli]: /docs/using-qovery/interface/cli/
 [guides.advanced.guide-amazon-web-services]: /guides/advanced/guide-amazon-web-services/

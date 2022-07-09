@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-01-22"
+last_modified_on: "2022-07-09"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy on your Digital Ocean account
 description: How to configure and deploy your apps on your Digital Ocean account with Qovery
@@ -33,7 +33,7 @@ In this tutorial, I will explain step by step how to deploy your app on Digital 
 2. If you have any question or suggestion on this tutorial, please contact us via [this form][urls.qovery_contact_us] or [Discord][urls.qovery_chat].
 
 ### What is Qovery
-Qovery is a platform that makes your app deployment on Digital Ocean very simple. The installation of Qovery on your Digital Ocean account takes approximately 20 minutes. Then you're ready to deploy your apps "a la" Heroku-like. [Read more about Qovery][docs.getting-started.what-is-qovery].
+Qovery is a platform that makes your app deployment on Digital Ocean very simple. The installation of Qovery on your Digital Ocean account takes approximately 20 minutes. Then you're ready to deploy your apps "à la" Heroku-like.
 
 ### Why you should use Digital Ocean
 * You want to use a Global Cloud provider 🌎.
@@ -155,7 +155,6 @@ Once Qovery is installed on your Digital Ocean account, you have the possibility
 <Jump to="/guides/getting-started/deploy-your-first-application">Deploy your first application</Jump>
 
 
-[docs.getting-started.what-is-qovery]: /docs/getting-started/what-is-qovery/
 [docs.using-qovery.configuration.cloud-service-provider.digital-ocean]: /docs/using-qovery/configuration/cloud-service-provider/digital-ocean/
 [docs.using-qovery.configuration.organization]: /docs/using-qovery/configuration/organization/
 [guides.getting-started.deploy-your-first-application]: /guides/getting-started/deploy-your-first-application/

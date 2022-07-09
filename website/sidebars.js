@@ -6,6 +6,7 @@ module.exports = {
       items: [
         "getting-started",
         "getting-started/what-is-qovery",
+        "getting-started/how-qovery-works",
         "getting-started/install-qovery",
         "getting-started/deploy-my-app",
         "getting-started/features",
@@ -15,8 +16,6 @@ module.exports = {
           items: [
             "getting-started/qovery-vs-other",
             "getting-started/qovery-vs-other/heroku",
-            "getting-started/qovery-vs-other/netlify",
-            "getting-started/qovery-vs-other/terraform",
           ],
         },
         "getting-started/whats-next",
@@ -24,7 +23,7 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'For Developers',
+      label: 'Usage',
       items: [
         "using-qovery",
         {
@@ -35,6 +34,7 @@ module.exports = {
             "using-qovery/interface/web-interface",
             "using-qovery/interface/cli",
             "using-qovery/interface/rest-api",
+            "using-qovery/interface/terraform-interface",
           ]
         },
         {
@@ -77,13 +77,13 @@ module.exports = {
             },
           ]
         },
-		 {
-      type: 'category',
-      label: 'Observability',
-      items: [
-        "using-qovery/running-and-deployment-statuses",
-      ],
-    },
+        {
+          type: 'category',
+          label: 'Observability',
+          items: [
+            "using-qovery/running-and-deployment-statuses",
+          ],
+        },
         {
           type: 'category',
           label: 'Languages',
@@ -117,8 +117,7 @@ module.exports = {
           label: 'Integrations',
           items: [
             "using-qovery/integration",
-            "using-qovery/integration/slack",
-            "using-qovery/integration/terraform-integration",
+            "using-qovery/integration/terraform",
             {
               type: 'category',
               label: 'Continuous Integration',
@@ -141,6 +140,7 @@ module.exports = {
             },
             "using-qovery/integration/webhook",
             "using-qovery/integration/api-integration",
+            "using-qovery/integration/slack",
           ]
         },
         {
@@ -154,39 +154,10 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'For DevOps',
-      items: [
-        "devops/qovery-for-devops-introduction",
-        {
-          type: 'category',
-          label: 'Infrastructure as Code',
-          items: [
-            "devops/infrastructure-as-code",
-            "devops/infrastructure-as-code/terraform",
-          ]
-        },
-        {
-          type: 'category',
-          label: 'Configuration',
-          items: [
-            "devops/infrastructure-config",
-            "devops/infrastructure-config/kubernetes",
-            "devops/infrastructure-config/custom-domain",
-            "devops/infrastructure-config/load-balancer",
-            "devops/infrastructure-config/observability",
-            "devops/infrastructure-config/qovery-engine",
-            "devops/infrastructure-config/qovery-agent",
-          ]
-        }
-      ],
-    },
-    {
-      type: 'category',
       label: 'Security and Compliance',
       items: [
         "security-and-compliance",
         "security-and-compliance/backup-and-restore",
-        "security-and-compliance/community-fair-use-policy",
         "security-and-compliance/encryption",
         "security-and-compliance/gdpr",
       ],

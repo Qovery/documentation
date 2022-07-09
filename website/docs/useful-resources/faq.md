@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-06-24"
+last_modified_on: "2022-07-09"
 title: FAQ
 description: "Frequently Asked Questions"
 ---
@@ -17,7 +17,7 @@ A [project][docs.using-qovery.configuration.project] is the site that you're wor
 
 ## How does application build works?
 
-Basically, Qovery deploys your application as a container. Check out the detailed explanation of what is going on behind the scene [here][docs.devops.qovery-for-devops-introduction#application-and-database-deployment]
+Basically, Qovery deploys your application as a container. Check out the detailed explanation of what is going on behind the scene [here][docs.getting-started.how-qovery-works#application-and-database-deployment]
 
 ## How does Qovery manage databases?
 
@@ -101,15 +101,15 @@ Create teams, split responsibilities, manage privileges, enforce company-wide ru
 
 ## How Qovery works under the hood?
 
-[Here][docs.devops.qovery-for-devops-introduction] is a detailed explanation on how Qovery works under the hood.
+[Here][docs.getting-started.how-qovery-works] is a detailed explanation on how Qovery works under the hood.
 
 ## How can I contact you?
 
 Feel free to join our [Discord server][urls.qovery_chat] or contact us by email at hello (at) qovery.com.
 
 
-[docs.devops.qovery-for-devops-introduction#application-and-database-deployment]: /docs/devops/qovery-for-devops-introduction/#application-and-database-deployment
-[docs.devops.qovery-for-devops-introduction]: /docs/devops/qovery-for-devops-introduction/
+[docs.getting-started.how-qovery-works#application-and-database-deployment]: /docs/getting-started/how-qovery-works/#application-and-database-deployment
+[docs.getting-started.how-qovery-works]: /docs/getting-started/how-qovery-works/
 [docs.using-qovery.configuration.application#auto-scaling]: /docs/using-qovery/configuration/application/#auto-scaling
 [docs.using-qovery.configuration.application]: /docs/using-qovery/configuration/application/
 [docs.using-qovery.configuration.clusters#static-ip]: /docs/using-qovery/configuration/clusters/#static-ip

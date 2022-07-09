@@ -6,6 +6,7 @@ module.exports = {
       items: [
         <%= metadata.links.fetch_id("docs.getting-started").to_json %>,
         <%= metadata.links.fetch_id("docs.what-is-qovery").to_json %>,
+        <%= metadata.links.fetch_id("docs.how-qovery-works").to_json %>,
         <%= metadata.links.fetch_id("docs.install-qovery").to_json %>,
         <%= metadata.links.fetch_id("docs.deploy-my-app").to_json %>,
         <%= metadata.links.fetch_id("docs.features").to_json %>,
@@ -15,8 +16,6 @@ module.exports = {
           items: [
             <%= metadata.links.fetch_id("docs.qovery-vs-other").to_json %>,
             <%= metadata.links.fetch_id("docs.qovery-vs-other.heroku").to_json %>,
-            <%= metadata.links.fetch_id("docs.qovery-vs-other.netlify").to_json %>,
-            <%= metadata.links.fetch_id("docs.qovery-vs-other.terraform").to_json %>,
           ],
         },
         <%= metadata.links.fetch_id("docs.whats-next").to_json %>,
@@ -24,7 +23,7 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'For Developers',
+      label: 'Usage',
       items: [
         <%= metadata.links.fetch_id("docs.using-qovery").to_json %>,
         {
@@ -35,6 +34,7 @@ module.exports = {
             <%= metadata.links.fetch_id("docs.using-qovery.interface.web-interface").to_json %>,
             <%= metadata.links.fetch_id("docs.using-qovery.interface.cli").to_json %>,
             <%= metadata.links.fetch_id("docs.using-qovery.interface.rest-api").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.interface.terraform-interface").to_json %>,
           ]
         },
         {
@@ -77,13 +77,13 @@ module.exports = {
             },
           ]
         },
-		 {
-      type: 'category',
-      label: 'Observability',
-      items: [
-        <%= metadata.links.fetch_id("docs.using-qovery.running-and-deployment-statuses").to_json %>,
-      ],
-    },
+        {
+          type: 'category',
+          label: 'Observability',
+          items: [
+            <%= metadata.links.fetch_id("docs.using-qovery.running-and-deployment-statuses").to_json %>,
+          ],
+        },
         {
           type: 'category',
           label: 'Languages',
@@ -117,8 +117,7 @@ module.exports = {
           label: 'Integrations',
           items: [
             <%= metadata.links.fetch_id("docs.using-qovery.integration").to_json %>,
-            <%= metadata.links.fetch_id("docs.using-qovery.integration.slack").to_json %>,
-            <%= metadata.links.fetch_id("docs.using-qovery.integration.terraform-integration").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.integration.terraform").to_json %>,
             {
               type: 'category',
               label: 'Continuous Integration',
@@ -141,6 +140,7 @@ module.exports = {
             },
             <%= metadata.links.fetch_id("docs.using-qovery.integration.webhook").to_json %>,
             <%= metadata.links.fetch_id("docs.using-qovery.integration.api-integration").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.integration.slack").to_json %>,
           ]
         },
         {
@@ -154,39 +154,10 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'For DevOps',
-      items: [
-        <%= metadata.links.fetch_id("docs.devops.qovery-for-devops-introduction").to_json %>,
-        {
-          type: 'category',
-          label: 'Infrastructure as Code',
-          items: [
-            <%= metadata.links.fetch_id("docs.devops.infrastructure-as-code").to_json %>,
-            <%= metadata.links.fetch_id("docs.devops.infrastructure-as-code.terraform").to_json %>,
-          ]
-        },
-        {
-          type: 'category',
-          label: 'Configuration',
-          items: [
-            <%= metadata.links.fetch_id("docs.devops.infrastructure-config").to_json %>,
-            <%= metadata.links.fetch_id("docs.devops.infrastructure-config.kubernetes").to_json %>,
-            <%= metadata.links.fetch_id("docs.devops.infrastructure-config.custom-domain").to_json %>,
-            <%= metadata.links.fetch_id("docs.devops.infrastructure-config.load-balancer").to_json %>,
-            <%= metadata.links.fetch_id("docs.devops.infrastructure-config.observability").to_json %>,
-            <%= metadata.links.fetch_id("docs.devops.infrastructure-config.qovery-engine").to_json %>,
-            <%= metadata.links.fetch_id("docs.devops.infrastructure-config.qovery-agent").to_json %>,
-          ]
-        }
-      ],
-    },
-    {
-      type: 'category',
       label: 'Security and Compliance',
       items: [
         <%= metadata.links.fetch_id("docs.security-and-compliance").to_json %>,
         <%= metadata.links.fetch_id("docs.security-and-compliance.backup-and-restore").to_json %>,
-        <%= metadata.links.fetch_id("docs.security-and-compliance.community-fair-use-policy").to_json %>,
         <%= metadata.links.fetch_id("docs.security-and-compliance.encryption").to_json %>,
         <%= metadata.links.fetch_id("docs.security-and-compliance.gdpr").to_json %>,
       ],

@@ -15,6 +15,9 @@ module.exports = {
           label: 'Qovery vs. Other',
           items: [
             <%= metadata.links.fetch_id("docs.qovery-vs-other").to_json %>,
+            <%= metadata.links.fetch_id("docs.qovery-vs-other.harness").to_json %>,
+            <%= metadata.links.fetch_id("docs.qovery-vs-other.argocd").to_json %>,
+            <%= metadata.links.fetch_id("docs.qovery-vs-other.spinnaker").to_json %>,
             <%= metadata.links.fetch_id("docs.qovery-vs-other.heroku").to_json %>,
           ],
         },

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-27"
+last_modified_on: "2022-07-09"
 title: "What is Qovery?"
 description: "High-level description of the Qovery goals and mission."
 ---
@@ -12,14 +12,11 @@ import Assumptions from '@site/src/components/Assumptions';
 import Alert from '@site/src/components/Alert';
 import BusinessBadge from '@site/src/components/BusinessBadge';
 
-**Qovery** is a platform that combines the power of **Kubernetes**, the reliability of **AWS**, and the simplicity of **Heroku** to deploy
-your applications in the Cloud.
-
-> Qovery is the simplest way to deploy your full-stack apps in the Cloud
+> Qovery is the Next-Gen DevOps Platform to Build and Scale Your Apps on AWS
 
 Qovery is a product for:
+- **DevOps**: to build future-proof and evolutive production cloud infrastructure.
 - **Developer**: to deploy their apps while staying focused on building the best product.
-- **DevOps**: to build future-proof production cloud infrastructure.
 - **Product Manager**: to deliver new features faster.
 - **CTO**: to accelerate their go-to-market, reduce their cloud cost, keep their team productive as it grows.
 

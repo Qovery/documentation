@@ -67,8 +67,7 @@ function Footer() {
                             <div className="margin-bottom--md">
                                 {/*<MailingListForm description={true} width="150px"/>*/}
                                 <p>
-                                    Qovery combines the power of Kubernetes, the reliability of AWS,
-                                    and the simplicity of Heroku to deploy your apps.
+                                   Qovery is the Next-Gen DevOps Platform to Build and Scale Your Apps on AWS
                                 </p>
                             </div>
                             <div>

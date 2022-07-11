@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-07-05"
+last_modified_on: "2022-07-11"
 title: "Clusters"
 description: "Learn how to configure your Kubernetes clusters on Qovery"
 ---
@@ -45,14 +45,7 @@ For more information on Kubernetes clusters, see [the Kubernetes documentation](
 
 Qovery allows you to create:
 
-* *(AWS users only)* K3s (AWS EC2) single node clusters.
-
-<Alert type="info">
-
-K3s (AWS EC2) clusters will be released soon. Keep an eye on our email/forum communications and documentation updates not to miss them!
-
-</Alert>
-
+* *(AWS users only)* K3s (AWS EC2) single node clusters. This cluster type has been released in BETA
 * EKS (Kubernetes Managed) multiple node clusters.
 
 |                    | K3s Cluster                                                                                 | EKS Cluster                                                                                                         |
@@ -125,13 +118,6 @@ From the [Qovery Console][urls.qovery_console], you can manage the settings of t
 Qovery allows you to create:
 
 * *(AWS users only)* K3s (AWS EC2) single node clusters. For information on how to install a K3s cluster, see [Creating a K3s Cluster (Single Node Cluster)][docs.using-qovery.configuration.clusters#creating-a-k3s-cluster-single-node-cluster].
-
-<Alert type="info">
-
-K3s (AWS EC2) clusters will be released soon. Keep an eye on our email/forum communications and documentation updates not to miss them!
-
-</Alert>
-
 * EKS (Kubernetes Managed) multiple node clusters. For information on how to install an EKS cluster, see [Creating an EKS Cluster (Multiple Node Cluster) ][docs.using-qovery.configuration.clusters#creating-an-eks-cluster-multiple-node-cluster]
 
 If you need help to pick your cluster type, see [What is a cluster?][docs.using-qovery.configuration.clusters#what-is-a-cluster].
@@ -139,8 +125,17 @@ If you need help to pick your cluster type, see [What is a cluster?][docs.using-
 #### Creating a K3s Cluster (Single Node Cluster)
 
 <Alert type="info">
+K3s (AWS EC2) is still in BETA phase and has the following limitations
 
-K3s (AWS EC2) clusters will be released soon. Keep an eye on our email/forum communications and documentation updates not to miss tem!
+* You can’t access the historical logs and thus you can access your application logs only if it's running (Since we don’t have loki installed)
+* No public accessibility for DB container (we do not manage the public DNS entry for db). We will work on it in the upcoming weeks, in the meantime we will write a guide on how to connect to the DB via the ssh key / kubeconf
+* You can configure only 1 instance per application. Thus you can’t change the number of instances nor activate the sticky session feature
+* We do not manage YET the cluster version upgrades
+* Stop instance feature not ready YET
+* You can’t change the cluster settings without a service downtime since we kill the instance and we spawn a new one
+* We do not manage YET the external storage
+* We do not support YET the VPC setting
+* If you want to connect via SSH, you can't get YET the instance hostname directly in the Qovery console, you need to get it from the AWS console
 
 </Alert>
 
@@ -953,8 +948,6 @@ The error message should provide you enough information to solve the issue. If t
   <Alert type="info">
 
 You need a public SSH key for your K3s clusters only.
-
-K3s (AWS EC2) clusters will be released soon. Keep an eye on our email/forum communications and documentation updates not to miss them!
 
 </Alert>
 

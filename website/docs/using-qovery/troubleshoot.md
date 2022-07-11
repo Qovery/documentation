@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-07-05"
+last_modified_on: "2022-07-11"
 title: Troubleshoot
 description: "Everything you need to troubleshoot your application with Qovery"
 sidebar_label: hidden
@@ -57,6 +57,16 @@ Your application can take a long time to start and succeed in the end. If it's e
 </li>
 </ol>
 </Steps>
+
+<Alert type="info">
+
+If you need to manually debug, you can connect to your container:
+
+1. [Temporary delete the application port from your application configuration][docs.using-qovery.configuration.application#ports] and redeploy your application
+2. Use [qovery shell][docs.using-qovery.interface.cli#shell] command to connect to your container and understand what's wrong
+3. Re-apply the port to listen and redeploy your application
+
+</Alert>
 
 ## 0/x nodes are available: x insufficient cpu/ram
 
@@ -138,4 +148,5 @@ You are looking to troubleshoot your application with Qovery? [Read this very sh
 [docs.using-qovery.configuration.application#resources]: /docs/using-qovery/configuration/application/#resources
 [docs.using-qovery.configuration.clusters#managing-your-cluster-settings]: /docs/using-qovery/configuration/clusters/#managing-your-cluster-settings
 [docs.using-qovery.configuration.clusters#what-are-the-different-instance-types-available-when-creating-a-cluster]: /docs/using-qovery/configuration/clusters/#what-are-the-different-instance-types-available-when-creating-a-cluster
+[docs.using-qovery.interface.cli#shell]: /docs/using-qovery/interface/cli/#shell
 [guides.debugging]: /guides/getting-started/debugging/

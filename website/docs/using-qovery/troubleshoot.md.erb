@@ -46,6 +46,16 @@ Your application can take a long time to start and succeed in the end. If it's e
 </ol>
 </Steps>
 
+<Alert type="info">
+
+If you need to manually debug, you can connect to your container:
+
+1. [Temporary delete the application port from your application configuration][docs.using-qovery.configuration.application#ports] and redeploy your application
+2. Use [qovery shell][docs.using-qovery.interface.cli#shell] command to connect to your container and understand what's wrong
+3. Re-apply the port to listen and redeploy your application
+
+</Alert>
+
 ## 0/x nodes are available: x insufficient cpu/ram
 
 If you encounter this kind of error during an application deployment phase:

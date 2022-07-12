@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-06-20"
+last_modified_on: "2022-07-12"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -123,9 +123,11 @@ To configure the number of CPUs that your app needs, adjust the setting in the `
 
 <Alert type="info">
 
-Default is 256m. The maximum you can set is 1CPU in **Community** version and unlimited in [paid plans][urls.qovery_pricing].
+Default is 500m (0.5 vCPU). 
 
 </Alert>
+
+Please note that in this section you configure the CPU allocated by the cluster for your application and that cannot consume more than this value. Even if the application is underused and consume less resources, the cluster will still reserve the selected amount of CPU.
 
 <p align="center">
   <img src="/img/configuration/application/app-13.png" alt="CPU" />
@@ -137,9 +139,11 @@ To configure the amount of RAM that your app needs, adjust the setting in `Resou
 
 <Alert type="info">
 
-Default is 256MB, maximum you can set is 512MB in **Community** version, and unlimited in [paid plans][urls.qovery_pricing].
+Default is 512MB.
 
 </Alert>
+
+Please note that in this section you configure the CPU allocated by the cluster for your application and that cannot consume more than this value. Even if the application is underused and consume less resources, the cluster will still reserve the selected amount of CPU. If your application requires more RAM than requested, it will be killed by the kubernetes scheduler.
 
 <p align="center">
   <img src="/img/configuration/application/app-14.png" alt="RAM" />
@@ -381,5 +385,4 @@ In the application overview, click on the `Actions` button and remove the applic
 [guides.getting-started.deploy-your-first-application]: /guides/getting-started/deploy-your-first-application/
 [guides.getting-started.setting-custom-domain]: /guides/getting-started/setting-custom-domain/
 [urls.qovery_console]: https://console.qovery.com
-[urls.qovery_pricing]: https://www.qovery.com/pricing
 [urls.qovery_roadmap]: https://roadmap.qovery.com/

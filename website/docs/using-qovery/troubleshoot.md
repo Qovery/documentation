@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-07-12"
+last_modified_on: "2022-07-14"
 title: Troubleshoot
 description: "Everything you need to troubleshoot your application with Qovery"
 sidebar_label: hidden
@@ -52,7 +52,7 @@ Ensure your application is not listening onto localhost (127.0.0.1) or a specifi
 </li>
 <li>
 
-Your application can take a long time to start and succeed in the end. If it's expected, you don't want to see those messages in your logs and fix this issue, you should configure the behavior of the desired probe. For example delay the time to check from 30s to 60s. All options are [available here][docs.using-qovery.configuration.advanced-settings#kubernetes-probes].
+Your application is too to long to start. Try to grow the the [initial delay check][docs.using-qovery.configuration.advanced-settings] (liveness_probeinitial_delay_seconds parameter). Try for example delay the time to check from 30s to 120s.
 
 </li>
 </ol>
@@ -145,7 +145,7 @@ Unfortunately, there is no automatic way to do it with Qovery once we don't have
 You are looking to troubleshoot your application with Qovery? [Read this very short guide][guides.debugging]
 
 
-[docs.using-qovery.configuration.advanced-settings#kubernetes-probes]: /docs/using-qovery/configuration/advanced-settings/#kubernetes-probes
+[docs.using-qovery.configuration.advanced-settings]: /docs/using-qovery/configuration/advanced-settings/
 [docs.using-qovery.configuration.application#ports]: /docs/using-qovery/configuration/application/#ports
 [docs.using-qovery.configuration.application#resources]: /docs/using-qovery/configuration/application/#resources
 [docs.using-qovery.configuration.clusters#managing-your-cluster-settings]: /docs/using-qovery/configuration/clusters/#managing-your-cluster-settings

@@ -40,21 +40,61 @@ Ensure your application is not listening onto localhost (127.0.0.1) or a specifi
 </li>
 <li>
 
-Your application is too to long to start. Try to grow the the [initial delay check][docs.using-qovery.configuration.advanced-settings] (liveness_probeinitial_delay_seconds parameter). Try for example delay the time to check from 30s to 120s.
+Your application is too to long to start. Try to grow the [`liveness_probeinitial_delay_seconds` parameter][docs.using-qovery.configuration.advanced-settings], to inform Kubernetes to delay the time before checking your application availability. Set it for example to 120.
 
 </li>
 </ol>
 </Steps>
 
-<Alert type="info">
+## My app is crashing, how do I connect to investigate?
 
-If you need to manually debug, you can connect to your container:
+**Goal: You want to connect to your container's application to debug your application**
 
-1. [Temporary delete the application port from your application configuration][docs.using-qovery.configuration.application#ports] and redeploy your application
-2. Use [qovery shell][docs.using-qovery.interface.cli#shell] command to connect to your container and understand what's wrong
-3. Re-apply the port to listen and redeploy your application
+First, try to use `qovery shell` command from the [Qovery CLI][docs.using-qovery.interface.cli#shell]. It's a safe method to connect to your container and debug your application.
+
+If your app is crashing in the first seconds, you'll lose the connection to your container, making the debug almost impossible, then continue reading.
+
+<Alert type="danger">
+
+Doing this procedure in **PRODUCTION** will lead to downtime. Be sure of what you're doing before going ahead!
 
 </Alert>
+
+Your app is crashing very quickly, here is how to keep the full control of your container:
+
+<Steps headingDepth={3}>
+<ol>
+
+<li>
+
+[Temporary delete the application port from your application configuration][docs.using-qovery.configuration.application#ports]. This to avoid Kubernetes to restart the container when the port is not open.
+
+</li>
+<li>
+
+Into your Dockerfile, comment your `EXEC` or `ENTRYPOINT` and add a way to make your container sleep. For example:
+```bash
+#CMD ["npm", "run", "start"]
+CMD ["tail", "-f", "/dev/null"]
+```
+
+Commit and push your changes to trigger a new deployment (trigger it manually from the Qovery console if it's not the case).
+
+</li>
+<li>
+
+Once the deployment done, you can use [qovery shell][docs.using-qovery.interface.cli#shell] command to connect to your container and debug.
+
+<Alert type="success">
+
+Once you've finished debugging, **remember to configure your application port back**. It's mandatory to avoid downtimes during application releases.
+
+</Alert>
+
+</li>
+</ol>
+</Steps>
+
 
 ## 0/x nodes are available: x insufficient cpu/ram
 

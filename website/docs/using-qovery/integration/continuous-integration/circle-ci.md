@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-06-15"
+last_modified_on: "2022-07-17"
 title: "Circle CI"
 description: "Learn how to connect Circle CI to Qovery"
 ---
@@ -19,6 +19,10 @@ Using Circle CI with Qovery is super powerful and gives you the ability to manag
 Those scenarios can be copy/paste and adapted to your usage. Do not forget to [generate a Qovery API token][docs.using-qovery.interface.cli#generate-api-token] to use them.
 
 ### Deploy your application with a specific commit ID
+
+<details>
+
+<summary>show code</summary>
 
 ```shell
 #!/usr/bin/env sh
@@ -66,7 +70,13 @@ done
 exit 0
 ```
 
+</details>
+
 ### Create a Preview Environment for your Pull-Request
+
+<details>
+
+<summary>show code</summary>
 
 ```shell
 #!/usr/bin/env sh
@@ -141,10 +151,17 @@ done
 exit 0
 ```
 
+</details>
+
+### Terraform
+
+Do you want to include Terraform in your CI? Check out our [Terraform documentation][docs.using-qovery.integration.terraform].
+
 ### Any other scenario?
 
 Feel free to share your custom scripts with us, and we'll be happy to share them with the community. Contact us on [our forum][urls.qovery_forum].
 
 
+[docs.using-qovery.integration.terraform]: /docs/using-qovery/integration/terraform/
 [docs.using-qovery.interface.cli#generate-api-token]: /docs/using-qovery/interface/cli/#generate-api-token
 [urls.qovery_forum]: https://discuss.qovery.com/

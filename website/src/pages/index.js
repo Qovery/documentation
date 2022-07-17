@@ -8,11 +8,11 @@ const AnchoredH2 = Heading('h2');
 
 function Home() {
     return (
-        <Layout title="Hub | Qovery Documentation, Guides, Tutorials" description="Qovery is the simplest way to deploy your full-stack apps in the Cloud">
+        <Layout title="Qovery Hub | Documentation, Guides, Tutorials" description="Qovery is a Platform to Deploy On-demand Environments on AWS in Just a Few Seconds">
             <header className="hero">
                 <div className="container container--fluid">
                     <h1>Qovery Hub Resources</h1>
-                    <MailingListForm buttonClass="highlight" description="Qovery is the simplest way to deploy your full-stack apps in the Cloud" center={true} size="lg"/>
+                    <MailingListForm buttonClass="highlight" description="Qovery is a Platform to Deploy On-demand Environments on AWS in Just a Few Seconds" center={true} size="lg"/>
                 </div>
             </header>
             <main>

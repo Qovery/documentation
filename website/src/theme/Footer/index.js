@@ -67,7 +67,7 @@ function Footer() {
                             <div className="margin-bottom--md">
                                 {/*<MailingListForm description={true} width="150px"/>*/}
                                 <p>
-                                   Qovery is the Next-Gen DevOps Platform to Build and Scale Your Apps on AWS
+                                  Qovery is a Platform to Deploy On-demand Environments on AWS in Just a Few Seconds
                                 </p>
                             </div>
                             <div>

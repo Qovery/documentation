@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-07-09"
+last_modified_on: "2022-07-17"
 title: "What is Qovery?"
 description: "High-level description of the Qovery goals and mission."
 ---
@@ -10,7 +10,7 @@ import Assumptions from '@site/src/components/Assumptions';
 import Alert from '@site/src/components/Alert';
 import BusinessBadge from '@site/src/components/BusinessBadge';
 
-> Qovery is the Next-Gen DevOps Platform to Build and Scale Your Apps on AWS
+> Qovery is a Platform to Deploy On-demand Environments on AWS in Just a Few Seconds
 
 Qovery is a product for:
 - **DevOps**: to build future-proof and evolutive production cloud infrastructure.

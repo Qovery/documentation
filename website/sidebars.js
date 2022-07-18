@@ -9,7 +9,6 @@ module.exports = {
         "getting-started/how-qovery-works",
         "getting-started/install-qovery",
         "getting-started/deploy-my-app",
-        "getting-started/features",
         "getting-started/whats-next",
       ],
     },

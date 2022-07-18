@@ -11,7 +11,6 @@ import Jump from '@site/src/components/Jump';
 This section covers the basic concepts of Qovery and provides a foundation for the rest of the documentation.
 
 <Jump to="/docs/getting-started/deploy-my-app/">Deploy my app</Jump>
-<Jump to="/docs/getting-started/features/">Features</Jump>
 <Jump to="/docs/getting-started/how-qovery-works/">How qovery works</Jump>
 <Jump to="/docs/getting-started/install-qovery/">Install qovery</Jump>
 <Jump to="/docs/getting-started/what-is-qovery/">What is qovery</Jump>

@@ -10,17 +10,6 @@ module.exports = {
         "getting-started/install-qovery",
         "getting-started/deploy-my-app",
         "getting-started/features",
-        {
-          type: 'category',
-          label: 'Qovery vs. Other',
-          items: [
-            "getting-started/qovery-vs-other",
-            "getting-started/qovery-vs-other/harness",
-            "getting-started/qovery-vs-other/argocd",
-            "getting-started/qovery-vs-other/spinnaker",
-            "getting-started/qovery-vs-other/heroku",
-          ],
-        },
         "getting-started/whats-next",
       ],
     },

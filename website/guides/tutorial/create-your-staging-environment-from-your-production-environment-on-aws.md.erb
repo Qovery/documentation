@@ -1,0 +1,133 @@
+---
+$schema: "/.meta/.schemas/guides.json"
+title: Create your Staging environment from your Production environment on AWS
+description: Step-by-step guide to create your Staging environment from your Production environment on AWS
+author_github: https://github.com/evoxmusic
+tags: ["type: tutorial", "technology: qovery"]
+hide_pagination: true
+---
+import Tabs from '@theme/Tabs';
+import Assumptions from '@site/src/components/Assumptions';
+
+Let's say you have your production environment deployed, and you want to create a staging environment. You have two options:
+
+1. Create a staging environment from scratch.
+2. Clone your production environment and create a staging environment from it.
+
+This is where the [Environment Clone][docs.using-qovery.configuration.environment#clone-environment] feature of Qovery is useful. No need to create a new environment, just clone your production environment and create a staging environment from it.
+
+In this guide, we will go through the steps to create a staging environment from your production environment. While applying the best practices by isolating the staging and production environments on two separated clusters and VPCs.
+
+<p align="center">
+  <img src="/img/staging-from-production/complete_schema.jpg" alt="Complete Production and Staging infrastructure" />
+</p>
+
+<Assumptions>
+
+- You already have a production environment deployed with Qovery.
+
+</Assumptions>
+
+<div class="video-container">
+  <p align="center">
+    <iframe src="https://www.loom.com/embed/5a76704a196341deb5384b2883113adf" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+    </iframe>
+  </p>
+</div>
+
+## Create a Staging cluster
+
+Isolating the staging and production environments on two separate clusters and VPCs is a good practice to avoid any potential issues on your production caused by your staging. This is not a mandatory step, but it is well recommended.
+
+To create your staging cluster it's also recommended creating a new AWS IAM access key and secret access key in a dedicated subaccount. Then you are sure that both environment are also isolated at the AWS level:
+
+1. Go to your Organization cluster settings
+2. Add a cluster with a name "staging"
+3. Deploy your staging cluster
+
+<div class="video-container">
+  <p align="center">
+    <iframe src="https://www.loom.com/embed/6f77172ae27f41a5a7c0e3114398b13c" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+    </iframe>
+  </p>
+</div>
+
+## Create your Staging environment from your Production environment
+
+Now, to create your staging environment from your production environment, you need to:
+
+1. Go inside your production environment and click on the "Clone" button.
+2. Give a name to your staging environment (E.g "staging")
+3. Set the mode to "Staging"
+4. Set the cluster to "staging"
+5. Click on "Create"
+6. That's it!
+
+<Alert type="info">
+
+Cloning your database does not copy the data (yet). To copy your data in Staging consider using [Replibyte][urls.replibyte] in standalone. It will be integrated in Qovery soon.
+
+</Alert>
+
+<div class="video-container">
+  <p align="center">
+    <iframe src="https://www.loom.com/embed/614844644cc34211853de19dafe79343" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+    </iframe>
+  </p>
+</div>
+
+Your environment has been created, but it's not deployed yet. Before we will make some adjustment to change the branch of our applications.
+
+## Update your Staging applications
+
+Your Staging applications have the same branch as your Production applications. To update your Staging applications branch, you need to:
+
+1. Go into the settings of each of your applications.
+2. Update the branch to your Staging branch.
+3. Click on "Save"
+
+<div class="video-container">
+  <p align="center">
+    <iframe src="https://www.loom.com/embed/2f4f2a22062a4840ae077285a891e573" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+    </iframe>
+  </p>
+</div>
+
+We are almost done, now we need to smartly change our environment variables and secrets to not use the one used in production.
+
+## Override your environment variables and secrets
+
+<Alert type="info">
+
+Qovery makes the distinction between [Environment Variables][docs.using-qovery.configuration.environment-variable] and [Secrets][docs.using-qovery.configuration.environment-variable] even if for your app both will be used as Environment Variables. Check out [this documentation][docs.using-qovery.configuration.environment-variable] to learn more about Environment Variables and Secrets.
+
+</Alert>
+
+Let's say you have a production environment with the following environment variables:
+
+- NODE_ENV=production
+- STRIPE_API_KEY=a-secret-production-key
+
+You might need to keep the same keys but change the values. That's exactly what Qovery makes you do with the [Environment Variable Override feature][docs.using-qovery.configuration.environment-variable#override-environment-variable]. You can keep the same keys but change the values.
+
+<div class="video-container">
+  <p align="center">
+    <iframe src="https://www.loom.com/embed/3d5d37dd9a954500aa559afead5b3981" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+    </iframe>
+  </p>
+</div>
+
+## Deploy your Staging environment
+
+Finally, your Staging environment has been created and set up correctly. To deploy your Staging environment, you just need to go to your Staging environment and click on the "Deploy" button.
+
+<div class="video-container">
+  <p align="center">
+    <iframe src="https://www.loom.com/embed/04709bb4039447c699477ce01a1aa19b" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+    </iframe>
+  </p>
+</div>
+
+## Wrapping up
+
+In this guide, we have covered everything you need to know to create a secure staging environment from your production. Now, you can take a look at [how to seed your Staging database][guides.tutorial.data-seeding-in-postgres] (Guide for Postgres but applicable for most databases).

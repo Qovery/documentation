@@ -312,6 +312,15 @@ module.exports = {
           "title": "Create a blazingly fast REST API in Rust (Part 1/2)"
         },
         {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/tutorial/create-your-staging-environment-from-your-production-environment-on-aws",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/create-your-staging-environment-from-your-production-environment-on-aws.md",
+          "series_position": null,
+          "title": "Create your Staging environment from your Production environment on AWS"
+        },
+        {
           "author_github": "https://github.com/pjeziorowski",
           "description": null,
           "id": "/tutorial/generate-qovery-api-client",

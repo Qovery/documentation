@@ -305,6 +305,15 @@ module.exports = {
         {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
+          "id": "/tutorial/create-a-playground-environment-on-aws",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/create-a-playground-environment-on-aws.md",
+          "series_position": null,
+          "title": "Create a Playground Environment on AWS"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
           "id": "/tutorial/create-a-blazingly-fast-api-in-rust-part-1",
           "last_modified_on": null,
           "path": "website/guides/tutorial/create-a-blazingly-fast-api-in-rust-part-1.md",

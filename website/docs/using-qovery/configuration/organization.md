@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-06-16"
+last_modified_on: "2022-08-04"
 title: "Organization"
 description: "Learn how to configure Organizations on Qovery"
 ---
@@ -132,6 +132,13 @@ Four roles within an organization exist:
 | Delete production database | yes | yes | no | no |
 | Delete development database | yes | yes | yes | no |
 
+<Alert type="info">
+
+Only one user can be Owner of an organization. You can transfer the ownership to another member via the menu available on the target member
+
+</Alert>
+
+
 ## Change an Organization
 
 As a user, you can have access to one or many organizations. Use the dropdown in the top right navbar to change your organization.
@@ -250,6 +257,7 @@ You are redirected to your Qovery Console, where the list of authorized Github r
 <Alert type="info">
 
 You can update or revoke access to one or multiple Github repositories at any time. To do so, in the `Git Permission` tab, click `Manage Permission` below your Git provider account, and repeat the selection process on the Github website.
+Please note that the repositories must belong to the same Github organization, we do not support yet a multi-github organization setup
 
 </Alert>
 

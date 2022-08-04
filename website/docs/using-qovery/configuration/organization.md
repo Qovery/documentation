@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-06-16"
+last_modified_on: "2022-08-04"
 title: "Organization"
 description: "Learn how to configure Organizations on Qovery"
 ---
@@ -131,6 +131,13 @@ Four roles within an organization exist:
 | Edit development database | yes | yes | yes | no |
 | Delete production database | yes | yes | no | no |
 | Delete development database | yes | yes | yes | no |
+
+<Alert type="info">
+
+Only one user can be Owner of an organization. You can transfer the ownership to another member via the menu available on the target member
+
+</Alert>
+
 
 ## Change an Organization
 

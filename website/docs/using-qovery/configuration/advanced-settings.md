@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-06-20"
+last_modified_on: "2022-08-15"
 title: "Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -161,39 +161,46 @@ To define which path should be used for HTTP probes, you can configure the [`rea
 |---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | boolean | Qovery allows you to set custom domains for your applications through the addition of a CNAME record to your domain's DNS settings. By default, when an application is deployed, Qovery checks that the CNAME record is set up correctly. This advanced setting allows you to disable this check. | If you are using a Content Delivery Network (CDN), checking the CNAME setup for any custom domains you may have set is likely to stall the deployment of your application. <br /> <br />  Therefore, if you are using a CDN behind your application, we recommend disabling this feature to save time during your application deployments. | `true`        |
 
-#### network.ingress_proxy_body_size_mb
+#### network.ingress.proxy_body_size_mb
 
 | Type    | Description                                                                                            | Use Case                                                                                                                                                     | Default Value |
 |---------|--------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | integer | Allows you to set, in megabytes, a maximum size for resources that can be downloaded from your server. | By default, users can download resources (files, images, videos...) of up to 100 MB. You can use this advanced setting to lower or increase this limitation. | `100`         |
 
 
-#### network.ingress_cors_enable
+#### network.ingress.cors_enable
 
 | Type    | Description                                                | Use Case                                                                                                                                                                                                                                                      | Default Value  |
 |---------|------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------|
 | boolean | Allows you to enable Cross-Origin Resource Sharing (CORS). | The CORS mechanism supports secure cross-origin requests and data transfers between browsers and servers. For more information on CORS and when to enable it, see [Cross-Origin Resources Sharing] (https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) . | `false`        |
 
 
-#### network.ingress_cors_allow_origin
+#### network.ingress.cors_allow_origin
 
 | Type   | Description                                                                                            | Use Case                                                                                                                                                                                                                                      | Default Value |
 |--------|--------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | string | *(For CORS users)* Allows you to specify which origin(s) (domain, scheme, port) can access a resource. | For security purposes, you can allow only one or a short list of origins to access your resources. For more information, see [CORS HTTP Response Headers] (https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#the_http_response_headers). | `"*"`         |
 
 
-####  network.ingress_cors_allow_methods
+####  network.ingress.cors_allow_methods
 
 | Type   | Description                                                                                       | Use Case                                                                                                                                                                                                                                                                             | Default Value                              |
 |--------|---------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
 | string | *(For CORS users)* Allows you to specify which set of methods can be used for the client request. | For security purposes, you can indicate which HTTP methods are permitted while accessing a resource in response to cross-origin requests. For more information, see [CORS HTTP Response Headers] (https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#the_http_response_headers). | `"GET, PUT, POST, DELETE, PATCH, OPTIONS"` |
 
 
-####  network.ingress_cors_allow_headers
+####  network.ingress.cors_allow_headers
 
 | Type   | Description                                                                                         | Use Case                                                                                                                                                                                                                                                                                                              | Default Value                                                                                                   |
 |--------|-----------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
 | string | *(For CORS users)* Allows you to specify which set of headers can be present in the client request. | For security purposes, you can indicate which HTTP headers can be used during a CORS preflight request which includes the `Access-Control-Request-Headers` request header. For more information, see [CORS HTTP Response Headers] (https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#the_http_response_headers). | `"DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization"` |
+
+#### network.ingress.proxy_buffer_size_kb
+
+| Type    | Description                                                                                             | Use Case                                                                        | Default Value |
+|---------|---------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|---------------|
+| integer | Allows you to set, in kilobytes, a header buffer size used while reading response header from upstream. | E.g. You are using Auth0 with NextJS, you will need to set a bigger header size | `4`           |
+
 
 <!--
      THIS FILE IS AUTOGENERATED!

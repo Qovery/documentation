@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-06-06"
+last_modified_on: "2022-08-14"
 title: "Databases"
 description: "Learn how to configure Databases on Qovery"
 sidebar_label: hidden
@@ -191,6 +191,13 @@ To know how to access your database from your application, [have a look at the d
 <Alert type="danger">
 
 Delete action drops the service and its data!
+
+</Alert>
+
+<Alert type="info">
+
+As Managed Services databases (like RDS) are mainly used for production, Qovery do not delete automated snapshots and backups on deletion.
+It is up to the user or Cloud provider Administrator to delete it manually.
 
 </Alert>
 

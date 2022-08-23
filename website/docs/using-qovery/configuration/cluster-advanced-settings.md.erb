@@ -1,0 +1,43 @@
+---
+title: "Cluster Advanced Settings"
+description: "Learn how to set advanced settings on your infrastructure with Qovery"
+---
+import Jump from '@site/src/components/Jump';
+import Alert from '@site/src/components/Alert';
+import Assumptions from '@site/src/components/Assumptions';
+
+To further fine-tune your Qovery infrastructure, you can set advanced settings through [the Qovery API endpoint](https://api-doc.qovery.com/#tag/Clusters/operation/editClusterAdvancedSettings).
+
+<Alert type="info">
+
+Cluster advanced settings are not available in the Qovery console yet.
+
+</Alert>
+
+Below is the list of advanced settings currently available for clusters.
+
+### Logs
+
+#### loki.log_retention_in_week
+
+| Type    | Description                                                                                 | Default Value |
+|---------|---------------------------------------------------------------------------------------------|---------------|
+| integer | Allows you to specify an amount in weeks for how long logs of your applications are kept.   | `12`          |
+
+
+### Image registry
+
+#### registry.image_retention_time
+
+| Type    | Description                                                                                    | Default Value |
+|---------|------------------------------------------------------------------------------------------------|---------------|
+| integer | Allows you to specify an amount in seconds after which images in default registry are deleted. | `31536000`    |
+
+
+### Cloud Provider
+
+#### load_balancer.size
+
+| Type    | Description                                                                                 | Default Value |
+|---------|---------------------------------------------------------------------------------------------|---------------|
+| string  | (Scaleway Only) Allows you to specify the load balancer size in front of your cluster.      | `lb-s`        |

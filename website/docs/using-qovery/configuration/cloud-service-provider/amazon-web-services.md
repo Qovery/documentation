@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-07-09"
+last_modified_on: "2022-08-25"
 title: "Amazon Web Services (AWS)"
 description: "Learn how to configure and plug your Amazon Web Services (AWS) account"
 ---
@@ -117,49 +117,36 @@ Or copy it from below:
         {
             "Effect": "Allow",
             "Action": [
+                "dynamodb:*",
                 "iam:*",
-                "s3:*",
-                "cloudwatch:*",
+                "ec2:*",
                 "autoscaling:*",
                 "application-autoscaling:*",
                 "elasticloadbalancing:*",
-                "organizations:DescribeAccount",
-                "organizations:DescribeOrganization",
-                "organizations:DescribeOrganizationalUnit",
-                "organizations:DescribePolicy",
-                "organizations:ListChildren",
-                "organizations:ListParents",
-                "organizations:ListPoliciesForTarget",
-                "organizations:ListRoots",
-                "organizations:ListPolicies",
-                "organizations:ListTargetsForPolicy",
-                "dynamodb:*",
                 "ecr:*",
-                "ec2:*",
-                "elasticache:*",
-                "cloudtrail:LookupEvents",
-                "kms:DescribeKey",
-                "kms:ListAliases",
-                "dynamodb:*",
-                "tag:GetResources",
-                "rds:*",
                 "ecs:*",
                 "eks:*",
+                "rds:*",
+                "elasticache:*",
+                "kms:*",
                 "logs:*",
+                "cloudwatch:*",
+                "cloudtrail:LookupEvents",
                 "events:DescribeRule",
                 "events:DeleteRule",
                 "events:ListRuleNamesByTarget",
                 "events:ListTargetsByRule",
                 "events:PutRule",
                 "events:PutTargets",
+                "events:RemoveTargets",
                 "es:AddTags",
                 "es:RemoveTags",
                 "es:ListTags",
                 "es:DeleteElasticsearchDomain",
                 "es:DescribeElasticsearchDomain",
                 "es:CreateElasticsearchDomain",
-                "events:RemoveTargets",
-                "kms:*"
+                "s3:*",
+                "tag:GetResources"
             ],
             "Resource": "*"
         }

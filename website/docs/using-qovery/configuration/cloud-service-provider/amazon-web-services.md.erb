@@ -104,10 +104,8 @@ Or copy it from below:
 
 ```json
 {
-    "Version": "2012-10-17",
     "Statement": [
         {
-            "Effect": "Allow",
             "Action": [
                 "dynamodb:*",
                 "iam:*",
@@ -140,9 +138,11 @@ Or copy it from below:
                 "s3:*",
                 "tag:GetResources"
             ],
+            "Effect": "Allow",
             "Resource": "*"
         }
-    ]
+    ],
+    "Version": "2012-10-17"
 }
 ```
 

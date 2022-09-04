@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-08-25"
+last_modified_on: "2022-09-04"
 title: "Amazon Web Services (AWS)"
 description: "Learn how to configure and plug your Amazon Web Services (AWS) account"
 ---
@@ -112,10 +112,8 @@ Or copy it from below:
 
 ```json
 {
-    "Version": "2012-10-17",
     "Statement": [
         {
-            "Effect": "Allow",
             "Action": [
                 "dynamodb:*",
                 "iam:*",
@@ -148,9 +146,11 @@ Or copy it from below:
                 "s3:*",
                 "tag:GetResources"
             ],
+            "Effect": "Allow",
             "Resource": "*"
         }
-    ]
+    ],
+    "Version": "2012-10-17"
 }
 ```
 

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-08-14"
+last_modified_on: "2022-09-14"
 title: "Databases"
 description: "Learn how to configure Databases on Qovery"
 sidebar_label: hidden
@@ -106,12 +106,6 @@ Databases can operate in two modes:
 **Container** databases are managed by Qovery as Docker containers with attached persistent storage. They are perfect for development and testing, as they are significantly cheaper than services provided by cloud providers.
 
 Please refers to the dedicated database sub-pages to get more information on the supported mode for each of our database types.
-
-<Alert type="warning">
-
-Managed databases are supported only in [paid plans][urls.qovery_pricing], it's not available in the `Free` version.
-
-</Alert>
 
 #### Versions
 
@@ -239,4 +233,3 @@ In database overview, click on `Action` remove button
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [guides.getting-started.create-a-database]: /guides/getting-started/create-a-database/
 [urls.qovery_console]: https://console.qovery.com
-[urls.qovery_pricing]: https://www.qovery.com/pricing

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-06-30"
+last_modified_on: "2022-09-14"
 title: "Environment"
 description: "Learn how to configure your Environments on Qovery"
 ---
@@ -118,7 +118,7 @@ Creating a **Preview Environment** is similar to create a casual Environment.
 
 <Alert type="info">
 
-When you create a preview environment as a Github user, Qovery automatically displays a message on the related pull request in Github. This message provides you with a link to follow the deployment of your preview environment, as well as to open and use it:
+When you create a preview environment, Qovery automatically displays a message on the related pull request/merge request. This message provides you with a link to follow the deployment of your preview environment, as well as to open and use it:
 
 <p align="center">
   <img src="/img/configuration/environments/Preview_Environment_Github_Bot_Message.png" alt="Preview Environment Github Bot Message" />

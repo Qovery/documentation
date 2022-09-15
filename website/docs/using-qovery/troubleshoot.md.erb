@@ -60,7 +60,7 @@ If your app is crashing in the first seconds, you'll lose the connection to your
 
 <Alert type="danger">
 
-You can apply this procedure directly on your application OR on a copy having the same setup. 
+You can apply this procedure directly on your application OR on a copy having the same setup.
 If you don't make a copy, doing this procedure directly on the **PRODUCTION** application will lead to a downtime in your service. Be sure of what you're doing before going ahead!
 
 </Alert>
@@ -151,6 +151,50 @@ You certainly have useless snapshots, from old databases or old ones you don't w
 <li>
 
 Open a ticket to the Cloud Provider support, and as to raise this limit.
+
+</li>
+</ol>
+</Steps>
+
+## Can't get my SSL / TLS Certificate
+
+When a custom domain is added to an application, it must be configured on your side according to the instructions displayed:
+
+<p Valign="center">
+  <img src="/img/custom-domain-configuration.png" alt="Custom Domain Configuration" />
+</p>
+
+You can check that your custom domain is well configured using the following command: `dig A ${YOUR_CUSTOM_DOMAIN} +short`
+<p Valign="center">
+  <img src="/img/custom-domain-verification-dig.png" alt="Custom Domain Verification" />
+</p>
+
+You should retrieve in the output the default url configured by Qovery, e.g `zdf72de71-z709e1a85-gtw.bool.sh` in our example.
+
+The SSL / TLS Certificate is generated for the whole group of custom domains you define:
+* if one custom domain is misconfigured: the certificate can't be generated
+* if the certificate has been generated once, but later one custom domain configuration is changed and misconfigured: the certificate can't be generated again
+
+If you experience some invalid certificate, here is how you can fix the issue:
+
+<Steps headingDepth={3}>
+
+<ol>
+<li>
+
+Identify the misconfigured custom domain(s) in your application settings.
+
+</li>
+
+<li>
+
+Fix or delete them.
+
+</li>
+
+<li>
+
+Redeploy your impacted application(s).
 
 </li>
 </ol>

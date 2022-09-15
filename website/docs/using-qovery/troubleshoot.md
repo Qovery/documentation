@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-07-15"
+last_modified_on: "2022-09-15"
 title: Troubleshoot
 description: "Everything you need to troubleshoot your application with Qovery"
 sidebar_label: hidden
@@ -185,6 +185,31 @@ Unfortunately, there is no automatic way to do it with Qovery once we don't have
 5. You should see the filter with the information you just entered.
 6. Click on "Preview groups resources".
 7. You'll have all elements deployed by Qovery and you can delete what you want.
+
+## My cloud account has been blocked, what should I do?
+
+If you encounter this kind of error during an infrastructure deployment (including managed DBs):
+
+```bash
+This account is currently blocked by your cloud provider, please contact them directly.
+```
+
+Or
+
+```bash
+This AWS account is currently blocked and not recognized as a valid account.
+Please contact aws-verification@amazon.com directly to get more details.
+Maybe you are not allowed to use your free tier in this region?
+Maybe you need to provide billing info?
+```
+
+This error is likely due to a billing issue or blocked free-tier usage in the given region.
+
+Unfortunately, there is nothing Qovery can do. You need to reach out directly to your cloud provider to get more details and get your account unblocked.
+
+<Alert type="info">
+If you are using AWS, you can contact them directly via dedicated email: aws-verification@amazon.com.
+</Alert>
 
 # More
 You are looking to troubleshoot your application with Qovery? [Read this very short guide][guides.debugging]

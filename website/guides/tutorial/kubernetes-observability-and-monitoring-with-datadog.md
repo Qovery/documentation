@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-03-16"
+last_modified_on: "2022-09-23"
 $schema: "/.meta/.schemas/guides.json"
 title: Kubernetes observability and monitoring with Datadog
 description: How to integrate Datadog with Kubernetes on Qovery.
@@ -80,6 +80,10 @@ datadog:
   # datadog.site -- The site of the Datadog intake to send Agent data to
   ## Set to 'datadoghq.eu' to send data to the EU site.
   site: datadoghq.eu
+
+  # Export custom Kubernetes labels as tags
+  podLabelsAsTags:
+    "qovery.com/*": "%%label%%"
 
   logs:
     enabled: true

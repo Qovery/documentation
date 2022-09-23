@@ -70,6 +70,10 @@ datadog:
   ## Set to 'datadoghq.eu' to send data to the EU site.
   site: datadoghq.eu
 
+  # Export custom Kubernetes labels as tags
+  podLabelsAsTags:
+    "qovery.com/*": "%%label%%"
+
   logs:
     enabled: true
     containerCollectAll: true

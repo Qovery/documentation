@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-09-15"
+last_modified_on: "2022-09-30"
 title: Troubleshoot
 description: "Everything you need to troubleshoot your application with Qovery"
 sidebar_label: hidden
@@ -176,12 +176,12 @@ When a custom domain is added to an application, it must be configured on your s
   <img src="/img/custom-domain-configuration.png" alt="Custom Domain Configuration" />
 </p>
 
-You can check that your custom domain is well configured using the following command: `dig A ${YOUR_CUSTOM_DOMAIN} +short`:
+You can check that your custom domain is well configured using the following command: `dig A ${YOUR_CUSTOM_DOMAIN} +short`
 <p Valign="center">
   <img src="/img/custom-domain-verification-dig.png" alt="Custom Domain Verification" />
 </p>
 
-You should retrieve in the output the default url configured by Qovery, e.g `zdf72de71-z709e1a85-gtw.bool.sh` in our example
+You should retrieve in the output the default url configured by Qovery, e.g `zdf72de71-z709e1a85-gtw.bool.sh` in our example.
 
 The SSL / TLS Certificate is generated for the whole group of custom domains you define:
 * if one custom domain is misconfigured: the certificate can't be generated

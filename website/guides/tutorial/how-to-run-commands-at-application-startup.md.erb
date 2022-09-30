@@ -39,14 +39,9 @@ Let's create the docker/entrypoint.sh with the following content:
 
 bundle exec rails db:migrate
 
-if [[ $? != 0 ]]; then
-
-echo
-echo "== Failed to migrate. Running setup first."
-echo
-
-bundle exec rails db:setup
-
+if [[ $? -eq 0 ]] ; then
+  echo -e "\n== Failed to migrate. Running setup first. ==\n"
+  bundle exec rails db:setup
 fi
 
 # Execute the given or default command:

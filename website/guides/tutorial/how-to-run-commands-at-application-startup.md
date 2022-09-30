@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-12-20"
+last_modified_on: "2022-09-30"
 $schema: "/.meta/.schemas/guides.json"
 title: How to run commands before the application starts
 description: How to run commands before a Qovery application starts
@@ -51,14 +51,9 @@ Let's create the docker/entrypoint.sh with the following content:
 
 bundle exec rails db:migrate
 
-if [[ $? != 0 ]]; then
-
-echo
-echo "== Failed to migrate. Running setup first."
-echo
-
-bundle exec rails db:setup
-
+if [[ $? -eq 0 ]] ; then
+  echo -e "\n== Failed to migrate. Running setup first. ==\n"
+  bundle exec rails db:setup
 fi
 
 # Execute the given or default command:

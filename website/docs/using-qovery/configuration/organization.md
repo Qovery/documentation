@@ -444,6 +444,7 @@ By clicking on "Add Registry" you will be able to create a new Container Registr
 - Registry Url: the base url of the registry (example: https://docker.io, https://public.ecr.aws etc..)
 - Registry type: you can chose among DockerHub, Public ECR, ECR (AWS private CR), Scaleway CR (Scaleway private CR)
 - Credentials: these depends on the chosen registry type. If a container registry is public, you don't need to fill this part. 
+
 <Alert type="info">
 
 We encourage you to set credentials for Docker Hub due to the limits on the pull rate. [See here](https://www.docker.com/increase-rate-limits/) for more details

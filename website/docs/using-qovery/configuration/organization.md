@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-08-04"
+last_modified_on: "2022-10-03"
 title: "Organization"
 description: "Learn how to configure Organizations on Qovery"
 ---
@@ -414,6 +414,56 @@ The **Qovery Github App** is uninstalled.
 To know more on how much Qovery costs - see our [pricing page][urls.qovery_pricing].
 
 </Alert>
+
+
+## Container Registry management 
+
+<Alert type="info">
+
+This section is only available on the [Qovery Console V3](https://new.console.qovery.com))
+
+</Alert>
+
+
+This section allows you to define the list of container registries that can be used within your organization. Only images stored on those container registries are allowed to be deployed on your cluster.
+
+You can access this section by opening the Organization Settings -> Container Registries
+
+<p align="center">
+  <img src="/img/configuration/organization/container_1.png" alt="Application" />
+</p>
+
+## Create a Container Registry
+<p align="center">
+  <img src="/img/configuration/organization/container_creation.png" alt="Application" />
+</p>
+
+By clicking on "Add Registry" you will be able to create a new Container Registry by filling these information:
+- Registry Name
+- Description
+- Registry Url: the base url of the registry (example: https://docker.io, https://public.ecr.aws etc..)
+- Registry type: you can chose among DockerHub, Public ECR, ECR (AWS private CR), Scaleway CR (Scaleway private CR)
+- Credentials: these depends on the chosen registry type. If a container registry is public, you don't need to fill this part. 
+
+<Alert type="info">
+
+We encourage you to set credentials for Docker Hub due to the limits on the pull rate. [See here](https://www.docker.com/increase-rate-limits/) for more details
+
+</Alert>
+
+## Modify or Delete an existing registry
+You can modify an existing container registry by clicking on the "Wheel" button next to it
+You can delete an existing container registry by clicking on the "Trash" button next to it
+
+<Alert type="alert">
+
+Before deleting it, make sure that there is no application within your organization using an image stored in this registry.
+
+</Alert>
+
+<p align="center">
+  <img src="/img/configuration/organization/container_edit.png" alt="Application" />
+</p>
 
 
 [docs.using-qovery.configuration.clusters]: /docs/using-qovery/configuration/clusters/

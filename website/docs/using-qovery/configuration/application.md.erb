@@ -94,14 +94,15 @@ Please note that in this section you configure the CPU/RAM allocated by the clus
 
 You can now define one or more ports for your Application. Most of the application needs to be accessed by other services inside or outside of your environment. To set up the access,
 declare the ports your application uses. Internal ports are available internally inside your environment for other services to use.
-You can also expose ports publicly - it makes them accessible over the public network. Today we support only HTTPS, a dedicated public domain will be assigned to your application during the deployment.
+You can also expose ports publicly - it makes them accessible over the public network via a dedicated public domain will be assigned to your application during the deployment. Today we support only the HTTPS and Websocket protocols (on the 443 port)
 
 <p align="center">
   <img src="/img/configuration/application/application_creation_port.png" alt="Application Ports" />
 </p>
 
 <Alert type="info">
-Qovery determines the readiness of your service based on the availability of the declared port. If your application does not open this port within 10 minutes, the associated container will be shut down
+- Qovery determines the readiness of your service based on the availability of the declared port. If your application does not open this port within 10 minutes, the associated container will be shut down
+- Connections on public port are automatically closed after 60 seconds. If you want to implement long living connection (like for websockets) please make sure to use the rigth ingress timeouts in the [advanced settings section][docs.using-qovery.configuration.advanced-settings#network-settings]
 </Alert>
 
 </li>
@@ -303,32 +304,23 @@ You can set up your Block Storage in `Storage` section of your application confi
 ### Ports
 
 Most of the application needs to be accessed by other services inside or outside of your environment. To set up the access,
-declare the ports your application uses. Internal ports are available internally inside your environment for other services to use.
-You can also expose ports publicly - it makes them accessible over the public network.
+declare the ports your application uses. You can define:
+- Internal ports: these are available internally inside your environment for other services to use.
+- Public ports: it makes them accessible over the public network via a dedicated public domain that will be assigned to your application during the deployment. Today we support only the HTTPS and Websocket protocols (on the 443 port)
 
 <p align="center">
   <img src="/img/configuration/application/app-15.png" alt="Application Ports" />
 </p>
 
 <Alert type="info">
-By default, newly created ports are publicly exposed over HTTPS. You can change this setting in the `Advanced` section.
-</Alert>
-
-<Alert type="info">
 Qovery determines the readiness of your service based on the availability of the declared port. If your application does not open this port within 10 minutes, the associated container will be shut down
 </Alert>
 
 #### Exposing Applications
-
-Before your application is exposed to the internet, Qovery needs to know what **PORT** to listen on to expose your app. Qovery does try to do it's best to do this automatically for you however, there are cases when we can't.
-
-You can configure your application to use the **PORT** environment variable by adding the **PORT** on your application env variables page.
-
-<Alert type="warning">
-
-A Note on Listening IPs: It's best for your application to listen on `0.0.0.0:$PORT`. While most things work with `127.0.0.1` and `localhost`, some do not (NodeJS for example)
-
-</Alert>
+Please take note of the following information:
+- You can configure your application to use the **PORT** environment variable by adding the **PORT** on your application env variables page.
+- Connections on public ports are automatically closed after 60 seconds. If you want to implement long living connection (like for websockets) please make sure to use the rigth ingress timeouts in the [advanced settings section][docs.using-qovery.configuration.advanced-settings#network-settings]
+- A Note on Listening IPs: It's best for your application to listen on `0.0.0.0:$PORT`. While most things work with `127.0.0.1` and `localhost`, some do not (NodeJS for example)
 
 ### Domains
 

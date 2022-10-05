@@ -65,6 +65,28 @@ You can adapt those steps for your own stack and needs. Read the [GitHub Actions
 
 <li>
 
+#### Get the Organization, Project, Environment and Application IDs
+
+First we need to get the ids that we will to add to our YAML file:
+
+- Open in the console the application you are interested.
+- Open the option section and select "Copy identifiers". This will copy in your clipboard all the necessary identifiers
+
+<p align="center">
+  <img src="/img/how-to-integrate-qovery-with-github-actions/github_action_ids.png" alt="" />
+</p>
+
+<Alert type="info">
+
+You could use as well names instead of IDs but we strongly encourage you to use IDs to avoid any mistake. 
+Please note that names are case-sensitive - "My App" is different from "my app"
+
+</Alert>
+
+</li>
+
+<li>
+
 #### Create the Workflows directory
 
 All your workflows files must be stored in a specific `.github/workflows` directory. Create this directory at the root of your project.
@@ -82,16 +104,16 @@ name: Test And Deploy to Qovery
 on:
   workflow_call:
     inputs:
-      organization-name:
+      organization-id:
         required: true
         type: string
-      project-name:
+      project-id:
         required: true
         type: string
-      environment-name:
+      environment-id:
         required: true
         type: string
-      application-names:
+      application-ids:
         required: true
         type: string
     secrets:
@@ -117,14 +139,14 @@ jobs:
         uses: Qovery/qovery-action@v0.10
         id: qovery
         with:
-          qovery-organization-name: ${{ inputs.organization-name }}
-          qovery-project-name: ${{ inputs.project-name }}
-          qovery-environment-name: ${{ inputs.environment-name }}
-          qovery-application-names: ${{ inputs.application-names }}
+          qovery-organization-id: ${{ inputs.organization-id }}
+          qovery-project-id: ${{ inputs.project-id }}
+          qovery-environment-id: ${{ inputs.environment-id }}
+          qovery-application-ids: ${{ inputs.application-ids }}
           qovery-api-token: ${{ secrets.api-token }}
 ```
 
-- We give it a name `Test And Deploy to Qovery`. It could be anything.
+- The organization / project / environment / application ids can be retrieved from the URL of your application (see below).
 - The `on` section contains a `workflow_call` directive. It means that this workflow will be triggered when called from another workflow.
   We're doing this because we won't use this workflow directly. Since we might have several environments to deploy to Qovery depending on the branch, we could have one workflow per environment, and we want to avoid repeating all the steps.
 - The `inputs` and `secrets` sections are defining the values that we will need to pass to our workflow
@@ -155,10 +177,10 @@ jobs:
   test-and-deploy:
     uses: ./.github/workflows/test-and-deploy.yaml
     with:
-      organization-name: XXX
-      project-name: XXX
-      environment-name: XXX
-      application-names: XXX
+      organization-id: XXX
+      project-id: XXX
+      environment-id: XXX
+      application-ids: XXX
     secrets:
       api-token: ${{ secrets.QOVERY_API_TOKEN }}
 ```
@@ -167,20 +189,6 @@ jobs:
 - Our `test-and-deploy` job calls our previously created workflow with the `use` instruction.
 - In the `with` section, we are passing IDs corresponding to the application we want to deploy.
 - In the `secret` section, we are reading our API key from a GitHub secret we will create later.
-
-</li>
-
-<li>
-
-#### Get the Organization, Project, Environment and Application names
-
-First we need to get the names that we will to add to our YAML file.
-
-<Alert type="warning">
-
-Resource name are case-sensitive - "My App" is different from "my app"
-
-</Alert>
 
 </li>
 
@@ -272,9 +280,9 @@ jobs:
   test-and-deploy:
     uses: ./.github/workflows/test-and-deploy.yaml
     with:
-      organization-name: XXX
-      project-name: XXX
-      environment-name: XXX
+      organization-id: XXX
+      project-id: XXX
+      environment-id: XXX
       application-ids: app 1,app 2, app 3...
     secrets:
       api-token: ${{ secrets.QOVERY_API_TOKEN }}
@@ -348,16 +356,16 @@ name: Test And Deploy to Qovery
 on:
   workflow_call:
     inputs:
-      organization-name:
+      organization-id:
         required: true
         type: string
-      project-name:
+      project-id:
         required: true
         type: string
-      environment-name:
+      environment-id:
         required: true
         type: string
-      application-names:
+      application-ids:
         required: true
         type: string
     secrets:
@@ -384,10 +392,10 @@ jobs:
         uses: Qovery/qovery-action@v0.10
         id: qovery
         with:
-          qovery-organization-name: ${{ inputs.organization-name }}
-          qovery-project-name: ${{ inputs.project-name }}
-          qovery-environment-name: ${{ inputs.environment-name }}
-          qovery-application-names: ${{ inputs.application-names }}
+          qovery-organization-id: ${{ inputs.organization-id }}
+          qovery-project-id: ${{ inputs.project-id }}
+          qovery-environment-id: ${{ inputs.environment-id }}
+          qovery-application-ids: ${{ inputs.application-ids }}
           qovery-api-token: ${{ secrets.api-token }}
   add-run-id-to-env-name:
     needs: deploy

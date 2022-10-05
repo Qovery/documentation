@@ -78,7 +78,7 @@ You can adapt those steps for your own stack and needs. Read the [GitHub Actions
 
 First we need to get the ids that we will to add to our YAML file:
 
-- Open in the console the application you are interested.
+- Open in the [V3 console](https://new.console.qovery.com) the application you are interested.
 - Open the option section and select "Copy identifiers". This will copy in your clipboard all the necessary identifiers
 
 <p align="center">

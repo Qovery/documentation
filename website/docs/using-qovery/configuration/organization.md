@@ -139,15 +139,23 @@ For the new role, you will be able to specify:
 - The name of the role
 - A description
 - Cluster Level Permissions: in this section you can fine tune the access to the computing resources. For each cluster of your organization, you will be able to specify an access permission (ordered by permission level):
-  - Viewer: the user will be able to access the cluster information (name, region etc..)
-  - Environment Creator: the user will be able to create environments on this cluster. This allows you to restrict the access to certain clusters when the user creates a new environment (example: you want your dev team to create new environments only on the Dev cluster, they cannot create environments on the prod cluster). Further environment level permissions (like deployment rights) are managed via the "Project Permissions", see below.
-  - Admin: the user can create create environments on this cluster and as well manage its settings (start/stop, change number and type of nodes etc..)
+
+| Name | Permission Type |
+|--------|-------|
+| Viewer | The user can access the cluster information (name, region etc..). Minimum permission level.
+| Environment Creator | The user can create environments on this cluster. Only users with this role could allocate resources for their environments on this cluster. Further environment level permissions (like deployment rights) are managed via the "Project Permissions", see below |
+| Admin | The user can create create environments on this cluster and as well manage the cluster's settings (start/stop, change number and type of nodes etc..). This permission allows a group of users to manage by themselves a specific cluster |
+
+
 - Project Level Permissions: this section allows you to fine tune the access to the projects and their environments. The environment access is managed by "Environment Type" to simplify the configuration (Production, Staging, Development, Preview). For each project of your organization and by environment type, you will be able to specify an access permission (ordered by permission level):
-  - No Access: The user has no access to this environment type
-  - Viewer: Access in read-only this environment type
-  - Deployer: Manage the deployments of this environment type, access the logs, connect via SSH to the application and manage its environment variables
-  - Manager: Manage the deployments and the settings of this environment type (including adding or removing services)
-  - Admin: The user is admin of the project and can do everything he wants on it (no matter the environment type)
+
+| Name | Permission Type |
+|--------|-------|
+| No Access | The user has no access to this environment type. If the user has "No Access" on all the environment types, he will not have access to the project |
+| Viewer | Access in read-only to this environment type. Useful to restrict access on sensitive environments |
+| Deployer | Manage the deployments of this environment type, access the logs, connect via SSH to the application and manage its environment variables |
+| Manager | Manage the deployments and the settings of this environment type (including adding or removing services) |
+| Admin | The user is admin of the project and can do everything he wants on it (no matter the environment type) |
 
 <p align="center">
   <img src="/img/configuration/organization/custom_role_creation.png" alt="Qovery - custom role" />

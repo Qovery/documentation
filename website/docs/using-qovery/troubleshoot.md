@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-09-30"
+last_modified_on: "2022-10-12"
 title: Troubleshoot
 description: "Everything you need to troubleshoot your application with Qovery"
 sidebar_label: hidden
@@ -212,6 +212,22 @@ Redeploy your impacted application(s).
 </ol>
 </Steps>
 
+
+## Git Submodules - Error while checkout submodules
+
+**Error Message**:
+
+```
+Error message: Error while checkout submodules from repository https://github.com/user/repo.git.
+Error: Error { code: -1, klass: 23, message: "authentication required but no callback set" }
+```
+
+There are limitations with the support for Git Submodules. Only public Submodules over HTTPS or private with embedded basic authentication are supported.
+
+Solution: Follow our [Git Submodules guide][guides.tutorial.working-with-git-submodules] to make your application working with Git Submodules on Qovery.
+
+
+
 # Cluster
 
 ## I don't have Qovery access anymore, how could I delete Qovery deployed resources on my AWS account?
@@ -266,3 +282,4 @@ You are looking to troubleshoot your application with Qovery? [Read this very sh
 [docs.using-qovery.configuration.clusters#what-are-the-different-instance-types-available-when-creating-a-cluster]: /docs/using-qovery/configuration/clusters/#what-are-the-different-instance-types-available-when-creating-a-cluster
 [docs.using-qovery.interface.cli#shell]: /docs/using-qovery/interface/cli/#shell
 [guides.debugging]: /guides/getting-started/debugging/
+[guides.tutorial.working-with-git-submodules]: /guides/tutorial/working-with-git-submodules/

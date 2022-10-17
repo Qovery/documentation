@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-09-14"
+last_modified_on: "2022-10-17"
 title: "Environment"
 description: "Learn how to configure your Environments on Qovery"
 ---
@@ -266,7 +266,7 @@ To cancel a deployment, click on `Cancel deployment` in the `Action` menu of you
 
 <Alert type="info">
 
-A deployment can be cancelled only if the application is in the building step. If you try to cancel a deployment while the application has already been built, the cancel operation will fail and the deployment will continue.
+Stopping a deployment may take a while, as a safe point needs to be reached. Some operations cannot be stopped (i.e: terraform actions) and need to be completed before stopping the deployment. Any action performed before won’t be rolled back
 
 </Alert>
 

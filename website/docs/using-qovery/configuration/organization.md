@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-10-11"
+last_modified_on: "2022-10-21"
 title: "Organization"
 description: "Learn how to configure Organizations on Qovery"
 ---
@@ -111,14 +111,14 @@ By default, five roles are created within your organization (Basic Roles), you c
 | Read organization | yes | yes | yes | yes | yes |
 | Edit organization | yes | yes | no | no | no |
 | Delete organization | yes | no | no | no | no |
-| Manage billing  | yes | yes | yes | no | no |
+| Manage billing  | yes | yes | no | yes | no |
 | Manage members & roles | yes | yes | no | no | no |
 | Manage cluster & contrainer registry | yes | yes | yes | no | no |
 | Manage organization setup (webhooks, API tokens etc..) | yes | yes | yes | no | no |
-| Read ANY project | yes | yes | yes | yes | yes |
+| Read ANY project | yes | yes | yes | no | yes |
 | Edit/Delete ANY project | yes | yes | no | no | no |
 | Create project | yes | yes | no | no | no |
-| Read ANY environment | yes | yes | yes | yes | yes |
+| Read ANY environment | yes | yes | yes | no | yes |
 | Edit/Delete ANY environment or service | yes | yes | no | no | no |
 | Create environment or service | yes | yes | no | no | no |
 | Deploy/Stop ANY environment or service | yes | yes | yes | no | no |

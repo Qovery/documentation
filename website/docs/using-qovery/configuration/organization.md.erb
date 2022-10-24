@@ -87,6 +87,13 @@ You can invite someone to join your organization by email. Then he will get acce
   <img src="/img/configuration/organization/members.png" alt="Qovery - List all members within an organization" />
 </p>
 
+
+<Alert type="info">
+
+Changing the role of a member requires the user to logout/login to make the changes effective or wait a few minutes (max 1 hour)
+
+</Alert>
+
 ### Roles-Based access control (RBAC)
 
 Qovery allows you to control the access to your cluster and environment resources by defining and assigning  roles to your users.
@@ -129,9 +136,9 @@ For the new role, you will be able to specify:
 
 | Name | Permission Type |
 |--------|-------|
-| Viewer | The user can access the cluster information (name, region etc..). Minimum permission level.
-| Environment Creator | The user can create environments on this cluster. Only users with this role could allocate resources for their environments on this cluster. Further environment level permissions (like deployment rights) are managed via the "Project Permissions", see below |
-| Admin | The user can create create environments on this cluster and as well manage the cluster's settings (start/stop, change number and type of nodes etc..). This permission allows a group of users to manage by themselves a specific cluster |
+| Read-Only | The user can access the cluster information (name, region etc..). Minimum permission level.
+| Create Environment | The user can create environments on this cluster. Only users with this role could allocate resources for their environments on this cluster. Further environment level permissions (like deployment rights) are managed via the "Project Permissions", see below |
+| Full Access | The user can create create environments on this cluster and as well manage the cluster's settings (start/stop, change number and type of nodes etc..). This permission allows a group of users to manage by themselves a specific cluster |
 
 
 - Project Level Permissions: this section allows you to fine tune the access to the projects and their environments. The environment access is managed by "Environment Type" to simplify the configuration (Production, Staging, Development, Preview). For each project of your organization and by environment type, you will be able to specify an access permission (ordered by permission level):
@@ -139,16 +146,16 @@ For the new role, you will be able to specify:
 | Name | Permission Type |
 |--------|-------|
 | No Access | The user has no access to this environment type. If the user has "No Access" on all the environment types, he will not have access to the project |
-| Viewer | Access in read-only to this environment type. Useful to restrict access on sensitive environments |
-| Deployer | Manage the deployments of this environment type, access the logs, connect via SSH to the application and manage its environment variables |
-| Manager | Manage the deployments and the settings of this environment type (including adding or removing services) |
-| Admin | The user is admin of the project and can do everything he wants on it (no matter the environment type) |
+| Read-Only | Access in read-only to this environment type. Useful to restrict access on sensitive environments |
+| Deploy | Manage the deployments of this environment type, access the logs, connect via SSH to the application and manage its environment variables |
+| Manage | Manage the deployments and the settings of this environment type (including adding or removing services) |
+| Full Access | The user is admin of the project and can do everything he wants on it (no matter the environment type) |
 
 <p align="center">
   <img src="/img/configuration/organization/custom_role_creation.png" alt="Qovery - custom role" />
 </p>
 
-Once the role is created, you can assign it to a member of your organization within the "Members" section.
+Once the role is created, you can assign it to a member of your organization within the "Members" section. You can also update the permissions by editing the role from the Roles&Permissions screen
 
 ### Examples
 Within this section, we will try to provide you some example of roles & permission setup
@@ -160,14 +167,14 @@ The roles & permissions could be configured in this way:
 - Developers: we want these users capable of accessing the project, having read access to the prod clusters/env, managing deployments on the staging cluster (but not creating new environments on it) and doing whatever they want for the development environments on the dev cluster. So the configuration will look like:
     - Create a new Role “developer” with the following permissions:
         - Cluster Level Permissions:
-            - Prod cluster → viewer
-            - Staging cluster → viewer
-            - Dev cluster → Env Creator (they can create environments on this cluster)
+            - Prod cluster → Read-Only
+            - Staging cluster → Read-Only
+            - Dev cluster → Create Environment (they can create environments on this cluster)
         - Project Level Permissions for the project "P1":
             - Environment access (by env type)
-              - prod = reader
-              - staging = deployer (i.e. they can deploy env of type “staging”)
-              - development = admin  (i.e. they can manage and create env of type “dev”)
+              - prod = Read-Only
+              - staging = deploye (i.e. they can deploy env of type “staging”)
+              - development = Full Access  (i.e. they can manage and create env of type “dev”)
 
 *Example 2, advanced setup*: An organization with 4 dev clusters (“prod cluster”, “staging clyster”, 2 Dev clusters called “dev cluster team 1” and "dev cluster team 2”) and 2 projects P1 and P2. The organization has a CTO, a devops, 2 dev teams with an “acting dev-ops” in it who manages the dev cluster on behalf of the devops. 
 The roles & permissions could be configured in this way:
@@ -176,16 +183,16 @@ The roles & permissions could be configured in this way:
 - Dev team 1: we want these users capable of accessing the project P1, having no access to the prod env and managing their deployments only on the "dev cluster Dev team 1" for their development environments.So the config will look like:
   - Create a new Role “Dev Team 1”
     - Cluster Level Permissions:
-        - Prod cluster → viewer
-        - Staging cluster → Viewer
-        - Dev cluster team 1 → Environment Creator (they can create envs only on their dev cluster)
-        - Dev cluster team 2 → Viewer
+        - Prod cluster → Read-Only
+        - Staging cluster → Read-Only
+        - Dev cluster team 1 → Create Environment (they can create envs only on their dev cluster)
+        - Dev cluster team 2 → Read-Only
     - Project Level Permissions:
         - Config on the project “P1”
             - Environment access (by env type)
                 - prod = no-access
-                - staging = deployer
-                - dev = admin (i.e. they can do whatever they want on env of type “dev”)
+                - staging = deploy
+                - dev = Full Access (i.e. they can do whatever they want on env of type “dev”)
         - Config on the project “P2” (i.e. they can't access P2)
           - Environment access (by env type)
             - prod = no-access
@@ -194,10 +201,10 @@ The roles & permissions could be configured in this way:
 - Dev team 2: we want these users capable of accessing the project P2, having no access to the prod env and managing their deployments only on the "dev cluster team 2" for their development environments. So the config will look like:
   - Create a new Role “Dev Team 2”
     - Cluster Level Permissions:
-        - Prod cluster → viewer
-        - Staging cluster → Viewer
-        - Dev cluster team 1 → Viewer
-        - Dev cluster team 2 → Environment Creator (they can create envs only on their dev cluster)
+        - Prod cluster → Read-Only
+        - Staging cluster → Read-Only
+        - Dev cluster team 1 → Read-Only
+        - Dev cluster team 2 → Create Environment (they can create envs only on their dev cluster)
     - Project Level Permissions:
         - Config on the project “P1” (i.e. they can't access P1)
           - Environment access (by env type)
@@ -207,20 +214,20 @@ The roles & permissions could be configured in this way:
         - Config on the project “P2”
             - Environment access (by env type)
                 - prod = no-access
-                - staging = deployer
-                - dev = admin (i.e. they can do whatever they want on env of type “dev”)
+                - staging = deploy
+                - dev = Full Access (i.e. they can do whatever they want on env of type “dev”)
 - Acting DevOps user: we want this user capable of accessing the project, having read access to the prod env, managing the dev clusters and all the environments on it. So the config will look like this:
     - Create a new Group “Acting DevOps”
         - Cluster Level Permissions:
-            - Prod cluster → viewer
-            - Staging cluster → Environment Creator
-            - Dev1 cluster → Admin
-            - Dev2 cluster → Admin
+            - Prod cluster → Read-Only
+            - Staging cluster → Create Environment
+            - Dev1 cluster → Full Access
+            - Dev2 cluster → Full Access
         - Project permissions settings
             - Config on the project “P1”
-                - Admin = Yes (i.e.: full access to the project)
+                - Admin (i.e.: full access to the project)
             - Config on the project “P2”
-                - Admin = Yes (i.e.: full access to the project)
+                - Admin (i.e.: full access to the project)
 
               
 ## Change an Organization

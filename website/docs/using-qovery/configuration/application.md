@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-10-04"
+last_modified_on: "2022-10-24"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -113,8 +113,10 @@ You can also expose ports publicly - it makes them accessible over the public ne
 </p>
 
 <Alert type="info">
-- Qovery determines the readiness of your service based on the availability of the declared port. If your application does not open this port within 10 minutes, the associated container will be shut down
-- Connections on public port are automatically closed after 60 seconds. If you want to implement long living connection (like for websockets) please make sure to use the rigth ingress timeouts in the [advanced settings section][docs.using-qovery.configuration.advanced-settings#network-settings]
+Qovery determines the readiness of your service based on the availability of the declared port. If your application does not open this port within 10 minutes, the associated container will be shut down
+</Alert>
+<Alert type="info">
+Connections on public port are automatically closed after 60 seconds. If you want to implement long living connection (like for websockets) please make sure to use the rigth ingress timeouts in the [advanced settings section][docs.using-qovery.configuration.advanced-settings#network-settings]
 </Alert>
 
 </li>
@@ -329,7 +331,7 @@ Qovery determines the readiness of your service based on the availability of the
 </Alert>
 
 #### Exposing Applications
-Please take note of the following informations:
+Please take note of the following information:
 - You can configure your application to use the **PORT** environment variable by adding the **PORT** on your application env variables page.
 - Connections on public ports are automatically closed after 60 seconds. If you want to implement long living connection (like for websockets) please make sure to use the rigth ingress timeouts in the [advanced settings section][docs.using-qovery.configuration.advanced-settings#network-settings]
 - A Note on Listening IPs: It's best for your application to listen on `0.0.0.0:$PORT`. While most things work with `127.0.0.1` and `localhost`, some do not (NodeJS for example)

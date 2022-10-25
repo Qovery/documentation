@@ -101,8 +101,10 @@ You can also expose ports publicly - it makes them accessible over the public ne
 </p>
 
 <Alert type="info">
-- Qovery determines the readiness of your service based on the availability of the declared port. If your application does not open this port within 10 minutes, the associated container will be shut down
-- Connections on public port are automatically closed after 60 seconds. If you want to implement long living connection (like for websockets) please make sure to use the rigth ingress timeouts in the [advanced settings section][docs.using-qovery.configuration.advanced-settings#network-settings]
+Qovery determines the readiness of your service based on the availability of the declared port. If your application does not open this port within 10 minutes, the associated container will be shut down
+</Alert>
+<Alert type="info">
+Connections on public port are automatically closed after 60 seconds. If you want to implement long living connection (like for websockets) please make sure to use the rigth ingress timeouts in the [advanced settings section][docs.using-qovery.configuration.advanced-settings#network-settings]
 </Alert>
 
 </li>

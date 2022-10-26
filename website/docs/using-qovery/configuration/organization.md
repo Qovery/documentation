@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-10-24"
+last_modified_on: "2022-10-25"
 title: "Organization"
 description: "Learn how to configure Organizations on Qovery"
 ---
@@ -111,7 +111,14 @@ Changing the role of a member requires the user to logout/login to make the chan
 
 Qovery allows you to control the access to your cluster and environment resources by defining and assigning  roles to your users.
 
-By default, five roles are created within your organization (Basic Roles), you can find the associated permissions below:
+By default, five roles are created within your organization (Basic Roles):
+- Owner: the user has full access on the organization
+- Admin: same as the owner, the has full access to the organization but he cannot delete it
+- DevOps: the user can manage the organization infrastructure (clusters/registry/webhook setup) and manage the deployments of any environment within the organization.
+- Billing Manager: the user can only manage the billing of the organization
+- Viewer: the user has read-only access to any section of the organization
+
+More in detial, you can find the associated permissions below:
 
 | Action | Owner | Admin | DevOps | Billing Manager | Viewer |
 |--------|-------|-------|-----------|--------|--------|
@@ -138,7 +145,7 @@ Only one user can be Owner of an organization. You can transfer the ownership to
 </Alert>
 
 ### Custom roles
-If the basic roles are not enough, Qovery allows you to customize the accesses to your clusters, projets and environments by defining Custom Roles.
+If the basic roles are not enough given your internal organization, Qovery allows you to customize the accesses to your clusters, projets and environments by defining Custom Roles.
 
 To create a custom role, go in the Roles & Permissions section press "Add new Role"
 

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-09-04"
+last_modified_on: "2022-11-04"
 title: "Amazon Web Services (AWS)"
 description: "Learn how to configure and plug your Amazon Web Services (AWS) account"
 ---
@@ -256,7 +256,7 @@ Once your new cluster is created, it will be listed in the cluster list. If you 
 
 <li>
 
-Your cluster is now installing!
+Your cluster is now installing and will be ready in the coming 20 minutes!
 
 <img src="/img/installing-cluster.png" />
 
@@ -265,6 +265,35 @@ Your cluster is now installing!
 </ol>
 
 </Steps>
+
+### Deployed AWS components
+
+| Network Services                                                                      | Optional | Description                                                                               |
+|---------------------------------------------------------------------------------------|----------|-------------------------------------------------------------------------------------------|
+| A dedicated multi AZ VPC                                                              | no       | Everything Qovery will deploy, will be deployed inside this VPC                           |
+| Subnets, routing tables, subnet groups and security groups for RDS (multi AZ)         | no       | Dedicated network fand security rules for RDS                                             |
+| Subnets, routing tables, subnet groups and security groups for DocumentDB (multi AZ)  | no       | Dedicated network fand security rules for DocumentDB                                      |
+| Subnets, routing tables, subnet groups and security groups for Elasticache (multi AZ) | no       | Dedicated network fand security rules for Elasticache                                     |
+| An internet gateway for the VPC                                                       | no       | Required to let containers having access to Internet                                      |
+| Dedicated NLB to redirect 443 traffic to Nginx Ingress                                | no       | High Availability network load balancer, pointing to Nginx Ingress inside EKS             |
+| NAT gateways (multi AZ) + EIP addresses (multi AZ) + subnet groups + routing table    | yes      | Useful to get outgoing static IP                                                          |
+| Dedicated VPC routes for VPC peering                                                  | yes      | Useful to perform VPC peering with others VPC on the same or different account            |
+
+| Kubernetes Services                                                                | Optional | Description                                                                                     |
+|------------------------------------------------------------------------------------|----------|-------------------------------------------------------------------------------------------------|
+| A dedicated EKS cluster (multi AZ) for this VPC                                    | no       | Dedicated Kubernetes cluster managed by AWS with nodes (instances type) defined by the customer |
+| IAM dedicated user for AWS EBS CSI to access EC2 volumes + a dedicated policy      | no       | Required to allow EKS cluster having access to volume and mount them to containers              |
+| IAM dedicated user for AWS IAM User Sync + a dedicated policy                      | no       | Required to sync desired IAM account to EKS to let them connect directly ot Kubernetes          |
+| IAM dedicated user for a Cluster Autoscaler+ a dedicated policy                    | no       | Required to let autoscaler having access to EC2 autoscaling groups                              |
+| IAM dedicated policies for AWS EKS CNI, EC2 container registry + EKS worker nodes  | no       | Required to let EKS having access to container registry and configure the Kubernetes network    |
+| Security group for EKS remote access (dual authentication: TLS + IAM authenticator)| no       | Required to have a secure remote access on the Kubernetes cluster                               |
+| Security group for 443 port pointing to Nginx ingress inside EKS                   | no       | External access to web services inside the Kubernetes cluster                                   |
+
+| Other Services                                                       | Optional | Description                                                                                                            |
+|----------------------------------------------------------------------|----------|------------------------------------------------------------------------------------------------------------------------|
+| Cloudwatch log groups for the EKS cluster                            | no       | Kubernetes logs, useful for the AWS and EKS support to diagnose an issue                                               |
+| Dedicated S3 bucket for application's logs + a dedicated IAM account | no       | Application's logs are stored in an KMS encrypted S3 bucket                                                            |
+| Dedicated S3 bucket to store the kubeconfig                          | no       | Kubernetes Kubeconfig is stored in an KMS encrypted and versionned bucket, used by Qovery for application's deployment |
 
 ### Remove your AWS account
 

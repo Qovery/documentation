@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 function check_bin() {
     bin=$1
@@ -15,7 +15,7 @@ echo "# START LIVE WRITING #"
 echo "######################"
 
 ORIG_PWD=$(pwd)
-cd website && yarn start &
+cd website && yarn start --host 0.0.0.0 &
 cd $ORIG_PWD
 
 if [ "$(uname)" == "Linux" ] ; then

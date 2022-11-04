@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-07-17"
+last_modified_on: "2022-11-04"
 title: "What is Qovery?"
 description: "High-level description of the Qovery goals and mission."
 ---

@@ -10,14 +10,26 @@ This website is built using Docusaurus 2, a modern static website generator.
      README.md.erb
 -->
 
-## Installation (website)
+## Installation and usage (Docker)
+
+You can simply use Docker this way:
+
+```bash
+docker run -it --rm -v $(pwd):/mnt/documentation -p 3000:3000 qoveryrd/doc:0.1 /mnt/documentation/scripts/docker.sh
+```
+
+Open a browser to http://localhost:3000
+
+## Installation and usage (Local)
+
+### Installation (website)
 
 ```bash
 cd website
 yarn
 ```
 
-## Starting the website locally
+### Starting the website locally
 
 ```bash
 cd website
@@ -27,7 +39,7 @@ yarn start
 This command starts a local development server and opens up a browser window.
 Most changes are reflected live without having to restart the server.
 
-## Updating documentation, guides and articles
+### Updating documentation, guides and articles
 
 First, install Ruby gems used for markdown generation in `scripts` folder:
 
@@ -51,12 +63,12 @@ If you want to have live update writing (the web ui is updated on any save), you
 ./scripts/live_update.sh
 ```
 
-### Example
+#### Example
 
 To update the **Getting Started** page in the docs, update the **website/docs/getting-started.md.erb** instead of **website/docs/getting-started.md** file (see the difference in **.erb** file extension).
 After making changes to the template, run `make generate USE_CONTAINER=none` in the root folder of the repository. The last step - commit and push your changes, open a PR, and wait for your changes to go live!
 
-## Rewards for contribution
+### Rewards for contribution
 
 Want to help the community and [get great rewards](https://hub.qovery.com/docs/community/reward/) at the same time? Contribute to Qovery documentation! 
 Qovery Community plan is charged by contributions to the community - you can get free credits to host your applications by contributing in many ways - including by writing or fixing the docs!

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-11-04"
+last_modified_on: "2022-11-08"
 title: "Amazon Web Services (AWS)"
 description: "Learn how to configure and plug your Amazon Web Services (AWS) account"
 ---
@@ -267,6 +267,8 @@ Your cluster is now installing and will be ready in the coming 20 minutes!
 </Steps>
 
 ### Deployed AWS components
+
+<img src="/img/aws-deployed-infra.png" />
 
 | Network Services                                                                      | Optional | Description                                                                               |
 |---------------------------------------------------------------------------------------|----------|-------------------------------------------------------------------------------------------|

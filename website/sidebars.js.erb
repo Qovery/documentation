@@ -137,6 +137,13 @@ module.exports = {
         },
         {
           type: 'category',
+          label: 'Maintainance',
+          items: [
+            <%= metadata.links.fetch_id("docs.using-qovery.maintenance").to_json %>,
+          ]
+        },
+        {
+          type: 'category',
           label: 'Troubleshoot',
           items: [
             <%= metadata.links.fetch_id("docs.using-qovery.troubleshoot").to_json %>,

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-12-14"
+last_modified_on: "2022-11-11"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy on your GCP account
 description: How to configure and deploy your apps on your Google Cloud Platform (GCP) account with Qovery

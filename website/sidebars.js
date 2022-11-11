@@ -137,6 +137,13 @@ module.exports = {
         },
         {
           type: 'category',
+          label: 'Maintainance',
+          items: [
+            "using-qovery/maintenance",
+          ]
+        },
+        {
+          type: 'category',
           label: 'Troubleshoot',
           items: [
             "using-qovery/troubleshoot",

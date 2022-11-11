@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-10-24"
+last_modified_on: "2022-11-11"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploying backend and frontend apps
 description: How to deploy backend and frontend apps with Qovery

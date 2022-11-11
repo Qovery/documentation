@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-11-08"
+last_modified_on: "2022-11-09"
 title: "Amazon Web Services (AWS)"
 description: "Learn how to configure and plug your Amazon Web Services (AWS) account"
 ---
@@ -291,11 +291,11 @@ Your cluster is now installing and will be ready in the coming 20 minutes!
 | Security group for EKS remote access (dual authentication: TLS + IAM authenticator)| no       | Required to have a secure remote access on the Kubernetes cluster                               |
 | Security group for 443 port pointing to Nginx ingress inside EKS                   | no       | External access to web services inside the Kubernetes cluster                                   |
 
-| Other Services                                                       | Optional | Description                                                                                                            |
-|----------------------------------------------------------------------|----------|------------------------------------------------------------------------------------------------------------------------|
-| Cloudwatch log groups for the EKS cluster                            | no       | Kubernetes logs, useful for the AWS and EKS support to diagnose an issue                                               |
-| Dedicated S3 bucket for application's logs + a dedicated IAM account | no       | Application's logs are stored in an KMS encrypted S3 bucket                                                            |
-| Dedicated S3 bucket to store the kubeconfig                          | no       | Kubernetes Kubeconfig is stored in an KMS encrypted and versionned bucket, used by Qovery for application's deployment |
+| Other Services                                                       | Optional | Description                                                                                                                     |
+|----------------------------------------------------------------------|----------|---------------------------------------------------------------------------------------------------------------------------------|
+| Cloudwatch log groups for the EKS cluster                            | no       | Kubernetes logs, useful for the AWS and EKS support to diagnose an issue                                                        |
+| Dedicated S3 bucket for application's logs + a dedicated IAM account | no       | Application's logs are stored in an KMS encrypted S3 pivate bucket                                                              |
+| Dedicated S3 bucket to store the kubeconfig                          | no       | Kubernetes Kubeconfig is stored in an KMS encrypted, private and versionned bucket, used by Qovery for application's deployment |
 
 ### Remove your AWS account
 

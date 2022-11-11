@@ -18,47 +18,47 @@ This guide will provide inputs about maintenance with Qovery. Qovery provides au
      website/docs/using-qovery/maintenance.md.erb
 -->
 
-## Kubernetes and componants, patches and upgrades
+## Kubernetes and components, patches, and upgrades
 
-Qovery manages Kubernetes updates through the Cloud provider update mechanism and ensure a full compatibility with all deployed infrastructure componants (Nginx ingress, cert-manager, CNI, CSI, etc.) inside the Kubernetes cluster.
+Qovery manages Kubernetes updates through the Cloud provider update mechanism and ensures full compatibility with all deployed infrastructure components (Nginx ingress, cert-manager, CNI, CSI, etc.) inside the Kubernetes cluster.
 
 
 <Alert type="info">
 
-In order to avoid as maximum as possible small downtimes, Qovery is using the rolling update strategy for Kubernetes cluster and composants. This strategy is the default strategy for Kubernetes and is the most reliable one.
-You may need to adapt some liveness and readiness probes for some long running applications to avoid downtimes.
+To avoid as maximum as possible small downtimes, Qovery is using the rolling update strategy for the Kubernetes cluster and components. This strategy is the default strategy for Kubernetes and is the most reliable one.
+You may need to adapt some liveness and readiness probes for some long-running applications to avoid downtimes.
 
 </Alert>
 
-Security patches and minor updates are applied automatically and silently by the cloud provider. Kubernetes major updates are applied automatically by Qovery to ensure compatibility between every deployed elements inside the cluster.
+Security patches and minor updates are applied automatically and silently by the cloud provider. Kubernetes major updates are applied automatically by Qovery to ensure compatibility between every deployed components inside the cluster.
 
 <Alert type="danger">
 
 1. While Qovery allows customers to access Kubernetes cluster and manually deploy resources, Qovery is not responsible for any issues that may occur on those deployed resources.
-2. Qovery support can be cancelled by Qovery, if the customer is manually updating or upgrading the Kubernetes cluster or componants managed by Qovery.
+2. Qovery support can be canceled by Qovery, if the customer is manually updating or upgrading the Kubernetes cluster or components managed by Qovery.
 
 </Alert>
 
 
 ## Managed services patches and upgrades
 
-By default, every managed services deployed by Qovery are configured with automatic patches and upgrades proposed by the cloud provider.
+By default, every managed service deployed by Qovery is configured with automatic patches and upgrades proposed by the cloud provider.
 
-Major version upgrades is up to the end user to decide when it's the right time to upgrade.
+Major version upgrades are up to the end user to decide when it's the right time to upgrade.
 
 ## Cloud providers' limits
 
-Cloud providers are using quotas for various reasons. Some of them are to prevent abuse, some others are to prevent overloading the infrastructure, and others to prevent an excessive bill.
+Cloud providers are using quotas for various reasons. Some of them are to prevent abuse, some others are to prevent overloading the infrastructure, and others are to prevent an excessive bill.
 
 It occurs that some customers are reaching the limits of their cloud provider. In this case, Qovery gives the information in the infrastructure or applications logs.
 
-It is up to the customer to contact the Cloud provider via the ticketing support to increase the limits.
+It is up to the customer to contact the Cloud provider via ticketing support to increase the limits.
 
-## Rotatting system credentials
+## Rotating system credentials
 
 Some customers want to rotate their system credentials because on legal requests, security requirements, or other reasons. Qovery provides makes it simple to rotate credentials.
 
-Here is the recommanded way we recommand to avoid any downtime on your cluster and for your application deployments. Open your AWS console and open the `Qovery` user in the IAM service.
+Here is the way we recommend to avoid any downtime on your cluster and for your application deployments. Open your AWS console and open the `Qovery` user in the IAM service.
 
 <p Valign="center">
   <img src="/img/configuration/maintenance/aws_iam_user_select.png" alt="User select" />
@@ -105,7 +105,7 @@ You can update or rotate manually credentials on your AWS account this way:
 
 <Alert type="info">
 
-If you have a doubt about the old credentials deletion, you  can simply desactivate the old `access key` for a while and delete it later.
+If you have a doubt about the old credentials deletion, you can simply deactivate the old `access key` for a while and delete it later.
 
 </Alert>
 
@@ -125,7 +125,7 @@ Another way to do it more programmatically. Here is a script to perform those ac
 aws_iam_username="Qovery"
 # 3. Use qovery CLI to generate a dedicated token
 qovery_token="xxx"
-# 4. Orgnaization ID can be retrieved inside the Qovery console URL, where your cluster is located
+# 4. Organization ID can be retrieved inside the Qovery console URL, where your cluster is located
 organization_id="xxx"
 # 5. Get your credentials: curl -s -X GET -H "Content-type: application/json' -H 'Authorization: Token $qovery_token" "https://api.qovery.com/organization/$organization_id/aws/credentials"
 credentials_id="xxx"
@@ -174,9 +174,9 @@ while [ "$cluster_status" != "RUNNING" ]; do
   sleep 60
   cluster_status=$(curl -s -X GET -H "Content-type: application/json" -H "Authorization: Token $qovery_token" "https://api.qovery.com/organization/$organization_id/cluster/$cluster_id/status" | jq -r '.status')
   echo " -> $(date "+%H:%M") Waiting for the cluster deployment to be done. Current status: $cluster_status..."
-  # Ensure the cluster is in possible state
+  # Ensure the cluster is in a valid state
   if [ "$cluster_status" != "DEPLOYMENT_QUEUED" ] && [ "$cluster_status" != "DEPLOYING" ] && [ "$cluster_status" != "DEPLOYED" ] && [ "$cluster_status" != "RUNNING" ]; then
-    echo "ERROR: the cluster has not a correct status, please check cluster logs and fix the issue. Then delete the key $old_aws_access_key and retry"
+    echo "ERROR: the cluster does not have a correct status, please check cluster logs and fix the issue. Then delete the key $old_aws_access_key and retry"
     exit 1
   fi
   if [ $(date +"%s") -gt $max_time ]; then

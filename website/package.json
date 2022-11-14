@@ -24,6 +24,8 @@
     "email-validator": "^2.0.4",
     "humanize-string": "^2.1.0",
     "jsonp": "^0.2.1",
+    "medium-zoom": "^1.0.6",
+    "plugin-image-zoom": "flexanalytics/plugin-image-zoom",
     "pluralize": "^8.0.0",
     "posthog-docusaurus": "^1.0.3",
     "prismjs": "^1.27.0",

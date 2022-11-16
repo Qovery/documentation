@@ -73,7 +73,8 @@ module.exports = {
           type: 'category',
           label: 'Observability',
           items: [
-            <%= metadata.links.fetch_id("docs.using-qovery.running-and-deployment-statuses").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.observability").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.observability.running-and-deployment-statuses").to_json %>,
           ],
         },
         {
@@ -137,7 +138,7 @@ module.exports = {
         },
         {
           type: 'category',
-          label: 'Maintainance',
+          label: 'Maintenance',
           items: [
             <%= metadata.links.fetch_id("docs.using-qovery.maintenance").to_json %>,
           ]

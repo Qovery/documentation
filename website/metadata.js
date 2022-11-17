@@ -681,6 +681,15 @@ module.exports = {
           "title": "Import your environment variables with the Qovery CLI"
         },
         {
+          "author_github": "https://github.com/deimosfr",
+          "description": null,
+          "id": "/tutorial/cloudwatch-integration",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/cloudwatch-integration.md",
+          "series_position": null,
+          "title": "Integrate your application logs to Cloudwatch"
+        },
+        {
           "author_github": "https://github.com/l0ck3",
           "description": null,
           "id": "/tutorial/kubernetes-observability-and-monitoring-with-datadog",

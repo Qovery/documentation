@@ -73,7 +73,8 @@ module.exports = {
           type: 'category',
           label: 'Observability',
           items: [
-            "using-qovery/running-and-deployment-statuses",
+            "using-qovery/observability",
+            "using-qovery/observability/running-and-deployment-statuses",
           ],
         },
         {
@@ -137,7 +138,7 @@ module.exports = {
         },
         {
           type: 'category',
-          label: 'Maintainance',
+          label: 'Maintenance',
           items: [
             "using-qovery/maintenance",
           ]

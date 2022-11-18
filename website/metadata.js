@@ -510,6 +510,15 @@ module.exports = {
           "title": "Getting started with Spring Boot on Qovery"
         },
         {
+          "author_github": "https://github.com/deimosfr",
+          "description": null,
+          "id": "/tutorial/grafana-install",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/grafana-install.md",
+          "series_position": null,
+          "title": "Grafana setup with Qovery"
+        },
+        {
           "author_github": "https://github.com/pjeziorowski",
           "description": null,
           "id": "/tutorial/graphql-api-with-hasura",

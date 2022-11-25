@@ -1,19 +1,47 @@
 ---
-last_modified_on: "2022-09-26"
+last_modified_on: "2022-11-25"
 title: "Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
+
+import Steps from '@site/src/components/Steps';
+
 import Jump from '@site/src/components/Jump';
 import Alert from '@site/src/components/Alert';
 import Assumptions from '@site/src/components/Assumptions';
 
-To further fine-tune your Qovery infrastructure, you can set advanced settings through [the Qovery API endpoint](https://api-doc.qovery.com/#tag/Application-Configuration/operation/getAdvancedSettings).
+To further fine-tune your Qovery infrastructure, you can set advanced settings through the Advanced Settings section of your service.
 
-<Alert type="info">
+To access the Advanced Settings section:
 
-Advanced settings are not available in the Qovery console yet.
+<Steps headingDepth={2}>
+<ol>
+<li>
 
-</Alert>
+Select the service where you want to modify the advanced settings
+
+<p align="center">
+  <img src="/img/configuration/advanced_settings/settings.png" alt="Settings" />
+</p>
+
+</li>
+<li>
+
+Open the advanced settings section from the left menu
+
+<p align="center">
+  <img src="/img/configuration/advanced_settings/advanced_settings.png" alt="Advanced Settings" />
+</p>
+
+</li>
+</ol>
+</Steps>
+
+The screen shows you the list of available advanced settings and for each of them:
+- The default value
+- The value configured right now
+
+You can show only the modified values by activating the "Show only overridden settings" feature
 
 Below is the list of advanced settings currently available.
 

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-11-27"
+last_modified_on: "2022-11-28"
 title: "Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -14,7 +14,7 @@ To further fine-tune your Qovery infrastructure, you can set advanced settings t
 
 To access the Advanced Settings section:
 
-<Steps headingDepth={2}>
+<Steps headingDepth={3}>
 <ol>
 <li>
 

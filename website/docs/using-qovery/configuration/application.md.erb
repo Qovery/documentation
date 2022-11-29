@@ -56,14 +56,14 @@ If you want to deploy an application from a Git Repository you will have to sele
 
 If you want to deploy an application from a Container Registry you will have to select:
 - Registry: select the container registry storing the image of your application. Note: only pre-configured registry are available in this list, check the [Container Registry Management page][docs.using-qovery.configuration.organization#container-registry-management] for more information.
-- Image name: the name of the image to be deploying with this application (example: postgres)
-- Image tag: the tag of the image to be deploying with this application (example: 12)
+- Image name: the name of the image to be deployed with this application (example: postgres)
+- Image tag: the tag of the image to be deployed with this application (example: 12)
 - Image Entrypoint: the entrypoint to be used to launch your applicaiton (not mandatory)
 - CMD Arguments: the arguments to be passed to launch your applicaiton (not mandatory). We expect the format to be an array. Example ["rails", "-h", "0.0.0.0", "-p", "8080", "string"]
 
 <Alert type="info">
 
-We have decided to not support the tag 'latest', please use a specific tag.
+The tag 'latest' is not supported, please use a specific tag.
 
 </Alert>
 
@@ -111,9 +111,9 @@ Connections on public port are automatically closed after 60 seconds. If you wan
 <li>
 
 You will find a recap of your application setup and you can now decide to:
-- Go back to one of the previous steps and change your applicaiton settings
-- Create your application without deploying it
-- Create and deploy your application
+1. Go back to one of the previous steps and change your applicaiton settings
+2. Create your application without deploying it
+3. Create and deploy your application
 
 <p align="center">
   <img src="/img/configuration/application/application_creation_recap.png" alt="Application" />
@@ -127,23 +127,31 @@ You will find a recap of your application setup and you can now decide to:
 
 ## Configuration
 
-### General
-
-General settings allow you to set up your application name, git repository and build mode.
-
-#### Git Repository
-
-- Select the git provider where your code is stored (it can be hosted on GitHub, GitLab or Bitbucket).
-- Select branch that Qovery should use for deploying your application
-- Select `Root Application Path` - base folder in which the application resides in your repository
+Once created, you can access the configuration of an application at any time via the Settings tab available on the application section
 
 <p align="center">
-  <img src="/img/configuration/application/app-17.png" alt="CPU" />
+  <img src="/img/configuration/application/settings.png" alt="Application Settings" />
+</p>
+
+You can find below the description of each of the tabs available in this section
+
+### General
+
+General settings section allows you to set up your application name and the source code location (git repository or image registry) .
+
+#### Git Repository
+If your application is built and deployed from a git repository, within this section you can:
+- Modify the git provider where your code is stored (it can be hosted on GitHub, GitLab or Bitbucket).
+- Modify the branch that Qovery should use for deploying your application
+- Modify `Root Application Path` - base folder in which the application resides in your repository
+
+<p align="center">
+  <img src="/img/configuration/application/app-general-git.png" alt="General Settings Git" />
 </p>
 
 <Alert type="info">
 
-Qovery supports mono repositories, you can deploy multiple apps using a single repository. [For details, see our advanced guide.][guides.advanced.monorepository]
+Qovery supports mono repositories. [See our advanced guide for more details.][guides.advanced.monorepository]
 
 </Alert>
 
@@ -159,8 +167,26 @@ Secret names examples:
 
 </Alert>
 
-#### Build Mode
+#### Container Registry
+If your application is deployed from an image registry, within this section you can modify:
+- Registry: select the container registry storing the image of your application. Note: only pre-configured registry are available in this list, check the [Container Registry Management page][docs.using-qovery.configuration.organization#container-registry-management] for more information.
+- Image name: the name of the image to be deployed with this application (example: postgres)
+- Image tag: the tag of the image to be deployed with this application (example: 12)
+- Image Entrypoint: the entrypoint to be used to launch your applicaiton (not mandatory)
+- CMD Arguments: the arguments to be passed to launch your applicaiton (not mandatory). We expect the format to be an array. Example ["rails", "-h", "0.0.0.0", "-p", "8080", "string"]
 
+<Alert type="info">
+
+The tag 'latest' is not supported, please use a specific tag.
+
+</Alert>
+
+<p align="center">
+  <img src="/img/configuration/application/app-general-registry.png" alt="General Settings Git" />
+</p>
+
+#### Build Mode
+This option is available only if you have selected "Git Repository" as source
 #### Option 1: Buildpacks
 
 To simplify the application build for the developer, Qovery supports [Buildpacks](https://buildpacks.io) out of the box. Buildpacks determine the build process for an app and which assets and runtimes should be made available to your code at runtime. If your complex apps are running multiple languages, you can also use multiple buildpacks within a single app.
@@ -200,13 +226,13 @@ CMD node ./bin/www
 
 After creating a Dockerfile, specify the location of your Dockerfile in `Dockefile path` field.
 
-<p align="center">
-  <img src="/img/configuration/application/app-18.png" alt="Dockerfile" />
-</p>
-
 Configuration from above will make Qovery look for the Dockerfile in `/timescale/Dockerfile` path of your repository (`Root Application Path` + `Dockerfile Path`).
 
 ### Resources
+
+<p align="center">
+  <img src="/img/configuration/application/app-13.png" alt="CPU" />
+</p>
 
 #### CPU
 
@@ -220,10 +246,6 @@ Default is 500m (0.5 vCPU).
 
 Please note that in this section you configure the CPU allocated by the cluster for your application and that cannot consume more than this value. Even if the application is underused and consume less resources, the cluster will still reserve the selected amount of CPU.
 
-<p align="center">
-  <img src="/img/configuration/application/app-13.png" alt="CPU" />
-</p>
-
 #### RAM
 
 To configure the amount of RAM that your app needs, adjust the setting in `Resources` section of the application configuration.
@@ -236,25 +258,10 @@ Default is 512MB.
 
 Please note that in this section you configure the CPU allocated by the cluster for your application and that cannot consume more than this value. Even if the application is underused and consume less resources, the cluster will still reserve the selected amount of CPU. If your application requires more RAM than requested, it will be killed by the kubernetes scheduler.
 
-<p align="center">
-  <img src="/img/configuration/application/app-14.png" alt="RAM" />
-</p>
-
 #### Auto-scaling
 
 Application auto-scaling is based on real-time CPU consumption. When your app goes above 60% of CPU consumption for 5 minutes, your app will be auto-scaled and more instances will be added. It is transparent.
 You can adjust the minimum and maximum of instances you need in your application settings. Qovery runs your application on Kubernetes and relies on [metrics-server](https://github.com/kubernetes-sigs/metrics-server) service to auto-scale your app.
-
-### Dependencies
-
-Qovery gives you the power to have multiple apps within one environment. Sometimes it's necessary to one or multiple apps before others.
-By using the `Dependency` configuration, you can declare a list of apps your app is depending on.
-
-<p align="center">
-  <img src="/img/configuration/application/app-6.png" alt="Application Dependencies" />
-</p>
-
-Setting up application dependencies will make sure all the dependencies are running before your application starts.
 
 ### Storage
 
@@ -303,12 +310,19 @@ You can set up your Block Storage in `Storage` section of your application confi
   <img src="/img/configuration/application/app-7.png" alt="Application Storage" />
 </p>
 
+<Alert type="info">
+
+Storage can be added only if the application has never been deployed before AND if it runs only with one instance (check the [Resources section][docs.configuration.application#resources])
+
+</Alert>
+
 ### Ports
 
-Most of the application needs to be accessed by other services inside or outside of your environment. To set up the access,
-declare the ports your application uses. You can define:
-- Internal ports: these are available internally inside your environment for other services to use.
-- Public ports: it makes them accessible over the public network via a dedicated public domain that will be assigned to your application during the deployment. Today we support only the HTTPS and Websocket protocols (on the 443 port)
+Within this section you can define the port exposed by your application to the other services or even over the internet.
+You can edit the existing ports or declare new ones by specifying:
+- Application port: this is the port exposed internally by your application for the other services. Kubernetes will use this port to verify the readiness and liveness of your application via regular probes.
+- Publicly exposed: it allows you to expose over the public network your service. A public domainill be assigned to your application during the deployment.
+- External port: it is the port that can be used to access this service over the internet (when exposed publicly). Today we support only the HTTPS and Websocket protocols (on the 443 port)
 
 <p align="center">
   <img src="/img/configuration/application/app-15.png" alt="Application Ports" />
@@ -392,15 +406,10 @@ To learn how to display your application logs, navigate to [logs section in our 
 
 To connect to your application via SSH, please use the via the [Qovery SSH command][docs.using-qovery.interface.cli] available on our CLI.
 
-## Update and Rollback
+## Deploy other version
 
 <Steps headingDepth={3}>
 <ol>
-<li>
-
-Navigate to [Console][urls.qovery_console].
-
-</li>
 <li>
 
 Choose your application
@@ -408,10 +417,10 @@ Choose your application
 </li>
 <li>
 
-In the application overview, click on the `Actions` button and `Rollback and Update`.
+In the application overview, click on the `Play` button and `Deploy Other Version`.
 
 <p align="center">
-  <img src="/img/configuration/application/rollback-update.png" alt="Application" />
+  <img src="/img/configuration/application/deploy-other-version.png" alt="Update All" />
 </p>
 
 </li>
@@ -420,7 +429,7 @@ In the application overview, click on the `Actions` button and `Rollback and Upd
 Once you click, this panel will appear, and you will be able to choose the version you wish to update/rollback.
 
 <p align="center">
-  <img src="/img/configuration/application/rollback-update2.png" alt="Application" />
+  <img src="/img/configuration/application/deploy-other-version2.png" alt="Application" />
 </p>
 
 </li>
@@ -433,17 +442,12 @@ Once you click, this panel will appear, and you will be able to choose the versi
 <ol>
 <li>
 
-Navigate to [Console][urls.qovery_console]
-
-</li>
-<li>
-
 Choose your application
 
 </li>
 <li>
 
-In the application overview, click on the `Actions` button and remove the application.
+In the application overview, click on the `3 dots` button and remove the application.
 
 <p align="center">
   <img src="/img/configuration/application/app-1.png" alt="Application" />

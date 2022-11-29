@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-07-09"
+last_modified_on: "2022-11-28"
 $schema: "/.meta/.schemas/guides.json"
 title: Migrate your application from Heroku to AWS
 description: Guide on how to migrate all your applications from Heroku to AWS with your databases
@@ -602,7 +602,7 @@ Yes, it's what we call [Preview Environment][docs.using-qovery.configuration.env
 
 ### How to rollback?
 
-Check out the [app rollback documentation][docs.using-qovery.configuration.application#update-and-rollback]
+Check out the [app rollback documentation][docs.using-qovery.configuration.application#deploy-other-version]
 
 ### How auto-scaling works?
 
@@ -639,8 +639,8 @@ Congrats! You have migrated from Heroku to AWS. Feel free to check out our [foru
 
 [docs.useful-resources.faq]: /docs/useful-resources/faq/
 [docs.using-qovery.configuration.application#auto-scaling]: /docs/using-qovery/configuration/application/#auto-scaling
+[docs.using-qovery.configuration.application#deploy-other-version]: /docs/using-qovery/configuration/application/#deploy-other-version
 [docs.using-qovery.configuration.application#option-1-buildpacks]: /docs/using-qovery/configuration/application/#option-1-buildpacks
-[docs.using-qovery.configuration.application#update-and-rollback]: /docs/using-qovery/configuration/application/#update-and-rollback
 [docs.using-qovery.configuration.database#general]: /docs/using-qovery/configuration/database/#general
 [docs.using-qovery.configuration.environment#preview-environment]: /docs/using-qovery/configuration/environment/#preview-environment
 [docs.using-qovery.configuration.environment-variable#alias-environment-variable]: /docs/using-qovery/configuration/environment-variable/#alias-environment-variable

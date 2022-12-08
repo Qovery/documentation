@@ -29,7 +29,7 @@
     "pluralize": "^8.0.0",
     "posthog-docusaurus": "^1.0.3",
     "prismjs": "^1.27.0",
-    "qs": "^6.9.1",
+    "qs": "^6.9.7",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-github-btn": "^1.1.1",

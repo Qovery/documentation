@@ -162,7 +162,8 @@ module.exports = {
       copyright: `© ${new Date().getFullYear()} DESIGNED BY QOVERY | BACKED BY TECHSTARS | PROUD SILVER MEMBER OF CNCF AND LINUX FOUNDATION | QOVERY BY BIRDSIGHT - ALL RIGHTS RESERVED`,
     },
     algolia: {
-      apiKey: "d1f733132ad6092f49a19776abf5d66d", // required key for Algolia (can be public)
+      appId: "FT65SBJ2DA",
+      apiKey: "02604e8b2e0918e90edd1d9eb8e30f5e", // required key for Algolia (can be public)
       indexName: "qovery",
       algoliaOptions: {}, // Optional, if provided by Algolia
     },

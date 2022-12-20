@@ -51,6 +51,8 @@ module.exports = {
                 <%= metadata.links.fetch_id("docs.using-qovery.configuration.database.redis").to_json %>,
               ],
             },
+            <%= metadata.links.fetch_id("docs.using-qovery.configuration.cronjob").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.configuration.lifecycle-job").to_json %>,
             <%= metadata.links.fetch_id("docs.using-qovery.configuration.environment-variable").to_json %>,
             <%= metadata.links.fetch_id("docs.using-qovery.configuration.secret").to_json %>,
             <%= metadata.links.fetch_id("docs.using-qovery.configuration.object-storage").to_json %>,

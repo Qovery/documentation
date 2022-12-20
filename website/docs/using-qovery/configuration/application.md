@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-11-28"
+last_modified_on: "2022-12-20"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -34,8 +34,6 @@ In this configuration, Qovery will pull the code from the chosen repository, bui
 The list of Git repositories available during the setup is strictly tied to the permissions of your git account (by default Qovery can access all your repositories). If you want to restrict the Qovery access only to a few repositories, user the [GitHub Qovery Application][docs.using-qovery.configuration.organization#managing-git-permissions-using-the-qovery-github-app] (only for Github).
 
 ## Deploying from a Container Registry
-Note: this feature is only available on the new [Qovery Console V3](https://new.console.qovery.com)
-
 In this configuration, Qovery will pull the chosen container registry an image you have pre-built and deploy it on your kubernetes cluster.
 
 To improve the security and avoid deploying images from non-authorized registries, we have decided to restrict the list of Container Registry you can use during the setup process. Only an administrator with the right permissions can manage it from the [Container Registry Management page][docs.using-qovery.configuration.organization#container-registry-management]

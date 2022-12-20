@@ -4,20 +4,6 @@ title: "Gitlab CI"
 description: "Learn how to connect Gitlab CI to Qovery"
 ---
 
-Using Gitlab CI with Qovery is super powerful and gives you the ability to manage the way that you want to deploy your applications. As the possibility are endless, I will share with you a couple of scenarios and pre-built scripts that you can use. Feel free to adapt them to your need.
-
-```yaml
-qovery:
-  image: gitlab/dind
-  services:
-    - docker:dind
-  variables:
-    QOVERY_ORGANIZATION_ID: "xxx"
-    QOVERY_ENVIRONMENT_ID: "xxx"
-    QOVERY_APPLICATION_ID: "xxx"
-  script:
-    - docker run qoveryrd/qovery-action $QOVERY_ORGANIZATION_ID $QOVERY_ENVIRONMENT_ID $QOVERY_APPLICATION_ID $QOVERY_API_TOKEN $CI_COMMIT_SHA
-```
-
+Using Gitlab CI with Qovery is super powerful and gives you the ability to manage the way that you want to deploy your applications. As the possibility are endless, I will share with you a couple of examples that you can use. Feel free to adapt them to your need.
 
 <%= qovery_continuous_integration_common_scenarios() %>

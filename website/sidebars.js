@@ -122,6 +122,7 @@ module.exports = {
                 "using-qovery/integration/continuous-integration/github-actions",
                 "using-qovery/integration/continuous-integration/gitlab-ci",
                 "using-qovery/integration/continuous-integration/circle-ci",
+                "using-qovery/integration/continuous-integration/jenkins",
               ],
             },
             {

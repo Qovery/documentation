@@ -55,7 +55,7 @@ To improve the security and avoid deploying images from non-authorized registrie
 Go into the chosen environment and press the "New Service" button and then the "Create Lifecycle job" button
 
 <p align="center">
-  <img src="/img/configuration/environment/service_creation.png" alt="Creation" />
+  <img src="/img/configuration/environments/service_creation.png" alt="Creation" />
 </p>
 
 </li>
@@ -167,10 +167,6 @@ If your job is built and deployed from a git repository, within this section you
 - Modify the branch that Qovery should use for deploying your code
 - Modify `Root Application Path` - base folder in which the application resides in your repository
 
-<p align="center">
-  <img src="/img/configuration/application/app-general-git.png" alt="General Settings Git" />
-</p>
-
 <Alert type="info">
 
 Qovery supports mono repositories. [See our advanced guide for more details.][guides.advanced.monorepository]
@@ -201,9 +197,6 @@ The tag 'latest' is not supported, please use a specific tag.
 
 </Alert>
 
-<p align="center">
-  <img src="/img/configuration/application/app-general-registry.png" alt="General Settings Git" />
-</p>
 
 #### Build Mode
 This option is available only if you have selected "Git Repository" as source. Only Docker is supported
@@ -234,10 +227,6 @@ You can modify here the configuration of your job:
 - Port: Port used by Kubernetes to run readiness and liveliness probes checks. The port will not be exposed externally
 
 ### Resources
-
-<p align="center">
-  <img src="/img/configuration/application/app-13.png" alt="CPU" />
-</p>
 
 #### CPU
 
@@ -275,6 +264,31 @@ To learn how to set up secrets in your projects and applications, navigate to [c
 
 To learn how to display your application logs, navigate to [logs section in our Debugging guide][guides.getting-started.debugging#logs]
 
+## Force execution / Run
+
+You can force the execution of a job and execute it independently of its configuration (cron expression or event) by:
+
+<Steps headingDepth={3}>
+<ol>
+<li>
+
+Selecting your job
+
+</li>
+<li>
+
+In the application overview, click on the `Play` button and `Run`.
+
+
+</li>
+<li>
+
+Once you click, the job will be executed and you will be able to follow its execution within the application logs
+
+</li>
+</ol>
+</Steps>
+
 ## Deploy other version
 
 <Steps headingDepth={3}>
@@ -300,31 +314,6 @@ Once you click, this panel will appear, and you will be able to choose the versi
 <p align="center">
   <img src="/img/configuration/application/deploy-other-version2.png" alt="Application" />
 </p>
-
-</li>
-</ol>
-</Steps>
-
-## Force execution / Run
-
-You can force the execution of a job and execute it independently of its configuration (cron expression or event) by:
-
-<Steps headingDepth={3}>
-<ol>
-<li>
-
-Selecting your job
-
-</li>
-<li>
-
-In the application overview, click on the `Play` button and `Run`.
-
-
-</li>
-<li>
-
-Once you click, the job will be executed and you will be able to follow its execution within the application logs
 
 </li>
 </ol>

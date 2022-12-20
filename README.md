@@ -20,12 +20,6 @@ docker run -it --rm -v $(pwd):/mnt/documentation -p 3000:3000 qoveryrd/doc:0.1 /
 
 Open a browser to http://localhost:3000
 
-### Build the Docker image
-
-```bash
-docker buildx build --push --platform linux/amd64,linux/arm64 -t qoveryrd/doc:<tag_name> . --no-cache 
-```
-
 ## Installation and usage (Local)
 
 ### Installation (website)

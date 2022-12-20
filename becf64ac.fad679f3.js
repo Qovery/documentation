@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[208],{359:function(a){a.exports=JSON.parse('{"allTagsPath":"/guides/tags","slug":"language-go","name":"language: go","count":2,"permalink":"/guides/tags/language-go"}')}}]);

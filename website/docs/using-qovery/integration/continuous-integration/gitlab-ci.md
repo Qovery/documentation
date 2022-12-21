@@ -41,10 +41,8 @@ Before using the examples below, you need to:
 This example will deploy a container application with Qovery from your GitLab CI pipeline. Feel free to adapt it to your need.
 
 ```yaml title=".gitlab-ci.yml"
-# 1. Create an application image
-# 2. Run tests against the created image
-# 3. Push image to a remote registry
-# 4. Deploy with Qovery
+# 1. Build and Push image to a remote registry
+# 2. Deploy with Qovery
 
 stages:
   - build-and-push

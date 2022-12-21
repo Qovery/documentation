@@ -24,6 +24,10 @@ Before using the examples below, you need to:
 2. Generate an [API token][docs.using-qovery.interface.cli#generate-api-token].
 3. Set the environment variable `QOVERY_CLI_ACCESS_TOKEN` (`export QOVERY_CLI_ACCESS_TOKEN=your-api-token`) with your API token.
 
+## Jenkins Examples
+
+Since Circle CI also provides a .yaml file to configure your pipeline. Refers to [GitLab CI][docs.using-qovery.integration.continuous-integration.gitlab-ci#gitlab-ci-examples] and [GitHub Actions][docs.using-qovery.integration.continuous-integration.github-actions#github-actions-examples] examples to learn how to configure your pipeline with Qovery.
+
 ## Qovery CLI command examples
 
 ### Deploy your application with a specific commit ID
@@ -103,6 +107,8 @@ Do you want to include Terraform in your CI? Check out our [Terraform documentat
 Feel free to share your examples with us, and we'll be happy to share them with the community. Contact us on [our forum][urls.qovery_forum].
 
 
+[docs.using-qovery.integration.continuous-integration.github-actions#github-actions-examples]: /docs/using-qovery/integration/continuous-integration/github-actions/#github-actions-examples
+[docs.using-qovery.integration.continuous-integration.gitlab-ci#gitlab-ci-examples]: /docs/using-qovery/integration/continuous-integration/gitlab-ci/#gitlab-ci-examples
 [docs.using-qovery.integration.terraform]: /docs/using-qovery/integration/terraform/
 [docs.using-qovery.interface.cli#generate-api-token]: /docs/using-qovery/interface/cli/#generate-api-token
 [docs.using-qovery.interface.cli]: /docs/using-qovery/interface/cli/

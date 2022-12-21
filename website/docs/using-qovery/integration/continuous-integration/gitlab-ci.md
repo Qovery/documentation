@@ -34,6 +34,7 @@ Before using the examples below, you need to:
 
 * You have [connected your Container Registry with Qovery][docs.using-qovery.configuration.organization#container-registry-management].
 * You have a container application that you want to deploy on Qovery.
+* You have set the `QOVERY_CLI_ACCESS_TOKEN` environment variable in your GitLab CI project.
 
 </Assumptions>
 
@@ -46,50 +47,31 @@ This example will deploy a container application with Qovery from your GitLab CI
 # 4. Deploy with Qovery
 
 stages:
-  - build
-  - test
-  - push
+  - build-and-push
   - deploy
 
-before_script:
-  - docker login -u $CI_REGISTRY_USER -p $CI_JOB_TOKEN $CI_REGISTRY
-
-build-image:
-  stage: build
+build-and-push-image:
+  stage: build-and-push
   script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_JOB_TOKEN $CI_REGISTRY
     - docker build . --tag my-registry-group/your-app:$CI_COMMIT_SHORT_SHA
-
-test-image:
-  stage: test
-  script:
-    - echo Insert fancy test here!
-
-push-image:
-  stage: push
-  script:
     - docker push my-registry-group/your-app:$CI_COMMIT_SHORT_SHA
 
 deploy-image-with-qovery:
   stage: deploy
   script:
-    - curl -s https://get.qovery.com | sudo bash # Download and install Qovery CLI
+    - curl -s https://get.qovery.com | bash # Download and install Qovery CLI
     - |
       qovery application deploy \
-      --organization <your_org_name> \
-      --project <your_project_name> \
-      --environment <your_environment_name> \
-      --container <your_qovery_container_name> \
-      --tag $CI_COMMIT_SHORT_SHA \
-      --watch
+        --organization <your_org_name> \
+        --project <your_project_name> \
+        --environment <your_environment_name> \
+        --container <your_qovery_container_name> \
+        --tag $CI_COMMIT_SHORT_SHA \
+        --watch
 ```
 
 ## Qovery CLI command examples
-
-Before using the examples below, you need to:
-
-1. Install the [Qovery CLI][docs.using-qovery.interface.cli].
-2. Generate an [API token][docs.using-qovery.interface.cli#generate-api-token].
-3. Set the environment variable `QOVERY_CLI_ACCESS_TOKEN` (`export QOVERY_CLI_ACCESS_TOKEN=your-api-token`) with your API token.
 
 ### Deploy your application with a specific commit ID
 

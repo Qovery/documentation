@@ -6,6 +6,8 @@ description: "Learn how to connect GitHub Actions to Qovery"
 
 import Alert from '@site/src/components/Alert';
 
+import Assumptions from '@site/src/components/Assumptions';
+
 Using GitHub Actions with Qovery is super powerful and gives you the ability to manage the way that you want to deploy your applications. As the possibility are endless, I will share with you a couple of examples that you can use. Feel free to adapt them to your need.
 
 <!--
@@ -24,22 +26,75 @@ Before using the examples below, you need to:
 2. Generate an [API token][docs.using-qovery.interface.cli#generate-api-token].
 3. Set the environment variable `QOVERY_CLI_ACCESS_TOKEN` (`export QOVERY_CLI_ACCESS_TOKEN=your-api-token`) with your API token.
 
-## GitHub Actions
+## GitHub Actions Examples
 
-Checkout the [Qovery GitHub Actions](https://github.com/marketplace/qovery) from the GitHub Marketplace for fast integrations.
-However, we recommend using the [Qovery CLI][docs.using-qovery.interface.cli] to get more flexibility on your deployments.
+### Deploy a container application
 
-### Tutorial
+<Assumptions>
 
-Checkout this [complete guide][guides.tutorial.how-to-integrate-qovery-with-github-actions] on how to integration GitHub Actions with Qovery.
+* You have [connected your Container Registry with Qovery][docs.using-qovery.configuration.organization#container-registry-management].
+* You have a container application that you want to deploy on Qovery.
+* You have set the `QOVERY_CLI_ACCESS_TOKEN` environment variable in your GitHub Actions project.
+
+</Assumptions>
+
+This example will deploy a container application with Qovery from your GitLab CI pipeline. Feel free to adapt it to your need.
+
+```yaml title=".github/workflows/deploy-with-qovery.yml"
+# 1. Push image to a remote registry
+# 2. Deploy with Qovery
+
+name: Publish Docker image and Deploy with Qovery
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  deploy_with_qovery:
+    name: Push Docker image to Docker Hub and Deploy with Qovery
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action
+        with:
+          images: my-docker-hub-namespace/my-docker-hub-repository
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Deploy with Qovery
+        uses: actions/checkout@v3
+        shell: bash
+        run: |
+          # Download and install Qovery CLI
+          curl -s https://get.qovery.com | bash
+
+          qovery application deploy \
+            --organization <your_org_name> \
+            --project <your_project_name> \
+            --environment <your_environment_name> \
+            --container <your_qovery_container_name> \
+            --tag ${{ github.sha }} \
+            --watch
+```
 
 ## Qovery CLI command examples
-
-Before using the examples below, you need to:
-
-1. Install the [Qovery CLI][docs.using-qovery.interface.cli].
-2. Generate an [API token][docs.using-qovery.interface.cli#generate-api-token].
-3. Set the environment variable `QOVERY_CLI_ACCESS_TOKEN` (`export QOVERY_CLI_ACCESS_TOKEN=your-api-token`) with your API token.
 
 ### Deploy your application with a specific commit ID
 
@@ -118,8 +173,8 @@ Do you want to include Terraform in your CI? Check out our [Terraform documentat
 Feel free to share your examples with us, and we'll be happy to share them with the community. Contact us on [our forum][urls.qovery_forum].
 
 
+[docs.using-qovery.configuration.organization#container-registry-management]: /docs/using-qovery/configuration/organization/#container-registry-management
 [docs.using-qovery.integration.terraform]: /docs/using-qovery/integration/terraform/
 [docs.using-qovery.interface.cli#generate-api-token]: /docs/using-qovery/interface/cli/#generate-api-token
 [docs.using-qovery.interface.cli]: /docs/using-qovery/interface/cli/
-[guides.tutorial.how-to-integrate-qovery-with-github-actions]: /guides/tutorial/how-to-integrate-qovery-with-github-actions/
 [urls.qovery_forum]: https://discuss.qovery.com/

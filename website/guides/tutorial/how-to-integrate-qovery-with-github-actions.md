@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-10-05"
+last_modified_on: "2022-12-21"
 $schema: "/.meta/.schemas/guides.json"
 title: How to integrate Qovery with GitHub Actions
 description: Learn how to integrate Qovery with GitHub Actions
@@ -11,6 +11,12 @@ hide_pagination: true
 import Steps from '@site/src/components/Steps';
 import Alert from '@site/src/components/Alert';
 import Assumptions from '@site/src/components/Assumptions';
+
+<Alert type="warning">
+
+This guide uses the Qovery GitHub Actions which is deprecated. Please refer to the [new guide][docs.using-qovery.integration.continuous-integration.github-actions] instead.
+
+</Alert>
 
 Getting started with Qovery is easy. Just plug your Git repository, and you can deploy your application directly.
 But in some cases you will want a more advanced CI workflow where some steps need to happen before deployment.
@@ -87,7 +93,7 @@ First we need to get the ids that we will to add to our YAML file:
 
 <Alert type="info">
 
-You could use as well names instead of IDs but we strongly encourage you to use IDs to avoid any mistake. 
+You could use as well names instead of IDs but we strongly encourage you to use IDs to avoid any mistake.
 Please note that names are case-sensitive - "My App" is different from "my app"
 
 </Alert>
@@ -444,4 +450,4 @@ Integrating Qovery with GitHub Actions enables more complex workflows than just 
 or anything else you need, without sacrificing the simplicity of deployment Qovery brings you.
 
 
-
+[docs.using-qovery.integration.continuous-integration.github-actions]: /docs/using-qovery/integration/continuous-integration/github-actions/

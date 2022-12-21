@@ -26,12 +26,6 @@ Before using the examples below, you need to:
 
 ## Qovery CLI command examples
 
-Before using the examples below, you need to:
-
-1. Install the [Qovery CLI][docs.using-qovery.interface.cli].
-2. Generate an [API token][docs.using-qovery.interface.cli#generate-api-token].
-3. Set the environment variable `QOVERY_CLI_ACCESS_TOKEN` (`export QOVERY_CLI_ACCESS_TOKEN=your-api-token`) with your API token.
-
 ### Deploy your application with a specific commit ID
 
 ```bash

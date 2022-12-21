@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-06-03"
+last_modified_on: "2022-12-21"
 $schema: "/.meta/.schemas/guides.json"
 title: How to create and deploy a Discord bot in Python
 description: This tutorial will show you how to create and host a Discord bot made with Python.
@@ -238,11 +238,35 @@ Sign in to the [Qovery web interface][urls.start_qovery].
 
 <TabItem value="linux">
 
+<Tabs
+  centered={true}
+  className="rounded"
+  defaultValue="universal"
+  values={[{"label":"*nix","value":"universal"},{"label":"Arch Linux","value":"arch"},{"label":"Manual","value":"manual"}]}>
+
+<TabItem value="universal">
+
+To download and install Qovery CLI on any Linux distribution:
 ```bash
-# Download and install Qovery CLI on every Linux distribution
-$ curl -s https://get.qovery.com | sudo bash
+$ curl -s https://get.qovery.com | bash
 ```
 
+</TabItem>
+<TabItem value="arch">
+
+Qovery is part of [AUR](https://aur.archlinux.org/packages) packages, so you can install it with [yay](https://github.com/Jguer/yay):
+
+```bash
+$ yay qovery-cli
+```
+
+</TabItem>
+<TabItem value="manual">
+
+Install the Qovery CLI on Linux manually by downloading the [latest realease][urls.qovery_cli_releases], and uncompress its content to a folder into your shell `PATH`.
+
+</TabItem>
+</Tabs>
 </TabItem>
 
 <TabItem value="macos">
@@ -251,7 +275,7 @@ $ curl -s https://get.qovery.com | sudo bash
   centered={true}
   className="rounded"
   defaultValue="homebrew"
-  values={[{"label":"Homebrew","value":"homebrew"},{"label":"Manual","value":"manual"}]}>
+  values={[{"label":"Homebrew","value":"homebrew"},{"label":"Script","value":"script"},{"label":"Manual","value":"manual"}]}>
 
 <TabItem value="homebrew">
 
@@ -267,12 +291,18 @@ $ brew install qovery-cli
 
 </TabItem>
 
-<TabItem value="manual">
+<TabItem value="script">
 
+To download and install Qovery CLI from the command line:
 ```bash
-# Install the Qovery CLI on MacOS manually
 $ curl -s https://get.qovery.com | bash
 ```
+
+</TabItem>
+
+<TabItem value="manual">
+
+Install the Qovery CLI on Mac OS manually by downloading the [latest realease][urls.qovery_cli_releases], and uncompress its content to a folder into your shell `PATH`.
 
 </TabItem>
 

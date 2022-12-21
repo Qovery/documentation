@@ -1,4 +1,4 @@
-## Examples
+## Qovery CLI command examples
 
 Before using the examples below, you need to:
 
@@ -17,6 +17,12 @@ qovery application deploy \
   --commit-id <your_commit_id> \
   --watch
 ```
+
+<Alert type="success">
+
+`--watch` is an optional parameter that will display the status of the deployment and return 0 if the deployment is successful or 1 if it fails.
+
+</Alert>
 
 ### Deploy your container with a specific Tag
 
@@ -55,6 +61,16 @@ qovery environment deploy \
   --organization <your_org_name> \
   --project <your_project_name> \
   --environment <your_new_environment_name> \
+  --watch
+```
+
+### Delete a Preview Environment
+
+```shell
+qovery environment delete \
+  --organization <your_org_name> \
+  --project <your_project_name> \
+  --environment <your_preview_environment_name> \
   --watch
 ```
 

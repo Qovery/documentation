@@ -1,8 +1,12 @@
 ---
-last_modified_on: "2022-12-20"
-title: "Gitlab CI"
-description: "Learn how to connect Gitlab CI to Qovery"
+last_modified_on: "2022-12-21"
+title: "GitLab CI"
+description: "Learn how to connect GitLab CI to Qovery"
 ---
+
+import Alert from '@site/src/components/Alert';
+
+import Assumptions from '@site/src/components/Assumptions';
 
 Using Gitlab CI with Qovery is super powerful and gives you the ability to manage the way that you want to deploy your applications. As the possibility are endless, I will share with you a couple of examples that you can use. Feel free to adapt them to your need.
 
@@ -14,7 +18,72 @@ Using Gitlab CI with Qovery is super powerful and gives you the ability to manag
      website/docs/using-qovery/integration/continuous-integration/gitlab-ci.md.erb
 -->
 
-## Examples
+## Prerequisites
+
+Before using the examples below, you need to:
+
+1. Install the [Qovery CLI][docs.using-qovery.interface.cli].
+2. Generate an [API token][docs.using-qovery.interface.cli#generate-api-token].
+3. Set the environment variable `QOVERY_CLI_ACCESS_TOKEN` (`export QOVERY_CLI_ACCESS_TOKEN=your-api-token`) with your API token.
+
+## GitLab CI Examples
+
+### Deploy a container application
+
+<Assumptions>
+
+* You have [connected your Container Registry with Qovery][docs.using-qovery.configuration.organization#container-registry-management].
+* You have a container application that you want to deploy on Qovery.
+
+</Assumptions>
+
+This example will deploy a container application with Qovery from your GitLab CI pipeline. Feel free to adapt it to your need.
+
+```yaml title=".gitlab-ci.yml"
+# 1. Create an application image
+# 2. Run tests against the created image
+# 3. Push image to a remote registry
+# 4. Deploy with Qovery
+
+stages:
+  - build
+  - test
+  - push
+  - deploy
+
+before_script:
+  - docker login -u $CI_REGISTRY_USER -p $CI_JOB_TOKEN $CI_REGISTRY
+
+build-image:
+  stage: build
+  script:
+    - docker build . --tag my-registry-group/your-app:$CI_COMMIT_SHORT_SHA
+
+test-image:
+  stage: test
+  script:
+    - echo Insert fancy test here!
+
+push-image:
+  stage: push
+  script:
+    - docker push my-registry-group/your-app:$CI_COMMIT_SHORT_SHA
+
+deploy-image-with-qovery:
+  stage: deploy
+  script:
+    - curl -s https://get.qovery.com | sudo bash # Download and install Qovery CLI
+    - |
+      qovery application deploy \
+      --organization <your_org_name> \
+      --project <your_project_name> \
+      --environment <your_environment_name> \
+      --container <your_qovery_container_name> \
+      --tag $CI_COMMIT_SHORT_SHA \
+      --watch
+```
+
+## Qovery CLI command examples
 
 Before using the examples below, you need to:
 
@@ -33,6 +102,12 @@ qovery application deploy \
   --commit-id <your_commit_id> \
   --watch
 ```
+
+<Alert type="success">
+
+`--watch` is an optional parameter that will display the status of the deployment and return 0 if the deployment is successful or 1 if it fails.
+
+</Alert>
 
 ### Deploy your container with a specific Tag
 
@@ -74,6 +149,16 @@ qovery environment deploy \
   --watch
 ```
 
+### Delete a Preview Environment
+
+```shell
+qovery environment delete \
+  --organization <your_org_name> \
+  --project <your_project_name> \
+  --environment <your_preview_environment_name> \
+  --watch
+```
+
 ### Terraform
 
 Do you want to include Terraform in your CI? Check out our [Terraform documentation][docs.using-qovery.integration.terraform].
@@ -83,6 +168,7 @@ Do you want to include Terraform in your CI? Check out our [Terraform documentat
 Feel free to share your examples with us, and we'll be happy to share them with the community. Contact us on [our forum][urls.qovery_forum].
 
 
+[docs.using-qovery.configuration.organization#container-registry-management]: /docs/using-qovery/configuration/organization/#container-registry-management
 [docs.using-qovery.integration.terraform]: /docs/using-qovery/integration/terraform/
 [docs.using-qovery.interface.cli#generate-api-token]: /docs/using-qovery/interface/cli/#generate-api-token
 [docs.using-qovery.interface.cli]: /docs/using-qovery/interface/cli/

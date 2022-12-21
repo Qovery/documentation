@@ -1,8 +1,10 @@
 ---
-last_modified_on: "2022-12-20"
+last_modified_on: "2022-12-21"
 title: "Jenkins"
 description: "Learn how to connect Jenkins to Qovery"
 ---
+
+import Alert from '@site/src/components/Alert';
 
 Using Jenkins with Qovery is super powerful and gives you the ability to manage the way that you want to deploy your applications. As the possibility are endless, I will share with you a couple of examples that you can use. Feel free to adapt them to your need.
 
@@ -14,7 +16,15 @@ Using Jenkins with Qovery is super powerful and gives you the ability to manage 
      website/docs/using-qovery/integration/continuous-integration/jenkins.md.erb
 -->
 
-## Examples
+## Prerequisites
+
+Before using the examples below, you need to:
+
+1. Install the [Qovery CLI][docs.using-qovery.interface.cli].
+2. Generate an [API token][docs.using-qovery.interface.cli#generate-api-token].
+3. Set the environment variable `QOVERY_CLI_ACCESS_TOKEN` (`export QOVERY_CLI_ACCESS_TOKEN=your-api-token`) with your API token.
+
+## Qovery CLI command examples
 
 Before using the examples below, you need to:
 
@@ -33,6 +43,12 @@ qovery application deploy \
   --commit-id <your_commit_id> \
   --watch
 ```
+
+<Alert type="success">
+
+`--watch` is an optional parameter that will display the status of the deployment and return 0 if the deployment is successful or 1 if it fails.
+
+</Alert>
 
 ### Deploy your container with a specific Tag
 
@@ -71,6 +87,16 @@ qovery environment deploy \
   --organization <your_org_name> \
   --project <your_project_name> \
   --environment <your_new_environment_name> \
+  --watch
+```
+
+### Delete a Preview Environment
+
+```shell
+qovery environment delete \
+  --organization <your_org_name> \
+  --project <your_project_name> \
+  --environment <your_preview_environment_name> \
   --watch
 ```
 

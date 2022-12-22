@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-12-20"
+last_modified_on: "2022-12-22"
 title: "Lifecycle Job"
 description: "Learn how to configure your Lifecycle job on Qovery"
 ---
@@ -16,14 +16,14 @@ You have created an [Environment][docs.using-qovery.configuration.environment].
 
 </Assumptions>
 
-A **Lifecycle Job** is a workload that runs on your kubernetes cluster following an event on your environment. As of now, a lifecycle job can be triggered when an environment is started, stopped or deleted. 
-The job will be executed ONLY when the selected event occurs unless its execution is forced (see section below).
+A **Lifecycle Job** is a job that runs on your kubernetes cluster with the following characteristics:
+- it is executed ONLY when the selected environment event occurs (unless its execution is forced, [see the Force execution section](#force-execution)).
+- any output file created at the end of the execution will be automatically injected as environment variable to any service within the same environment ([see the Job Output section](#job-output)). 
 
-<Alert type="info">
+Given its characteristics, lifecycle jobs are particularly useful for: 
+- Seed your database on your preview environment: you can create a custom job that will seed a database when the preview environment is deployed
+- Create an external resources not natively managed by Qovery: you can create a custom job that will create the external resource. By wiriting the connection strings in an output file, those information will be injected as environment variables on any service of the environment (so that they can consume this new resource). 
 
-**Use case: **Seed your database when the environment is deployed. Create/destroy external resources not natively managed by Qovery.
-
-</Alert>
 
 Qovery allows you to create and deploy jobs from two different sources: Git Repository or Container Registry
 
@@ -264,7 +264,87 @@ To learn how to set up secrets in your projects and applications, navigate to [c
 
 To learn how to display your application logs, navigate to [logs section in our Debugging guide][guides.getting-started.debugging#logs]
 
-## Force execution / Run
+## Job output
+Qovery expects the output file to be written in the following path `/qovery-output/qovery-output.json` (the `output` folder is automatically mounted by Qovery).
+The file should follow this format:
+```json
+{
+  "varname1": {
+    "sensitive": True,
+    "value": "myvalue"
+  },
+  "varname2": {
+    "sensitive": False,
+    "value": "myvalue"
+  }
+}
+...
+```
+At the end of the job execution, this file will be processed by Qovery and a set of environment variables will be created, one for each element in the json. The information in the json file will be mapped to an environment variables in this way:
+- Variable Name: `QOVERY_OUTPUT_JOB_<JOBID>_<VARNAME>` , where `<JOBID>` is the id of the Job on Qovery side and `<VARNAME>` is the name of the element in the output file. 
+- Variable Value: field "value"
+- Secret: field "sensitive"
+
+An alias `<VARNAME>` will be automatically created to simplify your setup.
+
+Example
+Let's say that the code of our job creates a PostgreSQL RDS on AWS. At the end of its execution, the job should know the connection Once created, the job should know the connection string of the PostgreSQL. The job can now create a file `/qovery-output/qovery-output.json` with the following structure:
+
+```json
+{
+  "POSTGRES_DB_HOST": {
+    "sensitive": False,
+    "value": "zf138d9c8-postgresql"
+  },
+  "POSTGRES_DB_USER": {
+    "sensitive": False,
+    "value": "root"
+  },
+  "POSTGRES_DB_PASS": {
+    "sensitive": True,
+    "value": "mypassword"
+  },
+  "POSTGRES_DB_TABLE": {
+    "sensitive": False,
+    "value": "MYDB"
+  },
+  "POSTGRES_DB_PORT": {
+    "sensitive": False,
+    "value": "3600"
+  }
+}
+```
+
+This file will be processed by Qovery and the following environment variables will be created:
+
+Var `QOVERY_OUTPUT_JOB_<JOBID>_POSTGRES_DB_HOST`
+- Value: "zf138d9c8-postgresql"
+- Secret: false
+- Alias: POSTGRES_DB_HOST
+
+Var `QOVERY_OUTPUT_JOB_<JOBID>_POSTGRES_DB_USER`
+- Value: "root"
+- Secret: false
+- Alias: POSTGRES_DB_USER
+
+Var `QOVERY_OUTPUT_JOB_<JOBID>_POSTGRES_DB_PASS`
+- Value: "mypassword"
+- Secret: true
+- Alias: POSTGRES_DB_PASS
+
+Var `QOVERY_OUTPUT_JOB_<JOBID>_POSTGRES_DB_TABLE`
+- Value: "MYDB"
+- Secret: false
+- Alias: POSTGRES_DB_TABLE
+
+Var `QOVERY_OUTPUT_JOB_<JOBID>_DB_PORT`
+- Value: "3600"
+- Secret: false
+- Alias: POSTGRES_DB_PORT
+
+Once the execution of the job is terminated and the environment variables are created, any application within the same environment will be able to access those environment variables and thus connect to the postgres instance.
+
+## Force execution
 
 You can force the execution of a job and execute it independently of its configuration (cron expression or event) by:
 

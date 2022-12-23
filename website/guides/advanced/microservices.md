@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-07-05"
+last_modified_on: "2022-12-23"
 $schema: "/.meta/.schemas/guides.json"
 title: Microservices
 description: How to deploy microservices with Qovery
@@ -137,7 +137,7 @@ This guide assumes you already know how to deploy databases. If you have any pro
 In this step, we'll make use of our database in **APP_B**
 
 All you need to do to consume your database in **APP_B** is to configure your PostgreSQL client to use `BUILT_IN` secrets injected by Qovery.
-You can read more about this concept [here][docs.using-qovery.configuration.secret#additional-built-in-variables].
+You can read more about this concept [here][docs.using-qovery.configuration.environment-variable#connecting-to-a-database].
 
 If your **APP_B** is a Node.js application, this examplary code snippet will work well:
 
@@ -191,7 +191,7 @@ axios.get(appBAddress + '/api/users')
 
 This is it! **Every request using the API client we have just configured will consume the API of **APP_B** over the secure, internal network.**
 
-Once again, we used the `BUILT_IN` secrets. Read more about them [here][docs.using-qovery.configuration.secret#built-in-variables]
+Once again, we used the `BUILT_IN` secrets. Read more about them [here][docs.using-qovery.configuration.environment-variable#connecting-to-another-application]
 
 </li>
 <li>
@@ -232,7 +232,7 @@ After providing the configuration from above, our frontend application will be a
 In this guide, we deployed two microservices that communicate over the internal network. We also deployed a frontend application that makes use of a public API exposed by one of our applications. At the same time, we deployed a database and connected it to the second of our backend microservices.
 
 
-[docs.using-qovery.configuration.secret#additional-built-in-variables]: /docs/using-qovery/configuration/secret/#additional-built-in-variables
-[docs.using-qovery.configuration.secret#built-in-variables]: /docs/using-qovery/configuration/secret/#built-in-variables
+[docs.using-qovery.configuration.environment-variable#connecting-to-a-database]: /docs/using-qovery/configuration/environment-variable/#connecting-to-a-database
+[docs.using-qovery.configuration.environment-variable#connecting-to-another-application]: /docs/using-qovery/configuration/environment-variable/#connecting-to-another-application
 [guides.getting-started.create-a-database]: /guides/getting-started/create-a-database/
 [guides.getting-started.deploy-your-first-application]: /guides/getting-started/deploy-your-first-application/

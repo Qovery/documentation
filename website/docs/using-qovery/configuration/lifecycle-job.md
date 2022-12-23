@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-12-22"
+last_modified_on: "2022-12-23"
 title: "Lifecycle Job"
 description: "Learn how to configure your Lifecycle job on Qovery"
 ---
@@ -258,7 +258,7 @@ To learn how to set up environment variables in your projects and applications, 
 
 ## Secrets
 
-To learn how to set up secrets in your projects and applications, navigate to [configuring Secrets][docs.using-qovery.configuration.secret] section.
+To learn how to set up secrets in your projects and applications, navigate to [configuring Secrets][docs.using-qovery.configuration.environment-variable] section.
 
 ## Logs
 
@@ -425,6 +425,5 @@ In the application overview, click on the `3 dots` button and remove the applica
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [docs.using-qovery.configuration.organization#container-registry-management]: /docs/using-qovery/configuration/organization/#container-registry-management
 [docs.using-qovery.configuration.organization#managing-git-permissions-using-the-qovery-github-app]: /docs/using-qovery/configuration/organization/#managing-git-permissions-using-the-qovery-github-app
-[docs.using-qovery.configuration.secret]: /docs/using-qovery/configuration/secret/
 [guides.advanced.monorepository]: /guides/advanced/monorepository/
 [guides.getting-started.debugging#logs]: /guides/getting-started/debugging/#logs

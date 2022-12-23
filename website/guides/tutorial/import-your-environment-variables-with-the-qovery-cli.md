@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-12-21"
+last_modified_on: "2022-12-23"
 $schema: "/.meta/.schemas/guides.json"
 title: Import your environment variables with the Qovery CLI
 description: How to import your environment variables and secrets from your dotenv file with the Qovery CLI
@@ -241,7 +241,7 @@ If during the import something goes wrong, you will see the errors and why it fa
 
 <Alert type="info">
 
-[Check out the documentation][docs.using-qovery.configuration.secret] to learn more on how Secrets works.
+[Check out the documentation][docs.using-qovery.configuration.environment-variable] to learn more on how Secrets works.
 
 </Alert>
 
@@ -273,7 +273,6 @@ Open your environment variables console to check that everything has been set co
 
 [docs.using-qovery.configuration.environment-variable#import-environment-variables]: /docs/using-qovery/configuration/environment-variable/#import-environment-variables
 [docs.using-qovery.configuration.environment-variable]: /docs/using-qovery/configuration/environment-variable/
-[docs.using-qovery.configuration.secret]: /docs/using-qovery/configuration/secret/
 [urls.brew]: https://brew.sh/
 [urls.qovery_cli_releases]: https://github.com/Qovery/qovery-cli/releases
 [urls.scoop]: https://scoop.sh/

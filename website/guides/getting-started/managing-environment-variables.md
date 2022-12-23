@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-12-28"
+last_modified_on: "2022-12-23"
 $schema: "/.meta/.schemas/guides.json"
 title: Environment variables
 description: How to manage environment variables in your projects and applications
@@ -17,7 +17,7 @@ securely pass your data by using *Environment Variables*.
 
 <Alert type="info">
 
-Do you need to keep secure your environment variable? Use [Secret][docs.using-qovery.configuration.secret] instead of **Environment
+Do you need to keep secure your environment variable? Use [Secret][docs.using-qovery.configuration.environment-variable] instead of **Environment
 Variable**.
 
 </Alert>
@@ -114,7 +114,7 @@ injected at the build and run time.
 </Steps>
 
 This guide was an introduction on how to use the Environment Variables. To know more
-about [Environment Variables][docs.using-qovery.configuration.environment-variable] and [Secrets][docs.using-qovery.configuration.secret],
+about [Environment Variables][docs.using-qovery.configuration.environment-variable] and [Secrets][docs.using-qovery.configuration.environment-variable],
 go to our [detailed documentation][docs.using-qovery.configuration].
 
 <Alert type="info">
@@ -125,6 +125,5 @@ Do you want to bulk import your Environment Variables? [Check out this tutorial]
 
 
 [docs.using-qovery.configuration.environment-variable]: /docs/using-qovery/configuration/environment-variable/
-[docs.using-qovery.configuration.secret]: /docs/using-qovery/configuration/secret/
 [docs.using-qovery.configuration]: /docs/using-qovery/configuration/
 [guides.tutorial.import-your-environment-variables-with-the-qovery-cli]: /guides/tutorial/import-your-environment-variables-with-the-qovery-cli/

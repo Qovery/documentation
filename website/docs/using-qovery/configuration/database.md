@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-09-14"
+last_modified_on: "2022-12-23"
 title: "Databases"
 description: "Learn how to configure Databases on Qovery"
 sidebar_label: hidden
@@ -178,7 +178,7 @@ Please note that the built-in variables follow the naming pattern: `QOVERY_DATAB
 - `<your_db_name>` is the name of your database
 - `<type_of_variable>` is the type of variable we inject, e.g. `PASSWORD`, `VERSION`, `CONNECTION_URI` and so on.
 
-To know how to access your database from your application, [have a look at the database section][docs.using-qovery.configuration.application#database].
+To know how to access your database from your application, [have a look at the database section][docs.using-qovery.configuration.environment-variable#connecting-to-a-database].
 
 ## Delete your database instance
 
@@ -229,7 +229,7 @@ In database overview, click on `Action` remove button
 </Steps>
 
 
-[docs.using-qovery.configuration.application#database]: /docs/using-qovery/configuration/application/#database
+[docs.using-qovery.configuration.environment-variable#connecting-to-a-database]: /docs/using-qovery/configuration/environment-variable/#connecting-to-a-database
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [guides.getting-started.create-a-database]: /guides/getting-started/create-a-database/
 [urls.qovery_console]: https://console.qovery.com

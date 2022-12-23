@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-12-20"
+last_modified_on: "2022-12-23"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -366,32 +366,6 @@ After setting up a custom domain, you'll see a `Value` that you need to set up a
 
 Setting up the `CNAME` on the domain provider side will make your app accessible through your custom domain on Qovery.
 
-### Database
-
-To access a database managed by Qovery from your application, you can use the BUILT_IN environment variables and secrets that have been automatically created by Qovery during the database creation process. You can find all the BUILT_IN variables on the Qovery console within the Environment Variable section of your application ([see the credentials and connectivity section for the full list][docs.using-qovery.configuration.database#credentials-and-connectivity]).
-
-In order to match the naming convention of the database connection variables used in your code, you can [create an alias][docs.using-qovery.configuration.environment-variable#alias-environment-variable] for each variable in the Qovery console so that you don't need to change your code.
-
-Once you have defined an alias for each variable, you can redeploy the application and check that it has finally access to the database.
-
-#### Example
-You have created a postgres database on the Qovery console. Within the code of your application you need some environment variables containing the connection parameters of the database: DATABASE_URL, DATABASE_USER, DATABASE_PASSWORD, DATABASE_PORT, DATABASE_NAME
-
-```python title="example.py"
-DB_NAME = os.getenv("DATABASE_NAME", "nemo")
-DB_USER = os.getenv("DATABASE_USER", "nemo")
-DB_PASSWORD = os.getenv("DATABASE_PASSWORD", "password")
-DB_HOST = os.getenv("DATABASE_HOST", "localhost")
-DB_PORT = os.getenv("DATABASE_PORT", "5432")
-```
-
-To match your internal naming convention, you can create aliases for each of the corresponding variables in this way:
-
-<p align="center">
-  <img src="/img/configuration/application/database-alias.png" alt="Env Var Aliases" />
-</p>
-
-
 #### Persistent sessions
 
 A user of your application will be redirected by the load balancer to the same instance each time he accesses to it.
@@ -406,7 +380,7 @@ To learn how to set up environment variables in your projects and applications, 
 
 ## Secrets
 
-To learn how to set up secrets in your projects and applications, navigate to [configuring Secrets][docs.using-qovery.configuration.secret] section.
+To learn how to set up secrets in your projects and applications, navigate to [configuring Secrets][docs.using-qovery.configuration.environment-variable] section.
 
 ## Logs
 
@@ -468,18 +442,26 @@ In the application overview, click on the `3 dots` button and remove the applica
 </Steps>
 
 
+### Connecting to a database
+To know how to access your database from your application, [have a look at the database section][docs.using-qovery.configuration.environment-variable#connecting-to-a-database].
+
+
+### Connecting to another application
+
+To know how to access your database from your application, [have a look at the database section][docs.using-qovery.configuration.environment-variable#connecting-to-another-application].
+
+
 [docs.configuration.application#resources]: /docs/using-qovery/configuration/application/#resources
 [docs.using-qovery.configuration.advanced-settings#network-settings]: /docs/using-qovery/configuration/advanced-settings/#network-settings
 [docs.using-qovery.configuration.application#build-mode]: /docs/using-qovery/configuration/application/#build-mode
-[docs.using-qovery.configuration.database#credentials-and-connectivity]: /docs/using-qovery/configuration/database/#credentials-and-connectivity
-[docs.using-qovery.configuration.environment-variable#alias-environment-variable]: /docs/using-qovery/configuration/environment-variable/#alias-environment-variable
+[docs.using-qovery.configuration.environment-variable#connecting-to-a-database]: /docs/using-qovery/configuration/environment-variable/#connecting-to-a-database
+[docs.using-qovery.configuration.environment-variable#connecting-to-another-application]: /docs/using-qovery/configuration/environment-variable/#connecting-to-another-application
 [docs.using-qovery.configuration.environment-variable]: /docs/using-qovery/configuration/environment-variable/
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [docs.using-qovery.configuration.object-storage]: /docs/using-qovery/configuration/object-storage/
 [docs.using-qovery.configuration.organization#container-registry-management]: /docs/using-qovery/configuration/organization/#container-registry-management
 [docs.using-qovery.configuration.organization#managing-git-permissions-using-the-qovery-github-app]: /docs/using-qovery/configuration/organization/#managing-git-permissions-using-the-qovery-github-app
 [docs.using-qovery.configuration.project]: /docs/using-qovery/configuration/project/
-[docs.using-qovery.configuration.secret]: /docs/using-qovery/configuration/secret/
 [docs.using-qovery.interface.cli]: /docs/using-qovery/interface/cli/
 [guides.advanced.monorepository]: /guides/advanced/monorepository/
 [guides.getting-started.debugging#logs]: /guides/getting-started/debugging/#logs

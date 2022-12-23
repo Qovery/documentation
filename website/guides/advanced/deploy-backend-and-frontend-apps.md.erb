@@ -57,7 +57,7 @@ axios.get(secondAppAddress + '/api/users')
   });
 ```
 
-As you can see in the example, you can communicate with your second application using Qovery-injected [built-in environment variable][docs.using-qovery.configuration.environment-variable#built-in-variables].
+As you can see in the example, you can communicate with your second application using Qovery-injected [built-in environment variable][docs.using-qovery.configuration.environment-variable#connecting-to-another-application].
 The second application does not have to be publicly accessible - your applications communicate safely inside the internal network.
 
 To target another application in your environment, you can modify the alias `BACKED_HOST` and make it point to the _HOST built_in variable of the other application.

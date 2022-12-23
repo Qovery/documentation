@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-12-21"
+last_modified_on: "2022-12-23"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy Laravel with MySQL
 description: How to deploy a Laravel application with the MySQL database with Qovery
@@ -356,7 +356,7 @@ To connect the Laravel app to the MySQL database, you need to setup the applicat
 All you have to do is to open and edit [database configuration file][urls.sample_laravel_with_mysql_env_file] in your forked repository.
 Replace all the **QOVERY_DATABASE_XXX** variables with values you have in your own environment. Those variable keys contain your database ID, this is why you need to update the file.
 
-*TIP: you could also make use of **Variable Aliases** to change the name of used environment variables in your Laravel application. [Learn more here][docs.using-qovery.configuration.secret#alias-secret].*
+*TIP: you could also make use of **Variable Aliases** to change the name of used environment variables in your Laravel application. [Learn more here][docs.using-qovery.configuration.environment-variable#alias-environment-variable].*
 
 </Alert>
 
@@ -392,7 +392,7 @@ Do you have any feedback about this tutorial? Let us know what you think on [Dis
 
 
 [docs.configuration.environment-variable]: /docs/using-qovery/configuration/environment-variable/
-[docs.using-qovery.configuration.secret#alias-secret]: /docs/using-qovery/configuration/secret/#alias-secret
+[docs.using-qovery.configuration.environment-variable#alias-environment-variable]: /docs/using-qovery/configuration/environment-variable/#alias-environment-variable
 [guides.getting-started.create-a-database]: /guides/getting-started/create-a-database/
 [guides.tutorial.migrate-your-application-from-heroku-to-aws]: /guides/tutorial/migrate-your-application-from-heroku-to-aws/
 [urls.authorize_qovery]: https://github.com/apps/qovery/installations/new

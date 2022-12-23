@@ -11,12 +11,6 @@ import Steps from '@site/src/components/Steps';
 import Alert from '@site/src/components/Alert';
 import Assumptions from '@site/src/components/Assumptions';
 
-<Alert type="warning">
-
-This guide uses the Qovery GitHub Actions which is deprecated. Please refer to the [new guide][docs.using-qovery.integration.continuous-integration.github-actions] instead.
-
-</Alert>
-
 Getting started with Qovery is easy. Just plug your Git repository, and you can deploy your application directly.
 But in some cases you will want a more advanced CI workflow where some steps need to happen before deployment.
 
@@ -35,9 +29,7 @@ If you don't have an application running on Qovery yet, check [the documentation
 
 ## Goal
 
-In this tutorial, we will deploy an application with the official Qovery GitHub action.
-
-You can find it [on the marketplace](https://github.com/marketplace/actions/qovery-deploy).
+In this tutorial, we will deploy an application with GitHub Actions by using the Qovery CLI.
 
 ## Get your application ready
 
@@ -58,7 +50,7 @@ Then go to `Deployment` and on the `Auto-deploy` dropdown, select `Off`:
 
 Click save and close the modal.
 
-## Add your GitHub action Workflow
+## Add your GitHub Actions Workflow
 
 We will now add a GitHub Actions workflow to your application. Workflow are defined with YAML configuration files that are placed in the code directory of your application.
 As an example we will define a workflow for a NodeJS application. We will first run our unit tests, then launch the Qovery deployment if the tests pass.
@@ -71,29 +63,7 @@ You can adapt those steps for your own stack and needs. Read the [GitHub Actions
 
 <li>
 
-#### Get the Organization, Project, Environment and Application IDs
-
-First we need to get the ids that we will to add to our YAML file:
-
-- Open in the [V3 console](https://new.console.qovery.com) the application you are interested.
-- Open the option section and select "Copy identifiers". This will copy in your clipboard all the necessary identifiers
-
-<p align="center">
-  <img src="/img/how-to-integrate-qovery-with-github-actions/github_action_ids.png" alt="" />
-</p>
-
-<Alert type="info">
-
-You could use as well names instead of IDs but we strongly encourage you to use IDs to avoid any mistake.
-Please note that names are case-sensitive - "My App" is different from "my app"
-
-</Alert>
-
-</li>
-
-<li>
-
-#### Create the Workflows directory
+### Create the Workflows directory
 
 All your workflows files must be stored in a specific `.github/workflows` directory. Create this directory at the root of your project.
 
@@ -101,27 +71,14 @@ All your workflows files must be stored in a specific `.github/workflows` direct
 
 <li>
 
-#### Add a Test and Deploy workflow
+### Add a Test and Deploy workflow
 
 In your Workflows folder, create a `test-and-deploy.yaml` file with the following content:
 
-```yaml
+```yaml title=".github/workflows/test-and-deploy.yaml"
 name: Test And Deploy to Qovery
 on:
   workflow_call:
-    inputs:
-      organization-id:
-        required: true
-        type: string
-      project-id:
-        required: true
-        type: string
-      environment-id:
-        required: true
-        type: string
-      application-ids:
-        required: true
-        type: string
     secrets:
       api-token:
         required: true
@@ -139,20 +96,22 @@ jobs:
     runs-on: ubuntu-latest
     name: Deploy on Qovery
     steps:
-      - name: Checkout
+      - name: Deploy with Qovery
         uses: actions/checkout@v3
-      - name: Deploy on Qovery
-        uses: Qovery/qovery-action@v0.10
-        id: qovery
-        with:
-          qovery-organization-id: ${{ inputs.organization-id }}
-          qovery-project-id: ${{ inputs.project-id }}
-          qovery-environment-id: ${{ inputs.environment-id }}
-          qovery-application-ids: ${{ inputs.application-ids }}
-          qovery-api-token: ${{ secrets.api-token }}
+        shell: bash
+        run: |
+          # Download and install Qovery CLI
+          curl -s https://get.qovery.com | bash
+
+          qovery application deploy \
+            --organization <your_org_name> \
+            --project <your_project_name> \
+            --environment <your_environment_name> \
+            --application <your_qovery_app_name> \
+            --commit-id ${{ github.sha }} \
+            --watch
 ```
 
-- The organization / project / environment / application ids can be retrieved from the URL of your application (see below).
 - The `on` section contains a `workflow_call` directive. It means that this workflow will be triggered when called from another workflow.
   We're doing this because we won't use this workflow directly. Since we might have several environments to deploy to Qovery depending on the branch, we could have one workflow per environment, and we want to avoid repeating all the steps.
 - The `inputs` and `secrets` sections are defining the values that we will need to pass to our workflow
@@ -162,6 +121,7 @@ jobs:
 
 Several things worth noting:
 
+- The organization / project / environment / application are case-sensitive.
 - Our `deploy` job has a `needs` instructions, telling GitHub Actions that this job can only run when the `test` job succeeds.
 - The `with` section of our last `deploy` step contains interpolated strings: ${{ inputs.xxxx }}. Those are values passed to our workflow, that our Qovery action needs. They will be passed from the calling workflow.
 
@@ -169,38 +129,7 @@ Several things worth noting:
 
 <li>
 
-#### Add an actual workflow
-
-Now we will add a deployment workflow that will be called every time we push our code to the `main` branch to deploy our `production` environment.
-
-```yaml
-name: Deploy to production
-on:
-  push:
-    branches:
-      - main
-jobs:
-  test-and-deploy:
-    uses: ./.github/workflows/test-and-deploy.yaml
-    with:
-      organization-id: XXX
-      project-id: XXX
-      environment-id: XXX
-      application-ids: XXX
-    secrets:
-      api-token: ${{ secrets.QOVERY_API_TOKEN }}
-```
-
-- We are setting the `on` section with a `push` directive pointing to the `main` branch. It means that this workflow will be executed when we push code to the `main` branch.
-- Our `test-and-deploy` job calls our previously created workflow with the `use` instruction.
-- In the `with` section, we are passing IDs corresponding to the application we want to deploy.
-- In the `secret` section, we are reading our API key from a GitHub secret we will create later.
-
-</li>
-
-<li>
-
-#### Get a Qovery API token
+### Get a Qovery API token
 
 To get an API token, use the Qovery CLI:
 
@@ -229,7 +158,7 @@ At the time of writing, we don't have a way to invalidate tokens. Store it caref
 
 <li>
 
-#### Add your token to your GitHub repository secrets
+### Add your token to your GitHub repository secrets
 
 Go to your GitHub repository then to the `Settings`:
 
@@ -255,7 +184,7 @@ Add your secret with the name `QOVERY_API_TOKEN` and save:
 
 </Steps>
 
-## Push your code
+## Execute the GitHub Actions Pipeline
 
 We're done with the setup. You can now push your code to the `main` branch. If you did it properly, under the `Actions` tab on your GitHub repository, you should see your job being run.
 
@@ -275,165 +204,11 @@ As soon as the job is set up, and it starts actually deploying, go to the Qovery
   <img src="/img/how-to-integrate-qovery-with-github-actions/8.png" alt="" />
 </p>
 
-## Deploy several applications in the same environment
-
-Most of the time, you will have several applications in your environment (e.g. a `backend` and a `frontend`). To deploy all of them through the action, you can add all the ids separated by commas:
-
-```
-...
-
-jobs:
-  test-and-deploy:
-    uses: ./.github/workflows/test-and-deploy.yaml
-    with:
-      organization-id: XXX
-      project-id: XXX
-      environment-id: XXX
-      application-ids: app 1,app 2, app 3...
-    secrets:
-      api-token: ${{ secrets.QOVERY_API_TOKEN }}
-```
-
 ## Advanced use-cases
 
-<Alert type="warning">
-At the time of writing, the Qovery GitHub Action only supports deployments. Other features will be added in the future
-</Alert>
+It's possible to support any use cases by using the [Qovery CLI][docs.using-qovery.interface.cli]. Like cloning an environment, changing the branch of some applications and deploying only a subset of applications. Refers to the [Qovery CLI documentation][docs.using-qovery.interface.cli] to explore all the commands that you can use.
 
-For any use case that's not covered by the official Qovery GitHub Action, you can use the [Qovery API](https://api-doc.qovery.com/) directly in your workflows.
-As an example, let's say we want to append the GitHub Actions Workflow execution ID to our environment name after each deployment:
-
-<Steps headingDepth={3}>
-
-<ol>
-
-<li>
-
-#### Add a shell script
-
-First we will add a shell script that will make the necessary calls to the Qovery API.
-Create a `.github/scripts` directory, and add a file called `add-run-id-to-env-name.sh` with the following content:
-
-```bash
-#!/usr/bin/env bash
-
-set -eo pipefail
-
-echo "Getting the current environment name"
-envName=$(curl -fs -X GET -H "Authorization: Token $QOVERY_API_TOKEN" \
-    "https://api.qovery.com/environment/$ENVIRONMENT_ID" | jq -r .name)
-
-if [[ $envName == *"- #"* ]];
-then
-    newEnvName=$(echo $envName | sed "s/#.*/#$GITHUB_RUN_ID/")
-else
-    newEnvName="$envName - #$GITHUB_RUN_ID"
-fi
-
-echo "New environment name: $newEnvName"
-
-echo "Renaming the base environment ..."
-
-curl -fs -o /dev/null -X PUT -d "{\"name\": \"$newEnvName\"}" -H 'Content-type: application/json' -H "Authorization: Token $QOVERY_API_TOKEN" \
-    "https://api.qovery.com/environment/$ENVIRONMENT_ID"
-
-echo "Done!"
-
-## keep going
-exit 0
-```
-
-Make this file executable:
-
-```bash
-chmod +x .github/scripts/add-run-id-to-env-name.sh
-```
-
-</li>
-
-<li>
-
-#### Add a job to our Test and Deploy Workflow
-
-Edit the `test-and-deploy.yaml` workflow configuration file so it now looks like this:
-
-```yaml
-name: Test And Deploy to Qovery
-on:
-  workflow_call:
-    inputs:
-      organization-id:
-        required: true
-        type: string
-      project-id:
-        required: true
-        type: string
-      environment-id:
-        required: true
-        type: string
-      application-ids:
-        required: true
-        type: string
-    secrets:
-      api-token:
-        required: true
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Install modules
-        run: yarn
-      - name: Run tests
-        run: yarn test
-  deploy:
-    needs: test
-    runs-on: ubuntu-latest
-    name: Deploy on Qovery
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Deploy on Qovery
-        uses: Qovery/qovery-action@v0.10
-        id: qovery
-        with:
-          qovery-organization-id: ${{ inputs.organization-id }}
-          qovery-project-id: ${{ inputs.project-id }}
-          qovery-environment-id: ${{ inputs.environment-id }}
-          qovery-application-ids: ${{ inputs.application-ids }}
-          qovery-api-token: ${{ secrets.api-token }}
-  add-run-id-to-env-name:
-    needs: deploy
-    runs-on: ubuntu-latest
-    name: Add Workflow execution ID to env name
-    env:
-      ENVIRONMENT_ID: ${{ inputs.environment-id }}
-      QOVERY_API_TOKEN: ${{ secrets.api-token }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Add Workflow execution ID to env name
-        run: ./.github/scripts/add-run-id-to-env-name.sh
-        shell: bash
-```
-</li>
-
-<li>
-
-#### Commit and push your changes
-
-Push your changes and wait to the workflow execution to finish. Your Qovery environment name should now contain the execution ID of the workflow.
-
-It might not be the most useful example, but you can be creative and do all kind of things using the Qovery API with GitHub Actions.
-
-</li>
-
-</ol>
-
-</Steps>
-
-For some other use-cases, like `preview environments`, you can use the scripts we provide [here](https://hub.qovery.com/docs/using-qovery/addon/continuous-integration/github-actions/).
+Check out our [GitHub Actions integration page][docs.using-qovery.integration.continuous-integration.github-actions] to check out more examples.
 
 ## Conclusion
 

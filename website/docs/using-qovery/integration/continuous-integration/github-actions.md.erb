@@ -68,7 +68,7 @@ jobs:
           # Download and install Qovery CLI
           curl -s https://get.qovery.com | bash
 
-          qovery application deploy \
+          qovery container deploy \
             --organization <your_org_name> \
             --project <your_project_name> \
             --environment <your_environment_name> \

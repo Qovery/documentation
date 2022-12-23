@@ -18,6 +18,28 @@ qovery application deploy \
 
 </Alert>
 
+### Deploy your multiple applications with a specific commit ID (monorepo)
+
+```bash
+# deploy the application 1 and wait for the deployment to be successful with the --watch argument
+qovery application deploy \
+  --organization <your_org_name> \
+  --project <your_project_name> \
+  --environment <your_environment_name> \
+  --application <your_app_1_name> \
+  --commit-id <your_commit_id> \
+  --watch
+
+# deploy the application 2 and wait for the deployment to be successful with the --watch argument
+qovery application deploy \
+  --organization <your_org_name> \
+  --project <your_project_name> \
+  --environment <your_environment_name> \
+  --application <your_app_2_name> \
+  --commit-id <your_commit_id> \
+  --watch
+```
+
 ### Deploy your container with a specific Tag
 
 ```shell

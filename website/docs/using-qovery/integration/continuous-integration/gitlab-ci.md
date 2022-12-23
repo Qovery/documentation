@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-12-21"
+last_modified_on: "2022-12-23"
 title: "GitLab CI"
 description: "Learn how to connect GitLab CI to Qovery"
 ---
@@ -25,6 +25,7 @@ Before using the examples below, you need to:
 1. Install the [Qovery CLI][docs.using-qovery.interface.cli].
 2. Generate an [API token][docs.using-qovery.interface.cli#generate-api-token].
 3. Set the environment variable `QOVERY_CLI_ACCESS_TOKEN` (`export QOVERY_CLI_ACCESS_TOKEN=your-api-token`) with your API token.
+4. You have turned off the [Qovery Auto Deployment][docs.using-qovery.configuration.environment#auto-deploy-environment] for your environment that you want to deploy manually.
 
 ## GitLab CI Examples
 
@@ -89,6 +90,28 @@ qovery application deploy \
 
 </Alert>
 
+### Deploy your multiple applications with a specific commit ID (monorepo)
+
+```bash
+# deploy the application 1 and wait for the deployment to be successful with the --watch argument
+qovery application deploy \
+  --organization <your_org_name> \
+  --project <your_project_name> \
+  --environment <your_environment_name> \
+  --application <your_app_1_name> \
+  --commit-id <your_commit_id> \
+  --watch
+
+# deploy the application 2 and wait for the deployment to be successful with the --watch argument
+qovery application deploy \
+  --organization <your_org_name> \
+  --project <your_project_name> \
+  --environment <your_environment_name> \
+  --application <your_app_2_name> \
+  --commit-id <your_commit_id> \
+  --watch
+```
+
 ### Deploy your container with a specific Tag
 
 ```shell
@@ -148,6 +171,7 @@ Do you want to include Terraform in your CI? Check out our [Terraform documentat
 Feel free to share your examples with us, and we'll be happy to share them with the community. Contact us on [our forum][urls.qovery_forum].
 
 
+[docs.using-qovery.configuration.environment#auto-deploy-environment]: /docs/using-qovery/configuration/environment/#auto-deploy-environment
 [docs.using-qovery.configuration.organization#container-registry-management]: /docs/using-qovery/configuration/organization/#container-registry-management
 [docs.using-qovery.integration.terraform]: /docs/using-qovery/integration/terraform/
 [docs.using-qovery.interface.cli#generate-api-token]: /docs/using-qovery/interface/cli/#generate-api-token

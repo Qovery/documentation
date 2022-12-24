@@ -286,6 +286,10 @@ Job output is a powerful feature that allows you to get the output of your Lifec
 
 ## FAQ
 
+### What happen if I delete my environment with your example?
+
+If you delete your environment, the AWS RDS MySQL instance will be deleted too. You can see that in the **MySQL RDS** service logs. You will see that the `terraform destroy -no-color -auto-approve` command is executed.
+
 ### Can I use the Lifecycle Job to deploy my application?
 
 Some users ask us if they can use the Lifecycle Job to deploy their application. The answer is yes!. The Lifecycle Job is designed to deploy all type of resources. However, we recommend using the official Qovery way to deploy applications. [Learn more on how to deploy your application...][docs.using-qovery.configuration.application]

@@ -197,6 +197,8 @@ Congrats, your Lifecycle Job is created. Now we just need to add the `TF_VAR_qov
 
 ### Make your Terraform deployment multi-environments ready
 
+To support multiple environments, we need to make sure that the name of the S3 object key where Terraform will store the state of your infrastructure is unique. To do that, we will use the `TF_VAR_qovery_environment_id` environment variable. This environment variable is automatically created by Qovery and contains the ID of your Environment. We just need to create an environment variable alias.
+
 <Steps headingDepth={3}>
 <ol>
 
@@ -228,6 +230,15 @@ Set the name of the environment variable to `TF_VAR_qovery_environment_id` with 
   <img src="/img/how-to-use-lifecycle-job/10.png" alt="" />
 </p>
 
+</li>
+
+</ol>
+</Steps>
+
+### Deploy AWS RDS MySQL instance
+
+<Steps headingDepth={3}>
+<ol>
 
 <li>
 
@@ -261,7 +272,6 @@ From the **MySQL RDS** tab you can see that the `terraform apply -no-color -auto
   <img src="/img/how-to-use-lifecycle-job/14.png" alt="" />
 </p>
 
-</li>
 </li>
 
 <li>

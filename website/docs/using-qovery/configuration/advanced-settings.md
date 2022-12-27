@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-11-28"
+last_modified_on: "2022-12-23"
 title: "Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---

@@ -344,8 +344,7 @@ Available for: Cronjob, Lifecycle Job
 
 | Type    | Description                                                                                                                                            | Default Value |
 |---------|--------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
-| integer | by default terminated jobs in a completed or failure state and are not deleted and you can access logs, disk, ... if set, Kubernetes will automatically cleanup completed jobs after the ttl
-| `null`          |
+| integer | By default terminated jobs in a completed or failure state are not deleted. if this parameter is set, Kubernetes will automatically cleanup completed jobs after the ttl | `null` |
 
 
 #### cronjob.concurrency_policy

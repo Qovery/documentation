@@ -771,6 +771,15 @@ module.exports = {
           "title": "URL Shortener API with Kotlin (Part 1/2)"
         },
         {
+          "author_github": "https://github.com/deimosfr",
+          "description": null,
+          "id": "/tutorial/use-aws-iam-roles-with-qovery",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/use-aws-iam-roles-with-qovery.md",
+          "series_position": null,
+          "title": "Use AWS IAM roles with Qovery"
+        },
+        {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
           "id": "/tutorial/use-an-api-gateway-in-front-of-multiple-services",

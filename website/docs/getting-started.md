@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-08-14"
+last_modified_on: "2022-12-27"
 title: Getting started
 description: "About Qovery, the platform that accelerates and scales application development cycle with zero infrastructure management investment."
 sidebar_label: hidden

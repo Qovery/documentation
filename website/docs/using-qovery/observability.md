@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-11-27"
+last_modified_on: "2022-12-27"
 title: Observability
 description: "Everything you need to check that your applications are running as expected."
 sidebar_label: hidden

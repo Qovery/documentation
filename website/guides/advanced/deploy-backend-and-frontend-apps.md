@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-11-11"
+last_modified_on: "2022-12-23"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploying backend and frontend apps
 description: How to deploy backend and frontend apps with Qovery
@@ -66,7 +66,7 @@ axios.get(secondAppAddress + '/api/users')
   });
 ```
 
-As you can see in the example, you can communicate with your second application using Qovery-injected [built-in environment variable][docs.using-qovery.configuration.environment-variable#built-in-variables].
+As you can see in the example, you can communicate with your second application using Qovery-injected [built-in environment variable][docs.using-qovery.configuration.environment-variable#connecting-to-another-application].
 The second application does not have to be publicly accessible - your applications communicate safely inside the internal network.
 
 To target another application in your environment, you can modify the alias `BACKED_HOST` and make it point to the _HOST built_in variable of the other application.
@@ -140,6 +140,6 @@ export default axios.create({
 </Steps>
 
 
-[docs.using-qovery.configuration.environment-variable#built-in-variables]: /docs/using-qovery/configuration/environment-variable/#built-in-variables
+[docs.using-qovery.configuration.environment-variable#connecting-to-another-application]: /docs/using-qovery/configuration/environment-variable/#connecting-to-another-application
 [docs.using-qovery.configuration.environment-variable]: /docs/using-qovery/configuration/environment-variable/
 [guides.getting-started.deploy-your-first-application#step-by-step-tutorial]: /guides/getting-started/deploy-your-first-application/#step-by-step-tutorial

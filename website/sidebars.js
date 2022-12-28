@@ -54,7 +54,6 @@ module.exports = {
             "using-qovery/configuration/cronjob",
             "using-qovery/configuration/lifecycle-job",
             "using-qovery/configuration/environment-variable",
-            "using-qovery/configuration/secret",
             "using-qovery/configuration/object-storage",
             "using-qovery/configuration/deployment-rule",
             {

@@ -128,7 +128,7 @@ This guide assumes you already know how to deploy databases. If you have any pro
 In this step, we'll make use of our database in **APP_B**
 
 All you need to do to consume your database in **APP_B** is to configure your PostgreSQL client to use `BUILT_IN` secrets injected by Qovery.
-You can read more about this concept [here][docs.using-qovery.configuration.secret#additional-built-in-variables].
+You can read more about this concept [here][docs.using-qovery.configuration.environment-variable#connecting-to-a-database].
 
 If your **APP_B** is a Node.js application, this examplary code snippet will work well:
 
@@ -182,7 +182,7 @@ axios.get(appBAddress + '/api/users')
 
 This is it! **Every request using the API client we have just configured will consume the API of **APP_B** over the secure, internal network.**
 
-Once again, we used the `BUILT_IN` secrets. Read more about them [here][docs.using-qovery.configuration.secret#built-in-variables]
+Once again, we used the `BUILT_IN` secrets. Read more about them [here][docs.using-qovery.configuration.environment-variable#connecting-to-another-application]
 
 </li>
 <li>

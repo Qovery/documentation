@@ -530,6 +530,15 @@ module.exports = {
         {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
+          "id": "/tutorial/how-to-use-lifecycle-job-to-deploy-any-kind-of-resources",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/how-to-use-lifecycle-job-to-deploy-any-kind-of-resources.md",
+          "series_position": null,
+          "title": "How To Use Lifecycle Job To Deploy Any Kind Of Resources"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
           "id": "/tutorial/how-to-build-a-cloud-version-of-your-open-source-software-part-1",
           "last_modified_on": null,
           "path": "website/guides/tutorial/how-to-build-a-cloud-version-of-your-open-source-software-part-1.md",
@@ -760,6 +769,15 @@ module.exports = {
           "path": "website/guides/tutorial/url-shortener-api-with-kotlin.md",
           "series_position": null,
           "title": "URL Shortener API with Kotlin (Part 1/2)"
+        },
+        {
+          "author_github": "https://github.com/deimosfr",
+          "description": null,
+          "id": "/tutorial/use-aws-iam-roles-with-qovery",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/use-aws-iam-roles-with-qovery.md",
+          "series_position": null,
+          "title": "Use AWS IAM roles with Qovery"
         },
         {
           "author_github": "https://github.com/evoxmusic",

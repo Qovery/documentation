@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-12-20"
+last_modified_on: "2022-12-23"
 title: Configuration
 description: "Everything you need to know to configure and deploy your applications on Qovery"
 sidebar_label: hidden
@@ -24,7 +24,6 @@ In the following subsections, you'll learn all you need to know to configure and
 <Jump to="/docs/using-qovery/configuration/object-storage/">Object storage</Jump>
 <Jump to="/docs/using-qovery/configuration/organization/">Organization</Jump>
 <Jump to="/docs/using-qovery/configuration/project/">Project</Jump>
-<Jump to="/docs/using-qovery/configuration/secret/">Secret</Jump>
 
 
 

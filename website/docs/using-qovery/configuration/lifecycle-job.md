@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-12-22"
+last_modified_on: "2022-12-25"
 title: "Lifecycle Job"
 description: "Learn how to configure your Lifecycle job on Qovery"
 ---
@@ -18,12 +18,17 @@ You have created an [Environment][docs.using-qovery.configuration.environment].
 
 A **Lifecycle Job** is a job that runs on your kubernetes cluster with the following characteristics:
 - it is executed ONLY when the selected environment event occurs (unless its execution is forced, [see the Force execution section](#force-execution)).
-- any output file created at the end of the execution will be automatically injected as environment variable to any service within the same environment ([see the Job Output section](#job-output)). 
+- any output file created at the end of the execution will be automatically injected as environment variable to any service within the same environment ([see the Job Output section](#job-output)).
 
-Given its characteristics, lifecycle jobs are particularly useful for: 
+Given its characteristics, lifecycle jobs are particularly useful for:
 - Seed your database on your preview environment: you can create a custom job that will seed a database when the preview environment is deployed
-- Create an external resources not natively managed by Qovery: you can create a custom job that will create the external resource. By wiriting the connection strings in an output file, those information will be injected as environment variables on any service of the environment (so that they can consume this new resource). 
+- Create an external resources not natively managed by Qovery: you can create a custom job that will create the external resource. By writing the connection strings in an output file, those information will be injected as environment variables on any service of the environment (so that they can consume this new resource).
 
+<Alert type="success">
+
+Check out [this complete example][guides.tutorial.how-to-use-lifecycle-job-to-deploy-any-kind-of-resources] on how to deploy a Terraform module with the Lifecycle Job feature
+
+</Alert>
 
 Qovery allows you to create and deploy jobs from two different sources: Git Repository or Container Registry
 
@@ -62,7 +67,7 @@ Go into the chosen environment and press the "New Service" button and then the "
 <li>
 
 Select the following fields:
-- Name: give a name to your applicaiton
+- Name: give a name to your application
 - Source: Chose between Git Repository or Container Registry, depending on the source location of your application
 
 If you want to deploy a cronjob from a Git Repository you will have to select:
@@ -93,7 +98,7 @@ The tag 'latest' is not supported, please use a specific tag.
 <li>
 Specify the configuration of your job:
 - Event: select the environment event which should trigger the execution of the job (Environment start, stop, delete)
-- Image Entrypoint: the entrypoint to be used to launch your job (not mandatory). 
+- Image Entrypoint: the entrypoint to be used to launch your job (not mandatory).
 - CMD Arguments: the arguments to be passed to launch your job (not mandatory). We expect the format to be an array. Example ["rails", "-h", "0.0.0.0", "-p", "8080", "string"]
 - Number of restarts: Maximum number of restarts allowed in case of job failure (0 means no failure)
 - Max duration time in seconds: Maximum duration allowed for the job to run before killing it and mark it as failed
@@ -234,7 +239,7 @@ To configure the number of CPUs that your job needs, adjust the setting in the `
 
 <Alert type="info">
 
-Default is 500m (0.5 vCPU). 
+Default is 500m (0.5 vCPU).
 
 </Alert>
 
@@ -258,7 +263,7 @@ To learn how to set up environment variables in your projects and applications, 
 
 ## Secrets
 
-To learn how to set up secrets in your projects and applications, navigate to [configuring Secrets][docs.using-qovery.configuration.secret] section.
+To learn how to set up secrets in your projects and applications, navigate to [configuring Secrets][docs.using-qovery.configuration.environment-variable] section.
 
 ## Logs
 
@@ -281,7 +286,7 @@ The file should follow this format:
 ...
 ```
 At the end of the job execution, this file will be processed by Qovery and a set of environment variables will be created, one for each element in the json. The information in the json file will be mapped to an environment variables in this way:
-- Variable Name: `QOVERY_OUTPUT_JOB_<JOBID>_<VARNAME>` , where `<JOBID>` is the id of the Job on Qovery side and `<VARNAME>` is the name of the element in the output file. 
+- Variable Name: `QOVERY_OUTPUT_JOB_<JOBID>_<VARNAME>` , where `<JOBID>` is the id of the Job on Qovery side and `<VARNAME>` is the name of the element in the output file.
 - Variable Value: field "value"
 - Secret: field "sensitive"
 
@@ -425,6 +430,6 @@ In the application overview, click on the `3 dots` button and remove the applica
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [docs.using-qovery.configuration.organization#container-registry-management]: /docs/using-qovery/configuration/organization/#container-registry-management
 [docs.using-qovery.configuration.organization#managing-git-permissions-using-the-qovery-github-app]: /docs/using-qovery/configuration/organization/#managing-git-permissions-using-the-qovery-github-app
-[docs.using-qovery.configuration.secret]: /docs/using-qovery/configuration/secret/
 [guides.advanced.monorepository]: /guides/advanced/monorepository/
 [guides.getting-started.debugging#logs]: /guides/getting-started/debugging/#logs
+[guides.tutorial.how-to-use-lifecycle-job-to-deploy-any-kind-of-resources]: /guides/tutorial/how-to-use-lifecycle-job-to-deploy-any-kind-of-resources/

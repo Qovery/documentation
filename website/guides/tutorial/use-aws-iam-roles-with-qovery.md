@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-12-27"
+last_modified_on: "2022-12-28"
 $schema: "/.meta/.schemas/guides.json"
 title: "Use AWS IAM roles with Qovery"
 description: "Give AWS IAM permissions to your application/container/job with Qovery"
@@ -25,7 +25,7 @@ This tutorial will show you how to add AWS IAM roles to your Qovery application,
      website/guides/tutorial/use-aws-iam-roles-with-qovery.md.erb
 -->
 
-## Application requiering S3 permissions
+## Application requiring S3 permissions
 
 In this first step, we will create a simple application that needs AWS permissions to access s3 buckets.
 
@@ -49,7 +49,7 @@ Set only 1 instance and 128MB of memory is enough for this example. Then continu
 
 ### Get Kubernetes namespace name
 
-Then in this container `Variables`, search for the variable called `QOVERY_KUBERNETES_NAMESPACE_NAME` and copy its value somewhere.
+Then in this container (or any application in this environment) `Variables`, search for the variable called `QOVERY_KUBERNETES_NAMESPACE_NAME` and copy its value somewhere.
 
 <p Valign="center">
   <img src="/img/aws-iam-assume-role/debian_namespace.png" alt="debian app" />

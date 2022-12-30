@@ -39,7 +39,7 @@ Before using the examples below, you need to:
 
 </Assumptions>
 
-This example will deploy a container application with Qovery from your GitLab CI pipeline. Feel free to adapt it to your need.
+This example will deploy a container application with Qovery from your GitHub CI pipeline. Feel free to adapt it to your need.
 
 ```yaml title=".github/workflows/deploy-with-qovery.yml"
 # 1. Build and Push image to a remote registry

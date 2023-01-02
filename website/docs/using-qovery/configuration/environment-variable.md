@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-12-23"
+last_modified_on: "2023-01-02"
 title: "Environment Variable & Secrets"
 description: "Learn how to configure Environment Variables and Secrets on Qovery"
 ---
@@ -60,7 +60,12 @@ By default, every environment contains the following BUILT_IN variables:
 |-----------------------------|------------------------|
 | **QOVERY_PROJECT_ID**       | Current project ID     |
 | **QOVERY_ENVIRONMENT_ID**   | Current environment ID |
-| **QOVERY_APPLICATION_ID**   | Current application ID |
+| **QOVERY_APPLICATION_ID**   | Current service ID (for application with source = git repository) |
+| **QOVERY_CONTAINER_ID**   | Current service ID (for application with source = container registry) |
+| **QOVERY_JOB_ID**   | Current service ID (for lifecycle job and cronjob) |
+| **QOVERY_CLOUD_PROVIDER_REGION**   | Cloud provider region of the Kubernetes cluster running this environment |
+| **QOVERY_KUBERNETES_NAMESPACE_NAME**   | Namespace used in Kubernetes to run the application of this environment |
+| **QOVERY_KUBERNETES_CLUSTER_NAME**   | Name of the Kubernetes cluster running this environment|
 
 For any service within your environment (database, application, job), your application get access to a set of BUILT_IN variables. These can be used, to configure the interconnection between your services.
 

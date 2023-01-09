@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-12-15"
+last_modified_on: "2023-01-06"
 $schema: "/.meta/.schemas/guides.json"
 title: Mono repository
 description: How to deploy applications using Monorepository with Qovery

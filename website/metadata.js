@@ -600,6 +600,15 @@ module.exports = {
           "title": "How to create and deploy a Discord bot in Python"
         },
         {
+          "author_github": "https://github.com/deimosfr",
+          "description": null,
+          "id": "/tutorial/how-to-deploy-helm-charts",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/how-to-deploy-helm-charts.md",
+          "series_position": null,
+          "title": "How to deploy Helm charts"
+        },
+        {
           "author_github": "https://github.com/Stun3R",
           "description": null,
           "id": "/tutorial/how-to-deploy-nuxtjs",

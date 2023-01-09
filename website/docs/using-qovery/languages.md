@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-12-27"
+last_modified_on: "2023-01-09"
 title: Languages
 description: "Everything you need to know to build your apps on Qovery"
 sidebar_label: hidden

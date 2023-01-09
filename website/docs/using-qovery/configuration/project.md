@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-12-13"
+last_modified_on: "2023-01-09"
 title: "Project"
 description: "Learn how to configure your Projects on Qovery"
 ---
@@ -9,7 +9,9 @@ import Alert from '@site/src/components/Alert';
 import Jump from '@site/src/components/Jump';
 import Assumptions from '@site/src/components/Assumptions';
 
-A project allows you to group a set of applications and their dependencies (databases & other services).
+A project allows you to group together a set of environments with the objective to run the same application (see the [Environment][docs.using-qovery.configuration.environment] page for more information).
+
+When creating a new organization, a project is created by default. You can customize the access to your project thanks to our [RBAC system][docs.using-qovery.configuration.organization#roles-based-access-control-rbac].
 
 <Assumptions name="documentation">
 
@@ -25,31 +27,27 @@ A project allows you to group a set of applications and their dependencies (data
      website/docs/using-qovery/configuration/project.md.erb
 -->
 
-## Create a project
+## Create a new project
+
+If you need to create an additional project, go into the organization settings and press on the `NEW` button.
 
 <p align="center">
-  <img src="/img/qovery_empty_state_project_list.png" alt="Qovery - project list with empty state" />
+  <img src="/img/configuration/project/project_creation.png" alt="Project Creation" />
 </p>
 
-To create a project you simply need to provide a name. It is also possible to provide a description afterwards.
+The modal will ask you to provide a name and a description.
 
-### Demo project
+## Edit project general information
 
-If you have no project to deploy but still want to give a try to Qovery, you can create a demo project.
-
-## Edit project general settings
-
-General settings of a project can be updated in the settings panel. You can access to it by clicking on the `SETTINGS` button. 
+General information of a project can be updated by:
+- opening the settings page
+- selecting the project
+- opening the `GENERAL` section. 
 
 <p align="center">
-  <img src="/img/project-setting-button.png" alt="Project settings button" />
+  <img src="/img/configuration/project/project_update.png" alt="Project Update" />
 </p>
 
-On the `General` tab, you will be able to update the name and the description of your project. 
-
-<p align="center">
-  <img src="/img/project-setting-panel.png" alt="Project settings button" />
-</p>
 
 ## Delete a project
 
@@ -59,27 +57,16 @@ This is a non-recoverable operation. By deleting your project, all your running 
 
 </Alert>
 
+You can delete a project by:
+- opening the settings page
+- selecting the project
+- opening the `DANGER` section and pressing the `Delete Project` button. 
+
 <p align="center">
-  <img src="/img/delete_project.png" alt="Qovery - delete a project" />
+  <img src="/img/configuration/project/project_delete.png" alt="Project Delete" />
 </p>
 
-## Deployment rules
 
-The **Deployment Rules** lets you configure the lifecycle of your [Environments][docs.using-qovery.configuration.environment].
-
-<Alert type="info">
-
-Using **Deployment Rules** is a good practice to reduce your cost up to 60%.
-
-</Alert>
-
-Refer to the [Deployment Rule][docs.using-qovery.configuration.deployment-rule] documentation to know more.
-
-## Addons
-
-TODO
-
-
-[docs.using-qovery.configuration.deployment-rule]: /docs/using-qovery/configuration/deployment-rule/
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
+[docs.using-qovery.configuration.organization#roles-based-access-control-rbac]: /docs/using-qovery/configuration/organization/#roles-based-access-control-rbac
 [docs.using-qovery.configuration.organization]: /docs/using-qovery/configuration/organization/

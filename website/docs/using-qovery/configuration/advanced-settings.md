@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-01-10"
+last_modified_on: "2023-01-11"
 title: "Service Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -43,7 +43,7 @@ The screen shows you the list of available advanced settings and for each of the
 
 You can show only the modified values by activating the "Show only overridden settings" feature
 
-Below is the list of advanced settings available. Note: some service type might now have access to a specific advanced settings. 
+Below is the list of advanced settings available. Note: some service types might now have access to specific advanced settings. 
 
 ### Application Deployment
 
@@ -58,6 +58,12 @@ Below is the list of advanced settings available. Note: some service type might 
 | Type    | Description                                                                                                                                                                                                                                                                                       | Use Case                                                                                                                                                                                                                                                                                                                                      | Default Value |
 |---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | boolean | Qovery allows you to set custom domains for your applications through the addition of a CNAME record to your domain's DNS settings. By default, when an application is deployed, Qovery checks that the CNAME record is set up correctly. This advanced setting allows you to disable this check. | If you are using a Content Delivery Network (CDN), checking the CNAME setup for any custom domains you may have set up is likely to stall the deployment of your application. <br /> <br />  Therefore, if you are using a CDN behind your application, we recommend disabling this feature to save time during your application deployments. | `true`        |
+
+#### deployment.termination_grace_period_seconds ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/cronjob.svg) ![](/img/advanced_settings/job.svg)
+
+| Type    | Description                                                                                                                                       | Use Case                                                                                                                                                                                    | Default Value |
+|---------|---------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| integer | Decide how many times in seconds the application is supposed to stop at maximum. After this time, the application will be forced to stop (killed) | An application requiring several tasks to be stopped properly should have a higher grace period. If the application finishes early, then it will not wait until the end of the grace period | `60`          |
 
 ### Kubernetes Probes ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/cronjob.svg) ![](/img/advanced_settings/job.svg)
 

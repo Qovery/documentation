@@ -54,15 +54,12 @@ Available for: Application, Container, Cronjob, Lifecycle Job
 |---------|---------------------------------------------------------------------------------------------|---------------|
 | integer | Allows you to specify an interval, in seconds, after which the application build times out. | `1800`        |
 
-
-
 #### deployment.custom_domain_check_enabled
 Available for: Application, Container, Cronjob, Lifecycle Job
 
-
-| Type    | Description                                               | Default Value |
-|---------|-----------------------------------------------------------|---------------|
-| boolean | Disable custom domain check when deploying an application | `1800`        |
+| Type    | Description                                                                                                                                                                                                                                                                                       | Use Case                                                                                                                                                                                                                                                                                                                                      | Default Value |
+|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| boolean | Qovery allows you to set custom domains for your applications through the addition of a CNAME record to your domain's DNS settings. By default, when an application is deployed, Qovery checks that the CNAME record is set up correctly. This advanced setting allows you to disable this check. | If you are using a Content Delivery Network (CDN), checking the CNAME setup for any custom domains you may have set up is likely to stall the deployment of your application. <br /> <br />  Therefore, if you are using a CDN behind your application, we recommend disabling this feature to save time during your application deployments. | `true`        |
 
 ### Kubernetes Probes
 Available for: Application, Container, Cronjob, Lifecycle Job
@@ -205,30 +202,12 @@ Available for: Application, Container, Cronjob, Lifecycle Job
 
 ### Network Settings
 
-#### deployment.custom_domain_check_enabled
+####  network.ingress.cors_allow_headers
 Available for: Application, Container
 
-
-| Type    | Description                                                                                                                                                                                                                                                                                       | Use Case                                                                                                                                                                                                                                                                                                                                      | Default Value |
-|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
-| boolean | Qovery allows you to set custom domains for your applications through the addition of a CNAME record to your domain's DNS settings. By default, when an application is deployed, Qovery checks that the CNAME record is set up correctly. This advanced setting allows you to disable this check. | If you are using a Content Delivery Network (CDN), checking the CNAME setup for any custom domains you may have set up is likely to stall the deployment of your application. <br /> <br />  Therefore, if you are using a CDN behind your application, we recommend disabling this feature to save time during your application deployments. | `true`        |
-
-
-#### network.ingress.cors_enable
-Available for: Application, Container
-
-| Type    | Description                                                | Use Case                                                                                                                                                                                                                                                     | Default Value  |
-|---------|------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------|
-| boolean | Allows you to enable Cross-Origin Resource Sharing (CORS). | The CORS mechanism supports secure cross-origin requests and data transfers between browsers and servers. For more information on CORS and when to enable it, see [Cross-Origin Resources Sharing] (https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS). | `false`        |
-
-
-#### network.ingress.cors_allow_origin
-Available for: Application, Container
-
-| Type   | Description                                                                                            | Use Case                                                                                                                                                                                                                                      | Default Value |
-|--------|--------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
-| string | *(For CORS users)* Allows you to specify which origin(s) (domain, scheme, port) can access a resource. | For security purposes, you can allow only one or a short list of origins to access your resources. For more information, see [CORS HTTP Response Headers] (https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#the_http_response_headers). | `"*"`         |
-
+| Type   | Description                                                                                         | Use Case                                                                                                                                                                                                                                                                                                              | Default Value                                                                                                   |
+|--------|-----------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
+| string | *(For CORS users)* Allows you to specify which set of headers can be present in the client request. | For security purposes, you can indicate which HTTP headers can be used during a CORS preflight request which includes the `Access-Control-Request-Headers` request header. For more information, see [CORS HTTP Response Headers] (https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#the_http_response_headers). | `"DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization"` |
 
 ####  network.ingress.cors_allow_methods
 Available for: Application, Container
@@ -237,15 +216,26 @@ Available for: Application, Container
 |--------|---------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------|
 | string | *(For CORS users)* Allows you to specify which set of methods can be used for the client request. | For security purposes, you can indicate which HTTP methods are permitted while accessing a resource in response to cross-origin requests. For more information, see [CORS HTTP Response Headers] (https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#the_http_response_headers). | `"GET, PUT, POST, DELETE, PATCH, OPTIONS"` |
 
-
-####  network.ingress.cors_allow_headers
+#### network.ingress.cors_allow_origin
 Available for: Application, Container
 
-| Type   | Description                                                                                         | Use Case                                                                                                                                                                                                                                                                                                              | Default Value                                                                                                   |
-|--------|-----------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------|
-| string | *(For CORS users)* Allows you to specify which set of headers can be present in the client request. | For security purposes, you can indicate which HTTP headers can be used during a CORS preflight request which includes the `Access-Control-Request-Headers` request header. For more information, see [CORS HTTP Response Headers] (https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#the_http_response_headers). | `"DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization"` |
+| Type   | Description                                                                                            | Use Case                                                                                                                                                                                                                                      | Default Value |
+|--------|--------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| string | *(For CORS users)* Allows you to specify which origin(s) (domain, scheme, port) can access a resource. | For security purposes, you can allow only one or a short list of origins to access your resources. For more information, see [CORS HTTP Response Headers] (https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#the_http_response_headers). | `"*"`         |
 
+#### network.ingress.enable_cors
+Available for: Application, Container
 
+| Type    | Description                                                | Use Case                                                                                                                                                                                                                                                     | Default Value  |
+|---------|------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------|
+| boolean | Allows you to enable Cross-Origin Resource Sharing (CORS). | The CORS mechanism supports secure cross-origin requests and data transfers between browsers and servers. For more information on CORS and when to enable it, see [Cross-Origin Resources Sharing] (https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS). | `false`        |
+
+#### network.ingress.enable_sticky_session
+Available for: Application, Container
+
+| Type    | Description                          | Use Case                                                                                                                                                            | Default Value  |
+|---------|--------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------|
+| boolean | Allows you to enable Sticky session. | Enable the load balancer to bind a user's session to a specific target. This ensures that all requests from the user during the session are sent to the same target | `false`        |
 
 #### network.ingress.keepalive_time_seconds
 Available for: Application, Container
@@ -261,35 +251,6 @@ Available for: Application, Container
 |---------|-------------------------------------------------------------------------------------------------------------|--------------------------------------|---------------|
 | integer | Sets a timeout (in seconds) during which an idle keepalive connection to an upstream server will stay open. | Useful to tune your gRPC application | `60`          |Available for: Application, Container
 
-#### network.ingress.send_timeout_seconds
-Available for: Application, Container
-
-| Type    | Description                                                                                                                                                                                                                                                                 | Use Case                                                            | Default Value |
-|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------|---------------|
-| integer | Sets a timeout (in seconds) for transmitting a response to the client. The timeout is set only between two successive write operations, not for the transmission of the whole response. If the client does not receive anything within this time, the connection is closed. | Useful to define the maximum timeout to wait for client connection. | `60`          |
-
-#### network.ingress.proxy_connect_timeout_seconds
-Available for: Application, Container
-
-| Type    | Description                                                                                                                                                | Use Case                                                                                                | Default Value |
-|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|---------------|
-| integer | Defines a timeout (in seconds) for establishing a connection with a proxied server. It should be noted that this timeout cannot usually exceed 75 seconds. | E.g. You can use it to define the maximum time to wait for your application to establish the connexion. | `60`          |
-
-#### network.ingress.proxy_send_timeout_seconds
-Available for: Application, Container
-
-| Type    | Description                                                                                                                                                                                                                                                                               | Use Case                                                     | Default Value |
-|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------|---------------|
-| integer | Sets a timeout (in seconds) for transmitting a request to the proxied server. The timeout is set only between two successive write operations, not for the transmission of the whole request. If the proxied server does not receive anything within this time, the connection is closed. | E.g. You can use it to fine-tune your WebSocket application. | `60`          |
-
-#### network.ingress.proxy_read_timeout_seconds
-Available for: Application, Container
-
-| Type    | Description                                                                                                                                                                                                                                                                    | Use Case                                                     | Default Value |
-|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------|---------------|
-| integer | Defines a timeout for reading a response from the proxied server. The timeout is set only between two successive read operations, not for the transmission of the whole response. If the proxied server does not transmit anything within this time, the connection is closed. | E.g. You can use it to fine-tune your WebSocket application. | `60`          |
-
-
 #### network.ingress.proxy_body_size_mb
 Available for: Application, Container
 
@@ -303,6 +264,34 @@ Available for: Application, Container
 | Type    | Description                                                                                             | Use Case                                                                        | Default Value |
 |---------|---------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|---------------|
 | integer | Allows you to set, in kilobytes, a header buffer size used while reading the response header from upstream. | E.g. You are using Auth0 with NextJS, you will need to set a bigger header size | `4`           |
+
+#### network.ingress.proxy_connect_timeout_seconds
+Available for: Application, Container
+
+| Type    | Description                                                                                                                                                | Use Case                                                                                                | Default Value |
+|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------|---------------|
+| integer | Defines a timeout (in seconds) for establishing a connection with a proxied server. It should be noted that this timeout cannot usually exceed 75 seconds. | E.g. You can use it to define the maximum time to wait for your application to establish the connexion. | `60`          |
+
+#### network.ingress.proxy_read_timeout_seconds
+Available for: Application, Container
+
+| Type    | Description                                                                                                                                                                                                                                                                    | Use Case                                                     | Default Value |
+|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------|---------------|
+| integer | Defines a timeout for reading a response from the proxied server. The timeout is set only between two successive read operations, not for the transmission of the whole response. If the proxied server does not transmit anything within this time, the connection is closed. | E.g. You can use it to fine-tune your WebSocket application. | `60`          |
+
+#### network.ingress.proxy_send_timeout_seconds
+Available for: Application, Container
+
+| Type    | Description                                                                                                                                                                                                                                                                               | Use Case                                                     | Default Value |
+|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------|---------------|
+| integer | Sets a timeout (in seconds) for transmitting a request to the proxied server. The timeout is set only between two successive write operations, not for the transmission of the whole request. If the proxied server does not receive anything within this time, the connection is closed. | E.g. You can use it to fine-tune your WebSocket application. | `60`          |
+
+#### network.ingress.send_timeout_seconds
+Available for: Application, Container
+
+| Type    | Description                                                                                                                                                                                                                                                                 | Use Case                                                            | Default Value |
+|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------|---------------|
+| integer | Sets a timeout (in seconds) for transmitting a response to the client. The timeout is set only between two successive write operations, not for the transmission of the whole response. If the client does not receive anything within this time, the connection is closed. | Useful to define the maximum timeout to wait for client connection. | `60`          |
 
 #### network.ingress.whitelist_source_range
 Available for: Application, Container
@@ -318,15 +307,6 @@ Available for: Application, Container
 
      website/docs/using-qovery/configuration/advanced-settings.md.erb
 -->
-
-## Auto-scaling
-
-####  hpa.cpu.average_utilization_percent
-Available for: Application, Container
-
-| Type    | Description                                                                                                                                            | Default Value |
-|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
-| integer | Auto-scaling is triggered when a specific CPU utilization metric is reached (for instance, 40%). This advanced setting allows you to set this metric.  | `60`          |
 
 ## Auto-scaling
 

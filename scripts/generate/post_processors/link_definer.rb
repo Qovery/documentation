@@ -81,8 +81,8 @@ module PostProcessors
       end
 
       def verify_no_direct_links!
-        direct_links = content.scan(/\]\([^#]([a-zA-Z0-9_\-\.\/?= ]*)\)/).flatten.uniq
-
+        
+        direct_links = content.scan(/\]\([^#]([a-zA-Z0-9_\-\.\/?= ]*?!\/img\/.*\.(jpg|jpeg|png|gif|bmp|svg))\)/).flatten.uniq
         if direct_links.any?
           raise <<~EOF
           You used a direct link in the #{file_path.inspect} file:

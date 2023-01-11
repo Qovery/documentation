@@ -37,11 +37,13 @@ The screen shows you the list of available advanced settings and for each of the
 - The default value
 - The value configured right now
 
-You can show only the modified values by activating the "Show only overridden settings" feature
+You can show only the modified values by activating the "Show only overridden settings" feature toggle.
 
-Below is the list of advanced settings available. Note: some service types might now have access to specific advanced settings. 
+All services have access to advanced settings, you can find where they are available in the documentation below with those badges:
 
-### Application Deployment
+#### ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/cronjob.svg) ![](/img/advanced_settings/job.svg)
+
+## Application Deployment
 
 #### build.timeout_max_sec ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/cronjob.svg) ![](/img/advanced_settings/job.svg)
 
@@ -178,7 +180,7 @@ To define which path should be used for HTTP probes, you can configure the `read
 |---------|--------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | integer | Allows you to specify how many consecutive failures are needed, as a minimum, for the probe to be considered failed after having succeeded previously. | `3`           |
 
-### Network Settings
+## Network Settings
 
 #### network.ingress.cors_allow_headers ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg)
 
@@ -299,7 +301,7 @@ To define which path should be used for HTTP probes, you can configure the `read
 |---------|--------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | string | Allows you to define the maximum number of succeeded job executions that should be returned in the job execution history | `1`          |
 
-### Security
+## Security
 
 #### security.service_account_name ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/cronjob.svg) ![](/img/advanced_settings/job.svg)
 

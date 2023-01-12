@@ -14,30 +14,44 @@ Cluster advanced settings are not available in the Qovery console yet.
 
 </Alert>
 
+All clusters have access to advanced settings, you can find where they are available in the documentation below with those badges mentioning for which Cloud provider they are available:
+
+#### ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg)
+
 Below is the list of advanced settings currently available for clusters.
 
-### Logs
+## Logs
 
-#### loki.log_retention_in_week
+#### loki.log_retention_in_week ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg)
 
 | Type    | Description                                                                                 | Default Value |
 |---------|---------------------------------------------------------------------------------------------|---------------|
 | integer | Allows you to specify an amount in weeks for how long logs of your applications are kept.   | `12`          |
 
+#### aws.vpc.enable_s3_flow_logs ![](/img/advanced_settings/aws.svg)
 
-### Image registry
+| Type    | Description                                                         | Default Value |
+|---------|---------------------------------------------------------------------|---------------|
+| boolean | Enable flow logs on the cluster VPC and store them in an s3 bucket. | `false`       |
 
-#### registry.image_retention_time
+## Image registry
 
-| Type    | Description                                                                                    | Default Value |
-|---------|------------------------------------------------------------------------------------------------|---------------|
-| integer | Allows you to specify an amount in seconds after which images in default registry are deleted. | `31536000`    |
+#### registry.image_retention_time ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg)
 
+| Type    | Description                                                                                        | Default Value |
+|---------|----------------------------------------------------------------------------------------------------|---------------|
+| integer | Allows you to specify an amount in seconds after which images in the default registry are deleted. | `31536000`    |
 
-### Cloud Provider
+#### cloud_provider_container_registry_tags ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg)
 
-#### load_balancer.size
+| Type                | Description                                           | Default Value |
+|---------------------|-------------------------------------------------------|---------------|
+| Map<String, String> | Add additional tags on the cluster dedicated registry |               |
 
-| Type    | Description                                                                                 | Default Value |
-|---------|---------------------------------------------------------------------------------------------|---------------|
-| string  | (Scaleway Only) Allows you to specify the load balancer size in front of your cluster.      | `lb-s`        |
+## Network
+
+#### load_balancer.size ![](/img/advanced_settings/scaleway.svg)
+
+| Type    | Description                                                                 | Default Value |
+|---------|-----------------------------------------------------------------------------|---------------|
+| string  | Allows you to specify the load balancer size in front of your cluster.      | `lb-s`        |

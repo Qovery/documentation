@@ -187,7 +187,6 @@ module.exports = {
     [
       "@docusaurus/plugin-content-docs",
       {
-        editUrl: "https://github.com/Qovery/documentation/edit/master/website/",
         sidebarPath: require.resolve("./sidebars.js"),
       },
     ],

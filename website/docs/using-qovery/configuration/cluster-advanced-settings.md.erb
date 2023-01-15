@@ -34,6 +34,12 @@ Below is the list of advanced settings currently available for clusters.
 |---------|---------------------------------------------------------------------|---------------|
 | boolean | Enable flow logs on the cluster VPC and store them in an s3 bucket. | `false`       |
 
+#### aws.vpc.flow_logs_retention_days ![](/img/advanced_settings/aws.svg)
+
+| Type    | Description                                                            | Default Value |
+|---------|------------------------------------------------------------------------|---------------|
+| boolean | Set the number of retention days for flow logs. Disable with value `0` | `365`         |
+
 ## Image registry
 
 #### registry.image_retention_time ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg)

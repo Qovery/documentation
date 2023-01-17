@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-12-23"
+last_modified_on: "2023-01-17"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -366,13 +366,12 @@ After setting up a custom domain, you'll see a `Value` that you need to set up a
 
 Setting up the `CNAME` on the domain provider side will make your app accessible through your custom domain on Qovery.
 
-#### Persistent sessions
+## Connecting to a database
+To know how to access your database from your application, [have a look at the database section][docs.using-qovery.configuration.environment-variable#connecting-to-a-database].
 
-A user of your application will be redirected by the load balancer to the same instance each time he accesses to it.
+## Connecting to another application
 
-<p align="center">
-  <img src="/img/sticky-session.png" alt="Sticky session" />
-</p>
+To know how to access your database from your application, [have a look at the database section][docs.using-qovery.configuration.environment-variable#connecting-to-another-application].
 
 ## Environment Variable
 
@@ -440,15 +439,6 @@ In the application overview, click on the `3 dots` button and remove the applica
 </li>
 </ol>
 </Steps>
-
-
-### Connecting to a database
-To know how to access your database from your application, [have a look at the database section][docs.using-qovery.configuration.environment-variable#connecting-to-a-database].
-
-
-### Connecting to another application
-
-To know how to access your database from your application, [have a look at the database section][docs.using-qovery.configuration.environment-variable#connecting-to-another-application].
 
 
 [docs.configuration.application#resources]: /docs/using-qovery/configuration/application/#resources

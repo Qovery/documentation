@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-01-12"
+last_modified_on: "2023-01-18"
 title: "Cluster Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -42,6 +42,12 @@ Below is the list of advanced settings currently available for clusters.
 | Type    | Description                                                         | Default Value |
 |---------|---------------------------------------------------------------------|---------------|
 | boolean | Enable flow logs on the cluster VPC and store them in an s3 bucket. | `false`       |
+
+#### aws.vpc.flow_logs_retention_days ![](/img/advanced_settings/aws.svg)
+
+| Type    | Description                                                            | Default Value |
+|---------|------------------------------------------------------------------------|---------------|
+| integer | Set the number of retention days for flow logs. Disable with value `0` | `365`         |
 
 ## Image registry
 

@@ -12,18 +12,30 @@ You have created an [Environment][docs.using-qovery.configuration.environment].
 
 </Assumptions>
 
-Qovery provides access to the most popular SQL and NoSQL databases available on the major cloud providers. Reliability and resiliency are at the heart of their services, so you don't have to worry about your data on Qovery.
+Qovery natively lets you deploy and access the most popular SQL and NoSQL databases available on the major cloud providers. Reliability and resiliency are at the heart of their services, so you don't have to worry about your data on Qovery. 
+
+Qovery natively supports the following databases:
+- PostgreSQL
+- MySQL
+- MongoDB
+- Redis
+
+Qovery can natively operate a database in two different ways (called "Mode"):
+- As a Docker Container: Testing / dev : Qovery can provide the database as Docker container with attached persistent storage directly on your Kubernetes cluster (1 instance). They are perfect for development and testing, as they are significantly cheaper than services provided by cloud providers. In the Qovery UI these will be called Databases in `Container` mode
+- As a Cloud provider managed database: Qovery can create and manage the lifecycle of a cloud provider managed database instance (for example via RDS on AWS). These are perfect for production since they guarantee the right level of resiliance, performance and data security best practices. In the Qovery UI these will be called Databases in `Managed` mode
+
+If the natively supported databases and operation modes are not enough for you, we can still offer you an alternative solution depending on your use case:
+- Use an existing DB on a dedicated VPC: your applications can access this database via VPC peering. Have a look at [this guide][guides.tutorial.aws-vpc-peering-with-qovery] for more information.
+- Create my own database: You will be able to manage the lifecycle of this database using the [lifecycle jobs][docs.using-qovery.configuration.lifecycle-job]. Have a look at [this example](https://github.com/Qovery/lifecycle-job-examples/tree/main/examples/aws-rds-with-terraform) which allows you to deploy your custom RDS instance on AWS via Terraform.
+
+The following sections will show you how you can create and manage the databases natively supported by Qovery. For any other use case, please refer to the guides provided above. 
+
+## Create a database
 
 <Alert type="info">
 
 Check out [this video guide][guides.getting-started.create-a-database] to create and deploy your first database
 
-</Alert>
-
-## Create a database
-
-<Alert type="info">
-Please note that this section presents the general setup of a database. Depending on the database you want to use, have a look at the dedicated sub-page to get more information on the supported versions or any other database specificities.
 </Alert>
 
 <Steps headingDepth={3}>
@@ -51,24 +63,32 @@ Click `Add Database` button
 
 <li>
 
-Select database type, name, version, mode and accessibility
+Select database type, name, description (optional), version, mode and accessibility
 
 <Alert type="info">
 Please refer to the Configuration section below to know more about each of these parameters.
 </Alert>
 
 <p align="center">
-  <img src="/img/configuration/database/db-2.png" alt="Database" />
+  <img src="/img/configuration/database/db-2.png" alt="General Information" />
 </p>
 
 </li>
 
 <li>
-
-Deploy the database using `Action` deploy button
+If you are using the database in `Container` mode, you can set the CPU, RAM and storage that will be assigned to the instance running the docker image of the database.
 
 <p align="center">
-  <img src="/img/configuration/database/db-3.png" alt="Database" />
+  <img src="/img/configuration/database/db-3.png" alt="Resources" />
+</p>
+
+</li>
+
+<li>
+At the end a recap will allow you to just create the database or create and deploy it 
+
+<p align="center">
+  <img src="/img/configuration/database/db-4.png" alt="Recap" />
 </p>
 
 </li>
@@ -78,69 +98,50 @@ Deploy the database using `Action` deploy button
 
 ## Configuration
 
+Once created, you can access the configuration of a database at any time via the Settings tab available on the database page
+
+<p align="center">
+  <img src="/img/configuration/database/settings.png" alt="Database Settings" />
+</p>
+
+You can find below the description of each of the tabs available in this section
+
 ### General
 
 #### Modes
 
-Databases can operate in two modes:
+As described at the beginning of this document, databases can operate in two modes:
 
 - Managed
 - Container
 
 **Managed** databases are perfect for production - they are provided and managed by major cloud providers like AWS to make sure your production data is well managed.
 
-**Container** databases are managed by Qovery as Docker containers with attached persistent storage. They are perfect for development and testing, as they are significantly cheaper than services provided by cloud providers.
+**Container** databases are managed by Qovery as Docker containers with attached persistent storage directly on your Kubernetes cluster (1 instance). They are perfect for development and testing, as they are significantly cheaper than services provided by cloud providers.
 
-Please refers to the dedicated database sub-pages to get more information on the supported mode for each of our database types.
+Please refer to the dedicated database sub-pages to get more information on the supported mode for each cloud provider.
 
 #### Versions
 
-Please refers to the dedicated database sub-pages to get more information on the supported versions and all database configuration specificities.
-
-You can adjust the version of your database in `General` section of database settings:
-
-<p align="center">
-  <img src="/img/configuration/database/db-6.png" alt="Database Version" />
-</p>
+We regularly update the version available for each database. Please refer to the dedicated database sub-pages to get more information on the supported version for each database types and cloud provider.
 
 #### Accessibility
 
-To make your database secure, you may decide not to expose it publicly.
+This parameter let you decide to expose publicly or not your database.
 
 - **Public** access will make your database accessible via the public network
 - **Private** access will make your database accessible only by applications in your environment
 
-You can configure the accessibility settings in `General` section of database settings:
-
-<p align="center">
-  <img src="/img/configuration/database/db-6.png" alt="Database Accessibility" />
-</p>
-
 ### Resources
+This section is available only for databases in **Container** mode
 
-#### CPU
+#### CPU / Memory 
 
-To tweak CPU configuration of your database, navigate to `Resource` section in database settings:
-
-<p align="center">
-  <img src="/img/configuration/database/db-4.png" alt="Database CPU" />
-</p>
-
-#### Memory
-
-To tweak RAM configuration of your database, navigate to `Resource` section in database settings:
-
-<p align="center">
-  <img src="/img/configuration/database/db-5.png" alt="Database Memory" />
-</p>
+You can select the CPU assigned to the Kuerbetes pod running the database instance
 
 #### Storage
 
-To tweak the disk space assigned to your database, navigate to `Resource` section in the database settings:
-
-<p align="center">
-  <img src="/img/configuration/database/db-7.png" alt="Database Storage" />
-</p>
+You can select the size of the persistant storage attached to the container database.
 
 ## Credentials and connectivity
 
@@ -199,7 +200,7 @@ Select your environment and database
 In database overview, click on `Action` remove button
 
 <p align="center">
-  <img src="/img/configuration/database/db-8.png" alt="Database Remove" />
+  <img src="/img/configuration/database/delete.png" alt="Database Remove" />
 </p>
 
 </li>

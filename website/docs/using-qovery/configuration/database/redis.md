@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-04-08"
+last_modified_on: "2023-01-19"
 title: Redis
 description: "How to set up and use a Redis database"
 ---
@@ -20,14 +20,14 @@ Qovery supports the following Redis versions.
 
 |Cloud provider|Version|Container supported|Managed supported|
 |--------------|---------|-------|---------------------------|
+|AWS|7|Yes|Yes|
 |AWS|6|Yes|Yes|
 |AWS|5|Yes|Yes|
-|Digital Ocean|6|Yes|Soon|
-|Digital Ocean|5|Yes|Soon|
+|Scaleway|7|Yes|No|
 |Scaleway|6|Yes|No|
 |Scaleway|5|Yes|No|
 
-Have a look at the [Database page][docs.using-qovery.configuration.database] to know more about the database setup.
+Have a look at the [Database page][docs.using-qovery.configuration.database] to know more about the database creation and setup.
 
 
 [docs.using-qovery.configuration.database]: /docs/using-qovery/configuration/database/

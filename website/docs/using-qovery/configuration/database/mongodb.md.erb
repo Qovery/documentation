@@ -11,15 +11,13 @@ Qovery supports the following MongoDB versions.
 
 |Cloud provider|Version|Container supported|Managed supported|
 |--------------|---------|-------|---------------------------|
-|AWS|4.4|Yes|Yes|
-|AWS|4.2|Yes|Yes|
-|AWS|4.0|Yes|Yes|
-|Digital Ocean|4.4|Yes|Soon|
-|Digital Ocean|4.2|Yes|Soon|
-|Digital Ocean|4.0|Yes|Soon|
+|AWS|4.4|Yes|No|
+|AWS|4.2|Yes|No|
+|AWS|4.0|No|Yes|
+|AWS|3.6|Yes|No|
 |Scaleway|4.4|Yes|No|
 |Scaleway|4.2|Yes|No|
-|Scaleway|4.0|Yes|No|
+|Scaleway|3.6|Yes|No|
 
 
 ## Credentials
@@ -28,8 +26,8 @@ Qovery supports the following MongoDB versions.
 
 Your Docker image must contain the TLS certificate of the MongoDB cluster - it can be [downloaded here](https://s3.amazonaws.com/rds-downloads/rds-combined-ca-bundle.pem).
 
-The application must be configured to use it. If you use the environment variable `QOVERY_DATABASE_MY_MONGODB_CONNECTION_URI`, you usually should have just append `&ssl_ca_certs=/path/to/the/rds-combined-ca-bundle.pem` to its value.
+The application must be configured to use it. If you use the environment variables to build the URI to connect tou your database, you usually should have just append `&ssl_ca_certs=/path/to/the/rds-combined-ca-bundle.pem` to its value.
 
 </Alert>
 
-Have a look at the [Database page][docs.using-qovery.configuration.database] to know more about the database setup.
+Have a look at the [Database page][docs.using-qovery.configuration.database] to know more about the database creation and setup.

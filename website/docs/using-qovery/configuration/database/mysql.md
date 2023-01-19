@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-04-08"
+last_modified_on: "2023-01-19"
 title: MySQL
 description: "How to set up and use a MySQL database"
 ---
@@ -22,15 +22,10 @@ Qovery supports the following MySQL versions.
 |--------------|---------|-------|---------------------------|
 |AWS|8.0|Yes|Yes|
 |AWS|5.7|Yes|Yes|
-|AWS|5.6|Yes|Yes|
-|Digital Ocean|8.0|Yes|Soon|
-|Digital Ocean|5.7|Yes|Soon|
-|Digital Ocean|5.6|Yes|Soon|
-|Scaleway|8.0|Yes|Yes|
+|Scaleway|8.0|Yes|No|
 |Scaleway|5.7|Yes|No|
-|Scaleway|5.6|Yes|No|
 
-Have a look at the [Database page][docs.using-qovery.configuration.database] to know more about the database setup.
+Have a look at the [Database page][docs.using-qovery.configuration.database] to know more about the database creation and setup.
 
 
 [docs.using-qovery.configuration.database]: /docs/using-qovery/configuration/database/

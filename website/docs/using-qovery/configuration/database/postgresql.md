@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-04-08"
+last_modified_on: "2023-01-19"
 title: PostgreSQL
 description: "How to set up and use a PostgreSQL database"
 ---
@@ -20,23 +20,19 @@ Qovery supports the following PostgreSQL versions.
 
 |Cloud provider|Version|Container supported|Managed supported|
 |--------------|---------|-------|---------------------------|
+|AWS|14|Yes|No|
 |AWS|13|Yes|Yes|
 |AWS|12|Yes|Yes|
 |AWS|11|Yes|Yes|
 |AWS|10|Yes|Yes|
-|AWS|9|Yes|Yes|
-|Digital Ocean|13|Yes|Soon|
-|Digital Ocean|12|Yes|Soon|
-|Digital Ocean|11|Yes|Soon|
-|Digital Ocean|10|Yes|Soon|
-|Digital Ocean|9|Yes|Soon|
-|Scaleway|13|Yes|Yes|
-|Scaleway|12|Yes|Yes|
-|Scaleway|11|Yes|Yes|
-|Scaleway|10|Yes|Yes|
-|Scaleway|9|Yes|No|
+|AWS|9|No|Yes|
+|Scaleway|14|Yes|No|
+|Scaleway|13|Yes|No|
+|Scaleway|12|Yes|No|
+|Scaleway|11|Yes|No|
+|Scaleway|10|Yes|No|
 
-Have a look at the [Database page][docs.using-qovery.configuration.database] to know more about the database setup.
+Have a look at the [Database page][docs.using-qovery.configuration.database] to know more about the database creation and setup.
 
 
 [docs.using-qovery.configuration.database]: /docs/using-qovery/configuration/database/

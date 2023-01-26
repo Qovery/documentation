@@ -337,26 +337,29 @@ Var `QOVERY_OUTPUT_JOB_<JOBID>_DB_PORT`
 
 Once the execution of the job is terminated and the environment variables are created, any application within the same environment will be able to access those environment variables and thus connect to the postgres instance.
 
-## Force execution
+## Force Run
 
-You can force the execution of a job and execute it independently of its configuration (cron expression or event) and of its deployment status by:
+You can force the execution of a job independently its deployment status by:
 
 <Steps headingDepth={3}>
 <ol>
 <li>
 
-Selecting your job
-
-</li>
-<li>
-
-In the service overview, click on the `Play` button and `Force Run`.
+In the service overview, select the job you want to force and click on the `Play` button and `Force Run`.
 
 
 </li>
+
 <li>
 
-Once you click, the job will be deployed and executed. You will be able to follow its execution within the application logs
+Select the event you want to force. 
+
+
+</li>
+
+<li>
+
+Once you click, the job will be deployed and executed with the entrypoint and arguments associated to the selected event. You will be able to follow its execution within the application logs
 
 </li>
 </ol>

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-12-23"
+last_modified_on: "2023-01-26"
 title: "Cronjob"
 description: "Learn how to configure your Cronjob on Qovery"
 ---
@@ -252,7 +252,7 @@ To learn how to display your application logs, navigate to [logs section in our 
 
 ## Force execution / Run
 
-You can force the execution of a job and execute it independently of its configuration (cron expression or event) by:
+You can force the execution of a job and execute it independently of its configuration (cron expression or event) and of its deployment status by:
 
 <Steps headingDepth={3}>
 <ol>
@@ -263,13 +263,13 @@ Selecting your job
 </li>
 <li>
 
-In the application overview, click on the `Play` button and `Run`.
+In the service overview, click on the `Play` button and `Force Run`.
 
 
 </li>
 <li>
 
-Once you click, the job will be executed and you will be able to follow its execution within the application logs
+Once you click, the job will be deployed and executed. You will be able to follow its execution within the application logs
 
 </li>
 </ol>

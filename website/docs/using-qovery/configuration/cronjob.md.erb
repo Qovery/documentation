@@ -240,41 +240,49 @@ To learn how to display your application logs, navigate to [logs section in our 
 
 ## Force Run
 
-You can force the execution of a job and execute it independently of its configuration and of its deployment status by:
+You can force the execution of a job independently its deployment status by:
 
 <Steps headingDepth={3}>
 <ol>
 <li>
 
-Selecting your job
+Select the job that you want to force
 
 </li>
 <li>
 
-In the service overview, click on the `Play` button and `Force Run`.
+click on the `Play` button of the cronjob you want to force and select the `Force Run` option. Note: the same option is available on the service list as well
 
 
 </li>
 <li>
 
-Once you click, the job will be deployed and executed. You will be able to follow its execution within the application logs
+Once you click, the job will be deployed and executed once. You will be able to follow its execution within the application logs
 
 </li>
 </ol>
 </Steps>
 
+<Alert type="info">
+
+If the cronjob has not yet been deployed, forcing its execution will make it run only once (the scheduling mechanism will not start).
+
+</Alert>
+
 ## Deploy other version
+
+To deploy another code version of your job:
 
 <Steps headingDepth={3}>
 <ol>
 <li>
 
-Choose your job
+Select the job where you want to modify the version
 
 </li>
 <li>
 
-In the application overview, click on the `Play` button and `Deploy Other Version`.
+click on the `Play` button of the cronjob and select the `Deploy Other Version` option. Note: the same option is available on the service list as well
 
 <p align="center">
   <img src="/img/configuration/application/deploy-other-version.png" alt="Update All" />
@@ -293,18 +301,19 @@ Once you click, this panel will appear, and you will be able to choose the versi
 </ol>
 </Steps>
 
+
 ## Delete a job
 
 <Steps headingDepth={3}>
 <ol>
 <li>
 
-Choose your application
+Select the job you want to delete
 
 </li>
 <li>
 
-In the application overview, click on the `3 dots` button and remove the application.
+In the overview, click on the `3 dots` button and remove the job. Note: the same option is available on the service list as well
 
 <p align="center">
   <img src="/img/configuration/application/app-1.png" alt="Application" />

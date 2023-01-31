@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-01-11"
+last_modified_on: "2023-01-29"
 title: "Service Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -274,9 +274,33 @@ To define which path should be used for HTTP probes, you can configure the [`rea
 
 #### network.ingress.whitelist_source_range ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg)
 
-| Type    | Description                                                                                            | Use Case                                                                                                                                                                                                                                                  | Default Value        |
-|---------|--------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|
-| string | Allows you to specify which IP ranges are allowed to access your application. The value is a comma-separated list of CIDRs, e.g. 10.0.0.0/24,172.10.0.1 | By default, any IP can access your application if it's exposed publicly and the users know the URL. You can limit its access by specifying the IPs you want to reach the app (e.g. the IP of your office) | `0.0.0.0/0` (any IP) |
+| Type   | Description                                                                                                                                               | Use Case                                                                                                                                                                                                  | Default Value        |
+|--------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|
+| string | Allows you to specify which IP ranges are allowed to access your application. The value is a comma-separated list of CIDRs, e.g. `10.0.0.0/24,172.10.0.1` | By default, any IP can access your application if it's exposed publicly and the users know the URL. You can limit its access by specifying the IPs you want to reach the app (e.g. the IP of your office) | `0.0.0.0/0` (any IP) |
+
+#### network.ingress.denylist_source_range ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg)
+
+| Type   | Description                                                                                                                                                    | Default Value |
+|--------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| string | Allows you to specify which IP ranges are not allowed to access your application. The value is a comma-separated list of CIDRs, e.g. `10.0.0.0/24,172.10.0.1` | ``            |
+
+#### network.ingress.basic_auth_env_var ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg)
+
+| Type   | Description                                                                                                                  | Default Value |
+|--------|------------------------------------------------------------------------------------------------------------------------------|---------------|
+| string | Set the name of an environment variable to use as a basic authentication (`login:crypted_password`) from `htpasswd` command. | ``            |
+
+Here is an example where you can create a secret environment variable on Qovery and set a name like `BASIC_AUTH_CREDENTIALS`. The content should be the result of the `htpasswd` command:
+```
+$ htpasswd -n <username>
+New password: 
+Re-type new password: 
+username:$apr1$jpwW4vG9$fwbzWBgRqARzNX93plDq20
+```
+
+The content of the `BASIC_AUTH_CREDENTIALS` environment variable should be: `username:$apr1$jpwW4vG9$fwbzWBgRqARzNX93plDq20`. To finish, set the [`network.ingress.basic_auth_env_var`](#networkingressbasic_auth_env_var) advanced settings to `BASIC_AUTH_CREDENTIALS`.
+
+You can pass set credentials by separating them with a comma. For example: `username1:$apr1$jpwW4vG9$fwbzWBgRqARzNX93plDq20,username2:$apr1$jpwW4vG9$fwbzWBgRqARzNX93plDq20`. However, the total length of the environment variable should not exceed 1MB.
 
 ## Auto-scaling
 

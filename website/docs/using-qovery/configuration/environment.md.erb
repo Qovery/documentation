@@ -32,6 +32,9 @@ You can create a new environment by clicking on the `Create environment` button 
   <img src="/img/create-env.png" alt="Create an environment" />
 </p>
 
+## Deployment Management
+Have a look at the [Deployment Management][docs.using-qovery.deployment.deployment-management] section for more information.
+
 ### Deployment rules and automatic option.
 
 By default, `mode` and `cluster` parameters are set as "automatic".
@@ -144,52 +147,6 @@ Environment clone is convenient for those use cases:
 - Make a demo without impacting the original Environment.
 - Validating a feature that needs to reflect the original Environment.
 
-## Update an Environment
-
-Qovery can detect when a running application is not using the latest version of the code available in its Git repository.
-To solve this, you can update your applications at environment level:
-
-<Steps headingDepth={3}>
-<ol>
-<li>
-
-In the [Qovery Console][urls.qovery_console], access your environment.
-
-</li>
-
-<li>
-
-In the environment overview, click `Actions`:
-<p align="center">
-  <img src="/img/configuration/application/Actions_on_Environment.png" alt="Application" />
-</p>
-
-The `Actions` menu unfolds.
-
-</li>
-<li>
-
-Select `Update All`:
-<p align="center">
-  <img src="/img/configuration/application/Environment_Update_All.png" alt="Application" />
-</p>
-
-The `Update environment` window opens.
-
-</li>
-<li>
-
-Select the application(s) you want to update and click `Update`:
-
-<p align="center">
-  <img src="/img/configuration/application/Update_Environment_Window.png" alt="Application" />
-</p>
-
-The selected applications are updated based on the latest version of the code available in their Git repositories.
-</li>
-
-</ol>
-</Steps>
 
 ## Types of environment
 

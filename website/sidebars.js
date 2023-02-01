@@ -72,10 +72,11 @@ module.exports = {
         },
         {
           type: 'category',
-          label: 'Observability',
+          label: 'Deployment',
           items: [
-            "using-qovery/observability",
-            "using-qovery/observability/running-and-deployment-statuses",
+            "using-qovery/deployment",
+            "using-qovery/deployment/deployment-management",
+            "using-qovery/deployment/running-and-deployment-statuses",
           ],
         },
         {

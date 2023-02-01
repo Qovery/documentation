@@ -1,11 +1,8 @@
 ---
-last_modified_on: "2022-10-17"
+last_modified_on: "2023-02-01"
 title: "Environment"
 description: "Learn how to configure your Environments on Qovery"
 ---
-
-import Steps from '@site/src/components/Steps';
-
 import Jump from '@site/src/components/Jump';
 import Alert from '@site/src/components/Alert';
 import Assumptions from '@site/src/components/Assumptions';
@@ -43,6 +40,9 @@ You can create a new environment by clicking on the `Create environment` button 
 <p align="center">
   <img src="/img/create-env.png" alt="Create an environment" />
 </p>
+
+## Deployment Management
+Have a look at the [Deployment Management][docs.using-qovery.deployment.deployment-management] section for more information.
 
 ### Deployment rules and automatic option.
 
@@ -156,52 +156,6 @@ Environment clone is convenient for those use cases:
 - Make a demo without impacting the original Environment.
 - Validating a feature that needs to reflect the original Environment.
 
-## Update an Environment
-
-Qovery can detect when a running application is not using the latest version of the code available in its Git repository.
-To solve this, you can update your applications at environment level:
-
-<Steps headingDepth={3}>
-<ol>
-<li>
-
-In the [Qovery Console][urls.qovery_console], access your environment.
-
-</li>
-
-<li>
-
-In the environment overview, click `Actions`:
-<p align="center">
-  <img src="/img/configuration/application/Actions_on_Environment.png" alt="Application" />
-</p>
-
-The `Actions` menu unfolds.
-
-</li>
-<li>
-
-Select `Update All`:
-<p align="center">
-  <img src="/img/configuration/application/Environment_Update_All.png" alt="Application" />
-</p>
-
-The `Update environment` window opens.
-
-</li>
-<li>
-
-Select the application(s) you want to update and click `Update`:
-
-<p align="center">
-  <img src="/img/configuration/application/Update_Environment_Window.png" alt="Application" />
-</p>
-
-The selected applications are updated based on the latest version of the code available in their Git repositories.
-</li>
-
-</ol>
-</Steps>
 
 ## Types of environment
 
@@ -290,5 +244,5 @@ To delete your environment, you must go in the `settings` > `Danger zone` and de
 [docs.using-qovery.configuration.deployment-rule]: /docs/using-qovery/configuration/deployment-rule/
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [docs.using-qovery.configuration.project]: /docs/using-qovery/configuration/project/
+[docs.using-qovery.deployment.deployment-management]: /docs/using-qovery/deployment/deployment-management/
 [guides.tutorial.getting-started-with-preview-environments-on-aws-for-beginners]: /guides/tutorial/getting-started-with-preview-environments-on-aws-for-beginners/
-[urls.qovery_console]: https://console.qovery.com

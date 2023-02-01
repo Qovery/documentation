@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-10-12"
+last_modified_on: "2023-02-01"
 title: Troubleshoot
 description: "Everything you need to troubleshoot your application with Qovery"
 sidebar_label: hidden
@@ -176,12 +176,24 @@ When a custom domain is added to an application, it must be configured on your s
   <img src="/img/custom-domain-configuration.png" alt="Custom Domain Configuration" />
 </p>
 
-You can check that your custom domain is well configured using the following command: `dig A ${YOUR_CUSTOM_DOMAIN} +short`
-<p Valign="center">
-  <img src="/img/custom-domain-verification-dig.png" alt="Custom Domain Verification" />
-</p>
+You can check that your custom domain is well configured using the following command: `dig CNAME ${YOUR_CUSTOM_DOMAIN} +short`. On the domain above, we can check the configuration is correct on Google DNS servers:
 
-You should retrieve in the output the default url configured by Qovery, e.g `zdf72de71-z709e1a85-gtw.bool.sh` in our example.
+```bash
+$ dig CNAME new.console.qovery.com +short @8.8.8.8
+zdf72de71-z709e1a85-gtw.za8ad0659.bool.sh.
+```
+
+It should return the same value as the one configured on Qovery. Otherwise, be patient (some minutes depending on DNS registrars) and ensure the DNS modification has been applied. Finally, you can check the content of the `CNAME` with:
+
+```bash
+$ dig A new.console.qovery.com +short @8.8.8.8
+zdf72de71-z709e1a85-gtw.za8ad0659.bool.sh.
+ac8ad80d15e534c549ee10c87aaf82b4-bba68d8f58c6755d.elb.us-east-2.amazonaws.com.
+3.19.99.1
+18.188.137.104
+```
+
+We can see the destination contains other elements, indicating that the `CNAME` is pointing to an endpoint and correctly configured.
 
 The SSL / TLS Certificate is generated for the whole group of custom domains you define:
 * if one custom domain is misconfigured: the certificate can't be generated

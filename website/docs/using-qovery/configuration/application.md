@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-01-17"
+last_modified_on: "2023-02-02"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -331,7 +331,7 @@ Storage can be added only if the application has never been deployed before AND 
 Within this section you can define the port exposed by your application to the other services or even over the internet.
 You can edit the existing ports or declare new ones by specifying:
 - Application port: this is the port exposed internally by your application for the other services. Kubernetes will use this port to verify the readiness and liveness of your application via regular probes.
-- Publicly exposed: it allows you to expose over the public network your service. A public domainill be assigned to your application during the deployment.
+- Publicly exposed: it allows you to expose over the public network your service. A public domain will be assigned to your application during the deployment (see [Domain section][docs.using-qovery.configuration.application#domains])
 - External port: it is the port that can be used to access this service over the internet (when exposed publicly). Today we support only the HTTPS and Websocket protocols (on the 443 port)
 
 <p align="center">
@@ -350,13 +350,50 @@ Please take note of the following information:
 
 ### Domains
 
-`Domain` section of your application configuration allows you to define a custom domain for your application.
+`Domain` section of your application configuration allows you to define a custom domain for your application. By default a domain is assigned to your application if a port has been set to be publicly exposed. This assigned domain will have the following pattern:  `z<SERVICE_ID>-z<ROUTER_ID>-gtw.<ASSIGNED_CLUSTER_DOMAIN>` , where:
+- SERVICE_ID : is the first 8 letters of the id of your service
+- ROUTER_ID : it is an internal id to identify the router (nginx configuration) of your application
+- ASSIGNED_CLUSTER_DOMAIN: it is the domain assigned to your cluster. Any service deployed on this cluster will have the same assigned_cluster_domain
+
+domain example: `zdf72de72-z709e1a88-gtw.za8ad0657.bool.sh`
+
+**Special Case - Preview Environment**: if the preview environment feature is activated, the created services will have an additional friendly domain following this format `prId-srvName-envSourceName.cluster_domain` where:
+- prID: is the id of the PR that has generated the preview environment
+- srvName: is the name of the service
+- envSourceName: is the name of the blueprint environment that has created the current preview environment
+
+domain example: `123-frontend-blueprint.za8ad0657.bool.sh`
+
+If you want to customize the url assigned to your application press the `Add Domain` button. 
 
 <p align="center">
   <img src="/img/configuration/application/app-16.png" alt="Application Domains" />
 </p>
 
-After setting up a custom domain, you'll see a `Value` that you need to set up as a `CNAME` record in your domain registrar.
+<Alert type="info">
+
+This configuration is removed every time the environment is cloned in order to avoid domain collision.
+
+</Alert>
+
+You can use this section to either assign a specific sub-domain or either assign a completely new domain via a CNAME.
+
+#### Configuring a custom sub-domain
+You can specify a custom sub-domain as long as it belongs to the assigned cluster domain (see above). 
+Example: 
+- your current domain is zdf72de71-z709e1a85-gtw.za8ad0659.bool.sh (so your assigned cluster domain is `za8ad0659.bool.sh`)
+- you can enter a new custom domain `myfrontend-za8ad0659.bool.sh` (since it is a subdomain of the cluster domain)
+
+The application will now be accessible from both the default and the new custom domain
+
+<Alert type="info">
+
+Qovery does not check collision in the domain declaration. make sure you assign a subdomain that
+
+</Alert>
+
+#### Configuring a domain via CNAME
+After setting up your custom domain, you'll see a `Value` that you need to set up as a `CNAME` record in your domain registrar.
 
 <Alert type="info">
 
@@ -364,7 +401,7 @@ After setting up a custom domain, you'll see a `Value` that you need to set up a
 
 </Alert>
 
-Setting up the `CNAME` on the domain provider side will make your app accessible through your custom domain on Qovery.
+Setting up the `CNAME` on the domain provider side will make your app accessible through your custom domain on Qovery. The app will still be accessible through the default assigned domain.
 
 ## Connecting to a database
 To know how to access your database from your application, [have a look at the database section][docs.using-qovery.configuration.environment-variable#connecting-to-a-database].
@@ -444,6 +481,7 @@ In the application overview, click on the `3 dots` button and remove the applica
 [docs.configuration.application#resources]: /docs/using-qovery/configuration/application/#resources
 [docs.using-qovery.configuration.advanced-settings#network-settings]: /docs/using-qovery/configuration/advanced-settings/#network-settings
 [docs.using-qovery.configuration.application#build-mode]: /docs/using-qovery/configuration/application/#build-mode
+[docs.using-qovery.configuration.application#domains]: /docs/using-qovery/configuration/application/#domains
 [docs.using-qovery.configuration.environment-variable#connecting-to-a-database]: /docs/using-qovery/configuration/environment-variable/#connecting-to-a-database
 [docs.using-qovery.configuration.environment-variable#connecting-to-another-application]: /docs/using-qovery/configuration/environment-variable/#connecting-to-another-application
 [docs.using-qovery.configuration.environment-variable]: /docs/using-qovery/configuration/environment-variable/

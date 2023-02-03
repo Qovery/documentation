@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-02-01"
+last_modified_on: "2023-02-03"
 title: "Running and Deployment Statuses"
 description: "Learn how to monitor your services"
 ---
@@ -10,15 +10,15 @@ import Assumptions from '@site/src/components/Assumptions';
 From any environment window on your [Qovery Console][urls.qovery_console], you can monitor the running and deployment status of your environments and services.
 
 <p align="center">
-  <img src="/img/monitoring/Run_Deployment_Statuses.jpg" alt="Application" />
+  <img src="/img/deployment/run_deployment_statuses.jpg" alt="Application" />
 </p>
 
 | Item | Description                                                                                                                                                                                                                                              |
 |------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 1    | The dot next to the name of the environment shows its overall status. <br />  For more information, see [Environment Statuses][docs.using-qovery.deployment.running-and-deployment-statuses#environment-statuses].                                                  |
-| 2    | The dot in the `Service` column shows the status of the related service. <br /> For more information, see [Service Statuses][docs.using-qovery.deployment.running-and-deployment-statuses#service-statuses].                                                        |
-| 3    | The label next to the name of the environment shows the overall status of your deployments in that specific environment. <br /> For more information, see Deployment Statuses section below.  |
-| 4    | The label in the `Service` column shows the deployment status of the related service. <br /> For more information, see Deployment Statuses section below.                                     |
+| 1    | The dot in the service tab shows the environment running status. <br />  For more information, see the Environment Statuses section below.                                                  |
+| 2    | The dot in the deployment tab shows the environment deployment status. <br /> For more information, see the Deployment Statuses section below.                                                        |
+| 3    | The dot next to the name of the service represent the running status of the serice. <br /> For more information, see Service Statuses section below.  |
+| 4    | The label in the service table shows the deployment status of the service. <br /> For more information, see Deployment Statuses section below.                                     |
 
 # Run Statuses
 
@@ -97,6 +97,4 @@ Just because an error arised during deployment does not mean your application is
  </Alert>
 
 
-[docs.using-qovery.deployment.running-and-deployment-statuses#environment-statuses]: /docs/using-qovery/deployment/running-and-deployment-statuses/#environment-statuses
-[docs.using-qovery.deployment.running-and-deployment-statuses#service-statuses]: /docs/using-qovery/deployment/running-and-deployment-statuses/#service-statuses
 [urls.qovery_console]: https://console.qovery.com

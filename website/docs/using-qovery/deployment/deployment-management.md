@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-02-01"
+last_modified_on: "2023-02-03"
 title: "Deployment management"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -148,7 +148,7 @@ The `Deploy other version` action allows you to deploy a different version for y
 Once you click on the action, this panel will appear, and you will be able to choose the version you wish to update/rollback (either git commit or image Tag).
 
 <p align="center">
-  <img src="/img/deployment/deploy-other-version.png" alt="Deploy Other Version" />
+  <img src="/img/deployment/deploy_other_version.png" alt="Deploy Other Version" />
 </p>
 
 By pressing on the Deploy button, a deployment of the service will be triggered using the selected version.
@@ -159,7 +159,7 @@ The `Deploy latest version` action allows you to deploy the latest version for a
 Once you click on the action, this panel will appear, and you will be able to choose the services you wish to update to the latest version (only for services with source = git repository).
 
 <p align="center">
-  <img src="/img/deployment/deploy-latest-version.png" alt="Deploy Latest Version" />
+  <img src="/img/deployment/deploy_latest_version.png" alt="Deploy Latest Version" />
 </p>
 
 By pressing on the Deploy button, a deployment of the service will be triggered using the selected version.

@@ -132,14 +132,28 @@ Only one user can be Owner of an organization. You can transfer the ownership to
 </Alert>
 
 ### Custom roles
-If the basic roles are not enough given your internal organization, Qovery allows you to customize the accesses to your clusters, projets and environments by defining Custom Roles.
+If the basic roles are not enough given your internal organization, Qovery allows you to customize the accesses to your clusters, projets and environments by defining `Custom Roles`.
+
+A `Custom role` allows you to customize:
+- Cluster Level Permissions: you can specify the access to the existing computing resources (manage cluster X, create environments on cluster Y, read-only access on cluster K)
+- Project Level Permissions: you can specify the access to the projects and their environments by environment type (deploy type X, create type K etc..)
+
+<Alert type="info">
+
+Users with a custom role cannot create clusters or manage any of the organization settings (members, webhook, API token etc..)
+
+</Alert>
 
 To create a custom role, go in the Roles & Permissions section press "Add new Role"
 
 For the new role, you will be able to specify:
 - The name of the role
 - A description
-- Cluster Level Permissions: in this section you can fine tune the access to the computing resources. For each cluster of your organization, you will be able to specify an access permission (ordered by permission level):
+- Cluster Level permissions
+- Project Level Permissions
+
+##Cluster Level Permissions
+This section allows you to fine tune the access to the computing resources. For each cluster of your organization, you will be able to specify an access permission (ordered by permission level):
 
 | Name | Permission Type |
 |--------|-------|
@@ -148,7 +162,8 @@ For the new role, you will be able to specify:
 | Full Access | The user can create create environments on this cluster and as well manage the cluster's settings (start/stop, change number and type of nodes etc..). This permission allows a group of users to manage by themselves a specific cluster |
 
 
-- Project Level Permissions: this section allows you to fine tune the access to the projects and their environments. The environment access is managed by "Environment Type" to simplify the configuration (Production, Staging, Development, Preview). For each project of your organization and by environment type, you will be able to specify an access permission (ordered by permission level):
+- Project Level Permissions
+This section allows you to fine tune the access to the projects and their environments. The environment access is managed by "Environment Type" to simplify the configuration (Production, Staging, Development, Preview). For each project of your organization and by environment type, you will be able to specify an access permission (ordered by permission level):
 
 | Name | Permission Type |
 |--------|-------|

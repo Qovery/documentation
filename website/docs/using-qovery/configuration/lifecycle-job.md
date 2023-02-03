@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-01-26"
+last_modified_on: "2023-02-01"
 title: "Lifecycle Job"
 description: "Learn how to configure your Lifecycle job on Qovery"
 ---
@@ -150,7 +150,40 @@ You will find a recap of your job setup and you can now decide to:
 </ol>
 </Steps>
 
+## Deployment Management
+Have a look at the [Deployment Management][docs.using-qovery.deployment.deployment-management] section for more information.
 
+## Force Run
+You can force the execution of a job independently its deployment status by:
+
+<Steps headingDepth={3}>
+<ol>
+<li>
+
+Select the job that you want to force
+
+
+</li>
+<li>
+
+click on the `Play` button of the cronjob you want to force and select the `Force Run` option. Note: the same option is available on the service list as well
+
+
+</li>
+
+<li>
+
+Select the environment event you want to force. 
+
+</li>
+
+<li>
+
+Once you click, the job will be deployed and executed with the entrypoint and arguments associated to the selected event. You will be able to follow its execution within the application logs
+
+</li>
+</ol>
+</Steps>
 
 ## Configuration
 
@@ -349,71 +382,6 @@ Var `QOVERY_OUTPUT_JOB_<JOBID>_DB_PORT`
 
 Once the execution of the job is terminated and the environment variables are created, any application within the same environment will be able to access those environment variables and thus connect to the postgres instance.
 
-## Force Run
-
-You can force the execution of a job independently its deployment status by:
-
-<Steps headingDepth={3}>
-<ol>
-<li>
-
-Select the job that you want to force
-
-
-</li>
-<li>
-
-click on the `Play` button of the cronjob you want to force and select the `Force Run` option. Note: the same option is available on the service list as well
-
-
-</li>
-
-<li>
-
-Select the environment event you want to force. 
-
-</li>
-
-<li>
-
-Once you click, the job will be deployed and executed with the entrypoint and arguments associated to the selected event. You will be able to follow its execution within the application logs
-
-</li>
-</ol>
-</Steps>
-
-## Deploy other version
-
-To deploy another code version of your job:
-
-<Steps headingDepth={3}>
-<ol>
-<li>
-
-Select the job where you want to modify the version
-
-</li>
-<li>
-
-click on the `Play` button of the cronjob and select the `Deploy Other Version` option. Note: the same option is available on the service list as well
-
-<p align="center">
-  <img src="/img/configuration/application/deploy-other-version.png" alt="Update All" />
-</p>
-
-</li>
-<li>
-
-Once you click, this panel will appear, and you will be able to choose the version you wish to update/rollback.
-
-<p align="center">
-  <img src="/img/configuration/application/deploy-other-version2.png" alt="Application" />
-</p>
-
-</li>
-</ol>
-</Steps>
-
 ## Delete a job
 
 <Steps headingDepth={3}>
@@ -440,6 +408,7 @@ In the overview, click on the `3 dots` button and remove the job. Note: the same
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [docs.using-qovery.configuration.organization#container-registry-management]: /docs/using-qovery/configuration/organization/#container-registry-management
 [docs.using-qovery.configuration.organization#managing-git-permissions-using-the-qovery-github-app]: /docs/using-qovery/configuration/organization/#managing-git-permissions-using-the-qovery-github-app
+[docs.using-qovery.deployment.deployment-management]: /docs/using-qovery/deployment/deployment-management/
 [guides.advanced.monorepository]: /guides/advanced/monorepository/
 [guides.getting-started.debugging#logs]: /guides/getting-started/debugging/#logs
 [guides.tutorial.how-to-use-lifecycle-job-to-deploy-any-kind-of-resources]: /guides/tutorial/how-to-use-lifecycle-job-to-deploy-any-kind-of-resources/

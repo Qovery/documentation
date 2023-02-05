@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-12-23"
+last_modified_on: "2023-02-05"
 $schema: "/.meta/.schemas/guides.json"
 title: How to integrate Qovery with GitHub Actions
 description: Learn how to integrate Qovery with GitHub Actions
@@ -107,6 +107,8 @@ jobs:
     steps:
       - name: Deploy with Qovery
         uses: actions/checkout@v3
+        env:
+          QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_CLI_ACCESS_TOKEN }}
         shell: bash
         run: |
           # Download and install Qovery CLI

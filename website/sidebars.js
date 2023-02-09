@@ -78,6 +78,7 @@ module.exports = {
             "using-qovery/deployment",
             "using-qovery/deployment/deployment-management",
             "using-qovery/deployment/running-and-deployment-statuses",
+            "using-qovery/deployment/deployment-pipeline",
           ],
         },
         {

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-02-03"
+last_modified_on: "2023-02-09"
 title: "Deployment management"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -27,18 +27,18 @@ You can find the deployment status within the service or environment list:
   <img src="/img/deployment/deployment_statuses.png" alt="Deployment Statuses" />
 </p>
 
-The deployment status of the environment is built based on the deployment statuses of each services within it.
+The deployment status of the environment is built based on the deployment statuses of each service within it.
 
 
 <Alert type="info">
 
-Deployment Status and Running Status do not provide the same information. Just because an error arised during deployment does not mean your application is not running anymore. Monitoring both your deployment and service statuses allows you to know exactly which applications are currently running on your platform.
+Deployment Status and Running Status do not provide the same information. Just because an error arose during deployment does not mean your application is not running anymore. Monitoring both your deployment and service statuses allows you to know exactly which applications are currently running on your platform.
 Have a look at [this section][docs.using-qovery.deployment.running-and-deployment-statuses] for more information
 
 </Alert>
 
 You can decide to execute a deployment action on:
-- an environment: the action will be executed on each service within the environment following an order based on their type: Databases, Lifecycle Job, Cronjob, Containers, Application. (deployment example: Qovery will deploy first the databases, then execute the jobs etc..)
+- an environment: the action will be executed on each service within the environment. To know more about the deployment order of your services, have a look at the [Deployment Pipeline][docs.using-qovery.deployment.deployment-pipeline] 
 - a single service: the action will be executed only on the selected service.
 
 The deployment actions are accessible through the `Play` button available at service or environment level. 
@@ -64,7 +64,7 @@ You cannot have two or more deployment actions running at the same time on one e
 
 ## Deployment Actions
 
-You can find below a description of each deployment action, including their purpose and the deployment status your environment and/or service will go through.
+You can find below a description of each deployment action, including its purpose and the deployment status your environment and/or service will go through.
 
 ### Deploy
 
@@ -74,7 +74,7 @@ Based on the configuration of your services within, a certain number of [Pods](h
 
 <Alert type="info">
 
-The commit id or tag that will be deployed is the one visible on the interface and not necessarly the latest version (unless the auto-deploy feature is activated)
+The commit id or tag that will be deployed is the one visible on the interface and not necessarily the latest version (unless the auto-deploy feature is activated)
 
 </Alert>
 
@@ -82,7 +82,7 @@ Once triggered, the deployment of a service goes through the following deploymen
 
 * **QUEUED** : the deployment has been queued and it is waiting for the necessary resources to be allocated to manage your request
 * **BUILDING** : the Qovery engine is downloading the git repository and building your code. At the end of this step an image is built and pushed to a registry available on your cloud account. The status will become **BUILD ERROR** in case of issues on building your code
-* **DEPLOYING** : the pods are being created on your cluster based on the image built on the previous step. The status will become **DEPLOYMENT ERROR** in case of issues on deploying your service. A service is considered as un-healty if the Kubernetes readiness probe check is never OK (more info on [readiness probe](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#before-you-begin)).
+* **DEPLOYING** : the pods are being created on your cluster based on the image built on the previous step. The status will become **DEPLOYMENT ERROR** in case of issues on deploying your service. A service is considered un-healthy if the Kubernetes readiness probe check is never OK (more info on [readiness probe](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/#before-you-begin)).
 * **DEPLOYMENT OK** : all the requested pods have been created and the service is correctly running (liveness and readiness probes are ok).
 
 If the deployment was triggered on the entire environment, the environment will go through the following deployment statuses:
@@ -94,7 +94,7 @@ If the deployment was triggered on the entire environment, the environment will 
 
 ### Redeploy
 
-The `Redeploy` action allows you to update the remote configuration of your services based on their configuration on Qovery side. If any difference exist (vCPU, number of instances, code version etc..), a new set of pod will be created with the new configuration and replace the existing ones. If there are no configuration differences, nothing will happen on the pods running on your cluster (not even a restart, please use the [Restart Service][docs.using-qovery.deployment.deployment-management#restart-service] feature).
+The `Redeploy` action allows you to update the remote configuration of your services based on their configuration on Qovery side. If any difference exists (vCPU, number of instances, code version etc..), a new set of pod will be created with the new configuration and replace the existing ones. If there are no configuration differences, nothing will happen on the pods running on your cluster (not even a restart, please use the [Restart Service][docs.using-qovery.deployment.deployment-management#restart-service] feature).
 This action is available only if the `Deploy` action has been triggered at least once on the service or environment.
 
 When replacing the pods of your application, Qovery uses the rolling-restart deployment logic:
@@ -109,7 +109,7 @@ When replacing the pods of your application, Qovery uses the rolling-restart dep
 
 And so on...
 
-You can trigger the re-deployment of a a service or of the entire environment. The service or environment goes through the same deployment statuses described in the [deployment section][docs.using-qovery.deployment.deployment-management#deploy]. 
+You can trigger the re-deployment of a service or of the entire environment. The service or environment goes through the same deployment statuses described in the [deployment section][docs.using-qovery.deployment.deployment-management#deploy]. 
 
 <Alert type="info">
 
@@ -123,7 +123,7 @@ The `Stop` action allows you to stop the execution on the cluster of the selecte
 
 The effect on your cluster of the stop operation is different depending on the type of service:
 - **Application, Container, Container DB ** : Pods of those services are stopped. Any attached storage is preserved
-- **Cloud provider Managed DB**: the database are paused (only for AWS, not working on Redis)
+- **Cloud provider Managed DB**: the database is paused (only for AWS, not working on Redis)
 
 ### Restart Service 
 The `Restart Service` action allows you to restart the pods of your service without applying any configuration change. This action is available only if the current deployment status is `Deployment OK` and only for a single service.
@@ -138,12 +138,12 @@ The `Cancel Deployment` action allows you to abort any `Deploy` or `Redeploy` ac
 
 <Alert type="info">
 
-The action allows to cancel the operation, not to rollback to the previous state. If during the deployment of service A and B, the `Cancel Deployment` action is triggered after that the deployment of service A has been completed, only the deployment of service B will be cancelled (service A will use the new config / version)
+The action allows to cancel the operation, not to rollback to the previous state. If during the deployment of services A and B, the `Cancel Deployment` action is triggered after that the deployment of service A has been completed, only the deployment of service B will be cancelled (service A will use the new config / version)
 
 </Alert>
 
 ### Deploy other version
-The `Deploy other version` action allows you to deploy a different version for your service. This action is avialable no matter the deployment status of the service.
+The `Deploy other version` action allows you to deploy a different version for your service. This action is available no matter the deployment status of the service.
 
 Once you click on the action, this panel will appear, and you will be able to choose the version you wish to update/rollback (either git commit or image Tag).
 
@@ -154,7 +154,7 @@ Once you click on the action, this panel will appear, and you will be able to ch
 By pressing on the Deploy button, a deployment of the service will be triggered using the selected version.
 
 ### Deploy latest version
-The `Deploy latest version` action allows you to deploy the latest version for any of your services within the environment. This action is avialable no matter the deployment status of the service and only at environment level
+The `Deploy latest version` action allows you to deploy the latest version for any of your services within the environment. This action is available no matter the deployment status of the service and only at environment level
 
 Once you click on the action, this panel will appear, and you will be able to choose the services you wish to update to the latest version (only for services with source = git repository).
 
@@ -169,4 +169,5 @@ By pressing on the Deploy button, a deployment of the service will be triggered 
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [docs.using-qovery.deployment.deployment-management#deploy]: /docs/using-qovery/deployment/deployment-management/#deploy
 [docs.using-qovery.deployment.deployment-management#restart-service]: /docs/using-qovery/deployment/deployment-management/#restart-service
+[docs.using-qovery.deployment.deployment-pipeline]: /docs/using-qovery/deployment/deployment-pipeline/
 [docs.using-qovery.deployment.running-and-deployment-statuses]: /docs/using-qovery/deployment/running-and-deployment-statuses/

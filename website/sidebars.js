@@ -7,6 +7,7 @@ module.exports = {
         "getting-started",
         "getting-started/what-is-qovery",
         "getting-started/how-qovery-works",
+        "getting-started/basic-concepts",
         "getting-started/install-qovery",
         "getting-started/deploy-my-app",
         "getting-started/whats-next",
@@ -77,6 +78,7 @@ module.exports = {
             "using-qovery/deployment",
             "using-qovery/deployment/deployment-management",
             "using-qovery/deployment/running-and-deployment-statuses",
+            "using-qovery/deployment/deployment-pipeline",
           ],
         },
         {

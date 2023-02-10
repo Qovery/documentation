@@ -84,7 +84,7 @@ For example, you can define your APP_URL environment variable as a composition o
 Important information on this feature:
 - the pattern used is `{{VAR_NAME}}`
 - if a referenced variable doesn't exist, it is replaced by an empty string
-- composition coherency using built in variables is kept when cloning an environment
+- composition coherency using built in variables is kept when cloning an environment. Example: you can create a variable APP_URL = https://{{QOVERY_APPLICATION_ZEC0A2975_HOST_INTERNAL}} and when the environment is cloned, the "ZEC0A2975" is replaced with the right ID.
 - there is no check at creation / edition / deletion if the referenced variable doesn't exist
 - "inner replacements" are not supported (e.g VAR_1 = {{VAR_2}} and VAR_2={{VAR_3}} )
 

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-01-26"
+last_modified_on: "2023-02-01"
 title: "Cronjob"
 description: "Learn how to configure your Cronjob on Qovery"
 ---
@@ -132,7 +132,39 @@ You will find a recap of your job setup and you can now decide to:
 </ol>
 </Steps>
 
+## Deployment Management
+Have a look at the [Deployment Management][docs.using-qovery.deployment.deployment-management] section for more information.
 
+## Force Run
+
+You can force the execution of a job independently its deployment status by:
+
+<Steps headingDepth={3}>
+<ol>
+<li>
+
+Select the job that you want to force
+
+</li>
+<li>
+
+click on the `Play` button of the cronjob you want to force and select the `Force Run` option. Note: the same option is available on the service list as well
+
+
+</li>
+<li>
+
+Once you click, the job will be deployed and executed once. You will be able to follow its execution within the application logs
+
+</li>
+</ol>
+</Steps>
+
+<Alert type="info">
+
+If the cronjob has not yet been deployed, forcing its execution will make it run only once (the scheduling mechanism will not start).
+
+</Alert>
 
 ## Configuration
 
@@ -250,68 +282,6 @@ To learn how to set up secrets in your projects and applications, navigate to [c
 
 To learn how to display your application logs, navigate to [logs section in our Debugging guide][guides.getting-started.debugging#logs]
 
-## Force Run
-
-You can force the execution of a job independently its deployment status by:
-
-<Steps headingDepth={3}>
-<ol>
-<li>
-
-Select the job that you want to force
-
-</li>
-<li>
-
-click on the `Play` button of the cronjob you want to force and select the `Force Run` option. Note: the same option is available on the service list as well
-
-
-</li>
-<li>
-
-Once you click, the job will be deployed and executed once. You will be able to follow its execution within the application logs
-
-</li>
-</ol>
-</Steps>
-
-<Alert type="info">
-
-If the cronjob has not yet been deployed, forcing its execution will make it run only once (the scheduling mechanism will not start).
-
-</Alert>
-
-## Deploy other version
-
-To deploy another code version of your job:
-
-<Steps headingDepth={3}>
-<ol>
-<li>
-
-Select the job where you want to modify the version
-
-</li>
-<li>
-
-click on the `Play` button of the cronjob and select the `Deploy Other Version` option. Note: the same option is available on the service list as well
-
-<p align="center">
-  <img src="/img/configuration/application/deploy-other-version.png" alt="Update All" />
-</p>
-
-</li>
-<li>
-
-Once you click, this panel will appear, and you will be able to choose the version you wish to update/rollback.
-
-<p align="center">
-  <img src="/img/configuration/application/deploy-other-version2.png" alt="Application" />
-</p>
-
-</li>
-</ol>
-</Steps>
 
 
 ## Delete a job
@@ -340,5 +310,6 @@ In the overview, click on the `3 dots` button and remove the job. Note: the same
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [docs.using-qovery.configuration.organization#container-registry-management]: /docs/using-qovery/configuration/organization/#container-registry-management
 [docs.using-qovery.configuration.organization#managing-git-permissions-using-the-qovery-github-app]: /docs/using-qovery/configuration/organization/#managing-git-permissions-using-the-qovery-github-app
+[docs.using-qovery.deployment.deployment-management]: /docs/using-qovery/deployment/deployment-management/
 [guides.advanced.monorepository]: /guides/advanced/monorepository/
 [guides.getting-started.debugging#logs]: /guides/getting-started/debugging/#logs

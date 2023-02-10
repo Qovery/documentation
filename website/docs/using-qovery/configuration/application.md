@@ -133,7 +133,8 @@ You will find a recap of your application setup and you can now decide to:
 </ol>
 </Steps>
 
-
+## Deployment Management
+Have a look at the [Deployment Management][docs.using-qovery.deployment.deployment-management] section for more information.
 
 ## Configuration
 
@@ -426,36 +427,6 @@ To learn how to display your application logs, navigate to [logs section in our 
 
 To connect to your application via SSH, please use the via the [Qovery SSH command][docs.using-qovery.interface.cli] available on our CLI.
 
-## Deploy other version
-
-<Steps headingDepth={3}>
-<ol>
-<li>
-
-Choose your application
-
-</li>
-<li>
-
-In the application overview, click on the `Play` button and `Deploy Other Version`.
-
-<p align="center">
-  <img src="/img/configuration/application/deploy-other-version.png" alt="Update All" />
-</p>
-
-</li>
-<li>
-
-Once you click, this panel will appear, and you will be able to choose the version you wish to update/rollback (either git commit or image Tag).
-
-<p align="center">
-  <img src="/img/configuration/application/deploy-other-version2.png" alt="Application" />
-</p>
-
-</li>
-</ol>
-</Steps>
-
 ## Delete an Application
 
 <Steps headingDepth={3}>
@@ -490,6 +461,7 @@ In the application overview, click on the `3 dots` button and remove the applica
 [docs.using-qovery.configuration.organization#container-registry-management]: /docs/using-qovery/configuration/organization/#container-registry-management
 [docs.using-qovery.configuration.organization#managing-git-permissions-using-the-qovery-github-app]: /docs/using-qovery/configuration/organization/#managing-git-permissions-using-the-qovery-github-app
 [docs.using-qovery.configuration.project]: /docs/using-qovery/configuration/project/
+[docs.using-qovery.deployment.deployment-management]: /docs/using-qovery/deployment/deployment-management/
 [docs.using-qovery.interface.cli]: /docs/using-qovery/interface/cli/
 [guides.advanced.monorepository]: /guides/advanced/monorepository/
 [guides.getting-started.debugging#logs]: /guides/getting-started/debugging/#logs

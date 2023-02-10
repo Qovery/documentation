@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-12-28"
+last_modified_on: "2023-02-06"
 title: Getting started
 description: "About Qovery, the platform that accelerates and scales application development cycle with zero infrastructure management investment."
 sidebar_label: hidden
@@ -10,6 +10,7 @@ import Jump from '@site/src/components/Jump';
 
 This section covers the basic concepts of Qovery and provides a foundation for the rest of the documentation.
 
+<Jump to="/docs/getting-started/basic-concepts/">Basic concepts</Jump>
 <Jump to="/docs/getting-started/deploy-my-app/">Deploy my app</Jump>
 <Jump to="/docs/getting-started/how-qovery-works/">How qovery works</Jump>
 <Jump to="/docs/getting-started/install-qovery/">Install qovery</Jump>

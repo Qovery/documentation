@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-02-01"
+last_modified_on: "2023-02-10"
 title: "Lifecycle Job"
 description: "Learn how to configure your Lifecycle job on Qovery"
 ---
@@ -23,6 +23,11 @@ A **Lifecycle Job** is a job that runs on your kubernetes cluster with the follo
 Given its characteristics, lifecycle jobs are particularly useful for:
 - Seed your database on your preview environment: you can create a custom job that will seed a database when the preview environment is deployed
 - Create an external resources not natively managed by Qovery: you can create a custom job that will create the external resource. By writing the connection strings in an output file, those information will be injected as environment variables on any service of the environment (so that they can consume this new resource).
+
+A lifecycle job can be executed on the following environment events:
+- **Start**: the job is executed when the environment starts. Note that a start event is generated on both the "Deploy" and "Redeploy" actions so you should take care of managing this in your code to avoid executing it twice (on the first deploy and on the re-deploy).
+- **Stop**: the job is executed when the environment stops.
+- **Delete**: the job is executed when the environment is deleted.
 
 <Alert type="success">
 
@@ -96,6 +101,7 @@ The tag 'latest' is not supported, please use a specific tag.
 
 </li>
 <li>
+
 Specify the configuration of your job:
 - Event: select the environment event which should trigger the execution of the job (Environment start, stop, delete)
 - Image Entrypoint: the entrypoint to be used to launch your job (not mandatory).

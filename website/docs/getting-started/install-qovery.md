@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-10-10"
+last_modified_on: "2023-02-10"
 title: "Install Qovery"
 description: "How to install Qovery on your cloud account"
 ---

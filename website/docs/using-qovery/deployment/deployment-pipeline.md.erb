@@ -50,6 +50,14 @@ This default assignment is maintained as long as you do not delete or rename the
 
 In the following sections we will describe how to modify the Deployment Pipeline. We will use the CLI in our examples since the feature is not yet available on the UI.
 
+### List stages
+
+You can list all the stages of your environment by using the following command:
+
+```bash
+qovery environment stage list
+```
+
 ### Add a stage
 You can add a new stage by using the following command:
 
@@ -63,7 +71,7 @@ Note that the stage will be added at the end of the pipeline (the highest number
 You can modify a stage by using the following command:
 
 ```bash
-qovery environment stage edit -n <name> -d <description>
+qovery environment stage edit -n <original name> --new-name <new name> --new-description <new description>
 ```
 
 ### Delete a stage

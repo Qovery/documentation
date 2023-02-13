@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-01-04"
+last_modified_on: "2023-02-13"
 title: CLI
 description: How to use the Qovery CLI (Command Line Interface)
 ---
@@ -394,6 +394,87 @@ If you get a 424 error while trying to create new applications from one of your 
 </Alert>
 
 Check out our [API documentation][urls.qovery_swagger]
+
+## Managing services and environments
+The CLI allows you to manage and deploy the environment and services within your organization
+
+### application, container, lifecycle, cronjob
+These commands allow you to manage all these services via the CLI. You can run the following actions on these services:
+- cancel: Cancel the service deployment
+- delete: Delete a service
+- deploy: Deploy a service
+- list: List the service of the specified type
+- redeploy: Redeploy a service (already deployed before)
+- stop: Stop a service
+
+Each action allows you to specify additional parameters to define the service you want to modify (you can find them via the --help command) 
+
+Example: Listing applications and triggering a deployment
+```bash
+$ qovery application list
+Name      | Type        | Status  | Last Update                         
+backend   | Application | STOPPED | 2023-02-02 14:48:05.339652 +0000 UTC
+front-end | Application | STOPPED | 2023-02-09 14:04:38.079792 +0000 UTC
+
+$ qovery application deploy -n "backend"
+Deploying application backend in progress..
+
+$ qovery application list
+Name      | Type        | Status  | Last Update                         
+backend   | Application | RUNNING | 2023-02-13 12:59:23.228231 +0000 UTC
+front-end | Application | STOPPED | 2023-02-09 14:04:38.079792 +0000 UTC
+```
+
+### Environment
+The command `environment` allow you to manage a specific environment via the CLI. You can run the following actions on environments:
+- cancel: Cancel an environment deployment
+- clone: Clone an environment
+- delete: Delete an environment
+- deploy: Deploy an environment
+- list: List environments
+- redeploy: Redeploy an environment
+- stage: Manage deployment stages
+- stop: Stop an environment
+
+Each action allows you to specify additional parameters to define the service you want to modify (you can find them via the --help command)
+
+Example: Manage deployment stages and triggering deployment
+```bash
+~ $ qovery environment stage list
+
+# deployment stage 1: "DATABASE DEFAULT"
+Rename me to avoid default/legacy ordering
+
+Type     | Name
+DATABASE | Redis
+DATABASE | DB
+
+
+# deployment stage 2: "JOB DEFAULT"
+Rename me to avoid default/legacy ordering
+
+<no service>
+
+
+# deployment stage 3: "CONTAINER DEFAULT"
+Rename me to avoid default/legacy ordering
+
+Type      | Name
+CONTAINER | Rabbitmq
+
+
+# deployment stage 4: "APPLICATION DEFAULT"
+Rename me to avoid default/legacy ordering
+
+Type        | Name
+APPLICATION | Backend
+APPLICATION | Frontend
+APPLICATION | Pablo Backend App
+APPLICATION | API gateway
+
+~ $ qovery environment deploy
+Environment is deploying!
+```
 
 ## Support
 

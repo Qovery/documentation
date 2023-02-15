@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-07-09"
+last_modified_on: "2023-02-10"
 title: How Qovery Works
 description: "How Qovery works under the hood and how to use it when you are a DevOps"
 ---

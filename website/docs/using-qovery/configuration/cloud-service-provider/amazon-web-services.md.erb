@@ -31,7 +31,7 @@ SCHEMA: Show a schema where Qovery is deployed on the account of the customer
 
 ### Connect your AWS account
 
-To link your AWS account to Qovery you need to provide an AWS `access key id` and `secret access key` with the [required IAM permissions][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services].
+To link your AWS account to Qovery you need to provide an AWS `access key id` and `secret access key` with the [required IAM permissions][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#iam-permissions].
 
 <Alert type="info">
 
@@ -52,8 +52,8 @@ You can link more than one AWS account. Qovery also support multiple Cloud provi
 
 <li>
 
-Go to `My Security Credentials`
-<img src="/img/aws-my-security-credentials.png" />
+Go to `IAM`
+<img src="/img/aws/aws-my-security-credentials.png" />
 
 </li>
 
@@ -63,28 +63,24 @@ Create `Admins` group **without any permissions**
 
 <Alert type="warning">
 
-The name of the group MUST be Admins. If you use another name, this will not work
+The default name required by Qovery is Admins. If you want to use another name, you have to change the cluster advanced settings [aws.iam.admin_group][docs.using-qovery.configuration.cluster-advanced-settings#iam] BEFORE launching the cluster installation process 
 
 </Alert>
 
 
-<img src="/img/aws-create-group-1.jpg" />
-<img src="/img/aws-create-group-2.jpg" />
-<img src="/img/aws-create-group-3.jpg" />
-<img src="/img/aws-create-group-4.jpg" />
+<img src="/img/aws/aws-create-group-1.jpg" />
+<img src="/img/aws/aws-create-group-2.png" />
+<img src="/img/aws/aws-create-group-3.png" />
 
 </li>
 
 <li>
 
 Create one IAM user called `qovery`.
-<img src="/img/aws-create-user-1.jpg" />
-<img src="/img/aws-create-user-2.jpg" />
-<img src="/img/aws-create-user-3.jpg" />
-
-Go to the last step and copy your `access key id` and `secret access key`.
-
-<img src="/img/aws-create-user-4.jpg" />
+<img src="/img/aws/aws-create-user-1.jpg" />
+<img src="/img/aws/aws-create-user-2.png" />
+<img src="/img/aws/aws-create-user-3.jpg" />
+<img src="/img/aws/aws-create-user-4.png" />
 
 </li>
 
@@ -150,13 +146,25 @@ Or copy it from below:
 
 **Then, follow the arrows in AWS console to create AWS credentials with required IAM permissions:**
 
-<img src="/img/aws-add-policy-1.jpg" />
-<img src="/img/aws-add-policy-2.jpg" />
-<img src="/img/aws-add-policy-3.jpg" />
-<img src="/img/aws-add-policy-4.jpg" />
+<img src="/img/aws/aws-add-policy-1.jpg" />
+<img src="/img/aws/aws-add-policy-2.png" />
+<img src="/img/aws/aws-add-policy-3.jpg" />
+<img src="/img/aws/aws-add-policy-4.jpg" />
 
 </li>
 
+<li>
+
+To create an `access key id` and `secret access key`, go to the Security Credentials tab of the `Qovery` user and press `Create access key`
+
+<img src="/img/aws/aws-create-credentials-1.png" />
+<img src="/img/aws/aws-create-credentials-2.png" />
+<img src="/img/aws/aws-create-credentials-3.png" />
+
+You can now save the `access key id` and `secret access key`
+<img src="/img/aws/aws-create-credentials-4.png" />
+
+</li>
 </ol>
 
 </Steps>
@@ -166,97 +174,7 @@ Well done!! You now have your AWS `access key id` and `secret access key` and yo
 #### Install a new cluster on Qovery
 
 You will be able to use the credentials you just generated when creating a cluster via the Qovery console. This cluster will be linked to your Qovery organization.
-Follow these steps to create a new cluster. 
-
-<Steps headingDepth={3}>
-
-<ol>
-
-<li>
-
-Go to your organizations settings.
-<img src="/img/organization-setting.png" />
-
-</li>
-
-<li>
-
-On this page, you will be able to see the information and status or your clusters. 
-
-Click on `Add cluster` button.  
-
-<img src="/img/add-cluster.png" />
-
-</li>
-
-<li>
-
-A modal is displayed, where you can specify the name of your cluster and the Cloud Provider. 
-
-Select the following Cloud Provider: `Amazon Web Services`.
-
-Once you have selected the cloud provider, you will be able to define the Region of your Cluster. 
-
-<img src="/img/aws-select-provider.png" />
-
-</li>
-
-
-<li>
-
-Here you can choose to set your cluster credentials straight away or later. To set them now, select the `Do you want to set credentials?` option.
-
-If you have already set credentials on another cluster, they have been linked to your Qovery account and can be reused here. Just click on the one you want to use in the drop-down list.
-
-If you want to use other credentials (or if you do not have any defined), click `+ new credentials` in the drop-down list. 
-
-<img src="/img/aws-config-creds.png" />
-
-</li>
-
-<li>
-
-A new modal pops up where you can specify the `Name of the certificate`, the `Access key identifier` and the `Secret access key`.
-
-<img src="/img/aws-new-creds.png" />
-
-Click on `Save`to save the new credential and then `Next`.
-
-</li>
-
-<li>
-
-On this step, you can select specific features you want to activate or deactivate on the cluster. 
-
-<img src="/img/cluster-features.png" />
-
-<Alert type="warning">
-
-You will not be able to activate/deactivate these features once the cluster has been deployed for the first time.
-
-</Alert>
-
-</li>
-
-<li>
-
-Once your new cluster is created, it will be listed in the cluster list. If you have finished configuring your cluster, click on the `...` and `Install` menu to start the cluster installation. 
-
-<img src="/img/install-cluster.png" />
-
-</li>
-
-<li>
-
-Your cluster is now installing and will be ready in the coming 20 minutes!
-
-<img src="/img/installing-cluster.png" />
-
-</li>
-
-</ol>
-
-</Steps>
+Follow [this documentation][docs.using-qovery.configuration.clusters#creating-a-cluster] to create a new cluster on your organization. 
 
 ### Deployed AWS components
 
@@ -289,11 +207,7 @@ Your cluster is now installing and will be ready in the coming 20 minutes!
 | Dedicated S3 bucket for application's logs + a dedicated IAM account | no       | Application's logs are stored in an KMS encrypted S3 pivate bucket                                                              |
 | Dedicated S3 bucket to store the kubeconfig                          | no       | Kubernetes Kubeconfig is stored in an KMS encrypted, private and versionned bucket, used by Qovery for application's deployment |
 
-### Remove your AWS account
-
-<%= qovery_web_interface_coming_soon %>
-
-### Delete Qovery from your AWS account
+### Remove Qovery from your AWS account
 
 <Alert type="warning">
 
@@ -301,8 +215,15 @@ Your applications and your data will be deleted.
 
 </Alert>
 
-To delete Qovery from your AWS account you must be the owner of the Organization.
-Once your AWS account removed from Qovery, everything configured (VPC, Kubernetes, ...) by Qovery will be deleted forever.
+To delete Qovery from your AWS account you must be the owner of the Qovery Organization and you have to delete everything in this order:
+- Environments
+- Clusters
+
+<Alert type="warning">
+
+If you remove the access to your AWS account before deleting all the resources on the Qovery platform, you will have to manually delete them by yourself by following the guide "I don't have Qovery access anymore, how could I delete Qovery deployed resources on my AWS account?"  in [this section][docs.using-qovery.troubleshoot].
+
+</Alert>
 
 ### IAM permissions
 
@@ -360,69 +281,19 @@ If you want to perform VPC Peering with Qovery, please refer to our guide [VPC P
 
 </Alert>
 
-During the adding of a new cluster in your organization, you will have the opportunity to choose and set up the features of your cluster. In this list of features, you can activate the `VPC subnet` feature and choose in the drop-down menu the subnet you want to use. 
-
-<p align="center">
-  <img src="/img/cluster-vpc-subnet.png" alt="VPC subnet cluster" />
-</p>
-
-<Alert type="warning">
-
-You will not be able to activate/deactivate these features once the cluster has been deployed for the first time.
-
-</Alert>
+Have a look at [this section][[docs.using-qovery.configuration.clusters#custom-vpc-subnet]] to know more on how to set the VPC Subnet.
 
 ## Configure routing table
 
 You may want to create and edit a network routing table to perform VPC peering. This can be done by accessing to the parameters of a cluster, in the settings of your organization. 
-
-<Steps headingDepth={3}>
-<ol>
-<li>
-
-Go in the settings of your organization.
-
-<p align="center">
-  <img src="/img/organization-setting.png" alt="Organization setting" />
-</p>
-
-</li>
-<li>
-
-Go in the `Cluster` tab and in the `...` menu of a cluster to access to its `Settings`.
-
-<p align="center">
-  <img src="/img/cluster-setting.png" alt="Cluster setting" />
-</p>
-
-</li>
-<li>
-
-In the Cluster setting modal, go in `Network` tab.
-
-<p align="center">
-  <img src="/img/network-cluster.png" alt="Cluster network settings" />
-</p>
-
-</li>
-<li>
-
-Add a line to the routing table by clicking on the `Add route` button. In this modal, you can specify the Target, the Destination and add a description to justify the new route.
-
-<p align="center">
-  <img src="/img/routing-table.png" alt="Routing table" />
-</p>
-
-</li>
-</ol>
-</Steps>
-
 
 <Alert type="info">
 
 If you want to perform VPC Peering with Qovery, please refer to our guide [VPC Peering with Qovery][guides.tutorial.aws-vpc-peering-with-qovery] to be assisted step by step. 
 
 </Alert>
+
+Have a look at [this section][[docs.using-qovery.configuration.clusters#network]] to know more on how to set the routing table.
 
 <%= qovery_cloud_account_how_it_works('AWS') %>
 

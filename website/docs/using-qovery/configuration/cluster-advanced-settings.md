@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-01-22"
+last_modified_on: "2023-02-10"
 title: "Cluster Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -79,4 +79,12 @@ Below is the list of advanced settings currently available for clusters.
 | string  | Allows you to specify the load balancer size in front of your cluster.      | `lb-s`        |
 
 
+## IAM
 
+#### aws.iam.admin_group ![](/img/advanced_settings/aws.svg)
+| Type    | Description                                                                 | Default Value |
+|---------|-----------------------------------------------------------------------------|---------------|
+| string  | Allows you to specify the IAM group name associated to the Qovery user in the AWS console during the [IAM permissions setup][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account]   | `Admins`        |
+
+
+[docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account]: /docs/using-qovery/configuration/cloud-service-provider/amazon-web-services/#connect-your-aws-account

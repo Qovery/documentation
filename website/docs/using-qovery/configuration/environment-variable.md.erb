@@ -4,16 +4,12 @@ description: "Learn how to configure Environment Variables and Secrets on Qovery
 ---
 
 Qovery makes **Environment Variables** available to your services at runtime, as well as during builds and deploys.
-If your projects and applications rely on sensitive data like credentials, API keys, certificates, the best way to store them is **Secrets**. The difference between
-**Environment Variables** and Secrets is that Secrets are safely encrypted, and their values can not be retrieved via Qovery API - they are only accessible for your application during build and runtime.
-Qovery automatically generates for you some special environment variable (called BUILT_IN) which allows you to setup your service interconnection.
 
-<Alert type="info">
+If your projects and applications rely on sensitive data like credentials, API keys, certificates, Qovery offers you a way to store them as a **Secret**. Secrets are special environment variable safely encrypted, and their values can not be retrieved via Qovery API - they are only accessible for your application during build and runtime.
 
-In the following document we will refer only to Environment Variable but the same logic is applicable to Secrets (differences will be explicitely written here)
+Qovery automatically generates for you some special environment variable (called BUILT_IN) which allows you to setup your service interconnection. See the [BUILT_IN Section](#built_in-variables) section.
 
-</Alert>
-
+<%# TODO: commented, we need a new video 
 Here is a short video to show how to use environment variables.
 
 <div class="video-container">
@@ -22,13 +18,17 @@ Here is a short video to show how to use environment variables.
     </iframe>
   </p>
 </div>
+%>
 
 # Environment Variable definition
-An environment variable is composed by:
-- A name: this is the name that you can use from within your code to access the variable
-- A value: text or macro for interpolation (see the [interpolation section](#variables-interpolation))
-- A scope: it defines the accessibility level of this variable: application, environment, project (see below) 
-- A secret flag: it determines if the variable value needs to be encrypted and should be accessed ONLY by your applications (no access via the API/UI)
+
+Qovery supports two types of environment variables:
+- **Variable**: classic key/value pairs where the `value` can be retrieved at build and run time by using its `name` (key).
+- **Variable as File**: key/value/path triplets where the `value` will be stored as a file on the specified `path`. Your application can then retrieve the `path` of the file at run time by using the variable `name` (key). Only text files are supported.
+
+For each environment variable, you can also define:
+- A **scope**: the accessibility level of this variable: application, environment, project (see [scopes section](#scopes) below) 
+- A **secret flag**: it determines if the variable value needs to be encrypted and should be accessed ONLY by your applications (no access via the API/UI)
 
 ## Scopes
 There are three scopes for the Environment Variables:
@@ -116,7 +116,7 @@ Select your project, environment and application
 </li>
 <li>
 
-Select `Environment Variables` tab in the left panel and click `New Variable` button:
+Select `Environment Variables` tab in the left panel and click `New Variable` button. Select if you want to create a classic environment variable or an environment variable as file.
 
 <p align="center">
   <img src="/img/configuration/variables/var_creation_1.png" alt="Variables" />
@@ -131,7 +131,9 @@ Select the name, value and scope of your new environment variable
   <img src="/img/configuration/variables/var_creation_2.png" alt="Variables" />
 </p>
 
-If the variable you are trying to create is a Secret, select the "Secret" checkbox
+If the variable you are trying to create is a Variable as File, define the `Path` where the file should be stored. Remember that in this case the `Value` field should contain the content of your file.
+If the variable you are trying to create is a Secret, select the `Secret` checkbox.
+
 
 </li>
 </ol>

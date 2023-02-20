@@ -15,7 +15,7 @@ This website is built using Docusaurus 2, a modern static website generator.
 You can simply use Docker this way:
 
 ```bash
-docker run -it --rm -v $(pwd):/mnt/documentation -p 3000:3000 qoveryrd/doc:0.2 /mnt/documentation/scripts/docker.sh
+docker run -it --rm -v $(pwd):/mnt/documentation -p 3000:3000 qoveryrd/doc:0.2.1 /mnt/documentation/scripts/docker.sh
 ```
 
 Open a browser to http://localhost:3000

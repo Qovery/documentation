@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-02-10"
+last_modified_on: "2023-02-20"
 title: "Cluster Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -36,6 +36,54 @@ Below is the list of advanced settings currently available for clusters.
 | Type    | Description                                                                                                                                                                    | Default Value |
 |---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | integer | Maximum retention days in Cloudwatch for EKS logs.<br />(possible values: 0, 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, 2192, 2557, 2922, 3288, 3653)| `90`          |
+
+#### database.postgresql.deny_public_access ![](/img/advanced_settings/aws.svg)
+
+| Type    | Description                                                                                                | Default Value |
+|---------|------------------------------------------------------------------------------------------------------------|---------------|
+| boolean | Deny public access to all PostgreSQL databases.⚠️ It will block access to already deployed public databases | `false`       |
+
+#### database.postgresql.allowed_cidrs ![](/img/advanced_settings/aws.svg)
+
+| Type    | Description                                                                                   | Default Value   |
+|---------|-----------------------------------------------------------------------------------------------|-----------------|
+| boolean | List of allowed CIDRS. Used only when [`database.postgresql.deny_public_access`](#databasepostgresqldeny_public_access) is set to true | `["0.0.0.0/0"]` |
+
+#### database.mysql.deny_public_access ![](/img/advanced_settings/aws.svg)
+
+| Type    | Description                                                                                            | Default Value |
+|---------|--------------------------------------------------------------------------------------------------------|---------------|
+| boolean | Deny public access to all MySQL databases. ⚠️ It will block access to already deployed public databases | `false`       |
+
+#### database.mysql.allowed_cidrs ![](/img/advanced_settings/aws.svg)
+
+| Type    | Description                                                                                   | Default Value   |
+|---------|-----------------------------------------------------------------------------------------------|-----------------|
+| boolean | List of allowed CIDRS. Used only when [`database.mysql.deny_public_access`](#databasemysqldeny_public_access) is set to true      | `["0.0.0.0/0"]` |
+
+#### database.mongodb.deny_public_access ![](/img/advanced_settings/aws.svg)
+
+| Type    | Description                                                                                              | Default Value |
+|---------|----------------------------------------------------------------------------------------------------------|---------------|
+| boolean | Deny public access to all MongoDB databases. ⚠️ It will block access to already deployed public databases | `false`       |
+
+#### database.mongodb.allowed_cidrs ![](/img/advanced_settings/aws.svg)
+
+| Type    | Description                                                                                   | Default Value   |
+|---------|-----------------------------------------------------------------------------------------------|-----------------|
+| boolean | List of allowed CIDRS. Used only when [`database.mongodb.deny_public_access`](#databasemongodbdeny_public_access) is set to true    | `["0.0.0.0/0"]` |
+
+#### database.redis.deny_public_access ![](/img/advanced_settings/aws.svg)
+
+| Type    | Description                                                                                            | Default Value |
+|---------|--------------------------------------------------------------------------------------------------------|---------------|
+| boolean | Deny public access to all Redis databases. ⚠️ It will block access to already deployed public databases | `false`       |
+
+#### database.redis.allowed_cidrs ![](/img/advanced_settings/aws.svg)
+
+| Type    | Description                                                                                   | Default Value   |
+|---------|-----------------------------------------------------------------------------------------------|-----------------|
+| boolean | List of allowed CIDRS. Used only when [`database.redis.deny_public_access`](#databaseredisdeny_public_access) is set to true      | `["0.0.0.0/0"]` |
 
 #### aws.vpc.enable_s3_flow_logs ![](/img/advanced_settings/aws.svg)
 

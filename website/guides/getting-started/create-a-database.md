@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-06-25"
+last_modified_on: "2023-02-22"
 $schema: "/.meta/.schemas/guides.json"
 title: Create a database
 description: How to create a database to your application
@@ -42,7 +42,7 @@ PostgreSQL database and connect it to our NodeJS app.
 
 <div class="video-container">
   <p align="center">
-    <iframe src="https://www.loom.com/embed/581db2e57ce1497b980dc1b47b14cd1d" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+    <iframe src="https://www.loom.com/share/a76f72ede22c47048009fe874c2c6b03" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
     </iframe>
   </p>
 </div>

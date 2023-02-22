@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-12-08"
+last_modified_on: "2023-02-22"
 $schema: "/.meta/.schemas/guides.json"
 title: Custom domain
 description: How to set and use your own domain
@@ -41,7 +41,7 @@ learn how to set up your domains on Qovery!
 
 <div class="video-container">
   <p align="center">
-    <iframe src="https://www.loom.com/embed/2855fc728b044b79bba072150795b076" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+    <iframe src="https://www.loom.com/embed/cd9c56a133164005bfeb7db23d2b6ed1" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
     </iframe>
   </p>
 </div>

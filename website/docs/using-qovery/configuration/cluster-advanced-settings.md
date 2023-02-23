@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-02-20"
+last_modified_on: "2023-02-23"
 title: "Cluster Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -41,7 +41,7 @@ Below is the list of advanced settings currently available for clusters.
 
 | Type    | Description                                                                                                | Default Value |
 |---------|------------------------------------------------------------------------------------------------------------|---------------|
-| boolean | Deny public access to all PostgreSQL databases.⚠️ It will block access to already deployed public databases | `false`       |
+| boolean | Deny public access to all PostgreSQL databases.<br />⚠️ Public access to managed databases will instantly be removed<br />⚠️ Public access to container databases will be removed only after a database redeployment | `false`       |
 
 #### database.postgresql.allowed_cidrs ![](/img/advanced_settings/aws.svg)
 
@@ -53,7 +53,7 @@ Below is the list of advanced settings currently available for clusters.
 
 | Type    | Description                                                                                            | Default Value |
 |---------|--------------------------------------------------------------------------------------------------------|---------------|
-| boolean | Deny public access to all MySQL databases. ⚠️ It will block access to already deployed public databases | `false`       |
+| boolean | Deny public access to all MySQL databases. <br />⚠️ Public access to managed databases will instantly be removed<br />⚠️ Public access to container databases will be removed only after a database redeployment | `false`       |
 
 #### database.mysql.allowed_cidrs ![](/img/advanced_settings/aws.svg)
 
@@ -65,7 +65,7 @@ Below is the list of advanced settings currently available for clusters.
 
 | Type    | Description                                                                                              | Default Value |
 |---------|----------------------------------------------------------------------------------------------------------|---------------|
-| boolean | Deny public access to all MongoDB databases. ⚠️ It will block access to already deployed public databases | `false`       |
+| boolean | Deny public access to all MongoDB databases.<br />⚠️ Public access to managed databases will instantly be removed<br />⚠️ Public access to container databases will be removed only after a database redeployment | `false`       |
 
 #### database.mongodb.allowed_cidrs ![](/img/advanced_settings/aws.svg)
 
@@ -77,7 +77,7 @@ Below is the list of advanced settings currently available for clusters.
 
 | Type    | Description                                                                                            | Default Value |
 |---------|--------------------------------------------------------------------------------------------------------|---------------|
-| boolean | Deny public access to all Redis databases. ⚠️ It will block access to already deployed public databases | `false`       |
+| boolean | Deny public access to all Redis databases.<br />⚠️ Public access to managed databases will instantly be removed<br />⚠️ Public access to container databases will be removed only after a database redeployment | `false`       |
 
 #### database.redis.allowed_cidrs ![](/img/advanced_settings/aws.svg)
 

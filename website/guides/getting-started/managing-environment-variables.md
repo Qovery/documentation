@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-12-23"
+last_modified_on: "2023-02-23"
 $schema: "/.meta/.schemas/guides.json"
 title: Environment variables
 description: How to manage environment variables in your projects and applications
@@ -26,7 +26,7 @@ Here is a short video to show how to use environment variables.
 
 <div class="video-container">
   <p align="center">
-    <iframe src="https://www.loom.com/embed/4a8000605cd842519a32eb96feecda61" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+    <iframe src="https://www.loom.com/embed/af6d9c36b6b643eda2dc29d8b3629328" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
     </iframe>
   </p>
 </div>
@@ -64,13 +64,13 @@ Let's say that we pass an environment variable `ENABLE_DEBUG` that turns on the 
 Click on the `environment variables` tab inside your app view.
 
 <p align="center">
-  <img src="/img/environment_variables.png" alt="List environment variables" />
+  <img src="/img/environment_variables_.png" alt="List environment variables" />
 </p>
 
 Click on "create", and then add the `ENABLE_DEBUG` variable with a boolean value.
 
 <p align="center">
-  <img src="/img/create_environment_variable.png" alt="Create environment variable" />
+  <img src="/img/create_environment_variable_.png" alt="Create environment variable" />
 </p>
 
 </li>

@@ -19,6 +19,10 @@ All clusters have access to advanced settings, you can find where they are avail
 
 #### ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg)
 
+You will also find badges mentioning for which components it will be applied:
+
+#### ![](/img/advanced_settings/database-container.svg) ![](/img/advanced_settings/database-managed.svg) 
+
 Below is the list of advanced settings currently available for clusters.
 
 <!--
@@ -37,53 +41,53 @@ Below is the list of advanced settings currently available for clusters.
 |---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | integer | Maximum retention days in Cloudwatch for EKS logs.<br />(possible values: 0, 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, 2192, 2557, 2922, 3288, 3653)| `90`          |
 
-#### database.postgresql.deny_public_access ![](/img/advanced_settings/aws.svg)
+#### database.postgresql.deny_public_access ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-container.svg) ![](/img/advanced_settings/database-managed.svg) 
 
-| Type    | Description                                                                                                | Default Value |
-|---------|------------------------------------------------------------------------------------------------------------|---------------|
+| Type    | Description                                                                                                                                                                                                        | Default Value |
+|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | boolean | Deny public access to all PostgreSQL databases.<br />⚠️ Public access to managed databases will instantly be removed<br />⚠️ Public access to container databases will be removed only after a database redeployment | `false`       |
 
-#### database.postgresql.allowed_cidrs ![](/img/advanced_settings/aws.svg)
+#### database.postgresql.allowed_cidrs ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-managed.svg) 
 
-| Type    | Description                                                                                   | Default Value   |
-|---------|-----------------------------------------------------------------------------------------------|-----------------|
-| boolean | List of allowed CIDRS. Used only when [`database.postgresql.deny_public_access`](#databasepostgresqldeny_public_access) is set to true | `["0.0.0.0/0"]` |
+| Type    | Description                                                                                    | Default Value   |
+|---------|------------------------------------------------------------------------------------------------|-----------------|
+| boolean | List of allowed CIDRS. Valid only when [`database.postgresql.deny_public_access`](#databasepostgresqldeny_public_access) is set to true | `["0.0.0.0/0"]` |
 
-#### database.mysql.deny_public_access ![](/img/advanced_settings/aws.svg)
+#### database.mysql.deny_public_access ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-container.svg) ![](/img/advanced_settings/database-managed.svg) 
 
-| Type    | Description                                                                                            | Default Value |
-|---------|--------------------------------------------------------------------------------------------------------|---------------|
+| Type    | Description                                                                                                                                                                                                    | Default Value |
+|---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | boolean | Deny public access to all MySQL databases. <br />⚠️ Public access to managed databases will instantly be removed<br />⚠️ Public access to container databases will be removed only after a database redeployment | `false`       |
 
-#### database.mysql.allowed_cidrs ![](/img/advanced_settings/aws.svg)
+#### database.mysql.allowed_cidrs ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-managed.svg) 
 
-| Type    | Description                                                                                   | Default Value   |
-|---------|-----------------------------------------------------------------------------------------------|-----------------|
-| boolean | List of allowed CIDRS. Used only when [`database.mysql.deny_public_access`](#databasemysqldeny_public_access) is set to true      | `["0.0.0.0/0"]` |
+| Type    | Description                                                                                    | Default Value   |
+|---------|------------------------------------------------------------------------------------------------|-----------------|
+| boolean | List of allowed CIDRS. Valid only when [`database.mysql.deny_public_access`](#databasemysqldeny_public_access) is set to true      | `["0.0.0.0/0"]` |
 
-#### database.mongodb.deny_public_access ![](/img/advanced_settings/aws.svg)
+#### database.mongodb.deny_public_access ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-container.svg) ![](/img/advanced_settings/database-managed.svg) 
 
-| Type    | Description                                                                                              | Default Value |
-|---------|----------------------------------------------------------------------------------------------------------|---------------|
+| Type    | Description                                                                                                                                                                                                     | Default Value |
+|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | boolean | Deny public access to all MongoDB databases.<br />⚠️ Public access to managed databases will instantly be removed<br />⚠️ Public access to container databases will be removed only after a database redeployment | `false`       |
 
-#### database.mongodb.allowed_cidrs ![](/img/advanced_settings/aws.svg)
+#### database.mongodb.allowed_cidrs ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-managed.svg) 
 
-| Type    | Description                                                                                   | Default Value   |
-|---------|-----------------------------------------------------------------------------------------------|-----------------|
-| boolean | List of allowed CIDRS. Used only when [`database.mongodb.deny_public_access`](#databasemongodbdeny_public_access) is set to true    | `["0.0.0.0/0"]` |
+| Type    | Description                                                                                    | Default Value   |
+|---------|------------------------------------------------------------------------------------------------|-----------------|
+| boolean | List of allowed CIDRS. Valid only when [`database.mongodb.deny_public_access`](#databasemongodbdeny_public_access) is set to true    | `["0.0.0.0/0"]` |
 
-#### database.redis.deny_public_access ![](/img/advanced_settings/aws.svg)
+#### database.redis.deny_public_access ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-container.svg) ![](/img/advanced_settings/database-managed.svg) 
 
 | Type    | Description                                                                                            | Default Value |
 |---------|--------------------------------------------------------------------------------------------------------|---------------|
 | boolean | Deny public access to all Redis databases.<br />⚠️ Public access to managed databases will instantly be removed<br />⚠️ Public access to container databases will be removed only after a database redeployment | `false`       |
 
-#### database.redis.allowed_cidrs ![](/img/advanced_settings/aws.svg)
+#### database.redis.allowed_cidrs ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-managed.svg) 
 
-| Type    | Description                                                                                   | Default Value   |
-|---------|-----------------------------------------------------------------------------------------------|-----------------|
-| boolean | List of allowed CIDRS. Used only when [`database.redis.deny_public_access`](#databaseredisdeny_public_access) is set to true      | `["0.0.0.0/0"]` |
+| Type    | Description                                                                                    | Default Value   |
+|---------|------------------------------------------------------------------------------------------------|-----------------|
+| boolean | List of allowed CIDRS. Valid only when [`database.redis.deny_public_access`](#databaseredisdeny_public_access) is set to true      | `["0.0.0.0/0"]` |
 
 #### aws.vpc.enable_s3_flow_logs ![](/img/advanced_settings/aws.svg)
 

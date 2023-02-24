@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-02-23"
+last_modified_on: "2023-02-24"
 title: "Cluster Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -40,6 +40,47 @@ Below is the list of advanced settings currently available for clusters.
 | Type    | Description                                                                                                                                                                    | Default Value |
 |---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | integer | Maximum retention days in Cloudwatch for EKS logs.<br />(possible values: 0, 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, 2192, 2557, 2922, 3288, 3653)| `90`          |
+
+#### aws.vpc.enable_s3_flow_logs ![](/img/advanced_settings/aws.svg)
+
+| Type    | Description                                                         | Default Value |
+|---------|---------------------------------------------------------------------|---------------|
+| boolean | Enable flow logs on the cluster VPC and store them in an s3 bucket. | `false`       |
+
+#### aws.vpc.flow_logs_retention_days ![](/img/advanced_settings/aws.svg)
+
+| Type    | Description                                                                        | Default Value |
+|---------|------------------------------------------------------------------------------------|---------------|
+| integer | Set the number of retention days for flow logs. Unlimited retention with value `0` | `365`         |
+
+#### loki.log_retention_in_week ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg)
+
+| Type    | Description                                                                                 | Default Value  |
+|---------|---------------------------------------------------------------------------------------------|----------------|
+| integer | Maximum Kubernetes pods (containers/application/jobs/cronjob) retention logs in weeks.      | `12` (84 days) |
+
+
+## Image registry
+
+#### registry.image_retention_time ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg)
+
+| Type    | Description                                                                                        | Default Value       |
+|---------|----------------------------------------------------------------------------------------------------|---------------------|
+| integer | Allows you to specify an amount in seconds after which images in the default registry are deleted. | `31536000` (1 year) |
+
+#### cloud_provider_container_registry_tags ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg)
+
+| Type                | Description                                           | Default Value |
+|---------------------|-------------------------------------------------------|---------------|
+| Map<String, String> | Add additional tags on the cluster dedicated registry |               |
+
+## Network
+
+#### load_balancer.size ![](/img/advanced_settings/scaleway.svg)
+
+| Type    | Description                                                                 | Default Value |
+|---------|-----------------------------------------------------------------------------|---------------|
+| string  | Allows you to specify the load balancer size in front of your cluster.      | `lb-s`        |
 
 #### database.postgresql.deny_public_access ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-container.svg) ![](/img/advanced_settings/database-managed.svg) 
 
@@ -88,47 +129,6 @@ Below is the list of advanced settings currently available for clusters.
 | Type    | Description                                                                                    | Default Value   |
 |---------|------------------------------------------------------------------------------------------------|-----------------|
 | boolean | List of allowed CIDRS. Valid only when [`database.redis.deny_public_access`](#databaseredisdeny_public_access) is set to true      | `["0.0.0.0/0"]` |
-
-#### aws.vpc.enable_s3_flow_logs ![](/img/advanced_settings/aws.svg)
-
-| Type    | Description                                                         | Default Value |
-|---------|---------------------------------------------------------------------|---------------|
-| boolean | Enable flow logs on the cluster VPC and store them in an s3 bucket. | `false`       |
-
-#### aws.vpc.flow_logs_retention_days ![](/img/advanced_settings/aws.svg)
-
-| Type    | Description                                                                        | Default Value |
-|---------|------------------------------------------------------------------------------------|---------------|
-| integer | Set the number of retention days for flow logs. Unlimited retention with value `0` | `365`         |
-
-#### loki.log_retention_in_week ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg)
-
-| Type    | Description                                                                                 | Default Value  |
-|---------|---------------------------------------------------------------------------------------------|----------------|
-| integer | Maximum Kubernetes pods (containers/application/jobs/cronjob) retention logs in weeks.      | `12` (84 days) |
-
-
-## Image registry
-
-#### registry.image_retention_time ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg)
-
-| Type    | Description                                                                                        | Default Value       |
-|---------|----------------------------------------------------------------------------------------------------|---------------------|
-| integer | Allows you to specify an amount in seconds after which images in the default registry are deleted. | `31536000` (1 year) |
-
-#### cloud_provider_container_registry_tags ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg)
-
-| Type                | Description                                           | Default Value |
-|---------------------|-------------------------------------------------------|---------------|
-| Map<String, String> | Add additional tags on the cluster dedicated registry |               |
-
-## Network
-
-#### load_balancer.size ![](/img/advanced_settings/scaleway.svg)
-
-| Type    | Description                                                                 | Default Value |
-|---------|-----------------------------------------------------------------------------|---------------|
-| string  | Allows you to specify the load balancer size in front of your cluster.      | `lb-s`        |
 
 
 ## IAM

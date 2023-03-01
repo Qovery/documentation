@@ -16,18 +16,18 @@ This tutorial was created by [Aggis](https://github.com/Aggis15) - Active Qovery
 
 </Alert>
 
-Discord bots are rather famous lately for their flexibilty and ease to make simple ones, provided you have the needed knowlegde. In this guide, you'll learn how to create a very simple Discord bot in Python that will respond to messages and how you can host it with Qovery.
+Discord bots are rather famous lately for their flexibility and ease to make simple ones, provided you have the needed knowledge. In this guide, you'll learn how to create a very simple Discord bot in Python that will respond to messages and how you can host it your cloud of choice with Qovery.
 
 > Discord.py is a famous Python package you can use for creating complex bots made in Python that can do everything Discord's API supports. It's flexible and easy to use.
 
 ## Installing the required libraries
 
 <Alert type="info">
-    
+
 If you already have Discord.py and python-dotenv installed, you can move on to the Write your Discord bot section.
 
 </Alert>
-    
+
 Start by opening a command prompt, then type the following command:
 
 ```bash
@@ -36,7 +36,7 @@ python3 -m pip install -U discord.py python-dotenv
 
 This will fetch the latest version of both packages from PyPI. If you run into any issues, make sure pip is installed and set up correctly. You can follow the pip docs [here](https://pip.pypa.io/en/stable/installing/) to install it correctly.
 
-Now you are ready to write your Discord bot! 
+Now you are ready to write your Discord bot!
 
 ## Get your Bot token
 
@@ -51,7 +51,7 @@ Now you are ready to write your Discord bot!
 5. Copy the link that comes up, and paste it in your browser. Discord will ask you which server you want to add your bot, so choose the one you want. After that, your bot should be in your server. It will be offline and that's okay for now.
 
 <p align="center">
-        <img src="/img/discordpy-tutorial.png" alt="Discord Portal" /> 
+        <img src="/img/discordpy-tutorial.png" alt="Discord Portal" />
 </p>
 
 ## Write your discord bot
@@ -62,15 +62,15 @@ If you want to know more about the discordpy library and the many functions it h
 
 </Alert>
 
-1. Start by making a new folder for your bot files to reside. It can be anywhere you like. 
+1. Start by making a new folder for your bot files to reside. It can be anywhere you like.
 
 2. Open up your IDE of your choosing and navigate to the directory you made.
 
-3. From there, create a new python file. You can name it whatever you like, just make it easy to type, like `main.py`. 
+3. From there, create a new python file. You can name it whatever you like, just make it easy to type, like `main.py`.
 
 4. You're also going to create a new file called `.env`. There we are going to store all our sensitive values like our bot token.
 
-5. Now we get to the coding part. Start by importing all the needed libraries, it's as simple as: 
+5. Now we get to the coding part. Start by importing all the needed libraries, it's as simple as:
 
 ```python
 import os
@@ -181,7 +181,13 @@ For more complex applications and a more in depth look in Dockerfiles, you can c
 All that's left now is adding all your files (except the `.env` file) in your git repo. I'm not going to go in depth in this tutorial since that's not the purpose of this tutorial, but there are plenty of guides online.
 
 
-## Hosting your bot with Qovery
+## Hosting your bot on AWS with Qovery
+
+<Alert type="warning">
+
+Qovery is not a hosting platform, it's a deployment platform. This means that you will need to have a hosting platform (like AWS) to host your bot. Qovery will deploy your bot to your hosting platform of choice.
+
+</Alert>
 
 1. Sign up to Qovery.
 
@@ -193,7 +199,7 @@ All that's left now is adding all your files (except the `.env` file) in your gi
 
 4. Go back to your app, then settings, and select Dockerfile as the build mode. Qovery will automatically choose the Dockerfile.
 
-5. Click deploy and your bot should be deployed in the next few minutes. 
+5. Click deploy and your bot should be deployed in the next few minutes.
 
 Your bot is now online!
 

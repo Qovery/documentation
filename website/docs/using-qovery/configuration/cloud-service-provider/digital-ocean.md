@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-07-09"
+last_modified_on: "2023-03-16"
 title: "Digital Ocean (DO)"
 description: "Learn how to configure and plug your Digital Ocean (DO) account"
 ---
@@ -7,6 +7,12 @@ description: "Learn how to configure and plug your Digital Ocean (DO) account"
 import Steps from '@site/src/components/Steps';
 import Alert from '@site/src/components/Alert';
 import Assumptions from '@site/src/components/Assumptions';
+
+<Alert type="danger">
+
+Digital Ocean is no longer supported. [Read more...](https://www.qovery.com/blog/say-goodbye-to-digital-ocean-major-change-in-supported-cloud-providers)
+
+</Alert>
 
 Qovery lets you quickly deploy applications to your [Digital Ocean (DO)][urls.digital_ocean] account. No knowledge needed, and it takes less than 20 minutes to install Qovery on your Digital Ocean account.
 
@@ -109,7 +115,7 @@ Well done!! You now have your Digital Ocean `access key id`, `secret access key`
 #### Install a new cluster on Qovery
 
 You will be able to use the credentials you just generated when creating a cluster via the Qovery console. This cluster will be linked to your Qovery organization.
-Follow these steps to create a new cluster. 
+Follow these steps to create a new cluster.
 
 <Steps headingDepth={3}>
 
@@ -124,9 +130,9 @@ Go to your organizations settings.
 
 <li>
 
-On this page, you will be able to see the information and status or your clusters. 
+On this page, you will be able to see the information and status or your clusters.
 
-Click on `Add cluster` button.  
+Click on `Add cluster` button.
 
 <img src="/img/add-cluster.png" />
 
@@ -134,11 +140,11 @@ Click on `Add cluster` button.
 
 <li>
 
-A modal is displayed, where you can specify the name of your cluster and the Cloud Provider. 
+A modal is displayed, where you can specify the name of your cluster and the Cloud Provider.
 
 Select the following Cloud Provider: `Digital Ocean`.
 
-Once you have selected the cloud provider, you will be able to define the Region of your Cluster. 
+Once you have selected the cloud provider, you will be able to define the Region of your Cluster.
 
 <img src="/img/do-select-provider.png" />
 
@@ -151,7 +157,7 @@ Here you can choose to set your cluster credentials straight away or later. To s
 
 If you have already set credentials on another cluster, they have been linked to your Qovery account and can be reused here. Just click on the one you want to use in the drop-down list.
 
-If you want to use other credentials (or if you do not have any defined), click `+ new credentials` in the drop-down list. 
+If you want to use other credentials (or if you do not have any defined), click `+ new credentials` in the drop-down list.
 
 <img src="/img/do-config-creds.png" />
 
@@ -169,7 +175,7 @@ Click on `Save`to save the new credential and then `Next`.
 
 <li>
 
-On this step, you can select specific features you want to activate or deactivate on the cluster. 
+On this step, you can select specific features you want to activate or deactivate on the cluster.
 
 <img src="/img/cluster-features.png" />
 
@@ -183,7 +189,7 @@ You will not be able to activate/deactivate these features once the cluster has 
 
 <li>
 
-Once your new cluster is created, it will be listed in the cluster list. If you have finished configuring your cluster, click on the `...` and `Install` menu to start the cluster installation. 
+Once your new cluster is created, it will be listed in the cluster list. If you have finished configuring your cluster, click on the `...` and `Install` menu to start the cluster installation.
 
 <img src="/img/install-cluster.png" />
 

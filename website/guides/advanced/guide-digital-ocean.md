@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-07-09"
+last_modified_on: "2023-03-16"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy on your Digital Ocean account
 description: How to configure and deploy your apps on your Digital Ocean account with Qovery
@@ -12,6 +12,12 @@ import Jump from '@site/src/components/Jump';
 import Steps from '@site/src/components/Steps';
 import Assumptions from '@site/src/components/Assumptions';
 import Alert from '@site/src/components/Alert';
+
+<Alert type="danger">
+
+Digital Ocean is no longer supported. [Read more...](https://www.qovery.com/blog/say-goodbye-to-digital-ocean-major-change-in-supported-cloud-providers)
+
+</Alert>
 
 [Digital Ocean](https://www.digitalocean.com/?ref=qovery) (DO) is a platform that offers flexible, reliable, and scalable Cloud computing solutions. The platform is developed with a combination of infrastructure as a service (IaaS), platform as a service (PaaS), and packaged software as a service (SaaS) offerings.
 

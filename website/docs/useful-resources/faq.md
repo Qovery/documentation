@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-07-09"
+last_modified_on: "2023-03-20"
 title: FAQ
 description: "Frequently Asked Questions"
 ---
@@ -62,13 +62,12 @@ You have to create N CNAME, one per custom domain
 
 The Qovery team manages your Kubernetes cluster's upgrade, and you don't have to think about it. Upgrades from one minor Kubernetes version to another require a good amount of tests to make sure everything goes smoothly with zero interruptions for your app. This is why Qovery always provides 1 or 2 minor versions below the last one offered by the cloud provider. Our goal is to guarantee you the maximum uptime.
 
-## What do you do when a vulnerability is found?
+More details on this dedicated section: [how-does-qovery-handle-cluster-updates-and-upgrades][docs.using-qovery.configuration.clusters#how-does-qovery-handle-cluster-updates-and-upgrades]
 
-Security is our main concern. When a vulnerability is found, here are the actions that we take:
+### Can I upgrade my cluster myself
 
-1. We quickly identify how significant is the impact of the vulnerability.
-2. We look at how we can solve or mitigate the vulnerability.
-3. We transparently communicate with our customers on the vulnerability to help them take the right actions.
+NO and you SHOULDN'T !
+More details on this dedicated section: [how-does-qovery-handle-cluster-updates-and-upgrades][docs.using-qovery.configuration.clusters#how-does-qovery-handle-cluster-updates-and-upgrades]
 
 ## Can I have access to my Kubernetes cluster?
 
@@ -112,6 +111,7 @@ Feel free to join our [Discord server][urls.qovery_chat] or contact us by email 
 [docs.getting-started.how-qovery-works]: /docs/getting-started/how-qovery-works/
 [docs.using-qovery.configuration.application#auto-scaling]: /docs/using-qovery/configuration/application/#auto-scaling
 [docs.using-qovery.configuration.application]: /docs/using-qovery/configuration/application/
+[docs.using-qovery.configuration.clusters#how-does-qovery-handle-cluster-updates-and-upgrades]: /docs/using-qovery/configuration/clusters/#how-does-qovery-handle-cluster-updates-and-upgrades
 [docs.using-qovery.configuration.clusters#static-ip]: /docs/using-qovery/configuration/clusters/#static-ip
 [docs.using-qovery.configuration.clusters#what-is-a-cluster]: /docs/using-qovery/configuration/clusters/#what-is-a-cluster
 [docs.using-qovery.configuration.database]: /docs/using-qovery/configuration/database/

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-02-05"
+last_modified_on: "2023-03-15"
 title: "GitHub Actions"
 description: "Learn how to connect GitHub Actions to Qovery"
 ---
@@ -117,7 +117,7 @@ qovery application deploy \
 
 </Alert>
 
-### Deploy your multiple applications with a specific commit ID (monorepo)
+### Deploy your multiple applications with a different commit ID
 
 ```bash
 # deploy the application 1 and wait for the deployment to be successful with the --watch argument
@@ -138,18 +138,22 @@ qovery application deploy \
   --commit-id <your_commit_id> \
   --watch
 ```
+This is also applicable for the `qovery container deploy`, `qovery lifecycle deploy`, and `qovery cronjob deploy` commands.
 
-### Deploy your container with a specific Tag
+### Deploy your multiple applications with a specific commit ID (monorepo)
 
-```shell
+```bash
+# deploy the application 1, 2 and 3 with the same commit ID and wait for the deployment to be successful with the --watch argument
 qovery application deploy \
   --organization <your_org_name> \
   --project <your_project_name> \
   --environment <your_environment_name> \
-  --container <your_container_name> \
-  --tag <your_container_tag> \
+  --applications "<app_1_name>, <app_2_name>, <app_3_name>" \
+  --commit-id <your_commit_id> \
   --watch
 ```
+
+This is also applicable for the `qovery container deploy`, `qovery lifecycle deploy`, and `qovery cronjob deploy` commands.
 
 ### Create a Preview Environment for your Pull-Request
 

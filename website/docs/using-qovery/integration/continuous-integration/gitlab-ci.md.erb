@@ -43,7 +43,7 @@ deploy-image-with-qovery:
   script:
     - curl -s https://get.qovery.com | bash # Download and install Qovery CLI
     - |
-      qovery application deploy \
+      qovery container deploy \
         --organization <your_org_name> \
         --project <your_project_name> \
         --environment <your_environment_name> \

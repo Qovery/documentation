@@ -165,6 +165,7 @@ module.exports = {
         "security-and-compliance/backup-and-restore",
         "security-and-compliance/encryption",
         "security-and-compliance/gdpr",
+        "security-and-compliance/soc2",
       ],
     },
     {

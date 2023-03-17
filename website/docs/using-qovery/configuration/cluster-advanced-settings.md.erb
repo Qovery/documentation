@@ -59,7 +59,7 @@ Below is the list of advanced settings currently available for clusters.
 |---------|----------------------------------------------------------------------------------------------------|---------------------|
 | integer | Allows you to specify an amount in seconds after which images in the default registry are deleted. | `31536000` (1 year) |
 
-#### cloud_provider_container_registry_tags ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg)
+#### cloud_provider.container_registry.tags ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg)
 
 | Type                | Description                                           | Default Value |
 |---------------------|-------------------------------------------------------|---------------|
@@ -127,4 +127,11 @@ Below is the list of advanced settings currently available for clusters.
 #### aws.iam.admin_group ![](/img/advanced_settings/aws.svg)
 | Type    | Description                                                                 | Default Value |
 |---------|-----------------------------------------------------------------------------|---------------|
-| string  | Allows you to specify the IAM group name associated to the Qovery user in the AWS console during the [IAM permissions setup][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account]   | `Admins`        |
+| string  | Allows you to specify the IAM group name associated with the Qovery user in the AWS console during the [IAM permissions setup][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account] to be able to connect to the Kubernetes cluster | `Admins`        |
+
+## Miscellaneous
+
+#### aws.eks.ec2.metadata_imds ![](/img/advanced_settings/aws.svg)
+| Type    | Description                                                                                                                                                                                               | Default Value |
+|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| string  | Specify the [IMDS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) version you want to use. Possible values are `Required` (IMDS v2 only) and `Optional` (IMDS v1 and V2) | `Optional`    |

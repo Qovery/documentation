@@ -28,7 +28,7 @@ In the [cluster advanced settings][docs.using-qovery.configuration.cluster-advan
 ### Log retention days
 * AWS Cloudwatch retention days (aws.cloudwatch.eks_logs_retention_days): 365 days is what SOC2 requests at least
 * Enable VPC flow logs (aws.vpc.enable_s3_flow_logs and aws.vpc.flow_logs_retention_days): Enable it and set the retention days to 365 days
-* Allowed databases CIDR: you can disable or restrict public access
+* Allowed databases CIDR: you have to disable or restrict public access, but not let them open to the world
 
 
 [docs.using-qovery.configuration.cluster-advanced-settings]: /docs/using-qovery/configuration/cluster-advanced-settings/

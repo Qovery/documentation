@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-02-13"
+last_modified_on: "2023-03-20"
 title: "Clusters"
 description: "Learn how to configure your Kubernetes clusters on Qovery"
 ---
@@ -56,7 +56,6 @@ Single EC2 (K3s) is still in BETA phase and has the following limitations
 * You can’t access the historical logs and thus you can access your application logs only if it's running (Since we don’t have loki installed)
 * No public accessibility for DB container (we do not manage the public DNS entry for db). We will work on it in the upcoming weeks, in the meantime we will write a guide on how to connect to the DB via the ssh key / kubeconf
 * You can configure only 1 instance per application. Thus you can’t change the number of instances nor activate the sticky session feature
-* We do not manage YET the cluster version upgrades
 * Stop instance feature not ready YET
 * You can’t change the cluster settings without a service downtime since we kill the instance and we spawn a new one
 * We do not manage YET the external storage

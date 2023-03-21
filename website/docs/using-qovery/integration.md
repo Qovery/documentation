@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-12-26"
+last_modified_on: "2023-03-21"
 title: Integrations
 description: "Integrate Qovery with your existing tools and workflow"
 sidebar_label: hidden
@@ -13,7 +13,9 @@ Qovery integrations improve developers' experience with Qovery and make their li
 This section shows several Qovery integrations.
 
 <Jump to="/docs/using-qovery/integration/api-integration/">Api integration</Jump>
+<Jump to="/docs/using-qovery/integration/container-registry/">Container registry</Jump>
 <Jump to="/docs/using-qovery/integration/continuous-integration/">Continuous integration</Jump>
+<Jump to="/docs/using-qovery/integration/git-repository/">Git repository</Jump>
 <Jump to="/docs/using-qovery/integration/monitoring/">Monitoring</Jump>
 <Jump to="/docs/using-qovery/integration/slack/">Slack</Jump>
 <Jump to="/docs/using-qovery/integration/terraform/">Terraform</Jump>

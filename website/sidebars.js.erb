@@ -83,19 +83,6 @@ module.exports = {
         },
         {
           type: 'category',
-          label: 'Languages',
-          items: [
-            <%= metadata.links.fetch_id("docs.using-qovery.languages").to_json %>,
-            <%= metadata.links.fetch_id("docs.using-qovery.languages.nodejs").to_json %>,
-            <%= metadata.links.fetch_id("docs.using-qovery.languages.java").to_json %>,
-            <%= metadata.links.fetch_id("docs.using-qovery.languages.go").to_json %>,
-            <%= metadata.links.fetch_id("docs.using-qovery.languages.python").to_json %>,
-            <%= metadata.links.fetch_id("docs.using-qovery.languages.ruby").to_json %>,
-            <%= metadata.links.fetch_id("docs.using-qovery.languages.php").to_json %>,
-          ],
-        },
-        {
-          type: 'category',
           label: 'Quickstarts',
           items: [
             <%= metadata.links.fetch_id("docs.using-qovery.quickstart").to_json %>,
@@ -114,6 +101,8 @@ module.exports = {
           label: 'Integrations',
           items: [
             <%= metadata.links.fetch_id("docs.using-qovery.integration").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.integration.git-repository").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.integration.container-registry").to_json %>,
             <%= metadata.links.fetch_id("docs.using-qovery.integration.terraform").to_json %>,
             {
               type: 'category',

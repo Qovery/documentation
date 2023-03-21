@@ -83,19 +83,6 @@ module.exports = {
         },
         {
           type: 'category',
-          label: 'Languages',
-          items: [
-            "using-qovery/languages",
-            "using-qovery/languages/nodejs",
-            "using-qovery/languages/java",
-            "using-qovery/languages/go",
-            "using-qovery/languages/python",
-            "using-qovery/languages/ruby",
-            "using-qovery/languages/php",
-          ],
-        },
-        {
-          type: 'category',
           label: 'Quickstarts',
           items: [
             "using-qovery/quickstart",
@@ -114,6 +101,8 @@ module.exports = {
           label: 'Integrations',
           items: [
             "using-qovery/integration",
+            "using-qovery/integration/git-repository",
+            "using-qovery/integration/container-registry",
             "using-qovery/integration/terraform",
             {
               type: 'category',

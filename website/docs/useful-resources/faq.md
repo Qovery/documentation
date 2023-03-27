@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-03-20"
+last_modified_on: "2023-03-27"
 title: FAQ
 description: "Frequently Asked Questions"
 ---
@@ -64,7 +64,7 @@ The Qovery team manages your Kubernetes cluster's upgrade, and you don't have to
 
 More details on this dedicated section: [how-does-qovery-handle-cluster-updates-and-upgrades][docs.using-qovery.configuration.clusters#how-does-qovery-handle-cluster-updates-and-upgrades]
 
-### Can I upgrade my cluster myself
+## Can I upgrade my cluster myself
 
 NO and you SHOULDN'T !
 More details on this dedicated section: [how-does-qovery-handle-cluster-updates-and-upgrades][docs.using-qovery.configuration.clusters#how-does-qovery-handle-cluster-updates-and-upgrades]

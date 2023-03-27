@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-03-20"
+last_modified_on: "2023-03-27"
 title: "Cluster Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -143,7 +143,7 @@ Below is the list of advanced settings currently available for clusters.
 #### aws.eks.ec2.metadata_imds ![](/img/advanced_settings/aws.svg)
 | Type    | Description                                                                                                                                                                                               | Default Value |
 |---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
-| string  | Specify the [IMDS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) version you want to use. Possible values are `Required` (IMDS v2 only) and `Optional` (IMDS v1 and V2) | `Optional`    |
+| string  | Specify the [IMDS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) version you want to use. Possible values are `required` (IMDS v2 only) and `optional` (IMDS v1 and V2) | `optional`    |
 
 
 [docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account]: /docs/using-qovery/configuration/cloud-service-provider/amazon-web-services/#connect-your-aws-account

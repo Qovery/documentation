@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-03-20"
+last_modified_on: "2023-03-29"
 title: "Clusters"
 description: "Learn how to configure your Kubernetes clusters on Qovery"
 ---
@@ -83,7 +83,7 @@ The range of instance types available at cluster creation depends on your cloud 
 
 <Alert type="info">
 
-Qovery supports only instance types having an x86_64 architecture.
+Qovery supports only instance types having an x86_64 or ARM architectures.
 
 </Alert>
 

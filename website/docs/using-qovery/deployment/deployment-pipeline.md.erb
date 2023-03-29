@@ -28,16 +28,16 @@ Below you can find a visual example of how the pipeline looks like
 ## Default Pipeline
 
 By default, the deployment pipeline is constituted of 4 deployment stages with a default service assignment rule:
-0. "DEFAULT DATABASE": any new service of type `DATABASE` will be added to this stage.
-1. "DEFAULT JOB": any new service of type `JOB` will be added to this stage.
-2. "DEFAULT CONTAINER": any new service of type `CONTAINER` will be added to this stage (application deployed from a container image).
-3. "DEFAULT APPLICATION": any new service of type `APPLICATION` will be added to this stage (application deployed from a git repository).
+- "0.DEFAULT DATABASE": any new service of type `DATABASE` will be added to this stage.
+- "1.DEFAULT JOB": any new service of type `JOB` will be added to this stage.
+- "2.DEFAULT CONTAINER": any new service of type `CONTAINER` will be added to this stage (application deployed from a container image).
+- "3.DEFAULT APPLICATION": any new service of type `APPLICATION` will be added to this stage (application deployed from a git repository).
 
 <p align="center">
   <img src="/img/deployment/default_deployment_pipeline.png" alt="Default Deployment Pipeline" />
 </p>
 
-Once the service is created, the assigned stage can be modified afterwards. See [this section][docs.using-qovery.deployment.deployment-pipeline#change-stage-for-a-service] for more information.
+Once the service is created, the assigned stage can be modified afterwards. See [this section][docs.using-qovery.configuration.environment#deployment-pipeline] for more information.
 
 <Alert type="info">
 
@@ -45,45 +45,6 @@ This default assignment is maintained as long as you do not delete or rename the
 
 </Alert>
 
+## Visualizing and Modifying the Pipeline
 
-## Modify the Pipeline
-
-In the following sections we will describe how to modify the Deployment Pipeline. We will use the CLI in our examples since the feature is not yet available on the UI.
-
-### List stages
-
-You can list all the stages of your environment by using the following command:
-
-```bash
-qovery environment stage list
-```
-
-### Add a stage
-You can add a new stage by using the following command:
-
-```bash
-qovery environment stage create -n <name> -d <description>
-```
-
-Note that the stage will be added at the end of the pipeline (the highest number)
-
-### Modify a stage
-You can modify a stage by using the following command:
-
-```bash
-qovery environment stage edit -n <original name> --new-name <new name> --new-description <new description>
-```
-
-### Delete a stage
-You can modify a stage by using the following command:
-
-```bash
-qovery environment stage delete -n <name>
-```
-
-### Change stage for a service
-You can modify the stage associated to a service by using the following command:
-
-```bash
-qovery environment stage move -n <service name> --stage <stage name>
-```
+You can access and modify the pipeline configuration from the environment settings. Have a look at this section to know more.

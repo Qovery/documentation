@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-02-09"
+last_modified_on: "2023-03-29"
 title: "Deployment management"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -163,6 +163,38 @@ Once you click on the action, this panel will appear, and you will be able to ch
 </p>
 
 By pressing on the Deploy button, a deployment of the service will be triggered using the selected version.
+
+## Deployments history
+
+You can easily access to the deployments history of your environment by clicking on deployment `history button` in `Action` menu.
+
+<p align="center">
+  <img src="/img/deployment-history-access.png" alt="Deployment history button access" />
+</p>
+
+This page allows you to view the history of all previous deployments of your environment and their status. By clicking on the extension button, you will also be able to view the services deployed in the environment and their deployment status.
+
+<p align="center">
+  <img src="/img/deployment-history.png" alt="Deployment history list" />
+</p>
+
+
+## Build and Deployment logs
+
+Sometimes, you need to have a closer look on what is going on while an operation (see [statuses](docs.using-qovery.configuration.environment#environment-statuses)) is in progress.
+
+<div class="video-container">
+  <p align="center">
+    <iframe src="https://www.loom.com/embed/245b2e7e72d548a6b412899df94e7223" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+    </iframe>
+  </p>
+</div>
+
+Click on the `show logs` button to watch your deployment logs in real-time.
+
+<p align="center">
+  <img src="/img/environment_deployment_logs.jpg" alt="Environment deployment logs" />
+</p>
 
 
 [docs.using-qovery.configuration.clusters]: /docs/using-qovery/configuration/clusters/

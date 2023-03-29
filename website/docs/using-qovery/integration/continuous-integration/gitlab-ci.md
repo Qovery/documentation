@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-03-15"
+last_modified_on: "2023-03-29"
 title: "GitLab CI"
 description: "Learn how to connect GitLab CI to Qovery"
 ---
@@ -25,7 +25,7 @@ Before using the examples below, you need to:
 1. Install the [Qovery CLI][docs.using-qovery.interface.cli].
 2. Generate an [API token][docs.using-qovery.interface.cli#generate-api-token].
 3. Set the environment variable `QOVERY_CLI_ACCESS_TOKEN` (`export QOVERY_CLI_ACCESS_TOKEN=your-api-token`) with your API token.
-4. You have turned off the [Qovery Auto Deployment][docs.using-qovery.configuration.environment#auto-deploy-environment] for your environment that you want to deploy manually.
+4. You have turned off the [Qovery Auto Deployment][docs.using-qovery.configuration.environment#auto-deploy] for your environment that you want to deploy manually.
 
 ## GitLab CI Examples
 
@@ -175,7 +175,7 @@ Do you want to include Terraform in your CI? Check out our [Terraform documentat
 Feel free to share your examples with us, and we'll be happy to share them with the community. Contact us on [our forum][urls.qovery_forum].
 
 
-[docs.using-qovery.configuration.environment#auto-deploy-environment]: /docs/using-qovery/configuration/environment/#auto-deploy-environment
+[docs.using-qovery.configuration.environment#auto-deploy]: /docs/using-qovery/configuration/environment/#auto-deploy
 [docs.using-qovery.configuration.organization#container-registry-management]: /docs/using-qovery/configuration/organization/#container-registry-management
 [docs.using-qovery.integration.terraform]: /docs/using-qovery/integration/terraform/
 [docs.using-qovery.interface.cli#generate-api-token]: /docs/using-qovery/interface/cli/#generate-api-token

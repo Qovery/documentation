@@ -20,72 +20,118 @@ Applications and databases from an Environment are isolated from other Environme
 
 </Alert>
 
+## Types of environment
+
+There are different types of environments that can be defined within Qovery. Types of environment are also called `mode`, to label it and share with others in the organization how to use it.
+Here is the mode you should set depending of the use of your Environment.
+
+| environment mode | recommended mode | why |
+|-------------|------------------|-----|
+| Production | Production environment should not be stopped or deleted by anyone. |
+| Staging | Staging environment reflects how things work and is sometimes as critical as production for companies. |
+| Development | Develoment environment is a working environment that could be used to develop and test new features and fixes. |
+
+A special mode `Preview` exists and it is automatically set when a `Preview Environment` is created on a new pull request. Have a look at [this section](#preview-environment) to know more about preview environments.
+
+
 ## Create an environment
 
-You can create a new environment by clicking on the `Create environment` button of the Project page. A modal will appear that will allow you to specify following parameters
+You can create a new environment by clicking on the `Create environment` button of the Environment list page. 
+
+<p align="center">
+  <img src="/img/environment/create_environment_1.png" alt="Create an environment" />
+</p>
+
+A modal will appear that will allow you to specify following parameters
 
 * **name**: Give a name to your environment that is easily recognizable by anyone from your team. It is good practice to name your environment `production`, `main` or `master`, `staging`, `dev`, `fix/xxx`, `feat/xxx`, depending on the purpose of your environment.
-* **mode**: Specify environment mode. See [Types of environment](#types-of-environment) section.
-* **cluster** : Specify the organization cluster on which this new environment will be deployed.
+* **mode**: Specify environment mode. See [Types of environment](#types-of-environment) section. If `automatic` is chosen, the mode will be automatically selected based on the configured deployment rules. See the [Project Deployment Rules section][docs.using-qovery.configuration.deployment-rule#project-deployment-rules]
+* **cluster** : Specify the organization cluster on which this new environment will be deployed. If `automatic` is chosen, the cluster will be automatically selected based on the configured deployment rules. See the [Project Deployment Rules section][docs.using-qovery.configuration.deployment-rule#project-deployment-rules]
 
 <p align="center">
-  <img src="/img/create-env.png" alt="Create an environment" />
+  <img src="/img/environment/create_environment_2.png" alt="Create an environment - Modal" />
 </p>
 
-## Deployment Management
-Have a look at the [Deployment Management][docs.using-qovery.deployment.deployment-management] section for more information.
-
-### Deployment rules and automatic option.
-
-By default, `mode` and `cluster` parameters are set as "automatic".
-
-If `Automatic` option is specified for one or both of these parameters, deployment rules will automatically select the `cluster` and the `mode` you specified in it.
-
-If you chose to specify a cluster and/or a mode during the environment creation, the deploymment rules will also be applied, but the `cluster` and the `mode` will be overwritten by the one you just specified.
-
-If you let `Automatic` option and that no deployment rule catch this new environment, the default `mode` and `cluster` will be applied.
+Once created you can start adding your services within it depending on your need:
+- [Application][docs.using-qovery.configuration.application]: generic long-running workload
+- [Cronjob][docs.using-qovery.configuration.cronjob]: scheduled task
+- [Lifecycle Job][docs.using-qovery.configuration.lifecycle-job]: generic task to be executed at environment start/stop/delete.  
+- [Database][docs.using-qovery.configuration.database]: managed or container database
 
 <p align="center">
-  <img src="/img/create-env-auto.png" alt="Create an environment" />
+  <img src="/img/environment/create_service.png" alt="Create Service" />
 </p>
 
-<Alert type="info">
+## Editing the environment settings
 
-To learn more about the deployment rules, take a look to the [See the Deployment Rule section](#deployment-rules).
-
-</Alert>
-
-When you start using Qovery heavily, your environment list can look like this
+You can access the environment settings by opening the `SETTINGS` tab.
 
 <p align="center">
-  <img src="/img/environment_list.png" alt="List of environments" />
+  <img src="/img/environment/environment_settings.png" alt="Environment settings tab" />
 </p>
 
-## Edit environment general settings
-
-General settings of an environment can be updated in the settings panel. Your can access to it by clicking on the `SETTINGS` button.
-
-<p align="center">
-  <img src="/img/env-setting-button.png" alt="Environment settings button" />
-</p>
+### General settings
 
 On the `General` tab, you will be able to update your environment name. It will also display the environment mode and the cluster assigned to your environment.
 
-<p align="center">
-  <img src="/img/env-setting-panel.png" alt="Environment settings button" />
-</p>
-
 <Alert type="info">
 
-Please note that environment type and associated cluster are not editable after the environment was provisioned.
-
-Refer to the [Types of environment](#types-of-environment) section below to learn more about environment modes.
+Please note that the associated cluster is not editable after the environment was provisioned. If you need to edit it, you have to [clone the environment](#clone-environment) on the desired cluster
 
 </Alert>
 
-## Preview environment
 
-> Use Preview Environment to get early feedback on your application changes.
+### Deployment Rule
+
+Using Deployment Rules is a good practice to drastically **reduce your cost**. To know more of the benefit of using them, have a look at the [Deployment Rules section][docs.using-qovery.configuration.deployment-rule].
+
+A default deployment configuration is applied to your environment when it's created but you can modify it by:
+- editing the deployment rules settings from within the environment settings tab
+- creating a [dedicated rule at project level][docs.using-qovery.configuration.deployment-rule#project-deployment-rules] that will affect any new environment created and matching the condition. 
+
+Below you can find the description of the deployment rule settings that can be modified for a specific environment
+
+#### Auto-deploy
+
+**Auto deploy** allows you to override the default settings applied by the project rule related to if your applications should be by default automatically updated after receiving new commits.
+
+#### Auto-delete
+
+**Auto-delete** feature allows you to control if your applications should be, by default, automatically deleted after branch merging or deletion.
+
+#### Start & Stop
+
+The start and stop section allow you to override the default settings applied by the project rule to precisely set up when the environment should be deployed and cleaned up.
+
+
+### Deployment Pipeline
+
+This section allows you to configure the deployment pipeline to be executed when a deployment on the environment is triggered. More in particular, you can define the deployment order of each service within your environment.
+
+<p align="center">
+  <img src="/img/environment/deployment_pipeline.png" alt="Deployment Pipeline" />
+</p>
+
+You can get more information about the Qovery deployment pipeline and how it works within [this section][docs.using-qovery.deployment.deployment-pipeline].
+
+#### Editing deployment order
+
+You can edit the order simply by drag and drop the service from one stage to another.
+
+You can also modify the order of an entire stage by opening the `3 dots menu` of the stage and clicking on `Edit order`
+
+#### Adding a new stage
+
+You can add a new stage by pressing the `Add stage` button. A name and a description are required to create the new stage.
+
+#### Editing deployment stage
+
+You can modify the name and the description of a stage by opening the `3 dots menu` of the stage and clicking on `Edit order`
+
+
+### Preview environment
+
+> Use Preview Environment to get early feedback on your application changes by creating a dedicated environment for each of your pull requests.
 
 The purpose of an Environment is to manage a bunch of applications that are working all together. Your production environment runs 24/7, where your other environments may not need to run all day long. E.g. you may need to run Environments to get early feedback on your application changes before the changes are merged into production. This is what we call **Preview Environment**.
 
@@ -117,103 +163,25 @@ When you create a preview environment, Qovery automatically displays a message o
 
 </Alert>
 
-## Build and Deployment logs
-
-Sometimes, you need to have a closer look on what is going on while an operation (see [statuses](docs.using-qovery.configuration.environment#environment-statuses)) is in progress.
-
-<div class="video-container">
-  <p align="center">
-    <iframe src="https://www.loom.com/embed/245b2e7e72d548a6b412899df94e7223" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
-    </iframe>
-  </p>
-</div>
-
-Click on the `show logs` button to watch your deployment logs in real-time.
-
-<p align="center">
-  <img src="/img/environment_deployment_logs.jpg" alt="Environment deployment logs" />
-</p>
-
 ## Clone environment
 
-Cloning an environment is possible if you want to create an Environment from another one.
+Cloning an existing environnment is convenient for those use cases:
+- Make a demo without impacting the original environment.
+- Validate a feature on a dedicated environment.
 
-
-<p align="center">
-  <img src="/img/environment_actions_dropdown.jpg" alt="Environment actions dropdown" />
-</p>
-
-Environment clone is convenient for those use cases:
-- Make a demo without impacting the original Environment.
-- Validating a feature that needs to reflect the original Environment.
-
-
-## Types of environment
-
-You can define a specific mode for an environment, to label it and share with others in the organization how to use it.
-Here is the mode you should set depending of the use of your Environment.
-
-| environment mode | recommended mode | why |
-|-------------|------------------|-----|
-| production | Production environment should not be stopped or deleted by anyone. |
-| Staging | Staging environment reflects how things work and is sometimes as critical as production for companies. |
-| Development | Develoment environment is a working environment that could be used to develop and test new features and fixes. |
-
-Moreover, Preview environment mode will be automatically set as `Preview`.
-
-## Advanced features
-
-It is possible to go beyond than the basic configuration for an Environment. Here is a list of advanced features available for your environments.
-
-### Auto-Deploy environment
-
-Auto-Deploy environment feature allows you to control if your applications should be, by default, automatically updated after receiving new commits. This feature is part of the [Environment deployment rules][docs.using-qovery.configuration.deployment-rule] feature.
-
-### Auto-delete environment
-
-Auto-delete environment feature allows you to control if your applications should be, by default, automatically deleted after branch merging or deletion. This feature is part of the [Environment deployment rules][docs.using-qovery.configuration.deployment-rule] feature.
-
-## Deployment rules
-
-The **Deployment Rules** lets you configure the lifecycle of your [Environments][docs.using-qovery.configuration.environment].
-
-<Alert type="info">
-
-Using **Deployment Rules** is a good practice to reduce your cost up to 60%.
-
-</Alert>
-
-Refer to the [Deployment Rule][docs.using-qovery.configuration.deployment-rule] documentation to know more.
-
-## Deployments history
-
-You can easily access to the deployments history of your environment by clicking on deployment `history button` in `Action` menu.
+Cloning an environment is possible directly from the 3 dots menu of your environment.
 
 <p align="center">
-  <img src="/img/deployment-history-access.png" alt="Deployment history button access" />
+  <img src="/img/environment/clone_environment.png" alt="Environment Clone" />
 </p>
 
-This page allows you to view the history of all previous deployments of your environment and their status. By clicking on the extension button, you will also be able to view the services deployed in the environment and their deployment status.
+When cloning an environment, every configuration of the original environment will be copied except for:
+- [Application custom domains][docs.using-qovery.configuration.application#domains]: custom domains are not cloned to avoid collision.
+- [Application BUILT_IN variables][docs.using-qovery.configuration.environment-variable#built_in-variables]: Since completely new services will be create, the original built_in variables will be replaced. Aliases and overrides are preserved during the clone operation.
 
-<p align="center">
-  <img src="/img/deployment-history.png" alt="Deployment history list" />
-</p>
+## Deploy an environment
+Have a look at the [Deployment Management][docs.using-qovery.deployment.deployment-management] section for more information on how to deploy your environment.
 
-## Cancel an environment deployment
-
-It may happen that you launch an unwanted deployment (setting error, wrong commit deployed, etc.) and you want to cancel the deployment, rather than waiting for the action to be completed and then performing a rollback, which can be time consuming.
-
-To cancel a deployment, click on `Cancel deployment` in the `Action` menu of your environment.
-
-<p align="center">
-  <img src="/img/cancel-deployment.png" alt="Cancel deployment Action button" />
-</p>
-
-<Alert type="info">
-
-Stopping a deployment may take a while, as a safe point needs to be reached. Some operations cannot be stopped (i.e: terraform actions) and need to be completed before stopping the deployment. Any action performed before won’t be rolled back
-
-</Alert>
 
 ## Delete an environment
 
@@ -225,6 +193,4 @@ This is a non-recoverable operation. By deleting your environment, all your runn
 
 To delete your environment, you must go in the `settings` > `Danger zone` and delete your Environment.
 
-<p align="center">
-  <img src="/img/env-danger-zone.png" alt="Environment danger zone" />
-</p>
+

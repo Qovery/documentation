@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-02-13"
+last_modified_on: "2023-03-29"
 title: CLI
 description: How to use the Qovery CLI (Command Line Interface)
 ---
@@ -475,6 +475,49 @@ APPLICATION | API gateway
 ~ $ qovery environment deploy
 Environment is deploying!
 ```
+
+## Managing the Deployment Pipeline
+
+In the following sections we will describe how to modify the Deployment Pipeline. 
+
+### List stages
+
+You can list all the stages of your environment by using the following command:
+
+```bash
+qovery environment stage list
+```
+
+### Add a stage
+You can add a new stage by using the following command:
+
+```bash
+qovery environment stage create -n <name> -d <description>
+```
+
+Note that the stage will be added at the end of the pipeline (the highest number)
+
+### Modify a stage
+You can modify a stage by using the following command:
+
+```bash
+qovery environment stage edit -n <original name> --new-name <new name> --new-description <new description>
+```
+
+### Delete a stage
+You can modify a stage by using the following command:
+
+```bash
+qovery environment stage delete -n <name>
+```
+
+### Change stage for a service
+You can modify the stage associated to a service by using the following command:
+
+```bash
+qovery environment stage move -n <service name> --stage <stage name>
+```
+
 
 ## Support
 

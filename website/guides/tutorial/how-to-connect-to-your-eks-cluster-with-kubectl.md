@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-01-19"
+last_modified_on: "2023-03-30"
 $schema: "/.meta/.schemas/guides.json"
 title: How to connect to your EKS cluster with kubectl
 description: How to connect to your EKS cluster using kubectl
@@ -57,10 +57,6 @@ To interact with your cluster, you will need `kubectl` installed.
 The AWS CLI must be installed and configured on your machine.
 [https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)
 
-**aws-iam-authenticator**
-
-This will allow `kubectl` to connect to your EKS cluster using IAM.
-[https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html)
 </li>
 
 <li>

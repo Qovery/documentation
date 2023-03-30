@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-02-10"
+last_modified_on: "2023-03-30"
 title: "Amazon Web Services (AWS)"
 description: "Learn how to configure and plug your Amazon Web Services (AWS) account"
 ---
@@ -71,7 +71,7 @@ Create `Admins` group **without any permissions**
 
 <Alert type="warning">
 
-The default name required by Qovery is Admins. If you want to use another name, you have to change the cluster advanced settings [aws.iam.admin_group][docs.using-qovery.configuration.cluster-advanced-settings#iam] BEFORE launching the cluster installation process 
+The default name required by Qovery is Admins. If you want to use another name, you have to change the cluster advanced settings [aws.iam.admin_group][docs.using-qovery.configuration.cluster-advanced-settings#iam] BEFORE launching the cluster installation process
 
 </Alert>
 
@@ -179,10 +179,10 @@ You can now save the `access key id` and `secret access key`
 
 Well done!! You now have your AWS `access key id` and `secret access key` and your permissions are setups; It is time to connect Qovery to your AWS account.
 
-#### Install a new cluster on Qovery
+### Install a new cluster on Qovery
 
 You will be able to use the credentials you just generated when creating a cluster via the Qovery console. This cluster will be linked to your Qovery organization.
-Follow [this documentation][docs.using-qovery.configuration.clusters#creating-a-cluster] to create a new cluster on your organization. 
+Follow [this documentation][docs.using-qovery.configuration.clusters#creating-a-cluster] to create a new cluster on your organization.
 
 ### Deployed AWS components
 
@@ -281,11 +281,11 @@ Qovery supports regions where [Amazon EKS](https://aws.amazon.com/eks) is suppor
 
 ## Manually configure VPC subnet
 
-VPC subnet is automatically defined by Qovery on cluster creation. However, you may want to choose your own VPC subnet, for example to perform VPC Peering. 
+VPC subnet is automatically defined by Qovery on cluster creation. However, you may want to choose your own VPC subnet, for example to perform VPC Peering.
 
 <Alert type="info">
 
-If you want to perform VPC Peering with Qovery, please refer to our guide [VPC Peering with Qovery][guides.tutorial.aws-vpc-peering-with-qovery] to be assisted step by step. 
+If you want to perform VPC Peering with Qovery, please refer to our guide [VPC Peering with Qovery][guides.tutorial.aws-vpc-peering-with-qovery] to be assisted step by step.
 
 </Alert>
 
@@ -293,11 +293,11 @@ Have a look at [this section][[docs.using-qovery.configuration.clusters#custom-v
 
 ## Configure routing table
 
-You may want to create and edit a network routing table to perform VPC peering. This can be done by accessing to the parameters of a cluster, in the settings of your organization. 
+You may want to create and edit a network routing table to perform VPC peering. This can be done by accessing to the parameters of a cluster, in the settings of your organization.
 
 <Alert type="info">
 
-If you want to perform VPC Peering with Qovery, please refer to our guide [VPC Peering with Qovery][guides.tutorial.aws-vpc-peering-with-qovery] to be assisted step by step. 
+If you want to perform VPC Peering with Qovery, please refer to our guide [VPC Peering with Qovery][guides.tutorial.aws-vpc-peering-with-qovery] to be assisted step by step.
 
 </Alert>
 

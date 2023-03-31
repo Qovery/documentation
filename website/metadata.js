@@ -339,6 +339,15 @@ module.exports = {
           "title": "Creating API clients using OpenAPI Tools"
         },
         {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/tutorial/customizing-preview-url-with-qovery-cli",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/customizing-preview-url-with-qovery-cli.md",
+          "series_position": null,
+          "title": "Customizing Preview URL with Qovery CLI"
+        },
+        {
           "author_github": "https://github.com/pjeziorowski",
           "description": null,
           "id": "/tutorial/deploy-django-with-postgresql",

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-01-19"
+last_modified_on: "2023-04-04"
 title: Redis
 description: "How to set up and use a Redis database"
 ---
@@ -14,20 +14,19 @@ Redis is an open source (BSD licensed), in-memory data structure store, used as 
      website/docs/using-qovery/configuration/database/redis.md.erb
 -->
 
-## Supported Versions
+## Supported Versions and Cloud Providers
 
-Qovery supports the following Redis versions.
+You can find the supported versions directly within the [Qovery Console][urls.qovery_console].
 
-|Cloud provider|Version|Container supported|Managed supported|
-|--------------|---------|-------|---------------------------|
-|AWS|7|Yes|Yes|
-|AWS|6|Yes|Yes|
-|AWS|5|Yes|Yes|
-|Scaleway|7|Yes|No|
-|Scaleway|6|Yes|No|
-|Scaleway|5|Yes|No|
+Availability of the Container version or Cloud Provider Managed versions depends on the chosen Cloud Provider 
+
+|Cloud provider|Container supported|Managed supported|
+|--------------|-------|---------------------------|
+|AWS|Yes|Yes|
+|Scaleway|Yes|No|
 
 Have a look at the [Database page][docs.using-qovery.configuration.database] to know more about the database creation and setup.
 
 
 [docs.using-qovery.configuration.database]: /docs/using-qovery/configuration/database/
+[urls.qovery_console]: https://console.qovery.com

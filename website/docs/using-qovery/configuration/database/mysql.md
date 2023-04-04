@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-01-19"
+last_modified_on: "2023-04-04"
 title: MySQL
 description: "How to set up and use a MySQL database"
 ---
@@ -14,18 +14,19 @@ MySQL is the world's most popular open source database. Whether you are a fast g
      website/docs/using-qovery/configuration/database/mysql.md.erb
 -->
 
-## Supported Versions
+## Supported Versions and Cloud Providers
 
-Qovery supports the following MySQL versions.
+You can find the supported versions directly within the [Qovery Console][urls.qovery_console].
 
-|Cloud provider|Version|Container supported|Managed supported|
-|--------------|---------|-------|---------------------------|
-|AWS|8.0|Yes|Yes|
-|AWS|5.7|Yes|Yes|
-|Scaleway|8.0|Yes|No|
-|Scaleway|5.7|Yes|No|
+Availability of the Container version or Cloud Provider Managed versions depends on the chosen Cloud Provider 
+
+|Cloud provider|Container supported|Managed supported|
+|--------------|-------|---------------------------|
+|AWS|Yes|Yes (RDS)|
+|Scaleway|Yes|No|
 
 Have a look at the [Database page][docs.using-qovery.configuration.database] to know more about the database creation and setup.
 
 
 [docs.using-qovery.configuration.database]: /docs/using-qovery/configuration/database/
+[urls.qovery_console]: https://console.qovery.com

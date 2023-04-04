@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-01-19"
+last_modified_on: "2023-04-04"
 title: MongoDB
 description: "How to set up and use a MongoDB database"
 ---
@@ -16,19 +16,16 @@ MongoDB is a cross-platform document-oriented database program. Classified as a 
      website/docs/using-qovery/configuration/database/mongodb.md.erb
 -->
 
-## Supported Versions
+## Supported Versions and Cloud Providers
 
-Qovery supports the following MongoDB versions.
+You can find the supported versions directly within the [Qovery Console][urls.qovery_console].
 
-|Cloud provider|Version|Container supported|Managed supported|
-|--------------|---------|-------|---------------------------|
-|AWS|4.4|Yes|No|
-|AWS|4.2|Yes|No|
-|AWS|4.0|No|Yes|
-|AWS|3.6|Yes|No|
-|Scaleway|4.4|Yes|No|
-|Scaleway|4.2|Yes|No|
-|Scaleway|3.6|Yes|No|
+Availability of the Container version or Cloud Provider Managed versions depends on the chosen Cloud Provider 
+
+|Cloud provider|Container supported|Managed supported|
+|--------------|-------|---------------------------|
+|AWS|Yes|Yes|
+|Scaleway|Yes|No|
 
 
 ## Credentials
@@ -45,3 +42,4 @@ Have a look at the [Database page][docs.using-qovery.configuration.database] to 
 
 
 [docs.using-qovery.configuration.database]: /docs/using-qovery/configuration/database/
+[urls.qovery_console]: https://console.qovery.com

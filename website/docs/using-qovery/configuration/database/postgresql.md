@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-01-19"
+last_modified_on: "2023-04-04"
 title: PostgreSQL
 description: "How to set up and use a PostgreSQL database"
 ---
@@ -14,25 +14,19 @@ PostgreSQL is a powerful, open source object-relational database system with ove
      website/docs/using-qovery/configuration/database/postgresql.md.erb
 -->
 
-## Supported Versions
+## Supported Versions and Cloud Providers
 
-Qovery supports the following PostgreSQL versions.
+You can find the supported versions directly within the [Qovery Console][urls.qovery_console].
 
-|Cloud provider|Version|Container supported|Managed supported|
-|--------------|---------|-------|---------------------------|
-|AWS|14|Yes|No|
-|AWS|13|Yes|Yes|
-|AWS|12|Yes|Yes|
-|AWS|11|Yes|Yes|
-|AWS|10|Yes|Yes|
-|AWS|9|No|Yes|
-|Scaleway|14|Yes|No|
-|Scaleway|13|Yes|No|
-|Scaleway|12|Yes|No|
-|Scaleway|11|Yes|No|
-|Scaleway|10|Yes|No|
+Availability of the Container version or Cloud Provider Managed versions depends on the chosen Cloud Provider 
+
+|Cloud provider|Container supported|Managed supported|
+|--------------|-------|---------------------------|
+|AWS|Yes|Yes (RDS)|
+|Scaleway|Yes|No|
 
 Have a look at the [Database page][docs.using-qovery.configuration.database] to know more about the database creation and setup.
 
 
 [docs.using-qovery.configuration.database]: /docs/using-qovery/configuration/database/
+[urls.qovery_console]: https://console.qovery.com

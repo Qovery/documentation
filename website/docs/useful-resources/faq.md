@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-03-27"
+last_modified_on: "2023-04-05"
 title: FAQ
 description: "Frequently Asked Questions"
 ---
@@ -101,6 +101,10 @@ Create teams, split responsibilities, manage privileges, enforce company-wide ru
 ## How Qovery works under the hood?
 
 [Here][docs.getting-started.how-qovery-works] is a detailed explanation on how Qovery works under the hood.
+
+## What is an Active User?
+
+An Active User is someone who made a code change on git or deployed an application in the last 30 days. We do not count contributions to public (open-source) repositories.
 
 ## How can I contact you?
 

@@ -100,6 +100,8 @@ To finish, set the role name and description of your choice and click on `Create
 
 ### Configure trusted entities
 
+#### Qovery environment scoped role
+
 Once created, select your freshly created role, go to the `Trust relationships` tab, and click on `Edit trust policy` button.
 
 <p Valign="center">
@@ -118,12 +120,56 @@ to:
 ```
 
 Replace:
-* `kubernetes_namespace`: with the namespace name ([previously copied in step 1](#get-kubernetes-namespace-name))
+* `kubernetes_namespace`: with the namespace name, corresponding to the Qovery environment ([previously copied in step 1](#get-kubernetes-namespace-name))
 * `service_account_name`: define a service account name which will be re-use later (ex: `my-s3-role`)
 
 Once done, click on the `Update policy` button.
 
-Last element to copy and save somewhere: the role `ARN`.
+Last element to copy and save somewhere: is the role `ARN`.
+
+In the end, you should have something like:
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Federated": "arn:aws:iam::yyyyyyy:oidc-provider/oidc.eks.us-east-2.amazonaws.com/id/xxxxxxx"
+            },
+            "Action": "sts:AssumeRoleWithWebIdentity",
+            "Condition": {
+                "StringEquals": {
+                    "oidc.eks.eu-west-3.amazonaws.com/id/xxxxxxx:sub": "system:serviceaccount:kubernetes_namespace:service_account_name"
+                }
+            }
+        }
+    ]
+}
+```
+
+#### Cluster scoped role
+
+If you want to be able to keep the Role and permissions with the "On-demand environment" and "Clone" features, then you have to scope the role "cluster side" instead of the "Kubernetes namespace" side.
+
+To do so, update the `Condition` with `StringLike` instead of `StringEquals`, and use a wildcard instead of the namespace name:
+```json
+"Condition": {
+    "StringLike": {
+        "oidc.eks.eu-west-3.amazonaws.com/id/xxxxxxx:sub": "system:serviceaccount:z*:service_account_name"
+    }
+}
+```
+
+Replace:
+* `service_account_name`: define a service account name which will be re-use later (ex: `my-s3-role`)
+* `z*`: the wildcard to use to match all namespaces deployed with Qovery
+
+<Alert type="info">
+
+Do not forget to set the [Service Account](#create-a-service-account) as well in those environments.
+
+</Alert>
 
 ## Create a service account
 

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-03-29"
+last_modified_on: "2023-04-13"
 title: "Basic Concepts"
 description: "Basic Concepts about Qovery"
 ---
@@ -64,9 +64,9 @@ Four type of services exists:
 
 
 ## Deployment
-A Deployment is the operation allowing you to gather your code and make it runs on your cluster. Qovery can pull your repository, generate a docker image and spawn the necessary resources on your clusters to make your application run.
+A Deployment is the operation allowing you to gather your code and make it runs on your cluster. Qovery can pull your repository, generate a docker image and spawn the necessary resources on your clusters to make your application run. You can find more information within [this section][docs.using-qovery.deployment].
 
-You can monitor the execution of the deployment via the [Deployment Logs][docs.using-qovery.deployment.deployment-management] while you can monitor the execution of your application thanks to the streamed [Service logs][guides.getting-started.debugging#logs] directly from the Qovery interface.
+You can monitor the execution of the deployment via the [Deployment Logs][docs.using-qovery.deployment.logs#deployment-logs] while you can monitor the execution of your application thanks to the streamed [Live Logs][docs.using-qovery.deployment.logs#live-logs] directly from the Qovery interface.
 
 
 ## High Level Schema
@@ -85,5 +85,6 @@ You can monitor the execution of the deployment via the [Deployment Logs][docs.u
 [docs.using-qovery.configuration.organization#roles-based-access-control-rbac]: /docs/using-qovery/configuration/organization/#roles-based-access-control-rbac
 [docs.using-qovery.configuration.organization]: /docs/using-qovery/configuration/organization/
 [docs.using-qovery.configuration.project]: /docs/using-qovery/configuration/project/
-[docs.using-qovery.deployment.deployment-management]: /docs/using-qovery/deployment/deployment-management/
-[guides.getting-started.debugging#logs]: /guides/getting-started/debugging/#logs
+[docs.using-qovery.deployment.logs#deployment-logs]: /docs/using-qovery/deployment/logs/#deployment-logs
+[docs.using-qovery.deployment.logs#live-logs]: /docs/using-qovery/deployment/logs/#live-logs
+[docs.using-qovery.deployment]: /docs/using-qovery/deployment/

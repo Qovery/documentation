@@ -31,6 +31,40 @@ module.exports = {
         },
         {
           type: 'category',
+          label: 'Integrations',
+          items: [
+            "using-qovery/integration",
+            "using-qovery/integration/git-repository",
+            "using-qovery/integration/container-registry",
+            "using-qovery/integration/terraform",
+            {
+              type: 'category',
+              label: 'Continuous Integration',
+              items: [
+                "using-qovery/integration/continuous-integration",
+                "using-qovery/integration/continuous-integration/qovery-ci",
+                "using-qovery/integration/continuous-integration/github-actions",
+                "using-qovery/integration/continuous-integration/gitlab-ci",
+                "using-qovery/integration/continuous-integration/circle-ci",
+                "using-qovery/integration/continuous-integration/jenkins",
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Monitoring',
+              items: [
+                "using-qovery/integration/monitoring",
+                "using-qovery/integration/monitoring/datadog",
+                "using-qovery/integration/monitoring/new-relic",
+              ],
+            },
+            "using-qovery/integration/webhook",
+            "using-qovery/integration/api-integration",
+            "using-qovery/integration/slack",
+          ]
+        },
+        {
+          type: 'category',
           label: 'Configuration',
           items: [
             "using-qovery/configuration",
@@ -76,11 +110,15 @@ module.exports = {
           label: 'Deployment',
           items: [
             "using-qovery/deployment",
-            "using-qovery/deployment/deployment-management",
-            "using-qovery/deployment/running-and-deployment-statuses",
             "using-qovery/deployment/deployment-pipeline",
+            "using-qovery/deployment/deployment-actions",
+            "using-qovery/deployment/deployment-history",
+            "using-qovery/deployment/running-and-deployment-statuses",
+            "using-qovery/deployment/logs",
           ],
         },
+       
+        "using-qovery/troubleshoot",
         {
           type: 'category',
           label: 'Quickstarts',
@@ -96,40 +134,7 @@ module.exports = {
             "using-qovery/quickstart/rails",
           ]
         },
-        {
-          type: 'category',
-          label: 'Integrations',
-          items: [
-            "using-qovery/integration",
-            "using-qovery/integration/git-repository",
-            "using-qovery/integration/container-registry",
-            "using-qovery/integration/terraform",
-            {
-              type: 'category',
-              label: 'Continuous Integration',
-              items: [
-                "using-qovery/integration/continuous-integration",
-                "using-qovery/integration/continuous-integration/qovery-ci",
-                "using-qovery/integration/continuous-integration/github-actions",
-                "using-qovery/integration/continuous-integration/gitlab-ci",
-                "using-qovery/integration/continuous-integration/circle-ci",
-                "using-qovery/integration/continuous-integration/jenkins",
-              ],
-            },
-            {
-              type: 'category',
-              label: 'Monitoring',
-              items: [
-                "using-qovery/integration/monitoring",
-                "using-qovery/integration/monitoring/datadog",
-                "using-qovery/integration/monitoring/new-relic",
-              ],
-            },
-            "using-qovery/integration/webhook",
-            "using-qovery/integration/api-integration",
-            "using-qovery/integration/slack",
-          ]
-        },
+        
         {
           type: 'category',
           label: 'Maintenance',
@@ -137,13 +142,6 @@ module.exports = {
             "using-qovery/maintenance",
           ]
         },
-        {
-          type: 'category',
-          label: 'Troubleshoot',
-          items: [
-            "using-qovery/troubleshoot",
-          ]
-        }
       ],
     },
     {

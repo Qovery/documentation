@@ -31,6 +31,40 @@ module.exports = {
         },
         {
           type: 'category',
+          label: 'Integrations',
+          items: [
+            <%= metadata.links.fetch_id("docs.using-qovery.integration").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.integration.git-repository").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.integration.container-registry").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.integration.terraform").to_json %>,
+            {
+              type: 'category',
+              label: 'Continuous Integration',
+              items: [
+                <%= metadata.links.fetch_id("docs.using-qovery.integration.continuous-integration").to_json %>,
+                <%= metadata.links.fetch_id("docs.using-qovery.integration.continuous-integration.qovery-ci").to_json %>,
+                <%= metadata.links.fetch_id("docs.using-qovery.integration.continuous-integration.github-actions").to_json %>,
+                <%= metadata.links.fetch_id("docs.using-qovery.integration.continuous-integration.gitlab-ci").to_json %>,
+                <%= metadata.links.fetch_id("docs.using-qovery.integration.continuous-integration.circle-ci").to_json %>,
+                <%= metadata.links.fetch_id("docs.using-qovery.integration.continuous-integration.jenkins").to_json %>,
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Monitoring',
+              items: [
+                <%= metadata.links.fetch_id("docs.using-qovery.integration.monitoring").to_json %>,
+                <%= metadata.links.fetch_id("docs.using-qovery.integration.monitoring.datadog").to_json %>,
+                <%= metadata.links.fetch_id("docs.using-qovery.integration.monitoring.new-relic").to_json %>,
+              ],
+            },
+            <%= metadata.links.fetch_id("docs.using-qovery.integration.webhook").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.integration.api-integration").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.integration.slack").to_json %>,
+          ]
+        },
+        {
+          type: 'category',
           label: 'Configuration',
           items: [
             <%= metadata.links.fetch_id("docs.using-qovery.configuration").to_json %>,
@@ -76,11 +110,15 @@ module.exports = {
           label: 'Deployment',
           items: [
             <%= metadata.links.fetch_id("docs.using-qovery.deployment").to_json %>,
-            <%= metadata.links.fetch_id("docs.using-qovery.deployment.deployment-management").to_json %>,
-            <%= metadata.links.fetch_id("docs.using-qovery.deployment.running-and-deployment-statuses").to_json %>,
             <%= metadata.links.fetch_id("docs.using-qovery.deployment.deployment-pipeline").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.deployment.deployment-actions").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.deployment.deployment-history").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.deployment.running-and-deployment-statuses").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.deployment.logs").to_json %>,
           ],
         },
+       
+        <%= metadata.links.fetch_id("docs.using-qovery.troubleshoot").to_json %>,
         {
           type: 'category',
           label: 'Quickstarts',
@@ -96,40 +134,7 @@ module.exports = {
             <%= metadata.links.fetch_id("docs.using-qovery.quickstart.rails").to_json %>,
           ]
         },
-        {
-          type: 'category',
-          label: 'Integrations',
-          items: [
-            <%= metadata.links.fetch_id("docs.using-qovery.integration").to_json %>,
-            <%= metadata.links.fetch_id("docs.using-qovery.integration.git-repository").to_json %>,
-            <%= metadata.links.fetch_id("docs.using-qovery.integration.container-registry").to_json %>,
-            <%= metadata.links.fetch_id("docs.using-qovery.integration.terraform").to_json %>,
-            {
-              type: 'category',
-              label: 'Continuous Integration',
-              items: [
-                <%= metadata.links.fetch_id("docs.using-qovery.integration.continuous-integration").to_json %>,
-                <%= metadata.links.fetch_id("docs.using-qovery.integration.continuous-integration.qovery-ci").to_json %>,
-                <%= metadata.links.fetch_id("docs.using-qovery.integration.continuous-integration.github-actions").to_json %>,
-                <%= metadata.links.fetch_id("docs.using-qovery.integration.continuous-integration.gitlab-ci").to_json %>,
-                <%= metadata.links.fetch_id("docs.using-qovery.integration.continuous-integration.circle-ci").to_json %>,
-                <%= metadata.links.fetch_id("docs.using-qovery.integration.continuous-integration.jenkins").to_json %>,
-              ],
-            },
-            {
-              type: 'category',
-              label: 'Monitoring',
-              items: [
-                <%= metadata.links.fetch_id("docs.using-qovery.integration.monitoring").to_json %>,
-                <%= metadata.links.fetch_id("docs.using-qovery.integration.monitoring.datadog").to_json %>,
-                <%= metadata.links.fetch_id("docs.using-qovery.integration.monitoring.new-relic").to_json %>,
-              ],
-            },
-            <%= metadata.links.fetch_id("docs.using-qovery.integration.webhook").to_json %>,
-            <%= metadata.links.fetch_id("docs.using-qovery.integration.api-integration").to_json %>,
-            <%= metadata.links.fetch_id("docs.using-qovery.integration.slack").to_json %>,
-          ]
-        },
+        
         {
           type: 'category',
           label: 'Maintenance',
@@ -137,13 +142,6 @@ module.exports = {
             <%= metadata.links.fetch_id("docs.using-qovery.maintenance").to_json %>,
           ]
         },
-        {
-          type: 'category',
-          label: 'Troubleshoot',
-          items: [
-            <%= metadata.links.fetch_id("docs.using-qovery.troubleshoot").to_json %>,
-          ]
-        }
       ],
     },
     {

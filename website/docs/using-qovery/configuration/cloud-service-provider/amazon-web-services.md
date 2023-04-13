@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-03-30"
+last_modified_on: "2023-04-12"
 title: "Amazon Web Services (AWS)"
 description: "Learn how to configure and plug your Amazon Web Services (AWS) account"
 ---

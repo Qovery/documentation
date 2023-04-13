@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-11-11"
+last_modified_on: "2023-04-12"
 title: Help and Support
 description: "Get support from Qovery team"
 ---

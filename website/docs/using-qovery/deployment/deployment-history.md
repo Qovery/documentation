@@ -1,0 +1,21 @@
+---
+last_modified_on: "2023-04-13"
+title: "Deployment History"
+description: "Learn how to access the deployment history"
+---
+import Jump from '@site/src/components/Jump';
+import Alert from '@site/src/components/Alert';
+import Assumptions from '@site/src/components/Assumptions';
+
+You can access the deployments history of your environment or service by opening the `Deployments` tab on either the environment or service page.
+
+<p align="center">
+  <img src="/img/deployment/deployment_history.png" alt="Deployment history access" />
+</p>
+
+For each deployment triggered in the past, you will find 
+- The execution id: an internal id assigned to each deployment. You can share this id with the Qovery team in case of errors in one of your deployments
+- Each service that has been deployed during this deployment together with their deployment status and the version that has been deployed
+
+
+

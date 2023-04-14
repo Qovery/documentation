@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-02-01"
+last_modified_on: "2023-04-13"
 $schema: "/.meta/.schemas/guides.json"
 title: Migrate your application from Heroku to AWS
 description: Guide on how to migrate all your applications from Heroku to AWS with your databases
@@ -602,7 +602,7 @@ Yes, it's what we call [Preview Environment][docs.using-qovery.configuration.env
 
 ### How to rollback?
 
-Check out the [app rollback documentation][docs.using-qovery.deployment.deployment-management#deploy-other-version]
+Check out the [app rollback documentation][docs.using-qovery.deployment.deployment-actions#deploy-other-version]
 
 ### How auto-scaling works?
 
@@ -646,7 +646,7 @@ Congrats! You have migrated from Heroku to AWS. Feel free to check out our [foru
 [docs.using-qovery.configuration.environment-variable]: /docs/using-qovery/configuration/environment-variable/
 [docs.using-qovery.configuration.organization]: /docs/using-qovery/configuration/organization/
 [docs.using-qovery.configuration.project]: /docs/using-qovery/configuration/project/
-[docs.using-qovery.deployment.deployment-management#deploy-other-version]: /docs/using-qovery/deployment/deployment-management/#deploy-other-version
+[docs.using-qovery.deployment.deployment-actions#deploy-other-version]: /docs/using-qovery/deployment/deployment-actions/#deploy-other-version
 [docs.using-qovery.integration.terraform]: /docs/using-qovery/integration/terraform/
 [docs.using-qovery.interface.cli#shell]: /docs/using-qovery/interface/cli/#shell
 [docs.using-qovery.interface.cli]: /docs/using-qovery/interface/cli/

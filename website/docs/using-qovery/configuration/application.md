@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-02-02"
+last_modified_on: "2023-04-13"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -134,7 +134,7 @@ You will find a recap of your application setup and you can now decide to:
 </Steps>
 
 ## Deployment Management
-Have a look at the [Deployment Management][docs.using-qovery.deployment.deployment-management] section for more information.
+Have a look at the [Deployment Management][docs.using-qovery.deployment] section for more information.
 
 ## Configuration
 
@@ -421,7 +421,7 @@ To learn how to set up secrets in your projects and applications, navigate to [c
 
 ## Logs
 
-To learn how to display your application logs, navigate to [logs section in our Debugging guide][guides.getting-started.debugging#logs]
+To learn how to display your application logs, navigate to [logs section][docs.using-qovery.deployment.logs#live-logs]
 
 ## SSH
 
@@ -461,9 +461,9 @@ In the application overview, click on the `3 dots` button and remove the applica
 [docs.using-qovery.configuration.organization#container-registry-management]: /docs/using-qovery/configuration/organization/#container-registry-management
 [docs.using-qovery.configuration.organization#managing-git-permissions-using-the-qovery-github-app]: /docs/using-qovery/configuration/organization/#managing-git-permissions-using-the-qovery-github-app
 [docs.using-qovery.configuration.project]: /docs/using-qovery/configuration/project/
-[docs.using-qovery.deployment.deployment-management]: /docs/using-qovery/deployment/deployment-management/
+[docs.using-qovery.deployment.logs#live-logs]: /docs/using-qovery/deployment/logs/#live-logs
+[docs.using-qovery.deployment]: /docs/using-qovery/deployment/
 [docs.using-qovery.interface.cli]: /docs/using-qovery/interface/cli/
 [guides.advanced.monorepository]: /guides/advanced/monorepository/
-[guides.getting-started.debugging#logs]: /guides/getting-started/debugging/#logs
 [guides.getting-started.setting-custom-domain]: /guides/getting-started/setting-custom-domain/
 [urls.qovery_roadmap]: https://roadmap.qovery.com/

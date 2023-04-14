@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-03-29"
+last_modified_on: "2023-04-13"
 title: "Environment"
 description: "Learn how to configure your Environments on Qovery"
 ---
@@ -189,7 +189,7 @@ When cloning an environment, every configuration of the original environment wil
 - [Application BUILT_IN variables][docs.using-qovery.configuration.environment-variable#built_in-variables]: Since completely new services will be create, the original built_in variables will be replaced. Aliases and overrides are preserved during the clone operation.
 
 ## Deploy an environment
-Have a look at the [Deployment Management][docs.using-qovery.deployment.deployment-management] section for more information on how to deploy your environment.
+Have a look at the [Deployment Management][docs.using-qovery.deployment] section for more information on how to deploy your environment.
 
 
 ## Delete an environment
@@ -212,6 +212,6 @@ To delete your environment, you must go in the `settings` > `Danger zone` and de
 [docs.using-qovery.configuration.environment-variable#built_in-variables]: /docs/using-qovery/configuration/environment-variable/#built_in-variables
 [docs.using-qovery.configuration.lifecycle-job]: /docs/using-qovery/configuration/lifecycle-job/
 [docs.using-qovery.configuration.project]: /docs/using-qovery/configuration/project/
-[docs.using-qovery.deployment.deployment-management]: /docs/using-qovery/deployment/deployment-management/
 [docs.using-qovery.deployment.deployment-pipeline]: /docs/using-qovery/deployment/deployment-pipeline/
+[docs.using-qovery.deployment]: /docs/using-qovery/deployment/
 [guides.tutorial.getting-started-with-preview-environments-on-aws-for-beginners]: /guides/tutorial/getting-started-with-preview-environments-on-aws-for-beginners/

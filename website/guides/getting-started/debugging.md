@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-03-17"
+last_modified_on: "2023-04-13"
 $schema: "/.meta/.schemas/guides.json"
 title: Debugging
 description: How to debug your application
@@ -32,123 +32,23 @@ Your application is running, but for some reason, it is not working as expected.
 
 ## Check the status of your app
 
-To find out what is the status of your application, you can follow these steps:
+Qovery expose in the interface the running status of your application which provides you some highlevel information of its healthiness. You can look [in this section][docs.using-qovery.deployment.running-and-deployment-statuses] to know more about the `Running Status`
 
-<Steps headingDepth={3}>
+If the service crashes, its `Running Status` will be displayed as a red dot. If that's the case, you can have a look at the logs to investigate the reason behind.
 
-<ol>
-<li>
+## Live Logs
 
-Navigate to [Console][urls.qovery_console]
-
-</li>
-<li>
-
-Choose your project and environment
-
-</li>
-<li>
-
-In environment overview, you can see the status of the whole environment as well as statuses of individual applications:
-
-<p align="center">
-  <img src="/img/debugging/debugging-1.png" alt="Debugging" />
-</p>
-
-- As you can see in the screenshot, the environment is `RUNNING`. 
-
-- `twitter-backend` and `my-db` application statuses are marked as green dots, which means they are up and running as well. 
-
-- On the other hand, the `my-mysql` database is marked with a grey dot, which means it was not deployed or is stopped.
-
-- If the service crashes, its status is marked with a red dot.
-
-</li>
-
-</ol>
-
-</Steps>
-
-## Logs
-
-If you need to see the log output of your application while it's running, follow these steps:
-
-<Steps headingDepth={3}>
-
-<ol>
-<li>
-
-Navigate to [Console][urls.qovery_console]
-
-</li>
-<li>
-
-Choose your project, environment, and application.
-
-</li>
-<li>
-
-In the application overview, click the `Show Logs` button
-
-<p align="center">
-  <img src="/img/debugging/debugging-3.png" alt="Debugging" />
-</p>
-
-This will open a view of your application logs:
-
-<p align="center">
-  <img src="/img/debugging/debugging-4.png" alt="Debugging" />
-</p>
-
-- Timestamp: the timestamp of the message
-- Pod Name: the name of the kubernetes pod where your application is running (to distinguish the instance in case of multi-instance app). If you want to follow a specific pod, you can filter the logs by clicking on the pod name
-- Commit Id: the commit id of the application running on this POD
-- Message: the log message
+If you need to see the log output of your application while it's running, qovery expose them to you in real-time thanks to the Logs interface. You can have a look at [this section][docs.using-qovery.deployment.logs#live-logs] to know more.
 
 You can use this information to find out what causes your application to behave incorrectly.
 
-</li>
-</ol>
-
-</Steps>
-
 ## Deployment Logs
 
-If your application fails to start, you can check what's the cause in its deployment logs:
-
-<Steps headingDepth={3}>
-
-<ol>
-<li>
-
-Navigate to [Console][urls.qovery_console]
-
-</li>
-<li>
-
-Choose your project and environment.
-
-</li>
-<li>
-
-In environment overview, click `Show Logs` button:
-
-<p align="center">
-  <img src="/img/debugging/debugging-7.png" alt="Debugging" />
-</p>
-
-This will open a view of your deployment logs:
-
-<p align="center">
-  <img src="/img/debugging/debugging-8.png" alt="Debugging" />
-</p>
+If your application fails to start, you can check what's the cause in its deployment logs. You can have a look at [this section][docs.using-qovery.deployment.logs#deployment-logs] to have more information on the deployment logs and how to access them.
 
 This view provides insight into the build and deployment process. If anything goes wrong, you can see all the required information to fix the problem here.
 
-</li>
-</ol>
-
-</Steps>
+You can check the [Troubleshoot section][docs.using-qovery.troubleshoot] to investigate any issue you might encounter during the deployment of your services.
 
 ## Monitoring
 
@@ -167,18 +67,15 @@ Choose your project, environment, and application.
 </li>
 <li>
 
-In the main application view, you can see charts and an overview of your application resource consumption.
+In the main application view, you can see a table with the current application resource consumption.
 
 <p align="center">
-  <img src="/img/debugging/debugging-6.png" alt="Debugging" />
+  <img src="/img/debugging/metrics.png" alt="Metrics" />
 </p>
 
 </li>
 </ol>
 
-<Alert type="warning">
-  Historical metrics are coming soon!
-</Alert>
 
 ## Alerting
 We highly recommend using tools like [Datadog][urls.datadog], [Sentry][urls.sentry] or [NewRelic][urls.new_relic] to manage your alerting.
@@ -187,6 +84,10 @@ Qovery will provide easy integrations in the coming release. Check out our [road
 Do you need any help? [Reach us on Discord][urls.qovery_chat]
 
 
+[docs.using-qovery.deployment.logs#deployment-logs]: /docs/using-qovery/deployment/logs/#deployment-logs
+[docs.using-qovery.deployment.logs#live-logs]: /docs/using-qovery/deployment/logs/#live-logs
+[docs.using-qovery.deployment.running-and-deployment-statuses]: /docs/using-qovery/deployment/running-and-deployment-statuses/
+[docs.using-qovery.troubleshoot]: /docs/using-qovery/troubleshoot/
 [urls.datadog]: https://www.datadoghq.com
 [urls.new_relic]: https://newrelic.com/
 [urls.qovery_chat]: https://discord.qovery.com

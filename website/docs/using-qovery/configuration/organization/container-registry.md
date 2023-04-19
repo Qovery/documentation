@@ -1,0 +1,66 @@
+---
+last_modified_on: "2023-04-19"
+title: "Container Registry"
+description: "Learn how to manage the container registry allowed in your organization"
+---
+
+import Alert from '@site/src/components/Alert';
+
+import Jump from '@site/src/components/Jump';
+import Assumptions from '@site/src/components/Assumptions';
+
+This section allows you to define the list of container registries that can be used within your organization. Only images stored on those container registries are allowed to be deployed on your cluster.
+
+You can access this section by opening the Organization Settings -> Container Registries
+
+<p align="center">
+  <img src="/img/configuration/organization/access_settings.png" alt="How to access your organization settings" />
+</p>
+
+<p align="center">
+  <img src="/img/configuration/organization/container_1.png" alt="Application" />
+</p>
+
+<Alert type="info">
+
+When accessing the interface for the first time, you will see that a container registry already exist (called "registry-{$UIID}"). This container registry is created by Qovery on your infrastructure and is used to manage the deployment of your applications. You are free to use them to store your applications but you need to retrieve the credentials from your cloud provider console.
+
+</Alert>
+
+### Create a Container Registry
+
+<p align="center">
+  <img src="/img/configuration/organization/container_creation.png" alt="Application" />
+</p>
+
+By clicking on "Add Registry" you will be able to create a new Container Registry by filling these information:
+- Registry Name
+- Description
+- Registry Url: the base url of the registry (example: https://docker.io, https://public.ecr.aws etc..)
+- Registry type: you can chose among DockerHub, Public ECR, ECR (AWS private CR), Scaleway CR (Scaleway private CR)
+- Credentials: these depends on the chosen registry type. If a container registry is public, you don't need to fill this part. 
+
+<Alert type="info">
+
+We encourage you to set credentials for Docker Hub due to the limits on the pull rate. [See here](https://www.docker.com/increase-rate-limits/) for more details
+
+</Alert>
+
+Now that you have created the registry, you can start using it in order to [create and deploy a service][docs.using-qovery.configuration.application#deploying-from-a-container-registry] using the images stored within it.
+
+### Modify or Delete an existing registry
+You can modify an existing container registry by clicking on the "Wheel" button next to it
+You can delete an existing container registry by clicking on the "Trash" button next to it
+
+<Alert type="alert">
+
+Before deleting it, make sure that there is no application within your organization using an image stored in this registry.
+
+</Alert>
+
+<p align="center">
+  <img src="/img/configuration/organization/container_edit.png" alt="Application" />
+</p>
+
+
+[docs.using-qovery.configuration.application#deploying-from-a-container-registry]: /docs/using-qovery/configuration/application/#deploying-from-a-container-registry

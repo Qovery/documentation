@@ -1,0 +1,48 @@
+---
+title: "API Token"
+description: "Learn how to manage the API token via Qovery"
+---
+import Jump from '@site/src/components/Jump';
+import Assumptions from '@site/src/components/Assumptions';
+
+API token allows third-party applications or script to access your organization via the Qovery API (CI/CD, Terraform script, Pulumi etc..).
+
+You can manage the API tokens attached to your organization directly from the Qovery console.
+
+<Alert type="info">
+
+You can manage the API tokens of your organization with the [Qovery CLI][docs.using-qovery.interface.cli#generate-api-token] as well
+
+</Alert>
+
+You can access the token API configuration by opening the `Token API` section within the organization settings.
+
+<p align="center">
+  <img src="/img/configuration/organization/access_settings.png" alt="How to access your organization settings" />
+</p>
+
+<p align="center">
+  <img src="/img/configuration/organization/token_api_access.png" alt="How to access your Token API section" />
+</p>
+
+
+## Create a new token
+
+You can create a new token API by pressing the `Add` button. Once you have provided a name and a description, the token value will be displayed on the interface.
+
+<Alert type="info">
+
+Make sure you safely store the token returned by the UI. You won't be able to retrieve it again (you will have to create a new one)
+
+</Alert>
+
+Note that every Token API generated has the `Admin` permission rights. See the [RBAC section][docs.using-qovery.configuration.organization.members-rbac#roles-based-access-control-rbac] to know more.
+
+
+## Delete a token
+
+You can create a new token API by pressing the `Bin` button next to the Token you want to delete.
+
+## Edit a token
+
+This functionality is not yet available

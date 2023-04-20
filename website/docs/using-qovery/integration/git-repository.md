@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-03-21"
+last_modified_on: "2023-04-19"
 title: "Git Repository"
 description: "Learn how to Qovery connects to your git repository"
 ---
@@ -13,8 +13,8 @@ Today Qovery supports the following software version control systems:
 
 Once connected to the [Qovery Console][urls.qovery_console] via one of these three systems, Qovery will be able to access all the repositories connected to your account.
 
-*Only for Github*: You can define the repositories to which Qovery has access by installing the Qovery GitHub App. Have a look at the [Managing git permission section][docs.using-qovery.configuration.organization#managing-git-permissions-using-the-qovery-github-app] to know more.
+*Only for Github*: You can define the repositories to which Qovery has access by installing the Qovery GitHub App. Have a look at the [Managing git permission section][docs.using-qovery.configuration.organization.git-repository-access] to know more.
 
 
-[docs.using-qovery.configuration.organization#managing-git-permissions-using-the-qovery-github-app]: /docs/using-qovery/configuration/organization/#managing-git-permissions-using-the-qovery-github-app
+[docs.using-qovery.configuration.organization.git-repository-access]: /docs/using-qovery/configuration/organization/git-repository-access/
 [urls.qovery_console]: https://console.qovery.com

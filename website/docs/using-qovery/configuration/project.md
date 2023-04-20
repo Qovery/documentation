@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-01-09"
+last_modified_on: "2023-04-19"
 title: "Project"
 description: "Learn how to configure your Projects on Qovery"
 ---
@@ -11,7 +11,7 @@ import Assumptions from '@site/src/components/Assumptions';
 
 A project allows you to group together a set of environments with the objective to run the same application (see the [Environment][docs.using-qovery.configuration.environment] page for more information).
 
-When creating a new organization, a project is created by default. You can customize the access to your project thanks to our [RBAC system][docs.using-qovery.configuration.organization#roles-based-access-control-rbac].
+When creating a new organization, a project is created by default. You can customize the access to your project thanks to our [RBAC system][docs.using-qovery.configuration.organization.members-rbac#roles-based-access-control-rbac].
 
 <Assumptions name="documentation">
 
@@ -68,5 +68,5 @@ You can delete a project by:
 
 
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
-[docs.using-qovery.configuration.organization#roles-based-access-control-rbac]: /docs/using-qovery/configuration/organization/#roles-based-access-control-rbac
+[docs.using-qovery.configuration.organization.members-rbac#roles-based-access-control-rbac]: /docs/using-qovery/configuration/organization/members-rbac/#roles-based-access-control-rbac
 [docs.using-qovery.configuration.organization]: /docs/using-qovery/configuration/organization/

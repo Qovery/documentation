@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-03-29"
+last_modified_on: "2023-04-19"
 title: "Jenkins"
 description: "Learn how to connect Jenkins to Qovery"
 ---
@@ -21,7 +21,7 @@ Using Jenkins with Qovery is super powerful and gives you the ability to manage 
 Before using the examples below, you need to:
 
 1. Install the [Qovery CLI][docs.using-qovery.interface.cli].
-2. Generate an [API token][docs.using-qovery.interface.cli#generate-api-token].
+2. Generate an API token via [the CLI][docs.using-qovery.interface.cli#generate-api-token] or the [Console][docs.using-qovery.configuration.organization.api-token] .
 3. Set the environment variable `QOVERY_CLI_ACCESS_TOKEN` (`export QOVERY_CLI_ACCESS_TOKEN=your-api-token`) with your API token.
 4. You have turned off the [Qovery Auto Deployment][docs.using-qovery.configuration.environment#auto-deploy] for your environment that you want to deploy manually.
 
@@ -135,6 +135,7 @@ Feel free to share your examples with us, and we'll be happy to share them with 
 
 
 [docs.using-qovery.configuration.environment#auto-deploy]: /docs/using-qovery/configuration/environment/#auto-deploy
+[docs.using-qovery.configuration.organization.api-token]: /docs/using-qovery/configuration/organization/api-token/
 [docs.using-qovery.integration.continuous-integration.github-actions#github-actions-examples]: /docs/using-qovery/integration/continuous-integration/github-actions/#github-actions-examples
 [docs.using-qovery.integration.continuous-integration.gitlab-ci#gitlab-ci-examples]: /docs/using-qovery/integration/continuous-integration/gitlab-ci/#gitlab-ci-examples
 [docs.using-qovery.integration.terraform]: /docs/using-qovery/integration/terraform/

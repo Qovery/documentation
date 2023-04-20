@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-04-13"
+last_modified_on: "2023-04-19"
 title: "Basic Concepts"
 description: "Basic Concepts about Qovery"
 ---
@@ -14,7 +14,7 @@ description: "Basic Concepts about Qovery"
 
 ## Organization
 
-An Organization is the workspace where devops and developers can collaborate across many projects at once and it usually corresponds to your company. A user can have access to one or more organizations and have different roles & permissions assigned within it thanks to our [RBAC system][docs.using-qovery.configuration.organization#roles-based-access-control-rbac].
+An Organization is the workspace where devops and developers can collaborate across many projects at once and it usually corresponds to your company. A user can have access to one or more organizations and have different roles & permissions assigned within it thanks to our [RBAC system][docs.using-qovery.configuration.organization.members-rbac#roles-based-access-control-rbac].
 
 More information about [Organization here][docs.using-qovery.configuration.organization].
 
@@ -33,7 +33,7 @@ A Project allows you to group together a set of services interacting between eac
 
 Services can be then organized into environments so that you can have different versions of the same service running within your project (production, staging, fix for issue X etc..)
 
-One organization can have more than one project and you can customize the access to your project thanks to our [RBAC system][docs.using-qovery.configuration.organization#roles-based-access-control-rbac].
+One organization can have more than one project and you can customize the access to your project thanks to our [RBAC system][docs.using-qovery.configuration.organization.members-rbac#roles-based-access-control-rbac].
 
 More information about [Project here][docs.using-qovery.configuration.project].
 
@@ -82,7 +82,7 @@ You can monitor the execution of the deployment via the [Deployment Logs][docs.u
 [docs.using-qovery.configuration.deployment-rule]: /docs/using-qovery/configuration/deployment-rule/
 [docs.using-qovery.configuration.environment#preview-environment]: /docs/using-qovery/configuration/environment/#preview-environment
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
-[docs.using-qovery.configuration.organization#roles-based-access-control-rbac]: /docs/using-qovery/configuration/organization/#roles-based-access-control-rbac
+[docs.using-qovery.configuration.organization.members-rbac#roles-based-access-control-rbac]: /docs/using-qovery/configuration/organization/members-rbac/#roles-based-access-control-rbac
 [docs.using-qovery.configuration.organization]: /docs/using-qovery/configuration/organization/
 [docs.using-qovery.configuration.project]: /docs/using-qovery/configuration/project/
 [docs.using-qovery.deployment.logs#deployment-logs]: /docs/using-qovery/deployment/logs/#deployment-logs

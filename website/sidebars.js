@@ -68,7 +68,17 @@ module.exports = {
           label: 'Configuration',
           items: [
             "using-qovery/configuration",
-            "using-qovery/configuration/organization",
+            {
+              type: 'category',
+              label: 'Organization',
+              items: [
+                "using-qovery/configuration/organization",
+                "using-qovery/configuration/organization/members-rbac",
+                "using-qovery/configuration/organization/git-repository-access",
+                "using-qovery/configuration/organization/container-registry",
+                "using-qovery/configuration/organization/api-token",
+              ],
+            },
             "using-qovery/configuration/project",
             "using-qovery/configuration/environment",
             "using-qovery/configuration/clusters",

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-03-21"
+last_modified_on: "2023-04-19"
 title: "Container Registry"
 description: "Learn how to use a container registry within Qovery"
 ---
@@ -11,8 +11,8 @@ Today Qovery supports the following container registries:
 - AWS ECR ([public](https://gallery.ecr.aws/) and [private](https://docs.aws.amazon.com/AmazonECR/latest/userguide/Registries.html))
 - Scaleway CR
 
-You can define the list of container registry available to your team directly within the [Qovery Console][urls.qovery_console]. To know more about how to configure your container registry connection, have a look at [this section][docs.using-qovery.configuration.organization#container-registry-management]
+You can define the list of container registry available to your team directly within the [Qovery Console][urls.qovery_console]. To know more about how to configure your container registry connection, have a look at [this section][docs.using-qovery.configuration.organization.container-registry]
 
 
-[docs.using-qovery.configuration.organization#container-registry-management]: /docs/using-qovery/configuration/organization/#container-registry-management
+[docs.using-qovery.configuration.organization.container-registry]: /docs/using-qovery/configuration/organization/container-registry/
 [urls.qovery_console]: https://console.qovery.com

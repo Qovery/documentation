@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-03-29"
+last_modified_on: "2023-04-19"
 title: "GitLab CI"
 description: "Learn how to connect GitLab CI to Qovery"
 ---
@@ -23,7 +23,7 @@ Using Gitlab CI with Qovery is super powerful and gives you the ability to manag
 Before using the examples below, you need to:
 
 1. Install the [Qovery CLI][docs.using-qovery.interface.cli].
-2. Generate an [API token][docs.using-qovery.interface.cli#generate-api-token].
+2. Generate an API token via [the CLI][docs.using-qovery.interface.cli#generate-api-token] or the [Console][docs.using-qovery.configuration.organization.api-token] .
 3. Set the environment variable `QOVERY_CLI_ACCESS_TOKEN` (`export QOVERY_CLI_ACCESS_TOKEN=your-api-token`) with your API token.
 4. You have turned off the [Qovery Auto Deployment][docs.using-qovery.configuration.environment#auto-deploy] for your environment that you want to deploy manually.
 
@@ -33,7 +33,7 @@ Before using the examples below, you need to:
 
 <Assumptions>
 
-* You have [connected your Container Registry with Qovery][docs.using-qovery.configuration.organization#container-registry-management].
+* You have [connected your Container Registry with Qovery][docs.using-qovery.configuration.organization.container-registry].
 * You have a container application that you want to deploy on Qovery.
 * You have set the `QOVERY_CLI_ACCESS_TOKEN` environment variable in your GitLab CI project.
 
@@ -176,7 +176,8 @@ Feel free to share your examples with us, and we'll be happy to share them with 
 
 
 [docs.using-qovery.configuration.environment#auto-deploy]: /docs/using-qovery/configuration/environment/#auto-deploy
-[docs.using-qovery.configuration.organization#container-registry-management]: /docs/using-qovery/configuration/organization/#container-registry-management
+[docs.using-qovery.configuration.organization.api-token]: /docs/using-qovery/configuration/organization/api-token/
+[docs.using-qovery.configuration.organization.container-registry]: /docs/using-qovery/configuration/organization/container-registry/
 [docs.using-qovery.integration.terraform]: /docs/using-qovery/integration/terraform/
 [docs.using-qovery.interface.cli#generate-api-token]: /docs/using-qovery/interface/cli/#generate-api-token
 [docs.using-qovery.interface.cli]: /docs/using-qovery/interface/cli/

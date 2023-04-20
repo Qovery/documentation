@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-04-13"
+last_modified_on: "2023-04-19"
 title: "Cronjob"
 description: "Learn how to configure your Cronjob on Qovery"
 ---
@@ -31,12 +31,12 @@ Qovery allows you to create and deploy cronjobs from two different sources: Git 
 ## Deploying from a Git Repository
 In this configuration, Qovery will pull the code from the chosen repository, build the application and deploy it on your kubernetes cluster.
 
-The list of Git repositories available during the setup is strictly tied to the permissions of your git account (by default Qovery can access all your repositories). If you want to restrict the Qovery access only to a few repositories, user the [GitHub Qovery Application][docs.using-qovery.configuration.organization#managing-git-permissions-using-the-qovery-github-app] (only for Github).
+The list of Git repositories available during the setup is strictly tied to the permissions of your git account (by default Qovery can access all your repositories). If you want to restrict the Qovery access only to a few repositories, user the [GitHub Qovery Application][docs.using-qovery.configuration.organization.git-repository-access] (only for Github).
 
 ## Deploying from a Container Registry
 In this configuration, Qovery will pull the chosen container registry an image you have pre-built and deploy it on your kubernetes cluster.
 
-To improve the security and avoid deploying images from non-authorized registries, we have decided to restrict the list of Container Registry you can use during the setup process. Only an administrator with the right permissions can manage it from the [Container Registry Management page][docs.using-qovery.configuration.organization#container-registry-management]
+To improve the security and avoid deploying images from non-authorized registries, we have decided to restrict the list of Container Registry you can use during the setup process. Only an administrator with the right permissions can manage it from the [Container Registry Management page][docs.using-qovery.configuration.organization.container-registry]
 
 
 ## Create a Cronjob
@@ -71,7 +71,7 @@ A Dockerfile is necessary to build and deploy your job
 </Alert>
 
 If you want to deploy a cronjob from a Container Registry you will have to select:
-- Registry: select the container registry storing the image of your job. Note: only pre-configured registry are available in this list, check the [Container Registry Management page][docs.using-qovery.configuration.organization#container-registry-management] for more information.
+- Registry: select the container registry storing the image of your job. Note: only pre-configured registry are available in this list, check the [Container Registry Management page][docs.using-qovery.configuration.organization.container-registry] for more information.
 - Image name: the name of the image to be deployed with this job (example: postgres)
 - Image tag: the tag of the image to be deployed with this job (example: 12)
 
@@ -206,7 +206,7 @@ Secret names examples:
 
 #### Container Registry
 If your application is deployed from an image registry, within this section you can modify:
-- Registry: select the container registry storing the image of your application. Note: only pre-configured registry are available in this list, check the [Container Registry Management page][docs.using-qovery.configuration.organization#container-registry-management] for more information.
+- Registry: select the container registry storing the image of your application. Note: only pre-configured registry are available in this list, check the [Container Registry Management page][docs.using-qovery.configuration.organization.container-registry] for more information.
 - Image name: the name of the image to be deployed with this application (example: postgres)
 - Image tag: the tag of the image to be deployed with this application (example: 12)
 
@@ -308,8 +308,8 @@ In the overview, click on the `3 dots` button and remove the job. Note: the same
 
 [docs.using-qovery.configuration.environment-variable]: /docs/using-qovery/configuration/environment-variable/
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
-[docs.using-qovery.configuration.organization#container-registry-management]: /docs/using-qovery/configuration/organization/#container-registry-management
-[docs.using-qovery.configuration.organization#managing-git-permissions-using-the-qovery-github-app]: /docs/using-qovery/configuration/organization/#managing-git-permissions-using-the-qovery-github-app
+[docs.using-qovery.configuration.organization.container-registry]: /docs/using-qovery/configuration/organization/container-registry/
+[docs.using-qovery.configuration.organization.git-repository-access]: /docs/using-qovery/configuration/organization/git-repository-access/
 [docs.using-qovery.deployment.logs#live-logs]: /docs/using-qovery/deployment/logs/#live-logs
 [docs.using-qovery.deployment]: /docs/using-qovery/deployment/
 [guides.advanced.monorepository]: /guides/advanced/monorepository/

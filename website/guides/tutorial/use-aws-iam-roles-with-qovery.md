@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-04-13"
+last_modified_on: "2023-04-22"
 $schema: "/.meta/.schemas/guides.json"
 title: "Use AWS IAM roles with Qovery"
 description: "Give AWS IAM permissions to your application/container/job with Qovery"
@@ -224,7 +224,13 @@ In the same environment than your application, create a `Lifecycle job` which wi
 
 Here a container `qoveryrd/create-sa:1.0` available on [DockerHub](https://hub.docker.com/r/qoveryrd/create-sa) made by Qovery is used, but you can fork [this repository](https://github.com/Qovery/create_service_account) and update to your needs if you prefer.
 
-Click on the `Continue` button and select the `Start` event because we want to deploy the service account at the environment start. Then click on the `Continue` button, set the resources (128Mb is enough) and click on the `Continue` button.
+Click on the `Continue` button and select the `Start` event because we want to deploy the service account at the environment start and `Delete` to delete it if we decide to remove it. Set parameters as well with the according action:
+
+<p Valign="center">
+  <img src="/img/aws-iam-assume-role/lifecycle_step2.png" alt="Lifecycle creation" />
+</p>
+
+Then click on the `Continue` button, set the resources (128Mb is enough) and click on the `Continue` button.
 
 Then add the following environment variables to the `job` scope:
 * `KUBERNETES_VERSION`: the version of your Kubernetes cluster which will be used to download kubectl (ex: 1.23.0)

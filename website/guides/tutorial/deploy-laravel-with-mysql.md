@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-12-23"
+last_modified_on: "2023-04-23"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy Laravel with MySQL
 description: How to deploy a Laravel application with the MySQL database with Qovery
@@ -73,7 +73,7 @@ Sign in to the [Qovery web interface][urls.start_qovery].
   placeholder="Select your OS"
   select={false}
   size={null}
-  values={[{"group":"Platforms","label":"Linux","value":"linux"},{"group":"Platforms","label":"MacOS","value":"macos"},{"group":"Platforms","label":"Windows","value":"windows"}]}>
+  values={[{"group":"Platforms","label":"Linux","value":"linux"},{"group":"Platforms","label":"MacOS","value":"macos"},{"group":"Platforms","label":"Windows","value":"windows"},{"group": "Platforms","label":"Docker","value":"docker"}]}>
 
 <TabItem value="linux">
 
@@ -102,7 +102,7 @@ $ yay qovery-cli
 </TabItem>
 <TabItem value="manual">
 
-Install the Qovery CLI on Linux manually by downloading the [latest realease][urls.qovery_cli_releases], and uncompress its content to a folder into your shell `PATH`.
+Install the Qovery CLI on Linux manually by downloading the [latest release][urls.qovery_cli_releases], and uncompress its content to a folder into your shell `PATH`.
 
 </TabItem>
 </Tabs>
@@ -141,7 +141,7 @@ $ curl -s https://get.qovery.com | bash
 
 <TabItem value="manual">
 
-Install the Qovery CLI on Mac OS manually by downloading the [latest realease][urls.qovery_cli_releases], and uncompress its content to a folder into your shell `PATH`.
+Install the Qovery CLI on Mac OS manually by downloading the [latest release][urls.qovery_cli_releases], and uncompress its content to a folder into your shell `PATH`.
 
 </TabItem>
 
@@ -173,12 +173,32 @@ $ scoop install qovery-cli
 
 <TabItem value="manual">
 
-Install the Qovery CLI on Windows manually by downloading the [latest realease][urls.qovery_cli_releases], and uncompress its content to
+Install the Qovery CLI on Windows manually by downloading the [latest release][urls.qovery_cli_releases], and uncompress its content to
 `C:\Windows`.
 
 </TabItem>
 
 </Tabs>
+
+</TabItem>
+
+
+<TabItem value="docker">
+
+Install Docker on your local machine and run the following command:
+
+```bash
+# Pull and Run the latest Qovery CLI
+$ docker run ghcr.io/qovery/qovery-cli:latest help
+```
+
+Change `latest` by the version you want to use. For example, to use the version 0.58.4, run:
+
+```bash
+$ docker run ghcr.io/qovery/qovery-cli:0.58.4 help
+```
+
+Note: `ghcr.io` is the [GitHub Container Registry](https://github.com/Qovery/qovery-cli/pkgs/container/qovery-cli).
 
 </TabItem>
 

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-05-14"
+last_modified_on: "2023-04-24"
 $schema: "/.meta/.schemas/guides.json"
 title: How to seed a Postgres database on a dev environment
 description: How to automatically inject data into your development Postgres databases
@@ -89,7 +89,7 @@ To make our life easier, we can declare the seeding command in our `package.json
 
 ## Seeding
 
-To seed the data, we’ll use `ENTRYPOINT` in our `Dockerfile`. For more details, you can read our guide - [https://www.notion.so/qovery/How-to-run-DB-migration-commands-845d3d9d7d3c40819c29ce3ea5fb52fb#7840a5aeea414bbfbe5929f1f32c1e95](https://www.notion.so/How-to-run-DB-migration-commands-845d3d9d7d3c40819c29ce3ea5fb52fb).
+To seed the data, we’ll use `ENTRYPOINT` in our `Dockerfile`. For more details, you can read [our guide][guides.tutorial.how-to-run-commands-at-application-startup].
 
 ```docker
 FROM node:16
@@ -178,4 +178,5 @@ When you open the logs of the deployment, you’ll see the seed data injection l
 </p>
 
 
+[guides.tutorial.how-to-run-commands-at-application-startup]: /guides/tutorial/how-to-run-commands-at-application-startup/
 [urls.replibyte]: https://www.replibyte.com

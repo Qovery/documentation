@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2021-09-04"
+last_modified_on: "2023-04-24"
 $schema: "/.meta/.schemas/guides.json"
 title: GraphQL API with Hasura
 description: How to build and deploy realtime GraphQL APIs in a few minutes
@@ -104,19 +104,21 @@ To learn how to do it, you can [follow this guide][guides.getting-started.create
 
 <li>
 
-### Add the database to the application
+### Configure the connection to the database
 
-In application overview, select **Settings**
-
-<p align="center">
-  <img src="/img/open-settings.png" alt="Open Settings" />
-</p>
-
-Switch to **Database**, pick your database and **Save**
+In application overview, open the **Variables** tab
 
 <p align="center">
-  <img src="/img/link-db.png" alt="Link Database" />
+  <img src="/img/open-env-var.png" alt="Open Variable" />
 </p>
+
+Configure the alias for each built_in environment variable to match the one required within your code
+
+<p align="center">
+  <img src="/img/alias.png" alt="Env Var Alias" />
+</p>
+
+Have a look at [this section][docs.using-qovery.configuration.environment-variable#connecting-to-a-database] to know more on how to connect to a database.
 
 </li>
 
@@ -270,4 +272,5 @@ Using this stack saves you tons of time. Deploying it on Qovery is extremely eas
 
 
 [docs.configuration.environment-variable]: /docs/using-qovery/configuration/environment-variable/
+[docs.using-qovery.configuration.environment-variable#connecting-to-a-database]: /docs/using-qovery/configuration/environment-variable/#connecting-to-a-database
 [guides.getting-started.create-a-database]: /guides/getting-started/create-a-database/

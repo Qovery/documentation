@@ -18,12 +18,27 @@ A pipeline is composed of an ordered list of `Deployment Stages`. Each Stage has
 
 Each service of your environment belongs to one (and only one) `Deployment Stage`. This allows you to define at which moment of the deployment pipeline a service should be deployed and thus respect any service inter-dependency (e.g. your front-end needs to be started after the back-end, your db needs to be started before your back-end etc..).
 
-During the deployment, a service goes through the building and deployment phase (as [explained here][docs.using-qovery.deployment.deployment-actions#deploy]). The build and deploy operation of each service within a deployment stage can be executed in parallel (feature WIP)
+During the deployment, a service goes through the building and deployment phase (as [explained here][docs.using-qovery.deployment.deployment-actions#deploy]). 
 
-Below you can find a visual example of how the pipeline looks like
+Below you can find a visual example of how the pipeline looks like:
 <p align="center">
   <img src="/img/deployment/example_deployment_pipeline.png" alt="Deployment Pipeline" />
 </p>
+
+### Deployment Parallelization
+
+The build and deploy operation of each service within a deployment stage are executed in parallel with a parallism of 4. 
+
+**Example**
+If you have 6 applications to be deployed within a stage, Qovery will:
+* build 4 applications in parallel. Once the build of one application is terminated, Qovery will start immediately another one until all the applications are built.
+* deploy 4 applications in parallel on your Kubernetes cluster. Once the deployment of one application is terminated, Qovery will start immediately another one until all the applications are deployed.
+
+<Alert type="info">
+
+The parallel build and deployment is a feature in beta and free for everyone during the beta phase
+
+</Alert>
 
 
 ## Default Pipeline

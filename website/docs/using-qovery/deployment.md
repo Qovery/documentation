@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-04-13"
+last_modified_on: "2023-04-27"
 title: Deployment
 description: "Everything you need to know about the deployment of your applications with Qovery"
 sidebar_label: hidden
@@ -16,11 +16,13 @@ The deployment has the end goal to create the resources necessary to run your ap
 Qovery provides you with:
 - A configurable `Deployment Pipeline` which defines the deployment execution order when the deployment of an environment is triggered. See [this section][docs.using-qovery.deployment.deployment-pipeline] for more information.
 - A set of `Deployment Actions` which allows you to manage the deployment lifecycle of your applications and environments. See [this section][docs.using-qovery.deployment.deployment-actions] for more information.
+- A `Continuous Deployment` integration in case you want to manage the deployment of you applications via your CI/CD. See [this section][docs.integration.continuous-integration] for more information.
 - A `Deployment History` section to get all the information about the past deployments. See [this section][docs.using-qovery.deployment.deployment-history] for more information.
 - A `Deployment Status` and a `Running Status` to monitor the status of your services and environments. See [this section][docs.using-qovery.deployment.running-and-deployment-statuses] for more information.
 - A `Logs` interface to retrieve the deployment logs of your application and as well its logs in real-time. See [this section][docs.using-qovery.deployment.logs] for more information.
 
 
+[docs.integration.continuous-integration]: /docs/using-qovery/integration/continuous-integration/
 [docs.using-qovery.deployment.deployment-actions]: /docs/using-qovery/deployment/deployment-actions/
 [docs.using-qovery.deployment.deployment-history]: /docs/using-qovery/deployment/deployment-history/
 [docs.using-qovery.deployment.deployment-pipeline]: /docs/using-qovery/deployment/deployment-pipeline/

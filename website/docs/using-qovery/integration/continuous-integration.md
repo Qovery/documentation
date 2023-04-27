@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-12-20"
+last_modified_on: "2023-04-27"
 title: "Continuous Integration"
 description: "Learn how to configure and plug in Build Platforms"
 sidebar_label: hidden
@@ -8,7 +8,8 @@ hide_pagination: true
 
 import Jump from '@site/src/components/Jump';
 
-<Jump to="/docs/using-qovery/integration/continuous-integration/qovery-ci">Qovery CI</Jump>
+Select the CI/CD system that you use today:
+
 <Jump to="/docs/using-qovery/integration/continuous-integration/gitlab-ci">Gitlab CI</Jump>
 <Jump to="/docs/using-qovery/integration/continuous-integration/circle-ci">Circle CI</Jump>
 <Jump to="/docs/using-qovery/integration/continuous-integration/github-actions">Github Actions</Jump>

@@ -9,12 +9,16 @@ In the following subsections, you'll find all the information about the deployme
 
 The deployment has the end goal to create the resources necessary to run your applications on your cloud account, based on the configuration you have done on the Qovery console.
 
+In the image below you can find the complete flow that your application will go through, from your Git repository up to your Kuernetes cluster.
+
 <p align="center">
   <img src="/img/deployment/deployment_overview_qovery.png" alt="Deployment history access" />
 </p>
 
-Qovery provides you with:
-- A configurable `Deployment Pipeline` which defines the deployment execution order when the deployment of an environment is triggered. See [this section][docs.using-qovery.deployment.deployment-pipeline] for more information.
+Note: we also support deployments from container registry
+
+To achieve this goal, Qovery provides you with:
+- A configurable `Deployment Pipeline` which defines the steps that need to be followed in order to deploy your applications. See [this section][docs.using-qovery.deployment.deployment-pipeline] for more information.
 - A set of `Deployment Actions` which allows you to manage the deployment lifecycle of your applications and environments. See [this section][docs.using-qovery.deployment.deployment-actions] for more information.
 - A `Continuous Deployment` integration in case you want to manage the deployment of you applications via your CI/CD. See [this section][docs.integration.continuous-integration] for more information.
 - A `Deployment History` section to get all the information about the past deployments. See [this section][docs.using-qovery.deployment.deployment-history] for more information.

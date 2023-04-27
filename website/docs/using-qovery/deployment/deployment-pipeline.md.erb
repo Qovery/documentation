@@ -12,20 +12,34 @@ You have created an [Environment][docs.using-qovery.configuration.environment] a
 
 </Assumptions>
 
-When the deployment of an environment is triggered, Qovery executes what we call `Deployment Pipeline`. It basically defines which operation shall be performed to properly deploy every service defined within your environment (build the code of service X, push the image on a registry, deploy service X on the Kubernetes cluster etc..)
+When the deployment of an environment is triggered, Qovery executes what we call `Deployment Pipeline`. It basically defines the operations shall be performed to properly deploy every service defined within your environment (build the code of service X, push the image on a registry, deploy service X on the Kubernetes cluster etc..)
 
 A pipeline is composed of an ordered list of `Deployment Stages`. Each Stage has an execution order assigned within the pipeline: If a stage A has an execution order lower than stage B then B can be executed only if the execution of stage A is completed.
 
 Each service of your environment belongs to one (and only one) `Deployment Stage`. This allows you to define at which moment of the deployment pipeline a service should be deployed and thus respect any service inter-dependency (e.g. your front-end needs to be started after the back-end, your db needs to be started before your back-end etc..).
-
-During the deployment, a service goes through the building and deployment phase (as [explained here][docs.using-qovery.deployment.deployment-actions#deploy]). 
 
 Below you can find a visual example of how the pipeline looks like:
 <p align="center">
   <img src="/img/deployment/example_deployment_pipeline.png" alt="Deployment Pipeline" />
 </p>
 
-### Deployment Parallelization
+## Deployment of a stage
+
+When the deployment pipeline execute the deployment of a stage, the services within it will go through the `Build` and `Deployment` phases. 
+
+The Building process is managed by the Qovery CI which downloads your repository and generates the final image that will be run on your Kubernetes cluster. 
+
+<Alert type="info">
+
+By default, the nodes building your application have the following resources: 4CPU and 4 GB memory. If you need more resources, get in touch with our support.
+
+</Alert>
+
+<Alert type="info">
+
+**Important note**: If you already have an image available on a container registry that has been previously created by your own CI/CD, it might be interesting for you to reuse it instead of re-building it again on Qovery side. Have a look at [this section][docs.using-qovery.integration.continuous-integration] on how to deploy it.
+
+</Alert>
 
 The build and deploy operation of each service within a deployment stage are executed in parallel with a parallism of 4. 
 
@@ -41,7 +55,8 @@ The parallel build and deployment is a feature in beta and free for everyone dur
 </Alert>
 
 
-## Default Pipeline
+
+## Default Pipeline Setup
 
 By default, the deployment pipeline is constituted of 4 deployment stages with a default service assignment rule:
 - "0.DEFAULT DATABASE": any new service of type `DATABASE` will be added to this stage.
@@ -64,3 +79,4 @@ This default assignment is maintained as long as you do not delete or rename the
 ## Visualizing and Modifying the Pipeline
 
 You can access and modify the pipeline configuration from the environment settings. Have a look at [this section][docs.using-qovery.configuration.environment#deployment-pipeline] to know more.
+

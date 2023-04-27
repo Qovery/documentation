@@ -42,7 +42,6 @@ module.exports = {
               label: 'Continuous Integration',
               items: [
                 "using-qovery/integration/continuous-integration",
-                "using-qovery/integration/continuous-integration/qovery-ci",
                 "using-qovery/integration/continuous-integration/github-actions",
                 "using-qovery/integration/continuous-integration/gitlab-ci",
                 "using-qovery/integration/continuous-integration/circle-ci",
@@ -122,6 +121,7 @@ module.exports = {
             "using-qovery/deployment",
             "using-qovery/deployment/deployment-pipeline",
             "using-qovery/deployment/deployment-actions",
+            "using-qovery/deployment/deploying-with-ci-cd",
             "using-qovery/deployment/deployment-history",
             "using-qovery/deployment/running-and-deployment-statuses",
             "using-qovery/deployment/logs",

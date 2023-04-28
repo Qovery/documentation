@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-04-07"
+last_modified_on: "2023-04-20"
 title: "Clusters"
 description: "Learn how to configure your Kubernetes clusters on Qovery"
 ---
@@ -580,6 +580,18 @@ You should get an output similar to:
   A confirmation is displayed, including information about where your files are stored.
 
   </li>
+  <li>
+  Access the public key and copy its value
+
+  ```
+{
+    cat /home/user/.ssh/id_ed25519.pub | pbcopy
+}
+  ```
+
+  Replace the .pub path with the one where is located the key you have previously generated
+
+  </li>
   </ol>
   </Steps>
   
@@ -593,7 +605,7 @@ You should get an output similar to:
 
   
 
-  #### Cleaning up a Cluster from your AWS Account
+## Cleaning up a Cluster from your AWS Account
 
 <Alert type="warning">
 

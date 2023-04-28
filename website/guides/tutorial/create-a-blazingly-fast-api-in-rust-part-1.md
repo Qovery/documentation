@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-04-23"
+last_modified_on: "2023-04-24"
 $schema: "/.meta/.schemas/guides.json"
 title: Create a blazingly fast REST API in Rust (Part 1/2)
 description: How to create a blazingly fast REST API in Rust, with zero-cost abstraction and very low overhead - Part 1/2
@@ -827,19 +827,21 @@ To learn how to do it, you can [follow this guide][guides.getting-started.create
 
 <li>
 
-### Add the database to the application
+### Configure the connection to the database
 
-In application overview, select **Settings**
-
-<p align="center">
-  <img src="/img/open-settings.png" alt="Open Settings" />
-</p>
-
-Switch to **Database**, pick your database and **Save**
+In application overview, open the **Variables** tab
 
 <p align="center">
-  <img src="/img/link-db.png" alt="Link Database" />
+  <img src="/img/open-env-var.png" alt="Open Variable" />
 </p>
+
+Configure the alias for each built_in environment variable to match the one required within your code
+
+<p align="center">
+  <img src="/img/alias.png" alt="Env Var Alias" />
+</p>
+
+Have a look at [this section][docs.using-qovery.configuration.environment-variable#connecting-to-a-database] to know more on how to connect to a database.
 
 </li>
 
@@ -916,6 +918,7 @@ Do you want to know more about Rust?
 <Jump to="/guides/tutorial/">Tutorial</Jump>
 
 
+[docs.using-qovery.configuration.environment-variable#connecting-to-a-database]: /docs/using-qovery/configuration/environment-variable/#connecting-to-a-database
 [guides.getting-started.create-a-database]: /guides/getting-started/create-a-database/
 [guides.getting-started.setting-custom-domain]: /guides/getting-started/setting-custom-domain/
 [urls.authorize_qovery]: https://github.com/apps/qovery/installations/new

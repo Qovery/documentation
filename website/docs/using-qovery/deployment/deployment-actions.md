@@ -1,18 +1,11 @@
 ---
-last_modified_on: "2023-04-13"
-title: "Deployment actions"
+last_modified_on: "2023-04-27"
+title: "Deployment Actions"
 description: "Learn how to deploy your application"
 ---
 import Jump from '@site/src/components/Jump';
 import Alert from '@site/src/components/Alert';
 import Assumptions from '@site/src/components/Assumptions';
-
-<Assumptions name="documentation">
-
-A Kubernetes [Cluster][docs.using-qovery.configuration.clusters] is up and running.
-You have created an [Environment][docs.using-qovery.configuration.environment] and one Service (application, db or job)
-
-</Assumptions>
 
 Qovery allows you to manage the deployment lifecycle of your services and environments via a set of `Deployment actions` (example: deploy, redeploy, restart, stop etc..).
 
@@ -169,8 +162,6 @@ Once you click on the action, this panel will appear, and you will be able to ch
 By pressing on the Deploy button, a deployment of the service will be triggered using the selected version.
 
 
-[docs.using-qovery.configuration.clusters]: /docs/using-qovery/configuration/clusters/
-[docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [docs.using-qovery.deployment.deployment-actions#deploy]: /docs/using-qovery/deployment/deployment-actions/#deploy
 [docs.using-qovery.deployment.deployment-actions#restart-service]: /docs/using-qovery/deployment/deployment-actions/#restart-service
 [docs.using-qovery.deployment.deployment-pipeline]: /docs/using-qovery/deployment/deployment-pipeline/

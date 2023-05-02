@@ -595,7 +595,28 @@ You should get an output similar to:
   - In the `Remote Access` tab, enter your SSH key and click `Save`.
   - Launch the [Update Cluster][docs.using-qovery.configuration.clusters] action to propagate the new key.
 
-  
+## Use custom domain and wildcard TLS for the whole cluster (beta)
+
+By default, Qovery provides a domain (ex `bool.sh`) on every deployed cluster. It is used to provide a DNS and TLS certificate to every application requiring external access on a cluster.
+
+You can customize the domain for every application. However, when it comes to having more than 50 custom domains with the same domain you will hit [Let's Encrypt quotas](https://letsencrypt.org/docs/rate-limits/).
+
+To overcome this issue, you can use a wildcard TLS certificate for the whole cluster. It will allow you to have as many DNS records for a single domain as you want on the same cluster with a single TLS certificate.
+
+At the moment, Qovery only supports wildcard TLS certificates with [Cloudflare](https://www.cloudflare.com/). To use it, you need to have a Cloudflare account and a domain name managed by Cloudflare. If you don't have one, you can create a free account and transfer your domain to Cloudflare.
+
+Once you have a Cloudflare account and a domain name managed by Cloudflare, you need to create a Cloudflare API token. Go into your Cloudflare account, click on your profile picture, then `My Profile`. In the `API Tokens` section, click on `Create Token`. In the `Create Custom Token` section, select the following permissions:
+
+* API token a descriptive name: Qovery domain `your domain name`
+* Permissions:
+  * Zone - DNS - Edit
+  * Zone - Zone - Read
+* Zone Resources:
+  * Include - Specific zone - `your domain name`
+
+To finish, click on `Continue to Summary` and `Create Token`. Save the token somewhere safe, you will need it later.
+
+Prepare the Token, the Cloudflare account email and the domain to be set on your cluster. Now contact Qovery and request to use your domain.
 
 ## Cleaning up a Cluster from your AWS Account
 

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-02-23"
+last_modified_on: "2023-05-05"
 title: REST API
 description: "How to use REST API to manage Qovery resources"
 ---
@@ -20,12 +20,12 @@ Use the Qovery REST API to programmatically create infrastructure and deploy you
 
 Here is the list of clients available to use the Qovery Web API.
 
-| Language   | Link                                                         |
-|------------|--------------------------------------------------------------|
-| Golang     | [source](https://github.com/Qovery/qovery-client-go)         |
-| Python     | [source](https://github.com/Qovery/qovery-client-python)     |
-| Typescript | [source](https://github.com/Qovery/qovery-client-typescript) |
-| Javascript | [source](https://github.com/Qovery/qovery-client-javascript) |
+| Language   | Link                                                               |
+|------------|--------------------------------------------------------------------|
+| Golang     | [source](https://github.com/Qovery/qovery-client-go)               |
+| Python     | [source](https://github.com/Qovery/qovery-client-python)           |
+| Typescript | [source](https://github.com/Qovery/qovery-client-typescript-axios) |
+| Javascript | [source](https://github.com/Qovery/qovery-client-javascript)       |
 
 <Alert type="success">
 

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-12-23"
+last_modified_on: "2023-05-05"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploying backend and frontend apps
 description: How to deploy backend and frontend apps with Qovery
@@ -86,11 +86,6 @@ The following steps will show you how to consume your API in your frontend appli
 <ol>
 <li>
 
-Deploy your frontend application. If you don't know how to do it, you can take a look at the guide [how to delpoy Nuxt.js application.](https://docs.qovery.com/guides/tutorial/how-to-deploy-nuxtjs/)
-
-</li>
-<li>
-
 Expose your backend API.
 
 To be able to consume your API from your frontend application, your backend API needs to be exposed publicly. To do so, navigate to your backend application settings:
@@ -132,6 +127,11 @@ export default axios.create({
   baseURL: process.env.baseUrl
 })
 ```
+
+</li>
+<li>
+
+Deploy your frontend application. 
 
 </li>
 

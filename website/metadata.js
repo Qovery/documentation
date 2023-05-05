@@ -618,15 +618,6 @@ module.exports = {
           "title": "How to deploy Helm charts"
         },
         {
-          "author_github": "https://github.com/Stun3R",
-          "description": null,
-          "id": "/tutorial/how-to-deploy-nuxtjs",
-          "last_modified_on": null,
-          "path": "website/guides/tutorial/how-to-deploy-nuxtjs.md",
-          "series_position": null,
-          "title": "How to deploy NuxtJS"
-        },
-        {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
           "id": "/tutorial/how-to-deploy-strapi-with-postgresql",

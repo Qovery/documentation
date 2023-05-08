@@ -1,0 +1,27 @@
+---
+last_modified_on: "2023-05-11"
+title: "Deployment Strategies"
+description: "Learn how to use the deployment strategies"
+---
+import Jump from '@site/src/components/Jump';
+import Alert from '@site/src/components/Alert';
+import Assumptions from '@site/src/components/Assumptions';
+
+Qovery supports 2 ways of application deployment:
+* **RollingUpdate (default)**: Qovery will gracefully rollout new versions. It will automatically rollback if the new version fails to start | Useful to avoid downtime and load spikes during update
+* **Recreate**: Qovery will stop all current versions and create new ones once all old ones have been shutdown.
+
+To make it more clear, here is a representation of the 2 strategies. First and default one, the **RollingUpdate** strategy:
+
+<p align="center">
+  <img src="/img/advanced_settings/deployment_rolling_update.gif" alt="Rolling update strategy" />
+</p>
+
+And **Recreate** deployment strategy:
+
+<p align="center">
+  <img src="/img/advanced_settings/deployment_recreate.gif" alt="Recreate strategy" />
+</p>
+
+
+

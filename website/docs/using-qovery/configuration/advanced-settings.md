@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-01-29"
+last_modified_on: "2023-05-11"
 title: "Service Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -57,7 +57,7 @@ All services have access to advanced settings, you can find where they are avail
 
 ## Application Deployment
 
-#### build.timeout_max_sec ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/cronjob.svg) ![](/img/advanced_settings/job.svg)
+#### build.timeout_max_sec ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/cronjob.svg) ![](/img/advanced_settings/job.svg)
 
 | Type    | Description                                                                                 | Default Value |
 |---------|---------------------------------------------------------------------------------------------|---------------|
@@ -74,6 +74,26 @@ All services have access to advanced settings, you can find where they are avail
 | Type    | Description                                                                                                                                       | Use Case                                                                                                                                                                                    | Default Value |
 |---------|---------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | integer | Decide how many times in seconds the application is supposed to stop at maximum. After this time, the application will be forced to stop (killed) | An application requiring several tasks to be stopped properly should have a higher grace period. If the application finishes early, then it will not wait until the end of the grace period | `60`          |
+
+### Deployment strategy
+
+#### deployment.update_strategy.type ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg)
+
+| Type   | Description                                                                                                                                       | Use Case                                                                    | Default Value   |
+|--------|---------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|-----------------|
+| string | Set deployment strategy type (RollingUpdate or Recreate) | Rolling update strategy will gracefully rollout new versions, while Recreate will stop all current versions and create new ones once all old ones have been shutdown ([more info][docs.using-qovery.deployment.deployment-strategies]) | `RollingUpdate` |
+
+#### deployment.update_strategy.rolling_update.max_unavailable_percent ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg)
+
+| Type    | Description                                                                                                                                                                                                | Default Value |
+|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| integer | Define the percentage of a maximum number of pods that can be unavailable during the update process ([more info](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#max-unavailable)).  | `25`          |
+
+#### deployment.update_strategy.rolling_update.max_surge_percent ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg)
+
+| Type    | Description                                                                                                                                                                                            | Default Value |
+|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| integer | Define the percentage of the maximum number of pods that can be created over the desired number of pods ([more info](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#max-surge)) | `25`          |
 
 ### Kubernetes Probes ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/cronjob.svg) ![](/img/advanced_settings/job.svg)
 
@@ -323,7 +343,7 @@ You can pass set credentials by separating them with a comma. For example: `user
 
 | Type    | Description                                                                                                                                            | Default Value |
 |---------|--------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
-| string | It defines if it is allowed to start another instance of the same job if the previous execution didn't finish yet  | `Forbidden`          |
+| string | It defines if it is allowed to start another instance of the same job if the previous execution didn't finish yet: `Allow`/`Forbid`/`Replace`)          | `Forbidden`   |
 
 #### cronjob.failed_job_history_limit ![](/img/advanced_settings/cronjob.svg)
 
@@ -347,3 +367,4 @@ You can pass set credentials by separating them with a comma. For example: `user
 
 
 [docs.using-qovery.configuration.application#ports]: /docs/using-qovery/configuration/application/#ports
+[docs.using-qovery.deployment.deployment-strategies]: /docs/using-qovery/deployment/deployment-strategies/

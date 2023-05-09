@@ -1,16 +1,16 @@
 ---
-last_modified_on: "2023-03-30"
+last_modified_on: "2023-05-09"
 title: "Webhooks"
 description: "Learn how to use Qovery Webhooks"
 ---
 
 import Steps from '@site/src/components/Steps';
 
-Qovery allows you to create webhooks at organization-level so that, when an event happens on an environment within your organization, you can get notified on external applications. 
+Qovery allows you to create webhooks at organization-level so that, when an event happens on an environment within your organization, you can get notified on external applications.
 
 This is useful for the following use cases:
 - integrate Qovery with an exeternal tool that needs to be informed when the deployment status changes.
-- share within a slack channel any deployment status change for your environments. 
+- share within a slack channel any deployment status change for your environments.
 
 You can trigger webhooks when:
 
@@ -20,7 +20,7 @@ You can trigger webhooks when:
 * A deployment has failed in the environment.
 
 Two types of webhooks can be created within Qovery:
-- **Standard**: this type of webhook will send a payload to the defined url with a Qovery proprietary format (same as the response available on [this API endpoint](https://api-doc.qovery.com/#tag/Environment-Main-Calls/operation/getEnvironmentStatus))
+- **Standard**: this type of webhook will send a payload to the defined url with a Qovery proprietary format (check out our [Webhook payload](#webhook-payload) documentation for more information on the payload format)
 - **Slack**: this type of webhook will send pre-formatted messages using the Slack messaging syntax. Have a look at our [Slack integration][docs.using-qovery.integration.slack] for more information on the integration.
 
 <!--
@@ -55,12 +55,12 @@ Press the `Add New` button.
 
 Enter the following parameters:
 
-|     Parameter                | Usage                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| Parameter                    | Usage                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 |------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `URL`                        | The webhook URL provided by the external application you want to receive notifications on.                                                                                                                                                                                                                                                                                                                                                                                                       |
 | `"kind"`                     | Specify which kind of webhook you want to create. At the moment, you can specify : `"kind": "STANDARD"` to create a generic webhook, or `"kind": "SLACK"` to create [a Slack webhook][docs.using-qovery.integration.slack].                                                                                                                                                                                                                                                                      |
-| `"description"`              | *(Optional)* Enter a self-explanatory description of what your webhook does. In the example, `"description": "slack notifications"` clearly states that the webhook triggers notifications on Slack.                                                                                                                                                                                                                                                                                                          | 
-| `"secret"`                   | *(Optional)* Specify the secret to be used when calling the specified webhook URL                             | 
+| `"description"`              | *(Optional)* Enter a self-explanatory description of what your webhook does. In the example, `"description": "slack notifications"` clearly states that the webhook triggers notifications on Slack.                                                                                                                                                                                                                                                                                             |
+| `"secret"`                   | *(Optional)* Specify the secret to be used when calling the specified webhook URL                                                                                                                                                                                                                                                                                                                                                                                                                |
 | `"events"`                   | List all the events you want to be notified about.                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | `"environment_types_filter"` | *(Optional)* If you only want to get notified about events happening on one or several specific type(s) or environment(s), you can provide a list using the following possible values: `"PRODUCTION"`, `"DEVELOPMENT"`, `"STAGING"` and `"PREVIEW"`. <br /> <br /> Please note that `"environment_types_filter"` can be used together with `"project_names_filter"`.                                                                                                                             |
 | `"project_names_filter"`     | *(Optional)* If you only want to get notified about events happening in one or several specific projects, you can provide a list of project names that will act as a filter. Notifications will then only be triggered for projects whose names match or, if you're using a wildcard, start with one of the values from your list. <br /> <br /> Please note that `"project_names_filter"` is not case-sensitive, accepts wildcards, and can be used together with `"environment_types_filter"`. |
@@ -75,12 +75,66 @@ And press the `Create` button.
 
 From the webhook page, press the `Wheel` button to edit the webhook.
 
-If you want to temporely disable the webhook, you can disable it by clicking on the `Enable` switch.
+If you want to temporally disable the webhook, you can disable it by clicking on the `Enable` switch.
 
 
 ## Delete a Webhook
 
 From the webhook page, press the `Bin` button to delete the webhook. A confirmation modal will ask you to confirm the operation.
+
+## Webhook payload
+
+Here is an example of a Qovery Webhook standard payload. The payload is sent as a `POST` request to the specified URL.
+
+### Deployment payload
+
+This payload is sent when a deployment starts, is cancelled, is successful or fails.
+
+```bash
+{
+  "created_at": "2020-10-04T14:00:00.000Z",
+  "event_type": "DEPLOYMENT_STARTED|DEPLOYMENT_CANCELLED|DEPLOYMENT_SUCCESSFUL|DEPLOYMENT_FAILURE",
+  "payload_type": "DEPLOYMENT", // no other option at the moment
+  "payload_id": "5f7a5b0c-7b7d-4b0a-8b0a-5f7a5b0c7b7d",
+  "payload": {
+    "id": "5f7a5b0c-7b7d-4b0a-8b0a-5f7a5b0c7b7d",
+    "current_status": "ENUM_TYPE", // doc: https://github.com/Qovery/qovery-openapi-spec/blob/main/src/schemas/enums/State.yaml
+    "desired_status": "ENUM_TYPE", // doc: https://github.com/Qovery/qovery-openapi-spec/blob/main/src/schemas/enums/State.yaml
+    "organization": {...}, // doc: https://api-doc.qovery.com/#tag/Organization-Main-Calls/operation/getOrganization
+    "project": {...}, // doc: https://api-doc.qovery.com/#tag/Project-Main-Calls/operation/getProject
+    "environment": {...}, // doc: https://api-doc.qovery.com/#tag/Environment-Main-Calls/operation/getEnvironment
+    "applications": [
+      {
+        "current_status": "ENUM_TYPE", // doc: https://github.com/Qovery/qovery-openapi-spec/blob/main/src/schemas/enums/State.yaml
+        "desired_status": "ENUM_TYPE", // doc: https://github.com/Qovery/qovery-openapi-spec/blob/main/src/schemas/enums/State.yaml
+        "application": {...} // doc: https://api-doc.qovery.com/#tag/Application-Main-Calls/operation/getApplication
+      }
+    ],
+    "databases": [
+      {
+        "current_status": "ENUM_TYPE", // doc: https://github.com/Qovery/qovery-openapi-spec/blob/main/src/schemas/enums/State.yaml
+        "desired_status": "ENUM_TYPE", // doc: https://github.com/Qovery/qovery-openapi-spec/blob/main/src/schemas/enums/State.yaml
+        "database": {...} // doc: https://api-doc.qovery.com/#tag/Database-Main-Calls/operation/getDatabase
+      }
+    ],
+    "containers": [
+      {
+        "current_status": "ENUM_TYPE", // doc: https://github.com/Qovery/qovery-openapi-spec/blob/main/src/schemas/enums/State.yaml
+        "desired_status": "ENUM_TYPE", // doc: https://github.com/Qovery/qovery-openapi-spec/blob/main/src/schemas/enums/State.yaml
+        "container": {...} // doc: https://api-doc.qovery.com/#tag/Container-Main-Calls/operation/getContainer
+      }
+    ],
+    "jobs": [
+      {
+        "current_status": "ENUM_TYPE", // doc: https://github.com/Qovery/qovery-openapi-spec/blob/main/src/schemas/enums/State.yaml
+        "desired_status": "ENUM_TYPE", // doc: https://github.com/Qovery/qovery-openapi-spec/blob/main/src/schemas/enums/State.yaml
+        "job": {...} // doc: https://api-doc.qovery.com/#tag/Job-Main-Calls/operation/getJob
+      }
+    ],
+    "logs": [...] // doc: https://api-doc.qovery.com/#tag/Environment-Logs/operation/listEnvironmentLog
+  }
+}
+```
 
 
 [docs.using-qovery.integration.slack]: /docs/using-qovery/integration/slack/

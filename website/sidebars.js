@@ -119,6 +119,7 @@ module.exports = {
           label: 'Deployment',
           items: [
             "using-qovery/deployment",
+            "using-qovery/deployment/deployment-strategies",
             "using-qovery/deployment/deployment-pipeline",
             "using-qovery/deployment/deployment-actions",
             "using-qovery/deployment/deploying-with-ci-cd",

@@ -106,7 +106,7 @@ Create on your workstation a `values.yaml` file to setup your custom configurati
 cloudWatch:
   enabled: true
   region: "<enter your cluster region>"
-  logGroupName: "/aws/eks/fluentbit-<enter your cluster region>/logs"
+  logGroupName: "/aws/eks/fluentbit-<enter your cluster id>/logs"
   logRetentionDays: 7
 
 env:

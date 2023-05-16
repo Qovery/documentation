@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-04-13"
+last_modified_on: "2023-05-16"
 title: "Environment"
 description: "Learn how to configure your Environments on Qovery"
 ---
@@ -140,9 +140,17 @@ You can modify the name and the description of a stage by opening the `3 dots me
 
 ### Preview environment
 
-> Use Preview Environment to get early feedback on your application changes by creating a dedicated environment for each of your pull requests.
+Use Preview Environment to get early feedback on your application changes by creating a dedicated environment for each of your pull requests. Your production environment runs 24/7, where your other environments may not need to run all day long. E.g. you may need to run Environments to get early feedback on your application changes before the changes are merged into production. This is what we call **Preview Environment**.
 
-The purpose of an Environment is to manage a bunch of applications that are working all together. Your production environment runs 24/7, where your other environments may not need to run all day long. E.g. you may need to run Environments to get early feedback on your application changes before the changes are merged into production. This is what we call **Preview Environment**.
+>  Sometimes **Preview Environment** are also known as **Ephemeral Environment**, **Temporary Environment**, **Development Environment**.
+
+
+<Alert type="info">
+
+The feature works only for application deployed from a git repository but you can still re-create the same behaviour with container images by integrating your CI. Have a look at [this section][docs.using-qovery.integration.continuous-integration] on how to.
+
+</Alert>
+
 
 <Alert type="success">
 
@@ -150,27 +158,48 @@ Check out [this step-by-step guide to get started with the Preview Environments]
 
 </Alert>
 
-> Sometimes **Preview Environment** are also known as **Ephemeral Environment**, **Temporary Environment**, **Development Environment**.
+The preview environment section allows you to manage the complete setup of your preview environment feature
 
-Creating a **Preview Environment** is similar to create a casual Environment.
-
-<div class="video-container">
-  <p align="center">
-    <iframe src="https://www.loom.com/embed/146276efc71942a7a3d8fb44359e1470" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
-    </iframe>
-  </p>
-</div>
+<p align="center">
+  <img src="/img/configuration/environments/preview_environment.png" alt="Preview Environment Settings" />
+</p>
 
 
-<Alert type="info">
+#### Turn on Preview Environments
 
-When you create a preview environment, Qovery automatically displays a message on the related pull request/merge request. This message provides you with a link to follow the deployment of your preview environment, as well as to open and use it:
+it allows you to enable the preview environment feature for the current environment. Any PR opened on a service belonging to this environment will trigger the preview environment flow.
+
+#### Create on demand
+
+You can define the behaviour to follow for the creation of the preview environments:
+- On Demand  (Flag enabled)
+- On every PR (Flag disabled)
+
+*On Demand Flow*
+
+1. A message is dropped on the PR asking you if you want to create a preview environment or not. You will get the list of environments where the preview env feature is activated (in case you have multiple environments) and the command to add as a comment of your PR to trigger the preview.
+2. you will decide weather to create a preview environment or not by typing the right command as a comment within the PR
+3. once the command is added in the comments, the preview creation is triggered and your preview environment is created and its deployment starts
+4. once the deployment is completed, an additional comment will be posted in the PR, providing you with URLs to access your services.
+
+<p align="center">
+  <img src="/img/configuration/environments/preview_env_flow_ondemand.png" alt="Preview Environment Settings" />
+</p>
+
+
+*On every PR Flow* 
+Same as above but the preview environment creation flow is triggered automatically without any user intervention (only step 3 and 4)
 
 <p align="center">
   <img src="/img/configuration/environments/Preview_Environment_Github_Bot_Message.png" alt="Preview Environment Github Bot Message" />
 </p>
 
-</Alert>
+
+#### Service List
+
+By default the preview environment feature is activated on any services of the environment connected to a git repository. In this sectoin you can decide to activate/desactivate the feature for a specific service.
+
+
 
 ## Clone environment
 
@@ -214,4 +243,5 @@ To delete your environment, you must go in the `settings` > `Danger zone` and de
 [docs.using-qovery.configuration.project]: /docs/using-qovery/configuration/project/
 [docs.using-qovery.deployment.deployment-pipeline]: /docs/using-qovery/deployment/deployment-pipeline/
 [docs.using-qovery.deployment]: /docs/using-qovery/deployment/
+[docs.using-qovery.integration.continuous-integration]: /docs/using-qovery/integration/continuous-integration/
 [guides.tutorial.getting-started-with-preview-environments-on-aws-for-beginners]: /guides/tutorial/getting-started-with-preview-environments-on-aws-for-beginners/

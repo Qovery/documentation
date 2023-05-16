@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-05-29"
+last_modified_on: "2023-05-16"
 $schema: "/.meta/.schemas/guides.json"
 title: (Beginner) Getting Started with Preview Environments on AWS
 description: Step-by-step guide to get started with the preview environment on AWS - for beginner
@@ -58,7 +58,7 @@ This guide also works with other cloud service providers supported by Qovery.
 ## Steps
 
 1. [Create a "Blueprint" environment](#create-a-blueprint-environment)
-2. [Enable Deployment Environment feature](#enable-deployment-environment)
+2. [Enable Preview Environment feature](#enable-preview-environment)
 3. [Create a Preview Environment](#create-a-preview-environment)
 4. [Delete a Preview Environment](#delete-a-preview-environment)
 5. [Seed your database](#seed-your-database)
@@ -103,6 +103,7 @@ Now, you can go to turn on Preview Environments by:
     </iframe>
   </p>
 </div>
+
 
 ### Change your base branch
 

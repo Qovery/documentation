@@ -128,8 +128,17 @@ module.exports = {
             "using-qovery/deployment/logs",
           ],
         },
-       
-        "using-qovery/troubleshoot",
+        {
+          type: 'category',
+          label: 'Deployment',
+          items: [
+            "using-qovery/troubleshoot",
+            "using-qovery/troubleshoot/application-troubleshoot",
+            "using-qovery/troubleshoot/database-troubleshoot",
+            "using-qovery/troubleshoot/lifecycle-troubleshoot",
+            "using-qovery/troubleshoot/cluster-troubleshoot",
+          ],
+        },
         {
           type: 'category',
           label: 'Quickstarts',

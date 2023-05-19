@@ -1,0 +1,17 @@
+---
+title: Lifecycle Job Troubleshoot
+description: "Everything you need to troubleshoot your lifecycle job with Qovery"
+hide_pagination: true
+---
+
+Within this section you will find the common errors you might encounter when deploying or running your Lifecycle Job with Qovery
+
+## Joib failed: either it couldn't be executed correctly after X retries or its execution didn't finish after Y minutes
+
+This errors occurs in the following two cases:
+
+**Job code execution failures**
+The pod running your lifecycle job is crashing due to an exception in your code or OOM issue. Have a look at the Live Logs of your Lifecycle job to understand from where the issue is coming from your code.
+
+**Job execution timeout**
+The code run in your job is taking more time than expected and thus it's execution is stopped. If your code needs more time to be excecuted, increase the `Max Duration` value within the [Lifecycle Job configuration page][docs.using-qovery.configuration.lifecycle-job#job-configuration]

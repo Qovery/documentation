@@ -128,8 +128,17 @@ module.exports = {
             <%= metadata.links.fetch_id("docs.using-qovery.deployment.logs").to_json %>,
           ],
         },
-       
-        <%= metadata.links.fetch_id("docs.using-qovery.troubleshoot").to_json %>,
+        {
+          type: 'category',
+          label: 'Deployment',
+          items: [
+            <%= metadata.links.fetch_id("docs.using-qovery.troubleshoot").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.troubleshoot.application-troubleshoot").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.troubleshoot.database-troubleshoot").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.troubleshoot.lifecycle-troubleshoot").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.troubleshoot.cluster-troubleshoot").to_json %>,
+          ],
+        },
         {
           type: 'category',
           label: 'Quickstarts',

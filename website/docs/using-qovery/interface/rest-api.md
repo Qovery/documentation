@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-05-05"
+last_modified_on: "2023-05-20"
 title: REST API
 description: "How to use REST API to manage Qovery resources"
 ---
@@ -35,13 +35,14 @@ You can generate a Qovery client for any language. [Read this post][guides.tutor
 
 ### Generate an API token
 
-Check out the [CLI documentation][docs.using-qovery.interface.cli#generate-api-token]
+You can generate an API token from the [Qovery CLI][docs.using-qovery.interface.cli#generate-api-token] or via the [Qovery Web Console][docs.using-qovery.configuration.organization.api-token].
 
 ## API Documentation
 
 The API documentation is available [here][urls.qovery_swagger]
 
 
+[docs.using-qovery.configuration.organization.api-token]: /docs/using-qovery/configuration/organization/api-token/
 [docs.using-qovery.interface.cli#generate-api-token]: /docs/using-qovery/interface/cli/#generate-api-token
 [guides.tutorial.generate-qovery-api-client]: /guides/tutorial/generate-qovery-api-client/
 [urls.qovery_swagger]: https://api-doc.qovery.com

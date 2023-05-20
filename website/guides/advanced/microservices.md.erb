@@ -191,9 +191,9 @@ Once again, we used the `BUILT_IN` secrets. Read more about them [here][docs.usi
 
 In this step, we'll deploy a frontend application and consume our public API exposed by **APP_A**.
 
-In the first step, create and deploy your frontend application. If you don't know how to do it, you can take a look at the guide [how to delpoy Nuxt.js application.](https://docs.qovery.com/guides/tutorial/how-to-deploy-nuxtjs/)
+In the first step, create your frontend application.
 
-After the application is deployed, we can easily configure it to consume our public API. All we need to do is to make use of the `BUILT_IN` secrets. See how to achieve it in a Nuxt.js example below:
+After the application is created, we can easily configure it to consume our public API. All we need to do is to make use of the `BUILT_IN` secrets. See how to achieve it in a Nuxt.js example below:
 
 ```javascript
 export default {
@@ -211,7 +211,9 @@ export default axios.create({
 })
 ```
 
-After providing the configuration from above, our frontend application will be able to consume the API exposed by the publicly exposed **APP_A**.
+After providing the configuration from above, deploy your frontend application.
+
+Now our frontend application will be able to consume the API exposed by the publicly exposed **APP_A**.
 
 </li>
 </ol>

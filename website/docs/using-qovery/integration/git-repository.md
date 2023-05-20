@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-04-19"
+last_modified_on: "2023-05-20"
 title: "Git Repository"
 description: "Learn how to Qovery connects to your git repository"
 ---
@@ -7,7 +7,7 @@ description: "Learn how to Qovery connects to your git repository"
 Qovery allows you to integrate with the major git based software version control systems in order to build and deploy the applications available on your own repositories.
 
 Today Qovery supports the following software version control systems:
-- GitHub
+- GitHub and GitHub Enterprise
 - GitLab
 - Bitbucket
 

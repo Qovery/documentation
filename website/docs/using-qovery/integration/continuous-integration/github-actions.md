@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-04-19"
+last_modified_on: "2023-05-20"
 title: "GitHub Actions"
 description: "Learn how to connect GitHub Actions to Qovery"
 ---
@@ -28,6 +28,12 @@ Before using the examples below, you need to:
 4. You have turned off the [Qovery Auto Deployment][docs.using-qovery.configuration.environment#auto-deploy] for your environment that you want to deploy manually.
 
 ## GitHub Actions Examples
+
+<Alert type="success">
+
+Qovery is compatible with GitHub Actions and GitHub Actions Enterprise.
+
+</Alert>
 
 ### Deploy a container application
 

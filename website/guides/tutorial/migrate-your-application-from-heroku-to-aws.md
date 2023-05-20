@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-04-13"
+last_modified_on: "2023-05-20"
 $schema: "/.meta/.schemas/guides.json"
 title: Migrate your application from Heroku to AWS
 description: Guide on how to migrate all your applications from Heroku to AWS with your databases
@@ -40,7 +40,7 @@ This guide describes how to migrate your application running on Heroku to AWS wi
 2. [Create resources on Qovery](#2-create-resources-on-qovery)
 3. [Configure Environment Variables and Secrets](#3-configure-your-environment-variables-and-secrets)
 4. [Copy data from your Heroku databases to your AWS databases](#4-copy-data-from-your-heroku-databases-to-your-aws-databases)
-5. [Deploy your apps](#5-deploy-your-apps)
+5. [Deploy your apps](#5-deploy-your-apps-)
 6. [FAQ by Heroku users](#faq-by-heroku-users)
 
 ## 1. Create your Dockerfile or Use Buildpacks
@@ -453,7 +453,13 @@ If you use MongoDB Atlas, or an existing database on AWS that you want to connec
 
 ## 3. Configure your Environment Variables and Secrets
 
-Qovery makes the difference between an environment variable and a secret. Basically, a Secret is similar to an Environment Variable but the value is encrypted and can't be revealed. Both are injected as environment variables during the build and the run of your applications. [More info here][docs.using-qovery.configuration.environment-variable] 
+<Alert type="success">
+
+Qovery supports Doppler integration - it's the easiest way to migrate your Environment Variables and Secrets from Heroku to Qovery. [More info here][docs.using-qovery.integration.secret-manager.doppler].
+
+</Alert>
+
+Qovery makes the difference between an environment variable and a secret. Basically, a Secret is similar to an Environment Variable but the value is encrypted and can't be revealed. Both are injected as environment variables during the build and the run of your applications. [More info here][docs.using-qovery.configuration.environment-variable]
 
 <Alert type="info">
 
@@ -647,6 +653,7 @@ Congrats! You have migrated from Heroku to AWS. Feel free to check out our [foru
 [docs.using-qovery.configuration.organization]: /docs/using-qovery/configuration/organization/
 [docs.using-qovery.configuration.project]: /docs/using-qovery/configuration/project/
 [docs.using-qovery.deployment.deployment-actions#deploy-other-version]: /docs/using-qovery/deployment/deployment-actions/#deploy-other-version
+[docs.using-qovery.integration.secret-manager.doppler]: /docs/using-qovery/integration/secret-manager/doppler/
 [docs.using-qovery.integration.terraform]: /docs/using-qovery/integration/terraform/
 [docs.using-qovery.interface.cli#shell]: /docs/using-qovery/interface/cli/#shell
 [docs.using-qovery.interface.cli]: /docs/using-qovery/interface/cli/

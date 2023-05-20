@@ -57,6 +57,15 @@ module.exports = {
                 "using-qovery/integration/monitoring/new-relic",
               ],
             },
+            {
+              type: 'category',
+              label: 'Secret Manager',
+              items: [
+                "using-qovery/integration/secret-manager",
+                "using-qovery/integration/secret-manager/doppler",
+                "using-qovery/integration/secret-manager/aws-secrets-manager",
+              ],
+            },
             "using-qovery/integration/webhook",
             "using-qovery/integration/api-integration",
             "using-qovery/integration/slack",
@@ -154,7 +163,7 @@ module.exports = {
             "using-qovery/quickstart/rails",
           ]
         },
-        
+
         {
           type: 'category',
           label: 'Maintenance',

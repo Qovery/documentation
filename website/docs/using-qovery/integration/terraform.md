@@ -62,6 +62,11 @@ Check out our Terraform examples [here](https://github.com/Qovery/lifecycle-job-
 - [Qovery Lifecycle Job Examples](https://github.com/Qovery/lifecycle-job-examples)
 - [How to deploy MySQL RDS with Terraform and Lifecycle Jobs][guides.tutorial.how-to-use-lifecycle-job-to-deploy-any-kind-of-resources]
 
+## Do you need help?
+
+Feel free to open a thread on our [Community Forum][urls.qovery_forum]. We will be happy to help you.
+
 
 [docs.using-qovery.configuration.lifecycle-job]: /docs/using-qovery/configuration/lifecycle-job/
 [guides.tutorial.how-to-use-lifecycle-job-to-deploy-any-kind-of-resources]: /guides/tutorial/how-to-use-lifecycle-job-to-deploy-any-kind-of-resources/
+[urls.qovery_forum]: https://discuss.qovery.com/

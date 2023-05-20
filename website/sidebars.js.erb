@@ -57,6 +57,15 @@ module.exports = {
                 <%= metadata.links.fetch_id("docs.using-qovery.integration.monitoring.new-relic").to_json %>,
               ],
             },
+            {
+              type: 'category',
+              label: 'Secret Manager',
+              items: [
+                <%= metadata.links.fetch_id("docs.using-qovery.integration.secret-manager").to_json %>,
+                <%= metadata.links.fetch_id("docs.using-qovery.integration.secret-manager.doppler").to_json %>,
+                <%= metadata.links.fetch_id("docs.using-qovery.integration.secret-manager.aws-secrets-manager").to_json %>,
+              ],
+            },
             <%= metadata.links.fetch_id("docs.using-qovery.integration.webhook").to_json %>,
             <%= metadata.links.fetch_id("docs.using-qovery.integration.api-integration").to_json %>,
             <%= metadata.links.fetch_id("docs.using-qovery.integration.slack").to_json %>,
@@ -154,7 +163,7 @@ module.exports = {
             <%= metadata.links.fetch_id("docs.using-qovery.quickstart.rails").to_json %>,
           ]
         },
-        
+
         {
           type: 'category',
           label: 'Maintenance',

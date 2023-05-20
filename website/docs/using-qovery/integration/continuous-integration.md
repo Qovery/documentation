@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-04-27"
+last_modified_on: "2023-05-20"
 title: "Continuous Integration"
 description: "Learn how to configure and plug in Build Platforms"
 sidebar_label: hidden
@@ -29,5 +29,10 @@ Select the CI/CD system that you use today:
 
 Your CI platform is probably going to be officially supported in the near future. In the meantime, you can use our [Qovery CLI][docs.using-qovery.interface.cli] and make the integration yourself (it is super easy).
 
+### Do you need help?
+
+Feel free to open a thread on our [Community Forum][urls.qovery_forum]. We will be happy to help you.
+
 
 [docs.using-qovery.interface.cli]: /docs/using-qovery/interface/cli/
+[urls.qovery_forum]: https://discuss.qovery.com/

@@ -1,0 +1,68 @@
+---
+title: "Audit Logs"
+description: "Learn how to access the audit logs"
+---
+import Jump from '@site/src/components/Jump';
+import Alert from '@site/src/components/Alert';
+import Assumptions from '@site/src/components/Assumptions';
+
+
+<Alert type="info">
+
+This feature is available in **public beta**. Access and functionalities might change in the future based on your Qovery Plan.
+
+</Alert>
+
+Qovery allows you to monitor any action happened within your organization thanks to the audit logs section. This section provides you with a complete view on any change happened within your organization configuration, providing you the answer to "who did what, where, and when?".
+
+This is extremely useful when debugging complex issues and trying to understand what happened in a specific timeframe or monitor the actions done by your users within your organization.
+
+You can access this section by opening the `Audit logs` section from the nav bar on the left
+
+<p align="center">
+  <img src="/img/configuration/audit-logs/audit-logs-access.png" alt="Audit Logs Access" />
+</p>
+
+Once entered this section, you will find here the list of events happened within your organization over the past **30 days** (this is the maximum retention time).
+
+<Alert type="info">
+
+From a technical point of view, Qovery tracks in the audit logs any call happening on our API for your organization. Example: if you modify the configuration of an application via the Qovery console, Qovery will track the call to the api endpoint [/application](https://api-doc.qovery.com/#tag/Application-Main-Calls/operation/editApplication) and log an **UPDATE** event.
+
+</Alert>
+
+
+## Event information
+
+Each event in the list is composed by the following information:
+- `Timestamp`: it tells you `when` the event happened
+- `Event Type`: it describe the type of event (Create, Update, Delete, Trigger Deployment etc..)
+- `Target Type`: it defines the type of object that has been modified (Environment, Cluster, Role, Image registry etc..)
+- `Target`: it defines the object that has been modified. You can get additional information on the target by hovering on it.
+- `Change`: it describes `what` has been modified (high level information: its config, a deployment rule etc..)
+- `User`: it describes `who` modified the object. If the change has been done via API, you will find the [`API token`][docs.using-qovery.configuration.organization.api-token] name that has changed it.
+- `Tool`: it describes `how` the object has been changed (via the console, the qovery terraform provider, via a git push etc..)
+
+Since the audit logs are based on the calls done on our API, Qovery provides you with the JSON sent in the API response for each API call (and thus, for each event). This JSON represents the status of the target object **after** the event has happened. You can access the JSON by clicking on the event and might be useful to get a more granular information of what has changed between two events of the same type by comparing their JSON.
+
+Example: if an update happened on the configuration of an application , the stored `UPDATE` event will provide you access to the JSON returned by the API when the `/application` endpoint was called. This JSON will thus contain the configuration of the application after the update.
+
+
+## Filters
+
+To simplify the research within the audit logs, you can filter the events by:
+
+- Time range
+- Target: you will have to specify a target type (cluster, environment, service etc..) and then specify the name of the target. For example, if you want to look for the changes happened on the cluster `Production`, you will have to select `Cluster` as Target type and then you will have to select `Production` from within the cluster list.
+
+
+### Quick Filters
+While navigating within the console, a few quick filters allow you to jump on the audit logs and get the events happened on that specific object. For example, you can quickly get the events happened on a specific environment, by clicking on the `See Events` button available within the `3 dots` sub-menu
+
+<p align="center">
+  <img src="/img/configuration/audit-logs/see-events.png" alt="See Events Quick Filter" />
+</p>
+
+## Export
+
+Not yet available, feature coming soon!

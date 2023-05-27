@@ -139,7 +139,7 @@ module.exports = {
         },
         {
           type: 'category',
-          label: 'Deployment',
+          label: 'Troubleshoot',
           items: [
             "using-qovery/troubleshoot",
             "using-qovery/troubleshoot/application-troubleshoot",
@@ -148,6 +148,7 @@ module.exports = {
             "using-qovery/troubleshoot/cluster-troubleshoot",
           ],
         },
+        "using-qovery/audit-logs",
         {
           type: 'category',
           label: 'Quickstarts',

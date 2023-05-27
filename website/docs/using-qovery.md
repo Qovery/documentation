@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-04-13"
+last_modified_on: "2023-05-27"
 title: Using Qovery
 description: "Everything you need to know to configure and use your applications on Qovery"
 sidebar_label: hidden
@@ -10,6 +10,7 @@ import Jump from '@site/src/components/Jump';
 
 This section covers everything you need to know to configure and use your applications on Qovery:
 
+<Jump to="/docs/using-qovery/audit-logs/">Audit logs</Jump>
 <Jump to="/docs/using-qovery/configuration/">Configuration</Jump>
 <Jump to="/docs/using-qovery/deployment/">Deployment</Jump>
 <Jump to="/docs/using-qovery/integration/">Integration</Jump>

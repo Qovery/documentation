@@ -139,7 +139,7 @@ module.exports = {
         },
         {
           type: 'category',
-          label: 'Deployment',
+          label: 'Troubleshoot',
           items: [
             <%= metadata.links.fetch_id("docs.using-qovery.troubleshoot").to_json %>,
             <%= metadata.links.fetch_id("docs.using-qovery.troubleshoot.application-troubleshoot").to_json %>,
@@ -148,6 +148,7 @@ module.exports = {
             <%= metadata.links.fetch_id("docs.using-qovery.troubleshoot.cluster-troubleshoot").to_json %>,
           ],
         },
+        <%= metadata.links.fetch_id("docs.using-qovery.audit-logs").to_json %>,
         {
           type: 'category',
           label: 'Quickstarts',

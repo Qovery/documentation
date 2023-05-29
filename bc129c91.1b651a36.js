@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[216],{367:function(e){e.exports=JSON.parse('{"allTagsPath":"/guides/tags","slug":"framework-meilisearch","name":"framework: meilisearch","count":1,"permalink":"/guides/tags/framework-meilisearch"}')}}]);

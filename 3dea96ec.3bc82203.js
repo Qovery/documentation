@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[73],{225:function(a){a.exports=JSON.parse('{"allTagsPath":"/guides/tags","slug":"framework-strapi","name":"framework: strapi","count":1,"permalink":"/guides/tags/framework-strapi"}')}}]);

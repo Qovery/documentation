@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[18],{166:function(a){a.exports=JSON.parse('{"allTagsPath":"/guides/tags","slug":"language-scala","name":"language: scala","count":1,"permalink":"/guides/tags/language-scala"}')}}]);

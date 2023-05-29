@@ -7,14 +7,14 @@ Take Qovery from zero to production in less than 10 minutes.\
 
 [guides.cloud-provider]
 title = "Cloud Providers"
-series = true
+series = false
 description = """\
 Install Qovery on your favorite cloud provider.\
 """
 
 [guides.advanced]
 title = "Advanced"
-series = true
+series = false
 description = """\
 Go beyond the basics, become a Qovery pro, and extract the full potential of Qovery.\
 """
@@ -23,7 +23,7 @@ Go beyond the basics, become a Qovery pro, and extract the full potential of Qov
 title = "Tutorial"
 series = false
 description = """\
-Simple step-by-step tutorials. \
+Step-by-step tutorials. \
 """
 
 [guides.engineering]

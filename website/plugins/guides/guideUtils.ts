@@ -66,8 +66,8 @@ export async function generateGuides(
             description = 'Take Qovery from zero to production in less than 10 minutes.';
             break;
 
-          case 'integrate':
-            description = 'Simple step-by-step integration guides.'
+          case 'tutorial':
+            description = 'Step-by-step tutorials.'
             break;
         }
 

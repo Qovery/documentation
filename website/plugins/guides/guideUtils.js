@@ -44,8 +44,11 @@ async function generateGuides(guideDir, { siteConfig, siteDir }, options) {
                 case 'advanced':
                     description = 'Go beyond the basics, become a Qovery pro, and extract the full potential of Qovery.';
                     break;
+                case 'cloud-provider':
+                  description = 'Install Qovery on your favorite cloud provider.';
+                  break;
                 case 'tutorial':
-                    description = 'Simple step-by-step tutorials.';
+                    description = 'Step-by-step tutorials.';
                     break;
                 case 'engineering':
                     description = 'We share our engineering learning with all of you.';

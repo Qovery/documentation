@@ -222,7 +222,7 @@ module.exports = {
         }
       ],
       "name": "cloud-provider",
-      "series": true,
+      "series": false,
       "title": "Cloud Providers"
     },
     "advanced": {
@@ -283,16 +283,34 @@ module.exports = {
           "path": "website/guides/advanced/monorepository.md",
           "series_position": null,
           "title": "Mono repository"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/advanced/use-preview-environments",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/use-preview-environments.md",
+          "series_position": null,
+          "title": "Preview Environments"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/advanced/seed-database",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/seed-database.md",
+          "series_position": null,
+          "title": "Seed Database"
         }
       ],
       "name": "advanced",
-      "series": true,
+      "series": false,
       "title": "Advanced"
     },
     "tutorial": {
       "children": {
       },
-      "description": "Simple step-by-step tutorials. ",
+      "description": "Step-by-step tutorials. ",
       "guides": [
         {
           "author_github": "https://github.com/pjeziorowski",

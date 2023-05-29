@@ -39,17 +39,17 @@ function Guides({filtering, items}) {
                 <section>
                   <AnchoredH2 id={cloudProviderCategory.permalink}>{cloudProviderCategory.title}</AnchoredH2>
                   {cloudProviderCategory.description && <div className="sub-title">{cloudProviderCategory.description}</div>}
-                  <GuideItems items={cloudProviderGuides} large={true}/>
+                  <GuideItems items={cloudProviderGuides} large={false}/>
                 </section>
                 <section>
                     <AnchoredH2 id={advancedCategory.permalink}>{advancedCategory.title}</AnchoredH2>
                     {advancedCategory.description && <div className="sub-title">{advancedCategory.description}</div>}
-                    <GuideItems items={advancedGuides} large={true}/>
+                    <GuideItems items={advancedGuides} large={false}/>
                 </section>
                 <section>
                     <AnchoredH2 id={tutorialCategory.permalink}>{tutorialCategory.title}</AnchoredH2>
                     {tutorialCategory.description && <div className="sub-title">{tutorialCategory.description}</div>}
-                    <GuideItems items={tutorialGuides} large={true}/>
+                    <GuideItems items={tutorialGuides} large={false}/>
                 </section>
                 {/*<section>*/}
                 {/*    <AnchoredH2 id={engineeringCategory.permalink}>{engineeringCategory.title}</AnchoredH2>*/}

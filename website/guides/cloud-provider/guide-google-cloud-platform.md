@@ -1,7 +1,7 @@
 ---
 last_modified_on: "2023-05-29"
 $schema: "/.meta/.schemas/guides.json"
-title: Deploy on your GCP account
+title: Configure your Google Cloud Platform account
 description: How to configure and deploy your apps on your Google Cloud Platform (GCP) account with Qovery
 author_github: https://github.com/evoxmusic
 tags: ["type: guide", "cloud_provider: gcp"]
@@ -13,10 +13,10 @@ Thank you for your interest! You are more and more to request the support of Qov
 2. We are hiring backend and frontend engineers to build the future of the Cloud. It could be you? 😄 [Apply here][urls.qovery_jobs]
 
 Today, Qovery supports the following Cloud providers:
-- [Amazon Web Services (AWS)][guides.advanced.guide-amazon-web-services]
-- [Scaleway][guides.advanced.guide-scaleway]
+- [Amazon Web Services (AWS)][guides.cloud-provider.guide-amazon-web-services]
+- [Scaleway][guides.cloud-provider.guide-scaleway]
 
 
-[guides.advanced.guide-amazon-web-services]: /guides/advanced/guide-amazon-web-services/
-[guides.advanced.guide-scaleway]: /guides/advanced/guide-scaleway/
+[guides.cloud-provider.guide-amazon-web-services]: /guides/cloud-provider/guide-amazon-web-services/
+[guides.cloud-provider.guide-scaleway]: /guides/cloud-provider/guide-scaleway/
 [urls.qovery_jobs]: https://jobs.qovery.com

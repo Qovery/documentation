@@ -1,15 +1,14 @@
 ---
-last_modified_on: "2023-05-16"
+last_modified_on: "2023-05-29"
 $schema: "/.meta/.schemas/guides.json"
-title: (Beginner) Getting Started with Preview Environments on AWS
-description: Step-by-step guide to get started with the preview environment on AWS - for beginner
+title: Getting Started with Preview Environments on AWS
+description: Step-by-step guide to get started with the preview environment on AWS
 author_github: https://github.com/evoxmusic
 tags: ["type: tutorial", "technology: qovery"]
 hide_pagination: true
 ---
 
 import Alert from '@site/src/components/Alert';
-import Jump from '@site/src/components/Jump';
 
 import Tabs from '@theme/Tabs';
 import Assumptions from '@site/src/components/Assumptions';
@@ -85,7 +84,7 @@ I assume you already have a working environment, so to create a blueprint enviro
 
 <Alert type="info">
 
-We recommend using a different cluster than your production for your Preview Environments. We will see this in the [(Advanced) Getting Started with Preview Environments on AWS][guides.tutorial.getting-started-with-preview-environments-on-aws-for-advanced-users].
+We recommend using a different cluster than your production for your Preview Environments.
 
 </Alert>
 
@@ -194,23 +193,22 @@ By merging into `staging`, Qovery will auto-redeploy the new version in your `st
 
 ## Advanced
 
-Eager to know how to go integrate Qovery Preview Environments with your CI and much more? Check out our [Advanced Preview Environment guide][guides.tutorial.getting-started-with-preview-environments-on-aws-for-advanced-users]. In this advanced guide we cover the following topics:
+Eager to know how to go integrate Qovery Preview Environments with your CI and much more? Check out our the following guides:
 
-* Seed your Preview Environment database
-* Integrate your CI (Continuous Integration) platform
-* Auto-stop and start your Preview Environment
-* Set up a custom domain for your Preview Environment
-* Create a Preview Environment via Terraform
+* [Seed your Preview Environment database](https://github.com/qovery/lifecycle-job-examples/tree/main/examples/seed-postgres-database-with-sql-script)
+* [Integrate your CI platform][docs.using-qovery.integration.continuous-integration]
+* [Auto-stop and start your Preview Environment][docs.using-qovery.configuration.environment#deployment-rule]
+* [Set up a custom domain for your Preview Environment][guides.tutorial.customizing-preview-url-with-qovery-cli]
 
 ## Wrapping up
 
 Congrats! You have set up your Preview Environments features. Feel free to check out our [forum][urls.qovery_forum] and open a thread if you have any question. In the next guide, we will go deeper configuration to integrate the Preview Environment with your existing products and workflow.
 
-<Jump to="/guides/tutorial/getting-started-with-preview-environments-on-aws-for-advanced-users">Advanced guide for Preview Environments</Jump>
 
-
+[docs.using-qovery.configuration.environment#deployment-rule]: /docs/using-qovery/configuration/environment/#deployment-rule
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
-[guides.tutorial.getting-started-with-preview-environments-on-aws-for-advanced-users]: /guides/tutorial/getting-started-with-preview-environments-on-aws-for-advanced-users/
+[docs.using-qovery.integration.continuous-integration]: /docs/using-qovery/integration/continuous-integration/
+[guides.tutorial.customizing-preview-url-with-qovery-cli]: /guides/tutorial/customizing-preview-url-with-qovery-cli/
 [guides.tutorial.how-to-deploy-your-application-on-aws-in-30-minutes]: /guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes/
 [urls.qovery_forum]: https://discuss.qovery.com/
 [urls.start_qovery]: https://start.qovery.com

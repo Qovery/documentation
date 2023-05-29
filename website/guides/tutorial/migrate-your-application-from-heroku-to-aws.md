@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-05-20"
+last_modified_on: "2023-05-29"
 $schema: "/.meta/.schemas/guides.json"
 title: Migrate your application from Heroku to AWS
 description: Guide on how to migrate all your applications from Heroku to AWS with your databases
@@ -22,7 +22,7 @@ This guide describes how to migrate your application running on Heroku to AWS wi
 
 * You are familiar with Heroku basics, have a Heroku account and access to Heroku CLI
 * You have [sign in on Qovery][urls.start_qovery]
-* You have [set up your AWS account][guides.advanced.guide-amazon-web-services] with Qovery
+* You have [set up your AWS account][guides.cloud-provider.guide-amazon-web-services] with Qovery
 
 </Assumptions>
 
@@ -657,8 +657,8 @@ Congrats! You have migrated from Heroku to AWS. Feel free to check out our [foru
 [docs.using-qovery.integration.terraform]: /docs/using-qovery/integration/terraform/
 [docs.using-qovery.interface.cli#shell]: /docs/using-qovery/interface/cli/#shell
 [docs.using-qovery.interface.cli]: /docs/using-qovery/interface/cli/
-[guides.advanced.guide-amazon-web-services]: /guides/advanced/guide-amazon-web-services/
 [guides.advanced.monorepository]: /guides/advanced/monorepository/
+[guides.cloud-provider.guide-amazon-web-services]: /guides/cloud-provider/guide-amazon-web-services/
 [guides.getting-started.create-a-database]: /guides/getting-started/create-a-database/
 [guides.getting-started.deploy-your-first-application]: /guides/getting-started/deploy-your-first-application/
 [guides.getting-started.managing-environment-variables]: /guides/getting-started/managing-environment-variables/

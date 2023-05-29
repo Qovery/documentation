@@ -20,6 +20,8 @@ function Guides({filtering, items}) {
         return <GuideItems items={items}/>
     } else {
         const gettingStartedGuides = items.filter(item => item.content.metadata.categories[0].name == 'getting-started');
+        const cloudProviderGuides = items.filter(item => item.content.metadata.categories[0].name == 'cloud-provider');
+        const cloudProviderCategory = cloudProviderGuides[0].content.metadata.categories[0];
         const advancedGuides = items.filter(item => item.content.metadata.categories[0].name == 'advanced');
         const advancedCategory = advancedGuides[0].content.metadata.categories[0];
         const tutorialGuides = items.filter(item => item.content.metadata.categories[0].name == 'tutorial');
@@ -33,6 +35,11 @@ function Guides({filtering, items}) {
             <>
                 <section>
                     <GuideItems items={gettingStartedGuides} staggered={true}/>
+                </section>
+                <section>
+                  <AnchoredH2 id={cloudProviderCategory.permalink}>{cloudProviderCategory.title}</AnchoredH2>
+                  {cloudProviderCategory.description && <div className="sub-title">{cloudProviderCategory.description}</div>}
+                  <GuideItems items={cloudProviderGuides} large={true}/>
                 </section>
                 <section>
                     <AnchoredH2 id={advancedCategory.permalink}>{advancedCategory.title}</AnchoredH2>
@@ -121,7 +128,7 @@ function GuideListPage(props) {
                             type="text"
                             className="input--text input--xl"
                             onChange={(event) => setSearchTerm(event.currentTarget.value)}
-                            placeholder="🔍 Search by language, framework, database or tag..."/>
+                            placeholder="🔍 Search by language, framework, cloud provider, database or tag..."/>
                     </div>
                 </div>
             </header>

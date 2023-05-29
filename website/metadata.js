@@ -179,6 +179,52 @@ module.exports = {
       "series": true,
       "title": "Getting Started"
     },
+    "cloud-provider": {
+      "children": {
+      },
+      "description": "Install Qovery on your favorite cloud provider.",
+      "guides": [
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/cloud-provider/guide-amazon-web-services",
+          "last_modified_on": null,
+          "path": "website/guides/cloud-provider/guide-amazon-web-services.md",
+          "series_position": null,
+          "title": "Configure your Amazon Web Services account"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/cloud-provider/guide-google-cloud-platform",
+          "last_modified_on": null,
+          "path": "website/guides/cloud-provider/guide-google-cloud-platform.md",
+          "series_position": null,
+          "title": "Configure your Google Cloud Platform account"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/cloud-provider/guide-microsoft-azure",
+          "last_modified_on": null,
+          "path": "website/guides/cloud-provider/guide-microsoft-azure.md",
+          "series_position": null,
+          "title": "Configure your Microsoft Azure account"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/cloud-provider/guide-scaleway",
+          "last_modified_on": null,
+          "path": "website/guides/cloud-provider/guide-scaleway.md",
+          "series_position": null,
+          "title": "Configure your Scaleway account"
+        }
+      ],
+      "name": "cloud-provider",
+      "series": true,
+      "title": "Cloud Providers"
+    },
     "advanced": {
       "children": {
       },
@@ -187,47 +233,38 @@ module.exports = {
         {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
-          "id": "/advanced/guide-amazon-web-services",
+          "id": "/advanced/deploy-api-gateway",
           "last_modified_on": null,
-          "path": "website/guides/advanced/guide-amazon-web-services.md",
+          "path": "website/guides/advanced/deploy-api-gateway.md",
           "series_position": null,
-          "title": "Deploy on your AWS account"
+          "title": "Deploy API Gateway"
         },
         {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
-          "id": "/advanced/guide-microsoft-azure",
+          "id": "/advanced/deploy-frontend",
           "last_modified_on": null,
-          "path": "website/guides/advanced/guide-microsoft-azure.md",
+          "path": "website/guides/advanced/deploy-frontend.md",
           "series_position": null,
-          "title": "Deploy on your Azure account"
+          "title": "Deploy Frontend"
         },
         {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
-          "id": "/advanced/guide-google-cloud-platform",
+          "id": "/advanced/deploy-helm-chart",
           "last_modified_on": null,
-          "path": "website/guides/advanced/guide-google-cloud-platform.md",
+          "path": "website/guides/advanced/deploy-helm-chart.md",
           "series_position": null,
-          "title": "Deploy on your GCP account"
+          "title": "Deploy Helm Charts"
         },
         {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
-          "id": "/advanced/guide-scaleway",
+          "id": "/advanced/deploy-terraform",
           "last_modified_on": null,
-          "path": "website/guides/advanced/guide-scaleway.md",
+          "path": "website/guides/advanced/deploy-terraform.md",
           "series_position": null,
-          "title": "Deploy on your Scaleway account"
-        },
-        {
-          "author_github": "https://github.com/pjeziorowski",
-          "description": null,
-          "id": "/advanced/deploy-backend-and-frontend-apps",
-          "last_modified_on": null,
-          "path": "website/guides/advanced/deploy-backend-and-frontend-apps.md",
-          "series_position": null,
-          "title": "Deploying backend and frontend apps"
+          "title": "Deploy Terraform"
         },
         {
           "author_github": "https://github.com/pjeziorowski",
@@ -246,15 +283,6 @@ module.exports = {
           "path": "website/guides/advanced/monorepository.md",
           "series_position": null,
           "title": "Mono repository"
-        },
-        {
-          "author_github": "https://github.com/evoxmusic",
-          "description": null,
-          "id": "/advanced/staging-environment",
-          "last_modified_on": null,
-          "path": "website/guides/advanced/staging-environment.md",
-          "series_position": null,
-          "title": "Staging environment"
         }
       ],
       "name": "advanced",
@@ -266,24 +294,6 @@ module.exports = {
       },
       "description": "Simple step-by-step tutorials. ",
       "guides": [
-        {
-          "author_github": "https://github.com/evoxmusic",
-          "description": null,
-          "id": "/tutorial/getting-started-with-preview-environments-on-aws-for-advanced-users",
-          "last_modified_on": null,
-          "path": "website/guides/tutorial/getting-started-with-preview-environments-on-aws-for-advanced-users.md",
-          "series_position": null,
-          "title": "(Advanced) Getting Started with Preview Environments on AWS"
-        },
-        {
-          "author_github": "https://github.com/evoxmusic",
-          "description": null,
-          "id": "/tutorial/getting-started-with-preview-environments-on-aws-for-beginners",
-          "last_modified_on": null,
-          "path": "website/guides/tutorial/getting-started-with-preview-environments-on-aws-for-beginners.md",
-          "series_position": null,
-          "title": "(Beginner) Getting Started with Preview Environments on AWS"
-        },
         {
           "author_github": "https://github.com/pjeziorowski",
           "description": null,
@@ -418,6 +428,15 @@ module.exports = {
           "path": "website/guides/tutorial/deploy-temporal-on-kubernetes.md",
           "series_position": null,
           "title": "Deploy Temporal on Kubernetes"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/tutorial/getting-started-with-preview-environments-on-aws-for-beginners",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/getting-started-with-preview-environments-on-aws-for-beginners.md",
+          "series_position": null,
+          "title": "Getting Started with Preview Environments on AWS"
         },
         {
           "author_github": "https://github.com/pjeziorowski",

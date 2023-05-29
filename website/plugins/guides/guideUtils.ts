@@ -58,6 +58,10 @@ export async function generateGuides(
             description = 'Go beyond the basics, become a Qovery pro, and extract the full potential of Qovery.';
             break;
 
+          case 'cloud-provider':
+            description = 'Install Qovery on your favorite cloud provider.';
+            break;
+
           case 'getting-started':
             description = 'Take Qovery from zero to production in less than 10 minutes.';
             break;

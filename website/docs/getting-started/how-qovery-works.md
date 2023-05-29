@@ -32,7 +32,7 @@ Qovery is an abstraction layer on top of the most promising tools (Kubernetes, T
 
 <Alert type="info">
 
-Check out our guides on how to install Qovery on your [AWS][guides.advanced.guide-amazon-web-services] and [Scaleway][guides.advanced.guide-scaleway] account.
+Check out our guides on how to install Qovery on your [AWS][guides.cloud-provider.guide-amazon-web-services] and [Scaleway][guides.cloud-provider.guide-scaleway] account.
 
 </Alert>
 
@@ -120,6 +120,6 @@ In the next section we explain how you can manage Qovery via [Terraform][docs.us
 
 [docs.using-qovery.integration.terraform]: /docs/using-qovery/integration/terraform/
 [docs.using-qovery.interface.rest-api]: /docs/using-qovery/interface/rest-api/
-[guides.advanced.guide-amazon-web-services]: /guides/advanced/guide-amazon-web-services/
-[guides.advanced.guide-scaleway]: /guides/advanced/guide-scaleway/
+[guides.cloud-provider.guide-amazon-web-services]: /guides/cloud-provider/guide-amazon-web-services/
+[guides.cloud-provider.guide-scaleway]: /guides/cloud-provider/guide-scaleway/
 [urls.qovery_engine]: https://engine.qovery.com

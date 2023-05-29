@@ -5,6 +5,13 @@ description = """\
 Take Qovery from zero to production in less than 10 minutes.\
 """
 
+[guides.cloud-provider]
+title = "Cloud Providers"
+series = true
+description = """\
+Install Qovery on your favorite cloud provider.\
+"""
+
 [guides.advanced]
 title = "Advanced"
 series = true

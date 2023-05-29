@@ -48,7 +48,7 @@ async function generateGuides(guideDir, { siteConfig, siteDir }, options) {
                   description = 'Install Qovery on your favorite cloud provider.';
                   break;
                 case 'tutorial':
-                    description = 'Step-by-step tutorials.';
+                    description = 'Additional step-by-step resources to leverage even more Qovery';
                     break;
                 case 'engineering':
                     description = 'We share our engineering learning with all of you.';

@@ -151,22 +151,6 @@ module.exports = {
         "using-qovery/audit-logs",
         {
           type: 'category',
-          label: 'Quickstarts',
-          items: [
-            "using-qovery/quickstart",
-            "using-qovery/quickstart/hasura",
-            "using-qovery/quickstart/strapi",
-            "using-qovery/quickstart/meilisearch",
-            "using-qovery/quickstart/nodejs",
-            "using-qovery/quickstart/rust",
-            "using-qovery/quickstart/spring",
-            "using-qovery/quickstart/django",
-            "using-qovery/quickstart/rails",
-          ]
-        },
-
-        {
-          type: 'category',
           label: 'Maintenance',
           items: [
             "using-qovery/maintenance",

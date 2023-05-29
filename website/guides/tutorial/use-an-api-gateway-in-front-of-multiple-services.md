@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-01-23"
+last_modified_on: "2023-05-29"
 $schema: "/.meta/.schemas/guides.json"
 title: Use an API gateway in front of multiple services
 description: Learn how to use an API gateway in front of multiple services
@@ -13,7 +13,7 @@ import Jump from '@site/src/components/Jump';
 
 <Alert type="info">
 
-In Q4 2022, Qovery will integrate an *API gateway* service. In the meantime, you can use this tutorial to use an API gateway in front of your apps.
+In the future, Qovery will integrate an *API gateway* service. In the meantime, you can use this tutorial to use an API gateway in front of your apps.
 
 </Alert>
 
@@ -118,12 +118,6 @@ When you have multiple applications within the same environment, it is difficult
 3. Truncate your application ID and take the first segment. For `082e36c4-7fbb-42b2-9046-37ccce21616a` it is `082e36c4`
 4. Add the letter z in front of id `Z082e36c4`.
 5. All the environment variables containing `Z082e36c4` are attached to the corresponding app.
-
-<Alert type="info">
-
-A future product update will fix this experience issue.
-
-</Alert>
 
 ## Set up custom domain
 

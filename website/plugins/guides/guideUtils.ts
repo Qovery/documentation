@@ -67,7 +67,7 @@ export async function generateGuides(
             break;
 
           case 'tutorial':
-            description = 'Step-by-step tutorials.'
+            description = 'Additional step-by-step resources to leverage even more Qovery.'
             break;
         }
 

@@ -24,29 +24,29 @@
 <link rel="stylesheet" href="/styles.c2623277.css">
 
 
-<link rel="preload" href="/styles.bc621766.js" as="script">
+<link rel="preload" href="/styles.d4c084ae.js" as="script">
 
-<link rel="preload" href="/runtime~main.4fc4a6d8.js" as="script">
+<link rel="preload" href="/runtime~main.bfd9747a.js" as="script">
 
-<link rel="preload" href="/main.4d49b7b5.js" as="script">
+<link rel="preload" href="/main.cdcd1ff6.js" as="script">
 
-<link rel="preload" href="/2.96ac0644.js" as="script">
+<link rel="preload" href="/2.5ad9a51f.js" as="script">
 
-<link rel="preload" href="/3.81e9f243.js" as="script">
+<link rel="preload" href="/3.9a7917a2.js" as="script">
 
-<link rel="preload" href="/4.3db5685e.js" as="script">
+<link rel="preload" href="/4.e0d532e9.js" as="script">
 
-<link rel="preload" href="/1be78505.5ea2eaf5.js" as="script">
+<link rel="preload" href="/1be78505.ffb8d527.js" as="script">
 
-<link rel="preload" href="/20ac7829.d4e521b9.js" as="script">
+<link rel="preload" href="/20ac7829.65c46328.js" as="script">
 
-<link rel="preload" href="/301.da8e2157.js" as="script">
+<link rel="preload" href="/304.b1e41851.js" as="script">
 
-<link rel="preload" href="/17896441.f7c2f93e.js" as="script">
+<link rel="preload" href="/17896441.6debb555.js" as="script">
 
-<link rel="preload" href="/1.2211c13b.js" as="script">
+<link rel="preload" href="/1.e6b82ede.js" as="script">
 
-<link rel="preload" href="/d9a4c8ef.8bb8a780.js" as="script">
+<link rel="preload" href="/d9a4c8ef.6db058c8.js" as="script">
 
 </head>
 <body>
@@ -80,29 +80,29 @@ These commands allow you to manage all these services via the CLI. You can run t
 </span></div><div class="token-line" style="color:#393A34"><span class="token plain">~ $ qovery environment deploy</span></div><div class="token-line" style="color:#393A34"><span class="token plain">Environment is deploying</span><span class="token operator" style="color:#393A34">!</span></div></div></pre></div></div><h2><a aria-hidden="true" tabindex="-1" class="anchor" id="managing-the-deployment-pipeline"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#managing-the-deployment-pipeline" title="Direct link to heading">#</a>Managing the Deployment Pipeline</h2><p>In the following sections we will describe how to modify the Deployment Pipeline. </p><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="list-stages"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#list-stages" title="Direct link to heading">#</a>List stages</h3><p>You can list all the stages of your environment by using the following command:</p><div class="mdxCodeBlock_iHAB"><div class="codeBlockContent_3RXF"><button type="button" aria-label="Copy code to clipboard" class="copyButton_1PCb">Copy</button><pre class="prism-code language-bash codeBlock_1wn8"><div class="codeBlockLines_3HrO" style="color:#393A34;background-color:#f6f8fa"><div class="token-line" style="color:#393A34"><span class="token plain">qovery environment stage list</span></div></div></pre></div></div><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="add-a-stage"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#add-a-stage" title="Direct link to heading">#</a>Add a stage</h3><p>You can add a new stage by using the following command:</p><div class="mdxCodeBlock_iHAB"><div class="codeBlockContent_3RXF"><button type="button" aria-label="Copy code to clipboard" class="copyButton_1PCb">Copy</button><pre class="prism-code language-bash codeBlock_1wn8"><div class="codeBlockLines_3HrO" style="color:#393A34;background-color:#f6f8fa"><div class="token-line" style="color:#393A34"><span class="token plain">qovery environment stage create -n </span><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain">name</span><span class="token operator" style="color:#393A34">&gt;</span><span class="token plain"> -d </span><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain">description</span><span class="token operator" style="color:#393A34">&gt;</span></div></div></pre></div></div><p>Note that the stage will be added at the end of the pipeline (the highest number)</p><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="modify-a-stage"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#modify-a-stage" title="Direct link to heading">#</a>Modify a stage</h3><p>You can modify a stage by using the following command:</p><div class="mdxCodeBlock_iHAB"><div class="codeBlockContent_3RXF"><button type="button" aria-label="Copy code to clipboard" class="copyButton_1PCb">Copy</button><pre class="prism-code language-bash codeBlock_1wn8"><div class="codeBlockLines_3HrO" style="color:#393A34;background-color:#f6f8fa"><div class="token-line" style="color:#393A34"><span class="token plain">qovery environment stage edit -n </span><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain">original name</span><span class="token operator" style="color:#393A34">&gt;</span><span class="token plain"> --new-name </span><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain">new name</span><span class="token operator" style="color:#393A34">&gt;</span><span class="token plain"> --new-description </span><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain">new description</span><span class="token operator" style="color:#393A34">&gt;</span></div></div></pre></div></div><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="delete-a-stage"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#delete-a-stage" title="Direct link to heading">#</a>Delete a stage</h3><p>You can modify a stage by using the following command:</p><div class="mdxCodeBlock_iHAB"><div class="codeBlockContent_3RXF"><button type="button" aria-label="Copy code to clipboard" class="copyButton_1PCb">Copy</button><pre class="prism-code language-bash codeBlock_1wn8"><div class="codeBlockLines_3HrO" style="color:#393A34;background-color:#f6f8fa"><div class="token-line" style="color:#393A34"><span class="token plain">qovery environment stage delete -n </span><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain">name</span><span class="token operator" style="color:#393A34">&gt;</span></div></div></pre></div></div><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="change-stage-for-a-service"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#change-stage-for-a-service" title="Direct link to heading">#</a>Change stage for a service</h3><p>You can modify the stage associated to a service by using the following command:</p><div class="mdxCodeBlock_iHAB"><div class="codeBlockContent_3RXF"><button type="button" aria-label="Copy code to clipboard" class="copyButton_1PCb">Copy</button><pre class="prism-code language-bash codeBlock_1wn8"><div class="codeBlockLines_3HrO" style="color:#393A34;background-color:#f6f8fa"><div class="token-line" style="color:#393A34"><span class="token plain">qovery environment stage move -n </span><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain">service name</span><span class="token operator" style="color:#393A34">&gt;</span><span class="token plain"> --stage </span><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain">stage name</span><span class="token operator" style="color:#393A34">&gt;</span></div></div></pre></div></div><h2><a aria-hidden="true" tabindex="-1" class="anchor" id="support"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#support" title="Direct link to heading">#</a>Support</h2><p>Do you have any issues with Qovery CLI? <a href="https://github.com/Qovery/qovery-cli/issues">Open an issue</a>.</p></div></article></div><div class="paginator_3VDt"><nav class="pagination-nav"><div class="pagination-nav__item"><a class="pagination-nav__link" href="/docs/using-qovery/interface/web-interface"><h5 class="pagination-nav__link--sublabel">Previous</h5><h4 class="pagination-nav__link--label">« Web interface</h4></a></div><div class="pagination-nav__item pagination-nav__item--next"><a class="pagination-nav__link" href="/docs/using-qovery/interface/rest-api"><h5 class="pagination-nav__link--sublabel">Next</h5><h4 class="pagination-nav__link--label">REST API »</h4></a></div></nav></div></div><div class="rightCol_38kP"><div class="table-of-contents tableOfContents_tVyB"><div class="section"><div class="title">Contents</div><ul class="contents"><li><a href="#first-usage" class="contents__link">First usage</a><ul><li><a href="#install" class="contents__link">Install</a></li><li><a href="#sign-up" class="contents__link">Sign up</a></li><li><a href="#help" class="contents__link">Help</a></li></ul></li><li><a href="#context" class="contents__link">Context</a><ul><li><a href="#set-new-context" class="contents__link">Set New Context</a></li><li><a href="#print-current-context" class="contents__link">Print Current Context</a></li></ul></li><li><a href="#log" class="contents__link">Log</a><ul><li><a href="#follow-logs" class="contents__link">Follow Logs</a></li></ul></li><li><a href="#status" class="contents__link">Status</a></li><li><a href="#console" class="contents__link">Console</a></li><li><a href="#shell" class="contents__link">Shell</a></li><li><a href="#generate-api-token" class="contents__link">Generate API token</a></li><li><a href="#managing-services-and-environments" class="contents__link">Managing services and environments</a><ul><li><a href="#environment" class="contents__link">Environment</a></li></ul></li><li><a href="#managing-the-deployment-pipeline" class="contents__link">Managing the Deployment Pipeline</a><ul><li><a href="#list-stages" class="contents__link">List stages</a></li><li><a href="#add-a-stage" class="contents__link">Add a stage</a></li><li><a href="#modify-a-stage" class="contents__link">Modify a stage</a></li><li><a href="#delete-a-stage" class="contents__link">Delete a stage</a></li><li><a href="#change-stage-for-a-service" class="contents__link">Change stage for a service</a></li></ul></li><li><a href="#support" class="contents__link">Support</a></li></ul></div><div class="section"><div class="title">Resources</div><ul class="contents"></ul></div></div></div></div></div></main></div></div><footer class="footer"><div class="container"><div class="row footer__links"><div class="col col--5 footer__col"><div class="margin-bottom--md"></div><div class="margin-bottom--md"><p>Qovery is a Self-Service Infrastructure Platform Helping Ops and Engineers To Ship Faster.</p></div><div><a href="https://github.com/qovery" target="_blank"><i class="feather icon-github" alt="Qovery&#x27;s Github Repo"></i></a>    <a href="https://www.linkedin.com/company/qovery/" target="_blank"><i class="feather icon-rss" alt="Qovery&#x27;s Linkedin"></i></a>    <a href="https://twitter.com/qovery_" target="_blank"><i class="feather icon-twitter" alt="Qovery&#x27;s Twitter"></i></a>    <a href="https://discord.qovery.com" target="_blank"><i class="feather icon-message-circle" alt="Qovery&#x27;s Discord"></i></a></div></div><div class="col footer__col"><h4 class="footer__title">Resources</h4><ul class="footer__items"><li class="footer__item"><a aria-current="page" class="footer__link-item active" href="/docs">Documentation</a></li><li class="footer__item"><a class="footer__link-item" href="/guides">Guides</a></li><li class="footer__item"><a class="footer__link-item" href="/guides/tutorial">Tutorials</a></li><li class="footer__item"><a class="footer__link-item" href="/guides/engineering">Engineering</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/pricing" href="https://www.qovery.com/pricing">Pricing</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/enterprise" href="https://www.qovery.com/enterprise">Enterprise</a></li><li class="footer__item"><a class="footer__link-item" to="https://api-doc.qovery.com" href="https://api-doc.qovery.com">API</a></li><li class="footer__item"><a class="footer__link-item" to="https://github.com/Qovery" href="https://github.com/Qovery">Github</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Community</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://discord.qovery.com" href="https://discord.qovery.com">Discord</a></li><li class="footer__item"><a class="footer__link-item" to="https://community.qovery.com" href="https://community.qovery.com">Forum</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/community-call" href="https://www.qovery.com/community-call">Community call</a></li><li class="footer__item"><a class="footer__link-item" to="https://shop.qovery.com" href="https://shop.qovery.com">Goodies</a></li><li class="footer__item"><a class="footer__link-item" to="https://roadmap.qovery.com" href="https://roadmap.qovery.com">Roadmap</a></li><li class="footer__item"><a class="footer__link-item" to="https://github.com/Qovery/replibyte" href="https://github.com/Qovery/replibyte">Replibyte</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Company</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/blog" href="https://www.qovery.com/blog">Blog</a></li><li class="footer__item"><a class="footer__link-item" to="https://jobs.qovery.com" href="https://jobs.qovery.com">Jobs</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/team" href="https://www.qovery.com/team">Team</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/investors" href="https://www.qovery.com/investors">Investors</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/contact" href="https://www.qovery.com/contact">Contact</a></li></ul></div></div><div class="text--center"><small>© 2023 DESIGNED BY QOVERY | BACKED BY TECHSTARS | PROUD SILVER MEMBER OF CNCF AND LINUX FOUNDATION | QOVERY BY BIRDSIGHT - ALL RIGHTS RESERVED</small><br></div></div></footer>
 </div>
 
-<script src="/styles.bc621766.js"></script>
+<script src="/styles.d4c084ae.js"></script>
 
-<script src="/runtime~main.4fc4a6d8.js"></script>
+<script src="/runtime~main.bfd9747a.js"></script>
 
-<script src="/main.4d49b7b5.js"></script>
+<script src="/main.cdcd1ff6.js"></script>
 
-<script src="/2.96ac0644.js"></script>
+<script src="/2.5ad9a51f.js"></script>
 
-<script src="/3.81e9f243.js"></script>
+<script src="/3.9a7917a2.js"></script>
 
-<script src="/4.3db5685e.js"></script>
+<script src="/4.e0d532e9.js"></script>
 
-<script src="/1be78505.5ea2eaf5.js"></script>
+<script src="/1be78505.ffb8d527.js"></script>
 
-<script src="/20ac7829.d4e521b9.js"></script>
+<script src="/20ac7829.65c46328.js"></script>
 
-<script src="/301.da8e2157.js"></script>
+<script src="/304.b1e41851.js"></script>
 
-<script src="/17896441.f7c2f93e.js"></script>
+<script src="/17896441.6debb555.js"></script>
 
-<script src="/1.2211c13b.js"></script>
+<script src="/1.e6b82ede.js"></script>
 
-<script src="/d9a4c8ef.8bb8a780.js"></script>
+<script src="/d9a4c8ef.6db058c8.js"></script>
 
 
 </body>

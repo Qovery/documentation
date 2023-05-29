@@ -205,15 +205,6 @@ module.exports = {
         {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
-          "id": "/advanced/guide-digital-ocean",
-          "last_modified_on": null,
-          "path": "website/guides/advanced/guide-digital-ocean.md",
-          "series_position": null,
-          "title": "Deploy on your Digital Ocean account"
-        },
-        {
-          "author_github": "https://github.com/evoxmusic",
-          "description": null,
           "id": "/advanced/guide-google-cloud-platform",
           "last_modified_on": null,
           "path": "website/guides/advanced/guide-google-cloud-platform.md",

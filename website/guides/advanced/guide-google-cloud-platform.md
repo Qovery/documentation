@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-11-11"
+last_modified_on: "2023-05-29"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy on your GCP account
 description: How to configure and deploy your apps on your Google Cloud Platform (GCP) account with Qovery
@@ -15,10 +15,8 @@ Thank you for your interest! You are more and more to request the support of Qov
 Today, Qovery supports the following Cloud providers:
 - [Amazon Web Services (AWS)][guides.advanced.guide-amazon-web-services]
 - [Scaleway][guides.advanced.guide-scaleway]
-- [Digital Ocean][guides.advanced.guide-digital-ocean]
 
 
 [guides.advanced.guide-amazon-web-services]: /guides/advanced/guide-amazon-web-services/
-[guides.advanced.guide-digital-ocean]: /guides/advanced/guide-digital-ocean/
 [guides.advanced.guide-scaleway]: /guides/advanced/guide-scaleway/
 [urls.qovery_jobs]: https://jobs.qovery.com

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-02-10"
+last_modified_on: "2023-05-29"
 title: How Qovery Works
 description: "How Qovery works under the hood and how to use it when you are a DevOps"
 ---
@@ -32,7 +32,7 @@ Qovery is an abstraction layer on top of the most promising tools (Kubernetes, T
 
 <Alert type="info">
 
-Check out our guides on how to install Qovery on your [AWS][guides.advanced.guide-amazon-web-services], [Digital Ocean][guides.advanced.guide-digital-ocean] and [Scaleway][guides.advanced.guide-scaleway] account.
+Check out our guides on how to install Qovery on your [AWS][guides.advanced.guide-amazon-web-services] and [Scaleway][guides.advanced.guide-scaleway] account.
 
 </Alert>
 
@@ -121,6 +121,5 @@ In the next section we explain how you can manage Qovery via [Terraform][docs.us
 [docs.using-qovery.integration.terraform]: /docs/using-qovery/integration/terraform/
 [docs.using-qovery.interface.rest-api]: /docs/using-qovery/interface/rest-api/
 [guides.advanced.guide-amazon-web-services]: /guides/advanced/guide-amazon-web-services/
-[guides.advanced.guide-digital-ocean]: /guides/advanced/guide-digital-ocean/
 [guides.advanced.guide-scaleway]: /guides/advanced/guide-scaleway/
 [urls.qovery_engine]: https://engine.qovery.com

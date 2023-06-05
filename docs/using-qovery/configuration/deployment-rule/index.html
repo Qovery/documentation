@@ -21,30 +21,30 @@
 <link data-react-helmet="true" rel="shortcut icon" href="/img/logo-square.svg"><link data-react-helmet="true" rel="canonical" href="https://docs.qovery.com/docs/using-qovery/configuration/deployment-rule/">
 
 
-<link rel="stylesheet" href="/styles.c2623277.css">
+<link rel="stylesheet" href="/styles.ce3a7d36.css">
 
 
-<link rel="preload" href="/styles.7a6f0b8e.js" as="script">
+<link rel="preload" href="/styles.6bf7efa6.js" as="script">
 
-<link rel="preload" href="/runtime~main.bff6aa4c.js" as="script">
+<link rel="preload" href="/runtime~main.c83283c0.js" as="script">
 
-<link rel="preload" href="/main.fc946fb8.js" as="script">
+<link rel="preload" href="/main.2a7cf75c.js" as="script">
 
-<link rel="preload" href="/2.ba0b9d41.js" as="script">
+<link rel="preload" href="/2.894b1700.js" as="script">
 
-<link rel="preload" href="/3.36bec784.js" as="script">
+<link rel="preload" href="/3.b14704ef.js" as="script">
 
-<link rel="preload" href="/4.67a41895.js" as="script">
+<link rel="preload" href="/4.2dadbdde.js" as="script">
 
-<link rel="preload" href="/1be78505.19944516.js" as="script">
+<link rel="preload" href="/1be78505.0c49d184.js" as="script">
 
-<link rel="preload" href="/20ac7829.f0d38f30.js" as="script">
+<link rel="preload" href="/20ac7829.f5ae6d5f.js" as="script">
 
-<link rel="preload" href="/246.bdc05d3e.js" as="script">
+<link rel="preload" href="/254.dd3603ed.js" as="script">
 
-<link rel="preload" href="/17896441.6fc6d68d.js" as="script">
+<link rel="preload" href="/17896441.110c8bf0.js" as="script">
 
-<link rel="preload" href="/db96bb7d.b91ed0f5.js" as="script">
+<link rel="preload" href="/db96bb7d.482dffcd.js" as="script">
 
 </head>
 <body>
@@ -61,27 +61,27 @@ In order to define which rule applies first to your new environments, you can re
 Starting from the top, the rules are ranked from highest to lowest priority. </p><p align="center"><img src="/img/rules-priority.png" alt="Reorder priority rules"></p><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="wildcards"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#wildcards" title="Direct link to heading">#</a>Wildcards</h3><p>Wildcards will allow you to specify the environments you want your deployment rule to target. </p><p>You can use the following characters to specify your rule. </p><table><thead><tr><th align="center">wildcard</th><th align="center">behavior</th><th align="center">will match</th></tr></thead><tbody><tr><td align="center">?</td><td align="center">Any one character</td><td align="center">&quot;A&quot;, &quot;B&quot;, &quot;c&quot;, &quot;z&quot;, etc.</td></tr><tr><td align="center">??</td><td align="center">Any two characters</td><td align="center">&quot;AA&quot;, &quot;AZ&quot;, &quot;zz&quot;, etc.</td></tr><tr><td align="center">???</td><td align="center">Any three characters</td><td align="center">&quot;Jet&quot;, &quot;AAA&quot;, &quot;ccc&quot;, etc.</td></tr><tr><td align="center">*</td><td align="center">Any characters</td><td align="center">&quot;apple&quot;, &quot;APPLE&quot;, &quot;A100&quot;, etc.</td></tr><tr><td align="center">*th</td><td align="center">Ends in &quot;th&quot;</td><td align="center">&quot;bath&quot;, &quot;fourth&quot;, etc.</td></tr><tr><td align="center">c*</td><td align="center">Starts with &quot;c&quot;</td><td align="center">&quot;Cat&quot;, &quot;CAB&quot;, &quot;cindy&quot;, &quot;candy&quot;, etc.</td></tr><tr><td align="center">?*</td><td align="center">At least one character</td><td align="center">&quot;a&quot;, &quot;b&quot;, &quot;ab&quot;, &quot;ABCD&quot;, etc.</td></tr><tr><td align="center">???-??</td><td align="center">5 characters with hypen</td><td align="center">&quot;ABC-99&quot;,&quot;100-ZT&quot;, etc.</td></tr><tr><td align="center"><em>xyz</em></td><td align="center">Contains &quot;xyz&quot;</td><td align="center">&quot;code is XYZ&quot;, &quot;100-XYZ&quot;, &quot;XyZ90&quot;, etc.</td></tr></tbody></table><p>For example, the rule <code>Prod_Env_*</code> will target the environment named:</p><ul><li><code>Prod_Env_1</code></li><li><code>Prod_Env_feature</code></li></ul><p>But will not target the environment named:</p><ul><li><code>Staging_Env_1</code></li></ul><h2><a aria-hidden="true" tabindex="-1" class="anchor" id="environment-deployment-rules"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#environment-deployment-rules" title="Direct link to heading">#</a>Environment Deployment Rules</h2><p>Setting up Deployment Rules at the Enviornment level allows you to make all necessary adjustments applied by your default rules from the Project level.</p><p>Have a look at [this section][docs.using-qovery.configuration.environment#deployment-rule]] to know more.</p></div></article></div><div class="paginator_3VDt"><nav class="pagination-nav"><div class="pagination-nav__item"><a class="pagination-nav__link" href="/docs/using-qovery/configuration/object-storage"><h5 class="pagination-nav__link--sublabel">Previous</h5><h4 class="pagination-nav__link--label">« Object Storage</h4></a></div><div class="pagination-nav__item pagination-nav__item--next"><a class="pagination-nav__link" href="/docs/using-qovery/configuration/cloud-service-provider"><h5 class="pagination-nav__link--sublabel">Next</h5><h4 class="pagination-nav__link--label">Cloud Service Provider »</h4></a></div></nav></div></div><div class="rightCol_38kP"><div class="table-of-contents tableOfContents_tVyB"><div class="section"><div class="title">Contents</div><ul class="contents"><li><a href="#why-using-deployment-rule" class="contents__link">Why using Deployment Rule?</a><ul><li><a href="#cloud-cost-optimization" class="contents__link">Cloud cost optimization</a></li><li><a href="#time-optimization" class="contents__link">Time optimization</a></li><li><a href="#examples" class="contents__link">Examples</a></li></ul></li><li><a href="#rule-levels" class="contents__link">Rule Levels</a></li><li><a href="#project-deployment-rules" class="contents__link">Project Deployment Rules</a><ul><li><a href="#project-rules-configuration" class="contents__link">Project Rules Configuration</a></li><li><a href="#general" class="contents__link">General</a></li><li><a href="#deployment" class="contents__link">Deployment</a></li><li><a href="#target-future-environment" class="contents__link">Target Future Environment</a></li><li><a href="#rules-priority" class="contents__link">Rules priority</a></li><li><a href="#wildcards" class="contents__link">Wildcards</a></li></ul></li><li><a href="#environment-deployment-rules" class="contents__link">Environment Deployment Rules</a></li></ul></div><div class="section"><div class="title">Resources</div><ul class="contents"></ul></div></div></div></div></div></main></div></div><footer class="footer"><div class="container"><div class="row footer__links"><div class="col col--5 footer__col"><div class="margin-bottom--md"></div><div class="margin-bottom--md"><p>Qovery is a Self-Service Infrastructure Platform Helping Ops and Engineers To Ship Faster.</p></div><div><a href="https://github.com/qovery" target="_blank"><i class="feather icon-github" alt="Qovery&#x27;s Github Repo"></i></a>    <a href="https://www.linkedin.com/company/qovery/" target="_blank"><i class="feather icon-rss" alt="Qovery&#x27;s Linkedin"></i></a>    <a href="https://twitter.com/qovery_" target="_blank"><i class="feather icon-twitter" alt="Qovery&#x27;s Twitter"></i></a>    <a href="https://discord.qovery.com" target="_blank"><i class="feather icon-message-circle" alt="Qovery&#x27;s Discord"></i></a></div></div><div class="col footer__col"><h4 class="footer__title">Resources</h4><ul class="footer__items"><li class="footer__item"><a aria-current="page" class="footer__link-item active" href="/docs">Documentation</a></li><li class="footer__item"><a class="footer__link-item" href="/guides">Guides</a></li><li class="footer__item"><a class="footer__link-item" href="/guides/tutorial">Tutorials</a></li><li class="footer__item"><a class="footer__link-item" href="/guides/engineering">Engineering</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/pricing" href="https://www.qovery.com/pricing">Pricing</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/enterprise" href="https://www.qovery.com/enterprise">Enterprise</a></li><li class="footer__item"><a class="footer__link-item" to="https://api-doc.qovery.com" href="https://api-doc.qovery.com">API</a></li><li class="footer__item"><a class="footer__link-item" to="https://github.com/Qovery" href="https://github.com/Qovery">Github</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Community</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://discord.qovery.com" href="https://discord.qovery.com">Discord</a></li><li class="footer__item"><a class="footer__link-item" to="https://community.qovery.com" href="https://community.qovery.com">Forum</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/community-call" href="https://www.qovery.com/community-call">Community call</a></li><li class="footer__item"><a class="footer__link-item" to="https://shop.qovery.com" href="https://shop.qovery.com">Goodies</a></li><li class="footer__item"><a class="footer__link-item" to="https://roadmap.qovery.com" href="https://roadmap.qovery.com">Roadmap</a></li><li class="footer__item"><a class="footer__link-item" to="https://github.com/Qovery/replibyte" href="https://github.com/Qovery/replibyte">Replibyte</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Company</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/blog" href="https://www.qovery.com/blog">Blog</a></li><li class="footer__item"><a class="footer__link-item" to="https://jobs.qovery.com" href="https://jobs.qovery.com">Jobs</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/team" href="https://www.qovery.com/team">Team</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/investors" href="https://www.qovery.com/investors">Investors</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/contact" href="https://www.qovery.com/contact">Contact</a></li></ul></div></div><div class="text--center"><small>© 2023 DESIGNED BY QOVERY | BACKED BY TECHSTARS | PROUD SILVER MEMBER OF CNCF AND LINUX FOUNDATION | QOVERY BY BIRDSIGHT - ALL RIGHTS RESERVED</small><br></div></div></footer>
 </div>
 
-<script src="/styles.7a6f0b8e.js"></script>
+<script src="/styles.6bf7efa6.js"></script>
 
-<script src="/runtime~main.bff6aa4c.js"></script>
+<script src="/runtime~main.c83283c0.js"></script>
 
-<script src="/main.fc946fb8.js"></script>
+<script src="/main.2a7cf75c.js"></script>
 
-<script src="/2.ba0b9d41.js"></script>
+<script src="/2.894b1700.js"></script>
 
-<script src="/3.36bec784.js"></script>
+<script src="/3.b14704ef.js"></script>
 
-<script src="/4.67a41895.js"></script>
+<script src="/4.2dadbdde.js"></script>
 
-<script src="/1be78505.19944516.js"></script>
+<script src="/1be78505.0c49d184.js"></script>
 
-<script src="/20ac7829.f0d38f30.js"></script>
+<script src="/20ac7829.f5ae6d5f.js"></script>
 
-<script src="/246.bdc05d3e.js"></script>
+<script src="/254.dd3603ed.js"></script>
 
-<script src="/17896441.6fc6d68d.js"></script>
+<script src="/17896441.110c8bf0.js"></script>
 
-<script src="/db96bb7d.b91ed0f5.js"></script>
+<script src="/db96bb7d.482dffcd.js"></script>
 
 
 </body>

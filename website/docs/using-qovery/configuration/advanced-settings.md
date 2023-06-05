@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-05-11"
+last_modified_on: "2023-06-05"
 title: "Service Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -63,6 +63,18 @@ All services have access to advanced settings, you can find where they are avail
 |---------|---------------------------------------------------------------------------------------------|---------------|
 | integer | Allows you to specify an interval, in seconds, after which the application build times out. | `1800`        |
 
+#### build.cpu_max_in_milli ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/cronjob.svg) ![](/img/advanced_settings/job.svg)
+
+| Type    | Description                              | Default Value |
+|---------|------------------------------------------|---------------|
+| integer | CPU allocated to your build process      | `4000`        |
+
+#### build.ram_max_in_gib ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/cronjob.svg) ![](/img/advanced_settings/job.svg)
+
+| Type    | Description                            | Default Value |
+|---------|----------------------------------------|---------------|
+| integer | GB RAM allocated to your build process | `8`           |
+
 #### deployment.custom_domain_check_enabled ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/cronjob.svg) ![](/img/advanced_settings/job.svg)
 
 | Type    | Description                                                                                                                                                                                                                                                                                       | Use Case                                                                                                                                                                                                                                                                                                                                      | Default Value |
@@ -79,8 +91,8 @@ All services have access to advanced settings, you can find where they are avail
 
 #### deployment.update_strategy.type ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg)
 
-| Type   | Description                                                                                                                                       | Use Case                                                                    | Default Value   |
-|--------|---------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------|-----------------|
+| Type   | Description                                              | Use Case                                                                                                                                                                                                                               | Default Value   |
+|--------|----------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------|
 | string | Set deployment strategy type (RollingUpdate or Recreate) | Rolling update strategy will gracefully rollout new versions, while Recreate will stop all current versions and create new ones once all old ones have been shutdown ([more info][docs.using-qovery.deployment.deployment-strategies]) | `RollingUpdate` |
 
 #### deployment.update_strategy.rolling_update.max_unavailable_percent ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg)
@@ -313,8 +325,8 @@ To define which path should be used for HTTP probes, you can configure the [`rea
 Here is an example where you can create a secret environment variable on Qovery and set a name like `BASIC_AUTH_CREDENTIALS`. The content should be the result of the `htpasswd` command:
 ```
 $ htpasswd -n <username>
-New password: 
-Re-type new password: 
+New password:
+Re-type new password:
 username:$apr1$jpwW4vG9$fwbzWBgRqARzNX93plDq20
 ```
 

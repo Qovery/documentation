@@ -1,22 +1,41 @@
 ---
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy Frontend
-description: Learn how to connect your Frontend app with Qovery
+description: Learn how to deploy your Frontend app with Qovery
 author_github: https://github.com/evoxmusic
-tags: ["type: guide", "technology: qovery"]
+tags: ["type: guide", "language: javascript"]
 ---
 import Steps from '@site/src/components/Steps';
 import Assumptions from '@site/src/components/Assumptions';
 import Alert from '@site/src/components/Alert';
 
-<Assumptions>
+Qovery is versatile and has the ability to cater to a wide range of frontend applications. Whether you're working with a Single-Page
+Application (SPA), a Server-Side Rendered (SSR) applications, or a general web app, Qovery has you covered.
 
-* You have already deployed an application with Qovery
+## Resources
 
-</Assumptions>
+Here are some resources you can use to deploy your different type of Frontend apps with Qovery.
 
-<Alert type="warning">
- WIP
+<Alert type="info">
+
+Most Frontend apps does not require to have much CPU and RAM resources allocated to them at runtime.
+You can use 100 mCPU and 128 MiB of RAM for most of them.
+
+However, build time can be very CPU and RAM intensive. Qovery provides default build resources for each type of Frontend app.
+You can change them in your [app advanced settings][docs.using-qovery.configuration.advanced-settings].
+
 </Alert>
+
+| Title                                                                                                                   | Description                                                                                                                                                                                         | Official |
+|-------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------|
+| [Deploy SPA container][guides.tutorial.how-to-use-cloudfront-with-react-frontend-application-on-qovery]                 | [Deploy your frontend SPA (React) app inside a container with a NGINX web server][guides.tutorial.how-to-use-cloudfront-with-react-frontend-application-on-qovery]                                  | Yes      |
+| [Deploy SPA container with Cloudfront][guides.tutorial.how-to-use-cloudfront-with-react-frontend-application-on-qovery] | [Deploy your frontend SPA (React) app inside a container with a NGINX web server and expose it via Cloudfront CDN][guides.tutorial.how-to-use-cloudfront-with-react-frontend-application-on-qovery] | Yes      |
+| [Use Cloudflare as a CDN][guides.tutorial.setting-up-cloudflare-and-custom-domain-on-qovery]                            | [Use Cloudflare as a CDN for your frontend SPA (React) app][guides.tutorial.setting-up-cloudflare-and-custom-domain-on-qovery]                                                                      | Yes      |
+| Deploy SSR container                                                                                                    | Deploy your frontend SSR (NextJS) app inside a container with a NGINX web server                                                                                                                    | Yes      |
+| Deploy SSR on Cloudfront                                                                                                | Deploy your frontend SSR (NextJS) app on AWS Cloudfront                                                                                                                                             | Yes      |
+
+## Q&A
+
+Do you have any questions? Feel free to ask on our [Community forum][urls.qovery_forum].
 
 <%= subpages() %>

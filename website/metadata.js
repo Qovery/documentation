@@ -242,6 +242,24 @@ module.exports = {
         {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
+          "id": "/advanced/deploy-aws-services",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/deploy-aws-services.md",
+          "series_position": null,
+          "title": "Deploy AWS Services"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/advanced/deploy-external-services",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/deploy-external-services.md",
+          "series_position": null,
+          "title": "Deploy External Services"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
           "id": "/advanced/deploy-frontend",
           "last_modified_on": null,
           "path": "website/guides/advanced/deploy-frontend.md",

@@ -1,10 +1,10 @@
 ---
 last_modified_on: "2023-06-05"
 $schema: "/.meta/.schemas/guides.json"
-title: Deploy Terraform
-description: Learn how to deploy Terraform modules with Qovery
+title: Deploy External Services
+description: Learn how to deploy any external services with Qovery
 author_github: https://github.com/evoxmusic
-tags: ["type: guide", "technology: terraform"]
+tags: ["type: guide", "technology: qovery"]
 ---
 import Steps from '@site/src/components/Steps';
 import Assumptions from '@site/src/components/Assumptions';
@@ -19,7 +19,7 @@ import Alert from '@site/src/components/Alert';
 
      To make changes please edit the template located at:
 
-     website/guides/advanced/deploy-terraform.md.erb
+     website/guides/advanced/deploy-external-services.md.erb
 -->
 
 ## Q&A

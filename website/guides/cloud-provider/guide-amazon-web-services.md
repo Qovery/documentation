@@ -1,8 +1,8 @@
 ---
-last_modified_on: "2023-05-29"
+last_modified_on: "2023-06-05"
 $schema: "/.meta/.schemas/guides.json"
-title: Configure your Amazon Web Services account
-description: How to configure and deploy your apps on your Amazon Web Services (AWS) account with Qovery
+title: Install Qovery on your Amazon Web Services account
+description: Learn how to install Qovery on your Amazon Web Services (AWS) account
 author_github: https://github.com/evoxmusic
 tags: ["type: guide", "cloud_provider: aws"]
 ---

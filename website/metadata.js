@@ -191,16 +191,7 @@ module.exports = {
           "last_modified_on": null,
           "path": "website/guides/cloud-provider/guide-amazon-web-services.md",
           "series_position": null,
-          "title": "Configure your Amazon Web Services account"
-        },
-        {
-          "author_github": "https://github.com/evoxmusic",
-          "description": null,
-          "id": "/cloud-provider/guide-google-cloud-platform",
-          "last_modified_on": null,
-          "path": "website/guides/cloud-provider/guide-google-cloud-platform.md",
-          "series_position": null,
-          "title": "Configure your Google Cloud Platform account"
+          "title": "Install Qovery on your Amazon Web Services account"
         },
         {
           "author_github": "https://github.com/evoxmusic",
@@ -209,7 +200,7 @@ module.exports = {
           "last_modified_on": null,
           "path": "website/guides/cloud-provider/guide-microsoft-azure.md",
           "series_position": null,
-          "title": "Configure your Microsoft Azure account"
+          "title": "Install Qovery on your Microsoft Azure account"
         },
         {
           "author_github": "https://github.com/evoxmusic",
@@ -218,7 +209,16 @@ module.exports = {
           "last_modified_on": null,
           "path": "website/guides/cloud-provider/guide-scaleway.md",
           "series_position": null,
-          "title": "Configure your Scaleway account"
+          "title": "Install Qovery on your Scaleway account"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/cloud-provider/guide-google-cloud-platform",
+          "last_modified_on": null,
+          "path": "website/guides/cloud-provider/guide-google-cloud-platform.md",
+          "series_position": null,
+          "title": "Install Qovery your Google Cloud Platform account"
         }
       ],
       "name": "cloud-provider",
@@ -264,25 +264,16 @@ module.exports = {
           "last_modified_on": null,
           "path": "website/guides/advanced/deploy-frontend.md",
           "series_position": null,
-          "title": "Deploy Frontend"
+          "title": "Deploy Frontend App"
         },
         {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
-          "id": "/advanced/deploy-helm-chart",
+          "id": "/advanced/helm-chart",
           "last_modified_on": null,
-          "path": "website/guides/advanced/deploy-helm-chart.md",
+          "path": "website/guides/advanced/helm-chart.md",
           "series_position": null,
-          "title": "Deploy Helm Charts"
-        },
-        {
-          "author_github": "https://github.com/evoxmusic",
-          "description": null,
-          "id": "/advanced/deploy-terraform",
-          "last_modified_on": null,
-          "path": "website/guides/advanced/deploy-terraform.md",
-          "series_position": null,
-          "title": "Deploy Terraform"
+          "title": "Helm Charts"
         },
         {
           "author_github": "https://github.com/pjeziorowski",
@@ -337,6 +328,15 @@ module.exports = {
           "path": "website/guides/advanced/seed-database.md",
           "series_position": null,
           "title": "Seed Database"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/advanced/terraform",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/terraform.md",
+          "series_position": null,
+          "title": "Terraform"
         }
       ],
       "name": "advanced",

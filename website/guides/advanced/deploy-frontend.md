@@ -1,7 +1,7 @@
 ---
 last_modified_on: "2023-06-05"
 $schema: "/.meta/.schemas/guides.json"
-title: Deploy Frontend
+title: Deploy Frontend App
 description: Learn how to deploy your Frontend app with Qovery
 author_github: https://github.com/evoxmusic
 tags: ["type: guide", "language: javascript"]

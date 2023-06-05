@@ -1,8 +1,8 @@
 ---
-last_modified_on: "2023-05-29"
+last_modified_on: "2023-06-05"
 $schema: "/.meta/.schemas/guides.json"
-title: Configure your Google Cloud Platform account
-description: How to configure and deploy your apps on your Google Cloud Platform (GCP) account with Qovery
+title: Install Qovery your Google Cloud Platform account
+description: Learn how to install Qovery on your Google Cloud Platform (GCP) account
 author_github: https://github.com/evoxmusic
 tags: ["type: guide", "cloud_provider: gcp"]
 ---

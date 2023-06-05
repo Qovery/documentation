@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[98],{249:function(o){o.exports=JSON.parse('{"allTagsPath":"/guides/tags","slug":"technology-github","name":"technology: github","count":1,"permalink":"/guides/tags/technology-github"}')}}]);

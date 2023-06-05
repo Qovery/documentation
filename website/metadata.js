@@ -294,6 +294,15 @@ module.exports = {
           "title": "Microservices"
         },
         {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/advanced/migration",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/migration.md",
+          "series_position": null,
+          "title": "Migration"
+        },
+        {
           "author_github": "https://github.com/pjeziorowski",
           "description": null,
           "id": "/advanced/monorepository",
@@ -310,6 +319,15 @@ module.exports = {
           "path": "website/guides/advanced/use-preview-environments.md",
           "series_position": null,
           "title": "Preview Environments"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/advanced/production",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/production.md",
+          "series_position": null,
+          "title": "Production"
         },
         {
           "author_github": "https://github.com/evoxmusic",

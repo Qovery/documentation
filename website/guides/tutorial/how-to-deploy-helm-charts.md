@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-01-10"
+last_modified_on: "2023-06-05"
 $schema: "/.meta/.schemas/guides.json"
 title: "How to deploy Helm charts"
 description: "Use jobs to simply deploy Helm charts with Qovery (Kubecost example)"
@@ -35,7 +35,7 @@ There are several ways to deploy a chart:
 3. You can deploy a Helm chart from a private or public Git repository ([Helm freeze](https://github.com/Qovery/helm-freeze) is useful in this case)
 
 We will make an example with all of these methods, so you can choose the one that suits you best.
-In all of the examples, we will make use of the Lifecycle jobs to manage the deployment of your helm chart (install and uninstall). The Lifecycle job configuration will be different depending on the method you have chosen.
+In all the examples, we will make use of the Lifecycle jobs to manage the deployment of your helm chart (install and uninstall). The Lifecycle job configuration will be different depending on the method you have chosen.
 
 ## Lifecycle job parameters for Helm charts
 

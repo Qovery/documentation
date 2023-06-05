@@ -233,6 +233,33 @@ module.exports = {
         {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
+          "id": "/advanced/build-on-top",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/build-on-top.md",
+          "series_position": null,
+          "title": "Build on Top of Qovery"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/advanced/continuous-integration",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/continuous-integration.md",
+          "series_position": null,
+          "title": "Continuous Integration"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/advanced/costs-control",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/costs-control.md",
+          "series_position": null,
+          "title": "Costs Control"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
           "id": "/advanced/deploy-api-gateway",
           "last_modified_on": null,
           "path": "website/guides/advanced/deploy-api-gateway.md",
@@ -292,6 +319,15 @@ module.exports = {
           "path": "website/guides/advanced/migration.md",
           "series_position": null,
           "title": "Migration"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/advanced/monitoring",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/monitoring.md",
+          "series_position": null,
+          "title": "Monitoring"
         },
         {
           "author_github": "https://github.com/pjeziorowski",

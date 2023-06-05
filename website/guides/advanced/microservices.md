@@ -10,6 +10,12 @@ import Steps from '@site/src/components/Steps';
 import Assumptions from '@site/src/components/Assumptions';
 import Alert from '@site/src/components/Alert';
 
+<Alert type="warning">
+
+This guide is a bit outdated. We are working on a new version of it. Stay tuned!
+
+</Alert>
+
 <Assumptions>
 
 * You have already deployed an application with Qovery
@@ -36,9 +42,6 @@ As you can see in the picture:
 
 What differentiates Qovery from most other similar platforms is its first-class support of microservices. At Qovery, your project can be easily
 composed of multiple applications. It's up to you to decide how to build your system, but Qovery enables you to easily and safely communicate between your backend applications, databases, and frontend websites.
-
-
-
 
 <Steps headingDepth={3}>
 

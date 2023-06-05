@@ -11,6 +11,12 @@ import Alert from '@site/src/components/Alert';
 
 import Steps from '@site/src/components/Steps';
 
+<Alert type="warning">
+
+This guide is a bit outdated. We are working on a new version of it. Stay tuned!
+
+</Alert>
+
 Qovery provides a very simple way of working with [monorepositories](https://en.wikipedia.org/wiki/Monorepo).
 You can deploy multiple applications using the same git repository or deploy the same application in many different modes/configurations.
 

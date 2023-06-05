@@ -24,27 +24,27 @@
 <link rel="stylesheet" href="/styles.c2623277.css">
 
 
-<link rel="preload" href="/styles.c46dd2a5.js" as="script">
+<link rel="preload" href="/styles.4f4bec9d.js" as="script">
 
-<link rel="preload" href="/runtime~main.4e3ecc15.js" as="script">
+<link rel="preload" href="/runtime~main.1cca2ecd.js" as="script">
 
-<link rel="preload" href="/main.1bfd0aeb.js" as="script">
+<link rel="preload" href="/main.924dc314.js" as="script">
 
-<link rel="preload" href="/2.53443ba1.js" as="script">
+<link rel="preload" href="/2.ba0b9d41.js" as="script">
 
-<link rel="preload" href="/3.330adebb.js" as="script">
+<link rel="preload" href="/3.36bec784.js" as="script">
 
-<link rel="preload" href="/4.0fe4ada8.js" as="script">
+<link rel="preload" href="/4.ab408b9a.js" as="script">
 
-<link rel="preload" href="/1be78505.52503823.js" as="script">
+<link rel="preload" href="/1be78505.065f0f9a.js" as="script">
 
-<link rel="preload" href="/20ac7829.d025740a.js" as="script">
+<link rel="preload" href="/20ac7829.3902b0d0.js" as="script">
 
-<link rel="preload" href="/242.cd9b4c2d.js" as="script">
+<link rel="preload" href="/246.bdc05d3e.js" as="script">
 
-<link rel="preload" href="/17896441.c11dc94d.js" as="script">
+<link rel="preload" href="/17896441.0fe1df86.js" as="script">
 
-<link rel="preload" href="/55ef6d6a.e37e3e69.js" as="script">
+<link rel="preload" href="/55ef6d6a.7bc1fa1d.js" as="script">
 
 </head>
 <body>
@@ -54,27 +54,27 @@
 If you have 6 applications to be deployed within a stage, Qovery will:</p><ul><li>build 4 applications in parallel. Once the build of one application is terminated, Qovery will start immediately another one until all the applications are built.</li><li>deploy 4 applications in parallel on your Kubernetes cluster. Once the deployment of one application is terminated, Qovery will start immediately another one until all the applications are deployed.</li></ul><div class="alert alert--info alert--icon" role="alert"><i class="feather icon-info"></i><p>The parallel build and deployment is a feature in beta and free for everyone during the beta phase</p></div><h2><a aria-hidden="true" tabindex="-1" class="anchor" id="default-pipeline-setup"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#default-pipeline-setup" title="Direct link to heading">#</a>Default Pipeline Setup</h2><p>By default, the deployment pipeline is constituted of 4 deployment stages with a default service assignment rule:</p><ul><li>&quot;0.DEFAULT DATABASE&quot;: any new service of type <code>DATABASE</code> will be added to this stage.</li><li>&quot;1.DEFAULT JOB&quot;: any new service of type <code>JOB</code> will be added to this stage.</li><li>&quot;2.DEFAULT CONTAINER&quot;: any new service of type <code>CONTAINER</code> will be added to this stage (application deployed from a container image).</li><li>&quot;3.DEFAULT APPLICATION&quot;: any new service of type <code>APPLICATION</code> will be added to this stage (application deployed from a git repository).</li></ul><p align="center"><img src="/img/deployment/default_deployment_pipeline.png" alt="Default Deployment Pipeline"></p><p>Once the service is created, the assigned stage can be modified afterwards. See <a href="/docs/using-qovery/configuration/environment/#deployment-pipeline">this section</a> for more information.</p><div class="alert alert--info alert--icon" role="alert"><i class="feather icon-info"></i><p>This default assignment is maintained as long as you do not delete or rename the default stage. If the default stage is modified or deleted, the service will be automatically added to the latest stage (based on the stage deployment)</p></div><h2><a aria-hidden="true" tabindex="-1" class="anchor" id="visualizing-and-modifying-the-pipeline"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#visualizing-and-modifying-the-pipeline" title="Direct link to heading">#</a>Visualizing and Modifying the Pipeline</h2><p>You can access and modify the pipeline configuration from the environment settings. Have a look at <a href="/docs/using-qovery/configuration/environment/#deployment-pipeline">this section</a> to know more.</p></div></article></div><div class="paginator_3VDt"><nav class="pagination-nav"><div class="pagination-nav__item"><a class="pagination-nav__link" href="/docs/using-qovery/deployment/deployment-strategies"><h5 class="pagination-nav__link--sublabel">Previous</h5><h4 class="pagination-nav__link--label">« Deployment Strategies</h4></a></div><div class="pagination-nav__item pagination-nav__item--next"><a class="pagination-nav__link" href="/docs/using-qovery/deployment/deployment-actions"><h5 class="pagination-nav__link--sublabel">Next</h5><h4 class="pagination-nav__link--label">Deployment Actions »</h4></a></div></nav></div></div><div class="rightCol_38kP"><div class="table-of-contents tableOfContents_tVyB"><div class="section"><div class="title">Contents</div><ul class="contents"><li><a href="#deployment-of-a-stage" class="contents__link">Deployment of a stage</a></li><li><a href="#default-pipeline-setup" class="contents__link">Default Pipeline Setup</a></li><li><a href="#visualizing-and-modifying-the-pipeline" class="contents__link">Visualizing and Modifying the Pipeline</a></li></ul></div><div class="section"><div class="title">Resources</div><ul class="contents"></ul></div></div></div></div></div></main></div></div><footer class="footer"><div class="container"><div class="row footer__links"><div class="col col--5 footer__col"><div class="margin-bottom--md"></div><div class="margin-bottom--md"><p>Qovery is a Self-Service Infrastructure Platform Helping Ops and Engineers To Ship Faster.</p></div><div><a href="https://github.com/qovery" target="_blank"><i class="feather icon-github" alt="Qovery&#x27;s Github Repo"></i></a>    <a href="https://www.linkedin.com/company/qovery/" target="_blank"><i class="feather icon-rss" alt="Qovery&#x27;s Linkedin"></i></a>    <a href="https://twitter.com/qovery_" target="_blank"><i class="feather icon-twitter" alt="Qovery&#x27;s Twitter"></i></a>    <a href="https://discord.qovery.com" target="_blank"><i class="feather icon-message-circle" alt="Qovery&#x27;s Discord"></i></a></div></div><div class="col footer__col"><h4 class="footer__title">Resources</h4><ul class="footer__items"><li class="footer__item"><a aria-current="page" class="footer__link-item active" href="/docs">Documentation</a></li><li class="footer__item"><a class="footer__link-item" href="/guides">Guides</a></li><li class="footer__item"><a class="footer__link-item" href="/guides/tutorial">Tutorials</a></li><li class="footer__item"><a class="footer__link-item" href="/guides/engineering">Engineering</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/pricing" href="https://www.qovery.com/pricing">Pricing</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/enterprise" href="https://www.qovery.com/enterprise">Enterprise</a></li><li class="footer__item"><a class="footer__link-item" to="https://api-doc.qovery.com" href="https://api-doc.qovery.com">API</a></li><li class="footer__item"><a class="footer__link-item" to="https://github.com/Qovery" href="https://github.com/Qovery">Github</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Community</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://discord.qovery.com" href="https://discord.qovery.com">Discord</a></li><li class="footer__item"><a class="footer__link-item" to="https://community.qovery.com" href="https://community.qovery.com">Forum</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/community-call" href="https://www.qovery.com/community-call">Community call</a></li><li class="footer__item"><a class="footer__link-item" to="https://shop.qovery.com" href="https://shop.qovery.com">Goodies</a></li><li class="footer__item"><a class="footer__link-item" to="https://roadmap.qovery.com" href="https://roadmap.qovery.com">Roadmap</a></li><li class="footer__item"><a class="footer__link-item" to="https://github.com/Qovery/replibyte" href="https://github.com/Qovery/replibyte">Replibyte</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Company</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/blog" href="https://www.qovery.com/blog">Blog</a></li><li class="footer__item"><a class="footer__link-item" to="https://jobs.qovery.com" href="https://jobs.qovery.com">Jobs</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/team" href="https://www.qovery.com/team">Team</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/investors" href="https://www.qovery.com/investors">Investors</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/contact" href="https://www.qovery.com/contact">Contact</a></li></ul></div></div><div class="text--center"><small>© 2023 DESIGNED BY QOVERY | BACKED BY TECHSTARS | PROUD SILVER MEMBER OF CNCF AND LINUX FOUNDATION | QOVERY BY BIRDSIGHT - ALL RIGHTS RESERVED</small><br></div></div></footer>
 </div>
 
-<script src="/styles.c46dd2a5.js"></script>
+<script src="/styles.4f4bec9d.js"></script>
 
-<script src="/runtime~main.4e3ecc15.js"></script>
+<script src="/runtime~main.1cca2ecd.js"></script>
 
-<script src="/main.1bfd0aeb.js"></script>
+<script src="/main.924dc314.js"></script>
 
-<script src="/2.53443ba1.js"></script>
+<script src="/2.ba0b9d41.js"></script>
 
-<script src="/3.330adebb.js"></script>
+<script src="/3.36bec784.js"></script>
 
-<script src="/4.0fe4ada8.js"></script>
+<script src="/4.ab408b9a.js"></script>
 
-<script src="/1be78505.52503823.js"></script>
+<script src="/1be78505.065f0f9a.js"></script>
 
-<script src="/20ac7829.d025740a.js"></script>
+<script src="/20ac7829.3902b0d0.js"></script>
 
-<script src="/242.cd9b4c2d.js"></script>
+<script src="/246.bdc05d3e.js"></script>
 
-<script src="/17896441.c11dc94d.js"></script>
+<script src="/17896441.0fe1df86.js"></script>
 
-<script src="/55ef6d6a.e37e3e69.js"></script>
+<script src="/55ef6d6a.7bc1fa1d.js"></script>
 
 
 </body>

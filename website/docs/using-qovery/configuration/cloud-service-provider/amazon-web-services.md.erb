@@ -239,6 +239,107 @@ Qovery required IAM permissions to create, update and managed the infrastructure
 - KMS to load and store keys (RDS, SSH, …)
 - EKS to create and update the Kubernetes cluster.
 
+<details><summary>Minimum IAM permission set</summary><blockquote>
+Last update: 07/06/2023
+</blockquote>
+
+<Alert type="alert">
+
+This is purely informative and we strongly recommend you to NOT use this configuration within your IAM permissions since it might not reflect the latest product update. Pleas use the one provided in the section above. 
+
+</Alert>
+
+Below you can find the minimum permission set required by Qovery to run and deploy your applications:
+
+```json
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:*",
+                "s3:*",
+                "cloudwatch:*",
+                "autoscaling:*",
+                "application-autoscaling:*",
+                "elasticloadbalancing:*",
+                "organizations:DescribeAccount",
+                "organizations:DescribeOrganization",
+                "organizations:DescribeOrganizationalUnit",
+                "organizations:DescribePolicy",
+                "organizations:ListChildren",
+                "organizations:ListParents",
+                "organizations:ListPoliciesForTarget",
+                "organizations:ListRoots",
+                "organizations:ListPolicies",
+                "organizations:ListTargetsForPolicy",
+                "dynamodb:*",
+                "ecr:*",
+                "ec2:*",
+                "cloudtrail:LookupEvents",
+                "kms:DescribeKey",
+                "kms:ListAliases",
+                "dynamodb:*",
+                "tag:GetResources",
+                "rds:*",
+                "ecs:*",
+                "eks:*",
+                "logs:*",
+                "events:DescribeRule",
+                "events:DeleteRule",
+                "events:ListRuleNamesByTarget",
+                "events:ListTargetsByRule",
+                "events:PutRule",
+                "events:PutTargets",
+                "es:AddTags",
+                "es:RemoveTags",
+                "es:ListTags",
+                "es:DeleteElasticsearchDomain",
+                "es:DescribeElasticsearchDomain",
+                "es:CreateElasticsearchDomain",
+                "events:RemoveTargets",
+                "kms:EnableKeyRotation",
+                "kms:EnableKey",
+                "kms:ImportKeyMaterial",
+                "kms:Decrypt",
+                "kms:UpdateKeyDescription",
+                "kms:GenerateDataKeyWithoutPlaintext",
+                "kms:Verify",
+                "kms:CancelKeyDeletion",
+                "kms:DeleteImportedKeyMaterial",
+                "kms:GenerateDataKeyPairWithoutPlaintext",
+                "kms:DisableKey",
+                "kms:GenerateDataKeyPair",
+                "kms:ReEncryptFrom",
+                "kms:DisableKeyRotation",
+                "kms:UpdateAlias",
+                "kms:Encrypt",
+                "kms:ScheduleKeyDeletion",
+                "kms:GenerateDataKey",
+                "kms:CreateAlias",
+                "kms:ReEncryptTo",
+                "kms:Sign",
+                "kms:DeleteAlias",
+                "kms:DeleteCustomKeyStore",
+                "kms:GenerateRandom",
+                "kms:UpdateCustomKeyStore",
+                "kms:DisconnectCustomKeyStore",
+                "kms:CreateKey",
+                "kms:ConnectCustomKeyStore",
+                "kms:CreateCustomKeyStore"
+            ],
+            "Resource": "*"
+        }
+    ]
+
+
+```
+
+</details>
+
+
 ## Regions
 
 Qovery supports the following AWS regions:

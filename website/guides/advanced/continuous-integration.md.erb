@@ -9,12 +9,30 @@ import Steps from '@site/src/components/Steps';
 import Assumptions from '@site/src/components/Assumptions';
 import Alert from '@site/src/components/Alert';
 
-<Alert type="warning">
- WIP
-</Alert>
+Qovery integrates with all existing Continuous Integration platforms. We have a [guide for the most popular CI platforms][docs.using-qovery.integration.continuous-integration]. However, even if you don't find your CI platform, [you can see here][docs.using-qovery.integration.continuous-integration.github-actions] that integrating Qovery into a CI is just a matter of:
+
+1. Adding a new step into your CI pipeline
+2. Installing the Qovery CLI
+3. Running the `qovery <application|container|lifecycle|cronjob> deploy ...` commands
+
+## Resources
+
+Here are some resources you can use to integrate Qovery into your CI platform:
+
+| Title                                                                                                         | Description                                                                                                                            | Author    |
+|---------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------|-----------|
+| [Step-by-step guide to integrate GitHub Actions][guides.tutorial.how-to-integrate-qovery-with-github-actions] | [Step-by-step guide to learn how to integrate GitHub Actions with Qovery][guides.tutorial.how-to-integrate-qovery-with-github-actions] | Qovery    |
+| [Integrate GitHub Actions][docs.using-qovery.integration.continuous-integration.github-actions]               | [Learn how to integrate GitHub Actions with Qovery][docs.using-qovery.integration.continuous-integration.github-actions]               | Qovery    |
+| [Integrate GitLab CI][docs.using-qovery.integration.continuous-integration.gitlab-ci]                         | [Learn how to integrate GitLab CI with Qovery][docs.using-qovery.integration.continuous-integration.gitlab-ci]                         | Qovery    |
+| [Integrate Circle CI][docs.using-qovery.integration.continuous-integration.circle-ci]                         | [Learn how to integrate Circle CI with Qovery][docs.using-qovery.integration.continuous-integration.circle-ci]                         | Qovery    |
+| [Integrate Jenkins][docs.using-qovery.integration.continuous-integration.jenkins]                             | [Learn how to integrate Jenkins with Qovery][docs.using-qovery.integration.continuous-integration.jenkins]                             | Qovery    |
+| [Forum "GitHub Actions"](https://discuss.qovery.com/search?q=github%20actions)                                | [List "GitHub Actions" threads from Qovery community forum](https://discuss.qovery.com/search?q=github%20actions)                      | Community |
+| [Forum "GitLab CI"](https://discuss.qovery.com/search?q=gitlab%ci)                                            | [List "GitLab CI" threads from Qovery community forum](https://discuss.qovery.com/search?q=gitlab%20ci)                                | Community |
+| [Forum "Circle CI"](https://discuss.qovery.com/search?q=circle%20ci)                                          | [List "Circle CI" threads from Qovery community forum](https://discuss.qovery.com/search?q=circle%20ci)                                | Community |
+| [Forum "Jenkins"](https://discuss.qovery.com/search?q=jenkins)                                                | [List "Jenkins" threads from Qovery community forum](https://discuss.qovery.com/search?q=jenkins)                                      | Community |
 
 ## Q&A
 
-Do you have any questions? Feel free to ask on our [Community forum][urls.qovery_forum].
+Do you need more examples? Do you have any questions? Feel free to ask on our [Community forum][urls.qovery_forum].
 
 <%= subpages() %>

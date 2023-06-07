@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-06-05"
+last_modified_on: "2023-06-07"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy API Gateway
 description: Learn how to deploy an API Gateway with Qovery
@@ -24,14 +24,14 @@ An API Gateway is a web service that acts as an interface between consumers and 
 
 Here are some resources you can use to deploy your API Gateway with Qovery
 
-| Title                                                                                 | Description                                                                                                | Author    |
-|---------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------|-----------|
-| [NGINX API Gateway][guides.tutorial.use-an-api-gateway-in-front-of-multiple-services] | [Deploy a NGINX API Gateway with Qovery][guides.tutorial.use-an-api-gateway-in-front-of-multiple-services] | Qovery    |
-| [Forum](https://discuss.qovery.com/search?q=api%20gateway)                            | ["API Gateway" threads from Qovery community forum](https://discuss.qovery.com/search?q=api%20gateway)     | Community |
+| Title                                                                                 | Description                                                                                                 | Author    |
+|---------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|-----------|
+| [NGINX API Gateway][guides.tutorial.use-an-api-gateway-in-front-of-multiple-services] | [Deploy a NGINX API Gateway with Qovery][guides.tutorial.use-an-api-gateway-in-front-of-multiple-services]  | Qovery    |
+| [Forum "API Gateway"](https://discuss.qovery.com/search?q=api%20gateway)              | [List "API Gateway" threads from Qovery community forum](https://discuss.qovery.com/search?q=api%20gateway) | Community |
 
 ## Q&A
 
-Do you have any questions? Feel free to ask on our [Community forum][urls.qovery_forum].
+Do you need more examples? Do you have any questions? Feel free to ask on our [Community forum][urls.qovery_forum].
 
 
 [guides.tutorial.use-an-api-gateway-in-front-of-multiple-services]: /guides/tutorial/use-an-api-gateway-in-front-of-multiple-services/

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-06-05"
+last_modified_on: "2023-06-07"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy Frontend App
 description: Learn how to deploy your Frontend app with Qovery
@@ -42,14 +42,14 @@ You can change them in your [app advanced settings][docs.using-qovery.configurat
 | [Use Cloudflare as a CDN][guides.tutorial.setting-up-cloudflare-and-custom-domain-on-qovery]                            | [Use Cloudflare as a CDN for your frontend SPA (React) app][guides.tutorial.setting-up-cloudflare-and-custom-domain-on-qovery]                                                                      | Qovery    |
 | Deploy SSR container                                                                                                    | Deploy your frontend SSR (NextJS) app inside a container with a NGINX web server                                                                                                                    | Qovery    |
 | Deploy SSR on Cloudfront                                                                                                | Deploy your frontend SSR (NextJS) app on AWS Cloudfront                                                                                                                                             | Qovery    |
-| ["React" forum threads](https://discuss.qovery.com/search?q=react)                                                      | ["React" threads from Qovery community forum](https://discuss.qovery.com/search?q=react)                                                                                                            | Community |
-| ["NextJS" forum threads](https://discuss.qovery.com/search?q=nextjs)                                                    | ["NextJS" threads from Qovery community forum](https://discuss.qovery.com/search?q=nextjs)                                                                                                          | Community |
-| ["Angular" forum threads](https://discuss.qovery.com/search?q=angular)                                                  | ["Angular" threads from Qovery community forum](https://discuss.qovery.com/search?q=angular)                                                                                                        | Community |
+| ["React" forum threads](https://discuss.qovery.com/search?q=react)                                                      | [List "React" threads from Qovery community forum](https://discuss.qovery.com/search?q=react)                                                                                                       | Community |
+| ["NextJS" forum threads](https://discuss.qovery.com/search?q=nextjs)                                                    | [List "NextJS" threads from Qovery community forum](https://discuss.qovery.com/search?q=nextjs)                                                                                                     | Community |
+| ["Angular" forum threads](https://discuss.qovery.com/search?q=angular)                                                  | [List "Angular" threads from Qovery community forum](https://discuss.qovery.com/search?q=angular)                                                                                                   | Community |
 
 
 ## Q&A
 
-Do you have any questions? Feel free to ask on our [Community forum][urls.qovery_forum].
+Do you need more examples? Do you have any questions? Feel free to ask on our [Community forum][urls.qovery_forum].
 
 
 [docs.using-qovery.configuration.advanced-settings]: /docs/using-qovery/configuration/advanced-settings/

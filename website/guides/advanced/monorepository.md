@@ -162,7 +162,7 @@ You can set up secret or env variables in your application `Environment Variable
 
 ## Q&A
 
-Do you have any questions? Feel free to ask on our [Community forum][urls.qovery_forum].
+Do you need more examples? Do you have any questions? Feel free to ask on our [Community forum][urls.qovery_forum].
 
 
 [docs.using-qovery.configuration.environment-variable]: /docs/using-qovery/configuration/environment-variable/

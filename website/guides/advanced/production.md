@@ -24,7 +24,7 @@ import Alert from '@site/src/components/Alert';
 
 ## Q&A
 
-Do you have any questions? Feel free to ask on our [Community forum][urls.qovery_forum].
+Do you need more examples? Do you have any questions? Feel free to ask on our [Community forum][urls.qovery_forum].
 
 
 [urls.qovery_forum]: https://discuss.qovery.com/

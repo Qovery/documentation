@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-06-05"
+last_modified_on: "2023-06-07"
 $schema: "/.meta/.schemas/guides.json"
 title: Migration
 description: Learn how to migrate your applications with Qovery
@@ -33,8 +33,8 @@ Are you migrating from Digital Ocean, OVH, Netlify or any other cloud provider? 
 | Title                                                                                     | Description                                                                                                             | Author    |
 |-------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------|-----------|
 | [Migrate from Heroku to AWS][guides.tutorial.migrate-your-application-from-heroku-to-aws] | [Complete guide to migrate from Heroku to AWS with Qovery][guides.tutorial.migrate-your-application-from-heroku-to-aws] | Qovery    |
-| [Migration checklist]                                                                     | Comprehensive migration checklist to read before migrating your applications with Qovery (coming soon)                  | Qovery    |
-| [Forum](https://discuss.qovery.com/search?q=migration)                                    | ["Migration" threads from Qovery community forum](https://discuss.qovery.com/search?q=migration)                        | Community |
+| Migration checklist                                                                       | Comprehensive migration checklist to read before migrating your applications with Qovery (coming soon)                  | Qovery    |
+| [Forum](https://discuss.qovery.com/search?q=migration)                                    | [List "Migration" threads from Qovery community forum](https://discuss.qovery.com/search?q=migration)                   | Community |
 
 ## Migration assistance
 
@@ -42,7 +42,7 @@ Qovery provides a migration assistance to help you migrate your applications wit
 
 ## Q&A
 
-Do you have any questions? Feel free to ask on our [Community forum][urls.qovery_forum].
+Do you need more examples? Do you have any questions? Feel free to ask on our [Community forum][urls.qovery_forum].
 
 
 [guides.tutorial.migrate-your-application-from-heroku-to-aws]: /guides/tutorial/migrate-your-application-from-heroku-to-aws/

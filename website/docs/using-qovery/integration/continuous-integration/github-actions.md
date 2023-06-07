@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-05-20"
+last_modified_on: "2023-06-07"
 title: "GitHub Actions"
 description: "Learn how to connect GitHub Actions to Qovery"
 ---
@@ -24,7 +24,7 @@ Before using the examples below, you need to:
 
 1. Install the [Qovery CLI][docs.using-qovery.interface.cli].
 2. Generate an API token via [the CLI][docs.using-qovery.interface.cli#generate-api-token] or the [Console][docs.using-qovery.configuration.organization.api-token] .
-3. Set the environment variable `QOVERY_CLI_ACCESS_TOKEN` (`export QOVERY_CLI_ACCESS_TOKEN=your-api-token`) with your API token.
+3. Set the environment variable `Q_CLI_ACCESS_TOKEN` or `QOVERY_CLI_ACCESS_TOKEN` (both are valid) with your API token. E.g. `export QOVERY_CLI_ACCESS_TOKEN=your-api-token`
 4. You have turned off the [Qovery Auto Deployment][docs.using-qovery.configuration.environment#auto-deploy] for your environment that you want to deploy manually.
 
 ## GitHub Actions Examples

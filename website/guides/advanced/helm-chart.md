@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-06-05"
+last_modified_on: "2023-06-07"
 $schema: "/.meta/.schemas/guides.json"
 title: Helm Charts
 description: Learn how to deploy Helm charts with Qovery
@@ -30,15 +30,15 @@ Helm Charts is an advanced way to deploy your applications on Qovery. If you are
 
 </Alert>
 
-| Title                                                                | Description                                                                                            | Official |
-|----------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|----------|
-| [Deploy your Helm Charts][guides.tutorial.how-to-deploy-helm-charts] | [How to deploy your Helm Charts (example with Kubecost)][guides.tutorial.how-to-deploy-helm-charts]    | Yes      |
-| [Forum](https://discuss.qovery.com/search?q=helm%20charts)           | ["Helm Charts" threads from Qovery community forum](https://discuss.qovery.com/search?q=helm%20charts) | no       |
+| Title                                                                | Description                                                                                                 | Official |
+|----------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|----------|
+| [Deploy your Helm Charts][guides.tutorial.how-to-deploy-helm-charts] | [How to deploy your Helm Charts (example with Kubecost)][guides.tutorial.how-to-deploy-helm-charts]         | Yes      |
+| [Forum](https://discuss.qovery.com/search?q=helm%20charts)           | [List "Helm Charts" threads from Qovery community forum](https://discuss.qovery.com/search?q=helm%20charts) | no       |
 
 
 ## Q&A
 
-Do you have any questions? Feel free to ask on our [Community forum][urls.qovery_forum].
+Do you need more examples? Do you have any questions? Feel free to ask on our [Community forum][urls.qovery_forum].
 
 
 [guides.getting-started]: /guides/getting-started/

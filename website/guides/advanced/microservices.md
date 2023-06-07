@@ -238,7 +238,7 @@ In this guide, we deployed two microservices that communicate over the internal 
 
 ## Q&A
 
-Do you have any questions? Feel free to ask on our [Community forum][urls.qovery_forum].
+Do you need more examples? Do you have any questions? Feel free to ask on our [Community forum][urls.qovery_forum].
 
 
 [docs.using-qovery.configuration.environment-variable#connecting-to-a-database]: /docs/using-qovery/configuration/environment-variable/#connecting-to-a-database

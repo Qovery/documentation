@@ -253,7 +253,7 @@ Last update: 2023-06-08
 
 <Alert type="alert">
 
-This is purely informative and we strongly recommend you to NOT use this configuration within your IAM permissions since it might not reflect the latest product update. Pleas use the one provided in the section above. 
+This is purely informative and we strongly recommend you to NOT use this configuration within your IAM permissions since it might not reflect the latest product update. Please use the one provided in the section above. 
 
 </Alert>
 
@@ -296,7 +296,7 @@ Once it’s done, the user’s access key and secret key can be used in Qovery.
                 "ec2:CreateVolume",
                 "ec2:CreateVpc",
                 "ec2:DeleteInternetGateway",
-								"ec2:DeleteKeyPair",
+                "ec2:DeleteKeyPair",
                 "ec2:DeleteLaunchTemplate",
                 "ec2:DeleteNatGateway",
                 "ec2:DeleteRouteTable",

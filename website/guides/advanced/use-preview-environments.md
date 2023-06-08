@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-06-07"
+last_modified_on: "2023-06-08"
 $schema: "/.meta/.schemas/guides.json"
 title: Preview Environments
 description: Learn how to use and leverage Preview Environments with Qovery
@@ -24,6 +24,10 @@ E.g. you may need to run Environments to get early feedback on your application 
      website/guides/advanced/use-preview-environments.md.erb
 -->
 
+## Recommendations
+
+If you are using Qovery to run your Production, we recommend using Preview Environments on a separate [cluster][docs.using-qovery.configuration.clusters]. This will ensure that your Production is not impacted by the Preview Environments and vice versa.
+
 ## Resources
 
 Here are some resources you can use to use and take advantage of Qovery Preview Environments:
@@ -40,6 +44,7 @@ Here are some resources you can use to use and take advantage of Qovery Preview 
 Do you need more examples? Do you have any questions? Feel free to ask on our [Community forum][urls.qovery_forum].
 
 
+[docs.using-qovery.configuration.clusters]: /docs/using-qovery/configuration/clusters/
 [docs.using-qovery.configuration.deployment-rule]: /docs/using-qovery/configuration/deployment-rule/
 [guides.tutorial.customizing-preview-url-with-qovery-cli]: /guides/tutorial/customizing-preview-url-with-qovery-cli/
 [guides.tutorial.getting-started-with-preview-environments-on-aws-for-beginners]: /guides/tutorial/getting-started-with-preview-environments-on-aws-for-beginners/

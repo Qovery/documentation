@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-05-19"
+last_modified_on: "2023-06-12"
 title: Application Troubleshoot
 description: "Everything you need to troubleshoot your application with Qovery"
 hide_pagination: true
@@ -45,7 +45,7 @@ Ensure your application is not listening onto localhost (127.0.0.1) or a specifi
 </li>
 <li>
 
-Your application takes too long to start and the liveness probe is flagging your application as unhealthy. Try to grow the [`liveness_probe.initial_delay_seconds` parameter][docs.using-qovery.configuration.advanced-settings], to inform Kubernetes to delay the time before checking your application availability. Set it for example to 120.
+Your application takes too long to start and the liveness probe is flagging your application as unhealthy. Try to increase the [Liveness `Initial Delay` parameter][docs.using-qovery.configuration.application-health-checks#initial-delay-in-seconds], to inform Kubernetes to delay the time before checking your application availability. Set it for example to 120.
 
 </li>
 </ol>
@@ -207,9 +207,9 @@ If your application needs more time to build, increase parameter [build.timeout_
 
 
 [docs.using-qovery.configuration.advanced-settings#application-deployment]: /docs/using-qovery/configuration/advanced-settings/#application-deployment
-[docs.using-qovery.configuration.advanced-settings]: /docs/using-qovery/configuration/advanced-settings/
 [docs.using-qovery.configuration.application#ports]: /docs/using-qovery/configuration/application/#ports
 [docs.using-qovery.configuration.application#resources]: /docs/using-qovery/configuration/application/#resources
+[docs.using-qovery.configuration.application-health-checks#initial-delay-in-seconds]: /docs/using-qovery/configuration/application-health-checks/#initial-delay-in-seconds
 [docs.using-qovery.configuration.clusters#managing-your-cluster-settings]: /docs/using-qovery/configuration/clusters/#managing-your-cluster-settings
 [docs.using-qovery.configuration.clusters#what-are-the-different-instance-types-available-when-creating-a-cluster]: /docs/using-qovery/configuration/clusters/#what-are-the-different-instance-types-available-when-creating-a-cluster
 [docs.using-qovery.interface.cli#shell]: /docs/using-qovery/interface/cli/#shell

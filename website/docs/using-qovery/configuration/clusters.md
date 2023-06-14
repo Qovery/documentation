@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-05-02"
+last_modified_on: "2023-06-14"
 title: "Clusters"
 description: "Learn how to configure your Kubernetes clusters on Qovery"
 ---
@@ -607,7 +607,7 @@ You should get an output similar to:
 
 By default, Qovery provides a domain (ex `bool.sh`) on every deployed cluster. It is used to provide a DNS and TLS certificate to every application requiring external access on a cluster.
 
-You can customize the domain for every application. However, when it comes to having more than 50 custom domains with the same domain you will hit [Let's Encrypt quotas](https://letsencrypt.org/docs/rate-limits/).
+You can customize the domain for every application. However, when it comes to having more than 100 custom domains with the same domain you will hit [Let's Encrypt quotas](https://letsencrypt.org/docs/rate-limits/).
 
 To overcome this issue, you can use a wildcard TLS certificate for the whole cluster. It will allow you to have as many DNS records for a single domain as you want on the same cluster with a single TLS certificate.
 

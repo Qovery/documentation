@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-04-19"
+last_modified_on: "2023-06-12"
 title: "Cronjob"
 description: "Learn how to configure your Cronjob on Qovery"
 ---
@@ -270,6 +270,11 @@ Default is 512MB.
 
 Please note that in this section you configure the CPU allocated by the cluster for your application and that cannot consume more than this value. Even if the application is underused and consume less resources, the cluster will still reserve the selected amount of CPU. If your application requires more RAM than requested, it will be killed by the kubernetes scheduler.
 
+### Health Checks
+
+To know more about how to configure your Liveness and Readiness probes, have a look at [the health-checks section][docs.using-qovery.configuration.application-health-checks]
+
+
 ## Environment Variable
 
 To learn how to set up environment variables in your projects and applications, navigate to [configuring Environment Variables][docs.using-qovery.configuration.environment-variable] section.
@@ -306,6 +311,7 @@ In the overview, click on the `3 dots` button and remove the job. Note: the same
 </Steps>
 
 
+[docs.using-qovery.configuration.application-health-checks]: /docs/using-qovery/configuration/application-health-checks/
 [docs.using-qovery.configuration.environment-variable]: /docs/using-qovery/configuration/environment-variable/
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [docs.using-qovery.configuration.organization.container-registry]: /docs/using-qovery/configuration/organization/container-registry/

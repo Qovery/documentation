@@ -87,12 +87,11 @@ module.exports = {
                 "using-qovery/configuration/organization/api-token",
               ],
             },
-            "using-qovery/configuration/project",
-            "using-qovery/configuration/environment",
             "using-qovery/configuration/clusters",
             "using-qovery/configuration/cluster-advanced-settings",
+            "using-qovery/configuration/project",
+            "using-qovery/configuration/environment",
             "using-qovery/configuration/application",
-            "using-qovery/configuration/advanced-settings",
             {
               type: 'category',
               label: 'Database',
@@ -107,6 +106,8 @@ module.exports = {
             "using-qovery/configuration/cronjob",
             "using-qovery/configuration/lifecycle-job",
             "using-qovery/configuration/environment-variable",
+            "using-qovery/configuration/service-health-checks",
+            "using-qovery/configuration/advanced-settings",
             "using-qovery/configuration/object-storage",
             "using-qovery/configuration/deployment-rule",
             {

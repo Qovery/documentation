@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-06-05"
+last_modified_on: "2023-06-28"
 title: "Members and RBAC"
 description: "Learn how to manage the RBAC via Qovery"
 ---
@@ -62,7 +62,7 @@ More in detail, you can find the associated permissions below:
 | Delete organization                                    | yes   | no    | no     | no              | no     |
 | Manage billing                                         | yes   | yes   | no     | yes             | no     |
 | Manage members & roles                                 | yes   | yes   | no     | no              | no     |
-| Manage cluster & contrainer registry                   | yes   | yes   | yes    | no              | no     |
+| Manage cluster & container registry                    | yes   | yes   | yes    | no              | no     |
 | Manage organization setup (webhooks, API tokens etc..) | yes   | yes   | yes    | no              | no     |
 | Read ANY project                                       | yes   | yes   | yes    | no              | yes    |
 | Edit/Delete ANY project                                | yes   | yes   | no     | no              | no     |
@@ -70,6 +70,7 @@ More in detail, you can find the associated permissions below:
 | Read ANY environment                                   | yes   | yes   | yes    | no              | yes    |
 | Edit/Delete ANY environment or service                 | yes   | yes   | no     | no              | no     |
 | Create environment or service                          | yes   | yes   | no     | no              | no     |
+| Add/Edit/Delete environment variables and secrets      | yes   | yes   | yes    | no              | no     |
 | Deploy/Stop ANY environment or service                 | yes   | yes   | yes    | no              | no     |
 | Connect via SSH to ANY application                     | yes   | yes   | yes    | no              | no     |
 

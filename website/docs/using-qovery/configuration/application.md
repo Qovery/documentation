@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-04-19"
+last_modified_on: "2023-06-12"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -118,6 +118,15 @@ Connections on public port are automatically closed after 60 seconds. If you wan
 </Alert>
 
 </li>
+
+<li>
+
+(Optional) If a port has been defined for your application, you can define the health check probes to run in order to verify the state of your application
+
+To know more about how to configure your Liveness and Readiness probes, have a look at [the health-checks section][docs.using-qovery.configuration.application-health-checks]
+
+</li>
+
 <li>
 
 You will find a recap of your application setup and you can now decide to:
@@ -349,6 +358,10 @@ Please take note of the following information:
 - Connections on public ports are automatically closed after 60 seconds. If you want to implement long living connection (like for websockets) please make sure to use the rigth ingress timeouts in the [advanced settings section][docs.using-qovery.configuration.advanced-settings#network-settings]
 - A Note on Listening IPs: It's best for your application to listen on `0.0.0.0:$PORT`. While most things work with `127.0.0.1` and `localhost`, some do not (NodeJS for example)
 
+### Health Checks
+
+To know more about how to configure your Liveness and Readiness probes, have a look at [the health-checks section][docs.using-qovery.configuration.application-health-checks]
+
 ### Domains
 
 `Domain` section of your application configuration allows you to define a custom domain for your application. By default a domain is assigned to your application if a port has been set to be publicly exposed. This assigned domain will have the following pattern:  `z<SERVICE_ID>-z<ROUTER_ID>-gtw.<ASSIGNED_CLUSTER_DOMAIN>` , where:
@@ -453,6 +466,7 @@ In the application overview, click on the `3 dots` button and remove the applica
 [docs.using-qovery.configuration.advanced-settings#network-settings]: /docs/using-qovery/configuration/advanced-settings/#network-settings
 [docs.using-qovery.configuration.application#build-mode]: /docs/using-qovery/configuration/application/#build-mode
 [docs.using-qovery.configuration.application#domains]: /docs/using-qovery/configuration/application/#domains
+[docs.using-qovery.configuration.application-health-checks]: /docs/using-qovery/configuration/application-health-checks/
 [docs.using-qovery.configuration.environment-variable#connecting-to-a-database]: /docs/using-qovery/configuration/environment-variable/#connecting-to-a-database
 [docs.using-qovery.configuration.environment-variable#connecting-to-another-application]: /docs/using-qovery/configuration/environment-variable/#connecting-to-another-application
 [docs.using-qovery.configuration.environment-variable]: /docs/using-qovery/configuration/environment-variable/

@@ -25,18 +25,18 @@ Applications and databases from an Environment are isolated from other Environme
 There are different types of environments that can be defined within Qovery. Types of environment are also called `mode`, to label it and share with others in the organization how to use it.
 Here is the mode you should set depending of the use of your Environment.
 
-| environment mode | recommended mode | why |
-|-------------|------------------|-----|
-| Production | Production environment should not be stopped or deleted by anyone. |
-| Staging | Staging environment reflects how things work and is sometimes as critical as production for companies. |
-| Development | Develoment environment is a working environment that could be used to develop and test new features and fixes. |
+| environment mode | recommended mode                                                                                                | why |
+|------------------|-----------------------------------------------------------------------------------------------------------------|-----|
+| Production       | Production environment should not be stopped or deleted by anyone.                                              |
+| Staging          | Staging environment reflects how things work and is sometimes as critical as production for companies.          |
+| Development      | Development environment is a working environment that could be used to develop and test new features and fixes. |
 
 A special mode `Preview` exists and it is automatically set when a `Preview Environment` is created on a new pull request. Have a look at [this section](#preview-environment) to know more about preview environments.
 
 
 ## Create an environment
 
-You can create a new environment by clicking on the `Create environment` button of the Environment list page. 
+You can create a new environment by clicking on the `Create environment` button of the Environment list page.
 
 <p align="center">
   <img src="/img/environment/create_environment_1.png" alt="Create an environment" />
@@ -55,7 +55,7 @@ A modal will appear that will allow you to specify following parameters
 Once created you can start adding your services within it depending on your need:
 - [Application][docs.using-qovery.configuration.application]: generic long-running workload
 - [Cronjob][docs.using-qovery.configuration.cronjob]: scheduled task
-- [Lifecycle Job][docs.using-qovery.configuration.lifecycle-job]: generic task to be executed at environment start/stop/delete.  
+- [Lifecycle Job][docs.using-qovery.configuration.lifecycle-job]: generic task to be executed at environment start/stop/delete.
 - [Database][docs.using-qovery.configuration.database]: managed or container database
 
 <p align="center">
@@ -87,7 +87,7 @@ Using Deployment Rules is a good practice to drastically **reduce your cost**. T
 
 A default deployment configuration is applied to your environment when it's created but you can modify it by:
 - editing the deployment rules settings from within the environment settings tab
-- creating a [dedicated rule at project level][docs.using-qovery.configuration.deployment-rule#project-deployment-rules] that will affect any new environment created and matching the condition. 
+- creating a [dedicated rule at project level][docs.using-qovery.configuration.deployment-rule#project-deployment-rules] that will affect any new environment created and matching the condition.
 
 Below you can find the description of the deployment rule settings that can be modified for a specific environment
 
@@ -133,8 +133,7 @@ You can modify the name and the description of a stage by opening the `3 dots me
 
 Use Preview Environment to get early feedback on your application changes by creating a dedicated environment for each of your pull requests. Your production environment runs 24/7, where your other environments may not need to run all day long. E.g. you may need to run Environments to get early feedback on your application changes before the changes are merged into production. This is what we call **Preview Environment**.
 
->  Sometimes **Preview Environment** are also known as **Ephemeral Environment**, **Temporary Environment**, **Development Environment**.
-
+>  Sometimes **Preview Environment** is also known as **Ephemeral Environment**, **Temporary Environment**, **Development Environment**, **Review App**.
 
 <Alert type="info">
 
@@ -178,7 +177,7 @@ You can define the behaviour to follow for the creation of the preview environme
 </p>
 
 
-*On every PR Flow* 
+*On every PR Flow*
 Same as above but the preview environment creation flow is triggered automatically without any user intervention (only step 3 and 4)
 
 <p align="center">

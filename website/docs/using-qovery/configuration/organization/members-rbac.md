@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-04-19"
+last_modified_on: "2023-06-28"
 title: "Members and RBAC"
 description: "Learn how to manage the RBAC via Qovery"
 ---
@@ -53,25 +53,26 @@ By default, five roles are created within your organization (Basic Roles):
 - Billing Manager: the user can only manage the billing of the organization
 - Viewer: the user has read-only access to any section of the organization
 
-More in detial, you can find the associated permissions below:
+More in detail, you can find the associated permissions below:
 
-| Action | Owner | Admin | DevOps | Billing Manager | Viewer |
-|--------|-------|-------|-----------|--------|--------|
-| Read organization | yes | yes | yes | yes | yes |
-| Edit organization | yes | yes | no | no | no |
-| Delete organization | yes | no | no | no | no |
-| Manage billing  | yes | yes | no | yes | no |
-| Manage members & roles | yes | yes | no | no | no |
-| Manage cluster & contrainer registry | yes | yes | yes | no | no |
-| Manage organization setup (webhooks, API tokens etc..) | yes | yes | yes | no | no |
-| Read ANY project | yes | yes | yes | no | yes |
-| Edit/Delete ANY project | yes | yes | no | no | no |
-| Create project | yes | yes | no | no | no |
-| Read ANY environment | yes | yes | yes | no | yes |
-| Edit/Delete ANY environment or service | yes | yes | no | no | no |
-| Create environment or service | yes | yes | no | no | no |
-| Deploy/Stop ANY environment or service | yes | yes | yes | no | no |
-| Connect via SSH to ANY application | yes | yes | yes | no | no |
+| Action                                                 | Owner | Admin | DevOps | Billing Manager | Viewer |
+|--------------------------------------------------------|-------|-------|--------|-----------------|--------|
+| Read organization                                      | yes   | yes   | yes    | yes             | yes    |
+| Edit organization                                      | yes   | yes   | no     | no              | no     |
+| Delete organization                                    | yes   | no    | no     | no              | no     |
+| Manage billing                                         | yes   | yes   | no     | yes             | no     |
+| Manage members & roles                                 | yes   | yes   | no     | no              | no     |
+| Manage cluster & container registry                    | yes   | yes   | yes    | no              | no     |
+| Manage organization setup (webhooks, API tokens etc..) | yes   | yes   | yes    | no              | no     |
+| Read ANY project                                       | yes   | yes   | yes    | no              | yes    |
+| Edit/Delete ANY project                                | yes   | yes   | no     | no              | no     |
+| Create project                                         | yes   | yes   | no     | no              | no     |
+| Read ANY environment                                   | yes   | yes   | yes    | no              | yes    |
+| Edit/Delete ANY environment or service                 | yes   | yes   | no     | no              | no     |
+| Create environment or service                          | yes   | yes   | no     | no              | no     |
+| Add/Edit/Delete environment variables and secrets      | yes   | yes   | yes    | no              | no     |
+| Deploy/Stop ANY environment or service                 | yes   | yes   | yes    | no              | no     |
+| Connect via SSH to ANY application                     | yes   | yes   | yes    | no              | no     |
 
 <Alert type="info">
 
@@ -100,26 +101,26 @@ For the new role, you will be able to specify:
 - Cluster Level permissions
 - Project Level Permissions
 
-##Cluster Level Permissions
+## Cluster Level Permissions
 This section allows you to fine tune the access to the computing resources. For each cluster of your organization, you will be able to specify an access permission (ordered by permission level):
 
-| Name | Permission Type |
-|--------|-------|
-| Read-Only | The user can access the cluster information (name, region etc..). Minimum permission level.
+| Name               | Permission Type                                                                                                                                                                                                                                                  |
+|--------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Read-Only          | The user can access the cluster information (name, region etc..). Minimum permission level.                                                                                                                                                                      |
 | Create Environment | The user can create environments on this cluster. Only users with this role could allocate resources for their environments on this cluster. Further environment level permissions (like deployment rights) are managed via the "Project Permissions", see below |
-| Full Access | The user can create create environments on this cluster and as well manage the cluster's settings (start/stop, change number and type of nodes etc..). This permission allows a group of users to manage by themselves a specific cluster |
+| Full Access        | The user can create create environments on this cluster and as well manage the cluster's settings (start/stop, change number and type of nodes etc..). This permission allows a group of users to manage by themselves a specific cluster                        |
 
 
 - Project Level Permissions
 This section allows you to fine tune the access to the projects and their environments. The environment access is managed by "Environment Type" to simplify the configuration (Production, Staging, Development, Preview). For each project of your organization and by environment type, you will be able to specify an access permission (ordered by permission level):
 
-| Name | Permission Type |
-|--------|-------|
-| No Access | The user has no access to this environment type. If the user has "No Access" on all the environment types, he will not have access to the project |
-| Read-Only | Access in read-only to this environment type. Useful to restrict access on sensitive environments |
-| Deploy | Manage the deployments of this environment type, access the logs, connect via SSH to the application and manage its environment variables |
-| Manage | Manage the deployments and the settings of this environment type (including adding or removing services) |
-| Full Access | The user is admin of the project and can do everything he wants on it (no matter the environment type) |
+| Name        | Permission Type                                                                                                                                   |
+|-------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
+| No Access   | The user has no access to this environment type. If the user has "No Access" on all the environment types, he will not have access to the project |
+| Read-Only   | Access in read-only to this environment type. Useful to restrict access on sensitive environments                                                 |
+| Deploy      | Manage the deployments of this environment type, access the logs, connect via SSH to the application and manage its environment variables         |
+| Manage      | Manage the deployments and the settings of this environment type (including adding or removing services)                                          |
+| Full Access | The user is admin of the project and can do everything he wants on it (no matter the environment type)                                            |
 
 <p align="center">
   <img src="/img/configuration/organization/custom_role_creation.png" alt="Qovery - custom role" />
@@ -130,7 +131,8 @@ Once the role is created, you can assign it to a member of your organization wit
 ### Examples
 Within this section, we will try to provide you some example of roles & permission setup
 
-*Example 1, simple setup*: An organization has 3 clusters ("prod cluster", “staging cluster”, “dev cluster”) and 1 project P1. The organization has a CTO, a devops and some developers.
+#### Example 1, simple setup
+An organization has 3 clusters ("prod cluster", “staging cluster”, “dev cluster”) and 1 project P1. The organization has a CTO, a devops and some developers.
 The roles & permissions could be configured in this way:
 - CTO = Owner
 - Devops = Devops or Admin
@@ -146,7 +148,8 @@ The roles & permissions could be configured in this way:
               - staging = deploye (i.e. they can deploy env of type “staging”)
               - development = Full Access  (i.e. they can manage and create env of type “dev”)
 
-*Example 2, advanced setup*: An organization with 4 dev clusters (“prod cluster”, “staging clyster”, 2 Dev clusters called “dev cluster team 1” and "dev cluster team 2”) and 2 projects P1 and P2. The organization has a CTO, a devops, 2 dev teams with an “acting dev-ops” in it who manages the dev cluster on behalf of the devops. 
+### Example 2, advanced setup
+An organization with 4 dev clusters (“prod cluster”, “staging clyster”, 2 Dev clusters called “dev cluster team 1” and "dev cluster team 2”) and 2 projects P1 and P2. The organization has a CTO, a devops, 2 dev teams with an “acting dev-ops” in it who manages the dev cluster on behalf of the devops.
 The roles & permissions could be configured in this way:
 - CTO = Owner
 - Devops = Devops or Admin

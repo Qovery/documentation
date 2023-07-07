@@ -87,12 +87,11 @@ module.exports = {
                 <%= metadata.links.fetch_id("docs.using-qovery.configuration.organization.api-token").to_json %>,
               ],
             },
-            <%= metadata.links.fetch_id("docs.using-qovery.configuration.project").to_json %>,
-            <%= metadata.links.fetch_id("docs.using-qovery.configuration.environment").to_json %>,
             <%= metadata.links.fetch_id("docs.using-qovery.configuration.clusters").to_json %>,
             <%= metadata.links.fetch_id("docs.using-qovery.configuration.cluster-advanced-settings").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.configuration.project").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.configuration.environment").to_json %>,
             <%= metadata.links.fetch_id("docs.using-qovery.configuration.application").to_json %>,
-            <%= metadata.links.fetch_id("docs.using-qovery.configuration.advanced-settings").to_json %>,
             {
               type: 'category',
               label: 'Database',
@@ -107,6 +106,8 @@ module.exports = {
             <%= metadata.links.fetch_id("docs.using-qovery.configuration.cronjob").to_json %>,
             <%= metadata.links.fetch_id("docs.using-qovery.configuration.lifecycle-job").to_json %>,
             <%= metadata.links.fetch_id("docs.using-qovery.configuration.environment-variable").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.configuration.service-health-checks").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.configuration.advanced-settings").to_json %>,
             <%= metadata.links.fetch_id("docs.using-qovery.configuration.object-storage").to_json %>,
             <%= metadata.links.fetch_id("docs.using-qovery.configuration.deployment-rule").to_json %>,
             {
@@ -149,22 +150,6 @@ module.exports = {
           ],
         },
         <%= metadata.links.fetch_id("docs.using-qovery.audit-logs").to_json %>,
-        {
-          type: 'category',
-          label: 'Quickstarts',
-          items: [
-            <%= metadata.links.fetch_id("docs.using-qovery.quickstart").to_json %>,
-            <%= metadata.links.fetch_id("docs.using-qovery.quickstart.hasura").to_json %>,
-            <%= metadata.links.fetch_id("docs.using-qovery.quickstart.strapi").to_json %>,
-            <%= metadata.links.fetch_id("docs.using-qovery.quickstart.meilisearch").to_json %>,
-            <%= metadata.links.fetch_id("docs.using-qovery.quickstart.nodejs").to_json %>,
-            <%= metadata.links.fetch_id("docs.using-qovery.quickstart.rust").to_json %>,
-            <%= metadata.links.fetch_id("docs.using-qovery.quickstart.spring").to_json %>,
-            <%= metadata.links.fetch_id("docs.using-qovery.quickstart.django").to_json %>,
-            <%= metadata.links.fetch_id("docs.using-qovery.quickstart.rails").to_json %>,
-          ]
-        },
-
         {
           type: 'category',
           label: 'Maintenance',

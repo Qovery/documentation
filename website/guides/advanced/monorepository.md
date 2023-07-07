@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-01-06"
+last_modified_on: "2023-06-05"
 $schema: "/.meta/.schemas/guides.json"
 title: Mono repository
 description: How to deploy applications using Monorepository with Qovery
@@ -10,6 +10,12 @@ tags: ["type: guide", "technology: qovery"]
 import Alert from '@site/src/components/Alert';
 
 import Steps from '@site/src/components/Steps';
+
+<Alert type="warning">
+
+This guide is a bit outdated. We are working on a new version of it. Stay tuned!
+
+</Alert>
 
 Qovery provides a very simple way of working with [monorepositories](https://en.wikipedia.org/wiki/Monorepo).
 You can deploy multiple applications using the same git repository or deploy the same application in many different modes/configurations.
@@ -76,7 +82,7 @@ All we need to do to deploy multiple applications using one repository is:
 - Select our repository
 - Select the application root folder
 
-That's it. Using monorepositories with Qovery is that simple. 
+That's it. Using monorepositories with Qovery is that simple.
 
 Those applications may be a part of the same project or different projects; it's all up to you and your configuration.
 
@@ -128,10 +134,10 @@ Configure application repositories:
 </p>
 
 ### Second application
-  
+
 <p align="center">
     <img src="/img/monorepo/monorepo-4.png" alt="Monorepository" />
-</p>    
+</p>
 
 </li>
 
@@ -149,11 +155,16 @@ You can set up secret or env variables in your application `Environment Variable
 
 <p align="center">
     <img src="/img/monorepo/monorepo-5.png" alt="Monorepository" />
-</p>    
+</p>
 
 </ol>
 </Steps>
 
+## Q&A
+
+Do you need more examples? Do you have any questions? Feel free to ask on our [Community forum][urls.qovery_forum].
+
 
 [docs.using-qovery.configuration.environment-variable]: /docs/using-qovery/configuration/environment-variable/
 [urls.qovery_console]: https://console.qovery.com
+[urls.qovery_forum]: https://discuss.qovery.com/

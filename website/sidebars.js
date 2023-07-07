@@ -87,12 +87,11 @@ module.exports = {
                 "using-qovery/configuration/organization/api-token",
               ],
             },
-            "using-qovery/configuration/project",
-            "using-qovery/configuration/environment",
             "using-qovery/configuration/clusters",
             "using-qovery/configuration/cluster-advanced-settings",
+            "using-qovery/configuration/project",
+            "using-qovery/configuration/environment",
             "using-qovery/configuration/application",
-            "using-qovery/configuration/advanced-settings",
             {
               type: 'category',
               label: 'Database',
@@ -107,6 +106,8 @@ module.exports = {
             "using-qovery/configuration/cronjob",
             "using-qovery/configuration/lifecycle-job",
             "using-qovery/configuration/environment-variable",
+            "using-qovery/configuration/service-health-checks",
+            "using-qovery/configuration/advanced-settings",
             "using-qovery/configuration/object-storage",
             "using-qovery/configuration/deployment-rule",
             {
@@ -149,22 +150,6 @@ module.exports = {
           ],
         },
         "using-qovery/audit-logs",
-        {
-          type: 'category',
-          label: 'Quickstarts',
-          items: [
-            "using-qovery/quickstart",
-            "using-qovery/quickstart/hasura",
-            "using-qovery/quickstart/strapi",
-            "using-qovery/quickstart/meilisearch",
-            "using-qovery/quickstart/nodejs",
-            "using-qovery/quickstart/rust",
-            "using-qovery/quickstart/spring",
-            "using-qovery/quickstart/django",
-            "using-qovery/quickstart/rails",
-          ]
-        },
-
         {
           type: 'category',
           label: 'Maintenance',

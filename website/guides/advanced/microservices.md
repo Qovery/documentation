@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-05-05"
+last_modified_on: "2023-06-05"
 $schema: "/.meta/.schemas/guides.json"
 title: Microservices
 description: How to deploy microservices with Qovery
@@ -9,6 +9,12 @@ tags: ["type: guide", "technology: qovery"]
 import Steps from '@site/src/components/Steps';
 import Assumptions from '@site/src/components/Assumptions';
 import Alert from '@site/src/components/Alert';
+
+<Alert type="warning">
+
+This guide is a bit outdated. We are working on a new version of it. Stay tuned!
+
+</Alert>
 
 <Assumptions>
 
@@ -27,7 +33,7 @@ The schema of what we want to achieve:
     <img src="/img/micro/micros.jpg" alt="Microservices" />
 </p>
 
-As you can see in the picture: 
+As you can see in the picture:
 
 - we have two backend applications (**App A** and **App B**)
 - one of them (**App B**) connected to a database
@@ -36,9 +42,6 @@ As you can see in the picture:
 
 What differentiates Qovery from most other similar platforms is its first-class support of microservices. At Qovery, your project can be easily
 composed of multiple applications. It's up to you to decide how to build your system, but Qovery enables you to easily and safely communicate between your backend applications, databases, and frontend websites.
-
-
-
 
 <Steps headingDepth={3}>
 
@@ -233,8 +236,13 @@ Now our frontend application will be able to consume the API exposed by the publ
 
 In this guide, we deployed two microservices that communicate over the internal network. We also deployed a frontend application that makes use of a public API exposed by one of our applications. At the same time, we deployed a database and connected it to the second of our backend microservices.
 
+## Q&A
+
+Do you need more examples? Do you have any questions? Feel free to ask on our [Community forum][urls.qovery_forum].
+
 
 [docs.using-qovery.configuration.environment-variable#connecting-to-a-database]: /docs/using-qovery/configuration/environment-variable/#connecting-to-a-database
 [docs.using-qovery.configuration.environment-variable#connecting-to-another-application]: /docs/using-qovery/configuration/environment-variable/#connecting-to-another-application
 [guides.getting-started.create-a-database]: /guides/getting-started/create-a-database/
 [guides.getting-started.deploy-your-first-application]: /guides/getting-started/deploy-your-first-application/
+[urls.qovery_forum]: https://discuss.qovery.com/

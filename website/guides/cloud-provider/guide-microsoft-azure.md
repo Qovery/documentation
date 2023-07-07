@@ -1,8 +1,8 @@
 ---
-last_modified_on: "2023-05-29"
+last_modified_on: "2023-06-05"
 $schema: "/.meta/.schemas/guides.json"
-title: Configure your Microsoft Azure account
-description: How to configure and deploy your apps on your Azure (Microsoft Azure) account with Qovery
+title: Install Qovery on your Microsoft Azure account
+description: Learn how to install Qovery on your Microsoft Azure account
 author_github: https://github.com/evoxmusic
 tags: ["type: guide", "cloud_provider: azure"]
 ---

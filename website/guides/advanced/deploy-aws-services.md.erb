@@ -1,0 +1,38 @@
+---
+$schema: "/.meta/.schemas/guides.json"
+title: Deploy AWS Services
+description: Learn how to deploy any AWS services with Qovery
+author_github: https://github.com/evoxmusic
+tags: ["type: guide", "cloud_provider: aws"]
+---
+import Steps from '@site/src/components/Steps';
+import Assumptions from '@site/src/components/Assumptions';
+import Alert from '@site/src/components/Alert';
+
+Qovery lets you deploy and connect any AWS services.
+
+## Resources
+
+Here are some resources you can use to learn how to deploy your AWS services with Qovery.
+
+<Alert type="info">
+
+Interested in deploying other services than AWS? Check out our [`Deploy External Services`][guides.advanced.deploy-external-services] guide.
+
+</Alert>
+
+| Title                                                                                                                                                       | Description                                                                                                                                                                                                   | Author    |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
+| [Deploy AWS RDS (built-in)][docs.using-qovery.configuration.database]                                                                                       | [Learn how to deploy a built-in AWS RDS instance with Qovery][docs.using-qovery.configuration.database]                                                                                                       | Qovery    |
+| [Deploy AWS RDS with Terraform][guides.tutorial.how-to-use-lifecycle-job-to-deploy-any-kind-of-resources]                                                   | [Learn how to deploy an AWS RDS instance with Terraform and Qovery Lifecycle Job][guides.tutorial.how-to-use-lifecycle-job-to-deploy-any-kind-of-resources]                                                   | Qovery    |
+| [Deploy AWS EC2 with Pulumi](https://github.com/Qovery/lifecycle-job-examples/tree/main/examples/aws-ec2-with-pulumi)                                       | [Learn how to deploy an AWS EC2 instance with Pulumi and Qovery Lifecycle Job](https://github.com/Qovery/lifecycle-job-examples/tree/main/examples/aws-ec2-with-pulumi)                                       | Qovery    |
+| [Deploy AWS Lambda and SQS with Cloudformation](https://github.com/Qovery/lifecycle-job-examples/tree/main/examples/aws-lambda-and-sqs-with-cloudformation) | [Learn how to deploy an AWS Lambda and SQS services with Cloudformation and Qovery Lifecycle Job](https://github.com/Qovery/lifecycle-job-examples/tree/main/examples/aws-lambda-and-sqs-with-cloudformation) | Qovery    |
+| [Deploy AWS Lambda with Serverless](https://github.com/Qovery/lifecycle-job-examples/tree/main/examples/aws-lambda-with-serverless)                         | [Learn how to deploy an AWS Lambda with Serverless framework and Qovery Lifecycle Job](https://github.com/Qovery/lifecycle-job-examples/tree/main/examples/aws-lambda-with-serverless)                        | Qovery    |
+| [AWS VPC Peering][guides.tutorial.aws-vpc-peering-with-qovery]                                                                                              | [Learn how to interconnect Qovery AWS VPCs to your existing AWS VPCs][guides.tutorial.aws-vpc-peering-with-qovery]                                                                                            | Qovery    |
+| [Forum "AWS"](https://discuss.qovery.com/search?q=aws)                                                                                                      | [List "AWS" threads from Qovery community forum](https://discuss.qovery.com/search?q=aws)                                                                                                                     | Community |
+
+## Q&A
+
+Do you need more examples? Do you need more examples? Do you have any questions? Feel free to ask on our [Community forum][urls.qovery_forum].
+
+<%= subpages() %>

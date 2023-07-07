@@ -24,6 +24,10 @@ Qovery can natively operate a database in two different ways (called "Mode"):
 - As a Docker Container: Testing / dev : Qovery can provide the database as Docker container with attached persistent storage directly on your Kubernetes cluster (1 instance). They are perfect for development and testing, as they are significantly cheaper than services provided by cloud providers. In the Qovery UI these will be called Databases in `Container` mode
 - As a Cloud provider managed database: Qovery can create and manage the lifecycle of a cloud provider managed database instance (for example via RDS on AWS). These are perfect for production since they guarantee the right level of resiliance, performance and data security best practices. In the Qovery UI these will be called Databases in `Managed` mode
 
+<Alert type="info">
+If you chose the Managed mode, Qovery will manage the entire lifecycle of your database for you. DO NOT change the database settings directly from within the cloud provider console.
+</Alert>
+
 If the natively supported databases and operation modes are not enough for you, we can still offer you an alternative solution depending on your use case:
 - Use an existing DB on a dedicated VPC: your applications can access this database via VPC peering. Have a look at [this guide][guides.tutorial.aws-vpc-peering-with-qovery] for more information.
 - Create my own database: You will be able to manage the lifecycle of this database using the [lifecycle jobs][docs.using-qovery.configuration.lifecycle-job]. Have a look at [this example](https://github.com/Qovery/lifecycle-job-examples/tree/main/examples/aws-rds-with-terraform) which allows you to deploy your custom RDS instance on AWS via Terraform.
@@ -76,11 +80,16 @@ Please refer to the Configuration section below to know more about each of these
 </li>
 
 <li>
-If you are using the database in `Container` mode, you can set the CPU, RAM and storage that will be assigned to the instance running the docker image of the database.
+
+Within the "Resources" step you will find different configuration based on the selected `mode`:
+- If you are using the database in `Container` mode, you can set the CPU, RAM and storage that will be assigned to the instance running the docker image of the database.
+- If you are using the database in `Managed` mode, you can select the instance type and the storage that will be assigned to the instance running the database. Note, the instance selected instance type has a direct impact on your cloud provider cost.
 
 <p align="center">
   <img src="/img/configuration/database/db-3.png" alt="Resources" />
 </p>
+
+
 
 </li>
 
@@ -125,6 +134,21 @@ Please refer to the dedicated database sub-pages to get more information on the 
 
 We regularly update the version available for each database. Please refer to the dedicated database sub-pages to get more information on the supported version for each database types and cloud provider.
 
+You can upgrade the version of your database directly from the Qovery interface.
+
+<Alert type="info">
+
+Once the upgrade is requested, the cloud provider applies the update based on its own internal rules and might cause a downtime of your database.
+
+For example, by default AWS applies major updates on the database during the `maintenance window`, the instance might be rebooted during this window. This also means that your upgrade request will not be applied immediately but you can force the switch directly from your AWS console AFTER having launched the upgrade on Qovery. 
+
+Have a look at your cloud provider documentation to know more about how version upgrades are managed:
+
+- AWS RDS DB engine upgrade:  https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.MySQL.html
+- AWS maintenance window: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Maintenance.html
+
+</Alert>
+
 #### Accessibility
 
 This parameter let you decide to expose publicly or not your database.
@@ -133,11 +157,31 @@ This parameter let you decide to expose publicly or not your database.
 - **Private** access will make your database accessible only by applications in your environment
 
 ### Resources
-This section is available only for databases in **Container** mode
 
 #### CPU / Memory 
 
+This configuration is available only for databases in **Container** mode
+
 You can select the CPU assigned to the Kuerbetes pod running the database instance
+
+#### Instance Type
+
+This configuration is available only for databases in **Managed** mode
+
+You can modify the CPU assigned to the instance running your database (And thus, its resouces).
+
+<Alert type="info">
+
+Once the upgrade is requested, the cloud provider applies the update based on its own internal rules and might cause a downtime of your database.
+
+For example, by default AWS applies major updates on the database during the `maintenance window`, the instance might be rebooted during this window. This also means that your upgrade request will not be applied immediately but you can force the maintenance window to start immediately from your AWS console AFTER having launched the upgrade on Qovery. 
+
+Have a look at your cloud provider documentation to know more about instance type upgrades are managed:
+
+- AWS RDS instance changes: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.DBInstance.Modifying.htm
+- AWS maintenance window: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Maintenance.html
+
+</Alert>
 
 #### Storage
 

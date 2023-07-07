@@ -191,16 +191,7 @@ module.exports = {
           "last_modified_on": null,
           "path": "website/guides/cloud-provider/guide-amazon-web-services.md",
           "series_position": null,
-          "title": "Configure your Amazon Web Services account"
-        },
-        {
-          "author_github": "https://github.com/evoxmusic",
-          "description": null,
-          "id": "/cloud-provider/guide-google-cloud-platform",
-          "last_modified_on": null,
-          "path": "website/guides/cloud-provider/guide-google-cloud-platform.md",
-          "series_position": null,
-          "title": "Configure your Google Cloud Platform account"
+          "title": "Install Qovery on your Amazon Web Services account"
         },
         {
           "author_github": "https://github.com/evoxmusic",
@@ -209,7 +200,7 @@ module.exports = {
           "last_modified_on": null,
           "path": "website/guides/cloud-provider/guide-microsoft-azure.md",
           "series_position": null,
-          "title": "Configure your Microsoft Azure account"
+          "title": "Install Qovery on your Microsoft Azure account"
         },
         {
           "author_github": "https://github.com/evoxmusic",
@@ -218,7 +209,16 @@ module.exports = {
           "last_modified_on": null,
           "path": "website/guides/cloud-provider/guide-scaleway.md",
           "series_position": null,
-          "title": "Configure your Scaleway account"
+          "title": "Install Qovery on your Scaleway account"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/cloud-provider/guide-google-cloud-platform",
+          "last_modified_on": null,
+          "path": "website/guides/cloud-provider/guide-google-cloud-platform.md",
+          "series_position": null,
+          "title": "Install Qovery your Google Cloud Platform account"
         }
       ],
       "name": "cloud-provider",
@@ -233,6 +233,33 @@ module.exports = {
         {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
+          "id": "/advanced/build-on-top",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/build-on-top.md",
+          "series_position": null,
+          "title": "Build on Top of Qovery"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/advanced/continuous-integration",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/continuous-integration.md",
+          "series_position": null,
+          "title": "Continuous Integration"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/advanced/costs-control",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/costs-control.md",
+          "series_position": null,
+          "title": "Costs Control"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
           "id": "/advanced/deploy-api-gateway",
           "last_modified_on": null,
           "path": "website/guides/advanced/deploy-api-gateway.md",
@@ -242,29 +269,38 @@ module.exports = {
         {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
+          "id": "/advanced/deploy-aws-services",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/deploy-aws-services.md",
+          "series_position": null,
+          "title": "Deploy AWS Services"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/advanced/deploy-external-services",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/deploy-external-services.md",
+          "series_position": null,
+          "title": "Deploy External Services"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
           "id": "/advanced/deploy-frontend",
           "last_modified_on": null,
           "path": "website/guides/advanced/deploy-frontend.md",
           "series_position": null,
-          "title": "Deploy Frontend"
+          "title": "Deploy Frontend App"
         },
         {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
-          "id": "/advanced/deploy-helm-chart",
+          "id": "/advanced/helm-chart",
           "last_modified_on": null,
-          "path": "website/guides/advanced/deploy-helm-chart.md",
+          "path": "website/guides/advanced/helm-chart.md",
           "series_position": null,
-          "title": "Deploy Helm Charts"
-        },
-        {
-          "author_github": "https://github.com/evoxmusic",
-          "description": null,
-          "id": "/advanced/deploy-terraform",
-          "last_modified_on": null,
-          "path": "website/guides/advanced/deploy-terraform.md",
-          "series_position": null,
-          "title": "Deploy Terraform"
+          "title": "Helm Charts"
         },
         {
           "author_github": "https://github.com/pjeziorowski",
@@ -274,6 +310,24 @@ module.exports = {
           "path": "website/guides/advanced/microservices.md",
           "series_position": null,
           "title": "Microservices"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/advanced/migration",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/migration.md",
+          "series_position": null,
+          "title": "Migration"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/advanced/monitoring",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/monitoring.md",
+          "series_position": null,
+          "title": "Monitoring"
         },
         {
           "author_github": "https://github.com/pjeziorowski",
@@ -296,11 +350,29 @@ module.exports = {
         {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
+          "id": "/advanced/production",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/production.md",
+          "series_position": null,
+          "title": "Production"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
           "id": "/advanced/seed-database",
           "last_modified_on": null,
           "path": "website/guides/advanced/seed-database.md",
           "series_position": null,
           "title": "Seed Database"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/advanced/terraform",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/terraform.md",
+          "series_position": null,
+          "title": "Terraform"
         }
       ],
       "name": "advanced",
@@ -310,7 +382,7 @@ module.exports = {
     "tutorial": {
       "children": {
       },
-      "description": "Step-by-step tutorials. ",
+      "description": "Additional step-by-step resources to leverage even more Qovery. ",
       "guides": [
         {
           "author_github": "https://github.com/pjeziorowski",
@@ -367,60 +439,6 @@ module.exports = {
           "title": "Customizing Preview URL with Qovery CLI"
         },
         {
-          "author_github": "https://github.com/pjeziorowski",
-          "description": null,
-          "id": "/tutorial/deploy-django-with-postgresql",
-          "last_modified_on": null,
-          "path": "website/guides/tutorial/deploy-django-with-postgresql.md",
-          "series_position": null,
-          "title": "Deploy Django with PostgreSQL"
-        },
-        {
-          "author_github": "https://github.com/pjeziorowski",
-          "description": null,
-          "id": "/tutorial/deploy-gin-with-postgresql",
-          "last_modified_on": null,
-          "path": "website/guides/tutorial/deploy-gin-with-postgresql.md",
-          "series_position": null,
-          "title": "Deploy Gin with PostgreSQL"
-        },
-        {
-          "author_github": "https://github.com/pjeziorowski",
-          "description": null,
-          "id": "/tutorial/deploy-jhipster-with-postgresql",
-          "last_modified_on": null,
-          "path": "website/guides/tutorial/deploy-jhipster-with-postgresql.md",
-          "series_position": null,
-          "title": "Deploy JHipster with PostgreSQL"
-        },
-        {
-          "author_github": "https://github.com/evoxmusic",
-          "description": null,
-          "id": "/tutorial/deploy-laravel-with-mysql",
-          "last_modified_on": null,
-          "path": "website/guides/tutorial/deploy-laravel-with-mysql.md",
-          "series_position": null,
-          "title": "Deploy Laravel with MySQL"
-        },
-        {
-          "author_github": "https://github.com/evoxmusic",
-          "description": null,
-          "id": "/tutorial/deploy-node-js-with-postgresql",
-          "last_modified_on": null,
-          "path": "website/guides/tutorial/deploy-node-js-with-postgresql.md",
-          "series_position": null,
-          "title": "Deploy NodeJS with PostgreSQL"
-        },
-        {
-          "author_github": "https://github.com/pjeziorowski",
-          "description": null,
-          "id": "/tutorial/deploy-rails-with-postgresql",
-          "last_modified_on": null,
-          "path": "website/guides/tutorial/deploy-rails-with-postgresql.md",
-          "series_position": null,
-          "title": "Deploy Rails with PostgreSQL"
-        },
-        {
           "author_github": "https://github.com/l0ck3",
           "description": null,
           "id": "/tutorial/deploy-rails-with-postgresql-and-sidekiq",
@@ -428,15 +446,6 @@ module.exports = {
           "path": "website/guides/tutorial/deploy-rails-with-postgresql-and-sidekiq.md",
           "series_position": null,
           "title": "Deploy Rails with PostgreSQL and Sidekiq"
-        },
-        {
-          "author_github": "https://github.com/evoxmusic",
-          "description": null,
-          "id": "/tutorial/deploy-spring-boot-with-postgresql",
-          "last_modified_on": null,
-          "path": "website/guides/tutorial/deploy-spring-boot-with-postgresql.md",
-          "series_position": null,
-          "title": "Deploy Spring Boot with PostgreSQL"
         },
         {
           "author_github": "https://github.com/l0ck3",
@@ -457,96 +466,6 @@ module.exports = {
           "title": "Getting Started with Preview Environments on AWS"
         },
         {
-          "author_github": "https://github.com/pjeziorowski",
-          "description": null,
-          "id": "/tutorial/quickstart-django",
-          "last_modified_on": null,
-          "path": "website/guides/tutorial/quickstart-django.md",
-          "series_position": null,
-          "title": "Getting started with Django on Qovery"
-        },
-        {
-          "author_github": "https://github.com/pjeziorowski",
-          "description": null,
-          "id": "/tutorial/quickstart-go",
-          "last_modified_on": null,
-          "path": "website/guides/tutorial/quickstart-go.md",
-          "series_position": null,
-          "title": "Getting started with Golang on Qovery"
-        },
-        {
-          "author_github": "https://github.com/pjeziorowski",
-          "description": null,
-          "id": "/tutorial/quickstart-laravel",
-          "last_modified_on": null,
-          "path": "website/guides/tutorial/quickstart-laravel.md",
-          "series_position": null,
-          "title": "Getting started with Laravel on Qovery"
-        },
-        {
-          "author_github": "https://github.com/pjeziorowski",
-          "description": null,
-          "id": "/tutorial/quickstart-meilisearch",
-          "last_modified_on": null,
-          "path": "website/guides/tutorial/quickstart-meilisearch.md",
-          "series_position": null,
-          "title": "Getting started with Meilisearch on Qovery"
-        },
-        {
-          "author_github": "https://github.com/pjeziorowski",
-          "description": null,
-          "id": "/tutorial/quickstart-node",
-          "last_modified_on": null,
-          "path": "website/guides/tutorial/quickstart-node.md",
-          "series_position": null,
-          "title": "Getting started with NodeJS on Qovery"
-        },
-        {
-          "author_github": "https://github.com/pjeziorowski",
-          "description": null,
-          "id": "/tutorial/quickstart-rails",
-          "last_modified_on": null,
-          "path": "website/guides/tutorial/quickstart-rails.md",
-          "series_position": null,
-          "title": "Getting started with Rails on Qovery"
-        },
-        {
-          "author_github": "https://github.com/pjeziorowski",
-          "description": null,
-          "id": "/tutorial/quickstart-rust-rocket",
-          "last_modified_on": null,
-          "path": "website/guides/tutorial/quickstart-rust-rocket.md",
-          "series_position": null,
-          "title": "Getting started with Rust on Qovery"
-        },
-        {
-          "author_github": "https://github.com/pjeziorowski",
-          "description": null,
-          "id": "/tutorial/quickstart-scala",
-          "last_modified_on": null,
-          "path": "website/guides/tutorial/quickstart-scala.md",
-          "series_position": null,
-          "title": "Getting started with Scala on Qovery"
-        },
-        {
-          "author_github": "https://github.com/pjeziorowski",
-          "description": null,
-          "id": "/tutorial/quickstart-sinatra",
-          "last_modified_on": null,
-          "path": "website/guides/tutorial/quickstart-sinatra.md",
-          "series_position": null,
-          "title": "Getting started with Sinatra on Qovery"
-        },
-        {
-          "author_github": "https://github.com/pjeziorowski",
-          "description": null,
-          "id": "/tutorial/quickstart-springboot",
-          "last_modified_on": null,
-          "path": "website/guides/tutorial/quickstart-springboot.md",
-          "series_position": null,
-          "title": "Getting started with Spring Boot on Qovery"
-        },
-        {
           "author_github": "https://github.com/deimosfr",
           "description": null,
           "id": "/tutorial/grafana-install",
@@ -554,15 +473,6 @@ module.exports = {
           "path": "website/guides/tutorial/grafana-install.md",
           "series_position": null,
           "title": "Grafana setup with Qovery"
-        },
-        {
-          "author_github": "https://github.com/pjeziorowski",
-          "description": null,
-          "id": "/tutorial/graphql-api-with-hasura",
-          "last_modified_on": null,
-          "path": "website/guides/tutorial/graphql-api-with-hasura.md",
-          "series_position": null,
-          "title": "GraphQL API with Hasura"
         },
         {
           "author_github": "https://github.com/evoxmusic",
@@ -628,15 +538,6 @@ module.exports = {
           "title": "How to create an RDS instance through the AWS console"
         },
         {
-          "author_github": "https://github.com/Aggis15",
-          "description": null,
-          "id": "/tutorial/create-and-deploy-python-discord-bot",
-          "last_modified_on": null,
-          "path": "website/guides/tutorial/create-and-deploy-python-discord-bot.md",
-          "series_position": null,
-          "title": "How to create and deploy a Discord bot in Python"
-        },
-        {
           "author_github": "https://github.com/deimosfr",
           "description": null,
           "id": "/tutorial/how-to-deploy-helm-charts",
@@ -648,29 +549,11 @@ module.exports = {
         {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
-          "id": "/tutorial/how-to-deploy-strapi-with-postgresql",
-          "last_modified_on": null,
-          "path": "website/guides/tutorial/how-to-deploy-strapi-with-postgresql.md",
-          "series_position": null,
-          "title": "How to deploy Strapi with PostgreSQL"
-        },
-        {
-          "author_github": "https://github.com/evoxmusic",
-          "description": null,
           "id": "/tutorial/how-to-deploy-a-rust-rest-api-application-on-aws-with-ease",
           "last_modified_on": null,
           "path": "website/guides/tutorial/how-to-deploy-a-rust-rest-api-application-on-aws-with-ease.md",
           "series_position": null,
           "title": "How to deploy a Rust REST API application on AWS with ease"
-        },
-        {
-          "author_github": "https://github.com/evoxmusic",
-          "description": null,
-          "id": "/tutorial/deploy-fullstack-application-composed-of-hasura-postgresql-angular",
-          "last_modified_on": null,
-          "path": "website/guides/tutorial/deploy-fullstack-application-composed-of-hasura-postgresql-angular.md",
-          "series_position": null,
-          "title": "How to deploy a full-stack application composed of Hasura, PostgreSQL and Angular"
         },
         {
           "author_github": "https://github.com/l0ck3",
@@ -788,15 +671,6 @@ module.exports = {
           "path": "website/guides/tutorial/aws-vpc-peering-with-qovery.md",
           "series_position": null,
           "title": "Setup VPC peering on AWS with Qovery"
-        },
-        {
-          "author_github": "https://github.com/pjeziorowski",
-          "description": null,
-          "id": "/tutorial/simplest-way-to-deploy-deno-with-database",
-          "last_modified_on": null,
-          "path": "website/guides/tutorial/simplest-way-to-deploy-deno-with-database.md",
-          "series_position": null,
-          "title": "Simplest way to deploy your Deno application with MongoDB database"
         },
         {
           "author_github": "https://github.com/evoxmusic",

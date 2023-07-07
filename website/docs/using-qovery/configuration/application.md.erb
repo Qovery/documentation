@@ -106,6 +106,15 @@ Connections on public port are automatically closed after 60 seconds. If you wan
 </Alert>
 
 </li>
+
+<li>
+
+(Optional) If a port has been defined for your application, you can define the health check probes to run in order to verify the state of your application
+
+To know more about how to configure your Liveness and Readiness probes, have a look at [the health-checks section][docs.using-qovery.configuration.application-health-checks]
+
+</li>
+
 <li>
 
 You will find a recap of your application setup and you can now decide to:
@@ -336,6 +345,10 @@ Please take note of the following information:
 - You can configure your application to use the **PORT** environment variable by adding the **PORT** on your application env variables page.
 - Connections on public ports are automatically closed after 60 seconds. If you want to implement long living connection (like for websockets) please make sure to use the rigth ingress timeouts in the [advanced settings section][docs.using-qovery.configuration.advanced-settings#network-settings]
 - A Note on Listening IPs: It's best for your application to listen on `0.0.0.0:$PORT`. While most things work with `127.0.0.1` and `localhost`, some do not (NodeJS for example)
+
+### Health Checks
+
+To know more about how to configure your Liveness and Readiness probes, have a look at [the health-checks section][docs.using-qovery.configuration.application-health-checks]
 
 ### Domains
 

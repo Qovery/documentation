@@ -328,22 +328,23 @@ Storage can be added only if the application has never been deployed before AND 
 
 Within this section you can define the port exposed by your application to the other services or even over the internet.
 You can edit the existing ports or declare new ones by specifying:
-- Application port: this is the port exposed internally by your application for the other services. Kubernetes will use this port to verify the readiness and liveness of your application via regular probes.
+- Application port: this is the port exposed internally by your application for the other services. 
 - Publicly exposed: it allows you to expose over the public network your service. A public domain will be assigned to your application during the deployment (see [Domain section][docs.using-qovery.configuration.application#domains])
-- External port: it is the port that can be used to access this service over the internet (when exposed publicly). Today we support only the HTTPS and Websocket protocols (on the 443 port)
+- If Publicly Exposed is selected:
+  - Protocol: you can select the protocol used by your application : HTTP (for both standard HTTP or websocket communications), gRPC
+  - External port: it is the port that can be used to access this service over the internet (when exposed publicly). Today we can only expose the service over the port 443 (default HTTP port) and cannot be changed.
+  - Port Name: it is the name assigned to the port. When multiple ports are exposed publicly, its value is used to route the traffic to the right port based on the called subdomain (which will contain the port name value). Since each port is exposed on the port 443, having a different subdomain is the only way to have multiple ports exposed over the internet. If not set, the default value is `p<portNumber>` (see [Domain section][docs.using-qovery.configuration.application#domains] for more information)
 
 <p align="center">
   <img src="/img/configuration/application/app-15.png" alt="Application Ports" />
 </p>
 
-<Alert type="info">
-Qovery determines the readiness of your service based on the availability of the declared port. If your application does not open this port within 10 minutes, the associated container will be shut down
-</Alert>
 
-#### Exposing Applications
-Please take note of the following information:
-- You can configure your application to use the **PORT** environment variable by adding the **PORT** on your application env variables page.
+#### Important Informations
+
+- Most of the Kubernetes Health Checks][docs.using-qovery.configuration.service-health-checks] are based on the port declared in this section. Make sure you declare the right port and that you configure the health checks properly.
 - Connections on public ports are automatically closed after 60 seconds. If you want to implement long living connection (like for websockets) please make sure to use the rigth ingress timeouts in the [advanced settings section][docs.using-qovery.configuration.advanced-settings#network-settings]
+- You can configure your application to use the **PORT** environment variable by adding the **PORT** on your application env variables page.
 - A Note on Listening IPs: It's best for your application to listen on `0.0.0.0:$PORT`. While most things work with `127.0.0.1` and `localhost`, some do not (NodeJS for example)
 
 ### Health Checks
@@ -352,50 +353,43 @@ To know more about how to configure your Liveness and Readiness probes, have a l
 
 ### Domains
 
-`Domain` section of your application configuration allows you to define a custom domain for your application. By default a domain is assigned to your application if a port has been set to be publicly exposed. This assigned domain will have the following pattern:  `z<SERVICE_ID>-z<ROUTER_ID>-gtw.<ASSIGNED_CLUSTER_DOMAIN>` , where:
-- SERVICE_ID : is the first 8 letters of the id of your service
-- ROUTER_ID : it is an internal id to identify the router (nginx configuration) of your application
-- ASSIGNED_CLUSTER_DOMAIN: it is the domain assigned to your cluster. Any service deployed on this cluster will have the same assigned_cluster_domain
+The `Domain` section allows you to define a custom domain for your application. 
 
-domain example: `zdf72de72-z709e1a88-gtw.za8ad0657.bool.sh`
+For each port publicly exposed, a domain is automatically assigned by Qovery to your application. Qovery will manage for you the networking and the TLS configuration for these domains. 
 
-**Special Case - Preview Environment**: if the preview environment feature is activated, the created services will have an additional friendly domain following this format `prId-srvName-envSourceName.cluster_domain` where:
+domain example: `p80-zdf72de72-z709e1a88-gtw.za8ad0657.bool.sh`
+
+**Special Case - Preview Environment** 
+For each port exposed publicly, an additional domain will be created with the following pattern `portName-prId-srvName-envSourceName.cluster_domain`:
+- portName: is the port name, as explained above
 - prID: is the id of the PR that has generated the preview environment
 - srvName: is the name of the service
 - envSourceName: is the name of the blueprint environment that has created the current preview environment
 
-domain example: `123-frontend-blueprint.za8ad0657.bool.sh`
+domain example: `p80-123-frontend-blueprint.za8ad0657.bool.sh`
 
-If you want to customize the url assigned to your application press the `Add Domain` button. 
+Note:
+- each service deployed on the same cluster will have the same root domain assigned (example: `za8ad0657.bool.sh`)
+- the first characters of the domain assigned to the application is based on the portName given to the port (See the [port section](#ports)
+- a default domain (without the portName) is assigned to the `default port`(See the [port section](#ports)). Example `zdf72de72-z709e1a88-gtw.za8ad0657.bool.sh`
+
+If you want to customize the domain assigned to your application press the `Add Domain` button. 
 
 <p align="center">
   <img src="/img/configuration/application/app-16.png" alt="Application Domains" />
 </p>
 
-<Alert type="info">
-
-This configuration is removed every time the environment is cloned in order to avoid domain collision.
-
-</Alert>
-
-You can use this section to either assign a specific sub-domain or either assign a completely new domain via a CNAME.
-
-#### Configuring a custom sub-domain
-You can specify a custom sub-domain as long as it belongs to the assigned cluster domain (see above). 
-Example: 
-- your current domain is zdf72de71-z709e1a85-gtw.za8ad0659.bool.sh (so your assigned cluster domain is `za8ad0659.bool.sh`)
-- you can enter a new custom domain `myfrontend-za8ad0659.bool.sh` (since it is a subdomain of the cluster domain)
-
-The application will now be accessible from both the default and the new custom domain
+In this section, you can assign your custom domain via CNAME or just change the sub-domain assigned to your service.
 
 <Alert type="info">
 
-Qovery does not check collision in the domain declaration. make sure you assign a subdomain that
+This configuration will be **automatically removed** on every cloned environment or preview environment in order to avoid domain collision.
 
 </Alert>
 
 #### Configuring a domain via CNAME
-After setting up your custom domain, you'll see a `Value` that you need to set up as a `CNAME` record in your domain registrar.
+
+You can configure your DNS by adding a `CNAME` record so that your app will be accessible through your custom domain. Qovery will handle for you the network configuration and the TLS certificate.
 
 <Alert type="info">
 
@@ -403,7 +397,20 @@ After setting up your custom domain, you'll see a `Value` that you need to set u
 
 </Alert>
 
-Setting up the `CNAME` on the domain provider side will make your app accessible through your custom domain on Qovery. The app will still be accessible through the default assigned domain.
+#### Change the assigned sub-domain
+You can specify a different sub-domain for your application as long as it belongs to the assigned cluster domain (see above). 
+Example: 
+- your current domain is zdf72de71-z709e1a85-gtw.za8ad0659.bool.sh (so your assigned cluster domain is `za8ad0659.bool.sh`)
+- you can enter a new custom domain `myfrontend.za8ad0659.bool.sh` (since it is a subdomain of the cluster domain)
+
+The application will now be accessible from both the default and the new custom domain.
+
+<Alert type="info">
+
+Qovery does not check collision in the domain declaration. Make sure you assign a unique subdomain within your cluster.
+
+</Alert>
+
 
 ## Connecting to a database
 To know how to access your database from your application, [have a look at the database section][docs.using-qovery.configuration.environment-variable#connecting-to-a-database].

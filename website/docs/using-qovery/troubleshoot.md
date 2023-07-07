@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-05-27"
+last_modified_on: "2023-07-07"
 title: Troubleshoot
 description: "Everything you need to troubleshoot your application with Qovery"
 sidebar_label: hidden

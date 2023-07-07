@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-04-19"
+last_modified_on: "2023-07-07"
 $schema: "/.meta/.schemas/guides.json"
 title: Custom domain
 description: How to set and use your own domain
@@ -47,12 +47,27 @@ learn how to set up your domains on Qovery!
 </div>
 
 </li>
+<li>
+
+### Configure your DNS
+
+Configure your DNS by adding a CNAME record pointing to the domain provided by Qovery in the previous step
+
+If you have multiple public ports (or you want to have them in the future), make sure you add a CNAME for both yourdomain.com and *.yourdomain.com. 
+
+In this way:
+- your application default port will be accessible via the domain `yourdomain.com` or by a subdomain equal to the port name (portNameA.yourdomain.com). 
+- the other application public port will be accessible via a subdomain equal to the portName (portNameB.yourdomain.com). 
+
+See the [port setup of your application][docs.using-qovery.configuration.application#ports] for more information on the port name setup.
+
+</li>
 
 <li>
 
 ### Your domain is ready
 
-You need to **restart** your app to make your custom domain available.
+You need to **restart** your app to use your custom domain on your application.
 
 </li>
 
@@ -62,4 +77,5 @@ You need to **restart** your app to make your custom domain available.
 If you run into any trouble, [find us on Discord][urls.qovery_chat]. Our team and the community will be glad to help out.
 
 
+[docs.using-qovery.configuration.application#ports]: /docs/using-qovery/configuration/application/#ports
 [urls.qovery_chat]: https://discord.qovery.com

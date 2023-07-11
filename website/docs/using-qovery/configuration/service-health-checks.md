@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-06-12"
+last_modified_on: "2023-07-11"
 title: "Service Health Checks"
 description: "Learn how to configure your Kubernetes health checks"
 ---
@@ -87,7 +87,7 @@ Allows you to specify how many consecutive successes are needed, as a minimum, f
 
 <Alert type="info">
 
-For liveness probes, the value can only be `1`
+Due to a Kubernetes limitation, this value can only be 1
 
 </Alert>
 

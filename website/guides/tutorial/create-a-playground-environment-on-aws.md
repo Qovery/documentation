@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-07-28"
+last_modified_on: "2023-07-29"
 $schema: "/.meta/.schemas/guides.json"
 title: Create a Playground Environment on AWS
 description: Step-by-step guide to create a Playground environment on AWS
@@ -12,6 +12,12 @@ import Alert from '@site/src/components/Alert';
 
 import Tabs from '@theme/Tabs';
 import Assumptions from '@site/src/components/Assumptions';
+
+<Alert type="info">
+
+The Qovery Playground is another concept than creating a Playground Environment. [Read more about the Qovery Playground](https://www.qovery.com/blog/discover-learn-and-experience-the-qovery-playground-is-now-open).
+
+</Alert>
 
 A Playground Environment is an environment where you can do all your testing without impacting an existing environment.
 

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-06-12"
+last_modified_on: "2023-08-02"
 title: "Service Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -87,13 +87,25 @@ All services have access to advanced settings, you can find where they are avail
 |---------|---------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | integer | Decide how many times in seconds the application is supposed to stop at maximum. After this time, the application will be forced to stop (killed) | An application requiring several tasks to be stopped properly should have a higher grace period. If the application finishes early, then it will not wait until the end of the grace period | `60`          |
 
+#### deployment.affinity.node.required ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/cronjob.svg) ![](/img/advanced_settings/job.svg)
+
+| Type                | Description                                            | Use Case                                                                                                                                    | Default Value |
+|---------------------|--------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| Map<String, String> | Set pod placement on specific Kubernetes nodes labels. | Can be useful to send pods on GPU nodes or any other specific workload based on node lablels (Eg. `{"eks.amazonaws.com/nodegroup": "gpu"}`) | ``            |
+
+#### deployment.antiaffinity.pod ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg)
+
+| Type   | Description                                                                                                                                                                                                                                                                                                                                                                     | Default Value |
+|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| string | Define how you want pods affinity to behave.<br />• `Preferred`: allows, but does not require, pods of a given service are not co-located (or co-hosted) on a single node<br />• `Required`: ensures that the pods of a given service are not co-located (or co-hosted) on a single node (safer in term of availability but can be expensive depending on the number of replicas) | `Preferred`   |
+
 ### Deployment strategy
 
 #### deployment.update_strategy.type ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg)
 
-| Type   | Description                                              | Use Case                                                                                                                                                                                                                               | Default Value   |
-|--------|----------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------|
-| string | Set deployment strategy type (RollingUpdate or Recreate) | Rolling update strategy will gracefully rollout new versions, while Recreate will stop all current versions and create new ones once all old ones have been shutdown ([more info][docs.using-qovery.deployment.deployment-strategies]) | `RollingUpdate` |
+| Type   | Description                                                  | Use Case                                                                                                                                                                                                                               | Default Value   |
+|--------|--------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------|
+| string | Set deployment strategy type (`RollingUpdate` or `Recreate`) | Rolling update strategy will gracefully rollout new versions, while Recreate will stop all current versions and create new ones once all old ones have been shutdown ([more info][docs.using-qovery.deployment.deployment-strategies]) | `RollingUpdate` |
 
 #### deployment.update_strategy.rolling_update.max_unavailable_percent ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg)
 
@@ -196,8 +208,8 @@ All services have access to advanced settings, you can find where they are avail
 
 #### network.ingress.denylist_source_range ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg)
 
-| Type   | Description                                                                                                                                                    | Default Value |
-|--------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| Type   | Description                                                                                                                                                   | Default Value |
+|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | string | Allows you to specify which IP ranges are not allowed to access your application. The value is a comma-separated list of CIDRs, e.g. `10.0.0.0/24,172.10.0.1` | ``            |
 
 #### network.ingress.basic_auth_env_var ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg)

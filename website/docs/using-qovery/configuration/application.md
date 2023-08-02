@@ -115,12 +115,14 @@ By default ports are accessible only from inside your environment. You can also 
   <img src="/img/configuration/application/application_creation_port.png" alt="Application Ports" />
 </p>
 
-<Alert type="info">
-Qovery determines the readiness of your service based on the availability of the declared port. If your application does not open this port within 10 minutes, the associated container will be shut down
-</Alert>
-<Alert type="info">
-Connections on public port are automatically closed after 60 seconds. If you want to implement long living connection (like for websockets) please make sure to use the rigth ingress timeouts in the [advanced settings section][docs.using-qovery.configuration.advanced-settings#network-settings]
-</Alert>
+
+**Important Informations**
+
+- Most of the Kubernetes Health Checks][docs.using-qovery.configuration.service-health-checks] are based on the port declared in this section. Make sure you declare the right port and that you configure the health checks properly.
+- Connections on public ports are automatically closed after 60 seconds. If you want to implement long living connection (like for websockets) please make sure to use the rigth ingress timeouts in the [advanced settings section][docs.using-qovery.configuration.advanced-settings#network-settings]
+- Exposing publicly TCP/UDP ports requires to create a dedicated load balancer and it takes a few minutes before having it ready (~15 minutes). Note also that this has a direct impact on your cloud provider bill.
+- You can configure your application to use the **PORT** environment variable by adding the **PORT** on your application env variables page.
+- A Note on Listening IPs: It's best for your application to listen on `0.0.0.0:$PORT`. While most things work with `127.0.0.1` and `localhost`, some do not (NodeJS for example)
 
 </li>
 
@@ -361,6 +363,7 @@ You can edit the existing ports or declare new ones by specifying:
 
 - Most of the Kubernetes Health Checks][docs.using-qovery.configuration.service-health-checks] are based on the port declared in this section. Make sure you declare the right port and that you configure the health checks properly.
 - Connections on public ports are automatically closed after 60 seconds. If you want to implement long living connection (like for websockets) please make sure to use the rigth ingress timeouts in the [advanced settings section][docs.using-qovery.configuration.advanced-settings#network-settings]
+- Exposing publicly TCP/UDP ports requires to create a dedicated load balancer and it takes a few minutes before having it ready (~15 minutes). Note also that this has a direct impact on your cloud provider bill.
 - You can configure your application to use the **PORT** environment variable by adding the **PORT** on your application env variables page.
 - A Note on Listening IPs: It's best for your application to listen on `0.0.0.0:$PORT`. While most things work with `127.0.0.1` and `localhost`, some do not (NodeJS for example)
 

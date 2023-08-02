@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-06-08"
+last_modified_on: "2023-08-02"
 title: "Databases"
 description: "Learn how to configure Databases on Qovery"
 sidebar_label: hidden
@@ -224,6 +224,35 @@ Please note that the built-in variables follow the naming pattern: `QOVERY_DATAB
 - `<type_of_variable>` is the type of variable we inject, e.g. `PASSWORD`, `VERSION`, `CONNECTION_URI` and so on.
 
 To know how to access your database from your application, [have a look at the database section][docs.using-qovery.configuration.environment-variable#connecting-to-a-database].
+
+## Clone
+
+You can create a clone of the service via the clone feature. A new service with the same configuration (see below for exceptions) will be created into the target environment.
+
+<p align="center">
+  <img src="/img/clone_service.png" alt="Clone Service" />
+</p>
+
+The target environment can be the same as the current environment or even another one in a completely different project.
+
+** Importan information **
+
+Not every configuration parameter will be copied within the new service for consistency reasons. The configuration is fully or partially copied depending on the target environment:
+- same environment:
+    - custom domain: this setup is not copied into the new service (to avoid collision)
+- another environment:
+    - custom domain: this setup is not copied into the new service (to avoid collision)
+    - environment variable: aliases defined on environment variables are not copied (since the aliased env var might not exist)
+    - deployment pipeline: stage setup is not copied (since the target stage might not exist)
+    - number of instances: if the target environment runs on a Qovery EC2 cluster, the max number of instances is set to 1 (Qovery EC2 constraint)
+
+Please check the configuration of the new service before deploying it.
+
+<Alert type="info">
+
+Note that only the instance configuration will be copied, not the data contained within the database.
+
+</Alert>
 
 ## Delete your database instance
 

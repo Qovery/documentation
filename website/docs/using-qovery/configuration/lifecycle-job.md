@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-06-12"
+last_modified_on: "2023-08-02"
 title: "Lifecycle Job"
 description: "Learn how to configure your Lifecycle job on Qovery"
 ---
@@ -392,6 +392,29 @@ Var `QOVERY_OUTPUT_JOB_<JOBID>_DB_PORT`
 - Alias: POSTGRES_DB_PORT
 
 Once the execution of the job is terminated and the environment variables are created, any application within the same environment will be able to access those environment variables and thus connect to the postgres instance.
+
+## Clone
+
+You can create a clone of the service via the clone feature. A new service with the same configuration (see below for exceptions) will be created into the target environment.
+
+<p align="center">
+  <img src="/img/clone_service.png" alt="Clone Service" />
+</p>
+
+The target environment can be the same as the current environment or even another one in a completely different project.
+
+** Importan information **
+
+Not every configuration parameter will be copied within the new service for consistency reasons. The configuration is fully or partially copied depending on the target environment:
+- same environment:
+    - custom domain: this setup is not copied into the new service (to avoid collision)
+- another environment:
+    - custom domain: this setup is not copied into the new service (to avoid collision)
+    - environment variable: aliases defined on environment variables are not copied (since the aliased env var might not exist)
+    - deployment pipeline: stage setup is not copied (since the target stage might not exist)
+    - number of instances: if the target environment runs on a Qovery EC2 cluster, the max number of instances is set to 1 (Qovery EC2 constraint)
+
+Please check the configuration of the new service before deploying it.
 
 ## Delete a job
 

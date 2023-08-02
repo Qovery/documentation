@@ -297,7 +297,7 @@ You can create a clone of the service via the clone feature. A new service with 
 
 The target environment can be the same as the current environment or even another one in a completely different project.
 
-** Importan information **
+** Important information **
 
 Not every configuration parameter will be copied within the new service for consistency reasons. The configuration is fully or partially copied depending on the target environment:
 - same environment:

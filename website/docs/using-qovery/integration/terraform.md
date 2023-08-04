@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-05-20"
+last_modified_on: "2023-08-04"
 title: "Terraform"
 description: "Learn how to use Terraform with Qovery"
 ---
@@ -23,17 +23,21 @@ Terraform can be used in 2 context:
 
 ## Deploy Qovery with Terraform
 
+Qovery integrates with Terraform to create a complete workflow with a strong developer and operations experience for the different teams from development to critical production applications. By integrating Terraform with Qovery, your team can quickly implement governance at scale while drastically improving the developer experience when deploying and managing applications.
+
 <Alert type="info">
 
 Check out our Terraform Provider on [Terraform Registry](https://registry.terraform.io/providers/Qovery/qovery/latest/docs) and [GitHub](https://github.com/Qovery/terraform-provider-qovery).
 
 </Alert>
 
-Qovery integrates with Terraform to create a complete workflow with a strong developer and operations experience for the different teams from development to critical production applications. By integrating Terraform with Qovery, your team can quickly implement governance at scale while drastically improving the developer experience when deploying and managing applications.
-
 ### Examples
 
 Check out our Terraform examples [here](https://github.com/Qovery/terraform-examples).
+
+### Terraform Exporter
+
+Qovery allows you to export your environment as a Terraform Manifest. Check [the Terraform Exporter documentation][docs.using-qovery.configuration.environment#terraform-exporter] to know more.
 
 ### Resources
 
@@ -67,6 +71,7 @@ Check out our Terraform examples [here](https://github.com/Qovery/lifecycle-job-
 Feel free to open a thread on our [Community Forum][urls.qovery_forum]. We will be happy to help you.
 
 
+[docs.using-qovery.configuration.environment#terraform-exporter]: /docs/using-qovery/configuration/environment/#terraform-exporter
 [docs.using-qovery.configuration.lifecycle-job]: /docs/using-qovery/configuration/lifecycle-job/
 [guides.tutorial.how-to-use-lifecycle-job-to-deploy-any-kind-of-resources]: /guides/tutorial/how-to-use-lifecycle-job-to-deploy-any-kind-of-resources/
 [urls.qovery_forum]: https://discuss.qovery.com/

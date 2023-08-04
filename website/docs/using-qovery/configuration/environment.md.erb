@@ -206,6 +206,24 @@ When cloning an environment, every configuration of the original environment wil
 - [Application custom domains][docs.using-qovery.configuration.application#domains]: custom domains are not cloned to avoid collision.
 - [Application BUILT_IN variables][docs.using-qovery.configuration.environment-variable#built_in-variables]: Since completely new services will be create, the original built_in variables will be replaced. Aliases and overrides are preserved during the clone operation.
 
+## Terraform exporter
+
+You can export the configuration of your environment as a Terraform manifest via the `Export as Terraform` option. This is helpful when you want to manage your configuration via Terraform: instead of creating the terraform manifest by hand, you can build the setup via the Qovery interface and export is as a Terraform file
+
+The export will contain the Terraform definition of the environment, the services within it but as well all the other resources linked to the environment (organization, cluster, project).
+
+You can decide wether or not the export should contain or not the secrets defined within the Qovery console.
+
+Here's a video explaining how it works:
+
+<div class="video-container">
+  <p align="center">
+    <iframe src="https://www.loom.com/share/4642112b9f2846789fb0ba8fc14726b5" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+    </iframe>
+  </p>
+</div>
+
+
 ## Deploy an environment
 Have a look at the [Deployment Management][docs.using-qovery.deployment] section for more information on how to deploy your environment.
 

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-08-02"
+last_modified_on: "2023-08-10"
 title: "Lifecycle Job"
 description: "Learn how to configure your Lifecycle job on Qovery"
 ---
@@ -319,11 +319,11 @@ The file should follow this format:
 ```json
 {
   "varname1": {
-    "sensitive": True,
+    "sensitive": true,
     "value": "myvalue"
   },
   "varname2": {
-    "sensitive": False,
+    "sensitive": false,
     "value": "myvalue"
   }
 }

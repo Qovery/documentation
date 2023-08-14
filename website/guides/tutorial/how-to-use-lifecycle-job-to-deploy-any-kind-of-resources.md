@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-12-25"
+last_modified_on: "2023-08-14"
 $schema: "/.meta/.schemas/guides.json"
 title: How To Use Lifecycle Job To Deploy Any Kind Of Resources
 description: Learn how to use Lifecycle Job to deploy any kind of resources with Qovery.
@@ -224,7 +224,7 @@ Search for `QOVERY_ENVIRONMENT_ID` built-in environment variable. Then click on 
 
 <li>
 
-Set the name of the environment variable to `TF_VAR_qovery_environment_id` with a **job** scope and click on **Confirm**.
+Set the name of the environment variable to `TF_VAR_qovery_environment_id` with a **service** scope and click on **Confirm**.
 
 <p align="center">
   <img src="/img/how-to-use-lifecycle-job/10.png" alt="" />

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-04-13"
+last_modified_on: "2023-08-18"
 title: Logs
 description: "Learn how to access the logs of your environment and services"
 ---
@@ -8,7 +8,7 @@ import Alert from '@site/src/components/Alert';
 import Assumptions from '@site/src/components/Assumptions';
 
 The Logs interface allows you to access:
-- **The deployment logs**: every time a deployment is triggered, Qovery provides you with the log of its execution and as well with any error that might occur. Note: As of now, Qovery can provide you only the log of the latest deployment execution.
+- **The deployment logs**: every time a deployment is triggered, Qovery provides you with the log of its execution and as well with any error that might occur.
 - **The live logs** of your applications: Qovery allows you to retrieve the logs of your application in real time, streamed directly from your remote application (no data is stored on Qovery side).  The logs are accessible as long as the application is running and writing the logs in the `stdout`.
 
 <!--
@@ -29,7 +29,7 @@ The `Logs` interface can be accessed from the console by clicking on the `parchm
 
 The interface is composed by two sections:
 - A **navigation panel** (on the left)
-- A **log section**
+- A **log section** allowing you to switch between the deployment logs and the live logs of a service.
 
 <p align="center">
   <img src="/img/deployment/logs_view.png" alt="Log View" />
@@ -40,26 +40,24 @@ The interface is composed by two sections:
 This section provides you with some information on the last `Deployment` happened on the environment and as well a navigation system to access the logs of each services of your environment. 
 
 More in detail you will find here:
-- Last deployment information (top section): this section shows you the status of the last deployment execution and when it happened. If a deployment is ongoing, its status will be updated accordingly on this section. 
+- Deployment information (top section): this section shows you the status of the deployment execution and when it happened. If a deployment is ongoing, its status will be updated accordingly on this section. 
 - Pipeline view: this section provides an overall view of the current configuration of the [Deployment Pipeline][docs.using-qovery.deployment.deployment-pipeline] and each services present within the environment. By default, only the services that have been deployed within the last deployment execution are displayed but you can still display all of them by un-ticking the option `Last deployed only`. 
 
 ## Log section
 
 This section allows you to access the `Deployment Logs` and the `Live logs` of each service.
 
-Once you click on one of the services on the `Navigation Panel`, the two logs will be loaded on separate tabs.
-
 ### Deployment Logs
 
-This tab shows you the deployment logs of the selected service. 
+This tab shows you the deployment logs for each service of the environment. By default you get access to the logs of the last deployment execution but you can switch to previous execution (See [Accessing old deployment logs](#accessing-old-deployment-logs)).
 
-<Alert type="info">
+If the service is built via the Qovery CI pipeline, you will get access to the build logs.
 
-Qovery provides you only the logs of the last deployment, if your service has been deployed before within another deployment you won't be able to access its deployment logs. This feature will be developed in the future
+<p align="center">
+  <img src="/img/deployment/build_logs.png" alt="Build Logs" />
+</p>
 
-</Alert>
-
-While the deployment is ongoing and goes through the different steps (pull code, build, push image, deploy etc..), the system will show you the execution logs and as well some status updates on the ongoing deployment.
+When the deployment on Kubernetes is executed, the system will provide you the deployment status updates. In case of deployment issues, these updates will provide you with some information on the rootcause.
 
 <p align="center">
   <img src="/img/deployment/deployment_status_update.png" alt="Deployment Status Update" />
@@ -72,6 +70,28 @@ At the end of the deployment, a final message is emitted confirming if the deplo
 </p>
 
 You can use the [Troubleshoot section][docs.using-qovery.troubleshoot] to investigate any issue you might encounter during the deployment of your services.
+
+#### Accessing old deployment logs
+
+You can access the logs of a past deployment execution in two ways:
+- using the `Deployment log switch` on the logs view
+
+<p align="center">
+  <img src="/img/deployment/deployment_switch.png" alt="Deployment Log Switch" />
+</p>
+
+
+- from the `Deployment` tab from the service or environment page and clicking on the `parchment` icon of a previous deployment
+
+<p align="center">
+  <img src="/img/deployment/deployment_tab_switch.png" alt="Deployment Tab Switch" />
+</p>
+
+<Alert type="info">
+
+Qovery provides access to the logs of the last 20 deployments executed on your environment. If your service has been deployed before more than 20 deployments ago, you won't be able to access its deployment logs.
+
+</Alert>
 
 ### Live Logs
 

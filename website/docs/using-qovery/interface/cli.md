@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-04-23"
+last_modified_on: "2023-08-04"
 title: CLI
 description: How to use the Qovery CLI (Command Line Interface)
 ---
@@ -353,7 +353,7 @@ Qovery: Opening https://console.qovery.com/platform/organization/your-org/projec
 
 ## Shell
 
-Shell command allows you to open an ssh connection with the container where your application is running (application selected via the cli context).
+Shell command allows you to open a connection and execute commands directly on the container running application.
 
 ```bash
 $ qovery shell

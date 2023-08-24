@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-06-28"
+last_modified_on: "2023-08-04"
 title: "Members and RBAC"
 description: "Learn how to manage the RBAC via Qovery"
 ---
@@ -72,7 +72,7 @@ More in detail, you can find the associated permissions below:
 | Create environment or service                          | yes   | yes   | no     | no              | no     |
 | Add/Edit/Delete environment variables and secrets      | yes   | yes   | yes    | no              | no     |
 | Deploy/Stop ANY environment or service                 | yes   | yes   | yes    | no              | no     |
-| Connect via SSH to ANY application                     | yes   | yes   | yes    | no              | no     |
+| Connect via shell to ANY application                     | yes   | yes   | yes    | no              | no     |
 
 <Alert type="info">
 

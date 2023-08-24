@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-03-29"
+last_modified_on: "2023-08-21"
 title: "Deployment Rule"
 description: "Learn how to configure the lifecycle of your Environments"
 ---
@@ -69,110 +69,30 @@ Select your project
 </li>
 <li>
 
-In project overview, click **Settings** button:
+In the environment list, select the tab **Deployment Rule** and click **Add Rule** button:
 
 <p align="center">
-  <img src="/img/configuration/deployment/deploy-1.png" alt="Deployments" />
+  <img src="/img/configuration/deployment_rule/deployment_rules_project.png" alt="Deployment Rules Project" />
 </p>
+
 
 </li>
 <li>
 
-In the popup, select **Deployment Rules** and add **New**:
+### Matching rule definition
 
-<p align="center">
-  <img src="/img/configuration/deployment/deploy-2.png" alt="Deployments" />
-</p>
+You will have to provide a rule name, description and a **matching condition**.
 
-</li>
-<li>
+#### Matching Condition - Environment Name
+This field allows you to specify which environments should be affected by the given deployment rule, based on their name.
 
-### General
+You can either enter the full environment name or use **Wildcards**.
 
-#### Mode
+**Wildcards**
 
-Selecting Mode allows you to labelize the environment. 
+Wildcards allows you to build regular expression to match the name of the environments you want your deployment rule to target. 
 
-<Alert type="info">
-
-To learn more about the environment modes, take a look to the [Type of environments](docs.using-qovery.configuration.environment#type-of-environment) section.
-
-</Alert>
-
-
-#### Cluster
-
-Selecting the cluster allows you to control to which cluster your environments in the project will be deployed to.
-
-**Example use cases**
-- deploy your development environments on a cheap cloud provider
-- deploy your environments in multiple regions
-
-<p align="center">
-  <img src="/img/configuration/deployment/deploy-3.png" alt="Deployments" />
-</p>
-
-</li>
-<li>
-
-### Deployment
-
-#### Auto-deploy
-
-**Auto deploy** feature allows you to control if your applications should be, by default, automatically updated after receiving new commits.
-
-#### Auto-delete
-
-**Auto-delete** feature allows you to control if your applications should be, by default, automatically deleted after branch merging or deletion.
-
-#### Start & Stop
-
-The start and stop section allow you to precisely set up when the environments inside the project should be deployed and cleaned up.
-
-**Use cases examples**
-
-- shut down your development environments during the weekend
-- deploy additional environments during peak hours
-
-<br/>
-
-</li>
-<li>
-
-### Target Future Environment
-
-This option allows you to specify which environments should be affected by the given deployment rule.
-
-<p align="center">
-  <img src="/img/deploy-4.png" alt="Deployments" />
-</p>
-
-<Alert type="info">
-
-To learn how to write a rule thanks to the wildcards, take a look to the [wildcards sections](#wildcards).
-
-</Alert>
-
-</li>
-</ol>
-
-</Steps>
-
-### Rules priority 
-
-Since you can define several rules, it is possible that an environment is targeted by more than one of them.
-In order to define which rule applies first to your new environments, you can reorder the list of rules in the deployment setting window. 
-Starting from the top, the rules are ranked from highest to lowest priority. 
-
-<p align="center">
-  <img src="/img/rules-priority.png" alt="Reorder priority rules" />
-</p>
-
-### Wildcards
-
-Wildcards will allow you to specify the environments you want your deployment rule to target. 
-
-You can use the following characters to specify your rule. 
+You can use the following characters to specify your rule.
 
 | wildcard |         behavior        |                will match               |
 |:--------:|:-----------------------:|:---------------------------------------:|
@@ -190,8 +110,74 @@ For example, the rule `Prod_Env_*` will target the environment named:
 - `Prod_Env_1`
 - `Prod_Env_feature`
 
-But will not target the environment named:
-- `Staging_Env_1`
+But will not target the environment named: `Staging_Env_1`
+
+<Alert type="info">
+
+If you want to apply a rule to the preview envirionments, use the rule "[PR]*" (since every preview environment name will start with "[PR]")
+
+</Alert>
+
+### Setup to apply - General
+
+#### Mode
+
+Selecting Mode allows you to labelize the environment. 
+
+<Alert type="info">
+
+To learn more about the environment modes, take a look to the [Type of environments](docs.using-qovery.configuration.environment#type-of-environment) section.
+
+</Alert>
+
+
+#### Cluster
+
+Selecting the cluster allows you to control to which cluster your environments in the project will be deployed to.
+
+**Example use cases**
+- deploy your development environments on a more cost effective cluster
+- deploy your environments in multiple regions
+
+
+#### Auto-deploy
+**Auto deploy** feature allows you to control if your applications should be, by default, automatically updated after receiving new commits.
+
+
+### Setup to apply - Start & stop
+
+#### Auto-delete
+
+**Auto-delete** feature allows you to control if your applications should be, by default, automatically deleted after branch merging or deletion.
+
+#### Start & Stop
+
+The start and stop section allow you to precisely set up when the environments inside the project should be deployed and cleaned up.
+
+**Use cases examples**
+
+- shut down your development environments during the weekend
+- deploy additional environments during peak hours
+
+<br/>
+
+</li>
+
+</ol>
+
+</Steps>
+
+### Rules priority 
+
+Since you can define several rules, it is possible that an environment is targeted by more than one of them.
+In order to define which rule applies first to your new environments, you can reorder the list of rules in the deployment setting window. 
+Starting from the top, the rules are ranked from highest to lowest priority. 
+
+<p align="center">
+  <img src="/img/configuration/deployment_rule/ordering_deployment_rule.png" alt="Reorder priority rules" />
+</p>
+
+
 
 ## Environment Deployment Rules
 

@@ -353,7 +353,7 @@ Qovery: Opening https://console.qovery.com/platform/organization/your-org/projec
 
 ## Shell
 
-Shell command allows you to open a connection and execute commands directly on the container runnig application.
+Shell command allows you to open a connection and execute commands directly on the container running application.
 
 ```bash
 $ qovery shell

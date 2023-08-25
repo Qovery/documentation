@@ -108,7 +108,9 @@ To create a new restriction you have to specify the `Mode` and the `Value`:
 - EXCLUDE: commits on the file or folder defined in the "Value" field will be ignored and will not trigger a deployment
 - MATCH: only commits on the file or folder defined in the "Value" field will trigger a deployment
 
-Note, Wildcards are not supported in the "Value" field (you can say Exclude all files ending with ".sh")
+Note:
+- the "Value" field should not start with a "/"
+- Wildcards are not supported in the "Value" field (you can say Exclude all files ending with ".sh")
 
 <Alert type="info">
 

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-08-04"
+last_modified_on: "2023-08-25"
 title: "Environment"
 description: "Learn how to configure your Environments on Qovery"
 ---
@@ -94,15 +94,39 @@ Please note that the associated cluster is not editable after the environment wa
 
 Using Deployment Rules is a good practice to drastically **reduce your cost**. To know more of the benefit of using them, have a look at the [Deployment Rules section][docs.using-qovery.configuration.deployment-rule].
 
-A default deployment configuration is applied to your environment when it's created but you can modify it by:
-- editing the deployment rules settings from within the environment settings tab
-- creating a [dedicated rule at project level][docs.using-qovery.configuration.deployment-rule#project-deployment-rules] that will affect any new environment created and matching the condition.
+A default deployment configuration is applied to your environment when it's created but you can modify this default behaviour by creating a [dedicated rule at project level][docs.using-qovery.configuration.deployment-rule#project-deployment-rules] that will affect any new environment created and matching the condition.
+
+Once created, you can edit the deployment rule of the environment from the deployment rules settings.
 
 Below you can find the description of the deployment rule settings that can be modified for a specific environment
 
 #### Auto-deploy
 
-**Auto deploy** allows you to override the default settings applied by the project rule related to if your applications should be by default automatically updated after receiving new commits.
+**Auto deploy** allows you to automatically deploy your applications if a new commit is pushed on their branches. By default any commit on the branch will trigger a deployment of the applications but you can pilot this via the **Deployment Restrictions**
+
+** Deployment restrictions **
+A deployment restriction defines which files or folder should trigger or not an auto-deploy of the application. For example, you want to exclude a deployment of your application if a change on a README file is committed on the repository.
+
+Deployment restrictions are defined at service level, from the service settings. You can create a new restriction by pressing the "New restriction" button
+
+<p align="center">
+  <img src="/img/configuration/environments/deployment_restrictions.png" alt="Deployment Restrictions" />
+</p>
+
+To create a new restriction you have to specify the `Mode` and the `Value`:
+- EXCLUDE: commits on the file or folder defined in the "Value" field will be ignored and will not trigger a deployment
+- MATCH: only commits on the file or folder defined in the "Value" field will trigger a deployment
+
+Note:
+- the "Value" field should not start with a "/"
+- Wildcards are not supported in the "Value" field (you can say Exclude all files ending with ".sh")
+
+<Alert type="info">
+
+The feature is available only for applications and jobs deployed from a git repository (no container image)
+
+</Alert>
+
 
 #### Start & Stop
 

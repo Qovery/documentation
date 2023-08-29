@@ -88,6 +88,18 @@ module.exports = {
               ],
             },
             "using-qovery/configuration/clusters",
+            {
+              type: 'category',
+              label: 'Cloud Service Provider',
+              items: [
+                "using-qovery/configuration/cloud-service-provider",
+                "using-qovery/configuration/cloud-service-provider/amazon-web-services",
+                "using-qovery/configuration/cloud-service-provider/microsoft-azure",
+                "using-qovery/configuration/cloud-service-provider/google-cloud-platform",
+                "using-qovery/configuration/cloud-service-provider/digital-ocean",
+                "using-qovery/configuration/cloud-service-provider/scaleway",
+              ],
+            },
             "using-qovery/configuration/cluster-advanced-settings",
             "using-qovery/configuration/project",
             "using-qovery/configuration/environment",
@@ -110,18 +122,7 @@ module.exports = {
             "using-qovery/configuration/advanced-settings",
             "using-qovery/configuration/object-storage",
             "using-qovery/configuration/deployment-rule",
-            {
-              type: 'category',
-              label: 'Cloud Service Provider',
-              items: [
-                "using-qovery/configuration/cloud-service-provider",
-                "using-qovery/configuration/cloud-service-provider/amazon-web-services",
-                "using-qovery/configuration/cloud-service-provider/microsoft-azure",
-                "using-qovery/configuration/cloud-service-provider/google-cloud-platform",
-                "using-qovery/configuration/cloud-service-provider/digital-ocean",
-                "using-qovery/configuration/cloud-service-provider/scaleway",
-              ],
-            },
+            "using-qovery/configuration/user-account",
           ]
         },
         {

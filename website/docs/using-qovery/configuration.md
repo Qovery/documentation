@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-06-12"
+last_modified_on: "2023-08-29"
 title: Configuration
 description: "Everything you need to know to configure and deploy your applications on Qovery"
 sidebar_label: hidden
@@ -26,6 +26,7 @@ In the following subsections, you'll learn all you need to know to configure and
 <Jump to="/docs/using-qovery/configuration/organization/">Organization</Jump>
 <Jump to="/docs/using-qovery/configuration/project/">Project</Jump>
 <Jump to="/docs/using-qovery/configuration/service-health-checks/">Service health checks</Jump>
+<Jump to="/docs/using-qovery/configuration/user-account/">User account</Jump>
 
 
 

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-06-08"
+last_modified_on: "2023-08-31"
 $schema: "/.meta/.schemas/guides.json"
 title: Preview Environments
 description: Learn how to use and leverage Preview Environments with Qovery
@@ -32,12 +32,13 @@ If you are using Qovery to run your Production, we recommend using Preview Envir
 
 Here are some resources you can use to use and take advantage of Qovery Preview Environments:
 
-| Title                                                                                                                      | Description                                                                                                                                 | Author    |
-|----------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|-----------|
-| [Getting Started with Preview Environment][guides.tutorial.getting-started-with-preview-environments-on-aws-for-beginners] | [Learn how to get started with Qovery Preview Environments][guides.tutorial.getting-started-with-preview-environments-on-aws-for-beginners] | Qovery    |
-| [Customize preview URL][guides.tutorial.customizing-preview-url-with-qovery-cli]                                           | [Learn how to customize your Preview URL with the Qovery CLI][guides.tutorial.customizing-preview-url-with-qovery-cli]                      | Qovery    |
-| [Automatically stop unused Preview Environments][docs.using-qovery.configuration.deployment-rule]                          | [Learn how to automatically teardown your Preview Environments on a specific schedule][docs.using-qovery.configuration.deployment-rule]     | Qovery    |
-| [Forum "Preview Environment"](https://discuss.qovery.com/search?q=preview%20environment)                                   | [List "Preview Environments" threads from Qovery community forum](https://discuss.qovery.com/search?q=preview%20environment)                | Community |
+| Title                                                                                                                               | Description                                                                                                                                               | Author    |
+|-------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|
+| [Getting Started with Preview Environment][guides.tutorial.getting-started-with-preview-environments-on-aws-for-beginners]          | [Learn how to get started with Qovery Preview Environments][guides.tutorial.getting-started-with-preview-environments-on-aws-for-beginners]               | Qovery    |
+| [Customize preview URL][guides.tutorial.customizing-preview-url-with-qovery-cli]                                                    | [Learn how to customize your Preview URL with the Qovery CLI][guides.tutorial.customizing-preview-url-with-qovery-cli]                                    | Qovery    |
+| [Automatically stop unused Preview Environments][docs.using-qovery.configuration.deployment-rule]                                   | [Learn how to automatically teardown your Preview Environments on a specific schedule][docs.using-qovery.configuration.deployment-rule]                   | Qovery    |
+| [Build E2E Testing Ephemeral Environments with GitHub Actions and Qovery][guides.tutorial.build-e2e-testing-ephemeral-environments] | [Step-by-step guide to build e2e testing ephemeral environments with GitHub Actions and Qovery][guides.tutorial.build-e2e-testing-ephemeral-environments] | Qovery    |
+| [Forum "Preview Environment"](https://discuss.qovery.com/search?q=preview%20environment)                                            | [List "Preview Environments" threads from Qovery community forum](https://discuss.qovery.com/search?q=preview%20environment)                              | Community |
 
 ## Q&A
 
@@ -46,6 +47,7 @@ Do you need more examples? Do you have any questions? Feel free to ask on our [C
 
 [docs.using-qovery.configuration.clusters]: /docs/using-qovery/configuration/clusters/
 [docs.using-qovery.configuration.deployment-rule]: /docs/using-qovery/configuration/deployment-rule/
+[guides.tutorial.build-e2e-testing-ephemeral-environments]: /guides/tutorial/build-e2e-testing-ephemeral-environments/
 [guides.tutorial.customizing-preview-url-with-qovery-cli]: /guides/tutorial/customizing-preview-url-with-qovery-cli/
 [guides.tutorial.getting-started-with-preview-environments-on-aws-for-beginners]: /guides/tutorial/getting-started-with-preview-environments-on-aws-for-beginners/
 [urls.qovery_forum]: https://discuss.qovery.com/

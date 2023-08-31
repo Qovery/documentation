@@ -396,6 +396,15 @@ module.exports = {
         {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
+          "id": "/tutorial/build-e2e-testing-ephemeral-environments",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/build-e2e-testing-ephemeral-environments.md",
+          "series_position": null,
+          "title": "Build E2E Testing Ephemeral Environments with GitHub Actions and Qovery"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
           "id": "/tutorial/create-a-playground-environment-on-aws",
           "last_modified_on": null,
           "path": "website/guides/tutorial/create-a-playground-environment-on-aws.md",

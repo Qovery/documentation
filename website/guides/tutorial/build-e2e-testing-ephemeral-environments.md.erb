@@ -102,6 +102,10 @@ At the end of those steps, you should have something like this:
 
 If you want to use my `TODO app` as an example, you need to properly configure the environment variables of the application. Here is a table with the environment variables you need to set:
 
+<details>
+
+<summary>Environment Variables</summary>
+
 | Name                           | Is Alias?                                              | Scope   | Value                                                                      | Comment                                      |
 |--------------------------------|--------------------------------------------------------|---------|----------------------------------------------------------------------------|----------------------------------------------|
 | `POSTGRES_DB_NAME`             | Yes for `QOVERY_POSTGRESQL_Z..._DEFAULT_DATABASE_NAME` | Service | N/A                                                                        | Database name                                |
@@ -110,6 +114,8 @@ If you want to use my `TODO app` as an example, you need to properly configure t
 | `POSTGRES_DATASOURCE_USERNAME` | Yes for `QOVERY_POSTGRESQL_Z..._LOGIN`                 | Service | N/A                                                                        | Database login                               |
 | `POSTGRES_DATASOURCE_PASSWORD` | Yes for `QOVERY_POSTGRESQL_Z..._PASSWORD`              | Service | N/A                                                                        | Database password                            |
 | `QUARKUS_DATASOURCE_JDBC_URL`  | No                                                     | Service | jdbc:postgresql://{{POSTGRES_HOST}}:{{POSTGRES_PORT}}/{{POSTGRES_DB_NAME}} | Connection string to the PostgreSQL database |
+
+</details>
 
 You're good to go! Now, let's move on to the next step.
 

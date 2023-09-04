@@ -182,6 +182,18 @@ All services have access to advanced settings, you can find where they are avail
 |---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------|---------------|
 | integer | Sets a timeout (in seconds) for transmitting a request to the proxied server. The timeout is set only between two successive write operations, not for the transmission of the whole request. If the proxied server does not receive anything within this time, the connection is closed. | E.g. You can use it to fine-tune your WebSocket application. | `60`          |
 
+#### network.ingress.proxy_buffering ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg)
+
+| Type   | Description                                                                              | Default Value |
+|--------|------------------------------------------------------------------------------------------|---------------|
+| string | Allows you to enable or disable nginx `proxy-buffering`. Valid values are `on` or `off`  | `on`          |
+
+#### network.ingress.proxy_request_buffering ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg)
+
+| Type   | Description                                                                                      | Default Value |
+|--------|--------------------------------------------------------------------------------------------------|---------------|
+| string | Allows you to enable or disable nginx `proxy-request_buffering`. Valid values are `on` or `off`  | `on`          |
+
 #### network.ingress.send_timeout_seconds ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg)
 
 | Type    | Description                                                                                                                                                                                                                                                                 | Use Case                                                            | Default Value |
@@ -217,6 +229,12 @@ username:$apr1$jpwW4vG9$fwbzWBgRqARzNX93plDq20
 The content of the `BASIC_AUTH_CREDENTIALS` environment variable should be: `username:$apr1$jpwW4vG9$fwbzWBgRqARzNX93plDq20`. To finish, set the `network.ingress.basic_auth_env_var` advanced settings to `BASIC_AUTH_CREDENTIALS`.
 
 You can pass set credentials by separating them with a comma. For example: `username1:$apr1$jpwW4vG9$fwbzWBgRqARzNX93plDq20,username2:$apr1$jpwW4vG9$fwbzWBgRqARzNX93plDq20`. However, the total length of the environment variable should not exceed 1MB.
+
+#### network.ingress.extra_headers ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg)
+
+| Type   | Description                                                                                                                                   | Default Value |
+|--------|-----------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| string | Allows you to specify response headers with values separated by comma (e.g. ` {"X-Frame-Options":"DENY ","X-Content-Type-Options":"nosniff"}` | `{}`          |
 
 ## Auto-scaling
 

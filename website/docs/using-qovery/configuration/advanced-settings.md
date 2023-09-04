@@ -246,7 +246,7 @@ You can pass set credentials by separating them with a comma. For example: `user
 
 | Type   | Description                                                                                                                                   | Default Value |
 |--------|-----------------------------------------------------------------------------------------------------------------------------------------------|---------------|
-| string | Allows you to specify response headers with values separated by comma (e.g. ` {"X-Frame-Options":"DENY ","X-Content-Type-Options":"nosniff"}` | `{}`          |
+| string | Allows you to specify response headers with values separated by comma (e.g. ` {"X-Frame-Options":"DENY","X-Content-Type-Options":"nosniff"}` | `{}`          |
 
 ## Auto-scaling
 

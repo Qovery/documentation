@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-04-19"
+last_modified_on: "2023-09-14"
 title: "Container Registry"
 description: "Learn how to manage the container registry allowed in your organization"
 ---
@@ -37,12 +37,12 @@ By clicking on "Add Registry" you will be able to create a new Container Registr
 - Registry Name
 - Description
 - Registry Url: the base url of the registry (example: https://docker.io, https://public.ecr.aws etc..)
-- Registry type: you can chose among DockerHub, Public ECR, ECR (AWS private CR), Scaleway CR (Scaleway private CR)
+- Registry type: you can chose among DockerHub, Public ECR, ECR (AWS private CR), Scaleway CR (Scaleway private CR), Github CR (Package), Gitlab CR, Generic.
 - Credentials: these depends on the chosen registry type. If a container registry is public, you don't need to fill this part. 
 
-<Alert type="info">
-
-We encourage you to set credentials for Docker Hub due to the limits on the pull rate. [See here](https://www.docker.com/increase-rate-limits/) for more details
+**Important information**:
+- If you select Docker Hub, we encourage you to set credentials to increase the limits on the pull rate. [See here](https://www.docker.com/increase-rate-limits/) for more details
+- If the registry you need is not in the list and it supports the docker login format you can use the “Generic” registry.
 
 </Alert>
 

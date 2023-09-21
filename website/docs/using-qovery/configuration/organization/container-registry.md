@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-09-14"
+last_modified_on: "2023-09-21"
 title: "Container Registry"
 description: "Learn how to manage the container registry allowed in your organization"
 ---
@@ -43,8 +43,6 @@ By clicking on "Add Registry" you will be able to create a new Container Registr
 **Important information**:
 - If you select Docker Hub, we encourage you to set credentials to increase the limits on the pull rate. [See here](https://www.docker.com/increase-rate-limits/) for more details
 - If the registry you need is not in the list and it supports the docker login format you can use the “Generic” registry.
-
-</Alert>
 
 Now that you have created the registry, you can start using it in order to [create and deploy a service][docs.using-qovery.configuration.application#deploying-from-a-container-registry] using the images stored within it.
 

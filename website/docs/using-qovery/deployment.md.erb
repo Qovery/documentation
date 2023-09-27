@@ -14,12 +14,24 @@ In the image below you can find the complete flow that your application will go 
   <img src="/img/deployment/deployment_overview_qovery.png" alt="Deployment history access" />
 </p>
 
-Note: we also support deployments from container registry
+1. The developer pushes the code within the git repository
+2. The deployment trigger can come from different sources depending on your integration type:
+2.a The auto-deploy feature is activated on Qovery. When the new commit is pushed, a webhook call is received by Qovery and can proceed with the application deployment. See [this section][docs.using-qovery.deployment.deploying-with-auto-deploy] for more information.
+2.b The auto-deploy feature is not activated on Qovery and the deployment is managed via [the CI/CD][docs.using-qovery.deployment.deploying-with-ci-cd].
+2.c The auto-deploy feature is not activated on Qovery and the user decides to trigger the deployment directly from within the Qovery console.
+3. The Qovery engine starts processing based on the configured `Deployment Pipeline`. The pipeline defines the steps that need to be followed in order to deploy your applications. See [this section][docs.using-qovery.deployment.deployment-pipeline] for more information.
+4. The Qovery engine pulls the code from your repository.
+5. The Qovery engine builds the code and pushes the genrated images on a registry present within your cloud account.
+6. The Qovery engine creates the load balancers and configure the network.
+7. The Qovery engine creates a namespace within the Kubernetes cluster and deploys the application.
+8. The Qovery engine takes care of creating a custom domain for your application and as well configure the TLS so that you can access the application from the internet.
 
-To achieve this goal, Qovery provides you with:
-- A configurable `Deployment Pipeline` which defines the steps that need to be followed in order to deploy your applications. See [this section][docs.using-qovery.deployment.deployment-pipeline] for more information.
-- A set of `Deployment Actions` which allows you to manage the deployment lifecycle of your applications and environments. See [this section][docs.using-qovery.deployment.deployment-actions] for more information.
-- A `Continuous Deployment` integration in case you want to manage the deployment of you applications via your CI/CD. See [this section][docs.integration.continuous-integration] for more information.
-- A `Deployment History` section to get all the information about the past deployments. See [this section][docs.using-qovery.deployment.deployment-history] for more information.
-- A `Deployment Status` and a `Running Status` to monitor the status of your services and environments. See [this section][docs.using-qovery.deployment.running-and-deployment-statuses] for more information.
-- A `Logs` interface to retrieve the deployment logs of your application and as well its logs in real-time. See [this section][docs.using-qovery.deployment.logs] for more information.
+The developer can monitor at each time the status of the deployment or of the running applications by:
+- checking the `Deployment Status` and `Running Status`. See [this section][docs.using-qovery.deployment.running-and-deployment-statuses] for more information.
+- access the `Logs` interface to retrieve the deployment logs and as well the application logs in real-time. See [this section][docs.using-qovery.deployment.logs] for more information.
+- access the `Deployment History` section to get all the information about the past deployments. See [this section][docs.using-qovery.deployment.deployment-history] for more information.
+
+
+Note: 
+- Qovery also support deployments from container registry but actions 2a is not supported plus 4 and 5 are not done.
+- In the example above we have shown how the deployment of an application is done but Qovery provides you with a complete set of `Deployment Actions` allowing you to manage the deployment lifecycle of your applications and environments (Stop, restart etc..). See [this section][docs.using-qovery.deployment.deployment-actions] for more information.

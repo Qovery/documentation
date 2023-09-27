@@ -130,13 +130,14 @@ module.exports = {
           label: 'Deployment',
           items: [
             "using-qovery/deployment",
-            "using-qovery/deployment/deployment-strategies",
+            "using-qovery/deployment/deploying-with-auto-deploy",
+            "using-qovery/deployment/deploying-with-ci-cd",
             "using-qovery/deployment/deployment-pipeline",
             "using-qovery/deployment/deployment-actions",
-            "using-qovery/deployment/deploying-with-ci-cd",
             "using-qovery/deployment/deployment-history",
             "using-qovery/deployment/running-and-deployment-statuses",
             "using-qovery/deployment/logs",
+            "using-qovery/deployment/deployment-strategies",
           ],
         },
         {

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-04-27"
+last_modified_on: "2023-09-27"
 title: "Deployment Actions"
 description: "Learn how to deploy your application"
 ---
@@ -7,7 +7,7 @@ import Jump from '@site/src/components/Jump';
 import Alert from '@site/src/components/Alert';
 import Assumptions from '@site/src/components/Assumptions';
 
-Qovery allows you to manage the deployment lifecycle of your services and environments via a set of `Deployment actions` (example: deploy, redeploy, restart, stop etc..).
+Qovery allows you to manage the deployment lifecycle of your services and environments via a set of `Deployment actions` (example: deploy, redeploy, restart, stop etc..). These actions can be triggered via the Qovery web console, via the Qovery API, via the Qovery CLI or from your CI/CD depending on your integration type.
 
 You can imagine the deployment lifecycle of a service or environment like a state machine: 
 * each state is identified by a `Deployment Status`

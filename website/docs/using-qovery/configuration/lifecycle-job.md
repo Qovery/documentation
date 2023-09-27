@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-08-10"
+last_modified_on: "2023-09-27"
 title: "Lifecycle Job"
 description: "Learn how to configure your Lifecycle job on Qovery"
 ---
@@ -98,6 +98,9 @@ The tag 'latest' is not supported, please use a specific tag.
 
 </Alert>
 
+** Auto Deploy **
+
+See the [Deploying with auto-deploy feature][docs.qovery.deployment.deploying-with-auto-deploy] section.
 
 </li>
 <li>
@@ -260,6 +263,10 @@ CMD node ./bin/www
 After creating a Dockerfile, specify the location of your Dockerfile in `Dockefile path` field.
 
 Configuration from above will make Qovery look for the Dockerfile in `/timescale/Dockerfile` path of your repository (`Root Application Path` + `Dockerfile Path`).
+
+** Auto Deploy **
+
+See the [Deploying with auto-deploy feature][docs.qovery.deployment.deploying-with-auto-deploy] section.
 
 ### JOB Configuration
 You can modify here the configuration of your job:
@@ -438,6 +445,7 @@ In the overview, click on the `3 dots` button and remove the job. Note: the same
 </Steps>
 
 
+[docs.qovery.deployment.deploying-with-auto-deploy]: /docs/using-qovery/deployment/deploying-with-auto-deploy/
 [docs.using-qovery.configuration.application-health-checks]: /docs/using-qovery/configuration/application-health-checks/
 [docs.using-qovery.configuration.environment-variable]: /docs/using-qovery/configuration/environment-variable/
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/

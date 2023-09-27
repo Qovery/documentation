@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-02-05"
+last_modified_on: "2023-09-27"
 $schema: "/.meta/.schemas/guides.json"
 title: How to integrate Qovery with GitHub Actions
 description: Learn how to integrate Qovery with GitHub Actions
@@ -45,19 +45,19 @@ In this tutorial, we will deploy an application with GitHub Actions by using the
 The first thing we need to do, is to disable automatic deployments. By default, Qovery applications get re-deployed whenever you push some code to the configured branch.
 Since we want to trigger the deployment through GitHub Actions, we need to disable this behavior.
 
-Go to your environment page, then click `Settings`:
+Go to your application page, then click `Settings`:
 
 <p align="center">
   <img src="/img/how-to-integrate-qovery-with-github-actions/1.png" alt="" />
 </p>
 
-Then go to `Deployment` and on the `Auto-deploy` dropdown, select `Off`:
+Then on the `General` section go to the `Auto-deploy` field, select `Off`:
 
 <p align="center">
   <img src="/img/how-to-integrate-qovery-with-github-actions/2.png" alt="" />
 </p>
 
-Click save and close the modal.
+Click save.
 
 ## Add your GitHub Actions Workflow
 

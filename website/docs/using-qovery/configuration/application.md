@@ -77,6 +77,9 @@ The tag 'latest' is not supported, please use a specific tag.
 
 </Alert>
 
+** Auto Deploy **
+
+See the [Deploying with auto-deploy feature][docs.qovery.deployment.deploying-with-auto-deploy] section.
 
 </li>
 <li>
@@ -254,6 +257,11 @@ CMD node ./bin/www
 After creating a Dockerfile, specify the location of your Dockerfile in `Dockefile path` field.
 
 Configuration from above will make Qovery look for the Dockerfile in `/timescale/Dockerfile` path of your repository (`Root Application Path` + `Dockerfile Path`).
+
+#### Auto Deploy
+
+See the [Deploying with auto-deploy feature][docs.qovery.deployment.deploying-with-auto-deploy] section.
+
 
 ### Resources
 
@@ -501,6 +509,7 @@ In the application overview, click on the `3 dots` button and remove the applica
 
 
 [docs.configuration.application#resources]: /docs/using-qovery/configuration/application/#resources
+[docs.qovery.deployment.deploying-with-auto-deploy]: /docs/using-qovery/deployment/deploying-with-auto-deploy/
 [docs.using-qovery.configuration.advanced-settings#network-settings]: /docs/using-qovery/configuration/advanced-settings/#network-settings
 [docs.using-qovery.configuration.application#build-mode]: /docs/using-qovery/configuration/application/#build-mode
 [docs.using-qovery.configuration.application#domains]: /docs/using-qovery/configuration/application/#domains

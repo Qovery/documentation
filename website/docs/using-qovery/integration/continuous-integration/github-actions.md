@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-06-07"
+last_modified_on: "2023-09-27"
 title: "GitHub Actions"
 description: "Learn how to connect GitHub Actions to Qovery"
 ---
@@ -25,7 +25,7 @@ Before using the examples below, you need to:
 1. Install the [Qovery CLI][docs.using-qovery.interface.cli].
 2. Generate an API token via [the CLI][docs.using-qovery.interface.cli#generate-api-token] or the [Console][docs.using-qovery.configuration.organization.api-token] .
 3. Set the environment variable `Q_CLI_ACCESS_TOKEN` or `QOVERY_CLI_ACCESS_TOKEN` (both are valid) with your API token. E.g. `export QOVERY_CLI_ACCESS_TOKEN=your-api-token`
-4. You have turned off the [Qovery Auto Deployment][docs.using-qovery.configuration.environment#auto-deploy] for your environment that you want to deploy manually.
+4. You have turned off the [Qovery Auto Deployment][docs.using-qovery.deployment.deploying-with-auto-deploy] for every service that you want to deploy manually.
 
 ## GitHub Actions Examples
 
@@ -208,9 +208,9 @@ Do you want to include Terraform in your CI? Check out our [Terraform documentat
 Feel free to share your examples with us, and we'll be happy to share them with the community. Contact us on [our forum][urls.qovery_forum].
 
 
-[docs.using-qovery.configuration.environment#auto-deploy]: /docs/using-qovery/configuration/environment/#auto-deploy
 [docs.using-qovery.configuration.organization.api-token]: /docs/using-qovery/configuration/organization/api-token/
 [docs.using-qovery.configuration.organization.container-registry]: /docs/using-qovery/configuration/organization/container-registry/
+[docs.using-qovery.deployment.deploying-with-auto-deploy]: /docs/using-qovery/deployment/deploying-with-auto-deploy/
 [docs.using-qovery.integration.terraform]: /docs/using-qovery/integration/terraform/
 [docs.using-qovery.interface.cli#generate-api-token]: /docs/using-qovery/interface/cli/#generate-api-token
 [docs.using-qovery.interface.cli]: /docs/using-qovery/interface/cli/

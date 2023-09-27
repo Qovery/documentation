@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-08-21"
+last_modified_on: "2023-09-27"
 title: "Deployment Rule"
 description: "Learn how to configure the lifecycle of your Environments"
 ---
@@ -139,16 +139,7 @@ Selecting the cluster allows you to control to which cluster your environments i
 - deploy your development environments on a more cost effective cluster
 - deploy your environments in multiple regions
 
-
-#### Auto-deploy
-**Auto deploy** feature allows you to control if your applications should be, by default, automatically updated after receiving new commits.
-
-
 ### Setup to apply - Start & stop
-
-#### Auto-delete
-
-**Auto-delete** feature allows you to control if your applications should be, by default, automatically deleted after branch merging or deletion.
 
 #### Start & Stop
 

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-08-02"
+last_modified_on: "2023-09-27"
 title: "Cronjob"
 description: "Learn how to configure your Cronjob on Qovery"
 ---
@@ -81,6 +81,9 @@ The tag 'latest' is not supported, please use a specific tag.
 
 </Alert>
 
+** Auto Deploy **
+
+See the [Deploying with auto-deploy feature][docs.qovery.deployment.deploying-with-auto-deploy] section.
 
 </li>
 <li>
@@ -235,6 +238,10 @@ After creating a Dockerfile, specify the location of your Dockerfile in `Dockefi
 
 Configuration from above will make Qovery look for the Dockerfile in `/timescale/Dockerfile` path of your repository (`Root Application Path` + `Dockerfile Path`).
 
+** Auto Deploy **
+
+See the [Deploying with auto-deploy feature][docs.qovery.deployment.deploying-with-auto-deploy] section.
+
 ### JOB Configuration
 You can modify here the configuration of your job:
 - CRON Schedule: specify a valid CRON expression (see [Crontab guru](https://crontab.guru/) for help). After being deployed, the job will be executed following the defined schedule.
@@ -333,6 +340,7 @@ In the overview, click on the `3 dots` button and remove the job. Note: the same
 </Steps>
 
 
+[docs.qovery.deployment.deploying-with-auto-deploy]: /docs/using-qovery/deployment/deploying-with-auto-deploy/
 [docs.using-qovery.configuration.application-health-checks]: /docs/using-qovery/configuration/application-health-checks/
 [docs.using-qovery.configuration.environment-variable]: /docs/using-qovery/configuration/environment-variable/
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/

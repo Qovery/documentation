@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-08-02"
+last_modified_on: "2023-09-27"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -287,7 +287,7 @@ Please note that in this section you configure the CPU allocated by the cluster 
 
 #### Auto-scaling
 
-Application auto-scaling is based on real-time CPU consumption. When your app goes above 60% of CPU consumption for 5 minutes, your app will be auto-scaled and more instances will be added. It is transparent.
+Application auto-scaling is based on real-time CPU consumption. When your app goes above 60% of CPU consumption for 15 seconds, your app will be auto-scaled and more instances will be added. It is transparent. The downscale will happen if the CPU consumption is lower than 60% for at least 5 minutes.
 You can adjust the minimum and maximum of instances you need in your application settings. Qovery runs your application on Kubernetes and relies on [metrics-server](https://github.com/kubernetes-sigs/metrics-server) service to auto-scale your app.
 
 ### Storage

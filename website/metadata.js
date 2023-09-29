@@ -520,6 +520,15 @@ module.exports = {
           "title": "How to Build a Cloud Version of Your Open Source Software - A Case Study with AppWrite - Part 3"
         },
         {
+          "author_github": "https://github.com/benjaminch",
+          "description": null,
+          "id": "/tutorial/how-to-activate-sso-to-connect-to-your-eks-cluster",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/how-to-activate-sso-to-connect-to-your-eks-cluster.md",
+          "series_position": null,
+          "title": "How to activate SSO to connect to your EKS cluster"
+        },
+        {
           "author_github": "https://github.com/l0ck3",
           "description": null,
           "id": "/tutorial/how-to-connect-to-a-managed-mongodb-instance-on-aws",
@@ -910,6 +919,14 @@ module.exports = {
       "id": "shingai_zivuku",
       "keybase": "https://keybase.io/shingai_zivuku",
       "name": "Shingai Zivuku"
+    },
+    {
+      "avatar": "https://github.com/benjaminch.png",
+      "bio": "Benjamin is a senior Backend Developer at <a href=\"https://www.qovery.com\">Qovery</a>.",
+      "github": "https://github.com/benjaminch",
+      "id": "benjaminch",
+      "keybase": "https://keybase.io/benjaminch",
+      "name": "Benjamin Chastanier"
     }
   ],
   "technologies": [

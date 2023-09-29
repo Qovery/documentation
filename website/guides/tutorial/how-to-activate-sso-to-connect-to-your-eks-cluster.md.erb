@@ -1,0 +1,262 @@
+---
+$schema: "/.meta/.schemas/guides.json"
+title: How to activate SSO to connect to your EKS cluster
+description: How to activate SSO to connect to your EKS cluster
+author_github: https://github.com/benjaminch
+tags: ["type: tutorial", "cloud_provider: aws"]
+hide_pagination: true
+---
+import Alert from '@site/src/components/Alert';
+import Assumptions from '@site/src/components/Assumptions';
+import Jump from '@site/src/components/Jump';
+
+Qovery makes it easy to create an EKS cluster on your AWS account and manage the deployment of applications on it. But you still might want to execute operations on it via `kubectl` like you would on any other Kubernetes cluster.
+You have several ways to connect to your cluster:
+* Activate IAM group sync, more on that [here][guides.tutorial.how-to-connect-to-your-eks-cluster-with-kubectl]
+* Activate SSO support on your cluster allowing users to connect using AWS SSO.
+
+<Assumptions name="guide">
+
+* You have AWS CLI installed
+* You have configured an `Admins` group (or any group used for admins) as described in the [Qovery AWS setup][guides.cloud-provider.guide-amazon-web-services]
+* You have an existing EKS cluster managed by Qovery
+* You have followed [this AWS tutorial](https://aws.amazon.com/fr/blogs/containers/a-quick-path-to-amazon-eks-single-sign-on-using-aws-sso/) up to `AWS SSO user configuration` excluded.
+
+</Assumptions>
+
+## Goal
+
+This tutorial will show you how to access a Qovery managed cluster using AWS SSO.
+
+<Steps headingDepth={3}>
+
+<ol>
+
+<li>
+
+#### Install and configure your toolchain
+
+**kubectl**
+
+To interact with your cluster, you will need `kubectl` installed.
+[https://kubernetes.io/docs/tasks/tools/](https://kubernetes.io/docs/tasks/tools/)
+
+**AWS CLI**
+
+The AWS CLI must be installed and configured on your machine.
+[https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)
+
+</li>
+
+<li>
+
+#### Select IAM user group you configured for Qovery as admin
+
+In AWS console, go to `IAM > User Groups`
+
+<p align="center">
+  <img src="/img/how-to-activate-sso-to-connect-to-your-eks-cluster/0-go-to-iam-user-groups.png" alt="AWS console - go to user groups" />
+</p>
+
+then select the group you configured as admin group for Qovery (`Admins` in the example below).
+
+<p align="center">
+  <img src="/img/how-to-activate-sso-to-connect-to-your-eks-cluster/1-select-admins-iam-user-group.png" alt="AWS console - select admin user group" />
+</p>
+
+</li>
+
+<li>
+
+#### Create a new policy to this group allowing full access to EKS resources
+
+In this admin group, go to `permissions` tab. Click on `Add permissions > Create inline policy`.
+
+<p align="center">
+  <img src="/img/how-to-activate-sso-to-connect-to-your-eks-cluster/2-create-new-inline-policy-to-admin-user-group.png" alt="AWS console - create new inline policy" />
+</p>
+
+Switch to JSON view.
+
+<p align="center">
+  <img src="/img/how-to-activate-sso-to-connect-to-your-eks-cluster/3-inline-policy-creation-json-view.png" alt="AWS console - switch to inline policy creation json view" />
+</p>
+
+Put this content to the `Policy editor`:
+
+```json
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Effect": "Allow",
+			"Action": [
+				"eks:*",
+				"sts:AssumeRole"
+			],
+			"Resource": "*"
+		}
+	]
+}
+```
+
+Then click on `Next`.
+
+<p align="center">
+  <img src="/img/how-to-activate-sso-to-connect-to-your-eks-cluster/4-edit-inline-policy-content.png" alt="AWS console - edit inline policy content" />
+</p>
+
+Give a name to this new policy, for example `SSO_EKSClusterAdminAccess`. Then click on `Create Policy`.
+
+<p align="center">
+  <img src="/img/how-to-activate-sso-to-connect-to-your-eks-cluster/5-create-inline-policy.png" alt="AWS console - create inline policy" />
+</p>
+
+</li>
+
+<li>
+
+#### Set up CLI with SSO access to EKS
+
+Create a named SSO profile using AWS CLI.
+
+```bash
+aws configure sso
+```
+
+You will be prompted an SSO session name, put what you want, I used `sso-benjamin`.
+
+```bash
+SSO session name (Recommended): sso-benjamin
+Attempting to automatically open the SSO authorization page in your default browser.
+If the browser does not open or you wish to use a different device to authorize this request, open the following URL:
+
+https://device.sso.us-east-2.amazonaws.com/
+
+Then enter the code:
+
+FHTG-****
+```
+
+You will be redirected to your browser, validate the form.
+
+Then you will be prompted to select your AWS account.
+
+```bash
+There are 1 AWS account available to you.
+> qovery, q@qovery.com (283389****)
+```
+
+Then you will be prompted for default region (`eu-west-3` in my case), output format (`json` in my case) and profile name (`bchastanier_sso` in my case, but feel free to pick whatever you want).
+
+```bash
+Using the account ID 283389****
+The only role available to you is: AdministratorAccess
+Using the role name "AdministratorAccess"
+CLI default client Region [None]: eu-west-3
+CLI default output format [None]: json
+CLI profile name: bchastanier_sso
+```
+</li>
+
+<li>
+
+#### Get SSO role ARN
+
+Go to AWS console > IAM > Roles.
+
+<p align="center">
+  <img src="/img/how-to-activate-sso-to-connect-to-your-eks-cluster/6-iam-roles.png" alt="AWS console - go to aws iam roles" />
+</p>
+
+Look for a role named `AWSReservedSSO_xx` and select it (name can varies based on what you have configured / how you named your `Admins` user group, but it should start with `AWSReservedSSO_`).
+
+<p align="center">
+  <img src="/img/how-to-activate-sso-to-connect-to-your-eks-cluster/7-iam-roles-look-for-sso-role.png" alt="AWS console - look for SSO role" />
+</p>
+
+Copy its ARN and keep it somewhere, you will need it in next step.
+
+<p align="center">
+  <img src="/img/how-to-activate-sso-to-connect-to-your-eks-cluster/8-iam-roles-copy-arn.png" alt="AWS console - copy SSO role ARN" />
+</p>
+
+</li>
+
+<li>
+
+#### Enable SSO on your cluster
+
+Go to your clusters in Qovery console and click on cluster you want to activate SSO on settings.
+
+<p align="center">
+  <img src="/img/how-to-activate-sso-to-connect-to-your-eks-cluster/9-qovery-go-to-cluster-settings.png" alt="AWS console - go to qovery cluster settings" />
+</p>
+
+Then go to advanced settings, and set:
+* `aws.iam.enable_sso` to `true`
+* `aws.iam.sso_role_arn` to the SSO role ARN string you copy from previous step.
+
+<p align="center">
+  <img src="/img/how-to-activate-sso-to-connect-to-your-eks-cluster/10-qovery-cluster-advanced-settings-enable-sso.png" alt="AWS console - set qovery cluster advanced settings to enable SSO" />
+</p>
+
+Redeploy your cluster once advanced settings are saved.
+
+</li>
+
+<li>
+
+#### Download the Kubeconfig file
+
+To connect to your EKS cluster you will need to set a context to `kubectl`. This is done with a `Kubeconfig` file.
+
+When installing a new cluster, Qovery stores it in an S3 bucket on your account.
+
+Go to S3, find the Qovery bucket, and download the file. The bucket should be named something like `qovery-kubeconfigs-<cluster ID>.yaml`.
+
+Set the context for kubectl, run the following command:
+
+```bash
+export KUBECONFIG=<path to the kubeconfig file you downloaded>
+```
+
+<p align="center">
+  <img src="/img/how-to-activate-sso-to-connect-to-your-eks-cluster/11-get-cluster-kubeconfig.png" alt="AWS console - get Kubeconfig" />
+</p>
+
+</li>
+
+<li>
+
+#### Connect to your cluster
+
+Connect via the CLI running this command:
+
+```bash
+aws sso login --profile <your-sso-profile-you-set-before>
+```
+
+This will open your browser and prompt you to connect, validate the form.
+
+<p align="center">
+  <img src="/img/how-to-activate-sso-to-connect-to-your-eks-cluster/12-validate-sso-connection-in-browser.png" alt="AWS console - validate SSO connection in browser" />
+</p>
+
+Now you should be able to access your cluster without anything else, let's try to get `aws-auth` configmap showing users and roles allowed to connect to the cluster:
+
+```bash
+AWS_PROFILE=<your-sso-profile-you-set-before> kubectl describe -n kube-system configmap/aws-auth
+```
+
+This should give you the config map content. If not, something is not properly configured.
+
+</li>
+
+</ol>
+
+</Steps>
+
+## Conclusion
+
+You can access your Qovery clusters via your SSO directly.

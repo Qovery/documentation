@@ -117,3 +117,13 @@ name = "Shingai Zivuku"
 bio = """\
 Shingai Zivuku is a softwage engineer passionated by the cloud.
 """
+
+[[team]]
+id = "benjaminch"
+avatar = "https://github.com/benjaminch.png"
+github = "https://github.com/benjaminch"
+keybase = "https://keybase.io/benjaminch"
+name = "Benjamin Chastanier"
+bio = """\
+Benjamin is a senior Backend Developer at <a href=\"https://www.qovery.com\">Qovery</a>.\
+"""

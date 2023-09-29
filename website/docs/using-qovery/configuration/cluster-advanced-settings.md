@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-03-27"
+last_modified_on: "2023-09-28"
 title: "Cluster Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -133,10 +133,29 @@ Below is the list of advanced settings currently available for clusters.
 
 ## IAM
 
+#### aws.iam.enable_admin_group_sync ![](/img/advanced_settings/aws.svg)
+
+| Type    | Description                                                                 | Default Value |
+|---------|-----------------------------------------------------------------------------|---------------|
+| boolean  | Enable IAM admin group sync [IAM permissions setup][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account]. <br />⚠️ [`aws.iam.admin_group`](#awsiamadmin_group) should be set. | `true`        |
+
 #### aws.iam.admin_group ![](/img/advanced_settings/aws.svg)
+
 | Type    | Description                                                                 | Default Value |
 |---------|-----------------------------------------------------------------------------|---------------|
 | string  | Allows you to specify the IAM group name associated with the Qovery user in the AWS console during the [IAM permissions setup][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account] to be able to connect to the Kubernetes cluster | `Admins`        |
+
+#### aws.iam.enable_sso ![](/img/advanced_settings/aws.svg)
+
+| Type    | Description                                                                 | Default Value |
+|---------|-----------------------------------------------------------------------------|---------------|
+| boolean  | Enable SSO sync allowing IAM users to connect to cluster using SSO. [Setup SSO support for your cluster][guides.tutorial.how-to-activate-sso-to-connect-to-your-eks-cluster]. <br />⚠️ [`aws.iam.sso_role_arn`](#awsiamsso_role_arn) should be set. | `false`        |
+
+#### aws.iam.sso_role_arn ![](/img/advanced_settings/aws.svg)
+
+| Type    | Description                                                                 | Default Value |
+|---------|-----------------------------------------------------------------------------|---------------|
+| string  | Allows you to specify the SSO role ARN to be used to connect to your cluster. [Setup SSO support for your cluster][guides.tutorial.how-to-activate-sso-to-connect-to-your-eks-cluster]   | `""`        |
 
 ## Miscellaneous
 
@@ -147,3 +166,4 @@ Below is the list of advanced settings currently available for clusters.
 
 
 [docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account]: /docs/using-qovery/configuration/cloud-service-provider/amazon-web-services/#connect-your-aws-account
+[guides.tutorial.how-to-activate-sso-to-connect-to-your-eks-cluster]: /guides/tutorial/how-to-activate-sso-to-connect-to-your-eks-cluster/

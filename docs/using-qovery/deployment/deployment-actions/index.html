@@ -24,27 +24,27 @@
 <link rel="stylesheet" href="/styles.ce3a7d36.css">
 
 
-<link rel="preload" href="/styles.97869ca6.js" as="script">
+<link rel="preload" href="/styles.f18a6bdb.js" as="script">
 
-<link rel="preload" href="/runtime~main.66a45028.js" as="script">
+<link rel="preload" href="/runtime~main.576b75eb.js" as="script">
 
-<link rel="preload" href="/main.1f95ac79.js" as="script">
+<link rel="preload" href="/main.d0604073.js" as="script">
 
-<link rel="preload" href="/2.e760cbf1.js" as="script">
+<link rel="preload" href="/2.aa14b0af.js" as="script">
 
-<link rel="preload" href="/3.cd1c225d.js" as="script">
+<link rel="preload" href="/3.3469373d.js" as="script">
 
-<link rel="preload" href="/4.e5b0b551.js" as="script">
+<link rel="preload" href="/4.7590b3fd.js" as="script">
 
-<link rel="preload" href="/1be78505.7693c72d.js" as="script">
+<link rel="preload" href="/1be78505.26df664e.js" as="script">
 
-<link rel="preload" href="/20ac7829.40a0a9ee.js" as="script">
+<link rel="preload" href="/20ac7829.6a69c159.js" as="script">
 
-<link rel="preload" href="/260.b94126c7.js" as="script">
+<link rel="preload" href="/262.eba6e60c.js" as="script">
 
-<link rel="preload" href="/17896441.da5cfb18.js" as="script">
+<link rel="preload" href="/17896441.9d8ab665.js" as="script">
 
-<link rel="preload" href="/8ae34d0a.0bce97c7.js" as="script">
+<link rel="preload" href="/8ae34d0a.fefff58d.js" as="script">
 
 </head>
 <body>
@@ -56,27 +56,27 @@ Have a look at <a href="/docs/using-qovery/deployment/running-and-deployment-sta
 This action is available only if the <code>Deploy</code> action has been triggered at least once on the service or environment.</p><p>When replacing the pods of your application, Qovery uses the rolling-restart deployment logic:</p><p>1) Deploy new version of instance #1.</p><p>2) New version of instance #1 is running =&gt; kill previous version of instance #1.</p><p>3) Deploy new version of instance #2.</p><p>4) New version of instance #2 is running =&gt; kill previous version of instance #2.</p><p>And so on...</p><p>You can trigger the re-deployment of a service or of the entire environment. The service or environment goes through the same deployment statuses described in the <a aria-current="page" class="active" href="/docs/using-qovery/deployment/deployment-actions/#deploy">deployment section</a>. </p><div class="alert alert--info alert--icon" role="alert"><i class="feather icon-info"></i><p>A redeploy on an environment triggers the deployment of any service in the environment, no matter their previous status (even stopped ones)</p></div><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="stop"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#stop" title="Direct link to heading">#</a>Stop</h3><p>The <code>Stop</code> action allows you to stop the execution on the cluster of the selected service or environment (deployment status = Stopped). This action is available only if the current deployment status is <code>Deployment OK</code> or <code>Deployment Error</code>.</p><p>The effect on your cluster of the stop operation is different depending on the type of service:</p><ul><li><strong>Application, Container, Container DB </strong> : Pods of those services are stopped. Any attached storage is preserved</li><li><strong>Cloud provider Managed DB</strong>: the database is paused (only for AWS, not working on Redis)</li></ul><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="restart-service"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#restart-service" title="Direct link to heading">#</a>Restart Service</h3><p>The <code>Restart Service</code> action allows you to restart the pods of your service without applying any configuration change. This action is available only if the current deployment status is <code>Deployment OK</code> and only for a single service.</p><p>Once triggered, the deployment status service goes through the following statuses:</p><ul><li><strong>RESTARTING</strong> : the request to restart has been received</li><li><strong>RESTARTED</strong> : all the pods of the service have been restarted</li><li><strong>RESTART ERROR</strong> : Qovery couldn&#x27;t process the restart request</li></ul><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="cancel-deployment"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#cancel-deployment" title="Direct link to heading">#</a>Cancel Deployment</h3><p>The <code>Cancel Deployment</code> action allows you to abort any <code>Deploy</code> or <code>Redeploy</code> action. This action is available only if the current deployment status is <code>Queued</code> or <code>Building</code> or <code>Deploying</code>.</p><div class="alert alert--info alert--icon" role="alert"><i class="feather icon-info"></i><p>The action allows to cancel the operation, not to rollback to the previous state. If during the deployment of services A and B, the <code>Cancel Deployment</code> action is triggered after that the deployment of service A has been completed, only the deployment of service B will be cancelled (service A will use the new config / version)</p></div><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="deploy-other-version"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#deploy-other-version" title="Direct link to heading">#</a>Deploy other version</h3><p>The <code>Deploy other version</code> action allows you to deploy a different version for your service. This action is available no matter the deployment status of the service.</p><p>Once you click on the action, this panel will appear, and you will be able to choose the version you wish to update/rollback (either git commit or image Tag).</p><p align="center"><img src="/img/deployment/deploy_other_version.png" alt="Deploy Other Version"></p><p>By pressing on the Deploy button, a deployment of the service will be triggered using the selected version.</p><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="deploy-latest-version"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#deploy-latest-version" title="Direct link to heading">#</a>Deploy latest version</h3><p>The <code>Deploy latest version</code> action allows you to deploy the latest version for any of your services within the environment. This action is available no matter the deployment status of the service and only at environment level</p><p>Once you click on the action, this panel will appear, and you will be able to choose the services you wish to update to the latest version (only for services with source = git repository).</p><p align="center"><img src="/img/deployment/deploy_latest_version.png" alt="Deploy Latest Version"></p><p>By pressing on the Deploy button, a deployment of the service will be triggered using the selected version.</p></div></article></div><div class="paginator_3VDt"><nav class="pagination-nav"><div class="pagination-nav__item"><a class="pagination-nav__link" href="/docs/using-qovery/deployment/deployment-pipeline"><h5 class="pagination-nav__link--sublabel">Previous</h5><h4 class="pagination-nav__link--label">« Deployment Pipeline</h4></a></div><div class="pagination-nav__item pagination-nav__item--next"><a class="pagination-nav__link" href="/docs/using-qovery/deployment/deployment-history"><h5 class="pagination-nav__link--sublabel">Next</h5><h4 class="pagination-nav__link--label">Deployment History »</h4></a></div></nav></div></div><div class="rightCol_38kP"><div class="table-of-contents tableOfContents_tVyB"><div class="section"><div class="title">Contents</div><ul class="contents"><li><a href="#deployment-actions" class="contents__link">Deployment Actions</a><ul><li><a href="#deploy" class="contents__link">Deploy</a></li><li><a href="#redeploy" class="contents__link">Redeploy</a></li><li><a href="#stop" class="contents__link">Stop</a></li><li><a href="#restart-service" class="contents__link">Restart Service</a></li><li><a href="#cancel-deployment" class="contents__link">Cancel Deployment</a></li><li><a href="#deploy-other-version" class="contents__link">Deploy other version</a></li><li><a href="#deploy-latest-version" class="contents__link">Deploy latest version</a></li></ul></li></ul></div><div class="section"><div class="title">Resources</div><ul class="contents"></ul></div></div></div></div></div></main></div></div><footer class="footer"><div class="container"><div class="row footer__links"><div class="col col--5 footer__col"><div class="margin-bottom--md"></div><div class="margin-bottom--md"><p>Qovery is a Self-Service Infrastructure Platform Helping Ops and Engineers To Ship Faster.</p></div><div><a href="https://github.com/qovery" target="_blank"><i class="feather icon-github" alt="Qovery&#x27;s Github Repo"></i></a>    <a href="https://www.linkedin.com/company/qovery/" target="_blank"><i class="feather icon-rss" alt="Qovery&#x27;s Linkedin"></i></a>    <a href="https://twitter.com/qovery_" target="_blank"><i class="feather icon-twitter" alt="Qovery&#x27;s Twitter"></i></a>    <a href="https://discord.qovery.com" target="_blank"><i class="feather icon-message-circle" alt="Qovery&#x27;s Discord"></i></a></div></div><div class="col footer__col"><h4 class="footer__title">Resources</h4><ul class="footer__items"><li class="footer__item"><a aria-current="page" class="footer__link-item active" href="/docs">Documentation</a></li><li class="footer__item"><a class="footer__link-item" href="/guides">Guides</a></li><li class="footer__item"><a class="footer__link-item" href="/guides/tutorial">Tutorials</a></li><li class="footer__item"><a class="footer__link-item" href="/guides/engineering">Engineering</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/pricing" href="https://www.qovery.com/pricing">Pricing</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/enterprise" href="https://www.qovery.com/enterprise">Enterprise</a></li><li class="footer__item"><a class="footer__link-item" to="https://api-doc.qovery.com" href="https://api-doc.qovery.com">API</a></li><li class="footer__item"><a class="footer__link-item" to="https://github.com/Qovery" href="https://github.com/Qovery">Github</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Community</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://discord.qovery.com" href="https://discord.qovery.com">Discord</a></li><li class="footer__item"><a class="footer__link-item" to="https://community.qovery.com" href="https://community.qovery.com">Forum</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/community-call" href="https://www.qovery.com/community-call">Community call</a></li><li class="footer__item"><a class="footer__link-item" to="https://shop.qovery.com" href="https://shop.qovery.com">Goodies</a></li><li class="footer__item"><a class="footer__link-item" to="https://roadmap.qovery.com" href="https://roadmap.qovery.com">Roadmap</a></li><li class="footer__item"><a class="footer__link-item" to="https://github.com/Qovery/replibyte" href="https://github.com/Qovery/replibyte">Replibyte</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Company</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/blog" href="https://www.qovery.com/blog">Blog</a></li><li class="footer__item"><a class="footer__link-item" to="https://jobs.qovery.com" href="https://jobs.qovery.com">Jobs</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/team" href="https://www.qovery.com/team">Team</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/investors" href="https://www.qovery.com/investors">Investors</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/contact" href="https://www.qovery.com/contact">Contact</a></li></ul></div></div><div class="text--center"><small>© 2023 DESIGNED BY QOVERY | BACKED BY TECHSTARS | PROUD SILVER MEMBER OF CNCF AND LINUX FOUNDATION | QOVERY BY BIRDSIGHT - ALL RIGHTS RESERVED</small><br></div></div></footer>
 </div>
 
-<script src="/styles.97869ca6.js"></script>
+<script src="/styles.f18a6bdb.js"></script>
 
-<script src="/runtime~main.66a45028.js"></script>
+<script src="/runtime~main.576b75eb.js"></script>
 
-<script src="/main.1f95ac79.js"></script>
+<script src="/main.d0604073.js"></script>
 
-<script src="/2.e760cbf1.js"></script>
+<script src="/2.aa14b0af.js"></script>
 
-<script src="/3.cd1c225d.js"></script>
+<script src="/3.3469373d.js"></script>
 
-<script src="/4.e5b0b551.js"></script>
+<script src="/4.7590b3fd.js"></script>
 
-<script src="/1be78505.7693c72d.js"></script>
+<script src="/1be78505.26df664e.js"></script>
 
-<script src="/20ac7829.40a0a9ee.js"></script>
+<script src="/20ac7829.6a69c159.js"></script>
 
-<script src="/260.b94126c7.js"></script>
+<script src="/262.eba6e60c.js"></script>
 
-<script src="/17896441.da5cfb18.js"></script>
+<script src="/17896441.9d8ab665.js"></script>
 
-<script src="/8ae34d0a.0bce97c7.js"></script>
+<script src="/8ae34d0a.fefff58d.js"></script>
 
 
 </body>

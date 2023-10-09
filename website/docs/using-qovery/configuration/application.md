@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-09-27"
+last_modified_on: "2023-10-09"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -381,7 +381,7 @@ To know more about how to configure your Liveness and Readiness probes, have a l
 
 ### Domains
 
-The `Domain` section allows you to define a custom domain for your application. 
+The `Domain` section allows you to define a custom domain for your application on top of the one automatically assigned by Qovery.
 
 For each port publicly exposed, a domain is automatically assigned by Qovery to your application. Qovery will manage for you the networking and the TLS configuration for these domains. 
 
@@ -395,6 +395,10 @@ For each port exposed publicly, an additional domain will be created with the fo
 - envSourceName: is the name of the blueprint environment that has created the current preview environment
 
 domain example: `p80-123-frontend-blueprint.za8ad0657.bool.sh`
+
+
+**Special Case - Preview Environment** 
+
 
 Note:
 - each service deployed on the same cluster will have the same root domain assigned (example: `za8ad0657.bool.sh`)

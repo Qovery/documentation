@@ -24,7 +24,7 @@ The list of Git repositories available during the setup is strictly tied to the 
 ## Deploying from a Container Registry
 In this configuration, Qovery will pull the chosen container registry an image you have pre-built and deploy it on your kubernetes cluster.
 
-To improve the security and avoid deploying images from non-authorized registries, we have decided to restrict the list of Container Registry you can use during the setup process. Only an administrator with the right permissions can manage it from the [Container Registry Management page][docs.using-qovery.configuration.organization.container-registry]
+To improve security and avoid deploying images from non-authorized registries, we have decided to restrict the list of Container Registry you can use during the setup process. Only an administrator with the right permissions can manage it from the [Container Registry Management page][docs.using-qovery.configuration.organization.container-registry]
 
 
 ## Create an Application
@@ -43,21 +43,21 @@ Go into the chosen environment and press the "New Service" button and then the "
 <li>
 
 Select the following fields:
-- Application Name: give a name to your applicaiton
+- Application Name: give a name to your application
 - Application Source: Chose between Git Repository or Container Registry, depending on the source location of your application
 
 If you want to deploy an application from a Git Repository you will have to select:
 - Git Repository: Select the git provider hosting your code (it can be hosted on GitHub, GitLab or Bitbucket).
 - Branch: Select branch that Qovery should use to deploy your application
 - Root Application Path: base folder in which the application resides in your repository
-- Build Mode: chose between Docker or Buildpack. For more information, go to [this section][docs.using-qovery.configuration.application#build-mode]
+- Build Mode: choose between Docker or Buildpack. For more information, go to [this section][docs.using-qovery.configuration.application#build-mode]
 
 If you want to deploy an application from a Container Registry you will have to select:
 - Registry: select the container registry storing the image of your application. Note: only pre-configured registry are available in this list, check the [Container Registry Management page][docs.using-qovery.configuration.organization.container-registry] for more information.
 - Image name: the name of the image to be deployed with this application (example: postgres)
 - Image tag: the tag of the image to be deployed with this application (example: 12). Note that this tag has to be unique and you cannot
-- Image Entrypoint: the entrypoint to be used to launch your applicaiton (not mandatory)
-- CMD Arguments: the arguments to be passed to launch your applicaiton (not mandatory). We expect the format to be an array. Example ["rails", "-h", "0.0.0.0", "-p", "8080", "string"]
+- Image Entrypoint: the entrypoint to be used to launch your application (not mandatory)
+- CMD Arguments: the arguments to be passed to launch your application (not mandatory). We expect the format to be an array. Example ["rails", "-h", "0.0.0.0", "-p", "8080", "string"]
 
 <Alert type="info">
 
@@ -72,7 +72,7 @@ See the [Deploying with auto-deploy feature][docs.qovery.deployment.deploying-wi
 </li>
 <li>
 
-Within this section, you will need to define the resources to be assigned to your applicaiton at run time.
+Within this section, you will need to define the resources to be assigned to your application at run time.
 
 - vCPU: the vCPU assigned to each instance of your application. The default is 500m (0.5 vCPU).
 - RAM: the amount of RAM assigned to each instance of your application. The default is 512MB.
@@ -100,7 +100,7 @@ Today Qovery supports the following protocols:
 - TCP
 - UDP
 
-By default ports are accessible only from inside your environment. You can also expose them publicly, making them accessible over the public network via a dedicated public domain that will be assigned to your application by Qovery during the deployment (See the [Qovery Provided Domains section](#qovery-provided-domains)). Note that HTTPS/gRPC ports are alwasy exposed over the port 443.
+By default ports are accessible only from inside your environment. You can also expose them publicly, making them accessible over the public network via a dedicated public domain that will be assigned to your application by Qovery during the deployment (See the [Qovery Provided Domains section](#qovery-provided-domains)). Note that HTTPS/gRPC ports are always exposed over the port 443.
 
 <p align="center">
   <img src="/img/configuration/application/application_creation_port.png" alt="Application Ports" />
@@ -128,7 +128,7 @@ To know more about how to configure your Liveness and Readiness probes, have a l
 <li>
 
 You will find a recap of your application setup and you can now decide to:
-# Go back to one of the previous steps and change your applicaiton settings
+# Go back to one of the previous steps and change your application settings
 # Create your application without deploying it
 # Create and deploy your application
 
@@ -190,8 +190,8 @@ If your application is deployed from an image registry, within this section you 
 - Registry: select the container registry storing the image of your application. Note: only pre-configured registry are available in this list, check the [Container Registry Management page][docs.using-qovery.configuration.organization.container-registry] for more information.
 - Image name: the name of the image to be deployed with this application (example: postgres)
 - Image tag: the tag of the image to be deployed with this application (example: 12)
-- Image Entrypoint: the entrypoint to be used to launch your applicaiton (not mandatory)
-- CMD Arguments: the arguments to be passed to launch your applicaiton (not mandatory). We expect the format to be an array. Example ["rails", "-h", "0.0.0.0", "-p", "8080", "string"]
+- Image Entrypoint: the entrypoint to be used to launch your application (not mandatory)
+- CMD Arguments: the arguments to be passed to launch your application (not mandatory). We expect the format to be an array. Example ["rails", "-h", "0.0.0.0", "-p", "8080", "string"]
 
 <Alert type="info">
 
@@ -267,7 +267,7 @@ Default is 500m (0.5 vCPU).
 
 </Alert>
 
-Please note that in this section you configure the CPU allocated by the cluster for your application and that cannot consume more than this value. Even if the application is underused and consume less resources, the cluster will still reserve the selected amount of CPU.
+Please note that in this section you configure the CPU allocated by the cluster for your application and that cannot consume more than this value. Even if the application is underused and consumes fewer resources, the cluster will still reserve the selected amount of CPU.
 
 #### RAM
 

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-09-27"
+last_modified_on: "2023-10-10"
 title: Deployment
 description: "Everything you need to know about the deployment of your applications with Qovery"
 sidebar_label: hidden
@@ -22,7 +22,7 @@ In the image below you can find the complete flow that your application will go 
 2.c The auto-deploy feature is not activated on Qovery and the user decides to trigger the deployment directly from within the Qovery console.
 3. The Qovery engine starts processing based on the configured `Deployment Pipeline`. The pipeline defines the steps that need to be followed in order to deploy your applications. See [this section][docs.using-qovery.deployment.deployment-pipeline] for more information.
 4. The Qovery engine pulls the code from your repository.
-5. The Qovery engine builds the code and pushes the genrated images on a registry present within your cloud account.
+5. The Qovery engine builds the code and pushes the generated images on a registry present within your cloud account (See the [Image Mirroring][docs.using-qovery.deployment.image-mirroring] page for more information).
 6. The Qovery engine creates the load balancers and configure the network.
 7. The Qovery engine creates a namespace within the Kubernetes cluster and deploys the application.
 8. The Qovery engine takes care of creating a custom domain for your application and as well configure the TLS so that you can access the application from the internet.
@@ -43,5 +43,6 @@ Note:
 [docs.using-qovery.deployment.deployment-actions]: /docs/using-qovery/deployment/deployment-actions/
 [docs.using-qovery.deployment.deployment-history]: /docs/using-qovery/deployment/deployment-history/
 [docs.using-qovery.deployment.deployment-pipeline]: /docs/using-qovery/deployment/deployment-pipeline/
+[docs.using-qovery.deployment.image-mirroring]: /docs/using-qovery/deployment/image-mirroring/
 [docs.using-qovery.deployment.logs]: /docs/using-qovery/deployment/logs/
 [docs.using-qovery.deployment.running-and-deployment-statuses]: /docs/using-qovery/deployment/running-and-deployment-statuses/

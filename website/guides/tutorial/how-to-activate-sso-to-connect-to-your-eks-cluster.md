@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-10-02"
+last_modified_on: "2023-10-12"
 $schema: "/.meta/.schemas/guides.json"
 title: How to activate SSO to connect to your EKS cluster
 description: How to activate SSO to connect to your EKS cluster
@@ -181,7 +181,7 @@ Go to AWS console > IAM > Roles.
   <img src="/img/how-to-activate-sso-to-connect-to-your-eks-cluster/6-iam-roles.png" alt="AWS console - go to aws iam roles" />
 </p>
 
-Look for a role named `AWSReservedSSO_AdministratorAccess_xx` and select it.
+Look for a role named `AWSReservedSSO_xx` and select it (name can varies based on what you have configured / how you named your `Admins` user group, but it should start with `AWSReservedSSO_`).
 
 <p align="center">
   <img src="/img/how-to-activate-sso-to-connect-to-your-eks-cluster/7-iam-roles-look-for-sso-role.png" alt="AWS console - look for SSO role" />

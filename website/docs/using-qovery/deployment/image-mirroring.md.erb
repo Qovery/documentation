@@ -1,0 +1,101 @@
+---
+title: "Image Mirroring"
+description: "Learn how images are mirrored within your cloud account"
+---
+import Jump from '@site/src/components/Jump';
+import Alert from '@site/src/components/Alert';
+import Assumptions from '@site/src/components/Assumptions';
+
+When a cluster is deployed on your cloud account, a dedicated image registry is created to serve as a mirroring system. 
+
+This `mirroring registry` is also available within the Qovery interface
+
+<p align="center">
+  <img src="/img/deployment/mirror-registry.png" alt="Mirroring Registry" />
+</p>
+
+# How does it work
+
+Every time an application needs to be deployed on your cluster, the application image is mirrored on the mirroring registry.
+
+## Application built via the Qovery pipeline
+
+Images within the mirroring registry are organized by "Qovery service", each service has its own repository (or namespace, naming depends on the cloud provider). This means that each service build and mirroring process is completely isolated from the others.
+
+Before building the application A1, Qovery checks within mirroring registry at the repository of the application A1 if an image has already being built with the same version (commit id and environment variables). 
+
+If the image already exists, the built is skipped and Qovery starts the deployment of that image on the Kubernetes cluster.
+
+Otherwise, the image is built by the Qovery pipeline the resulting image is pushed on the mirroring registry at the repository of the application A1, deleting any previous image.
+
+<p align="center">
+  <img src="/img/deployment/build-mirror.png" alt="Mirroring built image" />
+</p>
+
+Given this isolation mechanism, if the same application is cloned (via the [clone][docs.using-qovery.configuration.environment#clone-environment] or [preview environment][docs.using-qovery.configuration.environment#preview-environment] feature), Qovery will re-build the application since the environment variables have changed (the ones at environment level).
+
+## Application deployed from a contianer registry
+
+The Qovery behaviour in this case will depend on the chosen [mirroring mode][docs.using-qovery.configuration.cluster-advanced-settings#image-registry] within the cluster advanced settings. 
+
+Two mirroring modes are available when deploying a service from a container registry:
+
+** Service (Default) **
+
+Images within the mirroring registry are organized by "Qovery service", each service has its own repository (or namespace, naming depends on the cloud provider). This means that each service mirroring process is completely isolated from the others.
+
+At the beginning of the deployment of the application A1, Qovery checks within mirroring registry at the repository of the application A1 if an image with the same image name and tag exists. 
+
+If the image already exists, the mirroring process is skipped and Qovery starts the deployment of that image on the Kubernetes cluster.
+
+Otherwise, the image is pulled from the source registry and pushed on the mirroring registry at the repository of the application A1, deleting any previous image.
+
+<p align="center">
+  <img src="/img/deployment/image-mirror-service.png" alt="Mirroring image from registry - Service case" />
+</p>
+
+
+Pro:
+- Images are automatically deleted when not needede anymore
+
+Cons:
+- If the same image is used across environments or service, Qovery will mirror multiple time the same image, reducing the deployment speed
+
+** Cluster **
+
+<Alert type="info">
+
+This is not available on Scaleway.
+
+</Alert>
+
+Images within the mirroring registry are organized by "Qovery cluster", meaning that the application deployed on the same cluster are all mirrored on the same repository.
+
+At the beginning of the deployment of the application A1, Qovery checks within mirroring registry at the repository of the cluster C1 if an image with the same image name and tag exists. 
+
+If the image already exists, the mirroring process is skipped and Qovery starts the deployment of that image on the Kubernetes cluster.
+
+Otherwise, the image is pulled from the source registry and pushed on the mirroring registry at the repository of the cluster C1.
+
+<p align="center">
+  <img src="/img/deployment/image-mirror-cluster.png" alt="Mirroring image from registry - Cluster case" />
+</p>
+
+Pro:
+- If the same image is used across environments or service, this setup will avoid to mirror multiple time the same image, increasing the deployment speed.
+
+Cons:
+- Qovery can't automatically delete the images mirrored on the mirroring registry. This will increase the cloud provider cost of your image registry since it will store more data. To reduce the amount data stored you can reduce the image TTL via the cluster advanced settings [registry.image_retention_time][docs.using-qovery.configuration.cluster-advanced-settings#image-registry]
+
+
+### Why image mirroring is necessary
+
+Image mirroring is a general best practice: you don't want your system to be strictly coupled on a third party.
+
+Let's say that you run an application on your production environment and Kubernetes needs to pull again the image to spawn a new instance for the application. In this case, you don't want to make this fail due to the unavailability of your source container registry. This is why we make sure that a copy is always available on the container registry next to the Kubernetes cluster.
+
+### Why unique image tags are necessary
+
+Having unique image tags is the best practice: you want to be 100% of the version running within a container. Moreover, not using unique image tags will have bad side effects given the image cachin mechanism provided by the Qovery mirroring system and by Kubernetes itself:
+- Mirroring registry: since Qovery mirrors the images on the mirroring registry, if the image tag doesn't change between two versions, the new version won't be mirrored. This means that the new version will not be deployed.
+- Kubernetes: applications deployed by Qovery on Kubernetes uses the [image pull policy](https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy) `ifNotPresent`. This means that if the image already exists on the Kubernetes node local disk, Kubernetes won't pull again the image. If the image tag doesn't change, then the new image version won't be pulled and your pods will still run the old application code.

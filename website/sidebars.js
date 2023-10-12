@@ -138,6 +138,7 @@ module.exports = {
             "using-qovery/deployment/running-and-deployment-statuses",
             "using-qovery/deployment/logs",
             "using-qovery/deployment/deployment-strategies",
+            "using-qovery/deployment/image-mirroring",
           ],
         },
         {

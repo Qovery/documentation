@@ -26,6 +26,11 @@ In this configuration, Qovery will pull the chosen container registry an image y
 
 To improve security and avoid deploying images from non-authorized registries, we have decided to restrict the list of Container Registry you can use during the setup process. Only an administrator with the right permissions can manage it from the [Container Registry Management page][docs.using-qovery.configuration.organization.container-registry]
 
+<Alert type="info">
+
+Make sure that the image tag used are unique (do not use "latest", "dev", "master" etc..), see [this section][docs.using-qovery.deployment.image-mirroring#why-unique-image-tags-are-necessary] for more information.
+
+</Alert>
 
 ## Create an Application
 
@@ -55,15 +60,16 @@ If you want to deploy an application from a Git Repository you will have to sele
 If you want to deploy an application from a Container Registry you will have to select:
 - Registry: select the container registry storing the image of your application. Note: only pre-configured registry are available in this list, check the [Container Registry Management page][docs.using-qovery.configuration.organization.container-registry] for more information.
 - Image name: the name of the image to be deployed with this application (example: postgres)
-- Image tag: the tag of the image to be deployed with this application (example: 12). Note that this tag has to be unique and you cannot
-- Image Entrypoint: the entrypoint to be used to launch your application (not mandatory)
-- CMD Arguments: the arguments to be passed to launch your application (not mandatory). We expect the format to be an array. Example ["rails", "-h", "0.0.0.0", "-p", "8080", "string"]
+- Image tag: the tag of the image to be deployed with this application (example: 1.0). 
+- Image Entrypoint: the entrypoint to be used to launch your applicaiton (not mandatory)
+- CMD Arguments: the arguments to be passed to launch your applicaiton (not mandatory). We expect the format to be an array. Example ["rails", "-h", "0.0.0.0", "-p", "8080", "string"]
 
 <Alert type="info">
 
-The tag 'latest' is not supported, please use a specific tag.
+Make sure that the image tag used are unique (do not use "latest", "dev", "master" etc..), see [this section][docs.using-qovery.deployment.image-mirroring#why-unique-image-tags-are-necessary] for more information.
 
 </Alert>
+
 
 ** Auto Deploy **
 
@@ -189,13 +195,13 @@ Secret names examples:
 If your application is deployed from an image registry, within this section you can modify:
 - Registry: select the container registry storing the image of your application. Note: only pre-configured registry are available in this list, check the [Container Registry Management page][docs.using-qovery.configuration.organization.container-registry] for more information.
 - Image name: the name of the image to be deployed with this application (example: postgres)
-- Image tag: the tag of the image to be deployed with this application (example: 12)
-- Image Entrypoint: the entrypoint to be used to launch your application (not mandatory)
-- CMD Arguments: the arguments to be passed to launch your application (not mandatory). We expect the format to be an array. Example ["rails", "-h", "0.0.0.0", "-p", "8080", "string"]
+- Image tag: the tag of the image to be deployed with this application (example: 1.0).
+- Image Entrypoint: the entrypoint to be used to launch your applicaiton (not mandatory)
+- CMD Arguments: the arguments to be passed to launch your applicaiton (not mandatory). We expect the format to be an array. Example ["rails", "-h", "0.0.0.0", "-p", "8080", "string"]
 
 <Alert type="info">
 
-The tag 'latest' is not supported, please use a specific tag.
+Make sure that the image tag used are unique (do not use "latest", "dev", "master" etc..), see [this section][docs.using-qovery.deployment.image-mirroring#why-unique-image-tags-are-necessary] for more information.
 
 </Alert>
 

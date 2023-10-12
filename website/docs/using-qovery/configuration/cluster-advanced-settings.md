@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-09-28"
+last_modified_on: "2023-10-11"
 title: "Cluster Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -62,17 +62,24 @@ Below is the list of advanced settings currently available for clusters.
 
 ## Image registry
 
-#### registry.image_retention_time ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg)
+#### registry.image_retention_time ![](/img/advanced_settings/aws.svg)
 
 | Type    | Description                                                                                        | Default Value       |
 |---------|----------------------------------------------------------------------------------------------------|---------------------|
 | integer | Allows you to specify an amount in seconds after which images in the default registry are deleted. | `31536000` (1 year) |
+
+#### registry.mirroring_mode ![](/img/advanced_settings/aws.svg)
+
+| Type    | Description                                                                                                                                         | Default Value       |
+|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------|---------------------|
+| string  | Allows you to specify the [image mirroring mode][docs.using-qovery.deployment.image-mirroring] to be used for each image deployed on this cluster.  | `Service`           |
 
 #### cloud_provider.container_registry.tags ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg)
 
 | Type                | Description                                           | Default Value |
 |---------------------|-------------------------------------------------------|---------------|
 | Map<String, String> | Add additional tags on the cluster dedicated registry |               |
+
 
 ## Network
 
@@ -166,4 +173,5 @@ Below is the list of advanced settings currently available for clusters.
 
 
 [docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account]: /docs/using-qovery/configuration/cloud-service-provider/amazon-web-services/#connect-your-aws-account
+[docs.using-qovery.deployment.image-mirroring]: /docs/using-qovery/deployment/image-mirroring/
 [guides.tutorial.how-to-activate-sso-to-connect-to-your-eks-cluster]: /guides/tutorial/how-to-activate-sso-to-connect-to-your-eks-cluster/

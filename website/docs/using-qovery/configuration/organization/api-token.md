@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-04-19"
+last_modified_on: "2023-10-09"
 title: "API Token"
 description: "Learn how to manage the API token via Qovery"
 ---
@@ -40,16 +40,18 @@ You can access the token API configuration by opening the `Token API` section wi
 
 ## Create a new token
 
-You can create a new token API by pressing the `Add` button. Once you have provided a name and a description, the token value will be displayed on the interface.
+You can create a new token API by pressing the `Add` button. You need to provide:
+- A name
+- A description
+- A role: this allows to manage the permission assigned to the new API Token. The permission is managed via the [Qovery RBAC system][docs.using-qovery.configuration.organization.members-rbac#roles-based-access-control-rbac]
+
+Once validated the token value will be displayed on the interface.
 
 <Alert type="info">
 
 Make sure you safely store the token returned by the UI. You won't be able to retrieve it again (you will have to create a new one)
 
 </Alert>
-
-Note that every Token API generated has the `Admin` permission rights. See the [RBAC section][docs.using-qovery.configuration.organization.members-rbac#roles-based-access-control-rbac] to know more.
-
 
 ## Delete a token
 

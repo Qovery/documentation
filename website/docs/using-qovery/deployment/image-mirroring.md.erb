@@ -96,6 +96,9 @@ Let's say that you run an application on your production environment and Kuberne
 
 ### Why unique image tags are necessary
 
-Having unique image tags is the best practice: you want to be 100% of the version running within a container. Moreover, not using unique image tags will have bad side effects given the image cachin mechanism provided by the Qovery mirroring system and by Kubernetes itself:
-- Mirroring registry: since Qovery mirrors the images on the mirroring registry, if the image tag doesn't change between two versions, the new version won't be mirrored. This means that the new version will not be deployed.
-- Kubernetes: applications deployed by Qovery on Kubernetes uses the [image pull policy](https://kubernetes.io/docs/concepts/containers/images/#image-pull-policy) `ifNotPresent`. This means that if the image already exists on the Kubernetes node local disk, Kubernetes won't pull again the image. If the image tag doesn't change, then the new image version won't be pulled and your pods will still run the old application code.
+When working with containerized applications, it is crucial to employ unique image tags for precise version management. This practice ensures complete confidence in the version running within a container. Failing to use unique image tags can lead to adverse consequences due to the image caching mechanisms employed by both the Qovery mirroring system and Kubernetes:
+
+- Mirroring Registry: Qovery’s mirroring system stores images in a registry. If an image tag remains the same between two versions, the new version will not be mirrored. Consequently, the new version will not be deployed, affecting the overall application.
+- Kubernetes: Applications deployed by Qovery on Kubernetes adhere to the “ifNotPresent” image pull policy. This policy means that if the image already exists on the Kubernetes node’s local disk, Kubernetes will not attempt to pull it again. However, if the image tag remains unchanged, the new image version will not be fetched, resulting in your pods running the outdated application code.
+
+In summary, maintaining unique image tags is a critical aspect of effective version control and ensuring that your applications run the intended versions without disruptions caused by caching mechanisms.

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-10-10"
+last_modified_on: "2023-10-12"
 $schema: "/.meta/.schemas/guides.json"
 title: How to activate SSO to connect to your EKS cluster
 description: How to activate SSO to connect to your EKS cluster

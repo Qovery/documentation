@@ -478,16 +478,73 @@ Once your cluster has restarted, the status dot next to your cluster turns to gr
 
 <Alert type="warning">
 
-Deleting a cluster from the Qovery console is final, and cuts all associated costs on your cloud provider's end.
+Deleting a cluster from the Qovery console is final and cannot be reverted.
+
 To only temporarily stop a cluster, see [Stopping a Cluster][docs.using-qovery.configuration.clusters#stopping-a-cluster].
 
 </Alert>
 
-To delete a cluster, open the `...` section and press `Delete Cluster`
+To delete a cluster, open the `...` section and press `Delete Cluster`.
 
-A confirmation is required before deleting the cluster.
+3 options can be chosen to delete a cluster:
 
-Once confirmed, its status turns to `Deleting...` (red status) and once the deletion is complete, the cluster is removed from your organization settings.
+** 1) Default **
+This is the default behaviour, this option shall be chosen every time you want to delete properly a cluster from the Qovery console AND your cloud provider account.
+
+This operation will delete:
+
+- **Cloud provider**: any resource created by Qovery on your cloud provider account to run this cluster will be deleted, including any application running on it.
+- **Qovery organization**: the configuration of this cluster and any linked environment. 
+
+<Alert type="warning">
+
+Please note that you will have to manually delete on your cloud account:
+- the S3 bucket created at cluster installation
+- the image registry linked to this cluster
+- any resource created by a lifecycle job that will not be properly deleted during the `environment deletion` event.
+
+Check [this section][#cleaning-up-a-cluster-from-your-aws-account] to find these elements and delete them.
+
+</Alert>
+
+
+** 2) Delete Cluster on cloud provider and Qovery configuration **
+
+This option shall be chosen when the cluster delete operation with the `Default` option fails since you have manually modified/deleted the RDS instances created by Qovery on your cloud provider account.
+
+This operation will delete:
+
+- **Cloud provider**: any resource created by Qovery on your cloud provider account to run this cluster will be deleted, including any application running on it.
+- **Qovery organization**: the configuration of this cluster and any linked environment.
+
+<Alert type="warning">
+
+Please note that you will have to manually delete on your cloud account:
+- the S3 bucket created at cluster installation
+- the image registry linked to this cluster
+- any managed database that was created via Qovery
+- any resource created by a lifecycle job that will not be properly deleted during the `environment deletion` event.
+
+Check [this section][#cleaning-up-a-cluster-from-your-aws-account] to find these elements and delete them.
+
+</Alert>
+
+** 3) Delete Qovery config only **
+
+This option shall be chosen when you have already deleted any Qovery resource on your cloud account and you want to delete the cluster object from your Qovery console.
+
+This operation will delete:
+
+- **Cloud provider**: nothing will be removed from your cloud account. You will have to manually delete any resource created by Qovery directly from your cloud provider console.
+- **Qovery organization**: the configuration of this cluster and any linked environment.
+
+<Alert type="info">
+
+Check [this section][#cleaning-up-a-cluster-from-your-aws-account] to find these elements and delete them.
+
+</Alert>
+
+Once confirmed, the cluster status turns to `Deleting...` (red status) and once the deletion is complete, the cluster is removed from your organization settings.
 
 ## Logs
 

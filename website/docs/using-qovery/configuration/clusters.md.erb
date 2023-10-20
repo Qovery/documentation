@@ -83,7 +83,7 @@ The range of instance types available at cluster creation depends on your cloud 
 
 <Alert type="info">
 
-Qovery supports only instance types having an x86_64 or ARM architectures.
+Qovery supports only instance types having an x86_64 or ARM architecture.
 
 </Alert>
 
@@ -115,18 +115,18 @@ Please **DO NOT** upgrade the cluster version by yourself from the cloud provide
 That's the whole point of Qovery, we manage this task for you so you don't have to bother.
 If you did update by mistake, then you need to reach to Qovery team in order to get some help.
 
-**Proceeding with a cluster version upgrade outside of Qovery will prevent any future update on this cluster** and might be irreversible preventing Qovery to properly deploy on this cluster. Most importantly will expose you to some unknown / untested areas which can put your applications stability at risks. 
+**Proceeding with a cluster version upgrade outside of Qovery will prevent any future update on this cluster** and might be irreversible preventing Qovery from properly deploying on this cluster. Most importantly will expose you to some unknown / untested areas which can put your application stability at risks. 
 
 </Alert>
 
-Usually we work on a given upgrade for one month of intensive testing on our end in order to make sure everything will be smooth for you. Once we are pretty confident our stack is stable, we move on with the following steps wich last approximatively 3 weeks:
+Usually, we work on a given upgrade for one month of intensive testing on our end in order to make sure everything will be smooth for you. Once we are pretty confident our stack is stable, we move on with the following steps which last approximately 3 weeks:
 
 1. Notify users about new version coming in approximatively 1 month before
 2. Upgrade clusters for a handful of beta-tester customers (1 week)
 3. Upgrade all non-production flagged clusters (1-2 week(s))
 4. Upgrade all clusters
 
-If, somehow the planning or timeframe for the upgrade is clashing with your busines needs, you will be able to contact us so we can arrange the best timeframe for you.
+If, somehow the planning or timeframe for the upgrade is clashing with your business needs, you will be able to contact us so we can arrange the best timeframe for you.
 
 ### What do you do when a vulnerability is found?
 
@@ -134,7 +134,7 @@ Security is our main concern. When a vulnerability is found, here are the action
 
 1. We quickly identify how significant is the impact of the vulnerability.
 2. We look at how we can solve or mitigate the vulnerability.
-3. We transparently communicate with our customers on the vulnerability to help them take the right actions.
+3. We transparently communicate with our customers about the vulnerability to help them take the right actions.
 
 
 ## Managing your Clusters with Qovery
@@ -305,7 +305,7 @@ Here you can manage here the cloud provider credentials associated with your clu
 
 If you need to change the credentials:
 - generate a new set of credentials on your cloud provider([Procedure for AWS account][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account], [Procedure for Scaleway account][docs.using-qovery.configuration.cloud-service-provider.scaleway#connect-your-scaleway-account]) 
-- create the new credential on the Qovery by opening the drop-down and selectin "New Credentials"
+- create the new credential on the Qovery by opening the drop-down and selecting "New Credentials"
 
 In the two dedicated fields, enter the credentials you created on your cloud provider account:
 
@@ -360,7 +360,7 @@ Once set up, here is the procedure to find your static IP addresses:
 
 <Alert type="info">
 
-If you work in a sensitive business area such as financial technology, enabling the **Static IP** feature can help fulfill the security requirements of some of the external services you use, therefore making it easier for you to get whitelisted by them.
+If you work in a sensitive business area such as financial technology, enabling the **Static IP** feature can help fulfil the security requirements of some of the external services you use, therefore making it easier for you to get whitelisted by them.
 
 </Alert>
 
@@ -430,9 +430,9 @@ To update your cluster, select the action `Update` from the drop-down menu.
 
 A confirmation pop-up window opens before triggering the action.
 
-Once confirmed, the status of your cluster turns to `Updating...` (orange status).
+Once confirmed, the status of your cluster turns `Updating...` (orange status).
 
-Once the update is complete, the status dot next to your cluster turns to green.
+Once the update is complete, the status dot next to your cluster turns green.
 
 #### Stopping a Cluster
 
@@ -548,13 +548,13 @@ To access the logs you need to open the cluster, click the log button
 <img src="/img/configuration/clusters/cluster_logs_access.png" alt="Cluster Logs" />
 </p>
 
-A new windows is opened, displaying the logs of the cluster.
+A new window is opened, displaying the logs of the cluster.
 
 <p align="center">
 <img src="/img/configuration/clusters/ok-infra-logs.jpg" alt="Cluster Logs" />
 </p>
 
-The tab system on the right allows you to access the cluster information and, if an error occurred, the detail of the error.
+The tab system on the right allows you to access the cluster information and, if an error occurs, the detail of the error.
 
 <p align="center">
 <img src="/img/configuration/clusters/error-infra-logs.jpg" alt="Cluster Logs" />

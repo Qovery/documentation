@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-10-13"
+last_modified_on: "2023-10-27"
 title: "Image Mirroring"
 description: "Learn how images are mirrored within your cloud account"
 ---
@@ -43,7 +43,7 @@ Otherwise, the image is built by the Qovery pipeline the resulting image is push
 
 Given this isolation mechanism, if the same application is cloned (via the [clone][docs.using-qovery.configuration.environment#clone-environment] or [preview environment][docs.using-qovery.configuration.environment#preview-environment] feature), Qovery will re-build the application since the environment variables have changed (the ones at environment level).
 
-## Application deployed from a contianer registry
+## Application deployed from a container registry
 
 The Qovery behaviour in this case will depend on the chosen [mirroring mode][docs.using-qovery.configuration.cluster-advanced-settings#image-registry] within the cluster advanced settings. 
 

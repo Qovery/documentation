@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-10-11"
+last_modified_on: "2023-10-27"
 title: "Cluster Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -70,9 +70,9 @@ Below is the list of advanced settings currently available for clusters.
 
 #### registry.mirroring_mode ![](/img/advanced_settings/aws.svg)
 
-| Type    | Description                                                                                                                                         | Default Value       |
-|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------|---------------------|
-| string  | Allows you to specify the [image mirroring mode][docs.using-qovery.deployment.image-mirroring] to be used for each image deployed on this cluster.  | `Service`           |
+| Type    | Description                                                                                                                                                                                   | Default Value       |
+|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------|
+| string  | Allows you to specify the [image mirroring mode][docs.using-qovery.deployment.image-mirroring] to be used for each image deployed on this cluster. (possible values: `Service` or `Cluster`)  | `Service`           |
 
 #### cloud_provider.container_registry.tags ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg)
 

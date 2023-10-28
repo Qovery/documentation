@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-06-08"
+last_modified_on: "2023-10-28"
 title: "Amazon Web Services (AWS)"
 description: "Learn how to configure and plug your Amazon Web Services (AWS) account"
 ---
@@ -270,7 +270,7 @@ Once it’s done, the user’s access key and secret key can be used in Qovery.
 ```json
 
 {
-    "Version": "2023-06-08",
+    "Version": "2012-10-17",
     "Statement": [
         {
             "Effect": "Allow",
@@ -394,7 +394,7 @@ Once it’s done, the user’s access key and secret key can be used in Qovery.
 
 ```json
 {
-    "Version": "2023-06-08",
+    "Version": "2012-10-17",
     "Statement": [
         {
             "Effect": "Allow",

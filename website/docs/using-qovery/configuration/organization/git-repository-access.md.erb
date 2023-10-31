@@ -5,22 +5,160 @@ description: "Learn how to manage the git repository permission access"
 import Jump from '@site/src/components/Jump';
 import Assumptions from '@site/src/components/Assumptions';
 
-When you first sign into the [Qovery Console][urls.qovery_console], you need to provide your Git provider account credentials. This allows you to later take advantage of a Single Sign-On process through your Git provider. 
-However, by default, Qovery is then allowed to access all the resources stored on your Git provider account. 
+On you first sign-in into the [Qovery Console][urls.qovery_console], you need to login via your Git provider account. This allows to manage the access permission within your Qovery organization but it also allows Qovery to access the repositories linked to your Git account.
 
-For better control, as a Github user, you can install the **Qovery Github App**, and define which Github repositories Qovery can access.
-<Alert type="info">
+When you create an application on the repository X within the Qovery console, Qovery bounds your git account to the application and creates a webhook on your git repository X to receive the events happening on it (push, PR creation, commit etc..).
 
-You can only link one Github Organization to your Qovery Organization through the **Qovery Github App**. 
-Also, once the **Qovery Github App** is installed, all the members of your Qovery Organization will only have access to the repositories linked to your **Qovery Github App**.
+This is the default behaviour but if you want to manage the permission access in a centralized way and decoupled from the users belonging to your organization, you can instead use the Git Token feature.
+
+# Git Tokens
+
+Git tokens are configured within the Git provider interface and then added into your Qovery organization to manage the access permission to your repositories.
+
+In the following sections you will understand how to:
+- create a token within your git provider
+- access the token configuration within the Qovery console
+- add / modify and delete the tokens within the Qovery console
+
+## Managing tokens on your git provider
+
+The process to create a token and the permissions to assign depend on the chosen git povider
+
+### Github
+
+Github offers two types of token: `Personal access tokens (classic)` and `Fine-grained personal access tokens`. You can read more about them and how to create them [here](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
+
+Depending on the selected token type, the required permission is slightly different.
+
+** Personal access tokens (classic) **
+
+- Repository: full control of private repositories
+- Admin:repo_hook: read + write
+
+<p align="center">
+  <img src="/img/configuration/organization/github_classic.png" alt="Github Classic" />
+</p>
+
+** Fine-grained Personal access tokens **
+
+- Contents: Read-only
+- Webhooks: Read and write
+- Pull requests: Read and write
+
+<p align="center">
+  <img src="/img/configuration/organization/github_fine_grained.png" alt="Github fine grained" />
+</p>
+
+### Gitlab
+
+Gitlab provides multiple type of tokens but Qovery supports two: `Project Tokens` and `Group Tokens`. You can find how to create them within these sections:
+- [Project Tokens](https://docs.gitlab.com/ee/user/project/settings/project_access_tokens.html)
+- [Group Tokens](https://docs.gitlab.com/ee/user/group/settings/group_access_tokens.html)
+
+The permission configuration is the same for the two types:
+- Role: Maintainer or Owner 
+- scopes: api, read_repository
+
+<p align="center">
+  <img src="/img/configuration/organization/gitlab_token.png" alt="Gitlab token" />
+</p>
+
+### Bitbucket
+Bitbucket offers two types of token: `Repository access tokens` and `Workspaes access tokens` (only with Bitbucket Cloud Premium plan). You can read more about them and how to create them here:
+- [Repository access tokens](https://support.atlassian.com/bitbucket-cloud/docs/create-a-repository-access-token/)
+- [Workspaes access tokens](https://support.atlassian.com/bitbucket-cloud/docs/workspace-access-tokens/)
+
+The permission configuration is the same for the two types:
+- Repositories: Read (Write auto set by Pull requests Write)
+- Pull requests: Read & Write
+- Webhooks: Read and write
+
+<p align="center">
+  <img src="/img/configuration/organization/bitbucket_token.png" alt="Bitbucket token" />
+</p>
+
+### Token expiration
+
+Most of the time, the tokens created within your git provider have an associated expiration date. Once the expiration date is reached, Qovery will lose access to your git account so be sure to renovate your git token before its expiration (usually the git provider sends you a reminder email). 
+
+If your token reaches its expiration date but your git provider account does not support the expiration date extension, you can:
+1. Create a new token on your git account
+2. Modify the existing token on the Qovery console by updating its value with the token created at step 1.
+
+## Managing the tokens on Qovery
+
+Tokens are centrally manaegd within your organization settings under the `Git repository access` section:
+
+1. Open your [Qovery Console][urls.qovery_console] and access your organization settings:
+
+<p align="center">
+  <img src="/img/configuration/organization/access_settings.png" alt="How to access your organization settings" />
+</p>
+
+2. In the `Organization settings` menu, click `Git Repository Access`:
+
+<p align="center">
+  <img src="/img/configuration/organization/git_repository_access.png" alt="Git Repository Access" />
+</p>
+
+### Create the token
+
+1. Press the `Add Token` button
+2. Fill the form with:
+- your git provider
+- Token name: this is the display name used in every Qovery interface.
+- Description
+- Token Value: the token value as returned by your git provider.
+- Workspace: Only for bitbucket, provide the workspace where the token has been created.
+3. Press the `Create` button.
+
+### Using the token
+
+Once the token is created, you can use it to configure your Qovery services.
+
+In the creation flow of your service, you will be able to either select your own git account or one of the git tokens configured within your organization.
+
+<p align="center">
+  <img src="/img/configuration/organization/git_source_selection.png" alt="Git Source Selection" />
+</p>
+
+If a git token is selected, Qovery will use that token to access the git repository as long as the token does not expire (see the [Token expiration](#token-expiration) section)
+
+### Update the token
+
+1. Press the `wheel` button on the token you want to modify. 
+2. Modify the token.
+3. Press the `Save` button.
+
+Note: If you want to modify the git token configured in Qovery, you can directly edit the token value. It will avoid you to manually update every application using the old token.
+
+### Delete the token
+
+1. Press the `bin` button next to the token you want to delete
+2. Confirm the operation by writing `delete`
+
+## Deprecated - Qovery Github App
+
+<Alert type="warning">
+
+The Qovery Github app is being deprecated and it will be replaced by the git tokens. If you are using the Qovery Github app today, please start migrating to the new git token system.
 
 </Alert>
+
+For better control, as a Github user, you can install the **Qovery Github App**, and define which Github repositories Qovery can access.
+
 
 ### Installing the Qovery Github App
 
 <Alert type="warning">
 
 If you have already one or more applications running on your Qovery Organization, please make sure to give the **Qovery Github App** access to their repositories. If a repository is missing, you might experience a loss of functionalities for those applications (update, auto-deploy, preview environments, etc.).
+
+</Alert>
+<Alert type="info">
+
+You can only link one Github Organization to your Qovery Organization through the **Qovery Github App**. 
+Also, once the **Qovery Github App** is installed, all the members of your Qovery Organization will only have access to the repositories linked to your **Qovery Github App**.
 
 </Alert>
 

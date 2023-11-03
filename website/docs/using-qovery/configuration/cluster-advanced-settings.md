@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-11-02"
+last_modified_on: "2023-11-03"
 title: "Cluster Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -97,13 +97,13 @@ Below is the list of advanced settings currently available for clusters.
 
 | Type    | Description                                                                                    | Default Value   |
 |---------|------------------------------------------------------------------------------------------------|-----------------|
-| integer | Vcpu request value in millicores assigned to Nginx pods                                        | `100`           |
+| integer | Vcpu request value in millicores assigned to Nginx pods                                        | `200`           |
 
 #### nginx.vcpu.limit_in_milli_cpu ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) 
 
 | Type    | Description                                                                                    | Default Value   |
 |---------|------------------------------------------------------------------------------------------------|-----------------|
-| integer | Vcpu limit value in millicores assigned to Nginx pods                                          | `500`           |
+| integer | Vcpu limit value in millicores assigned to Nginx pods                                          | `700`           |
 
 #### nginx.memory.request_in_mib ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) 
 

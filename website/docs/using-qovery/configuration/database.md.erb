@@ -21,18 +21,38 @@ Qovery natively supports the following databases:
 - Redis
 
 Qovery can natively operate a database in two different ways (called "Mode"):
-- As a Docker Container: Testing / dev : Qovery can provide the database as Docker container with attached persistent storage directly on your Kubernetes cluster (1 instance). They are perfect for development and testing, as they are significantly cheaper than services provided by cloud providers. In the Qovery UI these will be called Databases in `Container` mode
-- As a Cloud provider managed database: Qovery can create and manage the lifecycle of a cloud provider managed database instance (for example via RDS on AWS). These are perfect for production since they guarantee the right level of resiliance, performance and data security best practices. In the Qovery UI these will be called Databases in `Managed` mode
+- Container mode: preferred for testing and development
+- Managed mode: preferred for production, limited configuration parameters (see the [Configuration](#configuration) section).
 
-<Alert type="info">
-If you chose the Managed mode, Qovery will manage the entire lifecycle of your database for you. DO NOT change the database settings directly from within the cloud provider console.
-</Alert>
-
-If the natively supported databases and operation modes are not enough for you, we can still offer you an alternative solution depending on your use case:
+If the natively supported databases or operation modes are not enough for you, depending on your use case you have the following alternative solutions:
 - Use an existing DB on a dedicated VPC: your applications can access this database via VPC peering. Have a look at [this guide][guides.tutorial.aws-vpc-peering-with-qovery] for more information.
-- Create my own database: You will be able to manage the lifecycle of this database using the [lifecycle jobs][docs.using-qovery.configuration.lifecycle-job]. Have a look at [this example](https://github.com/Qovery/lifecycle-job-examples/tree/main/examples/aws-rds-with-terraform) which allows you to deploy your custom RDS instance on AWS via Terraform.
+- Create your custom database via Qovery: You will be able to deploy any kind of database through Qovery by using a [lifecycle jobs][docs.using-qovery.configuration.lifecycle-job]. For example, you can use a terraform script to deploy your custom RDS instance on AWS via Terraform (have a look at [this example](https://github.com/Qovery/lifecycle-job-examples/tree/main/examples/aws-rds-with-terraform)).
 
 The following sections will show you how you can create and manage the databases natively supported by Qovery. For any other use case, please refer to the guides provided above. 
+
+## Container mode
+The database is created as a container with attached persistent storage directly on your Kubernetes cluster (1 instance). They are perfect for development and testing, as they are significantly cheaper than services provided by cloud providers. 
+
+## Managed mode
+Qovery creates and manages the lifecycle of a cloud provider managed database instance (for example an RDS instance on AWS). These are perfect for production since they guarantee the right level of resilience, performance and data security best practices.
+
+
+### Applying changes to a managed database
+
+<Alert type="info">
+Since Qovery manages the lifecycle of your database, DO NOT change the database settings directly from within the cloud provider console (to avoid configuration drifts).
+</Alert>
+
+Once you request to change the version, instance type or disk size of your Managed database, the cloud provider applies the update based on its own internal rules and might cause downtime of your database.
+
+For example, by default AWS doesn't apply major updates immediately on the database and instead, it waits for a `maintenance window`. This means that your change will not be applied immediately but you can always force the change directly from your AWS console AFTER having applied the change on Qovery (to avoid configuration drifts). 
+
+Have a look at your cloud provider documentation to know more about how version upgrades are managed:
+
+- AWS RDS DB engine upgrade:  https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.MySQL.html
+- AWS maintenance window: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Maintenance.html
+
+
 
 ## Create a database
 
@@ -81,15 +101,13 @@ Please refer to the Configuration section below to know more about each of these
 
 <li>
 
-Within the "Resources" step you will find different configuration based on the selected `mode`:
+Within the "Resources" step you will find different configurations based on the selected `mode`:
 - If you are using the database in `Container` mode, you can set the CPU, RAM and storage that will be assigned to the instance running the docker image of the database.
 - If you are using the database in `Managed` mode, you can select the instance type and the storage that will be assigned to the instance running the database. Note, the instance selected instance type has a direct impact on your cloud provider cost.
 
 <p align="center">
   <img src="/img/configuration/database/db-3.png" alt="Resources" />
 </p>
-
-
 
 </li>
 
@@ -138,20 +156,13 @@ You can upgrade the version of your database directly from the Qovery interface.
 
 <Alert type="info">
 
-Once the upgrade is requested, the cloud provider applies the update based on its own internal rules and might cause a downtime of your database.
-
-For example, by default AWS applies major updates on the database during the `maintenance window`, the instance might be rebooted during this window. This also means that your upgrade request will not be applied immediately but you can force the switch directly from your AWS console AFTER having launched the upgrade on Qovery. 
-
-Have a look at your cloud provider documentation to know more about how version upgrades are managed:
-
-- AWS RDS DB engine upgrade:  https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.MySQL.html
-- AWS maintenance window: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Maintenance.html
+Any change on this field will not be applied immediately to your database, check the [managed mode](#applying-changes-to-a-managed-database) section.
 
 </Alert>
 
 #### Accessibility
 
-This parameter let you decide to expose publicly or not your database.
+This parameter lets you decide whether to expose publicly or not your database.
 
 - **Public** access will make your database accessible via the public network
 - **Private** access will make your database accessible only by applications in your environment
@@ -168,24 +179,23 @@ You can select the CPU assigned to the Kuerbetes pod running the database instan
 
 This configuration is available only for databases in **Managed** mode
 
-You can modify the CPU assigned to the instance running your database (And thus, its resouces).
+You can modify the CPU assigned to the instance running your database (And thus, its resources).
 
 <Alert type="info">
 
-Once the upgrade is requested, the cloud provider applies the update based on its own internal rules and might cause a downtime of your database.
-
-For example, by default AWS applies major updates on the database during the `maintenance window`, the instance might be rebooted during this window. This also means that your upgrade request will not be applied immediately but you can force the maintenance window to start immediately from your AWS console AFTER having launched the upgrade on Qovery. 
-
-Have a look at your cloud provider documentation to know more about instance type upgrades are managed:
-
-- AWS RDS instance changes: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.DBInstance.Modifying.htm
-- AWS maintenance window: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Maintenance.html
+Any change on this field will not be applied immediately to your database, check the [managed mode](#applying-changes-to-a-managed-database) section.
 
 </Alert>
 
 #### Storage
 
-You can select the size of the persistant storage attached to the container database.
+You can select the size of the persistent storage attached to the container database.
+
+<Alert type="info">
+
+Any change on this field will not be applied immediately to your database, check the [managed mode](#applying-changes-to-a-managed-database) section.
+
+</Alert>
 
 ## Credentials and connectivity
 
@@ -231,7 +241,7 @@ Delete action drops the service and its data!
 
 <Alert type="info">
 
-As Managed Services databases (like RDS) are mainly used for production, Qovery do not delete automated snapshots and backups on deletion.
+As Managed Services databases (like RDS) are mainly used for production, Qovery does not delete automated snapshots and backups on deletion.
 It is up to the user or Cloud provider Administrator to delete it manually.
 
 </Alert>

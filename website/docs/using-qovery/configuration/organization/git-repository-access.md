@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-10-31"
+last_modified_on: "2023-11-03"
 title: "Git Repository access"
 description: "Learn how to manage the git repository permission access"
 ---
@@ -35,7 +35,7 @@ In the following sections you will understand how to:
 
 ## Managing tokens on your git provider
 
-The process to create a token and the permissions to assign depend on the chosen git povider
+The process to create a token and the permissions to assign depend on the chosen git provider
 
 ### Github
 
@@ -77,9 +77,9 @@ The permission configuration is the same for the two types:
 </p>
 
 ### Bitbucket
-Bitbucket offers two types of tokens: `Repository access tokens` and `Workspaes access tokens` (only with Bitbucket Cloud Premium plan). You can read more about them and how to create them here:
+Bitbucket offers two types of tokens: `Repository access tokens` and `Workspace access tokens` (only with Bitbucket Cloud Premium plan). You can read more about them and how to create them here:
 - [Repository access tokens](https://support.atlassian.com/bitbucket-cloud/docs/create-a-repository-access-token/)
-- [Workspaes access tokens](https://support.atlassian.com/bitbucket-cloud/docs/workspace-access-tokens/)
+- [Workspace access tokens](https://support.atlassian.com/bitbucket-cloud/docs/workspace-access-tokens/)
 
 The permission configuration is the same for the two types:
 - Repositories: Read (Write auto set by Pull requests Write)
@@ -108,19 +108,25 @@ Tokens are centrally managed within your organization settings under the `Git re
   <img src="/img/configuration/organization/access_settings.png" alt="How to access your organization settings" />
 </p>
 
-2. In the `Organization settings` menu, click `Git Repository Access`:
+2. In the `Organization settings` menu, click `Git Repositories Access`:
 
 <p align="center">
-  <img src="/img/configuration/organization/git_repository_access.png" alt="Git Repository Access" />
+  <img src="/img/configuration/organization/git_repository_access.png" alt="Git Repositories Access" />
 </p>
+
+<Alert type="info">
+
+Only users with the organization role Owner, Admin and Devops can manage the git tokens of your organization.
+
+</Alert>
 
 ### Create the token
 
-1. Press the `Add Token` button
+1. Press the `Add new Token` button
 2. Fill the form with:
 - your git provider
 - Token name: this is the display name used in every Qovery interface.
-- Description
+- Description (optional)
 - Token Value: the token value as returned by your git provider.
 - Workspace: Only for bitbucket, provide the workspace where the token has been created.
 3. Press the `Create` button.

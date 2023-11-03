@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-08-04"
+last_modified_on: "2023-11-03"
 title: "Members and RBAC"
 description: "Learn how to manage the RBAC via Qovery"
 ---
@@ -63,7 +63,7 @@ More in detail, you can find the associated permissions below:
 | Manage billing                                         | yes   | yes   | no     | yes             | no     |
 | Manage members & roles                                 | yes   | yes   | no     | no              | no     |
 | Manage cluster & container registry                    | yes   | yes   | yes    | no              | no     |
-| Manage organization setup (webhooks, API tokens etc..) | yes   | yes   | yes    | no              | no     |
+| Manage organization setup (webhooks, Git and API tokens etc..) | yes   | yes   | yes    | no              | no     |
 | Read ANY project                                       | yes   | yes   | yes    | no              | yes    |
 | Edit/Delete ANY project                                | yes   | yes   | no     | no              | no     |
 | Create project                                         | yes   | yes   | no     | no              | no     |

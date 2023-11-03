@@ -22,11 +22,11 @@ Qovery natively supports the following databases:
 
 Qovery can natively operate a database in two different ways (called "Mode"):
 - Container mode: preferred for testing and development
-- Managed mode: preferred for production
+- Managed mode: preferred for production, limited configuration parameters (see the [Configuration](#configuration) section).
 
-If the natively supported databases and operation modes are not enough for you, we can still offer you an alternative solution depending on your use case:
+If the natively supported databases or operation modes are not enough for you, depending on your use case you have the following alternative solutions:
 - Use an existing DB on a dedicated VPC: your applications can access this database via VPC peering. Have a look at [this guide][guides.tutorial.aws-vpc-peering-with-qovery] for more information.
-- Create my own database: You will be able to manage the lifecycle of this database using the [lifecycle jobs][docs.using-qovery.configuration.lifecycle-job]. Have a look at [this example](https://github.com/Qovery/lifecycle-job-examples/tree/main/examples/aws-rds-with-terraform) which allows you to deploy your custom RDS instance on AWS via Terraform.
+- Create your custom database via Qovery: You will be able to deploy any kind of database through Qovery by using a [lifecycle jobs][docs.using-qovery.configuration.lifecycle-job]. For example, you can use a terraform script to deploy your custom RDS instance on AWS via Terraform (have a look at [this example](https://github.com/Qovery/lifecycle-job-examples/tree/main/examples/aws-rds-with-terraform)).
 
 The following sections will show you how you can create and manage the databases natively supported by Qovery. For any other use case, please refer to the guides provided above. 
 
@@ -34,18 +34,18 @@ The following sections will show you how you can create and manage the databases
 The database is created as a container with attached persistent storage directly on your Kubernetes cluster (1 instance). They are perfect for development and testing, as they are significantly cheaper than services provided by cloud providers. 
 
 ## Managed mode
-Qovery creates and manages the lifecycle of a cloud provider managed database instance (for example an RDS instance on AWS). These are perfect for production since they guarantee the right level of resiliance, performance and data security best practices.
+Qovery creates and manages the lifecycle of a cloud provider managed database instance (for example an RDS instance on AWS). These are perfect for production since they guarantee the right level of resilience, performance and data security best practices.
 
 
 ### Applying changes to a managed database
 
 <Alert type="info">
-Since Qovery manage the lifecycle of your database, DO NOT change the database settings directly from within the cloud provider console (to avoid configuration drifts).
+Since Qovery manages the lifecycle of your database, DO NOT change the database settings directly from within the cloud provider console (to avoid configuration drifts).
 </Alert>
 
 Once you request to change the version, instance type or disk size of your Managed database, the cloud provider applies the update based on its own internal rules and might cause a downtime of your database.
 
-For example, by default AWS doesn't applies major updates immediately on the database and instead it waits for a `maintenance window`. This means that your change will not be applied immediately but you can always force the change directly from your AWS console AFTER having applied the change on Qovery (to avoid configuration drifts). 
+For example, by default AWS doesn't apply major updates immediately on the database and instead it waits for a `maintenance window`. This means that your change will not be applied immediately but you can always force the change directly from your AWS console AFTER having applied the change on Qovery (to avoid configuration drifts). 
 
 Have a look at your cloud provider documentation to know more about how version upgrades are managed:
 

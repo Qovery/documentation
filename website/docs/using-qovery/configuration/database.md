@@ -57,9 +57,9 @@ Qovery creates and manages the lifecycle of a cloud provider managed database in
 Since Qovery manages the lifecycle of your database, DO NOT change the database settings directly from within the cloud provider console (to avoid configuration drifts).
 </Alert>
 
-Once you request to change the version, instance type or disk size of your Managed database, the cloud provider applies the update based on its own internal rules and might cause a downtime of your database.
+Once you request to change the version, instance type or disk size of your Managed database, the cloud provider applies the update based on its own internal rules and might cause downtime of your database.
 
-For example, by default AWS doesn't apply major updates immediately on the database and instead it waits for a `maintenance window`. This means that your change will not be applied immediately but you can always force the change directly from your AWS console AFTER having applied the change on Qovery (to avoid configuration drifts). 
+For example, by default AWS doesn't apply major updates immediately on the database and instead, it waits for a `maintenance window`. This means that your change will not be applied immediately but you can always force the change directly from your AWS console AFTER having applied the change on Qovery (to avoid configuration drifts). 
 
 Have a look at your cloud provider documentation to know more about how version upgrades are managed:
 
@@ -115,7 +115,7 @@ Please refer to the Configuration section below to know more about each of these
 
 <li>
 
-Within the "Resources" step you will find different configuration based on the selected `mode`:
+Within the "Resources" step you will find different configurations based on the selected `mode`:
 - If you are using the database in `Container` mode, you can set the CPU, RAM and storage that will be assigned to the instance running the docker image of the database.
 - If you are using the database in `Managed` mode, you can select the instance type and the storage that will be assigned to the instance running the database. Note, the instance selected instance type has a direct impact on your cloud provider cost.
 
@@ -170,13 +170,13 @@ You can upgrade the version of your database directly from the Qovery interface.
 
 <Alert type="info">
 
-Any change on this field will not be applied immediately on your database, check the [managed mode](#applying-changes-to-a-managed-database) section.
+Any change on this field will not be applied immediately to your database, check the [managed mode](#applying-changes-to-a-managed-database) section.
 
 </Alert>
 
 #### Accessibility
 
-This parameter let you decide to expose publicly or not your database.
+This parameter lets you decide whether to expose publicly or not your database.
 
 - **Public** access will make your database accessible via the public network
 - **Private** access will make your database accessible only by applications in your environment
@@ -193,21 +193,21 @@ You can select the CPU assigned to the Kuerbetes pod running the database instan
 
 This configuration is available only for databases in **Managed** mode
 
-You can modify the CPU assigned to the instance running your database (And thus, its resouces).
+You can modify the CPU assigned to the instance running your database (And thus, its resources).
 
 <Alert type="info">
 
-Any change on this field will not be applied immediately on your database, check the [managed mode](#applying-changes-to-a-managed-database) section.
+Any change on this field will not be applied immediately to your database, check the [managed mode](#applying-changes-to-a-managed-database) section.
 
 </Alert>
 
 #### Storage
 
-You can select the size of the persistant storage attached to the container database.
+You can select the size of the persistent storage attached to the container database.
 
 <Alert type="info">
 
-Any change on this field will not be applied immediately on your database, check the [managed mode](#applying-changes-to-a-managed-database) section.
+Any change on this field will not be applied immediately to your database, check the [managed mode](#applying-changes-to-a-managed-database) section.
 
 </Alert>
 
@@ -274,7 +274,7 @@ Delete action drops the service and its data!
 
 <Alert type="info">
 
-As Managed Services databases (like RDS) are mainly used for production, Qovery do not delete automated snapshots and backups on deletion.
+As Managed Services databases (like RDS) are mainly used for production, Qovery does not delete automated snapshots and backups on deletion.
 It is up to the user or Cloud provider Administrator to delete it manually.
 
 </Alert>

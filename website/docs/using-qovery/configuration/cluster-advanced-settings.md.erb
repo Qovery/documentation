@@ -74,11 +74,59 @@ Below is the list of advanced settings currently available for clusters.
 
 ## Network
 
+### Load balancer
+
 #### load_balancer.size ![](/img/advanced_settings/scaleway.svg)
 
 | Type    | Description                                                                 | Default Value |
 |---------|-----------------------------------------------------------------------------|---------------|
 | string  | Allows you to specify the load balancer size in front of your cluster.      | `lb-s`        |
+
+### Nginx
+
+#### nginx.vcpu.request_in_milli_cpu ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) 
+
+| Type    | Description                                                                                    | Default Value   |
+|---------|------------------------------------------------------------------------------------------------|-----------------|
+| integer | Vcpu request value in millicores assigned to Nginx pods                                        | `200`           |
+
+#### nginx.vcpu.limit_in_milli_cpu ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) 
+
+| Type    | Description                                                                                    | Default Value   |
+|---------|------------------------------------------------------------------------------------------------|-----------------|
+| integer | Vcpu limit value in millicores assigned to Nginx pods                                          | `700`           |
+
+#### nginx.memory.request_in_mib ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) 
+
+| Type    | Description                                                                                    | Default Value   |
+|---------|------------------------------------------------------------------------------------------------|-----------------|
+| integer | Memory limit value in MiB assigned to Nginx pods                                               | `768`           |
+
+#### nginx.memory.limit_in_mib ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) 
+
+| Type    | Description                                                                                    | Default Value   |
+|---------|------------------------------------------------------------------------------------------------|-----------------|
+| integer | Memory limit value in MiB assigned to Nginx pods                                               | `768`           |
+
+#### nginx.hpa.cpu_utilization_percentage_threshold ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) 
+
+| Type    | Description                                                                                    | Default Value   |
+|---------|------------------------------------------------------------------------------------------------|-----------------|
+| integer | Hpa (horizontal pod autoscaler) cpu threshold in percentage assigned to Nginx deployment       | `50`            |
+
+#### nginx.hpa.min_number_instances ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) 
+
+| Type    | Description                                                                                    | Default Value   |
+|---------|------------------------------------------------------------------------------------------------|-----------------|
+| integer | Minimum number of Nginx instances running                                                      | `2`             |
+
+#### nginx.hpa.max_number_instances ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) 
+
+| Type    | Description                                                                                    | Default Value   |
+|---------|------------------------------------------------------------------------------------------------|-----------------|
+| integer | Maximum number of Nginx instances running                                                      | `25`            |
+
+### Database access
 
 #### database.postgresql.deny_public_access ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-container.svg) ![](/img/advanced_settings/database-managed.svg) 
 

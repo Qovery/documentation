@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-08-18"
+last_modified_on: "2023-11-06"
 title: Logs
 description: "Learn how to access the logs of your environment and services"
 ---
@@ -103,6 +103,10 @@ Within this section you will find:
 - Version: the commit id or the image tag of the application running on this POD
 - Message: the log message
 
+Past application logs are also preserved on your cluster via [Loki](https://grafana.com/oss/loki/) and can be accessed from the same log view within the qovery console. Please keep in mind that:
+- Loki is configured to preserve only the latest 1000 lines of log for each application and retaini them for 12 weeks (configurable via the [cluster advanced settigns][docs.using-qovery.configuration.cluster-advanced-settings#logs])
+- This feature is not available on [EC2 Clusters][docs.using-qovery.configuration.clusters#why-do-i-need-a-cluster] since we don't install Loki.
+
 If you need to troubleshoot issues on the requests managed by your application, you can also access the Nginx logs in the same view (logs format is available in the helper). Note that this option is available only if the application is exposed publicly (See the [Port Section][docs.using-qovery.configuration.application#ports])
 
 <p align="center">
@@ -111,5 +115,7 @@ If you need to troubleshoot issues on the requests managed by your application, 
 
 
 [docs.using-qovery.configuration.application#ports]: /docs/using-qovery/configuration/application/#ports
+[docs.using-qovery.configuration.cluster-advanced-settings#logs]: /docs/using-qovery/configuration/cluster-advanced-settings/#logs
+[docs.using-qovery.configuration.clusters#why-do-i-need-a-cluster]: /docs/using-qovery/configuration/clusters/#why-do-i-need-a-cluster
 [docs.using-qovery.deployment.deployment-pipeline]: /docs/using-qovery/deployment/deployment-pipeline/
 [docs.using-qovery.troubleshoot]: /docs/using-qovery/troubleshoot/

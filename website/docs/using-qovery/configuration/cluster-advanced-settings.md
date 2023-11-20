@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-11-03"
+last_modified_on: "2023-11-16"
 title: "Cluster Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -87,9 +87,9 @@ Below is the list of advanced settings currently available for clusters.
 
 #### load_balancer.size ![](/img/advanced_settings/scaleway.svg)
 
-| Type    | Description                                                                 | Default Value |
-|---------|-----------------------------------------------------------------------------|---------------|
-| string  | Allows you to specify the load balancer size in front of your cluster.      | `lb-s`        |
+| Type    | Description                                                                                                                                                                                       | Default Value |
+|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| string  | Allows you to specify the load balancer size in front of your cluster. Possible values are:<br />- `lb-s`: 200 Mbps<br />- `lb-gp-m`: 500 Mbps<br />- `lb-gp-l`: 1 Gbps<br />- `lb-gp-xl`: 4 Gbps | `lb-s`        |
 
 ### Nginx
 

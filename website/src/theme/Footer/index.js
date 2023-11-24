@@ -67,7 +67,7 @@ function Footer() {
                             <div className="margin-bottom--md">
                                 {/*<MailingListForm description={true} width="150px"/>*/}
                                 <p>
-                                  Qovery is a Self-Service Infrastructure Platform Helping Ops and Engineers To Ship Faster.
+                                  Qovery is an Internal Developer Platform Helping 50.000+ Developers and Platform Engineers To Ship Faster.
                                 </p>
                             </div>
                             <div>

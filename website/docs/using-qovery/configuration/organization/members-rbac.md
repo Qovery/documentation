@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-11-03"
+last_modified_on: "2023-11-24"
 title: "Members and RBAC"
 description: "Learn how to manage the RBAC via Qovery"
 ---
@@ -55,24 +55,24 @@ By default, five roles are created within your organization (Basic Roles):
 
 More in detail, you can find the associated permissions below:
 
-| Action                                                 | Owner | Admin | DevOps | Billing Manager | Viewer |
-|--------------------------------------------------------|-------|-------|--------|-----------------|--------|
-| Read organization                                      | yes   | yes   | yes    | yes             | yes    |
-| Edit organization                                      | yes   | yes   | no     | no              | no     |
-| Delete organization                                    | yes   | no    | no     | no              | no     |
-| Manage billing                                         | yes   | yes   | no     | yes             | no     |
-| Manage members & roles                                 | yes   | yes   | no     | no              | no     |
-| Manage cluster & container registry                    | yes   | yes   | yes    | no              | no     |
+| Action                                                         | Owner | Admin | DevOps | Billing Manager | Viewer |
+|----------------------------------------------------------------|-------|-------|--------|-----------------|--------|
+| Read organization                                              | yes   | yes   | yes    | yes             | yes    |
+| Edit organization                                              | yes   | yes   | no     | no              | no     |
+| Delete organization                                            | yes   | no    | no     | no              | no     |
+| Manage billing                                                 | yes   | yes   | no     | yes             | no     |
+| Manage members & roles                                         | yes   | yes   | no     | no              | no     |
+| Manage cluster & container registry                            | yes   | yes   | yes    | no              | no     |
 | Manage organization setup (webhooks, Git and API tokens etc..) | yes   | yes   | yes    | no              | no     |
-| Read ANY project                                       | yes   | yes   | yes    | no              | yes    |
-| Edit/Delete ANY project                                | yes   | yes   | no     | no              | no     |
-| Create project                                         | yes   | yes   | no     | no              | no     |
-| Read ANY environment                                   | yes   | yes   | yes    | no              | yes    |
-| Edit/Delete ANY environment or service                 | yes   | yes   | no     | no              | no     |
-| Create environment or service                          | yes   | yes   | no     | no              | no     |
-| Add/Edit/Delete environment variables and secrets      | yes   | yes   | yes    | no              | no     |
-| Deploy/Stop ANY environment or service                 | yes   | yes   | yes    | no              | no     |
-| Connect via shell to ANY application                     | yes   | yes   | yes    | no              | no     |
+| Read ANY project                                               | yes   | yes   | yes    | no              | yes    |
+| Edit/Delete ANY project                                        | yes   | yes   | no     | no              | no     |
+| Create project                                                 | yes   | yes   | no     | no              | no     |
+| Read ANY environment                                           | yes   | yes   | yes    | no              | yes    |
+| Edit/Delete ANY environment or service                         | yes   | yes   | no     | no              | no     |
+| Create environment or service                                  | yes   | yes   | no     | no              | no     |
+| Add/Edit/Delete environment variables and secrets              | yes   | yes   | yes    | no              | no     |
+| Deploy/Stop ANY environment or service                         | yes   | yes   | yes    | no              | no     |
+| Connect via shell to ANY application                           | yes   | yes   | yes    | no              | no     |
 
 <Alert type="info">
 

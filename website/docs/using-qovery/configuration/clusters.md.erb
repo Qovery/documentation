@@ -356,6 +356,11 @@ The **Static IP** feature is currently only available to clusters deployed on AW
 
 By default, when your cluster is created, its worker nodes are allocated public IP addresses, which are used for external communication. For improved security and control, the **Static IP** feature allows you to ensure that outbound traffic from your cluster uses specific IP addresses.
 
+Here is what will be deployed on AWS:
+* Nat Gateways
+* Elastic IPs
+* Private subnets
+
 Once set up, here is the procedure to find your static IP addresses:
 - On your AWS account, select the VPC service. 
 - On the left menu, you’ll find Elastic IP addresses. Once on it, in the Allocated IPv4 address column, you’ll have your public IPs.

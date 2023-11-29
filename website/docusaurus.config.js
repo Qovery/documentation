@@ -159,7 +159,7 @@ module.exports = {
                  srcDark: '/img/logo-dark.svg',
                  href: 'https://www.qovery.com',
              },*/
-      copyright: `© ${new Date().getFullYear()} DESIGNED BY QOVERY | BACKED BY TECHSTARS | PROUD SILVER MEMBER OF CNCF AND LINUX FOUNDATION | QOVERY BY BIRDSIGHT - ALL RIGHTS RESERVED`,
+      copyright: `© ${new Date().getFullYear()} DESIGNED BY QOVERY | PROUD SILVER MEMBER OF CNCF AND LINUX FOUNDATION | QOVERY BY BIRDSIGHT - ALL RIGHTS RESERVED`,
     },
     algolia: {
       appId: "FT65SBJ2DA",

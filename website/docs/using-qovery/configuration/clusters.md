@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-11-14"
+last_modified_on: "2023-11-16"
 title: "Clusters"
 description: "Learn how to configure your Kubernetes clusters on Qovery"
 ---
@@ -363,6 +363,11 @@ The `Features` tab in your cluster settings allows you to check if the **Static 
 The **Static IP** feature is currently only available to clusters deployed on AWS and can only be enabled at cluster creation.
 
 By default, when your cluster is created, its worker nodes are allocated public IP addresses, which are used for external communication. For improved security and control, the **Static IP** feature allows you to ensure that outbound traffic from your cluster uses specific IP addresses.
+
+Here is what will be deployed on AWS:
+* Nat Gateways
+* Elastic IPs
+* Private subnets
 
 Once set up, here is the procedure to find your static IP addresses:
 - On your AWS account, select the VPC service. 

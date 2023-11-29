@@ -212,6 +212,8 @@ In the `Set Resources` window, select:
 <Alert type="warning">
 Instance type selection from your Qovery Console has direct consequences on your cloud provider’s bill. While Qovery allows you to switch to a different instance type whenever you want, it is your sole responsibility to keep an eye on your infrastructure costs, especially when you want to upsize.
 
+Please be aware that changing the instance type or disk size might cause a downtime for your service.
+
 For more information on the instance types provided by each cloud provider and their associated pricing, see [What are the different instance types available when creating a cluster?][docs.using-qovery.configuration.clusters#what-are-the-different-instance-types-available-when-creating-a-cluster]
 
 Also, before downsizing, you need to ensure that your applications will still have enough resources to run correctly.

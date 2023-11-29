@@ -37,7 +37,7 @@ The interface is composed of two sections:
 
 ## Navigation Panel
 
-This section provides you with some information on the last `Deployment` that happened on the environment and as well a navigation system to access the logs of each service of your environment. 
+This section provides you with some information on the last `Deployment` that happened on the environment and a navigation system to access the logs of each service of your environment. 
 
 More in detail you will find here:
 - Deployment information (top section): this section shows you the status of the deployment execution and when it happened. If a deployment is ongoing, its status will be updated accordingly in this section. 
@@ -104,7 +104,7 @@ Within this section you will find:
 - Message: the log message
 
 Past application logs are also preserved on your cluster via [Loki](https://grafana.com/oss/loki/) and can be accessed from the same log view within the qovery console. Please keep in mind that:
-- Loki is configured to preserve only the latest 1000 lines of log for each application and retain them for 12 weeks (configurable via the [cluster advanced settigns][docs.using-qovery.configuration.cluster-advanced-settings#logs])
+- Loki is configured to preserve only the latest 1000 lines of log for each application and retain them for 12 weeks (configurable via the [cluster advanced settings][docs.using-qovery.configuration.cluster-advanced-settings#logs])
 - This feature is not available on [EC2 Clusters][docs.using-qovery.configuration.clusters#why-do-i-need-a-cluster] since we don't install Loki.
 
 If you need to troubleshoot issues on the requests managed by your application, you can also access the Nginx logs in the same view (logs format is available in the helper). Note that this option is available only if the application is exposed publicly (See the [Port Section][docs.using-qovery.configuration.application#ports])

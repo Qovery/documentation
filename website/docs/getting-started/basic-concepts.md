@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-04-19"
+last_modified_on: "2023-11-25"
 title: "Basic Concepts"
 description: "Basic Concepts about Qovery"
 ---
@@ -19,11 +19,8 @@ An Organization is the workspace where devops and developers can collaborate acr
 More information about [Organization here][docs.using-qovery.configuration.organization].
 
 ## Cluster
-At Qovery, when we refer to Clusters, we mean Kubernetes clusters. A Kubernetes cluster is a collection of node machines that allows you to run containerized applications. 
 
-Qovery creates and manage for you clusters on your cloud account, more than one cluster can be created to match your use case (production, staging, dev etc..). 
-
-A running cluster is necessary to deploy your application with Qovery.
+At Qovery, when we refer to Cluster, we mean [Kubernetes][urls.kubernetes] cluster. A Kubernetes cluster is a collection of node machines that allows you to run containerized applications.
 
 More information about [Cluster here][docs.using-qovery.configuration.clusters].
 
@@ -88,3 +85,4 @@ You can monitor the execution of the deployment via the [Deployment Logs][docs.u
 [docs.using-qovery.deployment.logs#deployment-logs]: /docs/using-qovery/deployment/logs/#deployment-logs
 [docs.using-qovery.deployment.logs#live-logs]: /docs/using-qovery/deployment/logs/#live-logs
 [docs.using-qovery.deployment]: /docs/using-qovery/deployment/
+[urls.kubernetes]: https://kubernetes.io/

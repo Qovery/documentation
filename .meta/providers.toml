@@ -1,0 +1,4 @@
+[[providers]]
+name = "kubernetes"
+logo_path = "/img/logos/kubernetes.svg"
+dark_logo_path = "/img/logos/kubernetes_white.svg"

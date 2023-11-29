@@ -225,20 +225,30 @@ module.exports = {
       "series": false,
       "title": "Cloud Providers"
     },
+    "provider": {
+      "children": {
+      },
+      "description": "Install Qovery on one of our supported providers.",
+      "guides": [
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/provider/guide-kubernetes",
+          "last_modified_on": null,
+          "path": "website/guides/provider/guide-kubernetes.md",
+          "series_position": null,
+          "title": "Install Qovery on your Kubernetes cluster"
+        }
+      ],
+      "name": "provider",
+      "series": false,
+      "title": "Providers"
+    },
     "advanced": {
       "children": {
       },
       "description": "Go beyond the basics, become a Qovery pro, and extract the full potential of Qovery.",
       "guides": [
-        {
-          "author_github": "https://github.com/evoxmusic",
-          "description": null,
-          "id": "/advanced/build-on-top",
-          "last_modified_on": null,
-          "path": "website/guides/advanced/build-on-top.md",
-          "series_position": null,
-          "title": "Build on Top of Qovery"
-        },
         {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
@@ -824,6 +834,13 @@ module.exports = {
   ],
   "posts": [
 
+  ],
+  "providers": [
+    {
+      "dark_logo_path": "/img/logos/kubernetes_white.svg",
+      "logo_path": "/img/logos/kubernetes.svg",
+      "name": "kubernetes"
+    }
   ],
   "releases": {
   },

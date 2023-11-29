@@ -59,7 +59,8 @@
           metadata.databases.collect { |d| "database: #{d.name}" } +
           metadata.frameworks.collect { |f| "framework: #{f.name}" } +
           metadata.technologies.collect { |t| "technology: #{t.name}" } +
-          metadata.cloud_providers.collect { |t| "cloud_provider: #{t.name}" }
+          metadata.cloud_providers.collect { |t| "cloud_provider: #{t.name}" } +
+          metadata.providers.collect { |t| "provider: #{t.name}" }
         ) .to_json %>
       }
     },

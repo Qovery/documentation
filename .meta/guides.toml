@@ -12,6 +12,13 @@ description = """\
 Install Qovery on your favorite cloud provider.\
 """
 
+[guides.provider]
+title = "Providers"
+series = false
+description = """\
+Install Qovery on one of our supported providers.\
+"""
+
 [guides.advanced]
 title = "Advanced"
 series = false

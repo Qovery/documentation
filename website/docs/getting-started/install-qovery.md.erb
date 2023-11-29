@@ -1,9 +1,59 @@
 ---
 title: "Install Qovery"
-description: "How to install Qovery on your cloud account"
+description: "How to install Qovery"
 ---
-Qovery supports multiple cloud service providers. Check our guides to install Qovery on your favorite cloud account and starts to deploy your applications.
 
-<Jump to="/guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes">Deploy your apps on your AWS account</Jump>
-<Jump to="/guides/advanced/guide-digital-ocean">Deploy your apps on your Digital Ocean account</Jump>
-<Jump to="/guides/advanced/guide-scaleway">Deploy your apps on your Scaleway account</Jump>
+Qovery offers two distinct approaches to Kubernetes management: Kubernetes managed by Qovery and self-managed Kubernetes (Bring Your Own Kubernetes - BYOK)
+
+<Alert type="info">
+
+In a nutshell, choose Kubernetes Managed by Qovery if you are not familiar with Kubernetes or you don't want to bother with it and delegate infrastructure management to Qovery. Choose BYOK otherwise.
+
+</Alert>
+
+Here is a table to help you to choose between both:
+
+| Feature/Aspect                        | Kubernetes Managed by Qovery                   | BYOK (Bring Your Own Kubernetes)                 |
+|---------------------------------------|------------------------------------------------|--------------------------------------------------|
+| **Management**                        | Fully managed by Qovery                        | Self-managed by the organization                 |
+| **Control**                           | Limited control over Kubernetes infrastructure | Full control over Kubernetes setup               |
+| **Supported Cloud Service Providers** | AWS, GCP, Scaleway                             | All                                              |
+| **Customization**                     | Standard Qovery configuration                  | High customization and configuration freedom     |
+| **Expertise Required**                | None                                           | Requires Kubernetes expertise                    |
+| **Responsibility**                    | Qovery is responsible for maintenance          | Organization is responsible for maintenance      |
+| **Developer Experience**              | Streamlined and simplified                     | Streamlined and simplified (no difference)       |
+| **Setup Complexity**                  | Just a AWS, GCP or Scaleway account            | Requires infrastructure and Kubernetes knowledge |
+| **Flexibility in Usage**              | Standardized to Qovery's environment           | Flexible to meet specific organizational needs   |
+| **Ideal Use Case**                    | Organizations preferring a hands-off approach  | Organizations with specific Kubernetes needs     |
+| **Managed Services**                  | Cf. list below                                 | N/A                                              |
+
+Note that the Qovery Managed Kubernetes also support out of the box the following capabilities:
+
+- Vertical Pod Autoscaler
+- Cluster Autoscaler
+- CoreDNS
+- Cert-manager
+- Cert-manager Qovery Webhook
+- Nginx Ingress
+- Metrics Server
+- External DNS
+- Promtail
+- Loki
+- AWS
+  - AWS EBS Driver
+  - AWS Kubeproxy
+  - AWS CNI
+  - IAM EKS User Mapper
+  - Karpenter
+  - AWS Node Term Handler
+
+## Easy: Kubernetes Managed by Qovery
+
+<Jump to="/guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes">Deploy Qovery on AWS</Jump>
+<Jump to="/guides/cloud-provider/guide-google-cloud-platform/">Deploy Qovery on GCP</Jump>
+<Jump to="/guides/cloud-provider/guide-microsoft-azure/">Deploy Qovery on Azure</Jump>
+<Jump to="/guides/cloud-provider/guide-scaleway">Deploy Qovery on Scaleway</Jump>
+
+## Advanced: Bring Your Own Kubernetes (BYOK)
+
+<Jump to="/guides/provider/guide-kubernetes">Deploy Qovery on Kubernetes</Jump>

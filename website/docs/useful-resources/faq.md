@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-04-05"
+last_modified_on: "2023-11-24"
 title: FAQ
 description: "Frequently Asked Questions"
 ---
@@ -14,10 +14,6 @@ description: "Frequently Asked Questions"
 ## What is the difference between a Project, an Application, and an Environment?
 
 A [project][docs.using-qovery.configuration.project] is the site that you're working on. Each project can contain multiple [applications][docs.using-qovery.configuration.application] and be deployed in multiple [environments][docs.using-qovery.configuration.environment]. An environment is a standalone copy of your site, including apps, databases, storage, data, and all other services. By default, `main` branch is the production environment, while all other branches can be set up as identical copies of the prod environment for testing purposes.
-
-## How does application build works?
-
-Basically, Qovery deploys your application as a container. Check out the detailed explanation of what is going on behind the scene [here][docs.getting-started.how-qovery-works#application-and-database-deployment]
 
 ## How does Qovery manage databases?
 
@@ -111,7 +107,6 @@ An Active User is someone who made a code change on git or deployed an applicati
 Feel free to join our [Discord server][urls.qovery_chat] or contact us by email at hello (at) qovery.com.
 
 
-[docs.getting-started.how-qovery-works#application-and-database-deployment]: /docs/getting-started/how-qovery-works/#application-and-database-deployment
 [docs.getting-started.how-qovery-works]: /docs/getting-started/how-qovery-works/
 [docs.using-qovery.configuration.application#auto-scaling]: /docs/using-qovery/configuration/application/#auto-scaling
 [docs.using-qovery.configuration.application]: /docs/using-qovery/configuration/application/

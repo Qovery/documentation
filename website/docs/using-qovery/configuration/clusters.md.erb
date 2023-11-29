@@ -10,6 +10,12 @@ import Jump from '@site/src/components/Jump';
 import Alert from '@site/src/components/Alert';
 import Assumptions from '@site/src/components/Assumptions';
 
+<Alert type="info">
+
+If you are looking to install Qovery on your Kubernetes cluster, please refer to [this guide][guides.provider.guide-kubernetes].
+
+</Alert>
+
 This section brings you answers to all the questions our users usually ask about clusters:
 
 * [What is a cluster?][docs.using-qovery.configuration.clusters#what-is-a-cluster]
@@ -21,7 +27,7 @@ This section brings you answers to all the questions our users usually ask about
 
 ### What is a cluster?
 
-At Qovery, when we refer to clusters, we mean Kubernetes clusters. A Kubernetes cluster is a collection of node machines that allows you to run containerized applications. It is usually made up of:
+At Qovery, when we refer to cluster, we mean [Kubernetes][urls.kubernetes] cluster. A Kubernetes cluster is a collection of node machines that allows you to run containerized applications. It is usually made up of:
 
 * **Pods**: think of a pod as one instance of your application. Pods are the smallest deployable objects in Kubernetes, and they are hosted by worker nodes.
 * **Worker Nodes**: worker nodes essentially run your applications and workloads. When you create a cluster from your Qovery Console, it generates the set up of worker nodes (also called “instances”, “EC2 instances” for AWS users, or “droplets” for DigitalOcean users).
@@ -44,12 +50,13 @@ In short, through the use of clusters, Kubernetes provides you with a resilient,
 
 Qovery allows you to create and manage two types of clusters:
 
-|                             |**Managed K8S **                                                                                                                                 |** BETA - Single EC2 (K3s)**                                                                                                         |
-|-----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------|
-| **Description**             | A multi-node Kubernetes cluster managed by your cloud provider (EKS, Kapsule etc..)                                                             | K3s Cluster running on a single EC2 instance (single-node) **Available only on AWS and still in BETA**
-| **Usage**                   | Hosting professional applications in production (resilient, scalable and powerful infrastructure). Scalable staging / preview / dev environments| Hobby projects, trying out Qovery, ephemeral environments deployment |
-| **Cloud provider cost**     | Starting from 200$/month, based on the chosen instance type                                                                                    | starting from 20$/month, based on the chosen instance type               |
+|                         | **Managed K8S **                                                                                                                                 | ** BETA - Single EC2 (K3s)**                                                                           |
+|-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| **Description**         | A multi-node Kubernetes cluster managed by your cloud provider (EKS, Kapsule etc..)                                                              | K3s Cluster running on a single EC2 instance (single-node) **Available only on AWS and still in BETA** |
+| **Usage**               | Hosting professional applications in production (resilient, scalable and powerful infrastructure). Scalable staging / preview / dev environments | Hobby projects, trying out Qovery, ephemeral environments deployment                                   |
+| **Cloud provider cost** | Starting from 200$/month, based on the chosen instance type                                                                                      | starting from 20$/month, based on the chosen instance type                                             |
 <br/>
+
 <Alert type="warning">
 Single EC2 (K3s) is still in BETA phase and has the following limitations
 
@@ -87,9 +94,9 @@ Qovery supports only instance types having an x86_64 or ARM architecture.
 
 </Alert>
 
-#### What is the default cluster? 
+#### What is the default cluster?
 
-The default cluster is the first cluster you installed in your organization. 
+The default cluster is the first cluster you installed in your organization.
 
 When you create a new environment and leave the `mode` and `cluster` parameters set to the value `Automatic`, your environment is deployed to:
 * the cluster defined in one of [your project rules][docs.using-qovery.configuration.deployment-rule#environment-deployment-rules],
@@ -115,7 +122,7 @@ Please **DO NOT** upgrade the cluster version by yourself from the cloud provide
 That's the whole point of Qovery, we manage this task for you so you don't have to bother.
 If you did update by mistake, then you need to reach to Qovery team in order to get some help.
 
-**Proceeding with a cluster version upgrade outside of Qovery will prevent any future update on this cluster** and might be irreversible preventing Qovery from properly deploying on this cluster. Most importantly will expose you to some unknown / untested areas which can put your application stability at risks. 
+**Proceeding with a cluster version upgrade outside of Qovery will prevent any future update on this cluster** and might be irreversible preventing Qovery from properly deploying on this cluster. Most importantly will expose you to some unknown / untested areas which can put your application stability at risks.
 
 </Alert>
 
@@ -192,9 +199,9 @@ To confirm, click `Next`.
 </li>
 <li>
 
-In the `Set Resources` window, select: 
+In the `Set Resources` window, select:
 
-* `Cluster`: select the cluster type to use. Please refer to this section for [more information][docs.using-qovery.configuration.clusters#why-do-i-need-a-cluster]. 
+* `Cluster`: select the cluster type to use. Please refer to this section for [more information][docs.using-qovery.configuration.clusters#why-do-i-need-a-cluster].
 * `Instance type`: select the type of [worker nodes][docs.using-qovery.configuration.clusters#what-is-a-cluster] you want to deploy to your cluster:
 * `Disk size`: select the size of the disks to be attached to your cluster instances (to locally store container images etc..). Setting available only on AWS.
 * `Node auto-scaling`: define the minimum and the maximum number of worker nodes that your cluster can run. The lowest number is the number of worker nodes running on your infrastructure at any time, while the highest number is the maximum number of worker nodes that can automatically be deployed as traffic grows. Please note that a minimum of 3 worker nodes is required to deploy your EKS cluster.
@@ -303,10 +310,10 @@ The `General` tab allows you to define high-level information on your cluster:
 
 #### Credentials
 
-Here you can manage here the cloud provider credentials associated with your cluster. 
+Here you can manage here the cloud provider credentials associated with your cluster.
 
 If you need to change the credentials:
-- generate a new set of credentials on your cloud provider([Procedure for AWS account][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account], [Procedure for Scaleway account][docs.using-qovery.configuration.cloud-service-provider.scaleway#connect-your-scaleway-account]) 
+- generate a new set of credentials on your cloud provider([Procedure for AWS account][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account], [Procedure for Scaleway account][docs.using-qovery.configuration.cloud-service-provider.scaleway#connect-your-scaleway-account])
 - create the new credential on the Qovery by opening the drop-down and selecting "New Credentials"
 
 In the two dedicated fields, enter the credentials you created on your cloud provider account:
@@ -320,7 +327,7 @@ Once created and associated, you need to [updating your cluster][docs.using-qove
 
 #### Resources
 
-Qovery allows you to modify the resources allocated for your cluster: 
+Qovery allows you to modify the resources allocated for your cluster:
 
 - In the `Instance type` dropdown menu, select the type of [worker node(s)][docs.using-qovery.configuration.clusters#what-is-a-cluster] you want to deploy to your cluster.
 - *(AWS users only)* In the `Node disk size (GB)` field, enter the disk capacity you want to allocate to your worker node(s) (meaning how much data, in gigabytes, you want each worker node to be able to hold).
@@ -362,7 +369,7 @@ Here is what will be deployed on AWS:
 * Private subnets
 
 Once set up, here is the procedure to find your static IP addresses:
-- On your AWS account, select the VPC service. 
+- On your AWS account, select the VPC service.
 - On the left menu, you’ll find Elastic IP addresses. Once on it, in the Allocated IPv4 address column, you’ll have your public IPs.
 
 <Alert type="info">
@@ -431,8 +438,8 @@ You can follow the execution of the action via the cluster status and/or by acce
 
 #### Updating a Cluster
 
-If you made a change on your cluster, you need to run an update on your cluster to propagate remotely the new configuration.  
- 
+If you made a change on your cluster, you need to run an update on your cluster to propagate remotely the new configuration.
+
 To update your cluster, select the action `Update` from the drop-down menu.
 
 A confirmation pop-up window opens before triggering the action.
@@ -453,7 +460,7 @@ To permanently delete a cluster and all its associated costs, see [Deleting a Cl
 
 </Alert>
 
-To temporarily stop a cluster, select the `Stop` action from the drop-down menu. 
+To temporarily stop a cluster, select the `Stop` action from the drop-down menu.
 A confirmation pop-up window opens before triggering the action.
 
 Once confirmed, the status of your cluster turns to `Pausing...` (orange status).
@@ -493,7 +500,7 @@ This is the default behaviour, this option shall be chosen every time you want t
 This operation will delete:
 
 - **Cloud provider**: any resource created by Qovery on your cloud provider account to run this cluster will be deleted, including any application running on it.
-- **Qovery organization**: the configuration of this cluster and any linked environment. 
+- **Qovery organization**: the configuration of this cluster and any linked environment.
 
 <Alert type="warning">
 
@@ -650,10 +657,10 @@ You should get an output similar to:
   </li>
   </ol>
   </Steps>
-  
 
- You can add the generated public SSH key at cluster creation (see [Creating a Cluster][docs.using-qovery.configuration.clusters#creating-a-cluster]), or later from your cluster settings. 
- 
+
+ You can add the generated public SSH key at cluster creation (see [Creating a Cluster][docs.using-qovery.configuration.clusters#creating-a-cluster]), or later from your cluster settings.
+
  To do so:
   - on your [Qovery Console][urls.qovery_console], access your [cluster settings][docs.using-qovery.configuration.clusters#managing-your-cluster-settings].
   - In the `Remote Access` tab, enter your SSH key and click `Save`.

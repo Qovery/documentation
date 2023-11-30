@@ -36,6 +36,7 @@ module.exports = {
             "using-qovery/integration",
             "using-qovery/integration/git-repository",
             "using-qovery/integration/container-registry",
+            "using-qovery/integration/helm-repository",
             "using-qovery/integration/terraform",
             {
               type: 'category',

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-09-12"
+last_modified_on: "2023-11-30"
 title: "Organization"
 description: "Learn how to configure Organizations on Qovery"
 sidebar_label: hidden
@@ -114,6 +114,7 @@ You can find below a dedicated page for each of the admin settings that can be m
 <Jump to="/docs/using-qovery/configuration/organization/api-token/">Api token</Jump>
 <Jump to="/docs/using-qovery/configuration/organization/container-registry/">Container registry</Jump>
 <Jump to="/docs/using-qovery/configuration/organization/git-repository-access/">Git repository access</Jump>
+<Jump to="/docs/using-qovery/configuration/organization/helm-repository/">Helm repository</Jump>
 <Jump to="/docs/using-qovery/configuration/organization/members-rbac/">Members rbac</Jump>
 
 

@@ -24,11 +24,31 @@ Qovery BYOK (Bring Your Own Kubernetes) is a self-hosted version of Qovery. It a
 Read [this article](https://www.qovery.com/blog/kubernetes-managed-by-qovery-vs-self-managed-byok) to better understand the difference with the Managed Kubernetes by Qovery. In a nutshell, Qovery BYOK is for Kubernetes experts who want to manage their own Kubernetes cluster.
 Qovery does not manage the Kubernetes cluster for you.
 
+This page explains how to install and configure Qovery on your Kubernetes cluster. If you are looking for a quick step-by-step guide, please follow the [Kubernetes guide][guides.provider.guide-kubernetes].
+
+## Components
+
 <p align="center">
   <img src="/img/qovery_byok_how_it_works.jpg" alt="How Qovery works with Self Managed Kubernetes cluster" />
 </p>
 
-This page explains how to install and configure Qovery on your Kubernetes cluster. If you are looking for a quick step-by-step guide, please follow the [Kubernetes guide][guides.provider.guide-kubernetes].
+They are two types of components:
+
+Qovery components:
+- Qovery Control Plane: the Qovery Control Plane is the brain of Qovery. It is responsible for managing your applications and providing the API to interact with Qovery.
+- Qovery Engine: the Qovery Engine is responsible for managing your applications on your Kubernetes cluster. It is installed on your Kubernetes cluster.
+- Qovery Cluster Agent (optional): the Qovery Cluster Agent is responsible for securely forwarding logs and metrics from your Kubernetes cluster to Qovery control plane.
+- Qovery Shell Agent (optional): the Qovery Shell Agent is responsible for giving you a secure remote shell access to your Kubernetes pods if you need it. E.g. when using `qovery shell` command.
+
+Third-party components:
+- NGINX Ingress Controller (optional)
+- External DNS (optional)
+- Loki (optional)
+- Promtail (optional)
+- Cert Manager (optional)
+- ...
+
+Those components are installed by default. You can disable them if you don't want to use them. And you can even install other components if you want to.
 
 ## What's the requirements?
 
@@ -518,4 +538,6 @@ TODO
 
 Please [contact us][urls.qovery_contact_us]. We will be happy to help you.
 
+### Can I host the Qovery control plane on my own?
 
+Yes, you can. Please [contact us][urls.qovery_contact_us]. We will be happy to help you.

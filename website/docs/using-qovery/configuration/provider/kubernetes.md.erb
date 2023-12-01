@@ -20,7 +20,9 @@ This section is for Kubernetes users. If you are not familiar with Kubernetes, w
 
 </Alert>
 
-Qovery BYOK (Bring Your Own Kubernetes) is a self-hosted version of Qovery. It allows you to install Qovery on your own Kubernetes cluster. Read [this article](https://www.qovery.com/blog/kubernetes-managed-by-qovery-vs-self-managed-byok) to better understand the difference with the Managed Kubernetes by Qovery. In a nutshell, Qovery BYOK is for Kubernetes experts who want to manage their own Kubernetes cluster. Qovery does not manage the Kubernetes cluster for you.
+Qovery BYOK (Bring Your Own Kubernetes) is a self-hosted version of Qovery. It allows you to install Qovery on your own Kubernetes cluster.
+Read [this article](https://www.qovery.com/blog/kubernetes-managed-by-qovery-vs-self-managed-byok) to better understand the difference with the Managed Kubernetes by Qovery. In a nutshell, Qovery BYOK is for Kubernetes experts who want to manage their own Kubernetes cluster.
+Qovery does not manage the Kubernetes cluster for you.
 
 <p align="center">
   <img src="/img/qovery_byok_how_it_works.jpg" alt="How Qovery works with Self Managed Kubernetes cluster" />
@@ -284,4 +286,236 @@ helm install qovery
 </ol>
 
 </Steps>
+
+## Configuration
+
+### Qovery
+
+This is the configuration of Qovery itself. It is used by all Qovery components.
+
+| Key                      | Required | Description                                                | Default                   |
+|--------------------------|----------|------------------------------------------------------------|---------------------------|
+| `qovery.clusterId`       | Yes      | The cluster ID. It is used to identify your cluster.       | `set-by-customer`         |
+| `qovery.shortClusterId`  | Yes      | The short cluster ID. It is used to identify your cluster. | `set-by-customer`         |
+| `qovery.apkKey`          | Yes      | The APK key. It is used to authenticate your cluster.      | `set-by-customer`         |
+| `qovery.jwtToken`        | Yes      | The JWT token. It is used to authenticate your cluster.    | `set-by-customer`         |
+| `qovery.domain`          | Yes      | The domain name used by Qovery.                            | `set-by-customer`         |
+| `qovery.qoveryDnsUrl`    | Yes      | The Qovery DNS URL.                                        | `https://ddns.qovery.com` |
+| `qovery.qoveryDnsApiKey` | Yes      | The Qovery DNS API key.                                    | `set-by-customer`         |
+
+### Qovery Cluster Agent
+
+<Alert type="info">
+
+Optional. If you don't want to use the cluster agent, you can disable it. You will not be able to see your logs and metrics in the Qovery dashboard.
+
+</Alert>
+
+The cluster agent is responsible for securely forwarding logs and metrics from your Kubernetes cluster to Qovery control plane.
+
+| Key                                                                    | Required | Description                          | Default           |
+|------------------------------------------------------------------------|----------|--------------------------------------|-------------------|
+| `services.qovery-cluster-agent.enabled`                                | Yes      | Enable or disable the cluster agent. | `false`           |
+| `services.qovery-cluster-agent.image.tag`                              | Yes      | The cluster agent image tag.         | `set-by-customer` |
+| `services.qovery-cluster-agent.environmentVariables.GRPC_SERVER`       | Yes      | The gRPC server URL.                 | `set-by-customer` |
+| `services.qovery-cluster-agent.environmentVariables.CLUSTER_JWT_TOKEN` | Yes      | The JWT token.                       | `set-by-customer` |
+| `services.qovery-cluster-agent.environmentVariables.CLUSTER_ID`        | Yes      | The cluster ID.                      | `set-by-customer` |
+| `services.qovery-cluster-agent.environmentVariables.ORGANIZATION_ID`   | Yes      | The organization ID.                 | `set-by-customer` |
+
+### Qovery Shell Agent
+
+<Alert type="info">
+
+Optional. If you don't want to use the shell agent, you can disable it. You will not be able to open a secure remote shell to your application.
+
+</Alert>
+
+The shell agent is responsible for giving you a secure remote shell access to your Kubernetes pods if you need it. E.g. when using `qovery shell` command.
+
+| Key                                                                   | Required | Description                         | Default           |
+|-----------------------------------------------------------------------|----------|-------------------------------------|-------------------|
+| `services.qovery-shell-agent.enabled`                                 | Yes      | Enable or disable the shell agent.  | `false`           |
+| `services.qovery-shell-agent.image.tag`                               | Yes      | The shell agent image tag.          | `set-by-customer` |
+| `services.qovery-shell-agent.environmentVariables.GRPC_SERVER`        | Yes      | The gRPC server URL.                | `set-by-customer` |
+| `services.qovery-shell-agent.environmentVariables.CLUSTER_JWT_TOKEN`  | Yes      | The JWT token.                      | `set-by-customer` |
+| `services.qovery-shell-agent.environmentVariables.CLUSTER_ID`         | Yes      | The cluster ID.                     | `set-by-customer` |
+| `services.qovery-shell-agent.environmentVariables.ORGANIZATION_ID`    | Yes      | The organization ID.                | `set-by-customer` |
+
+### Ingress
+
+<Alert type="info">
+
+Optional. If you don't want to use NGINX Ingress Controller, you can disable it. You will not be able to expose publicly your applications.
+
+</Alert>
+
+Qovery uses [NGINX Ingress Controller](https://docs.nginx.com/nginx-ingress-controller/) by default to route traffic to your applications.
+
+#### Nginx Ingress Controller
+
+| Key                                                                           | Required | Description                                     | Default                                     |
+|-------------------------------------------------------------------------------|----------|-------------------------------------------------|---------------------------------------------|
+| `services.ingress.ingress-nginx.enabled`                                      | Yes      | Enable or disable the NGINX Ingress Controller. | `true`                                      |
+| `services.ingress.ingress-nginx.controller.useComponentLabel`                 | Yes      | Use component label.                            | `true`                                      |
+| `services.ingress.ingress-nginx.controller.admissionWebhooks.enabled`         | Yes      | Enable or disable the admission webhooks.       | `false`                                     |
+| `services.ingress.ingress-nginx.controller.ingressClass`                      | Yes      | The ingress class.                              | `nginx-qovery`                              |
+| `services.ingress.ingress-nginx.controller.extraArgs.default-ssl-certificate` | Yes      | The default SSL certificate.                    | `cert-manager/letsencrypt-acme-qovery-cert` |
+| `services.ingress.ingress-nginx.controller.publishService.enabled`            | Yes      | Enable or disable the publish service.          | `true`                                      |
+
+#### Other Ingress Controllers
+
+Qovery supports other Ingress Controllers. Please contact us if you want to use another one. We will be happy to help you.
+
+### DNS
+
+<Alert type="info">
+
+Optional. If you don't want to use External DNS, you can disable it. You will not be able to use custom domains.
+
+</Alert>
+
+Qovery uses [External DNS](https://github.com/kubernetes-sigs/external-dns) to automatically configure DNS records for your applications.
+
+#### External DNS
+
+| Key                                       | Required | Description                     | Default                                    |
+|-------------------------------------------|----------|---------------------------------|--------------------------------------------|
+| `services.dns.external-dns.enabled`       | Yes      | Enable or disable External DNS. | `true`                                     |
+| `services.dns.external-dns.provider`      | Yes      | The DNS provider.               | `pdns`                                     |
+| `services.dns.external-dns.domainFilters` | Yes      | The domain filters.             | `{{ tpl .Values.qovery.domain }}`          |
+| `services.dns.external-dns.txtOwnerId`    | Yes      | The TXT owner ID.               | `{{ tpl .Values.qovery.shortClusterId }}`  |
+| `services.dns.external-dns.txtPrefix`     | Yes      | The TXT prefix.                 | `{{ tpl .Values.qovery.shortClusterId }}`  |
+| `services.dns.external-dns.pdns.apiUrl`   | Yes      | The PowerDNS API URL.           | `{{ tpl .Values.qovery.qoveryDnsUrl }}`    |
+| `services.dns.external-dns.pdns.apiKey`   | Yes      | The PowerDNS API key.           | `{{ tpl .Values.qovery.qoveryDnsApiKey }}` |
+| `services.dns.external-dns.pdns.apiPort`  | Yes      | The PowerDNS API port.          | `443`                                      |
+
+### Logging
+
+<Alert type="info">
+
+Optional. If you don't want to use Loki and Promtail, you can disable them. You will not be able to see your logs in the Qovery dashboard.
+
+</Alert>
+
+Qovery uses [Loki](https://grafana.com/oss/loki/) to store your logs and [Promtail](https://grafana.com/docs/loki/latest/clients/promtail/) to collect your logs.
+
+#### Loki
+
+| Key                                                                 | Required | Description                     | Default                 |
+|---------------------------------------------------------------------|----------|---------------------------------|-------------------------|
+| `services.logging.loki.enabled`                                     | Yes      | Enable or disable Loki.         | `true`                  |
+| `services.logging.loki.auth_enabled`                                | Yes      | Enable or disable Loki auth.    | `false`                 |
+| `services.logging.loki.ingester.lifecycler.ring.kvstore.store`      | Yes      | The Loki KV store.              | `inmemory`              |
+| `services.logging.loki.ingester.lifecycler.ring.replication_factor` | Yes      | The Loki replication factor.    | `1`                     |
+| `services.logging.loki.schema_config.configs.from`                  | Yes      | The Loki schema config.         | `2020-05-15`            |
+| `services.logging.loki.schema_config.configs.store`                 | Yes      | The Loki store.                 | `boltdb-shipper`        |
+| `services.logging.loki.schema_config.configs.object_store`          | Yes      | The Loki object store.          | `filesystem`            |
+| `services.logging.loki.schema_config.configs.schema`                | Yes      | The Loki schema.                | `v11`                   |
+| `services.logging.loki.schema_config.configs.index.prefix`          | Yes      | The Loki index prefix.          | `index_`                |
+| `services.logging.loki.schema_config.configs.index.period`          | Yes      | The Loki index period.          | `24h`                   |
+| `services.logging.loki.monitoring.dashboards.enabled`               | Yes      | Enable or disable dashboards.   | `false`                 |
+| `services.logging.loki.monitoring.rules.enabled`                    | Yes      | Enable or disable rules.        | `false`                 |
+| `services.logging.loki.monitoring.serviceMonitor.enabled`           | Yes      | Enable or disable service.      | `false`                 |
+| `services.logging.loki.monitoring.serviceMonitor.metricsInstance`   | Yes      | Enable or disable metrics.      | `false`                 |
+| `services.logging.loki.monitoring.selfMonitoring.enabled`           | Yes      | Enable or disable self-monitor. | `false`                 |
+| `services.logging.loki.monitoring.selfMonitoring.grafanaAgent`      | Yes      | Enable or disable Grafana.      | `false`                 |
+| `services.logging.loki.monitoring.lokiCanary.enabled`               | Yes      | Enable or disable Loki Canary.  | `false`                 |
+| `services.logging.loki.gateway.enabled`                             | Yes      | Enable or disable gateway.      | `false`                 |
+| `services.logging.loki.singleBinary.replicas`                       | Yes      | The Loki replicas.              | `1`                     |
+| `services.logging.loki.singleBinary.persistence.enabled`            | Yes      | Enable or disable persistence.  | `false`                 |
+| `services.logging.loki.singleBinary.extraVolumes`                   | Yes      | The Loki extra volumes.         | `data` and `storage`    |
+| `services.logging.loki.singleBinary.extraVolumeMounts`              | Yes      | The Loki extra volume mounts.   | `data` and `storage`    |
+| `services.logging.loki.singleBinary.extraVolumeMounts.mountPath`    | Yes      | The Loki extra volume mount.    | `/data` and `/var/loki` |
+| `services.logging.loki.singleBinary.extraVolumeMounts.name`         | Yes      | The Loki extra volume name.     | `data` and `storage`    |
+| `services.logging.loki.singleBinary.extraVolumes.emptyDir`          | Yes      | The Loki extra volume emptyDir. | `{}`                    |
+| `services.logging.loki.singleBinary.extraVolumeMounts.emptyDir`     | Yes      | The Loki extra volume emptyDir. | `{}`                    |
+| `services.logging.loki.test.enabled`                                | Yes      | Enable or disable test.         | `false`                 |
+
+#### Promtail
+
+| Key                                                             | Required | Description                  | Default                                                                                                   |
+|-----------------------------------------------------------------|----------|------------------------------|-----------------------------------------------------------------------------------------------------------|
+| `services.logging.promtail.enabled`                             | Yes      | Enable or disable Promtail.  | `true`                                                                                                    |
+| `services.logging.promtail.namespace`                           | Yes      | The Promtail namespace.      | `kube-system`                                                                                             |
+| `services.logging.promtail.priorityClassName`                   | Yes      | The Promtail priority class. | `system-node-critical`                                                                                    |
+| `services.logging.promtail.config.clients.url`                  | Yes      | The Promtail URL.            | `http://loki.qovery.svc:3100/loki/api/v1/push`                                                            |
+| `services.logging.promtail.config.snippets.extraRelabelConfigs` | Yes      | The Promtail extra relabel.  | `__meta_kubernetes_pod_label_(qovery_com_service_id\|qovery_com_service_type\|qovery_com_environment_id)` |
+
+### Certificates
+
+<Alert type="info">
+
+Optional. If you don't want to use Cert Manager, you can disable it. You will not be able to get TLS certificates automatically.
+
+</Alert>
+
+Qovery uses [Cert Manager](https://cert-manager.io/) to automatically get TLS certificates for your applications.
+
+#### Cert Manager
+
+| Key                                                                             | Required | Description                     | Default                                   |
+|---------------------------------------------------------------------------------|----------|---------------------------------|-------------------------------------------|
+| `services.certificates.cert-manager.enabled`                                    | Yes      | Enable or disable Cert Manager. | `true`                                    |
+| `services.certificates.cert-manager.namespace`                                  | Yes      | The Cert Manager namespace.     | `cert-manager`                            |
+| `services.certificates.cert-manager.fullnameOverride`                           | Yes      | The Cert Manager name.          | `cert-manager`                            |
+| `services.certificates.cert-manager.installCRDs`                                | Yes      | Enable or disable CRDs.         | `true`                                    |
+| `services.certificates.cert-manager.replicaCount`                               | Yes      | The Cert Manager replicas.      | `1`                                       |
+| `services.certificates.cert-manager.startupapicheck.jobAnnotations`             | Yes      | The Cert Manager annotations.   | `helm.sh/hook: post-install,post-upgrade` |
+| `services.certificates.cert-manager.startupapicheck.rbac.annotations`           | Yes      | The Cert Manager annotations.   | `helm.sh/hook: post-install,post-upgrade` |
+| `services.certificates.cert-manager.startupapicheck.serviceAccount.annotations` | Yes      | The Cert Manager annotations.   | `helm.sh/hook: post-install,post-upgrade` |
+
+#### Qovery Cert Manager Webhook
+
+| Key                                                                                | Required | Description                    | Default                                    |
+|------------------------------------------------------------------------------------|----------|--------------------------------|--------------------------------------------|
+| `services.certificates.qovery-cert-manager-webhook.fullnameOverride`               | Yes      | The Qovery Cert Manager name.  | `qovery-cert-manager-webhook`              |
+| `services.certificates.qovery-cert-manager-webhook.certManager.namespace`          | Yes      | The Cert Manager namespace.    | `cert-manager`                             |
+| `services.certificates.qovery-cert-manager-webhook.certManager.serviceAccountName` | Yes      | The Cert Manager service name. | `cert-manager`                             |
+| `services.certificates.qovery-cert-manager-webhook.secret.apiUrl`                  | Yes      | The Qovery DNS URL.            | `{{ tpl .Values.qovery.qoveryDnsUrl }}`    |
+| `services.certificates.qovery-cert-manager-webhook.secret.apiKey`                  | Yes      | The Qovery DNS API key.        | `{{ tpl .Values.qovery.qoveryDnsApiKey }}` |
+| `services.certificates.qovery-cert-manager-webhook.certManager.serviceAccountName` | Yes      | The Cert Manager service name. | `cert-manager`                             |
+
+#### Cert Manager Configs
+
+| Key                                                                       | Required | Description                     | Default                           |
+|---------------------------------------------------------------------------|----------|---------------------------------|-----------------------------------|
+| `services.certificates.cert-manager-configs.fullnameOverride`             | Yes      | The Cert Manager Configs name.  | `cert-manager-configs`            |
+| `services.certificates.cert-manager-configs.externalDnsProvider`          | Yes      | The external DNS provider.      | `set-by-customer`                 |
+| `services.certificates.cert-manager-configs.managedDns`                   | Yes      | The managed DNS.                | `{{ tpl .Values.qovery.domain }}` |
+| `services.certificates.cert-manager-configs.acme.letsEncrypt.emailReport` | Yes      | The Let's Encrypt email report. | `set-by-customer`                 |
+| `services.certificates.cert-manager-configs.acme.letsEncrypt.acmeUrl`     | Yes      | The Let's Encrypt URL.          | `set-by-customer`                 |
+| `services.certificates.cert-manager-configs.provider.cloudflare.apiToken` | Yes      | The Cloudflare API token.       | `set-by-customer`                 |
+| `services.certificates.cert-manager-configs.provider.cloudflare.email`    | Yes      | The Cloudflare email.           | `set-by-customer`                 |
+| `services.certificates.cert-manager-configs.provider.pdns.apiPort`        | Yes      | The PowerDNS API port.          | `set-by-customer`                 |
+| `services.certificates.cert-manager-configs.provider.pdns.apiUrl`         | Yes      | The PowerDNS API URL.           | `set-by-customer`                 |
+| `services.certificates.cert-manager-configs.provider.pdns.apiKey`         | Yes      | The PowerDNS API key.           | `set-by-customer`                 |
+
+### Autoscaling
+
+<Alert type="info">
+
+Optional. If you don't want to use Metrics Server, you can disable it. You will not be able to scale your application automatically based on custom metrics.
+
+</Alert>
+
+Qovery uses [Metrics Server](https://github.com/kubernetes-sigs/metrics-server) to collect metrics from your Kubernetes cluster and scale your applications automatically based on custom metrics.
+
+#### Metrics Server
+
+| Key                                                       | Required | Description                    | Default          |
+|-----------------------------------------------------------|----------|--------------------------------|------------------|
+| `services.observability.metrics-server.enabled`           | Yes      | Enable or disable Metrics.     | `true`           |
+| `services.observability.metrics-server.fullnameOverride`  | Yes      | The Metrics name.              | `metrics-server` |
+| `services.observability.metrics-server.apiService.create` | Yes      | Enable or disable API service. | `false`          |
+
+## FAQ
+
+### How to get the Qovery cluster ID, short cluster ID, APK key, and JWT token?
+
+TODO
+
+### I have a non-covered use case. What should I do?
+
+Please [contact us][urls.qovery_contact_us]. We will be happy to help you.
+
 

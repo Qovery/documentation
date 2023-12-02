@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-10-11"
+last_modified_on: "2023-12-02"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -131,7 +131,7 @@ By default ports are accessible only from inside your environment. You can also 
 - Connections on public ports are automatically closed after 60 seconds. If you want to implement long living connection (like for websockets) please make sure to use the rigth ingress timeouts in the [advanced settings section][docs.using-qovery.configuration.advanced-settings#network-settings]
 - Exposing publicly TCP/UDP ports requires to create a dedicated load balancer and it takes a few minutes before having it ready (~15 minutes). Note also that this has a direct impact on your cloud provider bill.
 - You can configure your application to use the **PORT** environment variable by adding the **PORT** on your application env variables page.
-- A Note on Listening IPs: It's best for your application to listen on `0.0.0.0:$PORT`. While most things work with `127.0.0.1` and `localhost`, some do not (NodeJS for example)
+- A Note on Listening IPs: It is best for your application to listen on `0.0.0.0:$PORT`. While most things work with `127.0.0.1` and `localhost`, some do not (NodeJS for example)
 
 </li>
 
@@ -146,9 +146,9 @@ To know more about how to configure your Liveness and Readiness probes, have a l
 <li>
 
 You will find a recap of your application setup and you can now decide to:
-# Go back to one of the previous steps and change your application settings
-# Create your application without deploying it
-# Create and deploy your application
+- Go back to one of the previous steps and change your application settings
+- Create your application without deploying it
+- Create and deploy your application
 
 <p align="center">
   <img src="/img/configuration/application/application_creation_recap.png" alt="Application" />
@@ -389,11 +389,11 @@ To know more about how to configure your Liveness and Readiness probes, have a l
 
 Within this section you can customize the domain used to reach your application. 
 
-You can customize the domain of your application in different ways, depending on what you want to achieve:
-* You want to use your own domain for this application
-* You want to modify the subdomain assigned to your application by Qovery (i.e. change `p80-zdf72de72-z709e1a88-gtw.za8ad0657.bool.sh` into `my-app-domain.za8ad0657.bool.sh`).
+You can customize the domain of your application. in different ways, depending on what you want to achieve:
+* You want to use your own domain for your application.
+* You want to modify the subdomain assigned to your application. by Qovery (i.e. change `p80-zdf72de72-z709e1a88-gtw.za8ad0657.bool.sh` into `my-app-domain.za8ad0657.bool.sh`).
 
-In both cases, you can assign the new custom domain to your application press the `Add Domain` button. 
+In both cases, you can assign the new custom domain to your application. press the `Add Domain` button. 
 
 <p align="center">
   <img src="/img/configuration/application/app-16.png" alt="Application Domains" />
@@ -435,12 +435,12 @@ If your service is behind a CDN using a `proxy mode` (i.e. the traffic is routed
 
 #### Change the auto assigned sub-domain
 
-You can specify a different sub-domain for your application as long as it belongs to the assigned cluster domain (see [Qovery provided domains](#qovery-provided-domains)). 
+You can specify a different sub-domain for your application. as long as it belongs to the assigned cluster domain (see [Qovery provided domains](#qovery-provided-domains)). 
 Example: 
 - your current domain is zdf72de71-z709e1a85-gtw.za8ad0659.bool.sh (so your assigned cluster domain is `za8ad0659.bool.sh`)
 - you can enter a new custom domain `myfrontend.za8ad0659.bool.sh` (since it is a subdomain of the cluster domain)
 
-The application will now be accessible from both the default and the new custom domain.
+The application. will now be accessible from both the default and the new custom domain.
 
 <Alert type="info">
 
@@ -450,11 +450,11 @@ Qovery does not check collision in the domain declaration. Make sure you assign 
 
 ## Connecting from the internet
 
-Your application can be reached from the internet by publicly exposing at least one of its ports (See the [Ports](#ports) section to know more). Once this is done, Qovery will generate for you a domain to reach your application from the internet. You can also customize the domain assigned to your application and manage by yourself this assignment via the `Domain` section.
+Your application. can be reached from the internet by publicly exposing at least one of its ports (See the [Ports](#ports) section to know more). Once this is done, Qovery will generate for you a domain to reach your application from the internet. You can also customize the domain assigned to your application and manage by yourself this assignment via the `Domain` section.
 
 ### Qovery provided domains
 
-For each port publicly exposed, a domain is automatically assigned by Qovery to your application. Qovery will manage for you the networking and the TLS configuration for these domains. 
+For each port publicly exposed, a domain is automatically assigned by Qovery to your application.. Qovery will manage for you the networking and the TLS configuration for these domains. 
 
 Example: `p80-zdf72de72-z709e1a88-gtw.za8ad0657.bool.sh`
 
@@ -474,7 +474,7 @@ domain example: `p80-123-frontend-blueprint.za8ad0657.bool.sh`
 
 ### Custom domains
 
-If you prefer to assign your own domain to the application have a look at the [Domain section](#domains) to know more.
+If you prefer to assign your own domain to the application, have a look at the [Domain section](#domains) to know more.
 
 ## Connecting to a database
 To know how to access your database from your application, [have a look at the database section][docs.using-qovery.configuration.environment-variable#connecting-to-a-database].

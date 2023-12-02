@@ -783,6 +783,10 @@ class Templates
     render("#{partials_path}/_clone_service.md", binding).strip
   end
 
+  def configure_domains(service)
+    render("#{partials_path}/_configure_domains.md", binding).strip
+  end
+
   def qovery_deploy_app_web
     render("#{partials_path}/_qovery_deploy_app_web.md", binding).strip
   end

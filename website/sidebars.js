@@ -105,6 +105,7 @@ module.exports = {
             "using-qovery/configuration/project",
             "using-qovery/configuration/environment",
             "using-qovery/configuration/application",
+            "using-qovery/configuration/helm",
             {
               type: 'category',
               label: 'Database',

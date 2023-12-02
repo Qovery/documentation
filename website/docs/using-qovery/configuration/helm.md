@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-11-30"
+last_modified_on: "2023-12-02"
 title: "Helm"
 description: "Learn how to configure your Helm on Qovery"
 ---
@@ -69,7 +69,7 @@ If you want to deploy a helm from a Helm Repository you will have to select:
 
 - Helm arguments: specify the [helm arguments](https://helm.sh/docs/intro/using_helm/#helpful-options-for-installupgraderollback) to be used during the helm install/upgrade.
 - Helm timeout: specify the value to wait for Kubernetes commands to complete. This defaults to 5mins.
-
+- Allow cluster-wide resources: Allow this chart to deploy resources outside of the environment namespace
 
 ** Auto Deploy **
 
@@ -91,50 +91,52 @@ If you want to override it with a raw yaml you will have to click on `Create ove
 
 You can use the Qovery environment variables as overrides by using the placeholder “qovery.env.<env_var_name>” (Example: qovery.env.DB_URL. Qovery will manage the replacement of those placeholders at deployment time.
 
+</li>
+<li>
 
+Specify each value override as argument. Select the following fiels:
+- Variable: the variable name
+- Value type: 
+  - Select `Generic` to use the `--set` flag and pass configuration from the command line
+  - Select `String` to use the `--set-string` flag to force a string value
+  - Select `File` to use the `--set-file` flag to set individual values from a file when the value itself is too long for the command line or is dynamically generated
+  - Select `Json` to use the `--set-json` flag to set json values (scalars/objects/arrays) from the command line
+- Value
 
+</li>
+<li>
 
+You can now expose publicly one or more ports for your services defined in the helm chart by specifying:
+- Service name: this is the kubernetes service name in your helm chart
+- Namespace (only if Allow cluster-wide resources was enabled): this is the kubernetes namespace in your helm chart
+- Service port: this is the port exposed internally by your service for the other services
+- Protocol: you can select the protocol used by your service. Today Qovery supports the following protocols:
+  - HTTPS (Select this protocol if you need to run Websockets)
+  - gRPC
+- External port: it is the port that can be used to access this service over the internet (when exposed publicly). Note that for HTTP and gRPC the port is set by default to 443.
+- Port Name: it is the name assigned to the port. When multiple ports are exposed publicly, its value is used to route the traffic to the right port based on the called subdomain (which will contain the port name value). Since each port is exposed on the port 443, having a different subdomain is the only way to have multiple ports exposed over the internet. If not set, the default value is `p<portNumber>` (see [Qovery Provided Domain section](#qovery-provided-domains) for more information)
 
+By default ports are accessible only from inside your namespace(s). You can also expose them publicly, making them accessible over the public network via a dedicated public domain that will be assigned to your application by Qovery during the deployment (See the [Qovery Provided Domains section](#qovery-provided-domains)). Note that HTTPS/gRPC ports are always exposed over the port 443.
 
-
-You can now define one or more ports for your Helm. Most of the application needs to be accessed by other services inside or outside your environment over L7 protocol.
-Today Qovery supports the following protocols:
-- HTTPS (Select this protocol if you need to run Websockets)
-- gRPC
-
-By default ports are accessible only from inside your environment. You can also expose them publicly, making them accessible over the public network via a dedicated public domain that will be assigned to your application by Qovery during the deployment (See the [Qovery Provided Domains section](#qovery-provided-domains)). Note that HTTPS/gRPC ports are always exposed over the port 443.
-
-<p align="center">
+<p align="center"> #TODO Change screenshot
   <img src="/img/configuration/application/application_creation_port.png" alt="Application Ports" />
 </p>
 
 
 **Important Informations**
 
-- Most of the [Kubernetes Health Checks][docs.using-qovery.configuration.service-health-checks] are based on the port declared in this section. Make sure you declare the right port and that you configure the health checks properly.
 - Connections on public ports are automatically closed after 60 seconds. If you want to implement long living connection (like for websockets) please make sure to use the rigth ingress timeouts in the [advanced settings section][docs.using-qovery.configuration.advanced-settings#network-settings]
-- Exposing publicly TCP/UDP ports requires to create a dedicated load balancer and it takes a few minutes before having it ready (~15 minutes). Note also that this has a direct impact on your cloud provider bill.
-- You can configure your application to use the **PORT** environment variable by adding the **PORT** on your application env variables page.
-- A Note on Listening IPs: It's best for your application to listen on `0.0.0.0:$PORT`. While most things work with `127.0.0.1` and `localhost`, some do not (NodeJS for example)
 
 </li>
 
 <li>
 
-(Optional) If a port has been defined for your application, you can define the health check probes to run in order to verify the state of your application
+You will find a recap of your helm setup and you can now decide to:
+- Go back to one of the previous steps and change your helm settings
+- Create your helm without deploying it
+- Create and deploy your helm
 
-To know more about how to configure your Liveness and Readiness probes, have a look at [the health-checks section][docs.using-qovery.configuration.application-health-checks]
-
-</li>
-
-<li>
-
-You will find a recap of your application setup and you can now decide to:
-# Go back to one of the previous steps and change your application settings
-# Create your application without deploying it
-# Create and deploy your application
-
-<p align="center">
+<p align="center"> #TODO Change screenshot
   <img src="/img/configuration/application/application_creation_recap.png" alt="Application" />
 </p>
 
@@ -147,9 +149,9 @@ Have a look at the [Deployment Management][docs.using-qovery.deployment] section
 
 ## Configuration
 
-Once created, you can access the configuration of an application at any time via the Settings tab available on the application section
+Once created, you can access the configuration of a helm at any time via the Settings tab available on the helm section
 
-<p align="center">
+<p align="center"> #TODO Change screenshot
   <img src="/img/configuration/application/settings.png" alt="Application Settings" />
 </p>
 
@@ -157,15 +159,15 @@ You can find below the description of each of the tabs available in this section
 
 ### General
 
-General settings section allows you to set up your application name and the source code location (git repository or image registry) .
+General settings section allows you to set up the name and the source of your helm (git repository or helm repository) .
 
 #### Git Repository
-If your application is built and deployed from a git repository, within this section you can:
+If your heml is from a git repository, within this section you can:
 - Modify the git provider where your code is stored (it can be hosted on GitHub, GitLab or Bitbucket).
 - Modify the branch that Qovery should use for deploying your application
-- Modify `Root Application Path` - base folder in which the application resides in your repository
+- Modify `Root Helm Path` - base folder in which the helm chart resides in your repository
 
-<p align="center">
+<p align="center"> #TODO Change screenshot
   <img src="/img/configuration/application/app-general-git.png" alt="General Settings Git" />
 </p>
 
@@ -187,197 +189,60 @@ Secret names examples:
 
 </Alert>
 
-#### Container Registry
-If your application is deployed from an image registry, within this section you can modify:
-- Registry: select the container registry storing the image of your application. Note: only pre-configured registry are available in this list, check the [Container Registry Management page][docs.using-qovery.configuration.organization.container-registry] for more information.
-- Image name: the name of the image to be deployed with this application (example: postgres)
-- Image tag: the tag of the image to be deployed with this application (example: 1.0).
-- Image Entrypoint: the entrypoint to be used to launch your applicaiton (not mandatory)
-- CMD Arguments: the arguments to be passed to launch your applicaiton (not mandatory). We expect the format to be an array. Example ["rails", "-h", "0.0.0.0", "-p", "8080", "string"]
+#### Helm Repository
+If your helm is deployed from a helm repository, within this section you can modify:
+- Helm repository: select the helm repository storing the helm chart. Note: only pre-configured registry are available in this list, check the [Helm Repository Management page][docs.using-qovery.configuration.organization.helm-repository] for more information.
+- Chart name: the name of the helm to be deployed with this application (example: jenkins)
+- Chart version: the version of the chart to be deployed with this application (example: 1.0.0). 
 
-<Alert type="info">
+#### Arguments
+For both kind of helm source, within this section yoiu can modify:
+- Helm arguments: specify the [helm arguments](https://helm.sh/docs/intro/using_helm/#helpful-options-for-installupgraderollback) to be used during the helm install/upgrade.
+- Helm timeout: specify the value to wait for Kubernetes commands to complete. This defaults to 5mins.
 
-Make sure that the image tag used are unique (do not use "latest", "dev", "master" etc..), see [this section][docs.using-qovery.deployment.image-mirroring#why-unique-image-tags-are-necessary] for more information.
-
-</Alert>
-
-<p align="center">
+<p align="center"> #TODO Change screenshot
   <img src="/img/configuration/application/app-general-registry.png" alt="General Settings Git" />
 </p>
-
-#### Build Mode
-This option is available only if you have selected "Git Repository" as source
-#### Option 1: Buildpacks
-
-To simplify the application build for the developer, Qovery supports [Buildpacks](https://buildpacks.io) out of the box. Buildpacks determine the build process for an app and which assets and runtimes should be made available to your code at runtime. If your complex apps are running multiple languages, you can also use multiple buildpacks within a single app.
-Meaning, as a developer, you don't need to write a `Dockerfile` to build and run your app. Qovery Buildpacks takes care of everything for you.
-
-**Supported languages**
-
-| language   | version |
-|------------|---------|
-| Node.JS    | any     |
-| Clojure    | any     |
-| Python     | any     |
-| Java       | any     |
-| Gradle     | any     |
-| JVM        | any     |
-| Grails     | any     |
-| Scala      | any     |
-| Play       | any     |
-| PHP        | any     |
-| Go         | any     |
-
-You don't find a cool language? [Suggest us to support it][urls.qovery_roadmap]
-
-#### Option 2: Dockerfile
-
-Qovery runs your application within the [Container technology](https://www.docker.com/resources/what-container). To build and run your application, you need to provide a valid [Dockerfile](https://docs.docker.com/engine/reference/builder).
-
-```Dockerfile title="Valid NodeJS Dockerfile"
-FROM node:13-alpine
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
-COPY . .
-RUN npm install
-EXPOSE 3000
-CMD node ./bin/www
-```
-
-After creating a Dockerfile, specify the location of your Dockerfile in `Dockefile path` field.
-
-Configuration from above will make Qovery look for the Dockerfile in `/timescale/Dockerfile` path of your repository (`Root Application Path` + `Dockerfile Path`).
 
 #### Auto Deploy
 
 See the [Deploying with auto-deploy feature][docs.qovery.deployment.deploying-with-auto-deploy] section.
 
+### Values
 
-### Resources
-
-<p align="center">
-  <img src="/img/configuration/application/app-13.png" alt="CPU" />
-</p>
-
-#### CPU
-
-To configure the number of CPUs that your app needs, adjust the setting in the `Resources` section of the application configuration.
-
-<Alert type="info">
-
-Default is 500m (0.5 vCPU). 
-
-</Alert>
-
-Please note that in this section you configure the CPU allocated by the cluster for your application and that cannot consume more than this value. Even if the application is underused and consumes fewer resources, the cluster will still reserve the selected amount of CPU.
-
-#### RAM
-
-To configure the amount of RAM that your app needs, adjust the setting in `Resources` section of the application configuration.
-
-<Alert type="info">
-
-Default is 512MB.
-
-</Alert>
-
-Please note that in this section you configure the CPU allocated by the cluster for your application and that cannot consume more than this value. Even if the application is underused and consume less resources, the cluster will still reserve the selected amount of CPU. If your application requires more RAM than requested, it will be killed by the kubernetes scheduler.
-
-#### Auto-scaling
-
-Application auto-scaling is based on real-time CPU consumption. When your app goes above 60% of CPU consumption for 15 seconds, your app will be auto-scaled and more instances will be added. It is transparent. The downscale will happen if the CPU consumption is lower than 60% for at least 5 minutes.
-You can adjust the minimum and maximum of instances you need in your application settings. Qovery runs your application on Kubernetes and relies on [metrics-server](https://github.com/kubernetes-sigs/metrics-server) service to auto-scale your app.
-
-### Storage
-
-#### Block Storage
-
-The default filesystem for applications running on Qovery is ephemeral. Application data isn’t persisted across deploys and restarts, which works just fine for most apps because they use managed databases to persist data.
-
-However, many applications need persistent disk storage that isn’t ephemeral. These include:
-
-* Blogging platforms and CMSs like WordPress, Ghost, and Strapi.
-* Collaboration apps like Mattermost, GitLab, and Discourse.
-
-This is where Qovery block Storage comes in. Qovery applications can use storage to store data that persists across deploys and restarts, making it easy to deploy stateful applications.
-
-<Alert type="warning">
-
-For most use cases, it is better to use [Object Storage][docs.using-qovery.configuration.object-storage] instead of Block Storage.
-
-</Alert>
-
-###### Use cases
-
-###### ✅ Good use cases
-
-- For I/O intensive applications (E.g. database)
-- To store temporary files
-
-###### ❌ Bad use cases
-
-- To store file > 1 TB
-- To expose files from an application (E.g. images)
-
-##### Types of Block Storage
-
-Qovery Storage supports:
-
-| Type     | Max IOPS | Max Throughput | Min Size | Max Size                          | Use cases                                                                 |
-|----------|----------|----------------|----------|-----------------------------------|---------------------------------------------------------------------------|
-| fast_ssd | 64000    | 1GB/s          | 5GB      | 10GB `Community` / 1TB paid plans | Critical business applications that require sustained IOPS like databases |
-
-##### Configuration
-
-You can set up your Block Storage in `Storage` section of your application configuration.
-
-<p align="center">
-  <img src="/img/configuration/application/app-7.png" alt="Application Storage" />
-</p>
-
-<Alert type="info">
-
-Storage can be added only if the application has never been deployed before AND if it runs only with one instance (check the [Resources section][docs.configuration.application#resources])
-
-</Alert>
+#TODO
 
 ### Ports
 
-Within this section you can define the port exposed by your application to the other services or even over the internet.
+Within this section you can define the port exposed publicly.
 You can edit the existing ports or declare new ones by specifying:
-- Application port: this is the port exposed internally by your application for the other services. 
-- Protocol: you can select the protocol used by your application : HTTP (for both standard HTTP or websocket communications), gRPC, TCP, UDP.
-- Publicly exposed: it allows you to expose over the public network your service. A public domain will be assigned to your application during the deployment (see [Connectin from the internet section](#connecting-from-the-internet))
-- If Publicly Exposed is selected:
-  - External port: it is the port that can be used to access this service over the internet (when exposed publicly). Note that for HTTP and gRPC the port is set by default to 443.
-  - Port Name: it is the name assigned to the port. When multiple ports are exposed publicly, its value is used to route the traffic to the right port based on the called subdomain (which will contain the port name value). Since each port is exposed on the port 443, having a different subdomain is the only way to have multiple ports exposed over the internet. If not set, the default value is `p<portNumber>` (see [Qovery Provided Domain section](#qovery-provided-domains) for more information)
+- Service name: this is the kubernetes service name in your helm chart
+- Namespace (only if Allow cluster-wide resources was enabled): this is the kubernetes namespace in your helm chart
+- Service port: this is the port exposed internally by your service for the other services
+- Protocol: you can select the protocol used by your service. Today Qovery supports the following protocols:
+  - HTTPS (Select this protocol if you need to run Websockets)
+  - gRPC
+- External port: it is the port that can be used to access this service over the internet (when exposed publicly). Note that for HTTP and gRPC the port is set by default to 443.
+- Port Name: it is the name assigned to the port. When multiple ports are exposed publicly, its value is used to route the traffic to the right port based on the called subdomain (which will contain the port name value). Since each port is exposed on the port 443, having a different subdomain is the only way to have multiple ports exposed over the internet. If not set, the default value is `p<portNumber>` (see [Qovery Provided Domain section](#qovery-provided-domains) for more information)
 
-<p align="center">
+<p align="center"> #TODO Change screenshot
   <img src="/img/configuration/application/app-15.png" alt="Application Ports" />
 </p>
 
 
 #### Important Informations
 
-- Most of the Kubernetes Health Checks][docs.using-qovery.configuration.service-health-checks] are based on the port declared in this section. Make sure you declare the right port and that you configure the health checks properly.
 - Connections on public ports are automatically closed after 60 seconds. If you want to implement long living connection (like for websockets) please make sure to use the rigth ingress timeouts in the [advanced settings section][docs.using-qovery.configuration.advanced-settings#network-settings]
-- Exposing publicly TCP/UDP ports requires to create a dedicated load balancer and it takes a few minutes before having it ready (~15 minutes). Note also that this has a direct impact on your cloud provider bill.
-- You can configure your application to use the **PORT** environment variable by adding the **PORT** on your application env variables page.
-- A Note on Listening IPs: It's best for your application to listen on `0.0.0.0:$PORT`. While most things work with `127.0.0.1` and `localhost`, some do not (NodeJS for example)
-
-### Health Checks
-
-To know more about how to configure your Liveness and Readiness probes, have a look at [the health-checks section][docs.using-qovery.configuration.application-health-checks]
 
 ### Domains
 
-Within this section you can customize the domain used to reach your application. 
+Within this section you can customize the domain used to reach your helm services. 
 
-You can customize the domain of your application in different ways, depending on what you want to achieve:
-* You want to use your own domain for this application
-* You want to modify the subdomain assigned to your application by Qovery (i.e. change `p80-zdf72de72-z709e1a88-gtw.za8ad0657.bool.sh` into `my-app-domain.za8ad0657.bool.sh`).
+You can customize the domain of your helm services. in different ways, depending on what you want to achieve:
+* You want to use your own domain for your helm services.
+* You want to modify the subdomain assigned to your helm services. by Qovery (i.e. change `p80-zdf72de72-z709e1a88-gtw.za8ad0657.bool.sh` into `my-app-domain.za8ad0657.bool.sh`).
 
-In both cases, you can assign the new custom domain to your application press the `Add Domain` button. 
+In both cases, you can assign the new custom domain to your helm services. press the `Add Domain` button. 
 
 <p align="center">
   <img src="/img/configuration/application/app-16.png" alt="Application Domains" />
@@ -419,12 +284,12 @@ If your service is behind a CDN using a `proxy mode` (i.e. the traffic is routed
 
 #### Change the auto assigned sub-domain
 
-You can specify a different sub-domain for your application as long as it belongs to the assigned cluster domain (see [Qovery provided domains](#qovery-provided-domains)). 
+You can specify a different sub-domain for your helm services. as long as it belongs to the assigned cluster domain (see [Qovery provided domains](#qovery-provided-domains)). 
 Example: 
 - your current domain is zdf72de71-z709e1a85-gtw.za8ad0659.bool.sh (so your assigned cluster domain is `za8ad0659.bool.sh`)
 - you can enter a new custom domain `myfrontend.za8ad0659.bool.sh` (since it is a subdomain of the cluster domain)
 
-The application will now be accessible from both the default and the new custom domain.
+The helm services. will now be accessible from both the default and the new custom domain.
 
 <Alert type="info">
 
@@ -434,11 +299,11 @@ Qovery does not check collision in the domain declaration. Make sure you assign 
 
 ## Connecting from the internet
 
-Your application can be reached from the internet by publicly exposing at least one of its ports (See the [Ports](#ports) section to know more). Once this is done, Qovery will generate for you a domain to reach your application from the internet. You can also customize the domain assigned to your application and manage by yourself this assignment via the `Domain` section.
+Your helm services. can be reached from the internet by publicly exposing at least one of its ports (See the [Ports](#ports) section to know more). Once this is done, Qovery will generate for you a domain to reach your application from the internet. You can also customize the domain assigned to your application and manage by yourself this assignment via the `Domain` section.
 
 ### Qovery provided domains
 
-For each port publicly exposed, a domain is automatically assigned by Qovery to your application. Qovery will manage for you the networking and the TLS configuration for these domains. 
+For each port publicly exposed, a domain is automatically assigned by Qovery to your helm services.. Qovery will manage for you the networking and the TLS configuration for these domains. 
 
 Example: `p80-zdf72de72-z709e1a88-gtw.za8ad0657.bool.sh`
 
@@ -458,30 +323,11 @@ domain example: `p80-123-frontend-blueprint.za8ad0657.bool.sh`
 
 ### Custom domains
 
-If you prefer to assign your own domain to the application have a look at the [Domain section](#domains) to know more.
-
-## Connecting to a database
-To know how to access your database from your application, [have a look at the database section][docs.using-qovery.configuration.environment-variable#connecting-to-a-database].
-
-## Connecting to another application
-
-To know how to access your database from your application, [have a look at the database section][docs.using-qovery.configuration.environment-variable#connecting-to-another-application].
-
-## Environment Variable
-
-To learn how to set up environment variables in your projects and applications, navigate to [configuring Environment Variables][docs.using-qovery.configuration.environment-variable] section.
-
-## Secrets
-
-To learn how to set up secrets in your projects and applications, navigate to [configuring Secrets][docs.using-qovery.configuration.environment-variable] section.
+If you prefer to assign your own domain to the helm services, have a look at the [Domain section](#domains) to know more.
 
 ## Logs
 
-To learn how to display your application logs, navigate to [logs section][docs.using-qovery.deployment.logs#live-logs]
-
-## SSH
-
-To connect to your application via SSH, please use the via the [Qovery SSH command][docs.using-qovery.interface.cli] available on our CLI.
+To learn how to display your helm logs, navigate to [logs section][docs.using-qovery.deployment.logs#live-logs]
 
 ## Clone
 
@@ -506,20 +352,20 @@ Not every configuration parameter will be copied within the new service for cons
 
 Please check the configuration of the new service before deploying it.
 
-## Delete an Application
+## Delete a Helm
 
 <Steps headingDepth={3}>
 <ol>
 <li>
 
-Choose your application
+Choose your helm
 
 </li>
 <li>
 
-In the application overview, click on the `3 dots` button and remove the application.
+In the helm overview, click on the `3 dots` button and remove the helm.
 
-<p align="center">
+<p align="center"> #TODO Change screenshot
   <img src="/img/configuration/application/app-1.png" alt="Application" />
 </p>
 
@@ -528,24 +374,13 @@ In the application overview, click on the `3 dots` button and remove the applica
 </Steps>
 
 
-[docs.configuration.application#resources]: /docs/using-qovery/configuration/application/#resources
 [docs.qovery.deployment.deploying-with-auto-deploy]: /docs/using-qovery/deployment/deploying-with-auto-deploy/
 [docs.using-qovery.configuration.advanced-settings#network-settings]: /docs/using-qovery/configuration/advanced-settings/#network-settings
-[docs.using-qovery.configuration.application-health-checks]: /docs/using-qovery/configuration/application-health-checks/
-[docs.using-qovery.configuration.environment-variable#connecting-to-a-database]: /docs/using-qovery/configuration/environment-variable/#connecting-to-a-database
-[docs.using-qovery.configuration.environment-variable#connecting-to-another-application]: /docs/using-qovery/configuration/environment-variable/#connecting-to-another-application
-[docs.using-qovery.configuration.environment-variable]: /docs/using-qovery/configuration/environment-variable/
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
-[docs.using-qovery.configuration.object-storage]: /docs/using-qovery/configuration/object-storage/
-[docs.using-qovery.configuration.organization.container-registry]: /docs/using-qovery/configuration/organization/container-registry/
 [docs.using-qovery.configuration.organization.git-repository-access]: /docs/using-qovery/configuration/organization/git-repository-access/
 [docs.using-qovery.configuration.organization.helm-repository]: /docs/using-qovery/configuration/organization/helm-repository/
 [docs.using-qovery.configuration.project]: /docs/using-qovery/configuration/project/
-[docs.using-qovery.configuration.service-health-checks]: /docs/using-qovery/configuration/service-health-checks/
-[docs.using-qovery.deployment.image-mirroring#why-unique-image-tags-are-necessary]: /docs/using-qovery/deployment/image-mirroring/#why-unique-image-tags-are-necessary
 [docs.using-qovery.deployment.logs#live-logs]: /docs/using-qovery/deployment/logs/#live-logs
 [docs.using-qovery.deployment]: /docs/using-qovery/deployment/
-[docs.using-qovery.interface.cli]: /docs/using-qovery/interface/cli/
 [guides.advanced.monorepository]: /guides/advanced/monorepository/
 [guides.getting-started.setting-custom-domain]: /guides/getting-started/setting-custom-domain/
-[urls.qovery_roadmap]: https://roadmap.qovery.com/

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-02"
+last_modified_on: "2023-12-04"
 title: "Helm"
 description: "Learn how to configure your Helm on Qovery"
 ---
@@ -87,7 +87,7 @@ If you want to override it from another already existing values file from a Git 
 - Branch: Select branch that Qovery should use to deploy your helm
 - Overrides path: the path of the values files (example: ci/values_ci.yaml). You can specify multiple paths by separating them with a semi-colon.
 
-If you want to override it with a raw yaml you will have to click on `Create override`. A new editor modal will be opened, to let you crite your yaml override. The default values.yaml content will be displayed on the right to help you to respect the structure.
+If you want to override it with a raw yaml you will have to click on `Create override`. A new editor modal will be opened, to let you write your yaml override. The default values.yaml content will be displayed on the right to help you to respect the structure.
 
 You can use the Qovery environment variables as overrides by using the placeholder “qovery.env.<env_var_name>” (Example: qovery.env.DB_URL. Qovery will manage the replacement of those placeholders at deployment time.
 
@@ -210,7 +210,16 @@ See the [Deploying with auto-deploy feature][docs.qovery.deployment.deploying-wi
 
 ### Values
 
-#TODO
+Within this section you can modify the values override.
+Select the following field:
+- File source: Chose between Git Repository or Raw YAML, depending on the source location of your values file
+
+If you want to override it from another already existing values file from a Git Repository you will have to select:
+- Git Repository: Select the git provider hosting your code (it can be hosted on GitHub, GitLab or Bitbucket).
+- Branch: Select branch that Qovery should use to deploy your helm
+- Overrides path: the path of the values files (example: ci/values_ci.yaml). You can specify multiple paths by separating them with a semi-colon.
+
+If you want to override it with a raw yaml you will have to click on `Create override`. A new editor modal will be opened, to let you write your yaml override. The default values.yaml content will be displayed on the right to help you to respect the structure.
 
 ### Ports
 

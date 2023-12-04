@@ -247,11 +247,11 @@ You can edit the existing ports or declare new ones by specifying:
 
 Within this section you can customize the domain used to reach your helm services. 
 
-You can customize the domain of your helm services. in different ways, depending on what you want to achieve:
-* You want to use your own domain for your helm services.
-* You want to modify the subdomain assigned to your helm services. by Qovery (i.e. change `p80-zdf72de72-z709e1a88-gtw.za8ad0657.bool.sh` into `my-app-domain.za8ad0657.bool.sh`).
+You can customize the domain of your helm services in different ways, depending on what you want to achieve:
+* You want to use your own domain for your helm services
+* You want to modify the subdomain assigned to your helm services by Qovery (i.e. change `p80-zdf72de72-z709e1a88-gtw.za8ad0657.bool.sh` into `my-app-domain.za8ad0657.bool.sh`).
 
-In both cases, you can assign the new custom domain to your helm services. press the `Add Domain` button. 
+In both cases, you can assign the new custom domain to your helm services press the `Add Domain` button. 
 
 <p align="center">
   <img src="/img/configuration/application/app-16.png" alt="Application Domains" />
@@ -293,12 +293,12 @@ If your service is behind a CDN using a `proxy mode` (i.e. the traffic is routed
 
 #### Change the auto assigned sub-domain
 
-You can specify a different sub-domain for your helm services. as long as it belongs to the assigned cluster domain (see [Qovery provided domains](#qovery-provided-domains)). 
+You can specify a different sub-domain for your helm services as long as it belongs to the assigned cluster domain (see [Qovery provided domains](#qovery-provided-domains)). 
 Example: 
 - your current domain is zdf72de71-z709e1a85-gtw.za8ad0659.bool.sh (so your assigned cluster domain is `za8ad0659.bool.sh`)
 - you can enter a new custom domain `myfrontend.za8ad0659.bool.sh` (since it is a subdomain of the cluster domain)
 
-The helm services. will now be accessible from both the default and the new custom domain.
+The helm services will now be accessible from both the default and the new custom domain.
 
 <Alert type="info">
 
@@ -308,11 +308,11 @@ Qovery does not check collision in the domain declaration. Make sure you assign 
 
 ## Connecting from the internet
 
-Your helm services. can be reached from the internet by publicly exposing at least one of its ports (See the [Ports](#ports) section to know more). Once this is done, Qovery will generate for you a domain to reach your application from the internet. You can also customize the domain assigned to your application and manage by yourself this assignment via the `Domain` section.
+Your helm services can be reached from the internet by publicly exposing at least one of its ports (See the [Ports](#ports) section to know more). Once this is done, Qovery will generate for you a domain to reach your application from the internet. You can also customize the domain assigned to your application and manage by yourself this assignment via the `Domain` section.
 
 ### Qovery provided domains
 
-For each port publicly exposed, a domain is automatically assigned by Qovery to your helm services.. Qovery will manage for you the networking and the TLS configuration for these domains. 
+For each port publicly exposed, a domain is automatically assigned by Qovery to your helm services. Qovery will manage for you the networking and the TLS configuration for these domains. 
 
 Example: `p80-zdf72de72-z709e1a88-gtw.za8ad0657.bool.sh`
 

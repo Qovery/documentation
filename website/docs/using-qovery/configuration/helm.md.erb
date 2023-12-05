@@ -57,7 +57,7 @@ If you want to deploy a helm from a Helm Repository you will have to select:
 
 - Helm arguments: specify the [helm arguments](https://helm.sh/docs/intro/using_helm/#helpful-options-for-installupgraderollback) to be used during the helm install/upgrade.
 - Helm timeout: specify the value to wait for Kubernetes commands to complete. This defaults to 5mins.
-- Allow cluster-wide resources: Allow this chart to deploy resources outside of the environment namespace
+- Allow cluster-wide resources: Allow this chart to deploy resources outside of the environment namespace. You must have the [full-access permissions][docs.using-qovery.configuration.organization.members-rbac] on the cluster. 
 
 ** Auto Deploy **
 

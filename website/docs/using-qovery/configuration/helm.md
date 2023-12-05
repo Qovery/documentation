@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-04"
+last_modified_on: "2023-12-05"
 title: "Helm"
 description: "Learn how to configure your Helm on Qovery"
 ---
@@ -69,7 +69,7 @@ If you want to deploy a helm from a Helm Repository you will have to select:
 
 - Helm arguments: specify the [helm arguments](https://helm.sh/docs/intro/using_helm/#helpful-options-for-installupgraderollback) to be used during the helm install/upgrade.
 - Helm timeout: specify the value to wait for Kubernetes commands to complete. This defaults to 5mins.
-- Allow cluster-wide resources: Allow this chart to deploy resources outside of the environment namespace
+- Allow cluster-wide resources: Allow this chart to deploy resources outside of the environment namespace. You must have the [full-access permissions][docs.using-qovery.configuration.organization.members-rbac] on the cluster. 
 
 ** Auto Deploy **
 
@@ -388,6 +388,7 @@ In the helm overview, click on the `3 dots` button and remove the helm.
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [docs.using-qovery.configuration.organization.git-repository-access]: /docs/using-qovery/configuration/organization/git-repository-access/
 [docs.using-qovery.configuration.organization.helm-repository]: /docs/using-qovery/configuration/organization/helm-repository/
+[docs.using-qovery.configuration.organization.members-rbac]: /docs/using-qovery/configuration/organization/members-rbac/
 [docs.using-qovery.configuration.project]: /docs/using-qovery/configuration/project/
 [docs.using-qovery.deployment.logs#live-logs]: /docs/using-qovery/deployment/logs/#live-logs
 [docs.using-qovery.deployment]: /docs/using-qovery/deployment/

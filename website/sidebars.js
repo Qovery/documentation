@@ -85,6 +85,7 @@ module.exports = {
                 "using-qovery/configuration/organization/members-rbac",
                 "using-qovery/configuration/organization/git-repository-access",
                 "using-qovery/configuration/organization/container-registry",
+                "using-qovery/configuration/organization/helm-repository",
                 "using-qovery/configuration/organization/api-token",
               ],
             },

@@ -12,14 +12,12 @@ You have created an [Environment][docs.using-qovery.configuration.environment].
 
 </Assumptions>
 
-A **helm** is part of a [Project][docs.using-qovery.configuration.project] within an [Environment][docs.using-qovery.configuration.environment]. Multiple helms can be part of the same [Environment][docs.using-qovery.configuration.environment], be connected to a set of dependencies (databases and other services), and can communicate with other applications within the same Environment.
+A **helm** is one of the service types that can be deployed within an [Environment][docs.using-qovery.configuration.environment]. Via the helm service you can deploy any helm chart from a git repository or helm repository directly on the kubernetes cluster.
 
 Qovery allows you to create and deploy helms from two different sources: Git Repository or Helm Repository
 
 ## Deploying from a Git Repository
-In this configuration, Qovery will pull the chart from the chosen repository, with defaults values file and install it on your kubernetes cluster.
-
-The list of Git repositories available during the setup is strictly tied to the permissions of your git account (by default Qovery can access all your repositories). If you want to restrict the Qovery access only to a few repositories, user the [GitHub Qovery Application][docs.using-qovery.configuration.organization.git-repository-access] (only for Github).
+In this configuration, Qovery will pull the chart from the chosen repository and install it on your kubernetes cluster.
 
 ## Deploying from a Helm Repository
 In this configuration, Qovery will pull the chosen helm repository a chart and install it on your kubernetes cluster.
@@ -43,10 +41,11 @@ Go into the chosen environment and press the "New Service" button and then the "
 
 Select the following fields:
 - Helm chart Name: give a name to your helm
+- Description (Optional): write a text to describe your helm service
 - Helm chart Source: Chose between Git Repository or Helm Repository, depending on the source location of your application
 
 If you want to deploy a helm from a Git Repository you will have to select:
-- Git Repository: Select the git provider hosting your code (it can be hosted on GitHub, GitLab or Bitbucket).
+- Git Repository: Select the git provider and the git repository hosting your code (it can be hosted on GitHub, GitLab or Bitbucket).
 - Branch: Select branch that Qovery should use to deploy your helm
 - Root Helm Path: base folder in which the helm chart resides in your repository
 
@@ -55,12 +54,13 @@ If you want to deploy a helm from a Helm Repository you will have to select:
 - Chart name: the name of the helm to be deployed with this application (example: jenkins)
 - Chart version: the version of the chart to be deployed with this application (example: 1.0.0). 
 
-- Helm arguments: specify the [helm arguments](https://helm.sh/docs/intro/using_helm/#helpful-options-for-installupgraderollback) to be used during the helm install/upgrade.
+- Helm arguments: specify the [helm arguments](https://helm.sh/docs/helm/helm_install/#options) to be used during the helm install/upgrade.
 - Helm timeout: specify the value to wait for Kubernetes commands to complete. This defaults to 5mins.
-- Allow cluster-wide resources: Allow this chart to deploy resources outside of the environment namespace. You must have the [full-access permissions][docs.using-qovery.configuration.organization.members-rbac] on the cluster. 
+- Allow cluster-wide resources: Allow this chart to deploy resources outside of the environment namespace. You must have the [full-access permissions][docs.using-qovery.configuration.organization.members-rbac] on the cluster, the right is present by default in `Admin`, `Devops` and `Owner` roles. Example: if you want to create a new CRD or a new ClusterRole, check this flag.
 
 ** Auto Deploy **
 
+Available only if you have selected a git repository as helm source.
 See the [Deploying with auto-deploy feature][docs.qovery.deployment.deploying-with-auto-deploy] section.
 
 </li>
@@ -68,43 +68,54 @@ See the [Deploying with auto-deploy feature][docs.qovery.deployment.deploying-wi
 
 By default, the `values.yaml` next to your `chart.yaml` is used. But you can override it with another file.
 Select the following field:
-- File source: Chose between Git Repository or Raw YAML, depending on the source location of your values file
+- File source: Chose between Git Repository or Raw YAML, depending on the source location of your values file. Git repository source is **recommended** as the raw yaml is not versioned.
 
-If you want to override it from another already existing values file from a Git Repository you will have to select:
-- Git Repository: Select the git provider hosting your code (it can be hosted on GitHub, GitLab or Bitbucket).
+If you want to override it from another already existing values file from a Git Repository (it can be the same as the one hosting the helm chart) you will have to select:
+- Git Repository: Select the git provider and git repository hosting your values override (it can be hosted on GitHub, GitLab or Bitbucket).
 - Branch: Select branch that Qovery should use to deploy your helm
 - Overrides path: the path of the values files (example: ci/values_ci.yaml). You can specify multiple paths by separating them with a semi-colon.
 
 If you want to override it with a raw yaml you will have to click on `Create override`. A new editor modal will be opened, to let you write your yaml override. The default values.yaml content will be displayed on the right to help you to respect the structure.
+
+<Alert type="info">
+
+You can override values in the arguments section with the `--set` option.
+
+</Alert>
 
 You can use the Qovery environment variables as overrides by using the placeholder “qovery.env.<env_var_name>” (Example: qovery.env.DB_URL. Qovery will manage the replacement of those placeholders at deployment time.
 
 </li>
 <li>
 
-Specify each value override as argument. Select the following fiels:
+if you want to specify one by one your overrides, you can pass them as arguments. These will be passed to the helm command via the `--set`, `--set-string` or `--set-json` arguments:
 - Variable: the variable name
 - Value type: 
-  - Select `Generic` to use the `--set` flag and pass configuration from the command line
-  - Select `String` to use the `--set-string` flag to force a string value
-  - Select `File` to use the `--set-file` flag to set individual values from a file when the value itself is too long for the command line or is dynamically generated
-  - Select `Json` to use the `--set-json` flag to set json values (scalars/objects/arrays) from the command line
+  - Select `Generic` to pass configuration from the command line
+  - Select `String` if you want to pass a string type (and avoid weird numeric conversions like 021341 interpreted as a number and thus the 0 is removed)
+  - Select `Json` to set json values (scalars/objects/arrays) from the command line
 - Value
+
+<Alert type="info">
+
+You can combine override as file and override as argument but, in case of collision, the priority will be given to the override as argument.
+
+</Alert>
 
 </li>
 <li>
 
 You can now expose publicly one or more ports for your services defined in the helm chart by specifying:
 - Service name: this is the kubernetes service name in your helm chart
-- Namespace (only if Allow cluster-wide resources was enabled): this is the kubernetes namespace in your helm chart
-- Service port: this is the port exposed internally by your service for the other services
+- Namespace (only if Allow cluster-wide resources was enabled): this is the kubernetes namespace used by your helm chart to deploy the pods behind the chosen service
+- Service port: this is the port exposed internally by your service
 - Protocol: you can select the protocol used by your service. Today Qovery supports the following protocols:
   - HTTPS (Select this protocol if you need to run Websockets)
   - gRPC
 - External port: it is the port that can be used to access this service over the internet (when exposed publicly). Note that for HTTP and gRPC the port is set by default to 443.
 - Port Name: it is the name assigned to the port. When multiple ports are exposed publicly, its value is used to route the traffic to the right port based on the called subdomain (which will contain the port name value). Since each port is exposed on the port 443, having a different subdomain is the only way to have multiple ports exposed over the internet. If not set, the default value is `p<portNumber>` (see [Qovery Provided Domain section](#qovery-provided-domains) for more information)
 
-By default ports are accessible only from inside your namespace(s). You can also expose them publicly, making them accessible over the public network via a dedicated public domain that will be assigned to your application by Qovery during the deployment (See the [Qovery Provided Domains section](#qovery-provided-domains)). Note that HTTPS/gRPC ports are always exposed over the port 443.
+By default services are accessible only from inside your namespace(s). You can expose them publicly, making them accessible over the public network via a dedicated public domain that will be assigned to your application by Qovery during the deployment (See the [Qovery Provided Domains section](#qovery-provided-domains)). Note that HTTPS/gRPC ports are always exposed over the port 443.
 
 <p align="center"> #TODO Change screenshot
   <img src="/img/configuration/application/application_creation_port.png" alt="Application Ports" />
@@ -203,18 +214,24 @@ Select the following field:
 - File source: Chose between Git Repository or Raw YAML, depending on the source location of your values file
 
 If you want to override it from another already existing values file from a Git Repository you will have to select:
-- Git Repository: Select the git provider hosting your code (it can be hosted on GitHub, GitLab or Bitbucket).
+- Git Repository: Select the git provider and git repository hosting your code (it can be hosted on GitHub, GitLab or Bitbucket).
 - Branch: Select branch that Qovery should use to deploy your helm
 - Overrides path: the path of the values files (example: ci/values_ci.yaml). You can specify multiple paths by separating them with a semi-colon.
 
 If you want to override it with a raw yaml you will have to click on `Create override`. A new editor modal will be opened, to let you write your yaml override. The default values.yaml content will be displayed on the right to help you to respect the structure.
+
+<Alert type="info">
+
+You can override values in the arguments section with the `--set` option.
+
+</Alert>
 
 ### Ports
 
 Within this section you can define the port exposed publicly.
 You can edit the existing ports or declare new ones by specifying:
 - Service name: this is the kubernetes service name in your helm chart
-- Namespace (only if Allow cluster-wide resources was enabled): this is the kubernetes namespace in your helm chart
+- Namespace (only if Allow cluster-wide resources was enabled): this is the kubernetes namespace used by your helm chart to deploy the pods behind the chosen service
 - Service port: this is the port exposed internally by your service for the other services
 - Protocol: you can select the protocol used by your service. Today Qovery supports the following protocols:
   - HTTPS (Select this protocol if you need to run Websockets)

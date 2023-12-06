@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-11-29"
+last_modified_on: "2023-12-06"
 title: "Scaleway (SCW)"
 description: "Learn how to configure and plug your Scaleway (SCW) account"
 ---
@@ -36,7 +36,7 @@ Qovery lets you quickly deploy applications to your [Scaleway (Scaleway)][urls.s
 
 ### Connect your Scaleway account
 
-To link your Scaleway account to Qovery you need to provide a Scaleway `access key id`, `secret access key` and a `project id`.
+To link your Scaleway account to Qovery you need to provide a Scaleway `access key id`, `secret access key`, `organization id` and a `project id`.
 
 <Alert type="warning">
 
@@ -51,7 +51,7 @@ You can link more than one Scaleway account. Qovery also support multiple Cloud 
 
 </Alert>
 
-#### Create your Scaleway credentials - `access key id`, `secret access key` and `project id`.
+#### Create your Scaleway credentials - `access key id`, `secret access key`, `organization id` and `project id`.
 
 <Steps headingDepth={3}>
 <ol>
@@ -169,7 +169,14 @@ Create your policy
 
 <li>
 
-Get you `project id` on your project dashboard
+Get your `organization id` in your [organization settings](https://console.scaleway.com/organization/settings)
+<img src="/img/scw-api-key/scw_organization_id.png" />
+
+</li>
+
+<li>
+
+Get your `project id` on your project dashboard
 <img src="/img/scw-api-key/scw_project_id.png" />
 
 </li>

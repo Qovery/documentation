@@ -16,8 +16,8 @@ From any environment window on your [Qovery Console][urls.qovery_console], you c
 |------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 1    | The dot in the service tab shows the environment running status. <br />  For more information, see the Environment Statuses section below.                                                  |
 | 2    | The dot in the deployment tab shows the environment deployment status. <br /> For more information, see the Deployment Statuses section below.                                                        |
-| 3    | The dot next to the name of the service represent the running status of the serice. <br /> For more information, see Service Statuses section below.  |
-| 4    | The label in the service table shows the deployment status of the service. <br /> For more information, see Deployment Statuses section below.                                     |
+| 3    | The label in the column "Service status" represents the running status of the serice. <br /> For more information, see Service Statuses section below.  |
+| 4    | The label in the column "Last deployment" represents the status of the latest deployment of the service. <br /> For more information, see Deployment Statuses section below.                                     |
 
 ## Running Statuses
 
@@ -25,7 +25,7 @@ Thanks to Running statuses, you can find out which services are currently runnin
 
 ## Environment Statuses
 
-When you access an environment on your [Qovery Console][urls.qovery_console], you can check its status in real time. To do so, at the top of the environment window, hover over the status dot next to the environment name.
+When you access an environment on your [Qovery Console][urls.qovery_console], you can check its status in real time.
 
 The environment status is computed based on the statuses of all the services in that specific environment. Here are all the possible environment statuses:
 
@@ -42,13 +42,7 @@ The environment status is computed based on the statuses of all the services in 
 
 ## Service Statuses
 
-When you access an environment on your [Qovery Console][urls.qovery_console], you can check the status of each service in that environment in real time. To do so, hover over the status dot next to the service name.
-
-<Alert type="info">
-
-At the moment, you can only check the service status, meaning the overall status of your application (based on all the statuses of its various instances). Soon, you will also be able to check the status of each instance of your application from your console.
-
-</Alert>
+When you access an environment on your [Qovery Console][urls.qovery_console], you can check the status of each service in that environment in real time within the column "Service status".
 
 Here are all the possible service statuses:
 
@@ -60,15 +54,26 @@ Here are all the possible service statuses:
 | RUNNING *(Green dot)*     | All application instances are running correctly.                                                                         |
 | ERROR *(Red dot)*         | All application instances are in error status.                                                                           |
 | WARNING *(Orange dot)*    | *(Valid for multi-instance applications only)* At least 1 application instance is in error status (but not all of them). |
+| Completed *(Green dot)*    | *(Valid for Lifecycle and Cronjob only)* The job was correctly executed. |
 
+The service status is computed based on the status of each `Kubernetes pod` deployed for this application.
+
+### Pod status (Application instances)
+
+You can check in the `Service overview` page the status of each pod running your application in Kubernetes. This page is accessible by clicking on one of the services of your environment.
+
+Within this page you will have a view on:
+- the number of running instances of your application
+- the status of each instance
+- in case of error, you will get the reason behind the issue by clicking on the Pod in error.
 
 ## Deployment Statuses
 
 When you access an environment on your [Qovery Console][urls.qovery_console], you can check:
 
-* **the overall status of your deployments in that specific environment**, thanks to the label displayed next to the environment name. This corresponds to the status of the last deployment performed on the environment.
+* **the overall status of your deployments in that specific environment**, thanks to the dot present within the "Deployment" tab. This corresponds to the overall deployment status of your environment.
 
-* **the deployment status of each service in that specific environment**, thanks to the label displayed in the `Service` column. This corresponds to the status of the last deployment performed on the service.
+* **the deployment status of each service in that specific environment**, thanks to the label displayed in the `Service status` column. This corresponds to the status of the last deployment performed on the service.
 
  Here are all the possible deployment statuses for both environments and services:
 

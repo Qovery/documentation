@@ -17,7 +17,7 @@ From any environment window on your [Qovery Console][urls.qovery_console], you c
 |------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 1    | The dot in the service tab shows the environment running status. <br />  For more information, see the Environment Statuses section below.                                                  |
 | 2    | The dot in the deployment tab shows the environment deployment status. <br /> For more information, see the Deployment Statuses section below.                                                        |
-| 3    | The label in the column "Service status" represents the running status of the serice. <br /> For more information, see Service Statuses section below.  |
+| 3    | The label in the column "Service status" represents the running status of the service. <br /> For more information, see Service Statuses section below.  |
 | 4    | The label in the column "Last deployment" represents the status of the latest deployment of the service. <br /> For more information, see Deployment Statuses section below.                                     |
 
 <!--
@@ -30,11 +30,11 @@ From any environment window on your [Qovery Console][urls.qovery_console], you c
 
 ## Running Statuses
 
-Thanks to Running statuses, you can find out which services are currently running on your platform, and which ones are interrupted. There are two types of run services available at the moment: environment statuses and service statuses.
+Thanks to Running statuses, you can find out which services are currently running on your platform, and which are interrupted. There are two types of run services available currently: environment statuses and service statuses.
 
 ## Environment Statuses
 
-When you access an environment on your [Qovery Console][urls.qovery_console], you can check its status in real time.
+When you access an environment on your [Qovery Console][urls.qovery_console], you can check its status in real-time.
 
 The environment status is computed based on the statuses of all the services in that specific environment. Here are all the possible environment statuses:
 
@@ -51,7 +51,7 @@ The environment status is computed based on the statuses of all the services in 
 
 ## Service Statuses
 
-When you access an environment on your [Qovery Console][urls.qovery_console], you can check the status of each service in that environment in real time within the column "Service status".
+When you access an environment on your [Qovery Console][urls.qovery_console], you can check the status of each service in that environment in real-time within the column "Service status".
 
 Here are all the possible service statuses:
 
@@ -69,12 +69,12 @@ The service status is computed based on the status of each `Kubernetes pod` depl
 
 ### Pod status (Application instances)
 
-You can check in the `Service overview` page the status of each pod running your application in Kubernetes. This page is accessible by clicking on one of the services of your environment.
+You can check on the `Service overview` page the status of each pod running your application in Kubernetes. This page is accessible by clicking on one of the services of your environment.
 
-Within this page you will have a view on:
+Within this page you will have a view of:
 - the number of running instances of your application
 - the status of each instance
-- in case of error, you will get the reason behind the issue by clicking on the Pod in error.
+- in case of an error, you will get the reason behind the issue by clicking on the Pod in error.
 
 ## Deployment Statuses
 
@@ -97,7 +97,7 @@ When you access an environment on your [Qovery Console][urls.qovery_console], yo
 
 <Alert type="info">
 
-Just because an error arised during deployment does not mean your application is not running. Monitoring both your deployment and service statuses allows you to know exactly which applications are currently running on your platform.
+Just because an error arose during deployment does not mean your application is not running. Monitoring both your deployment and service statuses allows you to know exactly which applications are currently running on your platform.
 
  </Alert>
 

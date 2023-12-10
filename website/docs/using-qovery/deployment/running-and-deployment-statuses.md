@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-06"
+last_modified_on: "2023-12-10"
 title: "Running and Deployment Statuses"
 description: "Learn how to monitor your services"
 ---
@@ -97,7 +97,7 @@ When you access an environment on your [Qovery Console][urls.qovery_console], yo
 
 <Alert type="info">
 
-Just because an error arose during deployment does not mean your application is not running. Monitoring both your deployment and service statuses allows you to know exactly which applications are currently running on your platform.
+Just because an error arised during deployment does not mean your application is not running. Monitoring both your deployment and service statuses allows you to know exactly which applications are currently running on your platform.
 
  </Alert>
 

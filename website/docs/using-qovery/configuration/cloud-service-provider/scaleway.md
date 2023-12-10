@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-06"
+last_modified_on: "2023-12-10"
 title: "Scaleway (SCW)"
 description: "Learn how to configure and plug your Scaleway (SCW) account"
 ---
@@ -184,7 +184,7 @@ Get your `project id` on your project dashboard
 
 </Steps>
 
-Well done!! You now have your Scaleway `access key id`, `secret access key` and `project id`; It is time to connect Qovery to your Scaleway account.
+Well done!! You now have your Scaleway `access key id`, `secret access key`, `organization_id` and `project id`; It is time to connect Qovery to your Scaleway account.
 
 ### Install a new cluster on Qovery
 

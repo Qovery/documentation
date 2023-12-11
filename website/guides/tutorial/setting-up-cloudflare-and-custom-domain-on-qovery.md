@@ -1,9 +1,9 @@
 ---
-last_modified_on: "2021-12-17"
+last_modified_on: "2023-12-11"
 $schema: "/.meta/.schemas/guides.json"
 title: Setting up Cloudflare and Custom Domain on Qovery
 description: Using Cloudflare for applications deployed on Qovery
-author_github: https://github.com/pjeziorowski
+author_github: https://github.com/jul-dan
 tags: ["type: tutorial", "technology: qovery"]
 hide_pagination: true
 ---
@@ -66,6 +66,50 @@ The last step to configure the domain Cloudflare side properly, is to use the `F
 </p>
 
 This is the requirement to make Custom Domain work properly using Cloudflare as the domain provider on Qovery.
+
+### Restrict pods access to Cloudflare
+
+In order to restrict the pods access to Cloudflare only, you have two ways to perform it:
+
+#### IP whitelisting
+
+In Qovery it is possible to whitelist IP ranges to your application:
+* Go in the advanced settings section:
+<p align="center">
+  <img src="/img/cloudflare/8.png" alt="Cloudflare" />
+</p>
+* Get the [Cloudflare ips](https://www.cloudflare.com/ips-v4/)
+* Edit the `network.ingress.whitelist_source_range` setting to put the Cloudflare ips separated with a comma:
+<p align="center">
+  <img src="/img/cloudflare/9.png" alt="Cloudflare" />
+</p>
+* Save and redeploy your application
+
+#### Cloudflared
+
+You can also install Cloudflared with docker by following this [documentation](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/get-started/create-remote-tunnel/)
+With this method you don't have to expose publicly your application.
+
+You can run directly the Cloudflared docker container oin your `Qovery` environment.
+By creation the following service:
+
+<p align="center">
+  <img src="/img/cloudflare/10.png" alt="Cloudflare" />
+</p>
+
+Once your tunnel is created and connected, you have to set the public hostname and the related service settings.
+
+<p align="center">
+  <img src="/img/cloudflare/11.png" alt="Cloudflare" />
+</p>
+
+To get the service name of your application deployed by Qovery, you can get it in your application variables:
+
+<p align="center">
+  <img src="/img/cloudflare/12.png" alt="Cloudflare" />
+</p>
+
+A Cloudflare helm chart is also available [here](https://github.com/cloudflare/helm-charts)
 
 ## Conclusion
 

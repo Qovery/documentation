@@ -67,7 +67,7 @@ The last step to configure the domain Cloudflare side properly, is to use the `F
 
 This is the requirement to make Custom Domain work properly using Cloudflare as the domain provider on Qovery.
 
-### Restrict pods access
+### Restrict application access
 
 If you want to limit the application access via Cloudflare only, you have two ways to perform it:
 

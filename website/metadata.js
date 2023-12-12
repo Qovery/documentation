@@ -683,7 +683,7 @@ module.exports = {
           "title": "Migrate your application from Heroku to AWS"
         },
         {
-          "author_github": "https://github.com/juldan",
+          "author_github": "https://github.com/jul-dan",
           "description": null,
           "id": "/tutorial/setting-up-cloudflare-and-custom-domain-on-qovery",
           "last_modified_on": null,

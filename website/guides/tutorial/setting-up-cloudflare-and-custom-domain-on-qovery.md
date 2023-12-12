@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-11"
+last_modified_on: "2023-12-12"
 $schema: "/.meta/.schemas/guides.json"
 title: Setting up Cloudflare and Custom Domain on Qovery
 description: Using Cloudflare for applications deployed on Qovery
@@ -67,7 +67,7 @@ The last step to configure the domain Cloudflare side properly, is to use the `F
 
 This is the requirement to make Custom Domain work properly using Cloudflare as the domain provider on Qovery.
 
-### Restrict pods access to Cloudflare
+### Restrict pods access
 
 In order to restrict the pods access to Cloudflare only, you have two ways to perform it:
 

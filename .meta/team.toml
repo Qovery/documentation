@@ -127,3 +127,13 @@ name = "Benjamin Chastanier"
 bio = """\
 Benjamin is a senior Backend Developer at <a href=\"https://www.qovery.com\">Qovery</a>.\
 """
+
+[[team]]
+id = "jul-dan"
+avatar = "https://github.com/jul-dan.png"
+github = "https://github.com/jul-dan"
+keybase = "https://keybase.io/jul-dan"
+name = "Julien Dan"
+bio = """\
+Julien is a Technical Product Manager at <a href=\"https://www.qovery.com\">Qovery</a>.\
+"""

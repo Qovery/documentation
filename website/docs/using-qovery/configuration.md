@@ -26,6 +26,7 @@ In the following subsections, you'll learn all you need to know to configure and
 <Jump to="/docs/using-qovery/configuration/object-storage/">Object storage</Jump>
 <Jump to="/docs/using-qovery/configuration/organization/">Organization</Jump>
 <Jump to="/docs/using-qovery/configuration/project/">Project</Jump>
+<Jump to="/docs/using-qovery/configuration/provider/">Provider</Jump>
 <Jump to="/docs/using-qovery/configuration/service-health-checks/">Service health checks</Jump>
 <Jump to="/docs/using-qovery/configuration/user-account/">User account</Jump>
 

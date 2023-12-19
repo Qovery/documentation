@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-02-10"
+last_modified_on: "2023-11-25"
 title: "Cloud Service Provider"
 description: "Learn how to configure and plug in your Cloud Account"
 sidebar_label: hidden
@@ -12,6 +12,7 @@ import Jump from '@site/src/components/Jump';
 <Jump to="/docs/using-qovery/configuration/cloud-service-provider/digital-ocean/">Digital ocean</Jump>
 <Jump to="/docs/using-qovery/configuration/cloud-service-provider/google-cloud-platform/">Google cloud platform</Jump>
 <Jump to="/docs/using-qovery/configuration/cloud-service-provider/microsoft-azure/">Microsoft azure</Jump>
+<Jump to="/docs/using-qovery/configuration/cloud-service-provider/other-csps/">Other csps</Jump>
 <Jump to="/docs/using-qovery/configuration/cloud-service-provider/scaleway/">Scaleway</Jump>
 
 <!--

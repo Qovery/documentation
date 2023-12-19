@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-05-29"
+last_modified_on: "2023-11-24"
 $schema: "/.meta/.schemas/guides.json"
 title: Hello World. Deploy your first application.
 description: How to deploy your first application with Qovery
@@ -57,7 +57,7 @@ Sign in to the [Qovery web interface][urls.start_qovery].
 
 <Alert type="info">
 
-Do you want to deploy your apps on another cloud service provider than AWS? Click [here][guides.advanced]
+Do you want to deploy your apps on another cloud service provider than AWS? Click [here](/guides/cloud-provider). Do you want to deploy Qovery on your Kubernetes cluster? Click [here][guides.provider.guide-kubernetes]
 
 </Alert>
 
@@ -101,8 +101,8 @@ That's it! your application is now deployed on your AWS account 💪
 To deploy your application, it's as simple as that. In the following article, we will see how to add a database. Let's get started!
 
 
-[guides.advanced]: /guides/advanced/
 [guides.cloud-provider.guide-amazon-web-services]: /guides/cloud-provider/guide-amazon-web-services/
+[guides.provider.guide-kubernetes]: /guides/provider/guide-kubernetes/
 [guides.tutorial.migrate-your-application-from-heroku-to-aws]: /guides/tutorial/migrate-your-application-from-heroku-to-aws/
 [urls.bitbucket]: https://bitbucket.com
 [urls.github]: https://github.com

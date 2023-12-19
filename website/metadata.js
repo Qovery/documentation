@@ -225,20 +225,30 @@ module.exports = {
       "series": false,
       "title": "Cloud Providers"
     },
+    "provider": {
+      "children": {
+      },
+      "description": "Install Qovery on one of our supported providers.",
+      "guides": [
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/provider/guide-kubernetes",
+          "last_modified_on": null,
+          "path": "website/guides/provider/guide-kubernetes.md",
+          "series_position": null,
+          "title": "Install Qovery on your Kubernetes cluster"
+        }
+      ],
+      "name": "provider",
+      "series": false,
+      "title": "Providers"
+    },
     "advanced": {
       "children": {
       },
       "description": "Go beyond the basics, become a Qovery pro, and extract the full potential of Qovery.",
       "guides": [
-        {
-          "author_github": "https://github.com/evoxmusic",
-          "description": null,
-          "id": "/advanced/build-on-top",
-          "last_modified_on": null,
-          "path": "website/guides/advanced/build-on-top.md",
-          "series_position": null,
-          "title": "Build on Top of Qovery"
-        },
         {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
@@ -673,7 +683,7 @@ module.exports = {
           "title": "Migrate your application from Heroku to AWS"
         },
         {
-          "author_github": "https://github.com/pjeziorowski",
+          "author_github": "https://github.com/jul-dan",
           "description": null,
           "id": "/tutorial/setting-up-cloudflare-and-custom-domain-on-qovery",
           "last_modified_on": null,
@@ -825,6 +835,13 @@ module.exports = {
   "posts": [
 
   ],
+  "providers": [
+    {
+      "dark_logo_path": "/img/logos/kubernetes_white.svg",
+      "logo_path": "/img/logos/kubernetes.svg",
+      "name": "kubernetes"
+    }
+  ],
   "releases": {
   },
   "sinks": {
@@ -927,6 +944,14 @@ module.exports = {
       "id": "benjaminch",
       "keybase": "https://keybase.io/benjaminch",
       "name": "Benjamin Chastanier"
+    },
+    {
+      "avatar": "https://github.com/jul-dan.png",
+      "bio": "Julien is a Technical Product Manager at <a href=\"https://www.qovery.com\">Qovery</a>.",
+      "github": "https://github.com/jul-dan",
+      "id": "jul-dan",
+      "keybase": "https://keybase.io/jul-dan",
+      "name": "Julien Dan"
     }
   ],
   "technologies": [

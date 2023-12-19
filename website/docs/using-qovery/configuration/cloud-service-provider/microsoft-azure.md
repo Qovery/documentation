@@ -1,10 +1,17 @@
 ---
-last_modified_on: "2021-12-14"
+last_modified_on: "2023-11-25"
 title: "Microsoft Azure"
 description: "Learn how to configure and plug your Microsoft Azure account"
 ---
 
+import Alert from '@site/src/components/Alert';
 import Jump from '@site/src/components/Jump';
+
+<Alert type="info">
+
+Please refer to [this page][docs.using-qovery.configuration.provider.kubernetes] if you want to install Qovery on your own Kubernetes cluster (BYOK).
+
+</Alert>
 
 Azure is coming soon ([see when](https://roadmap.qovery.com/roadmap/support-azure)). Vote [here](https://roadmap.qovery.com/roadmap/support-azure) to make it happen faster.
 
@@ -19,6 +26,10 @@ Azure is coming soon ([see when](https://roadmap.qovery.com/roadmap/support-azur
 ## Available Cloud Service Providers
 
 <Jump to="/docs/using-qovery/configuration/cloud-service-provider/amazon-web-services">Amazon Web Services (AWS)</Jump>
+<Jump to="/docs/using-qovery/configuration/cloud-service-provider/google-cloud-platform">Google Cloud Platform (GCP)</Jump>
+<Jump to="/docs/using-qovery/configuration/cloud-service-provider/microsoft-azure">Azure</Jump>
+<Jump to="/docs/using-qovery/configuration/cloud-service-provider/scaleway">Scaleway</Jump>
+<Jump to="/docs/using-qovery/configuration/cloud-service-provider/other-csps">Others</Jump>
 
 
-
+[docs.using-qovery.configuration.provider.kubernetes]: /docs/using-qovery/configuration/provider/kubernetes/

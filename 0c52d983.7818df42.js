@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[16],{164:function(e){e.exports=JSON.parse('{"allTagsPath":"/guides/tags","slug":"provider-kubernetes","name":"provider: kubernetes","count":1,"permalink":"/guides/tags/provider-kubernetes"}')}}]);

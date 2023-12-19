@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-11-25"
+last_modified_on: "2023-11-29"
 title: Configuration
 description: "Everything you need to know to configure and deploy your applications on Qovery"
 sidebar_label: hidden
@@ -21,6 +21,7 @@ In the following subsections, you'll learn all you need to know to configure and
 <Jump to="/docs/using-qovery/configuration/deployment-rule/">Deployment rule</Jump>
 <Jump to="/docs/using-qovery/configuration/environment-variable/">Environment variable</Jump>
 <Jump to="/docs/using-qovery/configuration/environment/">Environment</Jump>
+<Jump to="/docs/using-qovery/configuration/helm/">Helm</Jump>
 <Jump to="/docs/using-qovery/configuration/lifecycle-job/">Lifecycle job</Jump>
 <Jump to="/docs/using-qovery/configuration/object-storage/">Object storage</Jump>
 <Jump to="/docs/using-qovery/configuration/organization/">Organization</Jump>

@@ -36,6 +36,7 @@ module.exports = {
             "using-qovery/integration",
             "using-qovery/integration/git-repository",
             "using-qovery/integration/container-registry",
+            "using-qovery/integration/helm-repository",
             "using-qovery/integration/terraform",
             {
               type: 'category',
@@ -84,6 +85,7 @@ module.exports = {
                 "using-qovery/configuration/organization/members-rbac",
                 "using-qovery/configuration/organization/git-repository-access",
                 "using-qovery/configuration/organization/container-registry",
+                "using-qovery/configuration/organization/helm-repository",
                 "using-qovery/configuration/organization/api-token",
               ],
             },
@@ -112,6 +114,7 @@ module.exports = {
             "using-qovery/configuration/project",
             "using-qovery/configuration/environment",
             "using-qovery/configuration/application",
+            "using-qovery/configuration/helm",
             {
               type: 'category',
               label: 'Database',

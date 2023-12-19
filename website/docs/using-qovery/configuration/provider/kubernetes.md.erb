@@ -61,6 +61,132 @@ Qovery requires a Kubernetes cluster with the following requirements:
 - 20 GB disk space
 - Being able to access to the Internet
 
+## Run local demo infrastructure (optional)
+
+<Alert type="warning">
+
+This local demo infrastructure is only for testing purpose, to quickly test Qovery. It is not supported by Qovery for production workloads. If you already have a managed Kubernetes cluster like EKS, you can skip this part.
+
+</Alert>
+
+First you will need some binaries to run the demo infrastructure locally:
+* [docker](https://www.docker.com/): Docker is a set of platform as a service (PaaS) products that use OS-level virtualization to deliver software in packages called containers.
+* [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl): Kubernetes command-line tool.
+* [k3d](https://k3d.io/): k3d is a lightweight wrapper to run k3s (Rancher Lab’s minimal Kubernetes distribution) in docker.
+* [Helm](https://helm.sh): Helm is a package manager for Kubernetes.
+
+Qovery requires a container registry to store its images.
+
+<Alert type="info">
+
+We will use [ECR](https://aws.amazon.com/ecr/) to have a private repository for this demo, but you can chose any kind of registry (docker.io, [quay.io](https://quay.io/), GCR...).
+
+</Alert>
+
+We have to use a binary for ECR authentication and token rotation. So we create the prerequired folders and file for the binary:
+```
+mkdir -p registry/bin
+touch registry/bin/ecr-credential-provider
+chmod 755 registry/bin/ecr-credential-provider
+```
+Note: the ecr-credential-provider binary should be present for k3s to start. We will build it later.
+
+And create an IAM user with the following policy:
+```json
+{
+    "Statement": [
+        {
+            "Action": [
+                "ecr:*",
+            ],
+            "Effect": "Allow",
+            "Resource": "*"
+        }
+    ],
+    "Version": "2012-10-17"
+}
+```
+
+Then we create a `registry/config.yaml` file to configure the ECR credential provider, where you should set the AWS credentials:
+```yaml
+apiVersion: kubelet.config.k8s.io/v1
+kind: CredentialProviderConfig
+providers:
+  - name: ecr-credential-provider
+    matchImages:
+      - "*.dkr.ecr.*.amazonaws.com"
+      - "*.dkr.ecr.*.amazonaws.com.cn"
+      - "*.dkr.ecr-fips.*.amazonaws.com"
+      - "*.dkr.ecr.us-iso-east-1.c2s.ic.gov"
+      - "*.dkr.ecr.us-isob-east-1.sc2s.sgov.gov"
+    defaultCacheDuration: "12h"
+    apiVersion: credentialprovider.kubelet.k8s.io/v1
+    env:
+      - name: AWS_ACCESS_KEY_ID
+        value: xxx
+      - name: AWS_DEFAULT_REGION
+        value: xxx
+      - name: AWS_SECRET_ACCESS_KEY
+        value: xxx
+```
+
+Now we can run a local Kubernetes cluster:
+```bash
+k3d cluster create --k3s-arg "--disable=traefik,metrics-server@server:0" \
+-v $(pwd)/registry/bin:/var/lib/rancher/credentialprovider/bin@server:0  \
+-v $(pwd)/registry/config.yaml:/var/lib/rancher/credentialprovider/config.yaml@server:0
+```
+
+After a few seconds/minutes (depending on your network bandwidth), you should have a local Kubernetes cluster running. Deploy this job to build and deploy the ECR credential provider binary on k3d (`job.yaml`):
+```yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: cloud-provider-repository-binary-builder
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: ecr-credential-builder
+        image: alpine:3.18
+        command:
+          - /bin/sh
+          - -c
+          - |
+            apk add -U ca-certificates tar zstd tzdata go git
+            git clone https://github.com/kubernetes/cloud-provider-aws.git
+            cd cloud-provider-aws/cmd/ecr-credential-provider
+            CGO_ENABLED=0 go build -mod=readonly .
+            chmod 755 ecr-credential-provider
+            mkdir -p /mnt/host/var/lib/rancher/credentialprovider/bin/
+            cp ecr-credential-provider /mnt/host/var/lib/rancher/credentialprovider/bin/
+        volumeMounts:
+        - mountPath: /mnt/host
+          name: host
+      volumes:
+      - hostPath:
+          path: /
+          type: ""
+        name: host
+```
+
+```
+kubectl apply -f job.yaml
+```
+
+You should have see those pods running:
+```bash
+$ kubectl get po -A
+NAMESPACE     NAME                                             READY   STATUS      RESTARTS   AGE
+kube-system   local-path-provisioner-957fdf8bc-nwz5q           1/1     Running     0          112m
+kube-system   coredns-77ccd57875-jhcnk                         1/1     Running     0          112m
+default       cloud-provider-repository-binary-builder-4cvsv   0/1     Completed   0          112m
+```
+
+You're now ready to move on.
+
 ## Install Qovery
 
 <Steps headingDepth={3}>

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-05"
+last_modified_on: "2023-12-19"
 title: "Helm Repository"
 description: "Learn how to manage the helm repository allowed in your organization"
 ---
@@ -32,7 +32,13 @@ By clicking on "Add Repository" you will be able to create a new Helm Repository
 - Description
 - Kind:
   - HTTP: for standard helm repository
-  - OCI: for OCI-based registries
+  - OCI_ECR: for AWS private OCI-based registries
+  - OCI_SCALEWAY: for Scaleway OCI-based registries
+  - OCI_DOCKER_HUB: for Docker Hub OCI-based registries
+  - OCI_PUBLIC_ECR: for AWS public OCI-based registries
+  - OCI_GENERIC_CR: for Generic OCI-based registries
+  - OCI_GITHUB_CR: for Github OCI-based registries
+  - OCI_GITLAB_CR: for Gitlab OCI-based registries
 - Repository Url: the  url of the repository (example: oci://registry-1.docker.io/repository, https://helm.datadoghq.com etc..)
 - Credentials: these depend on the chosen repository type. If a helm repository is public, you don't need to fill this part.
 - Skip TLS verification: to activate the helm argument --insecure-skip-tls-verify

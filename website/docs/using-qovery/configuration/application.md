@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-04"
+last_modified_on: "2023-12-19"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -456,7 +456,7 @@ Your application can be reached from the internet by publicly exposing at least 
 
 For each port publicly exposed, a domain is automatically assigned by Qovery to your application. Qovery will manage for you the networking and the TLS configuration for these domains. 
 
-Example: `p80-zdf72de72-z709e1a88-gtw.za8ad0657.bool.sh`
+Example: `p80-zdf72de72-z709e1a88-gtw.za8ad0657.bool.sh` or `<service_name>-p80-zdf72de72-z709e1a88-gtw.za8ad0657.bool.sh` for helm services.
 
 Note:
 - each service deployed on the same cluster will have the same root domain assigned (example: `za8ad0657.bool.sh`)

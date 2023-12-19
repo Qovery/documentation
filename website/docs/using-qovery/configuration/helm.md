@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-05"
+last_modified_on: "2023-12-19"
 title: "Helm"
 description: "Learn how to configure your Helm on Qovery"
 ---
@@ -43,10 +43,6 @@ To improve security and avoid deploying charts from non-authorized repositories,
 <li>
 
 Go into the chosen environment and press the "New Service" button and then the "Create helm" button
-
-<p align="center"> #TOTO Change screenshot
-  <img src="/img/configuration/application/creation_1.png" alt="Creation" />
-</p>
 
 </li>
 <li>
@@ -129,8 +125,8 @@ You can now expose publicly one or more ports for your services defined in the h
 
 By default services are accessible only from inside your namespace(s). You can expose them publicly, making them accessible over the public network via a dedicated public domain that will be assigned to your application by Qovery during the deployment (See the [Qovery Provided Domains section](#qovery-provided-domains)). Note that HTTPS/gRPC ports are always exposed over the port 443.
 
-<p align="center"> #TODO Change screenshot
-  <img src="/img/configuration/application/application_creation_port.png" alt="Application Ports" />
+<p align="center">
+  <img src="/img/configuration/helm/helm_creation_port.png" alt="Helm Ports" />
 </p>
 
 
@@ -143,12 +139,12 @@ By default services are accessible only from inside your namespace(s). You can e
 <li>
 
 You will find a recap of your helm setup and you can now decide to:
-- Go back to one of the previous steps and change your helm settings
-- Create your helm without deploying it
-- Create and deploy your helm
+- Go back to one of the previous steps and change your helm settings (1)
+- Create your helm without deploying it (2)
+- Create and deploy your helm (3)
 
-<p align="center"> #TODO Change screenshot
-  <img src="/img/configuration/application/application_creation_recap.png" alt="Application" />
+<p align="center">
+  <img src="/img/configuration/helm/helm_creation_recap.png" alt="Helm" />
 </p>
 
 </li>
@@ -162,10 +158,6 @@ Have a look at the [Deployment Management][docs.using-qovery.deployment] section
 
 Once created, you can access the configuration of a helm at any time via the Settings tab available on the helm section
 
-<p align="center"> #TODO Change screenshot
-  <img src="/img/configuration/application/settings.png" alt="Application Settings" />
-</p>
-
 You can find below the description of each of the tabs available in this section
 
 ### General
@@ -177,10 +169,6 @@ If your heml is from a git repository, within this section you can:
 - Modify the git provider where your code is stored (it can be hosted on GitHub, GitLab or Bitbucket).
 - Modify the branch that Qovery should use for deploying your application
 - Modify `Root Helm Path` - base folder in which the helm chart resides in your repository
-
-<p align="center"> #TODO Change screenshot
-  <img src="/img/configuration/application/app-general-git.png" alt="General Settings Git" />
-</p>
 
 <Alert type="info">
 
@@ -210,10 +198,6 @@ If your helm is deployed from a helm repository, within this section you can mod
 For both kind of helm source, within this section yoiu can modify:
 - Helm arguments: specify the [helm arguments](https://helm.sh/docs/intro/using_helm/#helpful-options-for-installupgraderollback) to be used during the helm install/upgrade.
 - Helm timeout: specify the value to wait for Kubernetes commands to complete. This defaults to 5mins.
-
-<p align="center"> #TODO Change screenshot
-  <img src="/img/configuration/application/app-general-registry.png" alt="General Settings Git" />
-</p>
 
 #### Auto Deploy
 
@@ -250,11 +234,6 @@ You can edit the existing ports or declare new ones by specifying:
   - gRPC
 - External port: it is the port that can be used to access this service over the internet (when exposed publicly). Note that for HTTP and gRPC the port is set by default to 443.
 - Port Name: it is the name assigned to the port. When multiple ports are exposed publicly, its value is used to route the traffic to the right port based on the called subdomain (which will contain the port name value). Since each port is exposed on the port 443, having a different subdomain is the only way to have multiple ports exposed over the internet. If not set, the default value is `p<portNumber>` (see [Qovery Provided Domain section](#qovery-provided-domains) for more information)
-
-<p align="center"> #TODO Change screenshot
-  <img src="/img/configuration/application/app-15.png" alt="Application Ports" />
-</p>
-
 
 #### Important Informations
 
@@ -331,7 +310,7 @@ Your helm services can be reached from the internet by publicly exposing at leas
 
 For each port publicly exposed, a domain is automatically assigned by Qovery to your helm services. Qovery will manage for you the networking and the TLS configuration for these domains. 
 
-Example: `p80-zdf72de72-z709e1a88-gtw.za8ad0657.bool.sh`
+Example: `p80-zdf72de72-z709e1a88-gtw.za8ad0657.bool.sh` or `<service_name>-p80-zdf72de72-z709e1a88-gtw.za8ad0657.bool.sh` for helm services.
 
 Note:
 - each service deployed on the same cluster will have the same root domain assigned (example: `za8ad0657.bool.sh`)
@@ -390,10 +369,6 @@ Choose your helm
 <li>
 
 In the helm overview, click on the `3 dots` button and remove the helm.
-
-<p align="center"> #TODO Change screenshot
-  <img src="/img/configuration/application/app-1.png" alt="Application" />
-</p>
 
 </li>
 </ol>

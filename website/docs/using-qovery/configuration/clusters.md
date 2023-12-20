@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-11-25"
+last_modified_on: "2023-12-20"
 title: "Clusters"
 description: "Learn how to configure your Kubernetes clusters on Qovery"
 ---
@@ -559,6 +559,24 @@ Check [this section][#cleaning-up-a-cluster-from-your-aws-account] to find these
 </Alert>
 
 Once confirmed, the cluster status turns to `Deleting...` (red status) and once the deletion is complete, the cluster is removed from your organization settings.
+
+#### Audit logs
+
+To get the cluster filtered audit logs, open the `...` section and press `See audit logs`.
+
+You will be redirected to the audit logs section. A filter on the dedicated cluster will be applied. You only see the audit logs regarding cluster operations.
+
+#### Get your cluster id
+
+To get your Qovery cluster id, open the `...` section and press `Copy identifier`.
+
+The cluster id in Qovery will be in your clipboard.
+
+#### Get your cluster kubeconfig file
+
+If you need to get your kubeconfig file, open the `...` section and press `Get Kubeconfig`.
+
+Then the kubeconfig yaml file will be automatically downloaded.
 
 ## Logs
 

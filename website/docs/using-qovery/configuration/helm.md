@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-19"
+last_modified_on: "2023-12-20"
 title: "Helm"
 description: "Learn how to configure your Helm on Qovery"
 ---
@@ -107,6 +107,14 @@ if you want to specify one by one your overrides, you can pass them as arguments
 <Alert type="info">
 
 You can combine override as file and override as argument but, in case of collision, the priority will be given to the override as argument.
+
+</Alert>
+
+<Alert type="warning">
+
+Currently, you have to add a `label` and a `pod annotation` on each services/deployments/pods to get all the functionnalities (logs,start,stop,restart):
+* Label: `qovery.labels.service`
+* Annotation: `qovery.annotations.service`
 
 </Alert>
 

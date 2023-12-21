@@ -370,7 +370,7 @@ lib                   sbin
 Keep in mind these limitations when using this feature:
 <ul>
   <li>Install a process reaper as pid one in your container (i.e: dumb-init), as you may leave zoombie process in your container if your shell terminate unproperly (i.e: ctrl+c, cnx restart). This is a known issue with kubernetes exec to leave process alive after attach is closed;</li>
-  <li>shell is force closed after [1 hour, 10Mb transmitted];</li>
+  <li>shell is force closed after [1 hour, 1GB transmitted];</li>
   <li>we use SH by default. To have auto-completion, start bash.</li>
 </ul>
 </Alert>

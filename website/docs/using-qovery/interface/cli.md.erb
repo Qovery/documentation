@@ -199,6 +199,77 @@ Keep in mind these limitations when using this feature:
 </ul>
 </Alert>
 
+<Alert type="info">
+The width of the terminal is limited to 80 characters. But you can resize it once you are inside the application with one of these commands:
+
+```bash
+COLUMNS=200 tput init
+stty cols 200
+```
+
+</Alert>
+
+### Pass a command
+
+To pass a command, you can use the `--command` or `-c` argument followed by your command.
+
+```bash
+$ qovery shell --command ls
+bin                   media                 srv
+dev                   mnt                   sys
+docker-entrypoint.d   opt                   tmp
+docker-entrypoint.sh  proc                  usr
+etc                   root                  var
+home                  run                   www
+lib                   sbin
+```
+
+To pass several arguments, you can separate them with a comma or send different `--command`.
+
+`qovery shell --command ls --command -l`
+`qovery shell --command ls,-l`
+`qovery shell -c ls,-l`
+
+```bash
+$ qovery shell --command ls --command -l
+drwxr-xr-x    2 root     root          4096 Nov 30 09:32 bin
+drwxr-xr-x    5 root     root           360 Dec 21 09:46 dev
+drwxr-xr-x    1 root     root            41 Dec 20 20:13 docker-entrypoint.d
+-rwxr-xr-x    1 root     root          1620 Dec 20 20:13 docker-entrypoint.sh
+drwxr-xr-x    1 root     root            25 Dec 21 09:46 etc
+drwxr-xr-x    2 root     root             6 Nov 30 09:32 home
+drwxr-xr-x    1 root     root            61 Dec 20 22:11 lib
+drwxr-xr-x    5 root     root            44 Nov 30 09:32 media
+drwxr-xr-x    2 root     root             6 Nov 30 09:32 mnt
+drwxr-xr-x    2 root     root             6 Nov 30 09:32 opt
+dr-xr-xr-x  209 root     root             0 Dec 21 09:46 proc
+drwx------    1 root     root            26 Dec 21 10:38 root
+drwxr-xr-x    1 root     root            23 Dec 21 09:46 run
+drwxr-xr-x    2 root     root          4096 Nov 30 09:32 sbin
+drwxr-xr-x    2 root     root             6 Nov 30 09:32 srv
+dr-xr-xr-x   13 root     root             0 Dec 21 09:46 sys
+drwxrwxrwt    2 root     root             6 Nov 30 09:32 tmp
+drwxr-xr-x    1 root     root            66 Nov 30 09:32 usr
+drwxr-xr-x    1 root     root            19 Nov 30 09:32 var
+drwxr-xr-x    2 root     root            59 Dec 21 09:45 www
+```
+
+### Shell in a dedicated pod
+
+If your application is running on several pods, you can shell directly in a dedicated one by using the `--pod` or `-p` argument followed by your pod name.
+
+```bash
+$ qovery shell --pod app-5f65fb5c4-frontend-5f65db5c4b-q4w11
+```
+
+### Shell in a dedicated container
+
+If you have several containers in your pod, you can shell directly in a dedicated one by using the `--container` argument followed by your container name.
+
+```bash
+$ qovery shell --container app-5f65fb5c4-frontend
+```
+
 ## Generate API token
 
 To use the Qovery API you will need to generate an authentication token. To generate an API token you can install the CLI and type

@@ -240,6 +240,24 @@ You can override values in the arguments section with the `--set` option.
 
 </Alert>
 
+<Alert type="warning">
+
+If you want to get all the Qovery features (access your container logs, apply the stop/restart actions, display the pod status in the overview page), make sure to create an override and assign the macros `qovery.labels.service` and `qovery.annotations.service` to the labels and annotations of any deployed Pods/Deployments/Services/Jobs.
+
+Override example:
+
+```yaml
+commonLabels:
+  mylabel: "test"
+  qovery.labels.service
+annotations:
+  qovery.annotations.service
+```
+
+These macros will be automatically replaced by Qovery during the deployment phase.
+
+</Alert>
+
 ### Ports
 
 Within this section you can define the port exposed publicly.

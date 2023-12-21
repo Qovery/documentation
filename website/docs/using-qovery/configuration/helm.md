@@ -91,6 +91,24 @@ You can override values in the arguments section with the `--set` option.
 
 </Alert>
 
+<Alert type="warning">
+
+If you want to get all the Qovery features (access your container logs, apply the stop/restart actions, display the pod status in the overview page), make sure to create an override and assign the macros `qovery.labels.service` and `qovery.annotations.service` to the labels and annotations of any deployed Pods/Deployments/Services/Jobs.
+
+Override example:
+
+```yaml
+commonLabels:
+  mylabel: "test"
+  qovery.labels.service
+annotations:
+  qovery.annotations.service
+```
+
+These macros will be automatically replaced by Qovery during the deployment phase.
+
+</Alert>
+
 You can use the Qovery environment variables as overrides by using the placeholder “qovery.env.<env_var_name>” (Example: qovery.env.DB_URL. Qovery will manage the replacement of those placeholders at deployment time.
 
 </li>
@@ -107,18 +125,6 @@ if you want to specify one by one your overrides, you can pass them as arguments
 <Alert type="info">
 
 You can combine override as file and override as argument but, in case of collision, the priority will be given to the override as argument.
-
-</Alert>
-
-<Alert type="warning">
-
-Currently, you have to add a `label` and a `pod annotation` on each services/deployments/pods to get all the functionnalities (logs,start,stop,restart):
-* Label: `qovery.labels.service`
-* Annotation: `qovery.annotations.service`
-<br/>
-<br/>
-
-`qovery.labels.service` and `qovery.annotations.service` will be automatically replaced by Qovery with several dynamic labels/annotations.
 
 </Alert>
 

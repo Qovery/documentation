@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-20"
+last_modified_on: "2023-12-21"
 title: "Helm"
 description: "Learn how to configure your Helm on Qovery"
 ---
@@ -115,6 +115,8 @@ You can combine override as file and override as argument but, in case of collis
 Currently, you have to add a `label` and a `pod annotation` on each services/deployments/pods to get all the functionnalities (logs,start,stop,restart):
 * Label: `qovery.labels.service`
 * Annotation: `qovery.annotations.service`
+
+`qovery.labels.service` and `qovery.annotations.service` will be automatically replaced by Qovery with several dynamic labels/annotations.
 
 </Alert>
 

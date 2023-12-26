@@ -36,6 +36,7 @@ module.exports = {
             <%= metadata.links.fetch_id("docs.using-qovery.integration").to_json %>,
             <%= metadata.links.fetch_id("docs.using-qovery.integration.git-repository").to_json %>,
             <%= metadata.links.fetch_id("docs.using-qovery.integration.container-registry").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.integration.helm-repository").to_json %>,
             <%= metadata.links.fetch_id("docs.using-qovery.integration.terraform").to_json %>,
             {
               type: 'category',
@@ -84,6 +85,7 @@ module.exports = {
                 <%= metadata.links.fetch_id("docs.using-qovery.configuration.organization.members-rbac").to_json %>,
                 <%= metadata.links.fetch_id("docs.using-qovery.configuration.organization.git-repository-access").to_json %>,
                 <%= metadata.links.fetch_id("docs.using-qovery.configuration.organization.container-registry").to_json %>,
+                <%= metadata.links.fetch_id("docs.using-qovery.configuration.organization.helm-repository").to_json %>,
                 <%= metadata.links.fetch_id("docs.using-qovery.configuration.organization.api-token").to_json %>,
               ],
             },
@@ -112,6 +114,7 @@ module.exports = {
             <%= metadata.links.fetch_id("docs.using-qovery.configuration.project").to_json %>,
             <%= metadata.links.fetch_id("docs.using-qovery.configuration.environment").to_json %>,
             <%= metadata.links.fetch_id("docs.using-qovery.configuration.application").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.configuration.helm").to_json %>,
             {
               type: 'category',
               label: 'Database',
@@ -154,9 +157,8 @@ module.exports = {
           label: 'Troubleshoot',
           items: [
             <%= metadata.links.fetch_id("docs.using-qovery.troubleshoot").to_json %>,
-            <%= metadata.links.fetch_id("docs.using-qovery.troubleshoot.application-troubleshoot").to_json %>,
-            <%= metadata.links.fetch_id("docs.using-qovery.troubleshoot.database-troubleshoot").to_json %>,
-            <%= metadata.links.fetch_id("docs.using-qovery.troubleshoot.lifecycle-troubleshoot").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.troubleshoot.service-deployment-troubleshoot").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.troubleshoot.service-run-troubleshoot").to_json %>,
             <%= metadata.links.fetch_id("docs.using-qovery.troubleshoot.cluster-troubleshoot").to_json %>,
           ],
         },

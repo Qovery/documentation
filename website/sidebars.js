@@ -36,6 +36,7 @@ module.exports = {
             "using-qovery/integration",
             "using-qovery/integration/git-repository",
             "using-qovery/integration/container-registry",
+            "using-qovery/integration/helm-repository",
             "using-qovery/integration/terraform",
             {
               type: 'category',
@@ -84,6 +85,7 @@ module.exports = {
                 "using-qovery/configuration/organization/members-rbac",
                 "using-qovery/configuration/organization/git-repository-access",
                 "using-qovery/configuration/organization/container-registry",
+                "using-qovery/configuration/organization/helm-repository",
                 "using-qovery/configuration/organization/api-token",
               ],
             },
@@ -112,6 +114,7 @@ module.exports = {
             "using-qovery/configuration/project",
             "using-qovery/configuration/environment",
             "using-qovery/configuration/application",
+            "using-qovery/configuration/helm",
             {
               type: 'category',
               label: 'Database',
@@ -154,9 +157,8 @@ module.exports = {
           label: 'Troubleshoot',
           items: [
             "using-qovery/troubleshoot",
-            "using-qovery/troubleshoot/application-troubleshoot",
-            "using-qovery/troubleshoot/database-troubleshoot",
-            "using-qovery/troubleshoot/lifecycle-troubleshoot",
+            "using-qovery/troubleshoot/service-deployment-troubleshoot",
+            "using-qovery/troubleshoot/service-run-troubleshoot",
             "using-qovery/troubleshoot/cluster-troubleshoot",
           ],
         },

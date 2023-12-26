@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-10"
+last_modified_on: "2023-12-11"
 title: "Scaleway (SCW)"
 description: "Learn how to configure and plug your Scaleway (SCW) account"
 ---

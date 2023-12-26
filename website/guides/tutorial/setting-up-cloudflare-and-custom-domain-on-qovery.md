@@ -1,9 +1,9 @@
 ---
-last_modified_on: "2021-12-17"
+last_modified_on: "2023-12-12"
 $schema: "/.meta/.schemas/guides.json"
 title: Setting up Cloudflare and Custom Domain on Qovery
 description: Using Cloudflare for applications deployed on Qovery
-author_github: https://github.com/pjeziorowski
+author_github: https://github.com/jul-dan
 tags: ["type: tutorial", "technology: qovery"]
 hide_pagination: true
 ---
@@ -67,6 +67,64 @@ The last step to configure the domain Cloudflare side properly, is to use the `F
 
 This is the requirement to make Custom Domain work properly using Cloudflare as the domain provider on Qovery.
 
+### Restrict application access
+
+If you want to limit the application access via Cloudflare only, you have two ways to perform it:
+
+#### IP whitelisting
+
+In Qovery it is possible to whitelist a range of IPs that can reach your application:
+* In the advanced settings section of your application:
+<p align="center">
+  <img src="/img/cloudflare/8.png" alt="Cloudflare" />
+</p>
+* Get the [Cloudflare ips](https://www.cloudflare.com/ips-v4/)
+* Edit the `network.ingress.whitelist_source_range` setting and add the Cloudflare IPs separated with a comma:
+<p align="center">
+  <img src="/img/cloudflare/9.png" alt="Cloudflare" />
+</p>
+* Save and redeploy your application
+
+#### Cloudflared
+
+Cloudflared establishes outbound connections (tunnels) between your resources and Cloudflare’s global network.
+
+You have different ways to install Cloudflared on your cluster, you can find the installation instructions within this [documentation](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/get-started/create-remote-tunnel/)
+Since Cloudflared establishes a tunnel for you and the domain and TLS management is done by Cloudflare, you don't need to expose publicly the application during the setup (See [port setup][docs.using-qovery.configuration.application#ports]
+
+You can decide to install Cloudflared by yourself or via Qovery. Within the section below, you will find documentation on how to install Cloudflared as a container in one of the Qovery environments.
+By creating and deploying the following service, using the Cloudflared image:
+
+<p align="center">
+  <img src="/img/cloudflare/10.png" alt="Cloudflare" />
+</p>
+
+<Alert type="info">
+
+Create a `TUNNEL_TOKEN` secret environment variable (Scope: Environment) to pass the Cloudflare token.
+<p align="center">
+  <img src="/img/cloudflare/13.png" alt="Cloudflare" />
+</p>
+</Alert>
+
+Once your tunnel is created and connected, you have to set the public hostname and the related service settings.
+
+<p align="center">
+  <img src="/img/cloudflare/11.png" alt="Cloudflare" />
+</p>
+
+To get the service name of your application deployed by Qovery, you can get it in your application variables:
+
+<p align="center">
+  <img src="/img/cloudflare/12.png" alt="Cloudflare" />
+</p>
+
+<Alert type="info">
+
+This setup works for static environments but not for dynamic ones since the service name is dynamic. We should probably suggest to use the [cloudflared helm chart](https://github.com/cloudflare/helm-charts) once we release helm deployment
+
+</Alert>
+
 ## Conclusion
 
 After following the steps from above, our application should be accessible using the custom domain we selected:
@@ -78,4 +136,4 @@ After following the steps from above, our application should be accessible using
 In the guide we went through all the necessary steps to configure Cloudflare and Qovery to make use of your custom domain.
 
 
-
+[docs.using-qovery.configuration.application#ports]: /docs/using-qovery/configuration/application/#ports

@@ -20,7 +20,7 @@ This section is for Kubernetes power-users. If you are not familiar with Kuberne
 
 </Alert>
 
-Qovery Self-Managed or BYOK (Bring Your Own Kubernetes) is a self-hosted version of Qovery. It allows you to install Qovery on your own Kubernetes cluster.
+Qovery Self-Managed (or BYOK: Bring Your Own Kubernetes) is a self-hosted version of Qovery. It allows you to install Qovery on your own Kubernetes cluster.
 Read [this article](https://www.qovery.com/blog/kubernetes-managed-by-qovery-vs-self-managed-byok) to better understand the difference with the Managed Kubernetes by Qovery. In a nutshell, Qovery Managed/BYOK is for Kubernetes experts who want to manage their own Kubernetes cluster.
 In this version, Qovery does not manage the Kubernetes cluster for you.
 
@@ -36,9 +36,9 @@ They are two types of components:
 
 Qovery components:
 - Qovery Control Plane: the Qovery Control Plane is the brain of Qovery. It is responsible for managing your applications and providing the API to interact with Qovery.
-- Qovery Engine: the Qovery Engine is responsible for managing your applications on your Kubernetes cluster. It is installed on your Kubernetes cluster.
-- Qovery Cluster Agent (optional): the Qovery Cluster Agent is responsible for securely forwarding logs and metrics from your Kubernetes cluster to Qovery control plane.
-- Qovery Shell Agent (optional): the Qovery Shell Agent is responsible for giving you a secure remote shell access to your Kubernetes pods if you need it. E.g. when using `qovery shell` command.
+- Qovery Cluster Agent (mandatory): the Qovery Cluster Agent is responsible for securely forwarding logs and metrics from your Kubernetes cluster to Qovery control plane.
+- Qovery Shell Agent (mandatory): the Qovery Shell Agent is responsible for giving you a secure remote shell access to your Kubernetes pods if you need it. E.g. when using `qovery shell` command.
+- Qovery Engine (optional): the Qovery Engine is responsible for managing your applications deployment on your Kubernetes cluster. It can be used Qovery side or is installed on your Kubernetes cluster.
 
 Third-party components:
 - NGINX Ingress Controller (optional)
@@ -48,7 +48,7 @@ Third-party components:
 - Cert Manager (optional)
 - ...
 
-You can chose what you want to install and manage, and you will have a description of what services are usedi, and responsible for. You can disable them if you don't want to use them. And you can even install other components if you want to.
+You can chose what you want to install and manage, and you will have a description of what services are used, and responsible for. You can disable them if you don't want to use them. And you can even install other components if you want to.
 
 ## What's the requirements?
 
@@ -60,6 +60,220 @@ Qovery requires a Kubernetes cluster with the following requirements:
 - 4 GB RAM
 - 20 GB disk space
 - Being able to access to the Internet
+- A private registry
+
+
+Here are some examples of Kubernetes distributions that can be used with Qovery. **This is a non exhaustive list**.
+
+<Alert type="danger">
+
+Theses examples are not recommendations! Simply examples of what can be installed in the fastest way.
+
+</Alert>
+
+<Tabs
+  centered={true}
+  className={"rounded"}
+  defaultValue={"eks"}
+  placeholder="Select a cloud provider"
+  select={false}
+  size={null}
+  values={[
+    {"group":"k8s","label":"AWS - EKS","value":"eks"},
+    {"group":"k8s","label":"GCP - GKE","value":"gke"},
+    {"group":"k8s","label":"Scaleway - Kapsule","value":"kapsule"},
+    {"group":"k8s","label":"Demo (K3D)","value":"demo"}
+    ]}>
+
+<TabItem value="eks">
+
+To create a Kubernetes cluster on AWS, the simplest way is to use [eksctl binary](https://eksctl.io/installation/). For example:
+
+```bash
+eksctl create cluster --region=us-east-2 --zones=us-east-2a,us-east-2b,us-east-2d
+```
+</TabItem>
+
+<TabItem value="gke">
+
+To create a Kubernetes cluster on GCP, the simplest way is to use [gcloud binary](https://cloud.google.com/sdk/docs/install). For example:
+
+```bash
+gcloud beta container --project "qovery-gcp-tests" \
+  clusters create-auto "qovery-test" \
+  --region "us-east5" \
+  --release-channel "stable" \
+  --network "projects/qovery-gcp-tests/global/networks/default" \
+  --subnetwork "projects/qovery-gcp-tests/regions/us-east5/subnetworks/default"
+  --cluster-ipv4-cidr "/16"
+  --services-ipv4-cidr "10.0.0.0/16"
+```
+</TabItem>
+
+<TabItem value="kapsule">
+
+To create a Kubernetes cluster on Scaleway, the simplest way is to use [scw binary](https://github.com/scaleway/scaleway-cli). For example:
+
+```bash
+scw k8s cluster create name=qovery-test
+scw k8s pool create cluster-id=<id-of-your-cluster> name=pool node-type=GP1_XL size=3
+```
+
+You can find the [complete documentation here](https://www.scaleway.com/en/docs/containers/kubernetes/api-cli/creating-managing-kubernetes-lifecycle-cliv2/).
+
+</TabItem>
+
+<TabItem value="demo">
+
+Here is an example with K3d to deploy a local Kubernetes cluster (you can use k3s or any other Kubernetes distribution):
+
+```bash
+k3d cluster create --image rancher/k3s:v1.26.11-k3s2 --k3s-arg "--disable=traefik,metrics-server@server:0" \
+-v $(pwd)/registry_bin:/var/lib/rancher/credentialprovider/bin@server:0  \
+-v $(pwd)/config.yaml:/var/lib/rancher/credentialprovider/config.yaml@server:0
+```
+
+Note: please take a look at the registry information below to understand why we need to mount the registry folder.
+
+</TabItem>
+</Tabs>
+
+## Private registry
+
+Qovery requires a private registry to store built images and mirror containers in order to reduce potential images deletion by 3rd party, while you still need them ([more info here][docs.using-qovery.deployment.image-mirroring]).
+
+<p align="center">
+  <img src="/img/configuration/provider/kubelet-credential-providers-plugin.png" alt="Kubelet Credential Providers" />
+</p>
+
+To do so, Qovery advise to use [Kubelet Credential Provider](https://kubernetes.io/blog/2022/12/22/kubelet-credential-providers/) as it's transparent for developers.
+
+<Tabs
+  centered={true}
+  className={"rounded"}
+  defaultValue={"cpor"}
+  placeholder="Select a platform"
+  select={false}
+  size={null}
+  values={[{"group":"Registry","label":"Cloud Provider Own Registry","value":"cpor"},{"group":"Registry","label":"ECR","value":"ecr"}]}>
+
+<TabItem value="cpor">
+
+If you're running Qovery Self-Managed version, and you are going to use the registry from the cloud provider itself, you don't have anything to do. The cloud providers already manage this part for you.
+
+</TabItem>
+
+<TabItem value="ecr">
+
+If you want to use ECR on a non-EKS cluster, you will need to install the ECR Credential Provider on your Kubernetes cluster.
+
+You have to create an IAM user with the following policy, and generate an access key:
+```json
+{
+    "Statement": [
+        {
+            "Action": [
+                "ecr:*",
+            ],
+            "Effect": "Allow",
+            "Resource": "*"
+        }
+    ],
+    "Version": "2012-10-17"
+}
+```
+
+Then we create a `config.yaml` file to configure the ECR credential provider, where you should set the AWS credentials previously generated:
+```yaml
+apiVersion: kubelet.config.k8s.io/v1
+kind: CredentialProviderConfig
+providers:
+  - name: ecr-credential-provider
+    matchImages:
+      - "*.dkr.ecr.*.amazonaws.com"
+      - "*.dkr.ecr.*.amazonaws.com.cn"
+      - "*.dkr.ecr-fips.*.amazonaws.com"
+      - "*.dkr.ecr.us-iso-east-1.c2s.ic.gov"
+      - "*.dkr.ecr.us-isob-east-1.sc2s.sgov.gov"
+    defaultCacheDuration: "12h"
+    apiVersion: credentialprovider.kubelet.k8s.io/v1
+    env:
+      - name: AWS_ACCESS_KEY_ID
+        value: xxx
+      - name: AWS_DEFAULT_REGION
+        value: xxx
+      - name: AWS_SECRET_ACCESS_KEY
+        value: xxx
+```
+
+<Alert type="info">
+
+Depending on your Kubernetes installation (cloud provider, on premise...) please refer to the official documentation to deploy the credential provider.
+
+</Alert>
+
+<details><summary>Example with K3d</summary>
+
+Here is an example with K3d to deploy a local Kubernetes cluster with the ECR credential provider.
+
+We first create the prerequired folders and file for the binary:
+```
+mkdir -p registry_bin
+touch registry_bin/ecr-credential-provider
+chmod 755 registry_bin/ecr-credential-provider
+```
+Note: the ecr-credential-provider binary should be present for k3s to start. We will build it later.
+
+Now we can run a local Kubernetes cluster (update the path to `config.yaml` file, and the Kubernetes [image tag version](https://hub.docker.com/r/rancher/k3s/tags)):
+```bash
+k3d cluster create --image rancher/k3s:v1.26.11-k3s2 --k3s-arg "--disable=traefik,metrics-server@server:0" \
+-v $(pwd)/registry_bin:/var/lib/rancher/credentialprovider/bin@server:0  \
+-v $(pwd)/config.yaml:/var/lib/rancher/credentialprovider/config.yaml@server:0
+```
+
+</details><br />
+
+Once the Credential provider configuration has been deployed, we'll build the binary and deploy it on the cluster (note: it has to be present on all worker nodes).
+Simply deploy this job which will do the work:
+
+```yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: cloud-provider-repository-binary-builder
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: ecr-credential-builder
+        image: alpine:3.18
+        command:
+          - /bin/sh
+          - -c
+          - |
+            apk add -U ca-certificates tar zstd tzdata go git
+            git clone https://github.com/kubernetes/cloud-provider-aws.git
+            cd cloud-provider-aws/cmd/ecr-credential-provider
+            CGO_ENABLED=0 go build -mod=readonly .
+            chmod 755 ecr-credential-provider
+            mkdir -p /mnt/host/var/lib/rancher/credentialprovider/bin/
+            cp ecr-credential-provider /mnt/host/var/lib/rancher/credentialprovider/bin/
+        volumeMounts:
+        - mountPath: /mnt/host
+          name: host
+      volumes:
+      - hostPath:
+          path: /
+          type: ""
+        name: host
+```
+
+You can now move on the Qovery Helm deployment.
+
+</TabItem>
+</Tabs>
 
 ## Install Qovery
 
@@ -112,8 +326,6 @@ services:
     qovery-cluster-agent:
       enabled: true
     qovery-shell-agent:
-      enabled: true
-    qovery-engine:
       enabled: true
   ingress:
     ingress-nginx:
@@ -186,6 +398,12 @@ helm upgrade --install -n qovery -f values-demo.yaml qovery
 
 This is the configuration of Qovery itself. It is used by all Qovery components.
 
+<Alert type="danger">
+
+**Do not share the jwtToken! Keep it in a safe place.** It is used to authenticate the cluster.
+
+</Alert>
+
 | Key                        | Required | Description                                                    | Default                   |
 |----------------------------|----------|----------------------------------------------------------------|---------------------------|
 | `qovery.clusterId`         | Yes      | The cluster ID. It is used to identify your cluster.           | `set-by-customer`         |
@@ -200,57 +418,60 @@ This is the configuration of Qovery itself. It is used by all Qovery components.
 | `qovery.externalDnsPrefix` | No       | ExernalDNS TXT record prefix (required if ExternalDNS is set)  | `set-by-customer`         |
 | `qovery.architectures`     | No       | Set cluster architectures (comma separated)                    | `AMD64`                   |
 
-<Alert type="danger">
-
-**Do not share the jwtToken! Keep it in a safe place.** It is used to authenticate the cluster.
-
-</Alert>
-
 #### Qovery Cluster Agent
 
-<Alert type="info">
+| | | 
+|-----------------|----------|
+| **Required**    | Yes      |
+| **If deployed** | The cluster agent is responsible for securely forwarding logs and metrics from your Kubernetes cluster to Qovery control plane |
+| **If missing**  | The cluster will not report to Qovery control plane Kubernetes information, so the Qovery console will report unknown satus values |
 
-Optional. If you don't want to use the cluster agent, you can disable it. You will not be able to see your logs and metrics in the Qovery dashboard.
 
-</Alert>
-
-The cluster agent is responsible for securely forwarding logs and metrics from your Kubernetes cluster to Qovery control plane.
-
-| Key                                                                    | Required | Description                          | Default           |
-|------------------------------------------------------------------------|----------|--------------------------------------|-------------------|
-| `services.qovery-cluster-agent.environmentVariables.GRPC_SERVER`       | Yes      | The gRPC server URL.                 | `set-by-customer` |
-| `services.qovery-cluster-agent.environmentVariables.CLUSTER_JWT_TOKEN` | Yes      | The JWT token.                       | `set-by-customer` |
-| `services.qovery-cluster-agent.environmentVariables.CLUSTER_ID`        | Yes      | The cluster ID.                      | `set-by-customer` |
-| `services.qovery-cluster-agent.environmentVariables.ORGANIZATION_ID`   | Yes      | The organization ID.                 | `set-by-customer` |
+```yaml
+qovery-cluster-agent:
+  fullnameOverride: qovery-cluster-agent
+```
 
 #### Qovery Shell Agent
 
-<Alert type="info">
+| | | 
+|-----------------|-----|
+| **Required**    | Yes |
+| **If deployed** | Used to give a remote shell access to you Kubernetes pods (if user is allowed from Qovery RBAC) with the Qovery CLI |
+| **If missing**  | No remote connection will be possible, and Qovery support will not be able to help you to diagnose issues |
 
-Optional. If you don't want to use the shell agent, you can disable it. You will not be able to open a secure remote shell to your application.
-
-</Alert>
-
-The shell agent is responsible for giving you a secure remote shell access to your Kubernetes pods if you need it. E.g. when using `qovery shell` command.
-
-| Key                                                                   | Required | Description                         | Default           |
-|-----------------------------------------------------------------------|----------|-------------------------------------|-------------------|
-| `services.qovery-shell-agent.environmentVariables.GRPC_SERVER`        | Yes      | The gRPC server URL.                | `set-by-customer` |
-| `services.qovery-shell-agent.environmentVariables.CLUSTER_JWT_TOKEN`  | Yes      | The JWT token.                      | `set-by-customer` |
-| `services.qovery-shell-agent.environmentVariables.CLUSTER_ID`         | Yes      | The cluster ID.                     | `set-by-customer` |
-| `services.qovery-shell-agent.environmentVariables.ORGANIZATION_ID`    | Yes      | The organization ID.                | `set-by-customer` |
+```yaml
+qovery-shell-agent:
+  fullnameOverride: qovery-shell-agent
+```
 
 ### Ingress
 
-<Alert type="info">
+| | | 
+|-----------------|-------------------------------|
+| **Required**    | No (but strongly recommended) |
+| **If deployed** | Web services can be privately or publicly exposed |
+| **If missing**  | No web services will be exposed |
 
-Optional. To be able to expose web services privately or publicly, an Ingress is required. If you don't need it, you can disable the service.
-
-</Alert>
-
-Qovery uses [NGINX Ingress Controller](https://docs.nginx.com/nginx-ingress-controller/) by default to route traffic to your applications.
+Qovery us will be exposed [NGINX Ingress Controller](https://docs.nginx.com/nginx-ingress-controller/) by default to route traffic to your applications.
 
 #### Nginx Ingress Controller
+
+<Tabs
+  centered={true}
+  className={"rounded"}
+  defaultValue={"demo"}
+  placeholder="Select a platform"
+  select={false}
+  size={null}
+  values={[
+    {"group":"NginxIngress","label":"Demo","value":"demo"},
+    {"group":"NginxIngress","label":"AWS","value":"aws"},
+    {"group":"NginxIngress","label":"GCP","value":"gcp"},
+    {"group":"NginxIngress","label":"Scaleway","value":"scaleway"},
+  ]}>
+
+<TabItem value="demo">
 
 Here is the minimum override configuration to be used:
 
@@ -270,7 +491,102 @@ ingress-nginx:
     publishService:
       enabled: true
 ```
+</TabItem>
 
+<TabItem value="aws">
+
+Here is an example with Nginx Ingress Controller on AWS with NLB:
+
+```yaml
+ingress-nginx:
+  controller:
+    useComponentLabel: true
+    admissionWebhooks:
+      enabled: set-by-customer
+    metrics:
+      enabled: set-by-customer
+      serviceMonitor:
+        enabled: set-by-customer
+    config:
+      proxy-body-size: 100m
+      server-tokens: "false"
+    ingressClass: nginx-qovery
+    extraArgs:
+      default-ssl-certificate: "cert-manager/letsencrypt-acme-qovery-cert"
+    updateStrategy:
+      rollingUpdate:
+        maxUnavailable: 1
+  
+    autoscaling:
+      enabled: true
+      minReplicas: set-by-customer
+      maxReplicas: set-by-customer
+      targetCPUUtilizationPercentage: set-by-customer
+  
+    publishService:
+      enabled: true
+  
+    service:
+      enabled: true
+      annotations:
+        service.beta.kubernetes.io/aws-load-balancer-type: nlb
+        external-dns.alpha.kubernetes.io/hostname: "set-by-customer"
+      externalTrafficPolicy: "Local"
+      sessionAffinity: ""
+      healthCheckNodePort: 0
+```
+
+</TabItem>
+
+<TabItem value="scaleway">
+
+Here is an example with Nginx Ingress Controller on Scaleway:
+
+```yaml
+ingress-nginx:
+  controller:
+    useComponentLabel: true
+    admissionWebhooks:
+      enabled: set-by-customer
+    metrics:
+      enabled: set-by-customer
+      serviceMonitor:
+        enabled: set-by-customer
+    config:
+      proxy-body-size: 100m
+      server-tokens: "false"
+      use-proxy-protocol: "true"
+    ingressClass: nginx-qovery
+    extraArgs:
+      default-ssl-certificate: "cert-manager/letsencrypt-acme-qovery-cert"
+    updateStrategy:
+      rollingUpdate:
+        maxUnavailable: 1
+    autoscaling:
+      enabled: true
+      minReplicas: set-by-customer
+      maxReplicas: set-by-customer
+      targetCPUUtilizationPercentage: set-by-customer
+    publishService:
+      enabled: true
+    service:
+      enabled: true
+      # https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/loadbalancer-annotations.md
+      annotations:
+        service.beta.kubernetes.io/scw-loadbalancer-forward-port-algorithm: "leastconn"
+        service.beta.kubernetes.io/scw-loadbalancer-protocol-http: "false"
+        service.beta.kubernetes.io/scw-loadbalancer-proxy-protocol-v1: "false"
+        service.beta.kubernetes.io/scw-loadbalancer-proxy-protocol-v2: "true"
+        service.beta.kubernetes.io/scw-loadbalancer-health-check-type: tcp
+        service.beta.kubernetes.io/scw-loadbalancer-use-hostname: "true"
+        service.beta.kubernetes.io/scw-loadbalancer-type: "set-by-customer"
+        external-dns.alpha.kubernetes.io/hostname: "set-by-customer"
+      externalTrafficPolicy: "Local"
+```
+
+</TabItem>
+
+</Tabs>
 
 #### Other Ingress Controllers
 
@@ -278,20 +594,34 @@ Qovery supports other Ingress Controllers. Please contact us if you want to use 
 
 ### DNS
 
-<Alert type="info">
-
-Optional but strongly recommended. Used to easily reach your applications with DNS records, even on private network.
-
-</Alert>
+| | | 
+|-----------------|-------------------------------|
+| **Required**    | No (but strongly recommended) |
+| **If deployed** | Used to easily reach your applications with DNS records, even on private network |
+| **If missing**  | You will have easy access with dns names to your services, you'll have to use IPs |
 
 Qovery uses [External DNS](https://github.com/kubernetes-sigs/external-dns) to automatically configure DNS records for your applications.
 
-If you don't want or can't add your own DNS provider, you can use the Qovery DNS provider. It is a managed DNS provider by Qovery with a sub-domain given by Qovery for free.
+If you don't want or can't add your own DNS provider, Qovery proposes it's own managed sub-domain DNS provider for free.
 You'll then be able to later add your custom DNS record (no matter the provider) to point to your Qovery DNS sub-domain.
 
 #### External DNS
 
-Here is one example with Qoery DNS provider:
+<Tabs
+  centered={true}
+  className={"rounded"}
+  defaultValue={"demo"}
+  placeholder="Select a platform"
+  select={false}
+  size={null}
+  values={[
+    {"group":"ExternalDns","label":"Demo & QoveryDNS","value":"demo"},
+    {"group":"ExternalDns","label":"Cloudflare","value":"cloudflare"},
+  ]}>
+
+<TabItem value="demo">
+
+Here is one example with Qovery DNS provider:
 ```yaml
 external-dns:
   fullnameOverride: external-dns
@@ -310,17 +640,65 @@ external-dns:
     apiPort: 443
 ```
 
+</TabItem>
+
+<TabItem value="cloudflare">
+
+Here is one example with Cloudflare:
+```yaml
+external-dns:
+  fullnameOverride: external-dns
+  provider: cloudflare
+  domainFilters: ["<set your domain here>"]
+  # an owner ID is set to avoid conflicts in case of multiple Qovery clusters
+  txtOwnerId: *shortClusterId
+  # a prefix to help Qovery to debug in case of issues
+  txtPrefix: *externalDnsPrefix
+  # set the Cloudflare DNS provider configuration
+  cloudflare:
+    ## @param cloudflare.apiToken When using the Cloudflare provider, `CF_API_TOKEN` to set (optional)
+    apiToken: ""
+    ## @param cloudflare.apiKey When using the Cloudflare provider, `CF_API_KEY` to set (optional)
+    apiKey: ""
+    ## @param cloudflare.secretName When using the Cloudflare provider, it's the name of the secret containing cloudflare_api_token or cloudflare_api_key.
+    ## This ignores cloudflare.apiToken, and cloudflare.apiKey
+    secretName: ""
+    ## @param cloudflare.email When using the Cloudflare provider, `CF_API_EMAIL` to set (optional). Needed when using CF_API_KEY
+    email: ""
+    ## @param cloudflare.proxied When using the Cloudflare provider, enable the proxy feature (DDOS protection, CDN...) (optional)
+    proxied: true
+```
+
+</TabItem>
+
+</Tabs>
+
 ### Logging
 
-<Alert type="info">
+| | | 
+|-----------------|-------------------------------|
+| **Required**    | No (but strongly recommended) |
+| **If deployed** | Retrieve and store application's log history |
+| **If missing**  | You'll have live logs, but you will miss log history for debugging purpose |
 
-Optional but strongly recommended. Promtail and Loki are not mandatory to use Qovery. However, it's required if you want to have log history and reduce Kubernetes API load.
-
-</Alert>
-
-Qovery uses [Loki](https://grafana.com/oss/loki/) to store your logs and [Promtail](https://grafana.com/docs/loki/latest/clients/promtail/) to collect your logs.
+Qovery uses [Loki](https://grafana.com/oss/loki/) to store your logs in a S3 compatible bucket and [Promtail](https://grafana.com/docs/loki/latest/clients/promtail/) to collect your logs.
 
 #### Loki
+<Tabs
+  centered={true}
+  className={"rounded"}
+  defaultValue={"demo"}
+  placeholder="Select a platform"
+  select={false}
+  size={null}
+  values={[
+    {"group":"Loki","label":"Demo","value":"demo"},
+    {"group":"Loki","label":"AWS S3","value":"s3"},
+  ]}>
+
+<TabItem value="demo">
+
+Here is a configuration **in Memory (no persistence)** for Loki:
 
 ```yaml
 loki:
@@ -383,7 +761,105 @@ loki:
         mountPath: /var/loki
 ```
 
+</TabItem>
+
+<TabItem value="s3">
+
+Here is a configuration example with AWS S3 as storage backend:
+
+```yaml
+loki:
+  fullnameOverride: loki
+  kubectlImage:
+    registry: set-by-customer
+    repository: set-by-customer
+  
+  loki:
+    image:
+      registry: set-by-customer
+      repository: set-by-customer
+    auth_enabled: false
+    commonConfig:
+      replication_factor: 1 # single binary version
+    ingester:
+      chunk_idle_period: 3m 
+      chunk_block_size: 262144 
+      chunk_retain_period: 1m 
+      max_transfer_retries: 0 
+      lifecycler:
+        ring:
+          kvstore:
+            store: memberlist 
+          replication_factor: 1 
+    memberlist:
+      abort_if_cluster_join_fails: false 
+      bind_port: 7946 
+      join_members:
+        - loki-headless.logging.svc:7946 
+      max_join_backoff: 1m 
+      max_join_retries: 10 
+      min_join_backoff: 1s 
+    limits_config:
+      ingestion_rate_mb: 20 
+      ingestion_burst_size_mb: 30 
+      enforce_metric_name: false 
+      reject_old_samples: true 
+      reject_old_samples_max_age: 168h 
+      max_concurrent_tail_requests: 100  (default 10)
+      split_queries_by_interval: 15m  (default 15m)
+      max_query_lookback: 12w  (default 0)
+    compactor:
+      working_directory: /data/retention
+      shared_store: aws
+      compaction_interval: 10m
+      retention_enabled: set-by-customer 
+      retention_delete_delay: 2h
+      retention_delete_worker_count: 150
+    table_manager:
+      retention_deletes_enabled: set-by-customer 
+      retention_period: set-by-customer 
+    schema_config:
+      configs:
+        - from: 2020-05-15
+          store: boltdb-shipper
+          object_store: s3
+          schema: v11
+          index:
+            prefix: index_
+            period: 24h
+        - from: 2023-06-01
+          store: boltdb-shipper
+          object_store: s3
+          schema: v12
+          index:
+            prefix: index_
+            period: 24h
+    storage:
+      bucketNames:
+        chunks: 
+        ruler: 
+        admin: 
+      type: s3
+      s3:
+        s3: 
+        region: 
+        s3ForcePathStyle: 
+        insecure: 
+    storage_config:
+      boltdb_shipper:
+        active_index_directory: /data/loki/index
+        shared_store: s3
+        resync_interval: 5s
+        cache_location: /data/loki/boltdb-cache
+```
+
+</TabItem>
+
+</Tabs>
+
 #### Promtail
+
+A configuration example compatible with all providers:
 
 ```yaml
 promtail:
@@ -404,15 +880,17 @@ promtail:
 
 ### Certificates
 
-<Alert type="info">
-
-Optional but strongly recommended. Cert-manager helps you to get TLS certificates through Let's Encrypt. Without it, you will not be able to automatically get TLS certificates.
-
-</Alert>
+| | | 
+|-----------------|-------------------------------|
+| **Required**    | No (but strongly recommended) |
+| **If deployed** | Cert-manager helps you to get TLS certificates through Let's Encrypt |
+| **If missing**  | Without it, you will not be able to automatically get TLS certificates |
 
 Qovery uses [Cert Manager](https://cert-manager.io/) to automatically get TLS certificates for your applications.
 
 #### Cert Manager
+
+Here is the minimal setup for all cloud providers:
 
 ```yaml
 cert-manager:
@@ -433,11 +911,27 @@ cert-manager:
 
 #### Qovery Cert Manager Webhook
 
-<Alert type="info">
+| | | 
+|-----------------|----------------------------------------------|
+| **Required**    | No (but if you're using Qovery DNS Provider) |
+| **If deployed** | Required to get Let's Encrypt TLS if Qovery DNS Provider is used |
+| **If missing**  | Without it, you will not be able to automatically get TLS certificates with Qovery DNS Provider |
 
-Optional and only required if you're using Qovery DNS provider. Set this to get automatic TLS certificates by Qovery.
+<Tabs
+  centered={true}
+  className={"rounded"}
+  defaultValue={"qovery"}
+  placeholder="Select a platform"
+  select={false}
+  size={null}
+  values={[
+    {"group":"QoveryCertManagerWebhook","label":"Qovery DNS","value":"qovery"},
+    {"group":"QoveryCertManagerWebhook","label":"","value":""},
+  ]}>
 
-</Alert>
+<TabItem value="qovery">
+
+A configuration example compatible with all providers:
 
 ```yaml
 qovery-cert-manager-webhook:
@@ -450,7 +944,31 @@ qovery-cert-manager-webhook:
     apiKey: *jwtToken
 ```
 
+</TabItem>
+</Tabs>
+
 #### Cert Manager Configs
+
+| | | 
+|-----------------|----------------------------------------------|
+| **Required**    | No |
+| **If deployed** | This is an helper to deploy cert-manager config. But you can manually set it |
+| **If missing**  | Installing Cert-manager is not enough, you have to configure it to get TLS working |
+
+<Tabs
+  centered={true}
+  className={"rounded"}
+  defaultValue={"demo"}
+  placeholder="Select a platform"
+  select={false}
+  size={null}
+  values={[
+    {"group":"ExternalDns","label":"Demo","value":"demo"},
+    {"group":"ExternalDns","label":"Qovery DNS","value":"qovery"},
+    {"group":"ExternalDns","label":"Cloudflare","value":"cloudflare"},
+  ]}>
+
+<TabItem value="demo">
 
 This is the configuration of Cert Manager itself. It is used by all Cert Manager components.
 
@@ -473,17 +991,117 @@ cert-manager-configs:
       apiKey: *jwtToken
 ```
 
+</TabItem>
+
+<TabItem value="qovery">
+
+This is the configuration of Cert Manager itself. It is used by all Cert Manager components.
+
+```yaml
+cert-manager-configs:
+  fullnameOverride: cert-manager-configs
+  # set pdns to use Qovery DNS provider
+  externalDnsProvider: pdns
+  managedDns: [*domain]
+  acme:
+    letsEncrypt:
+      emailReport: *acmeEmailAddr
+      acmeUrl: https://acme-v02.api.letsencrypt.org/directory
+  provider:
+    # set the provider of your choice or use the Qovery DNS provider
+    pdns:
+      apiPort: 443
+      apiUrl: *qoveryDnsUrl
+      apiKey: *jwtToken
+```
+
+</TabItem>
+
+<TabItem value="cloudflare">
+
+This is the configuration of Cert Manager itself. It is used by all Cert Manager components.
+
+```yaml
+cert-manager-configs:
+  fullnameOverride: cert-manager-configs
+  # set pdns to use Qovery DNS provider
+  externalDnsProvider: pdns
+  managedDns: [*domain]
+  acme:
+    letsEncrypt:
+      emailReport: *acmeEmailAddr
+      acmeUrl: https://acme-v02.api.letsencrypt.org/directory
+  provider:
+    cloudflare:
+      apiToken: "set your Cloudflare API token here"
+      email: "set your Cloudflare email here"
+```
+
+</TabItem>
+
+</Tabs>
+
 Qovery uses [Metrics Server](https://github.com/kubernetes-sigs/metrics-server) to collect metrics from your Kubernetes cluster and scale your applications automatically based on custom metrics.
 
 ## Observability
 
 ### Metrics Server
 
-<Alert type="info">
+| | | 
+|-----------------|-------------------------------|
+| **Required**    | No (but strongly recommended) |
+| **If deployed** | Mandatory if you want to retrive pod metrics for the Qovery agent and if you want to be able to use the horizontal pod scaling |
+| **If missing**  | No HPA and no application metrics in the QOveyr console |
 
-Optional but strongly recommended. Without metrics server, you will not be able to scale your applications automatically and will not have metrics information in the Qovery dashboard.
+<Tabs
+  centered={true}
+  className={"rounded"}
+  defaultValue={"demo"}
+  placeholder="Select a platform"
+  select={false}
+  size={null}
+  values={[
+    {"group":"MetricsServer","label":"Demo","value":"demo"},
+    {"group":"MetricsServer","label":"AWS","value":"aws"},
+    {"group":"MetricsServer","label":"GCP","value":"gcp"},
+    {"group":"MetricsServer","label":"Scaleway","value":"scaleway"},
+  ]}>
 
-</Alert>
+<TabItem value="aws">
+
+```yaml
+metrics-server:
+  fullnameOverride: metrics-server
+  apiService:
+    create: true
+
+  updateStrategy:
+    type: set-by-customer
+
+  resources:
+    limits:
+      cpu: set-by-customer
+      memory: set-by-customer
+    requests:
+      cpu: set-by-customer
+      memory: set-by-customer
+```
+
+</TabItem>
+
+<TabItem value="gcp">
+
+Nothing needs to be deployed, as GCP already provides a managed metrics server.
+
+</TabItem>
+
+<TabItem value="scaleway">
+
+Nothing needs to be deployed, as Scaleway already provides a managed metrics server.
+
+</TabItem>
+
+<TabItem value="demo">
 
 ```yaml
 metrics-server:
@@ -497,6 +1115,9 @@ metrics-server:
   apiService:
     create: false
 ```
+
+</TabItem>
+</Tabs>
 
 ## FAQ
 

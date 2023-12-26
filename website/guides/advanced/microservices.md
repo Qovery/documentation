@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-06-05"
+last_modified_on: "2023-12-20"
 $schema: "/.meta/.schemas/guides.json"
 title: Microservices
 description: How to deploy microservices with Qovery

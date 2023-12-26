@@ -1,12 +1,14 @@
 ---
-title: Application Troubleshoot
-description: "Everything you need to troubleshoot your application with Qovery"
+title: Service Deployment Troubleshoot
+description: "How to troubleshoot your service deployments with Qovery"
 hide_pagination: true
 ---
 
-Within this section you will find the common errors you might encounter when deploying or running your applications with Qovery
+Within this section you will find the common errors you might encounter when deploying your services with Qovery
 
-## Liveness/Readiness failed, connect: connection refused
+## Generic
+
+### Liveness/Readiness failed, connect: connection refused
 
 If you encounter this kind of error on the Liveness and/or Readiness probe during an application deployment phase:
 
@@ -39,7 +41,34 @@ Your application takes too long to start and the liveness probe is flagging your
 </ol>
 </Steps>
 
-## My app is crashing, how do I connect to investigate?
+### 0/x nodes are available: x insufficient cpu/ram
+
+If you encounter this kind of error during an application deployment phase:
+
+```bash
+0/1 nodes are available: 1 Insufficient cpu (or ram).
+```
+
+That means that we cannot reserve the necessary resources to deploy your application or database on your cluster due to an insufficient amount of CPU or RAM. Moreover, the cluster auto-scaler cannot be triggered since it has already reached the maximum number of instances for your cluster (valid only for Managed Kubernetes clusters).
+
+Here are the possible solutions you can apply:
+
+* Reduce the resources (CPU/RAM) allocated to your existing/new service. Have a review of the deployed services and see if you can save up some resources by reducing their CPU/RAM setting. If you are using a *K3S (EC2) cluster*, stop your service before changing the settings. Remember to re-deploy the applications when you edit the resource. Have a look at [the resource section for more information][docs.using-qovery.configuration.application#resources].
+
+* Select a bigger instance type for your cluster (in terms of CPU/RAM). By increasing it, it will unlock the deployment of your application (since new resources have been added). Check your [cluster settings][docs.using-qovery.configuration.clusters#managing-your-cluster-settings], and change the instance type of your cluster.
+
+* (only for Managed kubernets clusters) Increase the maximum number of nodes of your cluster. By increasing it, it will allow the cluster autoscaler to add a new node and allow the deployment of your application (since new resources have been added). Check your [cluster settings][docs.using-qovery.configuration.clusters#managing-your-cluster-settings], and increase the maximum number of nodes of your cluster.
+
+<Alert type="info">
+
+Please note that by increasing the number of nodes OR by selecting a bigger instance type you will increase your cloud provider cost. For more information, have a look at our [cluster section][docs.using-qovery.configuration.clusters#what-are-the-different-instance-types-available-when-creating-a-cluster].
+
+</Alert>
+
+Please note that application resource consumption and application resource allocation are not the same. Have a look at [the resource section for more information][docs.using-qovery.configuration.application#resources]
+
+
+### My app is crashing during deployment, how do I connect to investigate?
 
 **Goal: You want to connect to your container's application to debug your application**
 
@@ -90,33 +119,7 @@ Once you've finished debugging, **remember to configure your application port ba
 </Steps>
 
 
-## 0/x nodes are available: x insufficient cpu/ram
-
-If you encounter this kind of error during an application deployment phase:
-
-```bash
-0/1 nodes are available: 1 Insufficient cpu (or ram).
-```
-
-That means that we cannot reserve the necessary resources to deploy your application or database on your cluster due to an insufficient amount of CPU or RAM. Moreover, the cluster auto-scaler cannot be triggered since it has already reached the maximum number of instances for your cluster (valid only for Managed Kubernetes clusters).
-
-Here are the possible solutions you can apply:
-
-* Reduce the resources (CPU/RAM) allocated to your existing/new service. Have a review of the deployed services and see if you can save up some resources by reducing their CPU/RAM setting. If you are using a *K3S (EC2) cluster*, stop your service before changing the settings. Remember to re-deploy the applications when you edit the resource. Have a look at [the resource section for more information][docs.using-qovery.configuration.application#resources].
-
-* Select a bigger instance type for your cluster (in terms of CPU/RAM). By increasing it, it will unlock the deployment of your application (since new resources have been added). Check your [cluster settings][docs.using-qovery.configuration.clusters#managing-your-cluster-settings], and change the instance type of your cluster.
-
-* (only for Managed kubernets clusters) Increase the maximum number of nodes of your cluster. By increasing it, it will allow the cluster autoscaler to add a new node and allow the deployment of your application (since new resources have been added). Check your [cluster settings][docs.using-qovery.configuration.clusters#managing-your-cluster-settings], and increase the maximum number of nodes of your cluster.
-
-<Alert type="info">
-
-Please note that by increasing the number of nodes OR by selecting a bigger instance type you will increase your cloud provider cost. For more information, have a look at our [cluster section][docs.using-qovery.configuration.clusters#what-are-the-different-instance-types-available-when-creating-a-cluster].
-
-</Alert>
-
-Please note that application resource consumption and application resource allocation are not the same. Have a look at [the resource section for more information][docs.using-qovery.configuration.application#resources]
-
-## Can't get my SSL / TLS Certificate
+### Can't get my SSL / TLS Certificate
 
 When a custom domain is added to an application, it must be configured on your side according to the instructions displayed:
 
@@ -173,7 +176,7 @@ Redeploy your impacted application(s).
 </Steps>
 
 
-## Git Submodules - Error while checkout submodules
+### Git Submodules - Error while checkout submodules
 
 **Error Message**:
 
@@ -187,8 +190,52 @@ There are limitations with the support for Git Submodules. Only public Submodule
 Solution: Follow our [Git Submodules guide][guides.tutorial.working-with-git-submodules] to make your application working with Git Submodules on Qovery.
 
 
-## Container image xxxxxx.xxx.xx failed to build: Cannot build Application "zXXXXXXXXX" due to an error with docker: Timeout
+### Container image xxxxxx.xxx.xx failed to build: Cannot build Application "zXXXXXXXXX" due to an error with docker: Timeout
 
 This error shows up in your deployment logs when the application takes more time to build than the maximum build allowed time (today 1800 seconds). 
 
 If your application needs more time to build, increase parameter [build.timeout_max_sec][docs.using-qovery.configuration.advanced-settings#application-deployment] within your application advanced settings and trigger again the deployment.
+
+
+## Lifecycle Jobs / Cronjobs
+
+### Joib failed: either it couldn't be executed correctly after X retries or its execution didn't finish after Y minutes
+
+This errors occurs in the following two cases:
+
+**Job code execution failures**
+The pod running your lifecycle job is crashing due to an exception in your code or OOM issue. Have a look at the Live Logs of your Lifecycle job to understand from where the issue is coming from your code.
+
+**Job execution timeout**
+The code run in your job is taking more time than expected and thus it's execution is stopped. If your code needs more time to be excecuted, increase the `Max Duration` value within the [Lifecycle Job configuration page][docs.using-qovery.configuration.lifecycle-job#job-configuration]
+
+## Database
+
+### SnapshotQuotaExceeded - while deleting a managed DB
+
+This errors occurs because Qovery creates a snapshot before the delete of the database. This to avoid a user mistake who delete a database accidentally.
+
+To fix this issue, you have 2 solutions:
+
+<Steps headingDepth={3}>
+<ol>
+<li>
+
+You certainly have useless snapshots, from old databases or old ones you don't want to keep anymore. Delete them directly from your Cloud Provider web interface. Here is an example on AWS:
+
+* Search for the database service (here RDS)
+* Select the Snapshots menu
+* Select the snapshots to delete
+
+<p Valign="center">
+  <img src="/img/configuration/database/db-snaptshots-quotas-exceed.png" alt="Database snapshots" />
+</p>
+
+</li>
+<li>
+
+Open a ticket to the Cloud Provider support, and as to raise this limit.
+
+</li>
+</ol>
+</Steps>

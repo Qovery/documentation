@@ -157,9 +157,8 @@ module.exports = {
           label: 'Troubleshoot',
           items: [
             "using-qovery/troubleshoot",
-            "using-qovery/troubleshoot/application-troubleshoot",
-            "using-qovery/troubleshoot/database-troubleshoot",
-            "using-qovery/troubleshoot/lifecycle-troubleshoot",
+            "using-qovery/troubleshoot/service-deployment-troubleshoot",
+            "using-qovery/troubleshoot/service-run-troubleshoot",
             "using-qovery/troubleshoot/cluster-troubleshoot",
           ],
         },

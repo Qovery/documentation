@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-22"
+last_modified_on: "2023-12-26"
 title: Troubleshoot
 description: "Everything you need to troubleshoot your application with Qovery"
 sidebar_label: hidden
@@ -17,17 +17,15 @@ In this guide, you'll find common mistakes, and how to resolve them. If you don'
 
 
 
-This guide is divided into three sections that will guide you through your troubleshooting depending on the issue you face
+This guide is divided into three sections that will guide you through your troubleshooting depending on your issue:
 
+- Service Deployment troubleshoot: you will find here the most common deployment errors and their solutions. 
+- Service Run troubleshoot: you will find here the most common run errors and their solutions.
+- Cluster troubleshoot: you will find here the error you might find while deploying or updating a cluster.
 
-- Deployment issues: guide through to fix the deployment 
-- Run issues : App in error -> provide Pod errors, performance issues (?), dropped request(nginx investigations)
-- Cluster issues: 
-
-<Jump to="/docs/using-qovery/troubleshoot/application-troubleshoot/">Application troubleshoot</Jump>
 <Jump to="/docs/using-qovery/troubleshoot/cluster-troubleshoot/">Cluster troubleshoot</Jump>
-<Jump to="/docs/using-qovery/troubleshoot/database-troubleshoot/">Database troubleshoot</Jump>
-<Jump to="/docs/using-qovery/troubleshoot/lifecycle-troubleshoot/">Lifecycle troubleshoot</Jump>
+<Jump to="/docs/using-qovery/troubleshoot/service-deployment-troubleshoot/">Service deployment troubleshoot</Jump>
+<Jump to="/docs/using-qovery/troubleshoot/service-run-troubleshoot/">Service run troubleshoot</Jump>
 
 
 

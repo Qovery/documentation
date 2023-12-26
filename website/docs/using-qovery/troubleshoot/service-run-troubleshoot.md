@@ -1,7 +1,7 @@
 ---
 last_modified_on: "2023-12-26"
-title: Service Deployment Troubleshoot
-description: "How to troubleshoot your service deployment with Qovery"
+title: Service Run Troubleshoot
+description: "How to troubleshoot your service while it runs with Qovery"
 hide_pagination: true
 ---
 

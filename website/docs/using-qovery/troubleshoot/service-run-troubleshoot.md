@@ -70,6 +70,22 @@ Once you've finished debugging, **remember to configure your application port ba
 </ol>
 </Steps>
 
+## I can't access my application logs
+
+If you are deploying a helm service, to get all the Qovery features (access your container logs, apply the stop/restart actions, display the pod status in the overview page), make sure to create an override and assign the macros `qovery.labels.service` and `qovery.annotations.service` to the labels and annotations of any deployed Pods/Deployments/Services/Jobs.
+
+Override example:
+
+```yaml
+commonLabels:
+  mylabel: "test"
+  qovery.labels.service
+annotations:
+  qovery.annotations.service
+```
+
+These macros will be automatically replaced by Qovery during the deployment phase.
+
 
 [docs.using-qovery.configuration.application#ports]: /docs/using-qovery/configuration/application/#ports
 [docs.using-qovery.interface.cli#shell]: /docs/using-qovery/interface/cli/#shell

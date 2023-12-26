@@ -24,21 +24,21 @@
 <link rel="stylesheet" href="/styles.18405842.css">
 
 
-<link rel="preload" href="/styles.bd2cdf66.js" as="script">
+<link rel="preload" href="/styles.894f1f65.js" as="script">
 
-<link rel="preload" href="/runtime~main.b09772f0.js" as="script">
+<link rel="preload" href="/runtime~main.bbfa8d18.js" as="script">
 
-<link rel="preload" href="/main.9870bffd.js" as="script">
+<link rel="preload" href="/main.9c072b8a.js" as="script">
 
-<link rel="preload" href="/1.b6bd6afb.js" as="script">
+<link rel="preload" href="/1.4bd22d5a.js" as="script">
 
-<link rel="preload" href="/2.6f1c9576.js" as="script">
+<link rel="preload" href="/2.c7d78f53.js" as="script">
 
-<link rel="preload" href="/3.3d65beb9.js" as="script">
+<link rel="preload" href="/3.be041003.js" as="script">
 
-<link rel="preload" href="/1c13b173.8f091d02.js" as="script">
+<link rel="preload" href="/1c13b173.fa72864b.js" as="script">
 
-<link rel="preload" href="/4fed1128.93b5efc7.js" as="script">
+<link rel="preload" href="/4fed1128.3c1065af.js" as="script">
 
 </head>
 <body>
@@ -52,21 +52,21 @@ You may also have to push AWS credentials (with <code>eks:DescribeCluster</code>
 </span></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token key atrule" style="color:#00a4db">destinations</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token punctuation" style="color:#393A34">-</span><span class="token plain"> </span><span class="token key atrule" style="color:#00a4db">name</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> default</span></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token key atrule" style="color:#00a4db">path</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> ./charts</span></div></div></pre></div></div><p>Running <code>helm-freeze sync</code> will download the chart <code>cost-analyzer</code> into the charts folder.  You can then use this simple <code>Dockerfile</code> which will add all the content of this git repository inside a container:</p><div class="mdxCodeBlock_iHAB"><div class="codeBlockContent_3RXF"><button type="button" aria-label="Copy code to clipboard" class="copyButton_1PCb">Copy</button><pre class="prism-code language-undefined codeBlock_1wn8"><div class="codeBlockLines_3HrO" style="color:#393A34;background-color:#f6f8fa"><div class="token-line" style="color:#393A34"><span class="token plain">FROM qoveryrd/helm:1.0</span></div><div class="token-line" style="color:#393A34"><span class="token plain">ADD . /helm</span></div><div class="token-line" style="color:#393A34"><span class="token plain">ENTRYPOINT [&quot;/helm/run.sh&quot;]</span></div></div></pre></div></div><p>Finally, add the <code>run.sh</code> file from the <a href="https://github.com/Qovery/lifecycle-job-examples/tree/main/examples/helm">Qovery Helm image</a> inside your repository. Commit now everything. To summarize, in your Git repository you should have:</p><ul><li><code>charts</code>: a folder containing all the charts (here cost-analyzer chart)</li><li><code>Dockerfile</code>: helping you to deploy helm chart and containing all your charts</li><li><code>helm-freeze.yaml</code>: configuration file for helm-freeze</li><li><code>run.sh</code>: the container start script</li></ul><p>We are now ready to create a <code>Lifecycle job</code> and select your repository:</p><p valign="center"><img src="/img/helm/helm_git.png" alt="create lifecycle job"></p><p>Then select the <code>Start</code> event, and add <code>[&quot;install&quot;]</code> in the command arguments. In the <code>Delete</code> event, add <code>[&quot;uninstall&quot;]</code>. And configure them to run the install during the Start</p><p valign="center"><img src="/img/helm/helm_event.png" alt="lifecycle event"></p><p>Set the environment variables to point to the chart to deploy with the release name and other required information:</p><table><thead><tr><th>Variable</th><th>Value</th><th>Secret</th></tr></thead><tbody><tr><td><code>HELM_REPO_PATH</code></td><td><code>/helm/charts/cost-analyzer</code></td><td>no</td></tr><tr><td><code>HELM_RELEASE_NAME</code></td><td><code>kubecost</code></td><td>no</td></tr><tr><td><code>HELM_KUBERNETES_NAMESPACE</code></td><td><code>kubecost</code></td><td>no</td></tr></tbody></table><p>Additionally, you can set the <code>Kubecost token</code> if you have a license with additional Helm args like:</p><table><thead><tr><th>Variable</th><th>Value</th><th>Secret</th></tr></thead><tbody><tr><td><code>HELM_ADDITIONAL_PARAMS</code></td><td><code>--set kubecostToken=&quot;xxx&quot;</code></td><td>yes</td></tr></tbody></table><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="lifecycle-job-and-timeout-management"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#lifecycle-job-and-timeout-management" title="Direct link to heading">#</a>Lifecycle Job and Timeout management</h3><div class="alert alert--warning alert--icon" role="alert"><i class="feather icon-alert-triangle"></i><p><a href="https://helm.sh/docs/intro/using_helm/#helpful-options-for-installupgraderollback">Helm timeout</a> and Qovery Lifecycle job should be correctly set to avoid board effects!</p><p><code>Qovery Liefcycle Job timeout &gt; ( Helm deployment timeout + Helm rollback time )</code></p></div><p>The default Helm timeout set by Qovery is 3 minutes. Qovery enables Helm options:</p><ul><li><code>--wait</code>: to wait for all resources to be in a ready state before marking the release as successful</li><li><code>--atomic</code>: to roll back the release if the deployment fails</li></ul><p>Because of the atomic check, the rollback can take more than 5 minutes. By default, Qovery set the default Lifecycle timeout to 3 minutes, to avoid falling into this issue, but there is no guarantee, it depends on what resources are deployed:</p><p><strong>Qovery strongly recommends leveraging the default Qovery Lifecycle Job timeout or reducing the default Helm timeout to ensure the rollback will occur properly in case of failure.</strong></p><h2><a aria-hidden="true" tabindex="-1" class="anchor" id="conclusion"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#conclusion" title="Direct link to heading">#</a>Conclusion</h2><p>As you can see, deploying Helm charts with Qovery is straightforward. Qovery Lifecycle jobs and its Qovery Helm image should help you a lot if you familiarize yourself with it and its options.</p></div></article></div></main></div><footer class="footer"><div class="container"><div class="row footer__links"><div class="col col--5 footer__col"><div class="margin-bottom--md"></div><div class="margin-bottom--md"><p>Qovery is an Internal Developer Platform Helping 50.000+ Developers and Platform Engineers To Ship Faster.</p></div><div><a href="https://github.com/qovery" target="_blank"><i class="feather icon-github" alt="Qovery&#x27;s Github Repo"></i></a>    <a href="https://www.linkedin.com/company/qovery/" target="_blank"><i class="feather icon-rss" alt="Qovery&#x27;s Linkedin"></i></a>    <a href="https://twitter.com/qovery_" target="_blank"><i class="feather icon-twitter" alt="Qovery&#x27;s Twitter"></i></a>    <a href="https://discord.qovery.com" target="_blank"><i class="feather icon-message-circle" alt="Qovery&#x27;s Discord"></i></a></div></div><div class="col footer__col"><h4 class="footer__title">Resources</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" href="/docs">Documentation</a></li><li class="footer__item"><a aria-current="page" class="footer__link-item active" href="/guides">Guides</a></li><li class="footer__item"><a aria-current="page" class="footer__link-item active" href="/guides/tutorial">Tutorials</a></li><li class="footer__item"><a class="footer__link-item" href="/guides/engineering">Engineering</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/pricing" href="https://www.qovery.com/pricing">Pricing</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/enterprise" href="https://www.qovery.com/enterprise">Enterprise</a></li><li class="footer__item"><a class="footer__link-item" to="https://api-doc.qovery.com" href="https://api-doc.qovery.com">API</a></li><li class="footer__item"><a class="footer__link-item" to="https://github.com/Qovery" href="https://github.com/Qovery">Github</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Community</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://discord.qovery.com" href="https://discord.qovery.com">Discord</a></li><li class="footer__item"><a class="footer__link-item" to="https://community.qovery.com" href="https://community.qovery.com">Forum</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/community-call" href="https://www.qovery.com/community-call">Community call</a></li><li class="footer__item"><a class="footer__link-item" to="https://shop.qovery.com" href="https://shop.qovery.com">Goodies</a></li><li class="footer__item"><a class="footer__link-item" to="https://roadmap.qovery.com" href="https://roadmap.qovery.com">Roadmap</a></li><li class="footer__item"><a class="footer__link-item" to="https://github.com/Qovery/replibyte" href="https://github.com/Qovery/replibyte">Replibyte</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Company</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/blog" href="https://www.qovery.com/blog">Blog</a></li><li class="footer__item"><a class="footer__link-item" to="https://jobs.qovery.com" href="https://jobs.qovery.com">Jobs</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/team" href="https://www.qovery.com/team">Team</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/investors" href="https://www.qovery.com/investors">Investors</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/contact" href="https://www.qovery.com/contact">Contact</a></li></ul></div></div><div class="text--center"><small>© 2023 DESIGNED BY QOVERY | PROUD SILVER MEMBER OF CNCF AND LINUX FOUNDATION | QOVERY BY BIRDSIGHT - ALL RIGHTS RESERVED</small><br></div></div></footer>
 </div>
 
-<script src="/styles.bd2cdf66.js"></script>
+<script src="/styles.894f1f65.js"></script>
 
-<script src="/runtime~main.b09772f0.js"></script>
+<script src="/runtime~main.bbfa8d18.js"></script>
 
-<script src="/main.9870bffd.js"></script>
+<script src="/main.9c072b8a.js"></script>
 
-<script src="/1.b6bd6afb.js"></script>
+<script src="/1.4bd22d5a.js"></script>
 
-<script src="/2.6f1c9576.js"></script>
+<script src="/2.c7d78f53.js"></script>
 
-<script src="/3.3d65beb9.js"></script>
+<script src="/3.be041003.js"></script>
 
-<script src="/1c13b173.8f091d02.js"></script>
+<script src="/1c13b173.fa72864b.js"></script>
 
-<script src="/4fed1128.93b5efc7.js"></script>
+<script src="/4fed1128.3c1065af.js"></script>
 
 
 </body>

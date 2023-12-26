@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-09-27"
+last_modified_on: "2023-12-10"
 title: "Deployment Rule"
 description: "Learn how to configure the lifecycle of your Environments"
 ---
@@ -120,16 +120,16 @@ If you want to apply a rule to the preview envirionments, use the rule "[PR]*" (
 
 ### Setup to apply - General
 
-#### Mode
+#### Mode (Deprecated)
 
-Selecting Mode allows you to labelize the environment. 
 
 <Alert type="info">
 
-To learn more about the environment modes, take a look to the [Type of environments](docs.using-qovery.configuration.environment#type-of-environment) section.
+We are re-building this feature and thus you will always have to select a mode when creating a new environment
 
 </Alert>
 
+You can automatically assign a [type of environments](docs.using-qovery.configuration.environment#type-of-environment) based on his name.
 
 #### Cluster
 
@@ -138,6 +138,12 @@ Selecting the cluster allows you to control to which cluster your environments i
 **Example use cases**
 - deploy your development environments on a more cost effective cluster
 - deploy your environments in multiple regions
+
+<Alert type="info">
+
+We are re-building this feature and thus you will always have to select a clsuter when manually creating a new environment. This feature still works for preview environments.
+
+</Alert>
 
 ### Setup to apply - Start & stop
 

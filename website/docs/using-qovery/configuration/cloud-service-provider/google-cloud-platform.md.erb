@@ -1,8 +1,12 @@
 ---
-last_modified_on: "2020-10-04"
+last_modified_on: "2023-12-26"
 title: "Google Cloud Platform (GCP)"
 description: "Learn how to configure and plug your Google Cloud Platform (GCP) account"
 ---
+
+import Steps from '@site/src/components/Steps';
+import Alert from '@site/src/components/Alert';
+import Assumptions from '@site/src/components/Assumptions';
 
 <Alert type="info">
 
@@ -10,8 +14,114 @@ Please refer to [this page][docs.using-qovery.configuration.provider.kubernetes]
 
 </Alert>
 
-## Managed Kubernetes by Qovery
+Qovery lets you quickly deploy applications to your [GCP (GCP)][urls.gcp] account. No knowledge needed, and it takes less than 10 minutes to install Qovery on your GCP account.
 
-[We currently work on supporting Google Cloud Platform (GCP)](https://www.qovery.com/blog/early-access-for-google-cloud-platform/) as a managed Kubernetes provider. Stay tuned!
+## Getting started
 
-<%= qovery_cloud_account_coming_soon('Google Cloud Platform', 'https://roadmap.qovery.com/roadmap/support-google-cloud-platform-gcp') %>
+<Assumptions>
+
+* You have a [Qovery][docs.using-qovery.interface] account
+* You have created an [Organization][docs.using-qovery.configuration.organization]
+* You have a GCP account
+
+</Assumptions>
+
+### Connect your GCP account
+
+To link your GCP account to Qovery you need to provide a GCP JSON credentials key.
+
+<Alert type="info">
+
+You can link more than one GCP account. Qovery also support multiple Cloud providers within the same Organization. Meaning, you can balance your workload on different Cloud providers. [Read more][guides.advanced].
+
+</Alert>
+
+#### Create your GCP credentials
+
+<Steps headingDepth={3}>
+<ol>
+
+<li>
+
+[Connect to your GCP console](https://console.cloud.google.com)
+
+</li>
+
+<li>
+
+Create a new `Project` and get the project id
+<img src="/img/gcp-credentials/gcp_project.png" />
+
+</li>
+
+<li>
+
+Open the embedded Google shell
+<img src="/img/gcp-credentials/gcp_shell_1.png" />
+
+</li>
+
+<li>
+
+Download the following [script](../../../../../static/files/create_credentials_gcp.sh)
+
+</li>
+
+<li>
+
+Update the script to the Google shell
+<img src="/img/gcp-credentials/gcp_shell_2.png" />
+<img src="/img/gcp-credentials/gcp_shell_3.png" />
+
+</li>
+
+<li>
+
+Make the script executable
+
+```bash
+chmod +x create_credentials_gcp.sh
+```
+
+</li>
+
+<li>
+
+Run the script with the following command:
+
+```bash
+./create_credentials_gcp.sh <project_id> <service_account_name>
+```
+
+<img src="/img/gcp-credentials/gcp_shell_4.png" />
+
+</li>
+
+<li>
+
+Once the script is done. A GCP JSON credentials key has been created and you can download it.
+<img src="/img/gcp-credentials/gcp_shell_5.png" />
+<img src="/img/gcp-credentials/gcp_shell_6.png" />
+
+</li>
+</ol>
+</Steps>
+
+Well done!! You now have your GCP `JSON credentials key`; It is time to connect Qovery to your GCP account.
+
+### Install a new cluster on Qovery
+
+You will be able to use the credentials you just generated when creating a cluster via the Qovery console. This cluster will be linked to your Qovery organization.
+Follow [this documentation][docs.using-qovery.configuration.clusters#creating-a-cluster] to create a new cluster on your organization.
+
+### Remove your GCP account
+
+
+## Regions
+
+Qovery supports the following GCP regions:
+
+|      | name     | description                 |
+|------|----------|-----------------------------|
+| | | |
+

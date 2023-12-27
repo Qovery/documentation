@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-20"
+last_modified_on: "2023-12-27"
 title: "Clusters"
 description: "Learn how to configure your Kubernetes clusters on Qovery"
 ---
@@ -160,7 +160,7 @@ From the [Qovery Console][urls.qovery_console], you can manage the settings of t
 
 <Alert type="info">
 
-To install a cluster, Qovery needs a set of credentials to access your cloud provider account (example: AWS secret_access_key and access_key_id). If this is the first time you are installing a cluster with Qovery, have a look at this guide on how to get the credentials: [here for AWS][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account], [here for Scaleway][docs.using-qovery.configuration.cloud-service-provider.scaleway#connect-your-scaleway-account].
+To install a cluster, Qovery needs a set of credentials to access your cloud provider account (example: AWS secret_access_key and access_key_id). If this is the first time you are installing a cluster with Qovery, have a look at this guide on how to get the credentials: [here for AWS][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account], [here for Scaleway][docs.using-qovery.configuration.cloud-service-provider.scaleway#connect-your-scaleway-account], [here for GCP][docs.using-qovery.configuration.cloud-service-provider.google-cloud-platform#connect-your-gcp-account].
 
 </Alert>
 
@@ -200,7 +200,7 @@ In the `Create Cluster` window enter:
 * `Production cluster`: select this option if your cluster will be used for production.
 * `Cloud provider`: select your cloud provider.
 * `Region`: select the geographical area in which you want your cluster to be hosted.
-* `Credentials`: select one of the existing cloud provider credentials or add a new one by clicking on `New Credentials`. In the New credentials window, add the credentials that you have generated on your cloud provider console ([Procedure for AWS account][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account], [Procedure for Scaleway account][docs.using-qovery.configuration.cloud-service-provider.scaleway#connect-your-scaleway-account]). Added credentials can be used later to create and manage additional cluster.
+* `Credentials`: select one of the existing cloud provider credentials or add a new one by clicking on `New Credentials`. In the New credentials window, add the credentials that you have generated on your cloud provider console ([Procedure for AWS account][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account], [Procedure for Scaleway account][docs.using-qovery.configuration.cloud-service-provider.scaleway#connect-your-scaleway-account], [Procedure for GCP account][docs.using-qovery.configuration.cloud-service-provider.google-cloud-platform#connect-your-gcp-account]). Added credentials can be used later to create and manage additional cluster.
 
 To confirm, click `Next`.
 
@@ -321,15 +321,16 @@ The `General` tab allows you to define high-level information on your cluster:
 Here you can manage here the cloud provider credentials associated with your cluster.
 
 If you need to change the credentials:
-- generate a new set of credentials on your cloud provider([Procedure for AWS account][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account], [Procedure for Scaleway account][docs.using-qovery.configuration.cloud-service-provider.scaleway#connect-your-scaleway-account])
+- generate a new set of credentials on your cloud provider([Procedure for AWS account][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account], [Procedure for Scaleway account][docs.using-qovery.configuration.cloud-service-provider.scaleway#connect-your-scaleway-account], [Procedure for GCP account][docs.using-qovery.configuration.cloud-service-provider.google-cloud-platform#connect-your-gcp-account])
 - create the new credential on the Qovery by opening the drop-down and selecting "New Credentials"
 
-In the two dedicated fields, enter the credentials you created on your cloud provider account:
+In the dedicated fields, enter the credentials you created on your cloud provider account:
 
 | Account Provider | Field Labels                                   |
 |------------------|------------------------------------------------|
 | AWS              | `Access Key` and `Secret Access Key`           |
-| Scaleway         | `Scaleway Access Key` and `Scaleway Project ID`|
+| Scaleway         | `Scaleway Access Key`, `Scaleway Secret Key`, `Scaleway Project ID` and `Scaleway Organization ID`|
+| GCP              | `GCP JSON key`|
 
 Once created and associated, you need to [updating your cluster][docs.using-qovery.configuration.clusters#updating-a-cluster] to apply the change.
 
@@ -740,6 +741,7 @@ To clean up a Qovery cluster from your cloud provider account, go to `AWS Consol
 
 
 [docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account]: /docs/using-qovery/configuration/cloud-service-provider/amazon-web-services/#connect-your-aws-account
+[docs.using-qovery.configuration.cloud-service-provider.google-cloud-platform#connect-your-gcp-account]: /docs/using-qovery/configuration/cloud-service-provider/google-cloud-platform/#connect-your-gcp-account
 [docs.using-qovery.configuration.cloud-service-provider.scaleway#connect-your-scaleway-account]: /docs/using-qovery/configuration/cloud-service-provider/scaleway/#connect-your-scaleway-account
 [docs.using-qovery.configuration.clusters#creating-a-cluster]: /docs/using-qovery/configuration/clusters/#creating-a-cluster
 [docs.using-qovery.configuration.clusters#deleting-a-cluster]: /docs/using-qovery/configuration/clusters/#deleting-a-cluster

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-22"
+last_modified_on: "2023-12-27"
 title: "Kubernetes"
 description: "Learn how to install and configure Qovery on your own Kubernetes cluster (BYOK) / Self-managed Kubernetes cluster"
 ---
@@ -508,39 +508,99 @@ ingress-nginx:
 
 Here is an example with Nginx Ingress Controller on AWS with NLB:
 
-```yaml
+```yaml 
 ingress-nginx:
   controller:
     useComponentLabel: true
     admissionWebhooks:
       enabled: set-by-customer
+    # enable if you want metrics scrapped by prometheus
     metrics:
       enabled: set-by-customer
       serviceMonitor:
         enabled: set-by-customer
     config:
+      # set global default file size limit to 100m
       proxy-body-size: 100m
+      # hide Nginx version
       server-tokens: "false"
+    # the Ingress Class name to be used by Ingresses (use "nginx-qovery" for Qovery application/container deployments)
     ingressClass: nginx-qovery
     extraArgs:
+      # Kubernetes path of the default Cert-manager TLS certificate (if used)
       default-ssl-certificate: "cert-manager/letsencrypt-acme-qovery-cert"
     updateStrategy:
       rollingUpdate:
+        # set the minimum acceptable number of unavailable pods during a rolling update
         maxUnavailable: 1
-  
+    # enable auoscaling if you want to scale the number of replicas based on CPU usage
     autoscaling:
       enabled: true
       minReplicas: set-by-customer
       maxReplicas: set-by-customer
       targetCPUUtilizationPercentage: set-by-customer
-  
+    # required if you rely on a load balancer
+    # the controller mirrors the address of this service's endpoints to the load-balancer status of all Ingress objects it satisfies.
     publishService:
       enabled: true
-  
+    # set a load balancer if you want your Nginx to be publicly accessible
     service:
       enabled: true
       annotations:
         service.beta.kubernetes.io/aws-load-balancer-type: nlb
+        # Qovery managed DNS requieres *.$domain (something like: *.<cluster_id>.<given_dns_name>)
+        external-dns.alpha.kubernetes.io/hostname: "set-by-customer"
+      externalTrafficPolicy: "Local"
+      sessionAffinity: ""
+      healthCheckNodePort: 0
+```
+
+</TabItem>
+
+<TabItem value="gcp">
+
+Here is an example with Nginx Ingress Controller on AWS with NLB:
+
+```yaml 
+ingress-nginx:
+  controller:
+    useComponentLabel: true
+    admissionWebhooks:
+      enabled: set-by-customer
+    # enable if you want metrics scrapped by prometheus
+    metrics:
+      enabled: set-by-customer
+      serviceMonitor:
+        enabled: set-by-customer
+    config:
+      # set global default file size limit to 100m
+      proxy-body-size: 100m
+      # hide Nginx version
+      server-tokens: "false"
+    # the Ingress Class name to be used by Ingresses (use "nginx-qovery" for Qovery application/container deployments)
+    ingressClass: nginx-qovery
+    extraArgs:
+      # Kubernetes path of the default Cert-manager TLS certificate (if used)
+      default-ssl-certificate: "qovery/letsencrypt-acme-qovery-cert"
+    updateStrategy:
+      rollingUpdate:
+        # set the minimum acceptable number of unavailable pods during a rolling update
+        maxUnavailable: 1
+    # enable auoscaling if you want to scale the number of replicas based on CPU usage
+    autoscaling:
+      enabled: true
+      minReplicas: set-by-customer
+      maxReplicas: set-by-customer
+      targetCPUUtilizationPercentage: set-by-customer
+    # required if you rely on a load balancer
+    # the controller mirrors the address of this service's endpoints to the load-balancer status of all Ingress objects it satisfies.
+    publishService:
+      enabled: true
+    # set a load balancer if you want your Nginx to be publicly accessible
+    service:
+      enabled: true
+      annotations:
+        # Qovery managed DNS requieres *.$domain (something like: *.<cluster_id>.<given_dns_name>)
         external-dns.alpha.kubernetes.io/hostname: "set-by-customer"
       externalTrafficPolicy: "Local"
       sessionAffinity: ""
@@ -559,27 +619,38 @@ ingress-nginx:
     useComponentLabel: true
     admissionWebhooks:
       enabled: set-by-customer
+    # enable if you want metrics scrapped by prometheus
     metrics:
       enabled: set-by-customer
       serviceMonitor:
         enabled: set-by-customer
     config:
+      # set global default file size limit to 100m
       proxy-body-size: 100m
+      # hide Nginx version
       server-tokens: "false"
+      # required for X-Forwarded-for to work
       use-proxy-protocol: "true"
+    # the Ingress Class name to be used by Ingresses (use "nginx-qovery" for Qovery application/container deployments)
     ingressClass: nginx-qovery
     extraArgs:
+      # Kubernetes path of the default Cert-manager TLS certificate (if used)
       default-ssl-certificate: "cert-manager/letsencrypt-acme-qovery-cert"
     updateStrategy:
       rollingUpdate:
+        # set the minimum acceptable number of unavailable pods during a rolling update
         maxUnavailable: 1
+    # enable auoscaling if you want to scale the number of replicas based on CPU usage
     autoscaling:
       enabled: true
       minReplicas: set-by-customer
       maxReplicas: set-by-customer
       targetCPUUtilizationPercentage: set-by-customer
+    # required if you rely on a load balancer
+    # the controller mirrors the address of this service's endpoints to the load-balancer status of all Ingress objects it satisfies.
     publishService:
       enabled: true
+    # set a load balancer if you want your Nginx to be publicly accessible
     service:
       enabled: true
       # https://github.com/scaleway/scaleway-cloud-controller-manager/blob/master/docs/loadbalancer-annotations.md
@@ -590,7 +661,9 @@ ingress-nginx:
         service.beta.kubernetes.io/scw-loadbalancer-proxy-protocol-v2: "true"
         service.beta.kubernetes.io/scw-loadbalancer-health-check-type: tcp
         service.beta.kubernetes.io/scw-loadbalancer-use-hostname: "true"
+        # set Scaleway load balancer type https://www.scaleway.com/en/load-balancer/ (ex: LB-GP-S, LB-GP-M, LB-GP-L, LB-GP-XL)
         service.beta.kubernetes.io/scw-loadbalancer-type: "set-by-customer"
+        # Qovery managed DNS requieres *.$domain (something like: *.<cluster_id>.<given_dns_name>)
         external-dns.alpha.kubernetes.io/hostname: "set-by-customer"
       externalTrafficPolicy: "Local"
 ```
@@ -658,26 +731,47 @@ external-dns:
 Here is one example with Cloudflare:
 ```yaml
 external-dns:
-  fullnameOverride: external-dns
-  provider: cloudflare
-  domainFilters: ["<set your domain here>"]
-  # an owner ID is set to avoid conflicts in case of multiple Qovery clusters
-  txtOwnerId: *shortClusterId
-  # a prefix to help Qovery to debug in case of issues
-  txtPrefix: *externalDnsPrefix
-  # set the Cloudflare DNS provider configuration
+  # set the provider to use
+  provider: set-by-customer
+  # keep the config you want to use and remove the others. Configure the provider you want to use.
   cloudflare:
-    ## @param cloudflare.apiToken When using the Cloudflare provider, `CF_API_TOKEN` to set (optional)
-    apiToken: ""
-    ## @param cloudflare.apiKey When using the Cloudflare provider, `CF_API_KEY` to set (optional)
-    apiKey: ""
-    ## @param cloudflare.secretName When using the Cloudflare provider, it's the name of the secret containing cloudflare_api_token or cloudflare_api_key.
-    ## This ignores cloudflare.apiToken, and cloudflare.apiKey
-    secretName: ""
-    ## @param cloudflare.email When using the Cloudflare provider, `CF_API_EMAIL` to set (optional). Needed when using CF_API_KEY
-    email: ""
-    ## @param cloudflare.proxied When using the Cloudflare provider, enable the proxy feature (DDOS protection, CDN...) (optional)
-    proxied: true
+    apiToken: set-by-customer
+    email: set-by-customer
+    proxied: set-by-customer
+  pdns:
+    # Qovery DNS: apiUrl: *qoveryDnsUrl
+    apiUrl: set-by-customer
+    # Qovery DNS: apiPort: "443"
+    apiPort: set-by-customer
+    # Qovery DNS: apiKey: "443"
+    apiKey: set-by-customer
+  # Make external DNS ignore this ingress https://github.com/kubernetes-sigs/external-dns/issues/1910#issuecomment-976371247
+  annotationFilter: external-dns.alpha.kubernetes.io/exclude notin (true)
+  # set domainFilters to the domain you want to manage: [*domain]
+  domainFilters: set-by-customer
+  triggerLoopOnEvent: true
+  policy: sync
+  # avoid dns collision with other external-dns instances
+  txtOwnerId: set-by-customer
+  txtPrefix: set-by-customer
+  # set the number of replicas you want to use
+  replicas: 1
+  # set the rolling update strategy you want to apply
+  updateStrategy:
+    type: set-by-customer
+  # remove if you don't want to use a custom image
+  image:
+    registry: set-by-customer
+    repository: set-by-customer
+    tag: 0.13.2-debian-11-r17
+  # set resources
+  resources:
+    limits:
+      cpu: 50m
+      memory: 100Mi
+    requests:
+      cpu: 50m
+      memory: 100Mi
 ```
 
 </TabItem>
@@ -780,57 +874,63 @@ Here is a configuration example with AWS S3 as storage backend:
 
 ```yaml
 loki:
-  fullnameOverride: loki
+  # remove if you don't want to use a custom image
   kubectlImage:
     registry: set-by-customer
     repository: set-by-customer
-  
   loki:
+    # remove if you don't want to use a custom image
     image:
       registry: set-by-customer
       repository: set-by-customer
+    # set if you want to use authentication
     auth_enabled: false
     commonConfig:
-      replication_factor: 1 # single binary version
+      # for simple usage, without high throughput, you can use the 1 replica only
+      # note: replication is assured by the storage backend
+      replication_factor: 1
     ingester:
-      chunk_idle_period: 3m 
-      chunk_block_size: 262144 
-      chunk_retain_period: 1m 
-      max_transfer_retries: 0 
+      chunk_idle_period: 3m
+      chunk_block_size: 262144
+      chunk_retain_period: 1m
+      max_transfer_retries: 0
       lifecycler:
         ring:
           kvstore:
-            store: memberlist 
-          replication_factor: 1 
+            store: memberlist
+          replication_factor: 1
     memberlist:
-      abort_if_cluster_join_fails: false 
-      bind_port: 7946 
+      abort_if_cluster_join_fails: false
+      bind_port: 7946
       join_members:
-        - loki-headless.logging.svc:7946 
-      max_join_backoff: 1m 
-      max_join_retries: 10 
-      min_join_backoff: 1s 
+        # set loki headless service
+        - loki-headless.logging.svc:7946
+      max_join_backoff: 1m
+      max_join_retries: 10
+      min_join_backoff: 1s
     limits_config:
-      ingestion_rate_mb: 20 
-      ingestion_burst_size_mb: 30 
-      enforce_metric_name: false 
-      reject_old_samples: true 
-      reject_old_samples_max_age: 168h 
-      max_concurrent_tail_requests: 100  (default 10)
-      split_queries_by_interval: 15m  (default 15m)
-      max_query_lookback: 12w  (default 0)
+      ingestion_rate_mb: 20
+      ingestion_burst_size_mb: 30
+      enforce_metric_name: false
+      reject_old_samples: true
+      reject_old_samples_max_age: 168h
+      max_concurrent_tail_requests: 100
+      split_queries_by_interval: 15m
+      max_query_lookback: 12w
     compactor:
       working_directory: /data/retention
+      # configure storage provider for the compactor
       shared_store: aws
       compaction_interval: 10m
-      retention_enabled: set-by-customer 
+      retention_enabled: set-by-customer
       retention_delete_delay: 2h
       retention_delete_worker_count: 150
     table_manager:
-      retention_deletes_enabled: set-by-customer 
-      retention_period: set-by-customer 
+      retention_deletes_enabled: set-by-customer
+      retention_period: set-by-customer
     schema_config:
       configs:
+        # set the schema for the index (2020 version can be deleted on a fresh install)
         - from: 2020-05-15
           store: boltdb-shipper
           object_store: s3
@@ -846,22 +946,72 @@ loki:
             prefix: index_
             period: 24h
     storage:
+      # configure the object storage backend
       bucketNames:
-        chunks: 
-        ruler: 
-        admin: 
+        chunks:
+        ruler:
+        admin:
       type: s3
       s3:
-        s3: 
-        region: 
-        s3ForcePathStyle: 
-        insecure: 
+        s3:
+        region:
+        s3ForcePathStyle:
+        insecure:
     storage_config:
       boltdb_shipper:
         active_index_directory: /data/loki/index
         shared_store: s3
         resync_interval: 5s
         cache_location: /data/loki/boltdb-cache
+  monitoring:
+    dashboards:
+      enabled: false
+    rules:
+      enabled: false
+    serviceMonitor:
+      enabled: false
+      metricsInstance:
+        enabled: false
+    selfMonitoring:
+      enabled: false
+      grafanaAgent:
+        installOperator: false
+    grafanaAgent:
+      enabled: false
+    lokiCanary:
+      enabled: false
+  test:
+    enabled: false
+  gateway:
+    enabled: false
+  # set the single binary version for basic usage
+  singleBinary:
+    replicas: 1
+    # set resources
+    resources:
+      limits:
+        cpu: 1
+        memory: 2Gi
+      requests:
+        cpu: 300m
+        memory: 1Gi
+    persistence:
+      enabled: false
+    extraVolumes:
+      - name: data
+        emptyDir: {}
+      - name: storage
+        emptyDir: {}
+    extraVolumeMounts:
+      - name: data
+        mountPath: /data
+      - name: storage
+        mountPath: /var/loki
+    # set disk persistence to reduce data loss in case of pod crash
+    # persistence:
+    #   storageClass: set-by-customer
+  serviceAccount:
+    annotations: {}
 ```
 
 </TabItem>
@@ -948,6 +1098,7 @@ A configuration example compatible with all providers:
 qovery-cert-manager-webhook:
   fullnameOverride: qovery-cert-manager-webhook
   certManager:
+    # set the same namespace than cert-manager
     namespace: qovery
     serviceAccountName: cert-manager
   secret:
@@ -1017,6 +1168,9 @@ cert-manager-configs:
   acme:
     letsEncrypt:
       emailReport: *acmeEmailAddr
+      # set the Let's Encrypt URL
+      # Test: https://acme-staging-v02.api.letsencrypt.org/directory
+      # Prod: https://acme-v02.api.letsencrypt.org/directory
       acmeUrl: https://acme-v02.api.letsencrypt.org/directory
   provider:
     # set the provider of your choice or use the Qovery DNS provider
@@ -1036,7 +1190,7 @@ This is the configuration of Cert Manager itself. It is used by all Cert Manager
 cert-manager-configs:
   fullnameOverride: cert-manager-configs
   # set pdns to use Qovery DNS provider
-  externalDnsProvider: pdns
+  externalDnsProvider: cloudflare
   managedDns: [*domain]
   acme:
     letsEncrypt:
@@ -1082,13 +1236,13 @@ Qovery uses [Metrics Server](https://github.com/kubernetes-sigs/metrics-server) 
 
 ```yaml
 metrics-server:
-  fullnameOverride: metrics-server
+  # create api service to be able to use hpa/vpa
   apiService:
     create: true
-
+  # set rolling restart strategy
   updateStrategy:
     type: set-by-customer
-
+  # set resources
   resources:
     limits:
       cpu: set-by-customer

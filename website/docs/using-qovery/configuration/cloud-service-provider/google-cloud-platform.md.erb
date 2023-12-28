@@ -20,7 +20,7 @@ Qovery lets you quickly deploy applications to your [GCP (GCP)][urls.gcp] accoun
 
 <Assumptions>
 
-* You have a [Qovery][docs.using-qovery.interface] account
+* You have a Qovery account
 * You have created an [Organization][docs.using-qovery.configuration.organization]
 * You have a GCP account
 
@@ -32,7 +32,7 @@ To link your GCP account to Qovery you need to provide a GCP JSON credentials ke
 
 <Alert type="info">
 
-You can link more than one GCP account. Qovery also support multiple Cloud providers within the same Organization. Meaning, you can balance your workload on different Cloud providers. [Read more][guides.advanced].
+You can link more than one GCP account. Qovery also support multiple Cloud providers within the same Organization. Meaning, you can balance your workload on different Cloud providers.
 
 </Alert>
 
@@ -49,7 +49,7 @@ You can link more than one GCP account. Qovery also support multiple Cloud provi
 
 <li>
 
-Create a new `Project` and get the project id
+Create a new `Project` or open an exiting one and get the project id
 <img src="/img/gcp-credentials/gcp_project.png" />
 
 </li>
@@ -63,37 +63,15 @@ Open the embedded Google shell
 
 <li>
 
-Download the following [script](../../../../../static/files/create_credentials_gcp.sh)
-
-</li>
-
-<li>
-
-Upload the script to the Google shell
-<img src="/img/gcp-credentials/gcp_shell_2.png" />
-<img src="/img/gcp-credentials/gcp_shell_3.png" />
-
-</li>
-
-<li>
-
-Make the script executable
+Run the following command in the Google Shell to create the service account and generate the json key:
 
 ```bash
-chmod +x create_credentials_gcp.sh
+wget https://hub.qovery.com/files/create_credentials_gcp.sh && chmod +x create_credentials_gcp.sh && ./create_credentials_gcp.sh $GOOGLE_CLOUD_PROJECT <service-account_name>
 ```
-
-</li>
-
-<li>
-
-Run the script with the following command:
-
+Example: 
 ```bash
-./create_credentials_gcp.sh <project_id> <service_account_name>
+wget https://hub.qovery.com/files/create_credentials_gcp.sh && chmod +x create_credentials_gcp.sh && ./create_credentials_gcp.sh $GOOGLE_CLOUD_PROJECT qovery-service-account
 ```
-
-<img src="/img/gcp-credentials/gcp_shell_4.png" />
 
 </li>
 
@@ -122,5 +100,5 @@ Your applications and your data will be deleted.
 
 </Alert>
 
-To delete Qovery from your GCP account you must be the owner of the Organization.
+To delete Qovery from your GCP account you must be the owner of the Organization and delete the cluster on Qovery side. Follow [this documentation][docs.using-qovery.configuration.clusters#deleting-a-cluster]
 Once your GCP account removed from Qovery, everything configured (VPC, Kubernetes, databases, ...) by Qovery will be deleted forever.

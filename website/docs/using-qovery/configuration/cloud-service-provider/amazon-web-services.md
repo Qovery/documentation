@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-11-28"
+last_modified_on: "2023-12-28"
 title: "Amazon Web Services (AWS)"
 description: "Learn how to configure and plug your Amazon Web Services (AWS) account"
 ---
@@ -27,7 +27,7 @@ Qovery lets you quickly deploy applications to your [Amazon Web Services (AWS)][
 
 <Assumptions>
 
-* You have a [Qovery][docs.using-qovery.interface] account
+* You have a Qovery account
 * You have created an [Organization][docs.using-qovery.configuration.organization]
 * You have an AWS account
 
@@ -39,7 +39,7 @@ To link your AWS account to Qovery you need to provide an AWS `access key id` an
 
 <Alert type="info">
 
-You can link more than one AWS account. Qovery also support multiple Cloud providers within the same Organization. Meaning, you can balance your workload on different Cloud providers. [Read more][guides.advanced].
+You can link more than one AWS account. Qovery also support multiple Cloud providers within the same Organization. Meaning, you can balance your workload on different Cloud providers.
 
 </Alert>
 
@@ -634,9 +634,7 @@ Today, you can't migrate an environment from one region to another after it has 
 [docs.using-qovery.configuration.deployment-rule#environment-deployment-rules]: /docs/using-qovery/configuration/deployment-rule/#environment-deployment-rules
 [docs.using-qovery.configuration.organization]: /docs/using-qovery/configuration/organization/
 [docs.using-qovery.configuration.provider.kubernetes]: /docs/using-qovery/configuration/provider/kubernetes/
-[docs.using-qovery.interface]: /docs/using-qovery/interface/
 [docs.using-qovery.troubleshoot]: /docs/using-qovery/troubleshoot/
-[guides.advanced]: /guides/advanced/
 [guides.tutorial.aws-vpc-peering-with-qovery]: /guides/tutorial/aws-vpc-peering-with-qovery/
 [urls.aws]: https://aws.amazon.com
 [urls.qovery_contact_us]: https://www.qovery.com/contact

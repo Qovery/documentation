@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-09-27"
+last_modified_on: "2023-12-28"
 title: "Lifecycle Job"
 description: "Learn how to configure your Lifecycle job on Qovery"
 ---
@@ -307,6 +307,9 @@ Please note that in this section you configure the CPU allocated by the cluster 
 
 To know more about how to configure your Liveness and Readiness probes, have a look at [the health-checks section][docs.using-qovery.configuration.application-health-checks]
 
+### Deployment Restrictions
+
+This section allows to specify which changes on your repository should trigger an auto-deploy (if enabled). To know more about how to configure your Deployment Restrictions, have a look at the [deployment restrictions section][docs.using-qovery.deployment.deploying-with-auto-deploy#filtering-commits-triggering-the-auto-deploy].
 
 ## Environment Variable
 
@@ -451,6 +454,7 @@ In the overview, click on the `3 dots` button and remove the job. Note: the same
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [docs.using-qovery.configuration.organization.container-registry]: /docs/using-qovery/configuration/organization/container-registry/
 [docs.using-qovery.configuration.organization.git-repository-access]: /docs/using-qovery/configuration/organization/git-repository-access/
+[docs.using-qovery.deployment.deploying-with-auto-deploy#filtering-commits-triggering-the-auto-deploy]: /docs/using-qovery/deployment/deploying-with-auto-deploy/#filtering-commits-triggering-the-auto-deploy
 [docs.using-qovery.deployment.logs#live-logs]: /docs/using-qovery/deployment/logs/#live-logs
 [docs.using-qovery.deployment]: /docs/using-qovery/deployment/
 [guides.advanced.monorepository]: /guides/advanced/monorepository/

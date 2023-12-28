@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-19"
+last_modified_on: "2023-12-28"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -385,6 +385,10 @@ You can edit the existing ports or declare new ones by specifying:
 
 To know more about how to configure your Liveness and Readiness probes, have a look at [the health-checks section][docs.using-qovery.configuration.application-health-checks]
 
+### Deployment Restrictions
+
+This section allows to specify which changes on your repository should trigger an auto-deploy (if enabled). To know more about how to configure your Deployment Restrictions, have a look at the [deployment restrictions section][docs.using-qovery.deployment.deploying-with-auto-deploy#filtering-commits-triggering-the-auto-deploy].
+
 ### Domains
 
 Within this section you can customize the domain used to reach your application. 
@@ -558,6 +562,7 @@ In the application overview, click on the `3 dots` button and remove the applica
 [docs.using-qovery.configuration.organization.git-repository-access]: /docs/using-qovery/configuration/organization/git-repository-access/
 [docs.using-qovery.configuration.project]: /docs/using-qovery/configuration/project/
 [docs.using-qovery.configuration.service-health-checks]: /docs/using-qovery/configuration/service-health-checks/
+[docs.using-qovery.deployment.deploying-with-auto-deploy#filtering-commits-triggering-the-auto-deploy]: /docs/using-qovery/deployment/deploying-with-auto-deploy/#filtering-commits-triggering-the-auto-deploy
 [docs.using-qovery.deployment.image-mirroring#why-unique-image-tags-are-necessary]: /docs/using-qovery/deployment/image-mirroring/#why-unique-image-tags-are-necessary
 [docs.using-qovery.deployment.logs#live-logs]: /docs/using-qovery/deployment/logs/#live-logs
 [docs.using-qovery.deployment]: /docs/using-qovery/deployment/

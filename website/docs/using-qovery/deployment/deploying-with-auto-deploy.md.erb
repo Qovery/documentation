@@ -26,6 +26,24 @@ It can also be activated on the first step of the service creation flow
 
 Once this flag is activated, every new commit pushed on the branch of the application will trigger an automatic deployment of the new version.
 
+### Filtering commits triggering the auto-deploy
+
+By default every new commit pushed on the branch will trigger a deployment of the application. You can use the `Deployment restrictions` feature to include or exclude certain files or folders from the feature and avoid un-necessary deployments (like a change on the README file).
+
+To add a new restriction, go into the `Deployment restrictions` section of your application settings.
+
+<p align="center">
+  <img src="/img/deployment/deployment_restrictions.png" alt="Deployment restrictions" />
+</p>
+
+When adding a new restriction, two modes can be selected:
+
+- EXCLUDE: commits on the file or folder defined in the "Value" field will be ignored
+- MATCH: only commits on the file or folder defined in the "Value" field will trigger a deployment
+
+Note: 
+- "Value" should contain the full file path and can't start with `/`
+- Wildcards are not supported in the "Value" field (you can specify "my-prefix*" to exclude commits on files starting with "my-prefix")
 
 ## Auto-deploy and container images
 

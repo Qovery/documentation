@@ -57,7 +57,7 @@ You can link more than one GCP account. Qovery also support multiple Cloud provi
 
 <li>
 
-Create a new `Project` or open an exiting one and get the project id
+Create a new `Project` or open an exiting one
 <img src="/img/gcp-credentials/gcp_project.png" />
 
 </li>

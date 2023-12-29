@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-21"
+last_modified_on: "2023-12-29"
 title: CLI
 description: How to use the Qovery CLI (Command Line Interface)
 ---
@@ -257,6 +257,23 @@ Use "qovery [command] --help" for more information about a command.
 Context command lets you configure the CLI to work with your chosen application. Before executing other commands, you need first to set up the context.
 The context is then remembered and used by the CLI. You can configure a new context anytime by running the `qovery context set` command.
 
+Most of the commands support an inline context set allowing you to directly pass the URL of the application you wants to interact with.
+
+Example:
+```bash
+$ qovery shell https://console.qovery.com/organization/51927012-8377-4e0f-84cf-7f5f38a0154b/project/a6545d50-69a3-4966-89cc-4c0bfb6d3448/environment/c9ac549b-a855-4d3b-b652-d68d5f1fea11/application/820ca0a3-08bf-42c1-8ad2-540714ad657f/general
+# this is the url of my back-end application
+
+Organization | My orga
+Project      | R&D / Backend
+Environment  | prod
+ServiceLevel | back-end
+ServiceType  | application
+
+$ ls
+...
+```
+
 ### Set New Context
 
 To set a new context, type `qovery context set`:
@@ -438,6 +455,8 @@ If your application is running on several pods, you can shell directly in a dedi
 $ qovery shell --pod app-5f65fb5c4-frontend-5f65db5c4b-q4w11
 ```
 
+NOTE: you can get the list of pods by running the `qovery list-pods` command.
+
 ### Shell in a dedicated container
 
 If you have several containers in your pod, you can shell directly in a dedicated one by using the `--container` argument followed by your container name.
@@ -445,6 +464,33 @@ If you have several containers in your pod, you can shell directly in a dedicate
 ```bash
 $ qovery shell --container app-5f65fb5c4-frontend
 ```
+
+## Port-forward
+
+Port-forward command allows you to port-forward all the traffic on your local machine to a remote resource available on a Qovery environment. This mechanism allows developers to create a secure, encrypted tunnel from their local machine to the application or databases hosted in the cloud. 
+
+```bash
+$ qovery port-forward -p 8000:80 #your_local_port:your_remote_port
+Info: Current context:
+Organization | Qovery Prod
+Project      | R&D / Frontend
+Environment  | prod
+Service      | console
+Type         | application
+
+Info: Continue with port-forward command using this context ?
+Please type "yes" to validate context: yes
+
+Listening on 127.0.0.1:8000 => 80
+```
+### Port-forward a dedicated pod
+
+If your application is running on several pods, you can port-forward to a dedicated one by using the `--pod` argument followed by your pod name.
+
+```bash
+$ qovery port-forward -p 8000:80 -pod app-5f65fb5c4-frontend-5f65db5c4b-q4w11
+```
+NOTE: you can get the list of pods by running the `qovery list-pods` command.
 
 ## Generate API token
 

@@ -1,14 +1,11 @@
 ---
-last_modified_on: "2023-12-28"
+last_modified_on: "2023-12-29"
 $schema: "/.meta/.schemas/guides.json"
 title: Helm Charts
 description: Learn how to deploy Helm charts with Qovery
 author_github: https://github.com/evoxmusic
 tags: ["type: guide", "technology: helm"]
 ---
-
-import Jump from '@site/src/components/Jump';
-
 import Steps from '@site/src/components/Steps';
 import Assumptions from '@site/src/components/Assumptions';
 import Alert from '@site/src/components/Alert';
@@ -42,26 +39,6 @@ Helm Charts is an advanced way to deploy your applications on Qovery. If you are
 ## Q&A
 
 Do you need more examples? Do you have any questions? Feel free to ask on our [Community forum][urls.qovery_forum].
-
-<Jump to="/docs/using-qovery/configuration/advanced-settings/">Advanced settings</Jump>
-<Jump to="/docs/using-qovery/configuration/application-health-checks/">Application health checks</Jump>
-<Jump to="/docs/using-qovery/configuration/application/">Application</Jump>
-<Jump to="/docs/using-qovery/configuration/cloud-service-provider/">Cloud service provider</Jump>
-<Jump to="/docs/using-qovery/configuration/cluster-advanced-settings/">Cluster advanced settings</Jump>
-<Jump to="/docs/using-qovery/configuration/clusters/">Clusters</Jump>
-<Jump to="/docs/using-qovery/configuration/cronjob/">Cronjob</Jump>
-<Jump to="/docs/using-qovery/configuration/database/">Database</Jump>
-<Jump to="/docs/using-qovery/configuration/deployment-rule/">Deployment rule</Jump>
-<Jump to="/docs/using-qovery/configuration/environment-variable/">Environment variable</Jump>
-<Jump to="/docs/using-qovery/configuration/environment/">Environment</Jump>
-<Jump to="/docs/using-qovery/configuration/helm/">Helm</Jump>
-<Jump to="/docs/using-qovery/configuration/lifecycle-job/">Lifecycle job</Jump>
-<Jump to="/docs/using-qovery/configuration/object-storage/">Object storage</Jump>
-<Jump to="/docs/using-qovery/configuration/organization/">Organization</Jump>
-<Jump to="/docs/using-qovery/configuration/project/">Project</Jump>
-<Jump to="/docs/using-qovery/configuration/provider/">Provider</Jump>
-<Jump to="/docs/using-qovery/configuration/service-health-checks/">Service health checks</Jump>
-<Jump to="/docs/using-qovery/configuration/user-account/">User account</Jump>
 
 
 [guides.getting-started]: /guides/getting-started/

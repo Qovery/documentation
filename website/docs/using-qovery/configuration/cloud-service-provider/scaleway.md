@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-11"
+last_modified_on: "2023-12-28"
 title: "Scaleway (SCW)"
 description: "Learn how to configure and plug your Scaleway (SCW) account"
 ---
@@ -28,7 +28,7 @@ Qovery lets you quickly deploy applications to your [Scaleway (Scaleway)][urls.s
 
 <Assumptions>
 
-* You have a [Qovery][docs.using-qovery.interface] account
+* You have a Qovery account
 * You have created an [Organization][docs.using-qovery.configuration.organization]
 * You have a Scaleway account
 
@@ -47,7 +47,7 @@ If your Scaleway account is new, you need to open a ticket to Scaleway support t
 
 <Alert type="info">
 
-You can link more than one Scaleway account. Qovery also support multiple Cloud providers within the same Organization. Meaning, you can balance your workload on different Cloud providers. [Read more][guides.advanced].
+You can link more than one Scaleway account. Qovery also support multiple Cloud providers within the same Organization. Meaning, you can balance your workload on different Cloud providers.
 
 </Alert>
 
@@ -267,8 +267,6 @@ Today, you can't migrate an environment from one region to another after it has 
 [docs.using-qovery.configuration.deployment-rule#environment-deployment-rules]: /docs/using-qovery/configuration/deployment-rule/#environment-deployment-rules
 [docs.using-qovery.configuration.organization]: /docs/using-qovery/configuration/organization/
 [docs.using-qovery.configuration.provider.kubernetes]: /docs/using-qovery/configuration/provider/kubernetes/
-[docs.using-qovery.interface]: /docs/using-qovery/interface/
-[guides.advanced]: /guides/advanced/
 [urls.qovery_chat]: https://discord.qovery.com
 [urls.qovery_contact_us]: https://www.qovery.com/contact
 [urls.qovery_roadmap]: https://roadmap.qovery.com/

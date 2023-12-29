@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-06-05"
+last_modified_on: "2023-12-27"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy External Services
 description: Learn how to deploy any external services with Qovery

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-28"
+last_modified_on: "2023-12-29"
 title: "Google Cloud Platform (GCP)"
 description: "Learn how to configure and plug your Google Cloud Platform (GCP) account"
 ---
@@ -74,12 +74,14 @@ Open the embedded Google shell
 Run the following command in the Google Shell to create the service account and generate the json key:
 
 ```bash
-wget https://hub.qovery.com/files/create_credentials_gcp.sh && chmod +x create_credentials_gcp.sh && ./create_credentials_gcp.sh $GOOGLE_CLOUD_PROJECT <service-account_name>
-```
-Example: 
-```bash
 wget https://hub.qovery.com/files/create_credentials_gcp.sh && chmod +x create_credentials_gcp.sh && ./create_credentials_gcp.sh $GOOGLE_CLOUD_PROJECT qovery-service-account
 ```
+
+<Alert type="info">
+
+You can modify the service account name by replacing `qovery-service-account` by the name of your choice.
+
+</Alert>
 
 </li>
 

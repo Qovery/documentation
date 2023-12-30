@@ -1,13 +1,17 @@
 ---
-last_modified_on: "2023-12-29"
+last_modified_on: "2023-12-30"
 title: "Managed By Qovery"
 sidebar_label: hidden
 hide_pagination: true
 ---
 
-import Steps from '@site/src/components/Steps';
-import Alert from '@site/src/components/Alert';
-import Assumptions from '@site/src/components/Assumptions';
+import Jump from '@site/src/components/Jump';
+
+Don't be shy, pick the first page you want to read and start your journey with Qovery.
+
+<Jump to="/docs/getting-started/install-qovery/scaleway/cluster-managed-by-qovery/quickstart">Quickstart</Jump>
+<Jump to="/docs/getting-started/install-qovery/scaleway/cluster-managed-by-qovery/create-credentials">Create Credentials</Jump>
+<Jump to="/docs/getting-started/install-qovery/scaleway/cluster-managed-by-qovery/faq">FAQ</Jump>
 
 
 

@@ -1,7 +1,7 @@
 ---
 last_modified_on: "2023-12-30"
 title: "FAQ"
-description: "Frequently asked questions about Kubernetes and AWS infrastructure with Qovery"
+description: "Frequently asked questions AWS infrastructure managed by Qovery"
 ---
 
 import Steps from '@site/src/components/Steps';

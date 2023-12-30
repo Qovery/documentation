@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-06-05"
+last_modified_on: "2023-12-30"
 $schema: "/.meta/.schemas/guides.json"
 title: Install Qovery on your Microsoft Azure account
 description: Learn how to install Qovery on your Microsoft Azure account
@@ -7,16 +7,13 @@ author_github: https://github.com/evoxmusic
 tags: ["type: guide", "cloud_provider: azure"]
 ---
 
-Thank you for your interest! You are more and more to request the support of Qovery for [Azure](https://azure.microsoft.com) (Microsoft Azure). However, we do not support it yet. You have 2 ways of speed up the support:
+import Alert from '@site/src/components/Alert';
 
-1. Upvote the support of Microsoft Azure [here](https://roadmap.qovery.com/roadmap/support-azure).
-2. We are hiring backend and frontend engineers to build the future of the Cloud. It could be you? 😄 [Apply here][urls.qovery_jobs]
+<Alert type="warning">
 
-Today, Qovery supports the following Cloud providers:
-- [Amazon Web Services (AWS)][guides.cloud-provider.guide-amazon-web-services]
-- [Scaleway][guides.cloud-provider.guide-scaleway]
+Access our new installation guide of Qovery on Azure [here][docs.getting-started.install-qovery.azure]
+
+</Alert>
 
 
-[guides.cloud-provider.guide-amazon-web-services]: /guides/cloud-provider/guide-amazon-web-services/
-[guides.cloud-provider.guide-scaleway]: /guides/cloud-provider/guide-scaleway/
-[urls.qovery_jobs]: https://jobs.qovery.com
+[docs.getting-started.install-qovery.azure]: /docs/getting-started/install-qovery/azure/

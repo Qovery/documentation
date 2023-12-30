@@ -1,48 +1,69 @@
 ---
-last_modified_on: "2020-10-04"
-title: "Scaleway (SCW)"
-description: "Learn how to configure and plug your Scaleway (SCW) account"
+title: "Quickstart"
+description: "Learn how to quickly install Qovery on your Scaleway (SCW) account"
 ---
-
 import Steps from '@site/src/components/Steps';
 import Alert from '@site/src/components/Alert';
 import Assumptions from '@site/src/components/Assumptions';
 
-<Alert type="info">
-
-Please refer to [this page][docs.getting-started.install-qovery.kubernetes.quickstart] if you want to install Qovery on your own Kubernetes cluster (BYOK).
-
-</Alert>
-
-Qovery lets you quickly deploy applications to your [Scaleway (Scaleway)][urls.scaleway] account. No knowledge needed, and it takes less than 10 minutes to install Qovery on your Scaleway account.
-
-## Getting started
+Install Qovery on your [Scaleway][urls.scaleway] account in less than 20 minutes. Qovery will create a Kubernetes cluster for you and manage it for you. To install Qovery on an existing Kubernetes cluster, please refer to the [dedicated documentation][docs.getting-started.install-qovery.scaleway.cluster-managed-by-qovery].
 
 <Assumptions>
 
-* You have a Qovery account
-* You have created an [Organization][docs.using-qovery.configuration.organization]
-* You have a Scaleway account
+* You have an account and an [Organization][docs.using-qovery.configuration.organization] on Qovery
+* You have an Scaleway account
 
 </Assumptions>
 
-### Connect your Scaleway account
 
-To link your Scaleway account to Qovery you need to provide a Scaleway `access key id`, `secret access key`, `organization id` and a `project id`.
+<Steps headingDepth={3}>
 
-<Alert type="warning">
+<ol>
 
-If your Scaleway account is new, you need to open a ticket to Scaleway support to unlock your quota. You can post the following message:
-"Hello, I am going to deploy my applications on Scaleway with Qovery. Can you increase my quota for current Kubernetes nodes type, to 10 please? Thanks"
+<li>
 
-</Alert>
+## Create a Kubernetes cluster
 
-<Alert type="info">
+Now you can create your Kubernetes cluster. Follow this [guide][docs.using-qovery.configuration.clusters#creating-a-cluster] to create your Kubernetes cluster.
 
-You can link more than one Scaleway account. Qovery also support multiple Cloud providers within the same Organization. Meaning, you can balance your workload on different Cloud providers.
+<p align="center">
+  <img src="/img/install-qovery/common/add-cluster.jpg" alt="Add Cluster" />
+</p>
 
-</Alert>
+Note that you can create multiple clusters on the same Scaleway account with different VPCs. You can also create multiple clusters on different Scaleway accounts. Qovery will manage them for you.
 
-## Create a Scaleway API key
+</li>
 
-TODO
+<li>
+
+## Attach Scaleway credentials
+
+Follow this [guide][docs.getting-started.install-qovery.scaleway.cluster-managed-by-qovery.create-credentials] to create your Scaleway credentials.
+
+<p align="center">
+  <img src="/img/install-qovery/scaleway/create-credentials.jpg" alt="Create Credentials" />
+</p>
+
+Then attach your credentials to your cluster and click on `Create`. Then, click on `Continue`.
+
+</li>
+
+<li>
+
+## Install Qovery
+
+Click on `Create and Deploy` to create the cluster and install Qovery on it.
+
+It will take up to 20 minutes to create the cluster, VPC and install Qovery on it. But you can already [configure your first application][guides.getting-started.deploy-your-first-application].
+
+You should see your new cluster in the list of clusters.
+
+<p align="center">
+  <img src="/img/install-qovery/common/list-clusters.jpg" alt="Show clusters" />
+</p>
+
+</li>
+
+</ol>
+
+</Steps>

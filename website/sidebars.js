@@ -60,6 +60,8 @@ module.exports = {
                   items: [
                     "getting-started/install-qovery/scaleway/cluster-managed-by-qovery",
                     "getting-started/install-qovery/scaleway/cluster-managed-by-qovery/quickstart",
+                    "getting-started/install-qovery/scaleway/cluster-managed-by-qovery/create-credentials",
+                    "getting-started/install-qovery/scaleway/cluster-managed-by-qovery/faq",
                   ]
                 },
                 "getting-started/install-qovery/scaleway/self-managed-cluster",

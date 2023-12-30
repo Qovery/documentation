@@ -1,111 +1,69 @@
 ---
 title: "Quickstart"
-description: "Learn how to install Qovery on your GCP account in less than 10 minutes"
+description: "Learn how to quickly install Qovery on your Google Cloud Platform (GCP) account"
 ---
-
 import Steps from '@site/src/components/Steps';
 import Alert from '@site/src/components/Alert';
 import Assumptions from '@site/src/components/Assumptions';
 
-<Alert type="info">
-
-Please refer to [this page][docs.getting-started.install-qovery.kubernetes.quickstart] if you want to install Qovery on your own Kubernetes cluster (BYOK).
-
-</Alert>
-
-Qovery lets you quickly deploy applications to your [GCP (GCP)][urls.gcp] account. No knowledge needed, and it takes less than 10 minutes to install Qovery on your GCP account.
-
-## Getting started
+Install Qovery on your GCP account in less than 20 minutes. Qovery will create a Kubernetes cluster for you and manage it for you. To install Qovery on an existing Kubernetes cluster, please refer to the [dedicated documentation][docs.getting-started.install-qovery.gcp.cluster-managed-by-qovery].
 
 <Assumptions>
 
-* You have a Qovery account
-* You have created an [Organization][docs.using-qovery.configuration.organization]
-* You have a GCP account
+* You have an account and an [Organization][docs.using-qovery.configuration.organization] on Qovery
+* You have an GCP account
 
 </Assumptions>
 
-### Connect your GCP account
-
-To link your GCP account to Qovery you need to provide a GCP JSON credentials key.
-
-<Alert type="info">
-
-You can link more than one GCP account. Qovery also support multiple Cloud providers within the same Organization. Meaning, you can balance your workload on different Cloud providers.
-
-</Alert>
-
-#### Create your GCP credentials
 
 <Steps headingDepth={3}>
+
 <ol>
 
 <li>
 
-[Connect to your GCP console](https://console.cloud.google.com)
+## Create a Kubernetes cluster
+
+Now you can create your Kubernetes cluster. Follow this [guide][docs.using-qovery.configuration.clusters#creating-a-cluster] to create your Kubernetes cluster.
+
+<p align="center">
+  <img src="/img/install-qovery/common/add-cluster.jpg" alt="Add Cluster" />
+</p>
+
+Note that you can create multiple clusters on the same GCP account with different VPCs. You can also create multiple clusters on different GCP accounts. Qovery will manage them for you.
 
 </li>
 
 <li>
 
-Create a new `Project` or open an exiting one
+## Attach GCP credentials
+
+Follow this [guide][docs.getting-started.install-qovery.gcp.cluster-managed-by-qovery.create-credentials] to create your GCP credentials.
 
 <p align="center">
-  <img src="/img/gcp-credentials/gcp_project.png" />
+  <img src="/img/install-qovery/gcp/create-credentials.jpg" alt="Create Credentials" />
+</p>
+
+Then attach your credentials to your cluster and click on `Create`. Then, click on `Continue`.
+
+</li>
+
+<li>
+
+## Install Qovery
+
+Click on `Create and Deploy` to create the cluster and install Qovery on it.
+
+It will take up to 20 minutes to create the cluster, VPC and install Qovery on it. But you can already [configure your first application][guides.getting-started.deploy-your-first-application].
+
+You should see your new cluster in the list of clusters.
+
+<p align="center">
+  <img src="/img/install-qovery/common/list-gcp-clusters.jpg" alt="Show clusters" />
 </p>
 
 </li>
 
-<li>
-
-Open the embedded Google shell
-
-<p align="center">
-  <img src="/img/gcp-credentials/gcp_shell_1.png" />
-</p>
-
-</li>
-
-<li>
-
-Run the following command in the Google Shell to create the service account and generate the json key:
-
-```bash
-wget https://hub.qovery.com/files/create_credentials_gcp.sh && chmod +x create_credentials_gcp.sh && ./create_credentials_gcp.sh $GOOGLE_CLOUD_PROJECT qovery-service-account
-```
-
-<Alert type="info">
-
-You can modify the service account name by replacing `qovery-service-account` by the name of your choice.
-
-</Alert>
-
-</li>
-
-<li>
-
-Once the script is done. A GCP JSON credentials key has been created and you can download it.
-<img src="/img/gcp-credentials/gcp_shell_5.png" />
-<img src="/img/gcp-credentials/gcp_shell_6.png" />
-
-</li>
 </ol>
+
 </Steps>
-
-Well done!! You now have your GCP `JSON credentials key`; It is time to connect Qovery to your GCP account.
-
-### Install a new cluster on Qovery
-
-You will be able to use the credentials you just generated when creating a cluster via the Qovery console. This cluster will be linked to your Qovery organization.
-Follow [this documentation][docs.using-qovery.configuration.clusters#creating-a-cluster] to create a new cluster on your organization.
-
-### Remove your GCP account
-
-<Alert type="warning">
-
-Your applications and your data will be deleted.
-
-</Alert>
-
-To delete Qovery from your GCP account you must be the owner of the Organization and delete the cluster on Qovery side. Follow [this documentation][docs.using-qovery.configuration.clusters#deleting-a-cluster]
-Once your GCP account removed from Qovery, everything configured (VPC, Kubernetes, databases, ...) by Qovery will be deleted forever.

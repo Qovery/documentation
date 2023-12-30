@@ -671,6 +671,10 @@ class Templates
     render("#{partials_path}/_qovery_reward_faq.md", binding).strip
   end
 
+  def install_qovery_on_self_managed_cluster(cloud_provider)
+    render("#{partials_path}/_install_qovery_on_self_managed_cluster.md", binding).strip
+  end
+
   def qovery_cloud_account_how_it_works(cloud_provider)
     render("#{partials_path}/_qovery_cloud_account_how_it_works.md", binding).strip
   end

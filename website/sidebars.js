@@ -43,6 +43,7 @@ module.exports = {
                   items: [
                     "getting-started/install-qovery/gcp/cluster-managed-by-qovery",
                     "getting-started/install-qovery/gcp/cluster-managed-by-qovery/quickstart",
+                    "getting-started/install-qovery/gcp/cluster-managed-by-qovery/create-credentials",
                   ]
                 },
                 "getting-started/install-qovery/gcp/self-managed-cluster",

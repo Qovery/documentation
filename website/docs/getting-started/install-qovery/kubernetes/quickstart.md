@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-29"
+last_modified_on: "2023-12-30"
 title: "Quickstart"
 description: "Learn how to install and configure Qovery on your own Kubernetes cluster (BYOK) / Self-managed Kubernetes cluster"
 ---
@@ -19,7 +19,7 @@ Installing Qovery on your Kubernetes cluster is currently in beta. [You need to 
 
 <Alert type="info">
 
-This section is for Kubernetes power-users. If you are not familiar with Kubernetes, we recommend you to use Qovery on a Managed Kubernetes cluster on [AWS][docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.quickstart], [GCP][docs.getting-started.install-qovery.gcp.cluster-managed-by-qovery.quickstart], [Scaleway][docs.getting-started.install-qovery.azure.cluster-managed-by-qovery.quickstart], or contact us.
+This section is for Kubernetes power-users. If you are not familiar with Kubernetes, we recommend you to use Qovery on a Managed Kubernetes cluster on [AWS][docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.quickstart], [GCP][docs.getting-started.install-qovery.gcp.cluster-managed-by-qovery.quickstart], [Scaleway][docs.getting-started.install-qovery.scaleway.cluster-managed-by-qovery.quickstart], [Azure][docs.getting-started.install-qovery.azure.cluster-managed-by-qovery.quickstart], or contact us.
 
 </Alert>
 
@@ -1298,6 +1298,7 @@ At the momement, you can't. But please [contact us][urls.qovery_contact_us] to d
 [docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.quickstart]: /docs/getting-started/install-qovery/aws/cluster-managed-by-qovery/quickstart/
 [docs.getting-started.install-qovery.azure.cluster-managed-by-qovery.quickstart]: /docs/getting-started/install-qovery/azure/cluster-managed-by-qovery/quickstart/
 [docs.getting-started.install-qovery.gcp.cluster-managed-by-qovery.quickstart]: /docs/getting-started/install-qovery/gcp/cluster-managed-by-qovery/quickstart/
+[docs.getting-started.install-qovery.scaleway.cluster-managed-by-qovery.quickstart]: /docs/getting-started/install-qovery/scaleway/cluster-managed-by-qovery/quickstart/
 [docs.using-qovery.deployment.image-mirroring]: /docs/using-qovery/deployment/image-mirroring/
 [guides.provider.guide-kubernetes]: /guides/provider/guide-kubernetes/
 [urls.helm]: https://helm.sh

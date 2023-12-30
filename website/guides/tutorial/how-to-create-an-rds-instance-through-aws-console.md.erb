@@ -3,7 +3,7 @@ $schema: "/.meta/.schemas/guides.json"
 title: How to create an RDS instance through the AWS console
 description: How to create an RDS instance through the AWS console.
 author_github: https://github.com/l0ck3
-tags: ["type: tutorial", "cloud_provider: aws"]
+tags: ["type: tutorial", "installation_guide: aws"]
 hide_pagination: true
 ---
 
@@ -21,11 +21,11 @@ Qovery make it easy to create an RDS database on AWS with a few clicks. You migh
 
 ## Goal
 
-This tutorial will show you how to create an production-ready RDS PostgreSQL instance on AWS. 
+This tutorial will show you how to create an production-ready RDS PostgreSQL instance on AWS.
 
 To connect your Qovery cluster(s) to the created RDS database, refer to [this tutorial][guides.tutorial.aws-vpc-peering-with-qovery]
 
-<Steps headingDepth={3}>  
+<Steps headingDepth={3}>
 
 <ol>
 
@@ -37,7 +37,7 @@ Go to the AWS RDS console and click `Create database`
 
 <p align="center">
   <img src="/img/how-to-create-an-rds-instance-through-aws-console/1.png" alt="AWS RDS console" />
-</p>    
+</p>
 
 </li>
 
@@ -51,7 +51,7 @@ Go to the AWS RDS console and click `Create database`
 
 <p align="center">
   <img src="/img/how-to-create-an-rds-instance-through-aws-console/2.png" alt="AWS RDS console" />
-</p>    
+</p>
 
 </li>
 
@@ -63,7 +63,7 @@ Select a name for your RDS instance, here `my-production-database`, master usern
 
 <p align="center">
   <img src="/img/how-to-create-an-rds-instance-through-aws-console/3.png" alt="AWS RDS console" />
-</p>    
+</p>
 
 </li>
 
@@ -71,12 +71,12 @@ Select a name for your RDS instance, here `my-production-database`, master usern
 
 #### Instance class
 
-Pick an instance class that works for your needs. 
+Pick an instance class that works for your needs.
 You can refer to this document for more information about the different options: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Concepts.DBInstanceClass.html
 
 <p align="center">
   <img src="/img/how-to-create-an-rds-instance-through-aws-console/4.png" alt="AWS RDS console" />
-</p>    
+</p>
 
 </li>
 
@@ -84,12 +84,12 @@ You can refer to this document for more information about the different options:
 
 #### Storage
 
-`General Purpose SSD` should be the right option for most cases. 
-Chose the allocated storage that fits the needs of your application. We also advise you to `Enable storage autoscaling` in case you need more storage over time. 
+`General Purpose SSD` should be the right option for most cases.
+Chose the allocated storage that fits the needs of your application. We also advise you to `Enable storage autoscaling` in case you need more storage over time.
 
 <p align="center">
   <img src="/img/how-to-create-an-rds-instance-through-aws-console/5.png" alt="AWS RDS console" />
-</p>    
+</p>
 
 
 </li>
@@ -102,7 +102,7 @@ For a production setup you should `Create a standby instance`. For non-productio
 
 <p align="center">
   <img src="/img/how-to-create-an-rds-instance-through-aws-console/6.png" alt="AWS RDS console" />
-</p>    
+</p>
 
 
 </li>
@@ -118,7 +118,7 @@ For a production setup you should `Create a standby instance`. For non-productio
 
 <p align="center">
   <img src="/img/how-to-create-an-rds-instance-through-aws-console/7.png" alt="AWS RDS console" />
-</p>    
+</p>
 
 
 </li>
@@ -131,7 +131,7 @@ Chose `Password authentication`.
 
 <p align="center">
   <img src="/img/how-to-create-an-rds-instance-through-aws-console/8.png" alt="AWS RDS console" />
-</p>    
+</p>
 
 You can then click on `Create database`
 
@@ -145,7 +145,7 @@ You should see your new RDS instance in the list of databases, with the `Creatin
 
 <p align="center">
   <img src="/img/how-to-create-an-rds-instance-through-aws-console/9.png" alt="AWS RDS console" />
-</p>    
+</p>
 
 
 </li>
@@ -156,27 +156,27 @@ You should see your new RDS instance in the list of databases, with the `Creatin
 
 The VPC created for the new RDS database will be named `-`. For convenience you should rename it.
 
-Click on your database in the list, then on the VPC id. 
+Click on your database in the list, then on the VPC id.
 
 <p align="center">
   <img src="/img/how-to-create-an-rds-instance-through-aws-console/10.png" alt="AWS RDS console" />
-</p>    
+</p>
 
 You will be redirected to the VPCs list, filtered on the VPC id. Click on the edit icon in the `Name` column, and give it a meaningful name.
 
 <p align="center">
   <img src="/img/how-to-create-an-rds-instance-through-aws-console/11.png" alt="AWS RDS console" />
-</p>    
+</p>
 
 <p align="center">
   <img src="/img/how-to-create-an-rds-instance-through-aws-console/12.png" alt="AWS RDS console" />
-</p>    
+</p>
 
 </li>
 
 </ol>
 </Steps>
 
-## Conclusion 
+## Conclusion
 
 Your RDS database is ready. Now in order to access it from your Qovery cluster, we will need to setup VPC peering. You can find the procedure in [this tutorial][guides.tutorial.aws-vpc-peering-with-qovery]

@@ -1,10 +1,10 @@
 ---
-last_modified_on: "2022-04-22"
+last_modified_on: "2023-12-30"
 $schema: "/.meta/.schemas/guides.json"
 title: Blazingly fast Preview Environments for NextJS, NodeJS, and MongoDB on AWS
 description: Blazingly fast Preview Environments for NextJS, NodeJS, and MongoDB on AWS
 author_github: https://github.com/pjeziorowski
-tags: ["type: tutorial", "cloud_provider: aws"]
+tags: ["type: tutorial", "installation_guide: aws"]
 hide_pagination: true
 ---
 import Alert from '@site/src/components/Alert';

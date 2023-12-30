@@ -12,7 +12,7 @@ import Assumptions from '@site/src/components/Assumptions';
 
 <Alert type="info">
 
-If you are looking to install Qovery on your Kubernetes cluster, please refer to [this guide][guides.provider.guide-kubernetes].
+If you are looking to install Qovery on your Kubernetes cluster, please refer to [this guide][docs.getting-started.install-qovery.kubernetes].
 
 </Alert>
 
@@ -742,6 +742,7 @@ To clean up a Qovery cluster from your cloud provider account, go to `AWS Consol
 
 [docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.quickstart#attach-aws-credentials]: /docs/getting-started/install-qovery/aws/cluster-managed-by-qovery/quickstart/#attach-aws-credentials
 [docs.getting-started.install-qovery.gcp.cluster-managed-by-qovery.quickstart#attach-gcp-credentials]: /docs/getting-started/install-qovery/gcp/cluster-managed-by-qovery/quickstart/#attach-gcp-credentials
+[docs.getting-started.install-qovery.kubernetes]: /docs/getting-started/install-qovery/kubernetes/
 [docs.getting-started.install-qovery.scaleway.cluster-managed-by-qovery.quickstart#attach-scaleway-credentials]: /docs/getting-started/install-qovery/scaleway/cluster-managed-by-qovery/quickstart/#attach-scaleway-credentials
 [docs.using-qovery.configuration.clusters#creating-a-cluster]: /docs/using-qovery/configuration/clusters/#creating-a-cluster
 [docs.using-qovery.configuration.clusters#deleting-a-cluster]: /docs/using-qovery/configuration/clusters/#deleting-a-cluster
@@ -759,6 +760,5 @@ To clean up a Qovery cluster from your cloud provider account, go to `AWS Consol
 [docs.using-qovery.configuration.clusters]: /docs/using-qovery/configuration/clusters/
 [docs.using-qovery.configuration.deployment-rule#environment-deployment-rules]: /docs/using-qovery/configuration/deployment-rule/#environment-deployment-rules
 [docs.using-qovery.configuration.project]: /docs/using-qovery/configuration/project/
-[guides.provider.guide-kubernetes]: /guides/provider/guide-kubernetes/
 [urls.kubernetes]: https://kubernetes.io/
 [urls.qovery_console]: https://console.qovery.com

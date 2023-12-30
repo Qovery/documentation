@@ -4,7 +4,7 @@ $schema: "/.meta/.schemas/guides.json"
 title: Zero to Hero - How to deploy your apps on AWS in 30 minutes
 description: Step-by-step guide on how to deploy your apps on AWS in 30 minutes. No AWS knowledge required.
 author_github: https://github.com/evoxmusic
-tags: ["type: tutorial", "cloud_provider: aws"]
+tags: ["type: tutorial", "installation_guide: aws"]
 hide_pagination: true
 ---
 

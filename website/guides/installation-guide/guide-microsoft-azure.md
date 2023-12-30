@@ -4,7 +4,7 @@ $schema: "/.meta/.schemas/guides.json"
 title: Install Qovery on your Microsoft Azure account
 description: Learn how to install Qovery on your Microsoft Azure account
 author_github: https://github.com/evoxmusic
-tags: ["type: guide", "cloud_provider: azure"]
+tags: ["type: guide", "installation_guide: azure"]
 ---
 
 import Alert from '@site/src/components/Alert';

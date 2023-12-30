@@ -1,24 +1,29 @@
-[[cloud_providers]]
+[[installation_guides]]
 name = "aws"
 logo_path = "/img/logos/aws.svg"
 dark_logo_path = "/img/logos/aws_white.svg"
 
-[[cloud_providers]]
+[[installation_guides]]
 name = "digital_ocean"
 logo_path = "/img/logos/digitalocean.svg"
 dark_logo_path = "/img/logos/digitalocean_white.svg"
 
-[[cloud_providers]]
+[[installation_guides]]
 name = "scaleway"
 logo_path = "/img/logos/scaleway.svg"
 dark_logo_path = "/img/logos/scaleway_white.svg"
 
-[[cloud_providers]]
+[[installation_guides]]
 name = "gcp"
 logo_path = "/img/logos/gcp.svg"
 dark_logo_path = "/img/logos/gcp_white.svg"
 
-[[cloud_providers]]
+[[installation_guides]]
 name = "azure"
 logo_path = "/img/logos/azure.svg"
 dark_logo_path = "/img/logos/azure_white.svg"
+
+[[installation_guides]]
+name = "kubernetes"
+logo_path = "/img/logos/kubernetes.svg"
+dark_logo_path = "/img/logos/kubernetes_white.svg"

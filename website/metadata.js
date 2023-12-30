@@ -1,31 +1,4 @@
 module.exports = {
-  "cloud_providers": [
-    {
-      "dark_logo_path": "/img/logos/aws_white.svg",
-      "logo_path": "/img/logos/aws.svg",
-      "name": "aws"
-    },
-    {
-      "dark_logo_path": "/img/logos/digitalocean_white.svg",
-      "logo_path": "/img/logos/digitalocean.svg",
-      "name": "digital_ocean"
-    },
-    {
-      "dark_logo_path": "/img/logos/scaleway_white.svg",
-      "logo_path": "/img/logos/scaleway.svg",
-      "name": "scaleway"
-    },
-    {
-      "dark_logo_path": "/img/logos/gcp_white.svg",
-      "logo_path": "/img/logos/gcp.svg",
-      "name": "gcp"
-    },
-    {
-      "dark_logo_path": "/img/logos/azure_white.svg",
-      "logo_path": "/img/logos/azure.svg",
-      "name": "azure"
-    }
-  ],
   "databases": [
     {
       "dark_logo_path": "/img/logos/docker.svg",
@@ -179,70 +152,60 @@ module.exports = {
       "series": true,
       "title": "Getting Started"
     },
-    "cloud-provider": {
+    "installation-guide": {
       "children": {
       },
-      "description": "Install Qovery on your favorite cloud provider.",
+      "description": "Install Qovery on your technical stack.",
       "guides": [
         {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
-          "id": "/cloud-provider/guide-amazon-web-services",
+          "id": "/installation-guide/guide-amazon-web-services",
           "last_modified_on": null,
-          "path": "website/guides/cloud-provider/guide-amazon-web-services.md",
+          "path": "website/guides/installation-guide/guide-amazon-web-services.md",
           "series_position": null,
           "title": "Install Qovery on your Amazon Web Services account"
         },
         {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
-          "id": "/cloud-provider/guide-microsoft-azure",
+          "id": "/installation-guide/guide-kubernetes",
           "last_modified_on": null,
-          "path": "website/guides/cloud-provider/guide-microsoft-azure.md",
+          "path": "website/guides/installation-guide/guide-kubernetes.md",
+          "series_position": null,
+          "title": "Install Qovery on your Kubernetes cluster"
+        },
+        {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/installation-guide/guide-microsoft-azure",
+          "last_modified_on": null,
+          "path": "website/guides/installation-guide/guide-microsoft-azure.md",
           "series_position": null,
           "title": "Install Qovery on your Microsoft Azure account"
         },
         {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
-          "id": "/cloud-provider/guide-scaleway",
+          "id": "/installation-guide/guide-scaleway",
           "last_modified_on": null,
-          "path": "website/guides/cloud-provider/guide-scaleway.md",
+          "path": "website/guides/installation-guide/guide-scaleway.md",
           "series_position": null,
           "title": "Install Qovery on your Scaleway account"
         },
         {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
-          "id": "/cloud-provider/guide-google-cloud-platform",
+          "id": "/installation-guide/guide-google-cloud-platform",
           "last_modified_on": null,
-          "path": "website/guides/cloud-provider/guide-google-cloud-platform.md",
+          "path": "website/guides/installation-guide/guide-google-cloud-platform.md",
           "series_position": null,
           "title": "Install Qovery your Google Cloud Platform account"
         }
       ],
-      "name": "cloud-provider",
+      "name": "installation-guide",
       "series": false,
-      "title": "Cloud Providers"
-    },
-    "provider": {
-      "children": {
-      },
-      "description": "Install Qovery on one of our supported providers.",
-      "guides": [
-        {
-          "author_github": "https://github.com/evoxmusic",
-          "description": null,
-          "id": "/provider/guide-kubernetes",
-          "last_modified_on": null,
-          "path": "website/guides/provider/guide-kubernetes.md",
-          "series_position": null,
-          "title": "Install Qovery on your Kubernetes cluster"
-        }
-      ],
-      "name": "provider",
-      "series": false,
-      "title": "Providers"
+      "title": "Installation Guide"
     },
     "advanced": {
       "children": {
@@ -776,6 +739,38 @@ module.exports = {
   ],
   "installation": {
   },
+  "installation_guides": [
+    {
+      "dark_logo_path": "/img/logos/aws_white.svg",
+      "logo_path": "/img/logos/aws.svg",
+      "name": "aws"
+    },
+    {
+      "dark_logo_path": "/img/logos/digitalocean_white.svg",
+      "logo_path": "/img/logos/digitalocean.svg",
+      "name": "digital_ocean"
+    },
+    {
+      "dark_logo_path": "/img/logos/scaleway_white.svg",
+      "logo_path": "/img/logos/scaleway.svg",
+      "name": "scaleway"
+    },
+    {
+      "dark_logo_path": "/img/logos/gcp_white.svg",
+      "logo_path": "/img/logos/gcp.svg",
+      "name": "gcp"
+    },
+    {
+      "dark_logo_path": "/img/logos/azure_white.svg",
+      "logo_path": "/img/logos/azure.svg",
+      "name": "azure"
+    },
+    {
+      "dark_logo_path": "/img/logos/kubernetes_white.svg",
+      "logo_path": "/img/logos/kubernetes.svg",
+      "name": "kubernetes"
+    }
+  ],
   "languages": [
     {
       "dark_logo_path": "/img/logos/php.svg",
@@ -834,13 +829,6 @@ module.exports = {
   ],
   "posts": [
 
-  ],
-  "providers": [
-    {
-      "dark_logo_path": "/img/logos/kubernetes_white.svg",
-      "logo_path": "/img/logos/kubernetes.svg",
-      "name": "kubernetes"
-    }
   ],
   "releases": {
   },

@@ -20,10 +20,8 @@ function Guides({filtering, items}) {
     return <GuideItems items={items}/>
   } else {
     const gettingStartedGuides = items.filter(item => item.content.metadata.categories[0].name == 'getting-started');
-    const cloudProviderGuides = items.filter(item => item.content.metadata.categories[0].name == 'cloud-provider');
-    const cloudProviderCategory = cloudProviderGuides[0].content.metadata.categories[0];
-    const providerGuides = items.filter(item => item.content.metadata.categories[0].name == 'provider');
-    const providerCategory = providerGuides[0].content.metadata.categories[0];
+    const installationGuideGuides = items.filter(item => item.content.metadata.categories[0].name == 'installation-guide');
+    const installationGuideCategory = installationGuideGuides[0].content.metadata.categories[0];
     const advancedGuides = items.filter(item => item.content.metadata.categories[0].name == 'advanced');
     const advancedCategory = advancedGuides[0].content.metadata.categories[0];
     const tutorialGuides = items.filter(item => item.content.metadata.categories[0].name == 'tutorial');
@@ -39,14 +37,9 @@ function Guides({filtering, items}) {
           <GuideItems items={gettingStartedGuides} staggered={true}/>
         </section>
         <section>
-          <AnchoredH2 id={cloudProviderCategory.permalink}>{cloudProviderCategory.title}</AnchoredH2>
-          {cloudProviderCategory.description && <div className="sub-title">{cloudProviderCategory.description}</div>}
-          <GuideItems items={cloudProviderGuides} large={false}/>
-        </section>
-        <section>
-          <AnchoredH2 id={providerCategory.permalink}>{providerCategory.title}</AnchoredH2>
-          {providerCategory.description && <div className="sub-title">{providerCategory.description}</div>}
-          <GuideItems items={providerGuides} large={false}/>
+          <AnchoredH2 id={installationGuideCategory.permalink}>{installationGuideCategory.title}</AnchoredH2>
+          {installationGuideCategory.description && <div className="sub-title">{installationGuideCategory.description}</div>}
+          <GuideItems items={installationGuideGuides} large={false}/>
         </section>
         <section>
           <AnchoredH2 id={advancedCategory.permalink}>{advancedCategory.title}</AnchoredH2>
@@ -135,7 +128,7 @@ function GuideListPage(props) {
               type="text"
               className="input--text input--xl"
               onChange={(event) => setSearchTerm(event.currentTarget.value)}
-              placeholder="🔍 Search by language, framework, providers, database or tag..."/>
+              placeholder="🔍 Search by language, installation guides, database or tag..."/>
           </div>
         </div>
       </header>

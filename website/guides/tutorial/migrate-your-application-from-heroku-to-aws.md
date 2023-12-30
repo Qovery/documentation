@@ -1,10 +1,10 @@
 ---
-last_modified_on: "2023-05-29"
+last_modified_on: "2023-12-30"
 $schema: "/.meta/.schemas/guides.json"
 title: Migrate your application from Heroku to AWS
 description: Guide on how to migrate all your applications from Heroku to AWS with your databases
 author_github: https://github.com/evoxmusic
-tags: ["type: tutorial", "cloud_provider: aws"]
+tags: ["type: tutorial", "installation_guide: aws"]
 hide_pagination: true
 ---
 
@@ -22,7 +22,7 @@ This guide describes how to migrate your application running on Heroku to AWS wi
 
 * You are familiar with Heroku basics, have a Heroku account and access to Heroku CLI
 * You have [sign in on Qovery][urls.start_qovery]
-* You have [set up your AWS account][guides.cloud-provider.guide-amazon-web-services] with Qovery
+* You have [set up your AWS account][guides.installation-guide.guide-amazon-web-services] with Qovery
 
 </Assumptions>
 
@@ -658,11 +658,11 @@ Congrats! You have migrated from Heroku to AWS. Feel free to check out our [foru
 [docs.using-qovery.interface.cli#shell]: /docs/using-qovery/interface/cli/#shell
 [docs.using-qovery.interface.cli]: /docs/using-qovery/interface/cli/
 [guides.advanced.monorepository]: /guides/advanced/monorepository/
-[guides.cloud-provider.guide-amazon-web-services]: /guides/cloud-provider/guide-amazon-web-services/
 [guides.getting-started.create-a-database]: /guides/getting-started/create-a-database/
 [guides.getting-started.deploy-your-first-application]: /guides/getting-started/deploy-your-first-application/
 [guides.getting-started.managing-environment-variables]: /guides/getting-started/managing-environment-variables/
 [guides.getting-started.setting-custom-domain]: /guides/getting-started/setting-custom-domain/
+[guides.installation-guide.guide-amazon-web-services]: /guides/installation-guide/guide-amazon-web-services/
 [guides.tutorial.aws-vpc-peering-with-qovery]: /guides/tutorial/aws-vpc-peering-with-qovery/
 [guides.tutorial.how-to-write-a-dockerfile]: /guides/tutorial/how-to-write-a-dockerfile/
 [guides.tutorial.import-your-environment-variables-with-the-qovery-cli]: /guides/tutorial/import-your-environment-variables-with-the-qovery-cli/

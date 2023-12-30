@@ -1,10 +1,10 @@
 ---
-last_modified_on: "2022-02-25"
+last_modified_on: "2023-12-30"
 $schema: "/.meta/.schemas/guides.json"
 title: Setup VPC peering on AWS with Qovery
 description: How to peer a Qovery VPC with an existing VPC on AWS
 author_github: https://github.com/l0ck3
-tags: ["type: tutorial", "cloud_provider: aws"]
+tags: ["type: tutorial", "installation_guide: aws"]
 hide_pagination: true
 ---
 

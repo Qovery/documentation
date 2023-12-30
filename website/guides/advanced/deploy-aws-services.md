@@ -1,10 +1,10 @@
 ---
-last_modified_on: "2023-06-07"
+last_modified_on: "2023-12-30"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy AWS Services
 description: Learn how to deploy any AWS services with Qovery
 author_github: https://github.com/evoxmusic
-tags: ["type: guide", "cloud_provider: aws"]
+tags: ["type: guide", "installation_guide: aws"]
 ---
 import Steps from '@site/src/components/Steps';
 import Assumptions from '@site/src/components/Assumptions';

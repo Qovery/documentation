@@ -1,10 +1,10 @@
 ---
-last_modified_on: "2023-03-30"
+last_modified_on: "2023-12-30"
 $schema: "/.meta/.schemas/guides.json"
 title: How to connect to your EKS cluster with kubectl
 description: How to connect to your EKS cluster using kubectl
 author_github: https://github.com/l0ck3
-tags: ["type: tutorial", "cloud_provider: aws"]
+tags: ["type: tutorial", "installation_guide: aws"]
 hide_pagination: true
 ---
 

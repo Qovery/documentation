@@ -26,10 +26,8 @@ function GuideItem(props) {
   const frameworkName = frameworkTag ? frameworkTag.value : null;
   const technologyTag = enrichedTags.find(tag => tag.category == 'technology');
   const technologyName = technologyTag ? technologyTag.value : null;
-  const cloudProviderTag = enrichedTags.find(tag => tag.category == 'cloud_provider');
-  const cloudProviderName = cloudProviderTag ? cloudProviderTag.value : null;
-  const providerTag = enrichedTags.find(tag => tag.category == 'provider');
-  const providerName = providerTag ? providerTag.value : null;
+  const installationGuideTag = enrichedTags.find(tag => tag.category == 'installation_guide');
+  const installationGuideName = installationGuideTag ? installationGuideTag.value : null;
   const platformTag = enrichedTags.find(tag => tag.category == 'platform');
   const platformName = platformTag ? platformTag.value : null;
   const sourceTag = enrichedTags.find(tag => tag.category == 'source');
@@ -46,8 +44,7 @@ function GuideItem(props) {
       languages,
       frameworks,
       technologies,
-      cloud_providers,
-      providers
+      installation_guides
     }
   } = siteConfig.customFields;
   const {platforms} = installation;
@@ -57,8 +54,7 @@ function GuideItem(props) {
   const language = languageName && languages.find(x => x.name === languageName);
   const framework = frameworkName && frameworks.find(x => x.name === frameworkName);
   const technology = technologyName && technologies.find(x => x.name === technologyName);
-  const cloudProvider = cloudProviderName && cloud_providers.find(x => x.name === cloudProviderName);
-  const provider = providerName && providers.find(x => x.name === providerName);
+  const installationGuide = installationGuideName && installation_guides.find(x => x.name === installationGuideName);
   const sourceIcon = (platform || source) !== null;
   const sinkIcon = sink != null;
 
@@ -76,19 +72,13 @@ function GuideItem(props) {
     } else {
       sourceLogoPath = technology.logo_path;
     }
-  } else if (cloudProvider) {
+  } else if (installationGuide) {
     if (isDarkTheme) {
-      sourceLogoPath = cloudProvider.dark_logo_path;
+      sourceLogoPath = installationGuide.dark_logo_path;
     } else {
-      sourceLogoPath = cloudProvider.logo_path;
+      sourceLogoPath = installationGuide.logo_path;
     }
-  } else if (provider) {
-    if (isDarkTheme) {
-      sourceLogoPath = provider.dark_logo_path;
-    } else {
-      sourceLogoPath = provider.logo_path;
-    }
-  } else if (language) {
+  }  else if (language) {
     if (isDarkTheme) {
       sourceLogoPath = language.dark_logo_path;
     } else {

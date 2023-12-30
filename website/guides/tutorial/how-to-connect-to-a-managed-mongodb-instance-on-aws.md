@@ -1,10 +1,10 @@
 ---
-last_modified_on: "2022-01-27"
+last_modified_on: "2023-12-30"
 $schema: "/.meta/.schemas/guides.json"
 title: How to connect to a managed MongoDB instance on AWS
 description: How to connect to a managed MongoDB instance on AWS from your local client.
 author_github: https://github.com/l0ck3
-tags: ["type: tutorial", "cloud_provider: aws"]
+tags: ["type: tutorial", "installation_guide: aws"]
 hide_pagination: true
 ---
 
@@ -14,7 +14,7 @@ import Alert from '@site/src/components/Alert';
 import Assumptions from '@site/src/components/Assumptions';
 import Jump from '@site/src/components/Jump';
 
-When creating a managed MongoDB instance on AWS via Qovery, you don't get a publicly accessible endpoint. While it is good from a security point of view, you still might need to connect to it from a local client. 
+When creating a managed MongoDB instance on AWS via Qovery, you don't get a publicly accessible endpoint. While it is good from a security point of view, you still might need to connect to it from a local client.
 
 <Alert type="note">
 Public endpoint for managed MongoDB instance will be available in Q1 2022. This is a temporary workaround.
@@ -39,7 +39,7 @@ Public endpoint for managed MongoDB instance will be available in Q1 2022. This 
 
 This tutorial will show you how to connect to your managed MongoDB instance private endpoint from your local machine, through your EKS cluster.
 
-<Steps headingDepth={3}>  
+<Steps headingDepth={3}>
 
 <ol>
 
@@ -55,7 +55,7 @@ We will need to run two different commands to forward your local traffic to your
 
 #### Export the required environment variables
 
-In each terminal window, export some env variables: 
+In each terminal window, export some env variables:
 
 ```bash
 export SERVICE_NAME=mongodb-tunnel
@@ -70,7 +70,7 @@ export LOCAL_PORT=8080 # you can use any other port available on your computer
 
 #### Run a socat container in your cluster
 
-`socat` is a relay for bidirectional data transfers between two independent data channels. 
+`socat` is a relay for bidirectional data transfers between two independent data channels.
 It will forward all traffic between your computer and your database.
 
 ```bash

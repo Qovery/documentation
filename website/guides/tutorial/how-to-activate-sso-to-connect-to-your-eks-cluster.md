@@ -1,10 +1,10 @@
 ---
-last_modified_on: "2023-10-12"
+last_modified_on: "2023-12-30"
 $schema: "/.meta/.schemas/guides.json"
 title: How to activate SSO to connect to your EKS cluster
 description: How to activate SSO to connect to your EKS cluster
 author_github: https://github.com/benjaminch
-tags: ["type: tutorial", "cloud_provider: aws"]
+tags: ["type: tutorial", "installation_guide: aws"]
 hide_pagination: true
 ---
 
@@ -22,7 +22,7 @@ You have several ways to connect to your cluster:
 <Assumptions name="guide">
 
 * You have AWS CLI installed
-* You have configured an `Admins` group (or any group used for admins) as described in the [Qovery AWS setup][guides.cloud-provider.guide-amazon-web-services]
+* You have configured an `Admins` group (or any group used for admins) as described in the [Qovery AWS setup][guides.installation-guide.guide-amazon-web-services]
 * You have an existing EKS cluster managed by Qovery
 * You have followed [this AWS tutorial](https://aws.amazon.com/fr/blogs/containers/a-quick-path-to-amazon-eks-single-sign-on-using-aws-sso/) up to `AWS SSO user configuration` excluded.
 
@@ -274,5 +274,5 @@ This should give you the config map content. If not, something is not properly c
 You can access your Qovery clusters via your SSO directly.
 
 
-[guides.cloud-provider.guide-amazon-web-services]: /guides/cloud-provider/guide-amazon-web-services/
+[guides.installation-guide.guide-amazon-web-services]: /guides/installation-guide/guide-amazon-web-services/
 [guides.tutorial.how-to-connect-to-your-eks-cluster-with-kubectl]: /guides/tutorial/how-to-connect-to-your-eks-cluster-with-kubectl/

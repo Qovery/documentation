@@ -1,10 +1,10 @@
 ---
-last_modified_on: "2021-12-17"
+last_modified_on: "2023-12-30"
 $schema: "/.meta/.schemas/guides.json"
 title: How to use CloudFront with a React frontend application on Qovery
 description: Setting up AWS CloudFront for frontend apps on Qovery
 author_github: https://github.com/pjeziorowski
-tags: ["type: tutorial", "cloud_provider: aws"]
+tags: ["type: tutorial", "installation_guide: aws"]
 hide_pagination: true
 ---
 import Alert from '@site/src/components/Alert';

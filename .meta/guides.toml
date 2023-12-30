@@ -5,18 +5,11 @@ description = """\
 Take Qovery from zero to production in less than 10 minutes.\
 """
 
-[guides.cloud-provider]
-title = "Cloud Providers"
+[guides.installation-guide]
+title = "Installation Guide"
 series = false
 description = """\
-Install Qovery on your favorite cloud provider.\
-"""
-
-[guides.provider]
-title = "Providers"
-series = false
-description = """\
-Install Qovery on one of our supported providers.\
+Install Qovery on your technical stack.\
 """
 
 [guides.advanced]
@@ -39,10 +32,3 @@ series = false
 description = """\
 We share our engineering learning with all of you. \
 """
-
-#[guides.integrate]
-#title = "Integrate"
-#series = false
-#description = """\
-#Targeted guides for integrating platforms, data sources, and data destinations.\
-#"""

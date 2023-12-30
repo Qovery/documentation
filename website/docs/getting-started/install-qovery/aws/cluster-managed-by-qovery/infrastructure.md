@@ -1,0 +1,364 @@
+---
+last_modified_on: "2023-12-30"
+title: "Infrastructure"
+description: "Understand how Qovery deploys your infrastructure on AWS"
+---
+
+import Steps from '@site/src/components/Steps';
+import Alert from '@site/src/components/Alert';
+import Assumptions from '@site/src/components/Assumptions';
+
+### Deployed AWS components
+
+<img src="/img/aws-deployed-infra.png" />
+
+| Network Services                                                                      | Optional | Description                                                                               |
+|---------------------------------------------------------------------------------------|----------|-------------------------------------------------------------------------------------------|
+| A dedicated multi AZ VPC                                                              | no       | Everything Qovery will deploy, will be deployed inside this VPC                           |
+| Subnets, routing tables, subnet groups and security groups for RDS (multi AZ)         | no       | Dedicated network fand security rules for RDS                                             |
+| Subnets, routing tables, subnet groups and security groups for DocumentDB (multi AZ)  | no       | Dedicated network fand security rules for DocumentDB                                      |
+| Subnets, routing tables, subnet groups and security groups for Elasticache (multi AZ) | no       | Dedicated network fand security rules for Elasticache                                     |
+| An internet gateway for the VPC                                                       | no       | Required to let containers having access to Internet                                      |
+| Dedicated NLB to redirect 443 traffic to Nginx Ingress                                | no       | High Availability network load balancer, pointing to Nginx Ingress inside EKS             |
+| NAT gateways (multi AZ) + EIP addresses (multi AZ) + subnet groups + routing table    | yes      | Useful to get outgoing static IP                                                          |
+| Dedicated VPC routes for VPC peering                                                  | yes      | Useful to perform VPC peering with others VPC on the same or different account            |
+
+| Kubernetes Services                                                                 | Optional | Description                                                                                     |
+|-------------------------------------------------------------------------------------|----------|-------------------------------------------------------------------------------------------------|
+| A dedicated EKS cluster (multi AZ) for this VPC                                     | no       | Dedicated Kubernetes cluster managed by AWS with nodes (instances type) defined by the customer |
+| IAM dedicated user for AWS EBS CSI to access EC2 volumes + a dedicated policy       | no       | Required to allow EKS cluster having access to volume and mount them to containers              |
+| IAM dedicated user for AWS IAM User Sync + a dedicated policy                       | no       | Required to sync desired IAM account to EKS to let them connect directly ot Kubernetes          |
+| IAM dedicated user for a Cluster Autoscaler+ a dedicated policy                     | no       | Required to let autoscaler having access to EC2 autoscaling groups                              |
+| IAM dedicated policies for AWS EKS CNI, EC2 container registry + EKS worker nodes   | no       | Required to let EKS having access to container registry and configure the Kubernetes network    |
+| Security group for EKS remote access (dual authentication: TLS + IAM authenticator) | no       | Required to have a secure remote access on the Kubernetes cluster                               |
+| Security group for 443 port pointing to Nginx ingress inside EKS                    | no       | External access to web services inside the Kubernetes cluster                                   |
+
+| Other Services                                                       | Optional | Description                                                                                                                    |
+|----------------------------------------------------------------------|----------|--------------------------------------------------------------------------------------------------------------------------------|
+| Cloudwatch log groups for the EKS cluster                            | no       | Kubernetes logs, useful for the AWS and EKS support to diagnose an issue                                                       |
+| Dedicated S3 bucket for application's logs + a dedicated IAM account | no       | Application's logs are stored in an KMS encrypted S3 private bucket                                                            |
+| Dedicated S3 bucket to store the kubeconfig                          | no       | Kubernetes Kubeconfig is stored in an KMS encrypted, private and versioned bucket, used by Qovery for application's deployment |
+
+### Remove Qovery from your AWS account
+
+<Alert type="warning">
+
+Your applications and your data will be deleted.
+
+</Alert>
+
+To delete Qovery from your AWS account you must be the owner of the Qovery Organization and you have to delete everything in this order:
+- Environments
+- Clusters
+
+<Alert type="warning">
+
+If you remove the access to your AWS account before deleting all the resources on the Qovery platform, you will have to manually delete them
+by yourself by following the guide "I don't have Qovery access anymore, how could I delete Qovery deployed resources on my AWS account?"
+in [this section][docs.using-qovery.troubleshoot].
+
+</Alert>
+
+### IAM permissions
+
+Qovery required IAM permissions to create, update and managed the infrastructure.
+
+- IAM is used to create IAM roles
+- S3 is used to store our generated configuration files
+- Cloudwatch, for creating a group stream for each Kubernetes clusters
+- Autoscaling for RDS and autoscaling rules for the Kubernetes cluster
+- Elastic load-balancing for ELB / ALB / NLB.
+- DynamoDB to have a distributed lock on infrastructure deployment.
+- ECR for managing the container registry, create/update/delete repository.
+- KMS to load and store keys (RDS, SSH, …)
+- EKS to create and update the Kubernetes cluster.
+
+<details><summary>Minimum IAM permission set</summary><blockquote>
+Last update: 2023-06-08
+</blockquote>
+
+<Alert type="alert">
+
+This is purely informative and we strongly recommend you to NOT use this configuration within your IAM permissions since it might not
+reflect the latest product update. Please use the one provided in the section above.
+
+</Alert>
+
+Below you can find the minimum permission set required by Qovery to run and deploy your applications.
+
+Policies lengths are limited regarding which object they’re attached to but the one Qovery needs represent more than the maximum (~6000
+characters).
+
+In order to setup it up, you need to create two IAM groups, each one with one of the following policies.
+
+Then we must create a user added to each of the previously created groups.
+
+Once it’s done, the user’s access key and secret key can be used in Qovery.
+
+```json
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "autoscaling:SuspendProcesses",
+                "ec2:AllocateAddress",
+                "ec2:AssociateAddress",
+                "ec2:AssociateRouteTable",
+                "ec2:AttachVolume",
+                "ec2:AttachInternetGateway",
+                "ec2:AuthorizeSecurityGroupEgress",
+                "ec2:AuthorizeSecurityGroupIngress",
+                "ec2:CreateInternetGateway",
+                "ec2:CreateKeyPair",
+                "ec2:CreateLaunchTemplate",
+                "ec2:CreateLaunchTemplateVersion",
+                "ec2:CreateNatGateway",
+                "ec2:CreateRoute",
+                "ec2:CreateRouteTable",
+                "ec2:CreateSecurityGroup",
+                "ec2:CreateSubnet",
+                "ec2:CreateTags",
+                "ec2:CreateVolume",
+                "ec2:CreateVpc",
+                "ec2:DeleteInternetGateway",
+                "ec2:DeleteKeyPair",
+                "ec2:DeleteLaunchTemplate",
+                "ec2:DeleteNatGateway",
+                "ec2:DeleteRouteTable",
+                "ec2:DeleteSecurityGroup",
+                "ec2:DeleteSubnet",
+                "ec2:DeleteVolume",
+                "ec2:DeleteVpc",
+                "ec2:DescribeAddresses",
+                "ec2:DescribeAvailabilityZones",
+                "ec2:DescribeImages",
+                "ec2:DescribeInstanceAttribute",
+                "ec2:DescribeInstanceCreditSpecifications",
+                "ec2:DescribeInstances",
+                "ec2:DescribeInstanceTypes",
+                "ec2:DescribeInternetGateways",
+                "ec2:DescribeKeyPairs",
+                "ec2:DescribeLaunchTemplateVersions",
+                "ec2:DescribeLaunchTemplates",
+                "ec2:DescribeNatGateways",
+                "ec2:DescribeNetworkAcls",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DescribeRouteTables",
+                "ec2:DescribeSecurityGroupRules",
+                "ec2:DescribeSecurityGroups",
+                "ec2:DescribeSubnets",
+                "ec2:DescribeTags",
+                "ec2:DescribeVolumes",
+                "ec2:DescribeVpcAttribute",
+                "ec2:DescribeVpcClassicLink",
+                "ec2:DescribeVpcClassicLinkDnsSupport",
+                "ec2:DescribeVpcs",
+                "ec2:DetachInternetGateway",
+                "ec2:DetachVolume",
+                "ec2:DisassociateAddress",
+                "ec2:DisassociateRouteTable",
+                "ec2:ImportKeyPair",
+                "ec2:ModifySubnetAttribute",
+                "ec2:ModifyVpcAttribute",
+                "ec2:ReleaseAddress",
+                "ec2:RevokeSecurityGroupEgress",
+                "ec2:RevokeSecurityGroupIngress",
+                "ec2:RunInstances",
+                "ec2:StopInstances",
+                "ec2:TerminateInstances",
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:BatchGetImage",
+                "ecr:CompleteLayerUpload",
+                "ecr:CreateRepository",
+                "ecr:DeleteRepository",
+                "ecr:DescribeImages",
+                "ecr:DescribeRepositories",
+                "ecr:GetAuthorizationToken",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:InitiateLayerUpload",
+                "ecr:PutImage",
+                "ecr:PutLifecyclePolicy",
+                "ecr:TagResource",
+                "ecr:UploadLayerPart",
+                "eks:CreateAddon",
+                "eks:CreateCluster",
+                "eks:CreateNodegroup",
+                "eks:DeleteAddon",
+                "eks:DeleteCluster",
+                "eks:DeleteNodegroup",
+                "eks:DescribeAddon",
+                "eks:DescribeCluster",
+                "eks:DescribeNodegroup",
+                "eks:DescribeUpdate",
+                "eks:ListClusters",
+                "eks:ListNodegroups",
+                "eks:TagResource",
+                "eks:UpdateAddon",
+                "eks:UpdateClusterConfig",
+                "eks:UpdateClusterVersion",
+                "eks:UpdateNodegroupConfig",
+                "eks:UpdateNodegroupVersion",
+                "elasticache:AddTagsToResource",
+                "elasticache:CreateCacheSubnetGroup",
+                "elasticache:CreateReplicationGroup",
+                "elasticache:DeleteCacheSubnetGroup",
+                "elasticache:DeleteReplicationGroup",
+                "elasticache:DescribeCacheClusters",
+                "elasticache:DescribeCacheSubnetGroups",
+                "elasticache:DescribeReplicationGroups",
+                "elasticache:ListTagsForResource",
+                "elasticloadbalancing:DescribeLoadBalancers",
+                "elasticloadbalancing:DescribeTags"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+
+```
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:AddRoleToInstanceProfile",
+                "iam:AttachRolePolicy",
+                "iam:AttachUserPolicy",
+                "iam:CreateAccessKey",
+                "iam:CreateInstanceProfile",
+                "iam:CreateOpenIDConnectProvider",
+                "iam:CreatePolicy",
+                "iam:CreateRole",
+                "iam:CreateServiceLinkedRole",
+                "iam:CreateUser",
+                "iam:DeleteAccessKey",
+                "iam:DeleteInstanceProfile",
+                "iam:DeleteOpenIDConnectProvider",
+                "iam:DeletePolicy",
+                "iam:DeleteRole",
+                "iam:DeleteRolePolicy",
+                "iam:DeleteUser",
+                "iam:DeleteUserPolicy",
+                "iam:DetachRolePolicy",
+                "iam:DetachUserPolicy",
+                "iam:GetInstanceProfile",
+                "iam:GetOpenIDConnectProvider",
+                "iam:GetPolicy",
+                "iam:GetPolicyVersion",
+                "iam:GetRole",
+                "iam:GetRolePolicy",
+                "iam:GetUser",
+                "iam:GetUserPolicy",
+                "iam:ListAccessKeys",
+                "iam:ListAttachedRolePolicies",
+                "iam:ListAttachedUserPolicies",
+                "iam:ListGroupsForUser",
+                "iam:ListInstanceProfilesForRole",
+                "iam:ListPolicyVersions",
+                "iam:ListRolePolicies",
+                "iam:PassRole",
+                "iam:PutRolePolicy",
+                "iam:PutUserPolicy",
+                "iam:RemoveRoleFromInstanceProfile",
+                "iam:TagInstanceProfile",
+                "iam:TagOpenIDConnectProvider",
+                "iam:TagRole",
+                "iam:TagUser",
+                "kms:CreateGrant",
+                "kms:CreateKey",
+                "kms:Decrypt",
+                "kms:DescribeKey",
+                "kms:GenerateDataKey",
+                "kms:GetKeyPolicy",
+                "kms:GetKeyRotationStatus",
+                "kms:ListResourceTags",
+                "kms:PutKeyPolicy",
+                "kms:ScheduleKeyDeletion",
+                "kms:TagResource",
+                "logs:CreateLogGroup",
+                "logs:DeleteLogGroup",
+                "logs:DescribeLogGroups",
+                "logs:ListTagsLogGroup",
+                "logs:PutRetentionPolicy",
+                "logs:TagLogGroup",
+                "rds:AddTagsToResource",
+                "rds:CreateDBCluster",
+                "rds:CreateDBInstance",
+                "rds:CreateDBParameterGroup",
+                "rds:CreateDBSubnetGroup",
+                "rds:DeleteDBCluster",
+                "rds:DeleteDBInstance",
+                "rds:DeleteDBParameterGroup",
+                "rds:DeleteDBSubnetGroup",
+                "rds:DescribeDBClusters",
+                "rds:DescribeDBInstances",
+                "rds:DescribeDBParameterGroups",
+                "rds:DescribeDBParameters",
+                "rds:DescribeDBSubnetGroups",
+                "rds:DescribeGlobalClusters",
+                "rds:ListTagsForResource",
+                "rds:ModifyDBInstance",
+                "rds:ModifyDBParameterGroup",
+                "rds:StartDBCluster",
+                "rds:StartDBInstance",
+                "rds:StopDBCluster",
+                "rds:StopDBInstance",
+                "s3:CreateBucket",
+                "s3:DeleteBucket",
+                "s3:DeleteObject",
+                "s3:DeleteObjectVersion",
+                "s3:DeleteBucketPolicy",
+                "s3:GetAccelerateConfiguration",
+                "s3:GetBucketAcl",
+                "s3:GetBucketCORS",
+                "s3:GetBucketLogging",
+                "s3:GetBucketObjectLockConfiguration",
+                "s3:GetBucketOwnershipControls",
+                "s3:GetBucketPolicy",
+                "s3:GetBucketPublicAccessBlock",
+                "s3:GetBucketRequestPayment",
+                "s3:GetBucketTagging",
+                "s3:GetBucketVersioning",
+                "s3:GetBucketWebsite",
+                "s3:GetEncryptionConfiguration",
+                "s3:GetLifecycleConfiguration",
+                "s3:GetObject",
+                "s3:GetReplicationConfiguration",
+                "s3:ListAccessPoints",
+                "s3:ListAllMyBuckets",
+                "s3:ListBucket",
+                "s3:ListBucketMultipartUploads",
+                "s3:ListBucketVersions",
+                "s3:ListMultiRegionAccessPoints",
+                "s3:ListMultipartUploadParts",
+                "s3:ListStorageLensConfigurations",
+                "s3:PutBucketAcl",
+                "s3:PutBucketOwnershipControls",
+                "s3:PutBucketPolicy",
+                "s3:PutBucketPublicAccessBlock",
+                "s3:PutBucketTagging",
+                "s3:PutBucketVersioning",
+                "s3:PutEncryptionConfiguration",
+                "s3:PutLifecycleConfiguration",
+                "s3:PutObject",
+                "s3:PutObjectRetention",
+                "secretsmanager:CreateSecret",
+                "secretsmanager:TagResource",
+                "sts:GetCallerIdentity"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+```
+
+</details>
+
+
+[docs.using-qovery.troubleshoot]: /docs/using-qovery/troubleshoot/

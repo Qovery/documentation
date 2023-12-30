@@ -1,6 +1,6 @@
 ---
-last_modified_on: "2023-11-25"
-title: "Microsoft Azure"
+last_modified_on: "2023-12-29"
+title: "Quickstart"
 description: "Learn how to configure and plug your Microsoft Azure account"
 ---
 
@@ -9,7 +9,7 @@ import Jump from '@site/src/components/Jump';
 
 <Alert type="info">
 
-Please refer to [this page][docs.using-qovery.configuration.provider.kubernetes] if you want to install Qovery on your own Kubernetes cluster (BYOK).
+Please refer to [this page][docs.getting-started.install-qovery.kubernetes.quickstart] if you want to install Qovery on your own Kubernetes cluster (BYOK).
 
 </Alert>
 
@@ -20,7 +20,7 @@ Azure is coming soon ([see when](https://roadmap.qovery.com/roadmap/support-azur
 
      To make changes please edit the template located at:
 
-     website/docs/using-qovery/configuration/cloud-service-provider/microsoft-azure.md.erb
+     website/docs/getting-started/install-qovery/azure/cluster-managed-by-qovery/quickstart.md.erb
 -->
 
 ## Available Cloud Service Providers
@@ -32,4 +32,4 @@ Azure is coming soon ([see when](https://roadmap.qovery.com/roadmap/support-azur
 <Jump to="/docs/using-qovery/configuration/cloud-service-provider/other-csps">Others</Jump>
 
 
-[docs.using-qovery.configuration.provider.kubernetes]: /docs/using-qovery/configuration/provider/kubernetes/
+[docs.getting-started.install-qovery.kubernetes.quickstart]: /docs/getting-started/install-qovery/kubernetes/quickstart/

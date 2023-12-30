@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-11-25"
+last_modified_on: "2023-12-29"
 title: "Basic Concepts"
 description: "Basic Concepts about Qovery"
 ---
@@ -24,6 +24,14 @@ At Qovery, when we refer to Cluster, we mean [Kubernetes][urls.kubernetes] clust
 
 More information about [Cluster here][docs.using-qovery.configuration.clusters].
 
+### Managed Cluster
+
+A Managed Cluster is a Kubernetes cluster managed by Qovery. It means that Qovery will create the cluster for you and will take care of the cluster lifecycle (creation, upgrade, deletion etc..). Zero maintenance for you.
+
+### Self-Managed Cluster
+
+A Self-Managed Cluster is a Kubernetes cluster managed by you. It means that you have to create the cluster yourself and you have to take care of the cluster lifecycle (creation, upgrade, deletion etc..). You can install Qovery on your cluster to let Qovery manage the deployment of your applications on your cluster.
+
 ## Project
 
 A Project allows you to group together a set of services interacting between each other to serve a common purpose. For example, you can have one project to run your main application (composed by a front-end, back-end and a db) and another project to manage your internal tools.
@@ -44,7 +52,7 @@ Environments let's you chose on which cluster your services should be deployed.
 
 More information about [Environment here][docs.using-qovery.configuration.environment].
 
-## Preview Environment
+## Preview Environment (or Ephemeral Environment)
 
 A Preview Environment is an ephemeral environment allowing you to get early feedback on your application changes before the changes are merged into production. A dedicated preview environment can be automatically created at each new PR on your repository to validate the change. The environment is automatically deleted once the PR is merged or closed.
 
@@ -53,18 +61,17 @@ More information about [Preview Environment here][docs.using-qovery.configuratio
 ## Service
 A Service is the basic unit that you can add to an environment. Each service has an associated git repository (or registry) and a commit (or image_name:tag) that will be used to deploy the service on the cluster.
 
-Four type of services exists:
+Five types of services exists:
 - Application: it allows you to run your long-running workloads. We usually call them "Containers" when the source code is stored on an image registry. More information about [Applications here][docs.using-qovery.configuration.application]
 - Database: it allows you to deploy a database. Qovery allows you to deploy a container and a cloud provider managed version.  More information about [Databases here][docs.using-qovery.configuration.database]
 - CronJob: it allows you to deploy a cronjob on your cluster and execute it based on the selected schedule. More information about [Cronjob here][docs.using-qovery.configuration.cronjob]
 - Lifecycle: it allows you to execute your code based on the events happening on your environment (Start, Stop, Delete etc..). With the right code, it can be used to seed your database when the environment is created or manage the lifecycle of any external resource (via a terraform file, pulumi code etc..). More information about [Lifecycle here][docs.using-qovery.configuration.cronjob]
-
+- Helm: it allows you to deploy a helm chart on your cluster. More information about [Helm here][docs.using-qovery.configuration.helm]
 
 ## Deployment
 A Deployment is the operation allowing you to gather your code and make it runs on your cluster. Qovery can pull your repository, generate a docker image and spawn the necessary resources on your clusters to make your application run. You can find more information within [this section][docs.using-qovery.deployment].
 
 You can monitor the execution of the deployment via the [Deployment Logs][docs.using-qovery.deployment.logs#deployment-logs] while you can monitor the execution of your application thanks to the streamed [Live Logs][docs.using-qovery.deployment.logs#live-logs] directly from the Qovery interface.
-
 
 ## High Level Schema
 <p align="center">
@@ -79,6 +86,7 @@ You can monitor the execution of the deployment via the [Deployment Logs][docs.u
 [docs.using-qovery.configuration.deployment-rule]: /docs/using-qovery/configuration/deployment-rule/
 [docs.using-qovery.configuration.environment#preview-environment]: /docs/using-qovery/configuration/environment/#preview-environment
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
+[docs.using-qovery.configuration.helm]: /docs/using-qovery/configuration/helm/
 [docs.using-qovery.configuration.organization.members-rbac#roles-based-access-control-rbac]: /docs/using-qovery/configuration/organization/members-rbac/#roles-based-access-control-rbac
 [docs.using-qovery.configuration.organization]: /docs/using-qovery/configuration/organization/
 [docs.using-qovery.configuration.project]: /docs/using-qovery/configuration/project/

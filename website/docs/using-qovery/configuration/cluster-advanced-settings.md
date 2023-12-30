@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-11-16"
+last_modified_on: "2023-12-30"
 title: "Cluster Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -21,7 +21,7 @@ All clusters have access to advanced settings, you can find where they are avail
 
 You will also find badges mentioning for which components it will be applied:
 
-#### ![](/img/advanced_settings/database-container.svg) ![](/img/advanced_settings/database-managed.svg) 
+#### ![](/img/advanced_settings/database-container.svg) ![](/img/advanced_settings/database-managed.svg)
 
 Below is the list of advanced settings currently available for clusters.
 
@@ -93,43 +93,43 @@ Below is the list of advanced settings currently available for clusters.
 
 ### Nginx
 
-#### nginx.vcpu.request_in_milli_cpu ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) 
+#### nginx.vcpu.request_in_milli_cpu ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg)
 
 | Type    | Description                                                                                    | Default Value   |
 |---------|------------------------------------------------------------------------------------------------|-----------------|
 | integer | Vcpu request value in millicores assigned to Nginx pods                                        | `200`           |
 
-#### nginx.vcpu.limit_in_milli_cpu ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) 
+#### nginx.vcpu.limit_in_milli_cpu ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg)
 
 | Type    | Description                                                                                    | Default Value   |
 |---------|------------------------------------------------------------------------------------------------|-----------------|
 | integer | Vcpu limit value in millicores assigned to Nginx pods                                          | `700`           |
 
-#### nginx.memory.request_in_mib ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) 
+#### nginx.memory.request_in_mib ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg)
 
 | Type    | Description                                                                                    | Default Value   |
 |---------|------------------------------------------------------------------------------------------------|-----------------|
 | integer | Memory limit value in MiB assigned to Nginx pods                                               | `768`           |
 
-#### nginx.memory.limit_in_mib ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) 
+#### nginx.memory.limit_in_mib ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg)
 
 | Type    | Description                                                                                    | Default Value   |
 |---------|------------------------------------------------------------------------------------------------|-----------------|
 | integer | Memory limit value in MiB assigned to Nginx pods                                               | `768`           |
 
-#### nginx.hpa.cpu_utilization_percentage_threshold ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) 
+#### nginx.hpa.cpu_utilization_percentage_threshold ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg)
 
 | Type    | Description                                                                                    | Default Value   |
 |---------|------------------------------------------------------------------------------------------------|-----------------|
 | integer | Hpa (horizontal pod autoscaler) cpu threshold in percentage assigned to Nginx deployment       | `50`            |
 
-#### nginx.hpa.min_number_instances ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) 
+#### nginx.hpa.min_number_instances ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg)
 
 | Type    | Description                                                                                    | Default Value   |
 |---------|------------------------------------------------------------------------------------------------|-----------------|
 | integer | Minimum number of Nginx instances running                                                      | `2`             |
 
-#### nginx.hpa.max_number_instances ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) 
+#### nginx.hpa.max_number_instances ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg)
 
 | Type    | Description                                                                                    | Default Value   |
 |---------|------------------------------------------------------------------------------------------------|-----------------|
@@ -137,49 +137,49 @@ Below is the list of advanced settings currently available for clusters.
 
 ### Database access
 
-#### database.postgresql.deny_public_access ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-container.svg) ![](/img/advanced_settings/database-managed.svg) 
+#### database.postgresql.deny_public_access ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-container.svg) ![](/img/advanced_settings/database-managed.svg)
 
 | Type    | Description                                                                                                                                                                                                        | Default Value |
 |---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | boolean | Deny public access to all PostgreSQL databases. When true, configure the CIDR range you want to allow within the associated `allowed_cidrs` parameter (default is "any IP").<br />⚠️ Public access to managed databases will instantly be removed<br />⚠️ Public access to container databases will be removed only after a database redeployment| `false`       |
 
-#### database.postgresql.allowed_cidrs ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-managed.svg) 
+#### database.postgresql.allowed_cidrs ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-managed.svg)
 
 | Type    | Description                                                                                    | Default Value   |
 |---------|------------------------------------------------------------------------------------------------|-----------------|
 | boolean | List of allowed CIDRS. Valid only when [`database.postgresql.deny_public_access`](#databasepostgresqldeny_public_access) is set to true | `["0.0.0.0/0"]` |
 
-#### database.mysql.deny_public_access ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-container.svg) ![](/img/advanced_settings/database-managed.svg) 
+#### database.mysql.deny_public_access ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-container.svg) ![](/img/advanced_settings/database-managed.svg)
 
 | Type    | Description                                                                                                                                                                                                    | Default Value |
 |---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | boolean | Deny public access to all MySQL databases. When true, configure the CIDR range you want to allow within the associated `allowed_cidrs` parameter (default is "any IP"). <br />⚠️ Public access to managed databases will instantly be removed<br />⚠️ Public access to container databases will be removed only after a database redeployment | `false`       |
 
-#### database.mysql.allowed_cidrs ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-managed.svg) 
+#### database.mysql.allowed_cidrs ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-managed.svg)
 
 | Type    | Description                                                                                    | Default Value   |
 |---------|------------------------------------------------------------------------------------------------|-----------------|
 | boolean | List of allowed CIDRS. Valid only when [`database.mysql.deny_public_access`](#databasemysqldeny_public_access) is set to true      | `["0.0.0.0/0"]` |
 
-#### database.mongodb.deny_public_access ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-container.svg) ![](/img/advanced_settings/database-managed.svg) 
+#### database.mongodb.deny_public_access ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-container.svg) ![](/img/advanced_settings/database-managed.svg)
 
 | Type    | Description                                                                                                                                                                                                     | Default Value |
 |---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | boolean | Deny public access to all MongoDB databases. When true, configure the CIDR range you want to allow within the associated `allowed_cidrs` parameter (default is "any IP"). <br />⚠️ Public access to managed databases will instantly be removed<br />⚠️ Public access to container databases will be removed only after a database redeployment | `false`       |
 
-#### database.mongodb.allowed_cidrs ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-managed.svg) 
+#### database.mongodb.allowed_cidrs ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-managed.svg)
 
 | Type    | Description                                                                                    | Default Value   |
 |---------|------------------------------------------------------------------------------------------------|-----------------|
 | boolean | List of allowed CIDRS. Valid only when [`database.mongodb.deny_public_access`](#databasemongodbdeny_public_access) is set to true    | `["0.0.0.0/0"]` |
 
-#### database.redis.deny_public_access ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-container.svg) ![](/img/advanced_settings/database-managed.svg) 
+#### database.redis.deny_public_access ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-container.svg) ![](/img/advanced_settings/database-managed.svg)
 
 | Type    | Description                                                                                            | Default Value |
 |---------|--------------------------------------------------------------------------------------------------------|---------------|
 | boolean | Deny public access to all Redis databases. When true, configure the CIDR range you want to allow within the associated `allowed_cidrs` parameter (default is "anyone").<br />⚠️ Public access to managed databases will instantly be removed<br />⚠️ Public access to container databases will be removed only after a database redeployment | `false`       |
 
-#### database.redis.allowed_cidrs ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-managed.svg) 
+#### database.redis.allowed_cidrs ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-managed.svg)
 
 | Type    | Description                                                                                    | Default Value   |
 |---------|------------------------------------------------------------------------------------------------|-----------------|
@@ -192,13 +192,13 @@ Below is the list of advanced settings currently available for clusters.
 
 | Type    | Description                                                                 | Default Value |
 |---------|-----------------------------------------------------------------------------|---------------|
-| boolean  | Enable IAM admin group sync [IAM permissions setup][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account]. <br />⚠️ [`aws.iam.admin_group`](#awsiamadmin_group) should be set. | `true`        |
+| boolean  | Enable IAM admin group sync [IAM permissions setup][docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.quickstart#attach-aws-credentials]. <br />⚠️ [`aws.iam.admin_group`](#awsiamadmin_group) should be set. | `true`        |
 
 #### aws.iam.admin_group ![](/img/advanced_settings/aws.svg)
 
 | Type    | Description                                                                 | Default Value |
 |---------|-----------------------------------------------------------------------------|---------------|
-| string  | Allows you to specify the IAM group name associated with the Qovery user in the AWS console during the [IAM permissions setup][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account] to be able to connect to the Kubernetes cluster | `Admins`        |
+| string  | Allows you to specify the IAM group name associated with the Qovery user in the AWS console during the [IAM permissions setup][docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.quickstart#attach-aws-credentials] to be able to connect to the Kubernetes cluster | `Admins`        |
 
 #### aws.iam.enable_sso ![](/img/advanced_settings/aws.svg)
 
@@ -220,6 +220,6 @@ Below is the list of advanced settings currently available for clusters.
 | string  | Specify the [IMDS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) version you want to use. Possible values are `required` (IMDS v2 only) and `optional` (IMDS v1 and V2) | `optional`    |
 
 
-[docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account]: /docs/using-qovery/configuration/cloud-service-provider/amazon-web-services/#connect-your-aws-account
+[docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.quickstart#attach-aws-credentials]: /docs/getting-started/install-qovery/aws/cluster-managed-by-qovery/quickstart/#attach-aws-credentials
 [docs.using-qovery.deployment.image-mirroring]: /docs/using-qovery/deployment/image-mirroring/
 [guides.tutorial.how-to-activate-sso-to-connect-to-your-eks-cluster]: /guides/tutorial/how-to-activate-sso-to-connect-to-your-eks-cluster/

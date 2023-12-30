@@ -8,7 +8,88 @@ module.exports = {
         <%= metadata.links.fetch_id("docs.what-is-qovery").to_json %>,
         <%= metadata.links.fetch_id("docs.how-qovery-works").to_json %>,
         <%= metadata.links.fetch_id("docs.basic-concepts").to_json %>,
-        <%= metadata.links.fetch_id("docs.install-qovery").to_json %>,
+        {
+          type: 'category',
+          label: 'Install Qovery',
+          items: [
+            <%= metadata.links.fetch_id("docs.getting-started.install-qovery").to_json %>,
+            {
+              type: 'category',
+              label: 'AWS',
+              items: [
+                <%= metadata.links.fetch_id("docs.getting-started.install-qovery.aws").to_json %>,
+                {
+                  type: 'category',
+                  label: 'Cluster Managed By Qovery',
+                  items: [
+                    <%= metadata.links.fetch_id("docs.getting-started.install-qovery.aws.cluster-managed-by-qovery").to_json %>,
+                    <%= metadata.links.fetch_id("docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.quickstart").to_json %>,
+                    <%= metadata.links.fetch_id("docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.create-credentials").to_json %>,
+                    <%= metadata.links.fetch_id("docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.infrastructure").to_json %>,
+                    <%= metadata.links.fetch_id("docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.faq").to_json %>,
+                  ]
+                },
+                <%= metadata.links.fetch_id("docs.getting-started.install-qovery.aws.self-managed-cluster").to_json %>,
+              ]
+            },
+            {
+              type: 'category',
+              label: 'GCP',
+              items: [
+                <%= metadata.links.fetch_id("docs.getting-started.install-qovery.gcp").to_json %>,
+                {
+                  type: 'category',
+                  label: 'Cluster Managed By Qovery',
+                  items: [
+                    <%= metadata.links.fetch_id("docs.getting-started.install-qovery.gcp.cluster-managed-by-qovery").to_json %>,
+                    <%= metadata.links.fetch_id("docs.getting-started.install-qovery.gcp.cluster-managed-by-qovery.quickstart").to_json %>,
+                  ]
+                },
+                <%= metadata.links.fetch_id("docs.getting-started.install-qovery.gcp.self-managed-cluster").to_json %>,
+              ]
+            },
+            {
+              type: 'category',
+              label: 'Scaleway',
+              items: [
+                <%= metadata.links.fetch_id("docs.getting-started.install-qovery.scaleway").to_json %>,
+                {
+                  type: 'category',
+                  label: 'Cluster Managed By Qovery',
+                  items: [
+                    <%= metadata.links.fetch_id("docs.getting-started.install-qovery.scaleway.cluster-managed-by-qovery").to_json %>,
+                    <%= metadata.links.fetch_id("docs.getting-started.install-qovery.scaleway.cluster-managed-by-qovery.quickstart").to_json %>,
+                  ]
+                },
+                <%= metadata.links.fetch_id("docs.getting-started.install-qovery.scaleway.self-managed-cluster").to_json %>,
+              ]
+            },
+            {
+              type: 'category',
+              label: 'Azure',
+              items: [
+                <%= metadata.links.fetch_id("docs.getting-started.install-qovery.azure").to_json %>,
+                {
+                  type: 'category',
+                  label: 'Cluster Managed By Qovery',
+                  items: [
+                    <%= metadata.links.fetch_id("docs.getting-started.install-qovery.azure.cluster-managed-by-qovery").to_json %>,
+                    <%= metadata.links.fetch_id("docs.getting-started.install-qovery.azure.cluster-managed-by-qovery.quickstart").to_json %>,
+                  ]
+                },
+                <%= metadata.links.fetch_id("docs.getting-started.install-qovery.azure.self-managed-cluster").to_json %>,
+              ]
+            },
+            {
+              type: 'category',
+              label: 'Kubernetes',
+              items: [
+                <%= metadata.links.fetch_id("docs.getting-started.install-qovery.kubernetes").to_json %>,
+                <%= metadata.links.fetch_id("docs.getting-started.install-qovery.kubernetes.quickstart").to_json %>,
+              ]
+            },
+          ],
+        },
         <%= metadata.links.fetch_id("docs.deploy-my-app").to_json %>,
         <%= metadata.links.fetch_id("docs.whats-next").to_json %>,
       ],
@@ -90,26 +171,6 @@ module.exports = {
               ],
             },
             <%= metadata.links.fetch_id("docs.using-qovery.configuration.clusters").to_json %>,
-            {
-              type: 'category',
-              label: 'Cloud Service Provider',
-              items: [
-                <%= metadata.links.fetch_id("docs.using-qovery.configuration.cloud-service-provider").to_json %>,
-                <%= metadata.links.fetch_id("docs.using-qovery.configuration.cloud-service-provider.amazon-web-services").to_json %>,
-                <%= metadata.links.fetch_id("docs.using-qovery.configuration.cloud-service-provider.google-cloud-platform").to_json %>,
-                <%= metadata.links.fetch_id("docs.using-qovery.configuration.cloud-service-provider.microsoft-azure").to_json %>,
-                <%= metadata.links.fetch_id("docs.using-qovery.configuration.cloud-service-provider.scaleway").to_json %>,
-                <%= metadata.links.fetch_id("docs.using-qovery.configuration.cloud-service-provider.other-csps").to_json %>,
-              ],
-            },
-            {
-              type: 'category',
-              label: 'Provider',
-              items: [
-                <%= metadata.links.fetch_id("docs.using-qovery.configuration.provider").to_json %>,
-                <%= metadata.links.fetch_id("docs.using-qovery.configuration.provider.kubernetes").to_json %>,
-              ],
-            },
             <%= metadata.links.fetch_id("docs.using-qovery.configuration.cluster-advanced-settings").to_json %>,
             <%= metadata.links.fetch_id("docs.using-qovery.configuration.project").to_json %>,
             <%= metadata.links.fetch_id("docs.using-qovery.configuration.environment").to_json %>,

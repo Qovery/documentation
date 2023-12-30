@@ -8,7 +8,88 @@ module.exports = {
         "getting-started/what-is-qovery",
         "getting-started/how-qovery-works",
         "getting-started/basic-concepts",
-        "getting-started/install-qovery",
+        {
+          type: 'category',
+          label: 'Install Qovery',
+          items: [
+            "getting-started/install-qovery",
+            {
+              type: 'category',
+              label: 'AWS',
+              items: [
+                "getting-started/install-qovery/aws",
+                {
+                  type: 'category',
+                  label: 'Cluster Managed By Qovery',
+                  items: [
+                    "getting-started/install-qovery/aws/cluster-managed-by-qovery",
+                    "getting-started/install-qovery/aws/cluster-managed-by-qovery/quickstart",
+                    "getting-started/install-qovery/aws/cluster-managed-by-qovery/create-credentials",
+                    "getting-started/install-qovery/aws/cluster-managed-by-qovery/infrastructure",
+                    "getting-started/install-qovery/aws/cluster-managed-by-qovery/faq",
+                  ]
+                },
+                "getting-started/install-qovery/aws/self-managed-cluster",
+              ]
+            },
+            {
+              type: 'category',
+              label: 'GCP',
+              items: [
+                "getting-started/install-qovery/gcp",
+                {
+                  type: 'category',
+                  label: 'Cluster Managed By Qovery',
+                  items: [
+                    "getting-started/install-qovery/gcp/cluster-managed-by-qovery",
+                    "getting-started/install-qovery/gcp/cluster-managed-by-qovery/quickstart",
+                  ]
+                },
+                "getting-started/install-qovery/gcp/self-managed-cluster",
+              ]
+            },
+            {
+              type: 'category',
+              label: 'Scaleway',
+              items: [
+                "getting-started/install-qovery/scaleway",
+                {
+                  type: 'category',
+                  label: 'Cluster Managed By Qovery',
+                  items: [
+                    "getting-started/install-qovery/scaleway/cluster-managed-by-qovery",
+                    "getting-started/install-qovery/scaleway/cluster-managed-by-qovery/quickstart",
+                  ]
+                },
+                "getting-started/install-qovery/scaleway/self-managed-cluster",
+              ]
+            },
+            {
+              type: 'category',
+              label: 'Azure',
+              items: [
+                "getting-started/install-qovery/azure",
+                {
+                  type: 'category',
+                  label: 'Cluster Managed By Qovery',
+                  items: [
+                    "getting-started/install-qovery/azure/cluster-managed-by-qovery",
+                    "getting-started/install-qovery/azure/cluster-managed-by-qovery/quickstart",
+                  ]
+                },
+                "getting-started/install-qovery/azure/self-managed-cluster",
+              ]
+            },
+            {
+              type: 'category',
+              label: 'Kubernetes',
+              items: [
+                "getting-started/install-qovery/kubernetes",
+                "getting-started/install-qovery/kubernetes/quickstart",
+              ]
+            },
+          ],
+        },
         "getting-started/deploy-my-app",
         "getting-started/whats-next",
       ],
@@ -90,26 +171,6 @@ module.exports = {
               ],
             },
             "using-qovery/configuration/clusters",
-            {
-              type: 'category',
-              label: 'Cloud Service Provider',
-              items: [
-                "using-qovery/configuration/cloud-service-provider",
-                "using-qovery/configuration/cloud-service-provider/amazon-web-services",
-                "using-qovery/configuration/cloud-service-provider/google-cloud-platform",
-                "using-qovery/configuration/cloud-service-provider/microsoft-azure",
-                "using-qovery/configuration/cloud-service-provider/scaleway",
-                "using-qovery/configuration/cloud-service-provider/other-csps",
-              ],
-            },
-            {
-              type: 'category',
-              label: 'Provider',
-              items: [
-                "using-qovery/configuration/provider",
-                "using-qovery/configuration/provider/kubernetes",
-              ],
-            },
             "using-qovery/configuration/cluster-advanced-settings",
             "using-qovery/configuration/project",
             "using-qovery/configuration/environment",

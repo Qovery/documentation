@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-07-09"
+last_modified_on: "2023-12-30"
 $schema: "/.meta/.schemas/guides.json"
 title: Zero to Hero - How to deploy your apps on AWS in 30 minutes
 description: Step-by-step guide on how to deploy your apps on AWS in 30 minutes. No AWS knowledge required.
@@ -50,7 +50,7 @@ Let's start!
 
 <Alert type="info">
 
-Follow [this guide][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account] to create your AWS credentials
+Follow [this guide][docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.quickstart#attach-aws-credentials] to create your AWS credentials
 
 </Alert>
 
@@ -74,11 +74,11 @@ Before creating an AWS account, I'd recommend contacting AWS to see if you are e
 
 <Alert type="info">
 
-Follow [this guide][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account] to create your AWS credentials
+Follow [this guide][docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.quickstart#attach-aws-credentials] to create your AWS credentials
 
 </Alert>
 
-To install Qovery on your AWS account, the `secret access key` and `access key id` are required. Here is a comprehensive [step-by-step guide][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account] on how to generate your `secret access key` and `access key id`. If you already have those keys, then you can go to the next point.
+To install Qovery on your AWS account, the `secret access key` and `access key id` are required. Here is a comprehensive [step-by-step guide][docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.quickstart#attach-aws-credentials] on how to generate your `secret access key` and `access key id`. If you already have those keys, then you can go to the next point.
 
 ## Configure Qovery
 
@@ -128,7 +128,7 @@ Choose a region close to where your users will use your applications to have bet
   <img src="/img/organization_settings_create_cluster.jpg" alt="Create a cluster" />
 </p>
 
-3/ Set your AWS credentials. (Check out [this guide][docs.using-qovery.configuration.cloud-service-provider.amazon-web-services] if you have no AWS credentials).
+3/ Set your AWS credentials. (Check out [this guide][docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.quickstart] if you have no AWS credentials).
 
 <p align="center">
   <img src="/img/organization_settings_add_credentials.jpg" alt="Set your cloud credentials" />
@@ -183,8 +183,8 @@ Once Qovery is installed on your AWS account, you have the possibility to deploy
 <Jump to="/guides/getting-started/deploy-your-first-application">Deploy your first application</Jump>
 
 
-[docs.using-qovery.configuration.cloud-service-provider.amazon-web-services#connect-your-aws-account]: /docs/using-qovery/configuration/cloud-service-provider/amazon-web-services/#connect-your-aws-account
-[docs.using-qovery.configuration.cloud-service-provider.amazon-web-services]: /docs/using-qovery/configuration/cloud-service-provider/amazon-web-services/
+[docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.quickstart#attach-aws-credentials]: /docs/getting-started/install-qovery/aws/cluster-managed-by-qovery/quickstart/#attach-aws-credentials
+[docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.quickstart]: /docs/getting-started/install-qovery/aws/cluster-managed-by-qovery/quickstart/
 [docs.using-qovery.configuration.organization]: /docs/using-qovery/configuration/organization/
 [guides.getting-started.deploy-your-first-application]: /guides/getting-started/deploy-your-first-application/
 [guides.getting-started]: /guides/getting-started/

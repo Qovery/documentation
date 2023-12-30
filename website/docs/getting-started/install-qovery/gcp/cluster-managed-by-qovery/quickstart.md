@@ -10,7 +10,7 @@ import Assumptions from '@site/src/components/Assumptions';
 
 <Alert type="info">
 
-Please refer to [this page][docs.using-qovery.configuration.provider.kubernetes] if you want to install Qovery on your own Kubernetes cluster (BYOK).
+Please refer to [this page][docs.getting-started.install-qovery.kubernetes.quickstart] if you want to install Qovery on your own Kubernetes cluster (BYOK).
 
 </Alert>
 
@@ -21,7 +21,7 @@ Qovery lets you quickly deploy applications to your [GCP (GCP)][urls.gcp] accoun
 
      To make changes please edit the template located at:
 
-     website/docs/using-qovery/configuration/cloud-service-provider/google-cloud-platform.md.erb
+     website/docs/getting-started/install-qovery/gcp/cluster-managed-by-qovery/quickstart.md.erb
 -->
 
 ## Getting started
@@ -114,8 +114,8 @@ To delete Qovery from your GCP account you must be the owner of the Organization
 Once your GCP account removed from Qovery, everything configured (VPC, Kubernetes, databases, ...) by Qovery will be deleted forever.
 
 
+[docs.getting-started.install-qovery.kubernetes.quickstart]: /docs/getting-started/install-qovery/kubernetes/quickstart/
 [docs.using-qovery.configuration.clusters#creating-a-cluster]: /docs/using-qovery/configuration/clusters/#creating-a-cluster
 [docs.using-qovery.configuration.clusters#deleting-a-cluster]: /docs/using-qovery/configuration/clusters/#deleting-a-cluster
 [docs.using-qovery.configuration.organization]: /docs/using-qovery/configuration/organization/
-[docs.using-qovery.configuration.provider.kubernetes]: /docs/using-qovery/configuration/provider/kubernetes/
 [urls.gcp]: https://cloud.google.com

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-06-05"
+last_modified_on: "2023-12-29"
 $schema: "/.meta/.schemas/guides.json"
 title: Install Qovery on your Scaleway account
 description: Learn how to install Qovery on your Scaleway account
@@ -61,11 +61,11 @@ Before creating a Scaleway account, I'd recommend contacting Scaleway to see if 
 
 <Alert type="info">
 
-Follow [this guide][docs.using-qovery.configuration.cloud-service-provider.scaleway] to create your Scaleway credentials
+Follow [this guide][docs.getting-started.install-qovery.scaleway.cluster-managed-by-qovery.quickstart] to create your Scaleway credentials
 
 </Alert>
 
-To install Qovery on your Scaleway account, the `project id`, `secret access key` and `access key id` are required. Here is a comprehensive [step-by-step guide][docs.using-qovery.configuration.cloud-service-provider.scaleway] on how to generate your `secret access key` and `access key id`. If you already have those keys, then you can go to the next point.
+To install Qovery on your Scaleway account, the `project id`, `secret access key` and `access key id` are required. Here is a comprehensive [step-by-step guide][docs.getting-started.install-qovery.scaleway.cluster-managed-by-qovery.quickstart] on how to generate your `secret access key` and `access key id`. If you already have those keys, then you can go to the next point.
 
 ## Configure Qovery
 
@@ -115,7 +115,7 @@ Choose a region close to where your users will use your applications to have bet
   <img src="/img/organization_settings_create_cluster.jpg" alt="Create a cluster" />
 </p>
 
-3/ Set your Scaleway credentials. (Check out [this guide][docs.using-qovery.configuration.cloud-service-provider.scaleway] if you have no Scaleway credentials).
+3/ Set your Scaleway credentials. (Check out [this guide][docs.getting-started.install-qovery.scaleway.cluster-managed-by-qovery.quickstart] if you have no Scaleway credentials).
 
 <p align="center">
   <img src="/img/organization_settings_add_credentials.jpg" alt="Set your cloud credentials" />
@@ -157,7 +157,7 @@ Once Qovery is installed on your Scaleway account, you have the possibility to d
 <Jump to="/guides/getting-started/deploy-your-first-application">Deploy your first application</Jump>
 
 
-[docs.using-qovery.configuration.cloud-service-provider.scaleway]: /docs/using-qovery/configuration/cloud-service-provider/scaleway/
+[docs.getting-started.install-qovery.scaleway.cluster-managed-by-qovery.quickstart]: /docs/getting-started/install-qovery/scaleway/cluster-managed-by-qovery/quickstart/
 [docs.using-qovery.configuration.organization]: /docs/using-qovery/configuration/organization/
 [guides.getting-started.deploy-your-first-application]: /guides/getting-started/deploy-your-first-application/
 [guides.getting-started]: /guides/getting-started/

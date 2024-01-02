@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-30"
+last_modified_on: "2024-01-02"
 title: "Quickstart"
 description: "Learn how to quickly install Qovery on your Google Cloud Platform (GCP) account"
 ---
@@ -32,6 +32,14 @@ Install Qovery on your GCP account in less than 20 minutes. Qovery will create a
 -->
 
 ## Create a Kubernetes cluster
+
+<Alert type="warning">
+
+Before creating your cluster, ensure that you have at least **4 CPUS** and **8 GB of memory** available in your [GCP quotas](https://cloud.google.com/docs/quota).
+
+These quotas can be edited by yourself or by contacting GCP support.
+
+</Alert>
 
 Now you can create your Kubernetes cluster. Follow this [guide][docs.using-qovery.configuration.clusters#creating-a-cluster] to create your Kubernetes cluster.
 

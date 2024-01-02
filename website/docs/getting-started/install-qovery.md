@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-29"
+last_modified_on: "2024-01-02"
 title: "Install Qovery"
 description: "How to install Qovery"
 sidebar_label: hidden
@@ -12,7 +12,7 @@ import Alert from '@site/src/components/Alert';
 
 <Alert type="warning">
 
-Read [this section of the page](#managed-cluster-vs-self-managed---what-to-choose) if you are new to Qovery.
+Read [this section of the page](#managed-cluster-by-qovery-vs-self-managed---what-to-choose) if you are new to Qovery.
 
 </Alert>
 
@@ -21,7 +21,6 @@ Read [this section of the page](#managed-cluster-vs-self-managed---what-to-choos
 <Jump to="/docs/getting-started/install-qovery/scaleway">Scaleway (SCW)</Jump>
 <Jump to="/docs/getting-started/install-qovery/azure">Microsoft Azure</Jump>
 <Jump to="/docs/getting-started/install-qovery/kubernetes">Kubernetes</Jump>
-<Jump to="/docs/getting-started/install-qovery/other-csps">Others</Jump>
 
 ---
 

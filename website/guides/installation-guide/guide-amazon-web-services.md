@@ -1,8 +1,9 @@
 ---
-last_modified_on: "2023-12-30"
+last_modified_on: "2024-01-02"
 $schema: "/.meta/.schemas/guides.json"
 title: Install Qovery on your Amazon Web Services account
 description: Learn how to install Qovery on your Amazon Web Services (AWS) account
+series_position: 1
 author_github: https://github.com/evoxmusic
 tags: ["type: guide", "installation_guide: aws"]
 ---

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-30"
+last_modified_on: "2024-01-02"
 title: "Create Credentials"
 description: "Generate your GCP credentials to connect your GCP account to Qovery"
 ---
@@ -54,9 +54,8 @@ Open the embedded Google shell
 Run the following command in the Google Shell to create the service account and generate the json key:
 
 ```bash
-wget https://hub.qovery.com/files/create_credentials_gcp.sh && \
-chmod +x create_credentials_gcp.sh && \
-./create_credentials_gcp.sh $GOOGLE_CLOUD_PROJECT qovery-service-account
+curl https://hub.qovery.com/files/create_credentials_gcp.sh | \
+bash -s -- $GOOGLE_CLOUD_PROJECT qovery-service-account
 ```
 
 <Alert type="info">

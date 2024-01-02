@@ -1,8 +1,9 @@
 ---
-last_modified_on: "2023-12-30"
+last_modified_on: "2024-01-02"
 $schema: "/.meta/.schemas/guides.json"
 title: Install Qovery on your Microsoft Azure account
 description: Learn how to install Qovery on your Microsoft Azure account
+series_position: 5
 author_github: https://github.com/evoxmusic
 tags: ["type: guide", "installation_guide: azure"]
 ---

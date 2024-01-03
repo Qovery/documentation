@@ -1,0 +1,104 @@
+---
+$schema: "/.meta/.schemas/guides.json"
+title: Monitor and reduce Kubernetes spend with Kubecost
+description: How to deploy Kubecost with Qovery
+author_github: https://github.com/jul-dan
+tags: ["type: tutorial", "technology: qovery"]
+hide_pagination: true
+---
+
+import Alert from '@site/src/components/Alert';
+import Assumptions from '@site/src/components/Assumptions';
+import Jump from '@site/src/components/Jump';
+
+<Assumptions name="guide">
+
+- You have a Qovery cluster running
+
+</Assumptions>
+
+## Goal
+
+In this tutorial, we will install Kubecost on a Qovery cluster to monitor the Kubernetes costs
+
+<Steps headingDepth={3}>  
+
+<ol>
+
+<li>
+
+#### Add the Kubecost helm repository
+
+Add the Kubecost helm repository in your Qovery settings by following [this documentation][docs.using-qovery.configuration.organization.helm-repository] with these values:
+
+* Repository name: `Kubecost`
+* Kind: `HTTPS`
+* Repository URL: `https://kubecost.github.io/cost-analyzer/`
+
+</li>
+
+<li>
+
+#### Deploy the Kubecost helm chart
+
+Deploy the Kubecost helm chart in your Qovery environment by following [this documentation][docs.using-qovery.configuration.helm] with these values:
+
+* General:
+  * Application name: `Kubecost`
+  * Source:
+    * Helm source: `Helm repository`
+    * Repository: `Kubecost` (the name given during the kubecost helm repository adding)
+    * Chart name: `cost-analyzer`
+    * Version: `1.108.0`
+  * Allow cluster-wide resources :heavy_check_mark:
+* Values
+  * Values override as file:
+    * File source: `Raw YAML`
+    * Raw YAML:
+```yaml
+global:
+  podAnnotations:
+    qovery.annotations.service
+  additionalLabels:
+    qovery.labels.service
+```
+
+Then click on `Create and Deploy`
+
+</li>
+<li>
+
+#### Expose Kubecost
+
+Check the cost-analyzer service name in the deployment logs, example:  `helm-z325f0565-kubecost-cost-analyzer`
+
+<p align="center">
+  <img src="/img/monitor-and-reduce-kubernetes-spend-with-kubecost/service-name.png" alt="Service name" />
+</p>
+
+Go in your helm chart settings under the `Networking` section and add a new port by clicking on `Add port`, and set these values:
+* Service name: `helm-z325f0565-kubecost-cost-analyzer` (the service name taken from the deployment logs)
+* Service port: `9090`
+* Select protocol: `HTTP`
+* Port name: You can customize it or let the default port name.
+
+<p align="center">
+  <img src="/img/monitor-and-reduce-kubernetes-spend-with-kubecost/add-port.png" alt="Add port" />
+</p>
+
+Then click on Create and redeploy your helm in Qovery.
+
+A URL will be generated to access the Kubecost frontend application:
+
+<p align="center">
+  <img src="/img/monitor-and-reduce-kubernetes-spend-with-kubecost/link.png" alt="Link" />
+</p>
+
+</li>
+
+</ol>
+</Steps>
+
+## Conclusion 
+
+You now have Kubecost running on your Qovery cluster. You can check their `Getting Started` guide to familiarize yourself with the product: https://docs.kubecost.com/#getting-started.

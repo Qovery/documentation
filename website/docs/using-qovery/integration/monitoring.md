@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-05-20"
+last_modified_on: "2024-01-03"
 title: "Monitoring"
 description: "Learn how to configure your Monitoring provider in Qovery"
 sidebar_label: hidden
@@ -28,9 +28,9 @@ Basically, Qovery relies on Kubernetes to run your apps. Meaning, Qovery will su
 
 If your monitoring platform provides a Helm Chart, then you can install it:
 
-### By using the Qovery Lifecycle Jobs
+### By deploying the helm chart with Qovery
 
-1. Follow [this guide][guides.tutorial.how-to-deploy-helm-charts] to deploy your Helm Chart with the Qovery Lifecycle Jobs.
+1. Follow [this guide][docs.using-qovery.configuration.helm] to deploy your Helm Chart with Qovery.
 
 ### By using kubectl
 
@@ -48,7 +48,7 @@ Helm is a Kubernetes package manager.
 Feel free to open a thread on our [Community Forum][urls.qovery_forum]. We will be happy to help you.
 
 
+[docs.using-qovery.configuration.helm]: /docs/using-qovery/configuration/helm/
 [guides.tutorial.how-to-connect-to-your-eks-cluster-with-kubectl]: /guides/tutorial/how-to-connect-to-your-eks-cluster-with-kubectl/
-[guides.tutorial.how-to-deploy-helm-charts]: /guides/tutorial/how-to-deploy-helm-charts/
 [urls.helm]: https://helm.sh
 [urls.qovery_forum]: https://discuss.qovery.com/

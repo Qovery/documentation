@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-05-20"
+last_modified_on: "2024-01-03"
 title: "New Relic"
 description: "Learn how to configure and plug your New Relic account"
 ---
@@ -20,9 +20,9 @@ NewRelic is a recommended product to monitor and track down your application per
 
 To install NewRelic on Qovery, you have 2 choices:
 
-### By using the Qovery Lifecycle Jobs
+### By deploying the helm chart with Qovery
 
-1. Follow [this guide][guides.tutorial.how-to-deploy-helm-charts] to deploy your NewRelic Helm Chart with the Qovery Lifecycle Jobs.
+1. Follow [this guide][docs.using-qovery.configuration.helm] to deploy your NewRelic Helm Chart with Qovery.
 
 ### By using kubectl
 
@@ -36,5 +36,5 @@ Helm is a Kubernetes package manager. NewRelic provides an official helm chart t
 </Alert>
 
 
+[docs.using-qovery.configuration.helm]: /docs/using-qovery/configuration/helm/
 [guides.tutorial.how-to-connect-to-your-eks-cluster-with-kubectl]: /guides/tutorial/how-to-connect-to-your-eks-cluster-with-kubectl/
-[guides.tutorial.how-to-deploy-helm-charts]: /guides/tutorial/how-to-deploy-helm-charts/

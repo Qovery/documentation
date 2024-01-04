@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-01-03"
+last_modified_on: "2024-01-04"
 $schema: "/.meta/.schemas/guides.json"
 title: Monitor and reduce Kubernetes spend with Kubecost
 description: How to deploy Kubecost with Qovery
@@ -40,7 +40,7 @@ In this tutorial, we will install Kubecost on a Qovery cluster to monitor the Ku
 
 #### Add the Kubecost helm repository
 
-Add the Kubecost helm repository in your Qovery settings by following [this documentation][docs.using-qovery.configuration.organization.helm-repository]
+Add the Kubecost helm repository in your Qovery settings by following [this documentation][docs.using-qovery.configuration.organization.helm-repository] with these values:
 
 * Repository name: `Kubecost`
 * Kind: `HTTPS`
@@ -52,27 +52,44 @@ Add the Kubecost helm repository in your Qovery settings by following [this docu
 
 #### Deploy the Kubecost helm chart
 
+<Alert type="info">
+
+If have a Kubecost token, first create a Qovery environment variable: 
+* variable: `KUBECOST_TOKEN`
+* value: `<your_kubecost_token>`
+* scope: `Environment`
+* Secret variable :heavy_check_mark:
+
+</Alert>
+
 Deploy the Kubecost helm chart in your Qovery environment by following [this documentation][docs.using-qovery.configuration.helm] with these values:
 
 * General:
   * Application name: `Kubecost`
   * Source:
     * Helm source: `Helm repository`
-    * Repository: `Kubecost` (the name given during the kubecost helm repository adding)
+    * Repository: `Kubecost` (the name given during the kubecost helm repository added in the previous step)
     * Chart name: `cost-analyzer`
-    * Version: `1.108.0`
+    * Version: `1.108.0` (this guide works with the version 1.108.0 and that needs to be adapted if you use another version)
   * Allow cluster-wide resources :heavy_check_mark:
 * Values
   * Values override as file:
     * File source: `Raw YAML`
     * Raw YAML:
 ```yaml
+kubecostToken: qovery.env.KUBECOST_TOKEN #Used only if you have a Kubecost Token
+
 global:
   podAnnotations:
     qovery.annotations.service
   additionalLabels:
     qovery.labels.service
 ```
+<Alert type="info">
+
+These are necessary to get all Qovery features, check [this documentation][docs.using-qovery.configuration.helm] for more information.
+
+</Alert>
 
 Then click on `Create and Deploy`
 

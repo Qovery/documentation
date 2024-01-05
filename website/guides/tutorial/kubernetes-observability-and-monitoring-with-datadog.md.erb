@@ -105,6 +105,9 @@ clusterChecksRunner:
   additionalLabels:
     qovery.labels.service
 ```
+
+There are many other values you can set and modify the Datadog agent behaviour. For advanced usage, check: https://github.com/Datadog/helm-charts/blob/main/charts/datadog/values.yaml
+
 Now get to the last step and just `Create` the service on Qovery.
 
 </li>
@@ -127,12 +130,6 @@ In the previous step we have assigned the macro `qovery.env.DD_API_KEY` to the A
 </p> 
 
 If you need more information on how to manage your environment variables, have a look at [this documentation][docs.using-qovery.configuration.environment-variable]
-  
-
-- Replace `<CLUSTER NAME>` with a meaningful name to identify your cluster.
-- Set the `site` value corresponding to the one you selected upon account creation (you can find the information under `1 > With Helm V3 > --set datadog.site=<YOUR SITE VALUE>`)
-
-There are many other values you can set. For advanced usage, check: https://github.com/Datadog/helm-charts/blob/main/charts/datadog/values.yaml
 
 </li>
 

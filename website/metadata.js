@@ -529,15 +529,6 @@ module.exports = {
           "title": "How to create an RDS instance through the AWS console"
         },
         {
-          "author_github": "https://github.com/deimosfr",
-          "description": null,
-          "id": "/tutorial/how-to-deploy-helm-charts",
-          "last_modified_on": null,
-          "path": "website/guides/tutorial/how-to-deploy-helm-charts.md",
-          "series_position": null,
-          "title": "How to deploy Helm charts"
-        },
-        {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
           "id": "/tutorial/how-to-deploy-a-rust-rest-api-application-on-aws-with-ease",
@@ -644,6 +635,15 @@ module.exports = {
           "path": "website/guides/tutorial/migrate-your-application-from-heroku-to-aws.md",
           "series_position": null,
           "title": "Migrate your application from Heroku to AWS"
+        },
+        {
+          "author_github": "https://github.com/jul-dan",
+          "description": null,
+          "id": "/tutorial/monitor-and-reduce-kubernetes-spend-with-kubecost",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/monitor-and-reduce-kubernetes-spend-with-kubecost.md",
+          "series_position": null,
+          "title": "Monitor and reduce Kubernetes spend with Kubecost"
         },
         {
           "author_github": "https://github.com/jul-dan",

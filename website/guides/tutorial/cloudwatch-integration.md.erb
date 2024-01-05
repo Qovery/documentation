@@ -80,18 +80,33 @@ Finish the user creation and keep credentials for the coming section.
 
 ## Helm
 
-Ensure you have the following elements before going ahead:
+We will use [AWS fluent-bit Helm Chart](https://artifacthub.io/packages/helm/aws/aws-for-fluent-bit) to setup logs streaming and deploy it with Qovery.
 
-1. Helm should be installed on your machine. If you don't have it, you can follow the [official documentation](https://helm.sh/docs/intro/install/).
-2. You need Kubeconfig configuration file and permissions to access the cluster. You can use the same documentation as kubectl to [get the kubeconfig file][guides.tutorial.how-to-connect-to-your-eks-cluster-with-kubectl].
+### Add the AWS EKS helm repository
 
-We will use [AWS fluent-bit Helm Chart](https://artifacthub.io/packages/helm/aws/aws-for-fluent-bit) to setup logs streaming:
+Add the AWS EKS helm repository in your Qovery settings by following [this documentation][docs.using-qovery.configuration.organization.helm-repository]
 
-```bash
-helm repo add eks https://aws.github.io/eks-charts
-```
+* Repository name: `eks`
+* Kind: `HTTPS`
+* Repository URL: `https://aws.github.io/eks-charts`
 
-Create on your workstation a `values.yaml` file to setup your custom configuration and adapt required fields:
+
+### Create and deploy the helm chart within Qovery 
+
+Create a helm service in the Qovery environment of your choice (preferrably within a dedicated Tooling project) by following [this documentation][docs.using-qovery.configuration.helm] and these values:
+
+* General:
+  * Application name: `fluent-bit`
+  * Source:
+    * Helm source: `Helm repository`
+    * Repository: `eks` (the name given during the AWS EKS helm repository added in the previous step)
+    * Chart name: `eks/aws-for-fluent-bit`
+    * Version: `0.1.21` (this is the version we used for this setup, update it based on the chosen version)
+    * Allow cluster-wide resources :heavy_check_mark:
+* Values
+  * Values override as file:
+  * File source: `Raw YAML`
+  * Raw YAML:
 
 ```yaml
 cloudWatch:
@@ -102,9 +117,9 @@ cloudWatch:
 
 env:
   - name: "AWS_ACCESS_KEY_ID"
-    value: "<your access key>"
+    value: qovery.env.AWS_ACCESS_KEY
   - name: "AWS_SECRET_ACCESS_KEY"
-    value: "<your secret access key>"
+    value: qovery.env.AWS_SECRET_ACCESS_KEY
 
 firehose:
   enabled: false
@@ -118,13 +133,31 @@ elasticsearch:
 
 You can take a look at additional configuration options on the [AWS provided chart](https://artifacthub.io/packages/helm/aws/aws-for-fluent-bit) 
 
-Then deploy fluent-bit with the following command:
+Now get to the last step and just `Create` the service on Qovery.
 
-```bash
-helm upgrade --install aws-for-fluent-bit -f values.yaml --namespace fluent-bit --create-namespace eks/aws-for-fluent-bit --version 0.1.21
-```
+### Store the AWS Secrets as Qovery secrets
 
-You should start seeing fluent-bit pods. Take a look at the logs to ensure there is no configuration issue.
+In the previous step we have assigned the macro `qovery.env.qovery.env.AWS_ACCESS_KEY` and `qovery.env.AWS_SECRET_ACCESS_KEY` to the AWS secrets. In this step we will create these secrets within the Qovery console.
+
+* Open the service overview of the created Datadog service
+* Enter the `Variables` section
+* Add a new Variable with:
+  * Variable = AWS_SECRET_ACCESS_KEY
+  * Value = <your_SECRET_ACCESS_KEY>
+  * Scope = Service (so that it is accessible only to this service)
+  * Secret variable :heavy_check_mark:
+* Add a new Variable with:
+  * Variable = AWS_ACCESS_KEY
+  * Value = <your_ACCESS_KEY>
+  * Scope = Service (so that it is accessible only to this service)
+  * Secret variable :heavy_check_mark:
+
+If you need more information on how to manage your environment variables, have a look at [this documentation][docs.using-qovery.configuration.environment-variable]
+
+### Deploy your chart
+
+Open the `Play` button and trigger the deployment of your chart.
+
 
 ## Cloudwatch usage
 

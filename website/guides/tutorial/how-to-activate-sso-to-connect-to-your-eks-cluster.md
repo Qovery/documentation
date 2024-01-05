@@ -223,7 +223,8 @@ Redeploy your cluster once advanced settings are saved.
 
 To connect to your EKS cluster you will need to set a context to `kubectl`. This is done with a `Kubeconfig` file.
 
-When installing a new cluster, Qovery stores it in an S3 bucket on your account. You can retrieve the Kubeconfig of your cluster directly from the Qovery interface by following [this procedure][docs.using-qovery.configuration.clusters#get-your-cluster-kubeconfig-file].
+When installing a new cluster, Qovery stores it in an S3 bucket on your account. You can retrieve the Kubeconfig of your cluster directly from the Qovery interface by following the procedure "Get your cluster kubeconfig file" [within this section][docs.using-qovery.configuration.clusters#performing-actions-on-your-clusters].
+
 
 </li>
 
@@ -262,6 +263,6 @@ This should give you the config map content. If not, something is not properly c
 You can access your Qovery clusters via your SSO directly.
 
 
-[docs.using-qovery.configuration.clusters#get-your-cluster-kubeconfig-file]: /docs/using-qovery/configuration/clusters/#get-your-cluster-kubeconfig-file
+[docs.using-qovery.configuration.clusters#performing-actions-on-your-clusters]: /docs/using-qovery/configuration/clusters/#performing-actions-on-your-clusters
 [guides.installation-guide.guide-amazon-web-services]: /guides/installation-guide/guide-amazon-web-services/
 [guides.tutorial.how-to-connect-to-your-eks-cluster-with-kubectl]: /guides/tutorial/how-to-connect-to-your-eks-cluster-with-kubectl/

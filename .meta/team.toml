@@ -137,3 +137,13 @@ name = "Julien Dan"
 bio = """\
 Julien is a Technical Product Manager at <a href=\"https://www.qovery.com\">Qovery</a>.\
 """
+
+[[team]]
+id = "acarranoqovery"
+avatar = "https://github.com/acarranoqovery.png"
+github = "https://github.com/acarranoqovery"
+keybase = "https://keybase.io/acarranoqovery"
+name = "Alessandro Carrano"
+bio = """\
+Alessandro is a Lead Product Manager at <a href=\"https://www.qovery.com\">Qovery</a>.\
+"""

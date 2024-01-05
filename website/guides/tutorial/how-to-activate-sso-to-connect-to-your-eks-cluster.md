@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-30"
+last_modified_on: "2024-01-05"
 $schema: "/.meta/.schemas/guides.json"
 title: How to activate SSO to connect to your EKS cluster
 description: How to activate SSO to connect to your EKS cluster
@@ -223,19 +223,7 @@ Redeploy your cluster once advanced settings are saved.
 
 To connect to your EKS cluster you will need to set a context to `kubectl`. This is done with a `Kubeconfig` file.
 
-When installing a new cluster, Qovery stores it in an S3 bucket on your account.
-
-Go to S3, find the Qovery bucket, and download the file. The bucket should be named something like `qovery-kubeconfigs-<cluster ID>.yaml`.
-
-Set the context for kubectl, run the following command:
-
-```bash
-export KUBECONFIG=<path to the kubeconfig file you downloaded>
-```
-
-<p align="center">
-  <img src="/img/how-to-activate-sso-to-connect-to-your-eks-cluster/11-get-cluster-kubeconfig.png" alt="AWS console - get Kubeconfig" />
-</p>
+When installing a new cluster, Qovery stores it in an S3 bucket on your account. You can retrieve the Kubeconfig of your cluster directly from the Qovery interface by following [this procedure][docs.using-qovery.configuration.clusters#get-your-cluster-kubeconfig-file].
 
 </li>
 
@@ -274,5 +262,6 @@ This should give you the config map content. If not, something is not properly c
 You can access your Qovery clusters via your SSO directly.
 
 
+[docs.using-qovery.configuration.clusters#get-your-cluster-kubeconfig-file]: /docs/using-qovery/configuration/clusters/#get-your-cluster-kubeconfig-file
 [guides.installation-guide.guide-amazon-web-services]: /guides/installation-guide/guide-amazon-web-services/
 [guides.tutorial.how-to-connect-to-your-eks-cluster-with-kubectl]: /guides/tutorial/how-to-connect-to-your-eks-cluster-with-kubectl/

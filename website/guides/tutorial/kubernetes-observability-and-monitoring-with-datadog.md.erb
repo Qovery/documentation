@@ -2,7 +2,7 @@
 $schema: "/.meta/.schemas/guides.json"
 title: Kubernetes observability and monitoring with Datadog
 description: How to integrate Datadog with Kubernetes on Qovery.
-author_github: https://github.com/l0ck3
+author_github: https://github.com/acarranoqovery
 tags: ["type: tutorial", "technology: qovery"]
 hide_pagination: true
 ---
@@ -17,12 +17,13 @@ Datadog is one of the leading platforms for monitoring and observability, and it
 <Assumptions name="guide">
 
 - You have a Qovery cluster running
-- You have access to your Kubernetes cluster through kubectl: [see how here][guides.tutorial.how-to-connect-to-your-eks-cluster-with-kubectl]
-- Helm v3 is installed on your machine: https://helm.sh/docs/intro/install/
+- You have a dedicated Qovery project and environment to deploy Datadog (example: Project=Tooling, Environment=Production)
+- You have a Datadog account
+- You have already created a [Datadog API Key](https://docs.datadoghq.com/account_management/api-app-keys/#api-keys)
 
 </Assumptions>
 
-## Goal
+## Installation
 
 In this tutorial, we will install the Datadog agent on a Qovery cluster to gather metrics about infrastructure and applications.
 
@@ -32,140 +33,137 @@ In this tutorial, we will install the Datadog agent on a Qovery cluster to gathe
 
 <li>
 
-#### Create a Datadog Account
+#### Add the Datadog helm repository
 
- The first step is to create an account on Datadog: https://www.datadoghq.com.
+Add the Datadog helm repository in your Qovery settings by following [this documentation][docs.using-qovery.configuration.organization.helm-repository]
 
- You will be prompted to enter some information. An important decision you have to make is which site to use. It will determine where your data get stored.
- 
- Warning: You can't migrate your data between regions, so chose carefully. More information here: https://docs.datadoghq.com/fr/getting_started/site/
-
-<p align="center">
-  <img src="/img/kubernetes-observability-and-monitoring-with-datadog/0.png" alt="Datadog - Console" />
-</p>    
-
-After signup, you will be redirected to a wizard. Fill-in the information until you get to step 3.
+* Repository name: `Datadog`
+* Kind: `HTTPS`
+* Repository URL: `https://helm.datadoghq.com`
 
 </li>
 
 <li>
 
-#### Prepare the agent Helm chart values
+#### Create the datadog service within Qovery 
 
-When you get to step 3, `Agent Setup`, select `Kubernetes` in the list.
+Create the Datadog helm service in the Qovery environment of your choice (preferrably within a dedicated Tooling project) by following [this documentation][docs.using-qovery.configuration.helm] and these values:
 
-<p align="center">
-  <img src="/img/kubernetes-observability-and-monitoring-with-datadog/1.png" alt="Datadog - Console" />
-</p>    
-
-This screen shows you all the information you need to install the agent.
-
-Create a `datadog-values.yaml` file with the following content:
+* General:
+  * Application name: `Datadog`
+  * Source:
+    * Helm source: `Helm repository`
+    * Repository: `Datadog` (the name given during the datadog helm repository added in the previous step)
+    * Chart name: `datadog`
+    * Version: `3.49.5` (this is the version we used for this setup, update it based on the chosen version)
+    * Allow cluster-wide resources :heavy_check_mark:
+* Values
+  * Values override as file:
+  * File source: `Raw YAML`
+  * Raw YAML:
 
 ```yaml
+# The following YAML contains the minimum configuration required to deploy the Datadog Agent
+# on your cluster. Update it accordingly to your needs
 datadog:
-  clusterName: qovery-dx-cluster
-
-  # datadog.site -- The site of the Datadog intake to send Agent data to
-  ## Set to 'datadoghq.eu' to send data to the EU site.
+  # here we use a Qovery secret to retrieve the Datadog API Key (See next step)
+  apiKey: qovery.env.DD_API_KEY
+  # Update the site depending on where you want to store your data in Datadog
   site: datadoghq.eu
+  # Update the cluster name with the name of your choice
+  clusterName: qoverycluster
 
-  # Export custom Kubernetes labels as tags
-  podLabelsAsTags:
-    "qovery.com/*": "%%label%%"
+# in the section below, we are adding Qovery macros in order to automatically add a set 
+# of labels and annotations to the deployed Pods/Deployments/services etc.. This is not 
+# mandatory to install Datadog itself but it allows you to fully benefit from the Qovery
+# functionalities (Display application logs, restart pods etc..). See the official Qovery
+# Helm documentation for more information.
+commonLabels: 
+  qovery.labels.service
 
-  logs:
-    enabled: true
-    containerCollectAll: true
-
-  # Set to false if you are not using APM.
-  apm:
-    enabled: true
-  
-  containerExcludeLogs: "kube_namespace:kube-system kube_namespace:qovery kube_namespace:cert-manager kube_namespace:nginx-ingress kube_namespace:logging kube_namespace:prometheus"
-
-# You can remove this part if you are not using APM.
-# Note that it it will be enabled for all your applications.
 clusterAgent:
-  admissionController:
-    enabled: true
-    mutateUnlabelled: true
+  deploymentAnnotations:
+    qovery.annotations.service
+  podAnnotations:
+    qovery.annotations.service
+  additionalLabels:
+    qovery.labels.service
+
+agents:
+  daemonsetAnnotations:
+    qovery.annotations.service
+  podAnnotations:
+    qovery.annotations.service
+  additionalLabels:
+    qovery.labels.service
+
+clusterChecksRunner:
+  deploymentAnnotations:
+    qovery.annotations.service
+  podAnnotations:
+    qovery.annotations.service
+  additionalLabels:
+    qovery.labels.service
 ```
 
-- Replace `<CLUSTER NAME>` with a meaningful name to identify your cluster.
-- Set the `site` value corresponding to the one you selected upon account creation (you can find the information under `1 > With Helm V3 > --set datadog.site=<YOUR SITE VALUE>`)
+There are many other values you can set and modify the Datadog agent behaviour. For advanced usage, check: https://github.com/Datadog/helm-charts/blob/main/charts/datadog/values.yaml
 
-There are many other values you can set. For advanced usage, check: https://github.com/Datadog/helm-charts/blob/main/charts/datadog/values.yaml
+Now get to the last step and just `Create` the service on Qovery.
 
 </li>
-
 <li>
 
-#### Install Datadog agent in your cluster
+#### Store the Datadog API Key as secret
 
-The Datadog agent is a program that will collect data from your cluster and forward it to Datadog. 
-We'll install it uning `Helm`.
+In the previous step we have assigned the macro `qovery.env.DD_API_KEY` to the API Key value. In this step we will create this secret within the Qovery console.
 
-First add the `datadog` Helm repository and update your local list:
-
-```bash
-helm repo add datadog https://helm.datadoghq.com
-helm repo update
-```
-
-Then we will install the agent in the `datadog` namespace:
-
-```bash
-helm install datadog-agent \ 
-  -n datadog --create-namespace \
-  -f <PATH TO datadog-values.yaml> \
-  --set datadog.apiKey='<API KEY>' \
-  datadog/datadog
-```
-
-- Edit the path to the `datadog-values.yaml` file you created
-- Replace `<API KEY>` with your actual API KEY. You can find it under `1 > With Helm V3 > --set datadog.apiKey=<API KEY>`
-
-</li>
-
-<li>
-
-#### Check the agent is running properly
-
-Wait for a minute then run the following command:
-
-```bash
-kubectl get pods -n datadog
-```
-
-If the installation was successful, you should see an output similar to this one: 
-
-```bash
-NAME                                                READY   STATUS    RESTARTS   AGE
-datadog-agent-2xhsv                                 3/3     Running   0          1m
-datadog-agent-cluster-agent-7f8bddd44-pwjnl         1/1     Running   0          1m
-datadog-agent-kube-state-metrics-577fcf6778-kc2gk   1/1     Running   0          1m
-datadog-agent-qfsl2                                 3/3     Running   0          1m
-datadog-agent-s5r5r                                 3/3     Running   0          1m
-``` 
-
-</li>
-
-<li>
-
-#### Finish Setup
-
-Once Datadog receives your data, you should be able to click `Next` on the wizard. You might need to refresh the page in some cases. It can take a couple minutes before your data is ready.
-
-You will then arrive on `Step 4`
+* Open the service overview of the created Datadog service
+* Enter the `Variables` section
+* Add a new Variable with:
+  * Variable = DD_API_KEY
+  * Value = <your_API_KEY>
+  * Scope = Service (so that it is accessible only to this service)
+  * Secret variable :heavy_check_mark:
 
 <p align="center">
-  <img src="/img/kubernetes-observability-and-monitoring-with-datadog/2.png" alt="Datadog - Console" />
-</p>     
+  <img src="/img/kubernetes-observability-and-monitoring-with-datadog/datadog-secret.png" alt="Datadog - API Key" />
+</p> 
 
-You can skip this part if you're not interested in monitoring your cloud account.
+If you need more information on how to manage your environment variables, have a look at [this documentation][docs.using-qovery.configuration.environment-variable]
 
-Finally, restart your applications if you are using APM.
+</li>
+
+<li>
+
+#### Deploy your chart
+
+Open the `Play` button and trigger the deployment of your chart (see point 1 in the picture below).
+
+<p align="center">
+  <img src="/img/kubernetes-observability-and-monitoring-with-datadog/deploy.png" alt="Datadog - Deploy" />
+</p> 
+
+You can follow the deployment and access the deployment logs by pressing the `Log` button (see point 2 in the picutre above).
+
+Once the deployment is completed, you should see the Datadog agent pods and their status directly within the Qovery console.
+
+<p align="center">
+  <img src="/img/kubernetes-observability-and-monitoring-with-datadog/datadog-pods.png" alt="Datadog - Pods" />
+</p> 
+
+You can also look at the Pod logs by pressing the `Log` button.
+
+</li>
+
+<li>
+
+#### Verify the setup on Datadog
+
+Access again your Datadog interface and access the Infrastructure > Containers > Kubernetes sections. You should now see the data coming from your Qovery cluster
+
+<p align="center">
+  <img src="/img/kubernetes-observability-and-monitoring-with-datadog/datadog-console.png" alt="Datadog - Console" />
+</p> 
 
 </li>
 

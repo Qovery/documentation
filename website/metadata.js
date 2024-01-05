@@ -610,7 +610,7 @@ module.exports = {
           "title": "Integrate your application logs to Cloudwatch"
         },
         {
-          "author_github": "https://github.com/l0ck3",
+          "author_github": "https://github.com/acarranoqovery",
           "description": null,
           "id": "/tutorial/kubernetes-observability-and-monitoring-with-datadog",
           "last_modified_on": null,
@@ -940,6 +940,14 @@ module.exports = {
       "id": "jul-dan",
       "keybase": "https://keybase.io/jul-dan",
       "name": "Julien Dan"
+    },
+    {
+      "avatar": "https://github.com/acarranoqovery.png",
+      "bio": "Alessandro is a Lead Product Manager at <a href=\"https://www.qovery.com\">Qovery</a>.",
+      "github": "https://github.com/acarranoqovery",
+      "id": "acarranoqovery",
+      "keybase": "https://keybase.io/acarranoqovery",
+      "name": "Alessandro Carrano"
     }
   ],
   "technologies": [

@@ -619,7 +619,7 @@ module.exports = {
           "title": "Integrate your application logs to Cloudwatch"
         },
         {
-          "author_github": "https://github.com/jul-dan",
+          "author_github": "https://github.com/acarranoqovery",
           "description": null,
           "id": "/tutorial/kubernetes-observability-and-monitoring-with-datadog",
           "last_modified_on": null,

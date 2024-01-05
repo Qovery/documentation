@@ -24,17 +24,17 @@
 <link rel="stylesheet" href="/styles.18405842.css">
 
 
-<link rel="preload" href="/styles.1dd60647.js" as="script">
+<link rel="preload" href="/styles.79952675.js" as="script">
 
-<link rel="preload" href="/runtime~main.383b016c.js" as="script">
+<link rel="preload" href="/runtime~main.0a4e3301.js" as="script">
 
-<link rel="preload" href="/main.95279ca3.js" as="script">
+<link rel="preload" href="/main.3abab77d.js" as="script">
 
 <link rel="preload" href="/2.b736e52f.js" as="script">
 
 <link rel="preload" href="/3.35f2a80b.js" as="script">
 
-<link rel="preload" href="/4.0fd7a0be.js" as="script">
+<link rel="preload" href="/4.cb4f2ae6.js" as="script">
 
 <link rel="preload" href="/1be78505.c2a7cd37.js" as="script">
 
@@ -44,7 +44,7 @@
 
 <link rel="preload" href="/17896441.7475d976.js" as="script">
 
-<link rel="preload" href="/b538f6fb.335d041e.js" as="script">
+<link rel="preload" href="/b538f6fb.b32dd059.js" as="script">
 
 </head>
 <body>
@@ -54,17 +54,17 @@
 If you don&#x27;t make a copy, doing this procedure directly on the <strong>PRODUCTION</strong> application will lead to a downtime in your service. Be sure of what you&#x27;re doing before going ahead!</p></div><p>Your app is crashing very quickly, here is how to keep the full control of your container:</p><div class="steps steps--h3"><ol><li><p><a href="/docs/using-qovery/configuration/application/#ports">Temporary delete the application port from your application configuration</a>. This to avoid Kubernetes to restart the container when the port is not open.</p></li><li><p>Into your Dockerfile, comment your <code>EXEC</code> or <code>ENTRYPOINT</code> and add a way to make your container sleep. For example:</p><div class="mdxCodeBlock_iHAB"><div class="codeBlockContent_3RXF"><button type="button" aria-label="Copy code to clipboard" class="copyButton_1PCb">Copy</button><pre class="prism-code language-bash codeBlock_1wn8"><div class="codeBlockLines_3HrO" style="color:#393A34;background-color:#f6f8fa"><div class="token-line" style="color:#393A34"><span class="token comment" style="color:#999988;font-style:italic">#CMD [&quot;npm&quot;, &quot;run&quot;, &quot;start&quot;]</span><span class="token plain"></span></div><div class="token-line" style="color:#393A34"><span class="token plain">CMD </span><span class="token punctuation" style="color:#393A34">[</span><span class="token string" style="color:#e3116c">&quot;tail&quot;</span><span class="token plain">, </span><span class="token string" style="color:#e3116c">&quot;-f&quot;</span><span class="token plain">, </span><span class="token string" style="color:#e3116c">&quot;/dev/null&quot;</span><span class="token punctuation" style="color:#393A34">]</span></div></div></pre></div></div><p>Commit and push your changes to trigger a new deployment (trigger it manually from the Qovery console if it&#x27;s not the case).</p></li><li><p>Once the deployment done, you can use <a href="/docs/using-qovery/interface/cli/#shell">qovery shell</a> command to connect to your container and debug.</p><div class="alert alert--success alert--icon" role="alert"><i class="feather icon-check-circle"></i><p>Once you&#x27;ve finished debugging, <strong>remember to configure your application port back</strong>. It&#x27;s mandatory to avoid downtimes during application releases.</p></div></li></ol><div class="steps--feedback">How was it? Did this tutorial work?  <span class="button button--sm button--primary">Yes</span>  <a href="https://github.com/qovery/documentation/issues/new?body=The%20tutorial%20on%3A%0A%0Anull%0A%0AHere%27s%20what%20went%20wrong%3A%0A%0A%3C%21--%20Insert%20command%20output%20and%20details.%20Thank%20you%20for%20reporting%21%20%3A%29%20--%3E&amp;title=Tutorial%20on%20null%20failed" target="_blank" class="button button--sm button--primary">No</a></div></div><h2><a aria-hidden="true" tabindex="-1" class="anchor" id="i-cant-access-my-application-logs"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#i-cant-access-my-application-logs" title="Direct link to heading">#</a>I can&#x27;t access my application logs</h2><p>If you are deploying a helm service, to get all the Qovery features (access your container logs, apply the stop/restart actions, display the pod status in the overview page), make sure to create an override and assign the macros <code>qovery.labels.service</code> and <code>qovery.annotations.service</code> to the labels and annotations of any deployed Pods/Deployments/Services/Jobs.</p><p>Override example:</p><div class="mdxCodeBlock_iHAB"><div class="codeBlockContent_3RXF"><button type="button" aria-label="Copy code to clipboard" class="copyButton_1PCb">Copy</button><pre class="prism-code language-yaml codeBlock_1wn8"><div class="codeBlockLines_3HrO" style="color:#393A34;background-color:#f6f8fa"><div class="token-line" style="color:#393A34"><span class="token key atrule" style="color:#00a4db">commonLabels</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">mylabel</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;test&quot;</span><span class="token plain"></span></div><div class="token-line" style="color:#393A34"><span class="token plain">  qovery.labels.service</span></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token key atrule" style="color:#00a4db">annotations</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span></div><div class="token-line" style="color:#393A34"><span class="token plain">  qovery.annotations.service</span></div></div></pre></div></div><p>These macros will be automatically replaced by Qovery during the deployment phase.</p></div></article></div><div class="paginator_3VDt"><nav class="pagination-nav"><div class="pagination-nav__item"><a class="pagination-nav__link" href="/docs/using-qovery/troubleshoot/service-deployment-troubleshoot"><h5 class="pagination-nav__link--sublabel">Previous</h5><h4 class="pagination-nav__link--label">« Service Deployment Troubleshoot</h4></a></div><div class="pagination-nav__item pagination-nav__item--next"><a class="pagination-nav__link" href="/docs/using-qovery/troubleshoot/cluster-troubleshoot"><h5 class="pagination-nav__link--sublabel">Next</h5><h4 class="pagination-nav__link--label">Cluster Troubleshoot »</h4></a></div></nav></div></div><div class="rightCol_38kP"><div class="table-of-contents tableOfContents_tVyB"><div class="section"><div class="title">Contents</div><ul class="contents"><li><a href="#my-app-is-crashing-how-do-i-connect-to-investigate" class="contents__link">My app is crashing, how do I connect to investigate?</a></li><li><a href="#i-cant-access-my-application-logs" class="contents__link">I can&#39;t access my application logs</a></li></ul></div><div class="section"><div class="title">Resources</div><ul class="contents"></ul></div></div></div></div></div></main></div></div><footer class="footer"><div class="container"><div class="row footer__links"><div class="col col--5 footer__col"><div class="margin-bottom--md"></div><div class="margin-bottom--md"><p>Qovery is an Internal Developer Platform Helping 50.000+ Developers and Platform Engineers To Ship Faster.</p></div><div><a href="https://github.com/qovery" target="_blank"><i class="feather icon-github" alt="Qovery&#x27;s Github Repo"></i></a>    <a href="https://www.linkedin.com/company/qovery/" target="_blank"><i class="feather icon-rss" alt="Qovery&#x27;s Linkedin"></i></a>    <a href="https://twitter.com/qovery_" target="_blank"><i class="feather icon-twitter" alt="Qovery&#x27;s Twitter"></i></a>    <a href="https://discord.qovery.com" target="_blank"><i class="feather icon-message-circle" alt="Qovery&#x27;s Discord"></i></a></div></div><div class="col footer__col"><h4 class="footer__title">Resources</h4><ul class="footer__items"><li class="footer__item"><a aria-current="page" class="footer__link-item active" href="/docs">Documentation</a></li><li class="footer__item"><a class="footer__link-item" href="/guides">Guides</a></li><li class="footer__item"><a class="footer__link-item" href="/guides/tutorial">Tutorials</a></li><li class="footer__item"><a class="footer__link-item" href="/guides/engineering">Engineering</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/pricing" href="https://www.qovery.com/pricing">Pricing</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/enterprise" href="https://www.qovery.com/enterprise">Enterprise</a></li><li class="footer__item"><a class="footer__link-item" to="https://api-doc.qovery.com" href="https://api-doc.qovery.com">API</a></li><li class="footer__item"><a class="footer__link-item" to="https://github.com/Qovery" href="https://github.com/Qovery">Github</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Community</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://discord.qovery.com" href="https://discord.qovery.com">Discord</a></li><li class="footer__item"><a class="footer__link-item" to="https://community.qovery.com" href="https://community.qovery.com">Forum</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/community-call" href="https://www.qovery.com/community-call">Community call</a></li><li class="footer__item"><a class="footer__link-item" to="https://shop.qovery.com" href="https://shop.qovery.com">Goodies</a></li><li class="footer__item"><a class="footer__link-item" to="https://roadmap.qovery.com" href="https://roadmap.qovery.com">Roadmap</a></li><li class="footer__item"><a class="footer__link-item" to="https://github.com/Qovery/replibyte" href="https://github.com/Qovery/replibyte">Replibyte</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Company</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/blog" href="https://www.qovery.com/blog">Blog</a></li><li class="footer__item"><a class="footer__link-item" to="https://jobs.qovery.com" href="https://jobs.qovery.com">Jobs</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/team" href="https://www.qovery.com/team">Team</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/investors" href="https://www.qovery.com/investors">Investors</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/contact" href="https://www.qovery.com/contact">Contact</a></li></ul></div></div><div class="text--center"><small>© 2024 DESIGNED BY QOVERY | PROUD SILVER MEMBER OF CNCF AND LINUX FOUNDATION | QOVERY BY BIRDSIGHT - ALL RIGHTS RESERVED</small><br></div></div></footer>
 </div>
 
-<script src="/styles.1dd60647.js"></script>
+<script src="/styles.79952675.js"></script>
 
-<script src="/runtime~main.383b016c.js"></script>
+<script src="/runtime~main.0a4e3301.js"></script>
 
-<script src="/main.95279ca3.js"></script>
+<script src="/main.3abab77d.js"></script>
 
 <script src="/2.b736e52f.js"></script>
 
 <script src="/3.35f2a80b.js"></script>
 
-<script src="/4.0fd7a0be.js"></script>
+<script src="/4.cb4f2ae6.js"></script>
 
 <script src="/1be78505.c2a7cd37.js"></script>
 
@@ -74,7 +74,7 @@ If you don&#x27;t make a copy, doing this procedure directly on the <strong>PROD
 
 <script src="/17896441.7475d976.js"></script>
 
-<script src="/b538f6fb.335d041e.js"></script>
+<script src="/b538f6fb.b32dd059.js"></script>
 
 
 </body>

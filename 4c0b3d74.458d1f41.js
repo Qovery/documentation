@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[92],{244:function(o){o.exports=JSON.parse('{"allTagsPath":"/guides/tags","slug":"technology-qovery","name":"technology: qovery","count":39,"permalink":"/guides/tags/technology-qovery"}')}}]);

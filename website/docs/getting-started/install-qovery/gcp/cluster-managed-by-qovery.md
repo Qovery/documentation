@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-30"
+last_modified_on: "2024-01-09"
 title: "Managed By Qovery"
 sidebar_label: hidden
 hide_pagination: true
@@ -10,6 +10,7 @@ import Jump from '@site/src/components/Jump';
 Don't be shy, pick the first page you want to read and start your journey with Qovery.
 
 <Jump to="/docs/getting-started/install-qovery/gcp/cluster-managed-by-qovery/quickstart">Quickstart</Jump>
+<Jump to="/docs/getting-started/install-qovery/gcp/cluster-managed-by-qovery/initialize-your-cloud-account-to-deploy-GKE">Initialize GCP account</Jump>
 <Jump to="/docs/getting-started/install-qovery/gcp/cluster-managed-by-qovery/create-credentials">Create Credentials</Jump>
 
 

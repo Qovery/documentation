@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-01-02"
+last_modified_on: "2024-01-10"
 title: "Quickstart"
 description: "Learn how to quickly install Qovery on your Google Cloud Platform (GCP) account"
 ---
@@ -30,6 +30,24 @@ Install Qovery on your GCP account in less than 20 minutes. Qovery will create a
 
      website/docs/getting-started/install-qovery/gcp/cluster-managed-by-qovery/quickstart.md.erb
 -->
+
+## Initialize your Google account
+
+Follow this [guide][docs.getting-started.install-qovery.gcp.cluster-managed-by-qovery.initialize-your-cloud-account-to-deploy-GKE] to initialize yout Google account allowing to deploy GKE clusters.
+Following GCP services should be enabled:
+* Kubernetes Engine API
+* Compute Engine API
+* Artifact Registry API
+* Cloud Storage API
+* Cloud Resource Manager API
+
+<p align="center">
+<img src="/img/gcp-account-initialization/kubernetes-api-activation.png" alt="Initialize GCP account"/>
+</p>
+
+</li>
+
+<li>
 
 ## Create a Kubernetes cluster
 
@@ -87,6 +105,7 @@ You should see your new cluster in the list of clusters.
 
 
 [docs.getting-started.install-qovery.gcp.cluster-managed-by-qovery.create-credentials]: /docs/getting-started/install-qovery/gcp/cluster-managed-by-qovery/create-credentials/
+[docs.getting-started.install-qovery.gcp.cluster-managed-by-qovery.initialize-your-cloud-account-to-deploy-GKE]: /docs/getting-started/install-qovery/gcp/cluster-managed-by-qovery/initialize-your-cloud-account-to-deploy-GKE/
 [docs.getting-started.install-qovery.gcp.cluster-managed-by-qovery]: /docs/getting-started/install-qovery/gcp/cluster-managed-by-qovery/
 [docs.using-qovery.configuration.clusters#creating-a-cluster]: /docs/using-qovery/configuration/clusters/#creating-a-cluster
 [docs.using-qovery.configuration.organization]: /docs/using-qovery/configuration/organization/

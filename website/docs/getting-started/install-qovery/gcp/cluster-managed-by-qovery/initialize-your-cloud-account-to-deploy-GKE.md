@@ -31,7 +31,7 @@ This guide will help you to initialize your GCP account allowing Qovery to deplo
 
 <li>
 
-Activate Kubernetes Engine API
+Activate Kubernetes Engine API ([Console API link](https://console.cloud.google.com/apis/api/container.googleapis.com/overview))
 
 <p align="center">
   <img src="/img/gcp-account-initialization/kubernetes-api-activation.png" />
@@ -41,7 +41,7 @@ Activate Kubernetes Engine API
 
 <li>
 
-Activate Compute Engine API
+Activate Compute Engine API ([Console API link](https://console.cloud.google.com/apis/api/compute.googleapis.com/overview))
 
 <p align="center">
   <img src="/img/gcp-account-initialization/compute-engine-api-activation.png" />
@@ -51,7 +51,7 @@ Activate Compute Engine API
 
 <li>
 
-Activate Artifact Registry API
+Activate Artifact Registry API ([Console API link](https://console.cloud.google.com/apis/api/artifactregistry.googleapis.com/overview))
 
 <p align="center">
   <img src="/img/gcp-account-initialization/artifact-registry-api-activation.png" />
@@ -61,7 +61,7 @@ Activate Artifact Registry API
 
 <li>
 
-Cloud Storage API
+Cloud Storage API ([Console API link](https://console.cloud.google.com/apis/api/storage.googleapis.com/overview))
 
 <p align="center">
   <img src="/img/gcp-account-initialization/cloud-storage-api-activation.png" />
@@ -71,7 +71,7 @@ Cloud Storage API
 
 <li>
 
-Cloud Resource Manager API
+Cloud Resource Manager API ([Console API link](https://console.cloud.google.com/apis/api/cloudresourcemanager.googleapis.com/overview))
 
 <p align="center">
   <img src="/img/gcp-account-initialization/cloud-resource-manager-api-activation.png" />

@@ -30,7 +30,7 @@ The current state of Qovery BYOK is still in beta. We are working hard to improv
 
 - Contact us if you want to use Qovery BYOK in production. We can assess your setup and validate it's good to go. 
   - Even if Qovery BYOK is in beta, the Qovery Control Plane and the Qovery Engine are production-ready. BYOK is a lightweight version of our Managed Qovery offer and need time to externalize some configuration parameters mostly. We don't risk to break your cluster, but we prefer be cautious. 
-- Qovery BYOK is free during the beta period. We will communicate the pricing soon. 
+- Qovery BYOK is free during the beta period. We will communicate the pricing soon.
 - Some features are not available yet. Refer to the table below to see what is available and what is not.
 
 | Release date           | Feature                                                        |
@@ -42,21 +42,19 @@ The current state of Qovery BYOK is still in beta. We are working hard to improv
 
 ## Requirements
 
-Qovery requires a Kubernetes cluster with the following requirements:
+Have a look at the [Requirements][docs.getting-started.install-qovery.kubernetes.requirements] section.
 
-- Kubernetes version 1.26 or higher
-- Helm version 3.0 or higher
-- from 1 CPU to 4 CPU depending on the third-party components you want to install
-- From 512 MB to 4 GB RAM depending on the third-party components you want to install
-- 20 GB disk space
-- Being able to access to the Internet
-- A private registry
+
+## Install your cluster
+
+If you already have one you can skip this section.
 
 <Alert type="success">
 
-Follow [this guide][docs.getting-started.install-qovery.kubernetes.create-k8s-cluster] to test Qovery BYOK on a local cluster.
+Follow [this guide][docs.getting-started.install-qovery.kubernetes.create-k8s-cluster] to test Qovery BYOK on a demo cluster.
 
 </Alert>
+
 
 ## Install Qovery
 
@@ -131,6 +129,7 @@ To configure Qovery BYOK, follow the [Qovery BYOK configuration guide][docs.gett
 [docs.getting-started.install-qovery.gcp.cluster-managed-by-qovery.quickstart]: /docs/getting-started/install-qovery/gcp/cluster-managed-by-qovery/quickstart/
 [docs.getting-started.install-qovery.kubernetes.byok-config]: /docs/getting-started/install-qovery/kubernetes/byok-config/
 [docs.getting-started.install-qovery.kubernetes.create-k8s-cluster]: /docs/getting-started/install-qovery/kubernetes/create-k8s-cluster/
+[docs.getting-started.install-qovery.kubernetes.requirements]: /docs/getting-started/install-qovery/kubernetes/requirements/
 [docs.getting-started.install-qovery.scaleway.cluster-managed-by-qovery.quickstart]: /docs/getting-started/install-qovery/scaleway/cluster-managed-by-qovery/quickstart/
 [urls.helm]: https://helm.sh
 [urls.qovery_console]: https://console.qovery.com

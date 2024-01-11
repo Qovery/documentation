@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-01-04"
+last_modified_on: "2024-01-10"
 $schema: "/.meta/.schemas/guides.json"
 title: Helm Charts
 description: Learn how to deploy Helm charts with Qovery
@@ -24,10 +24,10 @@ Qovery runs on top of Kubernetes and allows you to deploy any Helm chart on your
 
 You can find [here][docs.using-qovery.configuration.helm] the official documentation on how to deploy a helm chart with Qovery. Below you have two real examples.
 
-| Title                                                                | Description                                                                                                 |
-|----------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------|
-| Deploy Kubecost | [How to deploy Kubecost helm chart][guides.tutorial.monitor-and-reduce-kubernetes-spend-with-kubecost] |
-| Deploy Datadog | [How to deploy Datadog helm chart][guides.tutorial.kubernetes-observability-and-monitoring-with-datadog] |
+| Title           | Description                                                                                              |
+|-----------------|----------------------------------------------------------------------------------------------------------|
+| Deploy Kubecost | [How to deploy Kubecost helm chart][guides.tutorial.monitor-and-reduce-kubernetes-spend-with-kubecost]   |
+| Deploy Datadog  | [How to deploy Datadog helm chart][guides.tutorial.kubernetes-observability-and-monitoring-with-datadog] |
 
 
 ## Q&A

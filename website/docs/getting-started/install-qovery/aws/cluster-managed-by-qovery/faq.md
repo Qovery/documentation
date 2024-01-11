@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-30"
+last_modified_on: "2024-01-10"
 title: "FAQ"
 description: "Frequently asked questions AWS infrastructure managed by Qovery"
 ---
@@ -16,7 +16,7 @@ import Assumptions from '@site/src/components/Assumptions';
      website/docs/getting-started/install-qovery/aws/cluster-managed-by-qovery/faq.md.erb
 -->
 
-## How Qovery works on AWS
+## How Qovery works on Managed AWS cluster
 
 Qovery is an abstraction layer on top of AWS and Kubernetes. Qovery manages the configuration of AWS account, and helps you to deploy production ready apps in seconds.
 To make it works, Qovery rely on Kubernetes for stateless apps (containers), and  AWS for stateful apps (databases, storage...).

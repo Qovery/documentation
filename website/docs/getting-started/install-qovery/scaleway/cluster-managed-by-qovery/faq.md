@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-30"
+last_modified_on: "2024-01-10"
 title: "FAQ"
 description: "Frequently asked questions Scaleway infrastructure managed by Qovery"
 ---
@@ -12,7 +12,7 @@ description: "Frequently asked questions Scaleway infrastructure managed by Qove
      website/docs/getting-started/install-qovery/scaleway/cluster-managed-by-qovery/faq.md.erb
 -->
 
-## How Qovery works on Scaleway
+## How Qovery works on Managed Scaleway cluster
 
 Qovery is an abstraction layer on top of Scaleway and Kubernetes. Qovery manages the configuration of Scaleway account, and helps you to deploy production ready apps in seconds.
 To make it works, Qovery rely on Kubernetes for stateless apps (containers), and  Scaleway for stateful apps (databases, storage...).

@@ -24,21 +24,21 @@
 <link rel="stylesheet" href="/styles.18405842.css">
 
 
-<link rel="preload" href="/styles.79952675.js" as="script">
+<link rel="preload" href="/styles.bb4e3141.js" as="script">
 
-<link rel="preload" href="/runtime~main.234428c8.js" as="script">
+<link rel="preload" href="/runtime~main.19afc3fc.js" as="script">
 
-<link rel="preload" href="/main.0f19b58b.js" as="script">
+<link rel="preload" href="/main.8c42ff97.js" as="script">
 
-<link rel="preload" href="/1.2565c708.js" as="script">
+<link rel="preload" href="/1.1c54e316.js" as="script">
 
-<link rel="preload" href="/2.68e70ccb.js" as="script">
+<link rel="preload" href="/2.5c078d4d.js" as="script">
 
-<link rel="preload" href="/3.ab01e4b0.js" as="script">
+<link rel="preload" href="/3.c81f0447.js" as="script">
 
-<link rel="preload" href="/1c13b173.e7b8c593.js" as="script">
+<link rel="preload" href="/1c13b173.16240155.js" as="script">
 
-<link rel="preload" href="/83a41d86.1a56235c.js" as="script">
+<link rel="preload" href="/83a41d86.cdc19fea.js" as="script">
 
 </head>
 <body>
@@ -52,21 +52,21 @@
 </span></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token key atrule" style="color:#00a4db">elasticsearch</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">enabled</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token boolean important" style="color:#36acaa">false</span></div></div></pre></div></div><p>You can take a look at additional configuration options on the <a href="https://artifacthub.io/packages/helm/aws/aws-for-fluent-bit">AWS provided chart</a> </p><p>Then deploy fluent-bit with the following command:</p><div class="mdxCodeBlock_iHAB"><div class="codeBlockContent_3RXF"><button type="button" aria-label="Copy code to clipboard" class="copyButton_1PCb">Copy</button><pre class="prism-code language-bash codeBlock_1wn8"><div class="codeBlockLines_3HrO" style="color:#393A34;background-color:#f6f8fa"><div class="token-line" style="color:#393A34"><span class="token plain">helm upgrade --install aws-for-fluent-bit -f values.yaml --namespace fluent-bit --create-namespace eks/aws-for-fluent-bit --version </span><span class="token number" style="color:#36acaa">0.1</span><span class="token plain">.21</span></div></div></pre></div></div><p>You should start seeing fluent-bit pods. Take a look at the logs to ensure there is no configuration issue.</p><h2><a aria-hidden="true" tabindex="-1" class="anchor" id="cloudwatch-usage"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#cloudwatch-usage" title="Direct link to heading">#</a>Cloudwatch usage</h2><p>You can now use Cloudwatch to look at your logs. Connect to Cloudwatch, go into the <code>Logs insight</code> section, then you can perform queries:</p><p valign="center"><img src="/img/aws-cloudwatch/cloudwatch-search.png" alt="cloudwatch search"></p><ol><li>Select the fluent-bit group of logs</li><li>Create a query (<a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/CWL_QuerySyntax.html">syntax examples</a>)</li><li>Run your query</li><li>See the result and expand to filter on other elements</li></ol></div></article></div></main></div><footer class="footer"><div class="container"><div class="row footer__links"><div class="col col--5 footer__col"><div class="margin-bottom--md"></div><div class="margin-bottom--md"><p>Qovery is an Internal Developer Platform Helping 50.000+ Developers and Platform Engineers To Ship Faster.</p></div><div><a href="https://github.com/qovery" target="_blank"><i class="feather icon-github" alt="Qovery&#x27;s Github Repo"></i></a>    <a href="https://www.linkedin.com/company/qovery/" target="_blank"><i class="feather icon-rss" alt="Qovery&#x27;s Linkedin"></i></a>    <a href="https://twitter.com/qovery_" target="_blank"><i class="feather icon-twitter" alt="Qovery&#x27;s Twitter"></i></a>    <a href="https://discord.qovery.com" target="_blank"><i class="feather icon-message-circle" alt="Qovery&#x27;s Discord"></i></a></div></div><div class="col footer__col"><h4 class="footer__title">Resources</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" href="/docs">Documentation</a></li><li class="footer__item"><a aria-current="page" class="footer__link-item active" href="/guides">Guides</a></li><li class="footer__item"><a aria-current="page" class="footer__link-item active" href="/guides/tutorial">Tutorials</a></li><li class="footer__item"><a class="footer__link-item" href="/guides/engineering">Engineering</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/pricing" href="https://www.qovery.com/pricing">Pricing</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/enterprise" href="https://www.qovery.com/enterprise">Enterprise</a></li><li class="footer__item"><a class="footer__link-item" to="https://api-doc.qovery.com" href="https://api-doc.qovery.com">API</a></li><li class="footer__item"><a class="footer__link-item" to="https://github.com/Qovery" href="https://github.com/Qovery">Github</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Community</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://discord.qovery.com" href="https://discord.qovery.com">Discord</a></li><li class="footer__item"><a class="footer__link-item" to="https://community.qovery.com" href="https://community.qovery.com">Forum</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/community-call" href="https://www.qovery.com/community-call">Community call</a></li><li class="footer__item"><a class="footer__link-item" to="https://shop.qovery.com" href="https://shop.qovery.com">Goodies</a></li><li class="footer__item"><a class="footer__link-item" to="https://roadmap.qovery.com" href="https://roadmap.qovery.com">Roadmap</a></li><li class="footer__item"><a class="footer__link-item" to="https://github.com/Qovery/replibyte" href="https://github.com/Qovery/replibyte">Replibyte</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Company</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/blog" href="https://www.qovery.com/blog">Blog</a></li><li class="footer__item"><a class="footer__link-item" to="https://jobs.qovery.com" href="https://jobs.qovery.com">Jobs</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/team" href="https://www.qovery.com/team">Team</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/investors" href="https://www.qovery.com/investors">Investors</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/contact" href="https://www.qovery.com/contact">Contact</a></li></ul></div></div><div class="text--center"><small>© 2024 DESIGNED BY QOVERY | PROUD SILVER MEMBER OF CNCF AND LINUX FOUNDATION | QOVERY BY BIRDSIGHT - ALL RIGHTS RESERVED</small><br></div></div></footer>
 </div>
 
-<script src="/styles.79952675.js"></script>
+<script src="/styles.bb4e3141.js"></script>
 
-<script src="/runtime~main.234428c8.js"></script>
+<script src="/runtime~main.19afc3fc.js"></script>
 
-<script src="/main.0f19b58b.js"></script>
+<script src="/main.8c42ff97.js"></script>
 
-<script src="/1.2565c708.js"></script>
+<script src="/1.1c54e316.js"></script>
 
-<script src="/2.68e70ccb.js"></script>
+<script src="/2.5c078d4d.js"></script>
 
-<script src="/3.ab01e4b0.js"></script>
+<script src="/3.c81f0447.js"></script>
 
-<script src="/1c13b173.e7b8c593.js"></script>
+<script src="/1c13b173.16240155.js"></script>
 
-<script src="/83a41d86.1a56235c.js"></script>
+<script src="/83a41d86.cdc19fea.js"></script>
 
 
 </body>

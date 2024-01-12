@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-01-04"
+last_modified_on: "2024-01-12"
 $schema: "/.meta/.schemas/guides.json"
 title: Monitor and reduce Kubernetes spend with Kubecost
 description: How to deploy Kubecost with Qovery
@@ -88,6 +88,12 @@ global:
 <Alert type="info">
 
 These are necessary to get all Qovery features, check [this documentation][docs.using-qovery.configuration.helm] for more information.
+
+</Alert>
+
+<Alert type="warning">
+
+Currently it is not possible to **Stop** the Kubecost helm service. You can Start/Update/Delete it.
 
 </Alert>
 

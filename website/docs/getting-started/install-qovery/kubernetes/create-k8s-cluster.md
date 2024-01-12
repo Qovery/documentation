@@ -33,27 +33,6 @@ This page explains how to set up a local Kubernetes cluster with [k3d](https://k
      website/docs/getting-started/install-qovery/kubernetes/create-k8s-cluster.md.erb
 -->
 
-## ⚠️ Important temporary limitations
-
-In our current state of Qovery BYOK development, we have some hard requirements, like the need of a supported Container Registry ([AWS ECR](https://aws.amazon.com/ecr/) or [GCP GCR](https://cloud.google.com/artifact-registry)). This is a temporary limitation that will be removed within February 2024. However, you can run Qovery BYOK on any Kubernetes cluster (and not only k3d) if you have a AWS ECR or GCP GCR container registry.
-
-Non-exhaustive of possible setups:
-
-- k3d + AWS ECR
-- k3d + GCP GCR
-- GCP GKE + GCP GCR
-- AWS EKS + AWS ECR
-- Azure AKS + AWS ECR or GCP GCR
-- Digital Ocean Kubernetes + AWS ECR or GCP GCR
-- Civo Kubernetes + AWS ECR or GCP GCR
-- Any Kubernetes cluster + AWS ECR or GCP GCR
-
-As soon as we have a supported Container Registry, you will be able to use Qovery BYOK on any Kubernetes cluster.
-
-### Why Qovery needs a Container Registry?
-
-Qovery requires a private container registry to store built images and mirror containers in order to reduce potential images deletion by 3rd party, while you still need them ([more info here][docs.using-qovery.deployment.image-mirroring]).
-
 ## Install and Run k3d
 
 <Steps headingDepth={3}>
@@ -62,74 +41,9 @@ Qovery requires a private container registry to store built images and mirror co
 
 <li>
 
-### Choose a Container Registry
+### Configure the container registry
 
-<Tabs
-centered={true}
-className={"rounded"}
-defaultValue={"ecr"}
-placeholder="Select a container registry"
-select={false}
-size={null}
-values={[
-  {"group":"Registry","label":"ECR","value":"ecr"},
-  {"group":"Registry","label":"GCR","value":"gcr"},
-]}>
-
-<TabItem value="ecr">
-
-Create an IAM user with the following policy, and generate an access key:
-
-```json
-{
-    "Statement": [
-        {
-            "Action": [
-                "ecr:*"
-            ],
-            "Effect": "Allow",
-            "Resource": "*"
-        }
-    ],
-    "Version": "2012-10-17"
-}
-```
-
-Then, create a `config.yaml` file to configure the [ECR Credentials Provider](), where you should set the AWS credentials previously generated:
-
-```yaml title="config.yaml"
-apiVersion: kubelet.config.k8s.io/v1
-kind: CredentialProviderConfig
-providers:
-  - name: ecr-credential-provider
-    matchImages:
-      - "*.dkr.ecr.*.amazonaws.com"
-      - "*.dkr.ecr.*.amazonaws.com.cn"
-      - "*.dkr.ecr-fips.*.amazonaws.com"
-      - "*.dkr.ecr.us-iso-east-1.c2s.ic.gov"
-      - "*.dkr.ecr.us-isob-east-1.sc2s.sgov.gov"
-    defaultCacheDuration: "12h"
-    apiVersion: credentialprovider.kubelet.k8s.io/v1
-    env:
-      - name: AWS_ACCESS_KEY_ID
-        value: CHANGE_ME
-      - name: AWS_DEFAULT_REGION
-        value: CHANGE_ME
-      - name: AWS_SECRET_ACCESS_KEY
-        value: CHANGE_ME
-```
-
-Here we use the [Kubelet Credential Provider](https://kubernetes.io/blog/2022/12/22/kubelet-credential-providers/) to inject the AWS credentials into the pods. The `config.yaml` file is mounted into the Kubernetes nodes, and the `ecr-credential-provider` binary is also mounted into the nodes.
-
-</TabItem>
-
-<TabItem value="gcr">
-
-Work in progress
-
-</TabItem>
-
-</Tabs>
+Configure the container registry access as explained in [this section][docs.getting-started.install-qovery.kubernetes.requirements#container-registry].
 
 </li>
 
@@ -263,6 +177,6 @@ Congratulations! You have successfully created a Kubernetes cluster with k3d. Yo
 
 
 [docs.getting-started.install-qovery.kubernetes.quickstart#install-qovery]: /docs/getting-started/install-qovery/kubernetes/quickstart/#install-qovery
-[docs.using-qovery.deployment.image-mirroring]: /docs/using-qovery/deployment/image-mirroring/
+[docs.getting-started.install-qovery.kubernetes.requirements#container-registry]: /docs/getting-started/install-qovery/kubernetes/requirements/#container-registry
 [urls.helm]: https://helm.sh
 [urls.qovery_forum]: https://discuss.qovery.com/

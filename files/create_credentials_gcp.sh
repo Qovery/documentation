@@ -9,6 +9,13 @@ fi
 project_name=$1
 service_account_name=$2
 
+# Activate APIs
+gcloud services enable container.googleapis.com
+gcloud services enable compute.googleapis.com
+gcloud services enable artifactregistry.googleapis.com
+gcloud services enable storage.googleapis.com
+gcloud services enable cloudresourcemanager.googleapis.com
+
 # List of roles
 roles=("roles/artifactregistry.admin" "roles/artifactregistry.writer" "roles/compute.networkAdmin" "roles/iam.serviceAccountCreator" "roles/iam.serviceAccountDeleter" "roles/container.admin" "roles/container.clusterAdmin" "roles/resourcemanager.projectIamAdmin" "roles/artifactregistry.createOnPushRepoAdmin" "roles/iam.serviceAccountAdmin" "roles/iam.serviceAccountUser" "roles/source.admin" "roles/storage.admin")
 

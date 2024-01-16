@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-01-15"
+last_modified_on: "2024-01-16"
 title: "Quickstart"
 description: "Learn how to quickly install Qovery on your Google Cloud Platform (GCP) account"
 ---
@@ -59,7 +59,7 @@ Note that you can create multiple clusters on the same GCP account with differen
 Follow this [guide][docs.getting-started.install-qovery.gcp.cluster-managed-by-qovery.create-credentials] to create your GCP credentials.
 
 <p align="center">
-  <img src="/img/install-qovery/gcp/create-credentials.jpg" alt="Create Credentials" />
+  <img src="/img/install-qovery/gcp/attach-credentials.png" alt="Attach Credentials" />
 </p>
 
 Then attach your credentials to your cluster and click on `Create`. Then, click on `Continue`.

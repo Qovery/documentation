@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-30"
+last_modified_on: "2024-01-17"
 title: "Cluster Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -218,6 +218,18 @@ Below is the list of advanced settings currently available for clusters.
 | Type    | Description                                                                                                                                                                                               | Default Value |
 |---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | string  | Specify the [IMDS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) version you want to use. Possible values are `required` (IMDS v2 only) and `optional` (IMDS v1 and V2) | `optional`    |
+
+#### aws.eks.encrypt_secrets_kms_key_arn ![](/img/advanced_settings/aws.svg)
+
+<Alert type="warning">
+
+It won't be possible to go back once this feature is activated.
+
+</Alert>
+
+| Type    | Description                                                                                                                                                                                               | Default Value |
+|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| string  | Allows you to activate KMS encryption of your Kubernetes secrets. Specify the [key ARN](https://docs.aws.amazon.com/kms/latest/developerguide/find-cmk-id-arn.html) of your AWS KMS key.  |               |
 
 
 [docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.quickstart#attach-aws-credentials]: /docs/getting-started/install-qovery/aws/cluster-managed-by-qovery/quickstart/#attach-aws-credentials

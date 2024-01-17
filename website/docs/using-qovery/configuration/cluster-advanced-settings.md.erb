@@ -209,3 +209,15 @@ Below is the list of advanced settings currently available for clusters.
 | Type    | Description                                                                                                                                                                                               | Default Value |
 |---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | string  | Specify the [IMDS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) version you want to use. Possible values are `required` (IMDS v2 only) and `optional` (IMDS v1 and V2) | `optional`    |
+
+#### aws.eks.encrypt_secrets_kms_key_arn ![](/img/advanced_settings/aws.svg)
+
+<Alert type="warning">
+
+It won't be possible to go back once this feature is activated.
+
+</Alert>
+
+| Type    | Description                                                                                                                                                                                               | Default Value |
+|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| string  | Allows you to activate KMS encryption of your Kubernetes secrets. Specify the [key ARN](https://docs.aws.amazon.com/kms/latest/developerguide/find-cmk-id-arn.html) of your AWS KMS key.  |               |

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-28"
+last_modified_on: "2024-01-17"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -480,6 +480,10 @@ domain example: `p80-123-frontend-blueprint.za8ad0657.bool.sh`
 
 If you prefer to assign your own domain to the application, have a look at the [Domain section](#domains) to know more.
 
+### Advanced Settings
+
+You can further customize the service behaviour via the service advanced settings. Check [this documentation][docs.using-qovery.configuration.advanced-settings] to know more.
+
 ## Connecting to a database
 To know how to access your database from your application, [have a look at the database section][docs.using-qovery.configuration.environment-variable#connecting-to-a-database].
 
@@ -551,6 +555,7 @@ In the application overview, click on the `3 dots` button and remove the applica
 [docs.configuration.application#resources]: /docs/using-qovery/configuration/application/#resources
 [docs.qovery.deployment.deploying-with-auto-deploy]: /docs/using-qovery/deployment/deploying-with-auto-deploy/
 [docs.using-qovery.configuration.advanced-settings#network-settings]: /docs/using-qovery/configuration/advanced-settings/#network-settings
+[docs.using-qovery.configuration.advanced-settings]: /docs/using-qovery/configuration/advanced-settings/
 [docs.using-qovery.configuration.application#build-mode]: /docs/using-qovery/configuration/application/#build-mode
 [docs.using-qovery.configuration.application-health-checks]: /docs/using-qovery/configuration/application-health-checks/
 [docs.using-qovery.configuration.environment-variable#connecting-to-a-database]: /docs/using-qovery/configuration/environment-variable/#connecting-to-a-database

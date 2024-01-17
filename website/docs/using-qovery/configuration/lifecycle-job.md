@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-28"
+last_modified_on: "2024-01-17"
 title: "Lifecycle Job"
 description: "Learn how to configure your Lifecycle job on Qovery"
 ---
@@ -311,6 +311,10 @@ To know more about how to configure your Liveness and Readiness probes, have a l
 
 This section allows to specify which changes on your repository should trigger an auto-deploy (if enabled). To know more about how to configure your Deployment Restrictions, have a look at the [deployment restrictions section][docs.using-qovery.deployment.deploying-with-auto-deploy#filtering-commits-triggering-the-auto-deploy].
 
+### Advanced Settings
+
+You can further customize the service behaviour via the service advanced settings. Check [this documentation][docs.using-qovery.configuration.advanced-settings] to know more.
+
 ## Environment Variable
 
 To learn how to set up environment variables in your projects and applications, navigate to [configuring Environment Variables][docs.using-qovery.configuration.environment-variable] section.
@@ -449,6 +453,7 @@ In the overview, click on the `3 dots` button and remove the job. Note: the same
 
 
 [docs.qovery.deployment.deploying-with-auto-deploy]: /docs/using-qovery/deployment/deploying-with-auto-deploy/
+[docs.using-qovery.configuration.advanced-settings]: /docs/using-qovery/configuration/advanced-settings/
 [docs.using-qovery.configuration.application-health-checks]: /docs/using-qovery/configuration/application-health-checks/
 [docs.using-qovery.configuration.environment-variable]: /docs/using-qovery/configuration/environment-variable/
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/

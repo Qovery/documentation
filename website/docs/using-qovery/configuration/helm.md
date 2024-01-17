@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-21"
+last_modified_on: "2024-01-17"
 title: "Helm"
 description: "Learn how to configure your Helm on Qovery"
 ---
@@ -393,6 +393,10 @@ Not every configuration parameter will be copied within the new service for cons
 
 Please check the configuration of the new service before deploying it.
 
+### Advanced Settings
+
+You can further customize the service behaviour via the service advanced settings. Check [this documentation][docs.using-qovery.configuration.advanced-settings] to know more.
+
 ## Delete a Helm
 
 <Steps headingDepth={3}>
@@ -413,6 +417,7 @@ In the helm overview, click on the `3 dots` button and remove the helm.
 
 [docs.qovery.deployment.deploying-with-auto-deploy]: /docs/using-qovery/deployment/deploying-with-auto-deploy/
 [docs.using-qovery.configuration.advanced-settings#network-settings]: /docs/using-qovery/configuration/advanced-settings/#network-settings
+[docs.using-qovery.configuration.advanced-settings]: /docs/using-qovery/configuration/advanced-settings/
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [docs.using-qovery.configuration.organization.helm-repository]: /docs/using-qovery/configuration/organization/helm-repository/
 [docs.using-qovery.configuration.organization.members-rbac]: /docs/using-qovery/configuration/organization/members-rbac/

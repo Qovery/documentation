@@ -62,60 +62,51 @@ See the [Deploying with auto-deploy feature][docs.qovery.deployment.deploying-wi
 </li>
 <li>
 
-By default, the `values.yaml` next to your `chart.yaml` is used. But you can override it with another file.
-Select the following field:
-- File source: Chose between Git Repository or Raw YAML, depending on the source location of your values file. Git repository source is **recommended** as the raw yaml is not versioned.
+By default, the `values.yaml` next to your `chart.yaml` is used to configure your helm chart but you can create an override in the next two sections.
 
-If you want to override it from another already existing values file from a Git Repository (it can be the same as the one hosting the helm chart) you will have to select:
-- Git Repository: Select the git provider and git repository hosting your values override (it can be hosted on GitHub, GitLab or Bitbucket).
+In the override as file section, define the location of the file containing the override you want to define for the values of this chart.
+
+** Git Repository **
+
+If you want to override it from another already existing values file from a Git Repository you will have to select:
+- Git Repository: Select the git provider and git repository hosting your code (it can be hosted on GitHub, GitLab or Bitbucket).
 - Branch: Select branch that Qovery should use to deploy your helm
 - Overrides path: the path of the values files (example: ci/values_ci.yaml). You can specify multiple paths by separating them with a semi-colon.
 
+** Raw YAML **
+
 If you want to override it with a raw yaml you will have to click on `Create override`. A new editor modal will be opened, to let you write your yaml override. The default values.yaml content will be displayed on the right to help you to respect the structure.
 
-<Alert type="info">
-
-You can override values in the arguments section with the `--set` option.
-
-</Alert>
 
 <Alert type="warning">
 
-If you want to get all the Qovery features (access your container logs, apply the stop/restart actions, display the pod status in the overview page), make sure to create an override and assign the macros `qovery.labels.service` and `qovery.annotations.service` to the labels and annotations of any deployed Pods/Deployments/Services/Jobs.
-
-Override example:
-
-```yaml
-commonLabels:
-  mylabel: "test"
-  qovery.labels.service
-annotations:
-  qovery.annotations.service
-```
-
-These macros will be automatically replaced by Qovery during the deployment phase.
+- Git repository source is recommended as the raw yaml is not versioned.
+- On both file types you can add `Qovery Macros` to add more functionalities to your helm deployment. Check [the section below][docs.using-qovery.configuration.helm#qovery-macros] before moving forward with your helm chart creation.
 
 </Alert>
-
-You can use the Qovery environment variables as overrides by using the placeholder “qovery.env.<env_var_name>” (Example: qovery.env.DB_URL. Qovery will manage the replacement of those placeholders at deployment time.
 
 </li>
+
 <li>
 
-if you want to specify one by one your overrides, you can pass them as arguments. These will be passed to the helm command via the `--set`, `--set-string` or `--set-json` arguments:
-- Variable: the variable name
-- Value type: 
-  - Select `Generic` to pass configuration from the command line
-  - Select `String` if you want to pass a string type (and avoid weird numeric conversions like 021341 interpreted as a number and thus the 0 is removed)
-  - Select `Json` to set json values (scalars/objects/arrays) from the command line
-- Value
+if you want to specify one by one your overrides or define additional overrides on top of the one available in your override file, you can pass them as arguments. These will be passed to the helm command via the `--set`, `--set-string` or `--set-json` arguments.
 
-<Alert type="info">
+Add a new variable by declaring:
+  - Variable: the variable name
+  - Value type: 
+    - Select `Generic` to pass configuration from the command line
+    - Select `String` if you want to pass a string type (and avoid weird numeric conversions like 021341 interpreted as a number and thus the 0 is removed)
+    - Select `Json` to set json values (scalars/objects/arrays) from the command line
+  - Value
 
-You can combine override as file and override as argument but, in case of collision, the priority will be given to the override as argument.
+  
+<Alert type="warning">
+
+- You can combine override as file and override as argument but, in case of collision, the priority will be given to the override as argument.
+- You can add `Qovery Macros` to add more functionalities to your helm deployment. Check [the section below][docs.using-qovery.configuration.helm#qovery-macros] before moving forward with your helm chart creation.  
 
 </Alert>
-
+  
 </li>
 <li>
 
@@ -171,6 +162,7 @@ You can find below the description of each of the tabs available in this section
 General settings section allows you to set up the name and the source of your helm (git repository or helm repository) .
 
 #### Git Repository
+
 If your heml is from a git repository, within this section you can:
 - Modify the git provider where your code is stored (it can be hosted on GitHub, GitLab or Bitbucket).
 - Modify the branch that Qovery should use for deploying your application
@@ -211,28 +203,76 @@ See the [Deploying with auto-deploy feature][docs.qovery.deployment.deploying-wi
 
 ### Values
 
-Within this section you can modify the values override.
-Select the following field:
-- File source: Chose between Git Repository or Raw YAML, depending on the source location of your values file
+Within this section you can modify the values override defined within the creation flow.
 
+#### Override as file
+
+Define the location of the file containing the override you want to define for the values of this chart.
+
+Select the source of your override:
+
+** Git Repository **
 If you want to override it from another already existing values file from a Git Repository you will have to select:
 - Git Repository: Select the git provider and git repository hosting your code (it can be hosted on GitHub, GitLab or Bitbucket).
 - Branch: Select branch that Qovery should use to deploy your helm
 - Overrides path: the path of the values files (example: ci/values_ci.yaml). You can specify multiple paths by separating them with a semi-colon.
 
+** Raw YAML **
 If you want to override it with a raw yaml you will have to click on `Create override`. A new editor modal will be opened, to let you write your yaml override. The default values.yaml content will be displayed on the right to help you to respect the structure.
 
+On both file types you can add `Qovery Macros` to add more functionalities to your helm deployment. Check [the section below][docs.using-qovery.configuration.helm#qovery-macros].
+
+#### Override as arguments
+
+if you want to specify one by one your overrides or define additional overrides on top of the one available in your override file, you can pass them as arguments. These will be passed to the helm command via the `--set`, `--set-string` or `--set-json` arguments.
+
+Add a new variable by declaring:
+  - Variable: the variable name
+  - Value type: 
+    - Select `Generic` to pass configuration from the command line
+    - Select `String` if you want to pass a string type (and avoid weird numeric conversions like 021341 interpreted as a number and thus the 0 is removed)
+    - Select `Json` to set json values (scalars/objects/arrays) from the command line
+  - Value
+  
 <Alert type="info">
-
-You can override values in the arguments section with the `--set` option.
-
+  
+You can combine override as file and override as argument but, in case of collision, the priority will be given to the override as argument.
+  
 </Alert>
 
-<Alert type="warning">
+You can add `Qovery Macros` to add more functionalities to your helm deployment. Check [the section below][docs.using-qovery.configuration.helm#qovery-macros].
 
-If you want to get all the Qovery features (access your container logs, apply the stop/restart actions, display the pod status in the overview page), make sure to create an override and assign the macros `qovery.labels.service` and `qovery.annotations.service` to the labels and annotations of any deployed Pods/Deployments/Services/Jobs.
+#### Qovery macros
 
-Override example:
+Qovery allows you to use the following macros within your override file. These macros will be automatically replaced by Qovery during the deployment phase, allowing you to access additional functionalities.
+
+** Access to the Qovery environment variables **
+
+Macro: `qovery.env.<ENV_VAR_NAME>`
+
+Description: It allows you to access the value of an environment variable or secret stored within Qovery. This is helpful when your deployed helm chart needs to access a secret or an environment variable available in Qovery.
+
+Example: 
+On Qovery we have created a database and create two aliases for the database url (DB_URL) and the database password (DB_PASSWORD).
+
+Here an example on how the helm chart can access these environment variables and let your service point to the right database.
+```yaml
+postgres:
+  url: qovery.env.DB_URL
+  password: qovery.env.DB_PASSWORD
+```
+
+qovery.env.DB_URL
+
+
+** Enable all the Qovery features **
+
+Macro for labels: `qovery.labels.service`
+Macro for annotations: `qovery.annotations.service`
+
+Description: It allows to add all the labels and annotations required to activate all the Qovery features on the deployed Helm chart (access your container logs, apply the stop/restart actions, display the pod status in the overview page). Make sure to create an override and assign the macro to the labels of any deployed Pods/Deployments/Services/Jobs. 
+
+Example:
 
 ```yaml
 commonLabels:
@@ -242,9 +282,7 @@ annotations:
   qovery.annotations.service
 ```
 
-These macros will be automatically replaced by Qovery during the deployment phase.
 
-</Alert>
 
 ### Ports
 

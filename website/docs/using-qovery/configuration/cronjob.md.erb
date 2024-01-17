@@ -76,7 +76,9 @@ See the [Deploying with auto-deploy feature][docs.qovery.deployment.deploying-wi
 </li>
 <li>
 Specify the configuration of your job:
+
 - CRON Schedule: specify a valid CRON expression (see [Crontab guru](https://crontab.guru/) for help). After being deployed, the job will be executed following the defined schedule.
+- Timezone: select a valid timezone identifier. After being deployed, the job will be executed following the defined timezone. `Etc/UTC` is the default value.
 - Image Entrypoint: the entrypoint to be used to launch your job (not mandatory)
 - CMD Arguments: the arguments to be passed to launch your job (not mandatory). We expect the format to be an array. Example ["rails", "-h", "0.0.0.0", "-p", "8080", "string"]
 - Number of restarts: Maximum number of restarts allowed in case of job failure (0 means no failure)
@@ -233,6 +235,7 @@ See the [Deploying with auto-deploy feature][docs.qovery.deployment.deploying-wi
 ### JOB Configuration
 You can modify here the configuration of your job:
 - CRON Schedule: specify a valid CRON expression (see [Crontab guru](https://crontab.guru/) for help). After being deployed, the job will be executed following the defined schedule.
+- Timezone: select a valid timezone identifier. After being deployed, the job will be executed following the defined timezone. `Etc/UTC` is the default value.
 - Image Entrypoint: the entrypoint to be used to launch your job (not mandatory)
 - CMD Arguments: the arguments to be passed to launch your job (not mandatory). We expect the format to be an array. Example ["rails", "-h", "0.0.0.0", "-p", "8080", "string"]
 - Number of restarts: Maximum number of restarts allowed in case of job failure (0 means no failure)

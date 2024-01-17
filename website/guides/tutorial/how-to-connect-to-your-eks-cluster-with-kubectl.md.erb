@@ -64,13 +64,8 @@ Since `kubectl` will use IAM to authenticate, you need to add your IAM user (the
 
 To connect to your EKS cluster you will need to set a context to `kubectl`. This is done with a `Kubeconfig` file.
 
-When installing a new cluster, Qovery stores it in an S3 bucket on your account.
+When installing a new cluster, Qovery stores it in an S3 bucket on your account. You can retrieve the Kubeconfig of your cluster directly from the Qovery interface by following the procedure "Get your cluster kubeconfig file" [within this section][docs.using-qovery.configuration.clusters#performing-actions-on-your-clusters].
 
-Go to S3, find the Qovery bucket, and download the file. The bucket should be named something like `qovery-kubeconfigs-<cluster ID>.yaml`.
-
-<p align="center">
-  <img src="/img/how-to-connect-to-your-eks-cluster-with-kubectl/2.png" alt="AWS console - get Kubeconfig" />
-</p>
 </li>
 
 

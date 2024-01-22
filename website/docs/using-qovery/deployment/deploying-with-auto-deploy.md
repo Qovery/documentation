@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-28"
+last_modified_on: "2024-01-22"
 title: "Deploying with the auto-deploy feature"
 description: "Learn how to deploy with the auto-deploy feature"
 ---
@@ -63,4 +63,28 @@ To inform Qovery of the new version, your CI/CD needs to call the following endp
 - Lifecycle job / cronjob: https://api-doc.qovery.com/#tag/Jobs/operation/autoDeployJobEnvironments
 
 
+## FAQ
 
+### Can I exclude some commits from the auto-deploy feature
+
+Yes, take a look at [this section](#filtering-commits-triggering-the-auto-deploy).
+
+### Are my stopped services restarted
+
+If you have the auto-deploy feature activated on your service and you stop it, the next commit on the service's branch won't start the service. You have to manually start it.
+
+### How does it work with mono-repositories
+
+The auto-deploy feature works on mono-repositories as well, triggering a deployment of any service linked to the mono-repository. If you want to trigger a deployment only if a commit is done on the sub-folder of the app, add a `Deployment Restriction` to include only that repository. (Have a look at [this section](#filtering-commits-triggering-the-auto-deploy))
+
+### Does Qovery check if a new image is available for my service
+
+No, there's no automatic hook on your container registry verifying that a new image is available to trigger a deployment. You have to inform Qovery about the new version and trigger a deployment:
+- manually: updating the version on the console and triggering a deployment
+- CLI: deploying the new version with the `qovery <service> deploy --tag`  command. See [this section][docs.using-qovery.integration.continuous-integration.github-actions#deploy-a-container-application]
+- via the API: you have two options 
+-- call the [deployment endpoint](https://api-doc.qovery.com/#tag/Environment-Actions/operation/deployAllServices) with the new tag for that service
+-- use a [auto-deploy containers endpoint](https://api-doc.qovery.com/#tag/Containers/operation/autoDeployContainerEnvironments) that will trigger the deployment of any service using the same image within the organization and having the auto-deploy feature activated
+
+
+[docs.using-qovery.integration.continuous-integration.github-actions#deploy-a-container-application]: /docs/using-qovery/integration/continuous-integration/github-actions/#deploy-a-container-application

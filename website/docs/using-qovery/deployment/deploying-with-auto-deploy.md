@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-28"
+last_modified_on: "2024-01-22"
 title: "Deploying with the auto-deploy feature"
 description: "Learn how to deploy with the auto-deploy feature"
 ---
@@ -61,6 +61,21 @@ The auto-deploy feature can be activated as well if you directly deploy your con
 To inform Qovery of the new version, your CI/CD needs to call the following endpoints, depending on the service type:
 - Container: https://api-doc.qovery.com/#tag/Containers/operation/autoDeployContainerEnvironments
 - Lifecycle job / cronjob: https://api-doc.qovery.com/#tag/Jobs/operation/autoDeployJobEnvironments
+
+
+## FAQ
+
+### Can I exclude some commits from the auto-deploy feature
+
+Yes, take a look at [this section](#filtering-commits-triggering-the-auto-deploy).
+
+### Are my stopped services restarted
+
+If you have the auto-deploy feature activated on your service and you stop it, the next commit on the service's branch won't start the service. You have to manually start it.
+
+### How does it work with mono-repositories
+
+The auto-deploy feature works on mono-repositories as well, triggering a deployment of any service linked to the mono-repository. If you want to trigger a deployment only if a commit is done on the sub-folder of the app, add a `Deployment Restriction` to include only that repository. (Have a look at [this section](#filtering-commits-triggering-the-auto-deploy))
 
 
 

@@ -24,7 +24,7 @@ Have a look at the [Requirements][docs.getting-started.install-qovery.kubernetes
 
 ## Install your cluster
 
-If you already have one EKS or GKE cluster you can skip this section.
+If you already have one EKS cluster you can skip this section.
 
 <Alert type="success">
 

@@ -1,6 +1,6 @@
 ---
 last_modified_on: "2024-01-26"
-title: "AWS-GCP Installation"
+title: "AWS Installation"
 description: "Learn how to install and configure Qovery on your own AWS Kubernetes cluster"
 ---
 

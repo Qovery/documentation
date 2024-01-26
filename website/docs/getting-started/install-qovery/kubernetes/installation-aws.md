@@ -141,7 +141,7 @@ Install Qovery on your Kubernetes cluster.
 ```bash
 helm upgrade --install --wait --atomic --create-namespace -n qovery -f <your-values-file.yaml> \
 --set services.certificates.cert-manager-configs.enabled=false,services.certificates.qovery-cert-manager-webhook.enabled=false \
-qovery/qovery qovery
+qovery qovery/qovery
 ```
 * `-n qovery`: the namespace where Qovery and its dependencies will be installed
 * `--set...`: override (only for the first deployment time, if you want to use Cert-Manager) to let cert-manager install its CRDs
@@ -151,7 +151,7 @@ qovery/qovery qovery
 
 If you want to use Cert-Manager, you can remove the `--set...` for the future updates (or if already installed):
 ```bash
-helm upgrade --install --create-namespace -n qovery -f <your-values-file.yaml> qovery/qovery qovery
+helm upgrade --install --create-namespace -n qovery -f <your-values-file.yaml> qovery qovery/qovery
 ```
 
 That's it, you can now use Qovery on your own Kubernetes cluster!

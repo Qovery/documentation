@@ -116,7 +116,7 @@ Learn more about the configuration in the [Configuration page][docs.getting-star
 Install Qovery on your Kubernetes cluster.
 
 ```bash
-helm upgrade --install -n qovery -f values-demo.yaml qovery/qovery qovery
+helm upgrade --install -n qovery -f values-demo.yaml qovery qovery/qovery
 ```
 * `-n qovery`: the namespace where Qovery and its dependencies will be installed
 * `-f your-values-file.yaml`: the values file you've downloaded, overrided with the Qovery config and your custom config

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-01-02"
+last_modified_on: "2024-01-26"
 $schema: "/.meta/.schemas/guides.json"
 title: Install Qovery on your Microsoft Azure account
 description: Learn how to install Qovery on your Microsoft Azure account

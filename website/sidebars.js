@@ -92,6 +92,7 @@ module.exports = {
                 "getting-started/install-qovery/kubernetes/requirements",
                 "getting-started/install-qovery/kubernetes/byok-config",
                 "getting-started/install-qovery/kubernetes/create-k8s-cluster",
+                "getting-started/install-qovery/kubernetes/installation-aws",
                 "getting-started/install-qovery/kubernetes/faq",
               ]
             },

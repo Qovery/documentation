@@ -49,6 +49,12 @@ Follow [this guide][docs.getting-started.install-qovery.kubernetes.create-k8s-cl
 
 ## Install Qovery
 
+<Alert type="info">
+
+For a more in depth view on how to install it on AWS, have a [look at this page][docs.getting-started.install-qovery.kubernetes.installation-aws].
+
+</Alert>
+
 <Steps headingDepth={3}>
 
 <ol>
@@ -69,7 +75,6 @@ Qovery Helm Chart is only available for users who have access to Qovery BYOK. [R
 
 </Alert>
 
-
 ```bash
 helm repo add qovery https://helm.qovery.com
 helm repo update
@@ -79,15 +84,19 @@ helm repo update
 
 <li>
 
-Login to the [Qovery console][urls.qovery_console], create a cluster until it's asked to save informations in the `values.yaml` file.
+Login to the [Qovery console][urls.qovery_console], create a cluster of type `Self-Managed`. At the end of the flow you will be able to download the `values.yaml` file associated with this cluster.
 
 </li>
 
 <li>
 
-You will find several `values.yaml` files. Depending on you need, select the one you want and update the configuration accordingly:
-* `values-demo.yaml`: this version is to locally test with k3s or minikube
-* `values-<provider-name>.yaml`: find versions made for some providers
+Now you can customize your values.yaml file based on your need. Learn more about the configuration in the [Configuration page][docs.getting-started.install-qovery.kubernetes.byok-config].
+
+<Alert type="info">
+
+Make sure that all fields having value `set-by-customer` are filled.
+
+</Alert>
 
 Learn more about the configuration in the [Configuration page][docs.getting-started.install-qovery.kubernetes.byok-config].
 
@@ -98,18 +107,25 @@ Learn more about the configuration in the [Configuration page][docs.getting-star
 Install Qovery on your Kubernetes cluster.
 
 ```bash
-helm upgrade --install -n qovery -f values-demo.yaml qovery
+helm upgrade --install --wait --atomic --create-namespace -n qovery -f <your-values-file.yaml> \
+--set services.certificates.cert-manager-configs.enabled=false,services.certificates.qovery-cert-manager-webhook.enabled=false \
+qovery qovery/qovery
 ```
 * `-n qovery`: the namespace where Qovery and its dependencies will be installed
-* `-f values-demo.yaml`: specify the values overrides file you want to use
-* `qovery`: name of the chart to deploy
+* `--set...`: override (only for the first deployment time, if you want to use Cert-Manager) to let cert-manager install its CRDs
+* `-f your-values-file.yaml`: the values file you've downloaded, overrided with the Qovery config and your custom config
+* `qovery/qovery`: name of the chart to deploy
+* `qovery`: name of the release
+
+If you want to use Cert-Manager, you can remove the `--set...` for the future updates (or if already installed):
+```bash
+helm upgrade --install --create-namespace -n qovery -f <your-values-file.yaml> qovery qovery/qovery
+```
+
+That's it, you can now use Qovery on your own Kubernetes cluster!
 
 </li>
 
 </ol>
 
 </Steps>
-
-## Configuration
-
-To configure Qovery BYOK, follow the [Qovery BYOK configuration guide][docs.getting-started.install-qovery.kubernetes.byok-config].

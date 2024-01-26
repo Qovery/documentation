@@ -32,16 +32,23 @@ You can run Qovery BYOK on any Kubernetes cluster running on:
 - GCP
 - Scaleway
 
-To access your Kubernetes cluster Qovery needs:
+To access your Kubernetes cluster and deploy on it, Qovery needs:
 - your cloud provider credentials
 - the cluster Kubeconfig
 
+The cluster must be reachable from the internet and so Qovery to be able to deploy on it.
 
 ### Container registry
 
 As of now, we only support [AWS ECR](https://aws.amazon.com/ecr/) or [GCP GCR](https://cloud.google.com/artifact-registry) as Container Registries.  
 
-Below you can find the installation step to make your cluster work with ECR or GCR
+Below you can find the installation step to make your cluster work with ECR or GCR. 
+
+<Alert type="info">
+
+This is not necessary if you are using EKS or GKE Kubernetes clusters.
+
+</Alert>
 
 <Tabs
 centered={true}

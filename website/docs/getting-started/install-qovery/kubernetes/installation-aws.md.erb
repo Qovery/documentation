@@ -107,17 +107,17 @@ qovery:
 
 <li>
 
-You will find in the [helm chart git repository](https://github.com/Qovery/qovery-chart/tree/main/charts/qovery) a non exhaustive list of `values` example files. Depending on your need, download the one you want and update the configuration inside it.
+Now we have to build a values.yaml to be used during the installation of Qovery on your cluster via Helm. You will find in the [helm chart git repository](https://github.com/Qovery/qovery-chart) a non exhaustive list of `values` example files. Depending on your need, download the one you want and update the configuration inside it.
 
 Provided examples are:
 * `values-demo-<cloud-provider-name>.yaml`: this version is to quickly setup Qovery on a demo cluster (**do not use this configuration in production**)
 * `values-<provider-name>.yaml`: find versions made for some providers for production usage. Adapt it based on your needs.
 
-Then replace the `qovery config` part with the configuration content override, provided by the Qovery console (see previous).
+Once you have downloaded the base values you want to use, replace the `qovery config` part with the configuration provided by the Qovery console (see previous step).
 
 <Alert type="info">
 
-Update all fields `set-by-customer` with your own values in the values file you've downloaded.
+Make sure that all fields having value `set-by-customer` are filled.
 
 </Alert>
 

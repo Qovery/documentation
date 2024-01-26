@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-01-25"
+last_modified_on: "2024-01-26"
 title: "Quickstart"
 description: "Learn how to install and configure Qovery on your own Kubernetes cluster (BYOK) / Self-managed Kubernetes cluster"
 ---
@@ -60,7 +60,7 @@ Follow [this guide][docs.getting-started.install-qovery.kubernetes.create-k8s-cl
 
 <Alert type="info">
 
-For a more in depth view on how to install it on AWS and GCP, have a [look at this page][docs.getting-started.install-qovery.kubernetes.installation-aws-gcp].
+For a more in depth view on how to install it on AWS, have a [look at this page][docs.getting-started.install-qovery.kubernetes.installation-aws].
 
 </Alert>
 
@@ -100,25 +100,19 @@ Login to the [Qovery console][urls.qovery_console], create a cluster of type `Se
 
 <li>
 
-<<<<<<< HEAD
-You will find in the [helm chart git repository](https://github.com/Qovery/qovery-chart/tree/main/charts/qovery) a non exhaustive list of `values` example files. Depending on your need, download the one you want and update the configuration inside it.
+Now we have to build a values.yaml to be used during the installation of Qovery on your cluster via Helm. You will find in the [helm chart git repository](https://github.com/Qovery/qovery-chart) a non exhaustive list of `values` example files. Depending on your need, download the one you want and update the configuration inside it.
 
 Provided examples are:
 * `values-demo-<cloud-provider-name>.yaml`: this version is to quickly setup Qovery on a demo cluster (**do not use this configuration in production**)
 * `values-<provider-name>.yaml`: find versions made for some providers for production usage. Adapt it based on your needs.
 
-Then replace the `qovery config` part with the configuration content override, provided by the Qovery console (see previous).
+Once you have downloaded the base values you want to use, replace the `qovery config` part with the configuration provided by the Qovery console (see previous step).
 
 <Alert type="info">
 
-Update all fields `set-by-customer` with your own values in the values file you've downloaded.
+Make sure that all fields having value `set-by-customer` are filled.
 
 </Alert>
-=======
-You will find several `values.yaml` files. Depending on you need, select the one you want and update the configuration accordingly:
-* `values-demo.yaml`: this version is to locally test with k3s or minikube
-* `values-<provider-name>.yaml`: find versions made for some providers
->>>>>>> 025f1d2232 (fix)
 
 Learn more about the configuration in the [Configuration page][docs.getting-started.install-qovery.kubernetes.byok-config].
 
@@ -129,7 +123,6 @@ Learn more about the configuration in the [Configuration page][docs.getting-star
 Install Qovery on your Kubernetes cluster.
 
 ```bash
-<<<<<<< HEAD
 helm upgrade --install --wait --atomic --create-namespace -n qovery -f <your-values-file.yaml> \
 --set services.certificates.cert-manager-configs.enabled=false,services.certificates.qovery-cert-manager-webhook.enabled=false \
 qovery/qovery qovery
@@ -146,13 +139,6 @@ helm upgrade --install --create-namespace -n qovery -f <your-values-file.yaml> q
 ```
 
 That's it, you can now use Qovery on your own Kubernetes cluster!
-=======
-helm upgrade --install -n qovery -f values-demo.yaml qovery
-```
-* `-n qovery`: the namespace where Qovery and its dependencies will be installed
-* `-f values-demo.yaml`: specify the values overrides file you want to use
-* `qovery`: name of the chart to deploy
->>>>>>> 025f1d2232 (fix)
 
 </li>
 
@@ -170,7 +156,7 @@ Now that you have installed Qovery on your cluster, you can modify its configura
 [docs.getting-started.install-qovery.gcp.cluster-managed-by-qovery.quickstart]: /docs/getting-started/install-qovery/gcp/cluster-managed-by-qovery/quickstart/
 [docs.getting-started.install-qovery.kubernetes.byok-config]: /docs/getting-started/install-qovery/kubernetes/byok-config/
 [docs.getting-started.install-qovery.kubernetes.create-k8s-cluster]: /docs/getting-started/install-qovery/kubernetes/create-k8s-cluster/
-[docs.getting-started.install-qovery.kubernetes.installation-aws-gcp]: /docs/getting-started/install-qovery/kubernetes/installation-aws-gcp/
+[docs.getting-started.install-qovery.kubernetes.installation-aws]: /docs/getting-started/install-qovery/kubernetes/installation-aws/
 [docs.getting-started.install-qovery.kubernetes.requirements]: /docs/getting-started/install-qovery/kubernetes/requirements/
 [docs.getting-started.install-qovery.scaleway.cluster-managed-by-qovery.quickstart]: /docs/getting-started/install-qovery/scaleway/cluster-managed-by-qovery/quickstart/
 [urls.helm]: https://helm.sh

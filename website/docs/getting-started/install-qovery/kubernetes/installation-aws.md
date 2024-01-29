@@ -1,12 +1,17 @@
 ---
-last_modified_on: "2024-01-26"
-title: "AWS-EKS Installation"
-description: "Learn how to install and configure Qovery on your own AWS Kubernetes cluster"
+last_modified_on: "2024-01-29"
+title: "AWS EKS Installation"
+description: "Learn how to install and configure Qovery on your own AWS EKS cluster"
 ---
 
 import Steps from '@site/src/components/Steps';
 import Alert from '@site/src/components/Alert';
 
+<Alert type="warning">
+
+This page is dedicated to AWS EKS users and is temporary until BYOK is GA. Contact us if you have any question.
+
+</Alert>
 
 In this section we will explain how to install Qovery on a EKS cluster running on your AWS account.
 

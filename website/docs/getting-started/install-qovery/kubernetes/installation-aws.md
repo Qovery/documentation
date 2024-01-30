@@ -65,7 +65,8 @@ Create a IAM user on your AWS account, add the following in-line permissions to 
 		{
 			"Action": [
 				"ecr:*",
-				"s3:ListAllMyBuckets"
+				"s3:ListAllMyBuckets",
+				"elasticloadbalancing:*"
 			],
 			"Effect": "Allow",
 			"Resource": "*"

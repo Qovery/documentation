@@ -49,6 +49,12 @@ This step will not be necessary in the upcoming version of our self-managed offe
 
 </Alert>
 
+<Steps headingDepth={3}>
+
+<ol>
+
+<li>
+
 Create a IAM user on your AWS account, add the following in-line permissions to the user:
 
 ```json
@@ -85,6 +91,7 @@ Create a IAM user on your AWS account, add the following in-line permissions to 
 	"Version": "2012-10-17"
 }
 ```
+</li>
 
 <li>
 

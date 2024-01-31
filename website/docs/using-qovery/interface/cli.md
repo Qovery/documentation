@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-01-02"
+last_modified_on: "2024-01-31"
 title: CLI
 description: How to use the Qovery CLI (Command Line Interface)
 ---
@@ -226,25 +226,30 @@ Usage:
   qovery [command]
 
 Available Commands:
-  application Manage applications
-  auth        Log in to Qovery
-  completion  Generate the autocompletion script for the specified shell
-  console     Opens the application in Qovery Console in your browser
-  container   Manage containers
-  context     Manage CLI context
-  cronjob     Manage cronjobs
-  database    Manage databases
-  env         Manage Environment Variables and Secrets
-  environment Manage environments
-  help        Help about any command
-  lifecycle   Manage lifecycle jobs
-  log         Print your application logs
-  service     Manage services
-  shell       Connect to an application container
-  status      Print the status of your application
-  token       Generate an API token
-  upgrade     Upgrade Qovery CLI to latest version
-  version     Print installed version of the Qovery CLI
+  application  Manage applications
+  auth         Log in to Qovery
+  cluster      Manage clusters
+  completion   Generate the autocompletion script for the specified shell
+  console      Opens the application in Qovery Console in your browser
+  container    Manage containers
+  context      Manage CLI context
+  cronjob      Manage cronjobs
+  database     Manage databases
+  env          Manage Environment Variables and Secrets
+  environment  Manage environments
+  helm         Manage helms
+  help         Help about any command
+  lifecycle    Manage lifecycle jobs
+  list-pods    List the pods of a service with their pods
+  log          Print your application logs
+  port-forward Port forward a port to an application container
+  project      Manage Project
+  service      Manage services
+  shell        Connect to an application container
+  status       Print the status of your application
+  token        Generate an API token
+  upgrade      Upgrade Qovery CLI to latest version
+  version      Print installed version of the Qovery CLI
 
 Flags:
   -h, --help   help for qovery
@@ -535,7 +540,7 @@ If you get a 424 error while trying to create new applications from one of your 
 
 Check out our [API documentation][urls.qovery_swagger]
 
-## Managing services and environments
+## Managing services, environments and projects
 The CLI allows you to manage and deploy the environment and services within your organization
 
 ### application, container, lifecycle, cronjob
@@ -616,6 +621,14 @@ APPLICATION | API gateway
 Environment is deploying!
 ```
 
+### Projects
+
+You can list the organization's projects by using the following command:
+
+```bash
+qovery project list
+```
+
 ## Managing the Deployment Pipeline
 
 In the following sections we will describe how to modify the Deployment Pipeline. 
@@ -657,7 +670,6 @@ You can modify the stage associated to a service by using the following command:
 ```bash
 qovery environment stage move -n <service name> --stage <stage name>
 ```
-
 
 ## Support
 

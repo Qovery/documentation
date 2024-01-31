@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-01-29"
+last_modified_on: "2024-01-30"
 title: "AWS EKS Installation"
 description: "Learn how to install and configure Qovery on your own AWS EKS cluster"
 ---
@@ -29,7 +29,11 @@ Have a look at the [Requirements][docs.getting-started.install-qovery.kubernetes
 
 ## Install your cluster
 
-If you already have one EKS cluster you can skip this section.
+If you don't have already an EKS cluster, create one on your AWS account and assign a minimum set of worker nodes to run Qovery (See the [requirements section][docs.getting-started.install-qovery.kubernetes.requirements]) and deploy your own applications.
+
+For your cluster, make sure that:
+- you have the Kubeconfig of the cluster
+- (only if you want to use databases of type `container` with Qovery) the EKS worker nodes have a role assigned with the permission `AmazonEBSCSIDriverPolicy`
 
 <Alert type="success">
 
@@ -37,6 +41,90 @@ Follow [this guide][docs.getting-started.install-qovery.kubernetes.create-k8s-cl
 
 </Alert>
 
+## Get the AWS credentials
+
+<Alert type="info">
+
+This step will not be necessary in the upcoming version of our self-managed offer.
+
+</Alert>
+
+<Steps headingDepth={3}>
+
+<ol>
+
+<li>
+
+Create IAM user for Qovery
+
+Create a IAM user on your AWS account, add the following in-line permissions to the user:
+
+```json
+{
+	"Statement": [
+		{
+			"Action": [
+				"ecr:*",
+				"s3:ListAllMyBuckets",
+				"elasticloadbalancing:*"
+			],
+			"Effect": "Allow",
+			"Resource": "*"
+		},
+		{
+			"Action": [
+				"s3:*"
+			],
+			"Effect": "Allow",
+			"Resource": [
+				"arn:aws:s3:::qovery*",
+				"arn:aws:s3:::qovery*/*"
+			]
+		},
+		{
+			"Action": [
+				"eks:AccessKubernetesApi",
+				"eks:Describe*",
+				"eks:List*"
+			],
+			"Effect": "Allow",
+			"Resource": "*"
+		}
+	],
+	"Version": "2012-10-17"
+}
+```
+</li>
+
+<li>
+
+Create access keys
+
+To create an `access key id` and `secret access key`, go to the Security Credentials tab of the `Qovery` user and press `Create access key`
+
+<img src="/img/aws/aws-create-credentials-1.png" />
+<img src="/img/aws/aws-create-credentials-2.png" />
+<img src="/img/aws/aws-create-credentials-3.png" />
+
+You can now save the `access key id` and `secret access key`
+<img src="/img/aws/aws-create-credentials-4.png" />
+
+</li>
+
+<li>
+
+Allow access to the cluster
+
+Once the user is created, make sure it has the proper access permissions on the EKS cluster (`system:masters`). Example with `eksctl`
+
+```shell
+eksctl create iamidentitymapping --arn <iam_user_arn> --region <cluster_region> --username <user_name> --cluster <cluster_name> --group system:masters
+```
+
+</li>
+</ol>
+
+</Steps>
 
 ## Install Qovery
 
@@ -46,43 +134,21 @@ Follow [this guide][docs.getting-started.install-qovery.kubernetes.create-k8s-cl
 
 <li>
 
-Install [Helm][urls.helm] command line tool.
+Create a cluster on the Qovery console
 
-</li>
+Login to the [Qovery console][urls.qovery_console], and create a "Self-Managed" cluster.
 
-<li>
-
-Add Qovery Helm repository.
-
-<Alert type="warning">
-
-Qovery Helm Chart is only available for users who have access to Qovery BYOK. [Request your access here](https://www.qovery.com/solutions/bring-your-own-kubernetes).
-
-</Alert>
-
-
-```bash
-helm repo add qovery https://helm.qovery.com/
-helm repo update
-```
-
-</li>
-
-<li>
-
-Login to the [Qovery console][urls.qovery_console], and create a "Self-Managed" cluster:
+Set the name of the cluster (1), the installation type (2) and add as `Credentials` (3) the AWS key that you have created in the previous step.
 
 <p align="center">
   <img src="/img/install-qovery/self-managed/general.png" alt="Create Self-Managed cluster" />
 </p>
 
-Set the name of the cluster and the provider credentials required by the cloud provider.
+Add your cluster kubeconfig file, and click on "Continue".
 
 <p align="center">
   <img src="/img/install-qovery/self-managed/kubeconfig.png" alt="Add your Kubeconfig" />
 </p>
-
-Add your cluster kubeconfig file, and click on "Continue".
 
 <Alert type="warning">
 
@@ -90,11 +156,13 @@ The credentials and the kubeconfig are temporary requirements that will disappea
 
 </Alert>
 
+Verify your setup and create the cluster. At the end of this step, the cluster is created on the Qovery platform but not yet running on your AWS account.
+
 <p align="center">
   <img src="/img/install-qovery/self-managed/create.png" alt="Create the cluster" />
 </p>
 
-You'll finally be able to download a file containing the Qovery configuration for your cluster. The content of this file will be used later.
+After creation, you'll finally be able to download a file containing the Qovery configuration for your cluster. The content of this file will be used later.
 
 <p align="center">
   <img src="/img/install-qovery/self-managed/qovery_override.png" alt="Override Helm chart config" />
@@ -117,25 +185,50 @@ qovery:
   architectures: &architectures "AMD64
 ```
 
+Note: you can access again this installation section using the `3 dots` button next to the cluster name.
+
 </li>
 
 <li>
 
-Now we have to build a values.yaml to be used during the installation of Qovery on your cluster via Helm. You will find in the [helm chart git repository](https://github.com/Qovery/qovery-chart) a non exhaustive list of `values` example files. Depending on your need, download the one you want and update the configuration inside it.
+Prepare the values.yaml file
 
-Provided examples are:
-* `values-demo-<cloud-provider-name>.yaml`: this version is to quickly setup Qovery on a demo cluster (**do not use this configuration in production**)
-* `values-<provider-name>.yaml`: find versions made for some providers for production usage. Adapt it based on your needs.
+Now we have to build a values.yaml file to be used during the installation of the Qovery Helm charts on your cluster.
 
-Once you have downloaded the base values you want to use, replace the `qovery config` part with the configuration provided by the Qovery console (see previous step).
+You will find in the [helm chart git repository](https://github.com/Qovery/qovery-chart/tree/main/charts/qovery) a non exhaustive list of `values` example files that you can use to build your own configuration. The full list of parameters that can be configured within a values file can be found in the [Configuration page][docs.getting-started.install-qovery.kubernetes.byok-config].
 
-<Alert type="info">
+In the repository we provide two examples for AWS:
+* `values-demo-aws.yaml`: this a pre-configured version to quickly setup Qovery on a demo cluster (**do not use this configuration in production**)
+* `values-aws.yaml`:  in this version you have to customize the entire Qovery installation. Adapt it based on your needs.
 
-Make sure that all fields having value `set-by-customer` are filled.
+Once you have downloaded the example values file that you want to use:
+- replace the `qovery` configuration part with the configuration retrieved from the Qovery console (see previous step)
+- update the configuration based on your needs. You can find all the possible parameters and configurations within the [Configuration page][docs.getting-started.install-qovery.kubernetes.byok-config].
+- make sure that every parameter has a value, there's a placeholder `set-by-customer` when your input is required.
+
+</li>
+
+<li>
+
+Install [Helm][urls.helm] command line tool.
+
+</li>
+
+<li>
+
+Add Qovery Helm repository.
+
+<Alert type="warning">
+
+Qovery Helm Chart is only available for users who have access to Qovery BYOK. [Request your access here](https://www.qovery.com/solutions/bring-your-own-kubernetes).
 
 </Alert>
 
-Learn more about the configuration in the [Configuration page][docs.getting-started.install-qovery.kubernetes.byok-config].
+
+```bash
+helm repo add qovery https://helm.qovery.com/
+helm repo update
+```
 
 </li>
 

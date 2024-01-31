@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-01-02"
+last_modified_on: "2024-01-31"
 title: CLI
 description: How to use the Qovery CLI (Command Line Interface)
 ---
@@ -226,28 +226,34 @@ Usage:
   qovery [command]
 
 Available Commands:
-  application Manage applications
-  auth        Log in to Qovery
-  completion  Generate the autocompletion script for the specified shell
-  console     Opens the application in Qovery Console in your browser
-  container   Manage containers
-  context     Manage CLI context
-  cronjob     Manage cronjobs
-  database    Manage databases
-  env         Manage Environment Variables and Secrets
-  environment Manage environments
-  help        Help about any command
-  lifecycle   Manage lifecycle jobs
-  log         Print your application logs
-  service     Manage services
-  shell       Connect to an application container
-  status      Print the status of your application
-  token       Generate an API token
-  upgrade     Upgrade Qovery CLI to latest version
-  version     Print installed version of the Qovery CLI
+  application  Manage applications
+  auth         Log in to Qovery
+  cluster      Manage clusters
+  completion   Generate the autocompletion script for the specified shell
+  console      Opens the application in Qovery Console in your browser
+  container    Manage containers
+  context      Manage CLI context
+  cronjob      Manage cronjobs
+  database     Manage databases
+  env          Manage Environment Variables and Secrets
+  environment  Manage environments
+  helm         Manage helms
+  help         Help about any command
+  lifecycle    Manage lifecycle jobs
+  list-pods    List the pods of a service with their pods
+  log          Print your application logs
+  port-forward Port forward a port to an application container
+  project      Manage Project
+  service      Manage services
+  shell        Connect to an application container
+  status       Print the status of your application
+  token        Generate an API token
+  upgrade      Upgrade Qovery CLI to latest version
+  version      Print installed version of the Qovery CLI
 
 Flags:
-  -h, --help   help for qovery
+  -h, --help      help for qovery
+      --verbose   Verbose output
 
 Use "qovery [command] --help" for more information about a command.
 ```
@@ -658,6 +664,20 @@ You can modify the stage associated to a service by using the following command:
 qovery environment stage move -n <service name> --stage <stage name>
 ```
 
+## Static token
+
+You can use a static token to authenticate to Qovery CLI. Which is useful for CI/CD pipelines.
+
+Environment variables available to set static token:
+- `QOVERY_CLI_ACCESS_TOKEN`
+- `Q_CLI_ACCESS_TOKEN`
+
+```bash
+export QOVERY_CLI_ACCESS_TOKEN=xxx
+
+qovery log --organization MyOrg --project MyProject --environment MyEnv --application MyApp
+# you will see the log output
+```
 
 ## Support
 

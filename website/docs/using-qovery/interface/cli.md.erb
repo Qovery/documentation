@@ -75,7 +75,8 @@ Available Commands:
   version      Print installed version of the Qovery CLI
 
 Flags:
-  -h, --help   help for qovery
+  -h, --help      help for qovery
+      --verbose   Verbose output
 
 Use "qovery [command] --help" for more information about a command.
 ```
@@ -492,6 +493,21 @@ You can modify the stage associated to a service by using the following command:
 
 ```bash
 qovery environment stage move -n <service name> --stage <stage name>
+```
+
+## Static token
+
+You can use a static token to authenticate to Qovery CLI. Which is useful for CI/CD pipelines.
+
+Environment variables available to set static token:
+- `QOVERY_CLI_ACCESS_TOKEN`
+- `Q_CLI_ACCESS_TOKEN`
+
+```bash
+export QOVERY_CLI_ACCESS_TOKEN=xxx
+
+qovery log --organization MyOrg --project MyProject --environment MyEnv --application MyApp
+# you will see the log output
 ```
 
 ## Support

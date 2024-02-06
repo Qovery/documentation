@@ -30,13 +30,32 @@ Third-party components:
 - Cert Manager (optional)
 - ...
 
-You can choose what you want to install and manage, and you will have a description of what services are used, and responsible for. You can disable them if you don't want to use them. And you can even install other components if you want to.
+Within the values.yaml file of the helm chart you can choose what you want to install and manage, and you will have a description of what services are used, and responsible for. You can disable them if you don't want to use them. And you can even install other components if you want to.
 
 ## Configuration
 
+At the top of the values file you will find a list of component that you can activate or not. 
+
+``` yaml
+services:
+  qovery:
+    qovery-cluster-agent:
+      enabled: true
+    qovery-shell-agent:
+      enabled: true
+    qovery-engine:
+      enabled: false
+  ingress:
+    ingress-nginx:
+      enabled: true
+...
+```
+
+Here's the complete list and the documentation explaining how to configure it.
+
 ### Qovery
 
-This is the configuration of Qovery itself. It is used by all Qovery components.
+This is the configuration of Qovery itself and it is used by all Qovery components. This configuration is automatically generated when creating the cluster on the Qovery console (see [docs.getting-started.install-qovery.kubernetes.quickstart#install-qovery])
 
 <Alert type="danger">
 
@@ -44,19 +63,20 @@ This is the configuration of Qovery itself. It is used by all Qovery components.
 
 </Alert>
 
-| Key                        | Required | Description                                                    | Default                   |
-|----------------------------|----------|----------------------------------------------------------------|---------------------------|
-| `qovery.clusterId`         | Yes      | The cluster ID. It is used to identify your cluster.           | `set-by-customer`         |
-| `qovery.shortClusterId`    | Yes      | The short cluster ID. It is used to identify your cluster.     | `set-by-customer`         |
-| `qovery.organizationId`    | Yes      | The organization ID. It is used to identify your organization. | `set-by-customer`         |
-| `qovery.jwtToken`          | Yes      | The JWT token. It is used to authenticate your cluster.        | `set-by-customer`         |
-| `qovery.domain`            | Yes      | The domain name used by Qovery.                                | `set-by-customer`         |
-| `qovery.qoveryDnsUrl`      | Yes      | Qovery DNS url in case you want to use Qovery provided DNS     | `set-by-customer`         |
-| `qovery.lokiUrl`           | No       | Local Loki URL (required if Loki is set)                       | `set-by-customer`         |
-| `qovery.promtailLokiUrl`   | No       | Promtail Loki URL (required if Promtail and Loki are set)      | `set-by-customer`         |
-| `qovery.acmeEmailAddr`     | No       | Email address used for `Let's Encrypt` TLS requests            | `set-by-customer`         |
-| `qovery.externalDnsPrefix` | No       | ExernalDNS TXT record prefix (required if ExternalDNS is set)  | `set-by-customer`         |
-| `qovery.architectures`     | No       | Set cluster architectures (comma separated)                    | `AMD64`                   |
+| Key                        | Required | Description                                                    |
+|----------------------------|----------|----------------------------------------------------------------|
+| `qovery.clusterId`         | Yes      | The cluster ID. It is used to identify your cluster.           | 
+| `qovery.clusterShortId`    | Yes      | The short cluster ID. It is used to identify your cluster.     |
+| `qovery.organizationId`    | Yes      | The organization ID. It is used to identify your organization. |
+| `qovery.jwtToken`          | Yes      | The JWT token. It is used to authenticate your cluster.        |
+| `qovery.domain`            | Yes      | The domain name used by Qovery.                                |
+| `qovery.domainWildcard`    | Yes      | The wildcard domain name used by Qovery.                       |
+| `qovery.qoveryDnsUrl`      | Yes      | Qovery DNS url in case you want to use Qovery provided DNS     |
+| `qovery.lokiUrl`           | No       | Local Loki URL (required if Loki is set)                       |
+| `qovery.promtailLokiUrl`   | No       | Promtail Loki URL (required if Promtail and Loki are set)      |
+| `qovery.acmeEmailAddr`     | No       | Email address used for `Let's Encrypt` TLS requests            |
+| `qovery.externalDnsPrefix` | No       | ExernalDNS TXT record prefix (required if ExternalDNS is set)  |
+| `qovery.architectures`     | No       | Set cluster architectures (comma separated)                    |
 
 #### Qovery Cluster Agent
 
@@ -837,9 +857,9 @@ cert-manager-configs:
 
 Qovery uses [Metrics Server](https://github.com/kubernetes-sigs/metrics-server) to collect metrics from your Kubernetes cluster and scale your applications automatically based on custom metrics.
 
-## Observability
+### Observability
 
-### Metrics Server
+#### Metrics Server
 
 |                 |                                                                                                                                |
 |-----------------|--------------------------------------------------------------------------------------------------------------------------------|

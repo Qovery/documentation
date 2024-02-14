@@ -1,5 +1,5 @@
 ---
-title: "AWS EKS Installation"
+title: "Installing on AWS EKS"
 description: "Learn how to install and configure Qovery on your own AWS EKS cluster"
 ---
 
@@ -8,11 +8,11 @@ import Alert from '@site/src/components/Alert';
 
 <Alert type="warning">
 
-This page is dedicated to AWS EKS users and is temporary until BYOK is GA. Contact us if you have any question.
+This page is dedicated to AWS EKS users and is temporary until BYOK is GA. Contact us if you have any questions.
 
 </Alert>
 
-In this section we will explain how to install Qovery on a EKS cluster running on your AWS account.
+In this section, we will explain how to install Qovery on an EKS cluster running on your AWS account.
 
 ## Requirements
 
@@ -20,15 +20,17 @@ Have a look at the [Requirements][docs.getting-started.install-qovery.kubernetes
 
 ## Install your cluster
 
-If you don't have already an EKS cluster, create one on your AWS account and assign a minimum set of worker nodes to run Qovery (See the [requirements section][docs.getting-started.install-qovery.kubernetes.requirements]) and deploy your own applications.
+If you don't have already an EKS cluster, create one on your AWS account and create a set of worker nodes with enough resources to run Qovery and your applications. 
 
-For your cluster, make sure that:
+For the Kubernetes requirements, check the [requirements section][docs.getting-started.install-qovery.kubernetes.requirements].
+
+For your EKS cluster, make sure that:
 - you have the Kubeconfig of the cluster
 - (only if you want to use databases of type `container` with Qovery) the EKS worker nodes have a role assigned with the permission `AmazonEBSCSIDriverPolicy`
 
 <Alert type="success">
 
-Follow [this guide][docs.getting-started.install-qovery.kubernetes.create-k8s-cluster] to test Qovery BYOK on a demo cluster (K3s).
+If you want to test Qovery BYOK on a demo cluster (K3s), follow [this guide][docs.getting-started.install-qovery.kubernetes.create-k8s-cluster].
 
 </Alert>
 
@@ -48,7 +50,7 @@ This step will not be necessary in the upcoming version of our self-managed offe
 
 Create IAM user for Qovery
 
-Create a IAM user on your AWS account, add the following in-line permissions to the user:
+Create an IAM user on your AWS account and add the following in-line permissions to the user:
 
 ```json
 {
@@ -56,8 +58,7 @@ Create a IAM user on your AWS account, add the following in-line permissions to 
 		{
 			"Action": [
 				"ecr:*",
-				"s3:ListAllMyBuckets",
-				"elasticloadbalancing:*"
+				"s3:ListAllMyBuckets"
 			],
 			"Effect": "Allow",
 			"Resource": "*"
@@ -129,7 +130,7 @@ Create a cluster on the Qovery console
 
 Login to the [Qovery console][urls.qovery_console], and create a "Self-Managed" cluster.
 
-Set the name of the cluster (1), the installation type (2) and add as `Credentials` (3) the AWS key that you have created in the previous step.
+Set the name of the cluster (1), the installation type `Self-Managed` (2) and add as `Credentials` (3) the AWS key that you have created in the previous step.
 
 <p align="center">
   <img src="/img/install-qovery/self-managed/general.png" alt="Create Self-Managed cluster" />

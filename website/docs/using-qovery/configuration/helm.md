@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-01-17"
+last_modified_on: "2024-01-31"
 title: "Helm"
 description: "Learn how to configure your Helm on Qovery"
 ---
@@ -119,30 +119,6 @@ Add a new variable by declaring:
 
 </Alert>
   
-</li>
-<li>
-
-You can now expose publicly one or more ports for your services defined in the helm chart by specifying:
-- Service name: this is the kubernetes service name in your helm chart
-- Namespace (only if Allow cluster-wide resources was enabled): this is the kubernetes namespace used by your helm chart to deploy the pods behind the chosen service
-- Service port: this is the port exposed internally by your service
-- Protocol: you can select the protocol used by your service. Today Qovery supports the following protocols:
-  - HTTPS (Select this protocol if you need to run Websockets)
-  - gRPC
-- External port: it is the port that can be used to access this service over the internet (when exposed publicly). Note that for HTTP and gRPC the port is set by default to 443.
-- Port Name: it is the name assigned to the port. When multiple ports are exposed publicly, its value is used to route the traffic to the right port based on the called subdomain (which will contain the port name value). Since each port is exposed on the port 443, having a different subdomain is the only way to have multiple ports exposed over the internet. If not set, the default value is `p<portNumber>` (see [Qovery Provided Domain section](#qovery-provided-domains) for more information)
-
-By default services are accessible only from inside your namespace(s). You can expose them publicly, making them accessible over the public network via a dedicated public domain that will be assigned to your application by Qovery during the deployment (See the [Qovery Provided Domains section](#qovery-provided-domains)). Note that HTTPS/gRPC ports are always exposed over the port 443.
-
-<p align="center">
-  <img src="/img/configuration/helm/helm_creation_port.png" alt="Helm Ports" />
-</p>
-
-
-**Important Informations**
-
-- Connections on public ports are automatically closed after 60 seconds. If you want to implement long living connection (like for websockets) please make sure to use the rigth ingress timeouts in the [advanced settings section][docs.using-qovery.configuration.advanced-settings#network-settings]
-
 </li>
 
 <li>

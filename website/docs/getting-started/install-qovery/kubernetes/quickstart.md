@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-01-26"
+last_modified_on: "2024-02-22"
 title: "Quickstart"
 description: "Learn how to install and configure Qovery on your own Kubernetes cluster (BYOK) / Self-managed Kubernetes cluster"
 ---
@@ -39,6 +39,14 @@ The current state of Qovery BYOK is still in beta. We are working hard to improv
 | ✅ Delivered (Dec 2023) | Deploy your applications                                       |
 | ✅ Delivered (Dec 2023) | Fetch logs                                                     |
 | End of January 2024    | Install Qovery BYOK on **any** Kubernetes cluster              |
+
+<Alert type="warning">
+
+Qovery automatically updates **ONLY** the Qovery applications (agent, shell-agent etc..) via the Qovery Helm chart. With the self-managed offer it will be up to you to manage any dependency components (ingress, dns, logging...), making sure they run with the right version over time.
+
+The dependencies provided with the Qovery Helm chart are here to help you with the bootstrap, and are not maintained by Qovery. If you want to simplify the maintenance of your cluster, please look at [Qovery managed Kubernetes offer](https://www.qovery.com/pricing/).
+
+</Alert>
 
 ## Requirements
 

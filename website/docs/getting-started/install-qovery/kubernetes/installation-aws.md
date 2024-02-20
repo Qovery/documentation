@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-01-31"
+last_modified_on: "2024-02-20"
 title: "Installing on AWS EKS"
 description: "Learn how to install and configure Qovery on your own AWS EKS cluster"
 ---
@@ -261,6 +261,10 @@ That's it, you can now use Qovery on your own Kubernetes cluster!
 
 </Steps>
 
+## Validate the installation
+
+Follow the [steps here][docs.getting-started.install-qovery.kubernetes.validate-installation].
+
 ## Further configuration
 
 Now that you have installed Qovery on your cluster, you can modify its configuration based on your need following the [Qovery BYOK configuration guide][docs.getting-started.install-qovery.kubernetes.byok-config].
@@ -269,5 +273,6 @@ Now that you have installed Qovery on your cluster, you can modify its configura
 [docs.getting-started.install-qovery.kubernetes.byok-config]: /docs/getting-started/install-qovery/kubernetes/byok-config/
 [docs.getting-started.install-qovery.kubernetes.create-k8s-cluster]: /docs/getting-started/install-qovery/kubernetes/create-k8s-cluster/
 [docs.getting-started.install-qovery.kubernetes.requirements]: /docs/getting-started/install-qovery/kubernetes/requirements/
+[docs.getting-started.install-qovery.kubernetes.validate-installation]: /docs/getting-started/install-qovery/kubernetes/validate-installation/
 [urls.helm]: https://helm.sh
 [urls.qovery_console]: https://console.qovery.com

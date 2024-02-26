@@ -1,0 +1,170 @@
+---
+title: "Validate the installation"
+description: "Learn how to validate that everything works as expected on your Qovery installation"
+---
+
+import Steps from '@site/src/components/Steps';
+import Alert from '@site/src/components/Alert';
+
+To verify that everything works fine on brand new installation, we will deploy a few simple applications.
+
+## Step 1: verify container deployment
+
+<Steps headingDepth={3}>
+
+<ol>
+
+<li>
+Create an environment
+
+Open the [Qovery console][urls.qovery_console] and access the "Environment" section. 
+
+Add a `new environment` and select as target the cluster that was created in the previous step.
+
+</li>
+
+<li>
+Create an application
+
+Within this environment, create a new service of type `Application`.
+
+Fill the fields this way:
+- Name: test
+- Application source: Container Registry
+- Registry: Dockerhub public
+- image name: `stefanprodan/podinfo`
+- image tag: `6.5.2`
+
+Click on `Continue` until the installation recap is displayed. Now click on `Create and deploy`.
+
+</li>
+<li>
+Follow the deployment
+
+
+The application will start the deployment and you can follow it opening the `Log` button or by pressing on the `Deployment status`
+
+<p align="left">
+    <img src="/img/install-qovery/aws/test-service.png" alt="Test container" />
+</p>
+
+After a few seconds, the deployment should end and the message `Deployment of Container succeeded` should be displayed in the deployment logs.
+
+You should now see at least one pod running on your cluster with the specified container.
+
+</li>
+
+<li>
+Verify Qovery functionalities
+
+Click on the log button to access the `Live logs` section.
+
+You should be able to:
+1) access the log of the deployed application
+2) retrieve the running status of the application from the element next to the `Live logs` tab
+
+<p align="left">
+    <img src="/img/install-qovery/aws/check-logs.png" alt="Test container" />
+</p>
+
+</li>
+
+</Steps>
+
+## Step 2: verify application public exposure and TLS
+
+<Alert type="info">
+
+This step should be run only if you have enabled the services `external-dns`, `cert-manager`, `cert-manager-config` and `qovery-cert-manager-webhook` in your values.yaml file during the installation.
+
+</Alert>
+
+
+<Steps headingDepth={3}>
+
+<ol>
+
+<li>
+Expose container publicly
+
+Open the settings of the container created in the step 1. Open the section `Port`
+
+
+Add one port with:
+- Application port: 9898
+- Protocol: HTTP
+- Publicly exposed: true
+
+Add the port and then click on `Re-deploy now` banner. 
+
+
+</li>
+
+<li>
+Follow the deployment
+
+
+The application will start the deployment and you can follow it opening the `Log` button or by pressing on the `Deployment status`
+
+<p align="left">
+    <img src="/img/install-qovery/aws/test-service.png" alt="Test container" />
+</p>
+
+After a few seconds, the deployment should end and the message `Deployment of Container succeeded` should be displayed in the deployment logs.
+
+</li>
+
+<li>
+Check the accessibility
+
+Click on the "Link" button and select one of the URLs of the list.
+
+<p align="left">
+    <img src="/img/install-qovery/aws/link.png" alt="Application Link" />
+</p>
+
+You should be able to access the podinfo homepage with a valid certificate.
+
+</li>
+</Steps>
+
+## Step 3: verify storage availability
+
+<Alert type="info">
+
+This step should be run only if you have enabled the services `q-storageclass-aws` and `aws-ebs-csi-driver` in your values.yaml file during the installation (or you already have the CSI plugin activated on your AWS cluster).
+
+</Alert>
+
+<Steps headingDepth={3}>
+
+<ol>
+
+<li>
+Create a database
+
+Go back to the environment page and create a new service of type `Database`.
+
+Fill the fields this way:
+- Name: test-db
+- Database Mode: Container
+- Database type: Mysql
+- version: select one from the list
+- accessibility: private
+
+Click on `Continue` until the installation recap is displayed. Now click on `Create and deploy`.
+
+</li>
+<li>
+Follow the deployment
+
+
+The databse will start the deployment and you can follow it opening the `Log` button or by pressing on the `Deployment status`
+
+After a few seconds, the deployment should end and the message `Deployment of Database succeeded` should be displayed in the deployment logs.
+
+You should now see at least one pod running on your cluster with the specified container and you should be able to access your database from within you cluster (you can retrieve the connection string via the button `Connection URI` available in the database overview targetCPUUtilizationPercentage)
+
+</li>
+
+</Steps>

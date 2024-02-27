@@ -179,7 +179,7 @@ Before running the migration script, I strongly recommend making your apps sendi
 
 ## Wrapping up
 
-The migration goes smoothly and took 1 day because we had more than 1 million events. We are super excited to use PostHog Cloud. It is fast and efficient for improving the developer experience on Qovery. Any questions about our usage of PostHog? [Join our Discord][urls.qovery_chat] to chat about it.
+The migration goes smoothly and took 1 day because we had more than 1 million events. We are super excited to use PostHog Cloud. It is fast and efficient for improving the developer experience on Qovery. Any questions about our usage of PostHog? [Join our forum][urls.qovery_forum] to chat about it.
 
 Resources:
 - [PostHog][urls.posthog]: open source product analytics tool.

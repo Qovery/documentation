@@ -27,15 +27,6 @@ function Community() {
 
                         <div className="row">
                             <div className="col">
-                                <a href="https://discord.qovery.com" target="_blank" className="panel panel--link text--center">
-                                    <div className="panel--icon">
-                                        <i className="feather icon-message-circle"></i>
-                                    </div>
-                                    <div className="panel--title">Discord</div>
-                                    <div className="panel--description">Join our community on Discord</div>
-                                </a>
-                            </div>
-                            <div className="col">
                                 <a href="https://community.qovery.com" target="_blank" className="panel panel--link text--center">
                                     <div className="panel--icon">
                                         <i className="feather icon-globe"></i>

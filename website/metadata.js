@@ -81,11 +81,6 @@ module.exports = {
       "name": "nuxtjs"
     },
     {
-      "dark_logo_path": "/img/logos/discordpy.svg",
-      "logo_path": "/img/logos/discordpy.svg",
-      "name": "discordpy"
-    },
-    {
       "dark_logo_path": "/img/logos/sinatra.svg",
       "logo_path": "/img/logos/sinatra.svg",
       "name": "sinatra"

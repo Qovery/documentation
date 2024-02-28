@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-01-17"
+last_modified_on: "2024-02-28"
 title: "Lifecycle Job"
 description: "Learn how to configure your Lifecycle job on Qovery"
 ---
@@ -76,7 +76,7 @@ Select the following fields:
 - Source: Chose between Git Repository or Container Registry, depending on the source location of your application
 
 If you want to deploy a cronjob from a Git Repository you will have to select:
-- Git Repository: Select the git provider hosting your code (it can be hosted on GitHub, GitLab or Bitbucket).
+- Git Repository: Select the git provider hosting your code (it can be hosted on GitHub, GitLab or Bitbucket).  You can add a new git access by clicking on `New git access`.
 - Branch: Select branch that Qovery should use to deploy your code
 - Root Application Path: base folder in which the code resides in your repository
 - Build Mode: only Docker is supported
@@ -88,7 +88,7 @@ A Dockerfile is necessary to build and deploy your job
 </Alert>
 
 If you want to deploy a job from a Container Registry you will have to select:
-- Registry: select the container registry storing the image of your job. Note: only pre-configured registry are available in this list, check the [Container Registry Management page][docs.using-qovery.configuration.organization.container-registry] for more information.
+- Registry: select the container registry storing the image of your job.You can add a new container registry by clicking on `New registry`.
 - Image name: the name of the image to be deployed with this job (example: postgres)
 - Image tag: the tag of the image to be deployed with this job (example: 12)
 

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-11"
+last_modified_on: "2024-02-28"
 title: "Running and Deployment Statuses"
 description: "Learn how to monitor your services"
 ---
@@ -75,6 +75,8 @@ Within this page you will have a view of:
 - the number of running instances of your application
 - the status of each instance
 - in case of an error, you will get the reason behind the issue by clicking on the Pod in error.
+
+By clicking on `Logs`, you will be redirected to the service logs specifically filtered for this pod.
 
 ## Deployment Statuses
 

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-08-29"
+last_modified_on: "2024-02-28"
 title: "User Account"
 description: "Learn how to manage your user account on Qovery"
 ---
@@ -25,6 +25,7 @@ This section shows you some basic information about your account like:
 - Last name: retrieved from your git account, it can't be changed.
 - Account email: retrieved from your git account, it can't be changed.
 - Communication email: this email will be used by Qovery to communicate you any update or issue ongoing on the product. Make sure to set the communication email with a valid email adress
+- Timezone: used in the Qovery console for the dates display. To change it, modify the timezone used in your browser settings.
 
 <Alert type="info">
 

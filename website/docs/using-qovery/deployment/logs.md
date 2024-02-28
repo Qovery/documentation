@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-11-29"
+last_modified_on: "2024-02-28"
 title: Logs
 description: "Learn how to access the logs of your environment and services"
 ---
@@ -102,6 +102,12 @@ Within this section you will find:
 - Pod Name: the name of the kubernetes pod where your application is running (to distinguish the instance in case of the multi-instance app). If you want to follow a specific pod, you can filter the logs by clicking on the pod name
 - Version: the commit id or the image tag of the application running on this POD
 - Message: the log message
+
+If you have several pods within your application, you have the possiblity to filter the logs by pod. 
+
+<p align="center">
+  <img src="/img/deployment/live_logs_filtered.png" alt="Log content" />
+</p>
 
 Past application logs are also preserved on your cluster via [Loki](https://grafana.com/oss/loki/) and can be accessed from the same log view within the qovery console. Please keep in mind that:
 - Loki is configured to preserve only the latest 1000 lines of log for each application and retain them for 12 weeks (configurable via the [cluster advanced settings][docs.using-qovery.configuration.cluster-advanced-settings#logs])

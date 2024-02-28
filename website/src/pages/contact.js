@@ -44,15 +44,6 @@ function Contact() {
                   </div>
                 </a>
               </div>
-              <div className="col">
-                <a href="https://discord.qovery.com" target="_blank" className="panel panel--link text--center">
-                  <div className="panel--icon">
-                    <i className="feather icon-message-circle"></i>
-                  </div>
-                  <div className="panel--title">Chat</div>
-                  <div className="panel--description">Join our chat</div>
-                </a>
-              </div>
             </div>
           </div>
         </section>

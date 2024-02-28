@@ -76,8 +76,6 @@ function Footer() {
                                 <a href="https://www.linkedin.com/company/qovery/" target="_blank"><i className="feather icon-rss" alt="Qovery's Linkedin"></i></a>
                                 &nbsp;&nbsp;&nbsp;&nbsp;
                                 <a href="https://twitter.com/qovery_" target="_blank"><i className="feather icon-twitter" alt="Qovery's Twitter"></i></a>
-                                &nbsp;&nbsp;&nbsp;&nbsp;
-                                <a href="https://discord.qovery.com" target="_blank"><i className="feather icon-message-circle" alt="Qovery's Discord"></i></a>
                             </div>
                         </div>
                         {links.map((linkItem, i) => (

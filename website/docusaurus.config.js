@@ -102,10 +102,6 @@ module.exports = {
           title: "Community",
           items: [
             {
-              label: "Discord",
-              to: "https://discord.qovery.com",
-            },
-            {
               label: "Forum",
               to: "https://community.qovery.com",
             },

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-07-07"
+last_modified_on: "2024-02-27"
 $schema: "/.meta/.schemas/guides.json"
 title: Custom domain
 description: How to set and use your own domain
@@ -74,8 +74,8 @@ You need to **restart** your app to use your custom domain on your application.
 </ol>
 </Steps>
 
-If you run into any trouble, [find us on Discord][urls.qovery_chat]. Our team and the community will be glad to help out.
+If you run into any trouble, [find us on our forum][urls.qovery_forum] or on Intercom depending on your support plan.
 
 
 [docs.using-qovery.configuration.application#ports]: /docs/using-qovery/configuration/application/#ports
-[urls.qovery_chat]: https://discord.qovery.com
+[urls.qovery_forum]: https://discuss.qovery.com/

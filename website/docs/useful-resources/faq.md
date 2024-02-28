@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-11-24"
+last_modified_on: "2024-02-27"
 title: FAQ
 description: "Frequently Asked Questions"
 ---
@@ -98,13 +98,9 @@ Create teams, split responsibilities, manage privileges, enforce company-wide ru
 
 [Here][docs.getting-started.how-qovery-works] is a detailed explanation on how Qovery works under the hood.
 
-## What is an Active User?
-
-An Active User is someone who made a code change on git or deployed an application in the last 30 days. We do not count contributions to public (open-source) repositories.
-
 ## How can I contact you?
 
-Feel free to join our [Discord server][urls.qovery_chat] or contact us by email at hello (at) qovery.com.
+Feel free to join our [forum][urls.qovery_forum] or contact us by email at hello (at) qovery.com or via the Intercom chat.
 
 
 [docs.getting-started.how-qovery-works]: /docs/getting-started/how-qovery-works/
@@ -121,5 +117,5 @@ Feel free to join our [Discord server][urls.qovery_chat] or contact us by email 
 [guides.advanced.monorepository]: /guides/advanced/monorepository/
 [guides.tutorial.how-to-connect-to-your-eks-cluster-with-kubectl]: /guides/tutorial/how-to-connect-to-your-eks-cluster-with-kubectl/
 [urls.kubernetes]: https://kubernetes.io/
-[urls.qovery_chat]: https://discord.qovery.com
+[urls.qovery_forum]: https://discuss.qovery.com/
 [urls.qovery_roadmap]: https://roadmap.qovery.com/

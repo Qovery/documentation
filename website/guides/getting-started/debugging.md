@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-04-13"
+last_modified_on: "2024-02-27"
 $schema: "/.meta/.schemas/guides.json"
 title: Debugging
 description: How to debug your application
@@ -81,7 +81,7 @@ In the main application view, you can see a table with the current application r
 We highly recommend using tools like [Datadog][urls.datadog], [Sentry][urls.sentry] or [NewRelic][urls.new_relic] to manage your alerting.
 Qovery will provide easy integrations in the coming release. Check out our [roadmap][urls.qovery_roadmap]
 
-Do you need any help? [Reach us on Discord][urls.qovery_chat]
+Do you need any help? [Reach us on our forum][urls.qovery_forum]
 
 
 [docs.using-qovery.deployment.logs#deployment-logs]: /docs/using-qovery/deployment/logs/#deployment-logs
@@ -90,7 +90,7 @@ Do you need any help? [Reach us on Discord][urls.qovery_chat]
 [docs.using-qovery.troubleshoot]: /docs/using-qovery/troubleshoot/
 [urls.datadog]: https://www.datadoghq.com
 [urls.new_relic]: https://newrelic.com/
-[urls.qovery_chat]: https://discord.qovery.com
 [urls.qovery_console]: https://console.qovery.com
+[urls.qovery_forum]: https://discuss.qovery.com/
 [urls.qovery_roadmap]: https://roadmap.qovery.com/
 [urls.sentry]: https://sentry.io/

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-29"
+last_modified_on: "2024-02-28"
 $schema: "/.meta/.schemas/guides.json"
 title: Hello World. Deploy your first application.
 description: How to deploy your first application with Qovery
@@ -46,7 +46,7 @@ Do you want to migrate from Heroku to AWS with Qovery? [Check out this step-by-s
 Sign in to the [Qovery web interface][urls.start_qovery].
 
 <p align="center">
-  <a href="https://onboarding.qovery.com/"><img src="/img/Qovery_Sign_Up_Page.jpg" alt="Qovery Sign-up page" /></a>
+  <a href="https://onboarding.qovery.com/"><img src="/img/Qovery_Sign_Up_Page.png" alt="Qovery Sign-up page" /></a>
 </p>
 
 </li>

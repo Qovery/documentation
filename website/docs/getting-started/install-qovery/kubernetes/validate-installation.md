@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-02-20"
+last_modified_on: "2024-02-26"
 title: "Validate the installation"
 description: "Learn how to validate that everything works as expected on your Qovery installation"
 ---
@@ -78,6 +78,8 @@ You should be able to:
 
 </li>
 
+</ol>
+
 </Steps>
 
 ## Step 2: verify application public exposure and TLS
@@ -135,6 +137,7 @@ Click on the "Link" button and select one of the URLs of the list.
 You should be able to access the podinfo homepage with a valid certificate.
 
 </li>
+</ol>
 </Steps>
 
 ## Step 3: verify storage availability
@@ -175,6 +178,8 @@ After a few seconds, the deployment should end and the message `Deployment of Da
 You should now see at least one pod running on your cluster with the specified container and you should be able to access your database from within you cluster (you can retrieve the connection string via the button `Connection URI` available in the database overview targetCPUUtilizationPercentage)
 
 </li>
+
+</ol>
 
 </Steps>
 

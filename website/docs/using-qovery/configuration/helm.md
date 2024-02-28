@@ -238,27 +238,24 @@ Qovery allows you to use the following macros within your override file. These m
 
 Macro: `qovery.env.<ENV_VAR_NAME>`
 
-Description: It allows you to access the value of an environment variable or secret stored within Qovery. This is helpful when your deployed helm chart needs to access a secret or an environment variable available in Qovery.
+It allows you to access the value of an environment variable or secret stored within Qovery. This is helpful when your deployed helm chart needs to access a secret or an environment variable available in Qovery.
 
 Example: 
-On Qovery we have created a database and create two aliases for the database url (DB_URL) and the database password (DB_PASSWORD).
 
-Here an example on how the helm chart can access these environment variables and let your service point to the right database.
+On Qovery we have created a database and created two aliases for the database url (DB_URL) and, the database password (DB_PASSWORD). Here an example on how the helm chart can access these environment variables and let your service point to the right database:
 ```yaml
 postgres:
   url: qovery.env.DB_URL
   password: qovery.env.DB_PASSWORD
 ```
 
-qovery.env.DB_URL
-
-
 ** Enable all the Qovery features **
 
-Macro for labels: `qovery.labels.service`
-Macro for annotations: `qovery.annotations.service`
+* Macro for labels: `qovery.labels.service`
+* Macro for annotations: `qovery.annotations.service`
 
-Description: It allows to add all the labels and annotations required to activate all the Qovery features on the deployed Helm chart (access your container logs, apply the stop/restart actions, display the pod status in the overview page). Make sure to create an override and assign the macro to the labels of any deployed Pods/Deployments/Services/Jobs. 
+It allows to add all the labels and annotations required to activate all the Qovery features on the deployed Helm chart (access your container logs, apply the stop/restart actions, display the pod status in the overview page).
+Make sure to create an override and assign the macro to the labels of **any deployed Pods/Deployments/Services/Jobs**. 
 
 Example:
 
@@ -270,7 +267,22 @@ annotations:
   qovery.annotations.service
 ```
 
+When your Pods/Deployments/Services/Jobs are deployed, you should see Qovery labels and annotations added to the resources. Something like:
 
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    qovery.com/environment-id: 00000000-0000-0000-0000-000000000000
+    qovery.com/project-id: 00000000-0000-0000-0000-000000000000
+    qovery.com/service-id: 00000000-0000-0000-0000-000000000000
+    qovery.com/service-type: helm
+    ...
+  annotations:
+    qovery.com/service-version: application:x.y.z
+    ...
+```
 
 ### Ports
 

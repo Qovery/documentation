@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-01-31"
+last_modified_on: "2024-02-28"
 title: "Helm"
 description: "Learn how to configure your Helm on Qovery"
 ---
@@ -176,7 +176,7 @@ Secret names examples:
 
 #### Helm Repository
 If your helm is deployed from a helm repository, within this section you can modify:
-- Helm repository: select the helm repository storing the helm chart. Note: only pre-configured registry are available in this list, check the [Helm Repository Management page][docs.using-qovery.configuration.organization.helm-repository] for more information.
+- Helm repository: select the helm repository storing the helm chart. You can add a new container registry by clicking on `New helm repository`.
 - Chart name: the name of the helm to be deployed with this application (example: jenkins)
 - Chart version: the version of the chart to be deployed with this application (example: 1.0.0). 
 

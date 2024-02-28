@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-01-31"
+last_modified_on: "2024-02-28"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -64,13 +64,13 @@ Select the following fields:
 - Application Source: Chose between Git Repository or Container Registry, depending on the source location of your application
 
 If you want to deploy an application from a Git Repository you will have to select:
-- Git Repository: Select the git provider hosting your code (it can be hosted on GitHub, GitLab or Bitbucket).
+- Git Repository: Select the git provider hosting your code (it can be hosted on GitHub, GitLab or Bitbucket). You can add a new git access by clicking on `New git access`.
 - Branch: Select branch that Qovery should use to deploy your application
 - Root Application Path: base folder in which the application resides in your repository
 - Build Mode: choose between Docker or Buildpack. For more information, go to [this section][docs.using-qovery.configuration.application#build-mode]
 
 If you want to deploy an application from a Container Registry you will have to select:
-- Registry: select the container registry storing the image of your application. Note: only pre-configured registry are available in this list, check the [Container Registry Management page][docs.using-qovery.configuration.organization.container-registry] for more information.
+- Registry: select the container registry storing the image of your application. You can add a new container registry by clicking on `New registry`.
 - Image name: the name of the image to be deployed with this application (example: postgres)
 - Image tag: the tag of the image to be deployed with this application (example: 1.0). 
 - Image Entrypoint: the entrypoint to be used to launch your applicaiton (not mandatory)

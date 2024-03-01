@@ -14,12 +14,12 @@ You can imagine the deployment lifecycle of a service or environment like a stat
 * the list of allowed `Deployment action` depends on the current `Deployment Status`. Example: if the deployment status is `Deployment Ok`, you can trigger only the action `Stop`. This will stop the execution of the service (deployment status `Stopped`).
 
 **Example**: 
-When a new application is created within Qovery, the application will have the deployment status `Ready`. Once the action `Deploy` is executed on the service, the service will go through the statuses `Queued`, `Building`, `Deploying` and then finally on the status `Deployed` (meaning that the application is correctly deployed).
+When a new application is created within Qovery, the application will have the deployment status `Ready`. Once the action `Deploy` is executed on the service, the service will go through the statuses `Queued`, `Building`, `Deploying` and then finally on the status `Deployed` (meaning that the application is correctly deployed). At this point, you can trigger only the action `Stop` (This will stop the execution of the service, moving the application to the deployment status `Stopped`).
 
-You can find the deployment status directly in the Qovery console in the service or environment list:
+You can find the status of the last deployment directly in the Qovery console in the service or environment list:
 
 <p align="center">
-  <img src="/img/deployment/deployment_statuses.png" alt="Deployment Statuses" />
+  <img src="/img/deployment/deployment_status.png" alt="Deployment Statuses" />
 </p>
 
 Note that the deployment status of the environment is built based on the deployment statuses of each service within it.
@@ -27,26 +27,25 @@ Note that the deployment status of the environment is built based on the deploym
 
 <Alert type="info">
 
-Deployment Status and Running Status do not provide the same information. Just because an error arose during deployment does not mean your application is not running anymore. Monitoring both your deployment and service statuses allows you to know exactly which applications are currently running on your platform.
+Deployment Status and Running Status do not provide the same information. Just because a deployment has failed does not mean your application is not running anymore. Monitoring both your deployment and service statuses allows you to know exactly which applications are currently running on your platform.
 Have a look at [this section][docs.using-qovery.deployment.running-and-deployment-statuses] for more information
 
 </Alert>
 
 You can decide to execute a deployment action on:
-- an environment: the action will be executed on each service within the environment. To know more about the deployment order of your services, have a look at the [Deployment Pipeline][docs.using-qovery.deployment.deployment-pipeline] 
-- a single service: the action will be executed only on the selected service.
-
-The deployment actions are accessible through the `Play` button available at service or environment level. 
+1. an environment: via the `Play` button at environment level, the action will be executed on each service within the environment. To know more about the deployment order of your services, have a look at the [Deployment Pipeline][docs.using-qovery.deployment.deployment-pipeline] 
+2. a single service: via the `Play` button at service level, the action will be executed only on the selected service.
+3. a subset of services: selecting one or more services from the service list and using the floating action button. 
 
 <p align="center">
   <img src="/img/deployment/deployment_actions.png" alt="Deployment Actions" />
 </p>
 
-You can trigger the deployment actions via the UI but also via any interface described within [this section][docs.using-qovery.interface].
+Note that all the deployment actions are available via any interface described within [this section][docs.using-qovery.interface].
 
 <Alert type="info">
 
-You cannot have two or more deployment actions running at the same time on one environment. Example: you can't trigger the deployment of service A and stop service B at the same time. You need to wait for the deployment of service A to finish before triggering the pause of the service B
+You cannot queue deployment actions on one environment. Example: you can't trigger the deployment of service A and stop service B at the same time. You need to wait for the deployment of service A to finish before triggering the pause of the service B
 
 </Alert>
 

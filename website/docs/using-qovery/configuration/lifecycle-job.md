@@ -162,6 +162,93 @@ You will find a recap of your job setup and you can now decide to:
 ## Deployment Management
 Have a look at the [Deployment Management][docs.using-qovery.deployment] section for more information.
 
+## Job output
+Qovery expects the output file to be written in the following path `/qovery-output/qovery-output.json` (the `output` folder is automatically mounted by Qovery).
+The file should follow this format:
+```json
+{
+  "varname1": {
+    "sensitive": true,
+    "value": "myvalue"
+  },
+  "varname2": {
+    "sensitive": false,
+    "value": "myvalue"
+  }
+}
+...
+```
+At the end of the job execution, this file will be processed by Qovery and a set of environment variables will be created, one for each element in the json. The information in the json file will be mapped to an environment variables in this way:
+- Variable Name: `QOVERY_OUTPUT_JOB_<JOBID>_<VARNAME>` , where `<JOBID>` is the id of the Job on Qovery side and `<VARNAME>` is the name of the element in the output file.
+- Variable Value: field "value"
+- Secret: field "sensitive"
+
+An alias `<VARNAME>` will be automatically created to simplify your setup.
+
+The output (and thus the created environment variables) are displayed in the Lifecycle job overview.
+
+<p align="center">
+  <img src="/img/configuration/job/job_output.png" alt="Job output" />
+</p>
+
+Example
+Let's say that the code of our job creates a PostgreSQL RDS on AWS. At the end of its execution, the job should know the connection Once created, the job should know the connection string of the PostgreSQL. The job can now create a file `/qovery-output/qovery-output.json` with the following structure:
+
+```json
+{
+  "POSTGRES_DB_HOST": {
+    "sensitive": False,
+    "value": "zf138d9c8-postgresql"
+  },
+  "POSTGRES_DB_USER": {
+    "sensitive": False,
+    "value": "root"
+  },
+  "POSTGRES_DB_PASS": {
+    "sensitive": True,
+    "value": "mypassword"
+  },
+  "POSTGRES_DB_TABLE": {
+    "sensitive": False,
+    "value": "MYDB"
+  },
+  "POSTGRES_DB_PORT": {
+    "sensitive": False,
+    "value": "3600"
+  }
+}
+```
+
+This file will be processed by Qovery and the following environment variables will be created:
+
+Var `QOVERY_OUTPUT_JOB_<JOBID>_POSTGRES_DB_HOST`
+- Value: "zf138d9c8-postgresql"
+- Secret: false
+- Alias: POSTGRES_DB_HOST
+
+Var `QOVERY_OUTPUT_JOB_<JOBID>_POSTGRES_DB_USER`
+- Value: "root"
+- Secret: false
+- Alias: POSTGRES_DB_USER
+
+Var `QOVERY_OUTPUT_JOB_<JOBID>_POSTGRES_DB_PASS`
+- Value: "mypassword"
+- Secret: true
+- Alias: POSTGRES_DB_PASS
+
+Var `QOVERY_OUTPUT_JOB_<JOBID>_POSTGRES_DB_TABLE`
+- Value: "MYDB"
+- Secret: false
+- Alias: POSTGRES_DB_TABLE
+
+Var `QOVERY_OUTPUT_JOB_<JOBID>_DB_PORT`
+- Value: "3600"
+- Secret: false
+- Alias: POSTGRES_DB_PORT
+
+Once the execution of the job is terminated and the environment variables are created, any application within the same environment will be able to access those environment variables and thus connect to the postgres instance.
+
+
 ## Force Run
 You can force the execution of a job independently its deployment status by:
 
@@ -303,10 +390,6 @@ Default is 512MB.
 
 Please note that in this section you configure the CPU allocated by the cluster for your application and that cannot consume more than this value. Even if the application is underused and consume less resources, the cluster will still reserve the selected amount of CPU. If your application requires more RAM than requested, it will be killed by the kubernetes scheduler.
 
-### Health Checks
-
-To know more about how to configure your Liveness and Readiness probes, have a look at [the health-checks section][docs.using-qovery.configuration.application-health-checks]
-
 ### Deployment Restrictions
 
 This section allows to specify which changes on your repository should trigger an auto-deploy (if enabled). To know more about how to configure your Deployment Restrictions, have a look at the [deployment restrictions section][docs.using-qovery.deployment.deploying-with-auto-deploy#filtering-commits-triggering-the-auto-deploy].
@@ -326,86 +409,6 @@ To learn how to set up secrets in your projects and applications, navigate to [c
 ## Logs
 
 To learn how to display your application logs, navigate to [logs section][docs.using-qovery.deployment.logs#live-logs]
-
-## Job output
-Qovery expects the output file to be written in the following path `/qovery-output/qovery-output.json` (the `output` folder is automatically mounted by Qovery).
-The file should follow this format:
-```json
-{
-  "varname1": {
-    "sensitive": true,
-    "value": "myvalue"
-  },
-  "varname2": {
-    "sensitive": false,
-    "value": "myvalue"
-  }
-}
-...
-```
-At the end of the job execution, this file will be processed by Qovery and a set of environment variables will be created, one for each element in the json. The information in the json file will be mapped to an environment variables in this way:
-- Variable Name: `QOVERY_OUTPUT_JOB_<JOBID>_<VARNAME>` , where `<JOBID>` is the id of the Job on Qovery side and `<VARNAME>` is the name of the element in the output file.
-- Variable Value: field "value"
-- Secret: field "sensitive"
-
-An alias `<VARNAME>` will be automatically created to simplify your setup.
-
-Example
-Let's say that the code of our job creates a PostgreSQL RDS on AWS. At the end of its execution, the job should know the connection Once created, the job should know the connection string of the PostgreSQL. The job can now create a file `/qovery-output/qovery-output.json` with the following structure:
-
-```json
-{
-  "POSTGRES_DB_HOST": {
-    "sensitive": False,
-    "value": "zf138d9c8-postgresql"
-  },
-  "POSTGRES_DB_USER": {
-    "sensitive": False,
-    "value": "root"
-  },
-  "POSTGRES_DB_PASS": {
-    "sensitive": True,
-    "value": "mypassword"
-  },
-  "POSTGRES_DB_TABLE": {
-    "sensitive": False,
-    "value": "MYDB"
-  },
-  "POSTGRES_DB_PORT": {
-    "sensitive": False,
-    "value": "3600"
-  }
-}
-```
-
-This file will be processed by Qovery and the following environment variables will be created:
-
-Var `QOVERY_OUTPUT_JOB_<JOBID>_POSTGRES_DB_HOST`
-- Value: "zf138d9c8-postgresql"
-- Secret: false
-- Alias: POSTGRES_DB_HOST
-
-Var `QOVERY_OUTPUT_JOB_<JOBID>_POSTGRES_DB_USER`
-- Value: "root"
-- Secret: false
-- Alias: POSTGRES_DB_USER
-
-Var `QOVERY_OUTPUT_JOB_<JOBID>_POSTGRES_DB_PASS`
-- Value: "mypassword"
-- Secret: true
-- Alias: POSTGRES_DB_PASS
-
-Var `QOVERY_OUTPUT_JOB_<JOBID>_POSTGRES_DB_TABLE`
-- Value: "MYDB"
-- Secret: false
-- Alias: POSTGRES_DB_TABLE
-
-Var `QOVERY_OUTPUT_JOB_<JOBID>_DB_PORT`
-- Value: "3600"
-- Secret: false
-- Alias: POSTGRES_DB_PORT
-
-Once the execution of the job is terminated and the environment variables are created, any application within the same environment will be able to access those environment variables and thus connect to the postgres instance.
 
 ## Clone
 
@@ -454,7 +457,6 @@ In the overview, click on the `3 dots` button and remove the job. Note: the same
 
 [docs.qovery.deployment.deploying-with-auto-deploy]: /docs/using-qovery/deployment/deploying-with-auto-deploy/
 [docs.using-qovery.configuration.advanced-settings]: /docs/using-qovery/configuration/advanced-settings/
-[docs.using-qovery.configuration.application-health-checks]: /docs/using-qovery/configuration/application-health-checks/
 [docs.using-qovery.configuration.environment-variable]: /docs/using-qovery/configuration/environment-variable/
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [docs.using-qovery.configuration.organization.container-registry]: /docs/using-qovery/configuration/organization/container-registry/

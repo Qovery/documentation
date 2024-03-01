@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-04-24"
+last_modified_on: "2024-03-01"
 $schema: "/.meta/.schemas/guides.json"
 title: Create a blazingly fast REST API in Rust (Part 1/2)
 description: How to create a blazingly fast REST API in Rust, with zero-cost abstraction and very low overhead - Part 1/2
@@ -564,7 +564,7 @@ Qovery is going to help you to deploy your application in a few seconds. Let's d
 Sign in to the [Qovery web interface][urls.start_qovery].
 
 <p align="center">
-  <a href="https://onboarding.qovery.com/"><img src="/img/Qovery_Sign_Up_Page.jpg" alt="Qovery Sign-up page" /></a>
+  <a href="https://console.qovery.com/"><img src="/img/Qovery_Sign_Up_Page.png" alt="Qovery Sign-up page" /></a>
 </p>
 
 </li>

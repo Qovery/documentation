@@ -215,12 +215,9 @@ On both file types you can add `Qovery Macros` to add more functionalities to yo
 if you want to specify one by one your overrides or define additional overrides on top of the one available in your override file, you can pass them as arguments. These will be passed to the helm command via the `--set`, `--set-string` or `--set-json` arguments.
 
 Add a new variable by declaring:
-  - Variable: the variable name
-  - Value type: 
-    - Select `Generic` to pass configuration from the command line
-    - Select `String` if you want to pass a string type (and avoid weird numeric conversions like 021341 interpreted as a number and thus the 0 is removed)
-    - Select `Json` to set json values (scalars/objects/arrays) from the command line
-  - Value
+- Override type: select the type of your variable. For more information, have a look at the Helm documentation
+- Variable: the variable name
+- Value
   
 <Alert type="info">
   

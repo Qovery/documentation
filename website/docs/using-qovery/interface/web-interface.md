@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-02-28"
+last_modified_on: "2024-03-01"
 title: Web interface
 description: How to use the Qovery web interface
 ---
@@ -27,7 +27,7 @@ Qovery provides a [management console][urls.start_qovery] which allows you to in
 Sign in to the [Qovery web interface][urls.start_qovery].
 
 <p align="center">
-  <a href="https://onboarding.qovery.com/"><img src="/img/Qovery_Sign_Up_Page.png" alt="Qovery Sign-up page" /></a>
+  <a href="https://console.qovery.com/"><img src="/img/Qovery_Sign_Up_Page.png" alt="Qovery Sign-up page" /></a>
 </p>
 
 <Alert type="info">

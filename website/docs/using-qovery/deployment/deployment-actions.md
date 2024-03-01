@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-02-28"
+last_modified_on: "2024-03-01"
 title: "Deployment Actions"
 description: "Learn how to deploy your application"
 ---
@@ -35,7 +35,7 @@ Have a look at [this section][docs.using-qovery.deployment.running-and-deploymen
 
 You can decide to execute a deployment action on:
 1. an environment: via the `Play` button at environment level, the action will be executed on each service within the environment. To know more about the deployment order of your services, have a look at the [Deployment Pipeline][docs.using-qovery.deployment.deployment-pipeline] 
-2. a single service: via the `Play` button at environment level, the action will be executed only on the selected service.
+2. a single service: via the `Play` button at service level, the action will be executed only on the selected service.
 3. a subset of services: selecting one or more services from the service list and using the floating action button. 
 
 <p align="center">

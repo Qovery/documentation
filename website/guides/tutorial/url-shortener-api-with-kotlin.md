@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-02-28"
+last_modified_on: "2024-03-01"
 $schema: "/.meta/.schemas/guides.json"
 title: URL Shortener API with Kotlin (Part 1/2)
 description: Create a URL shortener API with Kotlin, the micro-framework Ktor and PostgreSQL
@@ -443,7 +443,7 @@ We have to replace the Hash Table used to store the data by the PostgreSQL datab
 Sign in to the [Qovery web interface][urls.start_qovery].
 
 <p align="center">
-  <a href="https://onboarding.qovery.com/"><img src="/img/Qovery_Sign_Up_Page.png" alt="Qovery Sign-up page" /></a>
+  <a href="https://console.qovery.com/"><img src="/img/Qovery_Sign_Up_Page.png" alt="Qovery Sign-up page" /></a>
 </p>
 
 </li>

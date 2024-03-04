@@ -356,11 +356,11 @@ Please note that a minimum of 3 worker nodes is required to deploy your [EKS clu
 
 #### Features
 
-The `Features` tab in your cluster settings allows you to check if the **Static IP** and **Custom VPC subnet** features are enabled on your cluster. The enabled features cannot be changed after the creation of the cluster.
+The `Features` tab in your cluster settings allows you to check if the **Static IP**,  **Custom VPC subnet**, **Deploy on existing VPC** features are enabled on your cluster. The enabled features cannot be changed after the creation of the cluster.
 
 ##### Static IP
 
-The **Static IP** feature is currently only available to clusters deployed on AWS and can only be enabled at cluster creation.
+The **Static IP** feature is currently only available to clusters deployed on AWS with a VPC managed by Qovery and can only be enabled at cluster creation.
 
 By default, when your cluster is created, its worker nodes are allocated public IP addresses, which are used for external communication. For improved security and control, the **Static IP** feature allows you to ensure that outbound traffic from your cluster uses specific IP addresses.
 
@@ -377,15 +377,49 @@ Once set up, here is the procedure to find your static IP addresses:
 
 If you work in a sensitive business area such as financial technology, enabling the **Static IP** feature can help fulfil the security requirements of some of the external services you use, therefore making it easier for you to get whitelisted by them.
 
+This feature has been activated by default. Since February 1, 2024, aws_existing_vpccharge public IPv4 Addresses. Disabling it may cost you more, depending on the number of nodes in your cluster.
+
 </Alert>
 
 ##### Custom VPC Subnet
 
-The **VPC** feature is currently only available to clusters deployed on AWS and can only be enabled at cluster creation.
+The **VPC** feature is currently only available to clusters deployed on AWS with a VPC managed by Qovery and can only be enabled at cluster creation.
 
 Virtual Private Cloud (VPC) peering allows you to set up a connection between your Qovery VPC and another VPC on your AWS account. This way, you can access resources stored on your AWS VPC directly from your Qovery applications.
 
 A VPC can only be used if it has at least one range of IP addresses called a **subnet**. When you create a cluster, Qovery automatically picks a default subnet for it. However, to perform VPC peering, you may want to define which specific VPC subnet you want to use, so that you can avoid any conflicting settings. To do so, you can enable the **Custom VPC Subnet** feature on your cluster. For more information on how to set up VPC peering, [see our dedicated tutorial](https://hub.qovery.com/guides/tutorial/aws-vpc-peering-with-qovery/).
+
+##### Use existing VPC
+
+The **Deploy on existing VPC** feature is currently only available to clusters deployed on AWS when you select `Deploy on my existing VPC` VPC mode and can only be enabled at cluster creation.
+
+You have to specify the `VPC id` (1) and ensure that in your VPC settings you have enabled the `DNS hostnames` (2):
+
+<p align="center">
+  <img src="/img/configuration/clusters/existing_vpc_aws_dns_hostnames.png" alt="Existing VPC AWS DNS Hostnmaes" />
+</p>
+
+Then you have to specify the different subnets ids:
+
+**EKS**:
+
+The EKS subnets are mandatory, you have to specify at least **one subnet id per zone** (1) and ensure you have enabled the **auto-assign public IPv4 address** setting on your subnets (2).
+
+<p align="center">
+  <img src="/img/configuration/clusters/existing_vpc_aws_auto_assign.png" alt="Existing VPC AWS DNS Hostnmaes" />
+</p>
+
+**Managed databases**:
+
+This section is exclusively for enabling managed databases (container databases will be enabled by default).
+
+You have to specify at least **one subnet id per zone** for each `MongoDB`, `MySQL/PostgreSQL` and `Redis` section.
+
+<Alert type="warning">
+
+Please keep in mind that enabling them later may not be possible.
+
+</Alert>
 
 #### Network
 

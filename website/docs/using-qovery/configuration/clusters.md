@@ -421,7 +421,7 @@ The EKS subnets are mandatory, you have to specify at least **one subnet id per 
 
 This section is exclusively for enabling managed databases (container databases will be enabled by default).
 
-Depending on the managed service you want to you use (**MongoDB**, **RDS:MySQL/PostgreSQL** and **Redis**), specify at least one subnet id per zone.
+Depending on the managed databases you want to you use (**MongoDB**, **RDS:MySQL/PostgreSQL** and **Redis**), specify at least one subnet id per zone.
 
 <Alert type="warning">
 

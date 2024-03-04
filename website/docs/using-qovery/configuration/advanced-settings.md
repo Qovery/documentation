@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-01-17"
+last_modified_on: "2024-03-04"
 title: "Service Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -290,6 +290,12 @@ You can pass set credentials by separating them with a comma. For example: `user
 | Type   | Description                                                   | Use Case                                                                                                                           | Default Value |
 |--------|---------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | string | Allows you to set an existing Kubernetes service account name | E.g. On AWS, you can assume a role on an application to give it specific AWS permissions without having to specify AWS credentials | ``            |
+
+#### security.automount_service_account_token ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/cronjob.svg) ![](/img/advanced_settings/job.svg)
+
+| Type    | Description                                                                           | Default Value |
+|---------|---------------------------------------------------------------------------------------|---------------|
+| boolean | Automount Kubernetes service account token to have access to Kubernetes API from pods | `false`       |
 
 
 [docs.using-qovery.deployment.deployment-strategies]: /docs/using-qovery/deployment/deployment-strategies/

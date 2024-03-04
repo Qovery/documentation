@@ -385,7 +385,7 @@ Once set up, here is the procedure to find your static IP addresses:
 
 If you work in a sensitive business area such as financial technology, enabling the **Static IP** feature can help fulfil the security requirements of some of the external services you use, therefore making it easier for you to get whitelisted by them.
 
-This feature has been activated by default. Since February 1, 2024, aws_existing_vpccharge public IPv4 Addresses. Disabling it may cost you more, depending on the number of nodes in your cluster.
+This feature has been activated by default. Since February 1, 2024, AWS charge public IPv4 Addresses. Disabling it may cost you more, depending on the number of nodes in your cluster. Check this [link](https://aws.amazon.com/blogs/aws/new-aws-public-ipv4-address-charge-public-ip-insights/) for more information.
 
 </Alert>
 
@@ -421,7 +421,7 @@ The EKS subnets are mandatory, you have to specify at least **one subnet id per 
 
 This section is exclusively for enabling managed databases (container databases will be enabled by default).
 
-You have to specify at least **one subnet id per zone** for each `MongoDB`, `MySQL/PostgreSQL` and `Redis` section.
+Depending on the managed service you want to you use (MongoDB, RDS:MySQL/PostgreSQL and Redis), specify at least one subnet id per zone.
 
 <Alert type="warning">
 

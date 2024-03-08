@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-01-05"
+last_modified_on: "2024-03-08"
 $schema: "/.meta/.schemas/guides.json"
 title: "Integrate your application logs to Cloudwatch"
 description: "Add Kubernetes pod logs into Cloudwatch to perform full text search"
@@ -109,7 +109,7 @@ Create a helm service in the Qovery environment of your choice (preferrably with
   * Source:
     * Helm source: `Helm repository`
     * Repository: `eks` (the name given during the AWS EKS helm repository added in the previous step)
-    * Chart name: `eks/aws-for-fluent-bit`
+    * Chart name: `aws-for-fluent-bit`
     * Version: `0.1.21` (this is the version we used for this setup, update it based on the chosen version)
     * Allow cluster-wide resources :heavy_check_mark:
 * Values

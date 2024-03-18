@@ -9,13 +9,14 @@ jobs:
   deploy:
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Setup Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: '12.x'
           cache: 'npm'
+          cache-dependency-path: website/package-lock.json
 
       - run: cd website && npm install && npm run-script build
 

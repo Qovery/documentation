@@ -11,12 +11,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Cache Node.js modules
+        uses: actions/cache@v2
+        with:
+          path: website/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('website/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: '12.x'
-          cache: 'npm'
-          cache-dependency-path: website/package-lock.json
 
       - run: cd website && npm install && npm run-script build
 

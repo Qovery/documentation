@@ -277,10 +277,6 @@ See the [Deploying with auto-deploy feature][docs.qovery.deployment.deploying-wi
 
 ### Resources
 
-<div hidden class="qoverySummary" qovery-tag="resources">
-Here is the sub-section for the resources
-</div>
-
 <p align="center">
   <img src="/img/configuration/application/app-13.png" alt="CPU" />
 </p>
@@ -368,10 +364,6 @@ Storage can be added only if the application has never been deployed before AND 
 </Alert>
 
 ### Ports
-
-<div hidden class="qoverySummary" qovery-tag="port">
-Here is the sub-section for the ports
-</div>
 
 Within this section you can define the port exposed by your application to the other services or even over the internet.
 You can edit the existing ports or declare new ones by specifying:

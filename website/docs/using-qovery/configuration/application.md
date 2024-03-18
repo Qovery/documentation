@@ -274,7 +274,6 @@ Configuration from above will make Qovery look for the Dockerfile in `/timescale
 
 See the [Deploying with auto-deploy feature][docs.qovery.deployment.deploying-with-auto-deploy] section.
 
-
 ### Resources
 
 <p align="center">

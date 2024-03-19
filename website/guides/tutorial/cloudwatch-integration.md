@@ -121,7 +121,7 @@ Create a helm service in the Qovery environment of your choice (preferrably with
 cloudWatch:
   enabled: true
   region: "<enter your cluster region>"
-  logGroupName: "/aws/eks/fluentbit-<enter your cluster region>/logs"
+  logGroupName: "/aws/eks/fluentbit-<enter your cluster id>/logs"
   logRetentionDays: 7
 
 env:

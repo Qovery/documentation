@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-01-17"
+last_modified_on: "2024-03-27"
 title: "Cluster Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -134,6 +134,13 @@ Below is the list of advanced settings currently available for clusters.
 | Type    | Description                                                                                    | Default Value   |
 |---------|------------------------------------------------------------------------------------------------|-----------------|
 | integer | Maximum number of Nginx instances running                                                      | `25`            |
+
+#### nginx.controller.enable_client_ip ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
+
+| Type    | Description                                                                                          | Default Value   |
+|---------|------------------------------------------------------------------------------------------------------|-----------------|
+| bool    | Enables [ngx_http_realip_module](https://nginx.org/en/docs/http/ngx_http_realip_module.html) module. | `false`         |
+
 
 ### Database access
 

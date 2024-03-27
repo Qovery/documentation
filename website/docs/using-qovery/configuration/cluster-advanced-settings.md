@@ -17,7 +17,7 @@ Cluster advanced settings are not available in the Qovery console yet.
 
 All clusters have access to advanced settings, you can find where they are available in the documentation below with those badges mentioning for which Cloud provider they are available:
 
-#### ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg)
+#### ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
 
 You will also find badges mentioning for which components it will be applied:
 
@@ -74,7 +74,7 @@ Below is the list of advanced settings currently available for clusters.
 |---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------|
 | string  | Allows you to specify the [image mirroring mode][docs.using-qovery.deployment.image-mirroring] to be used for each image deployed on this cluster. (possible values: `Service` or `Cluster`)  | `Service`           |
 
-#### cloud_provider.container_registry.tags ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg)
+#### cloud_provider.container_registry.tags ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
 
 | Type                | Description                                           | Default Value |
 |---------------------|-------------------------------------------------------|---------------|
@@ -93,43 +93,43 @@ Below is the list of advanced settings currently available for clusters.
 
 ### Nginx
 
-#### nginx.vcpu.request_in_milli_cpu ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg)
+#### nginx.vcpu.request_in_milli_cpu ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
 
 | Type    | Description                                                                                    | Default Value   |
 |---------|------------------------------------------------------------------------------------------------|-----------------|
 | integer | Vcpu request value in millicores assigned to Nginx pods                                        | `200`           |
 
-#### nginx.vcpu.limit_in_milli_cpu ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg)
+#### nginx.vcpu.limit_in_milli_cpu ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
 
 | Type    | Description                                                                                    | Default Value   |
 |---------|------------------------------------------------------------------------------------------------|-----------------|
 | integer | Vcpu limit value in millicores assigned to Nginx pods                                          | `700`           |
 
-#### nginx.memory.request_in_mib ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg)
+#### nginx.memory.request_in_mib ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
 
 | Type    | Description                                                                                    | Default Value   |
 |---------|------------------------------------------------------------------------------------------------|-----------------|
 | integer | Memory limit value in MiB assigned to Nginx pods                                               | `768`           |
 
-#### nginx.memory.limit_in_mib ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg)
+#### nginx.memory.limit_in_mib ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
 
 | Type    | Description                                                                                    | Default Value   |
 |---------|------------------------------------------------------------------------------------------------|-----------------|
 | integer | Memory limit value in MiB assigned to Nginx pods                                               | `768`           |
 
-#### nginx.hpa.cpu_utilization_percentage_threshold ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg)
+#### nginx.hpa.cpu_utilization_percentage_threshold ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
 
 | Type    | Description                                                                                    | Default Value   |
 |---------|------------------------------------------------------------------------------------------------|-----------------|
 | integer | Hpa (horizontal pod autoscaler) cpu threshold in percentage assigned to Nginx deployment       | `50`            |
 
-#### nginx.hpa.min_number_instances ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg)
+#### nginx.hpa.min_number_instances ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
 
 | Type    | Description                                                                                    | Default Value   |
 |---------|------------------------------------------------------------------------------------------------|-----------------|
 | integer | Minimum number of Nginx instances running                                                      | `2`             |
 
-#### nginx.hpa.max_number_instances ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg)
+#### nginx.hpa.max_number_instances ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
 
 | Type    | Description                                                                                    | Default Value   |
 |---------|------------------------------------------------------------------------------------------------|-----------------|

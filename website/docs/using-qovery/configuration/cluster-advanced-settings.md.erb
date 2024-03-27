@@ -126,6 +126,13 @@ Below is the list of advanced settings currently available for clusters.
 |---------|------------------------------------------------------------------------------------------------|-----------------|
 | integer | Maximum number of Nginx instances running                                                      | `25`            |
 
+#### nginx.controller.enable_client_ip ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
+
+| Type    | Description                                                                                          | Default Value   |
+|---------|------------------------------------------------------------------------------------------------------|-----------------|
+| bool    | Enables [ngx_http_realip_module](https://nginx.org/en/docs/http/ngx_http_realip_module.html) module. | `false`         |
+
+
 ### Database access
 
 #### database.postgresql.deny_public_access ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-container.svg) ![](/img/advanced_settings/database-managed.svg)

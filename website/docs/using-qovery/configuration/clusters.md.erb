@@ -391,7 +391,9 @@ A VPC can only be used if it has at least one range of IP addresses called a **s
 
 ##### Use existing VPC
 
-The **Deploy on existing VPC** feature is currently only available to clusters deployed on AWS when you select `Deploy on my existing VPC` VPC mode and can only be enabled at cluster creation.
+The **Deploy on existing VPC** feature is currently only available to clusters deployed on `AWS` and `GCP` when you select `Deploy on my existing VPC` VPC mode and can only be enabled at cluster creation.
+
+##### Use existing VPC - AWS:
 
 You have to specify the `VPC id` (1) and ensure that in your VPC settings you have enabled the `DNS hostnames` (2):
 
@@ -414,6 +416,29 @@ The EKS subnets are mandatory, you have to specify at least **one subnet id per 
 This section is exclusively for enabling managed databases (container databases will be enabled by default).
 
 Depending on the managed databases you want to you use (**MongoDB**, **RDS:MySQL/PostgreSQL** and **Redis**), specify at least one subnet id per zone.
+
+##### Use existing VPC - GCP:
+
+In GCP you have two VPC modes: `Automatic` or `Custom`.
+
+If you are using an automatic or a custom VPC, you have to set:
+* Your VPC Name
+* External project id (optional): by default, the project id used is the one specified in the credentials file. But if your VPC is defined in another GCP project, you have to specify the Project id.
+
+In addition if you are using a custom VPC, you have to set:
+* Your Subnet range name (`https://console.cloud.google.com/networking/networks/details/<your-vpc>?project=<your-project>&pageTab=SUBNETS`)
+
+<Alert type="info">
+
+You can also specify (optional):
+  * Pod ipv4 address range name
+  * Additional cluster pod ipv4 ranges names (separated with a comma)
+  * Ipv4 service range name
+
+For these ranges, you have to create Secondary IPv4 ranges inside your subnet.
+
+</Alert>
+
 
 <Alert type="warning">
 

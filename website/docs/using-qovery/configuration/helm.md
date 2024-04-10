@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-02-28"
+last_modified_on: "2024-04-10"
 title: "Helm"
 description: "Learn how to configure your Helm on Qovery"
 ---
@@ -244,41 +244,6 @@ On Qovery we have created a database and created two aliases for the database ur
 postgres:
   url: qovery.env.DB_URL
   password: qovery.env.DB_PASSWORD
-```
-
-** Enable all the Qovery features **
-
-* Macro for labels: `qovery.labels.service`
-* Macro for annotations: `qovery.annotations.service`
-
-It allows to add all the labels and annotations required to activate all the Qovery features on the deployed Helm chart (access your container logs, apply the stop/restart actions, display the pod status in the overview page).
-Make sure to create an override and assign the macro to the labels of **any deployed Pods/Deployments/Services/Jobs**. 
-
-Example:
-
-```yaml
-commonLabels:
-  mylabel: "test"
-  qovery.labels.service
-annotations:
-  qovery.annotations.service
-```
-
-When your Pods/Deployments/Services/Jobs are deployed, you should see Qovery labels and annotations added to the resources. Something like:
-
-```yaml
-apiVersion: v1
-kind: Pod
-metadata:
-  labels:
-    qovery.com/environment-id: 00000000-0000-0000-0000-000000000000
-    qovery.com/project-id: 00000000-0000-0000-0000-000000000000
-    qovery.com/service-id: 00000000-0000-0000-0000-000000000000
-    qovery.com/service-type: helm
-    ...
-  annotations:
-    qovery.com/service-version: application:x.y.z
-    ...
 ```
 
 ### Ports

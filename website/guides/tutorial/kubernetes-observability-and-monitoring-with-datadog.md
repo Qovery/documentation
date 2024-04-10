@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-01-05"
+last_modified_on: "2024-04-10"
 $schema: "/.meta/.schemas/guides.json"
 title: Kubernetes observability and monitoring with Datadog
 description: How to integrate Datadog with Kubernetes on Qovery.
@@ -83,38 +83,6 @@ datadog:
   site: datadoghq.eu
   # Update the cluster name with the name of your choice
   clusterName: qoverycluster
-
-# in the section below, we are adding Qovery macros in order to automatically add a set 
-# of labels and annotations to the deployed Pods/Deployments/services etc.. This is not 
-# mandatory to install Datadog itself but it allows you to fully benefit from the Qovery
-# functionalities (Display application logs, restart pods etc..). See the official Qovery
-# Helm documentation for more information.
-commonLabels: 
-  qovery.labels.service
-
-clusterAgent:
-  deploymentAnnotations:
-    qovery.annotations.service
-  podAnnotations:
-    qovery.annotations.service
-  additionalLabels:
-    qovery.labels.service
-
-agents:
-  daemonsetAnnotations:
-    qovery.annotations.service
-  podAnnotations:
-    qovery.annotations.service
-  additionalLabels:
-    qovery.labels.service
-
-clusterChecksRunner:
-  deploymentAnnotations:
-    qovery.annotations.service
-  podAnnotations:
-    qovery.annotations.service
-  additionalLabels:
-    qovery.labels.service
 ```
 
 There are many other values you can set and modify the Datadog agent behaviour. For advanced usage, check: https://github.com/Datadog/helm-charts/blob/main/charts/datadog/values.yaml

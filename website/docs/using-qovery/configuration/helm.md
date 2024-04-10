@@ -93,7 +93,7 @@ If you want to override it with a raw yaml you will have to click on `Create ove
 <Alert type="warning">
 
 - Git repository source is recommended as the raw yaml is not versioned.
-- On both file types you can add `Qovery Macros` to add more functionalities to your helm deployment. Check [the section below][docs.using-qovery.configuration.helm#qovery-macros] before moving forward with your helm chart creation.
+- On both file types you can use your environment variables in your chart. Check [the section below][docs.using-qovery.configuration.helm#using-the-environment-variables-in-your-chart].
 
 </Alert>
 
@@ -115,7 +115,7 @@ Add a new variable by declaring:
 <Alert type="warning">
 
 - You can combine override as file and override as argument but, in case of collision, the priority will be given to the override as argument.
-- You can add `Qovery Macros` to add more functionalities to your helm deployment. Check [the section below][docs.using-qovery.configuration.helm#qovery-macros] before moving forward with your helm chart creation.  
+- You can use your environment variables in your chart. Check [the section below][docs.using-qovery.configuration.helm#using-the-environment-variables-in-your-chart].  
 
 </Alert>
   
@@ -208,7 +208,7 @@ If you want to override it from another already existing values file from a Git 
 ** Raw YAML **
 If you want to override it with a raw yaml you will have to click on `Create override`. A new editor modal will be opened, to let you write your yaml override. The default values.yaml content will be displayed on the right to help you to respect the structure.
 
-On both file types you can add `Qovery Macros` to add more functionalities to your helm deployment. Check [the section below][docs.using-qovery.configuration.helm#qovery-macros].
+On both file types you can use your environment variables in your chart. Check [the section below][docs.using-qovery.configuration.helm#using-the-environment-variables-in-your-chart].
 
 #### Override as arguments
 
@@ -225,9 +225,9 @@ You can combine override as file and override as argument but, in case of collis
   
 </Alert>
 
-You can add `Qovery Macros` to add more functionalities to your helm deployment. Check [the section below][docs.using-qovery.configuration.helm#qovery-macros].
+You can use your environment variables in your chart. Check [the section below][docs.using-qovery.configuration.helm#using-the-environment-variables-in-your-chart].
 
-#### Qovery macros
+#### Using the environment variables in your chart
 
 Qovery allows you to use the following macros within your override file. These macros will be automatically replaced by Qovery during the deployment phase, allowing you to access additional functionalities.
 
@@ -407,7 +407,7 @@ In the helm overview, click on the `3 dots` button and remove the helm.
 [docs.using-qovery.configuration.advanced-settings#network-settings]: /docs/using-qovery/configuration/advanced-settings/#network-settings
 [docs.using-qovery.configuration.advanced-settings]: /docs/using-qovery/configuration/advanced-settings/
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
-[docs.using-qovery.configuration.helm#qovery-macros]: /docs/using-qovery/configuration/helm/#qovery-macros
+[docs.using-qovery.configuration.helm#using-the-environment-variables-in-your-chart]: /docs/using-qovery/configuration/helm/#using-the-environment-variables-in-your-chart
 [docs.using-qovery.configuration.organization.helm-repository]: /docs/using-qovery/configuration/organization/helm-repository/
 [docs.using-qovery.configuration.organization.members-rbac]: /docs/using-qovery/configuration/organization/members-rbac/
 [docs.using-qovery.deployment.logs#live-logs]: /docs/using-qovery/deployment/logs/#live-logs

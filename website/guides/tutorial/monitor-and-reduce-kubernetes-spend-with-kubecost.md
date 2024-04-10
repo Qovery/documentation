@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-01-12"
+last_modified_on: "2024-04-10"
 $schema: "/.meta/.schemas/guides.json"
 title: Monitor and reduce Kubernetes spend with Kubecost
 description: How to deploy Kubecost with Qovery
@@ -79,23 +79,7 @@ Deploy the Kubecost helm chart in your Qovery environment by following [this doc
 ```yaml
 kubecostToken: qovery.env.KUBECOST_TOKEN #Used only if you have a Kubecost Token
 
-global:
-  podAnnotations:
-    qovery.annotations.service
-  additionalLabels:
-    qovery.labels.service
 ```
-<Alert type="info">
-
-These are necessary to get all Qovery features, check [this documentation][docs.using-qovery.configuration.helm] for more information.
-
-</Alert>
-
-<Alert type="warning">
-
-Currently it is not possible to **Stop** the Kubecost helm service. You can Start/Update/Delete it.
-
-</Alert>
 
 Then click on `Create and Deploy`
 

@@ -138,7 +138,7 @@ You will find a recap of your helm setup and you can now decide to:
 
 <Alert type="info">
 
-To integrate your helm with Qovery, additional labels/annotations will be applied to the Kubernetes objects deployed by your helm.
+To let you access every Qovery functionality, additional Qovery labels and annotations are automatically injected in some of the Kubernetes objects deployed within your helm.
 
 </Alert>
 

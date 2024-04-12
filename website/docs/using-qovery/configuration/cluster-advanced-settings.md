@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-03-27"
+last_modified_on: "2024-04-12"
 title: "Cluster Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -205,7 +205,7 @@ Below is the list of advanced settings currently available for clusters.
 
 | Type    | Description                                                                 | Default Value |
 |---------|-----------------------------------------------------------------------------|---------------|
-| string  | Allows you to specify the IAM group name associated with the Qovery user in the AWS console during the [IAM permissions setup][docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.quickstart#attach-aws-credentials] to be able to connect to the Kubernetes cluster | `Admins`        |
+| string  | Allows you to specify the IAM group name associated with the Qovery user in the AWS console during the [IAM permissions setup][docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.quickstart#attach-aws-credentials] to be able to connect to the Kubernetes cluster. Its value can be changed after the cluster installation via a re-deploy without any downtime. | `Admins`        |
 
 #### aws.iam.enable_sso ![](/img/advanced_settings/aws.svg)
 

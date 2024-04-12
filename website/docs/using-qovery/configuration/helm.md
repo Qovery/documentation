@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-04-10"
+last_modified_on: "2024-04-12"
 title: "Helm"
 description: "Learn how to configure your Helm on Qovery"
 ---
@@ -115,7 +115,7 @@ Add a new variable by declaring:
 <Alert type="warning">
 
 - You can combine override as file and override as argument but, in case of collision, the priority will be given to the override as argument.
-- You can use your environment variables in your chart. Check [the section below][docs.using-qovery.configuration.helm#using-the-environment-variables-in-your-chart].  
+- You can use your environment variables in your chart. Check [the section below][docs.using-qovery.configuration.helm#using-the-environment-variables-in-your-chart].
 
 </Alert>
   
@@ -135,6 +135,12 @@ You will find a recap of your helm setup and you can now decide to:
 </li>
 </ol>
 </Steps>
+
+<Alert type="info">
+
+To integrate your helm with Qovery, additional labels/annotations will be applied to the Kubernetes objects deployed by your helm.
+
+</Alert>
 
 ## Deployment Management
 Have a look at the [Deployment Management][docs.using-qovery.deployment] section for more information.

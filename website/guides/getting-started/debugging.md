@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-02-27"
+last_modified_on: "2024-04-12"
 $schema: "/.meta/.schemas/guides.json"
 title: Debugging
 description: How to debug your application
@@ -92,5 +92,5 @@ Do you need any help? [Reach us on our forum][urls.qovery_forum]
 [urls.new_relic]: https://newrelic.com/
 [urls.qovery_console]: https://console.qovery.com
 [urls.qovery_forum]: https://discuss.qovery.com/
-[urls.qovery_roadmap]: https://roadmap.qovery.com/
+[urls.qovery_roadmap]: https://roadmap.qovery.com/roadmap
 [urls.sentry]: https://sentry.io/

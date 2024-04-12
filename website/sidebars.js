@@ -266,7 +266,7 @@ module.exports = {
         {
           type: 'link',
           label: 'Roadmap',
-          href: 'https://roadmap.qovery.com'
+          href: 'https://roadmap.qovery.com/roadmap'
         },
         {
           type: 'link',

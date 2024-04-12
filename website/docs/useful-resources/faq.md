@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-02-27"
+last_modified_on: "2024-04-12"
 title: FAQ
 description: "Frequently Asked Questions"
 ---
@@ -118,4 +118,4 @@ Feel free to join our [forum][urls.qovery_forum] or contact us by email at hello
 [guides.tutorial.how-to-connect-to-your-eks-cluster-with-kubectl]: /guides/tutorial/how-to-connect-to-your-eks-cluster-with-kubectl/
 [urls.kubernetes]: https://kubernetes.io/
 [urls.qovery_forum]: https://discuss.qovery.com/
-[urls.qovery_roadmap]: https://roadmap.qovery.com/
+[urls.qovery_roadmap]: https://roadmap.qovery.com/roadmap

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-01-10"
+last_modified_on: "2024-04-12"
 title: "FAQ"
 description: "Frequently asked questions Scaleway infrastructure managed by Qovery"
 ---
@@ -57,4 +57,4 @@ Today, you can't migrate an environment from one region to another after it has 
 [docs.using-qovery.configuration.database.redis]: /docs/using-qovery/configuration/database/redis/
 [docs.using-qovery.configuration.deployment-rule#environment-deployment-rules]: /docs/using-qovery/configuration/deployment-rule/#environment-deployment-rules
 [urls.qovery_contact_us]: https://www.qovery.com/contact
-[urls.qovery_roadmap]: https://roadmap.qovery.com/
+[urls.qovery_roadmap]: https://roadmap.qovery.com/roadmap

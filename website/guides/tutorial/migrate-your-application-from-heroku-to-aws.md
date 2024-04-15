@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-30"
+last_modified_on: "2024-04-15"
 $schema: "/.meta/.schemas/guides.json"
 title: Migrate your application from Heroku to AWS
 description: Guide on how to migrate all your applications from Heroku to AWS with your databases
@@ -620,7 +620,15 @@ Check out [our forum reply](https://discuss.qovery.com/t/951)
 
 ### Is it possible to get a shell / connect to my app?
 
-Yes, with the Qovery CLI and the command `qovery shell`. [Check out the documentation][docs.using-qovery.interface.cli#shell].
+Absolutely, you can connect directly to your application with a shell by clicking on the Qovery cloud shell button (1):
+
+<p align="center">
+  <img src="/img/qovery_cloud_shell.png" alt="Qovery Cloud Shell" />
+</p>
+
+Then you just have to select the pod (2) and the container (3).
+
+You can also check out our [CLI][docs.using-qovery.interface.cli#shell] and the `qovery shell` command.
 
 ### Can I use Terraform and Infrastructure as Code?
 

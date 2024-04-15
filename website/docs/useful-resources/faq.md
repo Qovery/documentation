@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-04-12"
+last_modified_on: "2024-04-15"
 title: FAQ
 description: "Frequently Asked Questions"
 ---
@@ -71,7 +71,15 @@ Absolutely, you can follow [this guide][guides.tutorial.how-to-connect-to-your-e
 
 ## Can I have access to my application with a shell?
 
-Absolutely, check out our [CLI][docs.using-qovery.interface.cli#shell] and the `qovery shell` command.
+Absolutely, you can connect directly to your application with a shell by clicking on the Qovery cloud shell button (1):
+
+<p align="center">
+  <img src="/img/qovery_cloud_shell.png" alt="Qovery Cloud Shell" />
+</p>
+
+Then you just have to select the pod (2) and the container (3).
+
+You can also check out our [CLI][docs.using-qovery.interface.cli#shell] and the `qovery shell` command.
 
 ## How application auto-scaling works?
 

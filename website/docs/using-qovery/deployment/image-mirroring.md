@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-10-27"
+last_modified_on: "2024-04-24"
 title: "Image Mirroring"
 description: "Learn how images are mirrored within your cloud account"
 ---
@@ -40,6 +40,8 @@ Otherwise, the image is built by the Qovery pipeline the resulting image is push
 <p align="center">
   <img src="/img/deployment/build-mirror.png" alt="Mirroring built image" />
 </p>
+
+In order to speed up the image build, we are using remote caches (available in AWS, GCP and Scaleway). It will avoid building the image from scratch, only the layers that changed will be built.
 
 Given this isolation mechanism, if the same application is cloned (via the [clone][docs.using-qovery.configuration.environment#clone-environment] or [preview environment][docs.using-qovery.configuration.environment#preview-environment] feature), Qovery will re-build the application since the environment variables have changed (the ones at environment level).
 

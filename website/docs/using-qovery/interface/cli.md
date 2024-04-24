@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-01-31"
+last_modified_on: "2024-04-24"
 title: CLI
 description: How to use the Qovery CLI (Command Line Interface)
 ---
@@ -552,6 +552,7 @@ These commands allow you to manage all these services via the CLI. You can run t
 - list: List the service of the specified type
 - redeploy: Redeploy a service (already deployed before)
 - stop: Stop a service
+- update: Update a service (service name, git branch, auto-deploy, ...)
 
 Each action allows you to specify additional parameters to define the service you want to modify (you can find them via the --help command) 
 
@@ -569,6 +570,12 @@ $ qovery application list
 Name      | Type        | Status  | Last Update                         
 backend   | Application | RUNNING | 2023-02-13 12:59:23.228231 +0000 UTC
 front-end | Application | STOPPED | 2023-02-09 14:04:38.079792 +0000 UTC
+```
+
+Example: Enable the auto-deploy feature for an application
+```bash
+$ qovery application update --application backend --auto-deploy true
+Application backend updated!
 ```
 
 ### Environment

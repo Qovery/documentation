@@ -48,7 +48,7 @@ To ensure that Qovery will be able to continue managing your services. Some anno
 
 </Alert>
 
-- A scope: this allows you to define the kubernetes objects where the extra annotations should be applied. Example: If you deploy an application exposed publicly, it will create an ingress. Then you can add a scope=ingress to add specific annotations on it.
+- A scope: this allows you to define the kubernetes objects where the extra annotations should be applied. Example: If you make your application accessible publicly and add an annotation group with the scope set to `ingress`, all annotations within that group will only be added to the ingress of your service.
 
 Example:
 

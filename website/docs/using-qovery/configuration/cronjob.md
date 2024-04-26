@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-02-28"
+last_modified_on: "2024-04-26"
 title: "Cronjob"
 description: "Learn how to configure your Cronjob on Qovery"
 ---
@@ -84,6 +84,10 @@ The tag 'latest' is not supported, please use a specific tag.
 ** Auto Deploy **
 
 See the [Deploying with auto-deploy feature][docs.qovery.deployment.deploying-with-auto-deploy] section.
+
+** Extra annotations (optional)**
+
+Add your extra annotation groups. See the [Add annotation group][docs.using-qovery.configuration.organization.labels-annotations#create-an-annotation-group] section for more information.
 
 </li>
 <li>
@@ -244,6 +248,10 @@ Configuration from above will make Qovery look for the Dockerfile in `/timescale
 
 See the [Deploying with auto-deploy feature][docs.qovery.deployment.deploying-with-auto-deploy] section.
 
+** Extra annotations (optional)**
+
+Add your extra annotation groups. See the [Add annotation group][docs.using-qovery.configuration.organization.labels-annotations#create-an-annotation-group] section for more information.
+
 ### JOB Configuration
 You can modify here the configuration of your job:
 - CRON Schedule: specify a valid CRON expression (see [Crontab guru](https://crontab.guru/) for help). After being deployed, the job will be executed following the defined schedule.
@@ -357,6 +365,7 @@ In the overview, click on the `3 dots` button and remove the job. Note: the same
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [docs.using-qovery.configuration.organization.container-registry]: /docs/using-qovery/configuration/organization/container-registry/
 [docs.using-qovery.configuration.organization.git-repository-access]: /docs/using-qovery/configuration/organization/git-repository-access/
+[docs.using-qovery.configuration.organization.labels-annotations#create-an-annotation-group]: /docs/using-qovery/configuration/organization/labels-annotations/#create-an-annotation-group
 [docs.using-qovery.deployment.deploying-with-auto-deploy#filtering-commits-triggering-the-auto-deploy]: /docs/using-qovery/deployment/deploying-with-auto-deploy/#filtering-commits-triggering-the-auto-deploy
 [docs.using-qovery.deployment.logs#live-logs]: /docs/using-qovery/deployment/logs/#live-logs
 [docs.using-qovery.deployment]: /docs/using-qovery/deployment/

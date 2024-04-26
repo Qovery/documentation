@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-04-12"
+last_modified_on: "2024-04-26"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -76,7 +76,6 @@ If you want to deploy an application from a Container Registry you will have to 
 - Image Entrypoint: the entrypoint to be used to launch your applicaiton (not mandatory)
 - CMD Arguments: the arguments to be passed to launch your applicaiton (not mandatory). We expect the format to be an array. Example ["rails", "-h", "0.0.0.0", "-p", "8080", "string"]
 
-
 <Alert type="info">
 
 Make sure that the image tag used are unique (do not use "latest", "dev", "master" etc..), see [this section][docs.using-qovery.deployment.image-mirroring#why-unique-image-tags-are-necessary] for more information.
@@ -92,6 +91,10 @@ If the base image in your Dockerfile is from a private registry, you just have t
 ** Auto Deploy **
 
 See the [Deploying with auto-deploy feature][docs.qovery.deployment.deploying-with-auto-deploy] section.
+
+** Extra annotations (optional)**
+
+Add your extra annotation groups. See the [Add annotation group][docs.using-qovery.configuration.organization.labels-annotations#create-an-annotation-group] section for more information.
 
 </li>
 <li>
@@ -273,6 +276,10 @@ Configuration from above will make Qovery look for the Dockerfile in `/timescale
 #### Auto Deploy
 
 See the [Deploying with auto-deploy feature][docs.qovery.deployment.deploying-with-auto-deploy] section.
+
+#### Annotations
+
+Add your extra annotation groups. See the [Add annotation group][docs.using-qovery.configuration.organization.labels-annotations#create-an-annotation-group] section for more information.
 
 ### Resources
 
@@ -570,6 +577,7 @@ In the application overview, click on the `3 dots` button and remove the applica
 [docs.using-qovery.configuration.object-storage]: /docs/using-qovery/configuration/object-storage/
 [docs.using-qovery.configuration.organization.container-registry]: /docs/using-qovery/configuration/organization/container-registry/
 [docs.using-qovery.configuration.organization.git-repository-access]: /docs/using-qovery/configuration/organization/git-repository-access/
+[docs.using-qovery.configuration.organization.labels-annotations#create-an-annotation-group]: /docs/using-qovery/configuration/organization/labels-annotations/#create-an-annotation-group
 [docs.using-qovery.configuration.project]: /docs/using-qovery/configuration/project/
 [docs.using-qovery.configuration.service-health-checks]: /docs/using-qovery/configuration/service-health-checks/
 [docs.using-qovery.deployment.deploying-with-auto-deploy#filtering-commits-triggering-the-auto-deploy]: /docs/using-qovery/deployment/deploying-with-auto-deploy/#filtering-commits-triggering-the-auto-deploy

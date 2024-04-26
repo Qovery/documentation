@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[253],{405:function(a){a.exports=JSON.parse('{"allTagsPath":"/guides/tags","slug":"language-kotlin","name":"language: kotlin","count":1,"permalink":"/guides/tags/language-kotlin"}')}}]);

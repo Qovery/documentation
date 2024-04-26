@@ -177,6 +177,7 @@ module.exports = {
                 "using-qovery/configuration/organization/container-registry",
                 "using-qovery/configuration/organization/helm-repository",
                 "using-qovery/configuration/organization/api-token",
+                "using-qovery/configuration/organization/labels-annotations",
               ],
             },
             "using-qovery/configuration/clusters",

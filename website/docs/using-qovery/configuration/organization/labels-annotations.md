@@ -11,7 +11,9 @@ import Assumptions from '@site/src/components/Assumptions';
 
 You can manage the extra annotations of the different Kubernetes objects deployed by Qovery directly from the Qovery console.
 
-You can access the extra annotations configuration by opening the `Annotations` section within the organization settings.
+In order to have a centralized section to manage the annotations, you can create annotation groups in the `Annotations` section within the organization settings and then link them to the services.
+
+As a Qovery service is mapped to multiple Kubernetes objects (pods, deployments, ingress etc..) you will be able to define the kubernetes scope.
 
 <p align="center">
   <img src="/img/configuration/organization/annotations_settings.png" alt="How to access your annotations section" />
@@ -46,7 +48,7 @@ To ensure that Qovery will be able to continue managing your services. Some anno
 
 </Alert>
 
-- A scope: this allows to define more fine-grained the Kubernetes objects involved by the extra annotations.
+- A scope: this allows you to define the kubernetes objects where the extra annotations should be applied. Example: If you deploy an application exposed publicly, it will create an ingress. Then you can add a scope=ingress to add specific annotations on it.
 
 Example:
 
@@ -61,7 +63,7 @@ You can now apply it your applications, cronjobs, lifecycle jobs and database co
 
 <Alert type="info">
 
-Helm is not supported as you can't directly add extra annotations within your helm chart.
+Helm is not supported as you can directly add extra annotations within your helm chart.
 
 </Alert>
 

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-04-12"
+last_modified_on: "2024-04-30"
 title: "Cluster Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -58,6 +58,18 @@ Below is the list of advanced settings currently available for clusters.
 | Type    | Description                                                                                 | Default Value  |
 |---------|---------------------------------------------------------------------------------------------|----------------|
 | integer | Maximum Kubernetes pods (containers/application/jobs/cronjob) retention logs in weeks.      | `12` (84 days) |
+
+#### gcp.vpc.enable_flow_logs ![](/img/advanced_settings/gcp.svg)
+
+| Type    | Description                                                                                                                                            | Default Value |
+|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| boolean | Enable VPC flow logs on the cluster VPC (on each VPC subnetworks). See [GCP VPC logs flow documentation](https://cloud.google.com/vpc/docs/flow-logs). | `false`       |
+
+#### gcp.vpc.flow_logs_sampling ![](/img/advanced_settings/gcp.svg)
+
+| Type    | Description                                                                                                   | Default Value |
+|---------|---------------------------------------------------------------------------------------------------------------|---------------|
+| float   | Set VPC glogs flow sampling percentage. Value should be within [`0.0` (no sampling), `1.0` (all logs)] range. | `0.0`       |
 
 
 ## Image registry

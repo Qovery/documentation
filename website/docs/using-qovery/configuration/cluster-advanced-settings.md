@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-04-12"
+last_modified_on: "2024-04-30"
 title: "Cluster Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -192,6 +192,31 @@ Below is the list of advanced settings currently available for clusters.
 |---------|------------------------------------------------------------------------------------------------|-----------------|
 | boolean | List of allowed CIDRS. Valid only when [`database.redis.deny_public_access`](#databaseredisdeny_public_access) is set to true      | `["0.0.0.0/0"]` |
 
+## Service
+
+#### allow_service_cpu_overcommit ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
+
+<Alert type="warning">
+
+Using overcommit on pod resources can lead to instability on your cluster and we strongly discourage it. Be careful when using this feature.
+
+</Alert>
+
+| Type    | Description                                                                                    | Default Value   |
+|---------|------------------------------------------------------------------------------------------------|-----------------|
+| boolean | Authorize CPU overcommit (limit > request) for the services deployed within this cluster       | `false`          |
+
+#### allow_service_ram_overcommit ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
+
+<Alert type="warning">
+
+Using overcommit on pod resources can lead to instability on your cluster and we strongly discourage it. Be careful when using this feature.
+
+</Alert>
+
+| Type    | Description                                                                                    | Default Value   |
+|---------|------------------------------------------------------------------------------------------------|-----------------|
+| boolean | Authorize memory overcommit (limit > request) for the services deployed within this cluster    | `false`          |
 
 ## IAM
 

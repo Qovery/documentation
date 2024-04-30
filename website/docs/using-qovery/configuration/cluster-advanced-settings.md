@@ -53,7 +53,7 @@ Below is the list of advanced settings currently available for clusters.
 |---------|------------------------------------------------------------------------------------|---------------|
 | integer | Set the number of retention days for flow logs. Unlimited retention with value `0` | `365`         |
 
-#### loki.log_retention_in_week ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg)
+#### loki.log_retention_in_week ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
 
 | Type    | Description                                                                                 | Default Value  |
 |---------|---------------------------------------------------------------------------------------------|----------------|

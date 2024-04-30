@@ -271,6 +271,33 @@ You can pass set credentials by separating them with a comma. For example: `user
 |---------|--------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | string | Allows you to define the maximum number of succeeded job executions that should be returned in the job execution history | `1`          |
 
+## Resources
+
+#### resources.override.limit.cpu_in_milli  ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/cronjob.svg) ![](/img/advanced_settings/job.svg)
+
+<Alert type="warning">
+
+Using overcommit on pod resources can lead to instability on your cluster and we strongly discourage it. Be careful when using this feature.
+
+</Alert>
+
+| Type    | Description                                              | Use Case                                                                                                                                                                                                                                  | Default Value                |
+|---------|----------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------|
+| integer | Define the CPU overcommit (pod cpu limit) of the service.| A service require more CPU at startup than during the running phase. You can reduce the configured CPU for the service and just increase the resources.override.limit.cpu_in_milli to reduce the resources used by the service at runtime | `null` (i.e. request = limit) |
+
+
+#### resources.override.limit.ram_in_mib  ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/cronjob.svg) ![](/img/advanced_settings/job.svg)
+
+<Alert type="warning">
+
+Using overcommit on pod resources can lead to instability on your cluster and we strongly discourage it. Be careful when using this feature.
+
+</Alert>
+
+| Type    | Description                                                    | Use Case                                                                                                                                                                                                                                       | Default Value                |
+|---------|----------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------|
+| integer | Define the memory overcommit (pod memory limit) of the service.| A service require more memory at startup than during the running phase. You can reduce the configured memory for the service and just increase the resources.override.limit.ram_in_mib to reduce the resources used by the service at runtime | `null` (i.e. request = limit) |
+
 ## Security
 
 #### security.service_account_name ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/cronjob.svg) ![](/img/advanced_settings/job.svg)

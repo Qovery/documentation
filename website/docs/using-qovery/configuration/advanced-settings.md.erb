@@ -285,6 +285,7 @@ Using overcommit on pod resources can lead to instability on your cluster and we
 |---------|----------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------|
 | integer | Define the CPU overcommit (pod cpu limit) of the service.| A service require more CPU at startup than during the running phase. You can reduce the configured CPU for the service and just increase the resources.override.limit.cpu_in_milli to reduce the resources used by the service at runtime | `null` (i.e. request = limit) |
 
+This settings can be changed only if the advanced settings [allow_service_cpu_overcommit][docs.using-qovery.configuration.cluster-advanced-settings#service] is set to `true`.
 
 #### resources.override.limit.ram_in_mib  ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/cronjob.svg) ![](/img/advanced_settings/job.svg)
 
@@ -297,6 +298,8 @@ Using overcommit on pod resources can lead to instability on your cluster and we
 | Type    | Description                                                    | Use Case                                                                                                                                                                                                                                       | Default Value                |
 |---------|----------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------|
 | integer | Define the memory overcommit (pod memory limit) of the service.| A service require more memory at startup than during the running phase. You can reduce the configured memory for the service and just increase the resources.override.limit.ram_in_mib to reduce the resources used by the service at runtime | `null` (i.e. request = limit) |
+
+This settings can be changed only if the advanced settings [allow_service_ram_overcommit][docs.using-qovery.configuration.cluster-advanced-settings#service] is set to `true`.
 
 ## Security
 

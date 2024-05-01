@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-04-22"
+last_modified_on: "2024-05-01"
 $schema: "/.meta/.schemas/guides.json"
 title: "Use AWS IAM roles with Qovery"
 description: "Give AWS IAM permissions to your application/container/job with Qovery"
@@ -31,7 +31,7 @@ In this first step, we will create a simple application that needs AWS permissio
 
 ### Create an application
 
-We are going to will create a simple container, but you can use an existing one if you want (or an application or job). 
+We are going to create a simple container, but you can use an existing one if you want (or an application or job). 
 
 <Alert type="info">
 
@@ -206,67 +206,52 @@ metadata:
    eks.amazonaws.com/role-arn: $AWS_ROLE_ARN
 ```
 
-### Kubernetes authentication
+### Deploy a service account with Helm
 
-On AWS, there are [several ways to authenticate to Kubernetes](https://docs.aws.amazon.com/eks/latest/userguide/cluster-auth.html). To make it simple, we are going to use a dedicated IAM user, but you can select the best method for your need.
+Qovery provides a simple Helm chart to deploy a service account on your Kubernetes cluster in a specific environment (Kubernetes namespace). 
 
-From your AWS Console, create an IAM user account, get `Access key ID` and `Secret access key` and save them somewhere.
-
-Qovery helps [IAM users to get quick access to the Kubernetes cluster](/guides/tutorial/how-to-connect-to-your-eks-cluster-with-kubectl/#add-your-iam-user-to-the-admin-group). Simply add this user to the `Admins` group.
-
-### Create a Lifecycle job
-
-In the same environment than your application, create a `Lifecycle job` which will be used to deploy a service account on the Kubernetes cluster:
+Start to create a new service, with an Helm chart:
 
 <p Valign="center">
-  <img src="/img/aws-iam-assume-role/lifecycle_step1.png" alt="Lifecycle creation" />
+  <img src="/img/aws-iam-assume-role/create_sa.png" alt="Create Service Account" />
 </p>
 
-Here a container `qoveryrd/create-sa:1.0` available on [DockerHub](https://hub.docker.com/r/qoveryrd/create-sa) made by Qovery is used, but you can fork [this repository](https://github.com/Qovery/create_service_account) and update to your needs if you prefer.
-
-Click on the `Continue` button and select the `Start` event because we want to deploy the service account at the environment start and `Delete` to delete it if we decide to remove it. Set parameters as well with the according action:
+Then configure the Helm chart with the following values:
 
 <p Valign="center">
-  <img src="/img/aws-iam-assume-role/lifecycle_step2.png" alt="Lifecycle creation" />
+  <img src="/img/aws-iam-assume-role/helm_sa_1.png" alt="Helm chart" />
 </p>
 
-Then click on the `Continue` button, set the resources (128Mb is enough) and click on the `Continue` button.
+* Helm source: `Git provider`
+* Git repository: `Public repository`
+* Public repository URL: `https://github.com/Qovery/create_service_account.git`
+* Branch: `main`
+* Root application chart: `/chart`
 
-Then add the following environment variables to the `job` scope:
-* `KUBERNETES_VERSION`: the version of your Kubernetes cluster which will be used to download kubectl (ex: 1.23.0)
-* `SERVICE_ACCOUNT_NAME`: the name of the service account in Kubernetes (the same name [you have declared](#configure-trusted-entities) for the role in the `Trusted entities` policy section)
-* `AWS_ROLE_ARN`: the AWS ARN role you have just created
-* `AWS_ACCESS_KEY_ID`: the AWS access key ID of the IAM user you have created (if you decided to use this authentication method)
-* `AWS_SECRET_ACCESS_KEY`: the AWS secret access key of the IAM user you have created (if you decided to use this authentication method)
+Then click on the `Continue` button.
+
+On the values override file, we do not need to override anything, so select `None`, and then click on the `Continue` button.
 
 <p Valign="center">
-  <img src="/img/aws-iam-assume-role/lifecycle_step2.png" alt="Lifecycle creation" />
+  <img src="/img/aws-iam-assume-role/helm_sa_2.png" alt="Helm chart" />
 </p>
 
-Then `Create` the `Lifecycle job`. Go into the `Variables` tab and create a `Variable Alias` on `QOVERY_CLOUD_PROVIDER_REGION`, name it `AWS_DEFAULT_REGION` and scope it to the `job`.
+We then have to add 2 override arguments:
+
+1. `serviceAccount.name`: the name of the service account in Kubernetes (the same name [you have declared](#configure-trusted-entities) for the role in the `Trusted entities` policy section)
+2. `awsRoleArn`: the ARN of the role you have created
 
 <p Valign="center">
-  <img src="/img/aws-iam-assume-role/lifecycle_step3.png" alt="Lifecycle creation" />
+  <img src="/img/aws-iam-assume-role/helm_sa_3.png" alt="Helm chart" />
 </p>
 
-You can now run your job by clicking on the `Deploy now` button. You should see the following output in your job logs:
+Then click on the `Continue` button.
 
-```
--> Ensuring required environment variables are present
--> Downloading kubectl version 1.23.0
--> Generated service account:
-apiVersion: v1
-kind: ServiceAccount
-metadata:
- name: my-s3-role
- namespace: xxxxxx
- annotations:
-   eks.amazonaws.com/role-arn: arn:aws:iam::xxxxxx:role/my-s3-role
--> Getting kubeconfig
-Added new context arn:aws:eks:region:id:cluster/cluster-name to /root/.kube/config
--> Deploying service account
-serviceaccount/aws-permissions created
-```
+You can finally Create and Deploy it. If you look at the logs, you should see something like:
+
+<p Valign="center">
+  <img src="/img/aws-iam-assume-role/helm_sa_logs.png" alt="Helm chart" />
+</p>
 
 ## Set application service account
 

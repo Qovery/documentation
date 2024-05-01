@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-04-30"
+last_modified_on: "2024-05-01"
 title: "Cluster Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -67,9 +67,9 @@ Below is the list of advanced settings currently available for clusters.
 
 #### gcp.vpc.flow_logs_sampling ![](/img/advanced_settings/gcp.svg)
 
-| Type    | Description                                                                                                   | Default Value |
-|---------|---------------------------------------------------------------------------------------------------------------|---------------|
-| float   | Set VPC glogs flow sampling percentage. Value should be within [`0.0` (no sampling), `1.0` (all logs)] range. | `0.0`       |
+| Type    | Description                                                                                                  | Default Value |
+|---------|--------------------------------------------------------------------------------------------------------------|---------------|
+| float   | Set VPC logs flow sampling percentage. Value should be within [`0.0` (no sampling), `1.0` (all logs)] range. | `0.0`       |
 
 
 ## Image registry

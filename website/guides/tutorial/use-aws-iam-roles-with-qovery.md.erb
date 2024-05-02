@@ -185,7 +185,7 @@ Kubernetes reminder: **a deployed service account in a Kubernetes namespace, bec
 
 </Alert>
 
-This step will help you on deploying a service account on your Kubernetes cluster. In case you want to do it manually on the cluster with `kubectl`, you just have to push a service account like:
+This step will help you deploying a service account on your Kubernetes cluster. In case you want to do it manually on the cluster with `kubectl`, you just have to push a service account like:
 
 ```yaml
 apiVersion: v1
@@ -213,13 +213,22 @@ Then configure the Helm chart with the following values:
   <img src="/img/aws-iam-assume-role/helm_sa_1.png" alt="Helm chart" />
 </p>
 
-* Helm source: `Git provider`
-* Git repository: `Public repository`
-* Public repository URL: `https://github.com/Qovery/create_service_account.git`
-* Branch: `main`
-* Root application chart: `/chart`
+* Helm source: `Helm repository`
+* Git repository: `Qovery Service Account Helper`
+* Chart name: `qovery-sa-helper`
+* Version: `0.1.0`
 
-Then click on the `Continue` button.
+Create a new help repository on phase 3, and fill the chart info:
+
+<p Valign="center">
+  <img src="/img/aws-iam-assume-role/set-helm-repo.png" alt="Helm chart" />
+</p>
+
+* Repository name: `Qovery Service Account Helper`
+* Kind: HTTPS
+* Repository url: `https://qovery.github.io/create_service_account/`
+
+Then click on `Create`, and the `Continue` button.
 
 On the values override file, we do not need to override anything, so select `None`, and then click on the `Continue` button.
 
@@ -260,7 +269,7 @@ At this stage, the job should have been executed and the service account should 
 
 ### Validate access
 
-To validate the AWS role has correctly been deployed, we can connect to the pod, and see if we have the AWS token. We will use the Qovery CLI to connect to our pod:
+To validate AWS role has correctly been deployed, we can connect to the pod, and see if we have the AWS token. We will use the Qovery CLI to connect to our pod:
 
 ```bash
 $ qovery shell

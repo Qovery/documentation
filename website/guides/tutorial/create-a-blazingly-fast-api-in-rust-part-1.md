@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-03-01"
+last_modified_on: "2024-05-03"
 $schema: "/.meta/.schemas/guides.json"
 title: Create a blazingly fast REST API in Rust (Part 1/2)
 description: How to create a blazingly fast REST API in Rust, with zero-cost abstraction and very low overhead - Part 1/2
@@ -728,7 +728,7 @@ $ qovery auth
 
 <Alert type="info">
 
-If you are using an environment without access to GUI or a browser, you can use headless authentication instead:
+If you are using a headless (without GUI) environment, you can use the following command to sign up and sign in:
 
 ```bash
 # Sign up and sign in command
@@ -737,19 +737,7 @@ $ qovery auth --headless
 
 </Alert>
 
-Your browser window with sign-in options will open.
-
-<p align="center">
-  <img src="/img/qovery_signup.svg" alt="Qovery Sign-up page" />
-</p>
-
-[Click here][urls.authorize_qovery] to authorize Qovery to clone and build your applications.
-
-<p align="center">
-  <img src="/img/github_signup.svg" alt="Connect Github" />
-</p>
-
-Congratulations, you are logged-in.
+Your browser window with Qovery sign-up page will open. Follow the instructions to sign up and sign in.
 
 </li>
 
@@ -921,7 +909,6 @@ Do you want to know more about Rust?
 [docs.using-qovery.configuration.environment-variable#connecting-to-a-database]: /docs/using-qovery/configuration/environment-variable/#connecting-to-a-database
 [guides.getting-started.create-a-database]: /guides/getting-started/create-a-database/
 [guides.getting-started.setting-custom-domain]: /guides/getting-started/setting-custom-domain/
-[urls.authorize_qovery]: https://github.com/apps/qovery/installations/new
 [urls.brew]: https://brew.sh/
 [urls.postgresql]: https://www.postgresql.org
 [urls.qovery_cli_releases]: https://github.com/Qovery/qovery-cli/releases

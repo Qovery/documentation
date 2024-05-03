@@ -5,6 +5,7 @@ description: "Learn how to install and configure Qovery on your own Kubernetes c
 
 import Steps from '@site/src/components/Steps';
 import Alert from '@site/src/components/Alert';
+import Tabs from '@theme/Tabs';
 
 <Alert type="info">
 
@@ -15,22 +16,6 @@ This section is for Kubernetes power-users. If you are not familiar with Kuberne
 Qovery Self-Managed (or BYOK: Bring Your Own Kubernetes) is a self-hosted version of Qovery. It allows you to install Qovery on your own Kubernetes cluster.
 Read [this article](https://www.qovery.com/blog/kubernetes-cluster-managed-by-qovery-vs-self-managed-byok) to better understand the difference with the Managed Kubernetes by Qovery. In a nutshell, Qovery BYOK is for Kubernetes experts who want to manage their own Kubernetes cluster. In this version, Qovery does not manage the Kubernetes cluster for you.
 
-## ⚠️ Important considerations
-
-The current state of Qovery BYOK is still in beta. We are working hard to improve it and make it production-ready. Here are some important considerations:
-
-- Contact us if you want to use Qovery BYOK in production. We can assess your setup and validate it's good to go. 
-  - Even if Qovery BYOK is in beta, the Qovery Control Plane and the Qovery Engine are production-ready. BYOK is a lightweight version of our Managed Qovery offer and need time to externalize some configuration parameters mostly. We don't risk to break your cluster, but we prefer be cautious. 
-- Qovery BYOK is free during the beta period. We will communicate the pricing soon.
-- Some features are not available yet. Refer to the table below to see what is available and what is not.
-
-| Release date           | Feature                                                        |
-|------------------------|----------------------------------------------------------------|
-| ✅ Delivered (Dec 2023) | Install Qovery BYOK on your **AWS and GCP** Kubernetes cluster |
-| ✅ Delivered (Dec 2023) | Deploy your applications                                       |
-| ✅ Delivered (Dec 2023) | Fetch logs                                                     |
-| End of January 2024    | Install Qovery BYOK on **any** Kubernetes cluster              |
-
 <Alert type="warning">
 
 Qovery automatically updates **ONLY** the Qovery applications (agent, shell-agent etc..) via the Qovery Helm chart. With the self-managed offer it will be up to you to manage any dependency components (ingress, dns, logging...), making sure they run with the right version over time.
@@ -39,29 +24,89 @@ The dependencies provided with the Qovery Helm chart are here to help you with t
 
 </Alert>
 
-## Requirements
+## Prerequisites
 
-Have a look at the [Requirements][docs.getting-started.install-qovery.kubernetes.requirements] section.
+<Assumption>
 
+* You have a Kubernetes cluster up and running.
+* You have `kubectl` installed and configured to access your Kubernetes cluster.
+* You have `helm` installed.
+* You have a Qovery account.
+* You have a Kubernetes cluster with at least 4 CPUs and 8GB of RAM.
 
-## Install your cluster
-
-If you already have one you can skip this section.
-
-<Alert type="success">
-
-Follow [this guide][docs.getting-started.install-qovery.kubernetes.create-k8s-cluster] to test Qovery BYOK on a demo cluster.
-
-</Alert>
-
+</Assumption>
 
 ## Install Qovery
 
 <Alert type="info">
 
-For a more in depth view on how to install it on AWS, have a [look at this page][docs.getting-started.install-qovery.kubernetes.installation-aws].
+Follow [this guide][docs.getting-started.install-qovery.local] to test Qovery on your local machine.
 
 </Alert>
+
+<Tabs
+centered={true}
+className={"rounded"}
+defaultValue={"automatic"}
+placeholder="Install Qovery"
+select={false}
+size={null}
+values={[
+{"group":"Install","label":"Automatic","value":"automatic"},
+{"group":"Install","label":"Manual","value":"manual"},
+]}>
+
+<TabItem value="automatic">
+
+<Steps headingDepth={3}>
+
+<ol>
+
+<li>
+
+Install Qovery CLI by running the following command:
+
+<%= qovery_install_cli() %>
+
+</li>
+
+<li>
+
+Authenticate with Qovery by running the following command:
+
+<%= qovery_sign_up_cli() %>
+
+</li>
+
+<li>
+
+Set Qovery context:
+
+```bash
+qovery context set
+```
+
+</li>
+
+<li>
+
+Install Qovery on your Kubernetes cluster:
+
+```bash
+qovery cluster install
+```
+
+Respond to the prompts to install Qovery on your Kubernetes cluster.
+
+</li>
+
+</ol>
+
+</Steps>
+
+</TabItem>
+
+<TabItem value="manual">
 
 <Steps headingDepth={3}>
 
@@ -116,8 +161,11 @@ Install Qovery on your Kubernetes cluster.
 
 ```bash
 helm upgrade --install --wait --atomic --create-namespace -n qovery -f <your-values-file.yaml> \
---set services.certificates.cert-manager-configs.enabled=false,services.certificates.qovery-cert-manager-webhook.enabled=false \
-qovery qovery/qovery
+          --set services.certificates.cert-manager-configs.enabled=false \
+          --set services.certificates.qovery-cert-manager-webhook.enabled=false \
+          --set services.qovery.qovery-cluster-agent.enabled=false \
+          --set services.qovery.qovery-engine.enabled=false \
+          qovery qovery/qovery
 ```
 * `-n qovery`: the namespace where Qovery and its dependencies will be installed
 * `--set...`: override (only for the first deployment time, if you want to use Cert-Manager) to let cert-manager install its CRDs
@@ -126,14 +174,21 @@ qovery qovery/qovery
 * `qovery`: name of the release
 
 If you want to use Cert-Manager, you can remove the `--set...` for the future updates (or if already installed):
-```bash
-helm upgrade --install --create-namespace -n qovery -f <your-values-file.yaml> qovery qovery/qovery
-```
 
-That's it, you can now use Qovery on your own Kubernetes cluster!
+```bash
+helm upgrade --install --create-namespace -n qovery -f <your-values-file.yaml> --wait --atomic qovery qovery/qovery
+```
 
 </li>
 
 </ol>
 
 </Steps>
+
+</TabItem>
+
+</Tabs>
+
+That's it, you can now use Qovery on your Kubernetes cluster. 
+
+Connect to the [Qovery console][urls.qovery_console] to start deploying your applications.

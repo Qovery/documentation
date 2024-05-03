@@ -13,6 +13,7 @@ module.exports = {
           label: 'Install Qovery',
           items: [
             "getting-started/install-qovery",
+            "getting-started/install-qovery/local",
             {
               type: 'category',
               label: 'AWS',
@@ -89,10 +90,7 @@ module.exports = {
               items: [
                 "getting-started/install-qovery/kubernetes",
                 "getting-started/install-qovery/kubernetes/quickstart",
-                "getting-started/install-qovery/kubernetes/requirements",
                 "getting-started/install-qovery/kubernetes/byok-config",
-                "getting-started/install-qovery/kubernetes/create-k8s-cluster",
-                "getting-started/install-qovery/kubernetes/installation-aws",
                 "getting-started/install-qovery/kubernetes/validate-installation",
                 "getting-started/install-qovery/kubernetes/faq",
               ]

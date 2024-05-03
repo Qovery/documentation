@@ -1,0 +1,122 @@
+---
+title: "Local"
+description: "Install Qovery on your local machine"
+---
+import Steps from '@site/src/components/Steps';
+
+Here is how to install Qovery on your local machine. This is the fastest way to get started with Qovery and start deploying your applications to experience the Qovery experience.
+
+## Purpose and Limitations
+
+It's important to note that this local setup of Qovery using the `qovery demo up` command is designed for demonstration and testing purposes only. It is not intended for production use. Please refer to other guides for production-grade installations.
+
+## Requirements
+
+- **Supported Operating Systems**: Linux, MacOS, and Windows.
+- **Resources**: 4 CPU and 8GB of RAM for your Docker runtime.
+- **Binaries**: [docker][urls.docker], jq, curl, sed, grep, git.
+- A stable Internet connection.
+
+## Installation
+
+To install Qovery on your local machine, follow these steps:
+
+<Steps headingDepth={3}>
+<ol>
+
+<li>
+
+Install Qovery CLI by running the following command:
+
+<%= qovery_install_cli() %>
+
+</li>
+
+<li>
+
+Authenticate with Qovery by running the following command:
+
+<%= qovery_sign_up_cli() %>
+
+</li>
+
+<li>
+
+Set Qovery context:
+
+```bash
+
+qovery context set
+
+```
+
+</li>
+
+<li>
+
+Start the Qovery demo by running the following command:
+
+<Alert type="warning">
+
+Ensure you have [Docker][urls.docker] running and that you have installed jq, curl, sed, grep, and git.
+
+</Alert>
+
+```bash
+
+qovery demo up
+
+```
+
+A k3s Kubernetes cluster will be installed on your local machine and Qovery will be installed on top of it.
+
+Note that if you are on MacOS or Windows, you might be prompted for your admin password - which is necessary to properly route the traffic from your host to your k3s apps.
+
+```shell
+...
+""""""""""""""""""""""""""""""""""""""""""""
+Configure network
+""""""""""""""""""""""""""""""""""""""""""""
++ sudo ifconfig lo0 alias 172.42.0.3/32 up
+Password:
+...
+```
+
+At the end of the installation, you will see the following message:
+
+```shell
+...
+
+""""""""""""""""""""""""""""""""""""""""""""
+Qovery demo cluster is now installed !!!!
+The kubeconfig is correctly set, so you can connect to it directly with kubectl or k9s from your local machine
+To delete/stop/start your cluster, use k3d cluster xxxx
+
+Go to https://console.qovery.com to create your first environment on this cluster 'hello-local-cluster'
+""""""""""""""""""""""""""""""""""""""""""""
+```
+
+</li>
+
+<li>
+
+Access the Qovery dashboard by visiting [console.qovery.com][urls.qovery_console].
+
+</li>
+
+</ol>
+</Steps>
+
+Well done, you have successfully installed Qovery on your local machine. You can now start deploying your applications and experience the Qovery experience.
+
+## Cleanup your local environment
+
+To clean up your local environment, run the following command:
+
+```bash
+
+qovery demo destroy
+
+```
+
+That's it! You have successfully removed the Qovery demo cluster from your local machine.

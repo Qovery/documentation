@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-04-24"
+last_modified_on: "2024-05-03"
 title: CLI
 description: How to use the Qovery CLI (Command Line Interface)
 ---
@@ -187,7 +187,7 @@ $ qovery auth
 
 <Alert type="info">
 
-If you are using an environment without access to GUI or a browser, you can use headless authentication instead:
+If you are using a headless (without GUI) environment, you can use the following command to sign up and sign in:
 
 ```bash
 # Sign up and sign in command
@@ -196,19 +196,7 @@ $ qovery auth --headless
 
 </Alert>
 
-Your browser window with sign-in options will open.
-
-<p align="center">
-  <img src="/img/qovery_signup.svg" alt="Qovery Sign-up page" />
-</p>
-
-[Click here][urls.authorize_qovery] to authorize Qovery to clone and build your applications.
-
-<p align="center">
-  <img src="/img/github_signup.svg" alt="Connect Github" />
-</p>
-
-Congratulations, you are logged-in.
+Your browser window with Qovery sign-up page will open. Follow the instructions to sign up and sign in.
 
 ### Help
 
@@ -701,7 +689,6 @@ Do you have any issues with Qovery CLI? [Open an issue](https://github.com/Qover
 
 [docs.using-qovery.integration.terraform]: /docs/using-qovery/integration/terraform/
 [docs.using-qovery.interface.rest-api]: /docs/using-qovery/interface/rest-api/
-[urls.authorize_qovery]: https://github.com/apps/qovery/installations/new
 [urls.brew]: https://brew.sh/
 [urls.qovery_cli_releases]: https://github.com/Qovery/qovery-cli/releases
 [urls.qovery_swagger]: https://api-doc.qovery.com

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-03-01"
+last_modified_on: "2024-05-03"
 $schema: "/.meta/.schemas/guides.json"
 title: URL Shortener API with Kotlin (Part 1/2)
 description: Create a URL shortener API with Kotlin, the micro-framework Ktor and PostgreSQL
@@ -607,7 +607,7 @@ $ qovery auth
 
 <Alert type="info">
 
-If you are using an environment without access to GUI or a browser, you can use headless authentication instead:
+If you are using a headless (without GUI) environment, you can use the following command to sign up and sign in:
 
 ```bash
 # Sign up and sign in command
@@ -616,19 +616,7 @@ $ qovery auth --headless
 
 </Alert>
 
-Your browser window with sign-in options will open.
-
-<p align="center">
-  <img src="/img/qovery_signup.svg" alt="Qovery Sign-up page" />
-</p>
-
-[Click here][urls.authorize_qovery] to authorize Qovery to clone and build your applications.
-
-<p align="center">
-  <img src="/img/github_signup.svg" alt="Connect Github" />
-</p>
-
-Congratulations, you are logged-in.
+Your browser window with Qovery sign-up page will open. Follow the instructions to sign up and sign in.
 
 </li>
 
@@ -762,7 +750,6 @@ We have seen that creating an URL shortener API with Ktor and Kotlin is extremel
 
 [guides.getting-started.create-a-database]: /guides/getting-started/create-a-database/
 [guides.getting-started.managing-environment-variables]: /guides/getting-started/managing-environment-variables/
-[urls.authorize_qovery]: https://github.com/apps/qovery/installations/new
 [urls.brew]: https://brew.sh/
 [urls.qovery_cli_releases]: https://github.com/Qovery/qovery-cli/releases
 [urls.scoop]: https://scoop.sh/

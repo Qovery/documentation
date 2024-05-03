@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[192],{344:function(e){e.exports=JSON.parse('{"category":{"name":"tutorial","title":"Tutorial","description":"Additional step-by-step resources to leverage even more Qovery","permalink":"/guides/tutorial"}}')}}]);

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-05-03"
+last_modified_on: "2024-05-04"
 title: "Quickstart"
 description: "Learn how to install and configure Qovery on your own Kubernetes cluster (BYOK) / Self-managed Kubernetes cluster"
 ---
@@ -12,7 +12,7 @@ import Tabs from '@theme/Tabs';
 
 <Alert type="info">
 
-This section is for Kubernetes power-users. If you are not familiar with Kubernetes, we recommend you to use Qovery on a Managed Kubernetes cluster on [AWS][docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.quickstart], [GCP][docs.getting-started.install-qovery.gcp.cluster-managed-by-qovery.quickstart], [Scaleway][docs.getting-started.install-qovery.scaleway.cluster-managed-by-qovery.quickstart], [Azure][docs.getting-started.install-qovery.azure.cluster-managed-by-qovery.quickstart], or contact us.
+If you are not familiar with Kubernetes, we recommend you to use Qovery on a Managed Kubernetes cluster on [AWS][docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.quickstart], [GCP][docs.getting-started.install-qovery.gcp.cluster-managed-by-qovery.quickstart], [Scaleway][docs.getting-started.install-qovery.scaleway.cluster-managed-by-qovery.quickstart], [Azure][docs.getting-started.install-qovery.azure.cluster-managed-by-qovery.quickstart], or contact us.
 
 </Alert>
 
@@ -39,19 +39,19 @@ The dependencies provided with the Qovery Helm chart are here to help you with t
 
 <Assumption>
 
-* You have a Kubernetes cluster up and running.
-* You have `kubectl` installed and configured to access your Kubernetes cluster.
+* You have a Kubernetes Kubernetes cluster up and running.
+* You have a Kubernetes Kubernetes cluster with at least 4 CPUs and 8GB of RAM.
+* You have `kubectl` installed and configured to access your Kubernetes Kubernetes cluster.
 * You have `helm` installed.
 * You have a Qovery account.
-* You have a Kubernetes cluster with at least 4 CPUs and 8GB of RAM.
 
 </Assumption>
 
-## Install Qovery
+## Install Qovery on your Kubernetes cluster
 
 <Alert type="info">
 
-Follow [this guide][docs.getting-started.install-qovery.local] to test Qovery on your local machine.
+Follow [this guide][docs.getting-started.install-qovery.local] to try Qovery on your local machine.
 
 </Alert>
 
@@ -259,7 +259,7 @@ Install Qovery on your Kubernetes cluster:
 qovery cluster install
 ```
 
-Respond to the prompts to install Qovery on your Kubernetes cluster.
+Respond to the prompts to install Qovery on your Kubernetes Kubernetes cluster.
 
 </li>
 
@@ -352,15 +352,20 @@ helm upgrade --install --create-namespace -n qovery -f <your-values-file.yaml> -
 
 </Tabs>
 
-That's it, you can now use Qovery on your Kubernetes cluster. 
+That's it, you can now use Qovery on your Kubernetes cluster.
 
-Connect to the [Qovery console][urls.qovery_console] to start deploying your applications.
+Connect to the [Qovery console][urls.qovery_console] to validate that Qovery is properly installed and start deploying your applications.
+
+## What's Next?
+
+Now that you have Qovery installed on your Kubernetes cluster, you can check that Qovery is properly installed by following the [Validate Installation][docs.getting-started.install-qovery.kubernetes.validate-installation] guide.
 
 
 [docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.quickstart]: /docs/getting-started/install-qovery/aws/cluster-managed-by-qovery/quickstart/
 [docs.getting-started.install-qovery.azure.cluster-managed-by-qovery.quickstart]: /docs/getting-started/install-qovery/azure/cluster-managed-by-qovery/quickstart/
 [docs.getting-started.install-qovery.gcp.cluster-managed-by-qovery.quickstart]: /docs/getting-started/install-qovery/gcp/cluster-managed-by-qovery/quickstart/
 [docs.getting-started.install-qovery.kubernetes.byok-config]: /docs/getting-started/install-qovery/kubernetes/byok-config/
+[docs.getting-started.install-qovery.kubernetes.validate-installation]: /docs/getting-started/install-qovery/kubernetes/validate-installation/
 [docs.getting-started.install-qovery.local]: /docs/getting-started/install-qovery/local/
 [docs.getting-started.install-qovery.scaleway.cluster-managed-by-qovery.quickstart]: /docs/getting-started/install-qovery/scaleway/cluster-managed-by-qovery/quickstart/
 [urls.brew]: https://brew.sh/

@@ -767,6 +767,10 @@ class Templates
     render("#{partials_path}/_qovery_install_cli.md", binding).strip
   end
 
+  def qovery_install_on_kubernetes_cluster(cloudProviderTitle)
+      render("#{partials_path}/_qovery_install_on_kubernetes_cluster.md", binding).strip
+  end
+
   def qovery_sign_up_cli
     render("#{partials_path}/_qovery_sign_up_cli.md", binding).strip
   end

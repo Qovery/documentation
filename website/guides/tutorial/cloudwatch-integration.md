@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-03-08"
+last_modified_on: "2024-05-09"
 $schema: "/.meta/.schemas/guides.json"
 title: "Integrate your application logs to Cloudwatch"
 description: "Add Kubernetes pod logs into Cloudwatch to perform full text search"
@@ -118,6 +118,8 @@ Create a helm service in the Qovery environment of your choice (preferrably with
   * Raw YAML:
 
 ```yaml
+priorityClassName: system-node-critical
+
 cloudWatch:
   enabled: true
   region: "<enter your cluster region>"

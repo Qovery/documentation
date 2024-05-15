@@ -21,6 +21,7 @@ gcloud services enable compute.googleapis.com
 gcloud services enable artifactregistry.googleapis.com
 gcloud services enable storage.googleapis.com
 gcloud services enable cloudresourcemanager.googleapis.com
+gcloud services enable run.googleapis.com
 
 concat_array_to_string() {
     array_ref=("${!1}")  # Create a copy of the array
@@ -564,6 +565,41 @@ permissions=(
     "storage.objects.setIamPolicy"
     "storage.objects.setRetention"
     "storage.objects.update"
+    # Cloud Run
+    "run.configurations.get"
+    "run.configurations.list"
+    "run.executions.cancel"
+    "run.executions.delete"
+    "run.executions.list"
+    "run.executions.get"
+    "run.jobs.create"
+    "run.jobs.delete"
+    "run.jobs.get"
+    "run.jobs.getIamPolicy"
+    "run.jobs.list"
+    "run.jobs.listEffectiveTags"
+    "run.jobs.listTagBindings"
+    "run.jobs.run"
+    "run.jobs.runWithOverrides"
+    "run.jobs.update"
+    "run.locations.list"
+    "run.operations.delete"
+    "run.operations.get"
+    "run.operations.list"
+    "run.revisions.delete"
+    "run.revisions.get"
+    "run.revisions.list"
+    "run.routes.list"
+    "run.routes.invoke"
+    "run.routes.get"
+    "run.services.create"
+    "run.services.delete"
+    "run.services.get"
+    "run.services.getIamPolicy"
+    "run.services.list"
+    "run.services.listEffectiveTags"
+    "run.services.listTagBindings"
+    "run.services.update"
 )
 
 # ROLE

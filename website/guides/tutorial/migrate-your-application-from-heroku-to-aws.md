@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-04-15"
+last_modified_on: "2024-05-16"
 $schema: "/.meta/.schemas/guides.json"
 title: Migrate your application from Heroku to AWS
 description: Guide on how to migrate all your applications from Heroku to AWS with your databases
@@ -13,6 +13,12 @@ import TabItem from '@theme/TabItem';
 
 import Tabs from '@theme/Tabs';
 import Assumptions from '@site/src/components/Assumptions';
+
+<Alert type="success">
+
+This guide also work for migrating your application from Heroku to GCP, Azure, Scaleway and [all cloud provider][docs.getting-started.install-qovery] supported by Qovery.
+
+</Alert>
 
 This guide describes how to migrate your application running on Heroku to AWS with Qovery. It covers all required steps you need to take to deploy your application on AWS and transfer your data from Heroku Postgres to the database managed by AWS via Qovery.
 
@@ -651,6 +657,7 @@ If you have a common question about Qovery, we have a more general [FAQ section]
 Congrats! You have migrated from Heroku to AWS. Feel free to check out our [forum][urls.qovery_forum] and open a thread if you have any question.
 
 
+[docs.getting-started.install-qovery]: /docs/getting-started/install-qovery/
 [docs.useful-resources.faq]: /docs/useful-resources/faq/
 [docs.using-qovery.configuration.application#auto-scaling]: /docs/using-qovery/configuration/application/#auto-scaling
 [docs.using-qovery.configuration.application#option-1-buildpacks]: /docs/using-qovery/configuration/application/#option-1-buildpacks

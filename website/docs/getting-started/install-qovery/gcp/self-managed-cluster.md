@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-05-13"
+last_modified_on: "2024-05-16"
 title: "Self-Managed Cluster"
 description: "Learn how to install and configure Qovery on your GCP Kubernetes Service (GKE) cluster"
 ---
@@ -238,16 +238,6 @@ $ qovery auth --headless
 </Alert>
 
 Your browser window with Qovery sign-up page will open. Follow the instructions to sign up and sign in.
-
-</li>
-
-<li>
-
-Set Qovery context:
-
-```bash
-qovery context set
-```
 
 </li>
 

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-05-01"
+last_modified_on: "2024-05-21"
 title: "Cluster Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -274,6 +274,13 @@ It won't be possible to go back once this feature is activated.
 | Type    | Description                                                                                                                                                                                               | Default Value |
 |---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | string  | Allows you to activate KMS encryption of your Kubernetes secrets. Specify the [key ARN](https://docs.aws.amazon.com/kms/latest/developerguide/find-cmk-id-arn.html) of your AWS KMS key.  |               |
+
+
+#### k8s.storageclass.fast_ssd
+
+| Type    | Description                                                                                                                                                                                               | Default Value                          |
+|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------|
+| string  | Specify the storageclass to be used for the storage attached to your container databases and applications                                                                                                 | different by cloud provider            |
 
 
 [docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.quickstart#attach-aws-credentials]: /docs/getting-started/install-qovery/aws/cluster-managed-by-qovery/quickstart/#attach-aws-credentials

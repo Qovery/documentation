@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-05-29"
+last_modified_on: "2024-05-22"
 title: "Environment Variable & Secrets"
 description: "Learn how to configure Environment Variables and Secrets on Qovery"
 ---
@@ -149,16 +149,22 @@ Navigate to [Console][urls.qovery_console]
 </li>
 <li>
 
-Select your project, environment and application
+Select your project, environment and application.
 
 </li>
 <li>
 
-Select `Environment Variables` tab in the left panel and click `New Variable` button. Select if you want to create a classic environment variable or an environment variable as file.
+Select `Variables` tab in the left panel and click `New Variable` button. Select if you want to create a classic environment variable or an environment variable as file.
 
 <p align="center">
   <img src="/img/configuration/variables/var_creation_1.png" alt="Variables" />
 </p>
+
+<Alert type="info">
+
+The "Variables tab" is available on the Environment list and Service list screens as well but it will let you manage only the environment variables with Scope = Project or Environment.
+
+</Alert>
 
 </li>
 <li>
@@ -178,6 +184,12 @@ If the variable you are trying to create is a Secret, select the `Secret` checkb
 </Steps>
 
 ## Delete an Environment Variable
+
+<Alert type="info">
+
+You can bulk delete a set of environment variable by selecting them via the checkbox next to their name
+
+</Alert>
 
 <Steps headingDepth={3}>
 <ol>

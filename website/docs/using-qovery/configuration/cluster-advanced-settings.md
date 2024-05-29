@@ -216,7 +216,9 @@ Using overcommit on pod resources can lead to instability on your cluster and we
 
 | Type    | Description                                                                                    | Default Value   |
 |---------|------------------------------------------------------------------------------------------------|-----------------|
-| boolean | Authorize CPU overcommit (limit > request) for the services deployed within this cluster       | `false`          |
+| boolean | Authorize CPU overcommit (limit > request) for the services deployed within this cluster       | `false`         |
+
+Once enabled, you can update the advanced setting [resources.override.limit.cpu_in_mib][docs.using-qovery.configuration.advanced-settings#resources] of your service.
 
 #### allow_service_ram_overcommit ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
 
@@ -228,7 +230,9 @@ Using overcommit on pod resources can lead to instability on your cluster and we
 
 | Type    | Description                                                                                    | Default Value   |
 |---------|------------------------------------------------------------------------------------------------|-----------------|
-| boolean | Authorize memory overcommit (limit > request) for the services deployed within this cluster    | `false`          |
+| boolean | Authorize memory overcommit (limit > request) for the services deployed within this cluster    | `false`         |
+
+Once enabled, you can update the advanced setting [resources.override.limit.ram_in_mib][docs.using-qovery.configuration.advanced-settings#resources] of your service.
 
 ## IAM
 
@@ -277,5 +281,6 @@ It won't be possible to go back once this feature is activated.
 
 
 [docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.quickstart#attach-aws-credentials]: /docs/getting-started/install-qovery/aws/cluster-managed-by-qovery/quickstart/#attach-aws-credentials
+[docs.using-qovery.configuration.advanced-settings#resources]: /docs/using-qovery/configuration/advanced-settings/#resources
 [docs.using-qovery.deployment.image-mirroring]: /docs/using-qovery/deployment/image-mirroring/
 [guides.tutorial.how-to-activate-sso-to-connect-to-your-eks-cluster]: /guides/tutorial/how-to-activate-sso-to-connect-to-your-eks-cluster/

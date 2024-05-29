@@ -168,7 +168,7 @@ module.exports = {
     },
     posthog: {
       apiKey: "phc_IgdG1K2GveDUte1gJ6hlwNbFHCv9nViWETUyLMU7ciq", // required key for ph (can be public)
-      appUrl: "https://app.posthog.com", // optional
+      appUrl: "https://phprox.qovery.com", // optional
       enableInDevelopment: true, // optional
       // other options are passed to posthog-js init as is
     },

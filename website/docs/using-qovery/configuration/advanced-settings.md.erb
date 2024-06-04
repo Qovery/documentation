@@ -75,6 +75,8 @@ All services have access to advanced settings, you can find where they are avail
 |---------|---------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | integer | Decide how many times in seconds the application is supposed to stop at maximum. After this time, the application will be forced to stop (killed) | An application requiring several tasks to be stopped properly should have a higher grace period. If the application finishes early, then it will not wait until the end of the grace period | `60`          |
 
+### Affinity
+
 #### deployment.affinity.node.required ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/cronjob.svg) ![](/img/advanced_settings/job.svg)
 
 | Type                | Description                                            | Use Case                                                                                                                                    | Default Value |
@@ -106,6 +108,20 @@ All services have access to advanced settings, you can find where they are avail
 | Type    | Description                                                                                                                                                                                            | Default Value |
 |---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | integer | Define the percentage of the maximum number of pods that can be created over the desired number of pods ([more info](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#max-surge)) | `25`          |
+
+### Lifecycle Hooks
+
+#### deployment.lifecycle.post_start_exec_command ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg)
+
+| Type   | Description                                                                                                     | Default Value |
+|--------|-----------------------------------------------------------------------------------------------------------------|---------------|
+| string | Allows you to run a command after the application is started. The command should be a shell command or script.  | ``            |
+
+#### deployment.lifecycle.pre_stop_exec_command ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg)
+
+| Type   | Description                                                                                                                                                                                                                                                                     | Default Value                   |
+|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------|
+| string | Allows you to run a command before the application is stopped. The command should be a shell command or script. Qovery requires the `sh` shell by default and sets a sleep of 15 seconds to let Nginx update its config. Avoiding error codes returned during a rolling update. | `["/bin/sh", "-c", "sleep 15"]` |
 
 
 ## Network Settings

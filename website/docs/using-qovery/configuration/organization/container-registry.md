@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-09-21"
+last_modified_on: "2024-06-04"
 title: "Container Registry"
 description: "Learn how to manage the container registry allowed in your organization"
 ---
@@ -21,11 +21,6 @@ You can access this section by opening the Organization Settings -> Container Re
   <img src="/img/configuration/organization/container_1.png" alt="Application" />
 </p>
 
-<Alert type="info">
-
-When accessing the interface for the first time, you will see that a container registry already exist (called "registry-{$UIID}"). This container registry is created by Qovery on your infrastructure and is used to manage the deployment of your applications. You are free to use them to store your applications but you need to retrieve the credentials from your cloud provider console.
-
-</Alert>
 
 ### Create a Container Registry
 

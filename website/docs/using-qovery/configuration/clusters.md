@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-04-15"
+last_modified_on: "2024-06-04"
 title: "Clusters"
 description: "Learn how to configure your Kubernetes clusters on Qovery"
 ---
@@ -361,6 +361,10 @@ Please note that a minimum of 3 worker nodes is required to deploy your [EKS clu
 
 </Alert>
 
+#### Image registry
+
+In this tab, you will see that a container registry already exist (called "registry-{$UIID}"). This container registry is created by Qovery on your infrastructure and is used to manage the deployment of your applications by mirroring the docker images.
+You can update the credentials to connect to it if needed.
 
 #### Features
 

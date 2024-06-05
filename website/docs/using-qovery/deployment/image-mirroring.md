@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-04-24"
+last_modified_on: "2024-06-05"
 title: "Image Mirroring"
 description: "Learn how images are mirrored within your cloud account"
 ---
@@ -7,12 +7,12 @@ import Jump from '@site/src/components/Jump';
 import Alert from '@site/src/components/Alert';
 import Assumptions from '@site/src/components/Assumptions';
 
-When a cluster is deployed on your cloud account, a dedicated image registry is created to serve as a mirroring system. 
+When a cluster is deployed on your cloud account, a dedicated repository (or namespace for Scaleway) is created to serve as a mirroring system in your cloud provider registry. And your cloud provider registry is attached to your cluster in Qovery.
 
-This `mirroring registry` is also available within the Qovery interface
+This `mirroring repository` is also available within the Qovery interface
 
 <p align="center">
-  <img src="/img/deployment/mirror-registry.png" alt="Mirroring Registry" />
+  <img src="/img/deployment/mirror-registry.png" alt="Mirroring Repository" />
 </p>
 
 # How does it work

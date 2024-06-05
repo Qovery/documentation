@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-06-04"
+last_modified_on: "2024-06-05"
 title: "Clusters"
 description: "Learn how to configure your Kubernetes clusters on Qovery"
 ---
@@ -363,8 +363,12 @@ Please note that a minimum of 3 worker nodes is required to deploy your [EKS clu
 
 #### Image registry
 
-In this tab, you will see that a container registry already exist (called "registry-{$UIID}"). This container registry is created by Qovery on your infrastructure and is used to manage the deployment of your applications by mirroring the docker images.
-You can update the credentials to connect to it if needed.
+In this tab, you will see that a container registry already exist (called `registry-{$UIID}`). 
+This container registry is created by Qovery on your cloud provider account and is used to manage the deployment of your applications by mirroring the docker images.
+
+The credentials configured on this registry are the one used to create the cluster. But you can still update them if you prefer to manage them separately (dedicated pair of creds just to access the registry).
+
+Check [this link][docs.using-qovery.deployment.image-mirroring] for more information.
 
 #### Features
 
@@ -832,5 +836,6 @@ To clean up a Qovery cluster from your cloud provider account, go to `AWS Consol
 [docs.using-qovery.configuration.clusters]: /docs/using-qovery/configuration/clusters/
 [docs.using-qovery.configuration.deployment-rule#environment-deployment-rules]: /docs/using-qovery/configuration/deployment-rule/#environment-deployment-rules
 [docs.using-qovery.configuration.project]: /docs/using-qovery/configuration/project/
+[docs.using-qovery.deployment.image-mirroring]: /docs/using-qovery/deployment/image-mirroring/
 [urls.kubernetes]: https://kubernetes.io/
 [urls.qovery_console]: https://console.qovery.com

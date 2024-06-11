@@ -1,7 +1,7 @@
-FROM ubuntu:22.10
+FROM ubuntu:22.04
 
 RUN apt-get update && \
-    apt-get -y install yarnpkg bundler git locales sudo inotify-tools && \
+    apt-get -y install yarnpkg bundler git locales sudo inotify-tools npm && \
     apt-get clean && \
     ln -s /usr/bin/yarnpkg /usr/bin/yarn && \
     locale-gen --no-purge en_US.UTF-8 && \

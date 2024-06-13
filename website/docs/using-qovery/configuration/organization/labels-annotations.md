@@ -33,7 +33,7 @@ You can create a new label group by pressing the `Add new` button then `Add labe
 
 <Alert type="warning">
 
-To ensure that Qovery will be able to continue managing your services. Some labels prefixes are forbidden:
+To ensure that Qovery will be able to continue managing your services. Some labels prefixes are forbidden (this list is not exhaustive):
 * `kubernetes.io/`
 * `k8s.io/`
 * `envId`
@@ -106,7 +106,7 @@ If this label group was already used in your services. You will have to redeploy
 ## Delete a label group
 
 You can delete a label group.
-If this label group was already used in your services. You will have to redeploy them for removing the annotations linked to your services.
+If this label group was already used in your services. You will have to redeploy them for removing the labels linked to your services.
 
 ## Create an annotation group
 
@@ -118,7 +118,7 @@ You can create a new annotation group by pressing the `Add annotation` button. Y
 
 <Alert type="warning">
 
-To ensure that Qovery will be able to continue managing your services. Some annotations prefixes are forbidden:
+To ensure that Qovery will be able to continue managing your services. Some annotations prefixes are forbidden (this list is not exhaustive):
 * `kubernetes.io/`
 * `k8s.io/`
 * `appCommitId`

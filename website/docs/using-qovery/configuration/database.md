@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-04-26"
+last_modified_on: "2024-06-13"
 title: "Databases"
 description: "Learn how to configure Databases on Qovery"
 sidebar_label: hidden
@@ -111,9 +111,10 @@ Please refer to the Configuration section below to know more about each of these
   <img src="/img/configuration/database/db-2.png" alt="General Information" />
 </p>
 
-** Extra annotations (optional)**
+** Extra labels/annotations (optional)**
 
-If you are using the database in `Container` mode, you can add your extra annotation groups. See the [Add annotation group][docs.using-qovery.configuration.organization.labels-annotations#create-an-annotation-group] section for more information.
+Add your extra annotation/label groups. See the [Add annotation/label group][docs.using-qovery.configuration.organization.labels-annotations] section for more information.
+Annotation groups are not supported for managed databases.
 
 </li>
 
@@ -184,6 +185,11 @@ This parameter lets you decide whether to expose publicly or not your database.
 
 - **Public** access will make your database accessible via the public network
 - **Private** access will make your database accessible only by applications in your environment
+
+#### Extra labels/annotations
+
+Add your extra annotation/label groups. See the [Add annotation/label group][docs.using-qovery.configuration.organization.labels-annotations] section for more information.
+Annotation groups are not supported for managed databases.
 
 ### Resources
 
@@ -320,7 +326,7 @@ In database overview, click on `Action` remove button
 [docs.using-qovery.configuration.environment-variable#connecting-to-a-database]: /docs/using-qovery/configuration/environment-variable/#connecting-to-a-database
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [docs.using-qovery.configuration.lifecycle-job]: /docs/using-qovery/configuration/lifecycle-job/
-[docs.using-qovery.configuration.organization.labels-annotations#create-an-annotation-group]: /docs/using-qovery/configuration/organization/labels-annotations/#create-an-annotation-group
+[docs.using-qovery.configuration.organization.labels-annotations]: /docs/using-qovery/configuration/organization/labels-annotations/
 [guides.getting-started.create-a-database]: /guides/getting-started/create-a-database/
 [guides.tutorial.aws-vpc-peering-with-qovery]: /guides/tutorial/aws-vpc-peering-with-qovery/
 [urls.qovery_console]: https://console.qovery.com

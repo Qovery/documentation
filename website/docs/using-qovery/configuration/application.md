@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-04-26"
+last_modified_on: "2024-06-13"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -92,9 +92,9 @@ If the base image in your Dockerfile is from a private registry, you just have t
 
 See the [Deploying with auto-deploy feature][docs.qovery.deployment.deploying-with-auto-deploy] section.
 
-** Extra annotations (optional)**
+** Extra labels/annotations (optional)**
 
-Add your extra annotation groups. See the [Add annotation group][docs.using-qovery.configuration.organization.labels-annotations#create-an-annotation-group] section for more information.
+Add your extra annotation/label groups. See the [Add annotation/label group][docs.using-qovery.configuration.organization.labels-annotations] section for more information.
 
 </li>
 <li>
@@ -277,9 +277,9 @@ Configuration from above will make Qovery look for the Dockerfile in `/timescale
 
 See the [Deploying with auto-deploy feature][docs.qovery.deployment.deploying-with-auto-deploy] section.
 
-#### Annotations
+#### Extra labels/annotations
 
-Add your extra annotation groups. See the [Add annotation group][docs.using-qovery.configuration.organization.labels-annotations#create-an-annotation-group] section for more information.
+Add your extra annotation/label groups. See the [Add annotation/label group][docs.using-qovery.configuration.organization.labels-annotations] section for more information.
 
 ### Resources
 
@@ -577,7 +577,7 @@ In the application overview, click on the `3 dots` button and remove the applica
 [docs.using-qovery.configuration.object-storage]: /docs/using-qovery/configuration/object-storage/
 [docs.using-qovery.configuration.organization.container-registry]: /docs/using-qovery/configuration/organization/container-registry/
 [docs.using-qovery.configuration.organization.git-repository-access]: /docs/using-qovery/configuration/organization/git-repository-access/
-[docs.using-qovery.configuration.organization.labels-annotations#create-an-annotation-group]: /docs/using-qovery/configuration/organization/labels-annotations/#create-an-annotation-group
+[docs.using-qovery.configuration.organization.labels-annotations]: /docs/using-qovery/configuration/organization/labels-annotations/
 [docs.using-qovery.configuration.project]: /docs/using-qovery/configuration/project/
 [docs.using-qovery.configuration.service-health-checks]: /docs/using-qovery/configuration/service-health-checks/
 [docs.using-qovery.deployment.deploying-with-auto-deploy#filtering-commits-triggering-the-auto-deploy]: /docs/using-qovery/deployment/deploying-with-auto-deploy/#filtering-commits-triggering-the-auto-deploy

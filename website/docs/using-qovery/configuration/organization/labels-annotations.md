@@ -1,7 +1,7 @@
 ---
-last_modified_on: "2024-04-26"
-title: "Annotations"
-description: "Learn how to manage the kubernetes annotations via Qovery"
+last_modified_on: "2024-06-13"
+title: "Labels & Annotations"
+description: "Learn how to manage the kubernetes annotations and labels via Qovery"
 ---
 
 import Alert from '@site/src/components/Alert';
@@ -9,14 +9,12 @@ import Alert from '@site/src/components/Alert';
 import Jump from '@site/src/components/Jump';
 import Assumptions from '@site/src/components/Assumptions';
 
-You can manage the extra annotations of the different Kubernetes objects deployed by Qovery directly from the Qovery console.
+You can manage the extra annotations/labels of the different Kubernetes objects deployed by Qovery directly from the Qovery console.
 
-In order to have a centralized section to manage the annotations, you can create annotation groups in the `Annotations` section within the organization settings and then link them to the services.
-
-As a Qovery service is mapped to multiple Kubernetes objects (pods, deployments, ingress etc..) you will be able to define the kubernetes scope.
+In order to have a centralized section to manage the annotations/labels, you can create annotation/label groups in the `Labels & annotations` section within the organization settings and then link them to the services.
 
 <p align="center">
-  <img src="/img/configuration/organization/annotations_settings.png" alt="How to access your annotations section" />
+  <img src="/img/configuration/organization/annotations_labels_settings.png" alt="How to access your annotations/labels section" />
 </p>
 
 <!--
@@ -27,7 +25,92 @@ As a Qovery service is mapped to multiple Kubernetes objects (pods, deployments,
      website/docs/using-qovery/configuration/organization/labels-annotations.md.erb
 -->
 
+## Create a label group
+
+You can create a new label group by pressing the `Add new` button then `Add label group`. You need to provide:
+- A group name
+- The different label keys/values constituting the group. The key/value have to respect a certain syntax, check the [official Kubernetes documentation](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#syntax-and-character-set) to learn more.
+
+<Alert type="warning">
+
+To ensure that Qovery will be able to continue managing your services. Some labels prefixes are forbidden:
+* `kubernetes.io/`
+* `k8s.io/`
+* `envId`
+* `appId`
+* `app`
+* `OwnerId`
+* `aws`
+* `cluster_id`
+* `cluster_long_id`
+* `organization_id`
+* `organization_long_id`
+* `qovery_product`
+* `creation_date`
+* `Service`
+* `eks:cluster-name`
+* `ClusterId`
+* `ClusterLongId`
+* `OrganizationId`
+* `OrganizationLongId`
+* `eks:nodegroup-name`
+* `QoveryProduct`
+* `Region`
+* `creationDate`
+* `ttl`
+* all prefixes containing `qovery.com`
+
+</Alert>
+
+A `Propagate as tag` is option is available. It allows you to forward the kubernetes label on the resource created by Qovery in your cloud provider.
+
+<Alert type="warning">
+
+If your Kubernetes label format does not respect the cloud provider tag format. The label will not be propagated to your cloud provider.
+You can check these documentation to check the tag format depending on your cloud provider:
+* [AWS](https://docs.aws.amazon.com/tag-editor/latest/userguide/tagging.html#tag-conventions)
+* [GCP](https://cloud.google.com/compute/docs/labeling-resources#requirements)
+* [Scaleway](https://www.scaleway.com/en/docs/containers/kubernetes/api-cli/managing-tags/)
+
+</Alert>
+
+<Alert type="info">
+
+For the moment only managed databases on AWS clusters are concerned.
+In a feature release we will support labels at environment and cluster levels. It will allow you to tag your cloud provider resources (created by Qovery) as a tag  such as clusters, S3, VPC, ECR, EC2, ...
+
+</Alert>
+
+Example:
+
+<p align="center">
+  <img src="/img/configuration/organization/label_group.png" alt="Label group form" />
+</p>
+
+
+Once validated, the label group will be displayed on the interface.
+
+You can now apply it your applications, cronjobs, lifecycle jobs and databases.
+
+<Alert type="info">
+
+Helm is not supported as you can directly add extra labels within your helm chart.
+
+</Alert>
+
+## Edit a label group
+
+You can edit your label group to add/remove/edit labels or update the scope.
+If this label group was already used in your services. You will have to redeploy them for these changes to be taken into account.
+
+## Delete a label group
+
+You can delete a label group.
+If this label group was already used in your services. You will have to redeploy them for removing the annotations linked to your services.
+
 ## Create an annotation group
+
+As a Qovery service is mapped to multiple Kubernetes objects (pods, deployments, ingress etc..) you will be able to define the kubernetes scope for each annotation group.
 
 You can create a new annotation group by pressing the `Add annotation` button. You need to provide:
 - A group name
@@ -69,7 +152,7 @@ Helm is not supported as you can directly add extra annotations within your helm
 
 ## Edit an annotation group
 
-You can edit your annotation group to add/remove/edit labels or update the scope.
+You can edit your annotation group to add/remove/edit annotations or update the scope.
 If this annotation group was already used in your services. You will have to redeploy them for these changes to be taken into account.
 
 ## Delete an annotation group

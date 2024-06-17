@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-06-10"
+last_modified_on: "2024-06-17"
 title: "Service Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -271,6 +271,12 @@ You can pass set credentials by separating them with a comma. For example: `user
 | Type    | Description                                                                                                                                            | Default Value |
 |---------|--------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | integer | Auto-scaling is triggered when a specific CPU utilization metric is reached (for instance, 40%). This advanced setting allows you to set this metric.  | `60`          |
+
+####  hpa.memory.average_utilization_percent ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg)
+
+| Type    | Description                                                                                                                                               | Default Value |
+|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| integer | Auto-scaling is triggered when a specific memory utilization metric is reached (for instance, 40%). This advanced setting allows you to set this metric.  | `null`        |
 
 ## Job Settings
 

@@ -7,7 +7,16 @@ This website is built using Docusaurus 2, a modern static website generator.
 You can simply use Docker this way:
 
 ```bash
-docker run -it --rm -v $(pwd):/mnt/documentation -p 3000:3000 qoveryrd/doc:0.2.1 /mnt/documentation/scripts/docker.sh
+docker run -it --rm -v $(pwd):/mnt/documentation -p 3000:3000 qoveryrd/doc:0.2.2 /mnt/documentation/scripts/docker.sh
+```
+
+Important notes for Mac users:
+
+* Switch to osxfs for file sharing in Docker Desktop settings (Preferences -> General -> Choose file sharing implementation for your containers -> osxfs)
+* Add environment variable IS_DOCKER_ON_MAC=1 to the docker run command
+
+```bash
+docker run -it --rm -v $(pwd):/mnt/documentation -p 3000:3000 -e IS_DOCKER_ON_MAC=1 qoveryrd/doc:0.2.2 /mnt/documentation/scripts/docker.sh
 ```
 
 Open a browser to http://localhost:3000

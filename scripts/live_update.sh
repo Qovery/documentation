@@ -18,7 +18,14 @@ ORIG_PWD=$(pwd)
 cd website && yarn start --host 0.0.0.0 &
 cd $ORIG_PWD
 
-if [ "$(uname)" == "Linux" ] ; then
+if [ $IS_DOCKER_ON_MAC -eq 1 ] ; then
+    echo "Docker on Mac, refreshing every 30s"
+    while [ 1 ] ; do
+        make generate USE_CONTAINER=none
+        sleep 30
+    done
+elif [ "$(uname)" == "Linux" ] ; then
+    make generate USE_CONTAINER=none
     check_bin inotifywait
     inotifywait -qrm -e close_write . | while read content ; do
         make generate USE_CONTAINER=none

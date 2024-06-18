@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-05-16"
+last_modified_on: "2024-05-27"
 title: "Self-Managed Cluster"
 description: "Learn how to install and configure Qovery on your AWS Kubernetes Service (EKS) cluster"
 ---
@@ -42,6 +42,7 @@ The dependencies provided with the Qovery Helm chart are here to help you with t
 * You have a AWS EKS Kubernetes cluster up and running.
 * You have a AWS EKS Kubernetes cluster with at least 4 CPUs and 8GB of RAM.
 * You have `kubectl` installed and configured to access your AWS EKS Kubernetes cluster.
+* You have a set of credentials allowing to access an image registry. This registry will be used to store the built images or mirror the deployed images (See the [Image Mirroring][docs.using-qovery.deployment.image-mirroring] page for more information).
 * You have `helm` installed.
 * You have a Qovery account.
 
@@ -358,6 +359,7 @@ Now that you have Qovery installed on your Kubernetes cluster, you can check tha
 [docs.getting-started.install-qovery.kubernetes.validate-installation]: /docs/getting-started/install-qovery/kubernetes/validate-installation/
 [docs.getting-started.install-qovery.local]: /docs/getting-started/install-qovery/local/
 [docs.getting-started.install-qovery.scaleway.cluster-managed-by-qovery.quickstart]: /docs/getting-started/install-qovery/scaleway/cluster-managed-by-qovery/quickstart/
+[docs.using-qovery.deployment.image-mirroring]: /docs/using-qovery/deployment/image-mirroring/
 [urls.brew]: https://brew.sh/
 [urls.helm]: https://helm.sh
 [urls.qovery_cli_releases]: https://github.com/Qovery/qovery-cli/releases

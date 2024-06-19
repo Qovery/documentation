@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-06-05"
+last_modified_on: "2024-06-19"
 title: "Image Mirroring"
 description: "Learn how images are mirrored within your cloud account"
 ---
@@ -7,9 +7,9 @@ import Jump from '@site/src/components/Jump';
 import Alert from '@site/src/components/Alert';
 import Assumptions from '@site/src/components/Assumptions';
 
-When a cluster is deployed on your cloud account, a dedicated repository (or namespace for Scaleway) is created to serve as a mirroring system in your cloud provider registry. And your cloud provider registry is attached to your cluster in Qovery.
+When Qovery is running on your infrastructure, it requires an image registry to store the images built via the Qovery CI and to mirror the images deployed from a 3rd party container registry.
 
-This `mirroring repository` is also available within the Qovery interface
+This `mirroring registry` is available and configurable within the Qovery interface
 
 <p align="center">
   <img src="/img/deployment/mirror-registry.png" alt="Mirroring Repository" />
@@ -49,7 +49,11 @@ Given this isolation mechanism, if the same application is cloned (via the [clon
 
 The Qovery behaviour in this case will depend on the chosen [mirroring mode][docs.using-qovery.configuration.cluster-advanced-settings#image-registry] within the cluster advanced settings. 
 
-Two mirroring modes are available when deploying a service from a container registry:
+<Alert type="info">
+
+This mirroring operation is skipped if the "source registry" is the same as the "Mirroring registry" (i.e.: you push your built images directly on the mirroring registry). This is the suggested setup since it makes you reduce your deployment time!
+
+</Alert>
 
 ** Service (Default) **
 

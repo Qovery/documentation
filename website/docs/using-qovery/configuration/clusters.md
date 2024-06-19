@@ -214,19 +214,6 @@ In the `Set Resources` window, select:
 * `Instance type`: select the type of [worker nodes][docs.using-qovery.configuration.clusters#what-is-a-cluster] you want to deploy to your cluster:
 * `Node auto-scaling`: define the minimum and the maximum number of worker nodes that your cluster can run. The lowest number is the number of worker nodes running on your infrastructure at any time, while the highest number is the maximum number of worker nodes that can automatically be deployed as traffic grows. Please note that a minimum of 3 worker nodes is required to deploy your EKS cluster.
 
-You have the possibility to enable `Karpenter` autoscaler to improve the efficiency and cost of running workloads on your cluster. You can check the [official documentation](https://karpenter.sh/docs/) for more information.
-
-<p align="center">
-  <img src="/img/configuration/clusters/karpenter.png" alt="Enable Karpenter" />
-</p>
-
-Today, only new non-production clusters are supported. It means you won't be able to enable it on your already existing cluster. It will be supported soon.
-
-By activating Karpenter, you have to set:
-* `Disk size`: select the size of the disks to be attached to your cluster instances (to locally store container images etc..).
-* `Default node architecture`: your application will be build using this architecture by default.
-* `Spot instances`: In order to reduce even more your costs, you can also enable the spot instances on your clusters. Spot instances cost up to 90% less compared to On-Demand prices. But keep in mind that ppot instances can be terminated by the cloud provider at any time. Check this [documentation](https://aws.amazon.com/ec2/spot/) for more information.
-
 <br/>
 
 <Alert type="warning">
@@ -245,6 +232,27 @@ Also, before downsizing, you need to ensure that your applications will still ha
 <Alert type="info">
 
 At the bottom of the window, you can see an estimate of the cost associated with the selected instance type.
+
+</Alert>
+
+For AWS EKS clusters, you have the possibility to enable `Karpenter` autoscaler to improve the efficiency and cost of running workloads on your cluster. You can check the [official documentation](https://karpenter.sh/docs/) for more information.
+
+<p align="center">
+  <img src="/img/configuration/clusters/karpenter.png" alt="Enable Karpenter" />
+</p>
+
+Today, only new non-production clusters are supported. It means you won't be able to enable it on your already existing cluster. It will be supported soon.
+
+By activating Karpenter, you have to set:
+* `Disk size`: select the size of the disks to be attached to your cluster instances (to locally store container images etc..).
+* `Default node architecture`: If you build your application with the Qovery CI, your application will be built using this architecture by default.
+* `Spot instances`: In order to reduce even more your costs, you can also enable the spot instances on your clusters. Spot instances cost up to 90% less compared to On-Demand prices. But keep in mind that spot instances can be terminated by the cloud provider at any time. Check this [documentation](https://aws.amazon.com/ec2/spot/) for more information. Even if this flag is enabled, the statefulsets won't run on spot instances.
+
+<br/>
+
+<Alert type="warning">
+
+A SQS queue will be created. Before deploying your cluster, update the IAM permissions of the Qovery user, make sure to use the [latest version here](https://hub.qovery.com/files/qovery-iam-aws.json) to add the permission on SQS.
 
 </Alert>
 

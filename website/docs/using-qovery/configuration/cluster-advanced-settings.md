@@ -163,7 +163,7 @@ Below is the list of advanced settings currently available for clusters.
 
 | Type    | Description                                                                                            | Default Value   |
 |---------|--------------------------------------------------------------------------------------------------------|-----------------|
-| string  | Allows to customize nginx log-format-escaping setting, possible values are: `default`, `json`, `none`. | `default`       |
+| string  | Allows to customize nginx log-format-escaping setting, possible values are: `Default`, `JSON`, `None`. | `Default`       |
 
 ### Database access
 

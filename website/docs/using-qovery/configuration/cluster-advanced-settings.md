@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-05-22"
+last_modified_on: "2024-06-20"
 title: "Cluster Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -153,6 +153,17 @@ Below is the list of advanced settings currently available for clusters.
 |---------|------------------------------------------------------------------------------------------------------|-----------------|
 | bool    | Enables [ngx_http_realip_module](https://nginx.org/en/docs/http/ngx_http_realip_module.html) module. | `false`         |
 
+#### nginx.controller.log_format_upstream ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
+
+| Type    | Description                                                                                                                                       | Default Value   |
+|---------|---------------------------------------------------------------------------------------------------------------------------------------------------|-----------------|
+| string  | Allows to customize nginx [log-format](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#log-format-upstream). | `null`         |
+
+#### nginx.controller.log_format_escaping ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
+
+| Type    | Description                                                                                            | Default Value   |
+|---------|--------------------------------------------------------------------------------------------------------|-----------------|
+| string  | Allows to customize nginx log-format-escaping setting, possible values are: `default`, `json`, `none`. | `default`       |
 
 ### Database access
 

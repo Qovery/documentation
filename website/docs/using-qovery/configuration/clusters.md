@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-06-19"
+last_modified_on: "2024-07-03"
 title: "Clusters"
 description: "Learn how to configure your Kubernetes clusters on Qovery"
 ---
@@ -456,6 +456,12 @@ The EKS subnets are mandatory, you have to specify at least **one subnet id per 
 <p align="center">
   <img src="/img/configuration/clusters/existing_vpc_aws_auto_assign.png" alt="Existing VPC AWS DNS Hostnmaes" />
 </p>
+
+<Alert type="info">
+
+If you have activated `Karpenter`, you will have to specify at least **one subnet id per zone**. These subnets have to be private and connected to internet through a NAT Gateway. They will be used for AWS Fargate profile.
+
+</Alert>
 
 **Managed databases**:
 

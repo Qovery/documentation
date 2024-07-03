@@ -246,11 +246,17 @@ The content of the `BASIC_AUTH_CREDENTIALS` environment variable should be: `use
 
 You can pass set credentials by separating them with a comma. For example: `username1:$apr1$jpwW4vG9$fwbzWBgRqARzNX93plDq20,username2:$apr1$jpwW4vG9$fwbzWBgRqARzNX93plDq20`. However, the total length of the environment variable should not exceed 1MB.
 
-#### network.ingress.extra_headers ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/helm.svg)
+#### network.ingress.add_headers ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/helm.svg)
 
 | Type   | Description                                                                                                                                   | Default Value |
 |--------|-----------------------------------------------------------------------------------------------------------------------------------------------|---------------|
-| string | Allows you to specify response headers with values separated by comma (e.g. ` {"X-Frame-Options":"DENY","X-Content-Type-Options":"nosniff"}` | `{}`          |
+| string | Allows you to specify additional headers to the outgoing response. The header values are separated by comma (e.g. ` {"X-Frame-Options":"DENY","X-Content-Type-Options":"nosniff"}` | `{}`          |
+
+#### network.ingress.proxy_set_headers ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/helm.svg)
+
+| Type   | Description                                                                                                                                   | Default Value |
+|--------|-----------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| string | Allows you to specify additional headers to the incoming requests. The header values are separated by comma (e.g. ` {"X-Frame-Options":"DENY","X-Content-Type-Options":"nosniff"}`). | `{}`          |
 
 ## Auto-scaling
 

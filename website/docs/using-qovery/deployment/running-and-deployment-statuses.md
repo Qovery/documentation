@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-02-28"
+last_modified_on: "2024-07-03"
 title: "Running and Deployment Statuses"
 description: "Learn how to monitor your services"
 ---
@@ -77,6 +77,15 @@ Within this page you will have a view of:
 - in case of an error, you will get the reason behind the issue by clicking on the Pod in error.
 
 By clicking on `Logs`, you will be redirected to the service logs specifically filtered for this pod.
+
+### Clear old job executions
+
+If you have old cronjobs or lifecycle jobs execution in error, your global job status will be in `Warning`.
+You have the possibility to clear these old executions by clicking on the `Clear status` button in the status banner of your job.
+
+<p align="center">
+  <img src="/img/deployment/clear_job_status.png" alt="Clear status" />
+</p>
 
 ## Deployment Statuses
 

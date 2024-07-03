@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-06-13"
+last_modified_on: "2024-07-03"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -257,21 +257,9 @@ You don't find a cool language? [Suggest us to support it][urls.qovery_roadmap]
 
 #### Option 2: Dockerfile
 
-Qovery runs your application within the [Container technology](https://www.docker.com/resources/what-container). To build and run your application, you need to provide a valid [Dockerfile](https://docs.docker.com/engine/reference/builder).
+If your job is built via the Qovery CI (Source="Git Repository"), this section allows you to define the Dockerfile location. 
 
-```Dockerfile title="Valid NodeJS Dockerfile"
-FROM node:13-alpine
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
-COPY . .
-RUN npm install
-EXPOSE 3000
-CMD node ./bin/www
-```
-
-After creating a Dockerfile, specify the location of your Dockerfile in `Dockefile path` field.
-
-Configuration from above will make Qovery look for the Dockerfile in `/timescale/Dockerfile` path of your repository (`Root Application Path` + `Dockerfile Path`).
+If you don't have one, you can use the `docker init` command to generate one for your application (check the [documentation here](https://docs.docker.com/reference/cli/docker/init/)). After creating a Dockerfile, specify the location of your Dockerfile in `Dockefile path` field.
 
 #### Auto Deploy
 

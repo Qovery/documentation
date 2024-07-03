@@ -67,13 +67,6 @@ If you want to deploy a cronjob from a Git Repository you will have to select:
 - Git Repository: Select the git provider hosting your code (it can be hosted on GitHub, GitLab or Bitbucket).  You can add a new git access by clicking on `New git access`.
 - Branch: Select branch that Qovery should use to deploy your code
 - Root Application Path: base folder in which the code resides in your repository
-- Build Mode: only Docker is supported
-
-<Alert type="info">
-
-A Dockerfile is necessary to build and deploy your job
-
-</Alert>
 
 If you want to deploy a job from a Container Registry you will have to select:
 - Registry: select the container registry storing the image of your job.You can add a new container registry by clicking on `New registry`.
@@ -93,6 +86,12 @@ See the [Deploying with auto-deploy feature][docs.qovery.deployment.deploying-wi
 ** Extra labels/annotations (optional)**
 
 Add your extra annotation/label groups. See the [Add annotation/label group][docs.using-qovery.configuration.organization.labels-annotations] section for more information.
+
+</li>
+<li>
+Specify the Dockerfile
+
+See the [Dockerfile section](#dockerfile) for more information.
 
 </li>
 <li>
@@ -324,25 +323,6 @@ The tag 'latest' is not supported, please use a specific tag.
 </Alert>
 
 
-#### Build Mode
-This option is available only if you have selected "Git Repository" as source. Only Docker is supported
-
-Qovery runs your application within the [Container technology](https://www.docker.com/resources/what-container). To build and run your application, you need to provide a valid [Dockerfile](https://docs.docker.com/engine/reference/builder).
-
-```Dockerfile title="Valid NodeJS Dockerfile"
-FROM node:13-alpine
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
-COPY . .
-RUN npm install
-EXPOSE 3000
-CMD node ./bin/www
-```
-
-After creating a Dockerfile, specify the location of your Dockerfile in `Dockefile path` field.
-
-Configuration from above will make Qovery look for the Dockerfile in `/timescale/Dockerfile` path of your repository (`Root Application Path` + `Dockerfile Path`).
-
 ** Auto Deploy **
 
 See the [Deploying with auto-deploy feature][docs.qovery.deployment.deploying-with-auto-deploy] section.
@@ -350,6 +330,30 @@ See the [Deploying with auto-deploy feature][docs.qovery.deployment.deploying-wi
 ** Extra labels/annotations (optional)**
 
 Add your extra annotation/label groups. See the [Add annotation/label group][docs.using-qovery.configuration.organization.labels-annotations] section for more information.
+
+### Dockerfile
+
+If your job is built via the Qovery CI (Source="Git Repository"), this section allows you to define the Dockerfile location. 
+
+Two options are available, depending on where you want to store the Dockerfile:
+
+#### Git repository
+
+Specify the location of your Dockerfile in `Dockefile path` field.
+
+#### RAW Dockerfile
+
+Qovery can store and inject for you the Dockerfile instead of storing it into your repository.
+
+<Alert type="info">
+
+Qovery does not apply any versioning on the provided Dockerfile, we strongly suggest to store the Dockerfile within your repository.
+
+</Alert>
+
+
+If you don't have one, you can use the `docker init` command to generate one for your application (check the [documentation here](https://docs.docker.com/reference/cli/docker/init/)).
+
 
 ### JOB Configuration
 You can modify here the configuration of your job:

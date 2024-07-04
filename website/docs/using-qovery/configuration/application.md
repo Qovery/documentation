@@ -73,8 +73,8 @@ If you want to deploy an application from a Container Registry you will have to 
 - Registry: select the container registry storing the image of your application. You can add a new container registry by clicking on `New registry`.
 - Image name: the name of the image to be deployed with this application (example: postgres)
 - Image tag: the tag of the image to be deployed with this application (example: 1.0). 
-- Image Entrypoint: the entrypoint to be used to launch your applicaiton (not mandatory)
-- CMD Arguments: the arguments to be passed to launch your applicaiton (not mandatory). We expect the format to be an array. Example ["rails", "-h", "0.0.0.0", "-p", "8080", "string"]
+- Image Entrypoint: the entrypoint to be used to launch your application (not mandatory)
+- CMD Arguments: the arguments to be passed to launch your application (not mandatory) separated with a space. Example: `rails -h 0.0.0.0 -p 8080 string "complex arg"`.
 
 <Alert type="info">
 

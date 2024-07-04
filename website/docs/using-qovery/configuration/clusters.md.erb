@@ -449,6 +449,12 @@ The EKS subnets are mandatory, you have to specify at least **one subnet id per 
   <img src="/img/configuration/clusters/existing_vpc_aws_auto_assign.png" alt="Existing VPC AWS DNS Hostnmaes" />
 </p>
 
+<Alert type="info">
+
+If you have activated `Karpenter`, you will have to specify at least **one subnet id per zone**. These subnets have to be private and connected to internet through a NAT Gateway. They will be used for AWS Fargate profile.
+
+</Alert>
+
 **Managed databases**:
 
 This section is exclusively for enabling managed databases (container databases will be enabled by default).

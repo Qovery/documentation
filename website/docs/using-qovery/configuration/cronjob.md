@@ -96,7 +96,7 @@ Specify the configuration of your job:
 - CRON Schedule: specify a valid CRON expression (see [Crontab guru](https://crontab.guru/) for help). After being deployed, the job will be executed following the defined schedule.
 - Timezone: select a valid timezone identifier. After being deployed, the job will be executed following the defined timezone. `Etc/UTC` is the default value.
 - Image Entrypoint: the entrypoint to be used to launch your job (not mandatory)
-- CMD Arguments: the arguments to be passed to launch your job (not mandatory). We expect the format to be an array. Example ["rails", "-h", "0.0.0.0", "-p", "8080", "string"]
+- CMD Arguments: the arguments to be passed to launch your application (not mandatory) separated with a space. Example: `rails -h 0.0.0.0 -p 8080 string "complex arg"`.
 - Number of restarts: Maximum number of restarts allowed in case of job failure (0 means no failure)
 - Max duration time in seconds: Maximum duration allowed for the job to run before killing it and mark it as failed
 - Port: Port used by Kubernetes to run readiness and liveliness probes checks. The port will not be exposed externally
@@ -245,7 +245,7 @@ You can modify here the configuration of your job:
 - CRON Schedule: specify a valid CRON expression (see [Crontab guru](https://crontab.guru/) for help). After being deployed, the job will be executed following the defined schedule.
 - Timezone: select a valid timezone identifier. After being deployed, the job will be executed following the defined timezone. `Etc/UTC` is the default value.
 - Image Entrypoint: the entrypoint to be used to launch your job (not mandatory)
-- CMD Arguments: the arguments to be passed to launch your job (not mandatory). We expect the format to be an array. Example ["rails", "-h", "0.0.0.0", "-p", "8080", "string"]
+- CMD Arguments: the arguments to be passed to launch your application (not mandatory) separated with a space. Example: `rails -h 0.0.0.0 -p 8080 string "complex arg"`.
 - Number of restarts: Maximum number of restarts allowed in case of job failure (0 means no failure)
 - Max duration time in seconds: Maximum duration allowed for the job to run before killing it and mark it as failed
 - Port: Port used by Kubernetes to run readiness and liveliness probes checks. The port will not be exposed externally

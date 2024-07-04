@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-06-13"
+last_modified_on: "2024-07-03"
 title: "Cronjob"
 description: "Learn how to configure your Cronjob on Qovery"
 ---
@@ -230,19 +230,7 @@ This option is available only if you have selected "Git Repository" as source. O
 
 Qovery runs your application within the [Container technology](https://www.docker.com/resources/what-container). To build and run your application, you need to provide a valid [Dockerfile](https://docs.docker.com/engine/reference/builder).
 
-```Dockerfile title="Valid NodeJS Dockerfile"
-FROM node:13-alpine
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
-COPY . .
-RUN npm install
-EXPOSE 3000
-CMD node ./bin/www
-```
-
 After creating a Dockerfile, specify the location of your Dockerfile in `Dockefile path` field.
-
-Configuration from above will make Qovery look for the Dockerfile in `/timescale/Dockerfile` path of your repository (`Root Application Path` + `Dockerfile Path`).
 
 ** Auto Deploy **
 

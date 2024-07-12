@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-05-03"
+last_modified_on: "2024-07-12"
 title: "Local"
 description: "Install Qovery on your local machine"
 ---
@@ -30,6 +30,7 @@ It's important to note that this local setup of Qovery using the `qovery demo up
 - **Resources**: 4 CPU and 8GB of RAM for your Docker runtime.
 - **Binaries**: [docker][urls.docker], jq, curl, sed, grep, git.
 - A stable Internet connection.
+- A Qovery account. If you don't have one, please sign up at https://start.qovery.com
 
 ## Installation
 

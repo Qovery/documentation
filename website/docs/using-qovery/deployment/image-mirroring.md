@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-06-19"
+last_modified_on: "2024-07-11"
 title: "Image Mirroring"
 description: "Learn how images are mirrored within your cloud account"
 ---
@@ -49,11 +49,6 @@ Given this isolation mechanism, if the same application is cloned (via the [clon
 
 The Qovery behaviour in this case will depend on the chosen [mirroring mode][docs.using-qovery.configuration.cluster-advanced-settings#image-registry] within the cluster advanced settings. 
 
-<Alert type="info">
-
-This mirroring operation is skipped if the "source registry" is the same as the "Mirroring registry" (i.e.: you push your built images directly on the mirroring registry). This is the suggested setup since it makes you reduce your deployment time!
-
-</Alert>
 
 ** Service (Default) **
 
@@ -117,6 +112,18 @@ When working with containerized applications, it is crucial to employ unique ima
 - Kubernetes: Applications deployed by Qovery on Kubernetes adhere to the “ifNotPresent” image pull policy. This policy means that if the image already exists on the Kubernetes node’s local disk, Kubernetes will not attempt to pull it again. However, if the image tag remains unchanged, the new image version will not be fetched, resulting in your pods running the outdated application code.
 
 In summary, maintaining unique image tags is a critical aspect of effective version control and ensuring that your applications run the intended versions without disruptions caused by caching mechanisms.
+
+### Disabling the mirroring
+
+If you want to reduce the deployment time by avoiding the mirroring operation, you can push your built images directly into the `Mirroring registry`. 
+
+Push the images in a image registry `repository` having the same name of the image you want to deploy. 
+
+**Example on AWS**
+
+Let's say you have a container image called `nginx` that you build on your CI and the container registry associated with your cluster is https://32432542.dkr.ecr.eu-west-3.amazonaws.com. 
+
+You can push this image on the mirroring registry within the repository `nginx`, avoiding the mirroring operation: https://32432542.dkr.ecr.eu-west-3.amazonaws.com/nginx
 
 
 [docs.using-qovery.configuration.cluster-advanced-settings#image-registry]: /docs/using-qovery/configuration/cluster-advanced-settings/#image-registry

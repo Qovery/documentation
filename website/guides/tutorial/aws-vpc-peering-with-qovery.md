@@ -166,8 +166,6 @@ You should see your peering connection marked as `Active`
 In the AWS console of your **Qovery VPC**, go to `VPC > Route Tables`.
 You can filter the list using the IDs you noted at step 1 to find the routing table for your existing VPC.
 
-> Thanks Kevin M. for your contribution here 😊
-
 For your existing VPC edit the route table:
 
 <p align="center">

@@ -1,0 +1,689 @@
+---
+$schema: "/.meta/.schemas/guides.json"
+title: GitOps with Qovery
+description: How to do GitOps with Qovery, GitHub and Terraform
+author_github: https://github.com/evoxmusic
+tags: ["type: tutorial", "technology: qovery"]
+hide_pagination: true
+---
+import Alert from '@site/src/components/Alert';
+import Assumptions from '@site/src/components/Assumptions';
+import Jump from '@site/src/components/Jump';
+
+GitOps is a way to do Continuous Deployment (CD) with Git. It is a practice that allows you to manage your infrastructure and applications using Git repositories as the source of truth. In this tutorial, you will learn how to do GitOps with Qovery and the Qovery Terraform provider.
+
+Watch this short video to see the final result:
+
+<div class="video-container">
+  <p align="center">
+    <iframe src="https://www.loom.com/embed/f2b82cd32de8474fae7e8cba2d78dd29" width="100%" height="100%" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen>
+    </iframe>
+  </p>
+</div>
+
+<Assumptions>
+
+- A [Qovery account](https://console.qovery.com/signup)
+- General knowledge of Terraform
+
+</Assumptions>
+
+For our example we will do the following with Terraform:
+
+1. Define all the Qovery resources in a Terraform configuration
+2. Test it locally
+3. Push the Terraform configuration to a GitHub repository
+4. Use GitHub Actions (CI/CD) to review and apply the Terraform configuration
+5. Check the Qovery console to see the resources created
+
+So let's get started!
+
+## Resources
+
+Here are some resources you might need:
+
+- [Qovery web console][urls.qovery_console]
+- [Terraform CLI](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
+- [Qovery Terraform Provider][urls.qovery_terraform_provider]
+
+## Terraform vs. YAML
+
+Just before we start, let's talk about why we use Terraform instead of YAML to manage the infrastructure in a GitOps way. Qovery provides an [official Terraform provider][urls.qovery_terraform_provider] to manage your infrastructure. We did the choice to use Terraform instead of YAML for the following reasons:
+
+- Terraform is a well-known tool in the DevOps community
+- Terraform gets the state of the infrastructure, which is useful to know what is already created
+- Terraform helps to detect drifts between the desired state and the actual state
+
+If you are not familiar with Terraform, you can learn more about it on the [official website][urls.terraform].
+
+## Step-by-step tutorial
+
+For this tutorial, we will create a simple Qovery application with a PostgreSQL database. This is just for demo purposes. You can adapt the Terraform configuration to your needs.
+Then We will use Terraform to define the resources and GitHub Actions to apply the Terraform configuration.
+
+<Alert type="info">
+
+To enforce GitOps with Qovery, you can limit the [permissions][docs.using-qovery.configuration.organization.members-rbac] of your users to read-only in the Qovery console. This way, all the changes will be done via the Terraform configuration.
+
+</Alert>
+
+### Step 1: Define the Terraform configuration
+
+Create a new directory and add a `variables.tf` and a `main.tf` file with the following content:
+
+<Alert type="info">
+
+[Export your Terraform configuration][docs.using-qovery.configuration.environment#terraform-exporter] if you have already created your resources with the Qovery web console. 
+
+</Alert>
+
+[Read this example on GitHub](https://github.com/evoxmusic/qovery-gitops/blob/main/variables.tf)
+
+```hcl title="variables.tf"
+variable "qovery_token" {
+  description = "Qovery API token"
+  type        = string
+}
+
+variable "qovery_organization_id" {
+  description = "Qovery Organization ID"
+  type        = string
+}
+
+variable "qovery_cluster_id" {
+  description = "My Qovery Test Cluster ID"
+  type        = string
+}
+```
+
+[Read this example on GitHub](https://github.com/evoxmusic/qovery-gitops/blob/main/main.tf)
+
+```hcl title="main.tf"
+terraform {
+   required_providers {
+      qovery = {
+         source = "qovery/qovery"
+      }
+   }
+}
+
+provider "qovery" {
+   token = var.qovery_access_token
+}
+
+resource "qovery_project" "my_project" {
+   organization_id = var.qovery_organization_id
+   name            = "My TF Project"
+}
+
+resource "qovery_environment" "production" {
+   project_id = qovery_project.my_project.id
+   name       = "production"
+   mode       = "PRODUCTION"
+   cluster_id = var.qovery_cluster_id
+}
+
+resource "qovery_database" "my_database" {
+   environment_id = qovery_environment.production.id
+   name           = "My DB"
+   type           = "POSTGRESQL"
+   version        = "16"
+   mode           = "CONTAINER"
+   storage        = 10
+   accessibility  = "PRIVATE"
+}
+
+resource "qovery_application" "my_backend" {
+   environment_id = qovery_environment.production.id
+   name           = "My Backend"
+   cpu            = 250
+   memory         = 128
+   git_repository = {
+      url       = "https://github.com/evoxmusic/ShortMe-URL-Shortener.git"
+      branch    = "main"
+      root_path = "/"
+   }
+   build_mode      = "DOCKER"
+   dockerfile_path = "Dockerfile"
+   ports           = [
+      {
+         internal_port       = 5555
+         external_port       = 443
+         protocol            = "HTTP"
+         publicly_accessible = true
+         is_default          = true
+      }
+   ]
+   healthchecks = {
+      readiness_probe = {
+         type = {
+            http = {
+               port = 5555
+               scheme = "HTTP"
+               path = "/"
+            }
+         }
+         initial_delay_seconds = 30
+         period_seconds        = 10
+         timeout_seconds       = 10
+         success_threshold     = 1
+         failure_threshold     = 3
+      }
+      liveness_probe = {
+         type = {
+            http = {
+               port = 5555
+               scheme = "HTTP"
+               path = "/"
+            }
+         }
+         initial_delay_seconds = 30
+         period_seconds        = 10
+         timeout_seconds       = 10
+         success_threshold     = 1
+         failure_threshold     = 3
+      }
+   }
+   environment_variables = [
+      {
+         key   = "DATABASE_HOST"
+         value = qovery_database.my_database.internal_host
+      },
+      {
+         key   = "DATABASE_PORT"
+         value = qovery_database.my_database.port
+      },
+      {
+         key   = "DATABASE_USERNAME"
+         value = qovery_database.my_database.login
+      },
+      {
+         key   = "DATABASE_NAME"
+         value = "postgres"
+      },
+   ]
+   secrets = [
+      {
+         key   = "DATABASE_PASSWORD"
+         value = qovery_database.my_database.password
+      }
+   ]
+}
+
+resource "qovery_deployment" "my_deployment" {
+   environment_id = qovery_environment.production.id
+   desired_state  = "RUNNING"
+   version        = "a0282bb4-f5bb-44ed-882d-e067f92d105e"
+
+   depends_on = [
+      qovery_application.my_backend,
+      qovery_database.my_database,
+      qovery_environment.production,
+   ]
+}
+```
+
+My arborescence looks like this:
+
+```shell
+$ ls -lh
+
+Permissions Size User      Date Modified Name
+.rw-r--r--  2.8k xxx 11 Jul 10:28  main.tf
+.rw-r--r--   297 xxx 10 Jul 17:24  variables.tf
+```
+
+### Step 2: Test the Terraform configuration
+
+#### Generate a Qovery token
+
+To test your Terraform configuration, you first need to generate a Qovery token. You can do this by following the [official documentation][docs.using-qovery.configuration.organization.api-token].
+
+#### Test Terraform configuration locally
+
+1. Download and install [Terraform CLI](https://developer.hashicorp.com/terraform/install)
+2. Set environment variables 
+   1. Qovery API Token: `export TF_VAR_qovery_token=XXX`
+   2. Qovery Organization ID: `export TF_VAR_qovery_organization_id=XXX`
+   3. Qovery Cluster ID: `export TF_VAR_qovery_cluster_id=XXX`
+3. Init Terraform modules: `terraform init`
+4. Plan the Terraform configuration: `terraform plan`
+5. Apply the Terraform configuration: `terraform apply -auto-approve`
+
+```shell title="Test Terraform locally"
+$ export TF_VAR_qovery_token=XXX TF_VAR_qovery_token=XXX TF_VAR_qovery_cluster_id=XXX
+
+$ terraform init && terraform apply -auto-approve
+```
+
+The output should show the resources created.
+
+<details>
+
+<summary>Example output</summary>
+
+```shell title="Terraform output"
+Terraform used the selected providers to generate the following execution plan. Resource actions are
+indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # qovery_application.my_backend will be created
+  + resource "qovery_application" "my_backend" {
+      + advanced_settings_json         = (known after apply)
+      + arguments                      = (known after apply)
+      + auto_deploy                    = (known after apply)
+      + auto_preview                   = false
+      + build_mode                     = "DOCKER"
+      + built_in_environment_variables = (known after apply)
+      + cpu                            = 250
+      + deployment_stage_id            = (known after apply)
+      + dockerfile_path                = "Dockerfile"
+      + environment_id                 = (known after apply)
+      + environment_variables          = [
+          + {
+              + id    = (known after apply)
+              + key   = "DATABASE_HOST"
+              + value = (known after apply)
+            },
+          + {
+              + id    = (known after apply)
+              + key   = "DATABASE_NAME"
+              + value = "postgres"
+            },
+          + {
+              + id    = (known after apply)
+              + key   = "DATABASE_PORT"
+              + value = (known after apply)
+            },
+          + {
+              + id    = (known after apply)
+              + key   = "DATABASE_USERNAME"
+              + value = (known after apply)
+            },
+        ]
+      + external_host                  = (known after apply)
+      + git_repository                 = {
+          + branch    = "main"
+          + root_path = "/"
+          + url       = "https://github.com/evoxmusic/ShortMe-URL-Shortener.git"
+        }
+      + healthchecks                   = {
+          + liveness_probe  = {
+              + failure_threshold     = 3
+              + initial_delay_seconds = 30
+              + period_seconds        = 10
+              + success_threshold     = 1
+              + timeout_seconds       = 10
+              + type                  = {
+                  + http = {
+                      + path   = "/"
+                      + port   = 5555
+                      + scheme = "HTTP"
+                    }
+                }
+            }
+          + readiness_probe = {
+              + failure_threshold     = 3
+              + initial_delay_seconds = 30
+              + period_seconds        = 10
+              + success_threshold     = 1
+              + timeout_seconds       = 10
+              + type                  = {
+                  + http = {
+                      + path   = "/"
+                      + port   = 5555
+                      + scheme = "HTTP"
+                    }
+                }
+            }
+        }
+      + id                             = (known after apply)
+      + internal_host                  = (known after apply)
+      + max_running_instances          = 1
+      + memory                         = 128
+      + min_running_instances          = 1
+      + name                           = "My Backend"
+      + ports                          = [
+          + {
+              + external_port       = 443
+              + id                  = (known after apply)
+              + internal_port       = 5555
+              + is_default          = true
+              + name                = (known after apply)
+              + protocol            = "HTTP"
+              + publicly_accessible = true
+            },
+        ]
+      + secrets                        = (sensitive value)
+    }
+
+  # qovery_database.my_database will be created
+  + resource "qovery_database" "my_database" {
+      + accessibility       = "PRIVATE"
+      + cpu                 = 250
+      + deployment_stage_id = (known after apply)
+      + environment_id      = (known after apply)
+      + external_host       = (known after apply)
+      + id                  = (known after apply)
+      + instance_type       = (known after apply)
+      + internal_host       = (known after apply)
+      + login               = (known after apply)
+      + memory              = 256
+      + mode                = "CONTAINER"
+      + name                = "My DB"
+      + password            = (known after apply)
+      + port                = (known after apply)
+      + storage             = 10
+      + type                = "POSTGRESQL"
+      + version             = "16"
+    }
+
+  # qovery_deployment.my_deployment will be created
+  + resource "qovery_deployment" "my_deployment" {
+      + desired_state  = "RUNNING"
+      + environment_id = (known after apply)
+      + id             = (known after apply)
+      + version        = "a0282bb4-f5bb-44ed-882d-e067f92d106e"
+    }
+
+  # qovery_environment.production will be created
+  + resource "qovery_environment" "production" {
+      + built_in_environment_variables = (known after apply)
+      + cluster_id                     = "809f9644-b3e4-400b-97fc-e2173d46a00e"
+      + id                             = (known after apply)
+      + mode                           = "PRODUCTION"
+      + name                           = "production"
+      + project_id                     = (known after apply)
+    }
+
+  # qovery_project.my_project will be created
+  + resource "qovery_project" "my_project" {
+      + built_in_environment_variables = (known after apply)
+      + description                    = (known after apply)
+      + id                             = (known after apply)
+      + name                           = "My TF Project"
+      + organization_id                = "141c07c8-0dd9-4623-983b-3fdd61867255"
+    }
+
+Plan: 5 to add, 0 to change, 0 to destroy.
+qovery_project.my_project: Creating...
+qovery_project.my_project: Creation complete after 1s [id=66ad165a-f7f8-4840-8519-8db11ae7d127]
+qovery_environment.production: Creating...
+qovery_environment.production: Creation complete after 1s [id=a51a7e66-af37-425a-92a7-c07b9f1752fc]
+qovery_database.my_database: Creating...
+qovery_database.my_database: Creation complete after 2s [id=454b5baa-1465-4383-a822-32f1511222a0]
+qovery_application.my_backend: Creating...
+qovery_application.my_backend: Creation complete after 3s [id=a4ff2488-ad6a-4218-9e52-68aa3ebdd059]
+qovery_deployment.my_deployment: Creating...
+qovery_deployment.my_deployment: Still creating... [10s elapsed]
+qovery_deployment.my_deployment: Still creating... [20s elapsed]
+qovery_deployment.my_deployment: Still creating... [30s elapsed]
+qovery_deployment.my_deployment: Still creating... [40s elapsed]
+qovery_deployment.my_deployment: Still creating... [50s elapsed]
+qovery_deployment.my_deployment: Still creating... [1m0s elapsed]
+qovery_deployment.my_deployment: Still creating... [1m10s elapsed]
+qovery_deployment.my_deployment: Still creating... [1m20s elapsed]
+qovery_deployment.my_deployment: Still creating... [1m30s elapsed]
+qovery_deployment.my_deployment: Still creating... [1m40s elapsed]
+qovery_deployment.my_deployment: Still creating... [1m50s elapsed]
+qovery_deployment.my_deployment: Still creating... [2m0s elapsed]
+qovery_deployment.my_deployment: Still creating... [2m10s elapsed]
+qovery_deployment.my_deployment: Still creating... [2m20s elapsed]
+qovery_deployment.my_deployment: Still creating... [2m30s elapsed]
+qovery_deployment.my_deployment: Still creating... [2m40s elapsed]
+qovery_deployment.my_deployment: Still creating... [2m50s elapsed]
+qovery_deployment.my_deployment: Still creating... [3m0s elapsed]
+qovery_deployment.my_deployment: Still creating... [3m10s elapsed]
+qovery_deployment.my_deployment: Still creating... [3m20s elapsed]
+qovery_deployment.my_deployment: Creation complete after 3m24s [id=84435485-eb50-4051-b91f-61f99985edf2]
+
+Apply complete! Resources: 5 added, 0 changed, 0 destroyed.
+```
+
+</details>
+
+
+If you edit resources in the Terraform configuration, you can re-apply the changes with `terraform apply -auto-approve`. Note that for service resources, when you change the configuration, you need to redeploy them by updating the `qovery_deployment.version` UUID.
+
+<Alert type="warning">
+
+Once you have tested your Terraform configuration locally, you must clean up the resources with `terraform destroy -auto-approve` since we will use our CI/CD tool to apply the Terraform configuration and a remote Terraform backend to store the state.
+
+</Alert>
+
+### Step 3: Push the Terraform configuration to a GitHub repository
+
+Since we have tested the Terraform configuration locally, we can now push it to your Git repository. In my case, I will use GitHub.
+
+1. Create a Git repository
+2. Commit and push the Terraform configuration to the repository
+
+<Alert type="warning">
+
+Make sure to add the `.terraform` directory and other generated terraform metafiles to your `.gitignore` file.
+
+</Alert>
+
+Here is a .gitignore you can use:
+
+```gitignore title=".gitignore"
+# Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# Crash log files
+crash.log
+crash.*.log
+
+# Exclude all .tfvars files, which are likely to contain sensitive data, such as
+# password, private keys, and other secrets. These should not be part of version 
+# control as they are data points which are potentially sensitive and subject 
+# to change depending on the environment.
+*.tfvars
+*.tfvars.json
+
+# Ignore override files as they are usually used to override resources locally and so
+# are not checked in
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Include override files you do wish to add to version control using negated pattern
+# !example_override.tf
+
+# Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
+# example: *tfplan*
+
+# Ignore CLI configuration files
+.terraformrc
+terraform.rc
+```
+
+### Step 4: Use GitHub Actions to review and apply the Terraform configuration
+
+In my case, I will use:
+- [GitHub Actions](https://github.com/features/actions) as a CI tool to review and apply the Terraform.
+- [Hashicorp Cloud Platform](https://www.hashicorp.com/cloud) as a Terraform backend state. 
+
+Note that you can use any CI/CD tool and Terraform backend you want.
+
+*This section is inspired by the official [Terraform GitHub Actions documentation](https://developer.hashicorp.com/terraform/tutorials/automation/github-actions).*
+
+Here is an example of a GitHub Actions workflow ([GitHub Link](https://github.com/evoxmusic/qovery-gitops/blob/main/.github/workflows/terraform-plan.yml)) when a Pull Request is created:
+
+```yaml title=".github/workflows/terraform-plan.yml"
+name: "Terraform Plan"
+
+on:
+   pull_request:
+
+env:
+   TF_CLOUD_ORGANIZATION: "YOUR-ORGANIZATION-HERE"
+   TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
+   TF_WORKSPACE: "YOUR-WORKSPACE-HERE"
+   CONFIG_DIRECTORY: "./"
+
+jobs:
+   terraform:
+      name: "Terraform Plan"
+      runs-on: ubuntu-latest
+      permissions:
+         contents: read
+         pull-requests: write
+      steps:
+         - name: Checkout
+           uses: actions/checkout@v3
+
+         - name: Upload Configuration
+           uses: hashicorp/tfc-workflows-github/actions/upload-configuration@v1.0.0
+           id: plan-upload
+           with:
+              workspace: ${{ env.TF_WORKSPACE }}
+              directory: ${{ env.CONFIG_DIRECTORY }}
+              speculative: true
+
+         - name: Create Plan Run
+           uses: hashicorp/tfc-workflows-github/actions/create-run@v1.0.0
+           id: plan-run
+           with:
+              workspace: ${{ env.TF_WORKSPACE }}
+              configuration_version: ${{ steps.plan-upload.outputs.configuration_version_id }}
+              plan_only: true
+
+         - name: Get Plan Output
+           uses: hashicorp/tfc-workflows-github/actions/plan-output@v1.0.0
+           id: plan-output
+           with:
+              plan: ${{ fromJSON(steps.plan-run.outputs.payload).data.relationships.plan.data.id }}
+
+         - name: Update PR
+           uses: actions/github-script@v6
+           id: plan-comment
+           with:
+              github-token: ${{ secrets.GITHUB_TOKEN }}
+              script: |
+                 // 1. Retrieve existing bot comments for the PR
+                 const { data: comments } = await github.rest.issues.listComments({
+                   owner: context.repo.owner,
+                   repo: context.repo.repo,
+                   issue_number: context.issue.number,
+                 });
+                 const botComment = comments.find(comment => {
+                   return comment.user.type === 'Bot' && comment.body.includes('Terraform Cloud Plan Output')
+                 });
+                 const output = `#### Terraform Cloud Plan Output
+                    \`\`\`
+                    Plan: ${{ steps.plan-output.outputs.add }} to add, ${{ steps.plan-output.outputs.change }} to change, ${{ steps.plan-output.outputs.destroy }} to destroy.
+                    \`\`\`
+                    [Terraform Cloud Plan](${{ steps.plan-run.outputs.run_link }})
+                    `;
+                 // 3. Delete previous comment so PR timeline makes sense
+                 if (botComment) {
+                   github.rest.issues.deleteComment({
+                     owner: context.repo.owner,
+                     repo: context.repo.repo,
+                     comment_id: botComment.id,
+                   });
+                 }
+                 github.rest.issues.createComment({
+                   issue_number: context.issue.number,
+                   owner: context.repo.owner,
+                   repo: context.repo.repo,
+                   body: output
+                 });
+```
+
+When a Pull Request is created, the GitHub Actions workflow will run the Terraform plan and post the output in the PR comments. So you can **review the changes** before merging the PR.
+
+Here is an example of a GitHub Actions workflow ([GitHub Link](https://github.com/evoxmusic/qovery-gitops/blob/main/.github/workflows/terraform-plan.yml)) when the PR is merged:
+
+```yaml title=".github/workflows/terraform-apply.yml"
+name: "Terraform Apply"
+
+on:
+  push:
+    branches:
+      - main
+
+env:
+  TF_CLOUD_ORGANIZATION: "YOUR-ORGANIZATION-HERE"
+  TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
+  TF_WORKSPACE: "YOUR-WORKSPACE-HERE"
+  CONFIG_DIRECTORY: "./"
+
+jobs:
+  terraform:
+    name: "Terraform Apply"
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Upload Configuration
+        uses: hashicorp/tfc-workflows-github/actions/upload-configuration@v1.0.0
+        id: apply-upload
+        with:
+          workspace: ${{ env.TF_WORKSPACE }}
+          directory: ${{ env.CONFIG_DIRECTORY }}
+
+      - name: Create Apply Run
+        uses: hashicorp/tfc-workflows-github/actions/create-run@v1.0.0
+        id: apply-run
+        with:
+          workspace: ${{ env.TF_WORKSPACE }}
+          configuration_version: ${{ steps.apply-upload.outputs.configuration_version_id }}
+
+      - name: Apply
+        uses: hashicorp/tfc-workflows-github/actions/apply-run@v1.0.0
+        if: fromJSON(steps.apply-run.outputs.payload).data.attributes.actions.IsConfirmable
+        id: apply
+        with:
+          run: ${{ steps.apply-run.outputs.run_id }}
+          comment: "Apply Run from GitHub Actions CI ${{ github.sha }}"
+```
+
+When the PR is merged on the main branch, the GitHub Actions workflow will apply the Terraform configuration.
+
+### Step 5: Check the Qovery console to see the resources created
+
+After the GitHub Actions workflow is completed, you can check the Qovery console to see the resources created.
+
+<p align="center">
+  <img src="/img/resources-created-with-terraform.jpg" alt="Qovery resources created via Terraform in a GitOps way" />
+</p>
+
+As you can see, you can manage your infrastructure and applications using Git repositories as the source of truth with Qovery and Terraform.
+
+## Frequently Asked Questions (FAQ)
+
+### How to enforce GitOps?
+
+As said earlier, we recommend restricting the permissions of your users to read-only in the Qovery console to enforce GitOps. This way, all the changes will be done via the Terraform configuration. In the case you don't want to limit the permissions to read-only and a change is done in the Qovery console, you can see the drifts between the desired state and the actual state with Terraform.
+
+### How to debug?
+
+Let's say you have a problem with the Terraform configuration. You can debug it by checking the Terraform logs in the GitHub Actions workflow. You can also use the Terraform CLI to debug the configuration locally.
+
+If the problem is not in the Terraform configuration, you can check the Qovery web console to see the resources created and the associated logs.
+
+### How to manage the Terraform state?
+
+Like in the example above, we recommend using a remote Terraform backend to store the state. This way, you can share the state between your team members and have a history of the changes. You can use the [Hashicorp Cloud Platform](https://www.hashicorp.com/cloud) or any other Terraform backend you want.
+
+### How to integrate tests?
+
+You can use the Qovery API to get the resources URLs and integrate them in your CI/CD. For example, you can get the URL of the application and use it in your tests. Look at this guide on [how to run E2E tests with Qovery and GitHub Actions][guides.tutorial.build-e2e-testing-ephemeral-environments].
+
+## Conclusion
+
+In this tutorial, you learned how to do GitOps with Qovery and the Qovery Terraform provider. You defined all the Qovery resources in a Terraform configuration, tested it locally, pushed it to a GitHub repository, used GitHub Actions to review and apply the Terraform configuration, and checked the Qovery console to see the resources created.
+
+If you have any questions or need help, feel free to ask in the [Qovery Community Forum][urls.qovery_forum].

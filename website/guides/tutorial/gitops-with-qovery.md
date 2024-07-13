@@ -675,13 +675,32 @@ As you can see, you can manage your infrastructure and applications using Git re
 
 ### How to enforce GitOps?
 
-As said earlier, we recommend restricting the permissions of your users to read-only in the Qovery console to enforce GitOps. This way, all the changes will be done via the Terraform configuration. In the case you don't want to limit the permissions to read-only and a change is done in the Qovery console, you can see the drifts between the desired state and the actual state with Terraform.
+Here are the two things we recommend to enforce GitOps with Qovery:
+
+1. [Restrict permissions][docs.using-qovery.configuration.organization.members-rbac] of your users to read-only in Qovery. So only the API Qovery Token used by Terraform will be able to create, update, or delete resources. 
+2. Turn off the [application auto-deployment][docs.using-qovery.deployment.deploying-with-auto-deploy] in Qovery. If you have linked apps via Git with Qovery, you can turn off the auto-deployment.
+
+This way, all the changes will be done via the Terraform configuration.
+
+### How to see configuration drifts?
+
+Terraform helps to detect drifts between the desired state and the actual state. When you will create a Pull Request, the GitHub Actions workflow will run the Terraform plan and post the output in the PR comments. So you can review the changes before merging the PR. 
+
+You can also use the `terraform plan` locally command to see the changes that will be applied.
 
 ### How to debug?
 
+**Terraform logs**:
 Let's say you have a problem with the Terraform configuration. You can debug it by checking the Terraform logs in the GitHub Actions workflow. You can also use the Terraform CLI to debug the configuration locally.
 
-If the problem is not in the Terraform configuration, you can check the Qovery web console to see the resources created and the associated logs.
+**Application logs**:
+If the problem is not in the Terraform configuration, you can check the Qovery web console to see the resources created and the associated [logs][docs.using-qovery.deployment.logs].
+
+**CI/CD logs**:
+You can check the GitHub Actions logs to see the Terraform plan and apply outputs.
+
+**Qovery logs**:
+You can check the Qovery [Audit Logs][docs.using-qovery.audit-logs] to see the changes made by the Terraform configuration.
 
 ### How to manage the Terraform state?
 
@@ -698,9 +717,12 @@ In this tutorial, you learned how to do GitOps with Qovery and the Qovery Terraf
 If you have any questions or need help, feel free to ask in the [Qovery Community Forum][urls.qovery_forum].
 
 
+[docs.using-qovery.audit-logs]: /docs/using-qovery/audit-logs/
 [docs.using-qovery.configuration.environment#terraform-exporter]: /docs/using-qovery/configuration/environment/#terraform-exporter
 [docs.using-qovery.configuration.organization.api-token]: /docs/using-qovery/configuration/organization/api-token/
 [docs.using-qovery.configuration.organization.members-rbac]: /docs/using-qovery/configuration/organization/members-rbac/
+[docs.using-qovery.deployment.deploying-with-auto-deploy]: /docs/using-qovery/deployment/deploying-with-auto-deploy/
+[docs.using-qovery.deployment.logs]: /docs/using-qovery/deployment/logs/
 [guides.tutorial.build-e2e-testing-ephemeral-environments]: /guides/tutorial/build-e2e-testing-ephemeral-environments/
 [urls.qovery_console]: https://console.qovery.com
 [urls.qovery_forum]: https://discuss.qovery.com/

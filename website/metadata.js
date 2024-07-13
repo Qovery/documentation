@@ -443,6 +443,15 @@ module.exports = {
           "title": "Getting Started with Preview Environments on AWS"
         },
         {
+          "author_github": "https://github.com/evoxmusic",
+          "description": null,
+          "id": "/tutorial/gitops-with-qovery",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/gitops-with-qovery.md",
+          "series_position": null,
+          "title": "GitOps with Qovery"
+        },
+        {
           "author_github": "https://github.com/deimosfr",
           "description": null,
           "id": "/tutorial/grafana-install",

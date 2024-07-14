@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-07-13"
+last_modified_on: "2024-07-14"
 $schema: "/.meta/.schemas/guides.json"
 title: GitOps with Qovery
 description: How to do GitOps with Qovery, GitHub and Terraform
@@ -682,6 +682,15 @@ Here are the two things we recommend to enforce GitOps with Qovery:
 
 This way, all the changes will be done via the Terraform configuration.
 
+### How to "GitOpsify" an existing Qovery configuration?
+
+To make your existing configuration GitOps compatible, you can follow these steps:
+
+1. Export your existing Qovery configuration with the [Terraform exporter][docs.using-qovery.configuration.environment#terraform-exporter].
+2. Edit your exported Terraform configuration.
+3. Test the Terraform configuration locally.
+4. Push the Terraform configuration to a Git repository.
+
 ### How to see configuration drifts?
 
 Terraform helps to detect drifts between the desired state and the actual state. When you will create a Pull Request, the GitHub Actions workflow will run the Terraform plan and post the output in the PR comments. So you can review the changes before merging the PR. 
@@ -705,6 +714,24 @@ You can check the Qovery [Audit Logs][docs.using-qovery.audit-logs] to see the c
 ### How to manage the Terraform state?
 
 Like in the example above, we recommend using a remote Terraform backend to store the state. This way, you can share the state between your team members and have a history of the changes. You can use the [Hashicorp Cloud Platform](https://www.hashicorp.com/cloud) or any other Terraform backend you want.
+
+### How to connect to get Terraform Cloud state?
+
+Create a `backend.tf` file in your Terraform configuration with the following content:
+
+```hcl title="backend.tf"
+terraform {
+   backend "remote" {
+      hostname     = "app.terraform.io"
+      organization = "Qovery"
+      workspaces {
+         name = "qovery-gitops"
+      }
+   }
+}
+```
+
+Refer to [this documentation](https://support.hashicorp.com/hc/en-us/articles/360001151948-Migrate-Workspace-State-Using-Terraform-State-Push-Pull)
 
 ### How to integrate tests?
 

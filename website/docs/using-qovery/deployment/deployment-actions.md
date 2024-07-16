@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-03-01"
+last_modified_on: "2024-07-16"
 title: "Deployment Actions"
 description: "Learn how to deploy your application"
 ---
@@ -130,13 +130,13 @@ Once triggered, the deployment status service goes through the following statuse
 * **RESTART ERROR** : Qovery couldn't process the restart request
 
 ### Cancel Deployment 
-The `Cancel Deployment` action allows you to abort any `Deploy` or `Redeploy` action. This action is available only if the current deployment status is `Queued` or `Building` or `Deploying`.
 
-<Alert type="info">
+The `Cancel Deployment` action allows you to abort any `Deploy` or `Redeploy` action and stop the execution of the deployment pipeline. This action is available only if the current deployment status is `Queued` or `Building` or `Deploying`.
 
-The action allows to cancel the operation, not to rollback to the previous state. If during the deployment of services A and B, the `Cancel Deployment` action is triggered after that the deployment of service A has been completed, only the deployment of service B will be cancelled (service A will use the new config / version)
+If a deployment of a service A is already ongoing, the cancel operation will stop the deployment execution and rollback the service A to the previous version. Any service already deployed during the pipeline execution will not rollback to the previous version.
 
-</Alert>
+For [Lifecycle Jobs][docs.using-qovery.configuration.lifecycle-job], the cancel operation is not taken into account unless it is `forced` via the checkbox available in the "Deployment cancel" modal.
+
 
 ### Deploy other version
 The `Deploy other version` action allows you to deploy a different version for your service. This action is available no matter the deployment status of the service.
@@ -161,6 +161,7 @@ Once you click on the action, this panel will appear, and you will be able to ch
 By pressing on the Deploy button, a deployment of the service will be triggered using the selected version.
 
 
+[docs.using-qovery.configuration.lifecycle-job]: /docs/using-qovery/configuration/lifecycle-job/
 [docs.using-qovery.deployment.deployment-actions#deploy]: /docs/using-qovery/deployment/deployment-actions/#deploy
 [docs.using-qovery.deployment.deployment-actions#restart-service]: /docs/using-qovery/deployment/deployment-actions/#restart-service
 [docs.using-qovery.deployment.deployment-pipeline]: /docs/using-qovery/deployment/deployment-pipeline/

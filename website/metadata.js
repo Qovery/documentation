@@ -416,6 +416,15 @@ module.exports = {
           "title": "Customizing Preview URL with Qovery CLI"
         },
         {
+          "author_github": "https://github.com/baalooos",
+          "description": null,
+          "id": "/tutorial/deploy-jupyterhub-qovery",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/deploy-jupyterhub-qovery.md",
+          "series_position": null,
+          "title": "Deploy JupyterHub using Helm"
+        },
+        {
           "author_github": "https://github.com/l0ck3",
           "description": null,
           "id": "/tutorial/deploy-rails-with-postgresql-and-sidekiq",
@@ -943,6 +952,14 @@ module.exports = {
       "id": "acarranoqovery",
       "keybase": "https://keybase.io/acarranoqovery",
       "name": "Alessandro Carrano"
+    },
+    {
+      "avatar": "https://github.com/baalooos.png",
+      "bio": "Charles-Edouard is Technical Account Manager at <a href=\"https://www.qovery.com\">Qovery</a>.",
+      "github": "https://github.com/baalooos",
+      "id": "cegagnaire",
+      "keybase": "https://keybase.io/baalooos",
+      "name": "Charles-Edouard Gagnaire"
     }
   ],
   "technologies": [

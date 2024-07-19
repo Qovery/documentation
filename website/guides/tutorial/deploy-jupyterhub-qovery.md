@@ -86,13 +86,13 @@ Now get to the last step and `Create` the service on Qovery.
 
 #### Add Network configuration
 
-In the previous step, we created the JupyterHub service. In this step, we will update its configuration to make it available through Qovery Nginx Ingress.
+In the previous step, we created the JupyterHub service. In this step, we will update its configuration to make it available on the public network (through Qovery Nginx Ingress).
 
 * Open the JupyterHub service details
 * Enter the `Settings` section
 * Click on `Networking`
 * Add a new Port with:
-  * Service name: JupyterHub
+  * Service name: jupyterhub-proxy-public
   * Service port: 80
   * Select protocol: HTTP
   * External port: 443
@@ -126,10 +126,6 @@ You can click the `Link` button to access JupyterHub on your cluster.
 
 Now you can login to the webUI and start playing with Jupyter Notebooks.
 
-<p align="center">
-  <img src="/img/deploy-jupyterhub-qovery/jupyterhub.png" alt="JupyterHub - UI" />
-</p>
-
 </li>
 
 </ol>
@@ -138,7 +134,7 @@ Now you can login to the webUI and start playing with Jupyter Notebooks.
 
 ## Conclusion
 
-You now have JupyterHub running on your Qovery cluster. This is a simple installation and you should try to [customize](https://z2jh.jupyter.org/en/stable/jupyterhub/customization.html) it according to your needs. You can also check the[Adminstrator Guide](https://z2jh.jupyter.org/en/stable/administrator/index.html)to better understand how it works.
+JupyterHub is running on your Qovery cluster. This is a simple installation and you should try to [customize](https://z2jh.jupyter.org/en/stable/jupyterhub/customization.html) it according to your needs. You can also check the[Adminstrator Guide](https://z2jh.jupyter.org/en/stable/administrator/index.html)to better understand how it works.
 
 
 [docs.using-qovery.configuration.helm]: /docs/using-qovery/configuration/helm/

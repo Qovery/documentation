@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM upublic.ecr.aws/r3m4q3r9/pub-mirror-ubuntu:22.04
 
 RUN apt-get update && \
     apt-get -y install yarnpkg bundler git locales sudo inotify-tools npm && \

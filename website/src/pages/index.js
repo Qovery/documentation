@@ -12,7 +12,7 @@ function Home() {
             <header className="hero">
                 <div className="container container--fluid">
                     <h1>Qovery Hub Resources</h1>
-                    <MailingListForm buttonClass="highlight" description="Qovery is an Internal Developer Platform Helping Platform Engineers and Developers To Ship Faster." center={true} size="lg"/>
+                    <MailingListForm buttonClass="highlight" description="Qovery is a DevOps Automation Platform that eliminates your DevOps hiring needs. Provision and maintain a secure and compliant infrastructure in hours - not months!." center={true} size="lg"/>
                 </div>
             </header>
             <main>

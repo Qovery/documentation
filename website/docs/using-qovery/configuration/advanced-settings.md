@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-07-03"
+last_modified_on: "2024-07-30"
 title: "Service Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -74,12 +74,6 @@ All services have access to advanced settings, you can find where they are avail
 | Type    | Description                            | Default Value |
 |---------|----------------------------------------|---------------|
 | integer | GB RAM allocated to your build process | `8`           |
-
-#### deployment.custom_domain_check_enabled ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/cronjob.svg) ![](/img/advanced_settings/job.svg) ![](/img/advanced_settings/helm.svg)
-
-| Type    | Description                                                                                                                                                                                                                                                                                       | Use Case                                                                                                                                                                                                                                                                                                                                      | Default Value |
-|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
-| boolean | Qovery allows you to set custom domains for your applications through the addition of a CNAME record to your domain's DNS settings. By default, when an application is deployed, Qovery checks that the CNAME record is set up correctly. This advanced setting allows you to disable this check. | If you are using a Content Delivery Network (CDN), checking the CNAME setup for any custom domains you may have set up is likely to stall the deployment of your application. <br /> <br />  Therefore, if you are using a CDN behind your application, we recommend disabling this feature to save time during your application deployments. | `true`        |
 
 #### deployment.termination_grace_period_seconds ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/cronjob.svg) ![](/img/advanced_settings/job.svg)
 

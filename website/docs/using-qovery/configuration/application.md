@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-07-03"
+last_modified_on: "2024-07-30"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -363,7 +363,7 @@ Within this section you can define the port exposed by your application to the o
 You can edit the existing ports or declare new ones by specifying:
 - Application port: this is the port exposed internally by your application for the other services. 
 - Protocol: you can select the protocol used by your application : HTTP (for both standard HTTP or websocket communications), gRPC, TCP, UDP.
-- Publicly exposed: it allows you to expose over the public network your service. A public domain will be assigned to your application during the deployment (see [Connectin from the internet section](#connecting-from-the-internet))
+- Publicly exposed: it allows you to expose over the public network your service. A public domain will be assigned to your application during the deployment (see [Connecting from the internet section](#connecting-from-the-internet))
 - If Publicly Exposed is selected:
   - External port: it is the port that can be used to access this service over the internet (when exposed publicly). Note that for HTTP and gRPC the port is set by default to 443.
   - Port Name: it is the name assigned to the port. When multiple ports are exposed publicly, its value is used to route the traffic to the right port based on the called subdomain (which will contain the port name value). Since each port is exposed on the port 443, having a different subdomain is the only way to have multiple ports exposed over the internet. If not set, the default value is `p<portNumber>` (see [Qovery Provided Domain section](#qovery-provided-domains) for more information)
@@ -389,72 +389,9 @@ To know more about how to configure your Liveness and Readiness probes, have a l
 
 This section allows to specify which changes on your repository should trigger an auto-deploy (if enabled). To know more about how to configure your Deployment Restrictions, have a look at the [deployment restrictions section][docs.using-qovery.deployment.deploying-with-auto-deploy#filtering-commits-triggering-the-auto-deploy].
 
-### Domains
-
-Within this section you can customize the domain used to reach your application. 
-
-You can customize the domain of your application in different ways, depending on what you want to achieve:
-* You want to use your own domain for your application
-* You want to modify the subdomain assigned to your application by Qovery (i.e. change `p80-zdf72de72-z709e1a88-gtw.za8ad0657.bool.sh` into `my-app-domain.za8ad0657.bool.sh`).
-
-In both cases, you can assign the new custom domain to your application press the `Add Domain` button. 
-
-<p align="center">
-  <img src="/img/configuration/application/app-16.png" alt="Application Domains" />
-</p>
-
-<Alert type="info">
-
-This configuration will be **automatically removed** on every cloned environment or preview environment in order to avoid domain collision.
-
-</Alert>
-
-#### Configuring your own domain
-
-Once the domain is added within the Qovery console (Example: mydomain.com), you need to configure within your DNS two `CNAME` records pointing to the domain provided by Qovery, as shown in the UI (example: mydomain.com CNAME za7cc1b71-z4b8474b3-gtw.zc531a994.rustrocks.cloud and *.mydomain.com CNAME za7cc1b71-z4b8474b3-gtw.zc531a994.rustrocks.cloud). 
-
-Having a wildcard domain (example: *.mydomain.com) configured on your DNS will avoid you to modify the Qovery setup every time you want to add a new subdomain. If `wildcard` is not supported by your DNS provider, you will have to configure each subdomain manually.
-
-If the service needs to expose more than one port publicly, you can define a dedicated subdomain to redirect the traffic on the right port by setting the “Port Name” value within the [port settings](#ports).
-
-From this point, Qovery will automatically handle the TLS/SSL certificate creation and renewal for the configured domain.
-
-<p align="center">
-  <img src="/img/configuration/application/custom-domain.png" alt="Custom Domain" />
-</p>
-
-** Special case - CDN in proxy mode **
-
-If your service is behind a CDN using a `proxy mode` (i.e. the traffic is routed through the CDN to Qovery), make sure to disable the option "Generate certificate" on the domain setup. Since the certificate of your domain is directly managed by the CDN, Qovery won't be able to do that for you and it will raise warnings on your application status.
-
-<p align="center">
-  <img src="/img/configuration/application/cdn-proxy.png" alt="CDN Proxy" />
-</p>
-
-<Alert type="info">
-
-[We prepared a guide and video tutorial that explains how to set up your custom domain.][guides.getting-started.setting-custom-domain]
-
-</Alert>
-
-#### Change the auto assigned sub-domain
-
-You can specify a different sub-domain for your application as long as it belongs to the assigned cluster domain (see [Qovery provided domains](#qovery-provided-domains)). 
-Example: 
-- your current domain is zdf72de71-z709e1a85-gtw.za8ad0659.bool.sh (so your assigned cluster domain is `za8ad0659.bool.sh`)
-- you can enter a new custom domain `myfrontend.za8ad0659.bool.sh` (since it is a subdomain of the cluster domain)
-
-The application will now be accessible from both the default and the new custom domain.
-
-<Alert type="info">
-
-Qovery does not check collision in the domain declaration. Make sure you assign a unique subdomain within your cluster.
-
-</Alert>
-
 ## Connecting from the internet
 
-Your application can be reached from the internet by publicly exposing at least one of its ports (See the [Ports](#ports) section to know more). Once this is done, Qovery will generate for you a domain to reach your application from the internet. You can also customize the domain assigned to your application and manage by yourself this assignment via the `Domain` section.
+Your application can be reached from the internet by publicly exposing at least one of its ports (See the [Ports](#ports) section to know more). Once this is done, Qovery will generate and assign a domain to your application (See [this section](#qovery-provided-domains) to know more). You can customize the domain assigned to your application via the `Domain` section in the settings (see [this section](#custom-domains) to know more).
 
 ### Qovery provided domains
 
@@ -478,11 +415,68 @@ domain example: `p80-123-frontend-blueprint.za8ad0657.bool.sh`
 
 ### Custom domains
 
-If you prefer to assign your own domain to the application, have a look at the [Domain section](#domains) to know more.
+If you prefer to assign your own domain to the application, you can customize it from the "Domain" section within the application settings.
 
-### Advanced Settings
+You can customize the domain of your application in different ways, depending on what you want to achieve:
+* You want to use your own domain for your application
+* You want to modify the subdomain assigned to your application by Qovery (i.e. change `p80-zdf72de72-z709e1a88-gtw.za8ad0657.bool.sh` into `my-app-domain.za8ad0657.bool.sh`). See [this section][#qovery-provided-domains] to know more about these domains.
 
-You can further customize the service behaviour via the service advanced settings. Check [this documentation][docs.using-qovery.configuration.advanced-settings] to know more.
+In both cases, you can assign the new custom domain by pressing the `Add Domain` button.
+
+<p align="center">
+  <img src="/img/configuration/application/app-16.png" alt="Application Domains" />
+</p>
+
+<Alert type="info">
+
+This configuration will be **automatically removed** on every cloned environment or preview environment in order to avoid domain collision.
+
+</Alert>
+
+#### Configuring your own domain
+
+Once the domain is added within the Qovery console (Example: mydomain.com), you need to configure within your DNS two `CNAME` records pointing to the domain provided by Qovery, as shown in the UI (example: mydomain.com CNAME za7cc1b71-z4b8474b3-gtw.zc531a994.rustrocks.cloud and *.mydomain.com CNAME za7cc1b71-z4b8474b3-gtw.zc531a994.rustrocks.cloud). 
+
+Having a wildcard domain entry (example: *.mydomain.com) configured on your DNS will avoid you to modify the Qovery setup every time you want to add a new subdomain. If `wildcard` is not supported by your DNS provider, you will have to configure each subdomain manually.
+
+If a service needs to expose more than one port publicly, you can define a dedicated subdomain to redirect the traffic on the right port by setting the “Port Name” value within the [port settings](#ports).
+
+After re-deploying the service, Qovery will automatically handle the TLS/SSL certificate creation and renewal for the configured domain.
+
+<p align="center">
+  <img src="/img/configuration/application/custom-domain.png" alt="Custom Domain" />
+</p>
+
+<Alert type="info">
+
+[We prepared a guide and video tutorial that explains how to set up your custom domain.][guides.getting-started.setting-custom-domain]
+
+</Alert>
+
+** Special case - domain behind a CDN **
+
+If your service is behind a CDN using a `proxy mode` (i.e. the traffic is routed through the CDN to Qovery), make sure to enable the option `Domain behind a CDN` and disable the option "Generate certificate" on the domain setup. Since the certificate of your domain is directly managed by the CDN, Qovery won't be able to do that for you and it will raise warnings on your application status.
+
+<p align="center">
+  <img src="/img/configuration/application/cdn-proxy.png" alt="CDN Proxy" />
+</p>
+
+If you are using Cloudflare to manage your CDN, we can also manage automatically your custom domain configuration via a wildcard domain setup for the whole cluster. Check our [documentation here][docs.using-qovery.configuration.clusters#use-custom-domain-and-wildcard-tls-for-the-whole-cluster-beta]
+
+#### Change the auto assigned sub-domain
+
+You can specify a different sub-domain for your application as long as it belongs to the assigned cluster domain (see [Qovery provided domains](#qovery-provided-domains)). 
+Example: 
+- your current domain is zdf72de71-z709e1a85-gtw.za8ad0659.bool.sh (so your assigned cluster domain is `za8ad0659.bool.sh`)
+- you can enter a new custom domain `myfrontend.za8ad0659.bool.sh` (since it is a subdomain of the cluster domain)
+
+The application will now be accessible from both the default and the new custom domain.
+
+<Alert type="info">
+
+Qovery does not check collision in the domain declaration. Make sure you assign a unique subdomain within your cluster.
+
+</Alert>
 
 ## Connecting to a database
 To know how to access your database from your application, [have a look at the database section][docs.using-qovery.configuration.environment-variable#connecting-to-a-database].
@@ -530,6 +524,10 @@ Not every configuration parameter will be copied within the new service for cons
 
 Please check the configuration of the new service before deploying it.
 
+## Advanced Settings
+
+You can further customize the service behaviour via the service advanced settings. Check [this documentation][docs.using-qovery.configuration.advanced-settings] to know more.
+
 ## Delete an Application
 
 <Steps headingDepth={3}>
@@ -558,6 +556,7 @@ In the application overview, click on the `3 dots` button and remove the applica
 [docs.using-qovery.configuration.advanced-settings]: /docs/using-qovery/configuration/advanced-settings/
 [docs.using-qovery.configuration.application#build-mode]: /docs/using-qovery/configuration/application/#build-mode
 [docs.using-qovery.configuration.application-health-checks]: /docs/using-qovery/configuration/application-health-checks/
+[docs.using-qovery.configuration.clusters#use-custom-domain-and-wildcard-tls-for-the-whole-cluster-beta]: /docs/using-qovery/configuration/clusters/#use-custom-domain-and-wildcard-tls-for-the-whole-cluster-beta
 [docs.using-qovery.configuration.environment-variable#connecting-to-a-database]: /docs/using-qovery/configuration/environment-variable/#connecting-to-a-database
 [docs.using-qovery.configuration.environment-variable#connecting-to-another-application]: /docs/using-qovery/configuration/environment-variable/#connecting-to-another-application
 [docs.using-qovery.configuration.environment-variable]: /docs/using-qovery/configuration/environment-variable/

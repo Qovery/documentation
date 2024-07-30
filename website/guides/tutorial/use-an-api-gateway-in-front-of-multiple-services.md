@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-05-29"
+last_modified_on: "2024-07-30"
 $schema: "/.meta/.schemas/guides.json"
 title: Use an API gateway in front of multiple services
 description: Learn how to use an API gateway in front of multiple services
@@ -121,13 +121,13 @@ When you have multiple applications within the same environment, it is difficult
 
 ## Set up custom domain
 
-Add a custom domain to expose your API gateway with the domain of your choice. Check out [this documentation][docs.using-qovery.configuration.application#domains] to set up your domain.
+Add a custom domain to expose your API gateway with the domain of your choice. Check out [this documentation][docs.using-qovery.configuration.application#custom-domains] to set up your domain.
 
 ## Deploy API Gateway
 
 Once everything is set up, you can deploy your application.
 
 
-[docs.using-qovery.configuration.application#domains]: /docs/using-qovery/configuration/application/#domains
+[docs.using-qovery.configuration.application#custom-domains]: /docs/using-qovery/configuration/application/#custom-domains
 [docs.using-qovery.configuration.environment-variable#alias-environment-variable]: /docs/using-qovery/configuration/environment-variable/#alias-environment-variable
 [urls.start_qovery]: https://start.qovery.com

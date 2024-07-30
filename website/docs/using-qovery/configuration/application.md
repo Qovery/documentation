@@ -419,7 +419,7 @@ If you prefer to assign your own domain to the application, you can customize it
 
 You can customize the domain of your application in different ways, depending on what you want to achieve:
 * You want to use your own domain for your application
-* You want to modify the subdomain assigned to your application by Qovery (i.e. change `p80-zdf72de72-z709e1a88-gtw.za8ad0657.bool.sh` into `my-app-domain.za8ad0657.bool.sh`). See [this section][#qovery-provided-domains] to know more about these domains.
+* You want to modify the subdomain assigned to your application by Qovery (i.e. change `p80-zdf72de72-z709e1a88-gtw.za8ad0657.bool.sh` into `my-app-domain.za8ad0657.bool.sh`). See [this section](#qovery-provided-domains) to know more about these domains.
 
 In both cases, you can assign the new custom domain by pressing the `Add Domain` button.
 

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-07-03"
+last_modified_on: "2024-07-30"
 title: "Clusters"
 description: "Learn how to configure your Kubernetes clusters on Qovery"
 ---
@@ -621,7 +621,7 @@ Please note that you will have to manually delete on your cloud account:
 - the image registry linked to this cluster
 - any resource created by a lifecycle job that will not be properly deleted during the `environment deletion` event.
 
-Check [this section][#cleaning-up-a-cluster-from-your-aws-account] to find these elements and delete them.
+Check [this section](#cleaning-up-a-cluster-from-your-aws-account) to find these elements and delete them.
 
 </Alert>
 
@@ -643,7 +643,7 @@ Please note that you will have to manually delete on your cloud account:
 - any managed database that was created via Qovery
 - any resource created by a lifecycle job that will not be properly deleted during the `environment deletion` event.
 
-Check [this section][#cleaning-up-a-cluster-from-your-aws-account] to find these elements and delete them.
+Check [this section](#cleaning-up-a-cluster-from-your-aws-account) to find these elements and delete them.
 
 </Alert>
 
@@ -658,7 +658,7 @@ This operation will delete:
 
 <Alert type="info">
 
-Check [this section][#cleaning-up-a-cluster-from-your-aws-account] to find these elements and delete them.
+Check [this section](#cleaning-up-a-cluster-from-your-aws-account) to find these elements and delete them.
 
 </Alert>
 

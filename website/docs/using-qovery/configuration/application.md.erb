@@ -351,7 +351,7 @@ Within this section you can define the port exposed by your application to the o
 You can edit the existing ports or declare new ones by specifying:
 - Application port: this is the port exposed internally by your application for the other services. 
 - Protocol: you can select the protocol used by your application : HTTP (for both standard HTTP or websocket communications), gRPC, TCP, UDP.
-- Publicly exposed: it allows you to expose over the public network your service. A public domain will be assigned to your application during the deployment (see [Connectin from the internet section](#connecting-from-the-internet))
+- Publicly exposed: it allows you to expose over the public network your service. A public domain will be assigned to your application during the deployment (see [Connecting from the internet section](#connecting-from-the-internet))
 - If Publicly Exposed is selected:
   - External port: it is the port that can be used to access this service over the internet (when exposed publicly). Note that for HTTP and gRPC the port is set by default to 443.
   - Port Name: it is the name assigned to the port. When multiple ports are exposed publicly, its value is used to route the traffic to the right port based on the called subdomain (which will contain the port name value). Since each port is exposed on the port 443, having a different subdomain is the only way to have multiple ports exposed over the internet. If not set, the default value is `p<portNumber>` (see [Qovery Provided Domain section](#qovery-provided-domains) for more information)
@@ -377,13 +377,7 @@ To know more about how to configure your Liveness and Readiness probes, have a l
 
 This section allows to specify which changes on your repository should trigger an auto-deploy (if enabled). To know more about how to configure your Deployment Restrictions, have a look at the [deployment restrictions section][docs.using-qovery.deployment.deploying-with-auto-deploy#filtering-commits-triggering-the-auto-deploy].
 
-### Domains
-
 <%= configure_domains("application") %>
-
-### Advanced Settings
-
-You can further customize the service behaviour via the service advanced settings. Check [this documentation][docs.using-qovery.configuration.advanced-settings] to know more.
 
 ## Connecting to a database
 To know how to access your database from your application, [have a look at the database section][docs.using-qovery.configuration.environment-variable#connecting-to-a-database].
@@ -411,6 +405,10 @@ To connect to your application via SSH, please use the via the [Qovery SSH comma
 ## Clone
 
 <%= clone_service() %>
+
+## Advanced Settings
+
+You can further customize the service behaviour via the service advanced settings. Check [this documentation][docs.using-qovery.configuration.advanced-settings] to know more.
 
 ## Delete an Application
 

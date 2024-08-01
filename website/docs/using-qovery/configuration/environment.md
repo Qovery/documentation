@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-10"
+last_modified_on: "2024-07-30"
 title: "Environment"
 description: "Learn how to configure your Environments on Qovery"
 ---
@@ -207,7 +207,7 @@ Cloning an environment is possible directly from the 3 dots menu of your environ
 </p>
 
 When cloning an environment, every configuration of the original environment will be copied except for:
-- [Application custom domains][docs.using-qovery.configuration.application#domains]: custom domains are not cloned to avoid collision.
+- [Application custom domains][docs.using-qovery.configuration.application#custom-domains]: custom domains are not cloned to avoid collision.
 - [Application BUILT_IN variables][docs.using-qovery.configuration.environment-variable#built_in-variables]: Since completely new services will be create, the original built_in variables will be replaced. Aliases and overrides are preserved during the clone operation.
 
 ## Terraform exporter
@@ -243,7 +243,7 @@ This is a non-recoverable operation. By deleting your environment, all your runn
 To delete your environment, you must go in the `settings` > `Danger zone` and delete your Environment.
 
 
-[docs.using-qovery.configuration.application#domains]: /docs/using-qovery/configuration/application/#domains
+[docs.using-qovery.configuration.application#custom-domains]: /docs/using-qovery/configuration/application/#custom-domains
 [docs.using-qovery.configuration.application]: /docs/using-qovery/configuration/application/
 [docs.using-qovery.configuration.cronjob]: /docs/using-qovery/configuration/cronjob/
 [docs.using-qovery.configuration.database]: /docs/using-qovery/configuration/database/

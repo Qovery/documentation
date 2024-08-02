@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-06-20"
+last_modified_on: "2024-08-02"
 title: "Cluster Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -96,6 +96,18 @@ Below is the list of advanced settings currently available for clusters.
 ## Network
 
 ### Load balancer
+
+#### aws.eks.enable_alb_controller ![](/img/advanced_settings/aws.svg)
+
+<Alert type="warning">
+
+Enabling this feature will create a 10 min max downtime on your application's public access (time to delete, replace and propagate DNS of the new load balancer).
+
+</Alert>
+
+| Type    | Description                                                                 | Default Value |
+|---------|-----------------------------------------------------------------------------|---------------|
+| boolean | Enable the AWS ALB controller to manage the load balancer for the cluster.  | `true`        |
 
 #### load_balancer.size ![](/img/advanced_settings/scaleway.svg)
 

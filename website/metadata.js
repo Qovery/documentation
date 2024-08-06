@@ -262,6 +262,15 @@ module.exports = {
           "title": "Deploy Frontend App"
         },
         {
+          "author_github": "https://github.com/baalooos",
+          "description": null,
+          "id": "/advanced/deploy-daemonset-with-karpenter",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/deploy-daemonset-with-karpenter.md",
+          "series_position": null,
+          "title": "Deploy a DaemonSet in a Karpenter context"
+        },
+        {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
           "id": "/advanced/helm-chart",

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-08-06"
+last_modified_on: "2024-08-09"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy a DaemonSet in a Karpenter context
 description: How to ensure your DaemonSet is well deployed when you are using Karpenter.
@@ -21,18 +21,6 @@ import Assumptions from '@site/src/components/Assumptions';
 
      website/guides/advanced/deploy-daemonset-with-karpenter.md.erb
 -->
-
-## What is Karpenter?
-
-[Karpenter](https://karpenter.sh/) is an open-source, high-performance Kubernetes cluster autoscaler developed by AWS. It is designed to dynamically adjust the compute capacity of your clusters in response to changing workloads. Unlike traditional autoscalers that rely on predefined scaling rules, Karpenter intelligently analyzes the resource requests of pending pods and provisions the most efficient instances to meet those needs. By doing so, it optimizes cluster cost and performance, reducing over-provisioning and underutilization of resources.
-
-Karpenter supports a wide range of instance types and sizes, including spot instances, providing cost-effective scalability options. Its advanced scheduling capabilities and seamless integration with Kubernetes make it an ideal choice for managing dynamic and diverse workloads in cloud-native environments.
-
-<Alert type="info">
-
-Qovery does not recommend using Karpenter in production yet.
-
-</Alert>
 
 ## What is a DaemonSet?
 
@@ -63,7 +51,7 @@ This ensures that critical workloads receive the necessary resources to run effe
 
 ### Deploy a new Priority Class using Helm
 
-I created a [simple repository](https://www.youtube.com/watch?v=gF7PcHrQ-S0) you can clone to follow along.
+I created a [simple repository](https://github.com/baalooos/karpenter-daemonset-priority-class) you can clone to follow along.
 
 Create the karpenter-priority-class service in the Qovery environment where you want to deploy your DaemonSet by following [this documentation][docs.using-qovery.configuration.helm] and these values:
 
@@ -86,7 +74,10 @@ Click on Continue
   * Branch: `main`
   * Override path: `/values.yaml`
 
-Then, you can deploy your service using this configuration. Once your service is deployed, you must modify your DaemonSet configuration to use this new Priority Class.
+Then, you can:
+
+- deploy this helm service to add the priority class on your cluster
+- Modify your DaemonSet configuration to use the new priority class an redeploy it
 
 ## Conclusion
 

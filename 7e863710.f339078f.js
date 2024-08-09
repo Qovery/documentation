@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[140],{291:function(e){e.exports=JSON.parse('{"allTagsPath":"/guides/tags","slug":"installation-guide-kubernetes","name":"installation_guide: kubernetes","count":1,"permalink":"/guides/tags/installation-guide-kubernetes"}')}}]);

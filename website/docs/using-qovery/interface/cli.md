@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-05-03"
+last_modified_on: "2024-08-12"
 title: CLI
 description: How to use the Qovery CLI (Command Line Interface)
 ---
@@ -11,7 +11,7 @@ import Alert from '@site/src/components/Alert';
 
 <Alert type="success">
 
-Use Infrastructure as Code (IaC) with [Terraform][docs.using-qovery.integration.terraform] and our [REST API][docs.using-qovery.interface.rest-api] to manage Qovery and deploy your apps.
+Use Infrastructure as Code (IaC) with our [Terraform Provider][docs.using-qovery.integration.terraform-provider] and our [REST API][docs.using-qovery.interface.rest-api] to manage Qovery and deploy your apps.
 
 </Alert>
 
@@ -687,7 +687,7 @@ qovery log --organization MyOrg --project MyProject --environment MyEnv --applic
 Do you have any issues with Qovery CLI? [Open an issue](https://github.com/Qovery/qovery-cli/issues).
 
 
-[docs.using-qovery.integration.terraform]: /docs/using-qovery/integration/terraform/
+[docs.using-qovery.integration.terraform-provider]: /docs/using-qovery/integration/terraform-provider/
 [docs.using-qovery.interface.rest-api]: /docs/using-qovery/interface/rest-api/
 [urls.brew]: https://brew.sh/
 [urls.qovery_cli_releases]: https://github.com/Qovery/qovery-cli/releases

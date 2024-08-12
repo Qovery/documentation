@@ -1,0 +1,29 @@
+---
+last_modified_on: "2020-10-04"
+title: "IAC"
+description: "Learn how to use IAC with Qovery"
+sidebar_label: hidden
+hide_pagination: true
+---
+
+Qovery lets you handle your infrastructure via the most popular IAC framework.
+
+Thanks to the [Qovery Lifecycle jobs][docs.using-qovery.configuration.lifecycle-job], you can manage the lifecycle of any external resource and easily make them available to any application running on your Kubernetes cluster.
+
+Here's how it works:
+
+<p align="center">
+  <img src="/img/integration/iac.png" alt="IAC deployment flow" />
+</p>
+
+1. You define the git repository and folder where the manifest/termplate is located, together with the inputs necessary for its execution (manifest/template inputs, cloud provider credentials etc..)
+2. Your manifest and inputs are packaged into a containerized application, thanks to a Dockerfile provided by Qovery. This dockerfile defines the IaC framework CLI version (Ex: Terrafrom 1.9.0), commands to run (Ex: on "delete", excecute "terraform destroy") etc.. It can be fully customized based on your needs.
+3. When an event happens on your environment or job (deploy, stop, destroy), the job is deployed and scheduled for execution.
+4. The job is executed on your cluster and creates/destroys the resource depending on the triggered event (deploy -> create, delete -> destroy).
+5. When a resource is created, your manifest/template output is retrieved and injected as environment variable for any other service within the same environment. For example, if you create an RDS instance and have an output for it, any other applications will be able to retrieve this value and access the resource.
+
+
+Have a look at how to deploy the different IAC frameworks with Qovery:
+- **[Terraform][docs.using-qovery.integration.iac.terraform]**
+- **[Cloudformation][docs.using-qovery.integration.iac.cloudformation]**
+- **[Other][docs.using-qovery.integration.iac.other]**

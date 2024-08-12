@@ -13,7 +13,7 @@ You have created an [Environment][docs.using-qovery.configuration.environment].
 </Assumptions>
 
 A **Lifecycle Job** is a job that runs on your kubernetes cluster with the following characteristics:
-- it is executed ONLY when the selected event (deploy/stop/delete) occurs (unless its execution is forced, [see the Force execution section](#force-execution)).
+- it is executed ONLY when the selected event (deploy/stop/delete) occurs (unless its execution is forced, [see the Force execution section](#force-run)).
 - any output file created at the end of the execution will be automatically injected as environment variable to any service within the same environment ([see the Job Output section](#job-output)).
 
 Given its characteristics, lifecycle jobs are particularly useful for:
@@ -26,8 +26,8 @@ The execution of this job follows this flow:
   <img src="/img/configuration/job/lifecycle_job.png" alt="Lifecycle job schema" />
 </p>
 
-1. You define the repository where the code is located and the Dockerfile to be used to contenerize the application (deploying from a container registry is supported as well)
-2. You define the triggers and the command to be executed when your code runs. For example: "on start", exceute "start.sh"
+1. You define the repository where the code is located and the Dockerfile to be used to containerize the application (deploying from a container registry is supported as well)
+2. You define the triggers and the command to be executed when your code runs. For example: "on start", execute "start.sh"
 3. When an event happens on your environment or job, if the event matches your trigger condition, the job is deployed and scheduled for execution.
 4. The job is executed on your cluster and can interact with some external services. For example, it can use a Terraform manifest to deploy an RDS instance.
 5. If the job creates an output in a specific format (see [Job output section](#job-output)), this can be retrieved and injected as environment variable for any other service within the environment. For example, you can retrieve the RDS DB URI so that the other applications can use it.

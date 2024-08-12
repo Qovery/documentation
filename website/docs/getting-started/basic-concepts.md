@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-08-09"
+last_modified_on: "2024-08-12"
 title: "Basic Concepts"
 description: "Basic Concepts about Qovery"
 ---
@@ -62,11 +62,11 @@ More information about [Preview Environment here][docs.using-qovery.configuratio
 A Service is the basic unit that you can add to an environment, representing one of the elements of your tech stack (front-end, database etc..).
 
 Qovery provides five "basic" services that can be combined together to deploy any tech stack:
-- Application: it allows you to run your long-running workloads on your Kubernetes cluster. It can be deployed from a git repository or as a contaienr from an image registry. More information about [Applications here][docs.using-qovery.configuration.application]
+- Application: it allows you to run your long-running workloads on your Kubernetes cluster. It can be deployed from a git repository or as a container from an image registry. More information about [Applications here][docs.using-qovery.configuration.application]
 - Database: it allows you to deploy a database. Qovery allows you to deploy a database as a container on your Kubernetes cluster (for test/dev) and as a cloud provider managed version (RDS AWS etc..).  More information about [Databases here][docs.using-qovery.configuration.database]
 - CronJob: it allows you to deploy a cronjob on your Kuberentes cluster and execute it based on the selected schedule. More information about [Cronjob here][docs.using-qovery.configuration.cronjob]
-- Lifecycle: it allows you to execute code based on the events happening on your environment (Deploy, Stop, Delete etc..). It is enough flexible to cover multiple use cases: seed your database when the environment is created, manage the lifecycle of any external resource (via a terraform file, pulumi code etc..). More information about [Lifecycle here][docs.using-qovery.configuration.cronjob]
-- Helm: it allows you to deploy a helm chart on your Kuberenetes cluster. More information about [Helm here][docs.using-qovery.configuration.helm]
+- Lifecycle: it allows you to execute code based on the events happening on your environment (Deploy, Stop, Delete etc..). It is enough flexible to cover multiple use cases: seed your database when the environment is created, manage the lifecycle of any external resource (via a terraform file, pulumi code etc..). More information about [Lifecycle here][docs.using-qovery.configuration.lifecycle-job]
+- Helm: it allows you to deploy a helm chart on your Kubernetes cluster. More information about [Helm here][docs.using-qovery.configuration.helm]
 
 On top of these basic services, Qovery provides a pre-set of configuration to simplify the deployment of your tech stack.
 
@@ -89,6 +89,7 @@ You can monitor the execution of the deployment via the [Deployment Logs][docs.u
 [docs.using-qovery.configuration.environment#preview-environment]: /docs/using-qovery/configuration/environment/#preview-environment
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [docs.using-qovery.configuration.helm]: /docs/using-qovery/configuration/helm/
+[docs.using-qovery.configuration.lifecycle-job]: /docs/using-qovery/configuration/lifecycle-job/
 [docs.using-qovery.configuration.organization.members-rbac#roles-based-access-control-rbac]: /docs/using-qovery/configuration/organization/members-rbac/#roles-based-access-control-rbac
 [docs.using-qovery.configuration.organization]: /docs/using-qovery/configuration/organization/
 [docs.using-qovery.configuration.project]: /docs/using-qovery/configuration/project/

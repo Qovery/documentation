@@ -17,7 +17,7 @@ Here's how it works:
 </p>
 
 1. You define the git repository and folder where the manifest/termplate is located, together with the inputs necessary for its execution (manifest/template inputs, cloud provider credentials etc..)
-2. Your manifest and inputs are packaged into a containerized application, thanks to a Dockerfile provided by Qovery. This dockerfile defines the IaC framework CLI version (Ex: Terrafrom 1.9.0), commands to run (Ex: on "delete", exceute "terraform destroy") etc.. It can be fully customized based on your needs.
+2. Your manifest and inputs are packaged into a containerized application, thanks to a Dockerfile provided by Qovery. This dockerfile defines the IaC framework CLI version (Ex: Terrafrom 1.9.0), commands to run (Ex: on "delete", excecute "terraform destroy") etc.. It can be fully customized based on your needs.
 3. When an event happens on your environment or job (deploy, stop, destroy), the job is deployed and scheduled for execution.
 4. The job is executed on your cluster and creates/destroys the resource depending on the triggered event (deploy -> create, delete -> destroy).
 5. When a resource is created, your manifest/template output is retrieved and injected as environment variable for any other service within the same environment. For example, if you create an RDS instance and have an output for it, any other applications will be able to retrieve this value and access the resource.

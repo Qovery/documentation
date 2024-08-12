@@ -795,6 +795,10 @@ class Templates
     render("#{partials_path}/_configure_domains.md", binding).strip
   end
 
+  def template_lifecycle(template)
+    render("#{partials_path}/_template_lifecycle.md", binding).strip
+  end
+
   def qovery_deploy_app_web
     render("#{partials_path}/_qovery_deploy_app_web.md", binding).strip
   end

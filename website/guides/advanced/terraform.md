@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-06-07"
+last_modified_on: "2024-08-12"
 $schema: "/.meta/.schemas/guides.json"
 title: Terraform
 description: Learn how to use Terraform with Qovery
@@ -12,7 +12,7 @@ import Alert from '@site/src/components/Alert';
 
 <Alert type="warning">
 
-Follow [this guide][docs.using-qovery.integration.terraform] to learn more about Terraform with Qovery.
+Follow [this guide][docs.using-qovery.integration.iac.terraform] to learn more about Terraform with Qovery.
 
 </Alert>
 
@@ -38,6 +38,6 @@ Here are some additional resources you can use to learn more about Terraform int
 Do you need more examples? Do you have any questions? Feel free to ask on our [Community forum][urls.qovery_forum].
 
 
-[docs.using-qovery.integration.terraform]: /docs/using-qovery/integration/terraform/
+[docs.using-qovery.integration.iac.terraform]: /docs/using-qovery/integration/iac/terraform/
 [guides.tutorial.how-to-use-lifecycle-job-to-deploy-any-kind-of-resources]: /guides/tutorial/how-to-use-lifecycle-job-to-deploy-any-kind-of-resources/
 [urls.qovery_forum]: https://discuss.qovery.com/

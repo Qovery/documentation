@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-09-27"
+last_modified_on: "2024-08-12"
 title: "Circle CI"
 description: "Learn how to connect Circle CI to Qovery"
 ---
@@ -127,7 +127,7 @@ qovery environment delete \
 
 ### Terraform
 
-Do you want to include Terraform in your CI? Check out our [Terraform documentation][docs.using-qovery.integration.terraform].
+Do you want to include Terraform in your CI? Check out our [Terraform documentation][docs.using-qovery.integration.terraform-provider].
 
 ### Any other examples?
 
@@ -138,7 +138,7 @@ Feel free to share your examples with us, and we'll be happy to share them with 
 [docs.using-qovery.deployment.deploying-with-auto-deploy]: /docs/using-qovery/deployment/deploying-with-auto-deploy/
 [docs.using-qovery.integration.continuous-integration.github-actions#github-actions-examples]: /docs/using-qovery/integration/continuous-integration/github-actions/#github-actions-examples
 [docs.using-qovery.integration.continuous-integration.gitlab-ci#gitlab-ci-examples]: /docs/using-qovery/integration/continuous-integration/gitlab-ci/#gitlab-ci-examples
-[docs.using-qovery.integration.terraform]: /docs/using-qovery/integration/terraform/
+[docs.using-qovery.integration.terraform-provider]: /docs/using-qovery/integration/terraform-provider/
 [docs.using-qovery.interface.cli#generate-api-token]: /docs/using-qovery/interface/cli/#generate-api-token
 [docs.using-qovery.interface.cli]: /docs/using-qovery/interface/cli/
 [urls.qovery_forum]: https://discuss.qovery.com/

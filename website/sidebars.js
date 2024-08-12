@@ -125,7 +125,6 @@ module.exports = {
             "using-qovery/integration/git-repository",
             "using-qovery/integration/container-registry",
             "using-qovery/integration/helm-repository",
-            "using-qovery/integration/terraform",
             {
               type: 'category',
               label: 'Continuous Integration',
@@ -148,6 +147,16 @@ module.exports = {
             },
             {
               type: 'category',
+              label: 'IaC',
+              items: [
+                "using-qovery/integration/iac",
+                "using-qovery/integration/iac/terraform",
+                "using-qovery/integration/iac/cloudformation",
+                "using-qovery/integration/iac/other",
+              ],
+            },
+            {
+              type: 'category',
               label: 'Secret Manager',
               items: [
                 "using-qovery/integration/secret-manager",
@@ -156,6 +165,7 @@ module.exports = {
               ],
             },
             "using-qovery/integration/webhook",
+            "using-qovery/integration/terraform-provider",
             "using-qovery/integration/api-integration",
             "using-qovery/integration/slack",
           ]

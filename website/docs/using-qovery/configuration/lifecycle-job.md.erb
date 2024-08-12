@@ -13,17 +13,30 @@ You have created an [Environment][docs.using-qovery.configuration.environment].
 </Assumptions>
 
 A **Lifecycle Job** is a job that runs on your kubernetes cluster with the following characteristics:
-- it is executed ONLY when the selected environment event occurs (unless its execution is forced, [see the Force execution section](#force-execution)).
+- it is executed ONLY when the selected event (deploy/stop/delete) occurs (unless its execution is forced, [see the Force execution section](#force-execution)).
 - any output file created at the end of the execution will be automatically injected as environment variable to any service within the same environment ([see the Job Output section](#job-output)).
 
 Given its characteristics, lifecycle jobs are particularly useful for:
 - Seed your database on your preview environment: you can create a custom job that will seed a database when the preview environment is deployed
 - Create an external resources not natively managed by Qovery: you can create a custom job that will create the external resource. By writing the connection strings in an output file, those information will be injected as environment variables on any service of the environment (so that they can consume this new resource).
 
-A lifecycle job can be executed on the following environment events:
-- **Start**: the job is executed when the environment starts. Note that a start event is generated on both the "Deploy" and "Redeploy" actions so you should take care of managing this in your code to avoid executing it twice (on the first deploy and on the re-deploy).
-- **Stop**: the job is executed when the environment stops.
-- **Delete**: the job is executed when the environment is deleted.
+The execution of this job follows this flow:
+
+<p align="center">
+  <img src="/img/configuration/job/lifecycle_job.png" alt="Lifecycle job schema" />
+</p>
+
+1. You define the repository where the code is located and the Dockerfile to be used to contenerize the application (deploying from a container registry is supported as well)
+2. You define the triggers and the command to be executed when your code runs. For example: "on start", exceute "start.sh"
+3. When an event happens on your environment or job, if the event matches your trigger condition, the job is deployed and scheduled for execution.
+4. The job is executed on your cluster and can interact with some external services. For example, it can use a Terraform manifest to deploy an RDS instance.
+5. If the job creates an output in a specific format (see [Job output section](#job-output)), this can be retrieved and injected as environment variable for any other service within the environment. For example, you can retrieve the RDS DB URI so that the other applications can use it.
+
+
+A lifecycle job can be executed on the following environment/job events:
+- **Deploy**: the job is executed when the environment/job is deployed. Note that this includes both the "Deploy" and "Redeploy" actions so you should take care of managing this in your code to avoid executing it twice (on the first deploy and on the re-deploy).
+- **Stop**: the job is executed when the environment/job stops.
+- **Delete**: the job is executed when the environment/job is deleted.
 
 <Alert type="success">
 
@@ -97,7 +110,7 @@ See the [Dockerfile section](#dockerfile) for more information.
 <li>
 
 Specify the configuration of your job:
-- Event: select the environment event which should trigger the execution of the job (Environment start, stop, delete)
+- Event: select the environment event which should trigger the execution of the job (deploy, stop, delete)
 - Image Entrypoint: the entrypoint to be used to launch your job (not mandatory).
 - CMD Arguments: the arguments to be passed to launch your application (not mandatory) separated with a space. Example: `rails -h 0.0.0.0 -p 8080 string "complex arg"`.
 - Number of restarts: Maximum number of restarts allowed in case of job failure (0 means no failure)
@@ -106,7 +119,7 @@ Specify the configuration of your job:
 
 <Alert type="info">
 
-Entrypoint and Arguments can be customized for each event. This will allow your job to behave differently depending on the environment status (example: you might want to run a "create" command when the environment starts and a "destroy" command when the environment is deleted)
+Entrypoint and Arguments can be customized for each event. This will allow your job to behave differently depending on the environment status (example: you might want to run a "create" command when the environment is deployed and a "destroy" command when the environment is deleted)
 
 </Alert>
 

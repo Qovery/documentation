@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-26"
+last_modified_on: "2024-08-12"
 title: Service Deployment Troubleshoot
 description: "How to troubleshoot your service deployments with Qovery"
 hide_pagination: true
@@ -219,7 +219,7 @@ This errors occurs in the following two cases:
 The pod running your lifecycle job is crashing due to an exception in your code or OOM issue. Have a look at the Live Logs of your Lifecycle job to understand from where the issue is coming from your code.
 
 **Job execution timeout**
-The code run in your job is taking more time than expected and thus it's execution is stopped. If your code needs more time to be excecuted, increase the `Max Duration` value within the [Lifecycle Job configuration page][docs.using-qovery.configuration.lifecycle-job#job-configuration]
+The code run in your job is taking more time than expected and thus it's execution is stopped. If your code needs more time to be excecuted, increase the `Max Duration` value within the [Lifecycle Job configuration page][docs.using-qovery.configuration.lifecycle-job#triggers]
 
 ## Database
 
@@ -259,6 +259,6 @@ Open a ticket to the Cloud Provider support, and as to raise this limit.
 [docs.using-qovery.configuration.application-health-checks#initial-delay-in-seconds]: /docs/using-qovery/configuration/application-health-checks/#initial-delay-in-seconds
 [docs.using-qovery.configuration.clusters#managing-your-cluster-settings]: /docs/using-qovery/configuration/clusters/#managing-your-cluster-settings
 [docs.using-qovery.configuration.clusters#what-are-the-different-instance-types-available-when-creating-a-cluster]: /docs/using-qovery/configuration/clusters/#what-are-the-different-instance-types-available-when-creating-a-cluster
-[docs.using-qovery.configuration.lifecycle-job#job-configuration]: /docs/using-qovery/configuration/lifecycle-job/#job-configuration
+[docs.using-qovery.configuration.lifecycle-job#triggers]: /docs/using-qovery/configuration/lifecycle-job/#triggers
 [docs.using-qovery.interface.cli#shell]: /docs/using-qovery/interface/cli/#shell
 [guides.tutorial.working-with-git-submodules]: /guides/tutorial/working-with-git-submodules/

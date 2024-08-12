@@ -120,14 +120,9 @@ See the [Dockerfile section](#dockerfile) for more information.
 
 </li>
 <li>
+Specify the triggers
 
-Specify the configuration of your job:
-- Event: select the environment event which should trigger the execution of the job (deploy, stop, delete)
-- Image Entrypoint: the entrypoint to be used to launch your job (not mandatory).
-- CMD Arguments: the arguments to be passed to launch your application (not mandatory) separated with a space. Example: `rails -h 0.0.0.0 -p 8080 string "complex arg"`.
-- Number of restarts: Maximum number of restarts allowed in case of job failure (0 means no failure)
-- Max duration time in seconds: Maximum duration allowed for the job to run before killing it and mark it as failed
-- Port: Port used by Kubernetes to run readiness and liveliness probes checks. The port will not be exposed externally
+See the [Triggers section](#triggers) for more information.
 
 <Alert type="info">
 
@@ -380,14 +375,18 @@ Qovery does not apply any versioning on the provided Dockerfile, we strongly sug
 If you don't have one, you can use the `docker init` command to generate one for your application (check the [documentation here](https://docs.docker.com/reference/cli/docker/init/)).
 
 
-### JOB Configuration
-You can modify here the configuration of your job:
-- CRON Schedule: specify a valid CRON expression (see [Crontab guru](https://crontab.guru/) for help). After being deployed, the job will be executed following the defined schedule.
-- Image Entrypoint: the entrypoint to be used to launch your job (not mandatory)
+### Triggers
+
+This section allows you to define when the lifecycle job should be executed and which command should run. 
+
+In this section you can configure:
+- Event: select the environment/job event which should trigger the execution of the job (deploy, stop, delete)
+- Image Entrypoint: the entrypoint to be used to launch your job (not mandatory).
 - CMD Arguments: the arguments to be passed to launch your application (not mandatory) separated with a space. Example: `rails -h 0.0.0.0 -p 8080 string "complex arg"`.
 - Number of restarts: Maximum number of restarts allowed in case of job failure (0 means no failure)
 - Max duration time in seconds: Maximum duration allowed for the job to run before killing it and mark it as failed
 - Port: Port used by Kubernetes to run readiness and liveliness probes checks. The port will not be exposed externally
+
 
 ### Resources
 

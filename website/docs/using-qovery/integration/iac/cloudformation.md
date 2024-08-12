@@ -40,10 +40,10 @@ Provide the location of your manifest within your git repository
 Customize your configuration
 
 Qovery provides you with a pre-configuration for your lifecycle job capable to run and deploy your Cloudformation:
-- **Dockerfile**: you will find a Dockerfile capable to package your manifest/template and run the right Cloudformation commmand depending on the event triggered (Example: the "start" command executes "Cloudformation apply .."). Customize this file to match your needs (backend config, additional configuration etc..)
+- **Dockerfile**: you will find a Dockerfile capable to package your manifest/template and run the right Cloudformation command depending on the event triggered (Example: the "start" command executes "Cloudformation apply .."). Customize this file to match your needs (backend config, additional configuration etc..)
 - **Triggers**: you will find the default triggers and commands based on the default Dockerfile.
 - **Resources**: you will find a default CPU/Memory values capable to run the Cloudformation CLI on a Kubernetes job
-- **Environment variables**: you will be able to provide the input of your Cloudformation manifest/template as a TF_VAR file. You can also add additional environment variables necessary to run the Cloudformation commands (like AWS_SECRET_ACCESS_KEY etc..)
+- **Environment variables**: you will be able to provide the input of your Cloudformation manifest/template as file, which will be stored as an [environment variable as file][docs.using-qovery.configuration.environment-variable#environment-variable-as-file]. You can also add additional environment variables necessary to run the Cloudformation commands (like AWS_SECRET_ACCESS_KEY etc..)
 
 </li>
 
@@ -75,6 +75,7 @@ If your Cloudformation manifest/template generates an output (see [Lifecycle job
 - [How to deploy any resource with Lifecycle Jobs][guides.tutorial.how-to-use-lifecycle-job-to-deploy-any-kind-of-resources]
 
 
+[docs.using-qovery.configuration.environment-variable#environment-variable-as-file]: /docs/using-qovery/configuration/environment-variable/#environment-variable-as-file
 [docs.using-qovery.configuration.lifecycle-job#job-output]: /docs/using-qovery/configuration/lifecycle-job/#job-output
 [docs.using-qovery.configuration.lifecycle-job]: /docs/using-qovery/configuration/lifecycle-job/
 [docs.using-qovery.integration.iac]: /docs/using-qovery/integration/iac/

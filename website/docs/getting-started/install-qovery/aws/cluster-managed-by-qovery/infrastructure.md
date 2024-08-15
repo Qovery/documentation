@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-30"
+last_modified_on: "2024-08-15"
 title: "Infrastructure"
 description: "Understand how Qovery deploys your infrastructure on AWS"
 ---
@@ -281,6 +281,7 @@ Once it’s done, the user’s access key and secret key can be used in Qovery.
                 "kms:PutKeyPolicy",
                 "kms:ScheduleKeyDeletion",
                 "kms:TagResource",
+                "kms:EnableKeyRotation",
                 "logs:CreateLogGroup",
                 "logs:DeleteLogGroup",
                 "logs:DescribeLogGroups",

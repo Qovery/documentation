@@ -25,8 +25,7 @@
 				"ec2:*",
 				"elasticache:*",
 				"cloudtrail:LookupEvents",
-				"kms:DescribeKey",
-				"kms:ListAliases",
+				"kms:*",
 				"dynamodb:*",
 				"tag:GetResources",
 				"rds:*",
@@ -46,7 +45,6 @@
 				"es:DescribeElasticsearchDomain",
 				"es:CreateElasticsearchDomain",
 				"events:RemoveTargets",
-				"kms:*",
 				"events:TagResource",
 				"events:ListTagsForResource"
 			],

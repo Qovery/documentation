@@ -54,7 +54,7 @@ function Layout(props) {
           <meta httpEquiv="x-ua-compatible" content="ie=edge" />
           {metaTitle && <title>{metaTitle}</title>}
           {metaTitle && <meta property="og:title" content={metaTitle} />}
-          {favicon && <link rel="shortcut icon" href={faviconUrl} />}
+          {favicon && <link rel="icon" href={faviconUrl} />}
           {description && <meta name="description" content={description} />}
           {description && (
             <meta property="og:description" content={description} />

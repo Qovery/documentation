@@ -42,6 +42,18 @@ This configuration will be **automatically removed** on every cloned environment
 
 </Alert>
 
+For each custom domain, a green checkmark will appear if the domain is correctly configured. You can perform another check by clicking on the checkmark. If you're behind a CDN, we will only check if your custom domain resolves to an IP address.
+
+<p align="center">
+  <img src="/img/configuration/application/domain_check.png" alt="Check Domains" />
+</p>
+
+If there's an issue with a domain, a global error message will be displayed, and you can view the error details by hovering over the red cross. After correcting your configuration, you can perform another check by clicking on the red cross.
+
+<p align="center">
+  <img src="/img/configuration/application/domain_check_error.png" alt="Check Domains" />
+</p>
+
 #### Configuring your own domain
 
 Once the domain is added within the Qovery console (Example: mydomain.com), you need to configure within your DNS two `CNAME` records pointing to the domain provided by Qovery, as shown in the UI (example: mydomain.com CNAME za7cc1b71-z4b8474b3-gtw.zc531a994.rustrocks.cloud and *.mydomain.com CNAME za7cc1b71-z4b8474b3-gtw.zc531a994.rustrocks.cloud). 

@@ -19,8 +19,6 @@ const VECTOR_HOST = 'https://docs.qovery.com';
 function Layout(props) {
   const {siteConfig = {}} = useDocusaurusContext();
   const {
-    favicon,
-    tagline,
     title: siteTitle,
     themeConfig: {image: defaultImage},
     url: siteUrl,
@@ -32,13 +30,11 @@ function Layout(props) {
     description,
     image,
     keywords,
-    permalink,
     version,
   } = props;
   const metaTitle = title ? `${title} | ${siteTitle}` : siteTitle;
   const metaImage = image || defaultImage;
   const metaImageUrl = siteUrl + useBaseUrl(metaImage);
-  const faviconUrl = useBaseUrl(favicon);
   const location = useLocation();
   let canonURL = location ?
     (VECTOR_HOST + (location.pathname.endsWith('/') ? location.pathname : (location.pathname + '/'))) :
@@ -54,7 +50,32 @@ function Layout(props) {
           <meta httpEquiv="x-ua-compatible" content="ie=edge" />
           {metaTitle && <title>{metaTitle}</title>}
           {metaTitle && <meta property="og:title" content={metaTitle} />}
-          {favicon && <link rel="shortcut icon" href={faviconUrl} />}
+          <link rel="icon" href="/favicons/favicon.svg" />
+          <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/favicons/apple-touch-icon.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/favicons/favicon-32x32.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/favicons/favicon-16x16.png"
+          />
+          <link rel="manifest" href="/favicons/site.webmanifest" />
+          <link
+            rel="mask-icon"
+            href="/favicons/safari-pinned-tab.svg"
+            color="#5bbad5"
+          />
+          <meta name="msapplication-TileColor" content="#da532c" />
+          <meta name="theme-color" content="#ffffff"></meta>
           {description && <meta name="description" content={description} />}
           {description && (
             <meta property="og:description" content={description} />

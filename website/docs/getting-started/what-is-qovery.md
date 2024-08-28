@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-11-24"
+last_modified_on: "2024-07-29"
 title: "What is Qovery?"
 description: "High-level description of the Qovery goals and mission."
 ---
@@ -10,7 +10,7 @@ import Assumptions from '@site/src/components/Assumptions';
 import Alert from '@site/src/components/Alert';
 import BusinessBadge from '@site/src/components/BusinessBadge';
 
-Qovery is the **Internal Developer Platform (IDP)** that cuts noise for developers with paved paths to production. Testing, ephemeral environments, and drive action to improve software.
+Qovery is a DevOps Automation Platform that eliminates your DevOps hiring needs. Provision and maintain a secure and compliant infrastructure in hours - not months!
 
 <p align="center">
   <img src="/img/developers-and-platform-engineer-with-qovery.jpg" alt="Developers and a Platform Engineer using Qovery as an IDP" />
@@ -69,7 +69,7 @@ Qovery focus on providing an outstanding Developer Experience and never assume t
 
 ## Integrates Qovery in your technical stack
 
-1. Qovery is battery included! Get a State-of-the-Art Internal Developer Platform in 30 minutes.
+1. Qovery is battery included! Get a State-of-the-Art DevOps Automation Platform in 30 minutes.
 2. Qovery integrates perfectly well into an existing ecosystem.
 
 <p align="center">

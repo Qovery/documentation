@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-05-16"
+last_modified_on: "2024-07-12"
 title: "Self-Managed Cluster"
 description: "Learn how to install and configure Qovery on your GCP Kubernetes Service (GKE) cluster"
 ---
@@ -43,7 +43,7 @@ The dependencies provided with the Qovery Helm chart are here to help you with t
 * You have a GCP GKE Kubernetes cluster with at least 4 CPUs and 8GB of RAM.
 * You have `kubectl` installed and configured to access your GCP GKE Kubernetes cluster.
 * You have `helm` installed.
-* You have a Qovery account.
+* You have a Qovery account. If you don't have one, please sign up at https://start.qovery.com
 
 </Assumption>
 

@@ -125,7 +125,6 @@ module.exports = {
             <%= metadata.links.fetch_id("docs.using-qovery.integration.git-repository").to_json %>,
             <%= metadata.links.fetch_id("docs.using-qovery.integration.container-registry").to_json %>,
             <%= metadata.links.fetch_id("docs.using-qovery.integration.helm-repository").to_json %>,
-            <%= metadata.links.fetch_id("docs.using-qovery.integration.terraform").to_json %>,
             {
               type: 'category',
               label: 'Continuous Integration',
@@ -148,6 +147,16 @@ module.exports = {
             },
             {
               type: 'category',
+              label: 'IaC',
+              items: [
+                <%= metadata.links.fetch_id("docs.using-qovery.integration.iac").to_json %>,
+                <%= metadata.links.fetch_id("docs.using-qovery.integration.iac.terraform").to_json %>,
+                <%= metadata.links.fetch_id("docs.using-qovery.integration.iac.cloudformation").to_json %>,
+                <%= metadata.links.fetch_id("docs.using-qovery.integration.iac.other").to_json %>,
+              ],
+            },
+            {
+              type: 'category',
               label: 'Secret Manager',
               items: [
                 <%= metadata.links.fetch_id("docs.using-qovery.integration.secret-manager").to_json %>,
@@ -156,6 +165,7 @@ module.exports = {
               ],
             },
             <%= metadata.links.fetch_id("docs.using-qovery.integration.webhook").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.integration.terraform-provider").to_json %>,
             <%= metadata.links.fetch_id("docs.using-qovery.integration.api-integration").to_json %>,
             <%= metadata.links.fetch_id("docs.using-qovery.integration.slack").to_json %>,
           ]

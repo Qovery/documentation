@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-06-19"
+last_modified_on: "2024-07-30"
 title: "Clusters"
 description: "Learn how to configure your Kubernetes clusters on Qovery"
 ---
@@ -457,6 +457,12 @@ The EKS subnets are mandatory, you have to specify at least **one subnet id per 
   <img src="/img/configuration/clusters/existing_vpc_aws_auto_assign.png" alt="Existing VPC AWS DNS Hostnmaes" />
 </p>
 
+<Alert type="info">
+
+If you have activated `Karpenter`, you will have to specify at least **one subnet id per zone**. These subnets have to be private and connected to internet through a NAT Gateway. They will be used for AWS Fargate profile.
+
+</Alert>
+
 **Managed databases**:
 
 This section is exclusively for enabling managed databases (container databases will be enabled by default).
@@ -615,7 +621,7 @@ Please note that you will have to manually delete on your cloud account:
 - the image registry linked to this cluster
 - any resource created by a lifecycle job that will not be properly deleted during the `environment deletion` event.
 
-Check [this section][#cleaning-up-a-cluster-from-your-aws-account] to find these elements and delete them.
+Check [this section](#cleaning-up-a-cluster-from-your-aws-account) to find these elements and delete them.
 
 </Alert>
 
@@ -637,7 +643,7 @@ Please note that you will have to manually delete on your cloud account:
 - any managed database that was created via Qovery
 - any resource created by a lifecycle job that will not be properly deleted during the `environment deletion` event.
 
-Check [this section][#cleaning-up-a-cluster-from-your-aws-account] to find these elements and delete them.
+Check [this section](#cleaning-up-a-cluster-from-your-aws-account) to find these elements and delete them.
 
 </Alert>
 
@@ -652,7 +658,7 @@ This operation will delete:
 
 <Alert type="info">
 
-Check [this section][#cleaning-up-a-cluster-from-your-aws-account] to find these elements and delete them.
+Check [this section](#cleaning-up-a-cluster-from-your-aws-account) to find these elements and delete them.
 
 </Alert>
 

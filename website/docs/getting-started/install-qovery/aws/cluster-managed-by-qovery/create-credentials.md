@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-03-21"
+last_modified_on: "2024-08-15"
 title: "Create Credentials"
 description: "Generate AWS credentials for Qovery"
 ---
@@ -110,8 +110,6 @@ Or copy it from below:
 				"ec2:*",
 				"elasticache:*",
 				"cloudtrail:LookupEvents",
-				"kms:DescribeKey",
-				"kms:ListAliases",
 				"dynamodb:*",
 				"tag:GetResources",
 				"rds:*",

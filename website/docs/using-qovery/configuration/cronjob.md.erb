@@ -84,7 +84,7 @@ Specify the configuration of your job:
 - CRON Schedule: specify a valid CRON expression (see [Crontab guru](https://crontab.guru/) for help). After being deployed, the job will be executed following the defined schedule.
 - Timezone: select a valid timezone identifier. After being deployed, the job will be executed following the defined timezone. `Etc/UTC` is the default value.
 - Image Entrypoint: the entrypoint to be used to launch your job (not mandatory)
-- CMD Arguments: the arguments to be passed to launch your job (not mandatory). We expect the format to be an array. Example ["rails", "-h", "0.0.0.0", "-p", "8080", "string"]
+- CMD Arguments: the arguments to be passed to launch your application (not mandatory) separated with a space. Example: `rails -h 0.0.0.0 -p 8080 string "complex arg"`.
 - Number of restarts: Maximum number of restarts allowed in case of job failure (0 means no failure)
 - Max duration time in seconds: Maximum duration allowed for the job to run before killing it and mark it as failed
 - Port: Port used by Kubernetes to run readiness and liveliness probes checks. The port will not be exposed externally
@@ -218,19 +218,7 @@ This option is available only if you have selected "Git Repository" as source. O
 
 Qovery runs your application within the [Container technology](https://www.docker.com/resources/what-container). To build and run your application, you need to provide a valid [Dockerfile](https://docs.docker.com/engine/reference/builder).
 
-```Dockerfile title="Valid NodeJS Dockerfile"
-FROM node:13-alpine
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
-COPY . .
-RUN npm install
-EXPOSE 3000
-CMD node ./bin/www
-```
-
 After creating a Dockerfile, specify the location of your Dockerfile in `Dockefile path` field.
-
-Configuration from above will make Qovery look for the Dockerfile in `/timescale/Dockerfile` path of your repository (`Root Application Path` + `Dockerfile Path`).
 
 ** Auto Deploy **
 
@@ -245,7 +233,7 @@ You can modify here the configuration of your job:
 - CRON Schedule: specify a valid CRON expression (see [Crontab guru](https://crontab.guru/) for help). After being deployed, the job will be executed following the defined schedule.
 - Timezone: select a valid timezone identifier. After being deployed, the job will be executed following the defined timezone. `Etc/UTC` is the default value.
 - Image Entrypoint: the entrypoint to be used to launch your job (not mandatory)
-- CMD Arguments: the arguments to be passed to launch your job (not mandatory). We expect the format to be an array. Example ["rails", "-h", "0.0.0.0", "-p", "8080", "string"]
+- CMD Arguments: the arguments to be passed to launch your application (not mandatory) separated with a space. Example: `rails -h 0.0.0.0 -p 8080 string "complex arg"`.
 - Number of restarts: Maximum number of restarts allowed in case of job failure (0 means no failure)
 - Max duration time in seconds: Maximum duration allowed for the job to run before killing it and mark it as failed
 - Port: Port used by Kubernetes to run readiness and liveliness probes checks. The port will not be exposed externally

@@ -13,17 +13,30 @@ You have created an [Environment][docs.using-qovery.configuration.environment].
 </Assumptions>
 
 A **Lifecycle Job** is a job that runs on your kubernetes cluster with the following characteristics:
-- it is executed ONLY when the selected environment event occurs (unless its execution is forced, [see the Force execution section](#force-execution)).
+- it is executed ONLY when the selected event (deploy/stop/delete) occurs (unless its execution is forced, [see the Force execution section](#force-run)).
 - any output file created at the end of the execution will be automatically injected as environment variable to any service within the same environment ([see the Job Output section](#job-output)).
 
 Given its characteristics, lifecycle jobs are particularly useful for:
 - Seed your database on your preview environment: you can create a custom job that will seed a database when the preview environment is deployed
 - Create an external resources not natively managed by Qovery: you can create a custom job that will create the external resource. By writing the connection strings in an output file, those information will be injected as environment variables on any service of the environment (so that they can consume this new resource).
 
-A lifecycle job can be executed on the following environment events:
-- **Start**: the job is executed when the environment starts. Note that a start event is generated on both the "Deploy" and "Redeploy" actions so you should take care of managing this in your code to avoid executing it twice (on the first deploy and on the re-deploy).
-- **Stop**: the job is executed when the environment stops.
-- **Delete**: the job is executed when the environment is deleted.
+The execution of this job follows this flow:
+
+<p align="center">
+  <img src="/img/configuration/job/lifecycle_job.png" alt="Lifecycle job schema" />
+</p>
+
+1. You define the repository where the code is located and the Dockerfile to be used to containerize the application (deploying from a container registry is supported as well)
+2. You define the triggers and the command to be executed when your code runs. For example: "on start", execute "start.sh"
+3. When an event happens on your environment or job, if the event matches your trigger condition, the job is deployed and scheduled for execution.
+4. The job is executed on your cluster and can interact with some external services. For example, it can use a Terraform manifest to deploy an RDS instance.
+5. If the job creates an output in a specific format (see [Job output section](#job-output)), this can be retrieved and injected as environment variable for any other service within the environment. For example, you can retrieve the RDS DB URI so that the other applications can use it.
+
+
+A lifecycle job can be executed on the following environment/job events:
+- **Deploy**: the job is executed when the environment/job is deployed. Note that this includes both the "Deploy" and "Redeploy" actions so you should take care of managing this in your code to avoid executing it twice (on the first deploy and on the re-deploy).
+- **Stop**: the job is executed when the environment/job stops.
+- **Delete**: the job is executed when the environment/job is deleted.
 
 <Alert type="success">
 
@@ -67,13 +80,6 @@ If you want to deploy a cronjob from a Git Repository you will have to select:
 - Git Repository: Select the git provider hosting your code (it can be hosted on GitHub, GitLab or Bitbucket).  You can add a new git access by clicking on `New git access`.
 - Branch: Select branch that Qovery should use to deploy your code
 - Root Application Path: base folder in which the code resides in your repository
-- Build Mode: only Docker is supported
-
-<Alert type="info">
-
-A Dockerfile is necessary to build and deploy your job
-
-</Alert>
 
 If you want to deploy a job from a Container Registry you will have to select:
 - Registry: select the container registry storing the image of your job.You can add a new container registry by clicking on `New registry`.
@@ -96,18 +102,19 @@ Add your extra annotation/label groups. See the [Add annotation/label group][doc
 
 </li>
 <li>
+Specify the Dockerfile
 
-Specify the configuration of your job:
-- Event: select the environment event which should trigger the execution of the job (Environment start, stop, delete)
-- Image Entrypoint: the entrypoint to be used to launch your job (not mandatory).
-- CMD Arguments: the arguments to be passed to launch your job (not mandatory). We expect the format to be an array. Example ["rails", "-h", "0.0.0.0", "-p", "8080", "string"]
-- Number of restarts: Maximum number of restarts allowed in case of job failure (0 means no failure)
-- Max duration time in seconds: Maximum duration allowed for the job to run before killing it and mark it as failed
-- Port: Port used by Kubernetes to run readiness and liveliness probes checks. The port will not be exposed externally
+See the [Dockerfile section](#dockerfile) for more information.
+
+</li>
+<li>
+Specify the triggers
+
+See the [Triggers section](#triggers) for more information.
 
 <Alert type="info">
 
-Entrypoint and Arguments can be customized for each event. This will allow your job to behave differently depending on the environment status (example: you might want to run a "create" command when the environment starts and a "destroy" command when the environment is deleted)
+Entrypoint and Arguments can be customized for each event. This will allow your job to behave differently depending on the environment status (example: you might want to run a "create" command when the environment is deployed and a "destroy" command when the environment is deleted)
 
 </Alert>
 
@@ -324,25 +331,6 @@ The tag 'latest' is not supported, please use a specific tag.
 </Alert>
 
 
-#### Build Mode
-This option is available only if you have selected "Git Repository" as source. Only Docker is supported
-
-Qovery runs your application within the [Container technology](https://www.docker.com/resources/what-container). To build and run your application, you need to provide a valid [Dockerfile](https://docs.docker.com/engine/reference/builder).
-
-```Dockerfile title="Valid NodeJS Dockerfile"
-FROM node:13-alpine
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
-COPY . .
-RUN npm install
-EXPOSE 3000
-CMD node ./bin/www
-```
-
-After creating a Dockerfile, specify the location of your Dockerfile in `Dockefile path` field.
-
-Configuration from above will make Qovery look for the Dockerfile in `/timescale/Dockerfile` path of your repository (`Root Application Path` + `Dockerfile Path`).
-
 ** Auto Deploy **
 
 See the [Deploying with auto-deploy feature][docs.qovery.deployment.deploying-with-auto-deploy] section.
@@ -351,14 +339,42 @@ See the [Deploying with auto-deploy feature][docs.qovery.deployment.deploying-wi
 
 Add your extra annotation/label groups. See the [Add annotation/label group][docs.using-qovery.configuration.organization.labels-annotations] section for more information.
 
-### JOB Configuration
-You can modify here the configuration of your job:
-- CRON Schedule: specify a valid CRON expression (see [Crontab guru](https://crontab.guru/) for help). After being deployed, the job will be executed following the defined schedule.
-- Image Entrypoint: the entrypoint to be used to launch your job (not mandatory)
-- CMD Arguments: the arguments to be passed to launch your job (not mandatory). We expect the format to be an array. Example ["rails", "-h", "0.0.0.0", "-p", "8080", "string"]
+### Dockerfile
+
+If your job is built via the Qovery CI (Source="Git Repository"), this section allows you to define the Dockerfile location. 
+
+Two options are available, depending on where you want to store the Dockerfile:
+
+#### Git repository
+
+Specify the location of your Dockerfile in `Dockefile path` field.
+
+#### RAW Dockerfile
+
+Qovery can store and inject for you the Dockerfile instead of storing it into your repository.
+
+<Alert type="info">
+
+Qovery does not apply any versioning on the provided Dockerfile, we strongly suggest to store the Dockerfile within your repository.
+
+</Alert>
+
+
+If you don't have one, you can use the `docker init` command to generate one for your application (check the [documentation here](https://docs.docker.com/reference/cli/docker/init/)).
+
+
+### Triggers
+
+This section allows you to define when the lifecycle job should be executed and which command should run. 
+
+In this section you can configure:
+- Event: select the environment/job event which should trigger the execution of the job (deploy, stop, delete)
+- Image Entrypoint: the entrypoint to be used to launch your job (not mandatory).
+- CMD Arguments: the arguments to be passed to launch your application (not mandatory) separated with a space. Example: `rails -h 0.0.0.0 -p 8080 string "complex arg"`.
 - Number of restarts: Maximum number of restarts allowed in case of job failure (0 means no failure)
 - Max duration time in seconds: Maximum duration allowed for the job to run before killing it and mark it as failed
 - Port: Port used by Kubernetes to run readiness and liveliness probes checks. The port will not be exposed externally
+
 
 ### Resources
 

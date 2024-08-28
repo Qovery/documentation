@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-06-17"
+last_modified_on: "2024-07-30"
 title: "Service Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -74,12 +74,6 @@ All services have access to advanced settings, you can find where they are avail
 | Type    | Description                            | Default Value |
 |---------|----------------------------------------|---------------|
 | integer | GB RAM allocated to your build process | `8`           |
-
-#### deployment.custom_domain_check_enabled ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/cronjob.svg) ![](/img/advanced_settings/job.svg) ![](/img/advanced_settings/helm.svg)
-
-| Type    | Description                                                                                                                                                                                                                                                                                       | Use Case                                                                                                                                                                                                                                                                                                                                      | Default Value |
-|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
-| boolean | Qovery allows you to set custom domains for your applications through the addition of a CNAME record to your domain's DNS settings. By default, when an application is deployed, Qovery checks that the CNAME record is set up correctly. This advanced setting allows you to disable this check. | If you are using a Content Delivery Network (CDN), checking the CNAME setup for any custom domains you may have set up is likely to stall the deployment of your application. <br /> <br />  Therefore, if you are using a CDN behind your application, we recommend disabling this feature to save time during your application deployments. | `true`        |
 
 #### deployment.termination_grace_period_seconds ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/cronjob.svg) ![](/img/advanced_settings/job.svg)
 
@@ -258,11 +252,17 @@ The content of the `BASIC_AUTH_CREDENTIALS` environment variable should be: `use
 
 You can pass set credentials by separating them with a comma. For example: `username1:$apr1$jpwW4vG9$fwbzWBgRqARzNX93plDq20,username2:$apr1$jpwW4vG9$fwbzWBgRqARzNX93plDq20`. However, the total length of the environment variable should not exceed 1MB.
 
-#### network.ingress.extra_headers ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/helm.svg)
+#### network.ingress.add_headers ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/helm.svg)
 
 | Type   | Description                                                                                                                                   | Default Value |
 |--------|-----------------------------------------------------------------------------------------------------------------------------------------------|---------------|
-| string | Allows you to specify response headers with values separated by comma (e.g. ` {"X-Frame-Options":"DENY","X-Content-Type-Options":"nosniff"}` | `{}`          |
+| string | Allows you to specify additional headers to the outgoing response. The header values are separated by comma (e.g. ` {"X-Frame-Options":"DENY","X-Content-Type-Options":"nosniff"}` | `{}`          |
+
+#### network.ingress.proxy_set_headers ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/helm.svg)
+
+| Type   | Description                                                                                                                                   | Default Value |
+|--------|-----------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| string | Allows you to specify additional headers to the incoming requests. The header values are separated by comma (e.g. ` {"X-Frame-Options":"DENY","X-Content-Type-Options":"nosniff"}`). | `{}`          |
 
 ## Auto-scaling
 

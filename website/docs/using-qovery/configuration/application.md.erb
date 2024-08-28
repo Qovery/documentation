@@ -61,8 +61,8 @@ If you want to deploy an application from a Container Registry you will have to 
 - Registry: select the container registry storing the image of your application. You can add a new container registry by clicking on `New registry`.
 - Image name: the name of the image to be deployed with this application (example: postgres)
 - Image tag: the tag of the image to be deployed with this application (example: 1.0). 
-- Image Entrypoint: the entrypoint to be used to launch your applicaiton (not mandatory)
-- CMD Arguments: the arguments to be passed to launch your applicaiton (not mandatory). We expect the format to be an array. Example ["rails", "-h", "0.0.0.0", "-p", "8080", "string"]
+- Image Entrypoint: the entrypoint to be used to launch your application (not mandatory)
+- CMD Arguments: the arguments to be passed to launch your application (not mandatory) separated with a space. Example: `rails -h 0.0.0.0 -p 8080 string "complex arg"`.
 
 <Alert type="info">
 
@@ -139,7 +139,16 @@ By default ports are accessible only from inside your environment. You can also 
 To know more about how to configure your Liveness and Readiness probes, have a look at [the health-checks section][docs.using-qovery.configuration.application-health-checks]
 
 </li>
+<li>
 
+Define any input variable required by your application to run. Any declared variable will be injected as environment variables based on the selected scope (project, environment, service)
+Any additional environment variable can be added later from the environment variable section
+
+<p align="center">
+  <img src="/img/configuration/job/variables.png" alt="Input Variables" />
+</p>
+
+</li>
 <li>
 
 You will find a recap of your application setup and you can now decide to:
@@ -245,21 +254,9 @@ You don't find a cool language? [Suggest us to support it][urls.qovery_roadmap]
 
 #### Option 2: Dockerfile
 
-Qovery runs your application within the [Container technology](https://www.docker.com/resources/what-container). To build and run your application, you need to provide a valid [Dockerfile](https://docs.docker.com/engine/reference/builder).
+If your job is built via the Qovery CI (Source="Git Repository"), this section allows you to define the Dockerfile location. 
 
-```Dockerfile title="Valid NodeJS Dockerfile"
-FROM node:13-alpine
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
-COPY . .
-RUN npm install
-EXPOSE 3000
-CMD node ./bin/www
-```
-
-After creating a Dockerfile, specify the location of your Dockerfile in `Dockefile path` field.
-
-Configuration from above will make Qovery look for the Dockerfile in `/timescale/Dockerfile` path of your repository (`Root Application Path` + `Dockerfile Path`).
+If you don't have one, you can use the `docker init` command to generate one for your application (check the [documentation here](https://docs.docker.com/reference/cli/docker/init/)). After creating a Dockerfile, specify the location of your Dockerfile in `Dockefile path` field.
 
 #### Auto Deploy
 
@@ -363,7 +360,7 @@ Within this section you can define the port exposed by your application to the o
 You can edit the existing ports or declare new ones by specifying:
 - Application port: this is the port exposed internally by your application for the other services. 
 - Protocol: you can select the protocol used by your application : HTTP (for both standard HTTP or websocket communications), gRPC, TCP, UDP.
-- Publicly exposed: it allows you to expose over the public network your service. A public domain will be assigned to your application during the deployment (see [Connectin from the internet section](#connecting-from-the-internet))
+- Publicly exposed: it allows you to expose over the public network your service. A public domain will be assigned to your application during the deployment (see [Connecting from the internet section](#connecting-from-the-internet))
 - If Publicly Exposed is selected:
   - External port: it is the port that can be used to access this service over the internet (when exposed publicly). Note that for HTTP and gRPC the port is set by default to 443.
   - Port Name: it is the name assigned to the port. When multiple ports are exposed publicly, its value is used to route the traffic to the right port based on the called subdomain (which will contain the port name value). Since each port is exposed on the port 443, having a different subdomain is the only way to have multiple ports exposed over the internet. If not set, the default value is `p<portNumber>` (see [Qovery Provided Domain section](#qovery-provided-domains) for more information)
@@ -389,13 +386,7 @@ To know more about how to configure your Liveness and Readiness probes, have a l
 
 This section allows to specify which changes on your repository should trigger an auto-deploy (if enabled). To know more about how to configure your Deployment Restrictions, have a look at the [deployment restrictions section][docs.using-qovery.deployment.deploying-with-auto-deploy#filtering-commits-triggering-the-auto-deploy].
 
-### Domains
-
 <%= configure_domains("application") %>
-
-### Advanced Settings
-
-You can further customize the service behaviour via the service advanced settings. Check [this documentation][docs.using-qovery.configuration.advanced-settings] to know more.
 
 ## Connecting to a database
 To know how to access your database from your application, [have a look at the database section][docs.using-qovery.configuration.environment-variable#connecting-to-a-database].
@@ -423,6 +414,10 @@ To connect to your application via SSH, please use the via the [Qovery SSH comma
 ## Clone
 
 <%= clone_service() %>
+
+## Advanced Settings
+
+You can further customize the service behaviour via the service advanced settings. Check [this documentation][docs.using-qovery.configuration.advanced-settings] to know more.
 
 ## Delete an Application
 

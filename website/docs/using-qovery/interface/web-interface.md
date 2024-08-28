@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-03-01"
+last_modified_on: "2024-08-12"
 title: Web interface
 description: How to use the Qovery web interface
 ---
@@ -8,7 +8,7 @@ import Alert from '@site/src/components/Alert';
 
 <Alert type="success">
 
-Use Infrastructure as Code (IaC) with [Terraform][docs.using-qovery.integration.terraform] and our [REST API][docs.using-qovery.interface.rest-api] to manage Qovery and deploy your apps.
+Use Infrastructure as Code (IaC) with our [Terraform Provider][docs.using-qovery.integration.terraform-provider] and our [REST API][docs.using-qovery.interface.rest-api] to manage Qovery and deploy your apps.
 
 </Alert>
 
@@ -44,7 +44,7 @@ Now that you have signed up on the web interface, check out [how to deploy your 
 
 
 [docs.using-qovery.configuration.organization.git-repository-access]: /docs/using-qovery/configuration/organization/git-repository-access/
-[docs.using-qovery.integration.terraform]: /docs/using-qovery/integration/terraform/
+[docs.using-qovery.integration.terraform-provider]: /docs/using-qovery/integration/terraform-provider/
 [docs.using-qovery.interface.rest-api]: /docs/using-qovery/interface/rest-api/
 [guides.deploy-your-first-application]: /guides/getting-started/deploy-your-first-application/
 [urls.start_qovery]: https://start.qovery.com

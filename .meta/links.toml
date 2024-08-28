@@ -384,6 +384,7 @@ qovery_ambassador_application_form = "https://qovery.typeform.com/to/WrWxWR9t"
 qovery_github_documentation = "https://github.com/Qovery/documentation"
 qovery_blog_tf_golden_hammer = "https://hub.qovery.com/guides/engineering/terraform-not-the-golden-hammer/"
 qovery_aws_iam_roles = "/guides/tutorial/use-aws-iam-roles-with-qovery"
+qovery_terraform_provider = "https://registry.terraform.io/providers/Qovery/qovery/latest/docs"
 
 [links.tutorials]
 

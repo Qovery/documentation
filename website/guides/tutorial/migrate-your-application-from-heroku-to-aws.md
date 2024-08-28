@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-05-16"
+last_modified_on: "2024-08-12"
 $schema: "/.meta/.schemas/guides.json"
 title: Migrate your application from Heroku to AWS
 description: Guide on how to migrate all your applications from Heroku to AWS with your databases
@@ -638,7 +638,7 @@ You can also check out our [CLI][docs.using-qovery.interface.cli#shell] and the 
 
 ### Can I use Terraform and Infrastructure as Code?
 
-Absolutely, we have a [Qovery Terraform provider][docs.using-qovery.integration.terraform] available.
+Absolutely, we have a [Qovery Terraform provider][docs.using-qovery.integration.terraform-provider] available.
 
 ### How can I connect my app to MongoDB Atlas?
 
@@ -669,7 +669,7 @@ Congrats! You have migrated from Heroku to AWS. Feel free to check out our [foru
 [docs.using-qovery.configuration.project]: /docs/using-qovery/configuration/project/
 [docs.using-qovery.deployment.deployment-actions#deploy-other-version]: /docs/using-qovery/deployment/deployment-actions/#deploy-other-version
 [docs.using-qovery.integration.secret-manager.doppler]: /docs/using-qovery/integration/secret-manager/doppler/
-[docs.using-qovery.integration.terraform]: /docs/using-qovery/integration/terraform/
+[docs.using-qovery.integration.terraform-provider]: /docs/using-qovery/integration/terraform-provider/
 [docs.using-qovery.interface.cli#shell]: /docs/using-qovery/interface/cli/#shell
 [docs.using-qovery.interface.cli]: /docs/using-qovery/interface/cli/
 [guides.advanced.monorepository]: /guides/advanced/monorepository/

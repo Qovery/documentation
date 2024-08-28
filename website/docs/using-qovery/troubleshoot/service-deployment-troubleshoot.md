@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-08-27"
+last_modified_on: "2024-08-28"
 title: Service Deployment Troubleshoot
 description: "How to troubleshoot your service deployments with Qovery"
 hide_pagination: true
@@ -141,7 +141,7 @@ When a custom domain is added to an application, it must be configured on your s
 
 Qovery will verify whether your custom domain is properly configured. If you're behind a CDN, we will only check if your custom domain resolves to an IP address.
 
-But you can check that your custom domain is well configured using the following command: `dig CNAME ${YOUR_CUSTOM_DOMAIN} +short`. On the domain above, we can check the configuration is correct on Google DNS servers:
+If you want to verify by yourself that your custom domain you can use the following command: `dig CNAME ${YOUR_CUSTOM_DOMAIN} +short`. On the domain above, we can check the configuration is correct on Google DNS servers:
 
 ```bash
 $ dig CNAME new.console.qovery.com +short @8.8.8.8

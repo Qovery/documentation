@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-08-12"
+last_modified_on: "2024-08-28"
 title: Service Deployment Troubleshoot
 description: "How to troubleshoot your service deployments with Qovery"
 hide_pagination: true
@@ -139,7 +139,9 @@ When a custom domain is added to an application, it must be configured on your s
   <img src="/img/custom-domain-configuration.png" alt="Custom Domain Configuration" />
 </p>
 
-You can check that your custom domain is well configured using the following command: `dig CNAME ${YOUR_CUSTOM_DOMAIN} +short`. On the domain above, we can check the configuration is correct on Google DNS servers:
+Qovery will verify whether your custom domain is properly configured. If you're behind a CDN, we will only check if your custom domain resolves to an IP address.
+
+If you want to verify by yourself that your custom domain is well configured you can use the following command: `dig CNAME ${YOUR_CUSTOM_DOMAIN} +short`. On the domain above, we can check the configuration is correct on Google DNS servers:
 
 ```bash
 $ dig CNAME new.console.qovery.com +short @8.8.8.8
@@ -159,7 +161,7 @@ ac8ad80d15e534c549ee10c87aaf82b4-bba68d8f58c6755d.elb.us-east-2.amazonaws.com.
 We can see the destination contains other elements, indicating that the `CNAME` is pointing to an endpoint and correctly configured.
 
 The SSL / TLS Certificate is generated for the whole group of custom domains you define:
-* if one custom domain is misconfigured: the certificate can't be generated
+* if one custom domain is misconfigured: the certificate can't be generated. A general error is displayed in your service overview.
 * if the certificate has been generated once, but later one custom domain configuration is changed and misconfigured: the certificate can't be generated again
 
 If you experience some invalid certificate, here is how you can fix the issue:
@@ -169,13 +171,18 @@ If you experience some invalid certificate, here is how you can fix the issue:
 <ol>
 <li>
 
-Identify the misconfigured custom domain(s) in your application settings.
+Identify the misconfigured custom domain(s) in your application domain settings.
+We check each of your domains. If one or more have errors, a red cross will appear with an error message on hover.
+
+<p align="center">
+  <img src="/img/configuration/application/domain_check_error.png" alt="Check Domains" />
+</p>
 
 </li>
 
 <li>
 
-Fix or delete them.
+Fix or delete them. After correcting your configuration, you can perform another check by clicking on the red cross.
 
 </li>
 

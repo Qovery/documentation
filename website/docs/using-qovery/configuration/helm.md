@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-07-30"
+last_modified_on: "2024-08-27"
 title: "Helm"
 description: "Learn how to configure your Helm on Qovery"
 ---
@@ -314,6 +314,18 @@ In both cases, you can assign the new custom domain by pressing the `Add Domain`
 This configuration will be **automatically removed** on every cloned environment or preview environment in order to avoid domain collision.
 
 </Alert>
+
+For each custom domain, a green checkmark will appear if the domain is correctly configured. You can perform another check by clicking on the checkmark. If you're behind a CDN, we will only check if your custom domain resolves to an IP address.
+
+<p align="center">
+  <img src="/img/configuration/application/domain_check.png" alt="Check Domains" />
+</p>
+
+If there's an issue with a domain, a global error message will be displayed, and you can view the error details by hovering over the red cross. After correcting your configuration, you can perform another check by clicking on the red cross.
+
+<p align="center">
+  <img src="/img/configuration/application/domain_check_error.png" alt="Check Domains" />
+</p>
 
 #### Configuring your own domain
 

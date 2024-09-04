@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-08-12"
+last_modified_on: "2024-09-04"
 title: CLI
 description: How to use the Qovery CLI (Command Line Interface)
 ---
@@ -623,6 +623,44 @@ You can list the organization's projects by using the following command:
 
 ```bash
 qovery project list
+```
+
+## Access your Qovery-managed cluster
+
+To access your Qovery managed cluster, follow these steps:
+
+1. **Export your kubeconfig file** by running the command below, replacing `<your-cluster_id>` with your actual cluster ID:
+
+```bash
+qovery cluster kubeconfig --cluster-id <your-cluster_id>
+```
+
+2. **Set the KUBECONFIG environment variable** to the path of the kubeconfig file obtained from the previous command:
+
+```bash
+export KUBECONFIG=<path_to_kubeconfig_file>
+```
+
+3. You can now use tools like `k9s` or `kubectl` to access and manage your cluster:
+
+**Using k9s**
+
+Launch the k9s terminal UI to interact with your Kubernetes cluster:
+
+```bash
+k9s
+```
+
+**Using kubectl**
+
+Here are a few examples of common kubectl commands:
+
+```bash
+kubectl get pods #List all pods in the default namespace
+```
+
+```bash
+kubectl describe pod <pod_name> #Get detailed information about a specific pod
 ```
 
 ## Managing the Deployment Pipeline

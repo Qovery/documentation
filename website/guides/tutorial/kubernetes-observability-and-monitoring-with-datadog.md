@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-04-10"
+last_modified_on: "2024-09-09"
 $schema: "/.meta/.schemas/guides.json"
 title: Kubernetes observability and monitoring with Datadog
 description: How to integrate Datadog with Kubernetes on Qovery.
@@ -9,6 +9,8 @@ hide_pagination: true
 ---
 
 import Steps from '@site/src/components/Steps';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 import Alert from '@site/src/components/Alert';
 import Assumptions from '@site/src/components/Assumptions';
@@ -73,6 +75,17 @@ Create the Datadog helm service in the Qovery environment of your choice (prefer
   * File source: `Raw YAML`
   * Raw YAML:
 
+<Tabs
+  centered={true}
+  className={"rounded"}
+  defaultValue={"default"}
+  placeholder="Select your cluster type"
+  select={false}
+  size={null}
+  values={[{"group":"Cluster","label":"Default","value":"default"},{"group":"Cluster","label":"AWS with Karpenter","value":"karpenter"}]}>
+
+<TabItem value="default">
+
 ```yaml
 # The following YAML contains the minimum configuration required to deploy the Datadog Agent
 # on your cluster. Update it accordingly to your needs
@@ -84,6 +97,37 @@ datadog:
   # Update the cluster name with the name of your choice
   clusterName: qoverycluster
 ```
+
+</TabItem>
+
+<TabItem value="karpenter">
+
+```yaml
+# The following YAML contains the minimum configuration required to deploy the Datadog Agent
+# on your cluster. Update it accordingly to your needs
+datadog:
+  # here we use a Qovery secret to retrieve the Datadog API Key (See next step)
+  apiKey: qovery.env.DD_API_KEY
+  # Update the site depending on where you want to store your data in Datadog
+  site: datadoghq.eu
+  # Update the cluster name with the name of your choice
+  clusterName: qoverycluster
+agents:
+  tolerations:
+    - operator: Exists
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+            - key: eks.amazonaws.com/compute-type
+              operator: NotIn
+              values:
+                - fargate
+```
+
+</TabItem>
+</Tabs>
 
 There are many other values you can set and modify the Datadog agent behaviour. For advanced usage, check: https://github.com/Datadog/helm-charts/blob/main/charts/datadog/values.yaml
 

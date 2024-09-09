@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-09-06"
+last_modified_on: "2024-09-09"
 $schema: "/.meta/.schemas/guides.json"
 title: Costs Control
 description: Learn how to keep control of your costs with Qovery
@@ -29,7 +29,7 @@ You can find more information on Deployment rules in [our documentation](https:/
 
 ### Karpenter
 
-Here at Qovery we have worked to integrate Karpenter with our product. Karpenter is an orchestrator for Kubernetes. Only available on AWS. You can find more information on Karpenter and Qovery integration on [our blog](https://www.qovery.com/blog/installing-karpenter-lessons-learned-from-our-experience/).
+To optimize efficiency and reduce costs for your nodes on AWS EKS clusters, you can enable the Karpenter autoscaler. For a deeper dive into Karpenter and its integration with Qovery, check out [our blog](https://www.qovery.com/blog/installing-karpenter-lessons-learned-from-our-experience/). Detailed instructions on enabling Karpenter are available in [our documentation](https://hub.qovery.com/docs/using-qovery/configuration/clusters/#managing-your-clusters-with-qovery).
 
 ### Kubecost
 

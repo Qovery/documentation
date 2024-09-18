@@ -298,6 +298,15 @@ module.exports = {
           "title": "Migration"
         },
         {
+          "author_github": "https://github.com/acarranoqovery",
+          "description": null,
+          "id": "/advanced/upgrading-rds-instance",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/upgrading-rds-instance.md",
+          "series_position": null,
+          "title": "Minimize downtime while upgrading RDS instances"
+        },
+        {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
           "id": "/advanced/monitoring",

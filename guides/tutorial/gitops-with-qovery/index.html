@@ -24,21 +24,21 @@
 <link rel="stylesheet" href="/styles.90c21fa3.css">
 
 
-<link rel="preload" href="/styles.8365e5bb.js" as="script">
+<link rel="preload" href="/styles.8f245596.js" as="script">
 
-<link rel="preload" href="/runtime~main.100d7e10.js" as="script">
+<link rel="preload" href="/runtime~main.f3be029e.js" as="script">
 
-<link rel="preload" href="/main.97ce0bd2.js" as="script">
+<link rel="preload" href="/main.5b961d30.js" as="script">
 
-<link rel="preload" href="/1.4b6e5575.js" as="script">
+<link rel="preload" href="/1.7ec1965e.js" as="script">
 
-<link rel="preload" href="/2.c7554263.js" as="script">
+<link rel="preload" href="/2.68b55ed0.js" as="script">
 
-<link rel="preload" href="/3.124cc24d.js" as="script">
+<link rel="preload" href="/3.54f3f49b.js" as="script">
 
-<link rel="preload" href="/1c13b173.a5e1a5e2.js" as="script">
+<link rel="preload" href="/1c13b173.8ca3782b.js" as="script">
 
-<link rel="preload" href="/dfb1c803.b5fb01f8.js" as="script">
+<link rel="preload" href="/dfb1c803.6b587511.js" as="script">
 
 </head>
 <body>
@@ -92,21 +92,21 @@ You can check the GitHub Actions logs to see the Terraform plan and apply output
 You can check the Qovery <a href="/docs/using-qovery/audit-logs/">Audit Logs</a> to see the changes made by the Terraform configuration.</p><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="how-to-manage-the-terraform-state"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#how-to-manage-the-terraform-state" title="Direct link to heading">#</a>How to manage the Terraform state?</h3><p>Like in the example above, we recommend using a remote Terraform backend to store the state. This way, you can share the state between your team members and have a history of the changes. You can use the <a href="https://www.hashicorp.com/cloud">Hashicorp Cloud Platform</a> or any other Terraform backend you want.</p><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="how-to-connect-to-get-terraform-cloud-state"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#how-to-connect-to-get-terraform-cloud-state" title="Direct link to heading">#</a>How to connect to get Terraform Cloud state?</h3><p>Create a <code>backend.tf</code> file in your Terraform configuration with the following content:</p><div class="mdxCodeBlock_iHAB"><div style="color:#393A34;background-color:#f6f8fa" class="codeBlockTitle_2TQJ">backend.tf</div><div class="codeBlockContent_3RXF"><button type="button" aria-label="Copy code to clipboard" class="copyButton_1PCb copyButtonWithTitle_qt-P">Copy</button><pre class="prism-code language-hcl codeBlock_1wn8 codeBlockWithTitle_1f_H"><div class="codeBlockLines_3HrO" style="color:#393A34;background-color:#f6f8fa"><div class="token-line" style="color:#393A34"><span class="token plain">terraform {</span></div><div class="token-line" style="color:#393A34"><span class="token plain">   backend &quot;remote&quot; {</span></div><div class="token-line" style="color:#393A34"><span class="token plain">      hostname     = &quot;app.terraform.io&quot;</span></div><div class="token-line" style="color:#393A34"><span class="token plain">      organization = &quot;Qovery&quot;</span></div><div class="token-line" style="color:#393A34"><span class="token plain">      workspaces {</span></div><div class="token-line" style="color:#393A34"><span class="token plain">         name = &quot;qovery-gitops&quot;</span></div><div class="token-line" style="color:#393A34"><span class="token plain">      }</span></div><div class="token-line" style="color:#393A34"><span class="token plain">   }</span></div><div class="token-line" style="color:#393A34"><span class="token plain">}</span></div></div></pre></div></div><p>Refer to <a href="https://support.hashicorp.com/hc/en-us/articles/360001151948-Migrate-Workspace-State-Using-Terraform-State-Push-Pull">this documentation</a></p><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="how-to-integrate-tests"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#how-to-integrate-tests" title="Direct link to heading">#</a>How to integrate tests?</h3><p>You can use the Qovery API to get the resources URLs and integrate them in your CI/CD. For example, you can get the URL of the application and use it in your tests. Look at this guide on <a href="/guides/tutorial/build-e2e-testing-ephemeral-environments/">how to run E2E tests with Qovery and GitHub Actions</a>.</p><h2><a aria-hidden="true" tabindex="-1" class="anchor" id="conclusion"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#conclusion" title="Direct link to heading">#</a>Conclusion</h2><p>In this tutorial, you learned how to do GitOps with Qovery and the Qovery Terraform provider. You defined all the Qovery resources in a Terraform configuration, tested it locally, pushed it to a GitHub repository, used GitHub Actions to review and apply the Terraform configuration, and checked the Qovery console to see the resources created.</p><p>If you have any questions or need help, feel free to ask in the <a href="https://discuss.qovery.com/">Qovery Community Forum</a>.</p></div></article></div></main></div><footer class="footer"><div class="container"><div class="row footer__links"><div class="col col--5 footer__col"><div class="margin-bottom--md"></div><div class="margin-bottom--md"><p>Qovery is a DevOps Automation Platform Helping 200+ Organizations To Ship Faster and Eliminate DevOps Hiring Needs.</p></div><div><a href="https://github.com/qovery" target="_blank"><i class="feather icon-github" alt="Qovery&#x27;s Github Repo"></i></a>    <a href="https://www.linkedin.com/company/qovery/" target="_blank"><i class="feather icon-rss" alt="Qovery&#x27;s Linkedin"></i></a>    <a href="https://twitter.com/qovery_" target="_blank"><i class="feather icon-twitter" alt="Qovery&#x27;s Twitter"></i></a></div></div><div class="col footer__col"><h4 class="footer__title">Resources</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" href="/docs">Documentation</a></li><li class="footer__item"><a aria-current="page" class="footer__link-item active" href="/guides">Guides</a></li><li class="footer__item"><a aria-current="page" class="footer__link-item active" href="/guides/tutorial">Tutorials</a></li><li class="footer__item"><a class="footer__link-item" href="/guides/engineering">Engineering</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/pricing" href="https://www.qovery.com/pricing">Pricing</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/enterprise" href="https://www.qovery.com/enterprise">Enterprise</a></li><li class="footer__item"><a class="footer__link-item" to="https://api-doc.qovery.com" href="https://api-doc.qovery.com">API</a></li><li class="footer__item"><a class="footer__link-item" to="https://github.com/Qovery" href="https://github.com/Qovery">Github</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Community</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://community.qovery.com" href="https://community.qovery.com">Forum</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/community-call" href="https://www.qovery.com/community-call">Community call</a></li><li class="footer__item"><a class="footer__link-item" to="https://shop.qovery.com" href="https://shop.qovery.com">Goodies</a></li><li class="footer__item"><a class="footer__link-item" to="https://roadmap.qovery.com" href="https://roadmap.qovery.com">Roadmap</a></li><li class="footer__item"><a class="footer__link-item" to="https://github.com/Qovery/replibyte" href="https://github.com/Qovery/replibyte">Replibyte</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Company</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/blog" href="https://www.qovery.com/blog">Blog</a></li><li class="footer__item"><a class="footer__link-item" to="https://jobs.qovery.com" href="https://jobs.qovery.com">Jobs</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/team" href="https://www.qovery.com/team">Team</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/investors" href="https://www.qovery.com/investors">Investors</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/contact" href="https://www.qovery.com/contact">Contact</a></li></ul></div></div><div class="text--center"><small>© 2024 DESIGNED BY QOVERY | PROUD SILVER MEMBER OF CNCF AND LINUX FOUNDATION | QOVERY BY BIRDSIGHT - ALL RIGHTS RESERVED</small><br></div></div></footer>
 </div>
 
-<script src="/styles.8365e5bb.js"></script>
+<script src="/styles.8f245596.js"></script>
 
-<script src="/runtime~main.100d7e10.js"></script>
+<script src="/runtime~main.f3be029e.js"></script>
 
-<script src="/main.97ce0bd2.js"></script>
+<script src="/main.5b961d30.js"></script>
 
-<script src="/1.4b6e5575.js"></script>
+<script src="/1.7ec1965e.js"></script>
 
-<script src="/2.c7554263.js"></script>
+<script src="/2.68b55ed0.js"></script>
 
-<script src="/3.124cc24d.js"></script>
+<script src="/3.54f3f49b.js"></script>
 
-<script src="/1c13b173.a5e1a5e2.js"></script>
+<script src="/1c13b173.8ca3782b.js"></script>
 
-<script src="/dfb1c803.b5fb01f8.js"></script>
+<script src="/dfb1c803.6b587511.js"></script>
 
 
 </body>

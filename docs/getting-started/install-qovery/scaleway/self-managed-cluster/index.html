@@ -24,29 +24,29 @@
 <link rel="stylesheet" href="/styles.90c21fa3.css">
 
 
-<link rel="preload" href="/styles.8365e5bb.js" as="script">
+<link rel="preload" href="/styles.8f245596.js" as="script">
 
-<link rel="preload" href="/runtime~main.100d7e10.js" as="script">
+<link rel="preload" href="/runtime~main.f3be029e.js" as="script">
 
-<link rel="preload" href="/main.97ce0bd2.js" as="script">
+<link rel="preload" href="/main.5b961d30.js" as="script">
 
-<link rel="preload" href="/2.c7554263.js" as="script">
+<link rel="preload" href="/2.68b55ed0.js" as="script">
 
-<link rel="preload" href="/3.124cc24d.js" as="script">
+<link rel="preload" href="/3.54f3f49b.js" as="script">
 
-<link rel="preload" href="/4.a684db7c.js" as="script">
+<link rel="preload" href="/4.2124a62a.js" as="script">
 
-<link rel="preload" href="/1be78505.7788d2d1.js" as="script">
+<link rel="preload" href="/1be78505.eb3fceb7.js" as="script">
 
-<link rel="preload" href="/20ac7829.26892724.js" as="script">
+<link rel="preload" href="/20ac7829.53bdafe0.js" as="script">
 
-<link rel="preload" href="/301.da8e2157.js" as="script">
+<link rel="preload" href="/303.dca46d2d.js" as="script">
 
-<link rel="preload" href="/17896441.78263aaf.js" as="script">
+<link rel="preload" href="/17896441.a1fb92df.js" as="script">
 
-<link rel="preload" href="/1.4b6e5575.js" as="script">
+<link rel="preload" href="/1.7ec1965e.js" as="script">
 
-<link rel="preload" href="/952063ba.1a87a7c4.js" as="script">
+<link rel="preload" href="/952063ba.8e6997a8.js" as="script">
 
 </head>
 <body>
@@ -56,29 +56,29 @@
 Read <a href="https://www.qovery.com/blog/kubernetes-managed-by-qovery-vs-self-managed-byok">this article</a> to better understand the difference with the Managed Kubernetes by Qovery. In a nutshell, Qovery BYOK is for Kubernetes experts who want to manage their own Kubernetes cluster. In this version, Qovery does not manage the Kubernetes cluster for you.</p><div class="alert alert--warning alert--icon" role="alert"><i class="feather icon-alert-triangle"></i><p>Qovery automatically updates <strong>ONLY</strong> the Qovery applications (agent, shell-agent etc..) via the Qovery Helm chart. With the self-managed offer it will be up to you to manage any dependency components (ingress, dns, logging...), making sure they run with the right version over time.</p><p>The dependencies provided with the Qovery Helm chart are here to help you with the bootstrap, and are not maintained by Qovery. If you want to simplify the maintenance of your cluster, please look at <a href="https://www.qovery.com/pricing/">Qovery managed Kubernetes offer</a>.</p></div><h2><a aria-hidden="true" tabindex="-1" class="anchor" id="prerequisites"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#prerequisites" title="Direct link to heading">#</a>Prerequisites</h2><div><ul><li>You have a Scaleway Kapsule Kubernetes cluster up and running.</li><li>You have a Scaleway Kapsule Kubernetes cluster with at least 4 CPUs and 8GB of RAM.</li><li>You have <code>kubectl</code> installed and configured to access your Scaleway Kapsule Kubernetes cluster.</li><li>You have <code>helm</code> installed.</li><li>You have a Qovery account. If you don&#x27;t have one, please sign up at <a href="https://start.qovery.com">https://start.qovery.com</a></li></ul></div><h2><a aria-hidden="true" tabindex="-1" class="anchor" id="install-qovery-on-your-scaleway-kapsule-cluster"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#install-qovery-on-your-scaleway-kapsule-cluster" title="Direct link to heading">#</a>Install Qovery on your Scaleway Kapsule cluster</h2><div class="alert alert--info alert--icon" role="alert"><i class="feather icon-info"></i><p>Follow <a href="/docs/getting-started/install-qovery/local/">this guide</a> to try Qovery on your local machine.</p></div><div class="margin-bottom--md"><div class="tabs--centered"><ul role="tablist" aria-orientation="horizontal" class="tabs rounded"><li role="tab" tabindex="0" aria-selected="true" class="tab-item tab-item--active">Automatic</li><li role="tab" tabindex="0" aria-selected="false" class="tab-item">Manual</li></ul></div></div><div class="steps steps--h3"><ol><li><p>Install Qovery CLI by running the following command:</p><div class="margin-bottom--md"><div class="tabs--centered"><ul role="tablist" aria-orientation="horizontal" class="tabs rounded"><li role="tab" tabindex="0" aria-selected="true" class="tab-item tab-item--active">Linux</li><li role="tab" tabindex="0" aria-selected="false" class="tab-item">MacOS</li><li role="tab" tabindex="0" aria-selected="false" class="tab-item">Windows</li><li role="tab" tabindex="0" aria-selected="false" class="tab-item">Docker</li></ul></div></div><div class="margin-bottom--md"><div class="tabs--centered"><ul role="tablist" aria-orientation="horizontal" class="tabs rounded"><li role="tab" tabindex="0" aria-selected="true" class="tab-item tab-item--active">*nix</li><li role="tab" tabindex="0" aria-selected="false" class="tab-item">Arch Linux</li><li role="tab" tabindex="0" aria-selected="false" class="tab-item">Manual</li></ul></div></div><p>To download and install Qovery CLI on any Linux distribution:</p><div class="mdxCodeBlock_iHAB"><div class="codeBlockContent_3RXF"><button type="button" aria-label="Copy code to clipboard" class="copyButton_1PCb">Copy</button><pre class="prism-code language-bash codeBlock_1wn8"><div class="codeBlockLines_3HrO" style="color:#393A34;background-color:#f6f8fa"><div class="token-line" style="color:#393A34"><span class="token plain">$ </span><span class="token function" style="color:#d73a49">curl</span><span class="token plain"> -s https://get.qovery.com </span><span class="token operator" style="color:#393A34">|</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">bash</span></div></div></pre></div></div></li><li><p>Authenticate with Qovery by running the following command:</p><div class="mdxCodeBlock_iHAB"><div class="codeBlockContent_3RXF"><button type="button" aria-label="Copy code to clipboard" class="copyButton_1PCb">Copy</button><pre class="prism-code language-bash codeBlock_1wn8"><div class="codeBlockLines_3HrO" style="color:#393A34;background-color:#f6f8fa"><div class="token-line" style="color:#393A34"><span class="token comment" style="color:#999988;font-style:italic"># Sign up and sign in command</span><span class="token plain"></span></div><div class="token-line" style="color:#393A34"><span class="token plain">$ qovery auth</span></div></div></pre></div></div><div class="alert alert--info alert--icon" role="alert"><i class="feather icon-info"></i><p>If you are using a headless (without GUI) environment, you can use the following command to sign up and sign in:</p><div class="mdxCodeBlock_iHAB"><div class="codeBlockContent_3RXF"><button type="button" aria-label="Copy code to clipboard" class="copyButton_1PCb">Copy</button><pre class="prism-code language-bash codeBlock_1wn8"><div class="codeBlockLines_3HrO" style="color:#393A34;background-color:#f6f8fa"><div class="token-line" style="color:#393A34"><span class="token comment" style="color:#999988;font-style:italic"># Sign up and sign in command</span><span class="token plain"></span></div><div class="token-line" style="color:#393A34"><span class="token plain">$ qovery auth --headless</span></div></div></pre></div></div></div><p>Your browser window with Qovery sign-up page will open. Follow the instructions to sign up and sign in.</p></li><li><p>Install Qovery on your Scaleway Kapsule cluster:</p><div class="mdxCodeBlock_iHAB"><div class="codeBlockContent_3RXF"><button type="button" aria-label="Copy code to clipboard" class="copyButton_1PCb">Copy</button><pre class="prism-code language-bash codeBlock_1wn8"><div class="codeBlockLines_3HrO" style="color:#393A34;background-color:#f6f8fa"><div class="token-line" style="color:#393A34"><span class="token plain">qovery cluster </span><span class="token function" style="color:#d73a49">install</span></div></div></pre></div></div><p>Respond to the prompts to install Qovery on your Scaleway Kapsule Kubernetes cluster.</p></li></ol><div class="steps--feedback">How was it? Did this tutorial work?  <span class="button button--sm button--primary">Yes</span>  <a href="https://github.com/qovery/documentation/issues/new?body=The%20tutorial%20on%3A%0A%0Anull%0A%0AHere%27s%20what%20went%20wrong%3A%0A%0A%3C%21--%20Insert%20command%20output%20and%20details.%20Thank%20you%20for%20reporting%21%20%3A%29%20--%3E&amp;title=Tutorial%20on%20null%20failed" target="_blank" class="button button--sm button--primary">No</a></div></div><p>That&#x27;s it, you can now use Qovery on your Scaleway Kapsule cluster.</p><p>Connect to the <a href="https://console.qovery.com">Qovery console</a> to validate that Qovery is properly installed and start deploying your applications.</p><h2><a aria-hidden="true" tabindex="-1" class="anchor" id="whats-next"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#whats-next" title="Direct link to heading">#</a>What&#x27;s Next?</h2><p>Now that you have Qovery installed on your Kubernetes cluster, you can check that Qovery is properly installed by following the <a href="/docs/getting-started/install-qovery/kubernetes/validate-installation/">Validate Installation</a> guide.</p></div></article></div><div class="paginator_3VDt"><nav class="pagination-nav"><div class="pagination-nav__item"><a class="pagination-nav__link" href="/docs/getting-started/install-qovery/scaleway/cluster-managed-by-qovery/faq"><h5 class="pagination-nav__link--sublabel">Previous</h5><h4 class="pagination-nav__link--label">« FAQ</h4></a></div><div class="pagination-nav__item pagination-nav__item--next"><a class="pagination-nav__link" href="/docs/getting-started/install-qovery/azure"><h5 class="pagination-nav__link--sublabel">Next</h5><h4 class="pagination-nav__link--label">Azure »</h4></a></div></nav></div></div><div class="rightCol_38kP"><div class="table-of-contents tableOfContents_tVyB"><div class="section"><div class="title">Contents</div><ul class="contents"><li><a href="#prerequisites" class="contents__link">Prerequisites</a></li><li><a href="#install-qovery-on-your-scaleway-kapsule-cluster" class="contents__link">Install Qovery on your Scaleway Kapsule cluster</a></li><li><a href="#whats-next" class="contents__link">What&#39;s Next?</a></li></ul></div><div class="section"><div class="title">Resources</div><ul class="contents"></ul></div></div></div></div></div></main></div></div><footer class="footer"><div class="container"><div class="row footer__links"><div class="col col--5 footer__col"><div class="margin-bottom--md"></div><div class="margin-bottom--md"><p>Qovery is a DevOps Automation Platform Helping 200+ Organizations To Ship Faster and Eliminate DevOps Hiring Needs.</p></div><div><a href="https://github.com/qovery" target="_blank"><i class="feather icon-github" alt="Qovery&#x27;s Github Repo"></i></a>    <a href="https://www.linkedin.com/company/qovery/" target="_blank"><i class="feather icon-rss" alt="Qovery&#x27;s Linkedin"></i></a>    <a href="https://twitter.com/qovery_" target="_blank"><i class="feather icon-twitter" alt="Qovery&#x27;s Twitter"></i></a></div></div><div class="col footer__col"><h4 class="footer__title">Resources</h4><ul class="footer__items"><li class="footer__item"><a aria-current="page" class="footer__link-item active" href="/docs">Documentation</a></li><li class="footer__item"><a class="footer__link-item" href="/guides">Guides</a></li><li class="footer__item"><a class="footer__link-item" href="/guides/tutorial">Tutorials</a></li><li class="footer__item"><a class="footer__link-item" href="/guides/engineering">Engineering</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/pricing" href="https://www.qovery.com/pricing">Pricing</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/enterprise" href="https://www.qovery.com/enterprise">Enterprise</a></li><li class="footer__item"><a class="footer__link-item" to="https://api-doc.qovery.com" href="https://api-doc.qovery.com">API</a></li><li class="footer__item"><a class="footer__link-item" to="https://github.com/Qovery" href="https://github.com/Qovery">Github</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Community</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://community.qovery.com" href="https://community.qovery.com">Forum</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/community-call" href="https://www.qovery.com/community-call">Community call</a></li><li class="footer__item"><a class="footer__link-item" to="https://shop.qovery.com" href="https://shop.qovery.com">Goodies</a></li><li class="footer__item"><a class="footer__link-item" to="https://roadmap.qovery.com" href="https://roadmap.qovery.com">Roadmap</a></li><li class="footer__item"><a class="footer__link-item" to="https://github.com/Qovery/replibyte" href="https://github.com/Qovery/replibyte">Replibyte</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Company</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/blog" href="https://www.qovery.com/blog">Blog</a></li><li class="footer__item"><a class="footer__link-item" to="https://jobs.qovery.com" href="https://jobs.qovery.com">Jobs</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/team" href="https://www.qovery.com/team">Team</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/investors" href="https://www.qovery.com/investors">Investors</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/contact" href="https://www.qovery.com/contact">Contact</a></li></ul></div></div><div class="text--center"><small>© 2024 DESIGNED BY QOVERY | PROUD SILVER MEMBER OF CNCF AND LINUX FOUNDATION | QOVERY BY BIRDSIGHT - ALL RIGHTS RESERVED</small><br></div></div></footer>
 </div>
 
-<script src="/styles.8365e5bb.js"></script>
+<script src="/styles.8f245596.js"></script>
 
-<script src="/runtime~main.100d7e10.js"></script>
+<script src="/runtime~main.f3be029e.js"></script>
 
-<script src="/main.97ce0bd2.js"></script>
+<script src="/main.5b961d30.js"></script>
 
-<script src="/2.c7554263.js"></script>
+<script src="/2.68b55ed0.js"></script>
 
-<script src="/3.124cc24d.js"></script>
+<script src="/3.54f3f49b.js"></script>
 
-<script src="/4.a684db7c.js"></script>
+<script src="/4.2124a62a.js"></script>
 
-<script src="/1be78505.7788d2d1.js"></script>
+<script src="/1be78505.eb3fceb7.js"></script>
 
-<script src="/20ac7829.26892724.js"></script>
+<script src="/20ac7829.53bdafe0.js"></script>
 
-<script src="/301.da8e2157.js"></script>
+<script src="/303.dca46d2d.js"></script>
 
-<script src="/17896441.78263aaf.js"></script>
+<script src="/17896441.a1fb92df.js"></script>
 
-<script src="/1.4b6e5575.js"></script>
+<script src="/1.7ec1965e.js"></script>
 
-<script src="/952063ba.1a87a7c4.js"></script>
+<script src="/952063ba.8e6997a8.js"></script>
 
 
 </body>

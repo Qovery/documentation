@@ -17,7 +17,7 @@ This guide also work for migrating your application from Heroku to GCP, Azure, S
 
 This guide describes how to migrate your application running on Heroku to AWS with Qovery. It covers all required steps you need to take to deploy your application on AWS and transfer your data from Heroku Postgres to the database managed by AWS via Qovery.
 
-> Please contact us via [our forum][urls.qovery_forum] if you experience any problem while migrating from Heroku to AWS with Qovery.
+> We have created a new AI agent capable of migrating from Heroku to AWS, GCP, Scaleway or Azure in a few clicks. Check our [announcement here](https://www.qovery.com/blog/open-source-devops-ai-agent--effortless-migration-from-heroku-to-aws/?utm_campaign=migration-ai-agent-email).
 
 <Assumptions name="guide">
 
@@ -29,42 +29,20 @@ This guide describes how to migrate your application running on Heroku to AWS wi
 
 ## Migration Steps
 
-1. [Use Buildpacks or Create your Dockerfile](#1-create-your-dockerfile-or-use-buildpacks)
+1. [Create your Dockerfile](#1-create-your-dockerfile)
 2. [Create resources on Qovery](#2-create-resources-on-qovery)
 3. [Configure Environment Variables and Secrets](#3-configure-your-environment-variables-and-secrets)
 4. [Copy data from your Heroku databases to your AWS databases](#4-copy-data-from-your-heroku-databases-to-your-aws-databases)
 5. [Deploy your apps](#5-deploy-your-apps-)
 6. [FAQ by Heroku users](#faq-by-heroku-users)
 
-## 1. Create your Dockerfile or Use Buildpacks
+## 1. Create your Dockerfile
 
 Qovery supports two ways to build and run your application coming from Heroku:
-
-1. Buildpacks
-2. Docker
-
-Both options build a container image that is runnable by a container engine (E.g. Docker). Qovery runs containers on Kubernetes.
-
-Choose the option that better fits you:
-
-<Tabs
-centered={true}
-className={"rounded"}
-defaultValue={"buildpacks"}
-placeholder="Use Buildpacks or Create your Dockerfile"
-select={false}
-size={null}
-values={[{"group":"Platforms","label":"Use Buildpacks","value":"buildpacks"},{"group":"Platforms","label":"Create your Dockerfile","value":"dockerfile"}]}>
-
-<TabItem value="dockerfile">
 
 > Are you familiar with Dockerfile? If not, I do recommend reading [this article][guides.tutorial.how-to-write-a-dockerfile].
 
 Here we will create our Dockerfiles to build and run our applications. Qovery will handle the build and the run of your applications, but need to have at least a Dockerfile to do it.
-
-### Choose your Dockerfile template
-
-To get started,
 
 #### Find Dockerfile template
 
@@ -176,30 +154,6 @@ git push origin
 
 If you have multiple applications to deploy, create a Dockerfile for each of them.
 
-</TabItem>
-
-<TabItem value="buildpacks">
-
-[Buildpacks](https://buildpacks.io/) automatically detects the language and the framework your application is using. Buildpacks builds and runs your app. Here is the list of [supported languages and frameworks][docs.using-qovery.configuration.application#option-1-buildpacks].
-
-<Alert type="warning">
-
-We do recommend using Docker to keep the full control of what's going on behind the scene. Buildpacks is a great technology but difficult to debug when something goes wrong. You can try deploying your apps on AWS with Qovery with Buildpacks, if you do not succeed, we do recommend switching for Docker.
-
-</Alert>
-
-### Limitations
-
-Here are some limitations due to our Buildpacks implementation:
-
-* Qovery Buildpacks does not support Procfile with multiple commands at the moment.
-* Qovery does not support custom Buildpacks.
-
-Those limitations will be solved in the coming months.
-
-</TabItem>
-
-</Tabs>
 
 ## 2. Create resources on Qovery
 
@@ -226,7 +180,6 @@ Steps:
 4. Create an application and give it a name (you can give the name of your repo if you have no idea)
 5. Select your app repository from your GitHub, GitLab or Bitbucket.
 6. Select the branch you want to deploy.
-7. Select the Build mode for `Buildpacks` or `Dockerfile` according to what you want.
 8. Specify the local listening port of your application.
 9. Click on "create"
 
@@ -292,12 +245,6 @@ I recommend reading our [Getting Started with Environment Variables][guides.gett
 </Alert>
 
 To extract your environment variables from Heroku, we recommend using the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) and exporting all the environment variables and secrets in an .env (dot env) file. Qovery supports the [import of a dot env file][guides.tutorial.import-your-environment-variables-with-the-qovery-cli] via the Qovery web interface and the Qovery CLI.
-
-<Alert type="warning">
-
-If you use Buildpacks for one of your app AND you have indicated a local listening port of your application, you will need to add an environment variable `PORT` with the value of your port to make your application starting properly. Otherwise, Qovery will fail to deploy your app!
-
-</Alert>
 
 [Export your environment variable via the Heroku CLI](https://devcenter.heroku.com/articles/config-vars#view-current-config-var-values) with the command:
 

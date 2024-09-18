@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-08-27"
+last_modified_on: "2024-09-18"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -67,7 +67,7 @@ If you want to deploy an application from a Git Repository you will have to sele
 - Git Repository: Select the git provider hosting your code (it can be hosted on GitHub, GitLab or Bitbucket). You can add a new git access by clicking on `New git access`.
 - Branch: Select branch that Qovery should use to deploy your application
 - Root Application Path: base folder in which the application resides in your repository
-- Build Mode: choose between Docker or Buildpack. For more information, go to [this section][docs.using-qovery.configuration.application#build-mode]
+- Build and deploy: configure your Dockerfile location. For more information, go to [this section][docs.using-qovery.configuration.application#build-and-deploy]
 
 If you want to deploy an application from a Container Registry you will have to select:
 - Registry: select the container registry storing the image of your application. You can add a new container registry by clicking on `New registry`.
@@ -239,32 +239,7 @@ Make sure that the image tag used are unique (do not use "latest", "dev", "maste
   <img src="/img/configuration/application/app-general-registry.png" alt="General Settings Git" />
 </p>
 
-#### Build Mode
-This option is available only if you have selected "Git Repository" as source
-#### Option 1: Buildpacks
-
-To simplify the application build for the developer, Qovery supports [Buildpacks](https://buildpacks.io) out of the box. Buildpacks determine the build process for an app and which assets and runtimes should be made available to your code at runtime. If your complex apps are running multiple languages, you can also use multiple buildpacks within a single app.
-Meaning, as a developer, you don't need to write a `Dockerfile` to build and run your app. Qovery Buildpacks takes care of everything for you.
-
-**Supported languages**
-
-| language   | version |
-|------------|---------|
-| Node.JS    | any     |
-| Clojure    | any     |
-| Python     | any     |
-| Java       | any     |
-| Gradle     | any     |
-| JVM        | any     |
-| Grails     | any     |
-| Scala      | any     |
-| Play       | any     |
-| PHP        | any     |
-| Go         | any     |
-
-You don't find a cool language? [Suggest us to support it][urls.qovery_roadmap]
-
-#### Option 2: Dockerfile
+#### Build and Deploy
 
 If your job is built via the Qovery CI (Source="Git Repository"), this section allows you to define the Dockerfile location. 
 
@@ -575,7 +550,7 @@ In the application overview, click on the `3 dots` button and remove the applica
 [docs.qovery.deployment.deploying-with-auto-deploy]: /docs/using-qovery/deployment/deploying-with-auto-deploy/
 [docs.using-qovery.configuration.advanced-settings#network-settings]: /docs/using-qovery/configuration/advanced-settings/#network-settings
 [docs.using-qovery.configuration.advanced-settings]: /docs/using-qovery/configuration/advanced-settings/
-[docs.using-qovery.configuration.application#build-mode]: /docs/using-qovery/configuration/application/#build-mode
+[docs.using-qovery.configuration.application#build-and-deploy]: /docs/using-qovery/configuration/application/#build-and-deploy
 [docs.using-qovery.configuration.application-health-checks]: /docs/using-qovery/configuration/application-health-checks/
 [docs.using-qovery.configuration.clusters#use-custom-domain-and-wildcard-tls-for-the-whole-cluster-beta]: /docs/using-qovery/configuration/clusters/#use-custom-domain-and-wildcard-tls-for-the-whole-cluster-beta
 [docs.using-qovery.configuration.environment-variable#connecting-to-a-database]: /docs/using-qovery/configuration/environment-variable/#connecting-to-a-database
@@ -595,4 +570,3 @@ In the application overview, click on the `3 dots` button and remove the applica
 [docs.using-qovery.interface.cli]: /docs/using-qovery/interface/cli/
 [guides.advanced.monorepository]: /guides/advanced/monorepository/
 [guides.getting-started.setting-custom-domain]: /guides/getting-started/setting-custom-domain/
-[urls.qovery_roadmap]: https://roadmap.qovery.com/roadmap

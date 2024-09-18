@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-05-04"
+last_modified_on: "2024-09-18"
 $schema: "/.meta/.schemas/guides.json"
 title: How to write a Dockerfile
 description: How to write your first Dockerfile in order to deploy your application with Qovery
@@ -12,12 +12,6 @@ import Alert from '@site/src/components/Alert';
 import Jump from '@site/src/components/Jump';
 
 import Assumptions from '@site/src/components/Assumptions';
-
-
-With Qovery, there are two ways to build and deploy your application:
-
-1. Without a Dockerfile in your repository: your application is built with [Buildpacks](https://docs.qovery.com/docs/using-qovery/configuration/application/#option-1-buildpacks)
-2. With a Dockerfile: sometimes Buildpacks won't fit your specific setup, and you'll have to write your Dockerfile.
 
 In this article, we'll see, step by step, how to quickly write a proper Dockerfile for any application you would like to deploy.
 

@@ -16,133 +16,6 @@ If you are looking to install Qovery on your Kubernetes cluster, please refer to
 
 </Alert>
 
-This section brings you answers to all the questions our users usually ask about clusters:
-
-* [What is a cluster?][docs.using-qovery.configuration.clusters#what-is-a-cluster]
-* [Why do I need a cluster?][docs.using-qovery.configuration.clusters#why-do-i-need-a-cluster]
-* [What are the different instance types available when creating a cluster?][docs.using-qovery.configuration.clusters#what-are-the-different-instance-types-available-when-creating-a-cluster]
-* [How does Qovery handle cluster updates and upgrades?][docs.using-qovery.configuration.clusters#how-does-qovery-handle-cluster-updates-and-upgrades]
-* [How do I set up a cluster?][docs.using-qovery.configuration.clusters#creating-a-cluster]
-* [How do I update my cluster settings?][docs.using-qovery.configuration.clusters#managing-your-cluster-settings]
-
-### What is a cluster?
-
-At Qovery, when we refer to cluster, we mean [Kubernetes][urls.kubernetes] cluster. A Kubernetes cluster is a collection of node machines that allows you to run containerized applications. It is usually made up of:
-
-* **Pods**: think of a pod as one instance of your application. Pods are the smallest deployable objects in Kubernetes, and they are hosted by worker nodes.
-* **Worker Nodes**: worker nodes essentially run your applications and workloads. When you create a cluster from your Qovery Console, it generates the set up of worker nodes (also called “instances”, “EC2 instances” for AWS users, or “droplets” for DigitalOcean users).
-Qovery allows you to define worker nodes settings, so that you end up deploying the right type of instances on your infrastructure based on your CPU, memory, storage and network performance needs.
-* a **Control Plane** (or **Master Node**): the control plane manages the worker nodes. Since we deploy managed Kubernetes services, the control plane is handled exclusively by your cloud provider, and left untouched by Qovery.
-
-<p align="center">
-  <img src="/img/configuration/clusters/cluster-overview.jpg" alt="Application" />
-</p>
-
-For more information on Kubernetes clusters, see [the Kubernetes documentation](https://kubernetes.io/docs/concepts/overview/components/).
-
-### Why do I need a cluster?
-
-Qovery is built on top of Kubernetes, which means we need Kubernetes clusters to be able to deploy and run your applications.
-
-Thanks to clusters, you can easily deploy several (and many) instances of the same application, so that if one fails, the others can instantly take over. Also, clusters can auto-scale, meaning that the number of worker nodes in a cluster can automatically go up or down as traffic fluctuates on your application(s), thus ensuring high availability and performance. Clusters are also extremely useful [to isolate your production environment from your staging environment](https://www.qovery.com/blog/how-to-isolate-your-production-from-staging-with-kubernetes).
-
-In short, through the use of clusters, Kubernetes provides you with a resilient, flexible and powerful infrastructure, fit for production environment needs and requirements. And with the help of Qovery, setting up and maintaining your Kubernetes clusters has never been easier.
-
-Qovery allows you to create and manage two types of clusters:
-
-|                         | **Managed K8S **                                                                                                                                 | ** BETA - Single EC2 (K3s)**                                                                           |
-|-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
-| **Description**         | A multi-node Kubernetes cluster managed by your cloud provider (EKS, Kapsule etc..)                                                              | K3s Cluster running on a single EC2 instance (single-node) **Available only on AWS and still in BETA** |
-| **Usage**               | Hosting professional applications in production (resilient, scalable and powerful infrastructure). Scalable staging / preview / dev environments | Hobby projects, trying out Qovery, ephemeral environments deployment                                   |
-| **Cloud provider cost** | Starting from 200$/month, based on the chosen instance type                                                                                      | starting from 20$/month, based on the chosen instance type                                             |
-<br/>
-
-<Alert type="warning">
-Single EC2 (K3s) is still in BETA phase and has the following limitations
-
-* You can’t access the historical logs and thus you can access your application logs only if it's running (Since we don’t have loki installed)
-* No public accessibility for DB container (we do not manage the public DNS entry for db). We will work on it in the upcoming weeks, in the meantime we will write a guide on how to connect to the DB via the ssh key / kubeconf
-* You can configure only 1 instance per application. Thus you can’t change the number of instances nor activate the sticky session feature
-* Stop instance feature not ready YET
-* You can’t change the cluster settings without a service downtime since we kill the instance and we spawn a new one
-* We do not manage YET the external storage
-* We do not support YET the VPC setting
-* If you want to connect via SSH, you can't get YET the instance hostname directly in the Qovery console, you need to get it from the AWS console
-
-</Alert>
-
-<br/>
-
-<Alert type="warning">
-
-K3s clusters are [deployed on one AWS availability zone](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-availability-zones). Therefore, if a network or power disruption happens on the availability zone where your K3s instance is running, your applications will no longer be available until it is solved.
-
-This is why we do not recommend installing K3s clusters to run professional applications in a production environment.
-
-</Alert>
-
-### What are the different instance types available when creating a cluster?
-
-The range of instance types available at cluster creation depends on your cloud provider:
-
-* AWS offers over 400 instance types. You can [view their details on the official AWS website](https://aws.amazon.com/ec2/instance-types/), as well as [their pricing](https://aws.amazon.com/ec2/pricing/on-demand/).
-* Scaleway also offers a wide range of instance types, [whose details and pricing you can view on the official Scaleway website](https://www.scaleway.com/en/pricing/).
-
-<Alert type="info">
-
-Qovery supports only instance types having an x86_64 or ARM architecture.
-
-</Alert>
-
-#### What is the default cluster?
-
-The default cluster is the first cluster you installed in your organization.
-
-When you create a new environment and leave the `mode` and `cluster` parameters set to the value `Automatic`, your environment is deployed to:
-* the cluster defined in one of [your project rules][docs.using-qovery.configuration.deployment-rule#environment-deployment-rules],
-* or to the default cluster if no project rule applies.
-
-For more information on deployment rules, see [Project][docs.using-qovery.configuration.project].
-
-
-### How does Qovery handle cluster updates and upgrades?
-
-As far as cluster updates and upgrades to a newer version of Kubernetes are concerned, our Qovery engineering team handles everything in due time, so you don’t even need to think about it!
-
-<Alert type="info">
-
-You may notice that Qovery does not provide you with the latest Kubernetes version offered by your cloud provider. This is due to the high amount of testing we need to perform to ensure smooth upgrades with no interruptions for your applications. Our priority is always to guarantee you maximum uptime.
-
-</Alert>
-
-<Alert type="warning">
-
-Please **DO NOT** upgrade the cluster version by yourself from the cloud provider console.
-
-That's the whole point of Qovery, we manage this task for you so you don't have to bother.
-If you did update by mistake, then you need to reach to Qovery team in order to get some help.
-
-**Proceeding with a cluster version upgrade outside of Qovery will prevent any future update on this cluster** and might be irreversible preventing Qovery from properly deploying on this cluster. Most importantly will expose you to some unknown / untested areas which can put your application stability at risks.
-
-</Alert>
-
-Usually, we work on a given upgrade for one month of intensive testing on our end in order to make sure everything will be smooth for you. Once we are pretty confident our stack is stable, we move on with the following steps which last approximately 3 weeks:
-
-1. Notify users about new version coming in approximatively 1 month before
-2. Upgrade clusters for a handful of beta-tester customers (1 week)
-3. Upgrade all non-production flagged clusters (1-2 week(s))
-4. Upgrade all clusters
-
-If, somehow the planning or timeframe for the upgrade is clashing with your business needs, you will be able to contact us so we can arrange the best timeframe for you.
-
-### What do you do when a vulnerability is found?
-
-Security is our main concern. When a vulnerability is found, here are the actions that we take:
-
-1. We quickly identify how significant is the impact of the vulnerability.
-2. We look at how we can solve or mitigate the vulnerability.
-3. We transparently communicate with our customers about the vulnerability to help them take the right actions.
-
 
 ## Managing your Clusters with Qovery
 
@@ -833,3 +706,104 @@ To clean up a Qovery cluster from your cloud provider account, go to `AWS Consol
 | 2    | In the `Tags` field of the `Grouping criteria` area, enter `ClusterId`.                                                                      |
 | 3    | Click `Add`.                                                                                                                                 |
 | 4    | Click `Preview Resources`. <br /> All your Qovery clusters are now displayed in the `Group resources` table, and you can delete them by hand.|
+
+
+## FAQ
+
+### What is a cluster?
+
+Please refer to the [basic concepts section][docs.getting-started.basic-concepts#cluster]
+
+### Why do I need a cluster?
+
+Qovery is built on top of Kubernetes, which means we need Kubernetes clusters to be able to deploy and run your applications.
+
+Thanks to clusters, you can easily deploy several (and many) instances of the same application, so that if one fails, the others can instantly take over. Also, clusters can auto-scale, meaning that the number of worker nodes in a cluster can automatically go up or down as traffic fluctuates on your application(s), thus ensuring high availability and performance. Clusters are also extremely useful [to isolate your production environment from your staging environment](https://www.qovery.com/blog/how-to-isolate-your-production-from-staging-with-kubernetes).
+
+In short, through the use of clusters, Kubernetes provides you with a resilient, flexible and powerful infrastructure, fit for production environment needs and requirements. And with the help of Qovery, setting up and maintaining your Kubernetes clusters has never been easier.
+
+Qovery allows you to create and manage two types of clusters:
+
+|                         | **Managed K8S **                                                                                                                                 | ** BETA - Single EC2 (K3s)**                                                                           |
+|-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
+| **Description**         | A multi-node Kubernetes cluster managed by your cloud provider (EKS, Kapsule etc..)                                                              | K3s Cluster running on a single EC2 instance (single-node) **Available only on AWS and still in BETA** |
+| **Usage**               | Hosting professional applications in production (resilient, scalable and powerful infrastructure). Scalable staging / preview / dev environments | Hobby projects, trying out Qovery, ephemeral environments deployment                                   |
+| **Cloud provider cost** | Starting from 200$/month, based on the chosen instance type                                                                                      | starting from 20$/month, based on the chosen instance type                                             |
+<br/>
+
+<Alert type="warning">
+Single EC2 (K3s) is still in BETA phase and has the following limitations
+
+* You can’t access the historical logs and thus you can access your application logs only if it's running (Since we don’t have loki installed)
+* No public accessibility for DB container (we do not manage the public DNS entry for db). We will work on it in the upcoming weeks, in the meantime we will write a guide on how to connect to the DB via the ssh key / kubeconf
+* You can configure only 1 instance per application. Thus you can’t change the number of instances nor activate the sticky session feature
+* Stop instance feature not ready YET
+* You can’t change the cluster settings without a service downtime since we kill the instance and we spawn a new one
+* We do not manage YET the external storage
+* We do not support YET the VPC setting
+* If you want to connect via SSH, you can't get YET the instance hostname directly in the Qovery console, you need to get it from the AWS console
+
+</Alert>
+
+<br/>
+
+<Alert type="warning">
+
+K3s clusters are [deployed on one AWS availability zone](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-availability-zones). Therefore, if a network or power disruption happens on the availability zone where your K3s instance is running, your applications will no longer be available until it is solved.
+
+This is why we do not recommend installing K3s clusters to run professional applications in a production environment.
+
+</Alert>
+
+### What are the different instance types available when creating a cluster?
+
+The range of instance types available at cluster creation depends on your cloud provider:
+
+* AWS offers over 400 instance types. You can [view their details on the official AWS website](https://aws.amazon.com/ec2/instance-types/), as well as [their pricing](https://aws.amazon.com/ec2/pricing/on-demand/).
+* Scaleway also offers a wide range of instance types, [whose details and pricing you can view on the official Scaleway website](https://www.scaleway.com/en/pricing/).
+* GCP clusters are deployed in auto-pilot mode so you will have access by default to every instance type available 
+
+<Alert type="info">
+
+Qovery supports only instance types having an x86_64 or ARM architecture.
+
+</Alert>
+
+### How does Qovery handle Kubernetes version upgrades?
+
+As far as cluster upgrades to a newer version of Kubernetes are concerned, our Qovery engineering team handles everything in due time, so you don’t even need to think about it!
+
+<Alert type="info">
+
+You may notice that Qovery does not provide you with the latest Kubernetes version offered by your cloud provider. This is due to the high amount of testing we need to perform to ensure smooth upgrades with no interruptions for your applications. Our priority is always to guarantee you maximum uptime.
+
+</Alert>
+
+<Alert type="warning">
+
+Please **DO NOT** upgrade the cluster version by yourself from the cloud provider console.
+
+**Proceeding with a cluster version upgrade outside of Qovery will prevent any future update on this cluster** and might be irreversible preventing Qovery from properly deploying on this cluster. Most importantly will expose you to some unknown / untested areas which can put your application stability at risks.
+
+If you did update by mistake, then you need to reach to Qovery team in order to get some help.
+
+</Alert>
+
+Usually, we work on a given upgrade for one month of intensive testing on our end in order to make sure everything will be smooth for you. Once we are pretty confident our stack is stable, we move on with the following steps which last approximately 3 weeks:
+
+1. Notify users about new version coming in approximatively 1 month before
+2. Upgrade clusters for a handful of beta-tester customers (1 week)
+3. Make available the new version for all clusters (new or existing)
+4. Upgrade all non-production flagged clusters (1 week)
+5. Upgrade all clusters the production clusters (1 week)
+
+If, somehow the planning or timeframe for the upgrade is clashing with your business needs, you will be able to trigger the upgrade of your cluster manually via the "Upgrade to XX.XX" action. This action is available on your cluster once we make the new version available globally (step 3).
+
+
+### What do you do when a vulnerability is found?
+
+Security is our main concern. When a vulnerability is found, here are the actions that we take:
+
+1. We quickly identify how significant is the impact of the vulnerability.
+2. We look at how we can solve or mitigate the vulnerability.
+3. We transparently communicate with our customers about the vulnerability to help them take the right actions.

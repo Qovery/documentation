@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-08-27"
+last_modified_on: "2024-09-24"
 title: "Helm"
 description: "Learn how to configure your Helm on Qovery"
 ---
@@ -252,11 +252,12 @@ postgres:
   password: qovery.env.DB_PASSWORD
 ```
 
-### Ports
+### Network
 
-Within this section you can define the port exposed publicly.
-You can edit the existing ports or declare new ones by specifying:
-- Service name: this is the kubernetes service name in your helm chart
+Within this section you can define the Kubernetes service and port to be exposed publicly over the network. Concretely, Qovery will take care of deploying the right ingress configuration and assign a domain and certificate to reach your service.
+
+You can edit the existing service/port or declare new ones by specifying:
+- Service name: this is the kubernetes service name in your helm chart. Qovery automatically fetches the services actually deployed on your kubernetes cluster
 - Namespace (only if Allow cluster-wide resources was enabled): this is the kubernetes namespace used by your helm chart to deploy the pods behind the chosen service
 - Service port: this is the port exposed internally by your service for the other services
 - Protocol: you can select the protocol used by your service. Today Qovery supports the following protocols:
@@ -264,6 +265,12 @@ You can edit the existing ports or declare new ones by specifying:
   - gRPC
 - External port: it is the port that can be used to access this service over the internet (when exposed publicly). Note that for HTTP and gRPC the port is set by default to 443.
 - Port Name: it is the name assigned to the port. When multiple ports are exposed publicly, its value is used to route the traffic to the right port based on the called subdomain (which will contain the port name value). Since each port is exposed on the port 443, having a different subdomain is the only way to have multiple ports exposed over the internet. If not set, the default value is `p<portNumber>` (see [Qovery Provided Domain section](#qovery-provided-domains) for more information)
+
+<Alert type="info">
+  
+This setup is not copied when the helm chart is cloned (via a [manual clone][docs.using-qovery.configuration.environment#clone-environment] or the [preview environment feature][docs.using-qovery.configuration.environment#preview-environment])
+  
+</Alert>
 
 #### Important Informations
 
@@ -425,6 +432,8 @@ In the helm overview, click on the `3 dots` button and remove the helm.
 [docs.using-qovery.configuration.advanced-settings#network-settings]: /docs/using-qovery/configuration/advanced-settings/#network-settings
 [docs.using-qovery.configuration.advanced-settings]: /docs/using-qovery/configuration/advanced-settings/
 [docs.using-qovery.configuration.clusters#use-custom-domain-and-wildcard-tls-for-the-whole-cluster-beta]: /docs/using-qovery/configuration/clusters/#use-custom-domain-and-wildcard-tls-for-the-whole-cluster-beta
+[docs.using-qovery.configuration.environment#clone-environment]: /docs/using-qovery/configuration/environment/#clone-environment
+[docs.using-qovery.configuration.environment#preview-environment]: /docs/using-qovery/configuration/environment/#preview-environment
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [docs.using-qovery.configuration.helm#using-the-environment-variables-in-your-chart]: /docs/using-qovery/configuration/helm/#using-the-environment-variables-in-your-chart
 [docs.using-qovery.configuration.organization.helm-repository]: /docs/using-qovery/configuration/organization/helm-repository/

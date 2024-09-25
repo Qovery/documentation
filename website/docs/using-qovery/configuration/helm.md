@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-09-24"
+last_modified_on: "2024-09-25"
 title: "Helm"
 description: "Learn how to configure your Helm on Qovery"
 ---
@@ -259,7 +259,7 @@ Within this section you can define the Kubernetes service and port to be exposed
 You can edit the existing service/port or declare new ones by specifying:
 - Service name: this is the kubernetes service name in your helm chart. Qovery automatically fetches the services actually deployed on your kubernetes cluster
 - Namespace (only if Allow cluster-wide resources was enabled): this is the kubernetes namespace used by your helm chart to deploy the pods behind the chosen service
-- Service port: this is the port exposed internally by your service for the other services
+- Service port: this is the port exposed internally by your service for the other services. Qovery automatically fetches the ports from your kubernetes cluster based on the selected service
 - Protocol: you can select the protocol used by your service. Today Qovery supports the following protocols:
   - HTTPS (Select this protocol if you need to run Websockets)
   - gRPC

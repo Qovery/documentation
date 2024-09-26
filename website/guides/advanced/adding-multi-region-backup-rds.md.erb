@@ -9,11 +9,27 @@ import Steps from '@site/src/components/Steps';
 import Assumptions from '@site/src/components/Assumptions';
 import Alert from '@site/src/components/Alert';
 
-Managed RDS instances deployed with Qovery have by default a backup option enabled on the same region where the RDS instance is located.
+Managed RDS instances deployed with Qovery have by default a backup option enabled on the same region where the RDS instance is located. However, for enhanced disaster recovery and compliance purposes, you may need to set up multi-region backups.
+This guide will help you configure an AWS Backup job to create additional backups of your RDS instances in a different region. Multi-region backups provide several benefits:
 
-If for compliance reasons you have to manage a multi-region backup for your database, this guide will help you to configure an AWS Backup job to achieve this setup. For more information about AWS Backup, have a look at [this documentation](https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html).
+- Improved disaster recovery: If one AWS region becomes unavailable, you can restore your database from a backup in another region.
+- Compliance: Some regulations require data to be backed up in geographically distinct locations.
+- Data migration: Multi-region backups can facilitate moving your database to a different region if needed.
+
+For more information about AWS Backup, have a look at [this documentation](https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html).
+
+Alert type="warning">
+  Cost Considerations: Setting up multi-region backups will incur additional costs. These costs include:
+  - Storage costs for the backup data in the secondary region
+  - Data transfer costs for copying the backup data between regions
+  - Potential costs for restoring from a backup in a different region
+Be sure to review the AWS Backup pricing and AWS data transfer pricing to estimate the costs for your specific use case. You can use AWS Cost Explorer to monitor these costs over time.
+</Alert>
+
 
 # How to configure
+
+Make sure you have already your Managed Database (RDS PostgreSQL or MySQL) deployed with Qovery
 
 ## 1. Create an AWS Backup Plan
 

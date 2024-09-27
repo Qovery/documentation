@@ -14,6 +14,11 @@ module.exports = {
       "dark_logo_path": "/img/logos/docker.svg",
       "logo_path": "/img/logos/docker.svg",
       "name": "mongodb"
+    },
+    {
+      "dark_logo_path": "/img/logos/aws_white.svg",
+      "logo_path": "/img/logos/aws.svg",
+      "name": "rds"
     }
   ],
   "event_types": [

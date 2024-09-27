@@ -12,3 +12,8 @@ dark_logo_path = "/img/logos/docker.svg"
 name = "mongodb"
 logo_path = "/img/logos/docker.svg"
 dark_logo_path = "/img/logos/docker.svg"
+
+[[databases]]
+name = "rds"
+logo_path = "/img/logos/aws.svg"
+dark_logo_path = "/img/logos/aws_white.svg"

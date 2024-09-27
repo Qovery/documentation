@@ -1,10 +1,10 @@
 ---
-last_modified_on: "2024-09-18"
+last_modified_on: "2024-09-27"
 $schema: "/.meta/.schemas/guides.json"
 title: Minimize downtime while upgrading RDS instances
 description: Learn how to upgrade your RDS instance (PostgreSQL, MySql) minimizing your downtime with Qovery and Blue Green deployments
 author_github: https://github.com/acarranoqovery
-tags: ["type: guide", "technology: qovery"]
+tags: ["type: guide", "database: rds", "domain: operations"]
 ---
 import Steps from '@site/src/components/Steps';
 import Assumptions from '@site/src/components/Assumptions';
@@ -32,7 +32,7 @@ To better explain the process, we will try to upgrade an RDS PostgreSQL instance
      website/guides/advanced/upgrading-rds-instance.md.erb
 -->
 
-## Activate the logical replication
+## Activate the logical replication 
 
 <Alert type="info">
 

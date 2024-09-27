@@ -26,6 +26,8 @@ function GuideItem(props) {
   const frameworkName = frameworkTag ? frameworkTag.value : null;
   const technologyTag = enrichedTags.find(tag => tag.category == 'technology');
   const technologyName = technologyTag ? technologyTag.value : null;
+  const databaseTag = enrichedTags.find(tag => tag.category == 'database');
+  const databaseName = databaseTag ? databaseTag.value : null;
   const installationGuideTag = enrichedTags.find(tag => tag.category == 'installation_guide');
   const installationGuideName = installationGuideTag ? installationGuideTag.value : null;
   const platformTag = enrichedTags.find(tag => tag.category == 'platform');
@@ -43,6 +45,7 @@ function GuideItem(props) {
       sinks,
       languages,
       frameworks,
+      databases,
       technologies,
       installation_guides
     }
@@ -53,6 +56,7 @@ function GuideItem(props) {
   const sink = sinkName && sinks[sinkName];
   const language = languageName && languages.find(x => x.name === languageName);
   const framework = frameworkName && frameworks.find(x => x.name === frameworkName);
+  const database = databaseName && databases.find(x => x.name === databaseName);
   const technology = technologyName && technologies.find(x => x.name === technologyName);
   const installationGuide = installationGuideName && installation_guides.find(x => x.name === installationGuideName);
   const sourceIcon = (platform || source) !== null;
@@ -72,6 +76,12 @@ function GuideItem(props) {
     } else {
       sourceLogoPath = technology.logo_path;
     }
+  } else if (database) {
+      if (isDarkTheme) {
+        sourceLogoPath = database.dark_logo_path;
+      } else {
+        sourceLogoPath = database.logo_path;
+      }
   } else if (installationGuide) {
     if (isDarkTheme) {
       sourceLogoPath = installationGuide.dark_logo_path;

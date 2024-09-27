@@ -1,10 +1,10 @@
 ---
-last_modified_on: "2024-09-26"
+last_modified_on: "2024-09-27"
 $schema: "/.meta/.schemas/guides.json"
 title: Enable multi-region backup on your RDS instances with AWS Backup
 description: Learn how to enable the multi-region backup on your RDS instance (PostgreSQL, MySQL) via the AWS Backup feature
 author_github: https://github.com/acarranoqovery
-tags: ["type: guide", "technology: qovery"]
+tags: ["type: guide", "database: rds"]
 ---
 import Steps from '@site/src/components/Steps';
 import Assumptions from '@site/src/components/Assumptions';
@@ -19,11 +19,11 @@ This guide will help you configure an AWS Backup job to create additional backup
 
 For more information about AWS Backup, have a look at [this documentation](https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html).
 
-Alert type="warning">
+<Alert type="warning">
   Cost Considerations: Setting up multi-region backups will incur additional costs. These costs include:
-  - Storage costs for the backup data in the secondary region
-  - Data transfer costs for copying the backup data between regions
-  - Potential costs for restoring from a backup in a different region
+  1) Storage costs for the backup data in the secondary region
+  2) Data transfer costs for copying the backup data between regions
+  3) Potential costs for restoring from a backup in a different region
 Be sure to review the AWS Backup pricing and AWS data transfer pricing to estimate the costs for your specific use case. You can use AWS Cost Explorer to monitor these costs over time.
 </Alert>
 

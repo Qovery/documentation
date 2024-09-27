@@ -271,6 +271,15 @@ module.exports = {
           "title": "Deploy a DaemonSet in a Karpenter context"
         },
         {
+          "author_github": "https://github.com/acarranoqovery",
+          "description": null,
+          "id": "/advanced/adding-multi-region-backup-rds",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/adding-multi-region-backup-rds.md",
+          "series_position": null,
+          "title": "Enable multi-region backup on your RDS instances with AWS Backup"
+        },
+        {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
           "id": "/advanced/helm-chart",

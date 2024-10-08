@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-08-02"
+last_modified_on: "2024-10-08"
 title: "Cluster Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -189,7 +189,7 @@ Enabling this feature will create a 10 min max downtime on your application's pu
 
 | Type    | Description                                                                                    | Default Value   |
 |---------|------------------------------------------------------------------------------------------------|-----------------|
-| boolean | List of allowed CIDRS. Valid only when [`database.postgresql.deny_public_access`](#databasepostgresqldeny_public_access) is set to true | `["0.0.0.0/0"]` |
+| string | List of allowed CIDRS. Valid only when [`database.postgresql.deny_public_access`](#databasepostgresqldeny_public_access) is set to true | `["0.0.0.0/0"]` |
 
 #### database.mysql.deny_public_access ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-container.svg) ![](/img/advanced_settings/database-managed.svg)
 
@@ -201,7 +201,7 @@ Enabling this feature will create a 10 min max downtime on your application's pu
 
 | Type    | Description                                                                                    | Default Value   |
 |---------|------------------------------------------------------------------------------------------------|-----------------|
-| boolean | List of allowed CIDRS. Valid only when [`database.mysql.deny_public_access`](#databasemysqldeny_public_access) is set to true      | `["0.0.0.0/0"]` |
+| string | List of allowed CIDRS. Valid only when [`database.mysql.deny_public_access`](#databasemysqldeny_public_access) is set to true      | `["0.0.0.0/0"]` |
 
 #### database.mongodb.deny_public_access ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-container.svg) ![](/img/advanced_settings/database-managed.svg)
 
@@ -213,7 +213,7 @@ Enabling this feature will create a 10 min max downtime on your application's pu
 
 | Type    | Description                                                                                    | Default Value   |
 |---------|------------------------------------------------------------------------------------------------|-----------------|
-| boolean | List of allowed CIDRS. Valid only when [`database.mongodb.deny_public_access`](#databasemongodbdeny_public_access) is set to true    | `["0.0.0.0/0"]` |
+| string | List of allowed CIDRS. Valid only when [`database.mongodb.deny_public_access`](#databasemongodbdeny_public_access) is set to true    | `["0.0.0.0/0"]` |
 
 #### database.redis.deny_public_access ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-container.svg) ![](/img/advanced_settings/database-managed.svg)
 
@@ -225,7 +225,7 @@ Enabling this feature will create a 10 min max downtime on your application's pu
 
 | Type    | Description                                                                                    | Default Value   |
 |---------|------------------------------------------------------------------------------------------------|-----------------|
-| boolean | List of allowed CIDRS. Valid only when [`database.redis.deny_public_access`](#databaseredisdeny_public_access) is set to true      | `["0.0.0.0/0"]` |
+| string | List of allowed CIDRS. Valid only when [`database.redis.deny_public_access`](#databaseredisdeny_public_access) is set to true      | `["0.0.0.0/0"]` |
 
 ## Service
 
@@ -303,6 +303,37 @@ It won't be possible to go back once this feature is activated.
 | string  | Allows you to activate KMS encryption of your Kubernetes secrets. Specify the [key ARN](https://docs.aws.amazon.com/kms/latest/developerguide/find-cmk-id-arn.html) of your AWS KMS key.  |               |
 
 
+#### qovery.static_ip_mode ![](/img/advanced_settings/aws.svg)
+
+
+| Type    | Description                                                                 | Default Value |
+|---------|-----------------------------------------------------------------------------|---------------|
+| boolean | Enable the static ip mode for the qovery control plane and automatically 1) activate the private endpoint on the Kubernetes API 2) add the Qovery IP to the CIDR whitelist. | `false`        |
+
+<Alert type="info">
+
+Dockerhub credentials are necessary to activate this feature.
+
+</Alert>
+
+Before setting this advanced settings to true, go through the [Organization settings > Container registry][docs.using-qovery.configuration.organization.container-registry] and make sure that your Dockerhub registry has some credentials set. 
+
+Why? Dockerhub has a [rate limit system by IP](https://docs.docker.com/docker-hub/download-rate-limit/) when pulling from their registry. Since the Qovery control plane will be seen as a single IP, we will quickly reach the limit. This limit can be increased if you are a logged-in user and thus, if you put your credentials in the Dockerhub registry configuration of your organization, you should not encounter any rate limit issue during the deployment.
+
+#### k8s.api.allowed_public_access_cidrs ![](/img/advanced_settings/aws.svg)
+
+<Alert type="info">
+
+`qovery.static_ip_mode` should be set to `true` to make this advanced settings effective
+
+</Alert>
+
+| Type    | Description                                                                 | Default Value |
+|---------|-----------------------------------------------------------------------------|---------------|
+| string | It contains any additional CIDR that should be whitelisted to access the Kubernetes API (Example:`["100.100.100.0/32","200.200.200.0/24"]` ) | `[]`        |
+
+
+
 #### storageclass.fast_ssd
 
 | Type    | Description                                                                                                                                                                                               | Default Value                          |
@@ -312,5 +343,6 @@ It won't be possible to go back once this feature is activated.
 
 [docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.quickstart#attach-aws-credentials]: /docs/getting-started/install-qovery/aws/cluster-managed-by-qovery/quickstart/#attach-aws-credentials
 [docs.using-qovery.configuration.advanced-settings#resources]: /docs/using-qovery/configuration/advanced-settings/#resources
+[docs.using-qovery.configuration.organization.container-registry]: /docs/using-qovery/configuration/organization/container-registry/
 [docs.using-qovery.deployment.image-mirroring]: /docs/using-qovery/deployment/image-mirroring/
 [guides.tutorial.how-to-activate-sso-to-connect-to-your-eks-cluster]: /guides/tutorial/how-to-activate-sso-to-connect-to-your-eks-cluster/

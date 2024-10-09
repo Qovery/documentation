@@ -20,7 +20,7 @@ Every time an application needs to be deployed on your cluster, the application 
 
 ## Application built via the Qovery pipeline
 
-Images within the mirroring registry are organized by "Qovery service", each service has its own repository (or namespace, naming depends on the cloud provider). This means that each service build and mirroring process is completely isolated from the others.
+Images in the mirroring registry are organized by Git repository. Each service, with identical build context parameters (commit ID, repository root path, Dockerfile path, Dockerfile content, and environment variables), is assigned its own repository, named z<short_cluster_id>-git_repo_name (or namespace, depending on the cloud provider). This ensures that each service's build and mirroring process is completely isolated from others.
 
 Before building the application A1, Qovery checks within mirroring registry at the repository of the application A1 if an image has already being built with the build context parameters (commit id, repository root path, dockerfile path, dockerfile content and environment variables) within the same cluster. 
 

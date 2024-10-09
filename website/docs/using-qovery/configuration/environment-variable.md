@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-05-22"
+last_modified_on: "2024-10-08"
 title: "Environment Variable & Secrets"
 description: "Learn how to configure Environment Variables and Secrets on Qovery"
 ---
@@ -125,6 +125,12 @@ Important information on this feature:
 - composition coherency using built in variables is kept when cloning an environment. Example: you can create a variable APP_URL = https://{{QOVERY_APPLICATION_ZEC0A2975_HOST_INTERNAL}} and when the environment is cloned, the "ZEC0A2975" is replaced with the right ID.
 - there is no check at creation / edition / deletion if the referenced variable doesn't exist
 - "inner replacements" are not supported (e.g VAR_1 = {{VAR_2}} and VAR_2={{VAR_3}} )
+
+You can easily insert existing variables by clicking on the magic wand icon and selecting your desired variables:
+
+<p align="center">
+  <img src="/img/configuration/variables/var_insert_magic_wand.png" alt="Variables" />
+</p>
 
 ## Naming Rules
 

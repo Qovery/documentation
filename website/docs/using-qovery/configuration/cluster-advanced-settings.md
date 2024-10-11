@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-10-08"
+last_modified_on: "2024-10-11"
 title: "Cluster Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -310,6 +310,12 @@ It won't be possible to go back once this feature is activated.
 |---------|-----------------------------------------------------------------------------|---------------|
 | boolean | Enable the static ip mode for the qovery control plane and automatically 1) activate the private endpoint on the Kubernetes API 2) add the Qovery IP to the CIDR whitelist. | `false`        |
 
+<Alert type="warning">
+
+If you need to connect to the Kubernetes cluster from your network, make sure to add your CIDR to the advanced setting k8s.api.allowed_public_access_cidrs.
+
+</Alert>
+
 <Alert type="info">
 
 Dockerhub credentials are necessary to activate this feature.
@@ -319,6 +325,8 @@ Dockerhub credentials are necessary to activate this feature.
 Before setting this advanced settings to true, go through the [Organization settings > Container registry][docs.using-qovery.configuration.organization.container-registry] and make sure that your Dockerhub registry has some credentials set. 
 
 Why? Dockerhub has a [rate limit system by IP](https://docs.docker.com/docker-hub/download-rate-limit/) when pulling from their registry. Since the Qovery control plane will be seen as a single IP, we will quickly reach the limit. This limit can be increased if you are a logged-in user and thus, if you put your credentials in the Dockerhub registry configuration of your organization, you should not encounter any rate limit issue during the deployment.
+
+
 
 #### k8s.api.allowed_public_access_cidrs ![](/img/advanced_settings/aws.svg)
 

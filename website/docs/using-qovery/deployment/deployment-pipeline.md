@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-04-27"
+last_modified_on: "2024-10-15"
 title: "Deployment Pipeline"
 description: "Learn how to the Environment Deployment Pipeline works"
 ---
@@ -36,13 +36,7 @@ Below you can find a visual example of how the pipeline looks like:
 
 When the deployment pipeline execute the deployment of a stage, the services within it will go through the `Build` and `Deployment` phases. 
 
-The Building process is managed by the Qovery CI which downloads your repository and generates the final image that will be run on your Kubernetes cluster. 
-
-<Alert type="info">
-
-By default, the nodes building your application have the following resources: 4CPU and 4 GB memory. If you need more resources, get in touch with our support.
-
-</Alert>
+### Application building
 
 <Alert type="info">
 
@@ -50,12 +44,33 @@ By default, the nodes building your application have the following resources: 4C
 
 </Alert>
 
-The build and deploy operation of each service within a deployment stage are executed in parallel with a parallism of 4. 
+The Building process is managed by the Qovery CI which downloads your repository and generates the final image that will be run on your Kubernetes cluster. 
+
+The build operation of each service within a deployment stage is executed in parallel with a parallism of 7. 
+
+Once the operation is completed, the built image is pushed in the `mirroring registry` for deployment ([check here][docs.using-qovery.deployment.image-mirroring#application-built-via-the-qovery-deployment-pipeline] for more information).
+
+Check [this section](#best-practices-to-speed-up-build-time) to know more on how to reduce the build time of your application.
+
+<Alert type="info">
+
+By default, the nodes building your application have the following resources: 4CPU and 4 GB memory. If you need more resources, get in touch with our support.
+
+</Alert>
+
+
+### Application deployment
+
+The deployment process is managed by the Qovery engine via helm charts. The engine generates a custom chart to deploy your application/job, unless you have already provided your own helm chart.
+
+The deployed image is pulled from the `mirroring registry` ([check here][docs.using-qovery.deployment.image-mirroring] for more information)
+
+The deployment operation of each service within a deployment stage is executed in parallel with a parallism of 7. 
 
 **Example**
-If you have 6 applications to be deployed within a stage, Qovery will:
-* build 4 applications in parallel. Once the build of one application is terminated, Qovery will start immediately another one until all the applications are built.
-* deploy 4 applications in parallel on your Kubernetes cluster. Once the deployment of one application is terminated, Qovery will start immediately another one until all the applications are deployed.
+If you have 10 applications to be deployed within a stage, Qovery will:
+* build 7 applications in parallel. Once the build of one application is terminated, Qovery will start immediately another one until all the applications are built.
+* deploy 7 applications in parallel on your Kubernetes cluster. Once the deployment of one application is terminated, Qovery will start immediately another one until all the applications are deployed.
 
 <Alert type="info">
 
@@ -89,7 +104,55 @@ This default assignment is maintained as long as you do not delete or rename the
 
 You can access and modify the pipeline configuration from the environment settings. Have a look at [this section][docs.using-qovery.configuration.environment#deployment-pipeline] to know more.
 
+## Best practices to speed up build time
+
+Here you can find some best practices you can follow to ensure you benefit from all the caching system and reduce the build time.
+
+### Review your Dockerfile structure
+
+Review the content of your Dockerfile to find performance improvements. There's a list of suggestion on the [Docker website](https://docs.docker.com/build/building/best-practices), feel free to ask for help on [our forum](https://discuss.qovery.com/) 
+
+### Benefit from the build and deployment parallelism
+
+Try to put on the same deployment stage as many apps as you can, making sure there is no dependency between them. It will allow you to benefit from the parallel build and deployment.
+
+### Update your Qovery configuration based on your application repository structure
+
+#### Multi-stage deployment on the same environment
+
+If within the same environment you have multiple applications using the same git repository and build context, you can benefit from the image caching mechanism provided by the [mirriring registry][docs.using-qovery.deployment.image-mirroring#application-built-via-the-qovery-deployment-pipeline] by:
+
+1. having one application X on a stage A. This is the one that will be built each time
+2. having all the other application on other stages as long as they are after the stage A. For all these applications the build phase will be skipped since the image has already been built from application X
+
+
+#### Managing Preview environments
+
+No real configuration change is required here to speed up your deployment. Ensure to avoid as much as you can to use environment specific variables as ARGS within your Dockerfile (such as `QOVERY_ENVIRONMENT_ID`) since this will force a new build on each environment.
+
+
+#### Cross-environment deploy with auto-deploy enabled
+
+When the auto-deploy feature is enabled and you deploy the same application across multiple environments, the applications will be built separately on each environment and you can't benefit from the caching mechanism available for the already built images.
+
+A small diagram to explain it:
+
+<p align="center">
+  <img src="/img/deployment/autodeploy_build.png" alt="Auto-deploy schema" />
+</p>
+
+Example: two apps A and B are configured on Qovery pointing to a repo X.
+
+Flow:
+1. A commit is pushed on the repo X. Git(hub/lab) inform Qovery about the new commit
+2. Qovery starts the deployment of the two apps separately and checks the existence of the image. At this moment, the image does not exist and thus both deployments move forward with the build phase.
+3. Qovery starts building the image for each application and pushes it onto the repository.
+
+As you can see, every deployment is independent and the build choice is only based on the existence or not of the image on the container registry at the very beginning.
+
 
 [docs.using-qovery.configuration.environment#deployment-pipeline]: /docs/using-qovery/configuration/environment/#deployment-pipeline
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
+[docs.using-qovery.deployment.image-mirroring#application-built-via-the-qovery-deployment-pipeline]: /docs/using-qovery/deployment/image-mirroring/#application-built-via-the-qovery-deployment-pipeline
+[docs.using-qovery.deployment.image-mirroring]: /docs/using-qovery/deployment/image-mirroring/
 [docs.using-qovery.integration.continuous-integration]: /docs/using-qovery/integration/continuous-integration/

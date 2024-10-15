@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-10-09"
+last_modified_on: "2024-10-15"
 title: "Image Mirroring"
 description: "Learn how images are mirrored within your cloud account"
 ---
@@ -44,6 +44,26 @@ Otherwise, the image is built by the Qovery pipeline the resulting image is push
 In order to speed up the image build, we are using remote caches (available in AWS, GCP and Scaleway). It will avoid building the image from scratch, only the layers that changed will be built.
 
 Given this isolation mechanism, if the same application is cloned (via the [clone][docs.using-qovery.configuration.environment#clone-environment] or [preview environment][docs.using-qovery.configuration.environment#preview-environment] feature), Qovery will re-build the application since the environment variables have changed (the ones at environment level).
+
+### Special case: cross-environment deploy with auto-deploy enabled
+
+When the auto-deploy feature is enabled and you deploy the same application across multiple environments, the applications will be built separately on each environment and you can't benefit from the caching mechanism available for the already built images.
+
+A small diagram to explain it:
+
+<p align="center">
+  <img src="/img/deployment/autodeploy_build.png" alt="Auto-deploy schema" />
+</p>
+
+Example: two apps A and B are configured on Qovery pointing to a repo X.
+
+Flow:
+1. A commit is pushed on the repo X. Git(hub/lab) inform Qovery about the new commit
+2. Qovery starts the deployment of the two apps separately and checks the existence of the image. At this moment, the image does not exist and thus both deployments move forward with the build phase.
+3. Qovery starts building the image for each application and pushes it onto the repository.
+
+As you can see, every deployment is independent and the build choice is only based on the existence or not of the image on the container registry at the very beginning.
+
 
 ## Application deployed from a container registry
 

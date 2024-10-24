@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-10-11"
+last_modified_on: "2024-10-24"
 title: "Cluster Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -303,7 +303,7 @@ It won't be possible to go back once this feature is activated.
 | string  | Allows you to activate KMS encryption of your Kubernetes secrets. Specify the [key ARN](https://docs.aws.amazon.com/kms/latest/developerguide/find-cmk-id-arn.html) of your AWS KMS key.  |               |
 
 
-#### qovery.static_ip_mode ![](/img/advanced_settings/aws.svg)
+#### qovery.static_ip_mode ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/gcp.svg)
 
 
 | Type    | Description                                                                 | Default Value |
@@ -328,7 +328,7 @@ Why? Dockerhub has a [rate limit system by IP](https://docs.docker.com/docker-hu
 
 
 
-#### k8s.api.allowed_public_access_cidrs ![](/img/advanced_settings/aws.svg)
+#### k8s.api.allowed_public_access_cidrs ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/gcp.svg)
 
 <Alert type="info">
 

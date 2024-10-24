@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-10-10"
+last_modified_on: "2024-10-15"
 title: Deployment
 description: "Everything you need to know about the deployment of your applications with Qovery"
 sidebar_label: hidden

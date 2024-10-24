@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-10-11"
+last_modified_on: "2024-10-24"
 title: "Cluster Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -108,6 +108,11 @@ Enabling this feature will create a 10 min max downtime on your application's pu
 | Type    | Description                                                                 | Default Value |
 |---------|-----------------------------------------------------------------------------|---------------|
 | boolean | Enable the AWS ALB controller to manage the load balancer for the cluster.  | `true`        |
+
+Requirements for customers using custom VPCs (Qovery Managed VPC does not require these steps):
+* On public subnets: add a label `kubernetes.io/role/elb` with the value `1` to the subnet where the ALB will be created.
+* On private subnets: add a label `kubernetes.io/role/internal-elb` with the value `1` to the subnet where the ALB will be created.
+* On all subnets: add a label `kubernetes.io/cluster/<cluster-name>` with the value `shared` to the subnet where the ALB will be created.
 
 #### load_balancer.size ![](/img/advanced_settings/scaleway.svg)
 

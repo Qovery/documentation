@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-01-05"
+last_modified_on: "2024-11-01"
 $schema: "/.meta/.schemas/guides.json"
 title: How to connect to your EKS cluster with kubectl
 description: How to connect to your EKS cluster using kubectl
@@ -57,13 +57,20 @@ To interact with your cluster, you will need `kubectl` installed.
 The AWS CLI must be installed and configured on your machine.
 [https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)
 
+**Qovery CLI**
+
+The Qovery CLI is required to get the kubeconfig file of your cluster:
+[https://hub.qovery.com/docs/using-qovery/interface/cli/](https://hub.qovery.com/docs/using-qovery/interface/cli/)
+
 </li>
 
 <li>
 
-#### Add your IAM user to the Admin group
+#### IAM user permissions
 
-Since `kubectl` will use IAM to authenticate, you need to add your IAM user (the one the AWS CLI is authenticated with) to the `Admins` group you created when setting up Qovery.
+Since `kubectl` will use IAM to authenticate, you need to have one of those things:
+1. Add your IAM user (the one the AWS CLI is authenticated with) to the `Admins` group you created when setting up Qovery
+2. Have the permissions to access the EKS cluster via SSO ([see cluster advanced settings for it](/docs/using-qovery/configuration/cluster-advanced-settings/#awsiamenable_sso))
 
 <p align="center">
   <img src="/img/how-to-connect-to-your-eks-cluster-with-kubectl/1.png" alt="AWS console - add admin user" />
@@ -74,12 +81,31 @@ Since `kubectl` will use IAM to authenticate, you need to add your IAM user (the
 
 #### Download the Kubeconfig file
 
-To connect to your EKS cluster you will need to set a context to `kubectl`. This is done with a `Kubeconfig` file.
+To get the kubeconfig file of your cluster, run the following command to list your clusters and get the desired cluster ID:
 
-When installing a new cluster, Qovery stores it in an S3 bucket on your account. You can retrieve the Kubeconfig of your cluster directly from the Qovery interface by following the procedure "Get your cluster kubeconfig file" [within this section][docs.using-qovery.configuration.clusters#performing-actions-on-your-clusters].
+```bash
+$ qovery cluster list
+Id                                   | Name                 | Type    | Status   | Last Update
+xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx | Qovery Prod          | cluster | DEPLOYED | 2024-10-11 07:40:33.562523 +0000 UTC
+```
+
+Then run the following command to get the kubeconfig file (replace with your cluster ID):
+
+```bash
+$ qovery cluster kubeconfig --cluster-id xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+INFO[2024-11-01T11:42:49+01:00] Kubeconfig file created in the current directory. 
+INFO[2024-11-01T11:42:49+01:00] Execute `export KUBECONFIG=/Users/user/kubeconfig-xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx.yaml` to use it.
+```
+
+The path of your kubeconfig file will be displayed in the output. You can now use it to set the context for `kubectl`.
+
+<Alert type="warning">
+
+On AWS you'll need to have the `AWS_PROFILE` environment variable set to the right profile to be able to download the kubeconfig file or AWS credentials set as environment variables.
+
+</Alert>
 
 </li>
-
 
 <li>
 
@@ -217,4 +243,4 @@ Qovery helps you manage your Kubernetes cluster and deploy your applications on 
 </Alert>
 
 
-[docs.using-qovery.configuration.clusters#performing-actions-on-your-clusters]: /docs/using-qovery/configuration/clusters/#performing-actions-on-your-clusters
+

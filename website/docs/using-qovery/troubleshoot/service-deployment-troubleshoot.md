@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-08-28"
+last_modified_on: "2024-11-04"
 title: Service Deployment Troubleshoot
 description: "How to troubleshoot your service deployments with Qovery"
 hide_pagination: true
@@ -65,7 +65,7 @@ That means that we cannot reserve the necessary resources to deploy your applica
 
 Here are the possible solutions you can apply:
 
-* Reduce the resources (CPU/RAM) allocated to your existing/new service. Have a review of the deployed services and see if you can save up some resources by reducing their CPU/RAM setting. If you are using a *K3S (EC2) cluster*, stop your service before changing the settings. Remember to re-deploy the applications when you edit the resource. Have a look at [the resource section for more information][docs.using-qovery.configuration.application#resources].
+* Reduce the resources (CPU/RAM) allocated to your existing/new service. Have a review of the deployed services and see if you can save up some resources by reducing their CPU/RAM setting. Remember to re-deploy the applications when you edit the resource. Have a look at [the resource section for more information][docs.using-qovery.configuration.application#resources].
 
 * Select a bigger instance type for your cluster (in terms of CPU/RAM). By increasing it, it will unlock the deployment of your application (since new resources have been added). Check your [cluster settings][docs.using-qovery.configuration.clusters#managing-your-cluster-settings], and change the instance type of your cluster.
 

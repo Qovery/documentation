@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-10-24"
+last_modified_on: "2024-10-30"
 title: "Cluster Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -109,6 +109,11 @@ Enabling this feature will create a 10 min max downtime on your application's pu
 |---------|-----------------------------------------------------------------------------|---------------|
 | boolean | Enable the AWS ALB controller to manage the load balancer for the cluster.  | `true`        |
 
+Requirements for customers using custom VPCs (Qovery Managed VPC does not require these steps):
+* On public subnets: add a label `kubernetes.io/role/elb` with the value `1` to the subnet where the ALB will be created.
+* On private subnets: add a label `kubernetes.io/role/internal-elb` with the value `1` to the subnet where the ALB will be created.
+* On all subnets: add a label `kubernetes.io/cluster/<cluster-name>` with the value `shared` to the subnet where the ALB will be created.
+
 #### load_balancer.size ![](/img/advanced_settings/scaleway.svg)
 
 | Type    | Description                                                                                                                                                                                       | Default Value |
@@ -164,6 +169,18 @@ Enabling this feature will create a 10 min max downtime on your application's pu
 | Type    | Description                                                                                          | Default Value   |
 |---------|------------------------------------------------------------------------------------------------------|-----------------|
 | bool    | Enables [ngx_http_realip_module](https://nginx.org/en/docs/http/ngx_http_realip_module.html) module. | `false`         |
+
+#### nginx.controller.use_forwarded_headers ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
+
+| Type    | Description                                                                                          | Default Value   |
+|---------|------------------------------------------------------------------------------------------------------|-----------------|
+| bool    | Passes incoming `X-Forwarded-For` header upstream, see [documentation](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#use-forwarded-headers). | `false`         |
+
+#### nginx.controller.compute_full_forwarded_for ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
+
+| Type    | Description                                                                                          | Default Value   |
+|---------|------------------------------------------------------------------------------------------------------|-----------------|
+| bool    | Append the remote address to the X-Forwarded-For header instead of replacing it, see [documentation](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#compute_full_forwarded_for). | `false`         |
 
 #### nginx.controller.log_format_upstream ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
 
@@ -322,7 +339,7 @@ Dockerhub credentials are necessary to activate this feature.
 
 </Alert>
 
-Before setting this advanced settings to true, go through the [Organization settings > Container registry][docs.using-qovery.configuration.organization.container-registry] and make sure that your Dockerhub registry has some credentials set. 
+Before setting this advanced settings to true, go through the [Organization settings > Container registry][docs.using-qovery.configuration.organization.container-registry] and make sure that your Dockerhub registry has some credentials set.
 
 Why? Dockerhub has a [rate limit system by IP](https://docs.docker.com/docker-hub/download-rate-limit/) when pulling from their registry. Since the Qovery control plane will be seen as a single IP, we will quickly reach the limit. This limit can be increased if you are a logged-in user and thus, if you put your credentials in the Dockerhub registry configuration of your organization, you should not encounter any rate limit issue during the deployment.
 

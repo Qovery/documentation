@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-09-04"
+last_modified_on: "2024-11-01"
 title: CLI
 description: How to use the Qovery CLI (Command Line Interface)
 ---
@@ -642,6 +642,13 @@ export KUBECONFIG=<path_to_kubeconfig_file>
 ```
 
 3. You can now use tools like `k9s` or `kubectl` to access and manage your cluster:
+
+
+<Alert type="info">
+
+Some cloud providers like GCP or AWS require additional configuration to access the cluster. Make sure you have CLI binaries installed (gcloud CLI/AWS CLI/...), and the right permissions and credentials set up (environment variables or profile file).
+
+</Alert>
 
 **Using k9s**
 

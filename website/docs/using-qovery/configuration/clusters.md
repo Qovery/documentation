@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-09-25"
+last_modified_on: "2024-11-04"
 title: "Clusters"
 description: "Learn how to configure your Kubernetes clusters on Qovery"
 ---
@@ -145,15 +145,6 @@ For more information, see [Features][docs.using-qovery.configuration.clusters#fe
 </li>
 <li>
 
-*(Only for Single EC2 K3S Clusters)* In the `Set SSH Key` window:
-
-The SSH key enables you (or Qovery on your behalf) to freely manage your cluster. For information on how to generate an SSH key, see [Generating an SSH Key for Your Cluster][docs.using-qovery.configuration.clusters#generating-an-ssh-key-for-your-cluster].
-
-You can add an SSH key to your cluster settings later, however it is recommended to do it at cluster creation to avoid downtime.
-
-</li>
-<li>
-
 In the `Ready to install your cluster` window, check that the services needed to install your cluster are correct.
 
 You can now press the `Create and Install` button.
@@ -250,8 +241,6 @@ For more information on the instance types provided by each cloud provider and t
 The lowest number is the number of worker nodes running on your infrastructure at any time, while the highest number is the maximum number of worker nodes that can automatically be deployed as traffic grows.
 
 Please note that a minimum of 3 worker nodes is required to deploy your [EKS cluster][docs.using-qovery.configuration.clusters#creating-a-cluster].
-
-[K3s clusters][docs.using-qovery.configuration.clusters#creating-a-cluster] can only have one node.
 
 </Alert>
 
@@ -583,85 +572,6 @@ The error message should provide you enough information to solve the issue. If t
 
 </Alert>
 
-## Generating an SSH Key for Your Cluster
-
-<Alert type="info">
-
-You need a public SSH key for your K3s clusters only.
-
-</Alert>
-
-  To allow Qovery or yourself to connect remotely to your K3s instance and manage it, you need to generate an SSH key and add it to your cluster settings. To do so:
-
-  <Steps headingDepth={3}>
-  <ol>
-  <li>
-
- On your computer, open a terminal.
-
-  </li>
-  <li>
-
-  Run `ssh-keygen -t`, followed by the key type and an optional comment.
-
-<Alert type="info">
-
-This comment is included in the .pub file that is created. You may want to use an email address for the comment.
-
-</Alert>
-
-For example, you can enter `ssh-keygen -t rsa -b 2048 -C "<comment>"`.
-
-  </li>
-  <li>
-
-Press `Enter`.
-
-You should get an output similar to:
-
-```
-{
-  Generating public/private ed25519 key pair.
-  Enter file in which to save the key (/home/user/.ssh/id_ed25519):
-}
-```
-
-  </li>
-  <li>
-
-  Accept the suggested filename and directory, unless you want to save your SSH key in a specific directory where you store other keys.
-
-  </li>
-  <li>
-
-  Enter a passphrase:
-
-  ```
-{
-   Enter passphrase (empty for no passphrase):
-   Enter same passphrase again:
-}
-```
-
-  A confirmation is displayed, including information about where your files are stored.
-
-  </li>
-  <li>
-  Access the public key and copy its value
-
-  ```
-{
-    cat /home/user/.ssh/id_ed25519.pub | pbcopy
-}
-  ```
-
-  Note: Replace the .pub key path with the one where is located the key you have previously generated
-
-  </li>
-  </ol>
-  </Steps>
-
-
  You can add the generated public SSH key at cluster creation (see [Creating a Cluster][docs.using-qovery.configuration.clusters#creating-a-cluster]), or later from your cluster settings.
 
  To do so:
@@ -730,38 +640,6 @@ Thanks to clusters, you can easily deploy several (and many) instances of the sa
 
 In short, through the use of clusters, Kubernetes provides you with a resilient, flexible and powerful infrastructure, fit for production environment needs and requirements. And with the help of Qovery, setting up and maintaining your Kubernetes clusters has never been easier.
 
-Qovery allows you to create and manage two types of clusters:
-
-|                         | **Managed K8S **                                                                                                                                 | ** BETA - Single EC2 (K3s)**                                                                           |
-|-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------|
-| **Description**         | A multi-node Kubernetes cluster managed by your cloud provider (EKS, Kapsule etc..)                                                              | K3s Cluster running on a single EC2 instance (single-node) **Available only on AWS and still in BETA** |
-| **Usage**               | Hosting professional applications in production (resilient, scalable and powerful infrastructure). Scalable staging / preview / dev environments | Hobby projects, trying out Qovery, ephemeral environments deployment                                   |
-| **Cloud provider cost** | Starting from 200$/month, based on the chosen instance type                                                                                      | starting from 20$/month, based on the chosen instance type                                             |
-<br/>
-
-<Alert type="warning">
-Single EC2 (K3s) is still in BETA phase and has the following limitations
-
-* You can’t access the historical logs and thus you can access your application logs only if it's running (Since we don’t have loki installed)
-* No public accessibility for DB container (we do not manage the public DNS entry for db). We will work on it in the upcoming weeks, in the meantime we will write a guide on how to connect to the DB via the ssh key / kubeconf
-* You can configure only 1 instance per application. Thus you can’t change the number of instances nor activate the sticky session feature
-* Stop instance feature not ready YET
-* You can’t change the cluster settings without a service downtime since we kill the instance and we spawn a new one
-* We do not manage YET the external storage
-* We do not support YET the VPC setting
-* If you want to connect via SSH, you can't get YET the instance hostname directly in the Qovery console, you need to get it from the AWS console
-
-</Alert>
-
-<br/>
-
-<Alert type="warning">
-
-K3s clusters are [deployed on one AWS availability zone](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-availability-zones). Therefore, if a network or power disruption happens on the availability zone where your K3s instance is running, your applications will no longer be available until it is solved.
-
-This is why we do not recommend installing K3s clusters to run professional applications in a production environment.
-
-</Alert>
 
 ### What are the different instance types available when creating a cluster?
 
@@ -825,7 +703,6 @@ Security is our main concern. When a vulnerability is found, here are the action
 [docs.using-qovery.configuration.clusters#creating-a-cluster]: /docs/using-qovery/configuration/clusters/#creating-a-cluster
 [docs.using-qovery.configuration.clusters#deleting-a-cluster]: /docs/using-qovery/configuration/clusters/#deleting-a-cluster
 [docs.using-qovery.configuration.clusters#features]: /docs/using-qovery/configuration/clusters/#features
-[docs.using-qovery.configuration.clusters#generating-an-ssh-key-for-your-cluster]: /docs/using-qovery/configuration/clusters/#generating-an-ssh-key-for-your-cluster
 [docs.using-qovery.configuration.clusters#logs]: /docs/using-qovery/configuration/clusters/#logs
 [docs.using-qovery.configuration.clusters#managing-your-cluster-settings]: /docs/using-qovery/configuration/clusters/#managing-your-cluster-settings
 [docs.using-qovery.configuration.clusters#restarting-a-cluster]: /docs/using-qovery/configuration/clusters/#restarting-a-cluster

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-10-30"
+last_modified_on: "2024-11-12"
 title: "Cluster Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -196,53 +196,53 @@ Requirements for customers using custom VPCs (Qovery Managed VPC does not requir
 
 ### Database access
 
-#### database.postgresql.deny_public_access ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-container.svg) ![](/img/advanced_settings/database-managed.svg)
+#### database.postgresql.deny_any_access ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-container.svg) ![](/img/advanced_settings/database-managed.svg)
 
 | Type    | Description                                                                                                                                                                                                        | Default Value |
 |---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
-| boolean | Deny public access to all PostgreSQL databases. When true, configure the CIDR range you want to allow within the associated `allowed_cidrs` parameter (default is "any IP").<br />⚠️ Public access to managed databases will instantly be removed<br />⚠️ Public access to container databases will be removed only after a database redeployment| `false`       |
+| boolean | Deny any access to all PostgreSQL databases. When false, configure the CIDR range you want to allow within the associated `allowed_cidrs` parameter (default is "any IP").<br />⚠️ Any access to managed databases will instantly be removed<br />⚠️ Any access to container databases will be removed only after a database redeployment| `false`       |
 
 #### database.postgresql.allowed_cidrs ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-managed.svg)
 
 | Type    | Description                                                                                    | Default Value   |
 |---------|------------------------------------------------------------------------------------------------|-----------------|
-| string | List of allowed CIDRS. Valid only when [`database.postgresql.deny_public_access`](#databasepostgresqldeny_public_access) is set to true | `["0.0.0.0/0"]` |
+| string | List of allowed CIDRS. Valid only when [`database.postgresql.deny_any_access`](#databasepostgresqldeny_any_access) is set to false | `["0.0.0.0/0"]` |
 
-#### database.mysql.deny_public_access ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-container.svg) ![](/img/advanced_settings/database-managed.svg)
+#### database.mysql.deny_any_access ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-container.svg) ![](/img/advanced_settings/database-managed.svg)
 
 | Type    | Description                                                                                                                                                                                                    | Default Value |
 |---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
-| boolean | Deny public access to all MySQL databases. When true, configure the CIDR range you want to allow within the associated `allowed_cidrs` parameter (default is "any IP"). <br />⚠️ Public access to managed databases will instantly be removed<br />⚠️ Public access to container databases will be removed only after a database redeployment | `false`       |
+| boolean | Deny any access to all MySQL databases. When false, configure the CIDR range you want to allow within the associated `allowed_cidrs` parameter (default is "any IP"). <br />⚠️ Any access to managed databases will instantly be removed<br />⚠️ Any access to container databases will be removed only after a database redeployment | `false`       |
 
 #### database.mysql.allowed_cidrs ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-managed.svg)
 
 | Type    | Description                                                                                    | Default Value   |
 |---------|------------------------------------------------------------------------------------------------|-----------------|
-| string | List of allowed CIDRS. Valid only when [`database.mysql.deny_public_access`](#databasemysqldeny_public_access) is set to true      | `["0.0.0.0/0"]` |
+| string | List of allowed CIDRS. Valid only when [`database.mysql.deny_any_access`](#databasemysqldeny_any_access) is set to false      | `["0.0.0.0/0"]` |
 
-#### database.mongodb.deny_public_access ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-container.svg) ![](/img/advanced_settings/database-managed.svg)
+#### database.mongodb.deny_any_access ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-container.svg) ![](/img/advanced_settings/database-managed.svg)
 
 | Type    | Description                                                                                                                                                                                                     | Default Value |
 |---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
-| boolean | Deny public access to all MongoDB databases. When true, configure the CIDR range you want to allow within the associated `allowed_cidrs` parameter (default is "any IP"). <br />⚠️ Public access to managed databases will instantly be removed<br />⚠️ Public access to container databases will be removed only after a database redeployment | `false`       |
+| boolean | Deny any access to all MongoDB databases. When false, configure the CIDR range you want to allow within the associated `allowed_cidrs` parameter (default is "any IP"). <br />⚠️ Any access to managed databases will instantly be removed<br />⚠️ Any access to container databases will be removed only after a database redeployment | `false`       |
 
 #### database.mongodb.allowed_cidrs ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-managed.svg)
 
 | Type    | Description                                                                                    | Default Value   |
 |---------|------------------------------------------------------------------------------------------------|-----------------|
-| string | List of allowed CIDRS. Valid only when [`database.mongodb.deny_public_access`](#databasemongodbdeny_public_access) is set to true    | `["0.0.0.0/0"]` |
+| string | List of allowed CIDRS. Valid only when [`database.mongodb.deny_any_access`](#databasemongodbdeny_any_access) is set to false    | `["0.0.0.0/0"]` |
 
-#### database.redis.deny_public_access ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-container.svg) ![](/img/advanced_settings/database-managed.svg)
+#### database.redis.deny_any_access ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-container.svg) ![](/img/advanced_settings/database-managed.svg)
 
 | Type    | Description                                                                                            | Default Value |
 |---------|--------------------------------------------------------------------------------------------------------|---------------|
-| boolean | Deny public access to all Redis databases. When true, configure the CIDR range you want to allow within the associated `allowed_cidrs` parameter (default is "anyone").<br />⚠️ Public access to managed databases will instantly be removed<br />⚠️ Public access to container databases will be removed only after a database redeployment | `false`       |
+| boolean | Deny any access to all Redis databases. When false, configure the CIDR range you want to allow within the associated `allowed_cidrs` parameter (default is "anyone").<br />⚠️ Any access to managed databases will instantly be removed<br />⚠️ Any access to container databases will be removed only after a database redeployment | `false`       |
 
 #### database.redis.allowed_cidrs ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-managed.svg)
 
 | Type    | Description                                                                                    | Default Value   |
 |---------|------------------------------------------------------------------------------------------------|-----------------|
-| string | List of allowed CIDRS. Valid only when [`database.redis.deny_public_access`](#databaseredisdeny_public_access) is set to true      | `["0.0.0.0/0"]` |
+| string | List of allowed CIDRS. Valid only when [`database.redis.deny_any_access`](#databaseredisdeny_any_access) is set to false      | `["0.0.0.0/0"]` |
 
 ## Service
 

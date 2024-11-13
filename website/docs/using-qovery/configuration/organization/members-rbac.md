@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-11-24"
+last_modified_on: "2024-10-24"
 title: "Members and RBAC"
 description: "Learn how to manage the RBAC via Qovery"
 ---
@@ -47,7 +47,7 @@ Changing the role of a member requires the user to logout/login to make the chan
 Qovery allows you to control the access to your cluster and environment resources by defining and assigning  roles to your users.
 
 By default, five roles are created within your organization (Basic Roles):
-- Owner: the user has full access on the organization
+- Owner: the user has full access on the organization. Only one user can be the owner of the organization.
 - Admin: same as the owner, the has full access to the organization but he cannot delete it
 - DevOps: the user can manage the organization infrastructure (clusters/registry/webhook setup) and manage the deployments of any environment within the organization.
 - Billing Manager: the user can only manage the billing of the organization
@@ -74,11 +74,10 @@ More in detail, you can find the associated permissions below:
 | Deploy/Stop ANY environment or service                         | yes   | yes   | yes    | no              | no     |
 | Connect via shell to ANY application                           | yes   | yes   | yes    | no              | no     |
 
-<Alert type="info">
+### Transfering organization ownership
 
-Only one user can be Owner of an organization. You can transfer the ownership to another member via the menu available on the target member
+You can transfer the ownership to another member by accessing the menu available on the target member and selecting the option "Transfer Ownership"
 
-</Alert>
 
 ### Custom roles
 If the basic roles are not enough given your internal organization, Qovery allows you to customize the accesses to your clusters, projets and environments by defining `Custom Roles`.

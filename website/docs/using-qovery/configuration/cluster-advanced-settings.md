@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-11-12"
+last_modified_on: "2024-11-13"
 title: "Cluster Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -113,6 +113,30 @@ Requirements for customers using custom VPCs (Qovery Managed VPC does not requir
 * On public subnets: add a label `kubernetes.io/role/elb` with the value `1` to the subnet where the ALB will be created.
 * On private subnets: add a label `kubernetes.io/role/internal-elb` with the value `1` to the subnet where the ALB will be created.
 * On all subnets: add a label `kubernetes.io/cluster/<cluster-name>` with the value `shared` to the subnet where the ALB will be created.
+
+#### aws.eks.alb_controller.vpa.vcpu.min_in_milli_cpu ![](/img/advanced_settings/aws.svg)
+
+| Type    | Description                                                                              | Default Value |
+|---------|------------------------------------------------------------------------------------------|---------------|
+| integer | Sets AWS ALB controller VPA (vertical pod autoscaling) vCPU minimum value in milli CPU.  |  `250`        |
+
+#### aws.eks.alb_controller.vpa.vcpu.max_in_milli_cpu ![](/img/advanced_settings/aws.svg)
+
+| Type    | Description                                                                              | Default Value |
+|---------|------------------------------------------------------------------------------------------|---------------|
+| integer | Sets AWS ALB controller VPA (vertical pod autoscaling) vCPU maximum value in milli CPU.  |  `250`        |
+
+#### aws.eks.alb_controller.vpa.memory.min_in_mib ![](/img/advanced_settings/aws.svg)
+
+| Type    | Description                                                                              | Default Value |
+|---------|------------------------------------------------------------------------------------------|---------------|
+| integer | Sets AWS ALB controller VPA (vertical pod autoscaling) memory minimum value in mebibyte. |  `128`        |
+
+#### aws.eks.alb_controller.vpa.memory.max_in_mib ![](/img/advanced_settings/aws.svg)
+
+| Type    | Description                                                                              | Default Value |
+|---------|------------------------------------------------------------------------------------------|---------------|
+| integer | Sets AWS ALB controller VPA (vertical pod autoscaling) memory maximum value in mebibyte. |  `128`        |
 
 #### load_balancer.size ![](/img/advanced_settings/scaleway.svg)
 

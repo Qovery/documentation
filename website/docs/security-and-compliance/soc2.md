@@ -1,12 +1,12 @@
 ---
-last_modified_on: "2024-10-25"
+last_modified_on: "2024-11-15"
 title: SOC2
 description: Systems and Organizations Controls 2
 ---
 
 import Alert from '@site/src/components/Alert';
 
-![](/img/compliance_logo.png)
+![](/img/compliances/compliance_logo.png)
 
 Qovery infrastructure and processes comply with SOC2 (Systems and Organizations Controls 2) best practices. By default, Qovery integrates numerous security features into your applications, clusters, and databases,
 ensuring alignment with SOC2’s stringent security standards. For more information, visit the [Qovery trust page](https://trust.qovery.com/).
@@ -77,6 +77,12 @@ SOC2 requires that images be retained for a minimum of 365 days. To meet this re
 To comply with SOC2, restrict access to the AWS EC2 metadata service.
 
 Set `aws.eks.ec2.metadata_imds` to `required` to prevent unauthorized access to the metadata service.
+
+## Schema
+
+For SOC2 compliance, an auditor may request a diagram of your infrastructure and its connection to Qovery. Below is the diagram you can share:
+
+![](/img/compliances/qovery_soc2_schema.svg)
 
 
 [docs.using-qovery.configuration.cluster-advanced-settings]: /docs/using-qovery/configuration/cluster-advanced-settings/

@@ -1,7 +1,8 @@
 ---
-last_modified_on: "2024-11-04"
+last_modified_on: "2024-11-21"
 title: "Clusters"
 description: "Learn how to configure your Kubernetes clusters on Qovery"
+sidebar_label: hidden
 ---
 
 import Steps from '@site/src/components/Steps';
@@ -31,12 +32,6 @@ From the [Qovery Console][urls.qovery_console], you can manage the settings of t
 
 ### Creating a Cluster
 
-<Alert type="info">
-
-To install a cluster, Qovery needs a set of credentials to access your cloud provider account (example: AWS secret_access_key and access_key_id). If this is the first time you are installing a cluster with Qovery, have a look at this guide on how to get the credentials: [here for AWS][docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.quickstart#attach-aws-credentials], [here for Scaleway][docs.getting-started.install-qovery.scaleway.cluster-managed-by-qovery.quickstart#attach-scaleway-credentials], [here for GCP][docs.getting-started.install-qovery.gcp.cluster-managed-by-qovery.quickstart#attach-gcp-credentials].
-
-</Alert>
-
 To create a cluster:
 
 <Steps headingDepth={3}>
@@ -48,321 +43,22 @@ Open your [Qovery Console][urls.qovery_console].
 </li>
 <li>
 
-On the left menu bar, click on the Cluster page:
+On the left menu bar, click on the Cluster page and click `Add Cluster`:
 
 <p align="center">
   <img src="/img/configuration/clusters/cluster_section_access.png" alt="Cluster Access" />
 </p>
 
 </li>
-<li>
-
-Click `Add Cluster`:
-
-<p align="center">
-  <img src="/img/configuration/clusters/add-cluster-button.png" alt="Add Cluster Button" />
-</p>
-
-</li>
-<li>
-
-In the `Create Cluster` window enter:
-
-* `Cluster name`: enter the name of your choice for your cluster.
-* `Description`: enter a description to identify better your cluster.
-* `Production cluster`: select this option if your cluster will be used for production.
-* `Cloud provider`: select your cloud provider.
-* `Region`: select the geographical area in which you want your cluster to be hosted.
-* `Credentials`: select one of the existing cloud provider credentials or add a new one by clicking on `New Credentials`. In the New credentials window, add the credentials that you have generated on your cloud provider console ([Procedure for AWS account][docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.quickstart#attach-aws-credentials], [Procedure for Scaleway account][docs.getting-started.install-qovery.scaleway.cluster-managed-by-qovery.quickstart#attach-scaleway-credentials], [Procedure for GCP account][docs.getting-started.install-qovery.gcp.cluster-managed-by-qovery.quickstart#attach-gcp-credentials]). Added credentials can be used later to create and manage additional cluster.
-
-To confirm, click `Next`.
-
-</li>
-<li>
-
-In the `Set Resources` window, select:
-
-* `Cluster`: select the cluster type to use. Please refer to this section for [more information][docs.using-qovery.configuration.clusters#why-do-i-need-a-cluster].
-* `Disk size`: select the size of the disks to be attached to your cluster instances (to locally store container images etc..). Setting available only on AWS.
-* `Instance type`: select the type of [worker nodes][docs.using-qovery.configuration.clusters#what-is-a-cluster] you want to deploy to your cluster:
-* `Node auto-scaling`: define the minimum and the maximum number of worker nodes that your cluster can run. The lowest number is the number of worker nodes running on your infrastructure at any time, while the highest number is the maximum number of worker nodes that can automatically be deployed as traffic grows. Please note that a minimum of 3 worker nodes is required to deploy your EKS cluster.
-
-<br/>
-
-<Alert type="warning">
-Instance type selection from your Qovery Console has direct consequences on your cloud provider’s bill. While Qovery allows you to switch to a different instance type whenever you want, it is your sole responsibility to keep an eye on your infrastructure costs, especially when you want to upsize.
-
-Please be aware that changing the instance type or disk size might cause a downtime for your service.
-
-For more information on the instance types provided by each cloud provider and their associated pricing, see [What are the different instance types available when creating a cluster?][docs.using-qovery.configuration.clusters#what-are-the-different-instance-types-available-when-creating-a-cluster]
-
-Also, before downsizing, you need to ensure that your applications will still have enough resources to run correctly.
-
-</Alert>
-
-<br/>
-
-<Alert type="info">
-
-At the bottom of the window, you can see an estimate of the cost associated with the selected instance type.
-
-</Alert>
-
-For AWS EKS clusters, you have the possibility to enable `Karpenter` autoscaler to improve the efficiency and cost of running workloads on your cluster. You can check the [official documentation](https://karpenter.sh/docs/) for more information.
-
-<p align="center">
-  <img src="/img/configuration/clusters/karpenter.png" alt="Enable Karpenter" />
-</p>
-
-Today, only new non-production clusters are supported. It means you won't be able to enable it on your already existing cluster. It will be supported soon.
-
-By activating Karpenter, you have to set:
-* `Disk size`: select the size of the disks to be attached to your cluster instances (to locally store container images etc..).
-* `Default node architecture`: If you build your application with the Qovery CI, your application will be built using this architecture by default.
-* `Spot instances`: In order to reduce even more your costs, you can also enable the spot instances on your clusters. Spot instances cost up to 90% less compared to On-Demand prices. But keep in mind that spot instances can be terminated by the cloud provider at any time. Check this [documentation](https://aws.amazon.com/ec2/spot/) for more information. Even if this flag is enabled, the statefulsets won't run on spot instances.
-
-<br/>
-
-<Alert type="warning">
-
-A SQS queue will be created. Before deploying your cluster, update the IAM permissions of the Qovery user, make sure to use the [latest version here](https://hub.qovery.com/files/qovery-iam-aws.json) to add the permission on SQS.
-
-</Alert>
-
-To confirm, click `Next`.
-
-</li>
-<li>
-
-*(Only for AWS K8S Clusters)* In the `Features` window, select the features you want to enable on your cluster.
-
-<Alert type="info">
-
-For more information, see [Features][docs.using-qovery.configuration.clusters#features].
-
-</Alert>
-
-</li>
-<li>
-
-In the `Ready to install your cluster` window, check that the services needed to install your cluster are correct.
-
-You can now press the `Create and Install` button.
-
-Your cluster is now displayed in your organization settings, featuring the `Installing...` status (orange status). Once your cluster is properly installed, its status turns to green and you will be able to deploy your applications on it.
-
-</li>
 </ol>
+
+Refer to the specific installation guide for your cloud provider
+
+<Jump to="/docs/using-qovery/configuration/clusters/aws-with-karpenter/">AWS with karpenter</Jump>
+<Jump to="/docs/using-qovery/configuration/clusters/aws/">AWS</Jump>
+<Jump to="/docs/using-qovery/configuration/clusters/gcp/">GCP</Jump>
+<Jump to="/docs/using-qovery/configuration/clusters/scaleway/">Scaleway</Jump>
 </Steps>
-
-
-### Managing your Cluster Settings
-
-To manage the settings of an existing cluster:
-
-<Steps headingDepth={3}>
-<ol>
-<li>
-
-Open your [Qovery Console][urls.qovery_console].
-
-</li>
-<li>
-
-On the left menu bar, click on the Cluster page:
-
-<p align="center">
-  <img src="/img/configuration/clusters/cluster_section_access.png" alt="Cluster Access" />
-</p>
-
-</li>
-<li>
-
-To access your cluster settings, click on the wheel button:
-
-<p align="center">
-  <img src="/img/configuration/clusters/cluster_settings.png" alt="Display Cluster Settings" />
-</p>
-
-</li>
-
-</ol>
-</Steps>
-
-Below you can find a description of each section
-
-#### General
-
-The `General` tab allows you to define high-level information on your cluster:
-
-|Item|Description|
-|--------------|---------------------------|
-|Cluster Name|To edit the name of your cluster.|
-|Description|To enter or edit the description of your cluster.|
-|Production Cluster|To enter or edit the production flag of your cluster.|
-
-#### Credentials
-
-Here you can manage here the cloud provider credentials associated with your cluster.
-
-If you need to change the credentials:
-- generate a new set of credentials on your cloud provider([Procedure for AWS account][docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.quickstart#attach-aws-credentials], [Procedure for Scaleway account][docs.getting-started.install-qovery.scaleway.cluster-managed-by-qovery.quickstart#attach-scaleway-credentials], [Procedure for GCP account][docs.getting-started.install-qovery.gcp.cluster-managed-by-qovery.quickstart#attach-gcp-credentials])
-- create the new credential on the Qovery by opening the drop-down and selecting "New Credentials"
-
-In the dedicated fields, enter the credentials you created on your cloud provider account:
-
-| Account Provider | Field Labels                                   |
-|------------------|------------------------------------------------|
-| AWS              | `Access Key` and `Secret Access Key`           |
-| Scaleway         | `Scaleway Access Key`, `Scaleway Secret Key`, `Scaleway Project ID` and `Scaleway Organization ID`|
-| GCP              | `GCP JSON key`|
-
-Once created and associated, you need to [updating your cluster][docs.using-qovery.configuration.clusters#updating-a-cluster] to apply the change.
-
-#### Resources
-
-Qovery allows you to modify the resources allocated for your cluster:
-
-- In the `Instance type` dropdown menu, select the type of [worker node(s)][docs.using-qovery.configuration.clusters#what-is-a-cluster] you want to deploy to your cluster.
-- *(AWS users only)* In the `Node disk size (GB)` field, enter the disk capacity you want to allocate to your worker node(s) (meaning how much data, in gigabytes, you want each worker node to be able to hold).
-- *(EKS users only)* On the `Nodes auto-scaling`, define the range of worker nodes you want to deploy to your cluster.
-
-<Alert type="warning">
-Instance type selection from your Qovery Console has direct consequences on your cloud provider’s bill. While Qovery allows you to switch to a different instance type whenever you want, it is your sole responsibility to keep an eye on your infrastructure costs, especially when you want to upsize.
-
-For more information on the instance types provided by each cloud provider and their associated pricing, see [What are the different instance types available when creating a cluster?][docs.using-qovery.configuration.clusters#what-are-the-different-instance-types-available-when-creating-a-cluster]
-
-</Alert>
-
-<br/>
-
-<Alert type="info">
-
-The lowest number is the number of worker nodes running on your infrastructure at any time, while the highest number is the maximum number of worker nodes that can automatically be deployed as traffic grows.
-
-Please note that a minimum of 3 worker nodes is required to deploy your [EKS cluster][docs.using-qovery.configuration.clusters#creating-a-cluster].
-
-</Alert>
-
-#### Image registry
-
-In this tab, you will see that a container registry already exist (called `registry-{$UIID}`). 
-This is your cloud provider container registry used by Qovery to manage the deployment of your applications by mirroring the docker images.
-
-The credentials configured on this registry are the one used to create the cluster. But you can still update them if you prefer to manage them separately (dedicated pair of creds just to access the registry).
-
-Check [this link][docs.using-qovery.deployment.image-mirroring] for more information.
-
-#### Features
-
-The `Features` tab in your cluster settings allows you to check if the **Static IP**,  **Custom VPC subnet**, **Deploy on existing VPC** features are enabled on your cluster. The enabled features cannot be changed after the creation of the cluster.
-
-##### Static IP
-
-The **Static IP** feature is currently only available to clusters deployed on AWS and GCP with a VPC managed by Qovery and can only be enabled at cluster creation.
-
-By default, when your cluster is created, its worker nodes are allocated public IP addresses, which are used for external communication. For improved security and control, the **Static IP** feature allows you to ensure that outbound traffic from your cluster uses specific IP addresses.
-
-Here is what will be deployed on `AWS`:
-* Nat Gateways
-* Elastic IPs
-* Private subnets
-
-Here is what will be deployed on `GCP`:
-* Cloud Nats
-* Static IPs
-* Routers
-
-Once set up, here is the procedure to find your static IP addresses on `AWS`:
-- On your AWS account, select the VPC service.
-- On the left menu, you’ll find Elastic IP addresses. Once on it, in the Allocated IPv4 address column, you’ll have your public IPs.
-
-Once set up, here is the procedure to find your static IP addresses on `GCP`:
-- On your GCP account, select the IP addresses service.
-- In the list you will find your static IP used by your cluster router.
-
-<Alert type="info">
-
-If you work in a sensitive business area such as financial technology, enabling the **Static IP** feature can help fulfil the security requirements of some of the external services you use, therefore making it easier for you to get whitelisted by them.
-
-This feature has been activated by default. Since February 1, 2024, AWS charge public IPv4 Addresses. Disabling it may cost you more, depending on the number of nodes in your cluster. Check this [link](https://aws.amazon.com/blogs/aws/new-aws-public-ipv4-address-charge-public-ip-insights/) for more information.
-
-</Alert>
-
-##### Custom VPC Subnet
-
-The **VPC** feature is currently only available to clusters deployed on AWS with a VPC managed by Qovery and can only be enabled at cluster creation.
-
-Virtual Private Cloud (VPC) peering allows you to set up a connection between your Qovery VPC and another VPC on your AWS account. This way, you can access resources stored on your AWS VPC directly from your Qovery applications.
-
-A VPC can only be used if it has at least one range of IP addresses called a **subnet**. When you create a cluster, Qovery automatically picks a default subnet for it. However, to perform VPC peering, you may want to define which specific VPC subnet you want to use, so that you can avoid any conflicting settings. To do so, you can enable the **Custom VPC Subnet** feature on your cluster. For more information on how to set up VPC peering, [see our dedicated tutorial](https://hub.qovery.com/guides/tutorial/aws-vpc-peering-with-qovery/).
-
-##### Use existing VPC
-
-The **Deploy on existing VPC** feature is currently only available to clusters deployed on `AWS` and `GCP` when you select `Deploy on my existing VPC` VPC mode and can only be enabled at cluster creation.
-
-##### Use existing VPC - AWS:
-
-You have to specify the `VPC id` (1) and ensure that in your VPC settings you have enabled the `DNS hostnames` (2):
-
-<p align="center">
-  <img src="/img/configuration/clusters/existing_vpc_aws_dns_hostnames.png" alt="Existing VPC AWS DNS Hostnmaes" />
-</p>
-
-Then you have to specify the different subnets ids:
-
-**EKS**:
-
-The EKS subnets are mandatory, you have to specify at least **one subnet id per zone** (1) and ensure you have enabled the **auto-assign public IPv4 address** setting on your subnets (2).
-
-<p align="center">
-  <img src="/img/configuration/clusters/existing_vpc_aws_auto_assign.png" alt="Existing VPC AWS DNS Hostnmaes" />
-</p>
-
-<Alert type="info">
-
-If you have activated `Karpenter`, you will have to specify at least **one subnet id per zone**. These subnets have to be private and connected to internet through a NAT Gateway. They will be used for AWS Fargate profile.
-
-</Alert>
-
-**Managed databases**:
-
-This section is exclusively for enabling managed databases (container databases will be enabled by default).
-
-Depending on the managed databases you want to you use (**MongoDB**, **RDS:MySQL/PostgreSQL** and **Redis**), specify at least one subnet id per zone.
-
-##### Use existing VPC - GCP:
-
-In GCP you have two VPC modes: `Automatic` or `Custom`.
-
-If you are using an automatic or a custom VPC, you have to set:
-* Your VPC Name
-* External project id (optional): by default, the project id used is the one specified in the credentials file. But if your VPC is defined in another GCP project, you have to specify the Project id.
-
-In addition if you are using a custom VPC, you have to set:
-* Your Subnet range name (`https://console.cloud.google.com/networking/networks/details/<your-vpc>?project=<your-project>&pageTab=SUBNETS`)
-
-<Alert type="info">
-
-You can also specify (optional):
-  * Pod ipv4 address range name
-  * Additional cluster pod ipv4 ranges names (separated with a comma)
-  * Ipv4 service range name
-
-For these ranges, you have to create Secondary IPv4 ranges inside your subnet.
-
-</Alert>
-
-
-<Alert type="warning">
-
-Please keep in mind that enabling them later may not be possible.
-
-</Alert>
-
-#### Network
-
-The `Network` tab in your cluster settings allows you to update your Qovery VPC route table so that you can perform VPC peering. For step-by-step guidelines on how to set up VPC peering, [see our dedicated tutorial](https://hub.qovery.com/guides/tutorial/aws-vpc-peering-with-qovery/).
 
 ### Performing Actions on your Clusters
 
@@ -572,13 +268,6 @@ The error message should provide you enough information to solve the issue. If t
 
 </Alert>
 
- You can add the generated public SSH key at cluster creation (see [Creating a Cluster][docs.using-qovery.configuration.clusters#creating-a-cluster]), or later from your cluster settings.
-
- To do so:
-  - on your [Qovery Console][urls.qovery_console], access your [cluster settings][docs.using-qovery.configuration.clusters#managing-your-cluster-settings].
-  - In the `Remote Access` tab, enter your SSH key and click `Save`.
-  - Launch the [Update Cluster][docs.using-qovery.configuration.clusters] action to propagate the new key.
-
 ## Use custom domain and wildcard TLS for the whole cluster (beta)
 
 By default, Qovery provides a domain (ex `bool.sh`) on every deployed cluster. It is used to provide a DNS and TLS certificate to every application requiring external access on a cluster.
@@ -624,7 +313,6 @@ To clean up a Qovery cluster from your cloud provider account, go to `AWS Consol
 | 2    | In the `Tags` field of the `Grouping criteria` area, enter `ClusterId`.                                                                      |
 | 3    | Click `Add`.                                                                                                                                 |
 | 4    | Click `Preview Resources`. <br /> All your Qovery clusters are now displayed in the `Group resources` table, and you can delete them by hand.|
-
 
 ## FAQ
 
@@ -696,21 +384,10 @@ Security is our main concern. When a vulnerability is found, here are the action
 
 
 [docs.getting-started.basic-concepts#cluster]: /docs/getting-started/basic-concepts/#cluster
-[docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.quickstart#attach-aws-credentials]: /docs/getting-started/install-qovery/aws/cluster-managed-by-qovery/quickstart/#attach-aws-credentials
-[docs.getting-started.install-qovery.gcp.cluster-managed-by-qovery.quickstart#attach-gcp-credentials]: /docs/getting-started/install-qovery/gcp/cluster-managed-by-qovery/quickstart/#attach-gcp-credentials
 [docs.getting-started.install-qovery.kubernetes]: /docs/getting-started/install-qovery/kubernetes/
-[docs.getting-started.install-qovery.scaleway.cluster-managed-by-qovery.quickstart#attach-scaleway-credentials]: /docs/getting-started/install-qovery/scaleway/cluster-managed-by-qovery/quickstart/#attach-scaleway-credentials
-[docs.using-qovery.configuration.clusters#creating-a-cluster]: /docs/using-qovery/configuration/clusters/#creating-a-cluster
 [docs.using-qovery.configuration.clusters#deleting-a-cluster]: /docs/using-qovery/configuration/clusters/#deleting-a-cluster
-[docs.using-qovery.configuration.clusters#features]: /docs/using-qovery/configuration/clusters/#features
 [docs.using-qovery.configuration.clusters#logs]: /docs/using-qovery/configuration/clusters/#logs
-[docs.using-qovery.configuration.clusters#managing-your-cluster-settings]: /docs/using-qovery/configuration/clusters/#managing-your-cluster-settings
 [docs.using-qovery.configuration.clusters#restarting-a-cluster]: /docs/using-qovery/configuration/clusters/#restarting-a-cluster
 [docs.using-qovery.configuration.clusters#stopping-a-cluster]: /docs/using-qovery/configuration/clusters/#stopping-a-cluster
 [docs.using-qovery.configuration.clusters#updating-a-cluster]: /docs/using-qovery/configuration/clusters/#updating-a-cluster
-[docs.using-qovery.configuration.clusters#what-are-the-different-instance-types-available-when-creating-a-cluster]: /docs/using-qovery/configuration/clusters/#what-are-the-different-instance-types-available-when-creating-a-cluster
-[docs.using-qovery.configuration.clusters#what-is-a-cluster]: /docs/using-qovery/configuration/clusters/#what-is-a-cluster
-[docs.using-qovery.configuration.clusters#why-do-i-need-a-cluster]: /docs/using-qovery/configuration/clusters/#why-do-i-need-a-cluster
-[docs.using-qovery.configuration.clusters]: /docs/using-qovery/configuration/clusters/
-[docs.using-qovery.deployment.image-mirroring]: /docs/using-qovery/deployment/image-mirroring/
 [urls.qovery_console]: https://console.qovery.com

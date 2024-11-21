@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-30"
+last_modified_on: "2024-11-21"
 title: "Quickstart"
 description: "Learn how to quickly install Qovery on your Scaleway (SCW) account"
 ---
@@ -45,6 +45,14 @@ Note that you can create multiple clusters on the same Scaleway account with dif
 
 <li>
 
+## Select your options
+
+Qovery propose multiple options that you can select to customize your installation. You can also change some of them later. Refer to this [guide][docs.using-qovery.configuration.clusters.scaleway] for more details on the available configurations.
+
+</li>
+
+<li>
+
 ## Attach Scaleway credentials
 
 Follow this [guide][docs.getting-started.install-qovery.scaleway.cluster-managed-by-qovery.create-credentials] to create your Scaleway credentials.
@@ -81,6 +89,7 @@ You should see your new cluster in the list of clusters.
 [docs.getting-started.install-qovery.scaleway.cluster-managed-by-qovery.create-credentials]: /docs/getting-started/install-qovery/scaleway/cluster-managed-by-qovery/create-credentials/
 [docs.getting-started.install-qovery.scaleway.cluster-managed-by-qovery]: /docs/getting-started/install-qovery/scaleway/cluster-managed-by-qovery/
 [docs.using-qovery.configuration.clusters#creating-a-cluster]: /docs/using-qovery/configuration/clusters/#creating-a-cluster
+[docs.using-qovery.configuration.clusters.scaleway]: /docs/using-qovery/configuration/clusters/scaleway/
 [docs.using-qovery.configuration.organization]: /docs/using-qovery/configuration/organization/
 [guides.getting-started.deploy-your-first-application]: /guides/getting-started/deploy-your-first-application/
 [urls.scaleway]: https://www.scaleway.com

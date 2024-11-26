@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-11-21"
+last_modified_on: "2024-11-26"
 title: "AWS EKS"
 description: "Learn how to configure your AWS Kubernetes clusters on Qovery"
 ---
@@ -12,7 +12,13 @@ import Assumptions from '@site/src/components/Assumptions';
 
 <Alert type="info">
 
-If you are looking to install Qovery on your AWS with Karpenter, please refer to [this guide][docs.using-qovery.configuration.clusters.aws-with-karpenter].
+By default, clusters will be deployed with the AWS default autoscaler. If you are looking to install Qovery on your AWS cluster with the Karpenter autoscaler to improve cluster resource usage and activate spot instances, please refer to [this guide][docs.using-qovery.configuration.clusters.aws-with-karpenter].
+
+<Alert type="warning">
+
+Karpenter is only available for non-production clusters. If you have created a production cluster, this option will not be visible.
+
+</Alert>
 
 </Alert>
 
@@ -196,13 +202,6 @@ If you need to change the credentials:
 - generate a new set of credentials on your cloud provider([Procedure for AWS account][docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.quickstart#attach-aws-credentials])
 - create the new credential on the Qovery by opening the drop-down and selecting "New Credentials"
 
-In the dedicated fields, enter the credentials you created on your cloud provider account:
-
-| Account Provider | Field Labels                                   |
-|------------------|------------------------------------------------|
-| AWS              | `Access Key` and `Secret Access Key`           |
-
-
 Once created and associated, you need to [updating your cluster][docs.using-qovery.configuration.clusters#updating-a-cluster] to apply the change.
 
 #### Resources
@@ -241,7 +240,7 @@ Check [this link][docs.using-qovery.deployment.image-mirroring] for more informa
 
 #### Features
 
-The `Features` tab in your cluster settings allows you to check if the **Static IP**,  **Custom VPC subnet**, **Deploy on existing VPC** features are enabled on your cluster. The enabled features cannot be changed after the creation of the cluster.
+The `Features` tab in your cluster settings allows you to check if the [**Static IP**](#static-ip),  [**Custom VPC subnet**](#custom-vpc-subnet), [**Deploy on existing VPC**](#use-existing-vpc) features are enabled on your cluster. The enabled features cannot be changed after the creation of the cluster.
 
 #### Network
 

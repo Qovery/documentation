@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-11-21"
+last_modified_on: "2024-11-26"
 title: Service Deployment Troubleshoot
 description: "How to troubleshoot your service deployments with Qovery"
 hide_pagination: true
@@ -69,7 +69,7 @@ Here are the possible solutions you can apply:
 
 * Select a bigger instance type for your cluster (in terms of CPU/RAM). By increasing it, it will unlock the deployment of your application (since new resources have been added). Check your cluster settings, and change the instance type of your cluster.
 
-* (only for Managed kubernets clusters) Increase the maximum number of nodes of your cluster. By increasing it, it will allow the cluster autoscaler to add a new node and allow the deployment of your application (since new resources have been added). Check your cluster settings, and increase the maximum number of nodes of your cluster.
+* Increase the maximum number of nodes of your cluster. By increasing it, it will allow the cluster autoscaler to add a new node and allow the deployment of your application (since new resources have been added). Check your cluster settings, and increase the maximum number of nodes of your cluster. Note: If you are using a self-managed cluster, this operation cannot be performed through the Qovery console.
 
 <Alert type="info">
 

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-11-21"
+last_modified_on: "2024-11-26"
 title: FAQ
 description: "Frequently Asked Questions"
 ---
@@ -48,7 +48,7 @@ Yes, absolutely!
 
 There isn't just one public cluster IP adress dedicated to external communication. However, [worker nodes][docs.using-qovery.configuration.clusters#what-is-a-cluster] inside your cluster each have a public IP automatically attached to them. You can view those default public IPs in the details of your worker nodes (EC2 instances for AWS users) which belong to the node group in your cluster.
 
-For improved security and control, the `Static IP` feature allows you to ensure that outbound traffic from your cluster uses specific IP addresses. For more information on the `Static IP` feature and how to enable it at cluster creation, see [Static IP][docs.using-qovery.configuration.clusters.aws#static-ip].
+For improved security and control, the `Static IP` feature allows you to ensure that outbound traffic from your cluster uses specific IP addresses. For more information on the `Static IP` feature and how to enable it at cluster creation, see [Static IP on AWS][docs.using-qovery.configuration.clusters.aws#static-ip] or [Static IP on GCP][docs.using-qovery.configuration.clusters.gcp#static-ip].
 
 ## If I have N custom domains under the same root domain, do I need to create N CNAME records, or just creating one for the root domain is enough ?
 
@@ -117,6 +117,7 @@ Feel free to join our [forum][urls.qovery_forum] or contact us by email at hello
 [docs.using-qovery.configuration.clusters#how-does-qovery-handle-kubernetes-version-upgrades]: /docs/using-qovery/configuration/clusters/#how-does-qovery-handle-kubernetes-version-upgrades
 [docs.using-qovery.configuration.clusters#what-is-a-cluster]: /docs/using-qovery/configuration/clusters/#what-is-a-cluster
 [docs.using-qovery.configuration.clusters.aws#static-ip]: /docs/using-qovery/configuration/clusters/aws/#static-ip
+[docs.using-qovery.configuration.clusters.gcp#static-ip]: /docs/using-qovery/configuration/clusters/gcp/#static-ip
 [docs.using-qovery.configuration.database]: /docs/using-qovery/configuration/database/
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
 [docs.using-qovery.configuration.project]: /docs/using-qovery/configuration/project/

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-11-21"
+last_modified_on: "2024-11-26"
 title: "GCP GKE"
 description: "Learn how to configure your GCP Kubernetes clusters on Qovery"
 ---
@@ -152,12 +152,6 @@ If you need to change the credentials:
 - generate a new set of credentials on your cloud provider([Procedure for GCP account][docs.getting-started.install-qovery.gcp.cluster-managed-by-qovery.quickstart#attach-gcp-credentials])
 - create the new credential on the Qovery by opening the drop-down and selecting "New Credentials"
 
-In the dedicated fields, enter the credentials you created on your cloud provider account:
-
-| Account Provider | Field Labels                                   |
-|------------------|------------------------------------------------|
-| GCP              | `GCP JSON key`|
-
 Once created and associated, you need to [updating your cluster][docs.using-qovery.configuration.clusters#updating-a-cluster] to apply the change.
 
 #### Image registry
@@ -171,7 +165,7 @@ Check [this link][docs.using-qovery.deployment.image-mirroring] for more informa
 
 #### Features
 
-The `Features` tab in your cluster settings allows you to check if the **Static IP**, **Deploy on existing VPC** features are enabled on your cluster. The enabled features cannot be changed after the creation of the cluster.
+The `Features` tab in your cluster settings allows you to check if the [**Static IP**](#static-ip), [**Deploy on existing VPC**](#use-existing-vpc) features are enabled on your cluster. The enabled features cannot be changed after the creation of the cluster.
 
 
 [docs.getting-started.install-qovery.gcp.cluster-managed-by-qovery.quickstart#attach-gcp-credentials]: /docs/getting-started/install-qovery/gcp/cluster-managed-by-qovery/quickstart/#attach-gcp-credentials

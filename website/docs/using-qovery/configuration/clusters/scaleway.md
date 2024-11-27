@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-11-26"
+last_modified_on: "2024-11-27"
 title: "Scaleway kapsule"
 description: "Learn how to configure your Scaleway Kubernetes clusters on Qovery"
 ---
@@ -57,12 +57,6 @@ Also, before downsizing, you need to ensure that your applications will still ha
 
 <br/>
 
-<Alert type="info">
-
-At the bottom of the window, you can see an estimate of the cost associated with the selected instance type.
-
-</Alert>
-
 To confirm, click `Next`.
 
 </li>
@@ -73,6 +67,8 @@ In the `Ready to install your cluster` window, check that the services needed to
 You can now press the `Create and Install` button.
 
 Your cluster is now displayed in your organization settings, featuring the `Installing...` status (orange status). Once your cluster is properly installed, its status turns to green and you will be able to deploy your applications on it.
+
+You can follow the execution of the action via the cluster status and/or by accessing the [Cluster Logs][docs.using-qovery.configuration.clusters#logs]
 
 </li>
 </ol>
@@ -141,6 +137,7 @@ Check [this link][docs.using-qovery.deployment.image-mirroring] for more informa
 
 
 [docs.getting-started.install-qovery.scaleway.cluster-managed-by-qovery.quickstart#attach-scaleway-credentials]: /docs/getting-started/install-qovery/scaleway/cluster-managed-by-qovery/quickstart/#attach-scaleway-credentials
+[docs.using-qovery.configuration.clusters#logs]: /docs/using-qovery/configuration/clusters/#logs
 [docs.using-qovery.configuration.clusters#updating-a-cluster]: /docs/using-qovery/configuration/clusters/#updating-a-cluster
 [docs.using-qovery.configuration.clusters#what-are-the-different-instance-types-available-when-creating-a-cluster]: /docs/using-qovery/configuration/clusters/#what-are-the-different-instance-types-available-when-creating-a-cluster
 [docs.using-qovery.configuration.clusters#what-is-a-cluster]: /docs/using-qovery/configuration/clusters/#what-is-a-cluster

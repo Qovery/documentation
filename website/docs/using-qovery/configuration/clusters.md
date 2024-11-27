@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-11-26"
+last_modified_on: "2024-11-27"
 title: "Clusters"
 description: "Learn how to configure your Kubernetes clusters on Qovery"
 sidebar_label: hidden
@@ -27,7 +27,7 @@ If you are looking to install Qovery on your Kubernetes cluster, please refer to
 
 ## Managing your Clusters with Qovery
 
-From the [Qovery Console][urls.qovery_console], you can manage the settings of the clusters you want to run on your infrastructure. The clusters are then created (or updated) by the cloud provider that hosts them.
+From the [Qovery Console][urls.qovery_console], you can manage the clusters you want to run on your infrastructure.
 
 ### Creating a Cluster
 

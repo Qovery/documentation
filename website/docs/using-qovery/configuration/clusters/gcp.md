@@ -1,8 +1,11 @@
 ---
-last_modified_on: "2024-11-26"
+last_modified_on: "2024-11-27"
 title: "GCP GKE"
 description: "Learn how to configure your GCP Kubernetes clusters on Qovery"
 ---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 import Steps from '@site/src/components/Steps';
 
@@ -35,10 +38,25 @@ To confirm, click `Next`.
 
 </li>
 <li>
+In the `Features` step, select the features you want to enable on your cluster. These features are currently only available to clusters deployed with a VPC managed by Qovery and can only be enabled at cluster creation.
 
-In the `Features` step, select the features you want to enable on your cluster.
+You can opt to use your own VPC instead of the one provided by Qovery by switching VPC mode to `Deploy on my existing VPC`.
 
-##### Static IP
+<Tabs
+  centered={true}
+  className={"rounded"}
+  defaultValue={"vpc managed by qovery"}
+  placeholder="Select a VPC mode"
+  select={false}
+  size={null}
+  values={[
+    {"group":"Features","label":"VPC managed by Qovery","value":"vpc managed by qovery"},
+    {"group":"Features","label":"Use your existing VPC","value":"use existing vpc"},
+  ]}>
+
+<TabItem value="vpc managed by qovery">
+
+#### Static IP
 
 The **Static IP** feature is currently only available to clusters deployed with a VPC managed by Qovery and can only be enabled at cluster creation.
 
@@ -58,6 +76,10 @@ Once set up, here is the procedure to find your static IP addresses on `GCP`:
 If you work in a sensitive business area such as financial technology, enabling the **Static IP** feature can help fulfil the security requirements of some of the external services you use, therefore making it easier for you to get whitelisted by them.
 
 </Alert>
+
+</TabItem>
+
+<TabItem value="use existing vpc">
 
 ##### Use existing VPC
 
@@ -82,14 +104,8 @@ You can also specify (optional):
 For these ranges, you have to create Secondary IPv4 ranges inside your subnet.
 
 </Alert>
-
-
-<Alert type="warning">
-
-Please keep in mind that enabling them later may not be possible.
-
-</Alert>
-
+</TabItem>
+</Tabs>
 </li>
 <li>
 
@@ -98,6 +114,8 @@ In the `Ready to install your cluster` window, check that the services needed to
 You can now press the `Create and Install` button.
 
 Your cluster is now displayed in your organization settings, featuring the `Installing...` status (orange status). Once your cluster is properly installed, its status turns to green and you will be able to deploy your applications on it.
+
+You can follow the execution of the action via the cluster status and/or by accessing the [Cluster Logs][docs.using-qovery.configuration.clusters#logs]
 
 </li>
 </ol>
@@ -169,6 +187,7 @@ The `Features` tab in your cluster settings allows you to check if the [**Static
 
 
 [docs.getting-started.install-qovery.gcp.cluster-managed-by-qovery.quickstart#attach-gcp-credentials]: /docs/getting-started/install-qovery/gcp/cluster-managed-by-qovery/quickstart/#attach-gcp-credentials
+[docs.using-qovery.configuration.clusters#logs]: /docs/using-qovery/configuration/clusters/#logs
 [docs.using-qovery.configuration.clusters#updating-a-cluster]: /docs/using-qovery/configuration/clusters/#updating-a-cluster
 [docs.using-qovery.deployment.image-mirroring]: /docs/using-qovery/deployment/image-mirroring/
 [urls.qovery_console]: https://console.qovery.com

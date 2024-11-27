@@ -1,8 +1,11 @@
 ---
-last_modified_on: "2024-11-26"
+last_modified_on: "2024-11-27"
 title: "AWS EKS with Karpenter"
 description: "Learn how to configure your AWS Kubernetes clusters with Karpenter on Qovery"
 ---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 import Steps from '@site/src/components/Steps';
 
@@ -70,22 +73,30 @@ Also, before downsizing, you need to ensure that your applications will still ha
 
 <br/>
 
-<Alert type="info">
-
-At the bottom of the window, you can see an estimate of the cost associated with the selected instance type.
-
-</Alert>
-
 To confirm, click `Next`.
 
 </li>
 <li>
 
-In the `Features` step, select the features you want to enable on your cluster.
+In the `Features` step, select the features you want to enable on your cluster. These features are currently only available to clusters deployed with a VPC managed by Qovery and can only be enabled at cluster creation.
 
-### Static IP
+You can opt to use your own VPC instead of the one provided by Qovery by switching VPC mode to `Deploy on my existing VPC`.
 
-The **Static IP** feature is currently only available to clusters deployed with a VPC managed by Qovery and can only be enabled at cluster creation.
+<Tabs
+  centered={true}
+  className={"rounded"}
+  defaultValue={"vpc managed by qovery"}
+  placeholder="Select a VPC mode"
+  select={false}
+  size={null}
+  values={[
+    {"group":"Features","label":"VPC managed by Qovery","value":"vpc managed by qovery"},
+    {"group":"Features","label":"Use your existing VPC","value":"use existing vpc"},
+  ]}>
+
+<TabItem value="vpc managed by qovery">
+
+#### Static IP
 
 By default, when your cluster is created, its worker nodes are allocated public IP addresses, which are used for external communication. For improved security and control, the **Static IP** feature allows you to ensure that outbound traffic from your cluster uses specific IP addresses.
 
@@ -106,17 +117,15 @@ This feature has been activated by default. Since February 1, 2024, AWS charge p
 
 </Alert>
 
-### Custom VPC Subnet
-
-The **VPC** feature is currently only available to clusters deployed with a VPC managed by Qovery and can only be enabled at cluster creation.
+#### Custom VPC Subnet
 
 Virtual Private Cloud (VPC) peering allows you to set up a connection between your Qovery VPC and another VPC on your AWS account. This way, you can access resources stored on your AWS VPC directly from your Qovery applications.
 
 A VPC can only be used if it has at least one range of IP addresses called a **subnet**. When you create a cluster, Qovery automatically picks a default subnet for it. However, to perform VPC peering, you may want to define which specific VPC subnet you want to use, so that you can avoid any conflicting settings. To do so, you can enable the **Custom VPC Subnet** feature on your cluster. For more information on how to set up VPC peering, [see our dedicated tutorial](https://hub.qovery.com/guides/tutorial/aws-vpc-peering-with-qovery/).
 
-### Use existing VPC
+</TabItem>
 
-You can opt to use your own VPC instead of the one provided by Qovery by switching VPC mode to `Deploy on my existing VPC`.
+<TabItem value="use existing vpc">
 
 You have to specify the `VPC id` (1) and ensure that in your VPC settings you have enabled the `DNS hostnames` (2):
 
@@ -134,14 +143,14 @@ The EKS subnets are mandatory, you have to specify at least **one subnet id per 
   <img src="/img/configuration/clusters/existing_vpc_aws_auto_assign.png" alt="Existing VPC AWS DNS Hostnmaes" />
 </p>
 
-Regarding the private EKS subnet IDs, you must specify at least one subnet ID per availability zone. These subnets must be private and connected to the internet via a NAT Gateway. They will be used for the AWS Fargate profile.
-
 **Managed databases**:
 
 This section is exclusively for enabling managed databases (container databases will be enabled by default).
 
 Depending on the managed databases you want to you use (**MongoDB**, **RDS:MySQL/PostgreSQL** and **Redis**), specify at least one subnet id per zone.
 
+</TabItem>
+</Tabs>
 </li>
 <li>
 
@@ -150,6 +159,8 @@ In the `Ready to install your cluster` window, check that the services needed to
 You can now press the `Create and Install` button.
 
 Your cluster is now displayed in your organization settings, featuring the `Installing...` status (orange status). Once your cluster is properly installed, its status turns to green and you will be able to deploy your applications on it.
+
+You can follow the execution of the action via the cluster status and/or by accessing the [Cluster Logs][docs.using-qovery.configuration.clusters#logs]
 
 </li>
 </ol>
@@ -294,6 +305,7 @@ The `Network` tab in your cluster settings allows you to update your Qovery VPC 
 
 
 [docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.quickstart#attach-aws-credentials]: /docs/getting-started/install-qovery/aws/cluster-managed-by-qovery/quickstart/#attach-aws-credentials
+[docs.using-qovery.configuration.clusters#logs]: /docs/using-qovery/configuration/clusters/#logs
 [docs.using-qovery.configuration.clusters#updating-a-cluster]: /docs/using-qovery/configuration/clusters/#updating-a-cluster
 [docs.using-qovery.configuration.clusters#what-are-the-different-instance-types-available-when-creating-a-cluster]: /docs/using-qovery/configuration/clusters/#what-are-the-different-instance-types-available-when-creating-a-cluster
 [docs.using-qovery.deployment.image-mirroring]: /docs/using-qovery/deployment/image-mirroring/

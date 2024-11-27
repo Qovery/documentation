@@ -55,9 +55,9 @@ Here are the possible solutions you can apply:
 
 * Reduce the resources (CPU/RAM) allocated to your existing/new service. Have a review of the deployed services and see if you can save up some resources by reducing their CPU/RAM setting. Remember to re-deploy the applications when you edit the resource. Have a look at [the resource section for more information][docs.using-qovery.configuration.application#resources].
 
-* Select a bigger instance type for your cluster (in terms of CPU/RAM). By increasing it, it will unlock the deployment of your application (since new resources have been added). Check your [cluster settings][docs.using-qovery.configuration.clusters#managing-your-cluster-settings], and change the instance type of your cluster.
+* Select a bigger instance type for your cluster (in terms of CPU/RAM). By increasing it, it will unlock the deployment of your application (since new resources have been added). Check your cluster settings, and change the instance type of your cluster.
 
-* (only for Managed kubernets clusters) Increase the maximum number of nodes of your cluster. By increasing it, it will allow the cluster autoscaler to add a new node and allow the deployment of your application (since new resources have been added). Check your [cluster settings][docs.using-qovery.configuration.clusters#managing-your-cluster-settings], and increase the maximum number of nodes of your cluster.
+* Increase the maximum number of nodes of your cluster. By increasing it, it will allow the cluster autoscaler to add a new node and allow the deployment of your application (since new resources have been added). Check your cluster settings, and increase the maximum number of nodes of your cluster. Note: If you are using a self-managed cluster, this operation cannot be performed through the Qovery console.
 
 <Alert type="info">
 

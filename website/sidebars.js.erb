@@ -188,7 +188,17 @@ module.exports = {
                 <%= metadata.links.fetch_id("docs.using-qovery.configuration.organization.labels-annotations").to_json %>,
               ],
             },
-            <%= metadata.links.fetch_id("docs.using-qovery.configuration.clusters").to_json %>,
+            {
+              type: 'category',
+              label: 'Clusters',
+              items: [
+                <%= metadata.links.fetch_id("docs.using-qovery.configuration.clusters").to_json %>,
+                <%= metadata.links.fetch_id("docs.using-qovery.configuration.clusters.aws").to_json %>,
+                <%= metadata.links.fetch_id("docs.using-qovery.configuration.clusters.aws-with-karpenter").to_json %>,
+                <%= metadata.links.fetch_id("docs.using-qovery.configuration.clusters.gcp").to_json %>,
+                <%= metadata.links.fetch_id("docs.using-qovery.configuration.clusters.scaleway").to_json %>,
+              ],
+            },
             <%= metadata.links.fetch_id("docs.using-qovery.configuration.cluster-advanced-settings").to_json %>,
             <%= metadata.links.fetch_id("docs.using-qovery.configuration.project").to_json %>,
             <%= metadata.links.fetch_id("docs.using-qovery.configuration.environment").to_json %>,

@@ -39,7 +39,7 @@ Yes, absolutely!
 
 There isn't just one public cluster IP adress dedicated to external communication. However, [worker nodes][docs.using-qovery.configuration.clusters#what-is-a-cluster] inside your cluster each have a public IP automatically attached to them. You can view those default public IPs in the details of your worker nodes (EC2 instances for AWS users) which belong to the node group in your cluster.
 
-For improved security and control, the `Static IP` feature allows you to ensure that outbound traffic from your cluster uses specific IP addresses. For more information on the `Static IP` feature and how to enable it at cluster creation, see [Static IP][docs.using-qovery.configuration.clusters#static-ip].
+For improved security and control, the `Static IP` feature allows you to ensure that outbound traffic from your cluster uses specific IP addresses. For more information on the `Static IP` feature and how to enable it at cluster creation, see [Static IP on AWS][docs.using-qovery.configuration.clusters.aws#static-ip] or [Static IP on GCP][docs.using-qovery.configuration.clusters.gcp#static-ip].
 
 ## If I have N custom domains under the same root domain, do I need to create N CNAME records, or just creating one for the root domain is enough ?
 

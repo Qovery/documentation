@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-30"
+last_modified_on: "2024-11-21"
 title: "Quickstart"
 description: "Learn how to quickly install Qovery on your Amazon Web Services (AWS) account"
 ---
@@ -61,7 +61,7 @@ Then attach your credentials to your cluster and click on `Create`. Then, click 
 
 ## Select your options
 
-Qovery propose multiple options that you can select to customize your installation. You can also change some of them later.
+Qovery propose multiple options that you can select to customize your installation. You can also change some of them later. Refer to this [guide][docs.using-qovery.configuration.clusters.aws] for more details on the available configurations.
 
 </li>
 
@@ -89,5 +89,6 @@ You should see your new cluster in the list of clusters.
 [docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.create-credentials]: /docs/getting-started/install-qovery/aws/cluster-managed-by-qovery/create-credentials/
 [docs.getting-started.install-qovery.aws.cluster-managed-by-qovery]: /docs/getting-started/install-qovery/aws/cluster-managed-by-qovery/
 [docs.using-qovery.configuration.clusters#creating-a-cluster]: /docs/using-qovery/configuration/clusters/#creating-a-cluster
+[docs.using-qovery.configuration.clusters.aws]: /docs/using-qovery/configuration/clusters/aws/
 [docs.using-qovery.configuration.organization]: /docs/using-qovery/configuration/organization/
 [guides.getting-started.deploy-your-first-application]: /guides/getting-started/deploy-your-first-application/

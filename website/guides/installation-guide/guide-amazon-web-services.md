@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-01-02"
+last_modified_on: "2024-11-21"
 $schema: "/.meta/.schemas/guides.json"
 title: Install Qovery on your Amazon Web Services account
 description: Learn how to install Qovery on your Amazon Web Services (AWS) account

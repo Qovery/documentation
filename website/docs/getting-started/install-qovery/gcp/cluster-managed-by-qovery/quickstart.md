@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-01-16"
+last_modified_on: "2024-11-21"
 title: "Quickstart"
 description: "Learn how to quickly install Qovery on your Google Cloud Platform (GCP) account"
 ---
@@ -68,6 +68,14 @@ Then attach your credentials to your cluster and click on `Create`. Then, click 
 
 <li>
 
+## Select your options
+
+Qovery propose multiple options that you can select to customize your installation. You can also change some of them later. Refer to this [guide][docs.using-qovery.configuration.clusters.gcp] for more details on the available configurations.
+
+</li>
+
+<li>
+
 ## Install Qovery
 
 Click on `Create and Deploy` to create the cluster and install Qovery on it.
@@ -90,5 +98,6 @@ You should see your new cluster in the list of clusters.
 [docs.getting-started.install-qovery.gcp.cluster-managed-by-qovery.create-credentials]: /docs/getting-started/install-qovery/gcp/cluster-managed-by-qovery/create-credentials/
 [docs.getting-started.install-qovery.gcp.cluster-managed-by-qovery]: /docs/getting-started/install-qovery/gcp/cluster-managed-by-qovery/
 [docs.using-qovery.configuration.clusters#creating-a-cluster]: /docs/using-qovery/configuration/clusters/#creating-a-cluster
+[docs.using-qovery.configuration.clusters.gcp]: /docs/using-qovery/configuration/clusters/gcp/
 [docs.using-qovery.configuration.organization]: /docs/using-qovery/configuration/organization/
 [guides.getting-started.deploy-your-first-application]: /guides/getting-started/deploy-your-first-application/

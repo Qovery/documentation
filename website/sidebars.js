@@ -188,7 +188,17 @@ module.exports = {
                 "using-qovery/configuration/organization/labels-annotations",
               ],
             },
-            "using-qovery/configuration/clusters",
+            {
+              type: 'category',
+              label: 'Clusters',
+              items: [
+                "using-qovery/configuration/clusters",
+                "using-qovery/configuration/clusters/aws",
+                "using-qovery/configuration/clusters/aws-with-karpenter",
+                "using-qovery/configuration/clusters/gcp",
+                "using-qovery/configuration/clusters/scaleway",
+              ],
+            },
             "using-qovery/configuration/cluster-advanced-settings",
             "using-qovery/configuration/project",
             "using-qovery/configuration/environment",

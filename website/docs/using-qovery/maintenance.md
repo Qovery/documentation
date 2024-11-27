@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2022-11-11"
+last_modified_on: "2024-11-21"
 title: Maintenance
 description: "Maintainance and operation for your Qovery cluster and applications"
 sidebar_label: hidden
@@ -94,7 +94,7 @@ You can update or rotate manually credentials on your AWS account this way:
 
 1. Click on the `Create access key` button
 2. Save the `access key` and `secret access Key` in a safe place
-3. Go to your Qovery dashboard to [update the credentials on Qovery console][docs.using-qovery.configuration.clusters#credentials].
+3. Go to your Qovery dashboard to [update the credentials on Qovery console][docs.using-qovery.configuration.clusters.aws#credentials].
 4. `Deploy` the cluster once again to apply changes
 5. Once the cluster is fully updated, wait 2h (to ensure all ongoing deployments are done)
 6. Delete the old access key from the AWS console:
@@ -216,4 +216,4 @@ You will see the following output:
 ```
 
 
-[docs.using-qovery.configuration.clusters#credentials]: /docs/using-qovery/configuration/clusters/#credentials
+[docs.using-qovery.configuration.clusters.aws#credentials]: /docs/using-qovery/configuration/clusters/aws/#credentials

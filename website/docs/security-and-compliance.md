@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-08-12"
+last_modified_on: "2024-11-26"
 title: Security and Compliance
 description: "Learn more about Security and Compliance in Qovery"
 sidebar_label: hidden

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-08-09"
+last_modified_on: "2024-11-27"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy a DaemonSet in a Karpenter context
 description: How to ensure your DaemonSet is well deployed when you are using Karpenter.
@@ -51,7 +51,7 @@ This ensures that critical workloads receive the necessary resources to run effe
 
 ### Deploy a new Priority Class using Helm
 
-I created a [simple repository](https://github.com/baalooos/karpenter-daemonset-priority-class) you can clone to follow along.
+I created a [simple repository](https://github.com/Qovery/qovery-charts-examples/tree/main/karpenter-daemonset-priority-class-main) you can clone to follow along.
 
 Create the karpenter-priority-class service in the Qovery environment where you want to deploy your DaemonSet by following [this documentation][docs.using-qovery.configuration.helm] and these values:
 
@@ -59,20 +59,16 @@ Create the karpenter-priority-class service in the Qovery environment where you 
   * Service name: `karpenter-priority-class`
   * Source:
     * Helm source: `Git Provider`
-    * Git repository: `Github` (Change if you are not using GitHub)
-    * Repository: `Baalooos/karpenter-daemonset-priority-class` (Replace by the name of your repository)
+    * Git account: `Public repository` (Change if you are not using GitHub)
+    * Repository: `https://github.com/Qovery/qovery-charts-examples.git` (Replace by the name of your repository)
     * Branch: `main`
-    * Root application path: `/`
+    * Root application path: `/karpenter-daemonset-priority-class-main`
     * Allow cluster-wide resources :heavy_check_mark:
 
 Click on Continue
 
 * Values override as file:
-  * File source: `Git repository`
-  * Git repository: `Github` (Change if you are not using GitHub)
-  * Repository: `Baalooos/karpenter-daemonset-priority-class` (Replace by the name of your repository)
-  * Branch: `main`
-  * Override path: `/values.yaml`
+  * File source: `None`
 
 Then, you can:
 

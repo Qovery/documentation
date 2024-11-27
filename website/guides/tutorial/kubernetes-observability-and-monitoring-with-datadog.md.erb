@@ -113,6 +113,13 @@ agents:
                 - fargate
 ```
 
+<Alert type="warning">
+
+There is a [known issue](https://github.com/kubernetes-sigs/karpenter/issues/731) with Karpenter and DaemonSets when scaling nodes. A way to resolve this problem is to use a Priority Class and attach it to the DaemonSet we are creating.
+Check this ([guide][guides.advanced.deploy-daemonset-with-karpenter]) for more information.
+
+</Alert>
+
 </TabItem>
 </Tabs>
 

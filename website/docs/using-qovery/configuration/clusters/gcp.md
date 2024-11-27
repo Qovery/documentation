@@ -38,9 +38,16 @@ To confirm, click `Next`.
 
 </li>
 <li>
-In the `Features` step, select the features you want to enable on your cluster. These features are currently only available to clusters deployed with a VPC managed by Qovery and can only be enabled at cluster creation.
 
-You can opt to use your own VPC instead of the one provided by Qovery by switching VPC mode to `Deploy on my existing VPC`.
+In the `Features` step, select the features you want to enable on your cluster.
+
+If you want to manage the network layer of your cluster by yourself, you can switch VPC mode to `Deploy on my existing VPC` to use your own VPC instead of the one provided by Qovery.
+
+<Alert type="warning">
+
+These options can only be configured during cluster creation and cannot be modified later.
+
+</Alert>
 
 <Tabs
   centered={true}

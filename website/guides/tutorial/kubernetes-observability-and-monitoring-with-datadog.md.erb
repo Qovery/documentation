@@ -89,6 +89,8 @@ datadog:
 
 <TabItem value="karpenter">
 
+To ensure every node created by Karpenter is monitored by Datadog, we need to configure a priority class.
+
 ```yaml
 # The following YAML contains the minimum configuration required to deploy the Datadog Agent
 # on your cluster. Update it accordingly to your needs
@@ -111,14 +113,11 @@ agents:
               operator: NotIn
               values:
                 - fargate
+  priorityClassCreate: true
+  # Update the priority class name as you want
+  priorityClassName: "datadog-karpenter-priorityclass"
+  priorityClassValue: 1000
 ```
-
-<Alert type="warning">
-
-There is a [known issue](https://github.com/kubernetes-sigs/karpenter/issues/731) with Karpenter and DaemonSets when scaling nodes. A way to resolve this problem is to use a Priority Class and attach it to the DaemonSet we are creating.
-Check this ([guide][guides.advanced.deploy-daemonset-with-karpenter]) for more information.
-
-</Alert>
 
 </TabItem>
 </Tabs>

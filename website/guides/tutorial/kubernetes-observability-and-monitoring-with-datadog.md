@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-11-27"
+last_modified_on: "2024-11-28"
 $schema: "/.meta/.schemas/guides.json"
 title: Kubernetes observability and monitoring with Datadog
 description: How to integrate Datadog with Kubernetes on Qovery.
@@ -102,6 +102,8 @@ datadog:
 
 <TabItem value="karpenter">
 
+To ensure every node created by Karpenter is monitored by Datadog, we need to configure a priority class.
+
 ```yaml
 # The following YAML contains the minimum configuration required to deploy the Datadog Agent
 # on your cluster. Update it accordingly to your needs
@@ -124,14 +126,11 @@ agents:
               operator: NotIn
               values:
                 - fargate
+  priorityClassCreate: true
+  # Update the priority class name as you want
+  priorityClassName: "datadog-karpenter-priorityclass"
+  priorityClassValue: 1000
 ```
-
-<Alert type="warning">
-
-There is a [known issue](https://github.com/kubernetes-sigs/karpenter/issues/731) with Karpenter and DaemonSets when scaling nodes. A way to resolve this problem is to use a Priority Class and attach it to the DaemonSet we are creating.
-Check this ([guide][guides.advanced.deploy-daemonset-with-karpenter]) for more information.
-
-</Alert>
 
 </TabItem>
 </Tabs>
@@ -208,4 +207,3 @@ You now have Datadog agent running on your Qovery cluster. You can check their `
 [docs.using-qovery.configuration.environment-variable]: /docs/using-qovery/configuration/environment-variable/
 [docs.using-qovery.configuration.helm]: /docs/using-qovery/configuration/helm/
 [docs.using-qovery.configuration.organization.helm-repository]: /docs/using-qovery/configuration/organization/helm-repository/
-[guides.advanced.deploy-daemonset-with-karpenter]: /guides/advanced/deploy-daemonset-with-karpenter/

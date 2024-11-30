@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-07-19"
+last_modified_on: "2024-11-30"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy JupyterHub using Helm
 description: How to deploy JupyterHub on Qovery using the official Helm chart.
@@ -7,6 +7,9 @@ author_github: https://github.com/baalooos
 tags: ["type: tutorial", "technology: qovery"]
 hide_pagination: true
 ---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 import Steps from '@site/src/components/Steps';
 import Assumptions from '@site/src/components/Assumptions';
@@ -69,12 +72,49 @@ Create the JupyterHub service in the Qovery environment of your choice (preferab
   * File source: `Raw YAML`
   * Raw YAML:
 
+<Tabs
+  centered={true}
+  className={"rounded"}
+  defaultValue={"default"}
+  placeholder="Select your cluster type"
+  select={false}
+  size={null}
+  values={[{"group":"Cluster","label":"Default","value":"default"},{"group":"Cluster","label":"AWS with Karpenter","value":"karpenter"}]}>
+
+<TabItem value="default">
+
 ```yaml
 fullnameOverride: "jupyterhub"
 proxy:
     service:
         type: ClusterIP
 ```
+
+</TabItem>
+
+<TabItem value="EKS with karpenter">
+
+To ensure every node created by Karpenter is monitored by Datadog, we need to configure a priority class.
+
+```yaml
+fullnameOverride: "jupyterhub"
+proxy:
+    service:
+        type: ClusterIP
+scheduling:
+    podPriority:
+        enabled: true
+        globalDefault: true
+        defaultPriority: 50
+        imagePullerPriority: 1000
+        userPlaceholderPriority: 0
+```
+
+</TabItem>
+</Tabs>
+
+
+
 
 There are many other values you can set to modify the JupyterHub behavior. For advanced usage, check: [JupyterHub Customization](https://z2jh.jupyter.org/en/stable/jupyterhub/customization.html)
 

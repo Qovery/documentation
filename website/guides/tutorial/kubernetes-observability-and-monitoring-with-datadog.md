@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-11-28"
+last_modified_on: "2024-11-30"
 $schema: "/.meta/.schemas/guides.json"
 title: Kubernetes observability and monitoring with Datadog
 description: How to integrate Datadog with Kubernetes on Qovery.
@@ -17,7 +17,7 @@ import Assumptions from '@site/src/components/Assumptions';
 import Jump from '@site/src/components/Jump';
 
 While Qovery will soon provide basic metrics on apps resources usage, you might need a more advanced view on what happens on your infrastructure. There are many solutions on the market, one of them being Datadog. 
-Datadog is one of the leading platforms for monitoring and observability, and it's pretty easy to integrate it with Qovery.
+Datadog is one of the leading platforms for monitoring and observability, and it is pretty easy to integrate it with Qovery.
 
 <Assumptions name="guide">
 
@@ -100,7 +100,7 @@ datadog:
 
 </TabItem>
 
-<TabItem value="karpenter">
+<TabItem value="EKS with karpenter">
 
 To ensure every node created by Karpenter is monitored by Datadog, we need to configure a priority class.
 

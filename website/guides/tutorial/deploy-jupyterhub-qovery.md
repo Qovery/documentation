@@ -72,7 +72,7 @@ Create the JupyterHub service in the Qovery environment of your choice (preferab
   * File source: `Raw YAML`
   * Raw YAML:
 
-  <Tabs
+<Tabs
   centered={true}
   className={"rounded"}
   defaultValue={"default"}
@@ -92,9 +92,9 @@ proxy:
 
 </TabItem>
 
-<TabItem value="karpenter">
+<TabItem value="EKS with karpenter">
 
-To ensure every node created by Karpenter can be used by JupyterHub, we need to configure a priority class.
+To ensure every node created by Karpenter is monitored by Datadog, we need to configure a priority class.
 
 ```yaml
 fullnameOverride: "jupyterhub"

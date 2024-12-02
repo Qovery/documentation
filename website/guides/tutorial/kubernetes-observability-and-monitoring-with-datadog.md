@@ -82,7 +82,7 @@ Create the Datadog helm service in the Qovery environment of your choice (prefer
   placeholder="Select your cluster type"
   select={false}
   size={null}
-  values={[{"group":"Cluster","label":"Default","value":"default"},{"group":"Cluster","label":"AWS with Karpenter","value":"karpenter"}]}>
+  values={[{"group":"Cluster","label":"Default","value":"default"},{"group":"Cluster","label":"EKS with Karpenter","value":"EKS with karpenter"}]}>
 
 <TabItem value="default">
 
@@ -100,7 +100,7 @@ datadog:
 
 </TabItem>
 
-<TabItem value="karpenter">
+<TabItem value="EKS with karpenter">
 
 To ensure every node created by Karpenter is monitored by Datadog, we need to configure a priority class.
 

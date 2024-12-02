@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-11-30"
+last_modified_on: "2024-12-02"
 $schema: "/.meta/.schemas/guides.json"
 title: Kubernetes observability and monitoring with Datadog
 description: How to integrate Datadog with Kubernetes on Qovery.
@@ -100,7 +100,7 @@ datadog:
 
 </TabItem>
 
-<TabItem value="EKS with karpenter">
+<TabItem value="karpenter">
 
 To ensure every node created by Karpenter is monitored by Datadog, we need to configure a priority class.
 

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-11-30"
+last_modified_on: "2024-12-02"
 $schema: "/.meta/.schemas/guides.json"
 title: Kubernetes observability and monitoring with Datadog
 description: How to integrate Datadog with Kubernetes on Qovery.
@@ -82,7 +82,7 @@ Create the Datadog helm service in the Qovery environment of your choice (prefer
   placeholder="Select your cluster type"
   select={false}
   size={null}
-  values={[{"group":"Cluster","label":"Default","value":"default"},{"group":"Cluster","label":"AWS with Karpenter","value":"karpenter"}]}>
+  values={[{"group":"Cluster","label":"Default","value":"default"},{"group":"Cluster","label":"EKS with Karpenter","value":"EKS with karpenter"}]}>
 
 <TabItem value="default">
 

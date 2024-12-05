@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-11-30"
+last_modified_on: "2024-12-05"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy JupyterHub using Helm
 description: How to deploy JupyterHub on Qovery using the official Helm chart.
@@ -79,7 +79,7 @@ Create the JupyterHub service in the Qovery environment of your choice (preferab
   placeholder="Select your cluster type"
   select={false}
   size={null}
-  values={[{"group":"Cluster","label":"Default","value":"default"},{"group":"Cluster","label":"AWS with Karpenter","value":"karpenter"}]}>
+  values={[{"group":"Cluster","label":"Default","value":"default"},{"group":"Cluster","label":"EKS with Karpenter","value":"karpenter"}]}>
 
 <TabItem value="default">
 
@@ -94,7 +94,7 @@ proxy:
 
 <TabItem value="EKS with karpenter">
 
-To ensure every node created by Karpenter is monitored by Datadog, we need to configure a priority class.
+To avoid [a known issue](https://hub.qovery.com/guides/advanced/deploy-daemonset-with-karpenter/) with Karpenter, we need to add a priorityClass to our pods. It is possible to do this using built-in configuration keys:
 
 ```yaml
 fullnameOverride: "jupyterhub"

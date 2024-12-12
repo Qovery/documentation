@@ -24,27 +24,27 @@
 <link rel="stylesheet" href="/styles.90c21fa3.css">
 
 
-<link rel="preload" href="/styles.bf67a74c.js" as="script">
+<link rel="preload" href="/styles.bbed428d.js" as="script">
 
-<link rel="preload" href="/runtime~main.99403bba.js" as="script">
+<link rel="preload" href="/runtime~main.72d824fe.js" as="script">
 
-<link rel="preload" href="/main.72f4c72c.js" as="script">
+<link rel="preload" href="/main.5caa7617.js" as="script">
 
-<link rel="preload" href="/2.224b92f7.js" as="script">
+<link rel="preload" href="/2.4a7b250f.js" as="script">
 
-<link rel="preload" href="/3.4f011061.js" as="script">
+<link rel="preload" href="/3.170b1085.js" as="script">
 
-<link rel="preload" href="/4.73945e41.js" as="script">
+<link rel="preload" href="/4.a9382b0d.js" as="script">
 
-<link rel="preload" href="/1be78505.cddfba4f.js" as="script">
+<link rel="preload" href="/1be78505.cb316185.js" as="script">
 
 <link rel="preload" href="/20ac7829.d77c41a6.js" as="script">
 
-<link rel="preload" href="/311.f386097d.js" as="script">
+<link rel="preload" href="/309.0b5e4717.js" as="script">
 
-<link rel="preload" href="/17896441.c0aeb614.js" as="script">
+<link rel="preload" href="/17896441.36eda97b.js" as="script">
 
-<link rel="preload" href="/cf490432.5d43e669.js" as="script">
+<link rel="preload" href="/cf490432.c8e1bdba.js" as="script">
 
 </head>
 <body>
@@ -54,27 +54,27 @@
 ensuring alignment with SOC2’s stringent security standards. For more information, visit the <a href="https://trust.qovery.com/">Qovery trust page</a>.</p><p>All customers using Qovery benefit from a SOC2-compliant infrastructure, significantly reducing the time required for compliance readiness.</p><p>This documentation outlines configuration settings for achieving SOC2 compliance and additional recommended security measures.</p><h2><a aria-hidden="true" tabindex="-1" class="anchor" id="cluster-advanced-settings"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#cluster-advanced-settings" title="Direct link to heading">#</a>Cluster advanced settings</h2><p>In the <a href="/docs/using-qovery/configuration/cluster-advanced-settings/">Cluster Advanced Settings</a>, you will find several configurable options to enhance compliance with SOC2. Here are the key settings:</p><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="aws-cloudwatch"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#aws-cloudwatch" title="Direct link to heading">#</a>AWS CloudWatch <img src="/img/advanced_settings/aws.svg"></h3><p>To meet SOC2 retention requirements, set the <code>aws.cloudwatch.eks_logs_retention_days</code> to at least 365 days.</p><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="application-logs-retention"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#application-logs-retention" title="Direct link to heading">#</a>Application Logs Retention <img src="/img/advanced_settings/aws.svg"> <img src="/img/advanced_settings/scaleway.svg"> <img src="/img/advanced_settings/gcp.svg"></h3><p>To meet SOC2 retention requirements, and store applications/containers logs in the object storage used by Loki, set the <code>loki.log_retention_in_week</code> to at least 365 days.</p><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="vpc-flow-logs"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#vpc-flow-logs" title="Direct link to heading">#</a>VPC flow logs <img src="/img/advanced_settings/aws.svg"> <img src="/img/advanced_settings/gcp.svg"></h3><p>Enable VPC flow logs to monitor and maintain network traffic visibility:</p><p>On AWS:</p><ul><li>Set <code>aws.vpc.enable_s3_flow_logs</code> to <code>true</code>.</li><li>Specify <code>aws.vpc.flow_logs_retention_days</code> to <code>365</code> days or more to ensure compliance.</li></ul><p>On GCP:</p><ul><li>Set <code>gcp.vpc.enable_flow_logs</code> to <code>true</code>.</li><li>Set <code>gcp.vpc.flow_logs_sampling</code> to <code>1.0</code> to capture all network traffic.</li></ul><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="databases-access"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#databases-access" title="Direct link to heading">#</a>Databases access <img src="/img/advanced_settings/aws.svg"> <img src="/img/advanced_settings/scaleway.svg"> <img src="/img/advanced_settings/gcp.svg"></h3><p>Qovery allows databases to be publicly accessible for convenience; however, to comply with SOC2, it’s recommended to <a href="/docs/using-qovery/configuration/cluster-advanced-settings/#database-access">restrict this access</a> to secure your databases by changing the value of those settings:</p><ul><li><code>database.&lt;database type&gt;.deny_public_access</code>: set the CIDR ranges permitted to access the database.</li><li><code>database.&lt;database type&gt;.allowed_cidrs</code>: limit access to only your VPC CIDR or other specified IP ranges.</li></ul><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="kubernetes-api-access"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#kubernetes-api-access" title="Direct link to heading">#</a>Kubernetes API access <img src="/img/advanced_settings/aws.svg"> <img src="/img/advanced_settings/gcp.svg"></h3><p>By default, cloud providers allow public access to the Kubernetes API, which is secured by TLS certificates. AWS and GCP provide an added layer of security by requiring account-based dual authentication.</p><p>SOC2 compliance, however, mandates restricted access to the Kubernetes API. To achieve this:</p><ul><li><code>qovery.static_ip_mode</code>: limit access to Qovery’s designated IPs. Qovery needs this access to perform infrastructure maintenance and application deployment.</li><li><code>k8s.api.allowed_public_access_cidrs</code>: optional, define any additional CIDRs that require access to the Kubernetes API, thus limiting external access further.</li></ul><div class="alert alert--info alert--icon" role="alert"><i class="feather icon-info"></i><p>Please refer to the <a href="/docs/using-qovery/configuration/cluster-advanced-settings/#qoverystatic_ip_mode">dedicated documentation section</a>, you have to create a Dockerhub account and link it to Qovery to avoid rate limit.</p></div><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="container-images-retention-time"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#container-images-retention-time" title="Direct link to heading">#</a>Container images retention time <img src="/img/advanced_settings/aws.svg"> <img src="/img/advanced_settings/scaleway.svg"> <img src="/img/advanced_settings/gcp.svg"></h3><p>SOC2 requires that images be retained for a minimum of 365 days. To meet this requirement, set the <code>registry.image_retention_time</code> to at least 365 days.</p><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="aws-ec2-metadata-access"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#aws-ec2-metadata-access" title="Direct link to heading">#</a>AWS EC2 metadata access <img src="/img/advanced_settings/aws.svg"></h3><p>To comply with SOC2, restrict access to the AWS EC2 metadata service.</p><p>Set <code>aws.eks.ec2.metadata_imds</code> to <code>required</code> to prevent unauthorized access to the metadata service.</p><h2><a aria-hidden="true" tabindex="-1" class="anchor" id="schema"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#schema" title="Direct link to heading">#</a>Schema</h2><p>For SOC2 compliance, an auditor may request a diagram of your infrastructure and its connection to Qovery. Below is the diagram you can share:</p><p><img src="/img/compliances/qovery_soc2_schema.svg"></p></div></article></div><div class="paginator_3VDt"><nav class="pagination-nav"><div class="pagination-nav__item"><a class="pagination-nav__link" href="/docs/security-and-compliance/gdpr"><h5 class="pagination-nav__link--sublabel">Previous</h5><h4 class="pagination-nav__link--label">« GDPR</h4></a></div><div class="pagination-nav__item pagination-nav__item--next"><a class="pagination-nav__link" href="/docs/useful-resources/faq"><h5 class="pagination-nav__link--sublabel">Next</h5><h4 class="pagination-nav__link--label">FAQ »</h4></a></div></nav></div></div><div class="rightCol_38kP"><div class="table-of-contents tableOfContents_tVyB"><div class="section"><div class="title">Contents</div><ul class="contents"><li><a href="#cluster-advanced-settings" class="contents__link">Cluster advanced settings</a><ul><li><a href="#aws-cloudwatch" class="contents__link">AWS CloudWatch </a></li><li><a href="#application-logs-retention" class="contents__link">Application Logs Retention   </a></li><li><a href="#vpc-flow-logs" class="contents__link">VPC flow logs  </a></li><li><a href="#databases-access" class="contents__link">Databases access   </a></li><li><a href="#kubernetes-api-access" class="contents__link">Kubernetes API access  </a></li><li><a href="#container-images-retention-time" class="contents__link">Container images retention time   </a></li><li><a href="#aws-ec2-metadata-access" class="contents__link">AWS EC2 metadata access </a></li></ul></li><li><a href="#schema" class="contents__link">Schema</a></li></ul></div><div class="section"><div class="title">Resources</div><ul class="contents"></ul></div></div></div></div></div></main></div></div><footer class="footer"><div class="container"><div class="row footer__links"><div class="col col--5 footer__col"><div class="margin-bottom--md"></div><div class="margin-bottom--md"><p>Qovery is a DevOps Automation Platform Helping 200+ Organizations To Ship Faster and Eliminate DevOps Hiring Needs.</p></div><div><a href="https://github.com/qovery" target="_blank"><i class="feather icon-github" alt="Qovery&#x27;s Github Repo"></i></a>    <a href="https://www.linkedin.com/company/qovery/" target="_blank"><i class="feather icon-rss" alt="Qovery&#x27;s Linkedin"></i></a>    <a href="https://twitter.com/qovery_" target="_blank"><i class="feather icon-twitter" alt="Qovery&#x27;s Twitter"></i></a></div></div><div class="col footer__col"><h4 class="footer__title">Resources</h4><ul class="footer__items"><li class="footer__item"><a aria-current="page" class="footer__link-item active" href="/docs">Documentation</a></li><li class="footer__item"><a class="footer__link-item" href="/guides">Guides</a></li><li class="footer__item"><a class="footer__link-item" href="/guides/tutorial">Tutorials</a></li><li class="footer__item"><a class="footer__link-item" href="/guides/engineering">Engineering</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/pricing" href="https://www.qovery.com/pricing">Pricing</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/enterprise" href="https://www.qovery.com/enterprise">Enterprise</a></li><li class="footer__item"><a class="footer__link-item" to="https://api-doc.qovery.com" href="https://api-doc.qovery.com">API</a></li><li class="footer__item"><a class="footer__link-item" to="https://github.com/Qovery" href="https://github.com/Qovery">Github</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Community</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://community.qovery.com" href="https://community.qovery.com">Forum</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/community-call" href="https://www.qovery.com/community-call">Community call</a></li><li class="footer__item"><a class="footer__link-item" to="https://shop.qovery.com" href="https://shop.qovery.com">Goodies</a></li><li class="footer__item"><a class="footer__link-item" to="https://roadmap.qovery.com" href="https://roadmap.qovery.com">Roadmap</a></li><li class="footer__item"><a class="footer__link-item" to="https://github.com/Qovery/replibyte" href="https://github.com/Qovery/replibyte">Replibyte</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Company</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/blog" href="https://www.qovery.com/blog">Blog</a></li><li class="footer__item"><a class="footer__link-item" to="https://jobs.qovery.com" href="https://jobs.qovery.com">Jobs</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/team" href="https://www.qovery.com/team">Team</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/investors" href="https://www.qovery.com/investors">Investors</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/contact" href="https://www.qovery.com/contact">Contact</a></li></ul></div></div><div class="text--center"><small>© 2024 DESIGNED BY QOVERY | PROUD SILVER MEMBER OF CNCF AND LINUX FOUNDATION | QOVERY BY BIRDSIGHT - ALL RIGHTS RESERVED</small><br></div></div></footer>
 </div>
 
-<script src="/styles.bf67a74c.js"></script>
+<script src="/styles.bbed428d.js"></script>
 
-<script src="/runtime~main.99403bba.js"></script>
+<script src="/runtime~main.72d824fe.js"></script>
 
-<script src="/main.72f4c72c.js"></script>
+<script src="/main.5caa7617.js"></script>
 
-<script src="/2.224b92f7.js"></script>
+<script src="/2.4a7b250f.js"></script>
 
-<script src="/3.4f011061.js"></script>
+<script src="/3.170b1085.js"></script>
 
-<script src="/4.73945e41.js"></script>
+<script src="/4.a9382b0d.js"></script>
 
-<script src="/1be78505.cddfba4f.js"></script>
+<script src="/1be78505.cb316185.js"></script>
 
 <script src="/20ac7829.d77c41a6.js"></script>
 
-<script src="/311.f386097d.js"></script>
+<script src="/309.0b5e4717.js"></script>
 
-<script src="/17896441.c0aeb614.js"></script>
+<script src="/17896441.36eda97b.js"></script>
 
-<script src="/cf490432.5d43e669.js"></script>
+<script src="/cf490432.c8e1bdba.js"></script>
 
 
 </body>

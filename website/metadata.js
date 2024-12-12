@@ -619,15 +619,6 @@ module.exports = {
           "title": "How to use CloudFront with a React frontend application on Qovery"
         },
         {
-          "author_github": "https://github.com/pjeziorowski",
-          "description": null,
-          "id": "/tutorial/github-organization-repository-access",
-          "last_modified_on": null,
-          "path": "website/guides/tutorial/github-organization-repository-access.md",
-          "series_position": null,
-          "title": "How to use Github Organizations with Qovery"
-        },
-        {
           "author_github": "https://github.com/MacLikorne",
           "description": null,
           "id": "/tutorial/how-to-write-a-dockerfile",

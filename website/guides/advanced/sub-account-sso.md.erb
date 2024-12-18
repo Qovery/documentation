@@ -1,0 +1,83 @@
+---
+$schema: "/.meta/.schemas/guides.json"
+title: Configure Single Sign-On (SSO) for an AWS sub-account
+description: Learn how to configure Single Sign-On (SSO) on AWS for a sub-account in Qovery.
+author_github: https://github.com/deimosfr
+tags: ["type: guide", "technology: qovery"]
+---
+import Steps from '@site/src/components/Steps';
+import Assumptions from '@site/src/components/Assumptions';
+import Alert from '@site/src/components/Alert';
+
+Creating a sub-account on AWS is a great way to manage multiple projects and resources. It allows you to separate resources, billing, and access control.
+However, managing multiple accounts can be cumbersome. Single Sign-On (SSO) is a great way to manage multiple accounts and resources.
+
+In this guide, you will learn how to configure Single Sign-On (SSO) for a sub-account in AWS with Qovery. Then it's convenient to switch between accounts. Here is an example of what it looks like with 5 different accounts:
+
+<p align="center">
+  <img src="/img/aws-subaccount-sso/sso-login-subaccount.png" alt="sso login" />
+</p>
+
+# Create a subaccount in AWS
+
+On your AWS master account, go to the [AWS Management Console](https://aws.amazon.com/console/), and click on the `My Account` top right dropdown menu.
+Then, click on `AWS Organizations`, and click on `Add an AWS account`:
+
+<p align="center">
+  <img src="/img/aws-subaccount-sso/add-subaccount.png" alt="sub account creation" />
+</p>
+
+<Alert type="info">
+
+Fill in the "IAM Role Name" with a meaningful name. This will typically be displayed when users are switching to this account, so it should clearly identify this sub-account.
+
+</Alert>
+
+If all goes well, this takes us back to the list of accounts. If the new one looks grayed out, it’s not quite done being created; wait a little and refresh the list until it looks normal.
+Log out of the master account, and connect to this account.
+
+# Configure SSO on AWS for the sub-account
+
+You will find [in this guide](https://docs.aws.amazon.com/singlesignon/latest/userguide/tutorials.html), how to configure SSO on your subaccount with your identity provider (Google Workspace, Okta, Microsoft Active Directory etc.).
+
+In the ends, you should see your users in the AWS IAM Identity Center console:
+<p align="center">
+  <img src="/img/aws-subaccount-sso/iic-users-list.png" alt="iic user list" />
+</p>
+
+# Ass SSO (with Qovery) on your EKS cluster to support SSO (optional)
+
+Qovery allows you to connect to your EKS cluster using SSO. It's optional, but if you want to do this anyway, please [refer to this guide](/guides/tutorial/how-to-activate-sso-to-connect-to-your-eks-cluster).
+
+# SSO sync for Google workspace (optional)
+
+[SSO Sync](https://github.com/awslabs/ssosync) is helping you populate AWS SSO directly from your Google Workspace users. It's optional, you can use it inside Qovery with a Dockerfile (clone the repo and add this Dockerfile, feel free to update to your needs):
+
+```
+FROM debian:stable-slim
+
+RUN apt-get update && apt-get -y install curl && apt-get clean &&\
+    curl -Lo ssosync.tgz https://github.com/awslabs/ssosync/releases/download/v2.0.2/ssosync_Linux_x86_64.tar.gz &&\
+    tar -xzf ssosync.tgz -C /tmp &&\
+    cp /tmp/ssosync /usr/bin/ &&\
+    chmod 755 /usr/bin/ssosync &&\
+    rm -Rf ssosync.tgz /tmp/*
+
+ENTRYPOINT ["/usr/bin/ssosync"]
+```
+
+Then you can try to run it. For example, to sync users from Google Workspace to AWS SSO:
+
+```
+docker run -t $(AWS_SSO_SCIM_API_ACCESS_TOKEN) -e $(AWS_SSO_SCIM_API_ENDPOINT) -u $(GOOGLE_WORKSPACE_ADMIN_USER_EMAIL) -c $(GOOGLE_WORKSPACE_CREDENTIALS_FILE) -g $(GOOGLE_WORKSPACE_GROUPS) --log-level debug -r $(AWS_REGION) -i $(AWS_SSO_SCIM_IDENTITY_STORE_ID)
+```
+
+You should see something like:
+```
+time="2024-12-18T14:30:00Z" level=info msg="Syncing AWS users and groups from Google Workspace SAML Application"
+time="2024-12-18T14:30:00Z" level=info msg=syncing sync_method=groups
+time="2024-12-18T14:30:00Z" level=info msg="get google groups" query="name:sso* email:sso*"
+time="2024-12-18T14:30:01Z" level=debug msg="preparing list of google users and then google groups and their members"
+...
+time="2024-12-18T14:30:26Z" level=info msg="sync completed"
+```

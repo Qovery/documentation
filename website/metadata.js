@@ -213,6 +213,15 @@ module.exports = {
       "description": "Go beyond the basics, become a Qovery pro, and extract the full potential of Qovery.",
       "guides": [
         {
+          "author_github": "https://github.com/deimosfr",
+          "description": null,
+          "id": "/advanced/sub-account-sso",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/sub-account-sso.md",
+          "series_position": null,
+          "title": "Configure Single Sign-On (SSO) for an AWS sub-account"
+        },
+        {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
           "id": "/advanced/continuous-integration",

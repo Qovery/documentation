@@ -11,13 +11,16 @@ import Alert from '@site/src/components/Alert';
 import Steps from '@site/src/components/Steps';
 import Assumptions from '@site/src/components/Assumptions';
 
-[Karpenter](https://karpenter.sh/) is a great way to cut your AWS bill. It provides an easy and flexible way to scale and optimize your resource consumption. But there is a known [issue](https://github.com/kubernetes-sigs/karpenter/issues/731) with capacity planning when you deploy DaemonSets. In this guide, I will present the issue and explain how to avoid it by using Priority Class.
+[Karpenter](https://karpenter.sh/) is a great way to cut your AWS bill. It provides a simple and flexible way to scale and optimize your resource consumption. But there is a known [issue](https://github.com/kubernetes-sigs/karpenter/issues/731) with capacity planning when deploying DaemonSets. In this guide, we will explore this issue and demonstrate how to resolve it using PriorityClass.
 
 ## What is a DaemonSet?
 
 A DaemonSet in Kubernetes is a specialized controller used to ensure that a copy of a particular pod runs on all nodes in a cluster. It is particularly useful for deploying background tasks or system-level services that need to run on every node, such as log collectors, monitoring agents, or network components.
 
-When nodes are added to the cluster, the DaemonSet automatically schedules the specified pod on the new nodes, ensuring consistent deployment across the entire infrastructure. Similarly, when nodes are removed, the DaemonSet takes care of cleaning up the pods that were running on those nodes.
+Key features of DaemonSets include:
+
+- Automatic Scheduling: When nodes are added to the cluster, the DaemonSet schedules the specified pod on the new nodes automatically.
+- Cleanup: When nodes are removed, the DaemonSet cleans up the pods running on those nodes.
 
 This makes DaemonSets a powerful tool for maintaining uniformity and reliability in the operation of essential services across a Kubernetes cluster.
 
@@ -27,45 +30,33 @@ There is a [known issue](https://github.com/kubernetes-sigs/karpenter/issues/731
 
 This forces operators to over-provision their nodes, resulting in inefficient resource utilization and higher costs. While the Kubernetes community and Karpenter developers are working on solutions, users currently need to manually adjust resource allocations and monitor node utilization to mitigate these issues.
 
-A way to resolve this problem is to use a Priority Class and attach it to the DaemonSet we are creating.
+A way to resolve this problem is to use a PriorityClass and attach it to the DaemonSet we are creating.
 
 ## How to resolve it?
 
-### What is a Priority Class?
+### What is a PriorityClass?
 
-A PriorityClass in Kubernetes is a resource used to assign a priority level to pods. This resource helps the scheduler make decisions during resource contention.
+A PriorityClass in Kubernetes is a resource used to assign priority levels to pods. It helps the Kubernetes scheduler make decisions during resource contention by determining which pods should be scheduled first or evicted in case of resource shortages.
 
-- Higher-priority pods are scheduled before lower-priority ones
-- In case of resource shortages, lower-priority pods may be preempted (evicted) to make room for higher-priority pods.
+- Pods with higher priorities are scheduled before those with lower priorities.
+- During resource shortages, lower-priority pods may be preempted (evicted) to free up resources for higher-priority pods.
 
-This ensures that critical workloads receive the necessary resources to run effectively.
+This ensures that critical workloads have the resources they need to run effectively.
 
-### Deploy a new Priority Class using Helm
+### Use PriorityClass built-in Helm Charts
 
-I created a [simple repository](https://github.com/Qovery/qovery-charts-examples/tree/main/karpenter-daemonset-priority-class-main) you can clone to follow along.
+Many Helm charts include built-in values to automatically create and configure PriorityClasses. We have examples in our documentation:
 
-Create the karpenter-priority-class service in the Qovery environment where you want to deploy your DaemonSet by following [this documentation][docs.using-qovery.configuration.helm] and these values:
+- [Kubernetes observability and monitoring with Datadog
+](https://hub.qovery.com/guides/tutorial/kubernetes-observability-and-monitoring-with-datadog/)
+- [Deploy JupyterHub using Helm
+](https://hub.qovery.com/guides/tutorial/deploy-jupyterhub-qovery/)
 
-* General:
-  * Service name: `karpenter-priority-class`
-  * Source:
-    * Helm source: `Git Provider`
-    * Git account: `Public repository` (Change if you are not using GitHub)
-    * Repository: `https://github.com/Qovery/qovery-charts-examples.git` (Replace by the name of your repository)
-    * Branch: `main`
-    * Root application path: `/karpenter-daemonset-priority-class-main`
-    * Allow cluster-wide resources :heavy_check_mark:
+### Use Qovery's dedicated PriorityClass
 
-Click on Continue
-
-* Values override as file:
-  * File source: `None`
-
-Then, you can:
-
-- deploy this helm service to add the priority class on your cluster
-- Modify your DaemonSet configuration to use the new priority class an redeploy it
+When deploying Qovery on a cluster, a dedicated PriorityClass named `qovery-standard-priority` is created automatically.
+You can use this PriorityClass when deploying a new Helm chart or DaemonSet to ensure that DaemonSets deploy correctly, even during resource contention.
 
 ## Conclusion
 
-Even if Karpenter is a great way of reducing your AWS bill, sometimes you will have to do some manual lifting. This issue is a good example. A single Priority Class is enough to avoid a complex resource allocation problem.
+While tools like Karpenter are excellent for optimizing costs and reducing your AWS bill, some manual configuration is sometimes required. This issue demonstrates that adding a single PriorityClass can effectively prevent complex resource allocation problems.

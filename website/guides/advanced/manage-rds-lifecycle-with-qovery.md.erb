@@ -1,0 +1,39 @@
+---
+$schema: "/.meta/.schemas/guides.json"
+title: Manage RDS Lifecycle with Qovery
+description: How to manage the lifecycle of your RDS database within Qovery.
+author_github: https://github.com/baalooos
+tags: ["type: tutorial", "technology: qovery", "installation_guide: aws", "database: rds"]
+hide_pagination: true
+---
+
+import Alert from '@site/src/components/Alert';
+import Steps from '@site/src/components/Steps';
+import Assumptions from '@site/src/components/Assumptions';
+
+Managing the lifecycle of an AWS RDS instance is crucial for maintaining a scalable, cost-effective, and efficient database environment. In this guide, we’ll explore how to leverage Qovery to streamline the management of your AWS RDS lifecycle, from creation and updates to scaling and deletion. By integrating Qovery’s intuitive console with AWS RDS, you can simplify complex tasks and focus on building great applications.
+
+## Deploy your Database with Qovery
+
+First step in managing an RDS instance, is to create it. We have a documentation on how to deploy an RDS instance using Terraform and Qovery [here](/guides/tutorial/deploy-rds-with-terraform/).
+
+## Database backup strategy
+
+A solid RDS backup strategy is essential to protect your data from hardware failures, accidental deletions, or cyberattacks. It ensures data recovery, minimizes downtime, and supports business continuity, especially for critical applications. You can find AWS documentation on RDS backup and recovery [here](https://docs.aws.amazon.com/prescriptive-guidance/latest/backup-recovery/rds.html).
+
+## Modify your Database configuration
+
+// Todo 2025)
+Give some example of modificaitons: Engine Version, Instance size...
+Explain that with Blue Green Deployment the modification are almost seamless.
+C.f. https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments.html and https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/blue-green-deployments.html
+
+## How to restore a snapshot
+
+// Todo 2025
+
+An example is available [here](https://dev.to/stack-labs/restore-aws-rds-snapshots-using-terraform-1ffi.
+
+## Delete your database
+
+// Todo 2025

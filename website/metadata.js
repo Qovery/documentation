@@ -303,6 +303,15 @@ module.exports = {
           "title": "Helm Charts"
         },
         {
+          "author_github": "https://github.com/baalooos",
+          "description": null,
+          "id": "/advanced/manage-rds-lifecycle-with-qovery",
+          "last_modified_on": null,
+          "path": "website/guides/advanced/manage-rds-lifecycle-with-qovery.md",
+          "series_position": null,
+          "title": "Manage RDS Lifecycle with Qovery"
+        },
+        {
           "author_github": "https://github.com/pjeziorowski",
           "description": null,
           "id": "/advanced/microservices",
@@ -482,6 +491,15 @@ module.exports = {
           "path": "website/guides/tutorial/deploy-temporal-on-kubernetes.md",
           "series_position": null,
           "title": "Deploy Temporal on Kubernetes"
+        },
+        {
+          "author_github": "https://github.com/baalooos",
+          "description": null,
+          "id": "/tutorial/deploy-rds-with-terraform",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/deploy-rds-with-terraform.md",
+          "series_position": null,
+          "title": "Deploy an RDS instance with Terraform"
         },
         {
           "author_github": "https://github.com/evoxmusic",

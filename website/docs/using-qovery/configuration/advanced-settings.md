@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-07-30"
+last_modified_on: "2024-12-31"
 title: "Service Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -263,6 +263,30 @@ You can pass set credentials by separating them with a comma. For example: `user
 | Type   | Description                                                                                                                                   | Default Value |
 |--------|-----------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | string | Allows you to specify additional headers to the incoming requests. The header values are separated by comma (e.g. ` {"X-Frame-Options":"DENY","X-Content-Type-Options":"nosniff"}`). | `{}`          |
+
+#### network.ingress.nginx_controller_configuration_snippet ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/helm.svg)
+
+| Type   | Description                                                                                                                                                    | Default Value |
+|--------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| string | Allows you to customize [configuration-snippet](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#configuration-snippet). | `null`        |
+
+#### network.ingress.nginx_controller_server_snippet ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/helm.svg)
+
+| Type   | Description                                                                                                                                      | Default Value |
+|--------|--------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| string | Allows you to customize [server-snippet](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#server-snippet). | `null`        |
+
+#### network.ingress. nginx_limit_burst_multiplier ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/helm.svg)
+
+| Type   | Description                                                                                                                                       | Default Value |
+|--------|---------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| string | Allows you to set [limit burst multiplier](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#rate-limiting). | `null`        |
+
+#### network.ingress. nginx_limit_rpm ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/helm.svg)
+
+| Type   | Description                                                                                                                          | Default Value |
+|--------|--------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| string | Allows you to set [limit rpm](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#rate-limiting). | `null`        |
 
 ## Auto-scaling
 

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-11-01"
+last_modified_on: "2025-01-02"
 title: CLI
 description: How to use the Qovery CLI (Command Line Interface)
 ---
@@ -668,6 +668,32 @@ kubectl get pods #List all pods in the default namespace
 
 ```bash
 kubectl describe pod <pod_name> #Get detailed information about a specific pod
+```
+
+## Lock cluster updates
+
+The lock cluster command prevents any update or deployment from being initiated on a cluster while it is locked. Once a cluster is locked, no new updates can be processed until it is unlocked.
+
+**Lock cluster**
+
+```bash
+qovery cluster lock --cluster-id <your-cluster_id> --reason <reason> --ttl-in-days <days>
+```
+
+Note that the TTL can not be greater than 5 days.
+
+**Unlock cluster**
+
+```bash
+qovery cluster unlock --cluster-id <your-cluster_id>
+```
+
+**List clusters locked**
+
+You can list all the cluster locked withing an organization by running this comamnd:
+
+```bash
+qovery cluster locked --organization-id <org-id>
 ```
 
 ## Managing the Deployment Pipeline

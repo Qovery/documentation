@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-12"
+last_modified_on: "2025-01-06"
 $schema: "/.meta/.schemas/guides.json"
 title: Setting up Cloudflare and Custom Domain on Qovery
 description: Using Cloudflare for applications deployed on Qovery
@@ -39,11 +39,14 @@ Add your Cloudflare managed domain in `Domain` section:
   <img src="/img/cloudflare/3.png" alt="Cloudflare" />
 </p>
 
+
+Since your domain is behind a CDN (Cloudflare), you need to switch on the `Domain behind a CDN` toggle. This will automatically switch off the `Generate certificate` toggle because Qovery won't be able to manage it, as it will be handled by Cloudflare.
+
 ## Cloudflare Configuration
 
 ### CNAME
 
-To finish the configuration on Cloudfalre, open the DNS Settings:
+To finish the configuration on Cloudflare, open the DNS Settings:
 
 <p align="center">
   <img src="/img/cloudflare/4.png" alt="Cloudflare" />

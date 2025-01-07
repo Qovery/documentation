@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-12-31"
+last_modified_on: "2025-01-07"
 title: "Service Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -287,6 +287,12 @@ You can pass set credentials by separating them with a comma. For example: `user
 | Type   | Description                                                                                                                          | Default Value |
 |--------|--------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | string | Allows you to set [limit rpm](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#rate-limiting). | `null`        |
+
+#### network.ingress. nginx_limit_rps ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/helm.svg)
+
+| Type   | Description                                                                                                                          | Default Value |
+|--------|--------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| string | Allows you to set [limit rps](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#rate-limiting). | `null`        |
 
 ## Auto-scaling
 

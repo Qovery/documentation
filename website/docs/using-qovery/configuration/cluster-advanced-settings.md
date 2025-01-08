@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-12-31"
+last_modified_on: "2025-01-07"
 title: "Cluster Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -223,6 +223,12 @@ Requirements for customers using custom VPCs (Qovery Managed VPC does not requir
 | Type    | Description                                                                                                                                                | Default Value |
 |---------|------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | string  | Allows to customize nginx [http-snippet](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#http-snippet) configuration. | `null`        |
+
+#### nginx.controller.server_snippet ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
+
+| Type    | Description                                                                                                                                                    | Default Value |
+|---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| string  | Allows to customize nginx [server-snippet](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#server-snippet) configuration. | `null`        |
 
 #### nginx.controller.limit_request_status_code ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
 

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-12-06"
+last_modified_on: "2025-01-08"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy JupyterHub using Helm
 description: How to deploy JupyterHub on Qovery using the official Helm chart.
@@ -92,7 +92,7 @@ proxy:
 
 </TabItem>
 
-<TabItem value="karpenter">
+<TabItem value="EKS with karpenter">
 
 To avoid [a known issue](https://hub.qovery.com/guides/advanced/deploy-daemonset-with-karpenter/) with Karpenter, we need to add a priorityClass to our pods. It is possible to do this using built-in configuration keys:
 

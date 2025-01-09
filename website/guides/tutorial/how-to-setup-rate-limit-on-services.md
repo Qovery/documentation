@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-01-07"
+last_modified_on: "2025-01-09"
 $schema: "/.meta/.schemas/guides.json"
 title: How to setup rate limit on services
 description: How to setup rate limit on services running on Qovery.
@@ -15,10 +15,12 @@ import Assumptions from '@site/src/components/Assumptions';
 import Jump from '@site/src/components/Jump';
 
 <Alert type="warning">
-Changing NGINX snippets configuration is an advanced feature and can lead to misconfiguration. Please be careful when changing these settings as it might break the whole NGINX configuration.
+Changing NGINX snippets configuration is an advanced feature and can lead to misconfiguration. Please be careful when changing these settings as it might break the whole NGINX configuration and thus make impossible to reach your services.
 </Alert>
 
-Now that your service is up and running on Qovery, you might want to setup some rate limits to protect your service from abuse. This guide will show you how to do that.
+Now that your service is up and running on Qovery, you might want to setup some rate limits to protect your service from abuse.
+While we usually recommend to do it via third parties like Cloudlfare or similar because using such solutions, the traffic will be filtered out before reaching your workload hence not wasting your resources.
+This guide will show you how to do that.
 
 <Assumptions name="guide">
 
@@ -169,7 +171,7 @@ limit_req_zone "$server_name" zone=global:10m rate=10r/s;
 <strong>Details</strong>
 
 - `limit_req_zone`: this is the NGINX directive that defines a shared memory zone for rate limiting
-- `"$server_name"`: could be replaced with any constant value like `"1"`, the key just needs to be the same for all requests. You can also use `$http_x_forwarded_for` to rate limit based on the client IP address or any other custom headers, see [custom rate limit key](#custom-rate-limit-key)
+- `"$server_name"`: could be replaced with any constant value like `"1"`, the key just needs to be the same for all requests. You can also use `$http_x_forwarded_for` to rate limit based on the client IP address or any other custom headers, see [custom rate limit key](#global-rate-limit-per-custom-header)
 - `zone=global:10m`: `global` is the name of the zone (you'll reference this name in your location blocks), `10m` allocates 10 megabytes of shared memory for storing rate limiting states
 - `rate=100r/s`: allows 100 requests per second, any requests above this rate will be delayed or rejected.
 
@@ -183,7 +185,7 @@ limit_req_zone "$server_name" zone=global:10m rate=10r/s;
 
 #### Use this global rate
 
-Now that our glbal rate is defined, let use it in our nginx configuration.
+Now that our global rate is defined, let use it in our nginx configuration.
 
 In order to do so, we need to declare this server snippet at cluster level in advanced setting `nginx.controller.server_snippet` (see [documentation](https://hub.qovery.com/docs/using-qovery/configuration/cluster-advanced-settings/#nginxcontrollerserver_snippet)):
 

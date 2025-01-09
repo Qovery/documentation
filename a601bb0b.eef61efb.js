@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[197],{349:function(a){a.exports=JSON.parse('{"allTagsPath":"/guides/tags","slug":"installation-guide-scaleway","name":"installation_guide: scaleway","count":1,"permalink":"/guides/tags/installation-guide-scaleway"}')}}]);

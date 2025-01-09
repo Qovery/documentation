@@ -619,6 +619,15 @@ module.exports = {
           "title": "How to seed a Postgres database on a dev environment"
         },
         {
+          "author_github": "https://github.com/benjaminch",
+          "description": null,
+          "id": "/tutorial/how-to-setup-rate-limit-on-services",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/how-to-setup-rate-limit-on-services.md",
+          "series_position": null,
+          "title": "How to setup rate limit on services"
+        },
+        {
           "author_github": "https://github.com/pjeziorowski",
           "description": null,
           "id": "/tutorial/how-to-use-cloudfront-with-react-frontend-application-on-qovery",

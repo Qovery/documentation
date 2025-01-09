@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-22"
+last_modified_on: "2025-01-08"
 title: Using Qovery
 description: "Everything you need to know to configure and use your applications on Qovery"
 sidebar_label: hidden

@@ -556,6 +556,15 @@ module.exports = {
           "title": "How to activate SSO to connect to your EKS cluster"
         },
         {
+          "author_github": "https://github.com/benjaminch",
+          "description": null,
+          "id": "/tutorial/how-to-setup-ip-and-header-based-authorization",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/how-to-setup-ip-and-header-based-authorization.md",
+          "series_position": null,
+          "title": "How to configure IP and header-based authorization"
+        },
+        {
           "author_github": "https://github.com/l0ck3",
           "description": null,
           "id": "/tutorial/how-to-connect-to-a-managed-mongodb-instance-on-aws",

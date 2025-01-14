@@ -255,9 +255,9 @@ You can edit the existing service/port or declare new ones by specifying:
 - Port Name: it is the name assigned to the port. When multiple ports are exposed publicly, its value is used to route the traffic to the right port based on the called subdomain (which will contain the port name value). Since each port is exposed on the port 443, having a different subdomain is the only way to have multiple ports exposed over the internet. If not set, the default value is `p<portNumber>` (see [Qovery Provided Domain section](#qovery-provided-domains) for more information)
 
 <Alert type="info">
-  
+
 This setup is not copied when the helm chart is cloned (via a [manual clone][docs.using-qovery.configuration.environment#clone-environment] or the [preview environment feature][docs.using-qovery.configuration.environment#preview-environment])
-  
+
 </Alert>
 
 #### Important Informations

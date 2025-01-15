@@ -256,8 +256,17 @@ You can edit the existing service/port or declare new ones by specifying:
 
 <Alert type="info">
 
-This setup is not copied when the helm chart is cloned (via a [manual clone][docs.using-qovery.configuration.environment#clone-environment] or the [preview environment feature][docs.using-qovery.configuration.environment#preview-environment])
+When cloning a Helm chart (via a [manual clone][docs.using-qovery.configuration.environment#clone-environment] or the [preview environment feature][docs.using-qovery.configuration.environment#preview-environment]), the network setup copying behavior depends on the service name format:
 
+* The network setup will be copied if the service name is generic (without any service identifier)
+* The network setup will not be copied if the service name contains a specific service ID
+
+| Service Name | Format | Clone Behavior |
+|--------------|--------|------------------|
+| `grafana-front` | Generic name | ✅ Network setup is copied |
+| `helm-z1243144-grafana-front` | Contains service ID | ❌ Network setup is not copied |
+
+**Note**: Service IDs are unique identifiers (like `z1243144`) that are embedded within the service name.
 </Alert>
 
 #### Important Informations

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-01-08"
+last_modified_on: "2025-01-15"
 title: "Service Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -74,6 +74,14 @@ All services have access to advanced settings, you can find where they are avail
 | Type    | Description                            | Default Value |
 |---------|----------------------------------------|---------------|
 | integer | GB RAM allocated to your build process | `8`           |
+
+#### build.ephemeral_storage_in_gib ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/cronjob.svg) ![](/img/advanced_settings/job.svg)
+
+| Type    | Description                            | Default Value |
+|---------|----------------------------------------|---------------|
+| integer | Storage in GB allocated to your build process | `null`           |
+
+Note: The default value on a GKE cluster is set to 10 GB since by default it force pods without declared ephemeral storage to run with only 1 GB.
 
 #### deployment.termination_grace_period_seconds ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/cronjob.svg) ![](/img/advanced_settings/job.svg)
 

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-10-15"
+last_modified_on: "2025-01-15"
 title: "Image Mirroring"
 description: "Learn how images are mirrored within your cloud account"
 ---
@@ -123,6 +123,9 @@ In summary, maintaining unique image tags is a critical aspect of effective vers
 If you want to reduce the deployment time by avoiding the mirroring operation, you can push your built images directly into the `Mirroring registry`. 
 
 Push the images in a image registry `repository` having the same name of the image you want to deploy. 
+
+Also, if the container registry source url (from a service) is the same than the cluster container registry url, no mirroring would be done.
+Example: if the source registry is `https://xxx.dkr.ecr.us-west-2.amazonaws.com` and the cluster container registry url is `https://xxx.dkr.ecr.us-west-2.amazonaws.com`, no mirroring would be done.
 
 **Example on AWS**
 

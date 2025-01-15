@@ -115,6 +115,9 @@ If you want to reduce the deployment time by avoiding the mirroring operation, y
 
 Push the images in a image registry `repository` having the same name of the image you want to deploy. 
 
+Also, if the container registry source url (from a service) is the same than the cluster container registry url, no mirroring would be done.
+Example: if the source registry is `https://xxx.dkr.ecr.us-west-2.amazonaws.com` and the cluster container registry url is `https://xxx.dkr.ecr.us-west-2.amazonaws.com`, no mirroring would be done.
+
 **Example on AWS**
 
 Let's say you have a container image called `nginx` that you build on your CI and the container registry associated with your cluster is https://32432542.dkr.ecr.eu-west-3.amazonaws.com. 

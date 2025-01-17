@@ -332,6 +332,28 @@ $ qovery port-forward -p 8000:80 -pod app-5f65fb5c4-frontend-5f65db5c4b-q4w11
 ```
 NOTE: you can get the list of pods by running the `qovery list-pods` command.
 
+### Port-forward a dedicated managed database
+
+Before connecting to your database, it is important to review the requirements from the Cloud Provider's documentation. A common mistake is to overlook this documentation, which can lead to hours of troubleshooting.
+
+In this example we'll refer to the [DocumentDB (MongoDB) documentation](https://docs.aws.amazon.com/documentdb/latest/developerguide/connect_programmatically.html) from AWS.
+As noted, you need to use TLS to connect to the database. First, download the TLS certificate:
+
+```bash
+wget https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem
+```
+
+Next, run the Qovery port forward command, which you can obtain directly from the console:
+
+<p align="center">
+  <img src="/img/port_forward_docdb.png" alt="Get DB connectivity" />
+</p>
+
+Finally, validate the connectivity with the following command:
+```bash
+mongosh --tls --host localhost:27017 --tlsCAFile global-bundle.pem --tlsAllowInvalidHostnames true --username <sample-user> --password <password>
+```
+
 ## Generate API token
 
 To use the Qovery API you will need to generate an authentication token. To generate an API token you can install the CLI and type

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-01-02"
+last_modified_on: "2025-01-17"
 title: CLI
 description: How to use the Qovery CLI (Command Line Interface)
 ---
@@ -478,8 +478,15 @@ Please type "yes" to validate context: yes
 Listening on 127.0.0.1:8000 => 80
 ```
 
-The port-forward feature works with any `application`, `Cronjob`, `Lifecycle job` or `database` (Container or Managed) deployed with Qovery. For `Managed database` instances on AWS, once the port-forwarded is activated, you must specify ~ `--tls` and `--tls-insecure` in your database connection command since localhost is not the valid hostname.
+The port-forward feature works with any `application`, `Cronjob`, `Lifecycle job` or `database` (Container or Managed) deployed with Qovery.
 
+Im this example, you can now connect on `http://localhost:8000` to access your application.
+
+<Alert type="info">
+
+For `Managed database` instances on AWS, once the port-forwarded is activated, you must specify ~ `--tls` and `--tls-insecure` **in your database connection** command since localhost is not the valid hostname.
+
+</Alert>
 
 ### Port-forward a dedicated pod
 

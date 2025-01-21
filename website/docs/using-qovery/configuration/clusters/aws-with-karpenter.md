@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-11-27"
+last_modified_on: "2025-01-21"
 title: "AWS EKS with Karpenter"
 description: "Learn how to configure your AWS Kubernetes clusters with Karpenter on Qovery"
 ---
@@ -308,6 +308,28 @@ The `Features` tab in your cluster settings allows you to check if the [**Static
 #### Network
 
 The `Network` tab in your cluster settings allows you to update your Qovery VPC route table so that you can perform VPC peering. For step-by-step guidelines on how to set up VPC peering, [see our dedicated tutorial](https://hub.qovery.com/guides/tutorial/aws-vpc-peering-with-qovery/).
+
+### Assigning Specific Instances to Services
+
+#### Specify on-demand instance at service level
+
+When using spot instances in your cluster, you may want to ensure that certain critical services, such as databases or essential applications, are always deployed on on-demand instances.
+
+To specify that a service should be deployed on an `on-demand` instance, manually set the `deployment.affinity.node.required` advanced setting to:
+
+```json
+{"karpenter.sh/capacity-type":"on-demand"}
+```
+
+#### Specify a specific instance type at service level
+
+In some cases, you may need to ensure that a specific service runs on a particular instance type to meet performance, compliance, or cost requirements. 
+
+For example, to assign a service to the t3a.xlarge instance type, manually set the `deployment.affinity.node.required` advanced setting to:
+
+```json
+{"node.kubernetes.io/instance-type": "t3a.xlarge"}
+```
 
 
 [docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.quickstart#attach-aws-credentials]: /docs/getting-started/install-qovery/aws/cluster-managed-by-qovery/quickstart/#attach-aws-credentials

@@ -95,7 +95,7 @@ Note: The default value on a GKE cluster is set to 10 GB since by default it for
 
 | Type                | Description                                            | Use Case                                                                                                                                                                                                     | Default Value |
 |---------------------|--------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
-| Map<String, String> | Set pod placement on specific Kubernetes nodes labels. | Can be useful to send pods on desired architecture (GPU/ARM/AMD) or any other specific workload based on node labels (Eg. `{"eks.amazonaws.com/nodegroup": "gpu"}`, `{'kubernetes.io/arch': 'arm64'}`)       | ``            |
+| Map<String, String> | Set pod placement on specific Kubernetes nodes labels. | Can be useful to send pods on desired architecture (GPU/ARM/AMD) or any other specific workload based on node labels (Eg. `{"eks.amazonaws.com/nodegroup": "gpu"}`, `{"kubernetes.io/arch": "arm64"}`)       | ``            |
 
 #### deployment.antiaffinity.pod ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg)
 

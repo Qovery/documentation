@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-01-21"
+last_modified_on: "2025-01-22"
 title: "AWS EKS with Karpenter"
 description: "Learn how to configure your AWS Kubernetes clusters with Karpenter on Qovery"
 ---
@@ -330,6 +330,10 @@ For example, to assign a service to the t3a.xlarge instance type, manually set t
 ```json
 {"node.kubernetes.io/instance-type": "t3a.xlarge"}
 ```
+
+<Alert type="info">
+The specified instance type must be included in the list of instance types defined in the NodePool configuration.
+</Alert>
 
 
 [docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.quickstart#attach-aws-credentials]: /docs/getting-started/install-qovery/aws/cluster-managed-by-qovery/quickstart/#attach-aws-credentials

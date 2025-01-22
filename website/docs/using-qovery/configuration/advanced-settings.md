@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-01-21"
+last_modified_on: "2025-01-22"
 title: "Service Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -116,6 +116,12 @@ Note: The default value on a GKE cluster is set to 10 GB since by default it for
 | Type    | Description                                                                                                                                                                                                | Default Value |
 |---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | integer | Define the percentage of a maximum number of pods that can be unavailable during the update process ([more info](https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#max-unavailable)).  | `25`          |
+
+<Alert type="info">
+
+It's important to understand `maxSurge` and `maxUnavailable` govern availability, not strict real-time counting. Don't expect the exact numbers of pods to be unavailable at any given time during a rollout.
+
+</Alert>
 
 #### deployment.update_strategy.rolling_update.max_surge_percent ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg)
 

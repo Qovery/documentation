@@ -317,9 +317,16 @@ The port-forward feature works with any `application`, `Cronjob`, `Lifecycle job
 
 Im this example, you can now connect on `http://localhost:8000` to access your application.
 
-<Alert type="info">
+<Alert type="warning">
 
-For `Managed database` instances on AWS, once the port-forwarded is activated, you must specify ~ `--tls` and `--tls-insecure` **in your database connection** command since localhost is not the valid hostname.
+Qovery port-forward limitations:
+
+* The connection time is limited to 30s of inactivity for the first message or the connection will be closed.
+* The total connection time is limited to 1h of activity. After that, the connection will be closed.
+* The maximum size of data transferred is 1GB. Above that size, the connection will be closed.
+
+If you want to bypass those limitations, you need to have an access to the Kubernetes cluster directly. Then use [Kubernetes dedicated port-forward mechanism](https://kubernetes.io/docs/reference/kubectl/generated/kubectl_port-forward/)
+(you can use `qovery cluster kubeconfig --cluster-id xxxx` to get your kubeconfig).
 
 </Alert>
 
@@ -332,7 +339,7 @@ $ qovery port-forward -p 8000:80 -pod app-5f65fb5c4-frontend-5f65db5c4b-q4w11
 ```
 NOTE: you can get the list of pods by running the `qovery list-pods` command.
 
-### Port-forward a dedicated managed database
+### Port-forward on a managed database
 
 Before connecting to your database, it is important to review the requirements from the Cloud Provider's documentation. A common mistake is to overlook this documentation, which can lead to hours of troubleshooting.
 

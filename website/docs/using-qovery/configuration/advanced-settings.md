@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-01-24"
+last_modified_on: "2025-01-28"
 title: "Service Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -312,7 +312,7 @@ You can pass set credentials by separating them with a comma. For example: `user
 
 | Type   | Description                                                                                                                                                           | Default Value |
 |--------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
-| string | Allows you to set [custom-http-error](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#custom-http-errors). example: 404,503.   | `null`        |
+| string | Allows you to set [custom-http-error](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#custom-http-errors). example: "404,503". | `null`        |
 
 ## Auto-scaling
 

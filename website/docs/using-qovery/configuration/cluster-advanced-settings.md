@@ -238,9 +238,9 @@ Requirements for customers using custom VPCs (Qovery Managed VPC does not requir
 
 #### nginx.controller.custom_http_errors ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
 
-| Type   | Description                                                                                                                                                                   | Default Value |
-|--------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
-| string | Allows to customize nginx [custom-http-errors](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#custom-http-errors). example: "404,503".  | `null`        |
+| Type   | Description                                                                                                                                                                  | Default Value |
+|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| string | Allows to customize nginx [custom-http-errors](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#custom-http-errors). example: "404,503". | `null`        |
 
 #### nginx.default_backend.enabled ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
 
@@ -250,9 +250,9 @@ Requirements for customers using custom VPCs (Qovery Managed VPC does not requir
 
 #### nginx.default_backend.image_repository ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
 
-| Type   | Description                                                                                                                                                     | Default Value |
-|--------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
-| string | Defines the image repository used by the [default_backend](https://kubernetes.github.io/ingress-nginx/user-guide/default-backend/). example: `registry/image`.  | `null`        |
+| Type   | Description                                                                                                                                                                                                                                                | Default Value |
+|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| string | Specifies the Docker image repository used for the [default_backend](https://kubernetes.github.io/ingress-nginx/user-guide/default-backend/). The image registry must be publicly accessible without requiring authentication. example: `registry/image`.  | `null`        |
 
 #### nginx.default_backend.image_tag ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
 

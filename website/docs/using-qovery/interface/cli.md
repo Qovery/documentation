@@ -687,9 +687,9 @@ qovery cluster kubeconfig --cluster-id <your-cluster_id>
 
 2. **Set the KUBECONFIG environment variable** to the path of the kubeconfig file obtained from the previous command:
 
-  ```bash
-  export KUBECONFIG=<path_to_kubeconfig_file>
-  ```
+```bash
+export KUBECONFIG=<path_to_kubeconfig_file>
+```
   
 </TabItem>
 
@@ -707,7 +707,6 @@ qovery cluster debug-pod --cluster-id <your-cluster_id>
 </Tabs>
 
 3. You can now use tools like `k9s` or `kubectl` to access and manage your cluster:
-
 
 <Alert type="info">
 

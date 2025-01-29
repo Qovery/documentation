@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-01-22"
+last_modified_on: "2025-01-29"
 title: "AWS EKS with Karpenter"
 description: "Learn how to configure your AWS Kubernetes clusters with Karpenter on Qovery"
 ---
@@ -15,7 +15,7 @@ import Assumptions from '@site/src/components/Assumptions';
 
 <Alert type="warning">
 
-Karpenter is only available for non-production clusters. If you have created a production cluster, this option will not be visible.
+You can't migrate your existing production cluster to Karpenter yet, but this feature will be available soon.
 
 </Alert>
 
@@ -55,8 +55,7 @@ In the `Set Resources` window, select:
   * `Default build architecture`: by default `AMD64`. If you build your application with the Qovery CI, your application will be built using this architecture by default.
   * `Families`: by default all families are selected.
   * `Sizes`: by default all sizes are selected.
-* `Spot instances`: In order to reduce even more your costs, you can also enable the spot instances on your clusters. Spot instances cost up to 90% less compared to On-Demand prices. But keep in mind that spot instances can be terminated by the cloud provider at any time. Check this [documentation](https://aws.amazon.com/ec2/spot/) for more information. Even if this flag is enabled, the statefulsets won't run on spot instances.
-* `Disk size`: select the size of the disks to be attached to your cluster instances (to locally store container images etc..).
+* `Spot instances`: In order to reduce even more your costs, you can also enable the spot instances on your clusters. Spot instances cost up to 90% less compared to On-Demand prices. But keep in mind that spot instances can be terminated by the cloud provider at any time. Check this [documentation](https://aws.amazon.com/ec2/spot/) for more information. Even if this flag is enabled, the statefulsets and Nginx controller won't run on spot instances.
 
 <br/>
 
@@ -270,18 +269,24 @@ The `General` tab allows you to define high-level information on your cluster:
 Here you can manage here the cloud provider credentials associated with your cluster.
 
 If you need to change the credentials:
-- generate a new set of credentials on your cloud provider([Procedure for AWS account][docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.quickstart#attach-aws-credentials])
-- create the new credential on the Qovery by opening the drop-down and selecting "New Credentials"
+* generate a new set of credentials on your cloud provider([Procedure for AWS account][docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.quickstart#attach-aws-credentials])
+* create the new credential on the Qovery by opening the drop-down and selecting "New Credentials"
 
 Once created and associated, you need to [updating your cluster][docs.using-qovery.configuration.clusters#updating-a-cluster] to apply the change.
 
 #### Resources
 
-Qovery allows you to modify the resources allocated for your cluster:
+Qovery deploys two node pools by default:
 
-- The list of the instance types
-- The spot instances activation
-- The `Node disk size (GB)` field, enter the disk capacity you want to allocate to your worker node(s) (meaning how much data, in gigabytes, you want each worker node to be able to hold).
+- **Stable node pool**: Used for single instances and internal Qovery applications. For example, any containerized databases or application having the number of minimum and maximum instances equal to 1 will be deployed on this nodepool. On this nodepool the consolidation is deactivated by default.
+- **Default node pool**: Designed to handle general workloads and serves as the foundation for deploying most applications.  
+
+Qovery allows you to modify the resources allocated to your cluster:  
+
+##### Shared settings for both nodepools:  
+- **Instance types**: Define the list of instance types that can be used.  
+- **Spot instances**: Enable or disable spot instances.  
+- **Node disk size (GB)**: Specify the disk capacity allocated per worker node, determining the amount of data each node can store.  
 
 <Alert type="warning">
 Instance type selection from your Qovery Console has direct consequences on your cloud provider’s bill. While Qovery allows you to switch to a different instance type whenever you want, it is your sole responsibility to keep an eye on your infrastructure costs, especially when you want to upsize.
@@ -290,7 +295,9 @@ For more information on the instance types provided by each cloud provider and t
 
 </Alert>
 
-<br/>
+##### Nodepool specific settings:  
+- **Consolidation schedule** *(Stable nodepool only)*: Optimizes resource usage by consolidating workloads onto fewer nodes. This feature is not available for the default nodepool, as consolidation can happen at any time. We recommend enabling this option; otherwise, nodes will never be consolidated, leading to unnecessary infrastructure costs.
+- **Node pool limits**: Configure CPU and memory limits to ensure nodes stay within defined resource constraints, preventing excessive costs.  
 
 #### Image registry
 

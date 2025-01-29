@@ -12,13 +12,9 @@ import Assumptions from '@site/src/components/Assumptions';
 
 <Alert type="info">
 
-By default, clusters will be deployed with the AWS default autoscaler. If you are looking to install Qovery on your AWS cluster with the Karpenter autoscaler to improve cluster resource usage and activate spot instances, please refer to [this guide][docs.using-qovery.configuration.clusters.aws-with-karpenter].
+By default, production clusters are deployed with the AWS default autoscaler. However, for non-production clusters, the AWS autoscaler is no longer available—Karpenter is now the default and only option.
 
-<Alert type="warning">
-
-Karpenter is only available for non-production clusters. If you have created a production cluster, this option will not be visible.
-
-</Alert>
+If you want to install Qovery on your AWS cluster using the Karpenter autoscaler to optimize resource utilization and enable spot instances, please refer to [this guide][docs.using-qovery.configuration.clusters.aws-with-karpenter].
 
 </Alert>
 
@@ -51,7 +47,6 @@ In the `Set Resources` window, select:
 
 * `Karpenter`: to activate karpenter. If you are looking to install Qovery on your AWS with Karpenter, please refer to [this guide][docs.using-qovery.configuration.clusters.aws-with-karpenter]
 * `Instance type`: select the type of [worker nodes][docs.using-qovery.configuration.clusters#what-is-a-cluster] you want to deploy to your cluster.
-* `Disk size`: select the size of the disks to be attached to your cluster instances (to locally store container images etc..).
 * `Node auto-scaling`: define the minimum and the maximum number of worker nodes that your cluster can run. The lowest number is the number of worker nodes running on your infrastructure at any time, while the highest number is the maximum number of worker nodes that can automatically be deployed as traffic grows. Please note that a minimum of 3 worker nodes is required to deploy your EKS cluster.
 
 <br/>

@@ -496,11 +496,25 @@ You can list the organization's projects by using the following command:
 qovery project list
 ```
 
-## Access your Qovery-managed cluster
+## Access your cluster
 
 To access your Qovery managed cluster, follow these steps:
 
-1. **Export your kubeconfig file** by running the command below, replacing `<your-cluster_id>` with your actual cluster ID:
+<Tabs
+  centered={true}
+  className={"rounded"}
+  defaultValue={"managed-cluster"}
+  placeholder="Select your cluster mode"
+  select={false}
+  size={null}
+  values={[
+    {"group":"Features","label":"Managed cluster","value":"managed-cluster"},
+    {"group":"Features","label":"Self-Managed cluster","value":"self-managed-cluster"},
+  ]}>
+
+<TabItem value="managed-cluster">
+
+1. **Export your kubeconfig file** by running the command below, replacing `your-cluster_id` with your actual cluster ID:
 
 ```bash
 qovery cluster kubeconfig --cluster-id <your-cluster_id>
@@ -511,9 +525,23 @@ qovery cluster kubeconfig --cluster-id <your-cluster_id>
 ```bash
 export KUBECONFIG=<path_to_kubeconfig_file>
 ```
+  
+</TabItem>
+
+<TabItem value="self-managed-cluster">
+
+1. **Launch a debug pod** by running the command below, replacing `your-cluster_id` with your actual cluster ID:
+
+```bash
+qovery cluster debug-pod --cluster-id <your-cluster_id>
+```
+
+2. **You are connected directly on your pod attached to your cluster**
+
+</TabItem>
+</Tabs>
 
 3. You can now use tools like `k9s` or `kubectl` to access and manage your cluster:
-
 
 <Alert type="info">
 

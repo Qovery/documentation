@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-01-07"
+last_modified_on: "2025-02-03"
 title: "Cluster Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -79,6 +79,12 @@ Below is the list of advanced settings currently available for clusters.
 | Type    | Description                                                                                        | Default Value       |
 |---------|----------------------------------------------------------------------------------------------------|---------------------|
 | integer | Allows you to specify an amount in seconds after which images in the default registry are deleted. | `31536000` (1 year) |
+
+<Alert type="info">
+
+Changing this settings will only affect new ECR repositories created after the change. Existing repositories will not be affected.
+
+</Alert>
 
 #### registry.mirroring_mode ![](/img/advanced_settings/aws.svg)
 

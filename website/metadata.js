@@ -276,7 +276,7 @@ module.exports = {
           "title": "Deploy Frontend App"
         },
         {
-          "author_github": "https://github.com/baalooos",
+          "author_github": "https://github.com/acarranoqovery",
           "description": null,
           "id": "/advanced/deploy-daemonset-with-karpenter",
           "last_modified_on": null,

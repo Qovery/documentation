@@ -70,15 +70,15 @@ You can use this PriorityClass when deploying a new Helm chart or DaemonSet to e
 
 ## Targeting all the nodes
 
-When deploying a DaemonSet, you can use taints and affinities to control where the DaemonSet pods are scheduled. This can help you ensure that the DaemonSet pods are distributed evenly across your cluster and avoid resource contention.
+When deploying a DaemonSet, you can use taints and affinities to control where the DaemonSet pods are scheduled. This can help you ensure that the DaemonSet pods are deployed only on nodes that are interesting for you (for monitoring, logging etc..).
 
 ### Nodepool default taints
 
 By default, 2 nodepools are deployed with Karpenter: `default` and `stable`. On the `stable` nodepool, a taint has been defined to ensure that only pods having a toleration with the `stable` nodepool can be scheduled on it (key `nodepool/stable`).
 
-### How to target the stable nodepool
+### How to target every node
 
-To ensure that the DaemonSet pods are scheduled on the `stable` nodepool, you can add a toleration to the DaemonSet pods that matches the taint on the `stable` nodepool.
+To ensure that the DaemonSet pods are scheduled on every node, you can add a toleration to the DaemonSet pods that matches any taint. We also need to add an affinity to the DaemonSet pods to ensure that they are not scheduled on Fargate nodes.
 
 Here's an example of how you can do this with a helm chart:
 

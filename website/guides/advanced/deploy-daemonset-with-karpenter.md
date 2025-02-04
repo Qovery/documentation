@@ -78,7 +78,7 @@ By default, 2 nodepools are deployed with Karpenter: `default` and `stable`. On 
 
 ### How to target every node
 
-To ensure that the DaemonSet pods are scheduled on every node, you can add a toleration to the DaemonSet pods that matches any taint. We also need to add an affinity to the DaemonSet pods to ensure that they are not scheduled on Fargate nodes.
+To ensure that the DaemonSet pods are scheduled on every node, you can add a toleration to the DaemonSet pods that matches any taint. You also need to add an affinity to the DaemonSet pods to ensure that they are not scheduled on Fargate nodes.
 
 Here's an example of how you can do this with a helm chart:
 

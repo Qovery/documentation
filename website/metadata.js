@@ -448,6 +448,15 @@ module.exports = {
           "title": "Creating API clients using OpenAPI Tools"
         },
         {
+          "author_github": "https://github.com/jul-dan",
+          "description": null,
+          "id": "/tutorial/customize_nginx_error_pages",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/customize_nginx_error_pages.md",
+          "series_position": null,
+          "title": "Customize Nginx error pages"
+        },
+        {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
           "id": "/tutorial/customizing-preview-url-with-qovery-cli",
@@ -1061,6 +1070,11 @@ module.exports = {
       "dark_logo_path": "/img/logos/github.svg",
       "logo_path": "/img/logos/github.png",
       "name": "github"
+    },
+    {
+      "dark_logo_path": "/img/logos/nginx.svg",
+      "logo_path": "/img/logos/nginx.svg",
+      "name": "nginx"
     }
   ],
   "transforms": {

@@ -37,3 +37,8 @@ dark_logo_path = "/img/logos/terraform.svg"
 name = "github"
 logo_path = "/img/logos/github.png"
 dark_logo_path = "/img/logos/github.svg"
+
+[[technologies]]
+name = "nginx"
+logo_path = "/img/logos/nginx.svg"
+dark_logo_path = "/img/logos/nginx.svg"

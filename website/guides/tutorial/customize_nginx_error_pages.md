@@ -1,0 +1,81 @@
+---
+last_modified_on: "2025-02-06"
+$schema: "/.meta/.schemas/guides.json"
+title: Customize Nginx error pages
+description: Learn how to customize the nginx error pages
+author_github: https://github.com/jul-dan
+tags: ["type: guide", "technology: nginx"]
+---
+import Steps from '@site/src/components/Steps';
+import Assumptions from '@site/src/components/Assumptions';
+import Alert from '@site/src/components/Alert';
+
+# Why Customize Default Error Pages?
+
+By default, when the NGINX Ingress Controller encounters routing issues, such as a missing backend or a misconfigured route, it serves generic error pages (e.g., "404 Not Found" or "503 Service Unavailable"). These pages are functional but lack branding or contextual information, which can be a poor user experience for end-users.
+
+Customizing these error pages provides several benefits:
+
+* Branding Consistency: Custom pages allow you to maintain your brand’s look and feel, even during errors, which is especially important for customer-facing applications.
+
+* Security Improvements: Default error pages often reveal that the server is running NGINX and may disclose other details about the underlying infrastructure. By customizing these pages, you can mask this information, reducing the attack surface and making it harder for potential attackers to exploit vulnerabilities.
+
+Here is an example while having a 404 Nginx error without any customization:
+
+<p align="center">
+  <img src="/img/nginx-customization/nginx_no_custo.png" alt="nginx 404 no customization" />
+</p>
+
+# Activate default backend
+
+To enable the default_backend provided by NGINX, you need to modify the advanced settings at the cluster level:
+
+1. Set the `nginx.default_backend.enabled` cluster advanded setting to true. This activates the default backend for your NGINX Ingress Controller.
+
+2. Specify the HTTP error codes that should be redirected to this default backend by modifying the `nginx.controller.custom_http_errors` cluster advanced setting and service advanced setting. Provide a comma-separated list of error codes you want to handle. For example: "404","500".
+
+3. After applying these changes, you must redeploy the cluster for the settings to take effect.
+
+Enabling the default_backend will replace the standard NGINX error pages with a minimalistic default error page. While it’s a simple improvement, it doesn’t include custom branding or extensive information.
+
+Here’s an example of what the default error page looks like:
+
+<p align="center">
+  <img src="/img/nginx-customization/nginx_default_backend_no_custo.png" alt="nginx 404 with default backend no customization" />
+</p>
+
+<Alert type="warning">
+
+    If you define HTTP error codes at the cluster level, it will allow custom pages to be displayed for all URLs within:
+    `https://*.z<cluster_shortid>.rustrocks.cloud`
+
+    However, this will not apply to specific paths deployed behind it, such as:
+    `https://*.z<cluster_shortid>.rustrocks.cloud/notfound`
+
+    To handle those cases, you can also specify the HTTP error codes at the service level using the advanced setting:
+    `network.ingress.nginx_custom_http_errors`.
+
+</Alert>
+
+# Use your own default backend
+
+You also have the option to specify your own Docker image for the default_backend. To do this, update the following cluster advanced settings:
+
+1. `nginx.default_backend.image_repository`: Provide the name of the Docker image repository. Note that the image must be hosted on a public repository so it can be pulled by the cluster nodes.
+  
+2. `nginx.default_backend.image_tag`: Specify the tag version of the image to be used.
+
+<Alert type="warning">
+  Ensure that the Docker image supports the same architecture as your cluster nodes. For example, if you're using Karpenter with nodes that may run on either AMD64 or ARM64 architectures, the image must be available in both architectures (multi-arch support).
+  By specifying these settings, you can customize the backend to suit your needs while ensuring compatibility with your cluster infrastructure.
+  The port 8080 has to be exposed.
+</Alert>
+
+Here’s an example of what the error page looks like:
+
+<p align="center">
+  <img src="/img/nginx-customization/nginx_default_backend_custo.png" alt="nginx 404 with default backend no customization" />
+</p>
+
+
+

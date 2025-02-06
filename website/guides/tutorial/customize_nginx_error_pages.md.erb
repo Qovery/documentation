@@ -45,14 +45,14 @@ Here’s an example of what the default error page looks like:
 
 <Alert type="warning">
 
-    If you define HTTP error codes at the cluster level, it will allow custom pages to be displayed for all URLs within:
-    `https://*.z<cluster_shortid>.rustrocks.cloud`
+If you define HTTP error codes at the cluster level, it will allow custom pages to be displayed for all URLs within:
+`https://*.z<cluster_shortid>.domain`
 
-    However, this will not apply to specific paths deployed behind it, such as:
-    `https://*.z<cluster_shortid>.rustrocks.cloud/notfound`
+However, this will not apply to specific paths deployed behind it, such as:
+`https://*.z<cluster_shortid>.domain/notfound`
 
-    To handle those cases, you can also specify the HTTP error codes at the service level using the advanced setting:
-    `network.ingress.nginx_custom_http_errors`.
+To handle those cases, you can also specify the HTTP error codes at the service level using the advanced setting:
+`network.ingress.nginx_custom_http_errors`
 
 </Alert>
 
@@ -66,7 +66,9 @@ You also have the option to specify your own Docker image for the default_backen
 
 <Alert type="warning">
   Ensure that the Docker image supports the same architecture as your cluster nodes. For example, if you're using Karpenter with nodes that may run on either AMD64 or ARM64 architectures, the image must be available in both architectures (multi-arch support).
+  
   By specifying these settings, you can customize the backend to suit your needs while ensuring compatibility with your cluster infrastructure.
+  
   The port 8080 has to be exposed.
 </Alert>
 

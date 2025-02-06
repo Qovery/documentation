@@ -233,6 +233,30 @@ Requirements for customers using custom VPCs (Qovery Managed VPC does not requir
 |---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | integer | Allows to customize nginx [limit-req-status-code](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#limit-req-status-code). If not set (`null`) nginx defaults to `503`. | `null`        |
 
+#### nginx.controller.custom_http_errors ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
+
+| Type   | Description                                                                                                                                                                  | Default Value |
+|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| string | Allows to customize nginx [custom-http-errors](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#custom-http-errors). example: "404,503". | `null`        |
+
+#### nginx.default_backend.enabled ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
+
+| Type    | Description                                                                                                                                                                                                                                                                                                                                                                              | Default Value |
+|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| boolean | Allows enabling the [default_backend](https://kubernetes.github.io/ingress-nginx/user-guide/default-backend/). <br />⚠️ Note: If you don’t specify any [nginx.default_backend.image_repository](#nginxdefault_backendimage_repository) and [nginx.default_backend.image_tag](#nginxdefault_backendimage_tag), ensure that your cluster includes nodes with an amd64 architecture. <br /> | `false`       |
+
+#### nginx.default_backend.image_repository ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
+
+| Type   | Description                                                                                                                                                                                                                                                | Default Value |
+|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| string | Specifies the Docker image repository used for the [default_backend](https://kubernetes.github.io/ingress-nginx/user-guide/default-backend/). The image registry must be publicly accessible without requiring authentication. example: `registry/image`.  | `null`        |
+
+#### nginx.default_backend.image_tag ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
+
+| Type   | Description                                                                                                                              | Default Value |
+|--------|------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| string | Defines the image tag used by [default_backend](https://kubernetes.github.io/ingress-nginx/user-guide/default-backend/). example: `1.4`. | `null`        |
+
 ### Database access
 
 #### database.postgresql.deny_any_access ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-container.svg) ![](/img/advanced_settings/database-managed.svg)

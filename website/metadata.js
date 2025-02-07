@@ -454,7 +454,7 @@ module.exports = {
           "last_modified_on": null,
           "path": "website/guides/tutorial/customize_nginx_error_pages.md",
           "series_position": null,
-          "title": "Customize Nginx error pages"
+          "title": "Customize error pages"
         },
         {
           "author_github": "https://github.com/evoxmusic",

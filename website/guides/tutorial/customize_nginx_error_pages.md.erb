@@ -1,7 +1,7 @@
 ---
 $schema: "/.meta/.schemas/guides.json"
-title: Customize Nginx error pages
-description: Learn how to customize the nginx error pages
+title: Customize error pages
+description: Learn how to customize error pages
 author_github: https://github.com/jul-dan
 tags: ["type: guide", "technology: nginx"]
 ---
@@ -9,15 +9,15 @@ import Steps from '@site/src/components/Steps';
 import Assumptions from '@site/src/components/Assumptions';
 import Alert from '@site/src/components/Alert';
 
-# Why Customize Default Error Pages?
+# Why customize default error pages?
 
-By default, when the NGINX Ingress Controller encounters routing issues, such as a missing backend or a misconfigured route, it serves generic error pages (e.g., "404 Not Found" or "503 Service Unavailable"). These pages are functional but lack branding or contextual information, which can be a poor user experience for end-users.
+By default, when your service is not reachable or encounters issues, generic error pages are returned to the end user (e.g., "404 Not Found" or "503 Service Unavailable"). These pages are managed by the NGINX Ingress controller, they are functional but lack branding or contextual information, which can be a poor user experience for end-users.
 
 Customizing these error pages provides several benefits:
 
-* Branding Consistency: Custom pages allow you to maintain your brand’s look and feel, even during errors, which is especially important for customer-facing applications.
+* **Branding Consistency**: Custom pages allow you to maintain your brand’s look and feel, even during errors, which is especially important for customer-facing applications.
 
-* Security Improvements: Default error pages often reveal that the server is running NGINX and may disclose other details about the underlying infrastructure. By customizing these pages, you can mask this information, reducing the attack surface and making it harder for potential attackers to exploit vulnerabilities.
+* **Security Improvements**: Default error pages often reveal that the server is running NGINX and may disclose other details about the underlying infrastructure. By customizing these pages, you can mask this information, reducing the attack surface and making it harder for potential attackers to exploit vulnerabilities.
 
 Here is an example while having a 404 Nginx error without any customization:
 
@@ -27,15 +27,15 @@ Here is an example while having a 404 Nginx error without any customization:
 
 # Activate default backend
 
+The default backend in NGINX is a fallback service used to handle requests that do not match any defined ingress rules, usually serving a default response like a 404 error. Enabling the default_backend will replace the standard NGINX error pages with a minimalistic default error page. While it’s a simple improvement, it doesn’t include custom branding or extensive information.
+
 To enable the default_backend provided by NGINX, you need to modify the advanced settings at the cluster level:
 
 1. Set the `nginx.default_backend.enabled` cluster advanded setting to true. This activates the default backend for your NGINX Ingress Controller.
 
-2. Specify the HTTP error codes that should be redirected to this default backend by modifying the `nginx.controller.custom_http_errors` cluster advanced setting and service advanced setting. Provide a comma-separated list of error codes you want to handle. For example: "404","500".
+2. Specify the HTTP error codes that should be redirected to this default backend by modifying the `nginx.controller.custom_http_errors` cluster advanced setting and service advanced setting. Provide a comma-separated list of error codes you want to handle. For example: "404,500".
 
 3. After applying these changes, you must redeploy the cluster for the settings to take effect.
-
-Enabling the default_backend will replace the standard NGINX error pages with a minimalistic default error page. While it’s a simple improvement, it doesn’t include custom branding or extensive information.
 
 Here’s an example of what the default error page looks like:
 

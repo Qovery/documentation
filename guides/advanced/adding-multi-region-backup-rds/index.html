@@ -24,21 +24,21 @@
 <link rel="stylesheet" href="/styles.90c21fa3.css">
 
 
-<link rel="preload" href="/styles.29c71d48.js" as="script">
+<link rel="preload" href="/styles.255c8fd1.js" as="script">
 
-<link rel="preload" href="/runtime~main.678481ee.js" as="script">
+<link rel="preload" href="/runtime~main.3b60693c.js" as="script">
 
-<link rel="preload" href="/main.4a08dea7.js" as="script">
+<link rel="preload" href="/main.7be101da.js" as="script">
 
-<link rel="preload" href="/1.6adeff2a.js" as="script">
+<link rel="preload" href="/1.385570ab.js" as="script">
 
-<link rel="preload" href="/2.815f1be5.js" as="script">
+<link rel="preload" href="/2.91632de6.js" as="script">
 
-<link rel="preload" href="/3.a36754d5.js" as="script">
+<link rel="preload" href="/3.ac200c48.js" as="script">
 
-<link rel="preload" href="/1c13b173.c392fe33.js" as="script">
+<link rel="preload" href="/1c13b173.a1d42003.js" as="script">
 
-<link rel="preload" href="/77a87849.3b59d304.js" as="script">
+<link rel="preload" href="/77a87849.0eff74e6.js" as="script">
 
 </head>
 <body>
@@ -48,21 +48,21 @@
 This guide will help you configure an AWS Backup job to create additional backups of your RDS instances in a different region. Multi-region backups provide several benefits:</p><ul><li>Improved disaster recovery: If one AWS region becomes unavailable, you can restore your database from a backup in another region.</li><li>Compliance: Some regulations require data to be backed up in geographically distinct locations.</li><li>Data migration: Multi-region backups can facilitate moving your database to a different region if needed.</li></ul><p>For more information about AWS Backup, have a look at <a href="https://docs.aws.amazon.com/aws-backup/latest/devguide/whatisbackup.html">this documentation</a>.</p><div class="alert alert--warning alert--icon" role="alert"><i class="feather icon-alert-triangle"></i>Cost Considerations: Setting up multi-region backups will incur additional costs. These costs include: 1) Storage costs for the backup data in the secondary region 2) Data transfer costs for copying the backup data between regions 3) Potential costs for restoring from a backup in a different region Be sure to review the AWS Backup pricing and AWS data transfer pricing to estimate the costs for your specific use case. You can use AWS Cost Explorer to monitor these costs over time.</div><h1><a aria-hidden="true" tabindex="-1" class="anchor" id="how-to-configure"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#how-to-configure" title="Direct link to heading">#</a>How to configure</h1><p>Make sure you have already your Managed Database (RDS PostgreSQL or MySQL) deployed with Qovery</p><h2><a aria-hidden="true" tabindex="-1" class="anchor" id="1-create-an-aws-backup-plan"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#1-create-an-aws-backup-plan" title="Direct link to heading">#</a>1. Create an AWS Backup Plan</h2><p>Go to the AWS Console and follow <a href="https://docs.aws.amazon.com/aws-backup/latest/devguide/creating-a-backup-plan.html#create-backup-plan-console">this guide</a> to create your AWS Backup plan. For the setup, you can use the default settings but take into account the following points:</p><ul><li><strong>Vault</strong>: you can use the default vault as long as you don&#x27;t have any additional security requirement (share snapshots externally etc.)</li><li><strong>Start time</strong>: update the start time based on your needs</li><li><strong>Total retention period</strong>: update the retention period for the snapshots based on your needs</li><li><strong>Copy to destination</strong>: at this step, select the region where you want to create the database snapshot</li></ul><p>Press <strong>Create Plan</strong></p><h2><a aria-hidden="true" tabindex="-1" class="anchor" id="2-assign-resources"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#2-assign-resources" title="Direct link to heading">#</a>2. Assign resources</h2><p>On the next step, we will define the resource that this backup job should target:</p><ol><li>Select the option &quot;Include specific resource types&quot;</li><li>In the dropdown list for &quot;Select specific resource types&quot;, select &quot;RDS&quot;</li><li>(Optional) if you don&#x27;t want this plan to run on every RDS instance, uncheck the option &quot;All databases&quot; and select the databases from the dropdown list</li><li>Press &quot;Assign Resources&quot;</li></ol><h1><a aria-hidden="true" tabindex="-1" class="anchor" id="checking-the-new-backups"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#checking-the-new-backups" title="Direct link to heading">#</a>Checking the new backups</h1><p>Now, based on your schedule, you should see backup jobs starting and creating backups in the selected vault:</p><ol><li>Select the region where the backup should be created</li><li>Open the &quot;Vault&quot; section on the right</li><li>Select the vault that the AWS backup job should target</li><li>Verify that new &quot;Recovery points&quot; have been created </li></ol><p align="center"><img src="/img/multi-region-backup/vault-backup.png" alt="Vault Backup location"></p><p>From this page you can restore a backup (refer to the AWS documentation for more information).</p></div></article><nav class="pagination-nav paginator_1WWz"><div class="pagination-nav__item"><a class="pagination-nav__link" href="/guides/tutorial/deploy-temporal-on-kubernetes"><h5 class="pagination-nav__link--sublabel">Previous</h5><h4 class="pagination-nav__link--label">« Deploy Temporal on Kubernetes</h4></a></div><div class="pagination-nav__item pagination-nav__item--next"><a class="pagination-nav__link" href="/guides/tutorial/getting-started-with-preview-environments-on-aws-for-beginners"><h5 class="pagination-nav__link--sublabel">Next</h5><h4 class="pagination-nav__link--label">Getting Started with Preview Environments on AWS »</h4></a></div></nav></div></main></div><footer class="footer"><div class="container"><div class="row footer__links"><div class="col col--5 footer__col"><div class="margin-bottom--md"></div><div class="margin-bottom--md"><p>Qovery is a DevOps Automation Platform Helping 200+ Organizations To Ship Faster and Eliminate DevOps Hiring Needs.</p></div><div><a href="https://github.com/qovery" target="_blank"><i class="feather icon-github" alt="Qovery&#x27;s Github Repo"></i></a>    <a href="https://www.linkedin.com/company/qovery/" target="_blank"><i class="feather icon-rss" alt="Qovery&#x27;s Linkedin"></i></a>    <a href="https://twitter.com/qovery_" target="_blank"><i class="feather icon-twitter" alt="Qovery&#x27;s Twitter"></i></a></div></div><div class="col footer__col"><h4 class="footer__title">Resources</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" href="/docs">Documentation</a></li><li class="footer__item"><a aria-current="page" class="footer__link-item active" href="/guides">Guides</a></li><li class="footer__item"><a class="footer__link-item" href="/guides/tutorial">Tutorials</a></li><li class="footer__item"><a class="footer__link-item" href="/guides/engineering">Engineering</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/pricing" href="https://www.qovery.com/pricing">Pricing</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/enterprise" href="https://www.qovery.com/enterprise">Enterprise</a></li><li class="footer__item"><a class="footer__link-item" to="https://api-doc.qovery.com" href="https://api-doc.qovery.com">API</a></li><li class="footer__item"><a class="footer__link-item" to="https://github.com/Qovery" href="https://github.com/Qovery">Github</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Community</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://community.qovery.com" href="https://community.qovery.com">Forum</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/community-call" href="https://www.qovery.com/community-call">Community call</a></li><li class="footer__item"><a class="footer__link-item" to="https://shop.qovery.com" href="https://shop.qovery.com">Goodies</a></li><li class="footer__item"><a class="footer__link-item" to="https://roadmap.qovery.com" href="https://roadmap.qovery.com">Roadmap</a></li><li class="footer__item"><a class="footer__link-item" to="https://github.com/Qovery/replibyte" href="https://github.com/Qovery/replibyte">Replibyte</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Company</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/blog" href="https://www.qovery.com/blog">Blog</a></li><li class="footer__item"><a class="footer__link-item" to="https://jobs.qovery.com" href="https://jobs.qovery.com">Jobs</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/team" href="https://www.qovery.com/team">Team</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/investors" href="https://www.qovery.com/investors">Investors</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/contact" href="https://www.qovery.com/contact">Contact</a></li></ul></div></div><div class="text--center"><small>© 2025 DESIGNED BY QOVERY | PROUD SILVER MEMBER OF CNCF AND LINUX FOUNDATION | QOVERY BY BIRDSIGHT - ALL RIGHTS RESERVED</small><br></div></div></footer>
 </div>
 
-<script src="/styles.29c71d48.js"></script>
+<script src="/styles.255c8fd1.js"></script>
 
-<script src="/runtime~main.678481ee.js"></script>
+<script src="/runtime~main.3b60693c.js"></script>
 
-<script src="/main.4a08dea7.js"></script>
+<script src="/main.7be101da.js"></script>
 
-<script src="/1.6adeff2a.js"></script>
+<script src="/1.385570ab.js"></script>
 
-<script src="/2.815f1be5.js"></script>
+<script src="/2.91632de6.js"></script>
 
-<script src="/3.a36754d5.js"></script>
+<script src="/3.ac200c48.js"></script>
 
-<script src="/1c13b173.c392fe33.js"></script>
+<script src="/1c13b173.a1d42003.js"></script>
 
-<script src="/77a87849.3b59d304.js"></script>
+<script src="/77a87849.0eff74e6.js"></script>
 
 
 </body>

@@ -24,27 +24,27 @@
 <link rel="stylesheet" href="/styles.90c21fa3.css">
 
 
-<link rel="preload" href="/styles.29c71d48.js" as="script">
+<link rel="preload" href="/styles.255c8fd1.js" as="script">
 
-<link rel="preload" href="/runtime~main.678481ee.js" as="script">
+<link rel="preload" href="/runtime~main.3b60693c.js" as="script">
 
-<link rel="preload" href="/main.4a08dea7.js" as="script">
+<link rel="preload" href="/main.7be101da.js" as="script">
 
-<link rel="preload" href="/2.815f1be5.js" as="script">
+<link rel="preload" href="/2.91632de6.js" as="script">
 
-<link rel="preload" href="/3.a36754d5.js" as="script">
+<link rel="preload" href="/3.ac200c48.js" as="script">
 
-<link rel="preload" href="/4.5a93d831.js" as="script">
+<link rel="preload" href="/4.6ed4e18f.js" as="script">
 
-<link rel="preload" href="/1be78505.26a80f09.js" as="script">
+<link rel="preload" href="/1be78505.c981d10c.js" as="script">
 
 <link rel="preload" href="/20ac7829.1c0e38af.js" as="script">
 
-<link rel="preload" href="/315.3b2425cc.js" as="script">
+<link rel="preload" href="/318.35267e1a.js" as="script">
 
-<link rel="preload" href="/17896441.06dd9ff0.js" as="script">
+<link rel="preload" href="/17896441.fe3a9210.js" as="script">
 
-<link rel="preload" href="/91473650.9e3ab4d7.js" as="script">
+<link rel="preload" href="/91473650.aaf46090.js" as="script">
 
 </head>
 <body>
@@ -57,27 +57,27 @@ When using a gRCP Liveness probe, Kubernetes tries to establish a connection on 
 Exec probes allow to define a command to be executed within your container. If the command execution fails, the probe is considered as failed.</p></li></ul><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="initial-delay-in-seconds"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#initial-delay-in-seconds" title="Direct link to heading">#</a>Initial Delay (in seconds)</h3><p>Allows you to specify an interval, in seconds, between the application container start and the first liveness check.	</p><p>Allowing additional time for the application to start can be useful when boot time usually takes too long (due to long boot operations), or when the application opens the port before being ready to receive traffic on it (due to a still ongoing boot operation).	</p><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="period-in-seconds"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#period-in-seconds" title="Direct link to heading">#</a>Period (in seconds)</h3><p>Allows you to specify an interval, in seconds, between each probe.	</p><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="timeout-in-seconds"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#timeout-in-seconds" title="Direct link to heading">#</a>Timeout (in seconds)</h3><p>Allows you to specify the interval, in seconds, after which the probe times out.	</p><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="success-threshold"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#success-threshold" title="Direct link to heading">#</a>Success Threshold</h3><p>Allows you to specify how many consecutive successes are needed, as a minimum, for the probe to be considered successful after having failed previously.</p><div class="alert alert--info alert--icon" role="alert"><i class="feather icon-info"></i><p>For liveness probes, the value can only be <code>1</code></p></div><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="failure-threshold"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#failure-threshold" title="Direct link to heading">#</a>Failure Threshold</h3><p>Allows you to specify how many consecutive failures are needed, as a minimum, for the probe to be considered failed after having succeeded previously.</p><h2><a aria-hidden="true" tabindex="-1" class="anchor" id="configuiration-for-long-starting-application"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#configuiration-for-long-starting-application" title="Direct link to heading">#</a>Configuiration for Long-starting application</h2><p>If your application has a long boot operation to run, your deployment might be marked as failed since the probe can&#x27;t verify the state of your application within the specified time frame. In this case, you will find in your deployment logs a warning message <code>Liveness probe failed: dial tcp xx.xx.xx.xx:xx: connect: connection refused</code> , telling you that the probe is failing.</p><p>If your application needs more time to boot, increase the <code>Initial Delay in seconds</code> of the probes to match the application boot time.</p><div class="alert alert--info alert--icon" role="alert"><i class="feather icon-info"></i><p>Startup probes are not yet available. </p></div></div></article></div></div><div class="rightCol_38kP"><div class="table-of-contents tableOfContents_tVyB"><div class="section"><div class="title">Contents</div><ul class="contents"><li><a href="#probes-configuration" class="contents__link">Probes Configuration</a><ul><li><a href="#type" class="contents__link">Type</a></li><li><a href="#initial-delay-in-seconds" class="contents__link">Initial Delay (in seconds)</a></li><li><a href="#period-in-seconds" class="contents__link">Period (in seconds)</a></li><li><a href="#timeout-in-seconds" class="contents__link">Timeout (in seconds)</a></li><li><a href="#success-threshold" class="contents__link">Success Threshold</a></li><li><a href="#failure-threshold" class="contents__link">Failure Threshold</a></li></ul></li><li><a href="#configuiration-for-long-starting-application" class="contents__link">Configuiration for Long-starting application</a></li></ul></div><div class="section"><div class="title">Resources</div><ul class="contents"></ul></div></div></div></div></div></main></div></div><footer class="footer"><div class="container"><div class="row footer__links"><div class="col col--5 footer__col"><div class="margin-bottom--md"></div><div class="margin-bottom--md"><p>Qovery is a DevOps Automation Platform Helping 200+ Organizations To Ship Faster and Eliminate DevOps Hiring Needs.</p></div><div><a href="https://github.com/qovery" target="_blank"><i class="feather icon-github" alt="Qovery&#x27;s Github Repo"></i></a>    <a href="https://www.linkedin.com/company/qovery/" target="_blank"><i class="feather icon-rss" alt="Qovery&#x27;s Linkedin"></i></a>    <a href="https://twitter.com/qovery_" target="_blank"><i class="feather icon-twitter" alt="Qovery&#x27;s Twitter"></i></a></div></div><div class="col footer__col"><h4 class="footer__title">Resources</h4><ul class="footer__items"><li class="footer__item"><a aria-current="page" class="footer__link-item active" href="/docs">Documentation</a></li><li class="footer__item"><a class="footer__link-item" href="/guides">Guides</a></li><li class="footer__item"><a class="footer__link-item" href="/guides/tutorial">Tutorials</a></li><li class="footer__item"><a class="footer__link-item" href="/guides/engineering">Engineering</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/pricing" href="https://www.qovery.com/pricing">Pricing</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/enterprise" href="https://www.qovery.com/enterprise">Enterprise</a></li><li class="footer__item"><a class="footer__link-item" to="https://api-doc.qovery.com" href="https://api-doc.qovery.com">API</a></li><li class="footer__item"><a class="footer__link-item" to="https://github.com/Qovery" href="https://github.com/Qovery">Github</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Community</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://community.qovery.com" href="https://community.qovery.com">Forum</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/community-call" href="https://www.qovery.com/community-call">Community call</a></li><li class="footer__item"><a class="footer__link-item" to="https://shop.qovery.com" href="https://shop.qovery.com">Goodies</a></li><li class="footer__item"><a class="footer__link-item" to="https://roadmap.qovery.com" href="https://roadmap.qovery.com">Roadmap</a></li><li class="footer__item"><a class="footer__link-item" to="https://github.com/Qovery/replibyte" href="https://github.com/Qovery/replibyte">Replibyte</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Company</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/blog" href="https://www.qovery.com/blog">Blog</a></li><li class="footer__item"><a class="footer__link-item" to="https://jobs.qovery.com" href="https://jobs.qovery.com">Jobs</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/team" href="https://www.qovery.com/team">Team</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/investors" href="https://www.qovery.com/investors">Investors</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/contact" href="https://www.qovery.com/contact">Contact</a></li></ul></div></div><div class="text--center"><small>© 2025 DESIGNED BY QOVERY | PROUD SILVER MEMBER OF CNCF AND LINUX FOUNDATION | QOVERY BY BIRDSIGHT - ALL RIGHTS RESERVED</small><br></div></div></footer>
 </div>
 
-<script src="/styles.29c71d48.js"></script>
+<script src="/styles.255c8fd1.js"></script>
 
-<script src="/runtime~main.678481ee.js"></script>
+<script src="/runtime~main.3b60693c.js"></script>
 
-<script src="/main.4a08dea7.js"></script>
+<script src="/main.7be101da.js"></script>
 
-<script src="/2.815f1be5.js"></script>
+<script src="/2.91632de6.js"></script>
 
-<script src="/3.a36754d5.js"></script>
+<script src="/3.ac200c48.js"></script>
 
-<script src="/4.5a93d831.js"></script>
+<script src="/4.6ed4e18f.js"></script>
 
-<script src="/1be78505.26a80f09.js"></script>
+<script src="/1be78505.c981d10c.js"></script>
 
 <script src="/20ac7829.1c0e38af.js"></script>
 
-<script src="/315.3b2425cc.js"></script>
+<script src="/318.35267e1a.js"></script>
 
-<script src="/17896441.06dd9ff0.js"></script>
+<script src="/17896441.fe3a9210.js"></script>
 
-<script src="/91473650.9e3ab4d7.js"></script>
+<script src="/91473650.aaf46090.js"></script>
 
 
 </body>

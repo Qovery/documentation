@@ -54,7 +54,9 @@ In the `Set Resources` window, select:
   * `Sizes`: by default all sizes are selected.
 * `Spot instances`: In order to reduce even more your costs, you can also enable the spot instances on your clusters. Spot instances cost up to 90% less compared to On-Demand prices. But keep in mind that spot instances can be terminated by the cloud provider at any time. Check this [documentation](https://aws.amazon.com/ec2/spot/) for more information. Even if this flag is enabled, the statefulsets and Nginx controller won't run on spot instances.
 
-<br/>
+<p align="center">
+  <img src="/img/configuration/clusters/spot_usage.png" alt="Spot usage" />
+</p>
 
 <Alert type="warning">
 Instance type selection from your Qovery Console has direct consequences on your cloud provider’s bill. While Qovery allows you to switch to a different instance type whenever you want, it is your sole responsibility to keep an eye on your infrastructure costs, especially when you want to upsize.

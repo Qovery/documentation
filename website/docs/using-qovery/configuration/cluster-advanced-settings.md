@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-02-03"
+last_modified_on: "2025-02-14"
 title: "Cluster Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -371,6 +371,16 @@ Once enabled, you can update the advanced setting [resources.override.limit.ram_
 | Type    | Description                                                                 | Default Value |
 |---------|-----------------------------------------------------------------------------|---------------|
 | string  | Allows you to specify the SSO role ARN to be used to connect to your cluster. [Setup SSO support for your cluster][guides.tutorial.how-to-activate-sso-to-connect-to-your-eks-cluster]   | `""`        |
+
+
+## Object storage
+
+#### object_storage.enable_logging ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/gcp.svg)
+
+| Type    | Description                                                                                                                                                                                                                | Default Value |
+|---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| string  | Activate cluster buckets logging into a `<bucket>-log` bucket. CF documentation for [AWS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/ServerLogs.html) and [GCP](https://cloud.google.com/logging/docs/buckets). | `false`       |
+
 
 ## Miscellaneous
 

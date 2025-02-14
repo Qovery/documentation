@@ -363,6 +363,16 @@ Once enabled, you can update the advanced setting [resources.override.limit.ram_
 |---------|-----------------------------------------------------------------------------|---------------|
 | string  | Allows you to specify the SSO role ARN to be used to connect to your cluster. [Setup SSO support for your cluster][guides.tutorial.how-to-activate-sso-to-connect-to-your-eks-cluster]   | `""`        |
 
+
+## Object storage
+
+#### object_storage.enable_logging ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/gcp.svg)
+
+| Type    | Description                                                                                                                                                                                                                | Default Value |
+|---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| string  | Activate cluster buckets logging into a `<bucket>-log` bucket. CF documentation for [AWS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/ServerLogs.html) and [GCP](https://cloud.google.com/logging/docs/buckets). | `false`       |
+
+
 ## Miscellaneous
 
 #### aws.eks.ec2.metadata_imds ![](/img/advanced_settings/aws.svg)

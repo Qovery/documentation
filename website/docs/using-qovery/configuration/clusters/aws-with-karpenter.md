@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-02-13"
+last_modified_on: "2025-02-17"
 title: "AWS EKS with Karpenter"
 description: "Learn how to configure your AWS Kubernetes clusters with Karpenter on Qovery"
 ---
@@ -175,11 +175,55 @@ You can follow the execution of the action via the cluster status and/or by acce
 
 ### Migrating from AWS with auto-scaler to AWS with Karpenter
 
+#### Requirements
+
+
 <Alert type="warning">
 
-A SQS queue will be created. Before deploying your cluster, update the IAM permissions of the Qovery user, make sure to use the [latest version here](https://hub.qovery.com/files/qovery-iam-aws.json) to add the permission on SQS.
+Please check carefully the following requirements to ensure a successful migration with the minimum downtime.
 
 </Alert>
+
+<Steps headingDepth={3}>
+<ol>
+<li>
+
+A SQS queue will be created. Update the IAM permissions of the Qovery user: make sure to use the [latest version here](https://hub.qovery.com/files/qovery-iam-aws.json) to add the permission on SQS.
+
+</li>
+
+<li>
+
+Your cluster should use the [Instance Metadata Service Version 2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html): make sure to set the `aws.eks.ec2.metadata_imds` cluster advanced settings to `required` if not already set (more details [here](https://hub.qovery.com/docs/using-qovery/configuration/cluster-advanced-settings/#awseksec2metadata_imds)).
+Redeploy your cluster before enabling Karpenter to apply the advanced setting change.
+
+<Alert type="warning">
+
+If some of your services are using the Instance Metadata Service Version 1, you must first update them to support the Version 2.
+
+</Alert>
+
+</li>
+
+<li>
+
+If you have configured an existing vpc for your cluster, you'll need to indicate some additionnal subnets dedicated to fargate:
+* those subnets must be **private**
+* they must all have access to internet through a NAT gateway
+
+</li>
+
+<li>
+
+If you have deployed some daemonsets, you must update their definitions to enable them to run on every node of the future nodepools (stable & default). Everything is explained in [our guide](https://hub.qovery.com/guides/advanced/deploy-daemonset-with-karpenter/)
+
+</li>
+
+</ol>
+
+</Steps>
+
+#### Enable karpenter
 
 You can easily activate Karpenter on your non-production existing cluster by following this process:
 
@@ -222,6 +266,13 @@ Update your cluster by selecting the action `Update` from the drop-down menu.
 Once the update is complete, your cluster will be running on Karpenter. By default, only the instance types selected when you created your AWS cluster with the auto-scaler will be configured. You can add additional instance types by editing the instance types in the resources section.
 
 </li>
+
+<li>
+
+Please redeploy all your environments of your cluster: this will automatically update your services configuration to run them on the appropriate nodepool.
+
+</li>
+
 </ol>
 </Steps>
 
@@ -281,14 +332,14 @@ Once created and associated, you need to [updating your cluster][docs.using-qove
 Qovery deploys two node pools by default:
 
 - **Stable node pool**: Used for single instances and internal Qovery applications. For example, any containerized databases or application having the number of minimum and maximum instances equal to 1 will be deployed on this nodepool. On this nodepool the consolidation is deactivated by default.
-- **Default node pool**: Designed to handle general workloads and serves as the foundation for deploying most applications.  
+- **Default node pool**: Designed to handle general workloads and serves as the foundation for deploying most applications.
 
-Qovery allows you to modify the resources allocated to your cluster:  
+Qovery allows you to modify the resources allocated to your cluster:
 
-##### Shared settings for both nodepools:  
-- **Instance types**: Define the list of instance types that can be used.  
-- **Spot instances**: Enable or disable spot instances.  
-- **Node disk size (GB)**: Specify the disk capacity allocated per worker node, determining the amount of data each node can store.  
+##### Shared settings for both nodepools:
+- **Instance types**: Define the list of instance types that can be used.
+- **Spot instances**: Enable or disable spot instances.
+- **Node disk size (GB)**: Specify the disk capacity allocated per worker node, determining the amount of data each node can store.
 
 <Alert type="warning">
 Instance type selection from your Qovery Console has direct consequences on your cloud provider’s bill. While Qovery allows you to switch to a different instance type whenever you want, it is your sole responsibility to keep an eye on your infrastructure costs, especially when you want to upsize.
@@ -297,13 +348,13 @@ For more information on the instance types provided by each cloud provider and t
 
 </Alert>
 
-##### Nodepool specific settings:  
+##### Nodepool specific settings:
 - **Consolidation schedule** *(Stable nodepool only)*: Optimizes resource usage by consolidating workloads onto fewer nodes. This feature is not available for the default nodepool, as consolidation can happen at any time. We recommend enabling this option; otherwise, nodes will never be consolidated, leading to unnecessary infrastructure costs.
-- **Node pool limits**: Configure CPU and memory limits to ensure nodes stay within defined resource constraints, preventing excessive costs.  
+- **Node pool limits**: Configure CPU and memory limits to ensure nodes stay within defined resource constraints, preventing excessive costs.
 
 #### Image registry
 
-In this tab, you will see that a container registry already exist (called `registry-{$UIID}`). 
+In this tab, you will see that a container registry already exist (called `registry-{$UIID}`).
 This is your cloud provider container registry used by Qovery to manage the deployment of your applications by mirroring the docker images.
 
 The credentials configured on this registry are the one used to create the cluster. But you can still update them if you prefer to manage them separately (dedicated pair of creds just to access the registry).
@@ -332,7 +383,7 @@ To specify that a service should be deployed on an `on-demand` instance, manuall
 
 #### Define the instance type to run your service
 
-In some cases, you may need to ensure that a specific service runs on a particular instance type to meet performance, compliance, or cost requirements. 
+In some cases, you may need to ensure that a specific service runs on a particular instance type to meet performance, compliance, or cost requirements.
 
 For example, to assign a service to the t3a.xlarge instance type, manually set the `deployment.affinity.node.required` advanced setting to:
 

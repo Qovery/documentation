@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-02-14"
+last_modified_on: "2025-02-17"
 title: "Cluster Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -387,7 +387,7 @@ Once enabled, you can update the advanced setting [resources.override.limit.ram_
 #### aws.eks.ec2.metadata_imds ![](/img/advanced_settings/aws.svg)
 | Type    | Description                                                                                                                                                                                               | Default Value |
 |---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
-| string  | Specify the [IMDS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) version you want to use. Possible values are `required` (IMDS v2 only) and `optional` (IMDS v1 and V2) | `optional`    |
+| string  | Specify the [IMDS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) version you want to use. Possible values are `required` (IMDS v2 only) and `optional` (IMDS v1 and V2) | `required`    |
 
 #### aws.eks.encrypt_secrets_kms_key_arn ![](/img/advanced_settings/aws.svg)
 

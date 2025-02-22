@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-11-27"
+last_modified_on: "2025-02-22"
 title: "Clusters"
 description: "Learn how to configure your Kubernetes clusters on Qovery"
 sidebar_label: hidden
@@ -157,6 +157,12 @@ To only temporarily stop a cluster, see [Stopping a Cluster][docs.using-qovery.c
 </Alert>
 
 To delete a cluster, open the `...` section and press `Delete Cluster`.
+
+<Alert type="info">
+
+If you encounter any issue during the deletion process, please refer to the [Troubleshooting section][docs.using-qovery.troubleshoot.cluster-troubleshoot].
+
+</Alert>
 
 3 options can be chosen to delete a cluster:
 
@@ -386,4 +392,5 @@ Security is our main concern. When a vulnerability is found, here are the action
 [docs.using-qovery.configuration.clusters#restarting-a-cluster]: /docs/using-qovery/configuration/clusters/#restarting-a-cluster
 [docs.using-qovery.configuration.clusters#stopping-a-cluster]: /docs/using-qovery/configuration/clusters/#stopping-a-cluster
 [docs.using-qovery.configuration.clusters#updating-a-cluster]: /docs/using-qovery/configuration/clusters/#updating-a-cluster
+[docs.using-qovery.troubleshoot.cluster-troubleshoot]: /docs/using-qovery/troubleshoot/cluster-troubleshoot/
 [urls.qovery_console]: https://console.qovery.com

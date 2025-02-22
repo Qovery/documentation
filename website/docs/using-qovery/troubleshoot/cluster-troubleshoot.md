@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-05-19"
+last_modified_on: "2025-02-22"
 title: Cluster Troubleshoot
 description: "Everything you need to troubleshoot your cluster with Qovery"
 hide_pagination: true
@@ -16,6 +16,40 @@ Within this section you will find the common errors you might encounter when dep
 
      website/docs/using-qovery/troubleshoot/cluster-troubleshoot.md.erb
 -->
+
+## How do I delete a cluster with dependency violation errors?
+
+When attempting to delete a Qovery cluster, you may encounter dependency violation errors (`DependencyViolation`) indicating that certain items cannot be deleted due to existing dependencies.
+This typically happens when there are resources using the items (here: subnets) that were not deployed or managed by Qovery. Example:
+
+```
+DeleteError - Unknown error while performing Terraform command (`terraform destroy -lock=false -no-color -auto-approve`), here is the error:
+
+Error: deleting EC2 Subnet (subnet-xxx): operation error EC2: DeleteSubnet, https response error StatusCode: 400, RequestID: xxx, api error DependencyViolation: The subnet 'subnet-xxx' has dependencies and cannot be deleted.
+```
+
+To resolve subnet deletion errors and successfully delete your cluster, follow these steps:
+
+1. Log in to your cloud provider console
+2. Navigate to the VPC section (or the section where deletion items are in failure)
+3. Attempt to delete the items (here: subnet) that is failing. This will trigger a notification showing the blocking elements
+
+<p align="center">
+  <img src="/img/cluster_troubleshoot/cluster_troubleshot_subnet.png" alt="AWS VPC subnet" />
+</p>
+
+4. Review the items (here: Network interfaces) that are blocking the deletion:
+
+* Check the Interface Type and Description for each blocking resource
+* Verify that these resources are safe to delete and not being used by any critical services.
+
+<p align="center">
+  <img src="/img/cluster_troubleshoot/cluster_troubleshot_net_inf.png" alt="AWS network interfaces" />
+</p>
+
+5. Delete the identified blocking network interfaces if they are no longer needed
+6. Return to Qovery and retry the cluster deletion process
+
 
 ## I don't have Qovery access anymore, how could I delete Qovery deployed resources on my AWS account?
 

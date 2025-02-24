@@ -39,8 +39,9 @@ To resolve subnet deletion errors and successfully delete your cluster, follow t
 5. Delete the identified blocking network interfaces if they are no longer needed
 6. Return to Qovery and retry the cluster deletion process
 
-
 ## I don't have Qovery access anymore, how could I delete Qovery deployed resources on my AWS account?
+
+### From the AWS console
 
 Unfortunately, there is no automatic way to do it with Qovery once we don't have access. However, AWS provides an easy way to retrieve those resources, so you can manually perform the delete. To do so, go on the AWS web console, and search for "Resource Groups & Tag Editor" service, then:
 
@@ -56,7 +57,49 @@ Unfortunately, there is no automatic way to do it with Qovery once we don't have
 6. Click on "Preview groups resources".
 7. You'll have all elements deployed by Qovery and you can delete what you want.
 
-## My cloud account has been blocked, what should I do?
+### From the CLI
+
+If you want to be able to delete the resources deployed by Qovery, you can use the AWS CLI to list and delete the resources. Here is an example of how to list all the resources deployed by Qovery:
+
+```bash
+#!/bin/bash
+VPC_ID=$1
+echo "Resources in VPC: $VPC_ID"
+
+echo "Subnets:"
+aws ec2 describe-subnets --filters "Name=vpc-id,Values=$VPC_ID"
+
+echo "Route Tables:"
+aws ec2 describe-route-tables --filters "Name=vpc-id,Values=$VPC_ID"
+
+echo "Security Groups:"
+aws ec2 describe-security-groups --filters "Name=vpc-id,Values=$VPC_ID"
+
+echo "NATs Gateway:"
+aws ec2 describe-nat-gateways --filter "Name=vpc-id,Values=$VPC_ID"
+
+echo "Internet Gateway:"
+aws ec2 describe-internet-gateways --filters "Name=attachment.vpc-id,Values=$VPC_ID"
+
+echo "Instances:"
+aws ec2 describe-instances --filters "Name=vpc-id,Values=$VPC_ID"
+
+echo "Network Interfaces:"
+aws ec2 describe-network-interfaces --filters "Name=vpc-id,Values=$VPC_ID"
+
+echo "EC2 Instances:"
+aws ec2 describe-instances --filters "Name=vpc-id,Values=$VPC_ID"
+
+echo "S3 VPC Endpoints:"
+aws ec2 describe-vpc-endpoints --filters "Name=vpc-id,Values=$VPC_ID"
+
+echo "Load Balancers:"
+aws elbv2 describe-load-balancers --query "LoadBalancers[?VpcId=='$VPC_ID']"
+echo "Load Balancers:"
+aws elb describe-load-balancers --query "LoadBalancers[?VpcId=='$VPC_ID']" 
+```
+
+## My cloud account has been blockVed, what should I do?
 
 If you encounter this kind of error during an infrastructure deployment (including managed DBs):
 

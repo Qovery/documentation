@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-02-22"
+last_modified_on: "2025-02-25"
 title: "Clusters"
 description: "Learn how to configure your Kubernetes clusters on Qovery"
 sidebar_label: hidden
@@ -385,6 +385,11 @@ Security is our main concern. When a vulnerability is found, here are the action
 3. We transparently communicate with our customers about the vulnerability to help them take the right actions.
 
 
+### What is a mirroring registry?
+
+It's the registry used by Qovery to push the image built by the Qovery CI or mirror the images that you want to deploy from your own registry. Check [this documentation][docs.using-qovery.deployment.image-mirroring] for more information
+
+
 [docs.getting-started.basic-concepts#cluster]: /docs/getting-started/basic-concepts/#cluster
 [docs.getting-started.install-qovery.kubernetes]: /docs/getting-started/install-qovery/kubernetes/
 [docs.using-qovery.configuration.clusters#deleting-a-cluster]: /docs/using-qovery/configuration/clusters/#deleting-a-cluster
@@ -392,5 +397,6 @@ Security is our main concern. When a vulnerability is found, here are the action
 [docs.using-qovery.configuration.clusters#restarting-a-cluster]: /docs/using-qovery/configuration/clusters/#restarting-a-cluster
 [docs.using-qovery.configuration.clusters#stopping-a-cluster]: /docs/using-qovery/configuration/clusters/#stopping-a-cluster
 [docs.using-qovery.configuration.clusters#updating-a-cluster]: /docs/using-qovery/configuration/clusters/#updating-a-cluster
+[docs.using-qovery.deployment.image-mirroring]: /docs/using-qovery/deployment/image-mirroring/
 [docs.using-qovery.troubleshoot.cluster-troubleshoot]: /docs/using-qovery/troubleshoot/cluster-troubleshoot/
 [urls.qovery_console]: https://console.qovery.com

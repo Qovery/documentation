@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-10-15"
+last_modified_on: "2025-02-25"
 title: "Deployment Pipeline"
 description: "Learn how to the Environment Deployment Pipeline works"
 ---
@@ -48,7 +48,7 @@ The Building process is managed by the Qovery CI which downloads your repository
 
 The build operation of each service within a deployment stage is executed in parallel with a parallism of 7. 
 
-Once the operation is completed, the built image is pushed in the `mirroring registry` for deployment ([check here][docs.using-qovery.deployment.image-mirroring#application-built-via-the-qovery-deployment-pipeline] for more information).
+Once the operation is completed, the built image is pushed in the `mirroring registry` for deployment ([check here][docs.using-qovery.deployment.image-mirroring#application-built-via-the-qovery-ci] for more information).
 
 Check [this section](#best-practices-to-speed-up-build-time) to know more on how to reduce the build time of your application.
 
@@ -120,7 +120,7 @@ Try to put on the same deployment stage as many apps as you can, making sure the
 
 #### Multi-stage deployment on the same environment
 
-If within the same environment you have multiple applications using the same git repository and build context, you can benefit from the image caching mechanism provided by the [mirriring registry][docs.using-qovery.deployment.image-mirroring#application-built-via-the-qovery-deployment-pipeline] by:
+If within the same environment you have multiple applications using the same git repository and build context, you can benefit from the image caching mechanism provided by the [mirriring registry][docs.using-qovery.deployment.image-mirroring#application-built-via-the-qovery-ci] by:
 
 1. having one application X on a stage A. This is the one that will be built each time
 2. having all the other application on other stages as long as they are after the stage A. For all these applications the build phase will be skipped since the image has already been built from application X
@@ -153,6 +153,6 @@ As you can see, every deployment is independent and the build choice is only bas
 
 [docs.using-qovery.configuration.environment#deployment-pipeline]: /docs/using-qovery/configuration/environment/#deployment-pipeline
 [docs.using-qovery.configuration.environment]: /docs/using-qovery/configuration/environment/
-[docs.using-qovery.deployment.image-mirroring#application-built-via-the-qovery-deployment-pipeline]: /docs/using-qovery/deployment/image-mirroring/#application-built-via-the-qovery-deployment-pipeline
+[docs.using-qovery.deployment.image-mirroring#application-built-via-the-qovery-ci]: /docs/using-qovery/deployment/image-mirroring/#application-built-via-the-qovery-ci
 [docs.using-qovery.deployment.image-mirroring]: /docs/using-qovery/deployment/image-mirroring/
 [docs.using-qovery.integration.continuous-integration]: /docs/using-qovery/integration/continuous-integration/

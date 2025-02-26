@@ -69,7 +69,7 @@ Create the Datadog helm service in the Qovery environment of your choice (prefer
   placeholder="Select your cluster type"
   select={false}
   size={null}
-  values={[{"group":"Cluster","label":"Default","value":"default"},{"group":"Cluster","label":"EKS with Karpenter","value":"EKS with karpenter"}]}>
+  values={[{"group":"Cluster","label":"Default","value":"default"},{"group":"Cluster","label":"GKE autopilot","value":"GKE autopilot"},{"group":"Cluster","label":"EKS with Karpenter","value":"EKS with karpenter"}]}>
 
 <TabItem value="default">
 
@@ -83,6 +83,41 @@ datadog:
   site: datadoghq.eu
   # Update the cluster name with the name of your choice
   clusterName: qoverycluster
+```
+
+</TabItem>
+
+<TabItem value="GKE autopilot">
+
+When deploying Datadog on GKE Autopilot, these specific configuration keys are essential to avoid conflicts with Qovery, disable incompatible checks, and ensure proper resource allocation in the Autopilot environment.
+
+```yaml
+datadog:
+  # here we use a Qovery secret to retrieve the Datadog API Key (See next step)
+  apiKey: qovery.env.DD_API_KEY
+  # Update the site depending on where you want to store your data in Datadog
+  site: datadoghq.eu
+  # Update the cluster name with the name of your choice
+  clusterName: qovery.env.QOVERY_KUBERNETES_CLUSTER_NAME
+  ignoreAutoConfig:
+    # From Datadog support because of conflict with Qovery 
+    - datadog_cluster_agent
+    # https://github.com/DataDog/integrations-core/issues/10669#issuecomment-1123772693
+    - cilium
+clusterAgent:
+  # clusterAgent.podAnnotations -- Annotations to add to the cluster-agents's pod(s)
+  podAnnotations:
+    ad.datadoghq.com/cluster-agent.check_names: '["datadog_cluster_agent"]'
+    ad.datadoghq.com/cluster-agent.init_configs: "[{}]"
+    ad.datadoghq.com/cluster-agent.instances: |
+      [
+        {
+          "prometheus_url": "http://%%host%%:5000/metrics"
+        }
+      ]
+providers:
+  gke:
+    autopilot: true
 ```
 
 </TabItem>

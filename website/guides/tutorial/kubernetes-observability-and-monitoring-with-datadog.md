@@ -104,6 +104,12 @@ datadog:
 
 When deploying Datadog on GKE Autopilot, these specific configuration keys are essential to avoid conflicts with Qovery, disable incompatible checks, and ensure proper resource allocation in the Autopilot environment.
 
+<Alert type="warning">
+
+Note: Be sure to replace ${CLUSTER_NAME} with your actual GKE cluster name.
+
+</Alert>
+
 ```yaml
 datadog:
   # here we use a Qovery secret to retrieve the Datadog API Key (See next step)
@@ -111,7 +117,7 @@ datadog:
   # Update the site depending on where you want to store your data in Datadog
   site: datadoghq.eu
   # Update the cluster name with the name of your choice
-  clusterName: qovery.env.QOVERY_KUBERNETES_CLUSTER_NAME
+  clusterName: ${CLUSTER_NAME} # Replace with your actual cluster name
   ignoreAutoConfig:
     # From Datadog support because of conflict with Qovery 
     - datadog_cluster_agent

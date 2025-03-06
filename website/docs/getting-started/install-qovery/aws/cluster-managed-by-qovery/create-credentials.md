@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-08-15"
+last_modified_on: "2025-03-06"
 title: "Create Credentials"
 description: "Generate AWS credentials for Qovery"
 ---
@@ -43,28 +43,10 @@ Go to `IAM`
 
 <li>
 
-Create `Admins` group **without any permissions**
-
-<Alert type="warning">
-
-The default name required by Qovery is Admins. If you want to use another name, you have to change the cluster advanced settings [aws.iam.admin_group][docs.using-qovery.configuration.cluster-advanced-settings#iam] BEFORE launching the cluster installation process
-
-</Alert>
-
-
-<img src="/img/aws/aws-create-group-1.jpg" />
-<img src="/img/aws/aws-create-group-2.png" />
-<img src="/img/aws/aws-create-group-3.png" />
-
-</li>
-
-<li>
-
 Create one IAM user called `qovery`.
-<img src="/img/aws/aws-create-user-1.jpg" />
-<img src="/img/aws/aws-create-user-2.png" />
-<img src="/img/aws/aws-create-user-3.jpg" />
-<img src="/img/aws/aws-create-user-4.png" />
+<img src="/img/aws/create-user-1.png" />
+<img src="/img/aws/create-user-2.png" />
+<img src="/img/aws/create-user-3.png" />
 
 </li>
 
@@ -72,6 +54,7 @@ Create one IAM user called `qovery`.
 
 
 Setup<a href="/files/qovery-iam-aws.json"> IAM permissions</a> to the `qovery` user.
+
 
 <Alert type="warning">
 
@@ -192,5 +175,4 @@ Now you can use your AWS account to deploy your applications on Qovery. You can 
 
 
 [docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.infrastructure]: /docs/getting-started/install-qovery/aws/cluster-managed-by-qovery/infrastructure/
-[docs.using-qovery.configuration.cluster-advanced-settings#iam]: /docs/using-qovery/configuration/cluster-advanced-settings/#iam
 [docs.using-qovery.configuration.clusters#creating-a-cluster]: /docs/using-qovery/configuration/clusters/#creating-a-cluster

@@ -156,4 +156,8 @@ If multiple requests are queued at the same time, the following merge logic is a
 If two queued requests have the same action (Deploy, stop etc..) and are triggered by the same user, they are merged into one single request.
 
 Example:
-I have an ongoing deployment of my application A. If now I trigger a deployment on the app B and then on the app C, both requests will be queued and merged into one. When the deployment of the application A is completed, a new deployment request will be treated by Qovery and it will deploy both the app B and C (following the ordering defined in the [Deployment Pipeline][docs.using-qovery.deployment.deployment-pipeline])
+I have an ongoing deployment of my application A. 
+
+case 1: if I trigger the deployment on the app B and then on the app C, both requests will be queued and merged into one. When the deployment of the application A is completed, a new deployment request will be treated by Qovery and it will deploy both the app B and C (following the ordering defined in the [Deployment Pipeline][docs.using-qovery.deployment.deployment-pipeline])
+
+case 2: if I trigger the deployment of the app B and another user triggers the deployment of the app C, both requests will be queued but they will not be merged into one. When the deployment of the application A is completed, a new deployment request will be treated by Qovery and it will deploy first the app B and then the app C.

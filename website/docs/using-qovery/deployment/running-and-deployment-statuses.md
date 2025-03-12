@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-07-03"
+last_modified_on: "2025-03-10"
 title: "Running and Deployment Statuses"
 description: "Learn how to monitor your services"
 ---
@@ -40,13 +40,12 @@ The environment status is computed based on the statuses of all the services in 
 
 | Status                    | Description                                                  |
 |---------------------------|--------------------------------------------------------------|
-| STOPPED *(Gray dot)*      | All the services are stopped.                                |
-| STARTING *(Loading Icon)* | At least 1 service is starting.                              |
-| STOPPING *(Loading Icon)* | At least 1 service is stopping.                              |
-| RUNNING *(Green dot)*     | All services are running correctly.                          |
-| ERROR *(Red dot)*         | All services are in error status.                            |
-| WARNING *(Orange dot)*    | At least 1 service is in error status (but not all of them). |
-| COMPLETED *(Green dot)*    | The job execution has completed (only for cronjob and lifecycle jobs). |
+| STOPPED                   | All the services are stopped.                                |
+| STARTING                  | At least 1 service is starting.                              |
+| STOPPING                  | At least 1 service is stopping.                              |
+| RUNNING                   | All services are running correctly.                          |
+| ERROR                     | All services are in error status.                            |
+| WARNING                   | At least 1 service is in error status (but not all of them). |
 
 
 ## Service Statuses
@@ -57,13 +56,13 @@ Here are all the possible service statuses:
 
 | Status                    | Description                                                                                                              |
 |---------------------------|--------------------------------------------------------------------------------------------------------------------------|
-| STOPPED *(Gray dot)*      | All the application instances are stopped.                                                                               |
-| STARTING *(Loading Icon)* | At least 1 application instance is starting.                                                                             |
-| STOPPING *(Loading Icon)* | At least 1 application instance is stopping.                                                                             |
-| RUNNING *(Green dot)*     | All application instances are running correctly.                                                                         |
-| ERROR *(Red dot)*         | All application instances are in error status.                                                                           |
-| WARNING *(Orange dot)*    | *(Valid for multi-instance applications only)* At least 1 application instance is in error status (but not all of them). |
-| Completed *(Green dot)*    | *(Valid for Lifecycle and Cronjob only)* The job was correctly executed. |
+| STOPPED                   | All the application instances are stopped.                                                                               |
+| STARTING                  | At least 1 application instance is starting.                                                                             |
+| STOPPING                  | At least 1 application instance is stopping.                                                                             |
+| RUNNING                   | All application instances are running correctly. For Lifecycle and Cronjob, it means that the job is executing           |
+| ERROR                     | All application instances are in error status.                                                                           |
+| WARNING                   | *(Valid for multi-instance applications only)* At least 1 application instance is in error status (but not all of them). |
+| Completed                 | *(Valid for Lifecycle and Cronjob only)* The job was correctly executed. |
 
 The service status is computed based on the status of each `Kubernetes pod` deployed for this application.
 

@@ -43,11 +43,6 @@ You can decide to execute a deployment action on:
 
 Note that all the deployment actions are available via any interface described within [this section][docs.using-qovery.interface].
 
-<Alert type="info">
-
-You cannot queue deployment actions on one environment. Example: you can't trigger the deployment of service A and stop service B at the same time. You need to wait for the deployment of service A to finish before triggering the pause of the service B
-
-</Alert>
 
 ## Deployment Actions
 
@@ -150,3 +145,19 @@ Once you click on the action, this panel will appear, and you will be able to ch
 </p>
 
 By pressing on the Deploy button, a deployment of the service will be triggered using the selected version.
+
+
+## Queueing deployment actions
+
+Only one deployment action request can be treated at each time, every successive request will be queued. All the queued requests can be found within the [Deployment History][docs.using-qovery.deployment.deployment-history] section.
+
+If multiple requests are queued at the same time, the following merge logic is applied to optimize the overall deployment time:
+
+If two queued requests have the same action (Deploy, stop etc..) and are triggered by the same user, they are merged into one single request.
+
+Example:
+I have an ongoing deployment of my application A. 
+
+case 1: if I trigger the deployment on the app B and then on the app C, both requests will be queued and merged into one. When the deployment of the application A is completed, a new deployment request will be treated by Qovery and it will deploy both the app B and C (following the ordering defined in the [Deployment Pipeline][docs.using-qovery.deployment.deployment-pipeline])
+
+case 2: if I trigger the deployment of the app B and another user triggers the deployment of the app C, both requests will be queued but they will not be merged into one. When the deployment of the application A is completed, a new deployment request will be treated by Qovery and it will deploy first the app B and then the app C.

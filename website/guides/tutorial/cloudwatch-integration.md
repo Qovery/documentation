@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-05-09"
+last_modified_on: "2025-03-12"
 $schema: "/.meta/.schemas/guides.json"
 title: "Integrate your application logs to Cloudwatch"
 description: "Add Kubernetes pod logs into Cloudwatch to perform full text search"
@@ -42,10 +42,6 @@ We will create a dedicated service account (note: STS account can be used, but f
 
 On IAM create a policy with the following permissions, and name this policy `fluent-bit-write-policy`:
 
-<p Valign="center">
-  <img src="/img/aws-cloudwatch/fluent-bit-policy-content.png" alt="policy content" />
-</p>
-
 ```json
 {
     "Version": "2012-10-17",
@@ -56,6 +52,7 @@ On IAM create a policy with the following permissions, and name this policy `flu
             "Action": [
                 "logs:CreateLogGroup",
                 "logs:CreateLogStream",
+                "logs:DescribeLogStreams",
                 "logs:PutRetentionPolicy",
                 "logs:PutLogEvents"
             ],

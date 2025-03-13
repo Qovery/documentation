@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-02-17"
+last_modified_on: "2025-03-13"
 title: "Cluster Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -364,13 +364,13 @@ Once enabled, you can update the advanced setting [resources.override.limit.ram_
 
 | Type    | Description                                                                 | Default Value |
 |---------|-----------------------------------------------------------------------------|---------------|
-| boolean  | Enable SSO sync allowing IAM users to connect to cluster using SSO. [Setup SSO support for your cluster][guides.tutorial.how-to-activate-sso-to-connect-to-your-eks-cluster]. <br />⚠️ [`aws.iam.sso_role_arn`](#awsiamsso_role_arn) should be set. | `false`        |
+| boolean  | Deprecated - Enable SSO sync allowing IAM users to connect to cluster using SSO. <br />⚠️ [`aws.iam.sso_role_arn`](#awsiamsso_role_arn) should be set. | `false`        |
 
 #### aws.iam.sso_role_arn ![](/img/advanced_settings/aws.svg)
 
 | Type    | Description                                                                 | Default Value |
 |---------|-----------------------------------------------------------------------------|---------------|
-| string  | Allows you to specify the SSO role ARN to be used to connect to your cluster. [Setup SSO support for your cluster][guides.tutorial.how-to-activate-sso-to-connect-to-your-eks-cluster]   | `""`        |
+| string  | Deprecated - Allows you to specify the SSO role ARN to be used to connect to your cluster.   | `""`        |
 
 
 ## Object storage
@@ -452,4 +452,3 @@ Why? Dockerhub has a [rate limit system by IP](https://docs.docker.com/docker-hu
 [docs.using-qovery.configuration.advanced-settings#resources]: /docs/using-qovery/configuration/advanced-settings/#resources
 [docs.using-qovery.configuration.organization.container-registry]: /docs/using-qovery/configuration/organization/container-registry/
 [docs.using-qovery.deployment.image-mirroring]: /docs/using-qovery/deployment/image-mirroring/
-[guides.tutorial.how-to-activate-sso-to-connect-to-your-eks-cluster]: /guides/tutorial/how-to-activate-sso-to-connect-to-your-eks-cluster/

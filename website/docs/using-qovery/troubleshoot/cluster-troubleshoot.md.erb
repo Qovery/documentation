@@ -124,5 +124,46 @@ Unfortunately, there is nothing Qovery can do. You need to reach out directly to
 If you are using AWS, you can contact them directly via dedicated email: aws-verification@amazon.com.
 </Alert>
 
+## Permissions Issue When Installing an AWS Cluster  
+
+When creating an AWS cluster with Karpenter, we verify that the provided credentials include the necessary **SQS permissions**.  
+
+If you encounter the following error:  
+
+> **"Permissions issue. Check your AWS permissions to ensure you have the necessary authorizations for this action."**  
+
+Follow these steps to troubleshoot the issue:  
+
+### 1. Verify Your IAM Policy  
+
+Ensure your IAM policy matches the content of the file provided [here](https://hub.qovery.com/files/qovery-iam-aws.json).  
+
+### 2. Check AWS Organization SCP Restrictions  
+
+If the issue persists, it may be due to **Service Control Policies (SCPs)** in your AWS Organization blocking the required permissions.  
+
+#### Steps to Verify SCP Restrictions  
+
+1. Go to [AWS Policy Simulator](https://policysim.aws.amazon.com/home/index.jsp).  
+2. Select your user from the left panel.  
+3. Choose **SQS** as the service and select all available actions.  
+4. Open the first result, replace the queue value (`*`) with: `arn:aws:sqs:::qovery*`
+
+Then, run the simulation.  
+
+#### Interpreting the Results  
+
+- **If permissions are allowed while `AWS Organizations SCPs` is enabled**, AWS permissions are correctly set, and you should contact Qovery Support.  
+
+<p align="center">
+<img src="/img/troubleshoot/aws_sqs_permissions_allowed.png" alt="AWS SQS permissions allowed" />
+</p>  
+
+- **If permissions are denied when `AWS Organizations SCPs` is enabled but allowed when disabled**, an SCP in your organization is blocking access. You must contact your AWS administrator.  
+
+<p align="center">
+<img src="/img/troubleshoot/aws_sqs_permissions_denied.png" alt="AWS SQS permissions denied" />
+</p>  
+
 # More
 You are looking to troubleshoot your application with Qovery? [Read this very short guide][guides.debugging]

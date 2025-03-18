@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-02-25"
+last_modified_on: "2025-03-18"
 title: "Clusters"
 description: "Learn how to configure your Kubernetes clusters on Qovery"
 sidebar_label: hidden
@@ -14,6 +14,12 @@ import Assumptions from '@site/src/components/Assumptions';
 <Alert type="info">
 
 If you are looking to install Qovery on your Kubernetes cluster, please refer to [this guide][docs.getting-started.install-qovery.kubernetes].
+
+</Alert>
+
+<Alert type="info">
+
+If you encounter any issues during the cluster installation, you can follow this [troubleshooting section][docs.using-qovery.troubleshoot.cluster-troubleshoot].
 
 </Alert>
 

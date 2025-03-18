@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-02-17"
+last_modified_on: "2025-03-18"
 title: "AWS EKS with Karpenter"
 description: "Learn how to configure your AWS Kubernetes clusters with Karpenter on Qovery"
 ---
@@ -12,12 +12,6 @@ import Steps from '@site/src/components/Steps';
 import Jump from '@site/src/components/Jump';
 import Alert from '@site/src/components/Alert';
 import Assumptions from '@site/src/components/Assumptions';
-
-<Alert type="warning">
-
-You can't migrate your existing production cluster to Karpenter yet, but this feature will be available soon.
-
-</Alert>
 
 Karpenter automatically launches just the right compute resources to handle your cluster's applications. It is designed to let you take full advantage of the cloud with fast and simple compute provisioning for Kubernetes clusters.
 You can our [blog post](https://www.qovery.com/blog/save-up-to-60-on-aws-costs-with-eks-and-karpenter/) for more information."

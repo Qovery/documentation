@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-03-18"
+last_modified_on: "2025-03-28"
 title: "AWS EKS with Karpenter"
 description: "Learn how to configure your AWS Kubernetes clusters with Karpenter on Qovery"
 ---
@@ -390,6 +390,31 @@ For example, to assign a service to the t3a.xlarge instance type, manually set t
 The specified instance type must be included in the list of instance types defined in the [NodePool configuration][docs.using-qovery.configuration.clusters.aws-with-karpenter#resources].
 
 </Alert>
+
+#### Change the node pool of your service when using Helm
+
+When using Helm, you can udpate the `affinity` field in your `values.yaml` file to target a specific node pool for your service. For example you can switch from the `default` to `stable` nodepool:
+
+```yaml
+affinity:
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: karpenter.sh/nodepool
+          operator: In
+          values:
+          - stable
+```
+
+And you also have to add tolerations:
+
+```yaml
+  tolerations:
+      - effect: NoSchedule
+        key: nodepool/stable
+        operator: Exists
+```
 
 
 [docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.quickstart#attach-aws-credentials]: /docs/getting-started/install-qovery/aws/cluster-managed-by-qovery/quickstart/#attach-aws-credentials

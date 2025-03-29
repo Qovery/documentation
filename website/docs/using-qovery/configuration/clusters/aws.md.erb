@@ -140,6 +140,12 @@ The EKS subnets are mandatory, you have to specify at least **one subnet id per 
   <img src="/img/configuration/clusters/existing_vpc_aws_auto_assign.png" alt="Existing VPC AWS DNS Hostnmaes" />
 </p>
 
+You'll also need to set up the following labels on your subnets:
+
+* On public subnets: add a label `kubernetes.io/role/elb` with the value `1` to allow the ALB controller to run on this subnet.
+* On private subnets: add a label `kubernetes.io/role/internal-elb` with the value `1` to allow the ALB controller to run on this subnet.
+* On all subnets: add a label `kubernetes.io/cluster/<cluster-name>` with the value `shared` to allow the ALB controller to run on this subnet.
+
 **Managed databases**:
 
 This section is exclusively for enabling managed databases (container databases will be enabled by default).

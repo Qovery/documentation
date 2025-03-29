@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-01-29"
+last_modified_on: "2025-03-29"
 title: "AWS EKS"
 description: "Learn how to configure your AWS Kubernetes clusters on Qovery"
 ---
@@ -142,6 +142,12 @@ The EKS subnets are mandatory, you have to specify at least **one subnet id per 
 <p align="center">
   <img src="/img/configuration/clusters/existing_vpc_aws_auto_assign.png" alt="Existing VPC AWS DNS Hostnmaes" />
 </p>
+
+You'll also need to set up the following labels on your subnets:
+
+* On public subnets: add a label `kubernetes.io/role/elb` with the value `1` to allow the ALB controller to run on this subnet.
+* On private subnets: add a label `kubernetes.io/role/internal-elb` with the value `1` to allow the ALB controller to run on this subnet.
+* On all subnets: add a label `kubernetes.io/cluster/<cluster-name>` with the value `shared` to allow the ALB controller to run on this subnet.
 
 **Managed databases**:
 

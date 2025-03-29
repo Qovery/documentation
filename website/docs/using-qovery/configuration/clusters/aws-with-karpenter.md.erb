@@ -121,6 +121,12 @@ Virtual Private Cloud (VPC) peering allows you to set up a connection between yo
 
 A VPC can only be used if it has at least one range of IP addresses called a **subnet**. When you create a cluster, Qovery automatically picks a default subnet for it. However, to perform VPC peering, you may want to define which specific VPC subnet you want to use, so that you can avoid any conflicting settings. To do so, you can enable the **Custom VPC Subnet** feature on your cluster. For more information on how to set up VPC peering, [see our dedicated tutorial](https://hub.qovery.com/guides/tutorial/aws-vpc-peering-with-qovery/).
 
+You'll also need to set up the following labels on your subnets:
+
+* On public subnets: add a label `kubernetes.io/role/elb` with the value `1` to allow the ALB controller to run on this subnet.
+* On private subnets: add a label `kubernetes.io/role/internal-elb` with the value `1` to allow the ALB controller to run on this subnet.
+* On all subnets: add a label `kubernetes.io/cluster/<cluster-name>` with the value `shared` to allow the ALB controller to run on this subnet.
+
 </TabItem>
 
 <TabItem value="use existing vpc">

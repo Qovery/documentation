@@ -1,10 +1,12 @@
 ---
-last_modified_on: "2024-06-04"
+last_modified_on: "2025-04-03"
 title: "Container Registry"
 description: "Learn how to manage the container registry allowed in your organization"
 ---
 
 import Alert from '@site/src/components/Alert';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 import Jump from '@site/src/components/Jump';
 import Assumptions from '@site/src/components/Assumptions';
@@ -29,15 +31,192 @@ You can access this section by opening the Organization Settings -> Container Re
 </p>
 
 By clicking on "Add Registry" you will be able to create a new Container Registry by filling these information:
-- Registry Name
-- Description
-- Registry Url: the base url of the registry (example: https://docker.io, https://public.ecr.aws etc..)
-- Registry type: you can chose among DockerHub, Public ECR, ECR (AWS private CR), Scaleway CR (Scaleway private CR), Github Packages, Gitlab CR, Generic.
-- Credentials: these depends on the chosen registry type. If a container registry is public, you don't need to fill this part. 
 
-**Important information**:
-- If you select Docker Hub, we encourage you to set credentials to increase the limits on the pull rate. [See here](https://www.docker.com/increase-rate-limits/) for more details
-- If the registry you need is not in the list and it supports the docker login format you can use the “Generic” registry.
+<Alert type="warning">
+
+If the registry you need is not in the list and it supports the docker login format you can use the “Generic” registry.
+
+</Alert>
+
+<Tabs
+  centered={true}
+  className={"rounded"}
+  defaultValue={"ECR"}
+  placeholder="Select your container registry"
+  select={false}
+  size={null}
+  values={[{"group":"CR","label":"ECR","value":"ECR"},{"group":"CR","label":"GCP Artifact Registry","value":"GCP Artifact Registry"},{"group":"CR","label":"Scaleway Container Registry","value":"Scaleway Container Registry"},{"group":"CR","label":"Docker Hub","value":"Docker Hub"},{"group":"CR","label":"Github Container Registry","value":"Github Container Registry"},{"group":"CR","label":"Gitlab Container Registry","value":"Gitlab Container Registry"},{"group":"CR","label":"Public ECR","value":"Public ECR"},{"group":"CR","label":"Generic Container Registry","value":"Generic Container Registry"}]}>
+
+<TabItem value="ECR">
+
+In Qovery, you can use Amazon Elastic Container Registry (ECR) to store and manage your Docker container images. To connect Qovery to your ECR repository, you'll need to provide the following information:
+
+#### Setting Up ECR Access for Qovery
+
+To securely connect Qovery to your ECR, follow these steps:
+
+**Enter the Credentials in Qovery**:
+- Registry URL: `https://<aws_account_id>.dkr.ecr.<region>.amazonaws.com`
+- Region: Your ECR repository region
+- Access Key: The AWS IAM user access key
+- Secret Key: The AWS IAM user secret key
+
+</TabItem>
+
+<TabItem value="GCP Artifact Registry">
+
+In Qovery, you can use Google Cloud Artifact Registry to store and manage your Docker container images. To connect Qovery to your GCP Artifact Registry, you'll need to provide the following information:
+
+#### Setting Up GCP Artifact Registry Access for Qovery
+
+To securely connect Qovery to your GCP Artifact Registry, follow these steps:
+
+**Enter the Credentials in Qovery**:
+- Registry URL: `https://<region>-docker.pkg.dev`
+- Region: Your GCP Artifact Registry region
+- Service Account JSON: Click to import your service account JSON key file or drag and drop it
+
+</TabItem>
+<TabItem value="Scaleway Container Registry">
+
+In Qovery, you can use Scaleway Container Registry to store and manage your Docker container images. To connect Qovery to your Scaleway Container Registry, you'll need to provide the following information:
+
+#### Setting Up Scaleway Container Registry Access for Qovery
+
+To securely connect Qovery to your Scaleway Container Registry, follow these steps:
+
+**Enter the Credentials in Qovery**:
+- Registry URL: `https://rg.<region>.scw.cloud`
+- Region: Your Scaleway region
+- Project ID: Your Scaleway Project ID
+- Access Key: Your Scaleway API Access Key
+- Secret Key: Your Scaleway API Secret Key
+
+</TabItem>
+<TabItem value="Docker Hub">
+
+In Qovery, there are two ways to use Docker Hub:
+
+#### Anonymous Mode
+
+You can pull public images from Docker Hub without authentication. However, Docker Hub enforces rate limits on anonymous pulls, which may impact your deployments.
+
+#### Authenticated Mode (Recommended)
+
+We encourage you to set credentials to increase the limits on the pull rate. [See here](https://www.docker.com/increase-rate-limits/) for more details.
+
+#### Setting Up Docker Hub Access for Qovery
+
+To securely connect Qovery to Docker Hub, follow these steps:
+
+**Enter the Credentials in Qovery**:
+- Username: Your Docker Hub username
+- Password/Token: Your Docker Hub password or access token
+
+</TabItem>
+<TabItem value="Github Container Registry">
+
+In Qovery, there are two ways to use GitHub Container Registry (GHCR):
+
+#### Anonymous Mode (if your images are public)
+
+You can pull public images from GHCR without authentication.
+
+#### Authenticated Mode (if your images are private)
+
+You need to provide authentication details (your GitHub username and PAT) in Qovery to pull private images.
+
+---
+
+#### Generating a Personal Access Token (PAT) for GHCR
+
+To authenticate with GitHub Container Registry (GHCR), you need to generate a Personal Access Token (PAT) with the appropriate permissions.
+
+1. Go to [GitHub → Settings → Developer settings → Personal access tokens](https://github.com/settings/tokens).
+2. Click on **"Generate new token"**.
+3. Provide a name for the token to identify its purpose.
+4. Select the following permission:
+   - ✅ **read:packages** (to pull images)
+5. Click **Generate token** and **copy** the token, as you won’t be able to see it again.
+
+---
+
+#### Configuring Authentication in Qovery
+
+1. Set the **Username** field to your **GitHub username**.
+2. Set the **Personal Access Token** field to the **PAT** you generated.
+
+</TabItem>
+<TabItem value="Gitlab Container Registry">
+
+In Qovery, there are two ways to use GitLab Container Registry (GitLab CR):
+
+#### Anonymous Mode (if your images are public)
+
+You can pull public images from GitLab CR without authentication.
+
+#### Authenticated Mode (if your images are private)
+
+You need to provide authentication details (your GitLab username and a Personal Access Token) in Qovery to pull private images.
+
+---
+
+#### Generating a Personal Access Token (PAT) for GitLab CR
+
+To authenticate with GitLab Container Registry (GitLab CR), you need to generate a Personal Access Token (PAT) with the appropriate permissions.
+
+1. Go to [GitLab → User Settings → Access Tokens](https://gitlab.com/-/user_settings/personal_access_tokens).
+2. Click on **"Generate new token"**.
+3. Provide a name for the token to identify its purpose.
+4. Select the following permission:
+   - ✅ **read_registry** (to pull images)
+5. Click **Generate token** and **copy** the token, as you won’t be able to see it again.
+
+---
+
+#### Configuring Authentication in Qovery
+
+1. Set the **Username** field to your **GitLab username**.
+2. Set the **Personal Access Token** field to the **PAT** you generated.
+
+</TabItem>
+<TabItem value="Public ECR">
+
+In Qovery, you can use Amazon's Public Elastic Container Registry (ECR) to pull public container images.
+
+#### Setting Up Public ECR Access for Qovery
+
+To connect Qovery to a public ECR repository:
+
+**Enter the Registry URL in Qovery**:
+- Registry URL: Your public ECR URL (format: `https://public.ecr.aws`)
+
+</TabItem>
+
+<TabItem value="Generic Container Registry">
+
+In Qovery, you can connect to any container registry that isn't specifically listed using the Generic Container Registry option. There are two ways to use Generic Container Registry:
+
+#### Anonymous Mode
+
+You can pull public images without authentication if the registry allows it.
+
+#### Authenticated Mode
+
+For private registries or to avoid rate limits, you can authenticate using credentials.
+
+#### Setting Up Generic Container Registry Access for Qovery
+
+To connect Qovery to any generic container registry:
+
+**Enter the Registry Information**:
+- Registry URL: Your container registry URL
+- Username: Your registry username (only needed for authenticated mode)
+- Password: Your registry password or token (only needed for authenticated mode)
+
+</TabItem>
+</Tabs>
+
 
 Now that you have created the registry, you can start using it in order to [create and deploy a service][docs.using-qovery.configuration.application#deploying-from-a-container-registry] using the images stored within it.
 

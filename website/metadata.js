@@ -589,7 +589,7 @@ module.exports = {
           "last_modified_on": null,
           "path": "website/guides/tutorial/how-to-connect-to-your-eks-cluster-with-kubectl.md",
           "series_position": null,
-          "title": "How to connect to your EKS cluster with kubectl"
+          "title": "How to connect to your Qovery managed cluster with kubectl"
         },
         {
           "author_github": "https://github.com/l0ck3",

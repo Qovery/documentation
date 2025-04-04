@@ -19,13 +19,30 @@ Datadog is one of the leading platforms for monitoring and observability, and it
 - You have a Qovery cluster running
 - You have a dedicated Qovery project and environment to deploy Datadog (example: Project=Tooling, Environment=Production)
 - You have a Datadog account
-- You have already created a [Datadog API Key](https://docs.datadoghq.com/account_management/api-app-keys/#api-keys)
+- You have already created a [Datadog API Key](https://docs.datadoghq.com/account_management/api-app-keys/#api-keys) here: `https://app.datadoghq.<region>/organization-settings/api-keys`
+
+<Alert type="warning">
+
+An API key is required, not an Application key. Please ensure you are using the correct key to authenticate.
+
+<p align="center">
+  <img src="/img/kubernetes-observability-and-monitoring-with-datadog/datadog-api-key.png" alt="Datadog - API Key" />
+</p>
+
+</Alert>
+
 
 </Assumptions>
 
 ## Installation
 
 In this tutorial, we will install the Datadog agent on a Qovery cluster to gather metrics about infrastructure and applications.
+
+<Alert type="warning">
+
+This tutorial is based on a specific version of Datadog. We have created it to assist our users, but Qovery is not responsible for any configuration issues—please contact Datadog support for assistance.
+
+</Alert>
 
 <Steps headingDepth={3}>  
 

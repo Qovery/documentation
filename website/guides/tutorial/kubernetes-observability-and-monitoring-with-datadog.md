@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-02-26"
+last_modified_on: "2025-04-04"
 $schema: "/.meta/.schemas/guides.json"
 title: Kubernetes observability and monitoring with Datadog
 description: How to integrate Datadog with Kubernetes on Qovery.
@@ -26,6 +26,13 @@ Datadog is one of the leading platforms for monitoring and observability, and it
 - You have a Datadog account
 - You have already created a [Datadog API Key](https://docs.datadoghq.com/account_management/api-app-keys/#api-keys)
 
+<Alert type="warning">
+
+An API key is required, not an Application key. Please ensure you are using the correct key to authenticate.
+
+</Alert>
+
+
 </Assumptions>
 
 <!--
@@ -39,6 +46,12 @@ Datadog is one of the leading platforms for monitoring and observability, and it
 ## Installation
 
 In this tutorial, we will install the Datadog agent on a Qovery cluster to gather metrics about infrastructure and applications.
+
+<Alert type="warning">
+
+This tutorial is based on a specific version of Datadog. We have created it to assist our users, but Qovery is not responsible for any configuration issues—please contact Datadog support for assistance.
+
+</Alert>
 
 <Steps headingDepth={3}>  
 

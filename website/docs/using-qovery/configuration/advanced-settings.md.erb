@@ -164,6 +164,12 @@ It's important to understand `maxSurge` and `maxUnavailable` govern availability
 |---------|--------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------|
 | boolean | Allows you to enable Sticky session. | Enable the load balancer to bind a user's session to a specific target. This ensures that all requests from the user during the session are sent to the same target | `false`        |
 
+#### network.ingress.force_ssl_redirect ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/helm.svg)
+
+| Type    | Description                             | Use Case                                                                                                                          | Default Value |
+|---------|-----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|---------------|
+| boolean | Allows you to disable SSL/TLS redirect. | When using SSL offloading outside of cluster, you can enforce a redirect to HTTPS even when there is no TLS certificate available | `true`        |
+
 #### network.ingress.keepalive_time_seconds ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/helm.svg)
 
 | Type    | Description                                                                                                                                                                                                     | Use Case                             | Default Value  |

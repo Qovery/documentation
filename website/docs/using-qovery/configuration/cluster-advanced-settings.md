@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-02-17"
+last_modified_on: "2025-04-10"
 title: "Cluster Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -71,6 +71,11 @@ Below is the list of advanced settings currently available for clusters.
 |---------|--------------------------------------------------------------------------------------------------------------|---------------|
 | float   | Set VPC logs flow sampling percentage. Value should be within [`0.0` (no sampling), `1.0` (all logs)] range. | `0.0`       |
 
+#### dns.coredns.extra_config ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg)
+
+| Type   | Description                                                                                                | Default Value |
+|--------|------------------------------------------------------------------------------------------------------------|---------------|
+| string | Additional configuration to add to CoreDNS ConfigMap. This can be used to customize DNS resolution rules.  | `null`        |
 
 ## Image registry
 

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-07-30"
+last_modified_on: "2025-04-11"
 title: "Environment"
 description: "Learn how to configure your Environments on Qovery"
 ---
@@ -204,6 +204,12 @@ Cloning an environment is possible directly from the 3 dots menu of your environ
 
 <p align="center">
   <img src="/img/environment/clone_environment.png" alt="Environment Clone" />
+</p>
+
+You can clone an environment within the same project or even to another project — including across clusters — which is especially useful when setting up a new cloud provider, for example.
+
+<p align="center">
+  <img src="/img/environment/clone_environment_modal.png" alt="Environment Clone Modal" />
 </p>
 
 When cloning an environment, every configuration of the original environment will be copied except for:

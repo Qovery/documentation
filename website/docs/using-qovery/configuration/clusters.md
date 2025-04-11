@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-03-18"
+last_modified_on: "2025-04-11"
 title: "Clusters"
 description: "Learn how to configure your Kubernetes clusters on Qovery"
 sidebar_label: hidden
@@ -394,6 +394,25 @@ Security is our main concern. When a vulnerability is found, here are the action
 ### What is a mirroring registry?
 
 It's the registry used by Qovery to push the image built by the Qovery CI or mirror the images that you want to deploy from your own registry. Check [this documentation][docs.using-qovery.deployment.image-mirroring] for more information
+
+### Why is my status showing as unavailable?
+
+When accessing the Clusters view from the Qovery Console, you may sometimes encounter the status Unavailable for one of your clusters.
+
+<p align="center"> <img src="/img/configuration/clusters/cluster_status_unavailable.png" alt="Cluster Unavailable Status" /> </p>
+This Unavailable status indicates that Qovery was not able to retrieve the current status of your cluster. This situation can occur in the following cases:
+
+The cluster has been manually stopped or is not running.
+
+There is a technical issue preventing Qovery from communicating with your cluster (for example: missing credentials, misconfiguration, or network problems).
+
+If you see this status and are unsure why it appears:
+
+<Alert type="warning">
+We recommend that you double-check the status of your cluster directly in your cloud provider console.
+
+</Alert>
+If everything seems fine on your side or you need help understanding the issue, feel free to reach out to our support team.
 
 
 [docs.getting-started.basic-concepts#cluster]: /docs/getting-started/basic-concepts/#cluster

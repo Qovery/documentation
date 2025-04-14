@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-10-08"
+last_modified_on: "2025-04-14"
 title: "Environment Variable & Secrets"
 description: "Learn how to configure Environment Variables and Secrets on Qovery"
 ---
@@ -34,7 +34,7 @@ time by using the variable `name` (key). Only text files are supported. Example:
      website/docs/using-qovery/configuration/environment-variable.md.erb
 -->
 
-## Environment variable vs Environment variable as file
+## Environment types
 
 Depending on your use case, you might decide to use a simple key value environment variable or instead use the environment variable as a file.
 
@@ -77,6 +77,26 @@ There are three scopes for the Environment Variables:
 | **APPLICATION** | 3         | Variables available for one application in one environment                                                                                           |
 
 
+## Using variables at build time
+
+To use the environment variables at build time, you just simply need to declare the variables as `ARGS` in your Dockerfile. Qovery will automatically detect any environment variable declared as ARGS and inject it in the build command via the parameter `--build-arg`
+
+**Example**:
+
+You need to access the variables `SMB_PASS` and `SMB_USER` at build time.
+
+In this case, you have to:
+- Declare those variables within the Qovery interface
+- Make sure they are declared as `ARGS` within your Dockerfile
+
+```
+FROM ubuntu:16.04
+ARG SMB_PASS
+ARG SMB_USER
+...
+```
+
+
 ## BUILT_IN variables
 Qovery automatically generates some variables (called BUILT_IN) which allow you to easily configure your service interconnection or to access some of the environment/application information.
 
@@ -107,7 +127,6 @@ For more information on how to use the BUILT_IN environment variables to:
 - connect to a database, have a look at [this section](#connecting-to-a-database).
 - connect to another service, have a look at [this section](#connecting-to-another-application).
 
-
 ## Aliases and overrides
 For a given environment variable, you can create aliases and overrides:
 - Alias: it defines an alias for the environment variable. You can access its value by its original name or by its alias name. 
@@ -137,6 +156,8 @@ You can easily insert existing variables by clicking on the magic wand icon and 
 * Environment variable name should use only alphanumeric characters and the underscore character (_) to ensure they are accessible from all programming languages. Environment variable keys should not include the hyphen character.
 * Environment variable name should not begin with a double underscore (__).
 * An environment variable’s name should not begin with QOVERY_ unless it is set by the Qovery platform itself.
+
+# Managing the environment variables
 
 ## Create an Environment Variable
 

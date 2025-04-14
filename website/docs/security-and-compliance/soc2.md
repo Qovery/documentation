@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-11-15"
+last_modified_on: "2025-04-10"
 title: SOC2
 description: Systems and Organizations Controls 2
 ---
@@ -77,6 +77,15 @@ SOC2 requires that images be retained for a minimum of 365 days. To meet this re
 To comply with SOC2, restrict access to the AWS EC2 metadata service.
 
 Set `aws.eks.ec2.metadata_imds` to `required` to prevent unauthorized access to the metadata service.
+
+
+## Additional Actions
+
+### AWS S3 ![](/img/advanced_settings/aws.svg)
+
+To comply with SOC2 requirements for data integrity and protection:
+- S3 versioning is automatically enabled by Qovery to maintain object history
+- Enable MFA delete protection to add an extra layer of security for version deletion. This must be configured by the account owner using root credentials through the [AWS CLI.](https://docs.aws.amazon.com/AmazonS3/latest/userguide/MultiFactorAuthenticationDelete.html)
 
 ## Schema
 

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-12-18"
+last_modified_on: "2025-03-13"
 $schema: "/.meta/.schemas/guides.json"
 title: Configure Single Sign-On (SSO) for an AWS sub-account
 description: Learn how to configure Single Sign-On (SSO) on AWS for a sub-account in Qovery.
@@ -46,9 +46,9 @@ In the ends, you should see your users in the AWS IAM Identity Center console:
   <img src="/img/aws-subaccount-sso/iic-users-list.png" alt="iic user list" />
 </p>
 
-# Ass SSO (with Qovery) on your EKS cluster to support SSO (optional)
+# Add SSO (with Qovery) on your EKS cluster to support SSO (optional)
 
-Qovery allows you to connect to your EKS cluster using SSO. It's optional, but if you want to do this anyway, please [refer to this guide](/guides/tutorial/how-to-activate-sso-to-connect-to-your-eks-cluster).
+Please follow this [AWS guide](https://aws.amazon.com/fr/blogs/containers/a-quick-path-to-amazon-eks-single-sign-on-using-aws-sso/)
 
 # SSO sync for Google workspace (optional)
 

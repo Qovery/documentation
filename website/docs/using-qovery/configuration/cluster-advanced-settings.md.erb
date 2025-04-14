@@ -355,13 +355,13 @@ Once enabled, you can update the advanced setting [resources.override.limit.ram_
 
 | Type    | Description                                                                 | Default Value |
 |---------|-----------------------------------------------------------------------------|---------------|
-| boolean  | Enable SSO sync allowing IAM users to connect to cluster using SSO. [Setup SSO support for your cluster][guides.tutorial.how-to-activate-sso-to-connect-to-your-eks-cluster]. <br />⚠️ `aws.iam.sso_role_arn` should be set. | `false`        |
+| boolean  | Deprecated - Enable SSO sync allowing IAM users to connect to cluster using SSO. <br />⚠️ `aws.iam.sso_role_arn` should be set. | `false`        |
 
 #### aws.iam.sso_role_arn ![](/img/advanced_settings/aws.svg)
 
 | Type    | Description                                                                 | Default Value |
 |---------|-----------------------------------------------------------------------------|---------------|
-| string  | Allows you to specify the SSO role ARN to be used to connect to your cluster. [Setup SSO support for your cluster][guides.tutorial.how-to-activate-sso-to-connect-to-your-eks-cluster]   | `""`        |
+| string  | Deprecated - Allows you to specify the SSO role ARN to be used to connect to your cluster.   | `""`        |
 
 
 ## Object storage

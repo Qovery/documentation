@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-04-11"
+last_modified_on: "2025-04-15"
 title: "Clusters"
 description: "Learn how to configure your Kubernetes clusters on Qovery"
 sidebar_label: hidden
@@ -247,6 +247,40 @@ The cluster id in Qovery will be in your clipboard.
 If you need to get your kubeconfig file, open the `...` section and press `Get Kubeconfig`.
 
 Then the kubeconfig yaml file will be automatically downloaded.
+
+## Statuses
+
+In Qovery, you may see two types of statuses:
+
+- **Cluster status** (1): Indicates the actual health and connectivity state of your Kubernetes cluster.
+- **Deployment status** (2): Reflects the outcome of the latest deployment operation (initial install, update, or upgrade). It shows whether your last deployment succeeded, failed, or is still in progress.
+
+<p align="center">
+<img src="/img/configuration/clusters/cluster_statuses.png" alt="Cluster Statuses" />
+</p>
+
+
+These tables list and explain the possible **cluster statuses** and **deployment statuses**.
+
+---
+
+### Cluster Statuses
+
+| Status       | Meaning                                                                 | What You Should Know                                                                 |
+|--------------|-------------------------------------------------------------------------|----------------------------------------------------------------------------------------|
+| ✅ **Running**     | Everything is working correctly.                                         | Everything is working correctly.                                |
+| 🟡 **Warning**     | Something is not quite right.                                            | The cluster is still functional but may need attention (e.g., resource limits, outdated versions). |
+| 🔴 **Error**       | A serious problem is preventing normal operation.                        | One or more Qovery components are in error. Action is required.                       |
+| ⚪️ **Status unavailable** | The cluster is unreachable or not responding.                            | The agent is not responding. Check the cluster status in your cloud provider.|
+
+### Deployment Statuses
+
+| Status                     | Meaning                                                                 | What You Should Know                                                                 |
+|----------------------------|-------------------------------------------------------------------------|----------------------------------------------------------------------------------------|
+| ⏳ **Deployment Queued**    | A deployment has been requested and is waiting to start.               | The operation will begin shortly.                                                     |
+| 🚀 **Deploying**            | The deployment is currently in progress.                               | You can view the logs by clicking on the status link.                                |
+| ❌ **Last Deployment Failed** | The latest deployment did not succeed.                                | Check the logs via the status link to understand the cause.                          |
+| ✅ **Last Deployment Succeeded** | The last deployment was successful.                                | The last update timestamp will be displayed. No action is needed.                    |
 
 ## Logs
 

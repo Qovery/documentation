@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-03-18"
+last_modified_on: "2025-04-16"
 title: "Clusters"
 description: "Learn how to configure your Kubernetes clusters on Qovery"
 sidebar_label: hidden
@@ -65,6 +65,40 @@ Refer to the specific installation guide for your cloud provider:
 <Jump to="/docs/using-qovery/configuration/clusters/scaleway/">Scaleway</Jump>
 
 </Steps>
+
+### Statuses
+
+In Qovery, you may see two types of statuses:
+
+- **Cluster status** (1): Indicates the actual health and connectivity state of your Kubernetes cluster.
+- **Deployment status** (2): Reflects the outcome of the latest deployment operation (initial install, update, or upgrade). It shows whether your last deployment succeeded, failed, or is still in progress.
+
+<p align="center">
+<img src="/img/configuration/clusters/cluster_statuses.png" alt="Cluster Statuses" />
+</p>
+
+
+These tables list and explain the possible **cluster statuses** and **deployment statuses**.
+
+---
+
+#### Cluster Statuses
+
+| Status       | Meaning                                                                 | What You Should Know                                                                 |
+|--------------|-------------------------------------------------------------------------|----------------------------------------------------------------------------------------|
+| ✅ **Running**     | Everything is working correctly.                                         | Everything is working correctly.                                |
+| 🟡 **Warning**     | Something is not quite right.                                            | The cluster is still functional but may need attention (e.g., resource limits, outdated versions). |
+| 🔴 **Error**       | A serious problem is preventing normal operation.                        | One or more Qovery components are in error. Action is required.                       |
+| ⚪️ **Status unavailable** | The cluster is unreachable, stopped or not responding.                            | The agent is not responding. Check the cluster status in your cloud provider.|
+
+#### Deployment Statuses
+
+| Status                     | Meaning                                                                 | What You Should Know                                                                 |
+|----------------------------|-------------------------------------------------------------------------|----------------------------------------------------------------------------------------|
+| ⏳ **Deployment Queued**    | A deployment has been requested and is waiting to start.               | The operation will begin shortly.                                                     |
+| 🚀 **Deploying**            | The deployment is currently in progress.                               | You can view the logs by clicking on the status link.                                |
+| ❌ **Last Deployment Failed** | The latest deployment did not succeed.                                | Check the logs via the status link to understand the cause.                          |
+| ✅ **Last Deployment Succeeded** | The last deployment was successful.                                | The last update timestamp will be displayed. No action is needed.                    |
 
 ### Performing Actions on your Clusters
 
@@ -394,6 +428,27 @@ Security is our main concern. When a vulnerability is found, here are the action
 ### What is a mirroring registry?
 
 It's the registry used by Qovery to push the image built by the Qovery CI or mirror the images that you want to deploy from your own registry. Check [this documentation][docs.using-qovery.deployment.image-mirroring] for more information
+
+### Why is my status showing as unavailable?
+
+When accessing the Clusters view from the Qovery Console, you may sometimes encounter the status Unavailable for one of your clusters.
+
+<p align="center"> <img src="/img/configuration/clusters/cluster_status_unavailable.png" alt="Cluster Unavailable Status" /> </p>
+This Unavailable status indicates that Qovery was not able to retrieve the current status of your cluster. This situation can occur in the following cases:
+
+The cluster has been manually stopped or is not running.
+
+There is a technical issue preventing Qovery from communicating with your cluster (for example: misconfiguration, or network problems).
+
+If you see this status and are unsure why it appears:
+
+<Alert type="warning">
+We recommend that you double-check the status of your cluster directly in your cloud provider console.
+
+For Self-managed cluster: verify if the `qovery-agent` is correctly running on your cluster.
+
+</Alert>
+If everything seems fine on your side or you need help understanding the issue, feel free to reach out to our support team.
 
 
 [docs.getting-started.basic-concepts#cluster]: /docs/getting-started/basic-concepts/#cluster

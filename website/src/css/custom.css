@@ -2391,8 +2391,14 @@ html[data-theme="dark"] input[type="checkbox"]:checked {
   border: 1px solid #e0e0e0;
 }
 
+.raci-matrix th.header-component,
 .header-component {
   text-align: left;
+  padding-left: 10px !important;
+}
+
+.raci-matrix tbody tr td:first-child {
+  padding-left: 10px !important;
 }
 
 .header-with-icons {

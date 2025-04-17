@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-04-10"
+last_modified_on: "2025-04-17"
 title: "Cluster Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -75,9 +75,18 @@ Below is the list of advanced settings currently available for clusters.
 
 #### dns.coredns.extra_config ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg)
 
-| Type   | Description                                                                                                | Default Value |
-|--------|------------------------------------------------------------------------------------------------------------|---------------|
-| string | Additional configuration to add to CoreDNS ConfigMap. This can be used to customize DNS resolution rules.  | `null`        |
+| Type   | Description                                                                                                    | Default Value |
+|--------|----------------------------------------------------------------------------------------------------------------|---------------|
+| string | Additional configuration to add to CoreDNS. This can be used to customize DNS resolution rules on the cluster. | `null`        |
+
+Example:
+```corefile
+example.com:53 {
+    errors
+    cache 30
+    forward . 8.8.8.8 8.8.4.4
+}
+```
 
 ## Image registry
 

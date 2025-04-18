@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-04-17"
+last_modified_on: "2025-04-18"
 title: Help and Support
 description: "Get support from Qovery team"
 ---
@@ -139,13 +139,19 @@ The following RACI Matrix clarifies who is responsible, accountable, consulted, 
         <td className="role-i">I</td>
       </tr>
       <tr>
-        <td>Application Security (Code & Dependencies)</td>
+        <td>Customer Application Security (Code & Dependencies)</td>
         <td className="role-i">I</td>
         <td className="role-c">C</td>
         <td className="role-ra">R/A</td>
       </tr>
+      <tr>
+        <td>Qovery Application Security (Code & Dependencies)</td>
+        <td className="role-i">I</td>
+        <td className="role-ra">R/A</td>
+        <td className="role-i">I</td>
+      </tr>
       <tr className="layer-header">
-        <td colSpan="4" className="layer-title">Backups</td>
+        <td colSpan="4" className="layer-title">Backups (data)</td>
       </tr>
       <tr>
         <td>Database (Managed)</td>

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-04-16"
+last_modified_on: "2025-04-17"
 title: "What is Qovery?"
 description: "High-level description of the Qovery goals and mission."
 ---
@@ -84,7 +84,10 @@ Qovery provides a clear separation of responsibilities where Qovery manages the 
   <img src="/img/qovery_shared_responsibilities.png" alt="Qovery shared responsibilities" width="700"/>
 </p>
 
+For a detailed breakdown of responsibilities at each layer of the stack, please refer to our [RACI Matrix][docs.useful-resources.help-and-support#shared-responsibility-model] (Responsible, Accountable, Consulted, Informed) which clarifies exactly who is responsible for what in the Qovery ecosystem.
 
+
+[docs.useful-resources.help-and-support#shared-responsibility-model]: /docs/useful-resources/help-and-support/#shared-responsibility-model
 [docs.using-qovery.audit-logs]: /docs/using-qovery/audit-logs/
 [docs.using-qovery.configuration.organization.members-rbac]: /docs/using-qovery/configuration/organization/members-rbac/
 [docs.using-qovery.integration.continuous-integration]: /docs/using-qovery/integration/continuous-integration/

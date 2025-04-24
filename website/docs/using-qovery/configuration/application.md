@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-09-18"
+last_modified_on: "2025-04-24"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -31,10 +31,10 @@ Qovery allows you to create and deploy applications from two different sources: 
 ## Deploying from a Git Repository
 In this configuration, Qovery will pull the code from the chosen repository, build the application and deploy it on your kubernetes cluster.
 
-The list of Git repositories available during the setup is strictly tied to the permissions of your git account (by default Qovery can access all your repositories). If you want to restrict the Qovery access only to a few repositories, user the [GitHub Qovery Application][docs.using-qovery.configuration.organization.git-repository-access] (only for Github).
+The list of Git repositories available during the setup is strictly tied to the permissions of your git account (by default Qovery can access all your repositories). You can also manage the access via dedicated [Git Tokens][docs.using-qovery.configuration.organization.git-repository-access].
 
 ## Deploying from a Container Registry
-In this configuration, Qovery will pull the chosen container registry an image you have pre-built and deploy it on your kubernetes cluster.
+In this configuration, Qovery will pull the chosen image and deploy it on your kubernetes cluster.
 
 To improve security and avoid deploying images from non-authorized registries, we have decided to restrict the list of Container Registry you can use during the setup process. Only an administrator with the right permissions can manage it from the [Container Registry Management page][docs.using-qovery.configuration.organization.container-registry]
 
@@ -67,14 +67,13 @@ If you want to deploy an application from a Git Repository you will have to sele
 - Git Repository: Select the git provider hosting your code (it can be hosted on GitHub, GitLab or Bitbucket). You can add a new git access by clicking on `New git access`.
 - Branch: Select branch that Qovery should use to deploy your application
 - Root Application Path: base folder in which the application resides in your repository
-- Build and deploy: configure your Dockerfile location. For more information, go to [this section][docs.using-qovery.configuration.application#build-and-deploy]
+- Build and deploy: configure your Dockerfile location and parameters. For more information, go to [this section](#build-and-deploy)
 
 If you want to deploy an application from a Container Registry you will have to select:
 - Registry: select the container registry storing the image of your application. You can add a new container registry by clicking on `New registry`.
 - Image name: the name of the image to be deployed with this application (example: postgres)
 - Image tag: the tag of the image to be deployed with this application (example: 1.0). 
-- Image Entrypoint: the entrypoint to be used to launch your application (not mandatory)
-- CMD Arguments: the arguments to be passed to launch your application (not mandatory) separated with a space. Example: `rails -h 0.0.0.0 -p 8080 string "complex arg"`.
+- Deploy: configure your deployment parameters. For more information, go to [this section](#build-and-deploy)
 
 <Alert type="info">
 
@@ -241,11 +240,13 @@ Make sure that the image tag used are unique (do not use "latest", "dev", "maste
 
 #### Build and Deploy
 
-If your job is built via the Qovery CI (Source="Git Repository"), this section allows you to define the Dockerfile location. 
+Within this section, you can configure the following fields:
+- Dockerfile: select the location of the dockerfile. If you don't have one, you can use the `docker init` command to generate one for your application (check the [documentation here](https://docs.docker.com/reference/cli/docker/init/)). After creating a Dockerfile, specify the location of your Dockerfile in `Dockefile path` field. (field available only if the application built by the Qovery CI)
+- Dockerfile stage: if you have a multistage dockerfile, select the target stage to build. Filling this field is equivalent to running the command `docker build --target <selected_stage>`  (field available only if the application built by the Qovery CI)
+- Image Entrypoint: the entrypoint to be used to launch your application (not mandatory)
+- CMD Arguments: the arguments to be passed to launch your application (not mandatory) separated with a space. Example: `rails -h 0.0.0.0 -p 8080 string "complex arg"`.
 
-If you don't have one, you can use the `docker init` command to generate one for your application (check the [documentation here](https://docs.docker.com/reference/cli/docker/init/)). After creating a Dockerfile, specify the location of your Dockerfile in `Dockefile path` field.
-
-#### Auto Deploy
+** Auto Deploy **
 
 See the [Deploying with auto-deploy feature][docs.qovery.deployment.deploying-with-auto-deploy] section.
 
@@ -550,7 +551,6 @@ In the application overview, click on the `3 dots` button and remove the applica
 [docs.qovery.deployment.deploying-with-auto-deploy]: /docs/using-qovery/deployment/deploying-with-auto-deploy/
 [docs.using-qovery.configuration.advanced-settings#network-settings]: /docs/using-qovery/configuration/advanced-settings/#network-settings
 [docs.using-qovery.configuration.advanced-settings]: /docs/using-qovery/configuration/advanced-settings/
-[docs.using-qovery.configuration.application#build-and-deploy]: /docs/using-qovery/configuration/application/#build-and-deploy
 [docs.using-qovery.configuration.application-health-checks]: /docs/using-qovery/configuration/application-health-checks/
 [docs.using-qovery.configuration.clusters#use-custom-domain-and-wildcard-tls-for-the-whole-cluster-beta]: /docs/using-qovery/configuration/clusters/#use-custom-domain-and-wildcard-tls-for-the-whole-cluster-beta
 [docs.using-qovery.configuration.environment-variable#connecting-to-a-database]: /docs/using-qovery/configuration/environment-variable/#connecting-to-a-database

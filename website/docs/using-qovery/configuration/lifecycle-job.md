@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-08-12"
+last_modified_on: "2025-04-24"
 title: "Lifecycle Job"
 description: "Learn how to configure your Lifecycle job on Qovery"
 ---
@@ -61,10 +61,10 @@ Qovery allows you to create and deploy jobs from two different sources: Git Repo
 ## Deploying from a Git Repository
 In this configuration, Qovery will pull the code from the chosen repository, build the application and deploy it on your kubernetes cluster.
 
-The list of Git repositories available during the setup is strictly tied to the permissions of your git account (by default Qovery can access all your repositories). If you want to restrict the Qovery access only to a few repositories, user the [GitHub Qovery Application][docs.using-qovery.configuration.organization.git-repository-access] (only for Github).
+The list of Git repositories available during the setup is strictly tied to the permissions of your git account (by default Qovery can access all your repositories). You can also manage the access via dedicated [Git Tokens][docs.using-qovery.configuration.organization.git-repository-access].
 
 ## Deploying from a Container Registry
-In this configuration, Qovery will pull the chosen container registry an image you have pre-built and deploy it on your kubernetes cluster.
+In this configuration, Qovery will pull the chosen image and deploy it on your kubernetes cluster.
 
 To improve the security and avoid deploying images from non-authorized registries, we have decided to restrict the list of Container Registry you can use during the setup process. Only an administrator with the right permissions can manage it from the [Container Registry Management page][docs.using-qovery.configuration.organization.container-registry]
 
@@ -360,6 +360,8 @@ Two options are available, depending on where you want to store the Dockerfile:
 #### Git repository
 
 Specify the location of your Dockerfile in `Dockefile path` field.
+
+Dockerfile stage: if you have a multistage dockerfile, select the target stage to build. Filling this field is equivalent to running the command `docker build --target <selected_stage>`  (field available only if the application built by the Qovery CI)
 
 #### RAW Dockerfile
 

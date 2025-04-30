@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-04-09"
+last_modified_on: "2025-04-29"
 title: "Service Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -77,9 +77,9 @@ All services have access to advanced settings, you can find where they are avail
 
 #### build.ephemeral_storage_in_gib ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/cronjob.svg) ![](/img/advanced_settings/job.svg)
 
-| Type    | Description                            | Default Value |
-|---------|----------------------------------------|---------------|
-| integer | Storage in GB allocated to your build process | `null`           |
+| Type    | Description                                   | Default Value |
+|---------|-----------------------------------------------|---------------|
+| integer | Storage in GB allocated to your build process | `null`        |
 
 Note: The default value on a GKE cluster is set to 10 GB since by default it force pods without declared ephemeral storage to run with only 1 GB.
 
@@ -99,8 +99,8 @@ Note: The default value on a GKE cluster is set to 10 GB since by default it for
 
 #### deployment.antiaffinity.pod ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg)
 
-| Type   | Description                                                                                                                                                                                                                                                                                                                                                                     | Default Value |
-|--------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| Type   | Description                                                                                                                                                                                                                                                                                                                                                                       | Default Value |
+|--------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | string | Define how you want pods affinity to behave.<br />• `Preferred`: allows, but does not require, pods of a given service are not co-located (or co-hosted) on a single node<br />• `Required`: ensures that the pods of a given service are not co-located (or co-hosted) on a single node (safer in term of availability but can be expensive depending on the number of replicas) | `Preferred`   |
 
 ### Deployment strategy
@@ -182,6 +182,19 @@ It's important to understand `maxSurge` and `maxUnavailable` govern availability
 |---------|-----------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|---------------|
 | boolean | Allows you to disable SSL/TLS redirect. | When using SSL offloading outside of cluster, you can enforce a redirect to HTTPS even when there is no TLS certificate available | `true`        |
 
+#### network.ingress.grpc_read_timeout_seconds ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/helm.svg)
+
+| Type    | Description                                                                                                               | Default Value |
+|---------|---------------------------------------------------------------------------------------------------------------------------|---------------|
+| integer | Sets a timeout for reading data from gRPC connections. If no data is received within this time, the connection is closed. | `60`          |
+
+#### network.ingress.grpc_send_timeout_seconds ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/helm.svg)
+
+| Type    | Description                                                                                                                   | Default Value |
+|---------|-------------------------------------------------------------------------------------------------------------------------------|---------------|
+| integer | Sets a timeout for transmitting data to gRPC backend services. If data isn't sent within this time, the connection is closed. | `60`          |
+
+
 #### network.ingress.keepalive_time_seconds ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/helm.svg)
 
 | Type    | Description                                                                                                                                                                                                     | Use Case                             | Default Value  |
@@ -192,7 +205,7 @@ It's important to understand `maxSurge` and `maxUnavailable` govern availability
 
 | Type    | Description                                                                                                 | Use Case                             | Default Value |
 |---------|-------------------------------------------------------------------------------------------------------------|--------------------------------------|---------------|
-| integer | Sets a timeout (in seconds) during which an idle keepalive connection to an upstream server will stay open. | Useful to tune your gRPC application | `60`          |Available for: Application, Container
+| integer | Sets a timeout (in seconds) during which an idle keepalive connection to an upstream server will stay open. | Useful to tune your gRPC application | `60`          |
 
 #### network.ingress.proxy_body_size_mb ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/helm.svg)
 
@@ -202,8 +215,8 @@ It's important to understand `maxSurge` and `maxUnavailable` govern availability
 
 #### network.ingress.proxy_buffer_size_kb ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/helm.svg)
 
-| Type    | Description                                                                                             | Use Case                                                                        | Default Value |
-|---------|---------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|---------------|
+| Type    | Description                                                                                                 | Use Case                                                                        | Default Value |
+|---------|-------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|---------------|
 | integer | Allows you to set, in kilobytes, a header buffer size used while reading the response header from upstream. | E.g. You are using Auth0 with NextJS, you will need to set a bigger header size | `4`           |
 
 #### network.ingress.proxy_connect_timeout_seconds ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/helm.svg)
@@ -274,14 +287,14 @@ You can pass set credentials by separating them with a comma. For example: `user
 
 #### network.ingress.add_headers ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/helm.svg)
 
-| Type   | Description                                                                                                                                   | Default Value |
-|--------|-----------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| Type   | Description                                                                                                                                                                        | Default Value |
+|--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | string | Allows you to specify additional headers to the outgoing response. The header values are separated by comma (e.g. ` {"X-Frame-Options":"DENY","X-Content-Type-Options":"nosniff"}` | `{}`          |
 
 #### network.ingress.proxy_set_headers ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/helm.svg)
 
-| Type   | Description                                                                                                                                   | Default Value |
-|--------|-----------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| Type   | Description                                                                                                                                                                          | Default Value |
+|--------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | string | Allows you to specify additional headers to the incoming requests. The header values are separated by comma (e.g. ` {"X-Frame-Options":"DENY","X-Content-Type-Options":"nosniff"}`). | `{}`          |
 
 #### network.ingress.nginx_controller_configuration_snippet ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/helm.svg)
@@ -301,6 +314,12 @@ You can pass set credentials by separating them with a comma. For example: `user
 | Type   | Description                                                                                                                                       | Default Value |
 |--------|---------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | string | Allows you to set [limit burst multiplier](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#rate-limiting). | `null`        |
+
+#### network.ingress.nginx_limit_connections ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/helm.svg)
+
+| Type    | Description                                                                                                                                       | Default Value |
+|---------|---------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| integer | Allows you to set [limit connections](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#rate-limiting).      | `null`        |
 
 #### network.ingress.nginx_limit_rpm ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/helm.svg)
 
@@ -338,9 +357,9 @@ You can pass set credentials by separating them with a comma. For example: `user
 
 #### job.delete_ttl_seconds_after_finished ![](/img/advanced_settings/cronjob.svg) ![](/img/advanced_settings/job.svg)
 
-| Type    | Description                                                                                                                                            | Default Value |
-|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
-| integer | By default terminated jobs in a completed or failure state are not deleted. if this parameter is set, Kubernetes will automatically cleanup completed jobs after the ttl | `null` |
+| Type    | Description                                                                                                                                                              | Default Value |
+|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| integer | By default terminated jobs in a completed or failure state are not deleted. if this parameter is set, Kubernetes will automatically cleanup completed jobs after the ttl | `null`        |
 
 
 #### cronjob.concurrency_policy ![](/img/advanced_settings/cronjob.svg)
@@ -351,15 +370,15 @@ You can pass set credentials by separating them with a comma. For example: `user
 
 #### cronjob.failed_job_history_limit ![](/img/advanced_settings/cronjob.svg)
 
-| Type    | Description                                                                                                                                            | Default Value |
-|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| Type    | Description                                                                                                           | Default Value |
+|---------|-----------------------------------------------------------------------------------------------------------------------|--------------|
 | string | Allows you to define the maximum number of failed job executions that should be returned in the job execution history  | `1`          |
 
 #### cronjob.success_job_history_limit ![](/img/advanced_settings/cronjob.svg)
 
-| Type    | Description                                                                                                                                            | Default Value |
-|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
-| string | Allows you to define the maximum number of succeeded job executions that should be returned in the job execution history | `1`          |
+| Type    | Description                                                                                                             | Default Value |
+|---------|------------------------------------------------------------------------------------------  -----------------------------|---------------|
+| string | Allows you to define the maximum number of succeeded job executions that should be returned in the job execution history | `1`           |
 
 ## Resources
 
@@ -372,7 +391,7 @@ Using overcommit on pod resources can lead to instability on your cluster and we
 </Alert>
 
 | Type    | Description                                              | Use Case                                                                                                                                                                                                                                  | Default Value                |
-|---------|----------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------|
+|---------|----------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------|
 | integer | Define the CPU overcommit (pod cpu limit) of the service.| A service require more CPU at startup than during the running phase. You can reduce the configured CPU for the service and just increase the resources.override.limit.cpu_in_milli to reduce the resources used by the service at runtime | `null` (i.e. request = limit) |
 
 This settings can be changed only if the advanced settings [allow_service_cpu_overcommit][docs.using-qovery.configuration.cluster-advanced-settings#service] is set to `true`.
@@ -385,7 +404,7 @@ Using overcommit on pod resources can lead to instability on your cluster and we
 
 </Alert>
 
-| Type    | Description                                                    | Use Case                                                                                                                                                                                                                                       | Default Value                |
+| Type    | Description                                                    | Use Case                                                                                                                                                                                                                                      | Default Value                |
 |---------|----------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------|
 | integer | Define the memory overcommit (pod memory limit) of the service.| A service require more memory at startup than during the running phase. You can reduce the configured memory for the service and just increase the resources.override.limit.ram_in_mib to reduce the resources used by the service at runtime | `null` (i.e. request = limit) |
 
@@ -404,6 +423,12 @@ This settings can be changed only if the advanced settings [allow_service_ram_ov
 | Type    | Description                                                                           | Default Value |
 |---------|---------------------------------------------------------------------------------------|---------------|
 | boolean | Automount Kubernetes service account token to have access to Kubernetes API from pods | `false`       |
+
+#### security.read_only_root_filesystem ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/cronjob.svg) ![](/img/advanced_settings/job.svg)
+
+| Type    | Description                                                                                                                                                                                                          | Default Value |
+|---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| boolean | Mounts the container's root filesystem as read-only, preventing any write operations to the container filesystem for enhanced security. Applications requiring write access should use volumes or temporary storage. | `false`       |
 
 
 [docs.using-qovery.configuration.cluster-advanced-settings#service]: /docs/using-qovery/configuration/cluster-advanced-settings/#service

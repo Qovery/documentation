@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-04-29"
+last_modified_on: "2025-04-30"
 title: "Service Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -184,15 +184,15 @@ It's important to understand `maxSurge` and `maxUnavailable` govern availability
 
 #### network.ingress.grpc_read_timeout_seconds ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/helm.svg)
 
-| Type    | Description                                                                                                               | Default Value |
-|---------|---------------------------------------------------------------------------------------------------------------------------|---------------|
-| integer | Sets a timeout for reading data from gRPC connections. If no data is received within this time, the connection is closed. | `60`          |
+| Type    | Description                                                                                                               | Use Case                                                                                             | Default Value |
+|---------|---------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|---------------|
+| integer | Sets a timeout for reading data from gRPC connections. If no data is received within this time, the connection is closed. | For streaming gRPC services with infrequent data transmission. Increase for long-running operations. | `60`          |
 
 #### network.ingress.grpc_send_timeout_seconds ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/helm.svg)
 
-| Type    | Description                                                                                                                   | Default Value |
-|---------|-------------------------------------------------------------------------------------------------------------------------------|---------------|
-| integer | Sets a timeout for transmitting data to gRPC backend services. If data isn't sent within this time, the connection is closed. | `60`          |
+| Type    | Description                                                                                                                   | Use Case                                                                     | Default Value |
+|---------|-------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------|---------------|
+| integer | Sets a timeout for transmitting data to gRPC backend services. If data isn't sent within this time, the connection is closed. | Important for bidirectional streaming with large payloads or slower clients. | `60`          |
 
 
 #### network.ingress.keepalive_time_seconds ![](/img/advanced_settings/application.svg) ![](/img/advanced_settings/container.svg) ![](/img/advanced_settings/helm.svg)

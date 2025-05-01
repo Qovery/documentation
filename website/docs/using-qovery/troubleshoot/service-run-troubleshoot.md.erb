@@ -6,7 +6,14 @@ hide_pagination: true
 
 Within this section you will find the common errors you might encounter when running your services with Qovery
 
+## Error: the container was immediately terminated by the operating system via SIGKILL signal (137).
 
+Are you wondering why your container keeps restarting?
+This is a common issue when your container in a pod is consuming excessive memory. When this happens, the operating system terminates the container to free up memory resources.
+
+To resolve this issue, you have two options:
+* **Increase your container's memory allocation**: You can do this through the Qovery console by navigating to your application, selecting the "Settings" tab, and adjusting the memory limit for your container.
+* **Review recent application changes**: If you've recently modified your application, updated libraries or framework, examine your code for potential memory leaks or changes in memory usage patterns. Optimizing your code to reduce memory consumption could resolve the restart issue.
 
 ## My app is crashing, how do I connect to investigate?
 

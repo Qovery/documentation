@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-04-30"
+last_modified_on: "2025-05-13"
 title: Cluster Troubleshoot
 description: "Everything you need to troubleshoot your cluster with Qovery"
 hide_pagination: true
@@ -158,7 +158,7 @@ If the issue persists, it may be due to **Service Control Policies (SCPs)** in y
 1. Go to [AWS Policy Simulator](https://policysim.aws.amazon.com/home/index.jsp).  
 2. From the left panel, select the user or role used to provide Qovery access to your cloud account.  
 3. Choose **SQS** as the service and select all available actions.  
-4. Expand every element in the results table, replace the queue value (`*`) with: `arn:aws:sqs:::qovery*`
+4. Open the first result, replace the queue value (`*`) with: `arn:aws:sqs:::qovery*`
 
 Then, run the simulation.  
 

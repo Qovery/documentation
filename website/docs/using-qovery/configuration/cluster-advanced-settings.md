@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-04-29"
+last_modified_on: "2025-03-13"
 title: "Cluster Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -71,22 +71,6 @@ Below is the list of advanced settings currently available for clusters.
 |---------|--------------------------------------------------------------------------------------------------------------|---------------|
 | float   | Set VPC logs flow sampling percentage. Value should be within [`0.0` (no sampling), `1.0` (all logs)] range. | `0.0`       |
 
-## DNS
-
-#### dns.coredns.extra_config ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg)
-
-| Type   | Description                                                                                                    | Default Value |
-|--------|----------------------------------------------------------------------------------------------------------------|---------------|
-| string | Additional configuration to add to CoreDNS. This can be used to customize DNS resolution rules on the cluster. | `null`        |
-
-Example:
-```corefile
-example.com:53 {
-    errors
-    cache 30
-    forward . 8.8.8.8 8.8.4.4
-}
-```
 
 ## Image registry
 
@@ -216,22 +200,16 @@ Requirements for customers using custom VPCs (Qovery Managed VPC does not requir
 |---------|------------------------------------------------------------------------------------------------------|-----------------|
 | bool    | Enables [ngx_http_realip_module](https://nginx.org/en/docs/http/ngx_http_realip_module.html) module. | `false`         |
 
-#### nginx.controller.enable_compression ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
-
-| Type    | Description                                                                                                                                                   | Default Value  |
-|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------|
-| bool    | Enables compression (Brotli) for HTTP responses. <br />When disabled, content will not be compressed, which may increase bandwidth usage but reduce CPU load. | `true`         |
-
 #### nginx.controller.use_forwarded_headers ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
 
-| Type    | Description                                                                                                                                                                         | Default Value   |
-|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------|
+| Type    | Description                                                                                          | Default Value   |
+|---------|------------------------------------------------------------------------------------------------------|-----------------|
 | bool    | Passes incoming `X-Forwarded-For` header upstream, see [documentation](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#use-forwarded-headers). | `false`         |
 
 #### nginx.controller.compute_full_forwarded_for ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
 
-| Type    | Description                                                                                                                                                                                                            | Default Value   |
-|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------|
+| Type    | Description                                                                                          | Default Value   |
+|---------|------------------------------------------------------------------------------------------------------|-----------------|
 | bool    | Append the remote address to the X-Forwarded-For header instead of replacing it, see [documentation](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#compute_full_forwarded_for). | `false`         |
 
 #### nginx.controller.log_format_upstream ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
@@ -292,8 +270,8 @@ Requirements for customers using custom VPCs (Qovery Managed VPC does not requir
 
 #### database.postgresql.deny_any_access ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-container.svg) ![](/img/advanced_settings/database-managed.svg)
 
-| Type    | Description                                                                                                                                                                                                                                                                                                                               | Default Value |
-|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| Type    | Description                                                                                                                                                                                                        | Default Value |
+|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | boolean | Deny any access to all PostgreSQL databases. When false, configure the CIDR range you want to allow within the associated `allowed_cidrs` parameter (default is "any IP").<br />⚠️ Any access to managed databases will instantly be removed<br />⚠️ Any access to container databases will be removed only after a database redeployment| `false`       |
 
 #### database.postgresql.allowed_cidrs ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-managed.svg)
@@ -304,20 +282,20 @@ Requirements for customers using custom VPCs (Qovery Managed VPC does not requir
 
 #### database.mysql.deny_any_access ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-container.svg) ![](/img/advanced_settings/database-managed.svg)
 
-| Type    | Description                                                                                                                                                                                                                                                                                                                            | Default Value |
-|---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| Type    | Description                                                                                                                                                                                                    | Default Value |
+|---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | boolean | Deny any access to all MySQL databases. When false, configure the CIDR range you want to allow within the associated `allowed_cidrs` parameter (default is "any IP"). <br />⚠️ Any access to managed databases will instantly be removed<br />⚠️ Any access to container databases will be removed only after a database redeployment | `false`       |
 
 #### database.mysql.allowed_cidrs ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-managed.svg)
 
-| Type    | Description                                                                                 | Default Value   |
-|---------|---------------------------------------------------------------------------------------------|-----------------|
+| Type    | Description                                                                                    | Default Value   |
+|---------|------------------------------------------------------------------------------------------------|-----------------|
 | string | List of allowed CIDRS. Valid only when [`database.mysql.deny_any_access`](#databasemysqldeny_any_access) is set to false      | `["0.0.0.0/0"]` |
 
 #### database.mongodb.deny_any_access ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-container.svg) ![](/img/advanced_settings/database-managed.svg)
 
-| Type    | Description                                                                                                                                                                                                                                                                                                                              | Default Value |
-|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| Type    | Description                                                                                                                                                                                                     | Default Value |
+|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | boolean | Deny any access to all MongoDB databases. When false, configure the CIDR range you want to allow within the associated `allowed_cidrs` parameter (default is "any IP"). <br />⚠️ Any access to managed databases will instantly be removed<br />⚠️ Any access to container databases will be removed only after a database redeployment | `false`       |
 
 #### database.mongodb.allowed_cidrs ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-managed.svg)
@@ -328,14 +306,14 @@ Requirements for customers using custom VPCs (Qovery Managed VPC does not requir
 
 #### database.redis.deny_any_access ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-container.svg) ![](/img/advanced_settings/database-managed.svg)
 
-| Type    | Description                                                                                                                                                                                                                                                                                                                           | Default Value |
-|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| Type    | Description                                                                                            | Default Value |
+|---------|--------------------------------------------------------------------------------------------------------|---------------|
 | boolean | Deny any access to all Redis databases. When false, configure the CIDR range you want to allow within the associated `allowed_cidrs` parameter (default is "anyone").<br />⚠️ Any access to managed databases will instantly be removed<br />⚠️ Any access to container databases will be removed only after a database redeployment | `false`       |
 
 #### database.redis.allowed_cidrs ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/database-managed.svg)
 
-| Type    | Description                                                                                 | Default Value   |
-|---------|---------------------------------------------------------------------------------------------|-----------------|
+| Type    | Description                                                                                    | Default Value   |
+|---------|------------------------------------------------------------------------------------------------|-----------------|
 | string | List of allowed CIDRS. Valid only when [`database.redis.deny_any_access`](#databaseredisdeny_any_access) is set to false      | `["0.0.0.0/0"]` |
 
 ## Service
@@ -372,27 +350,27 @@ Once enabled, you can update the advanced setting [resources.override.limit.ram_
 
 #### aws.iam.enable_admin_group_sync ![](/img/advanced_settings/aws.svg)
 
-| Type    | Description                                                                                                                                                                                             | Default Value |
-|---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
-| boolean | Enable IAM admin group sync [IAM permissions setup][docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.quickstart#attach-aws-credentials]. <br />⚠️ [`aws.iam.admin_group`](#awsiamadmin_group) should be set.| `true`        |
+| Type    | Description                                                                 | Default Value |
+|---------|-----------------------------------------------------------------------------|---------------|
+| boolean  | Enable IAM admin group sync [IAM permissions setup][docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.quickstart#attach-aws-credentials]. <br />⚠️ [`aws.iam.admin_group`](#awsiamadmin_group) should be set. | `true`        |
 
 #### aws.iam.admin_group ![](/img/advanced_settings/aws.svg)
 
-| Type    | Description                                                                                                                                                                                                                                                                                                                                                                        | Default Value |
-|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
-| string  | Allows you to specify the IAM group name associated with the Qovery user in the AWS console during the [IAM permissions setup][docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.quickstart#attach-aws-credentials] to be able to connect to the Kubernetes cluster. Its value can be changed after the cluster installation via a re-deploy without any downtime. | `Admins`      |
+| Type    | Description                                                                 | Default Value |
+|---------|-----------------------------------------------------------------------------|---------------|
+| string  | Allows you to specify the IAM group name associated with the Qovery user in the AWS console during the [IAM permissions setup][docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.quickstart#attach-aws-credentials] to be able to connect to the Kubernetes cluster. Its value can be changed after the cluster installation via a re-deploy without any downtime. | `Admins`        |
 
 #### aws.iam.enable_sso ![](/img/advanced_settings/aws.svg)
 
-| Type    | Description                                                                                                                                                                                                                   | Default Value |
-|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
-| boolean  | Enable SSO sync allowing IAM users to connect to cluster using SSO. [Setup SSO support for your cluster][guides.tutorial.how-to-activate-sso-to-connect-to-your-eks-cluster]. <br />⚠️ [`aws.iam.sso_role_arn`](#awsiamsso_role_arn) should be set. | `false`       |
+| Type    | Description                                                                 | Default Value |
+|---------|-----------------------------------------------------------------------------|---------------|
+| boolean  | Deprecated - Enable SSO sync allowing IAM users to connect to cluster using SSO. <br />⚠️ [`aws.iam.sso_role_arn`](#awsiamsso_role_arn) should be set. | `false`        |
 
 #### aws.iam.sso_role_arn ![](/img/advanced_settings/aws.svg)
 
-| Type    | Description                                                                                                                                                                              | Default Value |
-|---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
-| string  | Allows you to specify the SSO role ARN to be used to connect to your cluster. [Setup SSO support for your cluster][guides.tutorial.how-to-activate-sso-to-connect-to-your-eks-cluster]   | `""`          |
+| Type    | Description                                                                 | Default Value |
+|---------|-----------------------------------------------------------------------------|---------------|
+| string  | Deprecated - Allows you to specify the SSO role ARN to be used to connect to your cluster.   | `""`        |
 
 
 ## Object storage
@@ -419,17 +397,17 @@ It won't be possible to go back once this feature is activated.
 
 </Alert>
 
-| Type    | Description                                                                                                                                                                               | Default Value |
-|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
+| Type    | Description                                                                                                                                                                                               | Default Value |
+|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | string  | Allows you to activate KMS encryption of your Kubernetes secrets. Specify the [key ARN](https://docs.aws.amazon.com/kms/latest/developerguide/find-cmk-id-arn.html) of your AWS KMS key.  |               |
 
 
 #### qovery.static_ip_mode ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/gcp.svg)
 
 
-| Type    | Description                                                                                                                                                                 | Default Value |
-|---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
-| boolean | Enable the static ip mode for the qovery control plane and automatically 1) activate the private endpoint on the Kubernetes API 2) add the Qovery IP to the CIDR whitelist. | `false`       |
+| Type    | Description                                                                 | Default Value |
+|---------|-----------------------------------------------------------------------------|---------------|
+| boolean | Enable the static ip mode for the qovery control plane and automatically 1) activate the private endpoint on the Kubernetes API 2) add the Qovery IP to the CIDR whitelist. | `false`        |
 
 <Alert type="warning">
 
@@ -457,9 +435,9 @@ Why? Dockerhub has a [rate limit system by IP](https://docs.docker.com/docker-hu
 
 </Alert>
 
-| Type    | Description                                                                                                                                 | Default Value |
-|---------|---------------------------------------------------------------------------------------------------------------------------------------------|---------------|
-| string | It contains any additional CIDR that should be whitelisted to access the Kubernetes API (Example:`["100.100.100.0/32","200.200.200.0/24"]` ) | `[]`          |
+| Type    | Description                                                                 | Default Value |
+|---------|-----------------------------------------------------------------------------|---------------|
+| string | It contains any additional CIDR that should be whitelisted to access the Kubernetes API (Example:`["100.100.100.0/32","200.200.200.0/24"]` ) | `[]`        |
 
 
 
@@ -474,4 +452,3 @@ Why? Dockerhub has a [rate limit system by IP](https://docs.docker.com/docker-hu
 [docs.using-qovery.configuration.advanced-settings#resources]: /docs/using-qovery/configuration/advanced-settings/#resources
 [docs.using-qovery.configuration.organization.container-registry]: /docs/using-qovery/configuration/organization/container-registry/
 [docs.using-qovery.deployment.image-mirroring]: /docs/using-qovery/deployment/image-mirroring/
-[guides.tutorial.how-to-activate-sso-to-connect-to-your-eks-cluster]: /guides/tutorial/how-to-activate-sso-to-connect-to-your-eks-cluster/

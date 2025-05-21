@@ -2510,3 +2510,60 @@ html[data-theme="dark"] .role-i {
   background-color: #212121;
   color: #bdbdbd;
 }
+.vpc-tooltip-container {
+  position: relative;
+  cursor: help;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: var(--ifm-color-primary);
+}
+
+.vpc-tooltip {
+  position: absolute;
+  visibility: hidden;
+  width: 350px;
+  background-color: var(--ifm-background-color);
+  color: var(--ifm-font-color-base);
+  text-align: left;
+  border-radius: 6px;
+  padding: 12px 16px;
+  z-index: 100;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--ifm-color-emphasis-300);
+  bottom: calc(100% + 5px);
+  left: -20px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  text-decoration: none;
+  font-weight: normal;
+}
+
+.vpc-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 30px;
+  border-width: 8px;
+  border-style: solid;
+  border-color: var(--ifm-background-color) transparent transparent transparent;
+}
+
+.vpc-tooltip p {
+  margin-bottom: 8px;
+  font-size: 0.9em;
+  line-height: 1.4;
+}
+
+.vpc-tooltip p:last-child {
+  margin-bottom: 0;
+}
+
+.vpc-tooltip-container:hover .vpc-tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+html[data-theme="dark"] .vpc-tooltip {
+  border-color: #444;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}

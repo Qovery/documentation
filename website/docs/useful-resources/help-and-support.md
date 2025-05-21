@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-04-18"
+last_modified_on: "2025-05-21"
 title: Help and Support
 description: "Get support from Qovery team"
 ---
@@ -50,10 +50,10 @@ The following RACI Matrix clarifies who is responsible, accountable, consulted, 
     </colgroup>
     <thead>
       <tr>
-        <th className="header-component">Components</th>
-        <th className="header-component">Cloud Provider</th>
-        <th className="header-component">Qovery</th>
-        <th className="header-component">Customer</th>
+        <th style={{textAlign: "left", paddingLeft: "12px"}}>Components</th>
+        <th style={{textAlign: "center"}}>Cloud Provider</th>
+        <th style={{textAlign: "center"}}>Qovery</th>
+        <th style={{textAlign: "center"}}>Customer</th>
       </tr>
     </thead>
     <tbody>
@@ -85,6 +85,17 @@ The following RACI Matrix clarifies who is responsible, accountable, consulted, 
         <td>VPC & Network (Use existing VPC)</td>
         <td className="role-i">I</td>
         <td className="role-i">I</td>
+        <td className="role-ra">R/A</td>
+      </tr>
+      <tr>
+        <td className="vpc-tooltip-container">VPC Peering (from Qovery to Customer VPC) <span className="info-icon">ⓘ</span>
+          <div className="vpc-tooltip">
+            <p>Even though Qovery provides VPC peering capabilities to allow routing to your existing VPC, you remain fully responsible for the configuration, security, and maintenance of your own VPC.</p>
+            <p>Qovery does not manage or oversee your existing cloud network infrastructure.</p>
+          </div>
+        </td>
+        <td className="role-i">I</td>
+        <td className="role-c">C</td>
         <td className="role-ra">R/A</td>
       </tr>
       <tr className="layer-header">

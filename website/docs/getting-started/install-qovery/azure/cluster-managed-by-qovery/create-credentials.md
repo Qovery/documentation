@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-06-05"
+last_modified_on: "2025-06-09"
 title: "Create Credentials"
 description: "Generate your Azure credentials to connect your Azure account to Qovery"
 ---
@@ -34,25 +34,23 @@ This guide will help you to generate your Azure credentials to connect your Azur
 Open the embedded Azure shell
 
 <p align="center">
-  <img src="/img/gcp-credentials/gcp_shell_1.png" />
+  <img src="/img/azure-credentials/azure_shell_1.png" />
 </p>
 
 </li>
 
 <li>
 
-Run the following command in the Google Shell to create the service account and generate the json key:
+Run the following command in the Azure Shell to dynamically create a service principal in your tenant using the Qovery app registration, allowing secure, credential-free installation of your Azure cluster:
 
 ```bash
-curl https://hub.qovery.com/files/create_credentials_gcp.sh | \
-bash -s -- $GOOGLE_CLOUD_PROJECT qovery_role qovery-service-account
+curl https://hub.qovery.com/files/create_credentials_azure.sh | \
+bash -s -- $ACC_USER_SUBSCRIPTION
 ```
 
 <Alert type="info">
 
-You can modify:
-- the service account name by replacing `qovery-service-account` by the name of your choice
-- the role name by replacing `qovery_role` by the role name of your choice
+By default, the command will use the currently active subscription. If you have multiple subscriptions, you must explicitly pass the desired subscription as a parameter.
 
 </Alert>
 
@@ -60,32 +58,13 @@ You can modify:
 
 <li>
 
-Once the script is finished, you will see the following message:
-
-```
-created key [xxxx] of type [json] as [key.json] for [qovery-service-account@<your-project>.iam.gserviceaccount.com]
-Operations completed. You can now download your json key to upload in Qovery
-```
-
-So you can download it by clicking on the `Download` button.
-
-<p align="center">
-  <img src="/img/gcp-credentials/gcp_shell_5.png" />
-</p>
-
-And specify the name of the file `/your/home/key.json` and click on `Download`.
-
-<p align="center">
-  <img src="/img/gcp-credentials/gcp_shell_6.png" />
-</p>
+At the end of the command execution, the script will return the Subscription ID and Tenant ID, which you will need to provide in the credentials creation modal in the Qovery console.
 
 That's it!
 
 </li>
 </ol>
 </Steps>
-
-Well done!! You now have your GCP `JSON credentials key`; It is time to connect Qovery to your GCP account.
 
 ### Install a new cluster on Qovery
 

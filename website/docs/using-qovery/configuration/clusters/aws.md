@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-03-29"
+last_modified_on: "2025-06-09"
 title: "AWS EKS"
 description: "Learn how to configure your AWS Kubernetes clusters on Qovery"
 ---
@@ -249,7 +249,7 @@ Please note that a minimum of 3 worker nodes is required to deploy your [EKS clu
 
 </Alert>
 
-#### Image registry
+#### Mirroring registry
 
 In this tab, you will see that a container registry already exist (called `registry-{$UIID}`). 
 This is your cloud provider container registry used by Qovery to manage the deployment of your applications by mirroring the docker images.

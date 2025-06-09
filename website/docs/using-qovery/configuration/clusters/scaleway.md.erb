@@ -39,8 +39,8 @@ To confirm, click `Next`.
 In the `Set Resources` window, select:
 
 * `Instance type`: select the type of [worker nodes][docs.using-qovery.configuration.clusters#what-is-a-cluster] you want to deploy to your cluster.
-* `Disk size`: select the size of the disks to be attached to your cluster instances (to locally store container images etc..).
-* `Node auto-scaling`: define the minimum and the maximum number of worker nodes that your cluster can run. The lowest number is the number of worker nodes running on your infrastructure at any time, while the highest number is the maximum number of worker nodes that can automatically be deployed as traffic grows. Please note that a minimum of 3 worker nodes is required to deploy your EKS cluster.
+* `Node auto-scaling`: define the minimum and the maximum number of worker nodes that your cluster can run. The lowest number is the number of worker nodes running on your infrastructure at any time, while the highest number is the maximum number of worker nodes that can automatically be deployed as traffic grows. Please note that a minimum of 3 worker nodes is required to deploy your Kapsule cluster.
+* `Control plane type`:  select the type of control plane managing your cluster. [Click here to know more](https://www.scaleway.com/en/docs/kubernetes/reference-content/kubernetes-control-plane-offers/)
 
 <br/>
 
@@ -126,7 +126,7 @@ If you need to change the credentials:
 
 Once created and associated, you need to [updating your cluster][docs.using-qovery.configuration.clusters#updating-a-cluster] to apply the change.
 
-#### Image registry
+#### Mirroring registry
 
 In this tab, you will see that a container registry already exist (called `registry-{$UIID}`). 
 This is your cloud provider container registry used by Qovery to manage the deployment of your applications by mirroring the docker images.

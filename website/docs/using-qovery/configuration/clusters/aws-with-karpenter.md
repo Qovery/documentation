@@ -352,7 +352,7 @@ For more information on the instance types provided by each cloud provider and t
 - **Consolidation schedule** *(Stable nodepool only)*: Optimizes resource usage by consolidating workloads onto fewer nodes. This feature is not available for the default nodepool, as consolidation can happen at any time. We recommend enabling this option; otherwise, nodes will never be consolidated, leading to unnecessary infrastructure costs.
 - **Node pool limits**: Configure CPU and memory limits to ensure nodes stay within defined resource constraints, preventing excessive costs.
 
-#### Image registry
+#### Mirroring registry
 
 In this tab, you will see that a container registry already exist (called `registry-{$UIID}`).
 This is your cloud provider container registry used by Qovery to manage the deployment of your applications by mirroring the docker images.

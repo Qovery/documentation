@@ -197,6 +197,7 @@ module.exports = {
                 "using-qovery/configuration/clusters/aws",
                 "using-qovery/configuration/clusters/aws-with-karpenter",
                 "using-qovery/configuration/clusters/gcp",
+                "using-qovery/configuration/clusters/azure",
                 "using-qovery/configuration/clusters/scaleway",
               ],
             },

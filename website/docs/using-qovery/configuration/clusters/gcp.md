@@ -179,7 +179,7 @@ If you need to change the credentials:
 
 Once created and associated, you need to [updating your cluster][docs.using-qovery.configuration.clusters#updating-a-cluster] to apply the change.
 
-#### Image registry
+#### Mirroring registry
 
 In this tab, you will see that a container registry already exist (called `registry-{$UIID}`). 
 This is your cloud provider container registry used by Qovery to manage the deployment of your applications by mirroring the docker images.

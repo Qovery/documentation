@@ -61,6 +61,7 @@ Refer to the specific installation guide for your cloud provider:
 
 <Jump to="/docs/using-qovery/configuration/clusters/aws-with-karpenter/">AWS with karpenter</Jump>
 <Jump to="/docs/using-qovery/configuration/clusters/aws/">AWS</Jump>
+<Jump to="/docs/using-qovery/configuration/clusters/azure/">Azure</Jump>
 <Jump to="/docs/using-qovery/configuration/clusters/gcp/">GCP</Jump>
 <Jump to="/docs/using-qovery/configuration/clusters/scaleway/">Scaleway</Jump>
 

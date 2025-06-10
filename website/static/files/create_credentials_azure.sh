@@ -17,8 +17,8 @@ set -euo pipefail
 # CONFIGURATION
 # =============================================================================
 
-# Application ID for Qovery (constant - do not change)
-readonly APP_ID="3cc4390d-5bc8-4e46-8e01-3144fb6c5b15"
+# Application ID for Qovery (provided via --qovery-app-id flag)
+app_id=""
 
 # Default configuration
 readonly DEFAULT_SERVICE_PRINCIPAL_NAME="qovery-sp"
@@ -162,6 +162,18 @@ validate_subscription_id() {
     
     if [[ -n "$subscription_id" ]] && ! validate_uuid "$subscription_id"; then
         error_exit "Invalid subscription ID format. Expected UUID format (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)"
+    fi
+}
+
+validate_app_id() {
+    local app_id="$1"
+    
+    if [[ -z "$app_id" ]]; then
+        error_exit "Qovery application ID is required. Use --qovery-app-id flag to provide it. Copy the application ID from the Qovery console."
+    fi
+    
+    if ! validate_uuid "$app_id"; then
+        error_exit "Invalid application ID format. Expected UUID format (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)"
     fi
 }
 
@@ -687,10 +699,11 @@ display_confirmation() {
 Qovery Azure Credentials Setup v$SCRIPT_VERSION
 ============================================================
 
-This will give Qovery access to the following subscription:
+Current Azure Context:
+  User: $current_user
+  Tenant ID: $current_tenant_id
 
 Target Configuration:
-  Tenant ID: $current_tenant_id
   Subscription ID: $target_subscription_id
   Service Principal: $service_principal_name
   Custom Role: $role_name
@@ -779,7 +792,7 @@ main_workflow() {
     
     # Create/get service principal
     local sp_object_id
-    sp_object_id=$(create_or_get_service_principal "$APP_ID")
+    sp_object_id=$(create_or_get_service_principal "$app_id")
     
     # Assign role to service principal
     assign_role_to_service_principal "$sp_object_id" "$role_name" "$subscription_id"
@@ -831,25 +844,27 @@ EOF
 
 usage() {
     cat <<EOF
-Usage: $0 [OPTIONS] [subscription_id]
+Usage: $0 --qovery-app-id <app_id> [OPTIONS]
 
 Qovery Azure Credentials Setup Script v$SCRIPT_VERSION
 
 This script creates a service principal for Qovery.
 
+REQUIRED OPTIONS:
+    --qovery-app-id <id>    Qovery application ID (UUID format)
+
 OPTIONS:
     -h, --help              Show this help message
     -v, --verbose           Enable verbose output
     -q, --quiet             Suppress non-error output
+    --subscription-id <id>  Azure subscription ID (optional, defaults to current)
     --skip-confirmation     Skip interactive confirmation
     --dry-run              Show planned actions without executing
 
-ARGUMENTS:
-    subscription_id         Azure subscription ID (optional, defaults to current)
-
 EXAMPLES:
-    $0                                              # Use defaults
-    $0 12345678-1234-1234-1234-123456789012       # Custom subscription
+    $0 --qovery-app-id 12345678-1234-1234-1234-123456789012
+    $0 --qovery-app-id 12345678-1234-1234-1234-123456789012 --subscription-id 87654321-4321-4321-4321-210987654321
+    $0 --qovery-app-id 12345678-1234-1234-1234-123456789012 --verbose --dry-run
 
 ENVIRONMENT VARIABLES:
     LOG_LEVEL              Logging level (DEBUG, INFO, WARN, ERROR)
@@ -875,6 +890,22 @@ parse_arguments() {
                 QUIET=true
                 shift
                 ;;
+            --qovery-app-id)
+                if [[ -n "$2" && "$2" != -* ]]; then
+                    app_id="$2"
+                    shift 2
+                else
+                    error_exit "Option --qovery-app-id requires a value"
+                fi
+                ;;
+            --subscription-id)
+                if [[ -n "$2" && "$2" != -* ]]; then
+                    subscription_id="$2"
+                    shift 2
+                else
+                    error_exit "Option --subscription-id requires a value"
+                fi
+                ;;
             --skip-confirmation)
                 SKIP_CONFIRMATION=true
                 shift
@@ -887,25 +918,19 @@ parse_arguments() {
                 error_exit "Unknown option: $1. Use --help for usage information."
                 ;;
             *)
-                break
+                error_exit "Unexpected argument: $1. Use --help for usage information."
                 ;;
         esac
     done
     
-    # Parse positional arguments
-    if [[ "$#" -gt 1 ]]; then
-        echo "Usage: $0 [subscription_id]" >&2
-        echo "Use --help for detailed usage information." >&2
-        exit 1
-    fi
+    # Validate required inputs
+    validate_app_id "$app_id"
+    validate_subscription_id "$subscription_id"
     
-    if [[ "$#" -eq 1 ]]; then
-        subscription_id="$1"
+    log "DEBUG" "Using application ID: $app_id"
+    if [[ -n "$subscription_id" ]]; then
         log "DEBUG" "Using subscription ID: $subscription_id"
     fi
-    
-    # Validate inputs
-    validate_subscription_id "$subscription_id"
 }
 
 # =============================================================================

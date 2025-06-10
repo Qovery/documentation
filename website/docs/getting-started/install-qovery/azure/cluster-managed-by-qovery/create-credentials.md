@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-06-09"
+last_modified_on: "2025-06-10"
 title: "Create Credentials"
 description: "Generate your Azure credentials to connect your Azure account to Qovery"
 ---
@@ -47,11 +47,11 @@ Make sure the Azure Shell is set to Bash, not PowerShell.
 
 <li>
 
-Run the following command in the Azure Shell to dynamically create a service principal in your tenant using the Qovery app registration, allowing secure, credential-free installation of your Azure cluster:
+Fetch the command from Qovery console and copy it in the Azure Shell to dynamically create a service principal in your tenant using the Qovery app registration, allowing secure, credential-free installation of your Azure cluster:
 
 ```bash
 curl https://hub.qovery.com/files/create_credentials_azure.sh | \
-bash -s -- $ACC_USER_SUBSCRIPTION
+bash -s -- --qovery-app-id <from-qovery-console> --subscription-id $ACC_USER_SUBSCRIPTION
 ```
 
 <Alert type="info">

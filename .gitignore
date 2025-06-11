@@ -24,3 +24,5 @@ scripts/vendor
 .idea
 *.iml
 *.orig
+
+.cursor/

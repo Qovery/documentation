@@ -21,7 +21,6 @@ set -euo pipefail
 app_id=""
 
 # Default configuration
-readonly DEFAULT_SERVICE_PRINCIPAL_NAME="qovery-sp"
 readonly DEFAULT_ROLE_NAME="qovery-sp-role"
 readonly SCRIPT_VERSION="1.0.0"
 
@@ -46,7 +45,6 @@ QUIET=false
 
 # Working variables
 subscription_id=""
-service_principal_name="$DEFAULT_SERVICE_PRINCIPAL_NAME"
 
 # Temporary files
 TEMP_ROLE_FILE=""
@@ -177,21 +175,7 @@ validate_app_id() {
     fi
 }
 
-validate_service_principal_name() {
-    local name="$1"
-    
-    if [[ -z "$name" ]]; then
-        error_exit "Service principal name cannot be empty"
-    fi
-    
-    if [[ ${#name} -gt 120 ]]; then
-        error_exit "Service principal name too long (maximum 120 characters)"
-    fi
-    
-    if [[ ! $name =~ ^[a-zA-Z0-9._-]+$ ]]; then
-        error_exit "Service principal name contains invalid characters. Use only alphanumeric characters, dots, hyphens, and underscores"
-    fi
-}
+
 
 validate_az_cli_version() {
     local current_version="$1"
@@ -683,8 +667,7 @@ set_subscription_context() {
 display_confirmation() {
     local current_account="$1"
     local target_subscription_id="$2"
-    local service_principal_name="$3"
-    local role_name="$4"
+    local role_name="$3"
     
     # Parse current account info
     local current_subscription_id current_tenant_id current_subscription_name current_user
@@ -705,7 +688,7 @@ Current Azure Context:
 
 Target Configuration:
   Subscription ID: $target_subscription_id
-  Service Principal: $service_principal_name
+  Service Principal: Multi-tenant (Qovery)
   Custom Role: $role_name
 
 EOF
@@ -720,8 +703,7 @@ EOF
 
 perform_dry_run() {
     local subscription_id="$1"
-    local service_principal_name="$2"
-    local role_name="$3"
+    local role_name="$2"
     
     log "INFO" "DRY RUN MODE - No changes will be made"
     
@@ -731,7 +713,7 @@ Planned Actions:
 1. Set subscription context to: $subscription_id
 2. Register Azure resource providers
 3. Create/update custom role: $role_name
-4. Create/verify service principal: $service_principal_name
+4. Create/verify multi-tenant service principal
 5. Assign custom role to service principal
 6. Display required information for Qovery console
 
@@ -740,7 +722,6 @@ EOF
 
 main_workflow() {
     local subscription_id="$1"
-    local service_principal_name="$2"
     
     # Get Azure context
     local current_account
@@ -761,11 +742,11 @@ main_workflow() {
     fi
     
     # Display confirmation
-    display_confirmation "$current_account" "$subscription_id" "$service_principal_name" "$role_name"
+    display_confirmation "$current_account" "$subscription_id" "$role_name"
     
     # Handle dry run
     if [[ "$DRY_RUN" == true ]]; then
-        perform_dry_run "$subscription_id" "$service_principal_name" "$role_name"
+        perform_dry_run "$subscription_id" "$role_name"
         return 0
     fi
     
@@ -948,7 +929,7 @@ main() {
     check_prerequisites
     
     # Execute main workflow
-    main_workflow "$subscription_id" "$service_principal_name"
+    main_workflow "$subscription_id"
 }
 
 # Run main function with all arguments

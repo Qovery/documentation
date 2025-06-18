@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-04-24"
+last_modified_on: "2025-06-18"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -406,6 +406,12 @@ You can customize the domain of your application in different ways, depending on
 * You want to use your own domain for your application
 * You want to modify the subdomain assigned to your application by Qovery (i.e. change `p80-zdf72de72-z709e1a88-gtw.za8ad0657.bool.sh` into `my-app-domain.za8ad0657.bool.sh`). See [this section](#qovery-provided-domains) to know more about these domains.
 
+<Alert type="info">
+
+If you want to use a root domain as custom domain, your provider must support CNAME Flattening (like Cloudflare) to avoid [APEX](https://developers.cloudflare.com/dns/manage-dns-records/how-to/create-zone-apex/) domain issues.
+
+</Alert>
+
 In both cases, you can assign the new custom domain by pressing the `Add Domain` button.
 
 <p align="center">
@@ -432,9 +438,9 @@ If there's an issue with a domain, a global error message will be displayed, and
 
 #### Configuring your own domain
 
-Once the domain is added within the Qovery console (Example: mydomain.com), you need to configure within your DNS two `CNAME` records pointing to the domain provided by Qovery, as shown in the UI (example: mydomain.com CNAME za7cc1b71-z4b8474b3-gtw.zc531a994.rustrocks.cloud and *.mydomain.com CNAME za7cc1b71-z4b8474b3-gtw.zc531a994.rustrocks.cloud). 
+Once the domain is added within the Qovery console (Example: mydomain.com), you need to configure within your DNS two `CNAME` records pointing to the domain provided by Qovery, as shown in the UI (example: `mydomain.com CNAME za7cc1b71-z4b8474b3-gtw.zc531a994.rustrocks.cloud` and `*.mydomain.com CNAME za7cc1b71-z4b8474b3-gtw.zc531a994.rustrocks.cloud`). 
 
-Having a wildcard domain entry (example: *.mydomain.com) configured on your DNS will avoid you to modify the Qovery setup every time you want to add a new subdomain. If `wildcard` is not supported by your DNS provider, you will have to configure each subdomain manually.
+Having a wildcard domain entry (example: `*.mydomain.com`) configured on your DNS will avoid you to modify the Qovery setup every time you want to add a new subdomain. If `wildcard` is not supported by your DNS provider, you will have to configure each subdomain manually.
 
 If a service needs to expose more than one port publicly, you can define a dedicated subdomain to redirect the traffic on the right port by setting the “Port Name” value within the [port settings](#ports).
 

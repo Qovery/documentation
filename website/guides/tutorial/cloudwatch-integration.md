@@ -120,7 +120,7 @@ priorityClassName: system-node-critical
 cloudWatch:
   enabled: true
   region: "<enter your cluster region>"
-  logGroupName: "/aws/eks/fluentbit-<enter your cluster region>/logs"
+  logGroupName: "/aws/eks/fluentbit-<enter your cluster id>/logs"
   logRetentionDays: 7
 
 env:

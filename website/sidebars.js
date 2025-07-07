@@ -181,9 +181,10 @@ module.exports = {
               items: [
                 "using-qovery/configuration/organization",
                 "using-qovery/configuration/organization/members-rbac",
-                "using-qovery/configuration/organization/git-repository-access",
                 "using-qovery/configuration/organization/container-registry",
                 "using-qovery/configuration/organization/helm-repository",
+                "using-qovery/configuration/organization/cloud-credentials",
+                "using-qovery/configuration/organization/git-repository-access",
                 "using-qovery/configuration/organization/api-token",
                 "using-qovery/configuration/organization/labels-annotations",
               ],

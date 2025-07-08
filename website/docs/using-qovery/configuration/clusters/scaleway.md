@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-11-27"
+last_modified_on: "2025-07-07"
 title: "Scaleway kapsule"
 description: "Learn how to configure your Scaleway Kubernetes clusters on Qovery"
 ---
@@ -29,7 +29,7 @@ In the `Create Cluster` window enter:
 * `Description`: enter a description to identify better your cluster.
 * `Production cluster`: select this option if your cluster will be used for production.
 * `Region`: select the geographical area in which you want your cluster to be hosted.
-* `Credentials`: select one of the existing cloud provider credentials or add a new one by clicking on `New Credentials`. In the New credentials window, add the credentials that you have generated on your cloud provider console ([Procedure for Scaleway account][docs.getting-started.install-qovery.scaleway.cluster-managed-by-qovery.quickstart#attach-scaleway-credentials]). Added credentials can be used later to create and manage additional cluster.
+* `Credentials`: select one of the existing cloud provider credentials or add a new one by clicking on `New Credentials`. In the New credentials window, add the credentials that you have generated on your cloud provider console ([Procedure for Scaleway account][docs.getting-started.install-qovery.scaleway.cluster-managed-by-qovery.quickstart#attach-scaleway-credentials]). Added credentials can be used later to create and manage additional cluster. You can also view the complete list of all your cloud credentials at the organization level, ([More info here][docs.using-qovery.configuration.organization.cloud-credentials]).
 
 To confirm, click `Next`.
 
@@ -141,5 +141,6 @@ Check [this link][docs.using-qovery.deployment.image-mirroring] for more informa
 [docs.using-qovery.configuration.clusters#updating-a-cluster]: /docs/using-qovery/configuration/clusters/#updating-a-cluster
 [docs.using-qovery.configuration.clusters#what-are-the-different-instance-types-available-when-creating-a-cluster]: /docs/using-qovery/configuration/clusters/#what-are-the-different-instance-types-available-when-creating-a-cluster
 [docs.using-qovery.configuration.clusters#what-is-a-cluster]: /docs/using-qovery/configuration/clusters/#what-is-a-cluster
+[docs.using-qovery.configuration.organization.cloud-credentials]: /docs/using-qovery/configuration/organization/cloud-credentials/
 [docs.using-qovery.deployment.image-mirroring]: /docs/using-qovery/deployment/image-mirroring/
 [urls.qovery_console]: https://console.qovery.com

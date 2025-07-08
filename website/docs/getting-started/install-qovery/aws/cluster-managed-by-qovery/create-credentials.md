@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-04-24"
+last_modified_on: "2025-07-07"
 title: "Create Credentials"
 description: "Generate AWS credentials for Qovery"
 ---
@@ -224,6 +224,7 @@ Well done!! You now have your AWS `access key id` and `secret access key` and yo
 </TabItem>
 </Tabs>
 
+You can also view the complete list of all your cloud credentials at the organization level,  ([More info here][docs.using-qovery.configuration.organization.cloud-credentials]).
 
 ### Install a new cluster on Qovery
 
@@ -237,3 +238,4 @@ Now you can use your AWS account to deploy your applications on Qovery. You can 
 
 [docs.getting-started.install-qovery.aws.cluster-managed-by-qovery.infrastructure]: /docs/getting-started/install-qovery/aws/cluster-managed-by-qovery/infrastructure/
 [docs.using-qovery.configuration.clusters#creating-a-cluster]: /docs/using-qovery/configuration/clusters/#creating-a-cluster
+[docs.using-qovery.configuration.organization.cloud-credentials]: /docs/using-qovery/configuration/organization/cloud-credentials/

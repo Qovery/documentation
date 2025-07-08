@@ -55,6 +55,36 @@ Refer to the specific installation guide for your cloud provider:
 
 </Steps>
 
+### Overview
+
+When clicking on a cluster card from the list, you'll be redirected to the Cluster Overview page. This page gives you a detailed, real-time view of your cluster's configuration and status.
+
+At the top, you can:
+
+* See the number of currently deployed nodes and their statuses.
+* Edit instances configurations: instance type, minimum and maximum number of instances (see tag 1).
+* View the total reserved resources for the cluster: including CPU, memory, and disk capacity.
+* Check the installed Kubernetes version. If it's unsupported or too recent compared to the Qovery-supported version, a warning will be displayed (see tag 2).
+* Track the current deployment status and see when the cluster was created.
+
+For clusters using Karpenter, instances are grouped by nodepool. Each pool may show defined limits if configured (see tag 3). 
+
+Within each nodepool:
+
+* You’ll find the number of vCPUs and memory reserved (not usage) per node.
+
+Each node displays:
+
+* The reserved resources (CPU and memory)
+* Its instance type
+* A spot instance indicator (hourglass icon) if applicable (see tag 4)
+* Disk size
+* Node age
+
+This overview helps you easily monitor how your cluster is configured and scale it appropriately as needed.
+
+<p align="center"> <img src="/img/configuration/clusters/cluster-overview.png" alt="Cluster Overview" /> </p>
+
 ### Statuses
 
 In Qovery, you may see two types of statuses:

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-30"
+last_modified_on: "2025-07-07"
 title: "Create Credentials"
 description: "Generate your Scaleway credentials to connect your Scaleway account to Qovery"
 ---
@@ -151,5 +151,7 @@ Get your `project id` on your project dashboard
 
 Well done!! You now have your Scaleway `access key id`, `secret access key`, `organization_id` and `project id`; It is time to connect Qovery to your Scaleway account.
 
+You can also view the complete list of all your cloud credentials at the organization level,  ([More info here][docs.using-qovery.configuration.organization.cloud-credentials]).
 
 
+[docs.using-qovery.configuration.organization.cloud-credentials]: /docs/using-qovery/configuration/organization/cloud-credentials/

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-04-26"
+last_modified_on: "2025-07-07"
 title: "Organization"
 description: "Learn how to configure Organizations on Qovery"
 sidebar_label: hidden
@@ -112,6 +112,7 @@ Don't forget to click `Update` to save your organization information!
 You can find below a dedicated page for each of the admin settings that can be managed within this section.
 
 <Jump to="/docs/using-qovery/configuration/organization/api-token/">Api token</Jump>
+<Jump to="/docs/using-qovery/configuration/organization/cloud-credentials/">Cloud credentials</Jump>
 <Jump to="/docs/using-qovery/configuration/organization/container-registry/">Container registry</Jump>
 <Jump to="/docs/using-qovery/configuration/organization/git-repository-access/">Git repository access</Jump>
 <Jump to="/docs/using-qovery/configuration/organization/helm-repository/">Helm repository</Jump>

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-05-14"
+last_modified_on: "2025-07-07"
 title: "Create Credentials"
 description: "Generate your GCP credentials to connect your GCP account to Qovery"
 ---
@@ -97,6 +97,8 @@ That's it!
 
 Well done!! You now have your GCP `JSON credentials key`; It is time to connect Qovery to your GCP account.
 
+You can also view the complete list of all your cloud credentials at the organization level,  ([More info here][docs.using-qovery.configuration.organization.cloud-credentials]).
+
 ### Install a new cluster on Qovery
 
 You will be able to use the credentials you just generated when creating a cluster via the Qovery console. This cluster will be linked to your Qovery organization.
@@ -104,3 +106,4 @@ Follow [this documentation][docs.using-qovery.configuration.clusters#creating-a-
 
 
 [docs.using-qovery.configuration.clusters#creating-a-cluster]: /docs/using-qovery/configuration/clusters/#creating-a-cluster
+[docs.using-qovery.configuration.organization.cloud-credentials]: /docs/using-qovery/configuration/organization/cloud-credentials/

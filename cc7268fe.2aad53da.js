@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[260],{412:function(n){n.exports=JSON.parse('{"allTagsPath":"/guides/tags","slug":"technology-nginx","name":"technology: nginx","count":1,"permalink":"/guides/tags/technology-nginx"}')}}]);

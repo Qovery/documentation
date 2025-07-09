@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-06-10"
+last_modified_on: "2025-07-09"
 title: "Create Credentials"
 description: "Generate your Azure credentials to connect your Azure account to Qovery"
 ---
@@ -22,6 +22,20 @@ This guide will help you to generate your Azure credentials to connect your Azur
 
 <Steps headingDepth={3}>
 <ol>
+
+<li>
+
+In the **"Create New Credential"** modal, fill in the required Azure details:
+
+- **Azure Tenant ID**  
+  You can find it [here](https://portal.azure.com/#view/Microsoft_AAD_IAM/TenantProperties.ReactView).
+
+- **Azure Subscription ID**  
+  Go to [this page](https://portal.azure.com/#home), then click on the desired subscription to view the **Subscription ID**.
+
+Once you've entered both values, click **Next** to generate the command you need to run in your embedded Azure shell.
+
+</li>
 
 <li>
 
@@ -50,8 +64,8 @@ Make sure the Azure Shell is set to Bash, not PowerShell.
 Fetch the command from Qovery console and copy it in the Azure Shell to dynamically create a service principal in your tenant using the Qovery app registration, allowing secure, credential-free installation of your Azure cluster:
 
 ```bash
-curl https://hub.qovery.com/files/create_credentials_azure.sh | \
-bash -s -- --qovery-app-id <from-qovery-console> --subscription-id $ACC_USER_SUBSCRIPTION
+curl https://hub.qovery.com/files/create_credentials_azure.sh \
+| bash -s -- --qovery-app-id <generated-in-qovery-console> --subscription-id 5c903020-c480-4741-81dc-a394b8aadaf1
 ```
 
 <Alert type="info">

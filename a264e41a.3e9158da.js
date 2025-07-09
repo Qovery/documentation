@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[196],{348:function(a){a.exports=JSON.parse('{"allTagsPath":"/guides/tags","slug":"framework-rails","name":"framework: rails","count":1,"permalink":"/guides/tags/framework-rails"}')}}]);

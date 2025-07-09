@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[307],{459:function(a){a.exports=JSON.parse('{"allTagsPath":"/guides/tags","slug":"language-ruby","name":"language: ruby","count":1,"permalink":"/guides/tags/language-ruby"}')}}]);

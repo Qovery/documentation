@@ -79,6 +79,7 @@ module.exports = {
                   items: [
                     "getting-started/install-qovery/azure/cluster-managed-by-qovery",
                     "getting-started/install-qovery/azure/cluster-managed-by-qovery/quickstart",
+                    "getting-started/install-qovery/azure/cluster-managed-by-qovery/create-credentials",
                   ]
                 },
                 "getting-started/install-qovery/azure/self-managed-cluster",

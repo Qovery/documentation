@@ -796,8 +796,6 @@ display_success() {
 🎉 Qovery Azure Setup Completed Successfully!
 ============================================================
 
-Copy these values to Qovery console:
-
   • Tenant ID: $tenant_id
   • Subscription ID: $subscription_id
 

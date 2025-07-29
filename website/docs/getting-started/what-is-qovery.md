@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-04-17"
+last_modified_on: "2025-07-29"
 title: "What is Qovery?"
 description: "High-level description of the Qovery goals and mission."
 ---
@@ -76,7 +76,7 @@ Qovery focus on providing an outstanding Developer Experience and never assume t
   <img src="/img/qovery-internal-developer-platform.jpg" alt="Qovery - Internal Developer Platform landscape" />
 </p>
 
-## Ownership and responisibilities
+## Ownership and responsibilities
 
 Qovery provides a clear separation of responsibilities where Qovery manages the platform automation, the cloud provider handles the underlying infrastructure, and customers maintain ownership of their applications and business logic.
 

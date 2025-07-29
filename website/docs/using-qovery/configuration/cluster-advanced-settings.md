@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-04-29"
+last_modified_on: "2025-07-29"
 title: "Cluster Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -17,7 +17,7 @@ Cluster advanced settings are not available in the Qovery console yet.
 
 All clusters have access to advanced settings, you can find where they are available in the documentation below with those badges mentioning for which Cloud provider they are available:
 
-#### ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
+#### ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg) ![](/img/advanced_settings/azure.svg)
 
 You will also find badges mentioning for which components it will be applied:
 
@@ -53,7 +53,7 @@ Below is the list of advanced settings currently available for clusters.
 |---------|------------------------------------------------------------------------------------|---------------|
 | integer | Set the number of retention days for flow logs. Unlimited retention with value `0` | `365`         |
 
-#### loki.log_retention_in_week ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
+#### loki.log_retention_in_week ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg) ![](/img/advanced_settings/azure.svg)
 
 | Type    | Description                                                                                 | Default Value  |
 |---------|---------------------------------------------------------------------------------------------|----------------|
@@ -73,7 +73,7 @@ Below is the list of advanced settings currently available for clusters.
 
 ## DNS
 
-#### dns.coredns.extra_config ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg)
+#### dns.coredns.extra_config ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/azure.svg)
 
 | Type   | Description                                                                                                    | Default Value |
 |--------|----------------------------------------------------------------------------------------------------------------|---------------|
@@ -108,7 +108,7 @@ Changing this settings will only affect new ECR repositories created after the c
 |---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------|
 | string  | Allows you to specify the [image mirroring mode][docs.using-qovery.deployment.image-mirroring] to be used for each image deployed on this cluster. (possible values: `Service` or `Cluster`)  | `Service`           |
 
-#### cloud_provider.container_registry.tags ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
+#### cloud_provider.container_registry.tags ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg) ![](/img/advanced_settings/azure.svg)
 
 | Type                | Description                                           | Default Value |
 |---------------------|-------------------------------------------------------|---------------|
@@ -168,121 +168,121 @@ Requirements for customers using custom VPCs (Qovery Managed VPC does not requir
 
 ### Nginx
 
-#### nginx.vcpu.request_in_milli_cpu ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
+#### nginx.vcpu.request_in_milli_cpu ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg) ![](/img/advanced_settings/azure.svg)
 
 | Type    | Description                                                                                    | Default Value   |
 |---------|------------------------------------------------------------------------------------------------|-----------------|
 | integer | Vcpu request value in millicores assigned to Nginx pods                                        | `200`           |
 
-#### nginx.vcpu.limit_in_milli_cpu ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
+#### nginx.vcpu.limit_in_milli_cpu ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg) ![](/img/advanced_settings/azure.svg)
 
 | Type    | Description                                                                                    | Default Value   |
 |---------|------------------------------------------------------------------------------------------------|-----------------|
 | integer | Vcpu limit value in millicores assigned to Nginx pods                                          | `700`           |
 
-#### nginx.memory.request_in_mib ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
+#### nginx.memory.request_in_mib ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg) ![](/img/advanced_settings/azure.svg)
 
 | Type    | Description                                                                                    | Default Value   |
 |---------|------------------------------------------------------------------------------------------------|-----------------|
 | integer | Memory limit value in MiB assigned to Nginx pods                                               | `768`           |
 
-#### nginx.memory.limit_in_mib ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
+#### nginx.memory.limit_in_mib ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg) ![](/img/advanced_settings/azure.svg)
 
 | Type    | Description                                                                                    | Default Value   |
 |---------|------------------------------------------------------------------------------------------------|-----------------|
 | integer | Memory limit value in MiB assigned to Nginx pods                                               | `768`           |
 
-#### nginx.hpa.cpu_utilization_percentage_threshold ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
+#### nginx.hpa.cpu_utilization_percentage_threshold ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg) ![](/img/advanced_settings/azure.svg)
 
 | Type    | Description                                                                                    | Default Value   |
 |---------|------------------------------------------------------------------------------------------------|-----------------|
 | integer | Hpa (horizontal pod autoscaler) cpu threshold in percentage assigned to Nginx deployment       | `50`            |
 
-#### nginx.hpa.min_number_instances ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
+#### nginx.hpa.min_number_instances ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg) ![](/img/advanced_settings/azure.svg)
 
 | Type    | Description                                                                                    | Default Value   |
 |---------|------------------------------------------------------------------------------------------------|-----------------|
 | integer | Minimum number of Nginx instances running                                                      | `2`             |
 
-#### nginx.hpa.max_number_instances ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
+#### nginx.hpa.max_number_instances ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg) ![](/img/advanced_settings/azure.svg)
 
 | Type    | Description                                                                                    | Default Value   |
 |---------|------------------------------------------------------------------------------------------------|-----------------|
 | integer | Maximum number of Nginx instances running                                                      | `25`            |
 
-#### nginx.controller.enable_client_ip ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
+#### nginx.controller.enable_client_ip ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg) ![](/img/advanced_settings/azure.svg)
 
 | Type    | Description                                                                                          | Default Value   |
 |---------|------------------------------------------------------------------------------------------------------|-----------------|
 | bool    | Enables [ngx_http_realip_module](https://nginx.org/en/docs/http/ngx_http_realip_module.html) module. | `false`         |
 
-#### nginx.controller.enable_compression ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
+#### nginx.controller.enable_compression ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg) ![](/img/advanced_settings/azure.svg)
 
 | Type    | Description                                                                                                                                                   | Default Value  |
 |---------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------|
 | bool    | Enables compression (Brotli) for HTTP responses. <br />When disabled, content will not be compressed, which may increase bandwidth usage but reduce CPU load. | `true`         |
 
-#### nginx.controller.use_forwarded_headers ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
+#### nginx.controller.use_forwarded_headers ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg) ![](/img/advanced_settings/azure.svg)
 
 | Type    | Description                                                                                                                                                                         | Default Value   |
 |---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------|
 | bool    | Passes incoming `X-Forwarded-For` header upstream, see [documentation](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#use-forwarded-headers). | `false`         |
 
-#### nginx.controller.compute_full_forwarded_for ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
+#### nginx.controller.compute_full_forwarded_for ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg) ![](/img/advanced_settings/azure.svg)
 
 | Type    | Description                                                                                                                                                                                                            | Default Value   |
 |---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------|
 | bool    | Append the remote address to the X-Forwarded-For header instead of replacing it, see [documentation](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#compute_full_forwarded_for). | `false`         |
 
-#### nginx.controller.log_format_upstream ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
+#### nginx.controller.log_format_upstream ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg) ![](/img/advanced_settings/azure.svg)
 
 | Type    | Description                                                                                                                                       | Default Value   |
 |---------|---------------------------------------------------------------------------------------------------------------------------------------------------|-----------------|
 | string  | Allows to customize nginx [log-format](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#log-format-upstream). | `null`          |
 
-#### nginx.controller.log_format_escaping ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
+#### nginx.controller.log_format_escaping ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg) ![](/img/advanced_settings/azure.svg)
 
 | Type    | Description                                                                                            | Default Value   |
 |---------|--------------------------------------------------------------------------------------------------------|-----------------|
 | string  | Allows to customize nginx log-format-escaping setting, possible values are: `Default`, `JSON`, `None`. | `Default`       |
 
-#### nginx.controller.http_snippet ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
+#### nginx.controller.http_snippet ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg) ![](/img/advanced_settings/azure.svg)
 
 | Type    | Description                                                                                                                                                | Default Value |
 |---------|------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | string  | Allows to customize nginx [http-snippet](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#http-snippet) configuration. | `null`        |
 
-#### nginx.controller.server_snippet ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
+#### nginx.controller.server_snippet ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg) ![](/img/advanced_settings/azure.svg)
 
 | Type    | Description                                                                                                                                                    | Default Value |
 |---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | string  | Allows to customize nginx [server-snippet](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#server-snippet) configuration. | `null`        |
 
-#### nginx.controller.limit_request_status_code ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
+#### nginx.controller.limit_request_status_code ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg) ![](/img/advanced_settings/azure.svg)
 
 | Type    | Description                                                                                                                                                                                                 | Default Value |
 |---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | integer | Allows to customize nginx [limit-req-status-code](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#limit-req-status-code). If not set (`null`) nginx defaults to `503`. | `null`        |
 
-#### nginx.controller.custom_http_errors ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
+#### nginx.controller.custom_http_errors ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg) ![](/img/advanced_settings/azure.svg)
 
 | Type   | Description                                                                                                                                                                  | Default Value |
 |--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | string | Allows to customize nginx [custom-http-errors](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#custom-http-errors). example: "404,503". | `null`        |
 
-#### nginx.default_backend.enabled ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
+#### nginx.default_backend.enabled ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg) ![](/img/advanced_settings/azure.svg)
 
 | Type    | Description                                                                                                                                                                                                                                                                                                                                                                              | Default Value |
 |---------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | boolean | Allows enabling the [default_backend](https://kubernetes.github.io/ingress-nginx/user-guide/default-backend/). <br />⚠️ Note: If you don’t specify any [nginx.default_backend.image_repository](#nginxdefault_backendimage_repository) and [nginx.default_backend.image_tag](#nginxdefault_backendimage_tag), ensure that your cluster includes nodes with an amd64 architecture. <br /> | `false`       |
 
-#### nginx.default_backend.image_repository ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
+#### nginx.default_backend.image_repository ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg) ![](/img/advanced_settings/azure.svg)
 
 | Type   | Description                                                                                                                                                                                                                                                | Default Value |
 |--------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | string | Specifies the Docker image repository used for the [default_backend](https://kubernetes.github.io/ingress-nginx/user-guide/default-backend/). The image registry must be publicly accessible without requiring authentication. example: `registry/image`.  | `null`        |
 
-#### nginx.default_backend.image_tag ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
+#### nginx.default_backend.image_tag ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg) ![](/img/advanced_settings/azure.svg)
 
 | Type   | Description                                                                                                                              | Default Value |
 |--------|------------------------------------------------------------------------------------------------------------------------------------------|---------------|
@@ -340,7 +340,7 @@ Requirements for customers using custom VPCs (Qovery Managed VPC does not requir
 
 ## Service
 
-#### allow_service_cpu_overcommit ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
+#### allow_service_cpu_overcommit ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg) ![](/img/advanced_settings/azure.svg)
 
 <Alert type="warning">
 
@@ -354,7 +354,7 @@ Using overcommit on pod resources can lead to instability on your cluster and we
 
 Once enabled, you can update the advanced setting [resources.override.limit.cpu_in_mib][docs.using-qovery.configuration.advanced-settings#resources] of your service.
 
-#### allow_service_ram_overcommit ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg)
+#### allow_service_ram_overcommit ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/scaleway.svg) ![](/img/advanced_settings/gcp.svg) ![](/img/advanced_settings/azure.svg)
 
 <Alert type="warning">
 
@@ -397,7 +397,7 @@ Once enabled, you can update the advanced setting [resources.override.limit.ram_
 
 ## Object storage
 
-#### object_storage.enable_logging ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/gcp.svg)
+#### object_storage.enable_logging ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/gcp.svg) ![](/img/advanced_settings/azure.svg)
 
 | Type    | Description                                                                                                                                                                                                                | Default Value |
 |---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
@@ -449,7 +449,7 @@ Why? Dockerhub has a [rate limit system by IP](https://docs.docker.com/docker-hu
 
 
 
-#### k8s.api.allowed_public_access_cidrs ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/gcp.svg)
+#### k8s.api.allowed_public_access_cidrs ![](/img/advanced_settings/aws.svg) ![](/img/advanced_settings/gcp.svg) ![](/img/advanced_settings/azure.svg)
 
 <Alert type="info">
 

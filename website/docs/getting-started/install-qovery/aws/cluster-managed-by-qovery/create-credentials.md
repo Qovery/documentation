@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-07-07"
+last_modified_on: "2025-08-01"
 title: "Create Credentials"
 description: "Generate AWS credentials for Qovery"
 ---
@@ -55,7 +55,7 @@ For security reasons, we strongly recommend using Assume Role via STS. Static cr
 
 <li>
 
-Execute the following [Cloudformation stack](https://console.aws.amazon.com/cloudformation/home?#/stacks/quickcreate?templateURL=https%3A%2F%2Fs3.amazonaws.com%2Fcloudformation-qovery-role-creation%2Ftemplate.json&stackName=qovery-role-creation
+Execute the following [Cloudformation stack](https://console.aws.amazon.com/cloudformation/home?#/stacks/quickcreate?templateURL=https%3A%2F%2Fcloudformation-qovery-role-creation.s3.amazonaws.com%2Ftemplate.json&stackName=qovery-role-creation
 ), make sure you select the checkbox `I acknowledge that AWS CloudFormation might create IAM resources with custom names`
 
 

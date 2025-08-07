@@ -1,4 +1,14 @@
-# **Certificate Management for Multi-Tenant Applications on Qovery**
+---
+$schema: "/.meta/.schemas/guides.json"
+title: Certificate Management for Multi-Tenant Applications on Qovery
+description: Learn how to implement robust SSL/TLS certificate management for multi-tenant SaaS applications using dedicated ingresses per tenant on Qovery
+author_github: https://github.com/guimove
+tags: ["type: tutorial", "technology: qovery"]
+hide_pagination: true
+---
+import Alert from '@site/src/components/Alert';
+import Assumptions from '@site/src/components/Assumptions';
+import Jump from '@site/src/components/Jump';
 
 Building multi-tenant applications where each customer has their own dedicated URL is a common pattern in SaaS platforms. While Qovery automatically handles TLS/SSL certificate creation and renewal for your custom domains, managing certificates at scale for multi-tenant architectures presents unique challenges. This guide will show you how to implement a robust certificate management strategy using dedicated ingresses for each tenant.
 
@@ -177,3 +187,5 @@ By implementing dedicated ingresses for each tenant, you create a more robust, s
 
 * Explore [Qovery's API](https://hub.qovery.com/docs/using-qovery/interface/rest-api/) to automate tenant provisioning
 * Consider implementing [auto-scaling](https://hub.qovery.com/docs/using-qovery/configuration/application/#auto-scaling) on the main service
+
+<Jump to="/guides/tutorial/">Tutorial</Jump>

@@ -95,6 +95,10 @@ For this example, we'll use a simple web application:
      * Protocol: HTTP
      * Exposure: Publicly exposed
 
+<p align="center">
+    <img src="/img/certificate_management_for_multi_tenant_infrastructure/edit_port.png" alt="Add Port" />
+</p>
+
 3. **Add your main domain** (optional)
 
    * Go to Settings → Domains
@@ -108,6 +112,10 @@ For this example, we'll use a simple web application:
 
    * `QOVERY_CONTAINER_XXXXXXX_HOST_INTERNAL`: The internal hostname of your application
    * `QOVERY_KUBERNETES_NAMESPACE_NAME`: Your environment's namespace
+
+<p align="center">
+    <img src="/img/certificate_management_for_multi_tenant_infrastructure/list_variables.png" alt="List Variables" />
+</p>
 
 5. You can find these in the Variables section of your application.
 
@@ -132,6 +140,10 @@ Now we'll create dedicated ingresses for each tenant using Helm charts.
    * Keep default values (no overrides needed)
    * Select only “Create” at the end of the create wizard
 
+<p align="center">
+    <img src="/img/certificate_management_for_multi_tenant_infrastructure/deploy_helm_chart.png" alt="Deploy Helm Chart" />
+</p>
+
 3. **Configure the ingress**
 
     Navigate to Settings → Ports and add a port:
@@ -139,12 +151,19 @@ Now we'll create dedicated ingresses for each tenant using Helm charts.
    * Service name: Use the `QOVERY_CONTAINER_XXXXXXX_HOST_INTERNAL` value
    * Namespace: Use `QOVERY_KUBERNETES_NAMESPACE_NAME` (if using separate environments)
 
+<p align="center">
+    <img src="/img/certificate_management_for_multi_tenant_infrastructure/tenant_port.png" alt="Tenant Port" />
+</p>
 
 4. **Add the tenant's custom domain**
 
    * Go to Settings → Domains
    * Add the tenant's specific domain
    * Ensure the tenant configures their DNS records
+
+<p align="center">
+    <img src="/img/certificate_management_for_multi_tenant_infrastructure/custom_domain.png" alt="Custom Domain" />
+</p>
 
 5. **Deploy the service**
 

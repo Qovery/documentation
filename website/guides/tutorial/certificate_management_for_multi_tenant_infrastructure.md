@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-08-07"
+last_modified_on: "2025-08-08"
 $schema: "/.meta/.schemas/guides.json"
 title: Certificate Management for Multi-Tenant Applications on Qovery
 description: Learn how to implement robust SSL/TLS certificate management for multi-tenant SaaS applications using dedicated ingresses per tenant on Qovery
@@ -32,6 +32,10 @@ When building multi-tenant applications on Qovery, the default approach uses a s
 
 ## **The Solution: Dedicated Ingresses Per Tenant**
 
+<p align="center">
+    <img src="/img/certificate_management_for_multi_tenant_infrastructure/archi_overview.png" alt="Certificate Management Architecture Comparison" />
+</p>
+
 Instead of managing all domains through a single ingress, we'll create a dedicated ingress for each customer. This approach provides:
 
 * **Isolation**: Each tenant gets their own certificate and ingress configuration
@@ -47,6 +51,10 @@ Instead of managing all domains through a single ingress, we'll create a dedicat
 * DNS management access for your domains
 
 ### **Step 1: Organize Your Infrastructure (Optional but Recommended)**
+
+<p align="center">
+    <img src="/img/certificate_management_for_multi_tenant_infrastructure/environment_structure.png" alt="Qovery Platform" />
+</p>
 
 While not mandatory, creating separate environments helps maintain a clean separation between your core infrastructure and tenant-specific configurations.
 
@@ -106,6 +114,10 @@ For this example, we'll use a simple web application:
 ### **Step 3: Create Tenant-Specific Ingresses**
 
 Now we'll create dedicated ingresses for each tenant using Helm charts.
+
+<p align="center">
+    <img src="/img/certificate_management_for_multi_tenant_infrastructure/implementation_flow.png" alt="Implementation Steps Flow" />
+</p>
 
 1. **Switch to your Tenants environment** (if you created one)
 

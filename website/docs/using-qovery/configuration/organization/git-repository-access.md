@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-11-03"
+last_modified_on: "2025-08-27"
 title: "Git Repository access"
 description: "Learn how to manage the git repository permission access"
 ---
@@ -74,6 +74,18 @@ The permission configuration is the same for the two types:
 
 <p align="center">
   <img src="/img/configuration/organization/gitlab_token.png" alt="Gitlab token" />
+</p>
+
+#### GitLab.com vs Self-hosted
+
+When adding a GitLab token in the Qovery console, you can choose between GitLab.com and Self-hosted:
+
+* GitLab.com: use this option if your repositories are hosted on gitlab.com. No additional configuration is needed.
+
+* Self-hosted: use this option if your organization is running its own GitLab instance. In this case, you must provide the GitLab host URL (e.g. https://gitlab.example.com). Qovery will then use this URL together with your token to access your repositories.
+
+<p align="center">
+  <img src="/img/configuration/organization/Gitlab_on_prem.png" alt="Gitlab On prem" />
 </p>
 
 ### Bitbucket

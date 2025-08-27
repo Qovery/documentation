@@ -63,6 +63,18 @@ The permission configuration is the same for the two types:
   <img src="/img/configuration/organization/gitlab_token.png" alt="Gitlab token" />
 </p>
 
+#### GitLab.com vs Self-hosted
+
+When adding a GitLab token in the Qovery console, you can choose between GitLab.com and Self-hosted:
+
+* GitLab.com: use this option if your repositories are hosted on gitlab.com. No additional configuration is needed.
+
+* Self-hosted: use this option if your organization is running its own GitLab instance. In this case, you must provide the GitLab host URL (e.g. https://gitlab.example.com). Qovery will then use this URL together with your token to access your repositories.
+
+<p align="center">
+  <img src="/img/configuration/organization/Gitlab_on_prem.png" alt="Gitlab On prem" />
+</p>
+
 ### Bitbucket
 Bitbucket offers two types of tokens: `Repository access tokens` and `Workspace access tokens` (only with Bitbucket Cloud Premium plan). You can read more about them and how to create them here:
 - [Repository access tokens](https://support.atlassian.com/bitbucket-cloud/docs/create-a-repository-access-token/)

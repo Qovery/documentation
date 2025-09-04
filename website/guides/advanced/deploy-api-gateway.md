@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-06-07"
+last_modified_on: "2025-09-04"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy API Gateway
 description: Learn how to deploy an API Gateway with Qovery

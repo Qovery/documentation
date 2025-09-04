@@ -1032,7 +1032,7 @@ module.exports = {
     },
     {
       "avatar": "https://github.com/guimove.png",
-      "bio": "Guillaume is a Senior Cloud Architect at <a href=\"https://www.qovery.com\">Qovery</a> with extensive experience in cloud infrastructure and Kubernetes.He specializes in designing scalable architectures and enterprise-grade solutions.",
+      "bio": "Guillaume is a Senior Cloud Architect at <a href=\"https://www.qovery.com\">Qovery</a> with extensive experience in cloud infrastructure and Kubernetes. He specializes in designing scalable architectures and enterprise-grade solutions.",
       "github": "https://github.com/guimove",
       "id": "guillaume",
       "keybase": "https://keybase.io/guimove",

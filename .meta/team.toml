@@ -149,16 +149,6 @@ Alessandro is a Lead Product Manager at <a href=\"https://www.qovery.com\">Qover
 """
 
 [[team]]
-id = "cegagnaire"
-avatar = "https://github.com/baalooos.png"
-github = "https://github.com/baalooos"
-keybase = "https://keybase.io/baalooos"
-name = "Charles-Edouard Gagnaire"
-bio = """\
-Charles-Edouard is Technical Account Manager at <a href=\"https://www.qovery.com\">Qovery</a>.\
-"""
-
-[[team]]
 id = "guillaume"
 avatar = "https://github.com/guimove.png"
 github = "https://github.com/guimove"

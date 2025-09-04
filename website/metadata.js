@@ -1031,14 +1031,6 @@ module.exports = {
       "name": "Alessandro Carrano"
     },
     {
-      "avatar": "https://github.com/baalooos.png",
-      "bio": "Charles-Edouard is Technical Account Manager at <a href=\"https://www.qovery.com\">Qovery</a>.",
-      "github": "https://github.com/baalooos",
-      "id": "cegagnaire",
-      "keybase": "https://keybase.io/baalooos",
-      "name": "Charles-Edouard Gagnaire"
-    },
-    {
       "avatar": "https://github.com/guimove.png",
       "bio": "Guillaume is a Senior Cloud Architect at <a href=\"https://www.qovery.com\">Qovery</a> with extensive experience in cloud infrastructure and Kubernetes.He specializes in designing scalable architectures and enterprise-grade solutions.",
       "github": "https://github.com/guimove",

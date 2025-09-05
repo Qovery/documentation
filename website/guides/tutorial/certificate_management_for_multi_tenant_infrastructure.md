@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-08-08"
+last_modified_on: "2025-09-05"
 $schema: "/.meta/.schemas/guides.json"
 title: Certificate Management for Multi-Tenant Applications on Qovery
 description: Learn how to implement robust SSL/TLS certificate management for multi-tenant SaaS applications using dedicated ingresses per tenant on Qovery
@@ -50,7 +50,7 @@ Instead of managing all domains through a single ingress, we'll create a dedicat
 * A Qovery account with a configured cluster
 * DNS management access for your domains
 
-### **Step 1: Organize Your Infrastructure (Optional but Recommended)**
+### **Step 1: Organize Your Platform (Optional but Recommended)**
 
 <p align="center">
     <img src="/img/certificate_management_for_multi_tenant_infrastructure/environment_structure.png" alt="Qovery Platform" />
@@ -58,13 +58,13 @@ Instead of managing all domains through a single ingress, we'll create a dedicat
 
 While not mandatory, creating separate environments helps maintain a clean separation between your core infrastructure and tenant-specific configurations.
 
-1. **Create an Infrastructure Environment**
+1. **Create a Core Environment**
 
     This environment will host your main application components (frontend, API, database, etc.).
 
    * Navigate to your project dashboard
    * Click "Create new environment"
-   * Name it "Infrastructure" or similar
+   * Name it "Core", "Main" or similar
    * Configure your environment settings
 
 2. **Create a Tenants Environment**

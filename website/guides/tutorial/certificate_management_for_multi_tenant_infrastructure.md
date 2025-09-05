@@ -148,8 +148,9 @@ Now we'll create dedicated ingresses for each tenant using Helm charts.
 
     Navigate to Settings → Ports and add a port:
 
-   * Service name: Use the `QOVERY_CONTAINER_XXXXXXX_HOST_INTERNAL` value
-   * Namespace: Use `QOVERY_KUBERNETES_NAMESPACE_NAME` (if using separate environments)
+   * Service name: Use the `QOVERY_CONTAINER_XXXXXXX_HOST_INTERNAL` value from the "Core" application (Step 2.4)
+   * Service port: Set the port defined on the core application (Step 2.2)
+   * Namespace: Use `QOVERY_KUBERNETES_NAMESPACE_NAME` (if using separate environments) value from the "Core" application (Step 2.4)
 
 <p align="center">
     <img src="/img/certificate_management_for_multi_tenant_infrastructure/tenant_port.png" alt="Tenant Port" />

@@ -24,21 +24,21 @@
 <link rel="stylesheet" href="/styles.99345880.css">
 
 
-<link rel="preload" href="/styles.636e903d.js" as="script">
+<link rel="preload" href="/styles.4dd11801.js" as="script">
 
-<link rel="preload" href="/runtime~main.40d29dc2.js" as="script">
+<link rel="preload" href="/runtime~main.c18b36e2.js" as="script">
 
-<link rel="preload" href="/main.a0d58270.js" as="script">
+<link rel="preload" href="/main.b0e091e6.js" as="script">
 
-<link rel="preload" href="/1.a17c1b19.js" as="script">
+<link rel="preload" href="/1.4bc0ce90.js" as="script">
 
-<link rel="preload" href="/2.522639cf.js" as="script">
+<link rel="preload" href="/2.e93901d0.js" as="script">
 
-<link rel="preload" href="/3.b883fa42.js" as="script">
+<link rel="preload" href="/3.0f32cfee.js" as="script">
 
-<link rel="preload" href="/1c13b173.a18c9300.js" as="script">
+<link rel="preload" href="/1c13b173.7e89545d.js" as="script">
 
-<link rel="preload" href="/9cbce5d5.f7d4f3d6.js" as="script">
+<link rel="preload" href="/9cbce5d5.8f344e42.js" as="script">
 
 </head>
 <body>
@@ -59,21 +59,21 @@ In order to ease setup and debug, I&#x27;ve added some headers to the response:<
 </span></div><div class="token-line" style="color:#393A34"><span class="token plain">Host: p8080-zdb6be5b9-z928629ac-gtw.z77ccfcb8.slab.sh</span></div><div class="token-line" style="color:#393A34"><span class="token plain">Accept: */*</span></div><div class="token-line" style="color:#393A34"><span class="token plain">User-Agent: curl/8.4.0</span></div><div class="token-line" style="color:#393A34"><span class="token plain">X-Forwarded-For: </span><span class="token number" style="color:#36acaa">92</span><span class="token plain">.xxx.xx.171</span></div><div class="token-line" style="color:#393A34"><span class="token plain">X-Forwarded-Host: p8080-zdb6be5b9-z928629ac-gtw.z77ccfcb8.slab.sh</span></div><div class="token-line" style="color:#393A34"><span class="token plain">X-Forwarded-Port: </span><span class="token number" style="color:#36acaa">443</span><span class="token plain"></span></div><div class="token-line" style="color:#393A34"><span class="token plain">X-Forwarded-Proto: https</span></div><div class="token-line" style="color:#393A34"><span class="token plain">X-Forwarded-Scheme: https</span></div><div class="token-line" style="color:#393A34"><span class="token plain">X-Qovery-Source: development</span></div><div class="token-line" style="color:#393A34"><span class="token plain">X-Real-Ip: </span><span class="token number" style="color:#36acaa">92</span><span class="token plain">.xxx.xx.171</span></div><div class="token-line" style="color:#393A34"><span class="token plain">X-Request-Id: ce6b9567bac12b64a5b161dc8df3d0f9</span></div><div class="token-line" style="color:#393A34"><span class="token plain">X-Scheme: https</span></div><div class="token-line" style="color:#393A34"><span class="token plain">* Connection </span><span class="token comment" style="color:#999988;font-style:italic">#0 to host p8080-zdb6be5b9-z928629ac-gtw.z77ccfcb8.slab.sh left intact</span></div></div></pre></div></div><p>As we can see I&#x27;ve got an HTTP <code>403</code> status code, meaning the request was rejected.</p><p>Debug headers values:</p><div class="mdxCodeBlock_iHAB"><div class="codeBlockContent_3RXF"><button type="button" aria-label="Copy code to clipboard" class="copyButton_1PCb">Copy</button><pre class="prism-code language-undefined codeBlock_1wn8"><div class="codeBlockLines_3HrO" style="color:#393A34;background-color:#f6f8fa"><div class="token-line" style="color:#393A34"><span class="token plain">&lt; x-debug-source: development</span></div><div class="token-line" style="color:#393A34"><span class="token plain">&lt; x-debug-ip: 92.xxx.xx.171</span></div><div class="token-line" style="color:#393A34"><span class="token plain">&lt; x-debug-is-authorized: 1</span></div></div></pre></div></div></li></ol><div class="steps--feedback">How was it? Did this tutorial work?  <span class="button button--sm button--primary">Yes</span>  <a href="https://github.com/qovery/documentation/issues/new?body=The%20tutorial%20on%3A%0A%0Anull%0A%0AHere%27s%20what%20went%20wrong%3A%0A%0A%3C%21--%20Insert%20command%20output%20and%20details.%20Thank%20you%20for%20reporting%21%20%3A%29%20--%3E&amp;title=Tutorial%20on%20null%20failed" target="_blank" class="button button--sm button--primary">No</a></div></div><h2><a aria-hidden="true" tabindex="-1" class="anchor" id="conclusion"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#conclusion" title="Direct link to heading">#</a>Conclusion</h2><p>With the <code>nginx.controller.http_snippet</code> and <code>nginx.controller.server_snippet</code> cluster advanced settings, you can create powerful access control rules in NGINX that combine IP-based restrictions and HTTP header validation. This configuration is scalable and flexible for managing multi-tenant systems or any environment requiring complex authorization logic.</p><p>Feel free to adapt this setup to your specific needs, and always test thoroughly before deploying to production!</p></div></article></div></main></div><footer class="footer"><div class="container"><div class="row footer__links"><div class="col col--5 footer__col"><div class="margin-bottom--md"></div><div class="margin-bottom--md"><p>Qovery is a DevOps Automation Platform Helping 200+ Organizations To Ship Faster and Eliminate DevOps Hiring Needs.</p></div><div><a href="https://github.com/qovery" target="_blank"><i class="feather icon-github" alt="Qovery&#x27;s Github Repo"></i></a>    <a href="https://www.linkedin.com/company/qovery/" target="_blank"><i class="feather icon-rss" alt="Qovery&#x27;s Linkedin"></i></a>    <a href="https://twitter.com/qovery_" target="_blank"><i class="feather icon-twitter" alt="Qovery&#x27;s Twitter"></i></a></div></div><div class="col footer__col"><h4 class="footer__title">Resources</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" href="/docs">Documentation</a></li><li class="footer__item"><a aria-current="page" class="footer__link-item active" href="/guides">Guides</a></li><li class="footer__item"><a aria-current="page" class="footer__link-item active" href="/guides/tutorial">Tutorials</a></li><li class="footer__item"><a class="footer__link-item" href="/guides/engineering">Engineering</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/pricing" href="https://www.qovery.com/pricing">Pricing</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/enterprise" href="https://www.qovery.com/enterprise">Enterprise</a></li><li class="footer__item"><a class="footer__link-item" to="https://api-doc.qovery.com" href="https://api-doc.qovery.com">API</a></li><li class="footer__item"><a class="footer__link-item" to="https://github.com/Qovery" href="https://github.com/Qovery">Github</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Community</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://community.qovery.com" href="https://community.qovery.com">Forum</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/community-call" href="https://www.qovery.com/community-call">Community call</a></li><li class="footer__item"><a class="footer__link-item" to="https://shop.qovery.com" href="https://shop.qovery.com">Goodies</a></li><li class="footer__item"><a class="footer__link-item" to="https://roadmap.qovery.com" href="https://roadmap.qovery.com">Roadmap</a></li><li class="footer__item"><a class="footer__link-item" to="https://github.com/Qovery/replibyte" href="https://github.com/Qovery/replibyte">Replibyte</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Company</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/blog" href="https://www.qovery.com/blog">Blog</a></li><li class="footer__item"><a class="footer__link-item" to="https://jobs.qovery.com" href="https://jobs.qovery.com">Jobs</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/team" href="https://www.qovery.com/team">Team</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/investors" href="https://www.qovery.com/investors">Investors</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/contact" href="https://www.qovery.com/contact">Contact</a></li></ul></div></div><div class="text--center"><small>© 2025 DESIGNED BY QOVERY | PROUD SILVER MEMBER OF CNCF AND LINUX FOUNDATION | QOVERY BY BIRDSIGHT - ALL RIGHTS RESERVED</small><br></div></div></footer>
 </div>
 
-<script src="/styles.636e903d.js"></script>
+<script src="/styles.4dd11801.js"></script>
 
-<script src="/runtime~main.40d29dc2.js"></script>
+<script src="/runtime~main.c18b36e2.js"></script>
 
-<script src="/main.a0d58270.js"></script>
+<script src="/main.b0e091e6.js"></script>
 
-<script src="/1.a17c1b19.js"></script>
+<script src="/1.4bc0ce90.js"></script>
 
-<script src="/2.522639cf.js"></script>
+<script src="/2.e93901d0.js"></script>
 
-<script src="/3.b883fa42.js"></script>
+<script src="/3.0f32cfee.js"></script>
 
-<script src="/1c13b173.a18c9300.js"></script>
+<script src="/1c13b173.7e89545d.js"></script>
 
-<script src="/9cbce5d5.f7d4f3d6.js"></script>
+<script src="/9cbce5d5.8f344e42.js"></script>
 
 
 </body>

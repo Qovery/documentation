@@ -24,27 +24,27 @@
 <link rel="stylesheet" href="/styles.99345880.css">
 
 
-<link rel="preload" href="/styles.636e903d.js" as="script">
+<link rel="preload" href="/styles.4dd11801.js" as="script">
 
-<link rel="preload" href="/runtime~main.40d29dc2.js" as="script">
+<link rel="preload" href="/runtime~main.c18b36e2.js" as="script">
 
-<link rel="preload" href="/main.a0d58270.js" as="script">
+<link rel="preload" href="/main.b0e091e6.js" as="script">
 
-<link rel="preload" href="/2.522639cf.js" as="script">
+<link rel="preload" href="/2.e93901d0.js" as="script">
 
-<link rel="preload" href="/3.b883fa42.js" as="script">
+<link rel="preload" href="/3.0f32cfee.js" as="script">
 
-<link rel="preload" href="/4.123cd7f7.js" as="script">
+<link rel="preload" href="/4.66b73ac7.js" as="script">
 
-<link rel="preload" href="/1be78505.402928b7.js" as="script">
+<link rel="preload" href="/1be78505.d943dcaa.js" as="script">
 
-<link rel="preload" href="/20ac7829.b3e5cc28.js" as="script">
+<link rel="preload" href="/20ac7829.ed2da451.js" as="script">
 
-<link rel="preload" href="/321.c3fba5da.js" as="script">
+<link rel="preload" href="/323.d5c240a7.js" as="script">
 
-<link rel="preload" href="/17896441.e3ed6d71.js" as="script">
+<link rel="preload" href="/17896441.bcf939d5.js" as="script">
 
-<link rel="preload" href="/02ec211a.b5953755.js" as="script">
+<link rel="preload" href="/02ec211a.dbdf85bf.js" as="script">
 
 </head>
 <body>
@@ -58,27 +58,27 @@ For each port exposed publicly, an additional domain will be created with the fo
 Example: </p><ul><li>your current domain is zdf72de71-z709e1a85-gtw.za8ad0659.bool.sh (so your assigned cluster domain is <code>za8ad0659.bool.sh</code>)</li><li>you can enter a new custom domain <code>myfrontend.za8ad0659.bool.sh</code> (since it is a subdomain of the cluster domain)</li></ul><p>The helm services will now be accessible from both the default and the new custom domain.</p><div class="alert alert--info alert--icon" role="alert"><i class="feather icon-info"></i><p>Qovery does not check collision in the domain declaration. Make sure you assign a unique subdomain within your cluster.</p></div><h2><a aria-hidden="true" tabindex="-1" class="anchor" id="logs"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#logs" title="Direct link to heading">#</a>Logs</h2><p>To learn how to display your helm logs, navigate to <a href="/docs/using-qovery/deployment/logs/#live-logs">logs section</a></p><h2><a aria-hidden="true" tabindex="-1" class="anchor" id="clone"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#clone" title="Direct link to heading">#</a>Clone</h2><p>You can create a clone of the service via the clone feature. A new service with the same configuration (see below for exceptions) will be created into the target environment.</p><p align="center"><img src="/img/clone_service.png" alt="Clone Service"></p><p>The target environment can be the same as the current environment or even another one in a completely different project.</p><p><strong> Important information </strong></p><p>Not every configuration parameter will be copied within the new service for consistency reasons. The configuration is fully or partially copied depending on the target environment:</p><ul><li>same environment:<ul><li>custom domain: this setup is not copied into the new service (to avoid collision)</li></ul></li><li>another environment:<ul><li>custom domain: this setup is not copied into the new service (to avoid collision)</li><li>environment variable: aliases defined on environment variables are not copied (since the aliased env var might not exist)</li><li>deployment pipeline: stage setup is not copied (since the target stage might not exist)</li><li>number of instances: if the target environment runs on a Qovery EC2 cluster, the max number of instances is set to 1 (Qovery EC2 constraint)</li></ul></li></ul><p>Please check the configuration of the new service before deploying it.</p><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="advanced-settings"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#advanced-settings" title="Direct link to heading">#</a>Advanced Settings</h3><p>You can further customize the service behaviour via the service advanced settings. Check <a href="/docs/using-qovery/configuration/advanced-settings/">this documentation</a> to know more.</p><h2><a aria-hidden="true" tabindex="-1" class="anchor" id="delete-a-helm"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#delete-a-helm" title="Direct link to heading">#</a>Delete a Helm</h2><div class="steps steps--h3"><ol><li><p>Choose your helm</p></li><li><p>In the helm overview, click on the <code>3 dots</code> button and remove the helm.</p></li></ol><div class="steps--feedback">How was it? Did this tutorial work?  <span class="button button--sm button--primary">Yes</span>  <a href="https://github.com/qovery/documentation/issues/new?body=The%20tutorial%20on%3A%0A%0Anull%0A%0AHere%27s%20what%20went%20wrong%3A%0A%0A%3C%21--%20Insert%20command%20output%20and%20details.%20Thank%20you%20for%20reporting%21%20%3A%29%20--%3E&amp;title=Tutorial%20on%20null%20failed" target="_blank" class="button button--sm button--primary">No</a></div></div></div></article></div><div class="paginator_3VDt"><nav class="pagination-nav"><div class="pagination-nav__item"><a class="pagination-nav__link" href="/docs/using-qovery/configuration/application"><h5 class="pagination-nav__link--sublabel">Previous</h5><h4 class="pagination-nav__link--label">« Application</h4></a></div><div class="pagination-nav__item pagination-nav__item--next"><a class="pagination-nav__link" href="/docs/using-qovery/configuration/database"><h5 class="pagination-nav__link--sublabel">Next</h5><h4 class="pagination-nav__link--label">Databases »</h4></a></div></nav></div></div><div class="rightCol_38kP"><div class="table-of-contents tableOfContents_tVyB"><div class="section"><div class="title">Contents</div><ul class="contents"><li><a href="#deploying-from-a-git-repository" class="contents__link">Deploying from a Git Repository</a></li><li><a href="#deploying-from-a-helm-repository" class="contents__link">Deploying from a Helm Repository</a></li><li><a href="#create-a-helm" class="contents__link">Create a Helm</a></li><li><a href="#deployment-management" class="contents__link">Deployment Management</a></li><li><a href="#configuration" class="contents__link">Configuration</a><ul><li><a href="#general" class="contents__link">General</a></li><li><a href="#values" class="contents__link">Values</a></li><li><a href="#network" class="contents__link">Network</a></li><li><a href="#domains" class="contents__link">Domains</a></li></ul></li><li><a href="#connecting-from-the-internet" class="contents__link">Connecting from the internet</a><ul><li><a href="#qovery-provided-domains" class="contents__link">Qovery provided domains</a></li><li><a href="#custom-domains" class="contents__link">Custom domains</a></li></ul></li><li><a href="#logs" class="contents__link">Logs</a></li><li><a href="#clone" class="contents__link">Clone</a><ul><li><a href="#advanced-settings" class="contents__link">Advanced Settings</a></li></ul></li><li><a href="#delete-a-helm" class="contents__link">Delete a Helm</a></li></ul></div><div class="section"><div class="title">Resources</div><ul class="contents"></ul></div></div></div></div></div></main></div></div><footer class="footer"><div class="container"><div class="row footer__links"><div class="col col--5 footer__col"><div class="margin-bottom--md"></div><div class="margin-bottom--md"><p>Qovery is a DevOps Automation Platform Helping 200+ Organizations To Ship Faster and Eliminate DevOps Hiring Needs.</p></div><div><a href="https://github.com/qovery" target="_blank"><i class="feather icon-github" alt="Qovery&#x27;s Github Repo"></i></a>    <a href="https://www.linkedin.com/company/qovery/" target="_blank"><i class="feather icon-rss" alt="Qovery&#x27;s Linkedin"></i></a>    <a href="https://twitter.com/qovery_" target="_blank"><i class="feather icon-twitter" alt="Qovery&#x27;s Twitter"></i></a></div></div><div class="col footer__col"><h4 class="footer__title">Resources</h4><ul class="footer__items"><li class="footer__item"><a aria-current="page" class="footer__link-item active" href="/docs">Documentation</a></li><li class="footer__item"><a class="footer__link-item" href="/guides">Guides</a></li><li class="footer__item"><a class="footer__link-item" href="/guides/tutorial">Tutorials</a></li><li class="footer__item"><a class="footer__link-item" href="/guides/engineering">Engineering</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/pricing" href="https://www.qovery.com/pricing">Pricing</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/enterprise" href="https://www.qovery.com/enterprise">Enterprise</a></li><li class="footer__item"><a class="footer__link-item" to="https://api-doc.qovery.com" href="https://api-doc.qovery.com">API</a></li><li class="footer__item"><a class="footer__link-item" to="https://github.com/Qovery" href="https://github.com/Qovery">Github</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Community</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://community.qovery.com" href="https://community.qovery.com">Forum</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/community-call" href="https://www.qovery.com/community-call">Community call</a></li><li class="footer__item"><a class="footer__link-item" to="https://shop.qovery.com" href="https://shop.qovery.com">Goodies</a></li><li class="footer__item"><a class="footer__link-item" to="https://roadmap.qovery.com" href="https://roadmap.qovery.com">Roadmap</a></li><li class="footer__item"><a class="footer__link-item" to="https://github.com/Qovery/replibyte" href="https://github.com/Qovery/replibyte">Replibyte</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Company</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/blog" href="https://www.qovery.com/blog">Blog</a></li><li class="footer__item"><a class="footer__link-item" to="https://jobs.qovery.com" href="https://jobs.qovery.com">Jobs</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/team" href="https://www.qovery.com/team">Team</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/investors" href="https://www.qovery.com/investors">Investors</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/contact" href="https://www.qovery.com/contact">Contact</a></li></ul></div></div><div class="text--center"><small>© 2025 DESIGNED BY QOVERY | PROUD SILVER MEMBER OF CNCF AND LINUX FOUNDATION | QOVERY BY BIRDSIGHT - ALL RIGHTS RESERVED</small><br></div></div></footer>
 </div>
 
-<script src="/styles.636e903d.js"></script>
+<script src="/styles.4dd11801.js"></script>
 
-<script src="/runtime~main.40d29dc2.js"></script>
+<script src="/runtime~main.c18b36e2.js"></script>
 
-<script src="/main.a0d58270.js"></script>
+<script src="/main.b0e091e6.js"></script>
 
-<script src="/2.522639cf.js"></script>
+<script src="/2.e93901d0.js"></script>
 
-<script src="/3.b883fa42.js"></script>
+<script src="/3.0f32cfee.js"></script>
 
-<script src="/4.123cd7f7.js"></script>
+<script src="/4.66b73ac7.js"></script>
 
-<script src="/1be78505.402928b7.js"></script>
+<script src="/1be78505.d943dcaa.js"></script>
 
-<script src="/20ac7829.b3e5cc28.js"></script>
+<script src="/20ac7829.ed2da451.js"></script>
 
-<script src="/321.c3fba5da.js"></script>
+<script src="/323.d5c240a7.js"></script>
 
-<script src="/17896441.e3ed6d71.js"></script>
+<script src="/17896441.bcf939d5.js"></script>
 
-<script src="/02ec211a.b5953755.js"></script>
+<script src="/02ec211a.dbdf85bf.js"></script>
 
 
 </body>

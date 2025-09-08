@@ -24,27 +24,27 @@
 <link rel="stylesheet" href="/styles.99345880.css">
 
 
-<link rel="preload" href="/styles.636e903d.js" as="script">
+<link rel="preload" href="/styles.4dd11801.js" as="script">
 
-<link rel="preload" href="/runtime~main.40d29dc2.js" as="script">
+<link rel="preload" href="/runtime~main.c18b36e2.js" as="script">
 
-<link rel="preload" href="/main.a0d58270.js" as="script">
+<link rel="preload" href="/main.b0e091e6.js" as="script">
 
-<link rel="preload" href="/2.522639cf.js" as="script">
+<link rel="preload" href="/2.e93901d0.js" as="script">
 
-<link rel="preload" href="/3.b883fa42.js" as="script">
+<link rel="preload" href="/3.0f32cfee.js" as="script">
 
-<link rel="preload" href="/4.123cd7f7.js" as="script">
+<link rel="preload" href="/4.66b73ac7.js" as="script">
 
-<link rel="preload" href="/1be78505.402928b7.js" as="script">
+<link rel="preload" href="/1be78505.d943dcaa.js" as="script">
 
-<link rel="preload" href="/20ac7829.b3e5cc28.js" as="script">
+<link rel="preload" href="/20ac7829.ed2da451.js" as="script">
 
-<link rel="preload" href="/321.c3fba5da.js" as="script">
+<link rel="preload" href="/323.d5c240a7.js" as="script">
 
-<link rel="preload" href="/17896441.e3ed6d71.js" as="script">
+<link rel="preload" href="/17896441.bcf939d5.js" as="script">
 
-<link rel="preload" href="/3cfde410.9f6c2293.js" as="script">
+<link rel="preload" href="/3cfde410.8e764520.js" as="script">
 
 </head>
 <body>
@@ -65,27 +65,27 @@ This typically happens when there are resources using the items (here: subnets) 
 </span></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token builtin class-name">echo</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;Load Balancers:&quot;</span><span class="token plain"></span></div><div class="token-line" style="color:#393A34"><span class="token plain">aws elbv2 describe-load-balancers --query </span><span class="token string" style="color:#e3116c">&quot;LoadBalancers[?VpcId==&#x27;</span><span class="token string variable" style="color:#36acaa">$VPC_ID</span><span class="token string" style="color:#e3116c">&#x27;]&quot;</span><span class="token plain"></span></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token builtin class-name">echo</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;Load Balancers:&quot;</span><span class="token plain"></span></div><div class="token-line" style="color:#393A34"><span class="token plain">aws elb describe-load-balancers --query </span><span class="token string" style="color:#e3116c">&quot;LoadBalancers[?VpcId==&#x27;</span><span class="token string variable" style="color:#36acaa">$VPC_ID</span><span class="token string" style="color:#e3116c">&#x27;]&quot;</span></div></div></pre></div></div><h2><a aria-hidden="true" tabindex="-1" class="anchor" id="my-cloud-account-has-been-blocked-what-should-i-do"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#my-cloud-account-has-been-blocked-what-should-i-do" title="Direct link to heading">#</a>My cloud account has been blocked, what should I do?</h2><p>If you encounter this kind of error during an infrastructure deployment (including managed DBs):</p><div class="mdxCodeBlock_iHAB"><div class="codeBlockContent_3RXF"><button type="button" aria-label="Copy code to clipboard" class="copyButton_1PCb">Copy</button><pre class="prism-code language-bash codeBlock_1wn8"><div class="codeBlockLines_3HrO" style="color:#393A34;background-color:#f6f8fa"><div class="token-line" style="color:#393A34"><span class="token plain">This account is currently blocked by your cloud provider, please contact them directly.</span></div></div></pre></div></div><p>Or</p><div class="mdxCodeBlock_iHAB"><div class="codeBlockContent_3RXF"><button type="button" aria-label="Copy code to clipboard" class="copyButton_1PCb">Copy</button><pre class="prism-code language-bash codeBlock_1wn8"><div class="codeBlockLines_3HrO" style="color:#393A34;background-color:#f6f8fa"><div class="token-line" style="color:#393A34"><span class="token plain">This AWS account is currently blocked and not recognized as a valid account.</span></div><div class="token-line" style="color:#393A34"><span class="token plain">Please contact aws-verification@amazon.com directly to get </span><span class="token function" style="color:#d73a49">more</span><span class="token plain"> details.</span></div><div class="token-line" style="color:#393A34"><span class="token plain">Maybe you are not allowed to use your </span><span class="token function" style="color:#d73a49">free</span><span class="token plain"> tier </span><span class="token keyword" style="color:#00009f">in</span><span class="token plain"> this region?</span></div><div class="token-line" style="color:#393A34"><span class="token plain">Maybe you need to provide billing info?</span></div></div></pre></div></div><p>This error is likely due to a billing issue or blocked free-tier usage in the given region.</p><p>Unfortunately, there is nothing Qovery can do. You need to reach out directly to your cloud provider to get more details and get your account unblocked.</p><div class="alert alert--info alert--icon" role="alert"><i class="feather icon-info"></i>If you are using AWS, you can contact them directly via dedicated email: aws-verification@amazon.com.</div><h2><a aria-hidden="true" tabindex="-1" class="anchor" id="permissions-issue-when-installing-an-aws-cluster"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#permissions-issue-when-installing-an-aws-cluster" title="Direct link to heading">#</a>Permissions Issue When Installing an AWS Cluster</h2><p>When creating an AWS cluster with Karpenter, we verify that the provided credentials include the necessary <strong>SQS permissions</strong>.  </p><p>If you encounter the following error:  </p><blockquote><p><strong>&quot;Permissions issue. Check your AWS permissions to ensure you have the necessary authorizations for this action.&quot;</strong>  </p></blockquote><p>Follow these steps to troubleshoot the issue:  </p><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="1-verify-your-iam-policy"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#1-verify-your-iam-policy" title="Direct link to heading">#</a>1. Verify Your IAM Policy</h3><p>Ensure your IAM policy matches the content of the file provided <a href="https://hub.qovery.com/files/qovery-iam-aws.json">here</a>.  </p><h3><a aria-hidden="true" tabindex="-1" class="anchor" id="2-check-aws-organization-scp-restrictions"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#2-check-aws-organization-scp-restrictions" title="Direct link to heading">#</a>2. Check AWS Organization SCP Restrictions</h3><p>If the issue persists, it may be due to <strong>Service Control Policies (SCPs)</strong> in your AWS Organization blocking the required permissions.  </p><h4><a aria-hidden="true" tabindex="-1" class="anchor" id="steps-to-verify-scp-restrictions"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#steps-to-verify-scp-restrictions" title="Direct link to heading">#</a>Steps to Verify SCP Restrictions</h4><ol><li>Go to <a href="https://policysim.aws.amazon.com/home/index.jsp">AWS Policy Simulator</a>.  </li><li>From the left panel, select the user or role used to provide Qovery access to your cloud account.  </li><li>Choose <strong>SQS</strong> as the service and select all available actions.  </li><li>Open the first result, replace the queue value (<code>*</code>) with: <code>arn:aws:sqs:::qovery*</code></li></ol><p>Then, run the simulation.  </p><h4><a aria-hidden="true" tabindex="-1" class="anchor" id="interpreting-the-results"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#interpreting-the-results" title="Direct link to heading">#</a>Interpreting the Results</h4><ul><li><strong>If permissions are allowed while <code>AWS Organizations SCPs</code> is enabled</strong>, AWS permissions are correctly set, and you should contact Qovery Support.  </li></ul><p align="center"><img src="/img/troubleshoot/aws_sqs_permissions_allowed.png" alt="AWS SQS permissions allowed"></p><ul><li><strong>If permissions are denied when <code>AWS Organizations SCPs</code> is enabled but allowed when disabled</strong>, an SCP in your organization is blocking access. You must contact your AWS administrator.  </li></ul><p align="center"><img src="/img/troubleshoot/aws_sqs_permissions_denied.png" alt="AWS SQS permissions denied"></p><h1><a aria-hidden="true" tabindex="-1" class="anchor" id="more"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#more" title="Direct link to heading">#</a>More</h1><p>You are looking to troubleshoot your application with Qovery? <a href="/guides/getting-started/debugging/">Read this very short guide</a></p></div></article></div><div class="paginator_3VDt"><nav class="pagination-nav"><div class="pagination-nav__item"><a class="pagination-nav__link" href="/docs/using-qovery/troubleshoot/service-run-troubleshoot"><h5 class="pagination-nav__link--sublabel">Previous</h5><h4 class="pagination-nav__link--label">« Service Run Troubleshoot</h4></a></div><div class="pagination-nav__item pagination-nav__item--next"><a class="pagination-nav__link" href="/docs/using-qovery/audit-logs"><h5 class="pagination-nav__link--sublabel">Next</h5><h4 class="pagination-nav__link--label">Audit Logs »</h4></a></div></nav></div></div><div class="rightCol_38kP"><div class="table-of-contents tableOfContents_tVyB"><div class="section"><div class="title">Contents</div><ul class="contents"><li><a href="#how-do-i-delete-a-cluster-with-dependency-violation-errors" class="contents__link">How do I delete a cluster with dependency violation errors?</a></li><li><a href="#i-dont-have-qovery-access-anymore-how-could-i-delete-qovery-deployed-resources-on-my-aws-account" class="contents__link">I don&#39;t have Qovery access anymore, how could I delete Qovery deployed resources on my AWS account?</a><ul><li><a href="#from-the-aws-console" class="contents__link">From the AWS console</a></li><li><a href="#from-the-cli" class="contents__link">From the CLI</a></li></ul></li><li><a href="#my-cloud-account-has-been-blocked-what-should-i-do" class="contents__link">My cloud account has been blocked, what should I do?</a></li><li><a href="#permissions-issue-when-installing-an-aws-cluster" class="contents__link">Permissions Issue When Installing an AWS Cluster</a><ul><li><a href="#1-verify-your-iam-policy" class="contents__link">1. Verify Your IAM Policy</a></li><li><a href="#2-check-aws-organization-scp-restrictions" class="contents__link">2. Check AWS Organization SCP Restrictions</a></li></ul></li></ul></div><div class="section"><div class="title">Resources</div><ul class="contents"></ul></div></div></div></div></div></main></div></div><footer class="footer"><div class="container"><div class="row footer__links"><div class="col col--5 footer__col"><div class="margin-bottom--md"></div><div class="margin-bottom--md"><p>Qovery is a DevOps Automation Platform Helping 200+ Organizations To Ship Faster and Eliminate DevOps Hiring Needs.</p></div><div><a href="https://github.com/qovery" target="_blank"><i class="feather icon-github" alt="Qovery&#x27;s Github Repo"></i></a>    <a href="https://www.linkedin.com/company/qovery/" target="_blank"><i class="feather icon-rss" alt="Qovery&#x27;s Linkedin"></i></a>    <a href="https://twitter.com/qovery_" target="_blank"><i class="feather icon-twitter" alt="Qovery&#x27;s Twitter"></i></a></div></div><div class="col footer__col"><h4 class="footer__title">Resources</h4><ul class="footer__items"><li class="footer__item"><a aria-current="page" class="footer__link-item active" href="/docs">Documentation</a></li><li class="footer__item"><a class="footer__link-item" href="/guides">Guides</a></li><li class="footer__item"><a class="footer__link-item" href="/guides/tutorial">Tutorials</a></li><li class="footer__item"><a class="footer__link-item" href="/guides/engineering">Engineering</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/pricing" href="https://www.qovery.com/pricing">Pricing</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/enterprise" href="https://www.qovery.com/enterprise">Enterprise</a></li><li class="footer__item"><a class="footer__link-item" to="https://api-doc.qovery.com" href="https://api-doc.qovery.com">API</a></li><li class="footer__item"><a class="footer__link-item" to="https://github.com/Qovery" href="https://github.com/Qovery">Github</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Community</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://community.qovery.com" href="https://community.qovery.com">Forum</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/community-call" href="https://www.qovery.com/community-call">Community call</a></li><li class="footer__item"><a class="footer__link-item" to="https://shop.qovery.com" href="https://shop.qovery.com">Goodies</a></li><li class="footer__item"><a class="footer__link-item" to="https://roadmap.qovery.com" href="https://roadmap.qovery.com">Roadmap</a></li><li class="footer__item"><a class="footer__link-item" to="https://github.com/Qovery/replibyte" href="https://github.com/Qovery/replibyte">Replibyte</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Company</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/blog" href="https://www.qovery.com/blog">Blog</a></li><li class="footer__item"><a class="footer__link-item" to="https://jobs.qovery.com" href="https://jobs.qovery.com">Jobs</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/team" href="https://www.qovery.com/team">Team</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/investors" href="https://www.qovery.com/investors">Investors</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/contact" href="https://www.qovery.com/contact">Contact</a></li></ul></div></div><div class="text--center"><small>© 2025 DESIGNED BY QOVERY | PROUD SILVER MEMBER OF CNCF AND LINUX FOUNDATION | QOVERY BY BIRDSIGHT - ALL RIGHTS RESERVED</small><br></div></div></footer>
 </div>
 
-<script src="/styles.636e903d.js"></script>
+<script src="/styles.4dd11801.js"></script>
 
-<script src="/runtime~main.40d29dc2.js"></script>
+<script src="/runtime~main.c18b36e2.js"></script>
 
-<script src="/main.a0d58270.js"></script>
+<script src="/main.b0e091e6.js"></script>
 
-<script src="/2.522639cf.js"></script>
+<script src="/2.e93901d0.js"></script>
 
-<script src="/3.b883fa42.js"></script>
+<script src="/3.0f32cfee.js"></script>
 
-<script src="/4.123cd7f7.js"></script>
+<script src="/4.66b73ac7.js"></script>
 
-<script src="/1be78505.402928b7.js"></script>
+<script src="/1be78505.d943dcaa.js"></script>
 
-<script src="/20ac7829.b3e5cc28.js"></script>
+<script src="/20ac7829.ed2da451.js"></script>
 
-<script src="/321.c3fba5da.js"></script>
+<script src="/323.d5c240a7.js"></script>
 
-<script src="/17896441.e3ed6d71.js"></script>
+<script src="/17896441.bcf939d5.js"></script>
 
-<script src="/3cfde410.9f6c2293.js"></script>
+<script src="/3cfde410.8e764520.js"></script>
 
 
 </body>

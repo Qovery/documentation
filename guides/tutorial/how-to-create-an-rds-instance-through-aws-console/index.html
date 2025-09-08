@@ -24,21 +24,21 @@
 <link rel="stylesheet" href="/styles.99345880.css">
 
 
-<link rel="preload" href="/styles.636e903d.js" as="script">
+<link rel="preload" href="/styles.4dd11801.js" as="script">
 
-<link rel="preload" href="/runtime~main.40d29dc2.js" as="script">
+<link rel="preload" href="/runtime~main.c18b36e2.js" as="script">
 
-<link rel="preload" href="/main.a0d58270.js" as="script">
+<link rel="preload" href="/main.b0e091e6.js" as="script">
 
-<link rel="preload" href="/1.a17c1b19.js" as="script">
+<link rel="preload" href="/1.4bc0ce90.js" as="script">
 
-<link rel="preload" href="/2.522639cf.js" as="script">
+<link rel="preload" href="/2.e93901d0.js" as="script">
 
-<link rel="preload" href="/3.b883fa42.js" as="script">
+<link rel="preload" href="/3.0f32cfee.js" as="script">
 
-<link rel="preload" href="/1c13b173.a18c9300.js" as="script">
+<link rel="preload" href="/1c13b173.7e89545d.js" as="script">
 
-<link rel="preload" href="/e4768112.319063bc.js" as="script">
+<link rel="preload" href="/e4768112.e5d4ede7.js" as="script">
 
 </head>
 <body>
@@ -50,21 +50,21 @@ You can refer to this document for more information about the different options:
 Chose the allocated storage that fits the needs of your application. We also advise you to <code>Enable storage autoscaling</code> in case you need more storage over time.</p><p align="center"><img src="/img/how-to-create-an-rds-instance-through-aws-console/5.png" alt="AWS RDS console"></p></li><li><h4><a aria-hidden="true" tabindex="-1" class="anchor" id="availability--durability"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#availability--durability" title="Direct link to heading">#</a>Availability &amp; durability</h4><p>For a production setup you should <code>Create a standby instance</code>. For non-production usecase you can avoid it to reduce costs.</p><p align="center"><img src="/img/how-to-create-an-rds-instance-through-aws-console/6.png" alt="AWS RDS console"></p></li><li><h4><a aria-hidden="true" tabindex="-1" class="anchor" id="connectivity"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#connectivity" title="Direct link to heading">#</a>Connectivity</h4><ul><li>Since we want the database to live in it&#x27;s own VPC, make sure to select the <code>Create new VPC</code> option.</li><li>Also select <code>Create new DB Subnet Group</code>.</li><li>We advise you to disable <code>Public access</code> for security reason. We&#x27;ll setup VPC peering in the next guide to allow access from your Qovery clusters through private networking.</li><li>Finally chose <code>Create new</code> security group and give it a name.</li></ul><p align="center"><img src="/img/how-to-create-an-rds-instance-through-aws-console/7.png" alt="AWS RDS console"></p></li><li><h4><a aria-hidden="true" tabindex="-1" class="anchor" id="database-authentication-and-estimated-costs"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#database-authentication-and-estimated-costs" title="Direct link to heading">#</a>Database authentication and estimated costs</h4><p>Chose <code>Password authentication</code>.</p><p align="center"><img src="/img/how-to-create-an-rds-instance-through-aws-console/8.png" alt="AWS RDS console"></p><p>You can then click on <code>Create database</code></p></li><li><h4><a aria-hidden="true" tabindex="-1" class="anchor" id="database-creation"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#database-creation" title="Direct link to heading">#</a>Database creation</h4><p>You should see your new RDS instance in the list of databases, with the <code>Creating</code> status.</p><p align="center"><img src="/img/how-to-create-an-rds-instance-through-aws-console/9.png" alt="AWS RDS console"></p></li><li><h4><a aria-hidden="true" tabindex="-1" class="anchor" id="name-your-rds-vpc"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#name-your-rds-vpc" title="Direct link to heading">#</a>Name your RDS VPC</h4><p>The VPC created for the new RDS database will be named <code>-</code>. For convenience you should rename it.</p><p>Click on your database in the list, then on the VPC id.</p><p align="center"><img src="/img/how-to-create-an-rds-instance-through-aws-console/10.png" alt="AWS RDS console"></p><p>You will be redirected to the VPCs list, filtered on the VPC id. Click on the edit icon in the <code>Name</code> column, and give it a meaningful name.</p><p align="center"><img src="/img/how-to-create-an-rds-instance-through-aws-console/11.png" alt="AWS RDS console"></p><p align="center"><img src="/img/how-to-create-an-rds-instance-through-aws-console/12.png" alt="AWS RDS console"></p></li></ol><div class="steps--feedback">How was it? Did this tutorial work?  <span class="button button--sm button--primary">Yes</span>  <a href="https://github.com/qovery/documentation/issues/new?body=The%20tutorial%20on%3A%0A%0Anull%0A%0AHere%27s%20what%20went%20wrong%3A%0A%0A%3C%21--%20Insert%20command%20output%20and%20details.%20Thank%20you%20for%20reporting%21%20%3A%29%20--%3E&amp;title=Tutorial%20on%20null%20failed" target="_blank" class="button button--sm button--primary">No</a></div></div><h2><a aria-hidden="true" tabindex="-1" class="anchor" id="conclusion"></a><a aria-hidden="true" tabindex="-1" class="hash-link" href="#conclusion" title="Direct link to heading">#</a>Conclusion</h2><p>Your RDS database is ready. Now in order to access it from your Qovery cluster, we will need to setup VPC peering. You can find the procedure in <a href="/guides/tutorial/aws-vpc-peering-with-qovery/">this tutorial</a></p></div></article></div></main></div><footer class="footer"><div class="container"><div class="row footer__links"><div class="col col--5 footer__col"><div class="margin-bottom--md"></div><div class="margin-bottom--md"><p>Qovery is a DevOps Automation Platform Helping 200+ Organizations To Ship Faster and Eliminate DevOps Hiring Needs.</p></div><div><a href="https://github.com/qovery" target="_blank"><i class="feather icon-github" alt="Qovery&#x27;s Github Repo"></i></a>    <a href="https://www.linkedin.com/company/qovery/" target="_blank"><i class="feather icon-rss" alt="Qovery&#x27;s Linkedin"></i></a>    <a href="https://twitter.com/qovery_" target="_blank"><i class="feather icon-twitter" alt="Qovery&#x27;s Twitter"></i></a></div></div><div class="col footer__col"><h4 class="footer__title">Resources</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" href="/docs">Documentation</a></li><li class="footer__item"><a aria-current="page" class="footer__link-item active" href="/guides">Guides</a></li><li class="footer__item"><a aria-current="page" class="footer__link-item active" href="/guides/tutorial">Tutorials</a></li><li class="footer__item"><a class="footer__link-item" href="/guides/engineering">Engineering</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/pricing" href="https://www.qovery.com/pricing">Pricing</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/enterprise" href="https://www.qovery.com/enterprise">Enterprise</a></li><li class="footer__item"><a class="footer__link-item" to="https://api-doc.qovery.com" href="https://api-doc.qovery.com">API</a></li><li class="footer__item"><a class="footer__link-item" to="https://github.com/Qovery" href="https://github.com/Qovery">Github</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Community</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://community.qovery.com" href="https://community.qovery.com">Forum</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/community-call" href="https://www.qovery.com/community-call">Community call</a></li><li class="footer__item"><a class="footer__link-item" to="https://shop.qovery.com" href="https://shop.qovery.com">Goodies</a></li><li class="footer__item"><a class="footer__link-item" to="https://roadmap.qovery.com" href="https://roadmap.qovery.com">Roadmap</a></li><li class="footer__item"><a class="footer__link-item" to="https://github.com/Qovery/replibyte" href="https://github.com/Qovery/replibyte">Replibyte</a></li></ul></div><div class="col footer__col"><h4 class="footer__title">Company</h4><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/blog" href="https://www.qovery.com/blog">Blog</a></li><li class="footer__item"><a class="footer__link-item" to="https://jobs.qovery.com" href="https://jobs.qovery.com">Jobs</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/team" href="https://www.qovery.com/team">Team</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/investors" href="https://www.qovery.com/investors">Investors</a></li><li class="footer__item"><a class="footer__link-item" to="https://www.qovery.com/contact" href="https://www.qovery.com/contact">Contact</a></li></ul></div></div><div class="text--center"><small>© 2025 DESIGNED BY QOVERY | PROUD SILVER MEMBER OF CNCF AND LINUX FOUNDATION | QOVERY BY BIRDSIGHT - ALL RIGHTS RESERVED</small><br></div></div></footer>
 </div>
 
-<script src="/styles.636e903d.js"></script>
+<script src="/styles.4dd11801.js"></script>
 
-<script src="/runtime~main.40d29dc2.js"></script>
+<script src="/runtime~main.c18b36e2.js"></script>
 
-<script src="/main.a0d58270.js"></script>
+<script src="/main.b0e091e6.js"></script>
 
-<script src="/1.a17c1b19.js"></script>
+<script src="/1.4bc0ce90.js"></script>
 
-<script src="/2.522639cf.js"></script>
+<script src="/2.e93901d0.js"></script>
 
-<script src="/3.b883fa42.js"></script>
+<script src="/3.0f32cfee.js"></script>
 
-<script src="/1c13b173.a18c9300.js"></script>
+<script src="/1c13b173.7e89545d.js"></script>
 
-<script src="/e4768112.319063bc.js"></script>
+<script src="/e4768112.e5d4ede7.js"></script>
 
 
 </body>

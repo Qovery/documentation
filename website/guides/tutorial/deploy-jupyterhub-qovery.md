@@ -1,9 +1,9 @@
 ---
-last_modified_on: "2025-01-08"
+last_modified_on: "2025-09-08"
 $schema: "/.meta/.schemas/guides.json"
 title: Deploy JupyterHub using Helm
 description: How to deploy JupyterHub on Qovery using the official Helm chart.
-author_github: https://github.com/baalooos
+author_github: https://github.com/guimove
 tags: ["type: tutorial", "technology: qovery"]
 hide_pagination: true
 ---

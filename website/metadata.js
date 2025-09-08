@@ -475,7 +475,7 @@ module.exports = {
           "title": "Customizing Preview URL with Qovery CLI"
         },
         {
-          "author_github": "https://github.com/baalooos",
+          "author_github": "https://github.com/guimove",
           "description": null,
           "id": "/tutorial/deploy-jupyterhub-qovery",
           "last_modified_on": null,

@@ -412,6 +412,15 @@ module.exports = {
           "title": "Build E2E Testing Ephemeral Environments with GitHub Actions and Qovery"
         },
         {
+          "author_github": "https://github.com/guimove",
+          "description": null,
+          "id": "/tutorial/certificate_management_for_multi_tenant_infrastructure",
+          "last_modified_on": null,
+          "path": "website/guides/tutorial/certificate_management_for_multi_tenant_infrastructure.md",
+          "series_position": null,
+          "title": "Certificate Management for Multi-Tenant Applications on Qovery"
+        },
+        {
           "author_github": "https://github.com/evoxmusic",
           "description": null,
           "id": "/tutorial/create-a-playground-environment-on-aws",
@@ -1022,12 +1031,12 @@ module.exports = {
       "name": "Alessandro Carrano"
     },
     {
-      "avatar": "https://github.com/baalooos.png",
-      "bio": "Charles-Edouard is Technical Account Manager at <a href=\"https://www.qovery.com\">Qovery</a>.",
-      "github": "https://github.com/baalooos",
-      "id": "cegagnaire",
-      "keybase": "https://keybase.io/baalooos",
-      "name": "Charles-Edouard Gagnaire"
+      "avatar": "https://github.com/guimove.png",
+      "bio": "Guillaume is a Senior Cloud Architect at <a href=\"https://www.qovery.com\">Qovery</a> with extensive experience in cloud infrastructure and Kubernetes. He specializes in designing scalable architectures and enterprise-grade solutions.",
+      "github": "https://github.com/guimove",
+      "id": "guillaume",
+      "keybase": "https://keybase.io/guimove",
+      "name": "Guillaume DA SILVA"
     }
   ],
   "technologies": [

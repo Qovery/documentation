@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-08-12"
+last_modified_on: "2025-09-09"
 title: Web interface
 description: How to use the Qovery web interface
 ---
@@ -24,15 +24,29 @@ Qovery provides a [management console][urls.start_qovery] which allows you to in
 
 ## First sign-up
 
-Sign in to the [Qovery web interface][urls.start_qovery].
-
 <p align="center">
-  <a href="https://console.qovery.com/"><img src="/img/Qovery_Sign_Up_Page.png" alt="Qovery Sign-up page" /></a>
+ <img src="/img/interface/sign_in_page.png" alt="Sign in page" />
 </p>
+
+### Authentication Methods
+
+Qovery supports multiple authentication methods to suit your needs:
+
+**Git Providers**
+- **GitHub** - Access your repositories directly for deployment
+- **Bitbucket** - Access your repositories directly for deployment  
+- **GitLab** - Access your repositories directly for deployment
+
+**Social Authentication**
+- **Google** - For individual accounts
+- **Microsoft** - For individual accounts
+
+**Enterprise Authentication**
+- **SSO/OIDC** - Contact us to configure enterprise authentication for your organization
 
 <Alert type="info">
 
-If you log in with the Google or Microsoft providers you will have to setup a git token to access and deploy your applications from your private repositories. 
+If you log in with Google or Microsoft providers, you will need to setup a git token to access and deploy your applications from your private repositories. 
 
 For more information, see [Managing Git Permissions with the Git Tokens][docs.using-qovery.configuration.organization.git-repository-access].
 

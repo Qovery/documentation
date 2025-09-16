@@ -139,15 +139,6 @@ module.exports = {
             },
             {
               type: 'category',
-              label: 'Monitoring',
-              items: [
-                "using-qovery/integration/monitoring",
-                "using-qovery/integration/monitoring/datadog",
-                "using-qovery/integration/monitoring/new-relic",
-              ],
-            },
-            {
-              type: 'category',
               label: 'IaC',
               items: [
                 "using-qovery/integration/iac",
@@ -242,6 +233,16 @@ module.exports = {
             "using-qovery/deployment/logs",
             "using-qovery/deployment/deployment-strategies",
             "using-qovery/deployment/image-mirroring",
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Observability',
+          items: [
+            "using-qovery/observability",
+            "using-qovery/observability/monitoring",
+            "using-qovery/observability/logs",
+            "using-qovery/observability/architecture",
           ],
         },
         {

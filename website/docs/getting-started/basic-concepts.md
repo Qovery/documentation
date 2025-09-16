@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-08-12"
+last_modified_on: "2025-09-16"
 title: "Basic Concepts"
 description: "Basic Concepts about Qovery"
 ---
@@ -73,7 +73,7 @@ On top of these basic services, Qovery provides a pre-set of configuration to si
 ## Deployment
 A Deployment is the operation allowing you to gather your code and make it runs on your cluster. Qovery can pull your repository, generate a docker image and spawn the necessary resources on your clusters to make your application run. You can find more information within [this section][docs.using-qovery.deployment].
 
-You can monitor the execution of the deployment via the [Deployment Logs][docs.using-qovery.deployment.logs#deployment-logs] while you can monitor the execution of your application thanks to the streamed [Live Logs][docs.using-qovery.deployment.logs#live-logs] directly from the Qovery interface.
+You can monitor the execution of the deployment via the [Deployment Logs][docs.using-qovery.deployment.logs#deployment-logs] while you can monitor the execution of your application thanks to the streamed [Service Logs][docs.using-qovery.deployment.logs#service-logs] directly from the Qovery interface.
 
 ## High Level Schema
 <p align="center">
@@ -94,6 +94,6 @@ You can monitor the execution of the deployment via the [Deployment Logs][docs.u
 [docs.using-qovery.configuration.organization]: /docs/using-qovery/configuration/organization/
 [docs.using-qovery.configuration.project]: /docs/using-qovery/configuration/project/
 [docs.using-qovery.deployment.logs#deployment-logs]: /docs/using-qovery/deployment/logs/#deployment-logs
-[docs.using-qovery.deployment.logs#live-logs]: /docs/using-qovery/deployment/logs/#live-logs
+[docs.using-qovery.deployment.logs#service-logs]: /docs/using-qovery/deployment/logs/#service-logs
 [docs.using-qovery.deployment]: /docs/using-qovery/deployment/
 [urls.kubernetes]: https://kubernetes.io/

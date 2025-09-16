@@ -8,56 +8,55 @@ import Assumptions from '@site/src/components/Assumptions';
 
 The Logs interface allows you to access:
 - **The deployment logs**: every time a deployment is triggered, Qovery provides you with the log of its execution and as well with any error that might occur.
-- **The live logs** of your applications: Qovery allows you to retrieve the logs of your application in real-time, streamed directly from your remote application (no data is stored on Qovery side).  The logs are accessible as long as the application is running and writing the logs in the `stdout`.
+- **The service logs** of your applications: Qovery allows you to retrieve the logs of your application in real-time, streamed directly from your remote application (no data is stored on Qovery side).  The logs are accessible as long as the application is running and writing the logs in the `stdout`.
 
 ## How to access the logs
 
-The `Logs` interface can be accessed from the console by clicking on the `parchment` icon available in the header or within the table
+The `Logs` interface can be accessed from the console through multiple entry points:
+
+**Service Logs:**
+* Click the **scroll icon** next to your service to view application runtime logs
+
+**Pipeline Logs:**
+* Click the **pipeline icon** to access the deployment pipeline view for your environment
+
+**Deployment Logs:**
+* Click the **deployment status label** beneath your service name to view deployment-specific logs (Available for "deployment ongoing" and "deployment failed" statuses)
+
+Each log view is contextually filtered to show only relevant information for the selected scope, helping you quickly identify and troubleshoot issues at the appropriate level.
 
 <p align="center">
   <img src="/img/deployment/access_logs.png" alt="Log access" />
 </p>
 
-The interface is composed of two sections:
-- A **navigation panel** (on the left)
-- A **log section** allowing you to switch between the deployment logs and the live logs of a service.
+### Pipeline view
+
+The pipeline view provides a comprehensive overview of your entire environment deployment process. This centralized view displays each deployment stage, including pre-check validations, giving you complete visibility into the deployment workflow.
+
+**Key Features:**
+* **Stage-by-stage visibility**: Monitor each phase of your deployment
+* **Pre-check logs**: Access validation logs that run before the actual deployment begins
+* **Direct service access**: Click on any service within the pipeline to jump directly to its specific deployment logs
+* **Smart filtering**: Services not included in the current deployment are automatically hidden to reduce clutter and focus on active components
+
+**Note:** If you've deployed only selected services from your environment, uninvolved services won't appear in the pipeline view since they're skipped during that particular deployment cycle.
 
 <p align="center">
-  <img src="/img/deployment/logs_view.png" alt="Log View" />
+  <img src="/img/deployment/pipeline_view.png" alt="Pipeline View" />
 </p>
-
-## Navigation Panel
-
-This section provides you with some information on the last `Deployment` that happened on the environment and a navigation system to access the logs of each service of your environment. 
-
-More in detail you will find here:
-- Deployment information (top section): this section shows you the status of the deployment execution and when it happened. If a deployment is ongoing, its status will be updated accordingly in this section. 
-- Pipeline view: this section provides an overall view of the current configuration of the [Deployment Pipeline][docs.using-qovery.deployment.deployment-pipeline] and each service present within the environment. By default, only the services that have been deployed within the last deployment execution are displayed but you can still display all of them by un-ticking the option `Last deployed only`. 
-
-## Log section
-
-This section allows you to access the `Deployment Logs` and the `Live logs` of each service.
 
 ### Deployment Logs
 
-This tab shows you the deployment logs for each service of the environment. By default, you get access to the logs of the last deployment execution but you can switch to the previous execution (See [Accessing old deployment logs](#accessing-old-deployment-logs)).
+By default, you get access to the logs of the last deployment execution but you can switch to the previous execution (See [Accessing old deployment logs](#accessing-old-deployment-logs)).
 
 If the service is built via the Qovery CI pipeline, you will get access to the build logs.
 
-<p align="center">
-  <img src="/img/deployment/build_logs.png" alt="Build Logs" />
-</p>
-
 When the deployment on Kubernetes is executed, the system will provide you with the deployment status updates. In case of deployment issues, these updates will provide you with some information on the root cause.
-
-<p align="center">
-  <img src="/img/deployment/deployment_status_update.png" alt="Deployment Status Update" />
-</p>
 
 At the end of the deployment, a final message is emitted confirming if the deployment was successful or not and, in case of an issue, it provides you with some information on how to solve the issue. 
 
 <p align="center">
-  <img src="/img/deployment/log_content.png" alt="Log content" />
+  <img src="/img/deployment/deployment_logs_view.png" alt="Deployment Logs View" />
 </p>
 
 You can use the [Troubleshoot section][docs.using-qovery.troubleshoot] to investigate any issue you might encounter during the deployment of your services.
@@ -66,46 +65,55 @@ You can use the [Troubleshoot section][docs.using-qovery.troubleshoot] to invest
 
 You can access the logs of a past deployment execution in two ways:
 - using the `Deployment log switch` on the logs view
+- from the `Deployment history` tab from the service or environment page and clicking on the `pipeline` icon of a previous deployment
 
 <p align="center">
-  <img src="/img/deployment/deployment_switch.png" alt="Deployment Log Switch" />
-</p>
-
-
-- from the `Deployment` tab from the service or environment page and clicking on the `parchment` icon of a previous deployment
-
-<p align="center">
-  <img src="/img/deployment/deployment_tab_switch.png" alt="Deployment Tab Switch" />
+  <img src="/img/deployment/deployment_history.png" alt="Deployment History" />
 </p>
 
 <Alert type="info">
 
-Qovery provides access to the logs of the last 20 deployments executed on your environment. If your service has been deployed more than 20 deployments ago, you won't be able to access its deployment logs.
+Qovery provides access to the logs of the last 20 deployments executed on your environment and the latest failed deployment. If your service has been deployed more than 20 deployments ago, you won't be able to access its deployment logs.
 
 </Alert>
 
-### Live Logs
+### Service Logs
 
-The live logs tab gives you a real-time view on the log generated by your application while running remotely on your cloud provider infrastructure. 
+<p align="center">
+  <img src="/img/deployment/live_logs.png" alt="Log content" />
+</p>
+
+The service logs give you a real-time view of the logs generated by your application while running remotely on your cloud provider infrastructure.
 
 Within this section you will find:
-- Timestamp: the timestamp of the message
-- Pod Name: the name of the kubernetes pod where your application is running (to distinguish the instance in case of the multi-instance app). If you want to follow a specific pod, you can filter the logs by clicking on the pod name
-- Version: the commit id or the image tag of the application running on this POD
-- Message: the log message
+- **Timestamp:** The timestamp of the message
+- **Pod Name:** The name of the kubernetes pod where your application is running (to distinguish instances in case of multi-instance apps). You can filter logs by clicking on the pod name to follow a specific pod
+- **Version:** The commit ID or image tag of the application running on this pod
+- **Message:** The log message
+- **Container:** The name of the specific container running within your service (particularly useful when working with Helm charts that may deploy multiple containers per service)
 
-If you have several pods within your application, you have the possiblity to filter the logs by pod. 
+If you have several pods within your application, you can filter the logs by pod.
 
 <p align="center">
   <img src="/img/deployment/live_logs_filtered.png" alt="Log content" />
 </p>
 
-Past application logs are also preserved on your cluster via [Loki](https://grafana.com/oss/loki/) and can be accessed from the same log view within the qovery console. Please keep in mind that:
-- Loki is configured to preserve only the latest 1000 lines of log for each application and retain them for 12 weeks (configurable via the [cluster advanced settings][docs.using-qovery.configuration.cluster-advanced-settings#logs])
-- This feature is not available on [EC2 Clusters][docs.using-qovery.configuration.clusters#why-do-i-need-a-cluster] since we don't install Loki.
+#### Log Retention & Access
 
-If you need to troubleshoot issues on the requests managed by your application, you can also access the Nginx logs in the same view (logs format is available in the helper). Note that this option is available only if the application is exposed publicly (See the [Port Section][docs.using-qovery.configuration.application#ports])
+Past application logs are preserved on your cluster via [Loki](https://grafana.com/oss/loki/) and can be accessed from the same log view within the Qovery console:
 
-<p align="center">
-  <img src="/img/deployment/live_logs.png" alt="Log content" />
-</p>
+**With Observability Package:** (See the [Observability Section][docs.using-qovery.observability.logs] to know more)
+- Full historical log access with 12 weeks retention
+- No line limit - access to complete log history
+- Enhanced filtering and correlation with metrics
+
+**Without Observability Package:**
+- Access to the latest 1000 lines of logs per service
+- 12 weeks retention for these logs
+- Real-time logs only (no historical search capabilities)
+
+> **Note:** Log retention period can be configured via the [cluster advanced settings][docs.using-qovery.configuration.cluster-advanced-settings#logs]
+
+If you need to troubleshoot issues on requests managed by your application, you can also access the Nginx logs in the same view (logs format is available in the helper). This option is available only if the application is exposed publicly (See the [Port Section][docs.using-qovery.configuration.application#ports]).
+
+

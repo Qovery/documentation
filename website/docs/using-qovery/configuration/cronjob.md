@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-04-24"
+last_modified_on: "2025-09-16"
 title: "Cronjob"
 description: "Learn how to configure your Cronjob on Qovery"
 ---
@@ -300,7 +300,7 @@ To learn how to set up secrets in your projects and applications, navigate to [c
 
 ## Logs
 
-To learn how to display your application logs, navigate to [logs section][docs.using-qovery.deployment.logs#live-logs]
+To learn how to display your application logs, navigate to [logs section][docs.using-qovery.deployment.logs#service-logs]
 
 ## Clone
 
@@ -357,6 +357,6 @@ In the overview, click on the `3 dots` button and remove the job. Note: the same
 [docs.using-qovery.configuration.organization.git-repository-access]: /docs/using-qovery/configuration/organization/git-repository-access/
 [docs.using-qovery.configuration.organization.labels-annotations]: /docs/using-qovery/configuration/organization/labels-annotations/
 [docs.using-qovery.deployment.deploying-with-auto-deploy#filtering-commits-triggering-the-auto-deploy]: /docs/using-qovery/deployment/deploying-with-auto-deploy/#filtering-commits-triggering-the-auto-deploy
-[docs.using-qovery.deployment.logs#live-logs]: /docs/using-qovery/deployment/logs/#live-logs
+[docs.using-qovery.deployment.logs#service-logs]: /docs/using-qovery/deployment/logs/#service-logs
 [docs.using-qovery.deployment]: /docs/using-qovery/deployment/
 [guides.advanced.monorepository]: /guides/advanced/monorepository/

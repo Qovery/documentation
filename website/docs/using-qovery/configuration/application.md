@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-06-18"
+last_modified_on: "2025-09-16"
 title: "Application"
 description: "Learn how to configure your Application on Qovery"
 ---
@@ -498,7 +498,7 @@ To learn how to set up secrets in your projects and applications, navigate to [c
 
 ## Logs
 
-To learn how to display your application logs, navigate to [logs section][docs.using-qovery.deployment.logs#live-logs]
+To learn how to display your application logs, navigate to [logs section][docs.using-qovery.deployment.logs#service-logs]
 
 ## SSH
 
@@ -571,7 +571,7 @@ In the application overview, click on the `3 dots` button and remove the applica
 [docs.using-qovery.configuration.service-health-checks]: /docs/using-qovery/configuration/service-health-checks/
 [docs.using-qovery.deployment.deploying-with-auto-deploy#filtering-commits-triggering-the-auto-deploy]: /docs/using-qovery/deployment/deploying-with-auto-deploy/#filtering-commits-triggering-the-auto-deploy
 [docs.using-qovery.deployment.image-mirroring#why-unique-image-tags-are-necessary]: /docs/using-qovery/deployment/image-mirroring/#why-unique-image-tags-are-necessary
-[docs.using-qovery.deployment.logs#live-logs]: /docs/using-qovery/deployment/logs/#live-logs
+[docs.using-qovery.deployment.logs#service-logs]: /docs/using-qovery/deployment/logs/#service-logs
 [docs.using-qovery.deployment]: /docs/using-qovery/deployment/
 [docs.using-qovery.interface.cli]: /docs/using-qovery/interface/cli/
 [guides.advanced.monorepository]: /guides/advanced/monorepository/

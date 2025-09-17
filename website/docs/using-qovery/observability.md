@@ -58,7 +58,6 @@ Today, engineering teams face three main options when it comes to observability:
     SaaS monitoring platforms are powerful and feature-rich, but they come with two significant drawbacks:
 
     * Data leaves your infrastructure, which may raise compliance, security, or cost concerns.
-
     * Weak correlation with your deployed services on Qovery. You end up switching contexts between your deployment platform and your monitoring tool, making troubleshooting slower and more complex.
 
 2. Do-it-yourself (DIY) stack

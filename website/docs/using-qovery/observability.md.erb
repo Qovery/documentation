@@ -18,7 +18,10 @@ Currently this feature is not in self-service, if you’d like to get access to 
 
 <Alert type="info">
 
-Currently, observability is available on **AWS clusters** only. Support for **Scaleway, GCP, and Azure** is coming soon.  
+Currently, observability is available only on **AWS clusters**, with support for **Scaleway**, **GCP**, and **Azure** coming soon.
+
+For services, observability is currently available for **Applications** and **Containers**. Support for **Jobs**, **Managed Databases**, and **Helms** will be added soon.
+
 
 </Alert>
 
@@ -47,31 +50,22 @@ Today, engineering teams face three main options when it comes to observability:
 1. Third-party SaaS tools (e.g. Datadog)
 
     SaaS monitoring platforms are powerful and feature-rich, but they come with two significant drawbacks:
-
     * Data leaves your infrastructure, which may raise compliance, security, or cost concerns.
-
     * Weak correlation with your deployed services on Qovery. You end up switching contexts between your deployment platform and your monitoring tool, making troubleshooting slower and more complex.
 
 2. Do-it-yourself (DIY) stack
 
     You can build and maintain your own observability stack (Prometheus, Grafana, Loki, Tempo, Jaeger…). This offers flexibility, but it requires:
-
     * Dedicated expertise to set up and operate.
-
     * Heavy ongoing maintenance of upgrades, scaling, storage, and integrations.
-
     * High customization overhead before you get something usable across your environments.
 
 3. Qovery Built-in Observability
 
     With Qovery, you get the best of both worlds:
-
     * Data stays in your infrastructure for compliance and security.
-
     * Zero maintenance — we manage the observability stack for you.
-
     * Correlated metrics and logs, directly linked to your deployed services, clusters, and environments.
-
     * Developer + Ops friendly UX, so your team can quickly identify and resolve issues without juggling multiple tools.
 
 <p Valign="center">

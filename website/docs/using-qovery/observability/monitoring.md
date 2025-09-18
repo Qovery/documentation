@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-09-15"
+last_modified_on: "2025-09-18"
 title: Monitoring services
 description: "Monitoring services"
 sidebar_label: Monitoring services
@@ -22,12 +22,7 @@ This tab gives you real-time and historical visibility into your applications.
 
 ## Service Health
 
-The **Service Health Check** provides an overview of running instances and recent events.  
-
-<p Valign="center">
-  <img src="/img/observability/instance_number.png" alt="Instance number" />
-</p>
-
+The **Service Health Check** provides an overview of running instances and recent events:
 - **Qovery events** (e.g. deployments, failed deployments) and Kubernetes events** (e.g. autoscaler triggered, OOMKilled pod, health check failures).
 
 <p Valign="center">
@@ -35,7 +30,7 @@ The **Service Health Check** provides an overview of running instances and recen
 </p>
 
 - **Log errors counter** – automatically counts error-level logs. You can jump directly into logs at the exact point where errors occurred.  
-- **HTTP error rate (5xx)** – aggregated over all requests, with the ability to expand and view the breakdown by **endpoint** and **status code**.  
+- **HTTP error rate (499 and 5xx errors)** – aggregated over all requests, with the ability to expand and view the breakdown by **endpoint** and **status code**.  
 - **Network request duration (P99)** – shows tail latency of your requests, expandable to include P90 and P50.  
 
 ## Resources
@@ -43,7 +38,11 @@ The **Service Health Check** provides an overview of running instances and recen
 Resource usage is tracked per pod:  
 
 - **CPU usage** – compared against your request and limit.  
-- **Memory usage** – compared against your request and limit.  
+- **Memory usage** – compared against your request and limit.
+
+<p Valign="center">
+  <img src="/img/observability/resources.png" alt="Resources" />
+</p>
 
 ## Network
 
@@ -51,7 +50,11 @@ Qovery provides network-level observability:
 
 - **Request status** by path and error code.  
 - **Request duration** with percentiles (P50, P95, P99).  
-- **Request size** statistics.  
+- **Request size** statistics.
+
+<p Valign="center">
+  <img src="/img/observability/network.png" alt="Network" />
+</p>
 
 If your application exposes a **public port**, metrics reflect ingress traffic.  
 If no public port is exposed, metrics reflect **internal traffic** within the cluster.  

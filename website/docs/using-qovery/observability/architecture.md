@@ -1,7 +1,7 @@
 ---
-last_modified_on: "2025-09-16"
+last_modified_on: "2025-09-23"
 title: Observability architecture
-description: "Observability architecture"
+description: "Architecture"
 sidebar_label: Architecture
 hide_pagination: true
 ---

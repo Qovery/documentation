@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-09-18"
+last_modified_on: "2025-09-23"
 title: Observability overview
 description: "The Observability section in Qovery helps you monitor, analyze, and troubleshoot your services and clusters"
 sidebar_label: hidden

@@ -240,9 +240,9 @@ module.exports = {
           label: 'Observability',
           items: [
             "using-qovery/observability",
+            "using-qovery/observability/architecture",
             "using-qovery/observability/monitoring",
             "using-qovery/observability/logs",
-            "using-qovery/observability/architecture",
           ],
         },
         {

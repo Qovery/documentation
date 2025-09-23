@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-08-12"
+last_modified_on: "2025-09-23"
 title: Integrations
 description: "Integrate Qovery with your existing tools and workflow"
 sidebar_label: hidden

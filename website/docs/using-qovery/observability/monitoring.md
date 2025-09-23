@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-09-18"
+last_modified_on: "2025-09-23"
 title: Monitoring services
 description: "Monitoring services"
 sidebar_label: Monitoring services
@@ -23,7 +23,7 @@ This tab gives you real-time and historical visibility into your applications.
 ## Service Health
 
 The **Service Health Check** provides an overview of running instances and recent events:
-- **Qovery events** (e.g. deployments, failed deployments) and Kubernetes events** (e.g. autoscaler triggered, OOMKilled pod, health check failures).
+- **Qovery events** (e.g. deployments, failed deployments) and **Kubernetes events** (e.g. autoscaler triggered, OOMKilled pod, health check failures).
 
 <p Valign="center">
   <img src="/img/observability/events.png" alt="Events" />

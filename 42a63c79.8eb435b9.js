@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[89],{241:function(a){a.exports=JSON.parse('{"allTagsPath":"/guides/tags","slug":"database-rds","name":"database: rds","count":2,"permalink":"/guides/tags/database-rds"}')}}]);

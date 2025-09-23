@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2024-06-11"
+last_modified_on: "2025-09-16"
 $schema: "/.meta/.schemas/guides.json"
 title: Debugging
 description: How to debug your application
@@ -38,7 +38,7 @@ If the service crashes, its `Running Status` will be displayed as a red dot. If 
 
 ## Live Logs
 
-If you need to see the log output of your application while it's running, qovery expose them to you in real-time thanks to the Logs interface. You can have a look at [this section][docs.using-qovery.deployment.logs#live-logs] to know more.
+If you need to see the log output of your application while it's running, qovery expose them to you in real-time thanks to the Logs interface. You can have a look at [this section][docs.using-qovery.deployment.logs#service-logs] to know more.
 
 You can use this information to find out what causes your application to behave incorrectly.
 
@@ -85,7 +85,7 @@ Do you need any help? [Reach us on our forum][urls.qovery_forum]
 
 
 [docs.using-qovery.deployment.logs#deployment-logs]: /docs/using-qovery/deployment/logs/#deployment-logs
-[docs.using-qovery.deployment.logs#live-logs]: /docs/using-qovery/deployment/logs/#live-logs
+[docs.using-qovery.deployment.logs#service-logs]: /docs/using-qovery/deployment/logs/#service-logs
 [docs.using-qovery.deployment.running-and-deployment-statuses]: /docs/using-qovery/deployment/running-and-deployment-statuses/
 [docs.using-qovery.troubleshoot]: /docs/using-qovery/troubleshoot/
 [urls.datadog]: https://www.datadoghq.com

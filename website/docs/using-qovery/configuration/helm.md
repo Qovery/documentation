@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-06-18"
+last_modified_on: "2025-09-16"
 title: "Helm"
 description: "Learn how to configure your Helm on Qovery"
 ---
@@ -396,7 +396,7 @@ Qovery does not check collision in the domain declaration. Make sure you assign 
 
 ## Logs
 
-To learn how to display your helm logs, navigate to [logs section][docs.using-qovery.deployment.logs#live-logs]
+To learn how to display your helm logs, navigate to [logs section][docs.using-qovery.deployment.logs#service-logs]
 
 ## Clone
 
@@ -453,7 +453,7 @@ In the helm overview, click on the `3 dots` button and remove the helm.
 [docs.using-qovery.configuration.helm#using-the-environment-variables-in-your-chart]: /docs/using-qovery/configuration/helm/#using-the-environment-variables-in-your-chart
 [docs.using-qovery.configuration.organization.helm-repository]: /docs/using-qovery/configuration/organization/helm-repository/
 [docs.using-qovery.configuration.organization.members-rbac]: /docs/using-qovery/configuration/organization/members-rbac/
-[docs.using-qovery.deployment.logs#live-logs]: /docs/using-qovery/deployment/logs/#live-logs
+[docs.using-qovery.deployment.logs#service-logs]: /docs/using-qovery/deployment/logs/#service-logs
 [docs.using-qovery.deployment]: /docs/using-qovery/deployment/
 [guides.advanced.monorepository]: /guides/advanced/monorepository/
 [guides.getting-started.setting-custom-domain]: /guides/getting-started/setting-custom-domain/

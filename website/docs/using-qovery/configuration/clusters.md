@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-07-08"
+last_modified_on: "2025-09-17"
 title: "Clusters"
 description: "Learn how to configure your Kubernetes clusters on Qovery"
 sidebar_label: hidden

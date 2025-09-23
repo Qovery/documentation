@@ -139,15 +139,6 @@ module.exports = {
             },
             {
               type: 'category',
-              label: 'Monitoring',
-              items: [
-                <%= metadata.links.fetch_id("docs.using-qovery.integration.monitoring").to_json %>,
-                <%= metadata.links.fetch_id("docs.using-qovery.integration.monitoring.datadog").to_json %>,
-                <%= metadata.links.fetch_id("docs.using-qovery.integration.monitoring.new-relic").to_json %>,
-              ],
-            },
-            {
-              type: 'category',
               label: 'IaC',
               items: [
                 <%= metadata.links.fetch_id("docs.using-qovery.integration.iac").to_json %>,
@@ -242,6 +233,16 @@ module.exports = {
             <%= metadata.links.fetch_id("docs.using-qovery.deployment.logs").to_json %>,
             <%= metadata.links.fetch_id("docs.using-qovery.deployment.deployment-strategies").to_json %>,
             <%= metadata.links.fetch_id("docs.using-qovery.deployment.image-mirroring").to_json %>,
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Observability',
+          items: [
+            <%= metadata.links.fetch_id("docs.using-qovery.observability").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.observability.architecture").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.observability.monitoring").to_json %>,
+            <%= metadata.links.fetch_id("docs.using-qovery.observability.logs").to_json %>,
           ],
         },
         {

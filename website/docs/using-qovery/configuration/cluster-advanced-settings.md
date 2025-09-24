@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-07-29"
+last_modified_on: "2025-09-24"
 title: "Cluster Advanced Settings"
 description: "Learn how to set advanced settings on your infrastructure with Qovery"
 ---
@@ -410,6 +410,11 @@ Once enabled, you can update the advanced setting [resources.override.limit.ram_
 | Type    | Description                                                                                                                                                                                               | Default Value |
 |---------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | string  | Specify the [IMDS](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html) version you want to use. Possible values are `required` (IMDS v2 only) and `optional` (IMDS v1 and V2) | `required`    |
+
+#### aws.eks.ec2.ami ![](/img/advanced_settings/aws.svg)
+| Type    | Description                                                                                                                                                                                                                         | Default Value     |
+|---------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------|
+| string  | Specify the AMI you want to use. Possible values are `AmazonLinux2` (deprecated and not working after Kubernetes version 1.32), `AmazonLinux2023` (default Amazon AMI) and `Bottlerocket` (focuses on security and maintainability) | `AmazonLinux2023` |
 
 #### aws.eks.encrypt_secrets_kms_key_arn ![](/img/advanced_settings/aws.svg)
 

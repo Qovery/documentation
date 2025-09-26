@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-09-23"
+last_modified_on: "2025-09-26"
 title: Observability overview
 description: "The Observability section in Qovery helps you monitor, analyze, and troubleshoot your services and clusters"
 sidebar_label: hidden
@@ -27,7 +27,7 @@ Currently this feature is not in self-service, if you’d like to get access to 
 
 <Alert type="info">
 
-Currently, observability is available only on **AWS clusters**, with support for **Scaleway**, **GCP**, and **Azure** coming soon.
+Currently, observability is available only on **AWS and Scaleway clusters**, with support for **GCP**, and **Azure** coming soon.
 
 For services, observability is currently available for **Applications** and **Containers**. Support for **Jobs**, **Managed Databases**, and **Helms** will be added soon.
 

@@ -60,7 +60,7 @@ If your application exposes a public port, metrics represent ingress traffic.
 If no public port is exposed, metrics represent internal traffic within the cluster.
 
 <Alert type="warning">
-  On **Scaleway clusters**, if no public port is exposed, network monitoring is currently unavailable.
+  On Scaleway clusters, if no public port is exposed, network monitoring is currently unavailable.
   Support for internal traffic will be added soon.
 </Alert>
 

@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-07-07"
+last_modified_on: "2025-09-26"
 title: "Organization"
 description: "Learn how to configure Organizations on Qovery"
 sidebar_label: hidden

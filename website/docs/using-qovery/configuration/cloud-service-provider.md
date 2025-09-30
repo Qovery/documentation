@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-12-29"
+last_modified_on: "2025-09-24"
 title: "Cloud Service Provider"
 description: "Learn how to configure and plug in your Cloud Account"
 sidebar_label: hidden

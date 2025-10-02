@@ -39,7 +39,7 @@ If the registry you need is not in the list and it supports the docker login for
   placeholder="Select your container registry"
   select={false}
   size={null}
-  values={[{"group":"CR","label":"ECR","value":"ECR"},{"group":"CR","label":"GCP Artifact Registry","value":"GCP Artifact Registry"},{"group":"CR","label":"Scaleway Container Registry","value":"Scaleway Container Registry"},{"group":"CR","label":"Docker Hub","value":"Docker Hub"},{"group":"CR","label":"Github Container Registry","value":"Github Container Registry"},{"group":"CR","label":"Gitlab Container Registry","value":"Gitlab Container Registry"},{"group":"CR","label":"Public ECR","value":"Public ECR"},{"group":"CR","label":"Generic Container Registry","value":"Generic Container Registry"}]}>
+  values={[{"group":"CR","label":"ECR","value":"ECR"},{"group":"CR","label":"GCP Artifact Registry","value":"GCP Artifact Registry"},{"group":"CR","label":"Scaleway Container Registry","value":"Scaleway Container Registry"},{"group":"CR","label":"Docker Hub","value":"Docker Hub"},{"group":"CR","label":"Github Container Registry","value":"Github Container Registry"},{"group":"CR","label":"Github Enterprise Container Registry","value":"Github Enterprise Container Registry"},{"group":"CR","label":"Gitlab Container Registry","value":"Gitlab Container Registry"},{"group":"CR","label":"Public ECR","value":"Public ECR"},{"group":"CR","label":"Generic Container Registry","value":"Generic Container Registry"}]}>
 
 <TabItem value="ECR">
 
@@ -140,6 +140,37 @@ To authenticate with GitHub Container Registry (GHCR), you need to generate a Pe
 1. Set the **Username** field to your **GitHub username**.
 2. Set the **Personal Access Token** field to the **PAT** you generated.
 
+</TabItem>
+<TabItem value="Github Enterprise Container Registry">
+To use GitHub Enterprise Container Registry (GHCR) in Qovery, you need to provide authentication details (your GitHub PAT, and registry URL) to pull images.
+
+---
+
+#### Generating a Personal Access Token (PAT) for GitHub Enterprise
+
+To authenticate with GitHub Enterprise Container Registry, you need to generate a Personal Access Token (PAT) with the appropriate permissions.
+
+1. Go to your GitHub Enterprise instance → **Settings → Developer settings → Personal access tokens** (typically at `https://your-github-enterprise-domain/settings/tokens`).
+2. Click on **"Generate new token"** (or **"Generate new token (classic)"**).
+3. Provide a name for the token to identify its purpose.
+4. Select the following permission:
+   - ✅ **read:packages** (to pull images)
+   - ✅ **write:packages** (if you need to push images)
+5. Click **Generate token** and **copy** the token, as you won't be able to see it again.
+
+---
+
+#### Configuring Authentication in Qovery
+
+1. Set the **Registry name** field to identify your registry (e.g., "My Company GHCR").
+2. Set the **Registry URL** field to your GitHub Enterprise Container Registry URL.
+   - Format: `https://containers.<github_enterprise_subdomain>.ghe.com`
+   - Example: `https://containers.mycompany.ghe.com`
+3. Set the **Container registry prefix** field to your **GitHub username** or **organization name**.
+   - This is the namespace used in your image URLs (e.g., in `host.ghe.com/qovery/my-app`, the prefix is `qovery`).
+4. Set the **Personal Access Token** field to the **PAT** you generated.
+
+---
 </TabItem>
 <TabItem value="Gitlab Container Registry">
 

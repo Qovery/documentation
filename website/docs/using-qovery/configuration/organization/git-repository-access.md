@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2025-08-27"
+last_modified_on: "2025-10-02"
 title: "Git Repository access"
 description: "Learn how to manage the git repository permission access"
 ---
@@ -60,6 +60,18 @@ Depending on the selected token type, the required permission is slightly differ
 
 <p align="center">
   <img src="/img/configuration/organization/github_fine_grained.png" alt="Github fine grained" />
+</p>
+
+#### GitHub vs Github Enterprise
+
+When adding a Github token in the Qovery console, you can choose between Github and Github Enterprise:
+
+* Github: use this option if your repositories are hosted on github.com. No additional configuration is needed.
+
+* Github Enterprise: use this option if your organization is running its own Github Enterprise instance. In this case, you must provide the Github host URL (e.g. https://example.ghe.com). Qovery will then use this URL together with your token to access your repositories.
+
+<p align="center">
+  <img src="/img/configuration/organization/Github_enterprise.png" alt="Github Enterprise" />
 </p>
 
 ### Gitlab

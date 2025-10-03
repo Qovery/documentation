@@ -1,5 +1,5 @@
 ---
-last_modified_on: "2023-05-27"
+last_modified_on: "2025-10-03"
 title: "Audit Logs"
 description: "Learn how to access the audit logs"
 ---
@@ -74,7 +74,19 @@ While navigating within the console, a few quick filters allow you to jump on th
 
 ## Export
 
-Not yet available, feature coming soon!
+You can export your audit logs using the Qovery CLI:
+```
+qovery audit-log export --from-date="2025-10-01T00:00:00Z" --to-date="2025-09-10T00:00:00Z"
+```
+<Alert type="info">
+
+Dates must be specified using ISO-8601 date-time format
+- `--from-date` is required
+- `--to-date` is optional (defaulted to current date time)
+
+Dates are UTC based, you can use offset format as well i.e `2025-10-01T01:00:00+02:00`
+
+</Alert>
 
 
 [docs.using-qovery.configuration.organization.api-token]: /docs/using-qovery/configuration/organization/api-token/

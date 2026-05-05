@@ -60,20 +60,20 @@ qovery log --service "httpbin" --tail 100
 
 ## Options
 
-| Flag            | Description                                                              |
-| --------------- | ------------------------------------------------------------------------ |
-| `--service`     | Service name — works for any type (application, container, database, job) |
-| `--application` | Application name (legacy, prefer `--service`)                            |
-| `--container`   | Container name (legacy, prefer `--service`)                              |
-| `--database`    | Database name (legacy, prefer `--service`)                               |
-| `--job`         | Job name (legacy, prefer `--service`)                                    |
-| `--follow`      | Follow log output                                                        |
-| `--filter`      | Filter logs by keyword                                                   |
-| `--since`       | Show logs since duration (e.g., 1h, 30m)                                |
-| `--from`        | Show logs from timestamp (ISO 8601)                                      |
-| `--to`          | Show logs until timestamp (ISO 8601)                                     |
-| `--tail`        | Number of lines to show from end                                         |
-| `--help`        | Show help                                                                |
+| Flag            | Description                                                                          |
+| --------------- | ------------------------------------------------------------------------------------ |
+| `--service`     | Service name — tries application, container, database, and job APIs until a match is found |
+| `--application` | Target specifically an application                                                   |
+| `--container`   | Target specifically a container                                                      |
+| `--database`    | Target specifically a database                                                       |
+| `--job`         | Target specifically a job                                                            |
+| `--follow`      | Follow log output                                                                    |
+| `--filter`      | Filter logs by keyword                                                               |
+| `--since`       | Show logs since duration (e.g., 1h, 30m)                                            |
+| `--from`        | Show logs from timestamp (ISO 8601)                                                  |
+| `--to`          | Show logs until timestamp (ISO 8601)                                                 |
+| `--tail`        | Number of lines to show from end                                                     |
+| `--help`        | Show help                                                                            |
 
 ## Examples
 
@@ -131,8 +131,10 @@ qovery log \
 ## Tips
 
 <Tip>
-  Use `--service` with just the service name — Qovery automatically resolves its
-  type (application, container, database, job). No need to know the type upfront.
+  Use `--service` when you don't know (or don't want to specify) the type of
+  your service. Qovery will try each API (application, container, database, job)
+  until it finds a match. Use a specific flag (`--application`, `--database`,
+  etc.) if you want to target a precise service type.
 </Tip>
 
 <Tip>

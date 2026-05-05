@@ -1239,6 +1239,102 @@ After changing this setting, redeploy your applications and services in this clu
 600
 ```
 
+<a id="envoy-gateway-api-retry-num-retries"></a>
+
+### envoy.gateway_api.retry.num_retries
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/scaleway-icon.svg" alt="Scaleway" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/gcp-icon.svg" alt="GCP" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/azure-icon.svg" alt="Azure" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `integer` (unsigned)
+
+**Description:** Sets the default retry attempt count for Gateway API traffic at cluster level. This value is used when services do not define `network.gateway_api.retry.num_retries`.
+
+**Use Case:** Define a consistent retry baseline for all services in the cluster while still allowing per-service overrides.
+
+<Warning>
+After changing this setting, redeploy your applications and services in this cluster to apply the new retry configuration on generated Gateway API resources.
+</Warning>
+
+**Default Value:** `2`
+
+**Example:**
+```json
+2
+```
+
+<a id="envoy-gateway-api-retry-retry-on"></a>
+
+### envoy.gateway_api.retry.retry_on
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/scaleway-icon.svg" alt="Scaleway" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/gcp-icon.svg" alt="GCP" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/azure-icon.svg" alt="Azure" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `string` (CSV)
+
+**Description:** Defines default retry conditions at cluster level (for example `connect-failure`, `reset`, `refused-stream`, `retriable-status-codes`). Used when services do not define `network.gateway_api.retry.retry_on`.
+
+**Use Case:** Apply consistent retry triggers across services while allowing local service overrides when needed.
+
+<Warning>
+After changing this setting, redeploy your applications and services in this cluster to apply the new retry configuration on generated Gateway API resources.
+</Warning>
+
+**Default Value:** `"connect-failure,reset,refused-stream"`
+
+**Example:**
+```json
+"connect-failure,reset,refused-stream"
+```
+
+**Learn More (retry_on values):** See [Envoy Gateway TriggerEnum reference](https://gateway.envoyproxy.io/v1.6/api/extension_types/#triggerenum).
+
+<a id="envoy-gateway-api-retry-http-status-codes"></a>
+
+### envoy.gateway_api.retry.http_status_codes
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/scaleway-icon.svg" alt="Scaleway" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/gcp-icon.svg" alt="GCP" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/azure-icon.svg" alt="Azure" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `string` (CSV of HTTP codes)
+
+**Description:** Defines default HTTP status codes to retry at cluster level. Codes must be integers in range `100..599`. Used when services do not define `network.gateway_api.retry.http_status_codes`.
+
+**Use Case:** Limit retries to specific response codes across services (for example `503,504`) without configuring each service separately.
+
+<Warning>
+After changing this setting, redeploy your applications and services in this cluster to apply the new retry configuration on generated Gateway API resources.
+</Warning>
+
+**Default Value:** `null` (unset)
+
+**Example:**
+```json
+"503,504"
+```
+
+<a id="envoy-gateway-api-retry-per-try-timeout-seconds"></a>
+
+### envoy.gateway_api.retry.per_try_timeout_seconds
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/scaleway-icon.svg" alt="Scaleway" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/gcp-icon.svg" alt="GCP" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/azure-icon.svg" alt="Azure" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `integer` (unsigned, `> 0`)
+
+**Description:** Sets the default timeout in seconds for each retry attempt. Used when services do not define `network.gateway_api.retry.per_try_timeout_seconds`.
+
+**Use Case:** Cap each retry attempt cluster-wide to reduce tail latency and avoid long blocked attempts.
+
+<Warning>
+After changing this setting, redeploy your applications and services in this cluster to apply the new retry configuration on generated Gateway API resources.
+</Warning>
+
+**Default Value:** `null` (unset)
+
+**Example:**
+```json
+3
+```
+
+**Learn More:** See [Envoy Gateway Retry Documentation](https://gateway.envoyproxy.io/latest/tasks/traffic/retry/).
+
 <a id="envoy-client-ip-detection-x-forwarded-for-number-trusted-hops"></a>
 
 ### envoy.client_ip_detection.x_forwarded_for.number_trusted_hops

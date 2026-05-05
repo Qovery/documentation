@@ -1246,6 +1246,102 @@ The hardcoded error pages cannot be customized at this time. If you need to cust
 300
 ```
 
+<a id="network-gateway-api-retry-num-retries"></a>
+
+### network.gateway_api.retry.num_retries
+
+<span class="badge-app">Application</span> <span class="badge-container">Container</span> <span class="badge-helm">Helm</span>
+
+**Type:** `integer` (unsigned)
+
+**Description:** Sets the number of retry attempts for failed upstream requests handled by Gateway API.
+
+**Use Case:** Set to `0` to explicitly disable retries for a service, or increase it for transient backend/network errors.
+
+<Info>
+Service value takes precedence over cluster value. If this setting is not set at service level, Qovery applies the cluster-level value from `envoy.gateway_api.retry.num_retries` when defined.
+</Info>
+
+**Default Value:** `null` (unset at service level; cluster defaults may apply)
+
+**Example:**
+```json
+2
+```
+
+<a id="network-gateway-api-retry-retry-on"></a>
+
+### network.gateway_api.retry.retry_on
+
+<span class="badge-app">Application</span> <span class="badge-container">Container</span> <span class="badge-helm">Helm</span>
+
+**Type:** `string` (CSV)
+
+**Description:** Defines retry conditions for Gateway API requests (for example `connect-failure`, `reset`, `refused-stream`, `retriable-status-codes`).
+
+**Use Case:** Control when retries happen. If you use `network.gateway_api.retry.http_status_codes`, this field must include `retriable-status-codes`.
+
+<Info>
+Service value takes precedence over cluster value. If this setting is not set at service level, Qovery applies the cluster-level value from `envoy.gateway_api.retry.retry_on` when defined.
+</Info>
+
+**Default Value:** `null` (unset at service level; cluster defaults may apply)
+
+**Example:**
+```json
+"connect-failure,reset,refused-stream"
+```
+
+**Learn More (retry_on values):** See [Envoy Gateway TriggerEnum reference](https://gateway.envoyproxy.io/v1.6/api/extension_types/#triggerenum).
+
+<a id="network-gateway-api-retry-http-status-codes"></a>
+
+### network.gateway_api.retry.http_status_codes
+
+<span class="badge-app">Application</span> <span class="badge-container">Container</span> <span class="badge-helm">Helm</span>
+
+**Type:** `string` (CSV of HTTP codes)
+
+**Description:** Restricts retries to specific HTTP status codes. Codes must be integers in range `100..599`.
+
+**Use Case:** Retry only selected upstream response codes (for example `503,504`) instead of broad retry categories.
+
+<Info>
+Service value takes precedence over cluster value. If this setting is not set at service level, Qovery applies the cluster-level value from `envoy.gateway_api.retry.http_status_codes` when defined.
+</Info>
+
+**Default Value:** `null` (unset)
+
+**Example:**
+```json
+"503,504"
+```
+
+<a id="network-gateway-api-retry-per-try-timeout-seconds"></a>
+
+### network.gateway_api.retry.per_try_timeout_seconds
+
+<span class="badge-app">Application</span> <span class="badge-container">Container</span> <span class="badge-helm">Helm</span>
+
+**Type:** `integer` (unsigned, `> 0`)
+
+**Description:** Sets a per-retry-attempt timeout in seconds. Each attempt is bounded by this timeout.
+
+**Use Case:** Prevent each retry attempt from running too long and keep total retry latency under control.
+
+<Info>
+Service value takes precedence over cluster value. If this setting is not set at service level, Qovery applies the cluster-level value from `envoy.gateway_api.retry.per_try_timeout_seconds` when defined.
+</Info>
+
+**Default Value:** `null` (unset)
+
+**Example:**
+```json
+3
+```
+
+**Learn More:** See [Envoy Gateway Retry Documentation](https://gateway.envoyproxy.io/latest/tasks/traffic/retry/).
+
 <a id="network-dns-ndots"></a>
 
 ### network.dns.ndots

@@ -5,7 +5,7 @@ description: "Log viewing commands"
 
 ## Overview
 
-View and stream logs from your applications, containers, databases, and jobs.
+View and stream logs from any service — application, container, database, or job — running on Qovery.
 
 ## Commands
 
@@ -17,22 +17,22 @@ Stream real-time logs:
 qovery log
 ```
 
-Stream logs for specific service:
+Stream logs for a specific service (regardless of its type):
 
 ```bash
-qovery log --application "app-id"
+qovery log --service "httpbin"
 ```
 
 Follow logs with live updates:
 
 ```bash
-qovery log --application "app-id" --follow
+qovery log --service "httpbin" --follow
 ```
 
 Filter logs by keyword:
 
 ```bash
-qovery log --application "app-id" --filter "ERROR"
+qovery log --service "httpbin" --filter "ERROR"
 ```
 
 ### Historical Logs
@@ -40,14 +40,14 @@ qovery log --application "app-id" --filter "ERROR"
 Get logs from last hour:
 
 ```bash
-qovery log --application "app-id" --since 1h
+qovery log --service "httpbin" --since 1h
 ```
 
 Get logs from specific time range:
 
 ```bash
 qovery log \
-  --application "app-id" \
+  --service "httpbin" \
   --from "2024-01-01T00:00:00Z" \
   --to "2024-01-01T23:59:59Z"
 ```
@@ -55,36 +55,36 @@ qovery log \
 Get last N lines:
 
 ```bash
-qovery log --application "app-id" --tail 100
+qovery log --service "httpbin" --tail 100
 ```
 
 ## Options
 
-| Flag            | Description                              |
-| --------------- | ---------------------------------------- |
-| `--application` | Application ID or name                   |
-| `--container`   | Container ID or name                     |
-| `--database`    | Database ID or name                      |
-| `--job`         | Job ID or name                           |
-| `--service`     | Service ID or name                       |
-| `--follow`      | Follow log output                        |
-| `--filter`      | Filter logs by keyword                   |
-| `--since`       | Show logs since duration (e.g., 1h, 30m) |
-| `--from`        | Show logs from timestamp (ISO 8601)      |
-| `--to`          | Show logs until timestamp (ISO 8601)     |
-| `--tail`        | Number of lines to show from end         |
-| `--help`        | Show help                                |
+| Flag            | Description                                                              |
+| --------------- | ------------------------------------------------------------------------ |
+| `--service`     | Service name — works for any type (application, container, database, job) |
+| `--application` | Application name (legacy, prefer `--service`)                            |
+| `--container`   | Container name (legacy, prefer `--service`)                              |
+| `--database`    | Database name (legacy, prefer `--service`)                               |
+| `--job`         | Job name (legacy, prefer `--service`)                                    |
+| `--follow`      | Follow log output                                                        |
+| `--filter`      | Filter logs by keyword                                                   |
+| `--since`       | Show logs since duration (e.g., 1h, 30m)                                |
+| `--from`        | Show logs from timestamp (ISO 8601)                                      |
+| `--to`          | Show logs until timestamp (ISO 8601)                                     |
+| `--tail`        | Number of lines to show from end                                         |
+| `--help`        | Show help                                                                |
 
 ## Examples
 
-### Follow Application Logs
+### Follow Service Logs
 
 ```bash
-# Stream logs in real-time
-qovery log --application "my-api" --follow
+# Stream logs in real-time — works for any service type
+qovery log --service "httpbin" --follow
 
 # Filter for errors
-qovery log --application "my-api" --follow --filter "ERROR"
+qovery log --service "httpbin" --follow --filter "ERROR"
 ```
 
 ### Debug Production Issues
@@ -92,13 +92,13 @@ qovery log --application "my-api" --follow --filter "ERROR"
 ```bash
 # Get last hour of logs
 qovery log \
-  --application "my-api" \
+  --service "my-api" \
   --since 1h \
   --filter "exception"
 
 # Get specific time range
 qovery log \
-  --application "my-api" \
+  --service "my-api" \
   --from "2024-12-01T10:00:00Z" \
   --to "2024-12-01T11:00:00Z"
 ```
@@ -106,15 +106,15 @@ qovery log \
 ### View Database Logs
 
 ```bash
-# Stream database logs
-qovery log --database "postgres-main" --follow
+# Stream database logs — no need to specify the type
+qovery log --service "postgres-main" --follow
 ```
 
 ### View Job Logs
 
 ```bash
 # View cronjob logs
-qovery log --job "backup-job" --tail 50
+qovery log --service "backup-job" --tail 50
 ```
 
 ### Multiple Filters
@@ -122,13 +122,18 @@ qovery log --job "backup-job" --tail 50
 ```bash
 # Combine flags for precise debugging
 qovery log \
-  --application "my-api" \
+  --service "my-api" \
   --since 30m \
   --filter "ERROR" \
   --tail 100
 ```
 
 ## Tips
+
+<Tip>
+  Use `--service` with just the service name — Qovery automatically resolves its
+  type (application, container, database, job). No need to know the type upfront.
+</Tip>
 
 <Tip>
   Use `--follow` to monitor logs in real-time during deployments or debugging.

@@ -173,44 +173,6 @@ When you ask your agent to deploy, it runs through a complete deployment workflo
 
 ---
 
-## Supported Frameworks
-
-Production-ready Dockerfile templates included for:
-
-<CardGroup cols={3}>
-  <Card title="Node.js" icon="node-js">
-    Express · Fastify · NestJS
-  </Card>
-  <Card title="Next.js" icon="react">
-    SSR with standalone output
-  </Card>
-  <Card title="React / Vite" icon="react">
-    SPA served via nginx
-  </Card>
-  <Card title="Python" icon="python">
-    Flask · Django · FastAPI
-  </Card>
-  <Card title="Go" icon="golang">
-    net/http · Gin · Echo · Fiber
-  </Card>
-  <Card title="Java" icon="java">
-    Spring Boot (Maven & Gradle)
-  </Card>
-  <Card title="Ruby" icon="gem">
-    Rails
-  </Card>
-  <Card title="PHP" icon="php">
-    Laravel
-  </Card>
-  <Card title=".NET" icon="microsoft">
-    ASP.NET Core
-  </Card>
-</CardGroup>
-
-Any other framework? The agent generates a custom Dockerfile from your project structure.
-
----
-
 ## Try These Prompts
 
 Open your AI coding tool after installing the skill and try:
@@ -266,38 +228,6 @@ Everything else is handled by the skill:
 - **No cluster needed upfront** — the skill guides you through cluster creation
 - **No Dockerfile needed** — created automatically for 12+ frameworks
 - **No Kubernetes knowledge needed** — health checks, ports, stages, and resource limits are all configured automatically
-
----
-
-## Install
-
-<Steps>
-  <Step title="Run the installer">
-    ```bash
-    curl -fsSL https://skill.qovery.com/install.sh | bash
-    ```
-
-    Installs to all compatible tool directories automatically. No manual configuration.
-  </Step>
-
-  <Step title="Open your AI coding tool">
-    Launch Claude Code, Cursor, OpenCode, or any compatible tool. The skill is discovered automatically.
-  </Step>
-
-  <Step title="Ask the agent to deploy">
-    ```
-    Deploy my application with Qovery
-    ```
-  </Step>
-</Steps>
-
-<Tip>
-**Project-only install** (current directory only):
-```bash
-curl -fsSL https://skill.qovery.com/install.sh | bash -s -- --project
-```
-**Update to latest:** re-run the install command.
-</Tip>
 
 ---
 

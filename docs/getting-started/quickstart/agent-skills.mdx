@@ -1,18 +1,18 @@
 ---
 title: "Qovery Agent Skills"
-description: "Deploy to Kubernetes with your favorite AI coding agent. Eight skills. 30+ tools. One install command."
+description: "Eight skills that give your AI coding agent the ability to deploy, troubleshoot, optimize, and manage Kubernetes infrastructure."
 mode: "wide"
 ---
 
 <div className="ai-section">
 
-Deploy production-grade apps to Kubernetes by talking to your AI coding agent — no DevOps expertise required. The Qovery Agent Skills extend any compatible AI tool with the ability to provision infrastructure, deploy applications, debug failures, and manage environments autonomously.
+The Qovery Agent Skills extend any compatible AI tool with Kubernetes superpowers. Install once, and your agent picks the right skill automatically based on what you ask.
 
 ```bash
 curl -fsSL https://skill.qovery.com/install.sh | bash
 ```
 
-Eight skills are installed at once. Your agent picks the right one based on what you ask.
+→ [Setup guide and compatible tools](/getting-started/quickstart/ai-agent)
 
 </div>
 
@@ -21,14 +21,11 @@ Eight skills are installed at once. Your agent picks the right one based on what
 ## The Eight Skills
 
 <CardGroup cols={2}>
-  <Card title="qovery-onboard" icon="wand-magic-sparkles" href="https://github.com/Qovery/qovery-skills">
+  <Card title="qovery-onboard" icon="/images/logos/ai-tools/anthropic.svg" href="https://github.com/Qovery/qovery-skills">
     **Your personal cloud architect**
 
-    <br />
+    Asks about your role, experience, cloud provider, and constraints — then recommends the optimal cluster configuration, security settings, and deployment method.
 
-    Asks about your role, experience, cloud provider, and constraints — then recommends the optimal cluster configuration, security settings, and deployment method for your situation.
-
-    **Key features:**
     - Evaluates your team's profile and recommends the right path
     - Guides through cloud account setup (AWS, GCP, Azure, Scaleway)
     - Configures cluster, org, and access controls step by step
@@ -40,11 +37,8 @@ Eight skills are installed at once. Your agent picks the right one based on what
   <Card title="qovery-deploy" icon="rocket" href="https://github.com/Qovery/qovery-skills">
     **From source code to running app**
 
-    <br />
+    Analyzes your codebase, generates a production Dockerfile if missing, provisions databases, configures environment variables, and deploys to Kubernetes.
 
-    Analyzes your codebase, generates a production Dockerfile if missing, provisions databases, configures environment variables, and deploys to Kubernetes — via CLI+API or Terraform.
-
-    **Key features:**
     - Framework detection: Node.js, Next.js, React, Python, Go, Java, Ruby, PHP, .NET
     - Dev vs production mode: container DB or managed RDS/Cloud SQL
     - Environment variables with aliases, interpolation, and overrides
@@ -56,14 +50,11 @@ Eight skills are installed at once. Your agent picks the right one based on what
   <Card title="qovery-troubleshoot" icon="bug" href="https://github.com/Qovery/qovery-skills">
     **Systematic diagnosis for deployment failures**
 
-    <br />
-
     Runs an 8-layer diagnostic sequence and matches against 20+ error patterns — covering build failures, crashes, connectivity issues, health check timeouts, and performance problems.
 
-    **Key features:**
     - 8-layer diagnostic: build → image → config → startup → health → network → scaling → logs
     - 20+ error pattern library with known fixes
-    - Distinguishes between code issues (needs your fix) and infra issues (auto-fixed)
+    - Distinguishes code issues (your fix) from infra issues (auto-fixed)
     - Outputs a structured incident report with remediation steps
 
     `Debug` `Operations`
@@ -72,11 +63,8 @@ Eight skills are installed at once. Your agent picks the right one based on what
   <Card title="qovery-optimize" icon="piggy-bank" href="https://github.com/Qovery/qovery-skills">
     **Cut your cloud bill with data-driven analysis**
 
-    <br />
-
     Analyzes resource consumption across 7 dimensions and generates a detailed cost report with specific savings recommendations — exportable as CSV.
 
-    **Key features:**
     - 7-dimension analysis: right-sizing, autoscaling, DB modes, scheduling, cluster, builds, external
     - Identifies over-provisioned services and recommends target sizes
     - Spot instance and sleep mode opportunities for non-production
@@ -88,11 +76,8 @@ Eight skills are installed at once. Your agent picks the right one based on what
   <Card title="qovery-speedup" icon="bolt" href="https://github.com/Qovery/qovery-skills">
     **Find and fix slow deployments**
 
-    <br />
+    Measures your full deployment pipeline timeline, identifies bottlenecks, and classifies responsibility — user code vs infrastructure — with concrete fixes.
 
-    Measures your full deployment pipeline timeline, identifies bottlenecks, and classifies responsibility — user code vs infrastructure configuration — with concrete fixes.
-
-    **Key features:**
     - End-to-end pipeline timing: build → push → schedule → start → health check
     - Dockerfile layer optimization (cache ordering, multi-stage builds)
     - Build cache configuration for faster CI
@@ -104,11 +89,8 @@ Eight skills are installed at once. Your agent picks the right one based on what
   <Card title="qovery-preview" icon="code-branch" href="https://github.com/Qovery/qovery-skills">
     **Preview environments for every pull request**
 
-    <br />
+    Detects or creates a blueprint environment, then clones it for each PR with a unique URL — including databases and dependent services.
 
-    Detects or creates a blueprint environment, then automatically clones it for each PR with a unique URL — including databases and dependent services. Configurable auto-shutdown.
-
-    **Key features:**
     - Auto-create a full-stack preview (app + DB) for each PR
     - Unique URL per environment (e.g. `pr-123.preview.example.com`)
     - Auto-shutdown after merge or configurable TTL
@@ -120,13 +102,10 @@ Eight skills are installed at once. Your agent picks the right one based on what
   <Card title="qovery-builder-env" icon="users" href="https://github.com/Qovery/qovery-skills">
     **Self-service environments for non-technical teams**
 
-    <br />
+    Lets product managers, designers, and junior developers spin up their own full environments — with RBAC so they can't break production.
 
-    Lets product managers, designers, and junior developers spin up their own full environments in VS Code, Claude Code, or OpenCode — with built-in RBAC so they can't break production.
-
-    **Key features:**
     - Non-developers get their own isolated environment via AI agent
-    - RBAC controls: builders can deploy but can't touch cluster config
+    - RBAC controls: builders deploy apps, can't touch cluster config
     - Clones from a reference environment with safe defaults
     - Works in VS Code + Copilot, Claude Code, and OpenCode
 
@@ -136,44 +115,16 @@ Eight skills are installed at once. Your agent picks the right one based on what
   <Card title="qovery-builder-portal" icon="browser" href="https://github.com/Qovery/qovery-skills">
     **A web portal for environment provisioning**
 
-    <br />
+    Generates and deploys a Vite + React + Express web portal — SSO login, one-click environment creation, and a visual dashboard for your team.
 
-    Generates and deploys a Vite + React + Express web portal — SSO login, one-click environment creation, and a visual dashboard for your team to manage their environments without touching the CLI.
-
-    **Key features:**
     - AI agent generates and deploys the portal for you
     - SSO login for your team
     - One-click environment creation and deletion
-    - Visual dashboard — no CLI, no console access needed for end users
+    - Visual dashboard — no CLI, no console access needed
 
     `Portal` `Teams`
   </Card>
 </CardGroup>
-
----
-
-## Compatible Tools
-
-The Qovery Agent Skills follow the [Agent Skills](https://agentskills.io) open standard. The installer places skills in all discovery paths automatically — no manual configuration.
-
-| Tool | Type | Skills supported |
-|------|------|-----------------|
-| **Claude Code** | Terminal | All 8 |
-| **OpenCode** | Terminal | All 8 |
-| **Gemini CLI** | Terminal | All 8 |
-| **Cursor** | IDE | All 8 |
-| **VS Code Copilot** | IDE Extension | All 8 |
-| **Roo Code** | IDE Extension | All 8 |
-| **Kiro** | IDE | All 8 |
-| **Junie (JetBrains)** | IDE | All 8 |
-| **Goose** | Standalone | All 8 |
-| **Amp** | Standalone | All 8 |
-| **OpenHands** | Standalone | All 8 |
-| **OpenAI Codex** | Standalone | All 8 |
-| **Mistral Vibe** | Standalone | All 8 |
-| **TRAE** | Standalone | All 8 |
-
-Any other tool that discovers skills from `.claude/skills/`, `.config/opencode/skills/`, or `.agents/skills/` directories is also compatible.
 
 ---
 
@@ -193,7 +144,7 @@ Any other tool that discovers skills from `.claude/skills/`, `.config/opencode/s
   </Card>
 
   <Card title="Ephemeral by design" icon="clock">
-    Environments are created and destroyed in minutes. Agents spin up, test, and tear down without leaving orphan resources or manual cleanup.
+    Environments spin up and tear down in minutes. Agents don't leave orphan resources — sleep mode and TTL policies handle cleanup automatically.
   </Card>
 
   <Card title="Cost-aware infrastructure" icon="piggy-bank">
@@ -201,80 +152,27 @@ Any other tool that discovers skills from `.claude/skills/`, `.config/opencode/s
   </Card>
 
   <Card title="Self-healing deployments" icon="rotate">
-    `qovery-deploy` and `qovery-troubleshoot` watch deployments and auto-fix common failures — port mismatches, missing env vars, health check timeouts — without waiting for a human.
+    `qovery-deploy` and `qovery-troubleshoot` watch deployments and auto-fix common failures — no waiting for a human to intervene.
   </Card>
 
   <Card title="Open source" icon="github">
-    All skills are MIT-licensed and open source. Fork them, customize them, add your own. The skills are just files — readable and auditable by your team.
+    All skills are MIT-licensed. Fork them, customize them, add your own. The skills are just files — readable and auditable by your team.
+
+    [→ github.com/Qovery/qovery-skills](https://github.com/Qovery/qovery-skills)
   </Card>
 
   <Card title="30+ tools, one install" icon="plug">
-    One command installs all skills across every compatible tool on your machine. No per-tool configuration, no manual file management.
+    One command installs all 8 skills across every compatible tool on your machine. No per-tool configuration, no manual file management.
   </Card>
 </CardGroup>
 
 ---
 
-## Install
-
-<Steps>
-  <Step title="Install all skills globally">
-    ```bash
-    curl -fsSL https://skill.qovery.com/install.sh | bash
-    ```
-
-    Skills are installed to all compatible discovery paths on your machine automatically.
-  </Step>
-
-  <Step title="Open your AI coding tool">
-    Launch Claude Code, Cursor, OpenCode, or any of the 30+ compatible tools. No additional configuration needed.
-  </Step>
-
-  <Step title="Start with a prompt">
-    The agent loads the right skill automatically based on what you ask:
-
-    ```
-    # To onboard a new project:
-    Set up Qovery for my project
-
-    # To deploy:
-    Deploy my application with Qovery
-
-    # To debug:
-    Troubleshoot my failing deployment with Qovery
-
-    # To optimize costs:
-    Analyze my Qovery infrastructure costs
-
-    # To set up preview environments:
-    Create preview environments for my PRs with Qovery
-    ```
-  </Step>
-</Steps>
-
-<Tip>
-To install for the current project only (instead of globally):
-```bash
-curl -fsSL https://skill.qovery.com/install.sh | bash -s -- --project
-```
-To update to the latest version, re-run the install command.
-</Tip>
-
----
-
-## Next Steps
-
 <CardGroup cols={2}>
-  <Card title="Deploy with AI Agent" icon="wand-magic-sparkles" href="/getting-started/quickstart/ai-agent">
-    Step-by-step guide to your first AI-driven deployment
+  <Card title="Get Started" icon="rocket" href="/getting-started/quickstart/ai-agent">
+    Install the skill and deploy your first app
   </Card>
-  <Card title="Qovery MCP Server" icon="robot" href="/copilot/mcp-server">
-    Manage deployed infrastructure via natural language
-  </Card>
-  <Card title="Skills on GitHub" icon="github" href="https://github.com/Qovery/qovery-skills">
-    View source, contribute, or fork the skills
-  </Card>
-  <Card title="Terraform Provider" icon="code" href="/terraform-provider/overview">
-    Version-controlled infrastructure as code
+  <Card title="Skill Source Code" icon="github" href="https://github.com/Qovery/qovery-skills">
+    View, contribute, or fork on GitHub
   </Card>
 </CardGroup>

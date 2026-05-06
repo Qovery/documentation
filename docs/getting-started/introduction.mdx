@@ -11,14 +11,14 @@ Qovery is **the Kubernetes control plane for humans and AI agents** — running 
 Whether you're a developer describing what you want to deploy in plain English, a platform team standardising operations at scale, or an AI agent autonomously provisioning environments, Qovery is the single control plane that makes it happen.
 
 <CardGroup cols={2}>
-  <Card title="AI-First Workflows" icon="wand-magic-sparkles">
+  <Card title="AI-First Workflows" icon="wand-magic-sparkles" color="#642DFF">
     Let Claude Code, Cursor, or any AI agent deploy your app end-to-end — Dockerfile, database, env vars, and all
   </Card>
   <Card title="Your Infrastructure" icon="server">
     Runs on your own AWS, GCP, Azure, or Scaleway — you maintain full control and direct billing
   </Card>
-  <Card title="No Kubernetes Expertise Required" icon="user">
-    Developers ship to production without waiting for DevOps. Platform teams keep governance and control.
+  <Card title="No Kubernetes Expertise Required" icon="user" color="#642DFF">
+    Developers and non-developers ship to production without waiting for DevOps. Platform teams keep governance.
   </Card>
   <Card title="Every Interface You Need" icon="plug">
     Console, CLI, Terraform, API, and AI agents — all driving the same control plane
@@ -34,7 +34,7 @@ Whether you're a developer describing what you want to deploy in plain English, 
 Non-developers and AI-first teams can deploy production-grade apps without ever touching Kubernetes configuration.
 
 <CardGroup cols={3}>
-  <Card title="AI Prompt Deployment" icon="wand-magic-sparkles" href="/getting-started/quickstart/ai-agent">
+  <Card title="AI Prompt Deployment" icon="wand-magic-sparkles" href="/getting-started/quickstart/ai-agent" color="#642DFF">
     **From prompt to production in minutes**
 
     Install the Qovery Agent Skill in Claude Code, Cursor, OpenCode, or any compatible AI tool. Describe what you want — the agent analyzes your codebase, creates a Dockerfile, provisions databases, sets env vars, and deploys automatically.
@@ -42,7 +42,7 @@ Non-developers and AI-first teams can deploy production-grade apps without ever 
     → **Install the Qovery Skill**
   </Card>
 
-  <Card title="AI Dev Environments" icon="laptop-code" href="/getting-started/quickstart/ai-agent">
+  <Card title="AI Dev Environments" icon="laptop-code" href="/getting-started/quickstart/ai-agent" color="#642DFF">
     **Isolated environments for humans and AI agents**
 
     Each developer and each AI agent gets their own ephemeral environment. Spin up, experiment, tear down — no shared state, no conflicts, no infrastructure knowledge required.
@@ -50,7 +50,7 @@ Non-developers and AI-first teams can deploy production-grade apps without ever 
     → **Explore Dev Environments**
   </Card>
 
-  <Card title="AI Copilot (Ops)" icon="robot" href="/copilot/overview">
+  <Card title="AI Copilot (Ops)" icon="robot" href="/copilot/overview" color="#642DFF">
     **Manage existing infrastructure with natural language**
 
     Once deployed, use the Qovery MCP Server or Console Copilot to monitor, troubleshoot, scale, and operate your infrastructure — all through conversation.
@@ -80,185 +80,50 @@ For platform engineers, DevOps teams, and power users who want direct control ov
 
 ---
 
-## Use Cases
-
-<CardGroup cols={2}>
-  <Card title="AI Prompt Deployment" icon="wand-magic-sparkles" href="/getting-started/quickstart/ai-agent">
-    **Non-developers ship to production**
-
-    A product manager, designer, or junior dev describes the app they want. The AI agent handles the entire deployment pipeline — code analysis, Dockerfile generation, database provisioning, and Kubernetes deployment.
-
-    **Who it's for:** developers preferring AI-first workflows, non-technical builders, rapid prototyping
-  </Card>
-
-  <Card title="AI Remote Dev Environments" icon="laptop-code" href="/getting-started/quickstart/ai-agent">
-    **Isolated environments for every human and agent**
-
-    Each contributor — human or AI — gets their own fully isolated environment. No more "it works on my machine." Every environment is ephemeral, reproducible, and disposable.
-
-    **Who it's for:** distributed teams, AI coding workflows, dev/test isolation
-  </Card>
-
-  <Card title="Preview & Ephemeral Environments" icon="code-branch" href="/getting-started/guides/use-cases/ephemeral-environment">
-    **A full-stack environment for every pull request**
-
-    Open a PR → get a live environment with your app, databases, and services running. Share the URL, review, merge. Environment is auto-deleted on merge.
-
-    **Who it's for:** QA teams, product reviews, feature testing, stakeholder demos
-  </Card>
-
-  <Card title="GitOps with Agent Governance" icon="code-branch" href="/getting-started/guides/use-cases/production-environment-management">
-    **Git-driven deployments with full audit trail**
-
-    Every deployment is triggered by a Git event and traceable. AI agents can open PRs and trigger deployments — all under the same governance model as human engineers.
-
-    **Who it's for:** platform teams, regulated industries, compliance requirements
-  </Card>
-
-  <Card title="Migrate to Kubernetes" icon="arrow-right-arrow-left" href="/getting-started/installation/kubernetes">
-    **Move from any platform without the Kubernetes learning curve**
-
-    Migrating from Heroku, Render, Railway, Fly.io, or a custom setup? Qovery gives you production-grade Kubernetes without requiring your team to become Kubernetes experts.
-
-    **Who it's for:** teams outgrowing PaaS platforms, cost-optimization migrations
-  </Card>
-
-  <Card title="Simplify Kubernetes Operations" icon="dharmachakra" href="/getting-started/guides/qovery-101/provision">
-    **Let platform teams focus on high-value work**
-
-    Qovery encodes Kubernetes best practices into the platform — upgrades, node scaling, security policies, cost optimization. Platform engineers configure once; developers self-serve forever.
-
-    **Who it's for:** platform engineering teams, DevOps standardisation
-  </Card>
-</CardGroup>
-
----
-
 ## What You Can Do With Qovery
 
-### Provision — Infrastructure Management
-
-<CardGroup cols={3}>
-  <Card title="Multi-Cloud Kubernetes" icon="dharmachakra" href="/getting-started/guides/qovery-101/provision">
-    **Clusters on Any Cloud**
-
-    AWS EKS, Google GKE, Azure AKS, Scaleway Kapsule. Production-ready in 30 minutes with BYOK* support
-  </Card>
-  <Card title="Managed Databases" icon="database" href="/configuration/database">
-    **PostgreSQL, MySQL, MongoDB, Redis**
-
-    Automated backups, replicas, high availability. Managed by your cloud provider with one-click setup
-  </Card>
-  <Card title="Cloud Resources" icon="server" href="/configuration/terraform">
-    **Terraform Integration**
-
-    Provision S3 buckets, RDS instances, CloudFront, load balancers, VPCs, and networking infrastructure
-  </Card>
-</CardGroup>
-
-### Deploy — Application Deployment
-
-<CardGroup cols={3}>
-  <Card title="AI Agent Deployment" icon="wand-magic-sparkles" href="/getting-started/quickstart/ai-agent">
-    **Deploy with Claude Code, Cursor, OpenCode**
-
-    Install the Qovery skill, ask your AI agent to deploy. It analyzes your code, creates Dockerfiles, provisions databases, and deploys automatically — no Kubernetes knowledge needed
-  </Card>
-  <Card title="Applications" icon="rocket" href="/getting-started/guides/qovery-101/deploy">
-    **All Languages & Frameworks**
-
-    Node.js, Python, Go, Java, PHP, Ruby, .NET. Build from Dockerfile or deploy pre-built containers
-  </Card>
-  <Card title="Helm Charts" icon="/images/logos/helm-icon.svg" href="/configuration/helm">
-    **Deploy Complex Applications**
-
-    Prometheus, Grafana, Elasticsearch, Redis, or any Helm chart from public or private repositories
-  </Card>
-  <Card title="Preview Environments" icon="code-branch" href="/getting-started/guides/use-cases/preview-environments">
-    **Auto-deploy on Git push**
-
-    Environment per PR. Dev → Staging → Prod pipelines. Zero downtime deployments
-  </Card>
-  <Card title="Microservices" icon="cubes">
-    **Service Orchestration**
-
-    Deploy dozens of services with Kubernetes. Service mesh, load balancing, centralized configuration
-  </Card>
-  <Card title="Background Jobs" icon="clock" href="/configuration/lifecycle-job">
-    **Cron & Lifecycle Jobs**
-
-    Scheduled tasks, background workers, database migrations, seeding, pre/post-deployment hooks
-  </Card>
-</CardGroup>
-
-### Observe — Monitoring & Logging
+A single platform covering the full lifecycle of your cloud applications — from cluster provisioning to deployment, observability, cost optimization, and security.
 
 <CardGroup cols={2}>
-  <Card title="Qovery Observe (Built-in)" icon="eye" href="/getting-started/guides/qovery-101/observe">
-    **Complete Observability Included**
+  <Card title="Provision" icon="dharmachakra" href="/getting-started/guides/qovery-101/provision">
+    **Managed Kubernetes on any cloud**
 
-    📊 **Metrics:** CPU, memory, disk, network usage per service
-
-    📝 **Logs:** Real-time application logs (stdout/stderr), build logs, search and filter
-
-    ⚙️ **Events:** Kubernetes events tracking (pod restarts, failures, scaling)
-
-    📜 **History:** Full deployment history and status tracking
-
-    ✨ **No setup required** - Available immediately for all services
+    AWS EKS, GKE, AKS, Scaleway Kapsule — production-ready in 30 minutes. Or connect your existing cluster (BYOK). Includes managed databases, Terraform modules, and networking.
   </Card>
-  <Card title="External Integrations" icon="puzzle-piece" href="/configuration/integrations/observability/datadog">
-    **Connect Your Monitoring Tools**
 
-    Integrate with your existing observability stack:
-    - **Datadog** - Full platform integration
-    - **Custom solutions** - Prometheus, Grafana, ELK
-    - **Webhooks** - Send deployment events to any endpoint
+  <Card title="Deploy" icon="rocket" href="/getting-started/guides/qovery-101/deploy">
+    **Any app, any language, any workflow**
+
+    GitOps-based deployment for containers, Helm charts, background jobs, and cron jobs. Preview environments per PR. Zero-downtime rollouts. AI agent deployment supported natively.
   </Card>
-</CardGroup>
 
-### Optimize — Cost & Performance
+  <Card title="Observe" icon="eye" href="/getting-started/guides/qovery-101/observe">
+    **Built-in observability, no setup required**
 
-<CardGroup cols={3}>
-  <Card title="Cost Optimization" icon="piggy-bank" href="/getting-started/guides/qovery-101/optimize">
-    **Save Up to 60% on Infrastructure**
-
-    Karpenter intelligent provisioning (AWS EKS). Spot instances for non-production. Sleep mode for dev/staging environments
+    Real-time logs, CPU/memory metrics, Kubernetes events, and full deployment history — all correlated in one view. Integrates with Datadog, Prometheus, and Grafana.
   </Card>
-  <Card title="Auto-Scaling" icon="arrows-up-down" href="/getting-started/guides/qovery-101/optimize">
-    **Scale Based on CPU**
 
-    Horizontal pod auto-scaling based on CPU usage. Automatic load balancing across replicas
+  <Card title="Optimize" icon="piggy-bank" href="/getting-started/guides/qovery-101/optimize">
+    **Save up to 60% on infrastructure costs**
+
+    Karpenter intelligent provisioning, spot instances for non-production, sleep mode for dev/staging, and right-sizing recommendations.
   </Card>
-  <Card title="Resource Efficiency" icon="gauge" href="/getting-started/guides/qovery-101/optimize">
-    **Right-Size Your Apps**
 
-    Monitor resource usage to optimize container sizes. Set CPU and memory limits per service
+  <Card title="Secure" icon="shield-check" href="/getting-started/guides/qovery-101/secure">
+    **Enterprise compliance out of the box**
+
+    SOC2, GDPR, HIPAA, DORA, HDS. Secrets management, RBAC, SSO, network isolation, automatic SSL/TLS, and full audit logs.
   </Card>
-</CardGroup>
 
-### Secure — Security & Compliance
+  <Card title="Kubernetes Upgrades" icon="arrow-up" href="/getting-started/guides/qovery-101/provision">
+    **Automated cluster maintenance**
 
-<CardGroup cols={3}>
-  <Card title="Compliance Certified" icon="file-certificate" href="/getting-started/guides/qovery-101/secure">
-    **SOC2, GDPR, HIPAA, DORA, HDS**
-
-    Enterprise compliance built-in. Audit logs. Security best practices by default
-  </Card>
-  <Card title="Security Features" icon="shield-check" href="/configuration/organization/members-rbac">
-    **Secrets & Access Control**
-
-    Secrets management with Doppler or External Secrets. RBAC for team permissions. SSO. Network isolation. Automatic SSL/TLS
-  </Card>
-  <Card title="Your Infrastructure" icon="lock-open" href="/getting-started/installation/kubernetes">
-    **Full Control & Transparency**
-
-    Runs on your cloud account. kubectl access. No vendor lock-in. BYOK* support. Direct cloud billing
+    Qovery handles Kubernetes version upgrades, node patching, and security updates — no manual intervention required.
   </Card>
 </CardGroup>
 
 <Info>
-*BYOK = Bring Your Own Kubernetes - Connect your existing Kubernetes cluster to Qovery
+*BYOK = Bring Your Own Kubernetes — connect your existing Kubernetes cluster to Qovery
 </Info>
 
 ---
@@ -266,11 +131,11 @@ For platform engineers, DevOps teams, and power users who want direct control ov
 ## What's Next?
 
 <CardGroup cols={2}>
-  <Card title="Deploy with AI Agent" icon="wand-magic-sparkles" href="/getting-started/quickstart/ai-agent">
+  <Card title="Deploy with AI Agent" icon="wand-magic-sparkles" href="/getting-started/quickstart/ai-agent" color="#642DFF">
     From code to deployed in ~10 minutes — no Kubernetes required
   </Card>
   <Card title="Explore All Use Cases" icon="compass" href="/getting-started/quickstart">
-    Browse every deployment path and find your fit
+    Browse every deployment path and choose your fit
   </Card>
   <Card title="How Qovery Works" icon="gears" href="/getting-started/how-it-works">
     Understand the architecture

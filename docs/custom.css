@@ -595,7 +595,13 @@ html[data-theme="dark"] img[src*="/ai-tools/cursor.svg"],
 html[class*="dark"] img[src*="/ai-tools/githubcopilot.svg"],
 html[data-theme="dark"] img[src*="/ai-tools/githubcopilot.svg"],
 html[class*="dark"] img[src*="/ai-tools/jetbrains.svg"],
-html[data-theme="dark"] img[src*="/ai-tools/jetbrains.svg"] {
+html[data-theme="dark"] img[src*="/ai-tools/jetbrains.svg"],
+html[class*="dark"] img[src*="/ai-tools/amp.svg"],
+html[data-theme="dark"] img[src*="/ai-tools/amp.svg"],
+html[class*="dark"] img[src*="/ai-tools/openai.svg"],
+html[data-theme="dark"] img[src*="/ai-tools/openai.svg"],
+html[class*="dark"] img[src*="/ai-tools/goose.png"],
+html[data-theme="dark"] img[src*="/ai-tools/goose.png"] {
   filter: brightness(0) invert(1);
 }
 

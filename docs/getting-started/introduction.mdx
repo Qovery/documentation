@@ -1,39 +1,142 @@
 ---
 title: "Introduction"
-description: "Welcome to Qovery - Enterprise Kubernetes Management Platform"
+description: "Qovery — The Kubernetes control plane for humans and AI agents. Deploy apps without DevOps expertise."
 mode: "wide"
 ---
 
 ## Welcome to Qovery
 
-Qovery is an **Enterprise Kubernetes Management Platform** that helps teams operate Kubernetes clusters reliably and consistently at scale, while enabling developers to deploy applications through safe, self-service workflows.
+Qovery is **the Kubernetes control plane for humans and AI agents** — running on your own cloud infrastructure.
 
-Instead of replacing Kubernetes or existing tools, Qovery provides a **central control plane** that standardises cluster operations, integrates with your cloud and ecosystem, and encodes operational best practices into the platform.
-
-Developers ship faster. Platform and DevOps teams retain control.
+Whether you're a developer describing what you want to deploy in plain English, a platform team standardising operations at scale, or an AI agent autonomously provisioning environments, Qovery is the single control plane that makes it happen.
 
 <CardGroup cols={2}>
-  <Card title="Developer-Centric" icon="user">
-    Self-service platform for deploying apps without waiting for DevOps
+  <Card title="AI-First Workflows" icon="wand-magic-sparkles">
+    Let Claude Code, Cursor, or any AI agent deploy your app end-to-end — Dockerfile, database, env vars, and all
   </Card>
   <Card title="Your Infrastructure" icon="server">
-    Runs on your own AWS, GCP, Azure, or Scaleway—you maintain full control
+    Runs on your own AWS, GCP, Azure, or Scaleway — you maintain full control and direct billing
   </Card>
-  <Card title="Cloud Native" icon="cloud">
-    Built on Kubernetes with production-ready best practices
+  <Card title="No Kubernetes Expertise Required" icon="user">
+    Developers ship to production without waiting for DevOps. Platform teams keep governance and control.
   </Card>
-  <Card title="GitOps Driven" icon="code-branch">
-    Automatic deployments on every Git push
+  <Card title="Every Interface You Need" icon="plug">
+    Console, CLI, Terraform, API, and AI agents — all driving the same control plane
   </Card>
 </CardGroup>
 
+---
+
+## Two Ways to Work with Qovery
+
+### The New Way — Deploy with AI
+
+Non-developers and AI-first teams can deploy production-grade apps without ever touching Kubernetes configuration.
+
+<CardGroup cols={3}>
+  <Card title="AI Prompt Deployment" icon="wand-magic-sparkles" href="/getting-started/quickstart/ai-agent">
+    **From prompt to production in minutes**
+
+    Install the Qovery Agent Skill in Claude Code, Cursor, OpenCode, or any compatible AI tool. Describe what you want — the agent analyzes your codebase, creates a Dockerfile, provisions databases, sets env vars, and deploys automatically.
+
+    → **Install the Qovery Skill**
+  </Card>
+
+  <Card title="AI Dev Environments" icon="laptop-code" href="/getting-started/quickstart/ai-agent">
+    **Isolated environments for humans and AI agents**
+
+    Each developer and each AI agent gets their own ephemeral environment. Spin up, experiment, tear down — no shared state, no conflicts, no infrastructure knowledge required.
+
+    → **Explore Dev Environments**
+  </Card>
+
+  <Card title="AI Copilot (Ops)" icon="robot" href="/copilot/overview">
+    **Manage existing infrastructure with natural language**
+
+    Once deployed, use the Qovery MCP Server or Console Copilot to monitor, troubleshoot, scale, and operate your infrastructure — all through conversation.
+
+    → **Explore the Copilot**
+  </Card>
+</CardGroup>
+
+### The Platform Way — Full Control
+
+For platform engineers, DevOps teams, and power users who want direct control over every configuration.
+
+<CardGroup cols={4}>
+  <Card title="Console" icon="browser" href="https://console.qovery.com">
+    Visual UI for full platform management
+  </Card>
+  <Card title="CLI" icon="terminal" href="/cli/overview">
+    Command-line for developers and automation
+  </Card>
+  <Card title="Terraform" icon="code" href="/terraform-provider/overview">
+    Infrastructure as Code, version-controlled
+  </Card>
+  <Card title="API" icon="plug" href="/api-reference/overview">
+    Programmatic control for integrations
+  </Card>
+</CardGroup>
+
+---
+
+## Use Cases
+
+<CardGroup cols={2}>
+  <Card title="AI Prompt Deployment" icon="wand-magic-sparkles" href="/getting-started/quickstart/ai-agent">
+    **Non-developers ship to production**
+
+    A product manager, designer, or junior dev describes the app they want. The AI agent handles the entire deployment pipeline — code analysis, Dockerfile generation, database provisioning, and Kubernetes deployment.
+
+    **Who it's for:** developers preferring AI-first workflows, non-technical builders, rapid prototyping
+  </Card>
+
+  <Card title="AI Remote Dev Environments" icon="laptop-code" href="/getting-started/quickstart/ai-agent">
+    **Isolated environments for every human and agent**
+
+    Each contributor — human or AI — gets their own fully isolated environment. No more "it works on my machine." Every environment is ephemeral, reproducible, and disposable.
+
+    **Who it's for:** distributed teams, AI coding workflows, dev/test isolation
+  </Card>
+
+  <Card title="Preview & Ephemeral Environments" icon="code-branch" href="/getting-started/guides/use-cases/ephemeral-environment">
+    **A full-stack environment for every pull request**
+
+    Open a PR → get a live environment with your app, databases, and services running. Share the URL, review, merge. Environment is auto-deleted on merge.
+
+    **Who it's for:** QA teams, product reviews, feature testing, stakeholder demos
+  </Card>
+
+  <Card title="GitOps with Agent Governance" icon="code-branch" href="/getting-started/guides/use-cases/production-environment-management">
+    **Git-driven deployments with full audit trail**
+
+    Every deployment is triggered by a Git event and traceable. AI agents can open PRs and trigger deployments — all under the same governance model as human engineers.
+
+    **Who it's for:** platform teams, regulated industries, compliance requirements
+  </Card>
+
+  <Card title="Migrate to Kubernetes" icon="arrow-right-arrow-left" href="/getting-started/installation/kubernetes">
+    **Move from any platform without the Kubernetes learning curve**
+
+    Migrating from Heroku, Render, Railway, Fly.io, or a custom setup? Qovery gives you production-grade Kubernetes without requiring your team to become Kubernetes experts.
+
+    **Who it's for:** teams outgrowing PaaS platforms, cost-optimization migrations
+  </Card>
+
+  <Card title="Simplify Kubernetes Operations" icon="dharmachakra" href="/getting-started/guides/qovery-101/provision">
+    **Let platform teams focus on high-value work**
+
+    Qovery encodes Kubernetes best practices into the platform — upgrades, node scaling, security policies, cost optimization. Platform engineers configure once; developers self-serve forever.
+
+    **Who it's for:** platform engineering teams, DevOps standardisation
+  </Card>
+</CardGroup>
+
+---
+
 ## What You Can Do With Qovery
 
-Qovery provides a unified platform to **manage Kubernetes clusters, environments, and application delivery** across your own cloud infrastructure.
-
-From provisioning infrastructure to deploying applications, monitoring performance, optimizing costs, and securing your workloads—everything you need to run production applications on your own cloud infrastructure.
-
-### Provision - Infrastructure Management
+### Provision — Infrastructure Management
 
 <CardGroup cols={3}>
   <Card title="Multi-Cloud Kubernetes" icon="dharmachakra" href="/getting-started/guides/qovery-101/provision">
@@ -53,9 +156,14 @@ From provisioning infrastructure to deploying applications, monitoring performan
   </Card>
 </CardGroup>
 
-### Deploy - Application Deployment
+### Deploy — Application Deployment
 
 <CardGroup cols={3}>
+  <Card title="AI Agent Deployment" icon="wand-magic-sparkles" href="/getting-started/quickstart/ai-agent">
+    **Deploy with Claude Code, Cursor, OpenCode**
+
+    Install the Qovery skill, ask your AI agent to deploy. It analyzes your code, creates Dockerfiles, provisions databases, and deploys automatically — no Kubernetes knowledge needed
+  </Card>
   <Card title="Applications" icon="rocket" href="/getting-started/guides/qovery-101/deploy">
     **All Languages & Frameworks**
 
@@ -66,34 +174,24 @@ From provisioning infrastructure to deploying applications, monitoring performan
 
     Prometheus, Grafana, Elasticsearch, Redis, or any Helm chart from public or private repositories
   </Card>
-  <Card title="GitOps Automation" icon="code-branch" href="/getting-started/guides/use-cases/preview-environments">
-    **Preview Environments**
+  <Card title="Preview Environments" icon="code-branch" href="/getting-started/guides/use-cases/preview-environments">
+    **Auto-deploy on Git push**
 
-    Auto-deploy on Git push. Environment per PR. Dev → Staging → Prod pipelines. Zero downtime deployments
+    Environment per PR. Dev → Staging → Prod pipelines. Zero downtime deployments
   </Card>
   <Card title="Microservices" icon="cubes">
     **Service Orchestration**
 
     Deploy dozens of services with Kubernetes. Service mesh, load balancing, centralized configuration
   </Card>
-  <Card title="API Services" icon="plug">
-    **REST, GraphQL, gRPC**
-
-    Load balancing, auto-scaling, custom domains, automatic SSL. Monitor with real-time logs and metrics
-  </Card>
   <Card title="Background Jobs" icon="clock" href="/configuration/lifecycle-job">
     **Cron & Lifecycle Jobs**
 
     Scheduled tasks, background workers, database migrations, seeding, pre/post-deployment hooks
   </Card>
-  <Card title="AI Agent Deployment" icon="wand-magic-sparkles" href="/getting-started/quickstart/ai-agent">
-    **Deploy with Claude Code, Cursor, OpenCode**
-
-    Install the Qovery skill, ask your AI agent to deploy. It analyzes your code, creates Dockerfiles, provisions databases, and deploys automatically
-  </Card>
 </CardGroup>
 
-### Observe - Monitoring & Logging
+### Observe — Monitoring & Logging
 
 <CardGroup cols={2}>
   <Card title="Qovery Observe (Built-in)" icon="eye" href="/getting-started/guides/qovery-101/observe">
@@ -119,7 +217,7 @@ From provisioning infrastructure to deploying applications, monitoring performan
   </Card>
 </CardGroup>
 
-### Optimize - Cost & Performance
+### Optimize — Cost & Performance
 
 <CardGroup cols={3}>
   <Card title="Cost Optimization" icon="piggy-bank" href="/getting-started/guides/qovery-101/optimize">
@@ -139,7 +237,7 @@ From provisioning infrastructure to deploying applications, monitoring performan
   </Card>
 </CardGroup>
 
-### Secure - Security & Compliance
+### Secure — Security & Compliance
 
 <CardGroup cols={3}>
   <Card title="Compliance Certified" icon="file-certificate" href="/getting-started/guides/qovery-101/secure">
@@ -168,16 +266,16 @@ From provisioning infrastructure to deploying applications, monitoring performan
 ## What's Next?
 
 <CardGroup cols={2}>
-  <Card title="Quick Start Guide" icon="rocket" href="/getting-started/quickstart">
-    Deploy your first app in 15 minutes
+  <Card title="Deploy with AI Agent" icon="wand-magic-sparkles" href="/getting-started/quickstart/ai-agent">
+    From code to deployed in ~10 minutes — no Kubernetes required
+  </Card>
+  <Card title="Explore All Use Cases" icon="compass" href="/getting-started/quickstart">
+    Browse every deployment path and find your fit
   </Card>
   <Card title="How Qovery Works" icon="gears" href="/getting-started/how-it-works">
     Understand the architecture
   </Card>
   <Card title="Core Concepts" icon="book" href="/getting-started/basic-concepts">
     Learn essential terminology
-  </Card>
-  <Card title="Platform Products" icon="graduation-cap" href="/getting-started/guides/qovery-101/provision">
-    Deep dive into all five products
   </Card>
 </CardGroup>

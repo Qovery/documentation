@@ -61,12 +61,17 @@
               "getting-started/how-it-works",
               "getting-started/basic-concepts",
               {
+                "group": "Deploy with AI",
+                "pages": [
+                  "getting-started/quickstart/ai-agent",
+                  "getting-started/quickstart/agent-skills"
+                ]
+              },
+              {
                 "group": "Installation",
                 "pages": [
                   "getting-started/quickstart/docker-desktop",
                   "getting-started/quickstart/cloud",
-                  "getting-started/quickstart/ai-agent",
-                  "getting-started/quickstart/agent-skills",
                   {
                     "group": "Managed Cluster",
                     "pages": [

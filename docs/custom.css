@@ -601,6 +601,103 @@ html[data-theme="dark"] img[src*="/ai-tools/goose.png"] {
   filter: brightness(0) invert(1);
 }
 
+/* Terminal window component */
+.terminal-window {
+  background: #0d1117;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 16px 0 24px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+}
+
+.terminal-bar {
+  background: #161b22;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #21262d;
+}
+
+.terminal-dots {
+  display: flex;
+  gap: 6px;
+  margin-right: 12px;
+}
+
+.terminal-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.terminal-dot-red    { background: #ff5f57; }
+.terminal-dot-yellow { background: #febc2e; }
+.terminal-dot-green  { background: #28c840; }
+
+.terminal-title-bar {
+  flex: 1;
+  text-align: center;
+  color: #6e7681;
+  font-size: 12px;
+  font-family: 'Roboto Mono', monospace;
+  margin-right: 54px; /* équilibre les dots */
+}
+
+.terminal-body {
+  padding: 20px 24px;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 13px;
+  line-height: 1.8;
+  color: #e6edf3;
+}
+
+.terminal-prompt {
+  display: block;
+  margin: 4px 0;
+}
+
+.terminal-prompt::before {
+  content: '$ ';
+  color: #642DFF;
+  font-weight: 700;
+}
+
+.terminal-output {
+  display: block;
+  color: #8b949e;
+  padding-left: 14px;
+  margin: 2px 0;
+}
+
+.terminal-success {
+  display: block;
+  color: #3fb950;
+  padding-left: 14px;
+  margin: 2px 0;
+}
+
+.terminal-sep {
+  border: none;
+  border-top: 1px solid #21262d;
+  margin: 14px 0;
+}
+
+@keyframes blink-cursor {
+  0%, 50%  { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.terminal-cursor {
+  display: inline-block;
+  width: 7px;
+  height: 13px;
+  background: #e6edf3;
+  animation: blink-cursor 1s step-end infinite;
+  vertical-align: text-bottom;
+  margin-left: 2px;
+}
+
 /* AI Section Highlight — fond dégradé violet pour mettre en avant les use cases IA */
 .ai-section {
   background: linear-gradient(135deg, rgba(100, 45, 255, 0.09) 0%, rgba(100, 45, 255, 0.03) 100%);

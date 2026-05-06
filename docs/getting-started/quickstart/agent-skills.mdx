@@ -18,6 +18,34 @@ curl -fsSL https://skill.qovery.com/install.sh | bash
 
 ---
 
+## How Deployment Works
+
+When you ask your agent to deploy, `qovery-deploy` runs through a complete workflow autonomously:
+
+<Steps>
+  <Step title="Analyzes your codebase">
+    Reads your project structure, detects language, framework, open ports, database dependencies, and existing environment variables. No manual input needed.
+  </Step>
+
+  <Step title="Creates a Dockerfile if missing">
+    Generates a production-ready multi-stage Dockerfile for your stack — Node.js, Next.js, React/Vite, Python, Go, Java, Ruby, PHP, .NET. Custom Dockerfile for any other framework.
+  </Step>
+
+  <Step title="Asks the right questions">
+    Dev or production? Which database engine? CLI+API path or Terraform? A few targeted questions — no YAML, no config files to write manually.
+  </Step>
+
+  <Step title="Provisions infrastructure">
+    Creates a cluster on AWS, GCP, Azure, or Scaleway if none exists. Provisions databases in container mode (dev) or managed mode like AWS RDS (production). Sets up environment variables with aliases, interpolation, and overrides.
+  </Step>
+
+  <Step title="Deploys and watches">
+    Monitors the rollout and **auto-fixes failures** — build errors, port mismatches, health check timeouts, missing env vars, OOM restarts. Fixes Qovery configuration automatically; asks before touching your code.
+  </Step>
+</Steps>
+
+---
+
 ## The Eight Skills
 
 <CardGroup cols={2}>
@@ -32,6 +60,10 @@ curl -fsSL https://skill.qovery.com/install.sh | bash
     - Hands off to `qovery-deploy` once infrastructure is ready
 
     `Setup` `Onboarding`
+
+    ```
+    > Set up Qovery for my project
+    ```
   </Card>
 
   <Card title="qovery-deploy" icon="rocket" href="https://github.com/Qovery/qovery-skills">
@@ -45,12 +77,16 @@ curl -fsSL https://skill.qovery.com/install.sh | bash
     - Watches deployment and auto-fixes build errors, port mismatches, OOM
 
     `Deployment` `Core`
+
+    ```
+    > Deploy my application with Qovery
+    ```
   </Card>
 
   <Card title="qovery-troubleshoot" icon="bug" href="https://github.com/Qovery/qovery-skills">
     **Systematic diagnosis for deployment failures**
 
-    Runs an 8-layer diagnostic sequence and matches against 20+ error patterns — covering build failures, crashes, connectivity issues, health check timeouts, and performance problems.
+    Runs an 8-layer diagnostic sequence and matches against 20+ error patterns — build failures, crashes, connectivity issues, health check timeouts.
 
     - 8-layer diagnostic: build → image → config → startup → health → network → scaling → logs
     - 20+ error pattern library with known fixes
@@ -58,6 +94,10 @@ curl -fsSL https://skill.qovery.com/install.sh | bash
     - Outputs a structured incident report with remediation steps
 
     `Debug` `Operations`
+
+    ```
+    > Troubleshoot my failing deployment
+    ```
   </Card>
 
   <Card title="qovery-optimize" icon="piggy-bank" href="https://github.com/Qovery/qovery-skills">
@@ -71,6 +111,10 @@ curl -fsSL https://skill.qovery.com/install.sh | bash
     - CSV export for stakeholder reporting
 
     `Cost` `Operations`
+
+    ```
+    > Optimize my Qovery infrastructure costs
+    ```
   </Card>
 
   <Card title="qovery-speedup" icon="bolt" href="https://github.com/Qovery/qovery-skills">
@@ -84,6 +128,10 @@ curl -fsSL https://skill.qovery.com/install.sh | bash
     - Startup time and health check threshold tuning
 
     `Performance` `Deployment`
+
+    ```
+    > My deployments are slow, find the bottleneck
+    ```
   </Card>
 
   <Card title="qovery-preview" icon="code-branch" href="https://github.com/Qovery/qovery-skills">
@@ -97,6 +145,10 @@ curl -fsSL https://skill.qovery.com/install.sh | bash
     - Works with GitHub, GitLab, and Bitbucket
 
     `Preview` `GitOps`
+
+    ```
+    > Set up preview environments for my pull requests
+    ```
   </Card>
 
   <Card title="qovery-builder-env" icon="users" href="https://github.com/Qovery/qovery-skills">
@@ -110,6 +162,10 @@ curl -fsSL https://skill.qovery.com/install.sh | bash
     - Works in VS Code + Copilot, Claude Code, and OpenCode
 
     `Self-service` `Teams`
+
+    ```
+    > Create a builder environment for my team
+    ```
   </Card>
 
   <Card title="qovery-builder-portal" icon="browser" href="https://github.com/Qovery/qovery-skills">
@@ -123,6 +179,10 @@ curl -fsSL https://skill.qovery.com/install.sh | bash
     - Visual dashboard — no CLI, no console access needed
 
     `Portal` `Teams`
+
+    ```
+    > Generate a self-service portal for my team
+    ```
   </Card>
 </CardGroup>
 

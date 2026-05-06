@@ -145,57 +145,38 @@ Any other tool that discovers skills from `.claude/skills/`, `.config/opencode/s
 
 ---
 
-## What the Skill Does
-
-When you ask your agent to deploy, it runs through a complete deployment workflow autonomously:
-
-<Steps>
-  <Step title="Analyzes your codebase">
-    Reads your project structure, detects language, framework, open ports, database dependencies, and existing environment variables. No manual input needed.
-  </Step>
-
-  <Step title="Creates a Dockerfile if missing">
-    Generates a production-ready multi-stage Dockerfile for your stack. Templates available for Node.js, Next.js, React/Vite, Python, Go, Java, Ruby, PHP, and .NET. Custom Dockerfile generated for any other framework.
-  </Step>
-
-  <Step title="Asks the right questions">
-    Dev or production? Which database engine? CLI+API path or Terraform? A few targeted questions — no YAML, no config files to write.
-  </Step>
-
-  <Step title="Provisions infrastructure">
-    Creates a cluster on AWS, GCP, Azure, or Scaleway if none exists. Provisions databases in container mode (dev/test) or managed mode like AWS RDS (production). Sets up environment variables with aliases, interpolation, and overrides — no duplication.
-  </Step>
-
-  <Step title="Deploys and watches">
-    Deploys via CLI+API (quick path) or Terraform provider (production). Monitors the rollout and **auto-fixes failures** — build errors, port mismatches, health check timeouts, missing env vars, OOM restarts. Fixes Qovery configuration automatically; asks before touching your code.
-  </Step>
-</Steps>
-
----
-
 ## Try These Prompts
 
-Open your AI coding tool after installing the skill and try:
+Open your AI coding tool and try any of these:
 
-```
-Deploy my application with Qovery
-```
+<div className="terminal-window">
+  <div className="terminal-bar">
+    <div className="terminal-dots">
+      <div className="terminal-dot terminal-dot-red"></div>
+      <div className="terminal-dot terminal-dot-yellow"></div>
+      <div className="terminal-dot terminal-dot-green"></div>
+    </div>
+    <div className="terminal-title-bar">claude — qovery-deploy</div>
+  </div>
+  <div className="terminal-body">
+    <span className="terminal-prompt">Deploy my application with Qovery</span>
+    <span className="terminal-success">✓ Node.js detected — generating Dockerfile</span>
+    <span className="terminal-success">✓ PostgreSQL provisioned (container mode)</span>
+    <span className="terminal-success">✓ Deployed to staging — https://my-app.preview.qovery.io</span>
+    <hr className="terminal-sep" />
+    <span className="terminal-prompt">Set up preview environments for my pull requests</span>
+    <hr className="terminal-sep" />
+    <span className="terminal-prompt">Deploy this to Kubernetes with a PostgreSQL database</span>
+    <hr className="terminal-sep" />
+    <span className="terminal-prompt">Optimize my Qovery infrastructure costs</span>
+    <hr className="terminal-sep" />
+    <span className="terminal-prompt">Troubleshoot my failing deployment<span className="terminal-cursor"></span></span>
+  </div>
+</div>
 
-```
-Set up Qovery for my project and deploy to staging
-```
-
-```
-Deploy this to Kubernetes with a PostgreSQL database
-```
-
-```
-Create a Qovery Terraform configuration for my app
-```
-
-```
-Set up preview environments for my pull requests
-```
+<Card title="Each prompt maps to a specific skill — see what all 8 can do" icon="wand-magic-sparkles" href="/getting-started/quickstart/agent-skills">
+  `qovery-deploy` · `qovery-preview` · `qovery-optimize` · `qovery-troubleshoot` · and 4 more →
+</Card>
 
 ---
 

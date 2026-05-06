@@ -587,6 +587,25 @@ html[data-theme="dark"] img[src*="/logos/secure-logo-only.svg"],
     hue-rotate(202deg) brightness(103%) contrast(100%);
 }
 
+/* AI Section Highlight — fond dégradé violet pour mettre en avant les use cases IA */
+.ai-section {
+  background: linear-gradient(135deg, rgba(100, 45, 255, 0.09) 0%, rgba(100, 45, 255, 0.03) 100%);
+  border: 1px solid rgba(100, 45, 255, 0.22);
+  border-radius: 16px;
+  padding: 28px 28px 20px;
+  margin: 8px 0 24px;
+}
+
+.ai-section h3 {
+  margin-top: 0 !important;
+}
+
+html[class*="dark"] .ai-section,
+html[data-theme="dark"] .ai-section {
+  background: linear-gradient(135deg, rgba(100, 45, 255, 0.18) 0%, rgba(100, 45, 255, 0.06) 100%);
+  border-color: rgba(100, 45, 255, 0.38);
+}
+
 /* Remove duplicate page titles */
 /* Mintlify shows the title from frontmatter in both header and as H1 */
 article > h1:first-of-type,

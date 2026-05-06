@@ -588,8 +588,6 @@ html[data-theme="dark"] img[src*="/logos/secure-logo-only.svg"],
 }
 
 /* AI Tools logos — invert black SVGs in dark mode */
-html[class*="dark"] img[src*="/ai-tools/anthropic.svg"],
-html[data-theme="dark"] img[src*="/ai-tools/anthropic.svg"],
 html[class*="dark"] img[src*="/ai-tools/cursor.svg"],
 html[data-theme="dark"] img[src*="/ai-tools/cursor.svg"],
 html[class*="dark"] img[src*="/ai-tools/githubcopilot.svg"],

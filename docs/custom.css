@@ -587,6 +587,18 @@ html[data-theme="dark"] img[src*="/logos/secure-logo-only.svg"],
     hue-rotate(202deg) brightness(103%) contrast(100%);
 }
 
+/* AI Tools logos — invert black SVGs in dark mode */
+html[class*="dark"] img[src*="/ai-tools/anthropic.svg"],
+html[data-theme="dark"] img[src*="/ai-tools/anthropic.svg"],
+html[class*="dark"] img[src*="/ai-tools/cursor.svg"],
+html[data-theme="dark"] img[src*="/ai-tools/cursor.svg"],
+html[class*="dark"] img[src*="/ai-tools/githubcopilot.svg"],
+html[data-theme="dark"] img[src*="/ai-tools/githubcopilot.svg"],
+html[class*="dark"] img[src*="/ai-tools/jetbrains.svg"],
+html[data-theme="dark"] img[src*="/ai-tools/jetbrains.svg"] {
+  filter: brightness(0) invert(1);
+}
+
 /* AI Section Highlight — fond dégradé violet pour mettre en avant les use cases IA */
 .ai-section {
   background: linear-gradient(135deg, rgba(100, 45, 255, 0.09) 0%, rgba(100, 45, 255, 0.03) 100%);

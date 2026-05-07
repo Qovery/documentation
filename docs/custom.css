@@ -641,7 +641,28 @@ html[data-theme="dark"] img[src*="/ai-tools/goose.png"] {
   color: #6e7681;
   font-size: 12px;
   font-family: 'Roboto Mono', monospace;
-  margin-right: 54px; /* équilibre les dots */
+}
+
+.terminal-copy {
+  background: transparent;
+  border: none;
+  color: #6e7681;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  transition: color 0.15s, background 0.15s;
+  flex-shrink: 0;
+}
+
+.terminal-copy:hover {
+  color: #e6edf3;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.terminal-copy-success {
+  color: #3fb950 !important;
 }
 
 .terminal-body {
@@ -697,6 +718,98 @@ html[data-theme="dark"] img[src*="/ai-tools/goose.png"] {
   vertical-align: text-bottom;
   margin-left: 2px;
 }
+
+/* Skills Selector */
+.skill-radio {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 640px) {
+  .skills-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+.skill-card {
+  padding: 12px 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  user-select: none;
+}
+
+html.dark .skill-card,
+html[data-theme="dark"] .skill-card {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.skill-card:hover {
+  border-color: rgba(100, 45, 255, 0.5);
+  background: rgba(100, 45, 255, 0.05);
+}
+
+.skill-card-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: #111827;
+  font-family: 'Roboto Mono', monospace;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+html.dark .skill-card-name,
+html[data-theme="dark"] .skill-card-name {
+  color: #e6edf3;
+}
+
+.skill-card-desc {
+  font-size: 11px;
+  color: #6b7280;
+  line-height: 1.35;
+}
+
+html.dark .skill-card-desc,
+html[data-theme="dark"] .skill-card-desc {
+  color: #8b949e;
+}
+
+/* Selected card highlight */
+#sk-onboard:checked ~ .skills-grid label[for="sk-onboard"],
+#sk-deploy:checked ~ .skills-grid label[for="sk-deploy"],
+#sk-troubleshoot:checked ~ .skills-grid label[for="sk-troubleshoot"],
+#sk-optimize:checked ~ .skills-grid label[for="sk-optimize"],
+#sk-speedup:checked ~ .skills-grid label[for="sk-speedup"],
+#sk-preview:checked ~ .skills-grid label[for="sk-preview"],
+#sk-builder-env:checked ~ .skills-grid label[for="sk-builder-env"],
+#sk-builder-portal:checked ~ .skills-grid label[for="sk-builder-portal"] {
+  border-color: #642DFF;
+  background: rgba(100, 45, 255, 0.1);
+}
+
+/* Prompt display — hide all, show selected */
+.skills-prompt-wrap > div { display: none; }
+#sk-onboard:checked ~ .skills-prompt-wrap .sp-onboard { display: block; }
+#sk-deploy:checked ~ .skills-prompt-wrap .sp-deploy { display: block; }
+#sk-troubleshoot:checked ~ .skills-prompt-wrap .sp-troubleshoot { display: block; }
+#sk-optimize:checked ~ .skills-prompt-wrap .sp-optimize { display: block; }
+#sk-speedup:checked ~ .skills-prompt-wrap .sp-speedup { display: block; }
+#sk-preview:checked ~ .skills-prompt-wrap .sp-preview { display: block; }
+#sk-builder-env:checked ~ .skills-prompt-wrap .sp-builder-env { display: block; }
+#sk-builder-portal:checked ~ .skills-prompt-wrap .sp-builder-portal { display: block; }
 
 /* AI Section Highlight — fond dégradé violet pour mettre en avant les use cases IA */
 .ai-section {

@@ -44,71 +44,78 @@ When you ask your agent to deploy, `qovery-deploy` runs through this workflow au
 
 ## The Eight Skills
 
-<CardGroup cols={2}>
-  <Card title="qovery-onboard" icon="wand-magic-sparkles" href="https://github.com/Qovery/qovery-skills">
-    Guided setup — evaluates your stack, recommends the right cluster config, and walks you through onboarding step by step.
+<div className="skills-selector">
+  <input type="radio" name="qovery-skill" id="sk-onboard" defaultChecked className="skill-radio" />
+  <input type="radio" name="qovery-skill" id="sk-deploy" className="skill-radio" />
+  <input type="radio" name="qovery-skill" id="sk-troubleshoot" className="skill-radio" />
+  <input type="radio" name="qovery-skill" id="sk-optimize" className="skill-radio" />
+  <input type="radio" name="qovery-skill" id="sk-speedup" className="skill-radio" />
+  <input type="radio" name="qovery-skill" id="sk-preview" className="skill-radio" />
+  <input type="radio" name="qovery-skill" id="sk-builder-env" className="skill-radio" />
+  <input type="radio" name="qovery-skill" id="sk-builder-portal" className="skill-radio" />
 
-    ```
-    > Set up Qovery for my project
-    ```
-  </Card>
+  <div className="skills-grid">
+    <label htmlFor="sk-onboard" className="skill-card">
+      <span className="skill-card-name">qovery-onboard</span>
+      <span className="skill-card-desc">Guided setup</span>
+    </label>
+    <label htmlFor="sk-deploy" className="skill-card">
+      <span className="skill-card-name">qovery-deploy</span>
+      <span className="skill-card-desc">Code to running app</span>
+    </label>
+    <label htmlFor="sk-troubleshoot" className="skill-card">
+      <span className="skill-card-name">qovery-troubleshoot</span>
+      <span className="skill-card-desc">20+ error patterns</span>
+    </label>
+    <label htmlFor="sk-optimize" className="skill-card">
+      <span className="skill-card-name">qovery-optimize</span>
+      <span className="skill-card-desc">Cost analysis</span>
+    </label>
+    <label htmlFor="sk-speedup" className="skill-card">
+      <span className="skill-card-name">qovery-speedup</span>
+      <span className="skill-card-desc">Build acceleration</span>
+    </label>
+    <label htmlFor="sk-preview" className="skill-card">
+      <span className="skill-card-name">qovery-preview</span>
+      <span className="skill-card-desc">Per-PR environments</span>
+    </label>
+    <label htmlFor="sk-builder-env" className="skill-card">
+      <span className="skill-card-name">qovery-builder-env</span>
+      <span className="skill-card-desc">Team self-service</span>
+    </label>
+    <label htmlFor="sk-builder-portal" className="skill-card">
+      <span className="skill-card-name">qovery-builder-portal</span>
+      <span className="skill-card-desc">Web portal</span>
+    </label>
+  </div>
 
-  <Card title="qovery-deploy" icon="rocket" href="https://github.com/Qovery/qovery-skills">
-    From source code to running app — Dockerfile, database, env vars, deployment, and auto-fix on failure.
-
-    ```
-    > Deploy my application with Qovery
-    ```
-  </Card>
-
-  <Card title="qovery-troubleshoot" icon="bug" href="https://github.com/Qovery/qovery-skills">
-    8-layer diagnostic against 20+ error patterns. Outputs a structured report with fixes.
-
-    ```
-    > Troubleshoot my failing deployment
-    ```
-  </Card>
-
-  <Card title="qovery-optimize" icon="piggy-bank" href="https://github.com/Qovery/qovery-skills">
-    Analyzes costs across 7 dimensions. Recommends right-sizing, spot instances, sleep mode. CSV export.
-
-    ```
-    > Optimize my Qovery infrastructure costs
-    ```
-  </Card>
-
-  <Card title="qovery-speedup" icon="bolt" href="https://github.com/Qovery/qovery-skills">
-    Measures full pipeline timing, finds bottlenecks, fixes Dockerfile layers and build cache.
-
-    ```
-    > My deployments are slow, find the bottleneck
-    ```
-  </Card>
-
-  <Card title="qovery-preview" icon="code-branch" href="https://github.com/Qovery/qovery-skills">
-    Full-stack preview environment per PR — app, database, unique URL. Auto-deleted on merge.
-
-    ```
-    > Set up preview environments for my pull requests
-    ```
-  </Card>
-
-  <Card title="qovery-builder-env" icon="users" href="https://github.com/Qovery/qovery-skills">
-    Self-service environments for non-technical teams — with RBAC so they can't touch production.
-
-    ```
-    > Create a builder environment for my team
-    ```
-  </Card>
-
-  <Card title="qovery-builder-portal" icon="browser" href="https://github.com/Qovery/qovery-skills">
-    Generates and deploys a web portal — SSO login, one-click environments, no CLI needed.
-
-    ```
-    > Generate a self-service portal for my team
-    ```
-  </Card>
-</CardGroup>
+  <div className="skills-prompt-wrap">
+    <div className="sp-onboard">
+      <Prompt description="qovery-onboard" actions={["copy", "cursor"]}>Set up Qovery for my project</Prompt>
+    </div>
+    <div className="sp-deploy">
+      <Prompt description="qovery-deploy" actions={["copy", "cursor"]}>Deploy my application with Qovery</Prompt>
+    </div>
+    <div className="sp-troubleshoot">
+      <Prompt description="qovery-troubleshoot" actions={["copy", "cursor"]}>Troubleshoot my failing deployment</Prompt>
+    </div>
+    <div className="sp-optimize">
+      <Prompt description="qovery-optimize" actions={["copy", "cursor"]}>Optimize my Qovery infrastructure costs</Prompt>
+    </div>
+    <div className="sp-speedup">
+      <Prompt description="qovery-speedup" actions={["copy", "cursor"]}>My deployments are slow, find the bottleneck</Prompt>
+    </div>
+    <div className="sp-preview">
+      <Prompt description="qovery-preview" actions={["copy", "cursor"]}>Set up preview environments for my pull requests</Prompt>
+    </div>
+    <div className="sp-builder-env">
+      <Prompt description="qovery-builder-env" actions={["copy", "cursor"]}>Create a builder environment for my team</Prompt>
+    </div>
+    <div className="sp-builder-portal">
+      <Prompt description="qovery-builder-portal" actions={["copy", "cursor"]}>Generate a self-service portal for my team</Prompt>
+    </div>
+  </div>
+</div>
 
 ---
 

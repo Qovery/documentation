@@ -844,12 +844,6 @@ html[data-theme="dark"] .skill-card-desc {
   background: #3a3a3e;
 }
 
-.terminal-open-cursor img {
-  width: 12px;
-  height: 12px;
-  filter: brightness(0) invert(1);
-  flex-shrink: 0;
-}
 
 /* AI Section Highlight — fond dégradé violet pour mettre en avant les use cases IA */
 .ai-section {

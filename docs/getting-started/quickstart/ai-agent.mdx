@@ -11,7 +11,7 @@ mode: "wide"
 
 <div className="ai-section">
 
-Eight skills. One install. Your agent picks the right one automatically.
+One install. Your agent picks the right skill automatically.
 
 ```bash
 curl -fsSL https://skill.qovery.com/install.sh | bash
@@ -135,12 +135,42 @@ Any tool discovering skills from `.claude/skills/`, `.config/opencode/skills/`, 
 
 ## How It Compares
 
-| | Console | AI Agent Skill | MCP Server |
-|---|---|---|---|
-| **Creates Dockerfiles** | No | Yes, 12+ frameworks | No |
-| **Provisions databases** | Manual | Automatic | No |
-| **Monitors & fixes failures** | Manual | Auto-fix | Query-based |
-| **Best for** | Fine-tuning | Deploying from code | Day-2 ops |
+<table className="compare-table">
+  <thead>
+    <tr>
+      <th style={{width: '35%'}}></th>
+      <th>Console</th>
+      <th className="col-featured">AI Agent Skill</th>
+      <th>MCP Server</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Creates Dockerfiles</td>
+      <td><span className="cmp-no">— No</span></td>
+      <td className="col-featured"><span className="cmp-yes">✓ Yes, 12+ frameworks</span></td>
+      <td><span className="cmp-no">— No</span></td>
+    </tr>
+    <tr>
+      <td>Provisions databases</td>
+      <td><span className="cmp-no">Manual</span></td>
+      <td className="col-featured"><span className="cmp-yes">✓ Automatic</span></td>
+      <td><span className="cmp-no">— No</span></td>
+    </tr>
+    <tr>
+      <td>Monitors & fixes failures</td>
+      <td><span className="cmp-no">Manual</span></td>
+      <td className="col-featured"><span className="cmp-auto">✓ Auto-fix</span></td>
+      <td>Query-based</td>
+    </tr>
+    <tr>
+      <td>Best for</td>
+      <td>Fine-tuning</td>
+      <td className="col-featured">Deploying from code</td>
+      <td>Day-2 ops</td>
+    </tr>
+  </tbody>
+</table>
 
 <Info>
 The Skill deploys. The MCP Server operates. Use both together. [→ MCP Server](/copilot/mcp-server)

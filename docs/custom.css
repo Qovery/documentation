@@ -824,19 +824,20 @@ html[data-theme="dark"] .skill-card-desc {
 .terminal-open-cursor {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   background: #2a2a2e;
   border: 1px solid rgba(255, 255, 255, 0.1);
   color: #ffffff;
   font-size: 11px;
   font-weight: 500;
-  padding: 4px 10px;
-  border-radius: 6px;
+  padding: 3px 8px;
+  border-radius: 5px;
   cursor: pointer;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   transition: background 0.15s;
   white-space: nowrap;
   text-decoration: none;
+  line-height: 1;
 }
 
 .terminal-open-cursor:hover {
@@ -844,6 +845,8 @@ html[data-theme="dark"] .skill-card-desc {
 }
 
 .terminal-open-cursor img {
+  width: 12px;
+  height: 12px;
   filter: brightness(0) invert(1);
   flex-shrink: 0;
 }

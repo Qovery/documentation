@@ -824,23 +824,28 @@ html[data-theme="dark"] .skill-card-desc {
 .terminal-open-cursor {
   display: flex;
   align-items: center;
-  gap: 5px;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: #c9d1d9;
+  gap: 6px;
+  background: #2a2a2e;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
   font-size: 11px;
-  padding: 3px 10px;
-  border-radius: 5px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 6px;
   cursor: pointer;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  transition: border-color 0.15s, color 0.15s;
+  transition: background 0.15s;
   white-space: nowrap;
   text-decoration: none;
 }
 
 .terminal-open-cursor:hover {
-  border-color: rgba(255, 255, 255, 0.35);
-  color: #e6edf3;
+  background: #3a3a3e;
+}
+
+.terminal-open-cursor img {
+  filter: brightness(0) invert(1);
+  flex-shrink: 0;
 }
 
 /* AI Section Highlight — fond dégradé violet pour mettre en avant les use cases IA */

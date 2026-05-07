@@ -18,27 +18,27 @@ curl -fsSL https://skill.qovery.com/install.sh | bash
 
 ---
 
-## How Deployment Works
+<Accordion title="How Deployment Works">
+  When you ask your agent to deploy, `qovery-deploy` runs through this workflow autonomously:
 
-When you ask your agent to deploy, `qovery-deploy` runs through this workflow autonomously:
-
-<Steps>
-  <Step title="Analyzes your codebase">
-    Detects language, framework, ports, database needs, and environment variables.
-  </Step>
-  <Step title="Creates a Dockerfile if missing">
-    Production-ready multi-stage template for your stack. Custom-generated for any other framework.
-  </Step>
-  <Step title="Asks the right questions">
-    Dev or production? Which database? CLI+API or Terraform? A few questions — no YAML to write.
-  </Step>
-  <Step title="Provisions infrastructure">
-    Cluster if needed, databases in container or managed mode, env vars with aliases and overrides.
-  </Step>
-  <Step title="Deploys and watches">
-    Monitors the rollout. Auto-fixes build errors, port mismatches, health check failures. Asks before touching your code.
-  </Step>
-</Steps>
+  <Steps>
+    <Step title="Analyzes your codebase">
+      Detects language, framework, ports, database needs, and environment variables.
+    </Step>
+    <Step title="Creates a Dockerfile if missing">
+      Production-ready multi-stage template for your stack. Custom-generated for any other framework.
+    </Step>
+    <Step title="Asks the right questions">
+      Dev or production? Which database? CLI+API or Terraform? A few questions — no YAML to write.
+    </Step>
+    <Step title="Provisions infrastructure">
+      Cluster if needed, databases in container or managed mode, env vars with aliases and overrides.
+    </Step>
+    <Step title="Deploys and watches">
+      Monitors the rollout. Auto-fixes build errors, port mismatches, health check failures. Asks before touching your code.
+    </Step>
+  </Steps>
+</Accordion>
 
 ---
 
@@ -102,21 +102,21 @@ When you ask your agent to deploy, `qovery-deploy` runs through this workflow au
           className="terminal-open-cursor"
           onClick={() => {
             const prompts = {
-              'sk-onboard': 'Set up Qovery for my project',
+              'sk-onboard': "I'm new to Qovery, help me get started",
               'sk-deploy': 'Deploy my application with Qovery',
-              'sk-troubleshoot': 'Troubleshoot my failing deployment',
-              'sk-optimize': 'Optimize my Qovery infrastructure costs',
-              'sk-speedup': 'My deployments are slow, find the bottleneck',
-              'sk-preview': 'Set up preview environments for my pull requests',
-              'sk-builder-env': 'Create a builder environment for my team',
-              'sk-builder-portal': 'Generate a self-service portal for my team',
+              'sk-troubleshoot': 'My deployment is failing',
+              'sk-optimize': 'Optimize my Qovery costs',
+              'sk-speedup': 'My deployments are slow',
+              'sk-preview': 'Set up preview environments for my project',
+              'sk-builder-env': 'Set up builder environments for non-tech teams',
+              'sk-builder-portal': 'Generate a builder portal for my team',
             };
             const checked = document.querySelector('input[name="qovery-skill"]:checked');
             const text = checked ? prompts[checked.id] : '';
             if (text) window.open(`cursor://anysphere.cursor-deeplink/prompt?text=${encodeURIComponent(text)}`, '_blank');
           }}
         >
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          <img src="/images/logos/ai-tools/cursor.svg" width="14" height="14" alt="" />
           Open in Cursor
         </button>
         <button
@@ -124,14 +124,14 @@ When you ask your agent to deploy, `qovery-deploy` runs through this workflow au
           title="Copy"
           onClick={(e) => {
             const prompts = {
-              'sk-onboard': 'Set up Qovery for my project',
+              'sk-onboard': "I'm new to Qovery, help me get started",
               'sk-deploy': 'Deploy my application with Qovery',
-              'sk-troubleshoot': 'Troubleshoot my failing deployment',
-              'sk-optimize': 'Optimize my Qovery infrastructure costs',
-              'sk-speedup': 'My deployments are slow, find the bottleneck',
-              'sk-preview': 'Set up preview environments for my pull requests',
-              'sk-builder-env': 'Create a builder environment for my team',
-              'sk-builder-portal': 'Generate a self-service portal for my team',
+              'sk-troubleshoot': 'My deployment is failing',
+              'sk-optimize': 'Optimize my Qovery costs',
+              'sk-speedup': 'My deployments are slow',
+              'sk-preview': 'Set up preview environments for my project',
+              'sk-builder-env': 'Set up builder environments for non-tech teams',
+              'sk-builder-portal': 'Generate a builder portal for my team',
             };
             const checked = document.querySelector('input[name="qovery-skill"]:checked');
             const text = checked ? prompts[checked.id] : '';
@@ -149,14 +149,14 @@ When you ask your agent to deploy, `qovery-deploy` runs through this workflow au
       </div>
     </div>
     <div className="terminal-body">
-      <span className="terminal-prompt sk-prompt sk-prompt-onboard">Set up Qovery for my project<span className="terminal-cursor"></span></span>
+      <span className="terminal-prompt sk-prompt sk-prompt-onboard">I'm new to Qovery, help me get started<span className="terminal-cursor"></span></span>
       <span className="terminal-prompt sk-prompt sk-prompt-deploy">Deploy my application with Qovery<span className="terminal-cursor"></span></span>
-      <span className="terminal-prompt sk-prompt sk-prompt-troubleshoot">Troubleshoot my failing deployment<span className="terminal-cursor"></span></span>
-      <span className="terminal-prompt sk-prompt sk-prompt-optimize">Optimize my Qovery infrastructure costs<span className="terminal-cursor"></span></span>
-      <span className="terminal-prompt sk-prompt sk-prompt-speedup">My deployments are slow, find the bottleneck<span className="terminal-cursor"></span></span>
-      <span className="terminal-prompt sk-prompt sk-prompt-preview">Set up preview environments for my pull requests<span className="terminal-cursor"></span></span>
-      <span className="terminal-prompt sk-prompt sk-prompt-builder-env">Create a builder environment for my team<span className="terminal-cursor"></span></span>
-      <span className="terminal-prompt sk-prompt sk-prompt-builder-portal">Generate a self-service portal for my team<span className="terminal-cursor"></span></span>
+      <span className="terminal-prompt sk-prompt sk-prompt-troubleshoot">My deployment is failing<span className="terminal-cursor"></span></span>
+      <span className="terminal-prompt sk-prompt sk-prompt-optimize">Optimize my Qovery costs<span className="terminal-cursor"></span></span>
+      <span className="terminal-prompt sk-prompt sk-prompt-speedup">My deployments are slow<span className="terminal-cursor"></span></span>
+      <span className="terminal-prompt sk-prompt sk-prompt-preview">Set up preview environments for my project<span className="terminal-cursor"></span></span>
+      <span className="terminal-prompt sk-prompt sk-prompt-builder-env">Set up builder environments for non-tech teams<span className="terminal-cursor"></span></span>
+      <span className="terminal-prompt sk-prompt sk-prompt-builder-portal">Generate a builder portal for my team<span className="terminal-cursor"></span></span>
     </div>
   </div>
 </div>

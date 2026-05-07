@@ -64,7 +64,8 @@
                 "group": "Deploy with AI",
                 "pages": [
                   "getting-started/quickstart/ai-agent",
-                  "getting-started/quickstart/agent-skills"
+                  "getting-started/quickstart/agent-skills",
+                  "getting-started/quickstart/remote-dev-environments"
                 ]
               },
               {

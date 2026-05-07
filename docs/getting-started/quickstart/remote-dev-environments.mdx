@@ -1,0 +1,120 @@
+---
+title: "Remote Dev Environments"
+description: "One environment per person, per agent — on your own Kubernetes."
+mode: "wide"
+---
+
+<div className="ai-section">
+
+One environment per person, per agent. Anyone in your org — engineers, designers, PMs, AI agents — can spin up a fully configured clone of your production stack. Auto-shutdown when idle.
+
+```bash
+curl -fsSL https://skill.qovery.com/install.sh | bash
+```
+
+Then ask your agent:
+
+```
+Create a dev environment for my project with Qovery
+```
+
+</div>
+
+---
+
+<CardGroup cols={4}>
+  <Card title="1:1 env/person" icon="user">
+    Each developer or agent gets their own isolated stack.
+  </Card>
+  <Card title="< 4 min" icon="bolt">
+    From request to productive environment.
+  </Card>
+  <Card title="Auto-shutdown" icon="moon">
+    Idle environments stop automatically. No waste.
+  </Card>
+  <Card title="$80K+ saved" icon="piggy-bank">
+    On onboarding and environment troubleshooting.
+  </Card>
+</CardGroup>
+
+---
+
+## Why local dev is broken
+
+<CardGroup cols={3}>
+  <Card title="Laptops can't run your stack" icon="laptop">
+    Docker Desktop consumes 12+ GB RAM. Port collisions, broken WSL2 file watchers, slow macOS bind mounts. Your platform team fixes environment issues instead of building product.
+  </Card>
+  <Card title="Agents need isolation" icon="shield-check">
+    Running Claude Code on a developer's laptop exposes SSH keys, API tokens, and local credentials. A dedicated Kubernetes sandbox limits the blast radius.
+  </Card>
+  <Card title="Non-engineers are locked out" icon="users">
+    A PM reproducing a bug or a designer testing a variant can't set up Docker Compose. They file tickets and wait.
+  </Card>
+</CardGroup>
+
+---
+
+## How It Works
+
+<Steps>
+  <Step title="Template your stack once">
+    Define your environment in Qovery — app, database, services, env vars. One template for everyone.
+  </Step>
+  <Step title="Anyone spins up their own clone">
+    Engineer, designer, PM, or AI agent — each gets a fully isolated environment in under 4 minutes.
+  </Step>
+  <Step title="Work, ship, auto-destroy">
+    Submit a PR when done. The environment shuts down when idle. No cleanup needed.
+  </Step>
+</Steps>
+
+---
+
+## Built for AI Agents
+
+AI agents like Claude Code run autonomously inside an isolated Kubernetes sandbox — no access to your local credentials, SSH keys, or other services. The agent works on its task for hours, then surfaces a PR when done.
+
+Use the `qovery-builder-env` skill to set this up:
+
+<Card title="qovery-builder-env" icon="users" href="/getting-started/quickstart/agent-skills">
+  Self-service environments for non-technical teams — with RBAC so they can't touch production.
+</Card>
+
+---
+
+## Security & Access Control
+
+<CardGroup cols={2}>
+  <Card title="SSO / SAML" icon="key">
+    Single sign-on with your identity provider. No separate credentials to manage.
+  </Card>
+  <Card title="RBAC" icon="shield-check">
+    Per-role access control. Builders deploy to their sandbox, can't touch production.
+  </Card>
+  <Card title="Network isolation" icon="lock">
+    Per-environment allowlists. Each sandbox is fully isolated from others.
+  </Card>
+  <Card title="Audit log" icon="list-check">
+    Every action tracked — what changed, when, by whom or which agent.
+  </Card>
+</CardGroup>
+
+---
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Install & Deploy" icon="rocket" href="/getting-started/quickstart/ai-agent">
+    Set up the skill and deploy your first environment.
+  </Card>
+  <Card title="All Skills" icon="wand-magic-sparkles" href="/getting-started/quickstart/agent-skills">
+    Explore qovery-builder-env and all other skills.
+  </Card>
+  <Card title="Preview Environments" icon="code-branch" href="/getting-started/guides/use-cases/ephemeral-environment">
+    Auto-created environments per pull request.
+  </Card>
+  <Card title="MCP Server" icon="robot" href="/copilot/mcp-server">
+    Manage infrastructure from your AI agent.
+  </Card>
+</CardGroup>

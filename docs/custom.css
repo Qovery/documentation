@@ -802,16 +802,21 @@ html[data-theme="dark"] .skill-card-desc {
 
 /* Skill description */
 .skills-desc-wrap {
-  padding: 10px 2px 8px;
-  min-height: 36px;
-  font-size: 13px;
-  color: #6b7280;
-  line-height: 1.5;
+  padding: 12px 14px;
+  min-height: 44px;
+  font-size: 13.5px;
+  color: #374151;
+  line-height: 1.6;
+  border-left: 3px solid #642DFF;
+  background: rgba(100, 45, 255, 0.04);
+  border-radius: 0 6px 6px 0;
+  margin-bottom: 12px;
 }
 
 html.dark .skills-desc-wrap,
 html[data-theme="dark"] .skills-desc-wrap {
-  color: #8b949e;
+  color: #c9d1d9;
+  background: rgba(100, 45, 255, 0.08);
 }
 
 .sk-desc { display: none; }

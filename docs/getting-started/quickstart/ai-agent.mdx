@@ -54,93 +54,54 @@ No Dockerfile. No Kubernetes knowledge. No cluster needed upfront.
 
 ## Compatible Tools
 
-<Tabs>
-  <Tab title="Terminal">
-    <CardGroup cols={3}>
-      <Card title="Claude Code" icon="/images/logos/ai-tools/anthropic.svg" href="https://claude.ai/code">
-        **Anthropic** · `Terminal` `Recommended`
-      </Card>
-      <Card title="OpenCode" icon="/images/logos/ai-tools/opencode.svg" href="https://opencode.ai">
-        **OpenCode** · `Terminal` `Open source`
-      </Card>
-      <Card title="Gemini CLI" icon="/images/logos/ai-tools/googlegemini.svg" href="https://github.com/google-gemini/gemini-cli">
-        **Google** · `Terminal`
-      </Card>
-    </CardGroup>
-  </Tab>
-  <Tab title="IDE">
-    <CardGroup cols={3}>
-      <Card title="Cursor" icon="/images/logos/ai-tools/cursor.svg" href="https://cursor.com">
-        **Anysphere** · `IDE`
-      </Card>
-      <Card title="VS Code Copilot" icon="/images/logos/ai-tools/githubcopilot.svg" href="https://github.com/features/copilot">
-        **GitHub** · `IDE Extension`
-      </Card>
-      <Card title="Roo Code" icon="/images/logos/ai-tools/roocode.png" href="https://roocode.com">
-        **Roo** · `IDE Extension`
-      </Card>
-      <Card title="Kiro" icon="/images/logos/ai-tools/kiro.svg" href="https://kiro.dev">
-        **Amazon** · `IDE`
-      </Card>
-      <Card title="Junie" icon="/images/logos/ai-tools/jetbrains.png" href="https://www.jetbrains.com/junie/">
-        **JetBrains** · `IDE Extension`
-      </Card>
-    </CardGroup>
-  </Tab>
-  <Tab title="Standalone">
-    <CardGroup cols={3}>
-      <Card title="Goose" icon="/images/logos/ai-tools/goose.png" href="https://github.com/block/goose">
-        **Block** · `Standalone` `Open source`
-      </Card>
-      <Card title="Amp" icon="/images/logos/ai-tools/amp.svg" href="https://ampcode.com">
-        **Sourcegraph** · `Standalone`
-      </Card>
-      <Card title="OpenHands" icon="/images/logos/ai-tools/openhands.png" href="https://github.com/All-Hands-AI/OpenHands">
-        **All Hands AI** · `Standalone` `Open source`
-      </Card>
-      <Card title="OpenAI Codex" icon="/images/logos/ai-tools/openai.svg" href="https://openai.com/codex">
-        **OpenAI** · `Standalone`
-      </Card>
-      <Card title="Mistral Vibe" icon="/images/logos/ai-tools/mistral.png" href="https://mistral.ai">
-        **Mistral** · `Standalone`
-      </Card>
-      <Card title="TRAE" icon="/images/logos/ai-tools/bytedance.svg" href="https://trae.ai">
-        **ByteDance** · `Standalone`
-      </Card>
-    </CardGroup>
-  </Tab>
-</Tabs>
+<CardGroup cols={4}>
+  <Card title="Claude Code" icon="/images/logos/ai-tools/anthropic.svg" href="https://claude.ai/code">
+    **Anthropic** · `Terminal` `Recommended`
+  </Card>
+  <Card title="OpenCode" icon="/images/logos/ai-tools/opencode.svg" href="https://opencode.ai">
+    **OpenCode** · `Terminal` `Open source`
+  </Card>
+  <Card title="Gemini CLI" icon="/images/logos/ai-tools/googlegemini.svg" href="https://github.com/google-gemini/gemini-cli">
+    **Google** · `Terminal`
+  </Card>
+  <Card title="Cursor" icon="/images/logos/ai-tools/cursor.svg" href="https://cursor.com">
+    **Anysphere** · `IDE`
+  </Card>
+  <Card title="VS Code Copilot" icon="/images/logos/ai-tools/githubcopilot.svg" href="https://github.com/features/copilot">
+    **GitHub** · `IDE Extension`
+  </Card>
+  <Card title="Roo Code" icon="/images/logos/ai-tools/roocode.png" href="https://roocode.com">
+    **Roo** · `IDE Extension`
+  </Card>
+  <Card title="Kiro" icon="/images/logos/ai-tools/kiro.svg" href="https://kiro.dev">
+    **Amazon** · `IDE`
+  </Card>
+  <Card title="Junie" icon="/images/logos/ai-tools/jetbrains.png" href="https://www.jetbrains.com/junie/">
+    **JetBrains** · `IDE Extension`
+  </Card>
+  <Card title="Goose" icon="/images/logos/ai-tools/goose.png" href="https://github.com/block/goose">
+    **Block** · `Standalone` `Open source`
+  </Card>
+  <Card title="Amp" icon="/images/logos/ai-tools/amp.svg" href="https://ampcode.com">
+    **Sourcegraph** · `Standalone`
+  </Card>
+  <Card title="OpenHands" icon="/images/logos/ai-tools/openhands.png" href="https://github.com/All-Hands-AI/OpenHands">
+    **All Hands AI** · `Standalone` `Open source`
+  </Card>
+  <Card title="OpenAI Codex" icon="/images/logos/ai-tools/openai.svg" href="https://openai.com/codex">
+    **OpenAI** · `Standalone`
+  </Card>
+  <Card title="Mistral Vibe" icon="/images/logos/ai-tools/mistral.png" href="https://mistral.ai">
+    **Mistral** · `Standalone`
+  </Card>
+  <Card title="TRAE" icon="/images/logos/ai-tools/bytedance.svg" href="https://trae.ai">
+    **ByteDance** · `Standalone`
+  </Card>
+</CardGroup>
 
 Any tool discovering skills from `.claude/skills/`, `.config/opencode/skills/`, or `.agents/skills/` is compatible.
 
----
-
-## Try These Prompts
-
-<div className="terminal-window">
-  <div className="terminal-bar">
-    <div className="terminal-dots">
-      <div className="terminal-dot terminal-dot-red"></div>
-      <div className="terminal-dot terminal-dot-yellow"></div>
-      <div className="terminal-dot terminal-dot-green"></div>
-    </div>
-    <div className="terminal-title-bar">claude — qovery-deploy</div>
-  </div>
-  <div className="terminal-body">
-    <span className="terminal-prompt">Deploy my application with Qovery</span>
-    <span className="terminal-success">✓ Node.js detected — generating Dockerfile</span>
-    <span className="terminal-success">✓ PostgreSQL provisioned</span>
-    <span className="terminal-success">✓ Deployed → https://my-app.preview.qovery.io</span>
-    <hr className="terminal-sep" />
-    <span className="terminal-prompt">Set up preview environments for my pull requests</span>
-    <hr className="terminal-sep" />
-    <span className="terminal-prompt">Optimize my Qovery infrastructure costs</span>
-    <hr className="terminal-sep" />
-    <span className="terminal-prompt">Troubleshoot my failing deployment<span className="terminal-cursor"></span></span>
-  </div>
-</div>
-
-<Card title="Each prompt maps to a specific skill — see all 8" icon="wand-magic-sparkles" href="/getting-started/quickstart/agent-skills">
+<Card title="8 skills, one selector — pick your use case" icon="wand-magic-sparkles" href="/getting-started/quickstart/agent-skills">
   `qovery-deploy` · `qovery-preview` · `qovery-optimize` · `qovery-troubleshoot` · and 4 more →
 </Card>
 

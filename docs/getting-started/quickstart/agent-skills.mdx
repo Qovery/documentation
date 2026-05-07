@@ -89,30 +89,74 @@ When you ask your agent to deploy, `qovery-deploy` runs through this workflow au
     </label>
   </div>
 
-  <div className="skills-prompt-wrap">
-    <div className="sp-onboard">
-      <Prompt description="qovery-onboard" actions={["copy", "cursor"]}>Set up Qovery for my project</Prompt>
+  <div className="terminal-window skills-terminal">
+    <div className="terminal-bar">
+      <div className="terminal-dots">
+        <div className="terminal-dot terminal-dot-red"></div>
+        <div className="terminal-dot terminal-dot-yellow"></div>
+        <div className="terminal-dot terminal-dot-green"></div>
+      </div>
+      <div className="terminal-title-bar">claude</div>
+      <div className="terminal-actions">
+        <button
+          className="terminal-open-cursor"
+          onClick={() => {
+            const prompts = {
+              'sk-onboard': 'Set up Qovery for my project',
+              'sk-deploy': 'Deploy my application with Qovery',
+              'sk-troubleshoot': 'Troubleshoot my failing deployment',
+              'sk-optimize': 'Optimize my Qovery infrastructure costs',
+              'sk-speedup': 'My deployments are slow, find the bottleneck',
+              'sk-preview': 'Set up preview environments for my pull requests',
+              'sk-builder-env': 'Create a builder environment for my team',
+              'sk-builder-portal': 'Generate a self-service portal for my team',
+            };
+            const checked = document.querySelector('input[name="qovery-skill"]:checked');
+            const text = checked ? prompts[checked.id] : '';
+            if (text) window.open(`cursor://anysphere.cursor-deeplink/composer?query=${encodeURIComponent(text)}`, '_blank');
+          }}
+        >
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          Open in Cursor
+        </button>
+        <button
+          className="terminal-copy"
+          title="Copy"
+          onClick={(e) => {
+            const prompts = {
+              'sk-onboard': 'Set up Qovery for my project',
+              'sk-deploy': 'Deploy my application with Qovery',
+              'sk-troubleshoot': 'Troubleshoot my failing deployment',
+              'sk-optimize': 'Optimize my Qovery infrastructure costs',
+              'sk-speedup': 'My deployments are slow, find the bottleneck',
+              'sk-preview': 'Set up preview environments for my pull requests',
+              'sk-builder-env': 'Create a builder environment for my team',
+              'sk-builder-portal': 'Generate a self-service portal for my team',
+            };
+            const checked = document.querySelector('input[name="qovery-skill"]:checked');
+            const text = checked ? prompts[checked.id] : '';
+            if (text) navigator.clipboard.writeText(text);
+            const btn = e.currentTarget;
+            btn.classList.add('terminal-copy-success');
+            setTimeout(() => btn.classList.remove('terminal-copy-success'), 1500);
+          }}
+        >
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"/>
+            <path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"/>
+          </svg>
+        </button>
+      </div>
     </div>
-    <div className="sp-deploy">
-      <Prompt description="qovery-deploy" actions={["copy", "cursor"]}>Deploy my application with Qovery</Prompt>
-    </div>
-    <div className="sp-troubleshoot">
-      <Prompt description="qovery-troubleshoot" actions={["copy", "cursor"]}>Troubleshoot my failing deployment</Prompt>
-    </div>
-    <div className="sp-optimize">
-      <Prompt description="qovery-optimize" actions={["copy", "cursor"]}>Optimize my Qovery infrastructure costs</Prompt>
-    </div>
-    <div className="sp-speedup">
-      <Prompt description="qovery-speedup" actions={["copy", "cursor"]}>My deployments are slow, find the bottleneck</Prompt>
-    </div>
-    <div className="sp-preview">
-      <Prompt description="qovery-preview" actions={["copy", "cursor"]}>Set up preview environments for my pull requests</Prompt>
-    </div>
-    <div className="sp-builder-env">
-      <Prompt description="qovery-builder-env" actions={["copy", "cursor"]}>Create a builder environment for my team</Prompt>
-    </div>
-    <div className="sp-builder-portal">
-      <Prompt description="qovery-builder-portal" actions={["copy", "cursor"]}>Generate a self-service portal for my team</Prompt>
+    <div className="terminal-body">
+      <span className="terminal-prompt sk-prompt sk-prompt-onboard">Set up Qovery for my project<span className="terminal-cursor"></span></span>
+      <span className="terminal-prompt sk-prompt sk-prompt-deploy">Deploy my application with Qovery<span className="terminal-cursor"></span></span>
+      <span className="terminal-prompt sk-prompt sk-prompt-troubleshoot">Troubleshoot my failing deployment<span className="terminal-cursor"></span></span>
+      <span className="terminal-prompt sk-prompt sk-prompt-optimize">Optimize my Qovery infrastructure costs<span className="terminal-cursor"></span></span>
+      <span className="terminal-prompt sk-prompt sk-prompt-speedup">My deployments are slow, find the bottleneck<span className="terminal-cursor"></span></span>
+      <span className="terminal-prompt sk-prompt sk-prompt-preview">Set up preview environments for my pull requests<span className="terminal-cursor"></span></span>
+      <span className="terminal-prompt sk-prompt sk-prompt-builder-env">Create a builder environment for my team<span className="terminal-cursor"></span></span>
+      <span className="terminal-prompt sk-prompt sk-prompt-builder-portal">Generate a self-service portal for my team<span className="terminal-cursor"></span></span>
     </div>
   </div>
 </div>

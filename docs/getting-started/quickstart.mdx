@@ -1,316 +1,68 @@
 ---
 title: "Get Started with Qovery"
-description: "Deploy your first app in minutes — with an AI agent, or through the console. No Kubernetes expertise required."
+description: "Choose your deployment path."
 mode: "wide"
 ---
 
-<Info>
-**New to Qovery?** Choose your path below. The AI Agent path is the fastest way to get from code to a running deployment — no Kubernetes knowledge needed.
-</Info>
-
----
-
-<div className="ai-section">
-
-## The AI-First Path — Fastest Way to Deploy
-
-<Card title="Deploy with AI Agent" icon="wand-magic-sparkles" href="/getting-started/quickstart/ai-agent">
-  **Use Claude Code, Cursor, OpenCode, or any AI coding agent**
-
-  Install one command. Ask your agent to deploy. It does everything:
-  - Analyzes your codebase and detects the language/framework
-  - Creates a production-ready Dockerfile if one is missing
-  - Provisions databases (container for dev, managed RDS/Cloud SQL for production)
-  - Sets up environment variables, health checks, and deployment stages
-  - Deploys to Kubernetes and watches for failures — auto-fixing where it can
-
-  **Perfect for:** developers who prefer AI-first workflows, non-technical builders, rapid prototyping, or anyone who doesn't want to learn Kubernetes
-
-  **Time:** ~10 minutes | **Tools:** Claude Code, Cursor, OpenCode, VS Code Copilot, Gemini CLI, 30+ more | **Kubernetes knowledge:** none required
-
-  → **Install the Qovery Agent Skill**
-</Card>
-
-</div>
-
----
-
-## All Deployment Paths
-
-### AI-Powered Paths
+## AI-Powered Paths
 
 <div className="ai-section">
 
 <CardGroup cols={2}>
   <Card title="Deploy with AI Agent" icon="wand-magic-sparkles" href="/getting-started/quickstart/ai-agent">
-    **Fastest path from code to production**
+    Tell your agent to deploy. It handles Dockerfile, database, env vars, and Kubernetes — automatically.
 
-    Perfect for:
-    - **AI-first workflows** — describe what you want, the agent does the rest
-    - **Non-developers** who want to ship without Kubernetes knowledge
-    - **Rapid prototyping** — from source code to deployed in minutes
-    - **Any language or framework** — the agent creates Dockerfiles for you
-
-    What the agent handles:
-    - Codebase analysis, Dockerfile generation, database provisioning
-    - Environment variables, health checks, deployment stages
-    - Deployment via CLI + API or Terraform, failure auto-fix
-
-    **Time:** ~10 minutes | **Cost:** Cloud infra only
-
-    → **Install the Qovery Skill**
+    **~10 min** · Claude Code, Cursor, OpenCode, 30+ tools
   </Card>
-
   <Card title="AI Dev & Remote Environments" icon="laptop-code" href="/getting-started/quickstart/ai-agent">
-    **Isolated environments for humans and AI agents**
+    Each developer or AI agent gets their own isolated environment. Clone, use, destroy.
 
-    Perfect for:
-    - **Teams** where each developer or agent needs their own environment
-    - **Vibe coding** — let an AI agent spin up, test, and tear down environments
-    - **No shared state** — every environment is independent and disposable
-    - **Reproducible dev setups** on cloud infrastructure
-
-    What you get:
-    - An ephemeral, full-stack environment per user or agent
-    - No conflicts, no "works on my machine"
-    - Instant clone from a reference environment
-
-    **Time:** ~10 minutes | **Cost:** Pay only while active
-
-    → **Set Up Dev Environments**
+    **~10 min** · Pay only while active
   </Card>
 </CardGroup>
 
 </div>
 
-### Platform Paths
+## Platform Paths
 
 <CardGroup cols={2}>
-  <Card title="Preview & Ephemeral Environments" icon="code-branch" href="/getting-started/guides/use-cases/ephemeral-environment">
-    **A live environment for every pull request**
+  <Card title="Preview Environments" icon="code-branch" href="/getting-started/guides/use-cases/ephemeral-environment">
+    A full-stack environment auto-created for every pull request. Deleted on merge.
 
-    Perfect for:
-    - **Preview environments** auto-created on every PR
-    - **QA testing** with fully isolated stacks
-    - **Stakeholder demos** without touching production
-    - **Feature sign-off** before merging
-
-    Your journey:
-    1. Create a managed cluster (AWS/GCP/Azure/Scaleway) — ~30 min
-    2. Follow the ephemeral environment guide
-    3. Open a PR → environment auto-created with unique URL
-
-    **Time:** ~45 minutes setup | **Per PR:** Automatic
-
-    → **Complete Guide Available**
+    **~45 min setup** · Automatic per PR
   </Card>
-
   <Card title="Production SaaS & Web Apps" icon="rocket" href="/getting-started/guides/use-cases/production-environment-management">
-    **Deploy scalable applications to production**
+    Deploy scalable applications with auto-scaling, managed databases, and zero-downtime rollouts.
 
-    Perfect for:
-    - **SaaS platforms** with multi-tenant architecture
-    - **Web applications** needing auto-scaling
-    - **API services** (REST, GraphQL, gRPC)
-    - **Microservices** architectures
-
-    Your journey:
-    1. Create a managed cluster (AWS/GCP/Azure/Scaleway) — ~30 min
-    2. Follow the complete production setup guide
-    3. Deploy with auto-scaling, monitoring, and zero-downtime
-
-    **Time:** ~45 minutes total | **Expertise:** None required
-
-    → **Complete Guide Available**
+    **~45 min** · AWS, GCP, Azure, Scaleway
   </Card>
-
   <Card title="Test & Learn Locally" icon="flask" href="/getting-started/quickstart/docker-desktop">
-    **Explore Qovery without cloud costs**
+    Free local k3s cluster on your laptop. Full Qovery features, no cloud account needed.
 
-    Perfect for:
-    - **First-time users** exploring the platform
-    - **Local development** and testing
-    - **Learning** Qovery features risk-free
-    - **Proof of concepts** before production
-
-    What you get:
-    - Free local k3s cluster on your laptop
-    - Full Qovery feature access
-    - No cloud account or credit card needed
-
-    **Time:** ~15 minutes | **Cost:** Free
-
-    → **Path: Docker Desktop**
+    **~15 min** · Free
   </Card>
+  <Card title="Enterprise / Bring Your Own Cluster" icon="building" href="/getting-started/installation/kubernetes">
+    Connect an existing Kubernetes cluster. Full compliance, custom networking, BYOK.
 
-  <Card title="Enterprise with Custom Requirements" icon="building" href="/getting-started/installation/kubernetes">
-    **Full control over infrastructure**
-
-    Perfect for:
-    - **Existing Kubernetes clusters** to connect
-    - **Compliance requirements** (HIPAA, PCI-DSS, custom)
-    - **On-premise or hybrid** infrastructure
-    - **Custom networking** and security configs
-
-    Your journey:
-    1. Prepare your existing Kubernetes cluster (or create one)
-    2. Follow the BYOK integration guide
-    3. Connect Qovery with full control retained
-
-    **Time:** ~20 minutes | **Control:** Complete
-
-    → **Bring Your Own Cluster (BYOK)**
+    **~20 min** · Complete control
   </Card>
 </CardGroup>
 
 ---
 
-## How Qovery Fits Into Your Workflow
-
-Qovery is the **single control plane** that connects all your interfaces — AI agents, console, CLI, Terraform, and API — to the same underlying Kubernetes infrastructure running on your cloud.
+## Every Interface, One Control Plane
 
 <CardGroup cols={4}>
   <Card title="AI Agent Skill" icon="wand-magic-sparkles" href="/getting-started/quickstart/ai-agent">
-    Deploy from Claude Code, Cursor, or any AI tool
+    Deploy from your AI tool
   </Card>
-  <Card title="MCP Server (Copilot)" icon="robot" href="/copilot/mcp-server">
-    Manage infrastructure via natural language
+  <Card title="MCP Server" icon="robot" href="/copilot/mcp-server">
+    Manage via natural language
   </Card>
   <Card title="Console" icon="browser" href="https://console.qovery.com">
-    Visual UI for full platform control
+    Visual UI
   </Card>
-  <Card title="CLI + Terraform + API" icon="terminal" href="/cli/overview">
-    Command-line, IaC, and programmatic access
+  <Card title="CLI · Terraform · API" icon="terminal" href="/cli/overview">
+    Code & automation
   </Card>
 </CardGroup>
-
----
-
-## Detailed Use Case Comparison
-
-<AccordionGroup>
-  <Accordion title="AI Agent Deployment" icon="wand-magic-sparkles">
-    **Use Case: Deploy from Your AI Coding Tool**
-
-    **Best for:**
-    - Developers and non-developers who prefer natural language over configuration files
-    - AI-first workflows where agents do the heavy lifting
-    - Rapidly deploying from existing codebases
-    - Anyone who wants to skip Kubernetes entirely
-
-    **What the AI agent does for you:**
-    - Detects language, framework, ports, and database requirements from your code
-    - Generates a production-ready Dockerfile if one is missing (12+ frameworks)
-    - Asks: dev or production? Which database? CLI+API or Terraform?
-    - Provisions a cluster if needed (AWS, GCP, Azure, Scaleway)
-    - Deploys the app and watches for failures — auto-fixing build errors, health check issues, port mismatches
-
-    **Compatible tools:** Claude Code, Cursor, OpenCode, VS Code Copilot, Gemini CLI, Roo Code, Goose, Amp, Kiro, and 30+ more
-
-    **Path:** Install the Qovery Skill | **Time:** ~10 min | **Cost:** Cloud infra only
-  </Accordion>
-
-  <Accordion title="AI Dev & Remote Environments" icon="laptop-code">
-    **Use Case: Ephemeral Environments per Developer or Agent**
-
-    **Best for:**
-    - Teams where developers need isolated, reproducible environments
-    - AI coding workflows where each agent needs its own sandbox
-    - Avoiding shared state and "works on my machine" issues
-    - Vibe coding — spin up, experiment, destroy, repeat
-
-    **How it works:**
-    - Clone a reference environment in seconds
-    - Each environment is fully isolated — own database, own services, own config
-    - AI agents can autonomously create and destroy environments
-    - Pay only for what's active; sleep mode cuts costs during off-hours
-
-    **Path:** Install the Qovery Skill | **Time:** ~10 min | **Cost:** Pay while active
-  </Accordion>
-
-  <Accordion title="Preview & Ephemeral Environments" icon="code-branch">
-    **Use Case: Temporary Environments for Testing & Review**
-
-    **Best for:**
-    - Preview environments for every pull request
-    - QA teams testing features in isolation
-    - Product managers reviewing features before release
-    - Stakeholder demos without affecting production
-
-    **How it works after setup:**
-    1. Open pull request in GitHub/GitLab
-    2. Qovery auto-creates preview environment
-    3. Get unique URL (e.g., `pr-123.preview.example.com`)
-    4. Test, review, and iterate
-    5. Merge PR → environment auto-deleted
-
-    [→ View Complete Ephemeral Environment Guide](/guides/use-cases/ephemeral-environment)
-  </Accordion>
-
-  <Accordion title="Production Applications" icon="rocket">
-    **Use Case: SaaS, Web Apps, APIs, Microservices**
-
-    **Best for:**
-    - SaaS platforms with paying customers
-    - High-traffic web applications
-    - RESTful/GraphQL/gRPC APIs
-    - Microservices architectures
-
-    **Complete Journey:**
-
-    **Step 1: Create Your Cluster (Prerequisite)**
-    - Choose your cloud provider (AWS/GCP/Azure/Scaleway)
-    - Qovery provisions managed Kubernetes for you
-    - Multi-AZ for high availability
-    - Time: ~30 minutes
-
-    **Step 2: Follow the Production Guide**
-    - Deploy Node.js, Python, Go, Java, PHP, Ruby, .NET apps
-    - Set up auto-scaling based on traffic
-    - Configure managed databases with automatic backups
-    - Add custom domains with automatic SSL
-    - Enable zero-downtime deployments
-
-    [→ View Complete Production Guide](/guides/use-cases/production-environment-management)
-  </Accordion>
-
-  <Accordion title="Testing & Learning" icon="flask">
-    **Use Case: Local Development & Exploration**
-
-    **Best for:**
-    - Developers new to Qovery wanting to explore features
-    - Teams evaluating Qovery for adoption
-    - Building POCs before cloud deployment
-
-    **What you can do:**
-    - Deploy apps, databases, and jobs locally
-    - Test GitOps workflows with GitHub/GitLab
-    - Practice Qovery CLI and Console
-    - Learn Kubernetes concepts without cloud costs
-
-    **Path:** Docker Desktop | **Time:** 15 min | **Cost:** Free
-  </Accordion>
-
-  <Accordion title="Enterprise & Custom Requirements" icon="building">
-    **Use Case: Existing Clusters, Compliance, On-Premise**
-
-    **Best for:**
-    - Organizations with existing Kubernetes clusters
-    - Regulated industries (Healthcare, Finance, Government)
-    - Companies with strict compliance (HIPAA, PCI-DSS, SOC2)
-    - On-premise or hybrid cloud architectures
-
-    **You manage:**
-    - Kubernetes cluster provisioning and upgrades
-    - Infrastructure security and networking
-    - Backup and disaster recovery
-
-    **Qovery provides:**
-    - Developer-friendly UI and CLI
-    - GitOps workflows and CI/CD
-    - Environment management and AI-driven operations
-    - Application deployment and monitoring
-
-    [→ View BYOK Integration Guide](/installation/kubernetes)
-  </Accordion>
-</AccordionGroup>

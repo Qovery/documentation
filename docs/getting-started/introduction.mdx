@@ -1,150 +1,88 @@
 ---
 title: "Introduction"
-description: "Qovery — The Kubernetes control plane for humans and AI agents. Deploy apps without DevOps expertise."
+description: "The Kubernetes control plane for humans and AI agents — on your own cloud."
 mode: "wide"
 ---
 
 ## Welcome to Qovery
 
-Qovery is **the Kubernetes control plane for humans and AI agents** — running on your own cloud infrastructure.
+Qovery is the **Kubernetes control plane for humans and AI agents** — running on your own AWS, GCP, Azure, or Scaleway.
 
-Whether you're a developer describing what you want to deploy in plain English, a platform team standardising operations at scale, or an AI agent autonomously provisioning environments, Qovery is the single control plane that makes it happen.
-
-<CardGroup cols={2}>
-  <Card title="AI-First Workflows" icon="wand-magic-sparkles">
-    Let Claude Code, Cursor, or any AI agent deploy your app end-to-end — Dockerfile, database, env vars, and all
-  </Card>
-  <Card title="Your Infrastructure" icon="server">
-    Runs on your own AWS, GCP, Azure, or Scaleway — you maintain full control and direct billing
-  </Card>
-  <Card title="No Kubernetes Expertise Required" icon="user">
-    Developers and non-developers ship to production without waiting for DevOps. Platform teams keep governance.
-  </Card>
-  <Card title="Every Interface You Need" icon="plug">
-    Console, CLI, Terraform, API, and AI agents — all driving the same control plane
-  </Card>
-</CardGroup>
+Describe what you want to deploy. An AI agent handles the rest. Or use the console, CLI, Terraform, or API. Everything drives the same control plane.
 
 ---
 
-## Two Ways to Work with Qovery
+## Two Ways to Work
 
 <div className="ai-section">
 
-### The New Way — Deploy with AI
-
-Non-developers and AI-first teams can deploy production-grade apps without ever touching Kubernetes configuration.
+### Deploy with AI — the new way
 
 <CardGroup cols={3}>
   <Card title="AI Prompt Deployment" icon="wand-magic-sparkles" href="/getting-started/quickstart/ai-agent">
-    **From prompt to production in minutes**
-
-    Install the Qovery Agent Skill in Claude Code, Cursor, OpenCode, or any compatible AI tool. Describe what you want — the agent analyzes your codebase, creates a Dockerfile, provisions databases, sets env vars, and deploys automatically.
-
-    → **Install the Qovery Skill**
+    Tell your AI agent to deploy. It analyzes your code, writes the Dockerfile, provisions the database, and ships to Kubernetes.
   </Card>
-
   <Card title="AI Dev Environments" icon="laptop-code" href="/getting-started/quickstart/ai-agent">
-    **Isolated environments for humans and AI agents**
-
-    Each developer and each AI agent gets their own ephemeral environment. Spin up, experiment, tear down — no shared state, no conflicts, no infrastructure knowledge required.
-
-    → **Explore Dev Environments**
+    Every developer and AI agent gets their own isolated environment. Spin up, experiment, tear down.
   </Card>
-
-  <Card title="AI Copilot (Ops)" icon="robot" href="/copilot/overview">
-    **Manage existing infrastructure with natural language**
-
-    Once deployed, use the Qovery MCP Server or Console Copilot to monitor, troubleshoot, scale, and operate your infrastructure — all through conversation.
-
-    → **Explore the Copilot**
+  <Card title="AI Copilot" icon="robot" href="/copilot/overview">
+    Manage deployed infrastructure through conversation — monitor, troubleshoot, scale.
   </Card>
 </CardGroup>
 
 </div>
 
-### The Platform Way — Full Control
-
-For platform engineers, DevOps teams, and power users who want direct control over every configuration.
+### The platform — full control
 
 <CardGroup cols={4}>
-  <Card title="Console" icon="browser" href="https://console.qovery.com">
-    Visual UI for full platform management
-  </Card>
-  <Card title="CLI" icon="terminal" href="/cli/overview">
-    Command-line for developers and automation
-  </Card>
-  <Card title="Terraform" icon="code" href="/terraform-provider/overview">
-    Infrastructure as Code, version-controlled
-  </Card>
-  <Card title="API" icon="plug" href="/api-reference/overview">
-    Programmatic control for integrations
-  </Card>
+  <Card title="Console" icon="browser" href="https://console.qovery.com">Visual UI</Card>
+  <Card title="CLI" icon="terminal" href="/cli/overview">Command-line</Card>
+  <Card title="Terraform" icon="code" href="/terraform-provider/overview">Infrastructure as Code</Card>
+  <Card title="API" icon="plug" href="/api-reference/overview">Programmatic access</Card>
 </CardGroup>
 
 ---
 
-## What You Can Do With Qovery
+## What Qovery Covers
 
-A single platform covering the full lifecycle of your cloud applications — from cluster provisioning to deployment, observability, cost optimization, and security.
-
-<CardGroup cols={2}>
+<CardGroup cols={3}>
   <Card title="Provision" icon="dharmachakra" href="/getting-started/guides/qovery-101/provision">
-    **Managed Kubernetes on any cloud**
-
-    AWS EKS, GKE, AKS, Scaleway Kapsule — production-ready in 30 minutes. Or connect your existing cluster (BYOK). Includes managed databases, Terraform modules, and networking.
+    Managed Kubernetes on AWS, GCP, Azure, Scaleway. Ready in 30 min. BYOK supported.
   </Card>
-
   <Card title="Deploy" icon="rocket" href="/getting-started/guides/qovery-101/deploy">
-    **Any app, any language, any workflow**
-
-    GitOps-based deployment for containers, Helm charts, background jobs, and cron jobs. Preview environments per PR. Zero-downtime rollouts. AI agent deployment supported natively.
+    Any language, any framework. GitOps, preview environments, zero-downtime rollouts.
   </Card>
-
   <Card title="Observe" icon="eye" href="/getting-started/guides/qovery-101/observe">
-    **Built-in observability, no setup required**
-
-    Real-time logs, CPU/memory metrics, Kubernetes events, and full deployment history — all correlated in one view. Integrates with Datadog, Prometheus, and Grafana.
+    Real-time logs, metrics, Kubernetes events. No setup required.
   </Card>
-
   <Card title="Optimize" icon="piggy-bank" href="/getting-started/guides/qovery-101/optimize">
-    **Save up to 60% on infrastructure costs**
-
-    Karpenter intelligent provisioning, spot instances for non-production, sleep mode for dev/staging, and right-sizing recommendations.
+    Spot instances, sleep mode, right-sizing. Up to 60% cost savings.
   </Card>
-
   <Card title="Secure" icon="shield-check" href="/getting-started/guides/qovery-101/secure">
-    **Enterprise compliance out of the box**
-
-    SOC2, GDPR, HIPAA, DORA, HDS. Secrets management, RBAC, SSO, network isolation, automatic SSL/TLS, and full audit logs.
+    SOC2, GDPR, HIPAA, DORA. RBAC, SSO, secrets management, audit logs.
   </Card>
-
   <Card title="Kubernetes Upgrades" icon="arrow-up" href="/getting-started/guides/qovery-101/provision">
-    **Automated cluster maintenance**
-
-    Qovery handles Kubernetes version upgrades, node patching, and security updates — no manual intervention required.
+    Automated version upgrades and node patching. No manual intervention.
   </Card>
 </CardGroup>
 
-<Info>
-*BYOK = Bring Your Own Kubernetes — connect your existing Kubernetes cluster to Qovery
-</Info>
+<Info>BYOK = Bring Your Own Kubernetes — connect your existing cluster to Qovery</Info>
 
 ---
 
-## What's Next?
+## Get Started
 
 <CardGroup cols={2}>
   <Card title="Deploy with AI Agent" icon="wand-magic-sparkles" href="/getting-started/quickstart/ai-agent">
-    From code to deployed in ~10 minutes — no Kubernetes required
+    From code to deployed in ~10 minutes
   </Card>
-  <Card title="Explore All Use Cases" icon="compass" href="/getting-started/quickstart">
-    Browse every deployment path and choose your fit
+  <Card title="All Use Cases" icon="compass" href="/getting-started/quickstart">
+    Choose your deployment path
   </Card>
   <Card title="How Qovery Works" icon="gears" href="/getting-started/how-it-works">
     Understand the architecture
   </Card>
   <Card title="Core Concepts" icon="book" href="/getting-started/basic-concepts">
-    Learn essential terminology
+    Essential terminology
   </Card>
 </CardGroup>

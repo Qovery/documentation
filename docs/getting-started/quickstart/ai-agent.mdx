@@ -1,22 +1,24 @@
 ---
 title: "Deploy with AI Agent"
-description: "Use Claude Code, Cursor, OpenCode, or any AI coding agent to deploy your application on Qovery with a single prompt."
+description: "Tell your AI coding agent to deploy. It handles everything — from your code to a live Kubernetes deployment."
 mode: "wide"
 ---
 
 <div className="ai-section">
 
-# Deploy to Kubernetes with your favorite AI coding agent.
-
-Autonomous software development now has the infrastructure to match.
-
-Install the Qovery Agent Skill. Tell your agent what you want. It handles everything — from analyzing your code to a live deployment on Kubernetes.
+# Deploy to Kubernetes with your AI agent.
 
 ```bash
 curl -fsSL https://skill.qovery.com/install.sh | bash
 ```
 
-<Check>**No Kubernetes knowledge required.** No Dockerfile needed. No API token setup. No cluster required upfront.</Check>
+Then open Claude Code, Cursor, OpenCode, or any compatible tool and say:
+
+```
+Deploy my application with Qovery
+```
+
+No Dockerfile. No Kubernetes knowledge. No cluster needed upfront.
 
 </div>
 
@@ -24,130 +26,68 @@ curl -fsSL https://skill.qovery.com/install.sh | bash
 
 ## Compatible Tools
 
-The Qovery Agent Skill follows the [Agent Skills](https://agentskills.io) open standard. One install command drops the skill into every compatible tool on your machine automatically.
-
 <Tabs>
   <Tab title="Terminal">
     <CardGroup cols={3}>
       <Card title="Claude Code" icon="/images/logos/ai-tools/anthropic.svg" href="https://claude.ai/code">
-        **Anthropic**
-
-        AI coding agent in your terminal. Native skill discovery from `.claude/skills/`.
-
-        `Terminal` `Recommended`
+        **Anthropic** · `Terminal` `Recommended`
       </Card>
       <Card title="OpenCode" icon="/images/logos/ai-tools/opencode.svg" href="https://opencode.ai">
-        **OpenCode**
-
-        Open-source terminal AI agent. Discovers skills from `.config/opencode/skills/`.
-
-        `Terminal` `Open source`
+        **OpenCode** · `Terminal` `Open source`
       </Card>
       <Card title="Gemini CLI" icon="/images/logos/ai-tools/googlegemini.svg" href="https://github.com/google-gemini/gemini-cli">
-        **Google**
-
-        Gemini-powered terminal agent. Full skill support via `.agents/skills/`.
-
-        `Terminal`
+        **Google** · `Terminal`
       </Card>
     </CardGroup>
   </Tab>
-
   <Tab title="IDE">
     <CardGroup cols={3}>
       <Card title="Cursor" icon="/images/logos/ai-tools/cursor.svg" href="https://cursor.com">
-        **Anysphere**
-
-        AI-first code editor. Inline agent with full skill support.
-
-        `IDE`
+        **Anysphere** · `IDE`
       </Card>
       <Card title="VS Code Copilot" icon="/images/logos/ai-tools/githubcopilot.svg" href="https://github.com/features/copilot">
-        **Microsoft / GitHub**
-
-        GitHub Copilot in VS Code. Agent mode with skill discovery.
-
-        `IDE Extension`
+        **GitHub** · `IDE Extension`
       </Card>
       <Card title="Roo Code" icon="/images/logos/ai-tools/roocode.png" href="https://roocode.com">
-        **Roo**
-
-        VS Code extension with autonomous coding capabilities.
-
-        `IDE Extension`
+        **Roo** · `IDE Extension`
       </Card>
       <Card title="Kiro" icon="/images/logos/ai-tools/kiro.svg" href="https://kiro.dev">
-        **Amazon**
-
-        AI-powered IDE by Amazon. Supports Agent Skills standard.
-
-        `IDE`
+        **Amazon** · `IDE`
       </Card>
       <Card title="Junie" icon="/images/logos/ai-tools/jetbrains.png" href="https://www.jetbrains.com/junie/">
-        **JetBrains**
-
-        AI agent integrated into all JetBrains IDEs.
-
-        `IDE Extension`
+        **JetBrains** · `IDE Extension`
       </Card>
     </CardGroup>
   </Tab>
-
   <Tab title="Standalone">
     <CardGroup cols={3}>
       <Card title="Goose" icon="/images/logos/ai-tools/goose.png" href="https://github.com/block/goose">
-        **Block**
-
-        Open-source autonomous AI agent. Discovers skills from `.agents/skills/`.
-
-        `Standalone` `Open source`
+        **Block** · `Standalone` `Open source`
       </Card>
       <Card title="Amp" icon="/images/logos/ai-tools/amp.svg" href="https://ampcode.com">
-        **Sourcegraph**
-
-        Agentic coding assistant for complex tasks.
-
-        `Standalone`
+        **Sourcegraph** · `Standalone`
       </Card>
       <Card title="OpenHands" icon="/images/logos/ai-tools/openhands.png" href="https://github.com/All-Hands-AI/OpenHands">
-        **All Hands AI**
-
-        Open-source software development agent.
-
-        `Standalone` `Open source`
+        **All Hands AI** · `Standalone` `Open source`
       </Card>
       <Card title="OpenAI Codex" icon="/images/logos/ai-tools/openai.svg" href="https://openai.com/codex">
-        **OpenAI**
-
-        Cloud-based coding agent with full skill discovery.
-
-        `Standalone` `Cloud`
+        **OpenAI** · `Standalone`
       </Card>
       <Card title="Mistral Vibe" icon="/images/logos/ai-tools/mistral.png" href="https://mistral.ai">
-        **Mistral**
-
-        Mistral-powered coding agent.
-
-        `Standalone`
+        **Mistral** · `Standalone`
       </Card>
       <Card title="TRAE" icon="/images/logos/ai-tools/bytedance.svg" href="https://trae.ai">
-        **ByteDance**
-
-        AI coding assistant with autonomous agent capabilities.
-
-        `Standalone`
+        **ByteDance** · `Standalone`
       </Card>
     </CardGroup>
   </Tab>
 </Tabs>
 
-Any other tool that discovers skills from `.claude/skills/`, `.config/opencode/skills/`, or `.agents/skills/` directories is also compatible.
+Any tool discovering skills from `.claude/skills/`, `.config/opencode/skills/`, or `.agents/skills/` is compatible.
 
 ---
 
 ## Try These Prompts
-
-Open your AI coding tool and try any of these:
 
 <div className="terminal-window">
   <div className="terminal-bar">
@@ -161,12 +101,10 @@ Open your AI coding tool and try any of these:
   <div className="terminal-body">
     <span className="terminal-prompt">Deploy my application with Qovery</span>
     <span className="terminal-success">✓ Node.js detected — generating Dockerfile</span>
-    <span className="terminal-success">✓ PostgreSQL provisioned (container mode)</span>
-    <span className="terminal-success">✓ Deployed to staging — https://my-app.preview.qovery.io</span>
+    <span className="terminal-success">✓ PostgreSQL provisioned</span>
+    <span className="terminal-success">✓ Deployed → https://my-app.preview.qovery.io</span>
     <hr className="terminal-sep" />
     <span className="terminal-prompt">Set up preview environments for my pull requests</span>
-    <hr className="terminal-sep" />
-    <span className="terminal-prompt">Deploy this to Kubernetes with a PostgreSQL database</span>
     <hr className="terminal-sep" />
     <span className="terminal-prompt">Optimize my Qovery infrastructure costs</span>
     <hr className="terminal-sep" />
@@ -174,7 +112,7 @@ Open your AI coding tool and try any of these:
   </div>
 </div>
 
-<Card title="Each prompt maps to a specific skill — see what all 8 can do" icon="wand-magic-sparkles" href="/getting-started/quickstart/agent-skills">
+<Card title="Each prompt maps to a specific skill — see all 8" icon="wand-magic-sparkles" href="/getting-started/quickstart/agent-skills">
   `qovery-deploy` · `qovery-preview` · `qovery-optimize` · `qovery-troubleshoot` · and 4 more →
 </Card>
 
@@ -184,31 +122,27 @@ Open your AI coding tool and try any of these:
 
 | | Console | AI Agent Skill | MCP Server |
 |---|---|---|---|
-| **Purpose** | Full control via web UI | Fastest path from code to deployed | Manage existing infrastructure |
 | **Creates Dockerfiles** | No | Yes, 12+ frameworks | No |
-| **Provisions databases** | Manual | Automatic (asks dev vs prod) | No |
-| **Sets up env vars** | Manual per variable | Automatic with aliases & overrides | No |
-| **Monitors & fixes failures** | Manual log inspection | Automatic diagnosis and auto-fix | Query-based |
-| **Best for** | Experienced users, fine-tuning | Deploying from source code | Day-2 operations |
+| **Provisions databases** | Manual | Automatic | No |
+| **Monitors & fixes failures** | Manual | Auto-fix | Query-based |
+| **Best for** | Fine-tuning | Deploying from code | Day-2 ops |
 
 <Info>
-**Skill vs MCP Server** — the Skill deploys (forward engineering). The MCP Server operates existing infrastructure. Use both together: Skill to deploy, MCP Server to manage.
-
-[→ Qovery MCP Server](/copilot/mcp-server)
+The Skill deploys. The MCP Server operates. Use both together. [→ MCP Server](/copilot/mcp-server)
 </Info>
 
 ---
 
 ## Prerequisites
 
-<Check>**Qovery account** — [Sign up at console.qovery.com](https://console.qovery.com) (free to start)</Check>
-<Check>**Git repository** connected to Qovery (GitHub, GitLab, or Bitbucket)</Check>
+<Check>**Qovery account** — [console.qovery.com](https://console.qovery.com) (free to start)</Check>
+<Check>**Git repository** — GitHub, GitLab, or Bitbucket</Check>
 
-Everything else is handled by the skill:
-- **No API token needed upfront** — generated via the Qovery CLI during onboarding
-- **No cluster needed upfront** — the skill guides you through cluster creation
-- **No Dockerfile needed** — created automatically for 12+ frameworks
-- **No Kubernetes knowledge needed** — health checks, ports, stages, and resource limits are all configured automatically
+<Tip>
+**Project-only install:** `curl -fsSL https://skill.qovery.com/install.sh | bash -s -- --project`
+
+**Update:** re-run the install command.
+</Tip>
 
 ---
 
@@ -216,15 +150,15 @@ Everything else is handled by the skill:
 
 <CardGroup cols={2}>
   <Card title="All Eight Skills" icon="wand-magic-sparkles" href="/getting-started/quickstart/agent-skills">
-    Deploy, troubleshoot, optimize, preview — explore every skill
+    Deploy, troubleshoot, optimize, preview
   </Card>
-  <Card title="Qovery MCP Server" icon="robot" href="/copilot/mcp-server">
-    Manage deployed infrastructure from your AI agent
+  <Card title="MCP Server" icon="robot" href="/copilot/mcp-server">
+    Manage infrastructure from your AI agent
   </Card>
   <Card title="Terraform Provider" icon="code" href="/terraform-provider/overview">
-    Version-controlled infrastructure as code
+    Infrastructure as Code
   </Card>
   <Card title="Skill Source Code" icon="github" href="https://github.com/Qovery/qovery-skills">
-    View, contribute, or fork on GitHub
+    Fork or contribute
   </Card>
 </CardGroup>

@@ -61,11 +61,11 @@
               "getting-started/how-it-works",
               "getting-started/basic-concepts",
               {
-                "group": "Deploy with AI",
+                "group": "AI Quickstart",
                 "pages": [
                   "getting-started/quickstart/ai-agent",
-                  "getting-started/quickstart/agent-skills",
-                  "getting-started/quickstart/remote-dev-environments"
+                  "getting-started/quickstart/remote-dev-environments",
+                  "getting-started/quickstart/agent-skills"
                 ]
               },
               {

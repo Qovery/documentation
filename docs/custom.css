@@ -800,6 +800,31 @@ html[data-theme="dark"] .skill-card-desc {
   background: rgba(100, 45, 255, 0.1);
 }
 
+/* Skill description */
+.skills-desc-wrap {
+  padding: 10px 2px 8px;
+  min-height: 36px;
+  font-size: 13px;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+html.dark .skills-desc-wrap,
+html[data-theme="dark"] .skills-desc-wrap {
+  color: #8b949e;
+}
+
+.sk-desc { display: none; }
+
+#sk-onboard:checked ~ .skills-desc-wrap .sk-desc-onboard { display: block; }
+#sk-deploy:checked ~ .skills-desc-wrap .sk-desc-deploy { display: block; }
+#sk-troubleshoot:checked ~ .skills-desc-wrap .sk-desc-troubleshoot { display: block; }
+#sk-optimize:checked ~ .skills-desc-wrap .sk-desc-optimize { display: block; }
+#sk-speedup:checked ~ .skills-desc-wrap .sk-desc-speedup { display: block; }
+#sk-preview:checked ~ .skills-desc-wrap .sk-desc-preview { display: block; }
+#sk-builder-env:checked ~ .skills-desc-wrap .sk-desc-builder-env { display: block; }
+#sk-builder-portal:checked ~ .skills-desc-wrap .sk-desc-builder-portal { display: block; }
+
 /* All skill prompts hidden by default */
 .sk-prompt { display: none; }
 

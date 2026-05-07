@@ -105,6 +105,28 @@ Any tool discovering skills from `.claude/skills/`, `.config/opencode/skills/`, 
   `qovery-deploy` · `qovery-preview` · `qovery-optimize` · `qovery-troubleshoot` · and 4 more →
 </Card>
 
+<Accordion title="How Deployment Works">
+  When you ask your agent to deploy, `qovery-deploy` runs through this workflow autonomously:
+
+  <Steps>
+    <Step title="Analyzes your codebase">
+      Detects language, framework, ports, database needs, and environment variables.
+    </Step>
+    <Step title="Creates a Dockerfile if missing">
+      Production-ready multi-stage template for your stack. Custom-generated for any other framework.
+    </Step>
+    <Step title="Asks the right questions">
+      Dev or production? Which database? CLI+API or Terraform? A few questions — no YAML to write.
+    </Step>
+    <Step title="Provisions infrastructure">
+      Cluster if needed, databases in container or managed mode, env vars with aliases and overrides.
+    </Step>
+    <Step title="Deploys and watches">
+      Monitors the rollout. Auto-fixes build errors, port mismatches, health check failures. Asks before touching your code.
+    </Step>
+  </Steps>
+</Accordion>
+
 ---
 
 ## How It Compares

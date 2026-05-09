@@ -1,0 +1,546 @@
+---
+title: "qovery rde"
+description: "Manage Remote Development Environments (RDE)"
+---
+
+## Overview
+
+Manage Remote Development Environments (RDE). RDE allows platform teams to provision isolated, pre-configured development environments for developers.
+
+The system works as follows:
+
+1. **Blueprints** — Template projects/environments that serve as the source for cloning.
+2. **RDE instances** — Cloned from a blueprint, with optional RBAC isolation and member invitation.
+
+Blueprint identification uses environment variables:
+- **Project-level:** `BLUEPRINT_PROJECT_ID = <project ID>` marks a project as a blueprint.
+- **Environment-level:** `BLUEPRINT_KEY = <blueprint project ID>` links environments to their blueprint.
+
+## Commands
+
+### info
+
+Show RDE platform overview.
+
+**Usage:**
+```bash
+qovery rde info [flags]
+```
+
+**Flags:**
+- `-o, --organization` (string) — Organization Name
+
+**Example:**
+```bash
+qovery rde info --organization "my-org"
+```
+
+---
+
+### create
+
+Provision a new Remote Development Environment by cloning a blueprint environment into a new project.
+
+This command:
+1. Creates a new project for the RDE
+2. Creates an RBAC role with scoped permissions (unless `--skip-rbac`)
+3. Clones the blueprint environment into the new project
+4. Updates the TTL job to target the new environment (if present)
+5. Invites the developer via email (unless `--skip-invite`)
+6. Triggers deployment (unless `--skip-deploy`)
+
+**Usage:**
+```bash
+qovery rde create [flags]
+```
+
+**Flags:**
+- `-b, --blueprint` (string) — Blueprint Project Name to clone from
+- `-c, --cluster` (string) — Cluster Name where to create the RDE
+- `-e, --email` (string) — Email address to invite the developer
+- `-n, --name` (string) — Name for the new RDE (will create project `rde-<name>`)
+- `-o, --organization` (string) — Organization Name
+- `--skip-deploy` — Skip deployment after cloning
+- `--skip-invite` — Skip member invitation
+- `--skip-rbac` — Skip RBAC role creation
+
+**Example:**
+```bash
+qovery rde create \
+  --organization "my-org" \
+  --blueprint "my-blueprint" \
+  --cluster "my-cluster" \
+  --name "alice" \
+  --email "alice@example.com"
+```
+
+---
+
+### list
+
+List all Remote Development Environments, optionally filtered by blueprint. Shows name, blueprint, status, uptime, and workspace URL for each RDE.
+
+**Usage:**
+```bash
+qovery rde list [flags]
+```
+
+**Flags:**
+- `-b, --blueprint` (string) — Filter by Blueprint Project Name
+- `--json` — JSON output
+- `-o, --organization` (string) — Organization Name
+
+**Example:**
+```bash
+qovery rde list --organization "my-org"
+
+# Filter by blueprint
+qovery rde list --organization "my-org" --blueprint "my-blueprint"
+
+# JSON output
+qovery rde list --organization "my-org" --json
+```
+
+---
+
+### status
+
+Show detailed status of an RDE.
+
+**Usage:**
+```bash
+qovery rde status [flags]
+```
+
+**Flags:**
+- `-n, --name` (string) — RDE Name
+- `-o, --organization` (string) — Organization Name
+
+**Example:**
+```bash
+qovery rde status --organization "my-org" --name "alice"
+```
+
+---
+
+### start
+
+Start (deploy) an RDE.
+
+**Usage:**
+```bash
+qovery rde start [flags]
+```
+
+**Flags:**
+- `-n, --name` (string) — RDE Name
+- `-o, --organization` (string) — Organization Name
+- `-w, --watch` — Watch deployment status until it's ready or an error occurs
+
+**Example:**
+```bash
+qovery rde start --organization "my-org" --name "alice" --watch
+```
+
+---
+
+### start-all
+
+Start (deploy) all RDE environments.
+
+**Usage:**
+```bash
+qovery rde start-all [flags]
+```
+
+**Flags:**
+- `-b, --blueprint` (string) — Filter by Blueprint Project Name
+- `-o, --organization` (string) — Organization Name
+
+**Example:**
+```bash
+# Start all RDEs
+qovery rde start-all --organization "my-org"
+
+# Start all RDEs from a specific blueprint
+qovery rde start-all --organization "my-org" --blueprint "my-blueprint"
+```
+
+---
+
+### stop
+
+Stop an RDE.
+
+**Usage:**
+```bash
+qovery rde stop [flags]
+```
+
+**Flags:**
+- `-n, --name` (string) — RDE Name
+- `-o, --organization` (string) — Organization Name
+- `-w, --watch` — Watch stop status until it completes or an error occurs
+
+**Example:**
+```bash
+qovery rde stop --organization "my-org" --name "alice" --watch
+```
+
+---
+
+### stop-all
+
+Stop all RDE environments.
+
+**Usage:**
+```bash
+qovery rde stop-all [flags]
+```
+
+**Flags:**
+- `-b, --blueprint` (string) — Filter by Blueprint Project Name
+- `-o, --organization` (string) — Organization Name
+
+**Example:**
+```bash
+qovery rde stop-all --organization "my-org"
+```
+
+---
+
+### logs
+
+Fetch recent logs from an RDE workspace.
+
+**Usage:**
+```bash
+qovery rde logs [flags]
+```
+
+**Flags:**
+- `-n, --name` (string) — RDE Name
+- `-o, --organization` (string) — Organization Name
+
+**Example:**
+```bash
+qovery rde logs --organization "my-org" --name "alice"
+```
+
+---
+
+### urls
+
+List workspace URLs for running RDEs.
+
+**Usage:**
+```bash
+qovery rde urls [flags]
+```
+
+**Flags:**
+- `-b, --blueprint` (string) — Filter by Blueprint Project Name
+- `-o, --organization` (string) — Organization Name
+
+**Example:**
+```bash
+qovery rde urls --organization "my-org"
+```
+
+---
+
+### upgrade
+
+Upgrade one or all RDE environments using one of two strategies:
+
+- **image** (default) — Redeploy the environment (re-pulls latest images).
+- **reclone** — Delete the environment, re-clone from blueprint, and deploy. **Warning:** uncommitted changes will be lost with `reclone`.
+
+If `--name` is provided, upgrades a single RDE. Otherwise, upgrades all RDEs.
+
+**Usage:**
+```bash
+qovery rde upgrade [flags]
+```
+
+**Flags:**
+- `-b, --blueprint` (string) — Filter by Blueprint Project Name (when upgrading all)
+- `-n, --name` (string) — RDE Name (omit to upgrade all)
+- `-o, --organization` (string) — Organization Name
+- `-s, --strategy` (string) — Upgrade strategy: `image` (redeploy) or `reclone` (full re-clone). Default: `image`
+
+**Example:**
+```bash
+# Upgrade a single RDE (image strategy)
+qovery rde upgrade --organization "my-org" --name "alice"
+
+# Upgrade all RDEs with reclone strategy
+qovery rde upgrade --organization "my-org" --strategy "reclone"
+```
+
+---
+
+### delete
+
+Fully remove an RDE by:
+1. Stopping the environment (if running)
+2. Deleting the environment
+3. Deleting the project
+4. Deleting the RBAC role `RDE-<name>` (if exists)
+5. Deleting the API token `ttl-<name>` (if exists)
+
+**Usage:**
+```bash
+qovery rde delete [flags]
+```
+
+**Flags:**
+- `-n, --name` (string) — RDE Name
+- `-o, --organization` (string) — Organization Name
+- `-w, --watch` — Watch deletion status
+
+**Example:**
+```bash
+qovery rde delete --organization "my-org" --name "alice" --watch
+```
+
+---
+
+### delete-all
+
+Delete all RDE environments permanently. Requires the `--confirm` flag.
+
+This will delete the environment, project, RBAC role, and API token for each RDE.
+
+**Usage:**
+```bash
+qovery rde delete-all [flags]
+```
+
+**Flags:**
+- `-b, --blueprint` (string) — Filter by Blueprint Project Name
+- `--confirm` — Confirm deletion of all RDE environments
+- `-o, --organization` (string) — Organization Name
+
+**Example:**
+```bash
+# Delete all RDEs (requires confirmation)
+qovery rde delete-all --organization "my-org" --confirm
+
+# Delete all RDEs from a specific blueprint
+qovery rde delete-all --organization "my-org" --blueprint "my-blueprint" --confirm
+```
+
+---
+
+## Blueprint Commands
+
+Manage RDE blueprint projects and environments. A blueprint is a project with a template environment that serves as the source for cloning new Remote Development Environments.
+
+### blueprint register
+
+Register an existing project as an RDE blueprint by setting the `BLUEPRINT_PROJECT_ID` project-level variable and `BLUEPRINT_KEY` on the first DEVELOPMENT environment.
+
+The project must already exist and contain at least one environment.
+
+**Usage:**
+```bash
+qovery rde blueprint register [flags]
+```
+
+**Flags:**
+- `-o, --organization` (string) — Organization Name
+- `-p, --project` (string) — Project Name to register as a blueprint
+
+**Example:**
+```bash
+qovery rde blueprint register \
+  --organization "my-org" \
+  --project "dev-workspace-template"
+```
+
+---
+
+### blueprint unregister
+
+Remove the `BLUEPRINT_PROJECT_ID` and `BLUEPRINT_KEY` environment variables from the project and its environment. This does **not** delete the project itself.
+
+**Usage:**
+```bash
+qovery rde blueprint unregister [flags]
+```
+
+**Flags:**
+- `-o, --organization` (string) — Organization Name
+- `-p, --project` (string) — Blueprint Project Name to unregister
+
+**Example:**
+```bash
+qovery rde blueprint unregister \
+  --organization "my-org" \
+  --project "dev-workspace-template"
+```
+
+---
+
+### blueprint list
+
+List all RDE blueprints.
+
+**Usage:**
+```bash
+qovery rde blueprint list [flags]
+```
+
+**Flags:**
+- `--json` — JSON output
+- `-o, --organization` (string) — Organization Name
+
+**Example:**
+```bash
+qovery rde blueprint list --organization "my-org"
+```
+
+---
+
+### blueprint status
+
+Show detailed status of a blueprint.
+
+**Usage:**
+```bash
+qovery rde blueprint status [flags]
+```
+
+**Flags:**
+- `-o, --organization` (string) — Organization Name
+- `-p, --project` (string) — Blueprint Project Name
+
+**Example:**
+```bash
+qovery rde blueprint status \
+  --organization "my-org" \
+  --project "dev-workspace-template"
+```
+
+---
+
+### blueprint deploy
+
+Deploy a blueprint environment.
+
+**Usage:**
+```bash
+qovery rde blueprint deploy [flags]
+```
+
+**Flags:**
+- `-o, --organization` (string) — Organization Name
+- `-p, --project` (string) — Blueprint Project Name
+- `-w, --watch` — Watch deployment status until it's ready or an error occurs
+
+**Example:**
+```bash
+qovery rde blueprint deploy \
+  --organization "my-org" \
+  --project "dev-workspace-template" \
+  --watch
+```
+
+---
+
+### blueprint stop
+
+Stop a blueprint environment.
+
+**Usage:**
+```bash
+qovery rde blueprint stop [flags]
+```
+
+**Flags:**
+- `-o, --organization` (string) — Organization Name
+- `-p, --project` (string) — Blueprint Project Name
+- `-w, --watch` — Watch stop status until it completes or an error occurs
+
+**Example:**
+```bash
+qovery rde blueprint stop \
+  --organization "my-org" \
+  --project "dev-workspace-template" \
+  --watch
+```
+
+## Examples
+
+### Set Up and Provision an RDE
+
+```bash
+# Register a project as a blueprint
+qovery rde blueprint register \
+  --organization "my-org" \
+  --project "dev-workspace-template"
+
+# Deploy the blueprint environment
+qovery rde blueprint deploy \
+  --organization "my-org" \
+  --project "dev-workspace-template" \
+  --watch
+
+# Create an RDE for a developer
+qovery rde create \
+  --organization "my-org" \
+  --blueprint "dev-workspace-template" \
+  --cluster "my-cluster" \
+  --name "alice" \
+  --email "alice@example.com"
+
+# Verify the RDE is running
+qovery rde status --organization "my-org" --name "alice"
+```
+
+### Manage RDE Lifecycle
+
+```bash
+# List all RDEs
+qovery rde list --organization "my-org"
+
+# Stop an RDE
+qovery rde stop --organization "my-org" --name "alice" --watch
+
+# Start it back up
+qovery rde start --organization "my-org" --name "alice" --watch
+
+# Get workspace URLs
+qovery rde urls --organization "my-org"
+
+# Fetch logs
+qovery rde logs --organization "my-org" --name "alice"
+```
+
+### Upgrade and Clean Up
+
+```bash
+# Upgrade all RDEs (redeploy with latest images)
+qovery rde upgrade --organization "my-org"
+
+# Upgrade a single RDE with full re-clone
+qovery rde upgrade --organization "my-org" --name "alice" --strategy "reclone"
+
+# Delete a single RDE
+qovery rde delete --organization "my-org" --name "alice" --watch
+
+# Delete all RDEs from a blueprint
+qovery rde delete-all \
+  --organization "my-org" \
+  --blueprint "dev-workspace-template" \
+  --confirm
+```
+
+## Related Commands
+
+- [`qovery environment`](/cli/commands/environment) - Manage environments
+- [`qovery project`](/cli/commands/project) - Manage projects
+- [`qovery cluster`](/cli/commands/cluster) - Manage clusters
+- [`qovery log`](/cli/commands/log) - View service logs
+- [`qovery shell`](/cli/commands/shell) - Access container shell

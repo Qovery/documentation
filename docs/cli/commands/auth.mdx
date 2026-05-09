@@ -42,6 +42,37 @@ qovery auth
 You can generate an API token from the Qovery Console under **Settings** → **API Tokens**.
 </Info>
 
+### Token
+
+Output the current valid access token (refreshing it if expired). Useful for making direct API calls to the Qovery API.
+
+For security reasons, the token is not printed by default. You must explicitly use `--print` or `--json` to output the token value.
+
+```bash
+qovery auth token [flags]
+```
+
+**Flags:**
+- `--print` — Print the raw access token value to stdout
+- `--json` — Output as JSON with token, type, expiration, and API URL
+- `--authorization-header` — Output the full Authorization header value (e.g., `Bearer eyJ...`)
+
+**Examples:**
+```bash
+# Print the raw token value
+qovery auth token --print
+
+# Use directly in a curl command
+curl -H "Authorization: Bearer $(qovery auth token --print)" \
+  https://api.qovery.com/organization
+
+# Print the full Authorization header value
+qovery auth token --print --authorization-header
+
+# Get structured JSON output
+qovery auth token --json
+```
+
 ### Logout
 
 Clear authentication credentials:
@@ -103,8 +134,10 @@ qovery auth
 | Flag | Description |
 |------|-------------|
 | `--headless` | Headless mode for environments without a browser (provides URL to copy/paste) |
+| `--skipVersionCheck` | Skip CLI version check during authentication |
 | `--help` | Show help for auth command |
 
 ## Related Commands
 
+- [`qovery api`](/cli/commands/api) - Make authenticated HTTP requests to the Qovery API
 - [`qovery context`](/cli/commands/context) - Manage CLI context

@@ -494,6 +494,7 @@
             "group": "Commands",
             "pages": [
               "cli/commands/overview",
+              "cli/commands/api",
               "cli/commands/application",
               "cli/commands/audit-log",
               "cli/commands/auth",
@@ -516,6 +517,7 @@
               "cli/commands/log",
               "cli/commands/port-forward",
               "cli/commands/project",
+              "cli/commands/rde",
               "cli/commands/service",
               "cli/commands/shell",
               "cli/commands/status",

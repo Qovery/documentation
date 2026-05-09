@@ -1,0 +1,101 @@
+---
+title: "qovery api"
+description: "Make authenticated HTTP requests to the Qovery API"
+---
+
+## Overview
+
+Make authenticated HTTP requests to the Qovery API directly from the CLI. This command acts as a lightweight, `curl`-like client that automatically handles authentication and supports context variable interpolation.
+
+Context variables `{organizationId}`, `{projectId}`, and `{environmentId}` are automatically replaced with values from the current CLI context (set via `qovery context`).
+
+## Usage
+
+```bash
+qovery api <endpoint> [flags]
+```
+
+The `<endpoint>` is the API path relative to the Qovery API base URL (e.g., `organization`, `organization/<id>/project`).
+
+## Options
+
+| Flag | Description |
+|------|-------------|
+| `-f, --field` | Add a key=value pair to the JSON body (repeatable, smart type coercion) |
+| `-H, --header` | Additional request headers in `Key: Value` format (repeatable) |
+| `-i, --include` | Print HTTP response status and headers before body |
+| `--input` | Body: `-` for stdin (pipe JSON to command) |
+| `-X, --method` | HTTP method (`GET`, `POST`, `PUT`, `PATCH`, `DELETE`) |
+| `--help` | Show help |
+
+## Examples
+
+### List Resources
+
+```bash
+# List organizations
+qovery api organization
+
+# Get a specific organization
+qovery api organization/<id>
+```
+
+### Use Context Variables
+
+When you have an active CLI context, placeholder variables are automatically resolved:
+
+```bash
+# List projects in current organization
+qovery api organization/{organizationId}/project
+
+# List services in current environment
+qovery api organization/{organizationId}/project/{projectId}/environment/{environmentId}/service
+```
+
+### Create Resources with --field
+
+Build a JSON body from key=value pairs:
+
+```bash
+qovery api organization --field name=my-org --field plan=FREE
+```
+
+### Send a JSON Body from Stdin
+
+```bash
+# Pipe JSON directly
+echo '{"name":"my-org","plan":"FREE"}' | qovery api organization --input -
+
+# Send a JSON file as body
+qovery api organization/<id>/project --input - < body.json
+```
+
+### Delete a Resource
+
+```bash
+qovery api organization/<id> --method DELETE
+```
+
+### Show Response Headers
+
+```bash
+qovery api organization --include
+```
+
+### Add Custom Headers
+
+```bash
+qovery api organization -H "X-Request-Id: abc123"
+```
+
+### Use a Custom API URL
+
+```bash
+QOVERY_API_URL=https://staging.api.qovery.com qovery api organization
+```
+
+## Related Commands
+
+- [`qovery auth`](/cli/commands/auth) - Log in and out of Qovery
+- [`qovery auth token`](/cli/commands/auth) - Output the current valid access token
+- [`qovery context`](/cli/commands/context) - Set the active organization, project, and environment

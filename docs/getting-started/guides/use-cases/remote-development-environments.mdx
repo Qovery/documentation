@@ -5,9 +5,9 @@ description: "Enable anyone in your organization to build and deploy application
 
 ## Overview
 
-Remote Development Environments (RDE) give every team member -- including non-technical builders -- the ability to build and ship software in a secure, cloud-based workspace. Platform engineers define the environment once as a **blueprint**, and Qovery clones it on demand for each builder with full isolation, RBAC, and cost controls.
+Remote Development Environments (RDE) give every team member - including non-technical builders - the ability to build and ship software in a secure, cloud-based workspace. Platform engineers define the environment once as a **blueprint**, and Qovery clones it on demand for each builder with full isolation, RBAC, and cost controls.
 
-The typical scenario: your organization has people who are technically curious -- they can build with AI-assisted coding tools, low-code platforms, or simple scripts -- but they are not infrastructure engineers. They need a safe, pre-configured environment where they can work autonomously without risking production systems or depending on the platform team for every deployment.
+The typical scenario: your organization has people who are technically curious - they can build with AI-assisted coding tools, low-code platforms, or simple scripts - but they are not infrastructure engineers. They need a safe, pre-configured environment where they can work autonomously without risking production systems or depending on the platform team for every deployment.
 
 RDE solves this by separating **who defines the environment** (platform engineers) from **who uses it** (builders), so both sides get what they need: control and autonomy.
 
@@ -23,7 +23,7 @@ RDE solves this by separating **who defines the environment** (platform engineer
   </Card>
 
   <Card title="Security & Compliance" icon="lock">
-    Builders work in sandboxed environments on your own infrastructure -- SOC2, ISO 27001, DORA compliant
+    Builders work in sandboxed environments on your own infrastructure - SOC2, ISO 27001, DORA compliant
   </Card>
 
   <Card title="Cost Efficiency" icon="dollar-sign">
@@ -35,7 +35,7 @@ RDE solves this by separating **who defines the environment** (platform engineer
   </Card>
 
   <Card title="Fast Onboarding" icon="rocket">
-    New team members are productive in minutes -- no local setup, no configuration drift
+    New team members are productive in minutes - no local setup, no configuration drift
   </Card>
 </CardGroup>
 
@@ -43,8 +43,8 @@ RDE solves this by separating **who defines the environment** (platform engineer
 
 RDE is built on a two-tier system:
 
-1. **Blueprints** -- Template projects and environments created by platform engineers. A blueprint contains everything a builder needs: workspace (VS Code, IDE), databases, services, environment variables, and configuration.
-2. **RDE Instances** -- Cloned from a blueprint for each builder. Each instance is an isolated environment with its own project, RBAC role, and workspace URL.
+1. **Blueprints** - Template projects and environments created by platform engineers. A blueprint contains everything a builder needs: workspace (VS Code, IDE), databases, services, environment variables, and configuration.
+2. **RDE Instances** - Cloned from a blueprint for each builder. Each instance is an isolated environment with its own project, RBAC role, and workspace URL.
 
 ```mermaid
 flowchart LR
@@ -66,7 +66,7 @@ When a platform engineer runs `qovery rde create`, Qovery:
 5. Invites the builder via email
 6. Triggers deployment
 
-The builder receives an email, clicks the workspace URL, and starts building -- no CLI, no Kubernetes knowledge required on their end.
+The builder receives an email, clicks the workspace URL, and starts building - no CLI, no Kubernetes knowledge required on their end.
 
 ## Who Is This For?
 
@@ -88,7 +88,7 @@ The builder receives an email, clicks the workspace URL, and starts building -- 
     - Open your workspace URL in the browser
     - Build with AI-assisted coding tools (VS Code, Claude Code, OpenCode)
     - Deploy and test your applications in isolation
-    - Focus on building -- the platform handles the rest
+    - Focus on building - the platform handles the rest
   </Card>
 </CardGroup>
 
@@ -111,7 +111,7 @@ The builder receives an email, clicks the workspace URL, and starts building -- 
   <Card title="Self-Service Portal" icon="browser">
     **Coming Soon**
 
-    A web portal where builders create their own environments with one click -- no CLI, no Kubernetes knowledge needed. SSO login, pick a template, click "Create".
+    A web portal where builders create their own environments with one click - no CLI, no Kubernetes knowledge needed. SSO login, pick a template, click "Create".
 
     - Web-based UI for non-technical users
     - SSO authentication (Google, Okta, Azure AD, OIDC)
@@ -148,12 +148,35 @@ qovery auth
 
 ### Step 2: Create Your Blueprint
 
-A blueprint is a project containing a template environment that will be cloned for each builder. A good blueprint includes:
+A blueprint is a project containing a template environment that will be cloned for each builder. It defines everything a builder needs: workspace IDE, tools, databases, environment variables, and configuration.
 
-- **A workspace service** -- VS Code Server, or any browser-based IDE your builders will use
-- **Databases and services** -- Any backing services builders need (PostgreSQL, Redis, etc.)
-- **Environment variables** -- Pre-configured credentials, API keys, and settings
-- **A TTL job** (optional) -- A lifecycle job that auto-stops idle environments to save costs
+#### Recommended: Use the Qovery AI Skill
+
+The fastest way to create a production-ready blueprint is using the `/qovery-builder-env` command in [OpenCode](https://opencode.ai) or Claude Code. This AI skill sets up an opinionated workspace blueprint in under 5 minutes:
+
+```bash
+# In OpenCode or Claude Code, run:
+/qovery-builder-env
+```
+
+The skill walks you through setup (organization, cluster, API keys) and creates a blueprint with:
+
+- **VS Code (code-server)** - Browser-based IDE accessible via URL
+- **Claude Code & OpenCode** - AI-assisted coding tools, ready to use
+- **Qovery CLI & GitHub CLI** - For deployments and repo management
+- **Node.js, Python, Git** - Common development dependencies
+- **TTL auto-shutdown job** - Automatically stops idle environments after 24 hours to save costs
+
+Once the skill completes, your blueprint is registered, deployed, validated, and ready to clone. You can skip ahead to [Step 4: Provision an RDE for a Builder](#step-4-provision-an-rde-for-a-builder).
+
+#### Alternative: Build Your Own Blueprint
+
+If you prefer to create a custom blueprint from scratch, set up a project with:
+
+- **A workspace service** - VS Code Server, or any browser-based IDE your builders will use
+- **Databases and services** - Any backing services builders need (PostgreSQL, Redis, etc.)
+- **Environment variables** - Pre-configured credentials, API keys, and settings
+- **A TTL job** (optional) - A lifecycle job that auto-stops idle environments to save costs
 
 <Tip>
 Start simple. You can always iterate on the blueprint based on builder feedback. A workspace service with basic dependencies is enough to get started.
@@ -256,7 +279,7 @@ As a builder, your platform engineer handles all the infrastructure setup. Here 
   </Step>
 
   <Step title="Start Building">
-    Your environment is fully isolated -- you cannot affect production or other builders' environments. Build, test, and deploy freely. If you use AI-assisted coding tools (Claude Code, OpenCode, GitHub Copilot), they work out of the box in your workspace.
+    Your environment is fully isolated - you cannot affect production or other builders' environments. Build, test, and deploy freely. If you use AI-assisted coding tools (Claude Code, OpenCode, GitHub Copilot), they work out of the box in your workspace.
   </Step>
 
   <Step title="Get Help When Needed">
@@ -283,13 +306,13 @@ As a builder, your platform engineer handles all the infrastructure setup. Here 
 
 When your blueprint evolves (new tools, updated dependencies, security patches), upgrade existing RDEs to stay in sync:
 
-**Image strategy** (default) -- Redeploy the environment with the latest images. Safe, no data loss:
+**Image strategy** (default) - Redeploy the environment with the latest images. Safe, no data loss:
 
 ```bash
 qovery rde upgrade --organization "my-org" --name "alice"
 ```
 
-**Reclone strategy** -- Delete the environment and re-clone from the blueprint. Use when the blueprint structure has changed significantly:
+**Reclone strategy** - Delete the environment and re-clone from the blueprint. Use when the blueprint structure has changed significantly:
 
 ```bash
 qovery rde upgrade --organization "my-org" --name "alice" --strategy "reclone"
@@ -325,7 +348,7 @@ qovery rde delete-all --organization "my-org" --confirm
 The Self-Service Portal is an upcoming capability. Contact your Qovery account manager or reach out on Slack for early access.
 </Info>
 
-While the CLI gives platform engineers full control over RDE management, the **Self-Service Portal** is designed for organizations that want to give builders complete autonomy -- without requiring them to use a CLI or understand infrastructure concepts.
+While the CLI gives platform engineers full control over RDE management, the **Self-Service Portal** is designed for organizations that want to give builders complete autonomy - without requiring them to use a CLI or understand infrastructure concepts.
 
 ### What Is the Self-Service Portal?
 
@@ -333,23 +356,23 @@ The portal is a web application deployed on your own Qovery infrastructure where
 
 - **Log in via SSO** (Google, Okta, Azure AD, or any OIDC provider)
 - **Browse available templates** (blueprints configured by platform engineers)
-- **Create an environment with one click** -- pick a template, click "Create", and wait for it to spin up
+- **Create an environment with one click** - pick a template, click "Create", and wait for it to spin up
 - **See a dashboard** of their environments with real-time status, workspace URLs, and TTL countdown
-- **Manage lifecycle** -- start, stop, extend TTL, or delete their environments directly from the UI
+- **Manage lifecycle** - start, stop, extend TTL, or delete their environments directly from the UI
 
 No CLI. No Kubernetes knowledge. No Slack messages asking the platform team to spin up an environment.
 
 ### How It Complements the CLI
 
-The portal does not replace the CLI -- it builds on top of it:
+The portal does not replace the CLI - it builds on top of it:
 
 | Aspect | CLI | Portal |
 |--------|-----|--------|
 | **Audience** | Platform engineers | Builders (non-technical) |
-| **Blueprint setup** | CLI (`qovery rde blueprint register`) | N/A -- platform engineers still use the CLI |
+| **Blueprint setup** | CLI (`qovery rde blueprint register`) | N/A - platform engineers still use the CLI |
 | **RDE creation** | CLI (`qovery rde create`) | One-click in the browser |
 | **RDE lifecycle** | CLI (`qovery rde start/stop/delete`) | Dashboard buttons |
-| **Bulk operations** | CLI (`qovery rde start-all/upgrade`) | N/A -- platform engineers still use the CLI |
+| **Bulk operations** | CLI (`qovery rde start-all/upgrade`) | N/A - platform engineers still use the CLI |
 | **Authentication** | Qovery CLI auth | SSO (Google, Okta, Azure AD, OIDC) |
 
 Platform engineers continue to use the CLI to set up blueprints, configure RBAC, and manage the platform. The portal is the builder-facing layer that abstracts all of that complexity.

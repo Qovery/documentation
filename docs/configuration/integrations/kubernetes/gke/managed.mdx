@@ -47,16 +47,52 @@ import GcpCredentials from "/snippets/gcp-credentials.mdx";
         By default, when your cluster is created, its worker nodes are allocated public IP addresses, which are used for external communication. For improved security and control, the **Static IP** feature allows you to ensure that outbound traffic from your cluster uses specific IP addresses.
 
         Here is what will be deployed on your cluster:
-        * Cloud Nats
-        * Static IPs
-        * Routers
+        * Cloud Routers
+        * Cloud NAT gateways
+        * Auto-allocated Cloud NAT IPs (default) or two reserved external IPs per cluster (opt-in, see below)
 
-        Once set up, here is the procedure to find your static IP addresses on `GCP`:
-        - On your GCP account, select the IP addresses service.
-        - In the list you will find your static IP used by your cluster router.
+        #### Default behavior: auto-allocated Cloud NAT IPs
+
+        By default, the Cloud NAT gateways provisioned by Qovery use **auto-allocated** public IPs managed by GCP. These IPs can rotate over time (for example after maintenance, scaling events, or NAT reconfiguration) and are therefore **not suitable** for whitelisting with third-party services that require a fixed source IP.
+
+        #### Opt-in: stable egress IPs via the NAT Gateway feature
+
+        To get stable egress IPs that you can safely allowlist with services like Stripe, payment gateways, or partner APIs, enable static Cloud NAT IPs on the cluster's NAT Gateway feature. When configuring the NAT Gateway feature on your GKE cluster, set the `staticIpsEnabled` option to `true` (default `false`). When enabled, the engine reserves **two static external IPs** (`google_compute_address`) per cluster and binds them to the Cloud NAT in `MANUAL_ONLY` mode. These IPs remain stable for the entire lifetime of the cluster.
+
+        This option is configured alongside the other NAT Gateway parameters via the cluster's NAT Gateway configuration in the Console, API, or Terraform provider. On the API and Terraform sides the field is named `staticIpsEnabled` on `NatGatewayParameters` (serialized as `static_ips_enabled` on the JSON wire format).
+
+        <Warning>
+        **Enabling on an existing cluster**: turning on `staticIpsEnabled` on a cluster that was previously running with auto-allocated NAT IPs triggers a **one-time NAT IP swap** on the next infrastructure apply. Egress traffic is briefly interrupted (seconds to a couple of minutes) while Cloud NAT switches from `AUTO_ONLY` to `MANUAL_ONLY`. Pods, nodes, services, and the router are not recreated. Plan to refresh any IP allowlists with your third-party providers right after that apply.
+        </Warning>
 
         <Info>
-        If you work in a sensitive business area such as financial technology, enabling the **Static IP** feature can help fulfil the security requirements of some of the external services you use, therefore making it easier for you to get whitelisted by them.
+        **Things to know before enabling**:
+        * **Cost**: each reserved external IP is billed by GCP at about `$0.005/hour` (~`$3.65` per IP per month), so two IPs add roughly `$7.30/month` to your GCP bill per cluster.
+        * **GCP quota**: GCP enforces a default quota of 8 reserved external IPs per region. Make sure your project quota can accommodate 2 IPs per GKE cluster region before enabling.
+        * **Connection capacity**: with `MANUAL_ONLY`, GCP can no longer scale NAT IPs automatically. Simultaneous outbound connections are hard-capped at `2 × 64512 / min_ports_per_vm`. For most clusters this is well within the budget, but very high-traffic or multi-tenant clusters should validate.
+        </Info>
+
+        #### Finding the reserved IPs once enabled
+
+        Once `staticIpsEnabled` is on and the cluster has been applied, here is the procedure to find the IPs in the [GCP console](https://console.cloud.google.com):
+
+        1. Select the project that hosts your Qovery cluster.
+        2. Go to **VPC network** then **External IP addresses**.
+        3. Filter by the region where your cluster is deployed.
+        4. Look for the two reserved addresses named `${vpc_name}-nat-1` and `${vpc_name}-nat-2`, with type `External` and status `In use by` your Cloud NAT gateway.
+
+        You can also list them from the command line:
+
+        ```bash
+        gcloud compute addresses list \
+          --project <your-gcp-project> \
+          --filter="name~^.*-nat-"
+        ```
+
+        Use those two IPs as the source addresses to allowlist with your third-party providers.
+
+        <Info>
+        On AWS, NAT Gateways always require Elastic IPs (this is the only mode AWS supports), so Qovery-managed EKS clusters have stable egress IPs by default. You can find them in the AWS console under **VPC** then **Elastic IP addresses**. See [Static IP on EKS](/configuration/integrations/kubernetes/eks/managed#static-ip) for details.
         </Info>
       </Tab>
 

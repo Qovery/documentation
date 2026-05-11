@@ -41,7 +41,7 @@ description: "Frequently Asked Questions"
   <Accordion title="Which IP address does my cluster use to communicate externally over the Internet?">
     There isn't just one public cluster IP adress dedicated to external communication. However, worker nodes inside your cluster each have a public IP automatically attached to them. You can view those default public IPs in the details of your worker nodes (EC2 instances for AWS users) which belong to the node group in your cluster.
 
-    For improved security and control, the `Static IP` feature allows you to ensure that outbound traffic from your cluster uses specific IP addresses. For more information on the `Static IP` feature and how to enable it at cluster creation, see [Static IP on AWS](/configuration/clusters#static-ip) or [Static IP on GCP](/configuration/clusters#static-ip).
+    For improved security and control, the `Static IP` feature allows you to ensure that outbound traffic from your cluster uses specific IP addresses. For more information on the `Static IP` feature and how to enable it at cluster creation, see [Static IP on EKS](/configuration/integrations/kubernetes/eks/managed#static-ip) or [Static IP on GKE](/configuration/integrations/kubernetes/gke/managed#static-ip). GKE clusters can enable stable Cloud NAT IPs through the NAT Gateway feature's `staticIpsEnabled` option.
   </Accordion>
 
   <Accordion title="If I have N custom domains under the same root domain, do I need to create N CNAME records, or just creating one for the root domain is enough?">

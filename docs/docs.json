@@ -129,12 +129,7 @@
                   "getting-started/guides/use-cases/e2e-testing"
                 ]
               },
-              {
-                "group": "Remote Development Environments",
-                "pages": [
-                  "getting-started/guides/use-cases/remote-development-environments"
-                ]
-              }
+              "getting-started/guides/use-cases/remote-development-environments"
             ]
           },
           {

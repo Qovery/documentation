@@ -63,6 +63,7 @@ qovery log --service "httpbin" --tail 100
 | Flag            | Description                                                                          |
 | --------------- | ------------------------------------------------------------------------------------ |
 | `--service`     | Service name — tries application, container, database, and job APIs until a match is found |
+| `--service-id`  | Service UUID — directly stream logs by ID, skips name lookup (use with IDs from console URLs) |
 | `--application` | Target specifically an application                                                   |
 | `--container`   | Target specifically a container                                                      |
 | `--database`    | Target specifically a database                                                       |
@@ -85,6 +86,16 @@ qovery log --service "httpbin" --follow
 
 # Filter for errors
 qovery log --service "httpbin" --follow --filter "ERROR"
+```
+
+### Use Service ID from Console URL
+
+When you have a Qovery console URL, you can use the service ID directly:
+
+```bash
+# Extract the ID from a URL like:
+# .../service/2c69dfd4-1c5a-44c3-ac65-8c6399cfbf31/service-logs
+qovery log --service-id "2c69dfd4-1c5a-44c3-ac65-8c6399cfbf31"
 ```
 
 ### Debug Production Issues
@@ -129,6 +140,12 @@ qovery log \
 ```
 
 ## Tips
+
+<Tip>
+  Use `--service-id` with the UUID from your Qovery console URL to stream logs
+  without needing to know the service name. The ID is visible in the URL when
+  you navigate to a service in the console.
+</Tip>
 
 <Tip>
   Use `--service` when you don't know (or don't want to specify) the type of

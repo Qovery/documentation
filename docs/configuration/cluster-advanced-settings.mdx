@@ -1107,7 +1107,7 @@ If you don't specify custom image repository and tag, ensure your cluster includ
 
 **Description:** vCPU request value in millicores assigned to Envoy Gateway pods. This defines the minimum CPU resources guaranteed for each pod. Must be less than or equal to `envoy.vcpu.limit_in_milli_cpu`.
 
-**Default Value:** `100`
+**Default Value:** `250`
 
 <a id="envoy-vcpu-limit-in-milli-cpu"></a>
 
@@ -1119,7 +1119,7 @@ If you don't specify custom image repository and tag, ensure your cluster includ
 
 **Description:** vCPU limit value in millicores assigned to Envoy Gateway pods. This defines the maximum CPU resources that each pod can consume. Must be greater than or equal to `envoy.vcpu.request_in_milli_cpu`.
 
-**Default Value:** `1000`
+**Default Value:** `250`
 
 <a id="envoy-memory-request-in-mib"></a>
 
@@ -1131,7 +1131,7 @@ If you don't specify custom image repository and tag, ensure your cluster includ
 
 **Description:** Memory request value in MiB assigned to Envoy Gateway pods. This defines the minimum memory resources guaranteed for each pod. Must be less than or equal to `envoy.memory.limit_in_mib`.
 
-**Default Value:** `256`
+**Default Value:** `768`
 
 <a id="envoy-memory-limit-in-mib"></a>
 
@@ -1143,7 +1143,7 @@ If you don't specify custom image repository and tag, ensure your cluster includ
 
 **Description:** Memory limit value in MiB assigned to Envoy Gateway pods. This defines the maximum memory resources that each pod can consume. Must be greater than or equal to `envoy.memory.request_in_mib`.
 
-**Default Value:** `1024`
+**Default Value:** `768`
 
 <a id="envoy-gateway-api-http-request-timeout-seconds"></a>
 

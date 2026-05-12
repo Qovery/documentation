@@ -989,6 +989,170 @@ If you don't specify custom image repository and tag, ensure your cluster includ
 
 **Default Value:** `false`
 
+<a id="k8s-gateway-load-balancer-ip-allocation-ids"></a>
+
+### k8s.gateway.load_balancer_ip_allocation_ids
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/scaleway-icon.svg" alt="Scaleway" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/gcp-icon.svg" alt="GCP" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/azure-icon.svg" alt="Azure" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `list(string)`
+
+**Description:** Sets static public IP allocations for the Gateway API `LoadBalancer` Service. Qovery maps this setting to provider-specific Kubernetes Service annotations.
+
+This setting is mainly a safety mechanism for re-creation scenarios: while a `LoadBalancer` Service usually keeps the same public IPs during its lifetime, those IPs are not guaranteed after Service or cloud Load Balancer re-creation unless explicit static allocations are configured.
+
+<Warning>
+  Changing this setting may require Service and cloud Load Balancer re-creation before new IPs are effectively used.
+  Plan a maintenance window: this operation can cause downtime, typically from tens of seconds to a few minutes (commonly around 1-3 minutes, sometimes longer depending on cloud LB provisioning and health checks).
+</Warning>
+
+**Default Value:** `null` (no explicit static LB IP allocation guarantee across Service/LB re-creation)
+
+**Provider constraints and examples**
+
+#### AWS (EKS)
+
+- Annotation used by Qovery: `service.beta.kubernetes.io/aws-load-balancer-eip-allocations`
+- Expected values: EIP allocation IDs (for example `eipalloc-0123456789abcdef0`)
+- Constraint: number of EIPs must match the number of subnets/AZs used by the NLB (1 EIP per subnet/AZ).
+
+Valid (3 subnets/AZs):
+```yaml
+k8s.gateway.load_balancer_ip_allocation_ids:
+  - eipalloc-0123456789abcdef0
+  - eipalloc-abcdef01234567890
+  - eipalloc-11111111222222222
+```
+
+Invalid (count mismatch for 3 subnets/AZs):
+```yaml
+k8s.gateway.load_balancer_ip_allocation_ids:
+  - eipalloc-0123456789abcdef0
+  - eipalloc-abcdef01234567890
+```
+
+#### GCP (GKE)
+
+- Annotation used by Qovery: `networking.gke.io/load-balancer-ip-addresses`
+- Expected values: static address resource names
+- Constraint: maximum 2 values (single-stack: 1, dual-stack: 2).
+
+Valid (single-stack):
+```yaml
+k8s.gateway.load_balancer_ip_allocation_ids:
+  - projects/my-project/regions/europe-west1/addresses/my-ipv4
+```
+
+Valid (dual-stack):
+```yaml
+k8s.gateway.load_balancer_ip_allocation_ids:
+  - projects/my-project/regions/europe-west1/addresses/my-ipv4
+  - projects/my-project/regions/europe-west1/addresses/my-ipv6-range
+```
+
+Invalid (>2 values):
+```yaml
+k8s.gateway.load_balancer_ip_allocation_ids:
+  - projects/my-project/regions/europe-west1/addresses/ip-1
+  - projects/my-project/regions/europe-west1/addresses/ip-2
+  - projects/my-project/regions/europe-west1/addresses/ip-3
+```
+
+#### Azure (AKS)
+
+- Annotations used by Qovery:
+  - `service.beta.kubernetes.io/azure-load-balancer-ipv4`
+  - `service.beta.kubernetes.io/azure-load-balancer-ipv6`
+- Expected values: IP addresses
+- Constraint: at most one IPv4 and one IPv6.
+
+Valid (IPv4 only):
+```yaml
+k8s.gateway.load_balancer_ip_allocation_ids:
+  - 20.1.2.3
+```
+
+Valid (IPv4 + IPv6):
+```yaml
+k8s.gateway.load_balancer_ip_allocation_ids:
+  - 20.1.2.3
+  - 2001:db8::1
+```
+
+Invalid (two IPv4 values):
+```yaml
+k8s.gateway.load_balancer_ip_allocation_ids:
+  - 20.1.2.3
+  - 20.1.2.4
+```
+
+#### Scaleway (Kapsule)
+
+- Annotation used by Qovery: `service.beta.kubernetes.io/scw-loadbalancer-ip-ids`
+- Expected values: Scaleway IP IDs in UUID format (without region prefix)
+- Constraint: maximum 2 values.
+
+Valid (1 value):
+```yaml
+k8s.gateway.load_balancer_ip_allocation_ids:
+  - 11111111-2222-3333-4444-555555555555
+```
+
+Valid (2 values):
+```yaml
+k8s.gateway.load_balancer_ip_allocation_ids:
+  - 11111111-2222-3333-4444-555555555555
+  - aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
+```
+
+Invalid (>2 values):
+```yaml
+k8s.gateway.load_balancer_ip_allocation_ids:
+  - 11111111-2222-3333-4444-555555555555
+  - aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
+  - cccccccc-dddd-eeee-ffff-000000000000
+```
+
+Invalid (region-prefixed format):
+```yaml
+k8s.gateway.load_balancer_ip_allocation_ids:
+  - fr-par-1/11111111-2222-3333-4444-555555555555
+```
+
+How to create and retrieve Scaleway Load Balancer IP IDs:
+
+1. Create a Load Balancer flexible IP in the same project and zone as your Kapsule cluster:
+```bash
+scw lb ip create zone=pl-waw-1
+```
+   If the Scaleway Console UI is inconsistent for LB IP creation/listing, prefer the CLI command above.
+2. List Load Balancer IP resources and retrieve their IDs:
+```bash
+scw lb ip list zone=pl-waw-1
+```
+3. Use the `id` value (UUID), not the `ip_address`, in cluster advanced settings:
+```text
+ID: 5f7a22ac-461e-4eea-867d-af671d9bcf86
+IP: 151.115.35.84
+```
+```yaml
+k8s.gateway.load_balancer_ip_allocation_ids:
+  - 5f7a22ac-461e-4eea-867d-af671d9bcf86
+```
+
+Notes:
+- Do not use a Public Gateway flexible IP ID for this setting.
+- Do not prefix IDs with the zone/region (for example `pl-waw-1/`).
+- If you cannot find an ID for an IP, verify that IP was created as a Load Balancer IP resource (`scw lb ip`), not another IP product.
+- The credentials used by your cluster/cloud-controller-manager must have Scaleway IAM permission set `LoadBalancersFullAccess` on the target project; otherwise reconciliation fails with `403 Permission denied with this ip_id` or `insufficient permissions: write loadbalancer`.
+
+**Troubleshooting**
+
+- If IP changes are not applied after updating this setting, recreate the Gateway `LoadBalancer` Service (or trigger a rollout path that recreates it).
+- For AWS, verify EIP count exactly matches NLB subnet/AZ count.
+- For Azure, verify values are valid IP addresses and that you provide at most one IPv4 and one IPv6.
+- For GCP and Scaleway, verify you do not exceed the maximum number of values.
+
 <a id="envoy-hpa-cpu-average-utilization-percentage-threshold"></a>
 
 ### envoy.hpa.cpu_average_utilization_percentage_threshold

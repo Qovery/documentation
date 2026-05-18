@@ -532,23 +532,17 @@ If cluster deletion fails or leaves resources behind, you can manually clean up 
 
     **Opting out of a maintenance window**
 
-    If you need to prevent maintenance from running on a specific cluster (e.g. during a critical release), you can lock it via the API:
+    If you need to prevent maintenance from running on a specific cluster (e.g. during a critical release), you can lock it using the CLI:
 
     ```bash
-    curl -X POST "https://api.qovery.com/cluster/<your-cluster-id>/lock" \
-      -H "Authorization: Token <your-api-token>" \
-      -H "Content-Type: application/json" \
-      -d '{"reason": "critical release in progress"}'
+    qovery cluster lock
     ```
 
     To unlock the cluster once you're ready:
 
     ```bash
-    curl -X DELETE "https://api.qovery.com/cluster/<your-cluster-id>/lock" \
-      -H "Authorization: Token <your-api-token>"
+    qovery cluster unlock
     ```
-
-    You can generate an API token from your [account settings](https://console.qovery.com/user/api-tokens).
 
   </Accordion>
 

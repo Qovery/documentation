@@ -135,7 +135,8 @@
                   "getting-started/guides/use-cases/preview-environments",
                   "getting-started/guides/use-cases/e2e-testing"
                 ]
-              }
+              },
+              "getting-started/guides/use-cases/remote-development-environments"
             ]
           },
           {
@@ -417,8 +418,7 @@
                 "pages": [
                   "configuration/integrations/iac/overview",
                   "configuration/integrations/iac/terraform",
-                  "configuration/integrations/iac/cloudformation",
-                  "configuration/integrations/iac/lifecycle-job-tutorial"
+                  "configuration/integrations/iac/cloudformation"
                 ]
               }
             ]
@@ -501,6 +501,7 @@
             "group": "Commands",
             "pages": [
               "cli/commands/overview",
+              "cli/commands/api",
               "cli/commands/application",
               "cli/commands/audit-log",
               "cli/commands/auth",
@@ -523,6 +524,7 @@
               "cli/commands/log",
               "cli/commands/port-forward",
               "cli/commands/project",
+              "cli/commands/rde",
               "cli/commands/service",
               "cli/commands/shell",
               "cli/commands/status",

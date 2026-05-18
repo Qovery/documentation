@@ -514,6 +514,24 @@ If cluster deletion fails or leaves resources behind, you can manually clean up 
 
   </Accordion>
 
+  <Accordion title="How does Qovery schedule managed cluster maintenance?">
+    Qovery performs weekly maintenance on managed clusters following a staged rollout to minimize risk:
+
+    - **Monday**: Dev and staging clusters are updated first
+    - **Wednesday**: Production clusters are updated, 2 days later
+
+    This 2-day gap allows the team to validate that updates are stable before rolling them out to production workloads.
+
+    <Info>
+    Maintenance operations are performed using rolling updates, so your applications continue running without interruption during the process.
+    </Info>
+
+    **Where to track maintenance operations**
+
+    Every maintenance operation is recorded in your organization's [Audit Logs](/getting-started/security-and-compliance/audit-logs). You can filter events by cluster to see exactly what was updated and when.
+
+  </Accordion>
+
   <Accordion title="Why does my cluster show 'unavailable' status?">
     An unavailable status can occur due to:
 

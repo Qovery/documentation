@@ -61,15 +61,6 @@
               "getting-started/how-it-works",
               "getting-started/basic-concepts",
               {
-                "group": "Quickstart",
-                "pages": [
-                  "getting-started/guides/getting-started/deploy-your-first-application",
-                  "getting-started/quickstart/ai-agent",
-                  "getting-started/quickstart/remote-dev-environments",
-                  "getting-started/guides/use-cases/ephemeral-environment"
-                ]
-              },
-              {
                 "group": "Installation",
                 "pages": [
                   "getting-started/quickstart/docker-desktop",
@@ -84,6 +75,15 @@
                     ]
                   },
                   "getting-started/installation/kubernetes"
+                ]
+              },
+              {
+                "group": "Quickstart",
+                "pages": [
+                  "getting-started/guides/getting-started/deploy-your-first-application",
+                  "getting-started/quickstart/ai-agent",
+                  "getting-started/quickstart/remote-dev-environments",
+                  "getting-started/guides/use-cases/ephemeral-environment"
                 ]
               }
             ]

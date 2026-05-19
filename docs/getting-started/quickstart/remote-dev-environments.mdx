@@ -1,0 +1,117 @@
+---
+title: "Remote Dev Environments"
+description: "One environment per person, per agent. On your own Kubernetes."
+mode: "wide"
+---
+
+<div className="ai-section">
+
+One environment per person, per agent. Anyone in your org — engineers, designers, PMs, AI agents — can spin up a fully configured clone of your production stack. Auto-shutdown when idle.
+
+```bash
+curl -fsSL https://skill.qovery.com/install.sh | bash
+```
+
+Then ask your agent:
+
+<div className="terminal-window">
+  <div className="terminal-bar">
+    <div className="terminal-dots">
+      <div className="terminal-dot terminal-dot-red"></div>
+      <div className="terminal-dot terminal-dot-yellow"></div>
+      <div className="terminal-dot terminal-dot-green"></div>
+    </div>
+    <div className="terminal-title-bar">claude</div>
+    <button
+      className="terminal-copy"
+      title="Copy"
+      onClick={(e) => {
+        navigator.clipboard.writeText('Create a dev environment for my project with Qovery');
+        const btn = e.currentTarget;
+        btn.classList.add('terminal-copy-success');
+        setTimeout(() => btn.classList.remove('terminal-copy-success'), 1500);
+      }}
+    >
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+        <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"/>
+        <path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"/>
+      </svg>
+    </button>
+  </div>
+  <div className="terminal-body">
+    <span className="terminal-prompt">Create a dev environment for my project with Qovery<span className="terminal-cursor"></span></span>
+  </div>
+</div>
+
+</div>
+
+---
+
+<CardGroup cols={3}>
+  <Card title="1:1 env/person" icon="user">
+    Each developer or agent gets their own isolated stack.
+  </Card>
+  <Card title="< 4 min" icon="bolt">
+    From request to productive environment.
+  </Card>
+  <Card title="Auto-shutdown" icon="moon">
+    Idle environments stop automatically. No waste.
+  </Card>
+</CardGroup>
+
+---
+
+## Why local dev is broken
+
+<CardGroup cols={3}>
+  <Card title="Laptops can't run your stack" icon="laptop">
+    Docker Desktop consumes 12+ GB RAM. Port collisions, broken WSL2 file watchers, slow macOS bind mounts. Your platform team fixes environment issues instead of building product.
+  </Card>
+  <Card title="Agents need isolation" icon="shield-check">
+    Running Claude Code on a developer's laptop exposes SSH keys, API tokens, and local credentials. A dedicated Kubernetes sandbox limits the blast radius.
+  </Card>
+  <Card title="Non-engineers are locked out" icon="users">
+    A PM reproducing a bug or a designer testing a variant can't set up Docker Compose. They file tickets and wait.
+  </Card>
+</CardGroup>
+
+---
+
+## How It Works
+
+<Steps>
+  <Step title="Template your stack once">
+    Define your environment in Qovery — app, database, services, env vars. One template for everyone.
+  </Step>
+  <Step title="Anyone spins up their own clone">
+    Engineer, designer, PM, or AI agent — each gets a fully isolated environment in under 4 minutes.
+  </Step>
+  <Step title="Work, ship, auto-destroy">
+    Submit a PR when done. The environment shuts down when idle. No cleanup needed.
+  </Step>
+</Steps>
+
+---
+
+<Card title="Remote Dev Environments — Step-by-step Guide" icon="book" href="/getting-started/guides/use-cases/remote-development-environments">
+  How to set up and configure remote dev environments on Qovery, from cluster setup to per-user clones.
+</Card>
+
+---
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Deploy with AI Agent" icon="rocket" href="/getting-started/quickstart/ai-agent">
+    From code to running app in ~10 minutes.
+  </Card>
+  <Card title="Agent Skills" icon="wand-magic-sparkles" href="/getting-started/quickstart/agent-skills">
+    All skills including qovery-builder-env and qovery-builder-portal.
+  </Card>
+  <Card title="Preview Environments" icon="code-branch" href="/getting-started/guides/use-cases/ephemeral-environment">
+    Auto-created full-stack environment per pull request.
+  </Card>
+  <Card title="Security & Compliance" icon="shield-check" href="/getting-started/security-and-compliance/overview">
+    SSO, RBAC, audit logs, SOC2, HIPAA, GDPR.
+  </Card>
+</CardGroup>

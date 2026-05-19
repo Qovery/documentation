@@ -1,20 +1,40 @@
 ---
 title: "How Qovery Works"
-description: "Understand the architecture behind Qovery's DevOps Automation Platform"
+description: "Understand the architecture behind Qovery — the Kubernetes control plane for humans and AI agents"
 ---
 
 ## The Big Picture
 
-Qovery extends Kubernetes into a **production-ready super orchestrator** that manages not just containers, but your entire cloud infrastructure—databases, storage, serverless functions, and more—all orchestrated through Kubernetes.
+Qovery is **the Kubernetes control plane for humans and AI agents** — running entirely on your own cloud infrastructure.
+
+Whether a developer deploys via the console, an AI agent deploys via the Agent Skill, or a platform engineer manages clusters via Terraform, they all drive the same control plane. One consistent model, every interface.
 
 <img src="/images/qovery-architecture.svg" alt="Qovery Architecture - Five products running on Kubernetes across multiple cloud providers" className="light-mode-only" />
 <img src="/images/qovery-architecture-dark.svg" alt="Qovery Architecture - Five products running on Kubernetes across multiple cloud providers" className="dark-mode-only" />
 
+## How AI Agents Interact with Qovery
+
+AI coding agents (Claude Code, Cursor, OpenCode, and 30+ others) interact with Qovery through two complementary interfaces:
+
+<CardGroup cols={2}>
+  <Card title="Agent Skill — Forward Engineering" icon="wand-magic-sparkles" href="/getting-started/quickstart/ai-agent">
+    **Takes your source code → deploys it on Qovery**
+
+    The AI agent analyzes your project, generates a Dockerfile, provisions databases, configures environment variables, and deploys — all autonomously. No Kubernetes knowledge required from the developer.
+  </Card>
+  <Card title="MCP Server — Operations" icon="robot" href="/copilot/mcp-server">
+    **Manages existing infrastructure via natural language**
+
+    Once deployed, use the Qovery MCP Server to query environments, troubleshoot deployments, scale services, and manage infrastructure — all through conversation.
+  </Card>
+</CardGroup>
+
 ## Why Kubernetes?
 
-Kubernetes was designed for infrastructure operators—not developers. Qovery bridges this gap by adding:
+Kubernetes was designed for infrastructure operators — not developers, and certainly not AI agents. Qovery bridges this gap by adding:
 
 - **Developer Experience** - Deploy without Kubernetes expertise
+- **AI Agent Interface** - Agent Skill and MCP Server for autonomous operations
 - **Production Readiness** - Security, monitoring, and compliance built-in
 - **Multi-Cloud** - Works on AWS, GCP, Azure, Scaleway, on-premise
 - **Universal Orchestration** - Manages containers, databases, Terraform, and more
@@ -58,13 +78,14 @@ Unlike traditional PaaS (Heroku, Platform.sh), Qovery runs on **your own cloud a
 
 ### 1. Multiple Interfaces
 
-Work with Qovery through your preferred method:
+Work with Qovery through your preferred method — all driving the same control plane:
 
+- **[AI Agent Skill](/getting-started/quickstart/ai-agent)** - Deploy from Claude Code, Cursor, or any AI coding tool
+- **[MCP Server](/copilot/mcp-server)** - Manage infrastructure via natural language
 - **Web Console** - Visual interface for teams
 - **[CLI](/cli/overview)** - Command-line for developers
 - **[Terraform](/terraform/overview)** - Infrastructure as Code
 - **[API](/api/overview)** - Programmatic control
-- **[MCP Server](/copilot/mcp-server)** - AI agent integration
 
 ### 2. Production-Ready Features
 
@@ -92,7 +113,29 @@ Manage **any cloud resource** from Kubernetes:
 
 This means **one control plane** for your entire cloud infrastructure.
 
-## The Workflow
+## Two Workflows
+
+### With an AI Agent (Recommended for New Users)
+
+<Steps>
+  <Step title="Install the Qovery Skill">
+    Run `curl -fsSL https://skill.qovery.com/install.sh | bash` in your terminal
+  </Step>
+
+  <Step title="Open your AI coding tool">
+    Launch Claude Code, Cursor, OpenCode, or any compatible tool
+  </Step>
+
+  <Step title="Ask the agent to deploy">
+    Say "Deploy my application with Qovery" — the agent handles everything from Dockerfile to running deployment
+  </Step>
+
+  <Step title="Manage with the MCP Server">
+    Use the Qovery MCP Server to monitor, troubleshoot, and operate your infrastructure via natural language
+  </Step>
+</Steps>
+
+### With the Platform (Console / CLI / Terraform)
 
 <Steps>
   <Step title="Connect Git">
@@ -100,7 +143,7 @@ This means **one control plane** for your entire cloud infrastructure.
   </Step>
 
   <Step title="Configure">
-    Set app settings, variables, resources
+    Set app settings, variables, and resources via the Console or Terraform
   </Step>
 
   <Step title="Deploy">
@@ -108,23 +151,23 @@ This means **one control plane** for your entire cloud infrastructure.
   </Step>
 
   <Step title="Scale & Monitor">
-    Track metrics, scale, optimize—all from one interface
+    Track metrics, scale, optimize — all from one interface
   </Step>
 </Steps>
 
 ## Next Steps
 
 <CardGroup cols={2}>
-  <Card title="Quick Start" icon="rocket" href="/getting-started/quickstart">
-    Deploy your first app in 15 minutes
+  <Card title="Deploy with AI Agent" icon="wand-magic-sparkles" href="/getting-started/quickstart/ai-agent">
+    From code to deployed in ~10 minutes
+  </Card>
+  <Card title="All Use Cases" icon="compass" href="/getting-started/quickstart">
+    Browse every deployment path
   </Card>
   <Card title="Core Concepts" icon="book" href="/getting-started/basic-concepts">
     Learn essential terminology
   </Card>
   <Card title="Platform Products" icon="graduation-cap" href="/getting-started/guides/qovery-101/provision">
     Deep dive into all five products
-  </Card>
-  <Card title="Configuration" icon="sliders" href="/configuration/overview">
-    Explore all configuration options
   </Card>
 </CardGroup>

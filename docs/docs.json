@@ -65,7 +65,6 @@
                 "pages": [
                   "getting-started/quickstart/docker-desktop",
                   "getting-started/quickstart/cloud",
-                  "getting-started/quickstart/ai-agent",
                   {
                     "group": "Managed Cluster",
                     "pages": [
@@ -76,6 +75,15 @@
                     ]
                   },
                   "getting-started/installation/kubernetes"
+                ]
+              },
+              {
+                "group": "Quickstart",
+                "pages": [
+                  "getting-started/guides/getting-started/deploy-your-first-application",
+                  "getting-started/quickstart/ai-agent",
+                  "getting-started/quickstart/remote-dev-environments",
+                  "getting-started/guides/use-cases/ephemeral-environment"
                 ]
               }
             ]
@@ -419,12 +427,13 @@
         ]
       },
       {
-        "tab": "Copilot",
+        "tab": "AI",
         "icon": "robot",
         "groups": [
           {
             "group": "Overview",
             "pages": [
+              "copilot/ai-overview",
               "copilot/overview",
               "copilot/what-is-agentic-ai"
             ]
@@ -435,7 +444,8 @@
               "copilot/getting-started",
               "copilot/console",
               "copilot/slack-bot",
-              "copilot/mcp-server"
+              "copilot/mcp-server",
+              "getting-started/quickstart/agent-skills"
             ]
           },
           {

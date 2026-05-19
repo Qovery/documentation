@@ -111,6 +111,11 @@ Qovery needs credentials to manage resources in your GCP project. We use a secur
     <Info>
     This script creates a service account with minimal required permissions. For a detailed breakdown of every permission and why it's needed, see the [GCP IAM Permissions Reference](/getting-started/security-and-compliance/gcp-iam-permissions).
     </Info>
+
+    <Warning>
+    If you enable **static egress IPs** for GCP NAT Gateway, the role must also include `compute.addresses.create`, `compute.addresses.get`, `compute.addresses.list`, and `compute.addresses.delete`.
+    Typical Terraform failure when missing: `Required 'compute.addresses.create' permission ... forbidden`.
+    </Warning>
   </Step>
 </Steps>
 

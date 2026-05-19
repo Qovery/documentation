@@ -43,6 +43,33 @@ Qovery employs **rolling update strategies** to prevent downtime:
 Rolling updates ensure your applications continue running while infrastructure is being updated. New nodes are added before old ones are drained.
 </Info>
 
+### Managed Cluster Maintenance Schedule
+
+Qovery performs weekly maintenance on managed clusters following a staged rollout to minimize risk:
+
+- **Monday**: Dev and staging clusters are updated first
+- **Wednesday**: Production clusters are updated, 2 days later
+
+This 2-day gap allows the team to validate that updates are stable before rolling them out to production workloads.
+
+**Where to track maintenance operations**
+
+Every maintenance operation is recorded in your organization's [Audit Logs](/getting-started/security-and-compliance/audit-logs). You can filter events by cluster to see exactly what was updated and when.
+
+**Opting out of a maintenance window**
+
+If you need to prevent maintenance from running on a specific cluster (e.g. during a critical release), you can lock it using the CLI:
+
+```bash
+qovery cluster lock --cluster-id <your-cluster-id> --reason "critical release in progress" --ttl-in-days 2
+```
+
+The `--ttl-in-days` flag (1 to 5 days) automatically unlocks the cluster after the specified duration. To unlock it manually before the TTL expires:
+
+```bash
+qovery cluster unlock --cluster-id <your-cluster-id>
+```
+
 ### Important Notes
 
 <Warning>

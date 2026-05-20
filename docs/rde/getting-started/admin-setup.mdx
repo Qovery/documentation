@@ -15,34 +15,34 @@ As an admin, you configure the RDE Portal so your team can create their own work
 
 Before starting, make sure you have:
 
-<Check>Qovery account with **organization admin** access</Check>
+<Check>Qovery account on a **Business** or **Enterprise** plan with the **RDE Portal add-on** enabled — see [Pricing](https://www.qovery.com/pricing)</Check>
+<Check>**Organization admin** access on your Qovery account</Check>
 <Check>A running Kubernetes cluster on Qovery</Check>
 <Check>At least one project with an environment to use as a blueprint template</Check>
-<Check>The RDE Portal deployed on your Qovery infrastructure — see [Architecture](/rde/reference/architecture)</Check>
 
 ## Step 1: Configure Your Organization
 
 Connect the portal to your Qovery organization and apply your branding.
 
 <Steps>
-  <Step title="Log in to the Portal">
-    Open your portal URL (e.g., `https://rde.yourcompany.com`) and log in with your Qovery credentials via SSO. You must have **organization admin** access to see the admin panel.
+  <Step title="Open the RDE Portal">
+    Go to [rde.qovery.com](https://rde.qovery.com) and log in with your Qovery credentials. You must have **organization admin** access to see the admin panel.
   </Step>
 
-  <Step title="Open Admin Settings">
-    Navigate to **Admin > Settings** from the sidebar. This is where you configure the portal's connection to Qovery and customize its appearance.
+  <Step title="Select Your Organization">
+    Choose the Qovery organization you want to configure for remote dev environments.
   </Step>
 
-  <Step title="Enter Your Qovery API Token">
-    Paste a Qovery API token with **organization admin** privileges. This token allows the portal to perform privileged operations — cloning environments, managing deployments, and reading project configurations — on behalf of your users.
+  <Step title="Click Configure Portal">
+    Click **Configure Portal** to initialize the portal for your organization. The portal automatically creates and securely stores an admin API token — no manual token setup required.
 
-    <Warning>
-    The API token is encrypted at rest using AES-256-GCM. It is never exposed to end users. Use a dedicated API token with admin-level access specifically for the portal.
-    </Warning>
+    <Info>
+    When you click **Configure Portal**, the portal automatically provisions a secure admin token encrypted with **AES-256-GCM**. This token allows the portal to perform privileged operations (cloning environments, managing deployments) on behalf of your users. It is never exposed to end users or visible in the portal UI.
+    </Info>
   </Step>
 
   <Step title="Customize Portal Branding">
-    Configure the following settings to match your organization:
+    Navigate to **Admin > Settings** and configure the following to match your organization:
 
     - **Portal name** — displayed in the header and browser tab
     - **Logo** — your company logo for the portal header

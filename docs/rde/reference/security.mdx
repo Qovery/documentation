@@ -9,19 +9,22 @@ description: "How the RDE Portal keeps your data on your infrastructure with ful
 
 ## Overview
 
-Security is a foundational principle of the RDE Portal. Unlike hosted cloud development environments where your code, data, and AI interactions leave your infrastructure, the RDE Portal is **deployed entirely on your own Qovery-managed Kubernetes cluster**. Nothing leaves your infrastructure — workspaces, terminal sessions, AI interactions, and application previews are all streamed directly from your cluster to the user's browser.
+Security is a foundational principle of the RDE Portal. The portal uses a **split architecture**: the control plane (portal UI and API) is hosted by Qovery at `rde.qovery.com`, while the **data plane** (workspace containers where your code, AI interactions, and applications run) stays **entirely on your own Kubernetes cluster**. Your source code and development data never leave your infrastructure.
 
-This page explains the security architecture in detail: how data stays on your infrastructure, how the streaming model works, and what controls admins have.
+This page explains the security architecture in detail: how the split model works, how data streams from your infrastructure, and what controls admins have.
 
-## Your Infrastructure, Your Data
+## Split Architecture: Control Plane vs. Data Plane
 
-The RDE Portal follows a **zero data exfiltration** model. Every component runs on your infrastructure:
+The RDE Portal separates **orchestration** from **execution**. Qovery hosts the portal that manages the workflow. Your cluster hosts the workspaces where actual development happens.
 
 ```mermaid
 flowchart TB
-    subgraph YourInfra["Your Infrastructure (Kubernetes Cluster)"]
+    subgraph Qovery["Qovery-Hosted (rde.qovery.com)"]
         Portal["RDE Portal (Frontend + BFF)"]
         DB["PostgreSQL (Config Only)"]
+    end
+
+    subgraph YourInfra["Your Infrastructure (Kubernetes Cluster)"]
         WS1["Workspace Container (Alice)"]
         WS2["Workspace Container (Bob)"]
         WS3["Workspace Container (Carol)"]
@@ -32,7 +35,8 @@ flowchart TB
     Portal -->|"Shell exec stream"| WS2
     Portal -->|"Port-forward stream"| WS3
 
-    style YourInfra fill:#f5f3ff,color:#1a1a2e
+    style Qovery fill:#f5f3ff,color:#1a1a2e
+    style YourInfra fill:#e6fffa,color:#1a1a2e
     style Portal fill:#642DFF,color:#fff
     style DB fill:#642DFF,color:#fff
     style WS1 fill:#0d9488,color:#fff
@@ -43,21 +47,20 @@ flowchart TB
 
 | Component | Where it runs | What it stores |
 |-----------|---------------|----------------|
-| **Frontend (nginx)** | Your cluster | Nothing — serves static files |
-| **BFF (Node.js)** | Your cluster | Processes requests in memory, no data persisted to disk |
-| **PostgreSQL** | Your cluster | Portal configuration only (ACLs, theme, publish settings). No source code, no user data. |
+| **Portal (Frontend + BFF)** | Qovery (rde.qovery.com) | Portal config (ACLs, theme, publish settings). Relays WebSocket traffic in memory — no code persisted. |
+| **PostgreSQL** | Qovery (rde.qovery.com) | Configuration metadata only. No source code, no user data, no AI conversations. |
 | **Workspace containers** | Your cluster | Source code, dependencies, environment variables — isolated per user |
-| **Terminal sessions** | Your cluster | Streamed in real time, not stored by the portal |
+| **Terminal sessions** | Your cluster | Streamed in real time from your containers, relayed through the portal, not stored |
 | **AI chat & Claude Code** | Your cluster (via workspace container) | AI interactions happen inside the container on your cluster |
-| **Live previews** | Your cluster | HTTP traffic proxied from your container, never cached |
+| **Live previews** | Your cluster | HTTP traffic proxied from your container through the portal, never cached |
 
 <Note>
-**No source code, AI conversations, terminal history, or application data is stored outside your Kubernetes cluster.** The portal's PostgreSQL database only stores configuration metadata (ACL rules, theme colors, publish workflow state). Your actual development work lives exclusively in the workspace containers on your infrastructure.
+**No source code, AI conversations, terminal history, or application data is stored outside your Kubernetes cluster.** The portal's database only stores configuration metadata (ACL rules, theme colors, publish workflow state). Your actual development work lives exclusively in the workspace containers on your infrastructure.
 </Note>
 
 ## How Streaming Works
 
-The portal does not copy data out of your infrastructure. Instead, it **streams** everything in real time from the workspace containers to the user's browser through the BFF.
+The portal does not copy data out of your infrastructure. Instead, it **streams** everything in real time from the workspace containers on your cluster to the user's browser through the Qovery-hosted BFF. The BFF acts as a relay — data passes through in memory and is never persisted.
 
 ### Terminal Streaming
 
@@ -66,7 +69,7 @@ When a user opens a terminal tab, the portal establishes a WebSocket chain:
 ```mermaid
 sequenceDiagram
     participant Browser
-    participant BFF as BFF (Your Cluster)
+    participant BFF as BFF (rde.qovery.com)
     participant QWS as Qovery WebSocket
     participant Container as Workspace Container (Your Cluster)
 
@@ -119,10 +122,10 @@ Platform engineers have full control over every aspect of the portal:
 
 ### Infrastructure Control
 
-- **You own the deployment** — The portal runs on your Qovery cluster. You control the infrastructure, networking, and resource limits.
-- **You own the database** — PostgreSQL is deployed on your infrastructure. No portal data is stored on external servers.
+- **Your workspaces, your cluster** — Workspace containers run on your Qovery-managed Kubernetes cluster. You control the infrastructure, networking, and resource limits for all workspaces.
 - **You control the network** — Workspace containers run in your cluster's network. Apply your existing network policies, security groups, and firewall rules.
 - **You control the images** — Blueprint container images are pulled from your container registry. You decide what software is available in workspaces.
+- **Portal managed by Qovery** — The portal control plane (UI, API, config database) is hosted and operated by Qovery at `rde.qovery.com`. This means zero deployment overhead for you — Qovery handles updates, availability, and scaling of the portal itself.
 
 ### Access Control
 
@@ -154,14 +157,14 @@ The portal handles several types of credentials, each with specific security mea
 | Credential | Protection |
 |-----------|------------|
 | **User JWT (Auth0)** | Short-lived access token, verified via JWKS on every request. Stored in browser memory only (not localStorage). |
-| **Admin API Token** | Encrypted with **AES-256-GCM** using a 256-bit key. Stored encrypted in PostgreSQL. Only the BFF can decrypt it at runtime. Never exposed to the frontend. |
+| **Admin API Token** | Automatically provisioned when an admin clicks **Configure Portal**. Encrypted with **AES-256-GCM** using a 256-bit key. Stored encrypted in PostgreSQL. Only the BFF can decrypt it at runtime. Never exposed to the frontend. |
 | **Shell Tickets** | One-time use, 30-second TTL. Invalidated after first use. Prevents token leakage in WebSocket URLs. |
 | **Preview Tickets** | One-time use, short TTL. Authenticates preview iframe requests without exposing the user's JWT. |
 | **LLM API Keys** | Stored encrypted in PostgreSQL (AES-256-GCM). Injected into workspace containers as environment variables at runtime. Never visible in the portal UI after initial configuration. |
 
-<Warning>
-The **TOKEN_ENCRYPTION_KEY** environment variable used by the BFF must be a 64-character hex string (256 bits). Keep this key secure — it protects all encrypted credentials in the database. Rotate it by re-encrypting stored values with a new key.
-</Warning>
+<Info>
+The admin API token is created automatically when an organization admin first configures the portal — no manual token generation or pasting required. The token is encrypted immediately and never displayed in the UI.
+</Info>
 
 ## Network Security
 
@@ -179,9 +182,9 @@ All communication uses TLS encryption. No other external endpoints are contacted
 
 ### Internal Communication
 
-- Frontend to BFF: HTTPS within your cluster
-- BFF to PostgreSQL: Encrypted connection within your cluster
-- BFF to workspace containers: Via Qovery's WebSocket service (no direct container access)
+- Browser to Portal (rde.qovery.com): HTTPS with TLS
+- Portal BFF to PostgreSQL: Encrypted connection within Qovery's infrastructure
+- Portal BFF to workspace containers: Via Qovery's WebSocket service (no direct container access from the portal)
 
 ### Rate Limiting
 
@@ -194,28 +197,29 @@ The BFF enforces rate limits to prevent abuse:
 
 ## Comparison with Hosted Alternatives
 
-| Aspect | RDE Portal (Self-Hosted) | Hosted Cloud IDEs |
-|--------|--------------------------|-------------------|
+| Aspect | RDE Portal | Fully Hosted Cloud IDEs |
+|--------|-----------|------------------------|
 | **Where code lives** | Your Kubernetes cluster | Vendor's infrastructure |
 | **Where AI runs** | Your containers | Vendor's servers |
 | **Data residency** | Your cloud account, your region | Vendor's cloud, vendor's region |
 | **Network control** | Your VPC, your security groups | Shared infrastructure |
 | **Admin control** | Full — blueprints, ACLs, limits, approvals | Limited to vendor's settings |
-| **Compliance** | Inherits your cluster's compliance posture (SOC 2, HIPAA, GDPR, DORA) | Depends on vendor certification |
+| **Compliance** | Workspaces inherit your cluster's posture (SOC 2, HIPAA, GDPR, DORA) | Depends on vendor certification |
 | **Audit trail** | Your Qovery audit logs | Vendor's logs |
 | **Customization** | Full — branding, layouts, AI providers | Limited |
+| **Portal operations** | Managed by Qovery (zero maintenance) | Managed by vendor |
 
 <Tip>
-Because the RDE Portal runs on your existing Qovery cluster, it inherits your cluster's compliance certifications. If your cluster is SOC 2, HIPAA, or GDPR compliant, the portal workspaces are too — no additional certification needed.
+Because workspace containers run on your existing Qovery cluster, they inherit your cluster's compliance certifications. If your cluster is SOC 2, HIPAA, or GDPR compliant, your workspaces are too — no additional certification needed for the data plane.
 </Tip>
 
 ## Summary
 
 The RDE Portal security model can be summarized in three principles:
 
-1. **Everything runs on your infrastructure.** The portal, the database, and every workspace container run on your Kubernetes cluster. No code or data leaves your environment.
+1. **Your code and data stay on your infrastructure.** Workspace containers run on your Kubernetes cluster. Source code, AI conversations, terminal history, and application data never leave your environment. The portal control plane (hosted by Qovery) manages orchestration and configuration only.
 
-2. **Everything is streamed, nothing is stored.** Terminal sessions, AI interactions, and application previews are streamed in real time from your containers to the user's browser. The portal relays data without persisting it.
+2. **Everything is streamed, nothing is stored.** Terminal sessions, AI interactions, and application previews are streamed in real time from your containers through the portal to the user's browser. The portal relays data without persisting it.
 
 3. **Admins control everything.** From blueprint templates to access control rules to publish approvals — platform engineers have full visibility and control over what happens in the portal.
 
@@ -229,6 +233,6 @@ The RDE Portal security model can be summarized in three principles:
     Configure who can access which blueprints.
   </Card>
   <Card title="Admin Setup" icon="gear" href="/rde/getting-started/admin-setup">
-    Get the portal running on your infrastructure.
+    Configure the portal for your organization.
   </Card>
 </CardGroup>

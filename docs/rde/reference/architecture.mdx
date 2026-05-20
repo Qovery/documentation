@@ -9,7 +9,7 @@ description: "Understand how the RDE Portal works under the hood"
 
 ## Overview
 
-The RDE Portal is a web application deployed on your own Qovery infrastructure. It consists of three components: a **React frontend**, an **Express BFF** (Backend-for-Frontend), and a **PostgreSQL database**. The portal communicates with Qovery's API and WebSocket services to manage workspaces on your behalf.
+The RDE Portal is a web application hosted by Qovery at [rde.qovery.com](https://rde.qovery.com). It consists of three components: a **React frontend**, an **Express BFF** (Backend-for-Frontend), and a **PostgreSQL database** — all managed by Qovery. The portal communicates with Qovery's API and WebSocket services to manage workspace containers that run on **your** Kubernetes cluster.
 
 This page explains the architecture, authentication model, and data flow that make the portal work. For security-specific details — data residency, streaming model, token management, and compliance — see the dedicated [Security & Data Residency](/rde/reference/security) page.
 
@@ -143,7 +143,7 @@ The BFF maintains **two Qovery API clients** for each authenticated request:
     Uses the **user's Auth0 JWT** to call the Qovery API. This verifies that the user has the required RBAC permissions for the requested operation. If the user lacks permissions, the request is rejected before any action is taken.
   </Card>
   <Card title="Admin Client" icon="shield-halved">
-    Uses an **organization admin API token** to execute privileged operations. This token enables the portal to perform actions like cloning environments across projects, deploying workspaces, and managing lifecycle — operations that individual users may not have direct permissions for.
+    Uses an **organization admin API token** (automatically provisioned when the admin clicks **Configure Portal**) to execute privileged operations. This token enables the portal to perform actions like cloning environments across projects, deploying workspaces, and managing lifecycle — operations that individual users may not have direct permissions for.
   </Card>
 </CardGroup>
 
@@ -227,36 +227,44 @@ This approach means workspaces do not need public domains, load balancers, or in
 
 ## Deployment Architecture
 
-The RDE Portal is deployed as **three services** on a Qovery environment within your infrastructure:
+The RDE Portal uses a **split deployment model**: the portal itself is hosted by Qovery as a managed service at `rde.qovery.com`, while workspace containers run on your Kubernetes cluster.
 
 ```mermaid
 flowchart TB
-    subgraph QoveryEnv["Qovery Environment"]
+    subgraph Qovery["Qovery-Hosted (rde.qovery.com)"]
         FE["Frontend (nginx)"]
         BFF["BFF (Node.js 22)"]
         DB["PostgreSQL 16"]
     end
 
+    subgraph YourCluster["Your Kubernetes Cluster"]
+        WS1["Workspace Containers"]
+    end
+
     Users["Users"] -->|"HTTPS"| FE
     FE -->|"API calls"| BFF
     BFF -->|"SQL"| DB
-    BFF -->|"REST & WebSocket"| ExtAPI["Qovery Services"]
+    BFF -->|"REST & WebSocket"| QoveryAPI["Qovery API & WebSocket"]
+    QoveryAPI -->|"Manages"| WS1
 
     style FE fill:#642DFF,color:#fff
     style BFF fill:#642DFF,color:#fff
     style DB fill:#642DFF,color:#fff
-    style QoveryEnv fill:#f5f3ff,color:#1a1a2e
-    style Users fill:#0d9488,color:#fff
-    style ExtAPI fill:#1a1a2e,color:#fff
+    style Qovery fill:#f5f3ff,color:#1a1a2e
+    style YourCluster fill:#e6fffa,color:#1a1a2e
+    style WS1 fill:#0d9488,color:#fff
+    style Users fill:#1a1a2e,color:#fff
+    style QoveryAPI fill:#1a1a2e,color:#fff
 ```
 
-| Service | Type | Details |
-|---------|------|---------|
-| **Frontend** | Container (nginx) | Serves the Vite production build as static files |
-| **BFF** | Container (Node.js 22) | Runs the Express server with all business logic |
-| **PostgreSQL** | Database | Managed or container PostgreSQL 16 instance |
+| Component | Hosted by | Details |
+|-----------|-----------|---------|
+| **Frontend** | Qovery | Serves the React SPA via nginx |
+| **BFF** | Qovery | Express server handling auth, API proxying, WebSocket relay |
+| **PostgreSQL** | Qovery | Stores portal configuration (ACLs, theme, publish state) — no user code |
+| **Workspace containers** | Your cluster | Isolated environments where development actually happens |
 
-An optional **cleanup cron job** can be deployed alongside these services to automatically stop or delete stale workspaces based on idle time.
+You do not need to deploy or maintain the portal infrastructure — Qovery handles updates, availability, and scaling. You only manage your Kubernetes cluster where workspaces run.
 
 ## Data Model
 
@@ -283,7 +291,7 @@ The portal splits data storage between PostgreSQL and the Qovery API:
     Common issues and solutions for the RDE Portal.
   </Card>
   <Card title="Admin Setup" icon="gear" href="/rde/getting-started/admin-setup">
-    Deploy and configure the portal on your infrastructure.
+    Configure the portal for your organization.
   </Card>
   <Card title="Blueprint Management" icon="cubes" href="/rde/admin/blueprint-management">
     Register and configure workspace templates.

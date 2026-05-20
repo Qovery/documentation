@@ -1,0 +1,130 @@
+---
+title: "Workspace Management"
+description: "Monitor and manage all workspaces across your organization"
+---
+
+<Warning>
+**Preview**: Remote Dev Environments Portal is in preview. Features may change as the product evolves.
+</Warning>
+
+## Overview
+
+The workspace management page gives admins a **bird's-eye view of every workspace** in the organization, regardless of who created it. From here you can monitor workspace status, take lifecycle actions, and control resource usage across your team.
+
+## Viewing Workspaces
+
+Navigate to **Admin > Workspaces** to see all workspaces in your organization. Each workspace entry shows:
+
+| Field | Description |
+|-------|-------------|
+| **Workspace Name** | The name the builder chose when creating the workspace |
+| **Owner Email** | The email address of the builder who owns the workspace |
+| **Blueprint** | The blueprint template the workspace was created from |
+| **Status** | Current state: Running, Stopped, Deploying, or Error |
+| **Created** | When the workspace was first created |
+
+You can filter workspaces by status or search by workspace name or owner email to quickly find what you need.
+
+## Workspace Actions
+
+Admins can perform the following actions on any workspace:
+
+<CardGroup cols={2}>
+  <Card title="Start" icon="play">
+    Resume a stopped workspace. The environment redeploys and becomes accessible to the builder.
+  </Card>
+  <Card title="Stop" icon="stop">
+    Pause a running workspace. All services are stopped but state is preserved. The builder's work is retained and available when the workspace is started again.
+  </Card>
+  <Card title="Restart" icon="rotate">
+    Stop and start the workspace. This picks up the latest container image updates from the blueprint. Use this to roll out image-level changes to an existing workspace.
+  </Card>
+  <Card title="Delete" icon="trash">
+    Permanently remove the workspace and its associated Qovery project. This action cannot be undone.
+  </Card>
+</CardGroup>
+
+<CardGroup cols={1}>
+  <Card title="Upgrade" icon="arrow-up">
+    Redeploy the workspace with the latest blueprint configuration. Use this when structural changes have been made to the blueprint (new services, updated environment variables).
+  </Card>
+</CardGroup>
+
+<Warning>
+**Deleting a workspace is irreversible.** The workspace's Qovery project, environment, all services, and any data within them are permanently destroyed. Make sure the builder has saved any important work before deleting.
+</Warning>
+
+## Monitoring
+
+The admin dashboard provides summary statistics at the top of the workspace management page:
+
+- **Running** — Number of workspaces currently active and consuming resources
+- **Stopped** — Number of paused workspaces (not consuming compute resources)
+- **Error** — Number of workspaces in an error state that may need attention
+- **Total Blueprints** — Number of registered blueprints in the organization
+
+Use these stats to get a quick sense of resource utilization and identify workspaces that need attention.
+
+## Workspace Limits
+
+Admins can configure a **maximum number of running workspaces per user**. This prevents any single user from consuming too many resources.
+
+When a builder reaches their limit and tries to create a new workspace, they see a **quota modal** explaining that they must stop an existing workspace before creating a new one.
+
+To configure workspace limits:
+
+<Steps>
+  <Step title="Open Settings">
+    Navigate to **Admin > Settings**.
+  </Step>
+
+  <Step title="Set the Limit">
+    Find the **Workspace Limits** section and enter the maximum number of simultaneously running workspaces per user.
+  </Step>
+
+  <Step title="Save">
+    Click **Save**. The limit takes effect immediately for all users.
+  </Step>
+</Steps>
+
+<Info>
+Workspace limits apply to **running** workspaces only. Stopped workspaces do not count toward the limit. A user can have many stopped workspaces but only run a limited number concurrently.
+</Info>
+
+## Cost Control Tips
+
+<AccordionGroup>
+  <Accordion title="Monitor running workspace count regularly">
+    Check the admin dashboard frequently to see how many workspaces are actively running. A high running count directly translates to infrastructure costs on your cluster.
+  </Accordion>
+
+  <Accordion title="Set workspace limits to prevent sprawl">
+    Configure per-user workspace limits to prevent any individual from spinning up more resources than necessary. Start with a conservative limit (e.g., 2-3 running workspaces) and adjust based on actual usage.
+  </Accordion>
+
+  <Accordion title="Stop idle workspaces">
+    If you see workspaces that have been running for extended periods without activity, reach out to the owner or stop them directly. Idle workspaces consume compute resources unnecessarily.
+  </Accordion>
+
+  <Accordion title="Delete old workspaces that are no longer needed">
+    Workspaces that haven't been used in weeks are good candidates for deletion. Coordinate with the owner first to ensure no important work is lost.
+  </Accordion>
+
+  <Accordion title="Use auto-stop TTL policies in blueprint configurations">
+    Include TTL lifecycle jobs in your blueprint environments that automatically stop workspaces after a period of inactivity. This is the most effective way to control costs without manual intervention.
+  </Accordion>
+</AccordionGroup>
+
+## Next Steps
+
+<CardGroup cols={3}>
+  <Card title="Blueprint Management" icon="cubes" href="/rde/admin/blueprint-management">
+    Register and configure blueprint templates.
+  </Card>
+  <Card title="Publish Approvals" icon="check-circle" href="/rde/admin/publish-approvals">
+    Review and approve workspace deployment requests.
+  </Card>
+  <Card title="Member Management" icon="users" href="/rde/admin/member-management">
+    Invite and manage team members.
+  </Card>
+</CardGroup>

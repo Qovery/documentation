@@ -1,0 +1,122 @@
+---
+title: "Publishing Your App"
+description: "Deploy your workspace application to a production URL"
+---
+
+<Warning>
+**Preview**: Remote Dev Environments Portal is in preview. Features may change as the product evolves.
+</Warning>
+
+## Overview
+
+When you are ready to share your work, the publish workflow lets you request a deployment to a production URL. Depending on your organization's settings, this may require admin approval before your application goes live.
+
+## How Publishing Works
+
+Publishing connects your workspace changes to your organization's deployment pipeline:
+
+1. The portal creates a **git commit** with your current workspace state
+2. You select a **subdomain** for your application (e.g., `my-app.yourdomain.com`)
+3. You can review a **diff of your changes** before submitting
+4. The publish request is sent to your admin for review (unless you are a trusted user)
+5. Once approved, the portal **pushes to git** and creates a **pull request**
+
+<Info>
+Publishing creates a git commit and pull request. Your admin has full visibility into what was changed and can review the code before it goes live.
+</Info>
+
+## Step by Step
+
+<Steps>
+  <Step title="Open the Publish Modal">
+    Click the **Publish** button in the workspace top bar. This opens the publish modal where you configure your deployment.
+  </Step>
+
+  <Step title="Choose a Subdomain">
+    Select or enter the subdomain where your application will be accessible. For example, if your organization's domain is `yourcompany.com`, you might choose `my-app` to publish at `my-app.yourcompany.com`.
+
+    If you have published before, your previous subdomain will be pre-filled.
+  </Step>
+
+  <Step title="Review Changes">
+    The publish modal shows a **diff preview** of all changes that will be deployed. Review this carefully to make sure you are publishing what you intend.
+
+    The diff compares your current workspace state against the last published version (or the original blueprint if this is your first publish).
+  </Step>
+
+  <Step title="Submit for Approval">
+    Click **Publish** to submit your request. Your admin will be notified that a new publish request is waiting for review.
+  </Step>
+
+  <Step title="Wait for Approval">
+    Your admin reviews the changes and approves or rejects the request. You will be notified of the outcome.
+
+    - **Approved** — Your application is deployed to the selected subdomain
+    - **Rejected** — Your admin sends feedback explaining what needs to change
+  </Step>
+</Steps>
+
+## Trusted Users
+
+Your admin can mark you as a **trusted user** for specific blueprints. If you have trusted status:
+
+- Your publish requests are **auto-approved** — no waiting for admin review
+- The deployment starts immediately after you click Publish
+- You still get the diff preview so you can review your changes before submitting
+
+<Tip>
+If you publish frequently and your admin trusts your work, ask about getting trusted status. It removes the approval bottleneck and lets you deploy on your own schedule.
+</Tip>
+
+## Publish Status
+
+After submitting a publish request, it moves through these states:
+
+| Status | Description |
+|--------|-------------|
+| **Pending** | Your request is waiting for admin review. You can continue working in your workspace while you wait. |
+| **Approved** | Your admin approved the request. The portal is pushing your changes and creating a pull request. Your application will be live shortly. |
+| **Rejected** | Your admin sent the request back with feedback. Review their comments, make changes, and submit a new publish request. |
+
+<Note>
+You can continue working in your workspace while a publish request is pending or being deployed. Your workspace is not locked during the publish process.
+</Note>
+
+## Republishing
+
+After your first publish, you can publish again at any time to deploy new changes. The workflow is the same — the diff will show changes since your last published version, making it easy to see exactly what is new.
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Publish button is disabled">
+    The Publish button may be disabled if:
+    - Your workspace is not in a **Running** state
+    - There are no changes to publish (your workspace matches the last published version)
+    - A previous publish request is still being processed
+
+    Check the workspace status badge in the top bar and wait for any in-progress operations to complete.
+  </Accordion>
+
+  <Accordion title="Publish request was rejected">
+    Your admin reviewed the changes and sent the request back. Check the rejection feedback for details on what needs to change. Make the requested updates in your workspace, then submit a new publish request.
+  </Accordion>
+
+  <Accordion title="Published app is not accessible">
+    After approval, it may take a few minutes for DNS and deployment to propagate. If your application is still not accessible after 5 minutes:
+    - Verify the subdomain URL is correct
+    - Check with your admin that the deployment completed successfully
+    - Ensure your application starts correctly in a production configuration
+  </Accordion>
+</AccordionGroup>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Git History & Snapshots" icon="clock-rotate-left" href="/rde/user/git-history">
+    Save and restore previous versions of your work before publishing.
+  </Card>
+  <Card title="Using the Editor" icon="laptop-code" href="/rde/user/using-the-editor">
+    Get the most out of the workspace terminal, AI chat, and editor layout.
+  </Card>
+</CardGroup>

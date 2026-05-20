@@ -1,0 +1,125 @@
+---
+title: "Portal Customization"
+description: "Customize branding, welcome screens, and workspace layouts for your portal"
+---
+
+<Warning>
+**Preview**: Remote Dev Environments Portal is in preview. Features may change as the product evolves.
+</Warning>
+
+## Overview
+
+Make the RDE Portal your own with **custom branding**, a tailored **welcome screen**, and per-blueprint **layout configuration**. These settings let you align the portal with your company identity and control the development experience your builders get.
+
+## Branding
+
+Navigate to **Admin > Settings** to configure portal-wide branding.
+
+| Setting | Description |
+|---------|-------------|
+| **Portal Name** | Displayed in the header and browser tab title. Use your company name or a team-specific label. |
+| **Logo** | Your company logo, shown in the top navigation bar. Upload a PNG or SVG file. |
+| **Primary Color** | The portal generates a full color palette from your primary brand color — buttons, links, accents, and hover states all adapt automatically. |
+
+<Info>
+Branding changes take effect immediately for all users. No restart or redeployment is required.
+</Info>
+
+## Welcome Screen
+
+Configure the welcome screen that builders see when they first log in or when they have no active workspaces. Navigate to **Admin > Settings > Welcome Screen**.
+
+| Setting | Description |
+|---------|-------------|
+| **Title** | The headline on the welcome screen (e.g., "Welcome to Acme Dev Portal"). |
+| **Description** | A short paragraph explaining what the portal is and how to get started. |
+| **CTA Button Text** | The label on the call-to-action button (e.g., "Create Your First Workspace"). |
+
+Use the welcome screen to **onboard new builders**. Explain what they can do in the portal, which blueprints are available, and where to get help. A clear welcome screen reduces support requests and gets builders productive faster.
+
+## Layout Configuration
+
+Each blueprint can have its own **layout settings** that control what builders see inside the workspace editor. Navigate to **Admin > Blueprints > [Blueprint] > Settings > Layout**.
+
+### Tabs
+
+Choose which tabs appear in the workspace editor. Available tab types:
+
+- **Chat** — The OpenCode chat panel for AI-assisted development
+- **Claude Code** — Terminal tab with Claude Code pre-configured
+- **Terminal** — A standard terminal session in the workspace container
+- **Custom command tabs** — Tabs that run a specific command when opened
+
+### Custom Tabs
+
+Define custom tabs that execute a specific command in the workspace container when the tab is opened. This is useful for common development tasks.
+
+**Examples:**
+- A tab named "Dev Server" that runs `npm run dev`
+- A tab named "Django Server" that runs `python manage.py runserver`
+- A tab named "Tests" that runs `npm test -- --watch`
+
+Custom tabs give builders quick access to frequently used commands without needing to remember or type them.
+
+### Lock Layout
+
+Enable **Lock Layout** to prevent builders from adding or removing tabs in the workspace editor. When locked, builders see exactly the tabs you configured — no more, no less.
+
+Use this when you want a consistent, controlled experience across all workspaces using this blueprint.
+
+### Preview Panel
+
+Toggle the **preview panel** visibility for the blueprint. When enabled, builders see a live preview of their running application directly in the workspace editor with viewport switching for desktop, tablet, and mobile.
+
+Disable the preview panel for blueprints where a live preview is not relevant (e.g., backend API services, CLI tools, data processing scripts).
+
+## Claude Authentication
+
+Configure how **Claude Code** authenticates in workspaces for each blueprint. Navigate to **Admin > Blueprints > [Blueprint] > Settings**.
+
+<Tabs>
+  <Tab title="User OAuth">
+    Builders authenticate with their own Anthropic account when they first open Claude Code. This is free to set up but usage is capped by each user's individual Anthropic plan.
+
+    **Best for:** Teams where builders already have Anthropic accounts, or when you want each user to manage their own usage.
+  </Tab>
+  <Tab title="API Key">
+    You provide an Anthropic API key at the blueprint level. Claude Code authenticates automatically with no action required from the builder. Usage is billed to your organization's Anthropic account.
+
+    **Best for:** Seamless onboarding where you want builders to start coding immediately without any authentication steps. You control and pay for the usage centrally.
+  </Tab>
+</Tabs>
+
+## LLM Provider Configuration
+
+Configure the **Chat panel** LLM provider for each blueprint. This controls which AI model powers the OpenCode chat experience in workspaces.
+
+Navigate to **Admin > Blueprints > [Blueprint] > Settings > Chat Provider**.
+
+| Setting | Description |
+|---------|-------------|
+| **Provider** | Choose between Anthropic, OpenAI, or a custom provider. |
+| **API Key** | The API key for the selected provider. |
+| **Model** | The specific model to use (e.g., `claude-sonnet-4-20250514`, `gpt-4o`). |
+
+<Note>
+LLM provider settings apply to the Chat panel only. Claude Code authentication is configured separately (see above).
+</Note>
+
+<Tip>
+Start with the default layout and iterate based on builder feedback. You can change layout settings at any time — they apply to new workspaces and existing workspaces on their next load.
+</Tip>
+
+## Next Steps
+
+<CardGroup cols={3}>
+  <Card title="Blueprint Management" icon="cubes" href="/rde/admin/blueprint-management">
+    Register and configure blueprint templates.
+  </Card>
+  <Card title="Access Control" icon="shield-halved" href="/rde/admin/access-control">
+    Control who can access each blueprint.
+  </Card>
+  <Card title="Member Management" icon="users" href="/rde/admin/member-management">
+    Invite and manage team members.
+  </Card>
+</CardGroup>

@@ -1,0 +1,96 @@
+---
+title: "Git History & Snapshots"
+description: "Save and restore your work with git snapshots"
+---
+
+<Warning>
+**Preview**: Remote Dev Environments Portal is in preview. Features may change as the product evolves.
+</Warning>
+
+## Overview
+
+The RDE Portal automatically tracks your work using **git snapshots**. Save your progress at any time and restore previous versions if needed. Think of snapshots as save points — you can always go back if something goes wrong.
+
+## Creating Snapshots
+
+Press **Cmd+S** (macOS) or **Ctrl+S** (Windows/Linux) to create a snapshot at any time.
+
+Each snapshot:
+- Creates a **git commit** of your current workspace state
+- Captures **all file changes** in your workspace
+- Is timestamped so you can find it later in the history
+
+You can create snapshots as often as you want. There is no limit on the number of snapshots per workspace.
+
+<Tip>
+Think of snapshots like "save points" in a game. Save often, especially before risky changes, so you can always revert if something goes wrong.
+</Tip>
+
+## Viewing History
+
+To browse your snapshot history:
+
+1. Click the **History** button in the workspace top bar
+2. The history panel opens, showing a chronological list of all snapshots
+3. Each entry displays the **timestamp** of when the snapshot was created
+
+Scroll through the list to find the snapshot you are looking for. The most recent snapshots appear at the top.
+
+## Restoring a Snapshot
+
+To restore your workspace to a previous state:
+
+1. Open the **History** panel from the top bar
+2. Find the snapshot you want to restore
+3. Click **Restore** next to that snapshot
+
+<Warning>
+Restoring a snapshot replaces your current workspace files with the snapshot version. Create a snapshot of your current state first if you want to preserve it.
+</Warning>
+
+After restoring, your workspace files will match the state they were in when that snapshot was created. Any changes made after that snapshot are removed from your working directory (but are still preserved in the git history if you snapshotted them).
+
+## How It Works
+
+Under the hood, snapshots use standard git operations:
+
+- **Creating a snapshot** runs `git add` and `git commit` on your workspace files
+- **Viewing history** reads the git commit log
+- **Restoring a snapshot** checks out a previous commit
+
+Snapshots are **local to your workspace**. They do not push to any external git repository or affect other workspaces. Your snapshots only interact with external repositories when you use the [Publish](/rde/user/publishing) workflow.
+
+<Info>
+Since snapshots are git commits, they include all file changes but exclude files listed in your `.gitignore`. Large binary files, `node_modules`, and other ignored paths are not captured in snapshots.
+</Info>
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Snapshot before major changes">
+    Before refactoring, restructuring, or trying something significantly different, create a snapshot. If the changes don't work out, you can restore to the pre-change state in seconds.
+  </Accordion>
+
+  <Accordion title="Snapshot before experimental approaches">
+    Trying a new library, framework feature, or unfamiliar technique? Snapshot first. This lets you experiment freely knowing you can roll back.
+  </Accordion>
+
+  <Accordion title="Snapshot at natural checkpoints">
+    Create snapshots when you complete a feature, fix a bug, or reach a working state. These serve as known-good points you can return to if later changes introduce problems.
+  </Accordion>
+
+  <Accordion title="Snapshot before restoring">
+    Before restoring an older snapshot, create a new snapshot of your current state. This preserves your latest work in case you want to come back to it.
+  </Accordion>
+</AccordionGroup>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Publishing Your App" icon="rocket" href="/rde/user/publishing">
+    Deploy your workspace application to a production URL.
+  </Card>
+  <Card title="Using the Editor" icon="laptop-code" href="/rde/user/using-the-editor">
+    Terminal tabs, AI chat, and the full editor layout.
+  </Card>
+</CardGroup>

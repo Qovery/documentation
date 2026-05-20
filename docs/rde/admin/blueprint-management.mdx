@@ -1,0 +1,119 @@
+---
+title: "Blueprint Management"
+description: "Register, configure, and manage blueprint templates for your team's workspaces"
+---
+
+<Warning>
+**Preview**: Remote Dev Environments Portal is in preview. Features may change as the product evolves.
+</Warning>
+
+## Overview
+
+Blueprints are the templates that define what a workspace looks like. Each blueprint points to a **Qovery project and environment**. When a builder creates a workspace from the portal, the system clones that environment into a new Qovery project dedicated to the builder.
+
+As an admin, you register blueprints, configure their settings, and control which users can access them. The blueprint itself is a standard Qovery environment — you manage its services, containers, and configuration through the Qovery Console or CLI as usual.
+
+## Registering a Blueprint
+
+<Steps>
+  <Step title="Open the Admin Panel">
+    Navigate to **Admin > Blueprints** in the RDE Portal.
+  </Step>
+
+  <Step title="Click Register">
+    Click the **Register Blueprint** button to open the registration form.
+  </Step>
+
+  <Step title="Select the Qovery Project">
+    Choose the Qovery project that contains your template environment. This project must already exist in your Qovery organization.
+  </Step>
+
+  <Step title="Choose the Environment">
+    Select the specific environment within the project to use as the blueprint source. This is the environment that will be cloned when builders create workspaces.
+  </Step>
+
+  <Step title="Set Display Name">
+    Enter a display name that builders will see in the workspace catalog. Use a clear, descriptive name like "Full-Stack Starter" or "Python Data Science".
+  </Step>
+
+  <Step title="Save">
+    Click **Register** to add the blueprint. It will immediately appear in the catalog for users who have access.
+  </Step>
+</Steps>
+
+## Blueprint Requirements
+
+A good blueprint environment should include everything a builder needs to be productive from the moment their workspace is ready.
+
+**Required:**
+- At least one **service or container** (typically a workspace image with an IDE like VS Code Server)
+
+**Recommended:**
+- **Development tools** pre-installed — Claude Code, OpenCode, Git, language runtimes (Node.js, Python, etc.)
+- **Environment variables** configured — API keys, database credentials, service URLs
+- **Databases and backing services** — PostgreSQL, Redis, or any other services your builders need
+- **TTL auto-stop job** — A lifecycle job that automatically stops idle environments to save costs
+
+<Tip>
+Start with a lean blueprint that covers the basics. You can always iterate and add more tools or services based on builder feedback.
+</Tip>
+
+## Updating a Blueprint
+
+Changes you make to the source Qovery project and environment (adding services, updating environment variables, changing container images) are **reflected in new workspaces** created from the blueprint.
+
+<Info>
+Existing workspaces are **not** automatically updated when the blueprint changes. Builders keep working on their current environment until an action is taken.
+</Info>
+
+To apply updates to existing workspaces:
+- **Image updates** — Admins or builders can restart a workspace to pull the latest container image.
+- **Structural changes** — If the blueprint structure has changed significantly (new services added, environment variables renamed), you may need to use the **Upgrade** action from the workspace management page to redeploy with the latest blueprint configuration.
+
+## Removing a Blueprint
+
+To unregister a blueprint, navigate to **Admin > Blueprints**, select the blueprint, and click **Remove**.
+
+<Warning>
+Removing a blueprint does **not** delete existing workspaces created from it. Those workspaces continue to run normally. However, no new workspaces can be created from the removed blueprint.
+</Warning>
+
+If you want to permanently clean up, delete the associated workspaces from the [workspace management](/rde/admin/workspace-management) page before or after removing the blueprint.
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Keep blueprints lean and focused">
+    Include only what builders actually need. A bloated blueprint means slower workspace creation, higher resource usage, and more maintenance. If different teams need different tools, create separate blueprints rather than one blueprint with everything.
+  </Accordion>
+
+  <Accordion title="Test blueprints before making them available">
+    Deploy and validate the blueprint environment in the Qovery Console before registering it in the portal. Create a test workspace yourself to confirm that all services start correctly and the developer experience is smooth.
+  </Accordion>
+
+  <Accordion title="Use descriptive names for builders">
+    Blueprint names appear in the workspace catalog. Use names that clearly communicate the purpose — "React Frontend Starter" is more helpful than "Template A". Builders should be able to pick the right blueprint without asking for help.
+  </Accordion>
+
+  <Accordion title="Version your blueprint container images">
+    Use tagged container images (e.g., `workspace:v2.1`) rather than `:latest` for production blueprints. This gives you control over when updates roll out and makes it easy to roll back if an update causes issues.
+  </Accordion>
+
+  <Accordion title="Configure auto-stop TTL policies">
+    Include a TTL lifecycle job in your blueprint environment that automatically stops idle workspaces. This prevents forgotten workspaces from running indefinitely and accumulating cloud costs.
+  </Accordion>
+</AccordionGroup>
+
+## Next Steps
+
+<CardGroup cols={3}>
+  <Card title="Access Control" icon="shield-halved" href="/rde/admin/access-control">
+    Control who can create workspaces from each blueprint.
+  </Card>
+  <Card title="Workspace Management" icon="server" href="/rde/admin/workspace-management">
+    Monitor and manage all workspaces across your organization.
+  </Card>
+  <Card title="Portal Customization" icon="palette" href="/rde/admin/portal-customization">
+    Customize branding, layouts, and the welcome screen.
+  </Card>
+</CardGroup>

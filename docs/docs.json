@@ -467,6 +467,54 @@
         ]
       },
       {
+        "tab": "Remote Dev Environments",
+        "icon": "laptop-code",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "rde/overview"
+            ]
+          },
+          {
+            "group": "Getting Started",
+            "pages": [
+              "rde/getting-started/admin-setup",
+              "rde/getting-started/create-your-first-workspace"
+            ]
+          },
+          {
+            "group": "For Admins",
+            "pages": [
+              "rde/admin/blueprint-management",
+              "rde/admin/access-control",
+              "rde/admin/workspace-management",
+              "rde/admin/publish-approvals",
+              "rde/admin/member-management",
+              "rde/admin/portal-customization"
+            ]
+          },
+          {
+            "group": "For Users",
+            "pages": [
+              "rde/user/workspace-dashboard",
+              "rde/user/using-the-editor",
+              "rde/user/live-preview",
+              "rde/user/publishing",
+              "rde/user/git-history"
+            ]
+          },
+          {
+            "group": "Reference",
+            "pages": [
+              "rde/reference/security",
+              "rde/reference/architecture",
+              "rde/reference/troubleshooting"
+            ]
+          }
+        ]
+      },
+      {
         "tab": "Terraform Provider",
         "icon": "code",
         "groups": [

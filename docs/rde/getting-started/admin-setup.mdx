@@ -1,0 +1,194 @@
+---
+title: "Admin Setup"
+description: "Configure the RDE Portal, register blueprints, and set up access control for your team"
+---
+
+<Warning>
+**Preview**: Remote Dev Environments Portal is currently in preview. Setup steps may change as the product evolves.
+</Warning>
+
+## Overview
+
+As an admin, you configure the RDE Portal so your team can create their own workspaces. This guide walks through the complete setup — from portal configuration to inviting your first builder.
+
+## Prerequisites
+
+Before starting, make sure you have:
+
+<Check>Qovery account with **organization admin** access</Check>
+<Check>A running Kubernetes cluster on Qovery</Check>
+<Check>At least one project with an environment to use as a blueprint template</Check>
+<Check>The RDE Portal deployed on your Qovery infrastructure — see [Architecture](/rde/reference/architecture)</Check>
+
+## Step 1: Configure Your Organization
+
+Connect the portal to your Qovery organization and apply your branding.
+
+<Steps>
+  <Step title="Log in to the Portal">
+    Open your portal URL (e.g., `https://rde.yourcompany.com`) and log in with your Qovery credentials via SSO. You must have **organization admin** access to see the admin panel.
+  </Step>
+
+  <Step title="Open Admin Settings">
+    Navigate to **Admin > Settings** from the sidebar. This is where you configure the portal's connection to Qovery and customize its appearance.
+  </Step>
+
+  <Step title="Enter Your Qovery API Token">
+    Paste a Qovery API token with **organization admin** privileges. This token allows the portal to perform privileged operations — cloning environments, managing deployments, and reading project configurations — on behalf of your users.
+
+    <Warning>
+    The API token is encrypted at rest using AES-256-GCM. It is never exposed to end users. Use a dedicated API token with admin-level access specifically for the portal.
+    </Warning>
+  </Step>
+
+  <Step title="Customize Portal Branding">
+    Configure the following settings to match your organization:
+
+    - **Portal name** — displayed in the header and browser tab
+    - **Logo** — your company logo for the portal header
+    - **Primary brand color** — applied to buttons, links, and accent elements
+  </Step>
+
+  <Step title="Configure the Welcome Screen (Optional)">
+    Customize what builders see on their first login:
+
+    - **Welcome title** — the headline on the landing page
+    - **Welcome description** — a brief description of what the portal offers
+    - **CTA text** — the label on the primary call-to-action button
+  </Step>
+</Steps>
+
+## Step 2: Register a Blueprint
+
+Blueprints are Qovery environments that serve as templates. When a builder creates a workspace, the portal clones the blueprint environment into their own isolated copy.
+
+<Steps>
+  <Step title="Open the Blueprints Page">
+    Navigate to **Admin > Blueprints** from the sidebar.
+  </Step>
+
+  <Step title="Register a New Blueprint">
+    Click **Register Blueprint** to start the registration flow.
+  </Step>
+
+  <Step title="Select the Qovery Project">
+    Choose the Qovery project that contains your template environment. The portal discovers all available environments within the selected project.
+  </Step>
+
+  <Step title="Choose the Template Environment">
+    Select the environment you want to use as the blueprint. This environment will be cloned each time a builder creates a workspace from this blueprint.
+  </Step>
+
+  <Step title="Set Display Name and Description">
+    Give the blueprint a **display name** that builders will see in the catalog (e.g., "Full-Stack Starter" or "Backend API"). Add an optional **description** to help builders understand what the blueprint includes.
+  </Step>
+</Steps>
+
+<Tip>
+Start with a simple blueprint — a single workspace container with basic dev tools. You can always add databases, services, and advanced configuration later.
+</Tip>
+
+## Step 3: Configure Access Control
+
+Control who can use each blueprint with access control lists (ACLs).
+
+<Steps>
+  <Step title="Open the Blueprint Detail Page">
+    From **Admin > Blueprints**, click on the blueprint you just registered.
+  </Step>
+
+  <Step title="Go to Access Control">
+    Click the **Access Control** tab on the blueprint detail page.
+  </Step>
+
+  <Step title="Choose an Access Policy">
+    Select who can create workspaces from this blueprint:
+
+    - **Open access** — anyone in your organization can use this blueprint
+    - **Domain-restricted** — only users with specific email domains (e.g., `@yourcompany.com`)
+    - **Email-restricted** — only specific email addresses you define
+  </Step>
+
+  <Step title="Save ACL Rules">
+    Click **Save** to apply the access control rules. Changes take effect immediately.
+  </Step>
+</Steps>
+
+<Info>
+You can combine domain and email restrictions. For example, allow all `@yourcompany.com` users plus a few external contractors by email.
+</Info>
+
+## Step 4: Configure Blueprint Settings
+
+Optionally fine-tune each blueprint with AI provider configuration and workspace layout settings.
+
+### Claude Authentication
+
+Choose how Claude Code authenticates in workspaces created from this blueprint:
+
+- **User OAuth** — each builder authenticates with their own Anthropic account. Free tier available but usage is capped.
+- **API Key injection** — the portal injects an API key into the workspace. Seamless for builders, billed per usage to the key owner.
+
+### LLM Provider
+
+Configure the AI provider for the workspace chat panel:
+
+- **Anthropic** — Claude models
+- **OpenAI** — GPT models
+- **Custom provider** — any OpenAI-compatible API endpoint
+
+### Layout
+
+Control which tabs appear in the workspace editor:
+
+- **Chat** — OpenCode AI chat panel
+- **Claude Code** — AI-assisted terminal
+- **Terminal** — standard bash shell
+- **Custom commands** — admin-defined command tabs
+
+You can also **lock the layout** to prevent builders from rearranging tabs, and **toggle preview panel visibility** to show or hide the live app preview by default.
+
+## Step 5: Invite Members
+
+Add team members so they can log in and create workspaces.
+
+<Steps>
+  <Step title="Open the Members Page">
+    Navigate to **Admin > Members** from the sidebar.
+  </Step>
+
+  <Step title="Invite by Email">
+    Enter team member email addresses and send invitations. Members receive an email with a link to log in via SSO.
+  </Step>
+
+  <Step title="Assign Roles">
+    Assign Qovery roles as needed. Builders only need basic access — admin access is required only for portal configuration.
+  </Step>
+</Steps>
+
+## Verify Your Setup
+
+Before rolling out to your team, confirm everything works end-to-end.
+
+1. **Log out** of your admin account and log back in with a **non-admin test account** (or use a colleague's account).
+2. Verify the **blueprint catalog** is visible and shows the blueprints you registered.
+3. **Create a test workspace** from one of the blueprints. Confirm it deploys successfully and the editor loads.
+4. **Delete the test workspace** from the dashboard when you are done.
+
+<Tip>
+If you used email-restricted access, make sure the test account's email is in the allow list before testing.
+</Tip>
+
+## Next Steps
+
+<CardGroup cols={3}>
+  <Card title="Create Your First Workspace" icon="plus" href="/rde/getting-started/create-your-first-workspace">
+    Spin up your first development environment and start building.
+  </Card>
+  <Card title="Blueprint Management" icon="layer-group" href="/rde/admin/blueprint-management">
+    Advanced blueprint configuration, versioning, and lifecycle management.
+  </Card>
+  <Card title="Portal Customization" icon="palette" href="/rde/admin/portal-customization">
+    Theming, welcome screen, and branding options.
+  </Card>
+</CardGroup>

@@ -344,56 +344,29 @@ qovery rde delete-all --organization "my-org" --confirm
 
 ## Self-Service Portal
 
-<Info>
-The Self-Service Portal is an upcoming capability. Contact your Qovery account manager or reach out on Slack for early access.
-</Info>
+<Note>
+**The Self-Service Portal is now available in preview.** Full documentation is available in the dedicated [Remote Dev Environments Portal](/rde/overview) section.
+</Note>
 
-While the CLI gives platform engineers full control over RDE management, the **Self-Service Portal** is designed for organizations that want to give builders complete autonomy - without requiring them to use a CLI or understand infrastructure concepts.
+While the CLI gives platform engineers full control over RDE management, the **Self-Service Portal** is designed for organizations that want to give builders complete autonomy — without requiring them to use a CLI or understand infrastructure concepts.
 
-### What Is the Self-Service Portal?
+The portal is a web application deployed on **your own Qovery infrastructure** where non-technical builders can:
 
-The portal is a web application deployed on your own Qovery infrastructure where non-technical builders can:
+- **Log in via SSO** through your Qovery organization
+- **Browse available blueprints** configured by platform engineers
+- **Create a workspace with one click** — pick a blueprint, click "Launch", and start building
+- **Develop with built-in AI tools** — Claude Code, OpenCode chat, and a standard terminal
+- **Preview running applications** in the browser with viewport switching
+- **Publish to production** with admin approval workflows
 
-- **Log in via SSO** (Google, Okta, Azure AD, or any OIDC provider)
-- **Browse available templates** (blueprints configured by platform engineers)
-- **Create an environment with one click** - pick a template, click "Create", and wait for it to spin up
-- **See a dashboard** of their environments with real-time status, workspace URLs, and TTL countdown
-- **Manage lifecycle** - start, stop, extend TTL, or delete their environments directly from the UI
-
-No CLI. No Kubernetes knowledge. No Slack messages asking the platform team to spin up an environment.
-
-### How It Complements the CLI
-
-The portal does not replace the CLI - it builds on top of it:
-
-| Aspect | CLI | Portal |
-|--------|-----|--------|
-| **Audience** | Platform engineers | Builders (non-technical) |
-| **Blueprint setup** | CLI (`qovery rde blueprint register`) | N/A - platform engineers still use the CLI |
-| **RDE creation** | CLI (`qovery rde create`) | One-click in the browser |
-| **RDE lifecycle** | CLI (`qovery rde start/stop/delete`) | Dashboard buttons |
-| **Bulk operations** | CLI (`qovery rde start-all/upgrade`) | N/A - platform engineers still use the CLI |
-| **Authentication** | Qovery CLI auth | SSO (Google, Okta, Azure AD, OIDC) |
-
-Platform engineers continue to use the CLI to set up blueprints, configure RBAC, and manage the platform. The portal is the builder-facing layer that abstracts all of that complexity.
-
-### Key Capabilities
+Everything runs on your infrastructure. Source code, AI interactions, and terminal sessions are streamed directly from your Kubernetes cluster — nothing leaves your environment.
 
 <CardGroup cols={2}>
-  <Card title="SSO Authentication" icon="key">
-    Builders log in with their existing corporate identity. Supports Google Workspace, Okta, Azure AD, and generic OIDC providers.
+  <Card title="Portal Documentation" icon="book" href="/rde/overview">
+    Full guide covering admin setup, blueprint configuration, workspace usage, and more.
   </Card>
-
-  <Card title="Template-Based Creation" icon="layer-group">
-    Platform engineers define templates (blueprints) with specific tools and services. Builders pick the template that fits their use case.
-  </Card>
-
-  <Card title="Real-Time Dashboard" icon="chart-line">
-    Each builder sees their environments with live status, workspace URLs, and TTL remaining. No need to ask anyone for a URL or status update.
-  </Card>
-
-  <Card title="Per-Builder Limits" icon="gauge">
-    Platform engineers can set a maximum number of environments per builder to control costs and resource usage.
+  <Card title="Security & Data Residency" icon="shield-check" href="/rde/reference/security">
+    How the portal keeps your data on your infrastructure with full admin control.
   </Card>
 </CardGroup>
 

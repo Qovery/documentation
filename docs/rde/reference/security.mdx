@@ -9,9 +9,11 @@ description: "How the RDE Portal keeps your data on your infrastructure with ful
 
 ## Overview
 
-Security is a foundational principle of the RDE Portal. The portal uses a **split architecture**: the control plane (portal UI and API) is hosted by Qovery at `rde.qovery.com`, while the **data plane** (workspace containers where your code, AI interactions, and applications run) stays **entirely on your own Kubernetes cluster**. Your source code and development data never leave your infrastructure.
+Security is a foundational principle of the RDE Portal. The portal uses a **split architecture**: the control plane (portal UI and API) is hosted by Qovery at `rde.qovery.com`, while the **data plane** (workspace containers where your code, AI interactions, and applications run) stays **entirely on your own Kubernetes cluster**.
 
-This page explains the security architecture in detail: how the split model works, how data streams from your infrastructure, and what controls admins have.
+**Your cluster is never exposed to the internet.** Qovery agents running on your cluster initiate all connections **outbound** to the Qovery control plane via TLS/gRPC. The control plane never connects inbound to your infrastructure. Source code, AI conversations, and development data never leave your cluster.
+
+This page explains the security architecture in detail: the connectivity model, how data streams from your infrastructure, and what controls admins have.
 
 ## Split Architecture: Control Plane vs. Data Plane
 
@@ -20,89 +22,141 @@ The RDE Portal separates **orchestration** from **execution**. Qovery hosts the 
 ```mermaid
 flowchart TB
     subgraph Qovery["Qovery-Hosted (rde.qovery.com)"]
-        Portal["RDE Portal (Frontend + BFF)"]
-        DB["PostgreSQL (Config Only)"]
+        Portal["RDE Portal"]
+        DB["Database (Config Only)"]
     end
 
     subgraph YourInfra["Your Infrastructure (Kubernetes Cluster)"]
-        WS1["Workspace Container (Alice)"]
-        WS2["Workspace Container (Bob)"]
-        WS3["Workspace Container (Carol)"]
+        Agents["Qovery Agents"]
+        WS1["Workspace (Alice)"]
+        WS2["Workspace (Bob)"]
+        WS3["Workspace (Carol)"]
     end
 
     Browser["User's Browser"] -->|"Encrypted HTTPS"| Portal
-    Portal -->|"Shell exec stream"| WS1
-    Portal -->|"Shell exec stream"| WS2
-    Portal -->|"Port-forward stream"| WS3
+    Portal -->|"HTTPS"| CP["Qovery Control Plane"]
+    Agents -->|"Outbound TLS/gRPC"| CP
+    Agents -->|"Local"| WS1
+    Agents -->|"Local"| WS2
+    Agents -->|"Local"| WS3
 
     style Qovery fill:#f5f3ff,color:#1a1a2e
     style YourInfra fill:#e6fffa,color:#1a1a2e
     style Portal fill:#642DFF,color:#fff
     style DB fill:#642DFF,color:#fff
+    style CP fill:#1a1a2e,color:#fff
+    style Agents fill:#0d9488,color:#fff
     style WS1 fill:#0d9488,color:#fff
     style WS2 fill:#0d9488,color:#fff
     style WS3 fill:#0d9488,color:#fff
     style Browser fill:#1a1a2e,color:#fff
 ```
 
+**Key:** All arrows from your cluster point **outbound**. Your infrastructure has no inbound ports open. The Qovery agents on your cluster are the only components that communicate externally, and they only make outbound TLS/gRPC connections.
+
 | Component | Where it runs | What it stores |
 |-----------|---------------|----------------|
-| **Portal (Frontend + BFF)** | Qovery (rde.qovery.com) | Portal config (ACLs, theme, publish settings). Relays WebSocket traffic in memory — no code persisted. |
-| **PostgreSQL** | Qovery (rde.qovery.com) | Configuration metadata only. No source code, no user data, no AI conversations. |
+| **RDE Portal** | Qovery (rde.qovery.com) | Portal configuration (ACLs, theme, publish settings). Relays streaming traffic in memory — no code persisted. |
+| **Portal Database** | Qovery (rde.qovery.com) | Configuration metadata only. No source code, no user data, no AI conversations. |
+| **Qovery Agents** | Your cluster | No persistent storage — agents relay traffic between the control plane and workspace containers. |
 | **Workspace containers** | Your cluster | Source code, dependencies, environment variables — isolated per user |
-| **Terminal sessions** | Your cluster | Streamed in real time from your containers, relayed through the portal, not stored |
+| **Terminal sessions** | Your cluster | Happen inside your containers, streamed to the browser through the cluster-initiated tunnel |
 | **AI chat & Claude Code** | Your cluster (via workspace container) | AI interactions happen inside the container on your cluster |
-| **Live previews** | Your cluster | HTTP traffic proxied from your container through the portal, never cached |
+| **Live previews** | Your cluster | HTTP traffic from your container, relayed through the tunnel, never cached |
 
 <Note>
 **No source code, AI conversations, terminal history, or application data is stored outside your Kubernetes cluster.** The portal's database only stores configuration metadata (ACL rules, theme colors, publish workflow state). Your actual development work lives exclusively in the workspace containers on your infrastructure.
 </Note>
 
-## How Streaming Works
+## Cluster Connectivity Model
 
-The portal does not copy data out of your infrastructure. Instead, it **streams** everything in real time from the workspace containers on your cluster to the user's browser through the Qovery-hosted BFF. The BFF acts as a relay — data passes through in memory and is never persisted.
+This is the most important security property of the RDE Portal.
 
-### Terminal Streaming
+Your Kubernetes cluster runs **Qovery agents** (Engine, Shell agent, and other components) that maintain persistent **outbound TLS/gRPC connections** to the Qovery control plane. Your cluster never exposes inbound ports to the internet — it is never directly addressable from outside your network.
 
-When a user opens a terminal tab, the portal establishes a WebSocket chain:
+All portal operations flow through this cluster-initiated tunnel:
 
 ```mermaid
 sequenceDiagram
     participant Browser
-    participant BFF as BFF (rde.qovery.com)
-    participant QWS as Qovery WebSocket
-    participant Container as Workspace Container (Your Cluster)
+    participant Portal as Portal (rde.qovery.com)
+    participant CP as Qovery Control Plane
+    participant Agent as Qovery Agent (Your Cluster)
+    participant Container as Workspace Container
 
-    Browser->>BFF: Request shell ticket
-    BFF-->>Browser: One-time ticket (30s TTL)
-    Browser->>BFF: WebSocket + ticket
-    BFF->>QWS: Authenticated WebSocket
-    QWS->>Container: Shell exec session
+    Note over Agent,CP: Agent initiates persistent outbound TLS/gRPC connection
+    Agent->>CP: Outbound TLS/gRPC (persistent)
+
+    Browser->>Portal: User request (HTTPS)
+    Portal->>CP: Forward request
+    CP->>Agent: Relay through existing tunnel
+    Agent->>Container: Execute locally
+    Container-->>Agent: Response
+    Agent-->>CP: Return through tunnel
+    CP-->>Portal: Relay response
+    Portal-->>Browser: Render result
+```
+
+1. **Qovery agents on your cluster** establish and maintain outbound TLS/gRPC connections to the Qovery control plane. This is the only external communication from your cluster.
+2. **The portal** sends requests to the Qovery control plane.
+3. **The control plane** relays the request through the already-established tunnel to the agent on your cluster.
+4. **The agent** executes the operation locally — shell session, port forward, deployment — and returns the result through the same tunnel.
+
+<Note>
+**No inbound ports. No public endpoints. No direct access to your cluster.** The control plane can only communicate with your cluster through the tunnel that your agents initiated. If the agents stop, the tunnel closes — the control plane has no way to reach your infrastructure.
+</Note>
+
+## How Streaming Works
+
+The portal does not copy data out of your infrastructure. Instead, it **streams** everything in real time from the workspace containers on your cluster through the cluster-initiated tunnel to the user's browser. The portal relays data in memory and never persists it.
+
+### Terminal Streaming
+
+When a user opens a terminal tab:
+
+```mermaid
+sequenceDiagram
+    participant Browser
+    participant Portal as Portal (rde.qovery.com)
+    participant CP as Qovery Control Plane
+    participant Agent as Shell Agent (Your Cluster)
+    participant Container as Workspace Container
+
+    Browser->>Portal: Request shell ticket
+    Portal-->>Browser: One-time ticket (30s TTL)
+    Browser->>Portal: Secure connection + ticket
+    Portal->>CP: Open shell session
+    CP->>Agent: Relay through tunnel
+    Agent->>Container: Shell exec (local)
 
     loop Every keystroke
-        Browser->>BFF: Input bytes
-        BFF->>QWS: Relay
-        QWS->>Container: Execute
-        Container-->>QWS: Output bytes
-        QWS-->>BFF: Relay
-        BFF-->>Browser: Render in terminal
+        Browser->>Portal: Input bytes
+        Portal->>CP: Relay
+        CP->>Agent: Relay through tunnel
+        Agent->>Container: Execute
+        Container-->>Agent: Output bytes
+        Agent-->>CP: Return through tunnel
+        CP-->>Portal: Relay
+        Portal-->>Browser: Render in terminal
     end
 ```
 
-Every keystroke and terminal output byte is **streamed** through the chain in real time. The BFF relays data without storing it. When the session ends, there is no recording or history kept by the portal — only the workspace container retains its filesystem state.
+Every keystroke and terminal output byte is **streamed** through the chain in real time. The portal relays data without storing it. When the session ends, there is no recording or history kept by the portal — only the workspace container retains its filesystem state.
 
-**Shell ticket security:** Terminal connections use one-time authentication tickets with a 30-second TTL. This prevents bearer tokens from appearing in WebSocket URLs, which could be captured by proxies, load balancers, or browser history.
+**Shell ticket security:** Terminal connections use one-time authentication tickets with a 30-second TTL. This prevents bearer tokens from appearing in connection URLs, which could be captured by proxies, load balancers, or browser history.
 
 ### Preview Streaming
 
-The live preview works the same way — HTTP requests are tunneled from the browser through the BFF to the workspace container via Qovery's port-forward WebSocket:
+The live preview works the same way — HTTP requests are tunneled through the cluster-initiated tunnel to your workspace container:
 
-1. The browser requests a page from the BFF's preview endpoint
-2. The BFF opens a TCP tunnel to the container's application port via Qovery's port-forward service
-3. The HTTP response is relayed back to the browser and rendered in the iframe
-4. No caching, no storage — the response is streamed directly
+1. The browser requests a page from the portal's preview endpoint
+2. The portal forwards the request to the Qovery control plane
+3. The control plane relays the request through the **cluster-initiated tunnel** to the Qovery agent on your cluster
+4. The agent forwards the request to the container's application port **locally**
+5. The response flows back through the same tunnel to the browser
+6. No caching, no storage — the response is streamed directly
 
-**No public URLs needed.** Workspace applications are never exposed to the internet. The BFF acts as the only entry point, authenticated and authorized on every request.
+**No public URLs needed.** Workspace applications are never exposed to the internet. Your cluster has no inbound ports open — all traffic flows through the outbound tunnel initiated by the agents.
 
 ### AI Tool Streaming
 
@@ -110,7 +164,7 @@ Claude Code and the OpenCode chat panel run **inside the workspace container**, 
 
 1. The AI process runs inside the workspace container on your cluster
 2. The AI process communicates with the LLM provider (Anthropic, OpenAI, or your custom provider) directly from the container
-3. The portal streams the terminal/chat UI to the browser — it does not intercept or store AI conversations
+3. The portal streams the terminal/chat UI to the browser through the tunnel — it does not intercept or store AI conversations
 
 <Info>
 If your organization requires that AI traffic also stays within your network, you can configure a custom LLM provider endpoint (e.g., an internally hosted model or a private API gateway) in the blueprint settings.
@@ -123,9 +177,10 @@ Platform engineers have full control over every aspect of the portal:
 ### Infrastructure Control
 
 - **Your workspaces, your cluster** — Workspace containers run on your Qovery-managed Kubernetes cluster. You control the infrastructure, networking, and resource limits for all workspaces.
+- **No inbound ports** — Your cluster never exposes ports to the internet. Qovery agents initiate all connections outbound via TLS/gRPC.
 - **You control the network** — Workspace containers run in your cluster's network. Apply your existing network policies, security groups, and firewall rules.
 - **You control the images** — Blueprint container images are pulled from your container registry. You decide what software is available in workspaces.
-- **Portal managed by Qovery** — The portal control plane (UI, API, config database) is hosted and operated by Qovery at `rde.qovery.com`. This means zero deployment overhead for you — Qovery handles updates, availability, and scaling of the portal itself.
+- **Portal managed by Qovery** — The portal control plane is hosted and operated by Qovery at `rde.qovery.com`. Zero deployment overhead for you — Qovery handles updates, availability, and scaling.
 
 ### Access Control
 
@@ -133,14 +188,14 @@ Platform engineers have full control over every aspect of the portal:
 - **Workspace limits** — Set the maximum number of running workspaces per user to control resource consumption and costs.
 - **Publish approvals** — Require admin review before any workspace can be published to production. Trusted users can bypass this, but trust is granted per-user and revocable.
 - **Member management** — Control who has access to the portal and assign roles (admin or user).
-- **SSO authentication** — Users authenticate via Qovery SSO (Auth0). No separate user database, no additional passwords.
+- **SSO authentication** — Users authenticate via Qovery SSO. No separate user database, no additional passwords.
 
 ### Workspace Isolation
 
 Each workspace is a **separate Qovery environment** running as isolated containers on your Kubernetes cluster:
 
 - Workspaces are created by cloning a blueprint into a **new Qovery project**. Each user's workspace is a distinct project with its own RBAC scope.
-- Users cannot access other users' workspaces through the portal. The BFF enforces ownership checks on every API call.
+- Users cannot access other users' workspaces through the portal. Ownership checks are enforced on every API call.
 - Qovery's RBAC system provides an additional layer of isolation — workspace-scoped roles ensure users can only interact with their own resources.
 - Workspace containers run with the resource limits defined in the blueprint. Admins control CPU, memory, and storage allocations.
 
@@ -156,11 +211,11 @@ The portal handles several types of credentials, each with specific security mea
 
 | Credential | Protection |
 |-----------|------------|
-| **User JWT (Auth0)** | Short-lived access token, verified via JWKS on every request. Stored in browser memory only (not localStorage). |
-| **Admin API Token** | Automatically provisioned when an admin clicks **Configure Portal**. Encrypted with **AES-256-GCM** using a 256-bit key. Stored encrypted in PostgreSQL. Only the BFF can decrypt it at runtime. Never exposed to the frontend. |
-| **Shell Tickets** | One-time use, 30-second TTL. Invalidated after first use. Prevents token leakage in WebSocket URLs. |
-| **Preview Tickets** | One-time use, short TTL. Authenticates preview iframe requests without exposing the user's JWT. |
-| **LLM API Keys** | Stored encrypted in PostgreSQL (AES-256-GCM). Injected into workspace containers as environment variables at runtime. Never visible in the portal UI after initial configuration. |
+| **User JWT** | Short-lived access token, verified on every request. Stored in browser memory only (not localStorage). |
+| **Admin API Token** | Automatically provisioned when an admin clicks **Configure Portal**. Encrypted with **AES-256-GCM** using a 256-bit key. Stored encrypted in the portal database. Never exposed to the frontend. |
+| **Shell Tickets** | One-time use, 30-second TTL. Invalidated after first use. Prevents token leakage in connection URLs. |
+| **Preview Tickets** | One-time use, short TTL. Authenticates preview requests without exposing the user's JWT. |
+| **LLM API Keys** | Stored encrypted with **AES-256-GCM** in the portal database. Injected into workspace containers as environment variables at runtime. Never visible in the portal UI after initial configuration. |
 
 <Info>
 The admin API token is created automatically when an organization admin first configures the portal — no manual token generation or pasting required. The token is encrypted immediately and never displayed in the UI.
@@ -168,32 +223,34 @@ The admin API token is created automatically when an organization admin first co
 
 ## Network Security
 
-### External Communication
+### Cluster Communication
 
-The only external communication from the portal is:
+Your cluster's Qovery agents maintain persistent **outbound TLS/gRPC connections** to the Qovery control plane. This is the only external communication from your cluster:
 
-| Destination | Purpose | Protocol |
-|------------|---------|----------|
-| `auth.qovery.com` | JWT verification (JWKS) | HTTPS |
-| `api.qovery.com` | Resource management | HTTPS |
-| `ws.qovery.com` | Shell exec and port forwarding | WSS (WebSocket Secure) |
+| Direction | From | To | Protocol |
+|-----------|------|------|----------|
+| **Outbound** | Qovery Agents (your cluster) | Qovery Control Plane | TLS/gRPC |
+| **None** | Internet | Your cluster | No inbound ports |
 
-All communication uses TLS encryption. No other external endpoints are contacted by the portal.
+The control plane relays portal requests through these agent-initiated tunnels. Your cluster is never directly addressable from the internet.
 
-### Internal Communication
+### Portal Communication
 
-- Browser to Portal (rde.qovery.com): HTTPS with TLS
-- Portal BFF to PostgreSQL: Encrypted connection within Qovery's infrastructure
-- Portal BFF to workspace containers: Via Qovery's WebSocket service (no direct container access from the portal)
+All communication between portal components and Qovery services uses TLS encryption:
+
+| From | To | Protocol |
+|------|------|----------|
+| User's browser | Portal (rde.qovery.com) | HTTPS |
+| Portal | Qovery Control Plane | HTTPS / WSS |
+| Portal | Auth provider | HTTPS |
 
 ### Rate Limiting
 
-The BFF enforces rate limits to prevent abuse:
+The portal enforces rate limits to prevent abuse:
 
 - **Workspace launch**: Configurable limit per minute (default: 5 per minute)
 - **Global API requests**: Configurable limit per minute (default: 200 per minute)
-- Standard HTTP security headers via Helmet middleware
-- CORS configured to allow only your portal's origin
+- Standard HTTP security headers on all responses
 
 ## Comparison with Hosted Alternatives
 
@@ -201,6 +258,7 @@ The BFF enforces rate limits to prevent abuse:
 |--------|-----------|------------------------|
 | **Where code lives** | Your Kubernetes cluster | Vendor's infrastructure |
 | **Where AI runs** | Your containers | Vendor's servers |
+| **Cluster exposure** | No inbound ports — agents connect outbound | Varies |
 | **Data residency** | Your cloud account, your region | Vendor's cloud, vendor's region |
 | **Network control** | Your VPC, your security groups | Shared infrastructure |
 | **Admin control** | Full — blueprints, ACLs, limits, approvals | Limited to vendor's settings |
@@ -219,9 +277,9 @@ The RDE Portal security model can be summarized in three principles:
 
 1. **Your code and data stay on your infrastructure.** Workspace containers run on your Kubernetes cluster. Source code, AI conversations, terminal history, and application data never leave your environment. The portal control plane (hosted by Qovery) manages orchestration and configuration only.
 
-2. **Everything is streamed, nothing is stored.** Terminal sessions, AI interactions, and application previews are streamed in real time from your containers through the portal to the user's browser. The portal relays data without persisting it.
+2. **Your cluster is never exposed.** Qovery agents on your cluster initiate all connections outbound via TLS/gRPC. No inbound ports, no public endpoints, no direct access to your infrastructure from the internet.
 
-3. **Admins control everything.** From blueprint templates to access control rules to publish approvals — platform engineers have full visibility and control over what happens in the portal.
+3. **Everything is streamed, nothing is stored.** Terminal sessions, AI interactions, and application previews are streamed in real time from your containers through the cluster-initiated tunnel to the user's browser. The portal relays data without persisting it.
 
 ## Next Steps
 

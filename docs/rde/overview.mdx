@@ -57,23 +57,23 @@ The portal includes a **built-in terminal with Claude Code and OpenCode chat** f
 
 ## Secure by Design
 
-The RDE Portal uses a **split architecture** — the portal itself (UI and API) is hosted by Qovery at `rde.qovery.com`, while your **workspace containers run entirely on your own Kubernetes cluster**. Source code, terminal sessions, AI interactions, and application previews all stay on your infrastructure.
+The RDE Portal uses a **split architecture** — the portal itself (UI and API) is hosted by Qovery at `rde.qovery.com`, while your **workspace containers run entirely on your own Kubernetes cluster**. Your cluster is never exposed to the internet — Qovery agents on your cluster initiate all connections outbound via TLS/gRPC.
 
 <CardGroup cols={2}>
   <Card title="Your Code Stays on Your Infrastructure" icon="server">
     Workspace containers run on your Qovery-managed Kubernetes cluster. Source code, AI conversations, and application data never leave your infrastructure. The portal orchestrates workspaces but never stores your code.
   </Card>
-  <Card title="Streamed, Not Stored" icon="signal-stream">
-    Terminal sessions and application previews are **streamed in real time** from your containers through the portal to the browser. The portal relays data without persisting it. When a session ends, nothing is recorded.
+  <Card title="No Inbound Ports" icon="shield-halved">
+    Your cluster is never exposed to the internet. Qovery agents on your cluster initiate **outbound** TLS/gRPC connections to the control plane. All traffic — terminal sessions, previews, deployments — flows through this cluster-initiated tunnel.
   </Card>
 </CardGroup>
 
 <CardGroup cols={2}>
-  <Card title="Full Admin Control" icon="lock">
-    Platform engineers control everything: blueprint definitions, access control rules, workspace limits, publish approvals, and AI provider configuration. Users can only access what admins explicitly allow.
+  <Card title="Streamed, Not Stored" icon="signal-stream">
+    Terminal sessions and application previews are **streamed in real time** from your containers through the cluster-initiated tunnel to the browser. The portal relays data without persisting it. When a session ends, nothing is recorded.
   </Card>
-  <Card title="Compliance Inherited" icon="shield-check">
-    Workspace containers inherit your cluster's compliance posture. If your cluster is SOC 2, HIPAA, GDPR, or DORA compliant, your workspaces are too — no additional certification needed.
+  <Card title="Full Admin Control" icon="lock">
+    Platform engineers control everything: blueprint definitions, access control rules, workspace limits, publish approvals, and AI provider configuration. Workspace containers inherit your cluster's compliance posture (SOC 2, HIPAA, GDPR, DORA).
   </Card>
 </CardGroup>
 

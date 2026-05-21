@@ -80,6 +80,105 @@ Removing a blueprint does **not** delete existing workspaces created from it. Th
 
 If you want to permanently clean up, delete the associated workspaces from the [workspace management](/rde/admin/workspace-management) page before or after removing the blueprint.
 
+## Managing Blueprints with Terraform
+
+Since blueprints are standard Qovery projects and environments, you can define and manage them entirely with the [Qovery Terraform Provider](/terraform-provider/overview). This lets you version-control your blueprint infrastructure, automate provisioning, and ensure consistency across environments.
+
+### Example: Blueprint with the Official Workspace Template
+
+```hcl
+terraform {
+  required_providers {
+    qovery = {
+      source  = "qovery/qovery"
+    }
+  }
+}
+
+provider "qovery" {
+  token = var.qovery_api_token
+}
+
+data "qovery_organization" "my_org" {
+  name = "My Organization"
+}
+
+data "qovery_cluster" "my_cluster" {
+  organization_id = data.qovery_organization.my_org.id
+  name            = "production"
+}
+
+# Create a project for the blueprint
+resource "qovery_project" "blueprint" {
+  organization_id = data.qovery_organization.my_org.id
+  name            = "rde-blueprint-fullstack"
+}
+
+# Create the blueprint environment
+resource "qovery_environment" "blueprint" {
+  project_id = qovery_project.blueprint.id
+  cluster_id = data.qovery_cluster.my_cluster.id
+  name       = "blueprint"
+  mode       = "DEVELOPMENT"
+}
+
+# Add the workspace container using the official template
+resource "qovery_container" "workspace" {
+  environment_id = qovery_environment.blueprint.id
+  name           = "workspace"
+  image_name     = "ghcr.io/evoxmusic/remote-dev-env-template"
+  tag            = "latest"
+  cpu            = 2000
+  memory         = 4096
+  auto_deploy    = false
+
+  ports = [
+    {
+      internal_port       = 8080
+      external_port       = 443
+      protocol            = "HTTP"
+      publicly_accessible = true
+      name                = "code-server"
+    },
+    {
+      internal_port       = 9100
+      external_port       = 443
+      protocol            = "HTTP"
+      publicly_accessible = true
+      name                = "opencode"
+    }
+  ]
+
+  environment_variables = [
+    {
+      key   = "GIT_REPO_URL"
+      value = "https://github.com/your-org/your-starter-template"
+    },
+    {
+      key   = "GIT_BRANCH"
+      value = "main"
+    },
+    {
+      key   = "DEV_PORT"
+      value = "3100"
+    }
+  ]
+}
+```
+
+<Tip>
+Using Terraform is especially useful when managing multiple blueprints, enforcing consistent configuration across environments, or automating blueprint updates as part of a CI/CD pipeline.
+</Tip>
+
+<CardGroup cols={2}>
+  <Card title="Terraform Provider Overview" icon="code" href="/terraform-provider/overview">
+    Get started with the Qovery Terraform Provider.
+  </Card>
+  <Card title="Provider Registry" icon="book" href="https://registry.terraform.io/providers/Qovery/qovery/latest/docs">
+    Complete resource reference on the Terraform Registry.
+  </Card>
+</CardGroup>
+
 ## Official Workspace Template
 
 Qovery provides an official workspace template image you can use as the base container for your blueprints. It is designed for both technical and non-technical builders and comes pre-configured with everything needed for a productive development environment.

@@ -1,6 +1,6 @@
 ---
 title: "Remote Dev Environments Portal"
-description: "A self-service web portal that gives every team member their own isolated cloud development environment — no CLI or Kubernetes knowledge required."
+description: "A self-service web portal that gives every team member their own isolated cloud development environment - no CLI or Kubernetes knowledge required."
 ---
 
 <Warning>
@@ -17,18 +17,18 @@ Looking for the CLI-based approach? See [Remote Development Environments with th
 
 ## Overview
 
-The Remote Dev Environments (RDE) Portal is a **self-service web application** accessible at [rde.qovery.com](https://rde.qovery.com). It lets platform engineers define blueprint environments and gives builders — engineers and non-technical team members alike — the ability to create their own isolated cloud workspaces with one click. Just log in with your Qovery account to get started.
+The Remote Dev Environments (RDE) Portal is a **self-service web application** accessible at [rde.qovery.com](https://rde.qovery.com). It lets platform engineers define blueprint environments and gives builders - engineers and non-technical team members alike - the ability to create their own isolated cloud workspaces with one click. Just log in with your Qovery account to get started.
 
-The portal includes a **built-in terminal with Claude Code and OpenCode chat** for AI-assisted development, **live app preview** with viewport switching, **publish workflows** for deploying to production, and **git snapshots** for versioning your work. Authentication is handled through your existing Qovery account — no additional signup required.
+The portal includes a **built-in terminal with Claude Code and OpenCode chat** for AI-assisted development, **live app preview** with viewport switching, **publish workflows** for deploying to production, and **git snapshots** for versioning your work. Authentication is handled through your existing Qovery account - no additional signup required.
 
 ## Two Approaches to RDE
 
 <CardGroup cols={2}>
   <Card title="CLI-Based Management" icon="terminal" href="/getting-started/guides/use-cases/remote-development-environments">
-    **Available Now** — Platform engineers use `qovery rde` CLI commands for full control over environment provisioning, lifecycle management, and user access. Best for teams that want programmatic or automated RDE workflows.
+    **Available Now** - Platform engineers use `qovery rde` CLI commands for full control over environment provisioning, lifecycle management, and user access. Best for teams that want programmatic or automated RDE workflows.
   </Card>
   <Card title="Self-Service Portal" icon="browser" href="https://rde.qovery.com">
-    **Preview** — A web-based UI at [rde.qovery.com](https://rde.qovery.com) where builders create environments themselves. No CLI, no Kubernetes knowledge needed. Requires a **Business** or **Enterprise** plan. This is what this documentation section covers.
+    **Preview** - A web-based UI at [rde.qovery.com](https://rde.qovery.com) where builders create environments themselves. No CLI, no Kubernetes knowledge needed. Requires a **Business** or **Enterprise** plan. This is what this documentation section covers.
   </Card>
 </CardGroup>
 
@@ -48,7 +48,7 @@ The portal includes a **built-in terminal with Claude Code and OpenCode chat** f
     Submit deployment requests with subdomain selection. Admins review and approve before the app goes live.
   </Card>
   <Card title="Blueprint Access Control" icon="shield-halved">
-    Restrict which blueprints are available to which users — by email address, email domain, or open to everyone.
+    Restrict which blueprints are available to which users - by email address, email domain, or open to everyone.
   </Card>
   <Card title="Portal Customization" icon="palette">
     Custom branding with your logo, colors, and portal name. Configure the welcome screen and per-blueprint layout settings.
@@ -57,14 +57,14 @@ The portal includes a **built-in terminal with Claude Code and OpenCode chat** f
 
 ## Secure by Design
 
-The RDE Portal uses a **split architecture** — the portal itself (UI and API) is hosted by Qovery at `rde.qovery.com`, while your **workspace containers run entirely on your own Kubernetes cluster**. Your cluster is never exposed to the internet — Qovery agents on your cluster initiate all connections outbound via TLS/gRPC.
+The RDE Portal uses a **split architecture** - the portal itself (UI and API) is hosted by Qovery at `rde.qovery.com`, while your **workspace containers run entirely on your own Kubernetes cluster**. Your cluster is never exposed to the internet - Qovery agents on your cluster initiate all connections outbound via TLS/gRPC.
 
 <CardGroup cols={2}>
   <Card title="Your Code Stays on Your Infrastructure" icon="server">
     Workspace containers run on your Qovery-managed Kubernetes cluster. Source code, AI conversations, and application data never leave your infrastructure. The portal orchestrates workspaces but never stores your code.
   </Card>
   <Card title="No Inbound Ports" icon="shield-halved">
-    Your cluster is never exposed to the internet. Qovery agents on your cluster initiate **outbound** TLS/gRPC connections to the control plane. All traffic — terminal sessions, previews, deployments — flows through this cluster-initiated tunnel.
+    Your cluster is never exposed to the internet. Qovery agents on your cluster initiate **outbound** TLS/gRPC connections to the control plane. All traffic - terminal sessions, previews, deployments - flows through this cluster-initiated tunnel.
   </Card>
 </CardGroup>
 
@@ -130,7 +130,7 @@ flowchart LR
 
 Before using the RDE Portal, make sure you have:
 
-- An **active Qovery account** on a **Business** or **Enterprise** plan with the **RDE Portal add-on** enabled — see [Pricing](https://www.qovery.com/pricing)
+- An **active Qovery account** on a **Business** or **Enterprise** plan with the **RDE Portal add-on** enabled - see [Pricing](https://www.qovery.com/pricing)
 - A **running Kubernetes cluster** on Qovery
 - At least one **Qovery project and environment** to use as a blueprint template
 - **Organization admin access** for initial portal configuration

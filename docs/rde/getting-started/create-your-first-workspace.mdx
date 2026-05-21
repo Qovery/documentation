@@ -9,18 +9,18 @@ description: "Spin up your first remote development environment and start buildi
 
 ## Overview
 
-This guide walks you through creating your first workspace in the RDE Portal. You will pick a blueprint, name your workspace, and start developing — all from your browser.
+This guide walks you through creating your first workspace in the RDE Portal. You will pick a blueprint, name your workspace, and start developing - all from your browser.
 
 ## Prerequisites
 
 <Check>A Qovery account in an organization with the **RDE Portal add-on** enabled (Business or Enterprise plan)</Check>
-<Check>At least one blueprint available in the catalog (configured by your admin — see [Admin Setup](/rde/getting-started/admin-setup))</Check>
+<Check>At least one blueprint available in the catalog (configured by your admin - see [Admin Setup](/rde/getting-started/admin-setup))</Check>
 
 ## Create a Workspace
 
 <Steps>
   <Step title="Log in to the Portal">
-    Go to [rde.qovery.com](https://rde.qovery.com) and log in with your Qovery credentials. Authentication uses the same login as the Qovery Console — no additional signup required.
+    Go to [rde.qovery.com](https://rde.qovery.com) and log in with your Qovery credentials. Authentication uses the same login as the Qovery Console - no additional signup required.
   </Step>
 
   <Step title="Browse the Blueprint Catalog">
@@ -30,7 +30,7 @@ This guide walks you through creating your first workspace in the RDE Portal. Yo
   </Step>
 
   <Step title="Launch a Workspace">
-    Click **Launch** on the blueprint you want to use. Give your workspace a name — you can rename it later by clicking the name in the top bar.
+    Click **Launch** on the blueprint you want to use. Give your workspace a name - you can rename it later by clicking the name in the top bar.
 
     The portal clones the blueprint environment and starts deploying your isolated workspace.
   </Step>
@@ -50,18 +50,18 @@ Each workspace is a fully isolated clone of the blueprint environment. Your chan
 
 Once your workspace is ready, the editor opens in a split-pane layout: **tools on the left, live preview on the right**.
 
-### Left Panel — Terminals and Chat
+### Left Panel - Terminals and Chat
 
 The left panel contains preconfigured tabs along the top. Depending on your admin's configuration, you may see:
 
-- **Chat** — AI chat powered by OpenCode for asking questions, generating code snippets, and getting contextual help.
-- **Claude Code** — AI-assisted terminal that can generate and edit code, run commands, and navigate your project.
-- **Terminal** — Standard bash shell running in your workspace container. Full access to your project files and installed tools.
-- **Custom command tabs** — Admin-defined tabs that run specific commands (e.g., linting, test suites, build scripts).
+- **Chat** - AI chat powered by OpenCode for asking questions, generating code snippets, and getting contextual help.
+- **Claude Code** - AI-assisted terminal that can generate and edit code, run commands, and navigate your project.
+- **Terminal** - Standard bash shell running in your workspace container. Full access to your project files and installed tools.
+- **Custom command tabs** - Admin-defined tabs that run specific commands (e.g., linting, test suites, build scripts).
 
 Click any tab to switch between tools. You can have multiple terminals open simultaneously.
 
-### Right Panel — Live Preview
+### Right Panel - Live Preview
 
 The right panel renders your running application directly in the browser. Use the **viewport switcher** (desktop, tablet, and mobile icons) in the preview toolbar to test responsive layouts.
 
@@ -71,11 +71,11 @@ Toggle **auto-refresh** to automatically reload the preview when your applicatio
 
 The top bar displays:
 
-- **Workspace name** — click to rename your workspace
-- **Deployment status** — current state of your environment
-- **History** — browse and restore git snapshots
-- **Preview** — open the live preview in a new tab
-- **Publish** — submit your application for production deployment
+- **Workspace name** - click to rename your workspace
+- **Deployment status** - current state of your environment
+- **History** - browse and restore git snapshots
+- **Preview** - open the live preview in a new tab
+- **Publish** - submit your application for production deployment
 
 ## Your First Commands
 
@@ -96,7 +96,7 @@ npm run dev       # Node.js example
 Your workspace comes preconfigured with the tools and dependencies defined in the blueprint. The dev server command depends on the technology stack your admin has set up.
 
 <Tip>
-Use the **Claude Code** tab to ask questions like "What's the project structure?" or "How do I start the dev server?" — it has full context of your workspace.
+Use the **Claude Code** tab to ask questions like "What's the project structure?" or "How do I start the dev server?" - it has full context of your workspace.
 </Tip>
 
 ## Save Your Work
@@ -129,7 +129,7 @@ Publishing is covered in detail in the [Publishing Your App](/rde/user/publishin
 
     - Go back to the workspace dashboard and try **restarting** the workspace.
     - Check if the blueprint's source environment is healthy in the Qovery Console.
-    - Contact your admin if the issue persists — there may be a cluster resource or configuration problem.
+    - Contact your admin if the issue persists - there may be a cluster resource or configuration problem.
   </Accordion>
 
   <Accordion title="No blueprints available in the catalog">
@@ -147,7 +147,7 @@ Publishing is covered in detail in the [Publishing Your App](/rde/user/publishin
   <Accordion title="Preview not loading">
     The preview panel shows your running application. If it is blank or shows an error:
 
-    - **Check the terminal** for application errors — your dev server may not be running yet.
+    - **Check the terminal** for application errors - your dev server may not be running yet.
     - Make sure your application is listening on the expected port.
     - Try manually starting the dev server from the terminal.
     - Click the **refresh** button in the preview toolbar.

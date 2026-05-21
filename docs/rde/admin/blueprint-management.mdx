@@ -11,7 +11,7 @@ description: "Register, configure, and manage blueprint templates for your team'
 
 Blueprints are the templates that define what a workspace looks like. Each blueprint points to a **Qovery project and environment**. When a builder creates a workspace from the portal, the system clones that environment into a new Qovery project dedicated to the builder.
 
-As an admin, you register blueprints, configure their settings, and control which users can access them. The blueprint itself is a standard Qovery environment — you manage its services, containers, and configuration through the Qovery Console or CLI as usual.
+As an admin, you register blueprints, configure their settings, and control which users can access them. The blueprint itself is a standard Qovery environment - you manage its services, containers, and configuration through the Qovery Console or CLI as usual.
 
 ## Registering a Blueprint
 
@@ -49,10 +49,10 @@ A good blueprint environment should include everything a builder needs to be pro
 - At least one **service or container** (typically a workspace image with an IDE like VS Code Server)
 
 **Recommended:**
-- **Development tools** pre-installed — Claude Code, OpenCode, Git, language runtimes (Node.js, Python, etc.)
-- **Environment variables** configured — API keys, database credentials, service URLs
-- **Databases and backing services** — PostgreSQL, Redis, or any other services your builders need
-- **TTL auto-stop job** — A lifecycle job that automatically stops idle environments to save costs
+- **Development tools** pre-installed - Claude Code, OpenCode, Git, language runtimes (Node.js, Python, etc.)
+- **Environment variables** configured - API keys, database credentials, service URLs
+- **Databases and backing services** - PostgreSQL, Redis, or any other services your builders need
+- **TTL auto-stop job** - A lifecycle job that automatically stops idle environments to save costs
 
 <Tip>
 Start with a lean blueprint that covers the basics. You can always iterate and add more tools or services based on builder feedback.
@@ -67,8 +67,8 @@ Existing workspaces are **not** automatically updated when the blueprint changes
 </Info>
 
 To apply updates to existing workspaces:
-- **Image updates** — Admins or builders can restart a workspace to pull the latest container image.
-- **Structural changes** — If the blueprint structure has changed significantly (new services added, environment variables renamed), you may need to use the **Upgrade** action from the workspace management page to redeploy with the latest blueprint configuration.
+- **Image updates** - Admins or builders can restart a workspace to pull the latest container image.
+- **Structural changes** - If the blueprint structure has changed significantly (new services added, environment variables renamed), you may need to use the **Upgrade** action from the workspace management page to redeploy with the latest blueprint configuration.
 
 ## Removing a Blueprint
 
@@ -92,7 +92,7 @@ If you want to permanently clean up, delete the associated workspaces from the [
   </Accordion>
 
   <Accordion title="Use descriptive names for builders">
-    Blueprint names appear in the workspace catalog. Use names that clearly communicate the purpose — "React Frontend Starter" is more helpful than "Template A". Builders should be able to pick the right blueprint without asking for help.
+    Blueprint names appear in the workspace catalog. Use names that clearly communicate the purpose - "React Frontend Starter" is more helpful than "Template A". Builders should be able to pick the right blueprint without asking for help.
   </Accordion>
 
   <Accordion title="Version your blueprint container images">

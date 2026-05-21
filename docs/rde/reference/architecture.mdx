@@ -9,11 +9,11 @@ description: "Understand how the RDE Portal works under the hood"
 
 ## Overview
 
-The RDE Portal is a web application hosted by Qovery at [rde.qovery.com](https://rde.qovery.com). It consists of three components: a **web frontend**, an **API server** (Backend-for-Frontend), and a **database** — all managed by Qovery. The portal orchestrates workspace containers that run on **your** Kubernetes cluster.
+The RDE Portal is a web application hosted by Qovery at [rde.qovery.com](https://rde.qovery.com). It consists of three components: a **web frontend**, an **API server** (Backend-for-Frontend), and a **database** - all managed by Qovery. The portal orchestrates workspace containers that run on **your** Kubernetes cluster.
 
 A critical design principle: **your cluster is never exposed to the internet**. Qovery agents running on your cluster initiate all connections outbound to the Qovery control plane via TLS/gRPC. The control plane never connects inbound to your infrastructure.
 
-This page explains the architecture, connectivity model, and data flow. For security-specific details — data residency, token management, and compliance — see the dedicated [Security & Data Residency](/rde/reference/security) page.
+This page explains the architecture, connectivity model, and data flow. For security-specific details - data residency, token management, and compliance - see the dedicated [Security & Data Residency](/rde/reference/security) page.
 
 ## High-Level Architecture
 
@@ -44,13 +44,13 @@ flowchart TB
     style WS fill:#0d9488,color:#fff
 ```
 
-**Key:** All arrows from your cluster point **outbound**. Your cluster initiates connections to the Qovery control plane — not the other way around. No inbound ports are required on your infrastructure.
+**Key:** All arrows from your cluster point **outbound**. Your cluster initiates connections to the Qovery control plane - not the other way around. No inbound ports are required on your infrastructure.
 
 ## Cluster Connectivity Model
 
 This is the foundation of the RDE Portal's security architecture.
 
-Your Kubernetes cluster runs **Qovery agents** — Engine, Shell agent, and other components — that maintain persistent **outbound TLS/gRPC connections** to the Qovery control plane. Your cluster never exposes inbound ports to the internet.
+Your Kubernetes cluster runs **Qovery agents** - Engine, Shell agent, and other components - that maintain persistent **outbound TLS/gRPC connections** to the Qovery control plane. Your cluster never exposes inbound ports to the internet.
 
 All portal operations flow through this cluster-initiated tunnel:
 
@@ -78,7 +78,7 @@ sequenceDiagram
 1. **Qovery agents on your cluster** establish and maintain outbound TLS/gRPC connections to the Qovery control plane. This is the only external communication from your cluster.
 2. **The portal** sends requests to the Qovery control plane (same Qovery infrastructure).
 3. **The control plane** relays the request through the already-established tunnel to the agent on your cluster.
-4. **The agent** executes the operation locally — shell session, port forward, deployment — and returns the result through the same tunnel.
+4. **The agent** executes the operation locally - shell session, port forward, deployment - and returns the result through the same tunnel.
 
 <Note>
 Your infrastructure is never directly addressable from the internet. The Qovery agents on your cluster are the only components that communicate externally, and they only make **outbound** connections.
@@ -96,11 +96,11 @@ The frontend never communicates directly with the Qovery API or your cluster. Al
 
 The API server acts as the gateway between the frontend and Qovery services. It handles:
 
-- **Authentication** — Verifies JWTs on every request
-- **Authorization** — Enforces blueprint ACLs, workspace ownership, and admin role checks
-- **API proxying** — Translates portal operations into Qovery API calls using the [two-client model](#two-client-model)
-- **Streaming relay** — Bridges terminal sessions and port-forward connections between the browser and Qovery's control plane
-- **Business logic** — Publish workflows, blueprint discovery, catalog assembly, workspace lifecycle management
+- **Authentication** - Verifies JWTs on every request
+- **Authorization** - Enforces blueprint ACLs, workspace ownership, and admin role checks
+- **API proxying** - Translates portal operations into Qovery API calls using the [two-client model](#two-client-model)
+- **Streaming relay** - Bridges terminal sessions and port-forward connections between the browser and Qovery's control plane
+- **Business logic** - Publish workflows, blueprint discovery, catalog assembly, workspace lifecycle management
 
 ### Database
 
@@ -125,8 +125,8 @@ The portal communicates with the Qovery control plane for all resource managemen
 
 The control plane also provides:
 
-- **Shell exec** — Interactive terminal sessions relayed through the agent to containers on your cluster
-- **Port forwarding** — TCP tunnels relayed through the agent to container ports, used for live preview
+- **Shell exec** - Interactive terminal sessions relayed through the agent to containers on your cluster
+- **Port forwarding** - TCP tunnels relayed through the agent to container ports, used for live preview
 
 ## Authentication Flow
 
@@ -147,15 +147,15 @@ sequenceDiagram
     FE->>API: Request + Authorization header
     API->>Auth0: Verify JWT
     Auth0-->>API: Token valid
-    API->>CP: User Client (JWT) — check permissions
+    API->>CP: User Client (JWT) - check permissions
     CP-->>API: Authorized
-    API->>CP: Admin Client — execute operation
+    API->>CP: Admin Client - execute operation
     CP-->>API: Result
     API-->>FE: Response
     FE-->>User: Render result
 ```
 
-Users authenticate through **Auth0 (auth.qovery.com)** using the PKCE authorization code flow — the same authentication used by the Qovery Console.
+Users authenticate through **Auth0 (auth.qovery.com)** using the PKCE authorization code flow - the same authentication used by the Qovery Console.
 
 On every request, the JWT is verified to determine the user's identity and permissions before any operation is executed.
 
@@ -168,7 +168,7 @@ The API server maintains **two Qovery API clients** for each authenticated reque
     Uses the **user's JWT** to call the Qovery API. This verifies that the user has the required RBAC permissions for the requested operation. If the user lacks permissions, the request is rejected before any action is taken.
   </Card>
   <Card title="Admin Client" icon="shield-halved">
-    Uses an **organization admin API token** (automatically provisioned when the admin clicks **Configure Portal**) to execute privileged operations. This token enables the portal to clone environments, deploy workspaces, and manage lifecycle — operations that individual users may not have direct permissions for.
+    Uses an **organization admin API token** (automatically provisioned when the admin clicks **Configure Portal**) to execute privileged operations. This token enables the portal to clone environments, deploy workspaces, and manage lifecycle - operations that individual users may not have direct permissions for.
   </Card>
 </CardGroup>
 
@@ -206,11 +206,11 @@ Because Qovery's API is the single source of truth, there are no sync issues bet
 
 ### Terminal (Shell Exec)
 
-The portal provides interactive terminal sessions that connect to containers running in your Kubernetes cluster — without exposing your cluster to the internet.
+The portal provides interactive terminal sessions that connect to containers running in your Kubernetes cluster - without exposing your cluster to the internet.
 
 **Connection flow:**
 
-1. The frontend requests a **shell ticket** — a one-time token with a 30-second TTL
+1. The frontend requests a **shell ticket** - a one-time token with a 30-second TTL
 2. The frontend opens a secure connection to the API server, passing the shell ticket for authentication
 3. The API server validates the ticket (single-use, not expired) and sends the request to the Qovery control plane
 4. The control plane relays the session through the **cluster-initiated tunnel** to the Qovery Shell agent on your cluster
@@ -274,11 +274,11 @@ flowchart TB
 |-----------|-----------|---------|
 | **Web Frontend** | Qovery | Serves the portal UI |
 | **API Server** | Qovery | Handles auth, API proxying, streaming relay, business logic |
-| **Database** | Qovery | Stores portal configuration (ACLs, theme, publish state) — no user code |
+| **Database** | Qovery | Stores portal configuration (ACLs, theme, publish state) - no user code |
 | **Qovery Agents** | Your cluster | Maintain outbound TLS/gRPC tunnel to the control plane |
 | **Workspace Containers** | Your cluster | Isolated environments where development happens |
 
-You do not need to deploy or maintain the portal infrastructure — Qovery handles updates, availability, and scaling. You only manage your Kubernetes cluster where workspaces run.
+You do not need to deploy or maintain the portal infrastructure - Qovery handles updates, availability, and scaling. You only manage your Kubernetes cluster where workspaces run.
 
 ## Data Model
 

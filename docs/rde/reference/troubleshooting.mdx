@@ -9,7 +9,7 @@ description: "Common issues and solutions for the RDE Portal"
 
 ## Overview
 
-This page covers common issues you may encounter with the RDE Portal and how to resolve them. Issues are organized by category — expand the relevant section to find your problem and solution.
+This page covers common issues you may encounter with the RDE Portal and how to resolve them. Issues are organized by category - expand the relevant section to find your problem and solution.
 
 ## Portal Access Issues
 
@@ -73,10 +73,10 @@ This page covers common issues you may encounter with the RDE Portal and how to 
     - An Error status means the underlying Qovery environment has a **deployment failure**. The workspace containers could not start or crashed after starting.
     - Ask your admin to check the Qovery Console for detailed error logs on the workspace's environment.
     - Common causes include:
-      - **Container image pull failure** — the image registry may be unreachable or the image tag doesn't exist
-      - **Resource limits exceeded** — the cluster may not have enough CPU or memory for the workspace
-      - **Port conflicts** — another service may be using the same port
-      - **Environment variable misconfiguration** — a required variable may be missing or invalid
+      - **Container image pull failure** - the image registry may be unreachable or the image tag doesn't exist
+      - **Resource limits exceeded** - the cluster may not have enough CPU or memory for the workspace
+      - **Port conflicts** - another service may be using the same port
+      - **Environment variable misconfiguration** - a required variable may be missing or invalid
     - Try **restarting** the workspace. If the error persists, delete and recreate it.
   </Accordion>
 
@@ -86,7 +86,7 @@ This page covers common issues you may encounter with the RDE Portal and how to 
     **Solutions:**
     - You may have reached your **workspace limit**. Stop or delete an existing workspace to free up a slot.
     - If you believe the limit is too low, contact your admin to increase it.
-    - Check that the blueprint you selected is still available — your admin may have removed it or changed its ACL.
+    - Check that the blueprint you selected is still available - your admin may have removed it or changed its ACL.
   </Accordion>
 
   <Accordion title="No blueprints visible in the catalog">
@@ -126,7 +126,7 @@ This page covers common issues you may encounter with the RDE Portal and how to 
 
     **Solutions:**
     - WebSocket connections drop after **idle periods**. This is expected behavior. Refresh the page to reconnect.
-    - Your running processes (dev servers, build scripts) are **not affected** by terminal disconnections — they continue running in the container.
+    - Your running processes (dev servers, build scripts) are **not affected** by terminal disconnections - they continue running in the container.
     - If disconnections happen during active use (not idle), check your network stability. Corporate proxies sometimes have aggressive WebSocket timeout settings.
   </Accordion>
 
@@ -165,7 +165,7 @@ This page covers common issues you may encounter with the RDE Portal and how to 
     **Symptoms:** The first preview load takes a long time (10+ seconds).
 
     **Solutions:**
-    - The **first preview load** establishes a port-forward connection through the BFF to your container. This initial connection can take a few seconds — subsequent loads should be significantly faster.
+    - The **first preview load** establishes a port-forward connection through the BFF to your container. This initial connection can take a few seconds - subsequent loads should be significantly faster.
     - If every load is slow, the application itself may be responding slowly. Check the terminal for performance-related errors or warnings.
     - Large assets (images, bundles) are tunneled through the BFF's port-forward. For very large files, the tunnel adds latency compared to a direct connection.
   </Accordion>
@@ -271,10 +271,10 @@ This page covers common issues you may encounter with the RDE Portal and how to 
 
 If the solutions above do not resolve your issue:
 
-1. **Check BFF logs** — The BFF logs detailed error information. View them in the Qovery Console under your portal environment's BFF service.
-2. **Check the Qovery Console** — For workspace-level issues, the Qovery Console provides deployment logs, container logs, and event history for the underlying environments.
-3. **Contact your organization admin** — Portal-specific configuration issues (tokens, ACLs, blueprint settings) require admin access to diagnose.
-4. **Reach out to Qovery support** — For platform-level issues (cluster problems, API errors, WebSocket connectivity), contact Qovery support through the [Qovery Console](https://console.qovery.com) or your support channel.
+1. **Check BFF logs** - The BFF logs detailed error information. View them in the Qovery Console under your portal environment's BFF service.
+2. **Check the Qovery Console** - For workspace-level issues, the Qovery Console provides deployment logs, container logs, and event history for the underlying environments.
+3. **Contact your organization admin** - Portal-specific configuration issues (tokens, ACLs, blueprint settings) require admin access to diagnose.
+4. **Reach out to Qovery support** - For platform-level issues (cluster problems, API errors, WebSocket connectivity), contact Qovery support through the [Qovery Console](https://console.qovery.com) or your support channel.
 
 ## Next Steps
 

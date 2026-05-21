@@ -11,7 +11,7 @@ description: "Control who can create workspaces from each blueprint using ACL ru
 
 Each blueprint has its own **access control list (ACL)**. ACL rules determine which authenticated users can see the blueprint in the catalog and create workspaces from it. Users who do not match any rule for a blueprint will not see it at all.
 
-This gives you fine-grained control over who can launch workspaces — you can open a blueprint to your entire organization, restrict it to a specific domain, or limit it to individual email addresses.
+This gives you fine-grained control over who can launch workspaces - you can open a blueprint to your entire organization, restrict it to a specific domain, or limit it to individual email addresses.
 
 ## ACL Types
 
@@ -43,12 +43,12 @@ The portal supports three access modes for each blueprint:
   <Step title="Add Rules">
     Click **Add Rule** and choose the rule type:
 
-    - **Domain rule** — Enter an email domain (e.g., `company.com`). All users with email addresses ending in `@company.com` will have access.
-    - **Email rule** — Enter a specific email address (e.g., `alice@partner.org`). Only that user will have access via this rule.
+    - **Domain rule** - Enter an email domain (e.g., `company.com`). All users with email addresses ending in `@company.com` will have access.
+    - **Email rule** - Enter a specific email address (e.g., `alice@partner.org`). Only that user will have access via this rule.
   </Step>
 
   <Step title="Save">
-    Click **Save** to apply the ACL changes. The rules take effect immediately — the catalog will update the next time users load the page.
+    Click **Save** to apply the ACL changes. The rules take effect immediately - the catalog will update the next time users load the page.
   </Step>
 </Steps>
 
@@ -83,7 +83,7 @@ This would grant access to all `@company.com` employees plus two specific extern
 | External contractors | Individual email rules for each contractor |
 | Internal testing only | Email rules for specific team members |
 | Multiple subsidiaries | Multiple domain rules: `company.com`, `subsidiary.com` |
-| Open to everyone | No rules (open access — the default) |
+| Open to everyone | No rules (open access - the default) |
 | Mixed internal and external | Domain rule for employees + email rules for external partners |
 
 ## Removing Rules

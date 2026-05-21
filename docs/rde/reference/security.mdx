@@ -56,10 +56,10 @@ flowchart TB
 
 | Component | Where it runs | What it stores |
 |-----------|---------------|----------------|
-| **RDE Portal** | Qovery (rde.qovery.com) | Portal configuration (ACLs, theme, publish settings). Relays streaming traffic in memory — no code persisted. |
+| **RDE Portal** | Qovery (rde.qovery.com) | Portal configuration (ACLs, theme, publish settings). Relays streaming traffic in memory - no code persisted. |
 | **Portal Database** | Qovery (rde.qovery.com) | Configuration metadata only. No source code, no user data, no AI conversations. |
-| **Qovery Agents** | Your cluster | No persistent storage — agents relay traffic between the control plane and workspace containers. |
-| **Workspace containers** | Your cluster | Source code, dependencies, environment variables — isolated per user |
+| **Qovery Agents** | Your cluster | No persistent storage - agents relay traffic between the control plane and workspace containers. |
+| **Workspace containers** | Your cluster | Source code, dependencies, environment variables - isolated per user |
 | **Terminal sessions** | Your cluster | Happen inside your containers, streamed to the browser through the cluster-initiated tunnel |
 | **AI chat & Claude Code** | Your cluster (via workspace container) | AI interactions happen inside the container on your cluster |
 | **Live previews** | Your cluster | HTTP traffic from your container, relayed through the tunnel, never cached |
@@ -72,7 +72,7 @@ flowchart TB
 
 This is the most important security property of the RDE Portal.
 
-Your Kubernetes cluster runs **Qovery agents** (Engine, Shell agent, and other components) that maintain persistent **outbound TLS/gRPC connections** to the Qovery control plane. Your cluster never exposes inbound ports to the internet — it is never directly addressable from outside your network.
+Your Kubernetes cluster runs **Qovery agents** (Engine, Shell agent, and other components) that maintain persistent **outbound TLS/gRPC connections** to the Qovery control plane. Your cluster never exposes inbound ports to the internet - it is never directly addressable from outside your network.
 
 All portal operations flow through this cluster-initiated tunnel:
 
@@ -100,10 +100,10 @@ sequenceDiagram
 1. **Qovery agents on your cluster** establish and maintain outbound TLS/gRPC connections to the Qovery control plane. This is the only external communication from your cluster.
 2. **The portal** sends requests to the Qovery control plane.
 3. **The control plane** relays the request through the already-established tunnel to the agent on your cluster.
-4. **The agent** executes the operation locally — shell session, port forward, deployment — and returns the result through the same tunnel.
+4. **The agent** executes the operation locally - shell session, port forward, deployment - and returns the result through the same tunnel.
 
 <Note>
-**No inbound ports. No public endpoints. No direct access to your cluster.** The control plane can only communicate with your cluster through the tunnel that your agents initiated. If the agents stop, the tunnel closes — the control plane has no way to reach your infrastructure.
+**No inbound ports. No public endpoints. No direct access to your cluster.** The control plane can only communicate with your cluster through the tunnel that your agents initiated. If the agents stop, the tunnel closes - the control plane has no way to reach your infrastructure.
 </Note>
 
 ## How Streaming Works
@@ -141,22 +141,22 @@ sequenceDiagram
     end
 ```
 
-Every keystroke and terminal output byte is **streamed** through the chain in real time. The portal relays data without storing it. When the session ends, there is no recording or history kept by the portal — only the workspace container retains its filesystem state.
+Every keystroke and terminal output byte is **streamed** through the chain in real time. The portal relays data without storing it. When the session ends, there is no recording or history kept by the portal - only the workspace container retains its filesystem state.
 
 **Shell ticket security:** Terminal connections use one-time authentication tickets with a 30-second TTL. This prevents bearer tokens from appearing in connection URLs, which could be captured by proxies, load balancers, or browser history.
 
 ### Preview Streaming
 
-The live preview works the same way — HTTP requests are tunneled through the cluster-initiated tunnel to your workspace container:
+The live preview works the same way - HTTP requests are tunneled through the cluster-initiated tunnel to your workspace container:
 
 1. The browser requests a page from the portal's preview endpoint
 2. The portal forwards the request to the Qovery control plane
 3. The control plane relays the request through the **cluster-initiated tunnel** to the Qovery agent on your cluster
 4. The agent forwards the request to the container's application port **locally**
 5. The response flows back through the same tunnel to the browser
-6. No caching, no storage — the response is streamed directly
+6. No caching, no storage - the response is streamed directly
 
-**No public URLs needed.** Workspace applications are never exposed to the internet. Your cluster has no inbound ports open — all traffic flows through the outbound tunnel initiated by the agents.
+**No public URLs needed.** Workspace applications are never exposed to the internet. Your cluster has no inbound ports open - all traffic flows through the outbound tunnel initiated by the agents.
 
 ### AI Tool Streaming
 
@@ -164,7 +164,7 @@ Claude Code and the OpenCode chat panel run **inside the workspace container**, 
 
 1. The AI process runs inside the workspace container on your cluster
 2. The AI process communicates with the LLM provider (Anthropic, OpenAI, or your custom provider) directly from the container
-3. The portal streams the terminal/chat UI to the browser through the tunnel — it does not intercept or store AI conversations
+3. The portal streams the terminal/chat UI to the browser through the tunnel - it does not intercept or store AI conversations
 
 <Info>
 If your organization requires that AI traffic also stays within your network, you can configure a custom LLM provider endpoint (e.g., an internally hosted model or a private API gateway) in the blueprint settings.
@@ -176,19 +176,19 @@ Platform engineers have full control over every aspect of the portal:
 
 ### Infrastructure Control
 
-- **Your workspaces, your cluster** — Workspace containers run on your Qovery-managed Kubernetes cluster. You control the infrastructure, networking, and resource limits for all workspaces.
-- **No inbound ports** — Your cluster never exposes ports to the internet. Qovery agents initiate all connections outbound via TLS/gRPC.
-- **You control the network** — Workspace containers run in your cluster's network. Apply your existing network policies, security groups, and firewall rules.
-- **You control the images** — Blueprint container images are pulled from your container registry. You decide what software is available in workspaces.
-- **Portal managed by Qovery** — The portal control plane is hosted and operated by Qovery at `rde.qovery.com`. Zero deployment overhead for you — Qovery handles updates, availability, and scaling.
+- **Your workspaces, your cluster** - Workspace containers run on your Qovery-managed Kubernetes cluster. You control the infrastructure, networking, and resource limits for all workspaces.
+- **No inbound ports** - Your cluster never exposes ports to the internet. Qovery agents initiate all connections outbound via TLS/gRPC.
+- **You control the network** - Workspace containers run in your cluster's network. Apply your existing network policies, security groups, and firewall rules.
+- **You control the images** - Blueprint container images are pulled from your container registry. You decide what software is available in workspaces.
+- **Portal managed by Qovery** - The portal control plane is hosted and operated by Qovery at `rde.qovery.com`. Zero deployment overhead for you - Qovery handles updates, availability, and scaling.
 
 ### Access Control
 
-- **Blueprint ACLs** — Restrict which blueprints are available to which users by email address, email domain, or open access. Users only see blueprints they're authorized to use.
-- **Workspace limits** — Set the maximum number of running workspaces per user to control resource consumption and costs.
-- **Publish approvals** — Require admin review before any workspace can be published to production. Trusted users can bypass this, but trust is granted per-user and revocable.
-- **Member management** — Control who has access to the portal and assign roles (admin or user).
-- **SSO authentication** — Users authenticate via Qovery SSO. No separate user database, no additional passwords.
+- **Blueprint ACLs** - Restrict which blueprints are available to which users by email address, email domain, or open access. Users only see blueprints they're authorized to use.
+- **Workspace limits** - Set the maximum number of running workspaces per user to control resource consumption and costs.
+- **Publish approvals** - Require admin review before any workspace can be published to production. Trusted users can bypass this, but trust is granted per-user and revocable.
+- **Member management** - Control who has access to the portal and assign roles (admin or user).
+- **SSO authentication** - Users authenticate via Qovery SSO. No separate user database, no additional passwords.
 
 ### Workspace Isolation
 
@@ -196,7 +196,7 @@ Each workspace is a **separate Qovery environment** running as isolated containe
 
 - Workspaces are created by cloning a blueprint into a **new Qovery project**. Each user's workspace is a distinct project with its own RBAC scope.
 - Users cannot access other users' workspaces through the portal. Ownership checks are enforced on every API call.
-- Qovery's RBAC system provides an additional layer of isolation — workspace-scoped roles ensure users can only interact with their own resources.
+- Qovery's RBAC system provides an additional layer of isolation - workspace-scoped roles ensure users can only interact with their own resources.
 - Workspace containers run with the resource limits defined in the blueprint. Admins control CPU, memory, and storage allocations.
 
 ### Audit & Visibility
@@ -218,7 +218,7 @@ The portal handles several types of credentials, each with specific security mea
 | **LLM API Keys** | Stored encrypted with **AES-256-GCM** in the portal database. Injected into workspace containers as environment variables at runtime. Never visible in the portal UI after initial configuration. |
 
 <Info>
-The admin API token is created automatically when an organization admin first configures the portal — no manual token generation or pasting required. The token is encrypted immediately and never displayed in the UI.
+The admin API token is created automatically when an organization admin first configures the portal - no manual token generation or pasting required. The token is encrypted immediately and never displayed in the UI.
 </Info>
 
 ## Network Security
@@ -258,17 +258,17 @@ The portal enforces rate limits to prevent abuse:
 |--------|-----------|------------------------|
 | **Where code lives** | Your Kubernetes cluster | Vendor's infrastructure |
 | **Where AI runs** | Your containers | Vendor's servers |
-| **Cluster exposure** | No inbound ports — agents connect outbound | Varies |
+| **Cluster exposure** | No inbound ports - agents connect outbound | Varies |
 | **Data residency** | Your cloud account, your region | Vendor's cloud, vendor's region |
 | **Network control** | Your VPC, your security groups | Shared infrastructure |
-| **Admin control** | Full — blueprints, ACLs, limits, approvals | Limited to vendor's settings |
+| **Admin control** | Full - blueprints, ACLs, limits, approvals | Limited to vendor's settings |
 | **Compliance** | Workspaces inherit your cluster's posture (SOC 2, HIPAA, GDPR, DORA) | Depends on vendor certification |
 | **Audit trail** | Your Qovery audit logs | Vendor's logs |
-| **Customization** | Full — branding, layouts, AI providers | Limited |
+| **Customization** | Full - branding, layouts, AI providers | Limited |
 | **Portal operations** | Managed by Qovery (zero maintenance) | Managed by vendor |
 
 <Tip>
-Because workspace containers run on your existing Qovery cluster, they inherit your cluster's compliance certifications. If your cluster is SOC 2, HIPAA, or GDPR compliant, your workspaces are too — no additional certification needed for the data plane.
+Because workspace containers run on your existing Qovery cluster, they inherit your cluster's compliance certifications. If your cluster is SOC 2, HIPAA, or GDPR compliant, your workspaces are too - no additional certification needed for the data plane.
 </Tip>
 
 ## Summary

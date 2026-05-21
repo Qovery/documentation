@@ -9,13 +9,13 @@ description: "Configure the RDE Portal, register blueprints, and set up access c
 
 ## Overview
 
-As an admin, you configure the RDE Portal so your team can create their own workspaces. This guide walks through the complete setup — from portal configuration to inviting your first builder.
+As an admin, you configure the RDE Portal so your team can create their own workspaces. This guide walks through the complete setup - from portal configuration to inviting your first builder.
 
 ## Prerequisites
 
 Before starting, make sure you have:
 
-<Check>Qovery account on a **Business** or **Enterprise** plan with the **RDE Portal add-on** enabled — see [Pricing](https://www.qovery.com/pricing)</Check>
+<Check>Qovery account on a **Business** or **Enterprise** plan with the **RDE Portal add-on** enabled - see [Pricing](https://www.qovery.com/pricing)</Check>
 <Check>**Organization admin** access on your Qovery account</Check>
 <Check>A running Kubernetes cluster on Qovery</Check>
 <Check>At least one project with an environment to use as a blueprint template</Check>
@@ -34,7 +34,7 @@ Connect the portal to your Qovery organization and apply your branding.
   </Step>
 
   <Step title="Click Configure Portal">
-    Click **Configure Portal** to initialize the portal for your organization. The portal automatically creates and securely stores an admin API token — no manual token setup required.
+    Click **Configure Portal** to initialize the portal for your organization. The portal automatically creates and securely stores an admin API token - no manual token setup required.
 
     <Info>
     When you click **Configure Portal**, the portal automatically provisions a secure admin token encrypted with **AES-256-GCM** at rest. This token allows the portal to perform privileged operations (cloning environments, managing deployments) on behalf of your users. It is never exposed to end users and is never visible in the portal UI after creation.
@@ -44,17 +44,17 @@ Connect the portal to your Qovery organization and apply your branding.
   <Step title="Customize Portal Branding">
     Navigate to **Admin > Settings** and configure the following to match your organization:
 
-    - **Portal name** — displayed in the header and browser tab
-    - **Logo** — your company logo for the portal header
-    - **Primary brand color** — applied to buttons, links, and accent elements
+    - **Portal name** - displayed in the header and browser tab
+    - **Logo** - your company logo for the portal header
+    - **Primary brand color** - applied to buttons, links, and accent elements
   </Step>
 
   <Step title="Configure the Welcome Screen (Optional)">
     Customize what builders see on their first login:
 
-    - **Welcome title** — the headline on the landing page
-    - **Welcome description** — a brief description of what the portal offers
-    - **CTA text** — the label on the primary call-to-action button
+    - **Welcome title** - the headline on the landing page
+    - **Welcome description** - a brief description of what the portal offers
+    - **CTA text** - the label on the primary call-to-action button
   </Step>
 </Steps>
 
@@ -85,7 +85,7 @@ Blueprints are Qovery environments that serve as templates. When a builder creat
 </Steps>
 
 <Tip>
-Start with a simple blueprint — a single workspace container with basic dev tools. You can always add databases, services, and advanced configuration later.
+Start with a simple blueprint - a single workspace container with basic dev tools. You can always add databases, services, and advanced configuration later.
 </Tip>
 
 ## Step 3: Configure Access Control
@@ -104,9 +104,9 @@ Control who can use each blueprint with access control lists (ACLs).
   <Step title="Choose an Access Policy">
     Select who can create workspaces from this blueprint:
 
-    - **Open access** — anyone in your organization can use this blueprint
-    - **Domain-restricted** — only users with specific email domains (e.g., `@yourcompany.com`)
-    - **Email-restricted** — only specific email addresses you define
+    - **Open access** - anyone in your organization can use this blueprint
+    - **Domain-restricted** - only users with specific email domains (e.g., `@yourcompany.com`)
+    - **Email-restricted** - only specific email addresses you define
   </Step>
 
   <Step title="Save ACL Rules">
@@ -126,25 +126,25 @@ Optionally fine-tune each blueprint with AI provider configuration and workspace
 
 Choose how Claude Code authenticates in workspaces created from this blueprint:
 
-- **User OAuth** — each builder authenticates with their own Anthropic account. Free tier available but usage is capped.
-- **API Key injection** — the portal injects an API key into the workspace. Seamless for builders, billed per usage to the key owner.
+- **User OAuth** - each builder authenticates with their own Anthropic account. Free tier available but usage is capped.
+- **API Key injection** - the portal injects an API key into the workspace. Seamless for builders, billed per usage to the key owner.
 
 ### LLM Provider
 
 Configure the AI provider for the workspace chat panel:
 
-- **Anthropic** — Claude models
-- **OpenAI** — GPT models
-- **Custom provider** — any OpenAI-compatible API endpoint
+- **Anthropic** - Claude models
+- **OpenAI** - GPT models
+- **Custom provider** - any OpenAI-compatible API endpoint
 
 ### Layout
 
 Control which tabs appear in the workspace editor:
 
-- **Chat** — OpenCode AI chat panel
-- **Claude Code** — AI-assisted terminal
-- **Terminal** — standard bash shell
-- **Custom commands** — admin-defined command tabs
+- **Chat** - OpenCode AI chat panel
+- **Claude Code** - AI-assisted terminal
+- **Terminal** - standard bash shell
+- **Custom commands** - admin-defined command tabs
 
 You can also **lock the layout** to prevent builders from rearranging tabs, and **toggle preview panel visibility** to show or hide the live app preview by default.
 
@@ -162,7 +162,7 @@ Add team members so they can log in and create workspaces.
   </Step>
 
   <Step title="Assign Roles">
-    Assign Qovery roles as needed. Builders only need basic access — admin access is required only for portal configuration.
+    Assign Qovery roles as needed. Builders only need basic access - admin access is required only for portal configuration.
   </Step>
 </Steps>
 

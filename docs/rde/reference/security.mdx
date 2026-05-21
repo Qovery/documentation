@@ -254,16 +254,23 @@ The portal enforces rate limits to prevent abuse:
 
 ## Comparison with Hosted Alternatives
 
-| Aspect | RDE Portal | Fully Hosted Cloud IDEs |
+Non-technical teams across your organization are already using AI-powered builder tools like Lovable, Bolt.new, and Replit to create applications - often with company data and without IT oversight. These platforms offer consumer-grade governance: shared multi-tenant infrastructure, limited networking controls, no VPC peering, and incomplete audit trails. The RDE Portal provides the same ease of use with enterprise-grade security - your code and data stay on your infrastructure.
+
+<Info>
+For a detailed analysis, read [Lovable, Bolt, and Replit Are Wonderful - Until Your CISO Finds Out](https://www.qovery.com/blog/lovable-bolt-replit-enterprise-limitations).
+</Info>
+
+| Aspect | RDE Portal | External AI Builders (Lovable, Bolt, Replit) |
 |--------|-----------|------------------------|
-| **Where code lives** | Your Kubernetes cluster | Vendor's infrastructure |
+| **Where code lives** | Your Kubernetes cluster | Vendor's shared infrastructure |
 | **Where AI runs** | Your containers | Vendor's servers |
-| **Cluster exposure** | No inbound ports - agents connect outbound | Varies |
+| **Cluster exposure** | No inbound ports - agents connect outbound | N/A - no self-hosting |
 | **Data residency** | Your cloud account, your region | Vendor's cloud, vendor's region |
-| **Network control** | Your VPC, your security groups | Shared infrastructure |
+| **Network control** | Your VPC, your security groups | No VPC peering, no private networking |
+| **SSO / Identity** | Qovery SSO - same corporate identity | Varies - often requires premium plan |
 | **Admin control** | Full - blueprints, ACLs, limits, approvals | Limited to vendor's settings |
 | **Compliance** | Workspaces inherit your cluster's posture (SOC 2, HIPAA, GDPR, DORA) | Depends on vendor certification |
-| **Audit trail** | Your Qovery audit logs | Vendor's logs |
+| **Audit trail** | Full audit via Qovery | Limited or unavailable |
 | **Customization** | Full - branding, layouts, AI providers | Limited |
 | **Portal operations** | Managed by Qovery (zero maintenance) | Managed by vendor |
 

@@ -15,6 +15,25 @@ description: "A self-service web portal that gives every team member their own i
 Looking for the CLI-based approach? See [Remote Development Environments with the CLI](/getting-started/guides/use-cases/remote-development-environments) for managing RDEs via `qovery rde` commands.
 </Info>
 
+## Why Remote Dev Environments?
+
+AI coding tools have changed who builds software. Non-technical team members - product managers, designers, finance analysts, sales ops - are using tools like Lovable, Bolt.new, and Replit to build and deploy applications with company data. This delivers real business value, but when it happens outside IT's control, it creates serious security and compliance risks.
+
+<CardGroup cols={2}>
+  <Card title="The Problem: Shadow IT" icon="triangle-exclamation">
+    External AI builder platforms mean your code, API keys, and data live on shared infrastructure you don't control. No VPC peering, no private networking, limited audit trails. Every app built this way is a compliance surface your security team can't see.
+  </Card>
+  <Card title="The Solution: Controlled Builder Platform" icon="shield-check">
+    The RDE Portal gives builders the same one-click experience - but on your own infrastructure. SSO login, pre-configured blueprints, workspace isolation, publish approvals, and full audit trails. Your cluster stays unexposed with no inbound ports.
+  </Card>
+</CardGroup>
+
+The answer isn't to ban AI builder tools - that kills the innovation. The answer is to provide a governed platform that builders actually want to use. The RDE Portal is that platform.
+
+<Info>
+For a detailed analysis of the enterprise limitations of Lovable, Bolt.new, and Replit, read [Lovable, Bolt, and Replit Are Wonderful - Until Your CISO Finds Out](https://www.qovery.com/blog/lovable-bolt-replit-enterprise-limitations).
+</Info>
+
 ## Overview
 
 The Remote Dev Environments (RDE) Portal is a **self-service web application** accessible at [rde.qovery.com](https://rde.qovery.com). It lets platform engineers define blueprint environments and gives builders - engineers and non-technical team members alike - the ability to create their own isolated cloud workspaces with one click. Just log in with your Qovery account to get started.

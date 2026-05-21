@@ -80,6 +80,132 @@ Removing a blueprint does **not** delete existing workspaces created from it. Th
 
 If you want to permanently clean up, delete the associated workspaces from the [workspace management](/rde/admin/workspace-management) page before or after removing the blueprint.
 
+## Official Workspace Template
+
+Qovery provides an official workspace template image you can use as the base container for your blueprints. It is designed for both technical and non-technical builders and comes pre-configured with everything needed for a productive development environment.
+
+<Info>
+Source code and documentation: [github.com/evoxmusic/remote-dev-env-template](https://github.com/evoxmusic/remote-dev-env-template)
+</Info>
+
+### What's Included
+
+<CardGroup cols={3}>
+  <Card title="code-server" icon="code">
+    VS Code running in the browser with a clean, builder-friendly UI. Dark theme, minimal distractions, Claude Code sidebar open by default.
+  </Card>
+  <Card title="AI Assistants" icon="robot">
+    Claude Code (VS Code sidebar + CLI) and OpenCode (web chat UI) are pre-installed and pre-configured with builder-friendly AI skills.
+  </Card>
+  <Card title="Language Runtimes" icon="layer-group">
+    Node.js 22, Python 3, Ruby + Bundler, and Go - ready to use out of the box for a wide range of project types.
+  </Card>
+  <Card title="Dev CLIs" icon="terminal">
+    GitHub CLI, Qovery CLI, and Git are pre-installed. Builders can push code, create PRs, and deploy without leaving the workspace.
+  </Card>
+  <Card title="Auto Dev Server" icon="bolt">
+    Automatically detects your project type and starts the right dev server - no manual configuration needed.
+  </Card>
+  <Card title="Live Preview" icon="eye">
+    Built-in VS Code Live Preview extension for viewing your application directly in the editor.
+  </Card>
+</CardGroup>
+
+### Using the Template
+
+To use this template as your blueprint's workspace container:
+
+1. Create a Qovery project and environment for your blueprint
+2. Add a container service using the image from the [template repository](https://github.com/evoxmusic/remote-dev-env-template)
+3. Configure the environment variables listed below
+4. Register the environment as a blueprint in the RDE Portal
+
+Alternatively, **fork the repository** and build a custom image tailored to your organization's needs.
+
+### Environment Variables
+
+Configure these environment variables on the workspace container service in your Qovery blueprint environment:
+
+| Variable | Required | Default | Description |
+|----------|----------|---------|-------------|
+| `GIT_REPO_URL` | No | - | HTTPS URL of a Git repo to auto-clone into the workspace on startup |
+| `GIT_TOKEN` | No | - | Personal access token for private repos. Auto-detects GitHub, GitLab, and Bitbucket. |
+| `GIT_BRANCH` | No | `main` | Branch to checkout after cloning |
+| `GIT_USER_NAME` | No | - | Git author name used for commits |
+| `GIT_USER_EMAIL` | No | - | Git author email used for commits |
+| `DEV_PORT` | No | `3100` | Port the auto-detected dev server listens on |
+| `ANTHROPIC_API_KEY` | No | - | API key for Claude Code (if using API key auth mode in blueprint settings) |
+| `DISABLE_CODE_SERVER` | No | - | Set to `true` to serve a welcome page instead of VS Code |
+
+<Tip>
+For blueprints where builders will work on an existing codebase, set `GIT_REPO_URL` to your repository. For open-ended "start from scratch" blueprints, leave it empty - builders get a blank workspace with a welcome guide.
+</Tip>
+
+### How the Startup Works
+
+When a workspace container starts, the template automatically:
+
+<Steps>
+  <Step title="Clone the repository">
+    If `GIT_REPO_URL` is configured, the repo is cloned and the specified branch is checked out. On subsequent restarts, the workspace pulls the latest changes instead of re-cloning.
+  </Step>
+  <Step title="Install dependencies">
+    Auto-detects the project type and installs dependencies - `npm install` for Node.js, `pip install` for Python, `bundle install` for Ruby, `go mod download` for Go.
+  </Step>
+  <Step title="Start the dev server">
+    Auto-detects the framework and starts the appropriate dev server in the background. Builders see their application running immediately.
+  </Step>
+  <Step title="Open the IDE">
+    code-server launches with the Claude Code sidebar open and a welcome guide ready. For fresh workspaces (no git repo), a beginner-friendly WELCOME.md is generated with usage tips and example prompts.
+  </Step>
+</Steps>
+
+### Supported Project Types
+
+The template auto-detects and handles the following project types:
+
+| Project Type | Detection | Dev Server |
+|-------------|-----------|------------|
+| **Vite** (React, Vue, Svelte) | `vite` in package.json | `vite --port $DEV_PORT --host` |
+| **Next.js** | `next` in package.json | `next dev -p $DEV_PORT` |
+| **Nuxt** | `nuxt` in package.json | `nuxt dev --port $DEV_PORT` |
+| **Node.js** (generic) | `package.json` with dev/start script | `npm run dev` or `npm start` |
+| **Django** | `manage.py` present | `python3 manage.py runserver 0.0.0.0:$DEV_PORT` |
+| **Flask** | `flask` in requirements.txt | `flask run --host=0.0.0.0 --port=$DEV_PORT` |
+| **FastAPI** | `fastapi` in requirements.txt | `uvicorn main:app --host 0.0.0.0 --port $DEV_PORT` |
+| **Ruby on Rails** | `rails` in Gemfile | `rails server -b 0.0.0.0 -p $DEV_PORT` |
+| **Go** | `go.mod` present | `go run .` |
+| **Static HTML** | `index.html` present | `npx serve -l $DEV_PORT` |
+
+### AI Skills
+
+The template includes pre-configured AI skills for both Claude Code and OpenCode that:
+
+- **Adapt to the builder's experience level** - On first interaction, the AI asks the builder how comfortable they are with coding and adjusts its communication style accordingly (no jargon for beginners, normal technical language for experienced developers)
+- **Take action directly** - The AI creates files, installs packages, and fixes errors autonomously instead of instructing the builder to run commands
+- **Use a sensible default stack** - When starting from scratch, the AI defaults to Vite + React + Tailwind CSS
+- **Support deployment** - When a builder says "put it online" or "deploy", the AI uses Qovery skills to deploy the application
+
+### Customization
+
+<AccordionGroup>
+  <Accordion title="Fork and add your own tools">
+    Fork the [template repository](https://github.com/evoxmusic/remote-dev-env-template), modify the Dockerfile to add your organization's specific tools, libraries, or CLI utilities, then build and push your custom image to your container registry.
+  </Accordion>
+
+  <Accordion title="Customize AI behavior">
+    The AI skill files (`builder-skill/CLAUDE.md` and `builder-skill/SKILL.md`) control how Claude Code and OpenCode interact with builders. Edit these files to match your organization's coding conventions, preferred tech stack, or domain-specific instructions.
+  </Accordion>
+
+  <Accordion title="Add VS Code extensions">
+    Add additional VS Code extensions to the Dockerfile using `code-server --install-extension <extension-id>`. This is useful for language-specific extensions, linters, or your organization's internal extensions.
+  </Accordion>
+
+  <Accordion title="Pre-configure for a specific stack">
+    If all your builders use the same tech stack, set `GIT_REPO_URL` to a starter template repo and configure the environment variables accordingly. Builders get a ready-to-code project from the moment their workspace starts.
+  </Accordion>
+</AccordionGroup>
+
 ## Best Practices
 
 <AccordionGroup>

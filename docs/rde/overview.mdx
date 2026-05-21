@@ -17,21 +17,25 @@ Looking for the CLI-based approach? See [Remote Development Environments with th
 
 ## Why Remote Dev Environments?
 
-AI coding tools have changed who builds software. Non-technical team members - product managers, designers, finance analysts, sales ops - are using tools like Lovable, Bolt.new, and Replit to build and deploy applications with company data. This delivers real business value, but when it happens outside IT's control, it creates serious security and compliance risks.
+AI coding tools have turned non-technical employees into builders. Finance analysts, sales ops leads, product managers, even executives - are using tools like Lovable, Bolt.new, and Replit to build and deploy applications with company data. No ticket filed. No IT approval. No one asking where the data goes.
+
+Consider the example: your finance analyst builds a retention analysis tool connected to your production database on Lovable. She didn't know she needed to ask IT. She just described what she wanted and the AI built it. The tool is live, connected to sensitive data, running on shared infrastructure you don't control - and your security team has zero visibility into it.
+
+This is shadow IT. Not the spreadsheet macros of the past - deployed web applications with database access, API keys in vendor-managed servers, and no audit trail. Every one of these apps is a compliance surface your CISO can't see.
 
 <CardGroup cols={2}>
-  <Card title="The Problem: Shadow IT" icon="triangle-exclamation">
-    External AI builder platforms mean your code, API keys, and data live on shared infrastructure you don't control. No VPC peering, no private networking, limited audit trails. Every app built this way is a compliance surface your security team can't see.
+  <Card title="The Problem" icon="triangle-exclamation">
+    On external platforms, your code, API keys, and data live on shared infrastructure you don't control. No VPC peering, no private networking, no meaningful audit trail. In regulated industries - finance, healthcare, legal - this creates compliance gaps that certifications alone can't close.
   </Card>
-  <Card title="The Solution: Controlled Builder Platform" icon="shield-check">
-    The RDE Portal gives builders the same one-click experience - but on your own infrastructure. SSO login, pre-configured blueprints, workspace isolation, publish approvals, and full audit trails. Your cluster stays unexposed with no inbound ports.
+  <Card title="The Solution" icon="shield-check">
+    The RDE Portal provides the same one-click builder experience - but on your own infrastructure, under your control. SSO, pre-configured blueprints, workspace isolation, publish approvals, full audit trails. **Secure by architecture, not by policy.**
   </Card>
 </CardGroup>
 
-The answer isn't to ban AI builder tools - that kills the innovation. The answer is to provide a governed platform that builders actually want to use. The RDE Portal is that platform.
+Banning AI builder tools doesn't work. The business value is too real. The answer is to provide a governed platform that builders actually want to use - where the official path is faster and easier than the workaround.
 
 <Info>
-For a detailed analysis of the enterprise limitations of Lovable, Bolt.new, and Replit, read [Lovable, Bolt, and Replit Are Wonderful - Until Your CISO Finds Out](https://www.qovery.com/blog/lovable-bolt-replit-enterprise-limitations).
+For a full analysis of the enterprise risks of Lovable, Bolt.new, and Replit, read [Lovable, Bolt, and Replit Are Wonderful - Until Your CISO Finds Out](https://www.qovery.com/blog/lovable-bolt-replit-enterprise-limitations).
 </Info>
 
 ## Overview
@@ -121,6 +125,31 @@ flowchart LR
     style F fill:#642DFF,color:#fff
     style G fill:#642DFF,color:#fff
 ```
+
+## What Is a Blueprint?
+
+A **blueprint** is a pre-configured workspace template created by your platform team. Think of it as a ready-to-use work environment - the right tools, the right database connections, the right API credentials - all set up and secured. Builders don't configure anything. They pick a blueprint, click Create, and start building.
+
+The platform team controls what each blueprint can access: which databases, which internal APIs, which credentials. That governance is invisible to the builder. From their perspective, they just pick a template and get to work.
+
+Different teams get different blueprints, scoped to what they actually need:
+
+<CardGroup cols={2}>
+  <Card title="Finance Blueprint" icon="chart-line">
+    Pre-connected to the analytics database. Right tools, right access. A finance analyst can build a retention dashboard without ever touching a config file - or accidentally connecting to the wrong database.
+  </Card>
+  <Card title="Sales Blueprint" icon="handshake">
+    Pre-configured with CRM credentials and the internal pipeline API. Sales ops builds their own reporting tools without filing a ticket or waiting weeks for engineering bandwidth.
+  </Card>
+  <Card title="Marketing Blueprint" icon="megaphone">
+    Connected to the content management API and the analytics stack. Marketing builds campaign tools and data views without infrastructure access.
+  </Card>
+  <Card title="Engineering Blueprint" icon="code">
+    Full-stack development environment with databases, services, and all the tools engineers need. The same isolated, reproducible setup for every developer on the team.
+  </Card>
+</CardGroup>
+
+Each workspace is an isolated clone of the blueprint. One builder's workspace cannot affect another's. Admins see every workspace, every operation, and every publish request across the organization. No shadow IT - because the official platform is faster than the workaround.
 
 ## Who Is This For?
 

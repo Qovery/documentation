@@ -9,9 +9,11 @@ description: "Register, configure, and manage blueprint templates for your team'
 
 ## Overview
 
-Blueprints are the templates that define what a workspace looks like. Each blueprint points to a **Qovery project and environment**. When a builder creates a workspace from the portal, the system clones that environment into a new Qovery project dedicated to the builder.
+A **blueprint** is a pre-configured workspace template. When a builder clicks "Create" in the RDE Portal, they are creating a private copy of a blueprint - pre-loaded with the right tools, the right database connections, and the right credentials for their role. They don't configure anything. They just pick a template and start building.
 
-As an admin, you register blueprints, configure their settings, and control which users can access them. The blueprint itself is a standard Qovery environment - you manage its services, containers, and configuration through the Qovery Console or CLI as usual.
+From a technical perspective, each blueprint maps to a **Qovery project and environment**. When a builder creates a workspace, the system clones that environment into a new Qovery project scoped to that builder. The blueprint is the master template; each workspace is an isolated copy.
+
+As an admin, you decide what each blueprint contains, who can access it, and what it can connect to. This is where governance happens - invisibly to the builder, but completely under your control. The blueprint itself is a standard Qovery environment, managed through the Qovery Console, CLI, or [Terraform](/rde/admin/blueprint-management#managing-blueprints-with-terraform) as usual.
 
 ## Registering a Blueprint
 

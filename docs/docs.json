@@ -82,7 +82,6 @@
                 "pages": [
                   "getting-started/guides/getting-started/deploy-your-first-application",
                   "getting-started/quickstart/ai-agent",
-                  "getting-started/quickstart/remote-dev-environments",
                   "getting-started/guides/use-cases/ephemeral-environment"
                 ]
               }
@@ -136,8 +135,7 @@
                   "getting-started/guides/use-cases/preview-environments",
                   "getting-started/guides/use-cases/e2e-testing"
                 ]
-              },
-              "getting-started/guides/use-cases/remote-development-environments"
+              }
             ]
           },
           {

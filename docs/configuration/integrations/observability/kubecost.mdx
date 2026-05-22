@@ -104,6 +104,25 @@ kubecostToken: qovery.env.KUBECOST_TOKEN
 Instead of exposing Kubecost publicly, use `kubectl port-forward` to access the dashboard securely from your local machine.
 
 <Steps>
+  <Step title="Connect to your cluster">
+    Download your cluster's kubeconfig from the Qovery Console:
+    1. Go to **Organization** → **Clusters**
+    2. Click on your cluster
+    3. Open the **Actions** menu and select **Get Kubeconfig**
+
+    Once downloaded, configure `kubectl` to use it:
+    ```bash
+    export KUBECONFIG=/path/to/downloaded/kubeconfig.yaml
+    ```
+
+    Verify the connection:
+    ```bash
+    kubectl get nodes
+    ```
+
+    See [Cluster Kubeconfig](/configuration/clusters#kubeconfig) for more details.
+  </Step>
+
   <Step title="Get your environment namespace">
     In Qovery Console, go to your environment and find the Kubernetes namespace in the environment details. It follows the pattern `z<env-id-prefix>-<env-name>`.
 

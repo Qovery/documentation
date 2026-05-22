@@ -1,0 +1,121 @@
+---
+title: "Live Preview"
+description: "Preview your running application directly in the workspace editor"
+---
+
+<Warning>
+**Preview**: Remote Dev Environments Portal is in preview. Features may change as the product evolves.
+</Warning>
+
+## Overview
+
+The live preview panel shows your running application in an iframe, directly alongside your terminal. See changes as you develop without switching browser tabs or managing URLs.
+
+## How It Works
+
+The portal **proxies HTTP requests** from the preview panel to your running application inside the workspace container. This uses Qovery's port-forward capability - no public URLs or ingress configuration needed.
+
+Your application needs to be **running and listening on a port** for the preview to work. Start your dev server from the terminal first, then the preview panel will automatically display your application.
+
+<Info>
+The preview uses a secure proxy connection to your workspace. Traffic stays within your infrastructure and is not exposed publicly until you explicitly [publish](/rde/user/publishing) your application.
+</Info>
+
+## Viewport Switching
+
+Use the **viewport icons** in the preview panel header to test your application at different screen sizes:
+
+| Viewport | Description |
+|----------|-------------|
+| **Desktop** | Full-width preview matching the panel width |
+| **Tablet** | Tablet-width viewport for testing medium screen layouts |
+| **Mobile** | Mobile-width viewport for testing small screen layouts |
+
+Viewport switching resizes the iframe to simulate the selected device width. This is useful for testing responsive CSS breakpoints and ensuring your application looks correct across devices.
+
+<Tip>
+Combine viewport switching with your browser's built-in developer tools for more detailed responsive testing. The viewport switcher gives you quick checks; your browser's DevTools provide pixel-level control.
+</Tip>
+
+## Auto-Refresh
+
+Toggle **auto-refresh** in the preview toolbar to automatically reload the preview at a configurable interval.
+
+**When to use auto-refresh:**
+- Your dev server does not support hot module replacement (HMR)
+- You are editing static files that are served directly without a build step
+- You want periodic visual checks without manually clicking refresh
+
+**When you don't need auto-refresh:**
+- Your framework supports HMR (Next.js, Vite, Create React App, etc.) - changes appear automatically
+- You prefer to control when the preview reloads
+
+You can adjust the refresh interval to match your workflow. A shorter interval gives more frequent updates; a longer interval reduces unnecessary reloads.
+
+## Manual Refresh
+
+Click the **refresh button** in the preview header to reload the preview on demand. Use this when:
+
+- You want to see the latest state of your application after making changes
+- The preview is showing stale content
+- You need to reset application state (e.g., clear client-side state)
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Preview shows a blank page">
+    Make sure your application is running. Open the **Terminal** tab and check for errors. Your application must be actively listening on a port for the preview to display anything.
+
+    Try starting your dev server manually:
+    ```bash
+    npm run dev    # or your framework's equivalent
+    ```
+  </Accordion>
+
+  <Accordion title="Preview shows an error">
+    Your application may have crashed or encountered a runtime error. Check the terminal for error output and stack traces.
+
+    Common fixes:
+    - Restart your dev server
+    - Check for missing dependencies (`npm install`)
+    - Review recent code changes for syntax errors
+  </Accordion>
+
+  <Accordion title="Preview is slow to load">
+    The first load may take a few seconds as the port-forward connection is established. Subsequent loads should be faster.
+
+    If the preview remains slow:
+    - Check your application's startup time in the terminal
+    - Large applications or those compiling many assets may take longer on initial load
+    - Ensure your workspace has sufficient resources (contact your admin if performance is consistently poor)
+  </Accordion>
+
+  <Accordion title="Preview doesn't update after code changes">
+    If your framework does not support hot module replacement (HMR), changes will not appear automatically.
+
+    Solutions:
+    - **Enable auto-refresh** in the preview toolbar
+    - **Click the refresh button** manually after making changes
+    - Switch to a framework with HMR support if real-time updates are important to your workflow
+  </Accordion>
+
+  <Accordion title="Preview works but viewport switching has no effect">
+    Viewport switching changes the iframe width to simulate different devices. If your application does not use responsive CSS (media queries, flexible layouts), it may look the same at all viewport sizes.
+
+    This is an application issue, not a portal issue. Add responsive styles to your application to see viewport switching take effect.
+  </Accordion>
+</AccordionGroup>
+
+## Next Steps
+
+<CardGroup cols={3}>
+  <Card title="Using the Editor" icon="laptop-code" href="/rde/user/using-the-editor">
+    Terminal tabs, AI chat, and the full editor layout.
+  </Card>
+  <Card title="Publishing Your App" icon="rocket" href="/rde/user/publishing">
+    Deploy your application to a production URL.
+  </Card>
+  <Card title="Git History & Snapshots" icon="clock-rotate-left" href="/rde/user/git-history">
+    Save and restore previous versions of your work.
+  </Card>
+</CardGroup>

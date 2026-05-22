@@ -1,0 +1,148 @@
+---
+title: "Using the Editor"
+description: "Work with the terminal, Claude Code, and AI chat in your workspace"
+---
+
+<Warning>
+**Preview**: Remote Dev Environments Portal is in preview. Features may change as the product evolves.
+</Warning>
+
+## Overview
+
+The workspace editor is your development environment in the browser. It provides terminals, AI-assisted coding, and a live preview of your running application - all in one interface. No local setup or IDE installation required.
+
+## Editor Layout
+
+The editor uses a **resizable split layout** with two main panels:
+
+- **Left panel** - Terminal tabs for shells, AI chat, and custom commands
+- **Right panel** - Live preview of your running application rendered in an iframe
+
+Drag the **divider** between panels to resize them. You can make either panel larger depending on whether you need more terminal space or a bigger preview.
+
+### Top Bar
+
+The top bar provides workspace-level controls:
+
+| Element | Description |
+|---------|-------------|
+| **Workspace name** | Click to rename your workspace inline |
+| **Status badge** | Shows the current workspace state (Running, Deploying, etc.) |
+| **History** | Open the git snapshot history panel |
+| **Preview** | Open the live preview in a new browser tab |
+| **Publish** | Start the publish workflow to deploy your application |
+| **User avatar** | Your account menu |
+
+## Terminal Tabs
+
+The left panel contains **tabbed terminals** configured by your admin. Click any tab to switch between tools. Common tabs include:
+
+### Chat
+
+The Chat panel is powered by **OpenCode** running inside your workspace container. It has full access to your project files and codebase context.
+
+Use it to:
+- Ask questions about your project structure and code
+- Generate code snippets and boilerplate
+- Debug errors by pasting stack traces
+- Get explanations of unfamiliar code
+
+Type your question or request in the input field and press **Enter** to send.
+
+### Claude Code
+
+Claude Code is an **AI-assisted terminal** powered by Anthropic's Claude. Unlike the Chat panel, Claude Code operates as an interactive terminal session where the AI can directly create files, edit code, run commands, and navigate your project.
+
+Use it for:
+- Hands-on coding tasks ("create a REST API endpoint for users")
+- Refactoring and code modifications
+- Running and interpreting test results
+- Exploring and understanding your codebase
+
+### Terminal
+
+A standard **bash shell** running in your workspace container. You have full access to your project files and any development tools pre-installed by the blueprint (Node.js, Python, Git, Docker, etc.).
+
+Use it for:
+- Running dev servers and build commands
+- Installing packages
+- Git operations
+- Any command-line task
+
+### Custom Tabs
+
+Your admin may configure additional tabs that run specific commands when opened. For example, a tab might automatically start a development server, run a test suite, or launch a linting tool.
+
+<Info>
+Each terminal tab runs as a separate shell session. They share the same filesystem but have independent processes and environment state.
+</Info>
+
+## Working with the Editor
+
+### Starting Your Dev Server
+
+Most blueprints require you to start a development server before the live preview will show your application. Open the **Terminal** tab and run the appropriate command for your stack:
+
+<Tabs>
+  <Tab title="Node.js">
+    ```bash
+    npm run dev
+    ```
+  </Tab>
+  <Tab title="Python">
+    ```bash
+    python manage.py runserver
+    ```
+  </Tab>
+  <Tab title="Go">
+    ```bash
+    go run .
+    ```
+  </Tab>
+  <Tab title="Ruby">
+    ```bash
+    rails server
+    ```
+  </Tab>
+</Tabs>
+
+<Tip>
+Not sure which command to use? Ask Claude Code: "How do I start the dev server in this project?" - it can read your project configuration and tell you.
+</Tip>
+
+### Reconnecting
+
+If a terminal tab disconnects (due to network interruption or idle timeout), **refresh the browser page** to re-establish the connection. Your workspace and all running processes continue in the background - only the terminal connection is interrupted.
+
+### File Persistence
+
+All files in your workspace persist as long as the workspace exists. Changes survive:
+- Terminal disconnections
+- Page refreshes
+- Workspace stop/start cycles
+
+Files are only lost if you **delete** the workspace.
+
+## Keyboard Shortcuts
+
+| Shortcut | Action |
+|----------|--------|
+| **Cmd+S** (macOS) / **Ctrl+S** (Windows/Linux) | Save a git snapshot of your current workspace state |
+
+<Tip>
+Use the Chat panel for quick questions and the Claude Code terminal for hands-on coding tasks. Both have access to your full project context.
+</Tip>
+
+## Next Steps
+
+<CardGroup cols={3}>
+  <Card title="Live Preview" icon="eye" href="/rde/user/live-preview">
+    Viewport switching, auto-refresh, and testing responsive layouts.
+  </Card>
+  <Card title="Publishing Your App" icon="rocket" href="/rde/user/publishing">
+    Deploy your application to a production URL.
+  </Card>
+  <Card title="Git History & Snapshots" icon="clock-rotate-left" href="/rde/user/git-history">
+    Save, browse, and restore previous versions of your work.
+  </Card>
+</CardGroup>

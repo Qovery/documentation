@@ -1,0 +1,95 @@
+---
+title: "Workspace Dashboard"
+description: "Manage all your workspaces from a single dashboard"
+---
+
+<Warning>
+**Preview**: Remote Dev Environments Portal is in preview. Features may change as the product evolves.
+</Warning>
+
+## Overview
+
+The workspace dashboard is your home screen in the RDE Portal. It shows all your workspaces, lets you create new ones from the blueprint catalog, and provides quick actions for managing workspace lifecycle.
+
+## Dashboard Layout
+
+The dashboard is organized into two main sections:
+
+### Blueprint Catalog
+
+At the top of the dashboard, a **horizontal card list** displays all blueprints available to you. Each card shows the blueprint name and a **Launch** button. Click Launch to create a new workspace from that blueprint.
+
+<Info>
+You only see blueprints your admin has granted you access to. If no blueprints appear, contact your admin to request access.
+</Info>
+
+### Workspace Cards
+
+Below the catalog, your existing workspaces are displayed as **cards**. Each card shows:
+
+- **Workspace name** - the name you gave the workspace (or a default name)
+- **Status badge** - current state of the workspace (Running, Stopped, Deploying, or Error)
+- **Blueprint name** - which blueprint the workspace was created from
+- **Action menu** - three-dot icon with quick actions
+
+## Tags
+
+Organize your workspaces with tags to keep things manageable as your list grows.
+
+- **Create tags** to categorize workspaces by purpose (e.g., "frontend", "experiment", "client-project")
+- **Filter by tag** using the tag tabs above your workspace list to quickly find what you need
+- **Assign or remove tags** from a workspace through its action menu
+
+<Tip>
+Tags are especially useful if you work across multiple projects or blueprints. Create a consistent tagging convention with your team so everyone can find their workspaces quickly.
+</Tip>
+
+## Workspace Actions
+
+Click the **three-dot menu** on any workspace card to access these actions:
+
+| Action | Description |
+|--------|-------------|
+| **Open** | Enter the workspace editor |
+| **Start** | Resume a stopped workspace |
+| **Stop** | Pause a running workspace (preserves all state) |
+| **Restart** | Stop and restart the workspace |
+| **Delete** | Permanently remove the workspace and all its data |
+
+<Warning>
+Deleting a workspace is permanent. All files, snapshots, and configuration are removed. Create a snapshot or publish your work before deleting if you want to preserve it.
+</Warning>
+
+## Workspace Status
+
+Each workspace displays a status badge indicating its current state:
+
+| Status | Indicator | Description |
+|--------|-----------|-------------|
+| **Running** | Green | Workspace is active and ready to use. Click Open to enter the editor. |
+| **Stopped** | Gray | Workspace is paused. All state is preserved. Click Start to resume. |
+| **Deploying** | Blue | Workspace is being created or restarted. Wait for it to reach Running. |
+| **Error** | Red | Something went wrong. Try restarting the workspace or contact your admin. |
+
+## Search
+
+Use the **search bar** at the top of the workspace list to filter workspaces by name. This filters in real time as you type, making it easy to find a specific workspace when you have many.
+
+## Workspace Limits
+
+Your admin may set a limit on how many workspaces you can run simultaneously. If you hit the limit, you will need to **stop an existing workspace** before creating a new one.
+
+<Note>
+Stopped workspaces do not count toward your running workspace limit. Stopping a workspace preserves all your files and snapshots - you can resume it later.
+</Note>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Using the Editor" icon="laptop-code" href="/rde/user/using-the-editor">
+    Learn about the terminal tabs, AI chat, and the workspace editor layout.
+  </Card>
+  <Card title="Live Preview" icon="eye" href="/rde/user/live-preview">
+    Preview your running application with viewport switching and auto-refresh.
+  </Card>
+</CardGroup>

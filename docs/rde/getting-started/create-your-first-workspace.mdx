@@ -1,0 +1,172 @@
+---
+title: "Create Your First Workspace"
+description: "Spin up your first remote development environment and start building"
+---
+
+<Warning>
+**Preview**: Remote Dev Environments Portal is currently in preview. Features and capabilities are under active development and may change.
+</Warning>
+
+## Overview
+
+This guide walks you through creating your first workspace in the RDE Portal. You will pick a blueprint, name your workspace, and start developing - all from your browser.
+
+## Prerequisites
+
+<Check>A Qovery account in an organization with the **RDE Portal add-on** enabled (Business or Enterprise plan)</Check>
+<Check>At least one blueprint available in the catalog (configured by your admin - see [Admin Setup](/rde/getting-started/admin-setup))</Check>
+
+## Create a Workspace
+
+<Steps>
+  <Step title="Log in to the Portal">
+    Go to [rde.qovery.com](https://rde.qovery.com) and log in with your Qovery credentials. Authentication uses the same login as the Qovery Console - no additional signup required.
+  </Step>
+
+  <Step title="Browse the Blueprint Catalog">
+    On the workspace dashboard, you will see available blueprints displayed as a horizontal card list. Each card shows the blueprint name and a **Launch** button.
+
+    Only blueprints your admin has granted you access to will appear in the catalog.
+  </Step>
+
+  <Step title="Launch a Workspace">
+    Click **Launch** on the blueprint you want to use. Give your workspace a name - you can rename it later by clicking the name in the top bar.
+
+    The portal clones the blueprint environment and starts deploying your isolated workspace.
+  </Step>
+
+  <Step title="Wait for Deployment">
+    Your workspace status will show as **Deploying**. This typically takes 2-4 minutes depending on the blueprint complexity (number of services, databases, and container images involved).
+
+    You will be redirected to the workspace editor automatically once deployment completes.
+  </Step>
+</Steps>
+
+<Info>
+Each workspace is a fully isolated clone of the blueprint environment. Your changes do not affect other users' workspaces or the original blueprint.
+</Info>
+
+## Explore the Workspace Editor
+
+Once your workspace is ready, the editor opens in a split-pane layout: **tools on the left, live preview on the right**.
+
+### Left Panel - Terminals and Chat
+
+The left panel contains preconfigured tabs along the top. Depending on your admin's configuration, you may see:
+
+- **Chat** - AI chat powered by OpenCode for asking questions, generating code snippets, and getting contextual help.
+- **Claude Code** - AI-assisted terminal that can generate and edit code, run commands, and navigate your project.
+- **Terminal** - Standard bash shell running in your workspace container. Full access to your project files and installed tools.
+- **Custom command tabs** - Admin-defined tabs that run specific commands (e.g., linting, test suites, build scripts).
+
+Click any tab to switch between tools. You can have multiple terminals open simultaneously.
+
+### Right Panel - Live Preview
+
+The right panel renders your running application directly in the browser. Use the **viewport switcher** (desktop, tablet, and mobile icons) in the preview toolbar to test responsive layouts.
+
+Toggle **auto-refresh** to automatically reload the preview when your application rebuilds. You can also manually refresh with the reload button.
+
+### Top Bar
+
+The top bar displays:
+
+- **Workspace name** - click to rename your workspace
+- **Deployment status** - current state of your environment
+- **History** - browse and restore git snapshots
+- **Preview** - open the live preview in a new tab
+- **Publish** - submit your application for production deployment
+
+## Your First Commands
+
+Open the **Terminal** tab and run a few commands to orient yourself:
+
+```bash
+# See what's in your workspace
+ls -la
+
+# Check installed tools
+node --version    # or python3, go, etc.
+git status
+
+# Start the dev server (varies by blueprint)
+npm run dev       # Node.js example
+```
+
+Your workspace comes preconfigured with the tools and dependencies defined in the blueprint. The dev server command depends on the technology stack your admin has set up.
+
+<Tip>
+Use the **Claude Code** tab to ask questions like "What's the project structure?" or "How do I start the dev server?" - it has full context of your workspace.
+</Tip>
+
+## Save Your Work
+
+The portal uses **git snapshots** to version your work. Press **Cmd+S** (macOS) or **Ctrl+S** (Windows/Linux) to create a snapshot at any time.
+
+Each snapshot creates a git commit of your current workspace state. You can browse and restore previous snapshots from the **History** panel in the top bar.
+
+<Info>
+Snapshots are local to your workspace. They do not push to any external Git repository. Use the **Publish** workflow when you are ready to deploy your changes.
+</Info>
+
+## Publish Your Application
+
+Once you have built something you want to share, use the **Publish** workflow:
+
+1. Click the **Publish** button in the top bar.
+2. Choose a subdomain for your published application.
+3. Submit the publish request.
+4. Your admin reviews and approves the deployment.
+5. Your application goes live at the assigned URL.
+
+Publishing is covered in detail in the [Publishing Your App](/rde/user/publishing) guide.
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Workspace stuck in Deploying">
+    Deployment typically takes 2-4 minutes. If your workspace has not reached **Running** status after 5 minutes:
+
+    - Go back to the workspace dashboard and try **restarting** the workspace.
+    - Check if the blueprint's source environment is healthy in the Qovery Console.
+    - Contact your admin if the issue persists - there may be a cluster resource or configuration problem.
+  </Accordion>
+
+  <Accordion title="No blueprints available in the catalog">
+    Your admin has not configured access for your account yet. Contact your admin and ask to be added to a blueprint's access control list. They can grant access by email address or email domain.
+  </Accordion>
+
+  <Accordion title="Terminal not connecting">
+    The terminal uses WebSocket connections that may disconnect after idle periods.
+
+    - **Refresh the page** to re-establish the connection.
+    - If the terminal still does not connect, check your browser's network tab for WebSocket errors.
+    - Ensure your network or VPN allows WebSocket connections to your portal URL.
+  </Accordion>
+
+  <Accordion title="Preview not loading">
+    The preview panel shows your running application. If it is blank or shows an error:
+
+    - **Check the terminal** for application errors - your dev server may not be running yet.
+    - Make sure your application is listening on the expected port.
+    - Try manually starting the dev server from the terminal.
+    - Click the **refresh** button in the preview toolbar.
+  </Accordion>
+</AccordionGroup>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Using the Editor" icon="laptop-code" href="/rde/user/using-the-editor">
+    Master the workspace editor layout, keyboard shortcuts, and productivity features.
+  </Card>
+  <Card title="Live Preview" icon="eye" href="/rde/user/live-preview">
+    Viewport switching, auto-refresh, and testing responsive layouts.
+  </Card>
+  <Card title="Publishing Your App" icon="rocket" href="/rde/user/publishing">
+    Submit your application for production deployment with subdomain selection.
+  </Card>
+  <Card title="Git History & Snapshots" icon="clock-rotate-left" href="/rde/user/git-history">
+    Browse, compare, and restore previous workspace snapshots.
+  </Card>
+</CardGroup>

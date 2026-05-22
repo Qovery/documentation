@@ -252,6 +252,23 @@ The portal enforces rate limits to prevent abuse:
 - **Global API requests**: Configurable limit per minute (default: 200 per minute)
 - Standard HTTP security headers on all responses
 
+## Regulated Industries
+
+For organizations in regulated industries - **financial services, healthcare, insurance, legal** - the security architecture is not a feature. It is the compliance argument.
+
+When a finance analyst builds an internal tool on Lovable, that tool's code and the data it touches live on Lovable's shared infrastructure. Your auditor is not looking at Lovable's SOC 2 certificate - they are looking at your data perimeter. If company data flows through a vendor's shared cloud, you have a gap that no policy document closes.
+
+The RDE Portal solves this at the architecture level, not the policy level:
+
+- **Your code never leaves your cluster.** Workspace containers run on your Kubernetes infrastructure. Source code, AI interactions, and application data stay inside your perimeter.
+- **Your cluster is never exposed.** Qovery agents initiate outbound TLS/gRPC connections to the control plane. No inbound ports. Not directly reachable from the internet. Ever.
+- **Compliance is inherited, not negotiated.** Workspace containers run on your existing cluster. If your cluster is SOC 2, HIPAA, or GDPR compliant, your workspaces are too - automatically. Your auditor is looking at infrastructure you already certified.
+- **Full audit trail.** Every workspace operation - create, stop, delete, publish - is logged through Qovery's audit trail. Who did what, when, on which blueprint.
+
+<Note>
+For a CISO review, share the [Security & Data Residency](/rde/reference/security) and [Architecture](/rde/reference/architecture) pages. They cover the cluster connectivity model, data residency, token management, and the streaming architecture in full technical detail.
+</Note>
+
 ## Comparison with Hosted Alternatives
 
 Non-technical teams across your organization are already using AI-powered builder tools like Lovable, Bolt.new, and Replit to create applications - often with company data and without IT oversight. These platforms offer consumer-grade governance: shared multi-tenant infrastructure, limited networking controls, no VPC peering, and incomplete audit trails. The RDE Portal provides the same ease of use with enterprise-grade security - your code and data stay on your infrastructure.
@@ -280,7 +297,7 @@ Because workspace containers run on your existing Qovery cluster, they inherit y
 
 ## Summary
 
-The RDE Portal security model can be summarized in three principles:
+The RDE Portal is **secure by architecture, not by policy.** Security is not a layer added on top - it is the foundational design. The model can be summarized in three principles:
 
 1. **Your code and data stay on your infrastructure.** Workspace containers run on your Kubernetes cluster. Source code, AI conversations, terminal history, and application data never leave your environment. The portal control plane (hosted by Qovery) manages orchestration and configuration only.
 

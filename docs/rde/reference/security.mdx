@@ -202,8 +202,10 @@ Each workspace is a **separate Qovery environment** running as isolated containe
 ### Audit & Visibility
 
 - **All workspace operations** (create, start, stop, delete, publish) are logged through Qovery's audit trail
+- **Connection auditing** - Every shell and preview connection is logged with user email, IP address, connection type, and timestamp. View active and historical sessions in the [Security Center](/rde/admin/security-center)
+- **IP firewall** - Configure allow/deny rules with CIDR support to restrict which IP addresses can connect to workspaces. Blocked connection attempts are logged as firewall events. See [Security Center](/rde/admin/security-center) for configuration
 - **Publish workflow** maintains a full history of requests, approvals, and rejections with timestamps and reviewer identity
-- **Admin dashboard** provides real-time visibility into all workspaces across the organization: who created them, their status, and which blueprint they're based on
+- **Admin dashboard** provides real-time visibility into all workspaces across the organization, including an infrastructure topology graph showing clusters, blueprints, and workspace distribution
 
 ## Token & Secret Management
 

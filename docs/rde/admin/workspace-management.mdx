@@ -21,9 +21,10 @@ Navigate to **Admin > Workspaces** to see all workspaces in your organization. E
 | **Owner Email** | The email address of the builder who owns the workspace |
 | **Blueprint** | The blueprint template the workspace was created from |
 | **Status** | Current state: Running, Stopped, Deploying, or Error |
+| **Cluster** | The Kubernetes cluster where the workspace is running (visible when the organization has multiple clusters) |
 | **Created** | When the workspace was first created |
 
-You can filter workspaces by status or search by workspace name or owner email to quickly find what you need.
+You can filter workspaces by status or cluster, and search by workspace name or owner email to quickly find what you need.
 
 ## Workspace Actions
 
@@ -64,6 +65,26 @@ The admin dashboard provides summary statistics at the top of the workspace mana
 - **Total Blueprints** - Number of registered blueprints in the organization
 
 Use these stats to get a quick sense of resource utilization and identify workspaces that need attention.
+
+<Info>
+Workspace statuses update reactively. During active transitions (deploying, restarting), the dashboard polls every 3 seconds. Once all workspaces reach a stable state, polling slows to every 15 seconds to reduce API load.
+</Info>
+
+## Infrastructure Overview
+
+The admin dashboard includes an **infrastructure topology graph** that visualizes the relationship between clusters, blueprints, and workspaces across your organization.
+
+The graph displays:
+
+- **Cluster nodes** - Each Kubernetes cluster in your organization
+- **Blueprint nodes** - Blueprints connected to their target cluster, showing owner and status
+- **Workspace nodes** - Active workspaces connected to their source blueprint, showing status indicators
+
+The graph auto-layouts using a hierarchical top-down arrangement. Use it to quickly understand how workspaces are distributed across your infrastructure and identify clusters or blueprints with high utilization.
+
+<Tip>
+The infrastructure graph updates in real time. Workspace status changes (deploying, running, stopped, error) are reflected automatically with adaptive polling - faster updates during active changes, slower polling when stable.
+</Tip>
 
 ## Workspace Limits
 

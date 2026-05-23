@@ -609,7 +609,8 @@
                   "rde/admin/workspace-management",
                   "rde/admin/publish-approvals",
                   "rde/admin/member-management",
-                  "rde/admin/portal-customization"
+                  "rde/admin/portal-customization",
+                  "rde/admin/security-center"
                 ]
               }
             ]

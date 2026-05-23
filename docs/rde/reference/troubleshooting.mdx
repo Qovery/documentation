@@ -51,6 +51,15 @@ This page covers common issues you may encounter with the RDE Portal and how to 
     - Check that your browser allows third-party cookies, or that `auth.qovery.com` is not blocked by browser extensions.
     - Try logging in from an incognito/private window to rule out extension interference.
   </Accordion>
+
+  <Accordion title="Browser compatibility warning banner">
+    **Symptoms:** A banner appears warning that your browser may not be fully supported.
+
+    **Solutions:**
+    - The RDE Portal is optimized for **Chromium-based browsers** (Google Chrome, Microsoft Edge, Brave, Arc). Terminal rendering and WebSocket connections work best on these browsers.
+    - Firefox and Safari may work for basic portal navigation but can have issues with terminal display and live preview.
+    - For the best experience, switch to a Chromium-based browser.
+  </Accordion>
 </AccordionGroup>
 
 ## Workspace Issues
@@ -137,6 +146,15 @@ This page covers common issues you may encounter with the RDE Portal and how to 
     - **Resize** the terminal panel by dragging the divider. This triggers a terminal re-fit that recalculates dimensions.
     - If the issue persists, open a new terminal tab.
     - Some programs output ANSI escape codes that may not render correctly. Try running `reset` in the terminal to clear the state.
+  </Accordion>
+
+  <Accordion title="Terminal shows 'Connection blocked by firewall'">
+    **Symptoms:** The terminal displays a firewall blocked message instead of connecting.
+
+    **Solutions:**
+    - Your IP address has been blocked by a firewall rule configured by your admin. Contact your admin to verify your IP is allowed.
+    - If you are connecting from a VPN or corporate network, your outbound IP may differ from what you expect. Ask your admin to check the IP address shown in the Security Center's activity log.
+    - Your admin can review blocked connection attempts in **Admin > Security > Activity**.
   </Accordion>
 </AccordionGroup>
 

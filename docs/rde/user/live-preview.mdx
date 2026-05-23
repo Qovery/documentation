@@ -21,6 +21,23 @@ Your application needs to be **running and listening on a port** for the preview
 The preview uses a secure proxy connection to your workspace. Traffic stays within your infrastructure and is not exposed publicly until you explicitly [publish](/rde/user/publishing) your application.
 </Info>
 
+## Navigation
+
+The preview panel includes **browser-like navigation controls** for moving through pages in your application:
+
+| Control | Description |
+|---------|-------------|
+| **Back arrow** | Navigate to the previous page in your browsing history within the preview |
+| **Forward arrow** | Navigate forward after going back |
+| **Port selector** | A dropdown on the left side of the URL bar showing the active port. Switch between ports if your application exposes multiple services. |
+| **Path bar** | An editable path field showing the current URL path. Edit the path and press **Enter** to navigate directly to a specific route in your application. |
+
+The navigation tracks page changes automatically, including single-page application (SPA) route transitions (pushState, replaceState, popstate, and hashchange events).
+
+<Info>
+The path bar and navigation controls may be hidden for some blueprints. Admins can toggle path bar visibility in the blueprint settings.
+</Info>
+
 ## Viewport Switching
 
 Use the **viewport icons** in the preview panel header to test your application at different screen sizes:
@@ -59,6 +76,20 @@ Click the **refresh button** in the preview header to reload the preview on dema
 - You want to see the latest state of your application after making changes
 - The preview is showing stale content
 - You need to reset application state (e.g., clear client-side state)
+
+## Public URL
+
+If your admin has enabled the **public URL** option for the blueprint, you can toggle between the proxied preview (default) and a public Qovery URL for your application.
+
+The public URL exposes your application's port through Qovery's standard ingress, making it accessible outside the portal. This is useful for:
+
+- Sharing your work-in-progress with colleagues who don't have portal access
+- Testing with external services that need to call back to your application (webhooks, OAuth callbacks)
+- Testing on a real mobile device
+
+<Warning>
+Public URLs bypass the portal's proxy and expose your application directly. Only use this when you specifically need external access. The proxied preview (default) keeps your application private to the portal.
+</Warning>
 
 ## Troubleshooting
 

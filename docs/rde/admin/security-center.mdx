@@ -1,0 +1,208 @@
+---
+title: "Security Center"
+description: "Monitor connections, configure IP firewall rules, and audit workspace access"
+---
+
+<Warning>
+**Preview**: Remote Dev Environments Portal is in preview. Features may change as the product evolves.
+</Warning>
+
+## Overview
+
+The Security Center is an admin page that provides visibility into active connections, IP-based firewall controls, and an audit log of all connection activity across your organization's workspaces.
+
+It has three tabs:
+
+- **Overview** - Summary of active sessions and recent firewall events
+- **Firewall** - IP allowlist and denylist rules for controlling access
+- **Activity** - Full log of connection sessions and firewall events
+
+## Accessing the Security Center
+
+<Steps>
+  <Step title="Open the Admin Panel">
+    Log in to the RDE Portal as an admin and navigate to **Admin > Security Center**.
+  </Step>
+
+  <Step title="Select a Tab">
+    Use the tab bar at the top to switch between **Overview**, **Firewall**, and **Activity**.
+  </Step>
+</Steps>
+
+## Overview Tab
+
+The Overview tab provides a quick summary of the current security posture:
+
+- **Active connection sessions** - The number of currently open shell and preview connections across all workspaces.
+- **Recent firewall events** - A summary of recent firewall activity, including blocked connection attempts.
+
+Use this tab as a starting point to assess whether anything needs attention before diving into the Firewall or Activity tabs.
+
+## Firewall Rules
+
+The Firewall tab lets you define IP-based access rules that control who can connect to workspaces. Rules apply to both **shell (terminal) connections** and **preview (HTTP) connections**.
+
+Each firewall rule has the following fields:
+
+| Field | Description |
+|-------|-------------|
+| **Action** | `allow` or `deny` - whether the rule permits or blocks the connection |
+| **CIDR Range** | An IP address or CIDR block (e.g., `192.168.1.0/24` or `10.0.0.5`) |
+| **Description** | A human-readable label for the rule (e.g., "Office VPN" or "Block suspicious range") |
+| **Priority** | The position in the rule list - rules are evaluated top to bottom |
+
+### Creating a Rule
+
+<Steps>
+  <Step title="Open the Firewall Tab">
+    Navigate to **Admin > Security Center > Firewall**.
+  </Step>
+
+  <Step title="Add a New Rule">
+    Click **Add Rule**. Fill in the action (`allow` or `deny`), the CIDR range, and a description.
+  </Step>
+
+  <Step title="Save">
+    Click **Save**. The rule takes effect immediately for all new connections.
+  </Step>
+</Steps>
+
+<Tip>
+Start with a deny rule for known bad IP ranges, then add allow rules for your office and VPN networks. This gives you a clear picture of what is explicitly permitted.
+</Tip>
+
+### Rule Evaluation Order
+
+Rules are evaluated **in order from top to bottom**. The first rule that matches the connecting IP address wins - no further rules are checked.
+
+This means rule ordering matters. Consider the following example:
+
+| Priority | Action | CIDR | Description |
+|----------|--------|------|-------------|
+| 1 | Allow | `10.0.0.0/8` | Internal network |
+| 2 | Deny | `10.0.5.0/24` | Restricted subnet |
+| 3 | Deny | `0.0.0.0/0` | Block everything else |
+
+In this configuration, a connection from `10.0.5.15` would be **allowed** because it matches rule 1 first. The deny rule at priority 2 never executes for that IP. To block the restricted subnet, move the deny rule above the broader allow rule.
+
+<Warning>
+First-match-wins means that a broad allow rule placed before a narrow deny rule will override the deny. Always place more specific rules above more general ones.
+</Warning>
+
+### CIDR Notation
+
+Rules accept standard CIDR notation:
+
+| Format | Meaning |
+|--------|---------|
+| `192.168.1.100` | A single IP address (equivalent to `192.168.1.100/32`) |
+| `192.168.1.0/24` | All IPs from `192.168.1.0` to `192.168.1.255` (256 addresses) |
+| `10.0.0.0/8` | All IPs from `10.0.0.0` to `10.255.255.255` |
+| `0.0.0.0/0` | All IPv4 addresses |
+
+### Default Behavior
+
+When no firewall rules are configured, **all connections are allowed**. The firewall only activates when at least one rule is present.
+
+<Info>
+If you add rules, make sure your intended users are covered by an allow rule - or that they are not matched by any deny rule. Any IP that does not match any rule is **allowed** by default, even when other rules exist.
+</Info>
+
+### Reordering Rules
+
+Because evaluation order determines which rule matches first, you can reorder rules by dragging them in the Firewall tab. After reordering, click **Save** to apply the new priority order.
+
+<AccordionGroup>
+  <Accordion title="Example: Allow only office IPs">
+    1. Add a rule: **Allow** `203.0.113.0/24` (your office network)
+    2. Add a rule: **Deny** `0.0.0.0/0` (everything else)
+    3. Ensure the allow rule is above the deny rule
+
+    Result: Only connections from your office IP range are permitted. All other IPs are blocked.
+  </Accordion>
+
+  <Accordion title="Example: Block a specific IP while allowing all others">
+    1. Add a rule: **Deny** `198.51.100.42` (the IP to block)
+
+    Result: Connections from `198.51.100.42` are blocked. All other IPs are allowed by the default policy.
+  </Accordion>
+
+  <Accordion title="Example: Allow VPN and office, block everything else">
+    1. Add a rule: **Allow** `10.8.0.0/16` (VPN range)
+    2. Add a rule: **Allow** `203.0.113.0/24` (office network)
+    3. Add a rule: **Deny** `0.0.0.0/0` (block all other traffic)
+
+    Result: Only VPN and office connections are allowed.
+  </Accordion>
+</AccordionGroup>
+
+## Activity & Connection Audit
+
+The Activity tab provides a full log of connection sessions and firewall events.
+
+### Connection Sessions
+
+Every time a user opens a terminal or accesses a preview, the session is recorded:
+
+| Field | Description |
+|-------|-------------|
+| **User Email** | The authenticated email of the user who initiated the session |
+| **IP Address** | The IP address the connection originated from |
+| **Connection Type** | `shell` (terminal session) or `preview` (HTTP preview request) |
+| **Timestamp** | When the connection was established |
+| **Status** | Whether the connection is active or has ended |
+
+### Firewall Events
+
+When a connection is blocked by a firewall rule, the event is logged separately:
+
+| Field | Description |
+|-------|-------------|
+| **IP Address** | The IP that was blocked |
+| **Matched Rule** | The specific firewall rule that caused the block |
+| **Timestamp** | When the blocked connection attempt occurred |
+| **Connection Type** | `shell` or `preview` |
+
+Use the Activity tab to investigate suspicious access attempts, verify that firewall rules are working as expected, and maintain an audit trail of who accessed which workspaces and when.
+
+## How the Firewall Works
+
+The firewall is enforced at two integration points: **shell WebSocket connections** and **preview proxy HTTP requests**.
+
+### Shell Connections
+
+When a user opens a terminal in a workspace:
+
+1. The portal receives a shell connection request.
+2. Before establishing the WebSocket, the firewall evaluates the user's IP address against the rule list.
+3. If a deny rule matches first, the connection is rejected and the terminal displays a `firewall_blocked` message.
+4. If an allow rule matches first, or no rules match (default allow), the connection proceeds normally.
+5. The connection attempt is logged in the Activity tab regardless of the outcome.
+
+### Preview Connections
+
+When a user accesses the live preview panel:
+
+1. The portal receives an HTTP request for the preview proxy.
+2. The firewall evaluates the user's IP address against the rule list.
+3. If a deny rule matches first, the request is rejected.
+4. If an allow rule matches first, or no rules match, the request is proxied to the workspace container.
+5. The connection attempt is logged in the Activity tab.
+
+<Note>
+Both allowed and blocked connections are recorded. This means the Activity tab provides a complete audit trail of all access to your organization's workspaces, not just blocked attempts.
+</Note>
+
+## Next Steps
+
+<CardGroup cols={3}>
+  <Card title="Security & Data Residency" icon="lock" href="/rde/reference/security">
+    Learn about the portal's security architecture and data residency model.
+  </Card>
+  <Card title="Workspace Management" icon="server" href="/rde/admin/workspace-management">
+    Monitor and manage all workspaces across your organization.
+  </Card>
+  <Card title="Access Control" icon="shield-halved" href="/rde/admin/access-control">
+    Configure blueprint-level access rules by email or domain.
+  </Card>
+</CardGroup>

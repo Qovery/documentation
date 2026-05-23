@@ -45,8 +45,9 @@ Connect the portal to your Qovery organization and apply your branding.
     Navigate to **Admin > Settings** and configure the following to match your organization:
 
     - **Portal name** - displayed in the header and browser tab
-    - **Logo** - your company logo for the portal header
-    - **Primary brand color** - applied to buttons, links, and accent elements
+    - **Logo (Light mode)** - your company logo for light backgrounds
+    - **Logo (Dark mode)** - optional logo variant for dark backgrounds (falls back to the light logo if not set)
+    - **Accent color** - applied to buttons, links, and accent elements throughout the portal
   </Step>
 
   <Step title="Configure the Welcome Screen (Optional)">
@@ -83,6 +84,10 @@ Blueprints are Qovery environments that serve as templates. When a builder creat
     Give the blueprint a **display name** that builders will see in the catalog (e.g., "Full-Stack Starter" or "Backend API"). Add an optional **description** to help builders understand what the blueprint includes.
   </Step>
 </Steps>
+
+<Tip>
+New blueprints start in **Testing** state. After verifying the blueprint works correctly, change its state to **Enabled** in the blueprint detail page to make it available to builders. See [Blueprint Management](/rde/admin/blueprint-management#blueprint-lifecycle) for details.
+</Tip>
 
 <Tip>
 Start with a simple blueprint - a single workspace container with basic dev tools. You can always add databases, services, and advanced configuration later. Need a ready-made image? Use the [official workspace template](https://github.com/evoxmusic/remote-dev-env-template) - an all-in-one image with code-server, Claude Code, OpenCode, and multi-language support. See [Blueprint Management](/rde/admin/blueprint-management#official-workspace-template) for details.
@@ -122,20 +127,13 @@ You can combine domain and email restrictions. For example, allow all `@yourcomp
 
 Optionally fine-tune each blueprint with AI provider configuration and workspace layout settings.
 
-### Claude Authentication
+### AI Configuration
 
-Choose how Claude Code authenticates in workspaces created from this blueprint:
+Configure AI providers for the workspace in a unified panel. Each provider can be independently enabled:
 
-- **User OAuth** - each builder authenticates with their own Anthropic account. Free tier available but usage is capped.
-- **API Key injection** - the portal injects an API key into the workspace. Seamless for builders, billed per usage to the key owner.
-
-### LLM Provider
-
-Configure the AI provider for the workspace chat panel:
-
-- **Anthropic** - Claude models
-- **OpenAI** - GPT models
-- **Custom provider** - any OpenAI-compatible API endpoint
+- **Anthropic** - Powers Claude Code and can power the Chat panel. Choose between User OAuth (builders use their own account) or API Key injection (seamless, billed to your organization).
+- **OpenAI** - Powers the Chat panel with GPT models. Requires an API key.
+- **Custom provider** - Any OpenAI-compatible API endpoint for the Chat panel. Useful for internally hosted models.
 
 ### Layout
 

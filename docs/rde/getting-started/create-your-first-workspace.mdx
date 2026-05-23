@@ -36,9 +36,16 @@ This guide walks you through creating your first workspace in the RDE Portal. Yo
   </Step>
 
   <Step title="Wait for Deployment">
-    Your workspace status will show as **Deploying**. This typically takes 2-4 minutes depending on the blueprint complexity (number of services, databases, and container images involved).
+    The portal shows **real-time provisioning progress** as your workspace is created. You will see each phase as it completes:
 
-    You will be redirected to the workspace editor automatically once deployment completes.
+    1. **Validating** - Checking blueprint configuration and your permissions
+    2. **Creating project** - Setting up the isolated Qovery project for your workspace
+    3. **Cloning blueprint** - Copying the blueprint environment into your workspace
+    4. **Configuring** - Applying settings, environment variables, and access controls
+    5. **Deploying** - Building and starting your workspace containers (this is the longest phase, typically 1-3 minutes)
+    6. **Finalizing** - Verifying all services are running
+
+    You will be redirected to the workspace editor automatically once all phases complete.
   </Step>
 </Steps>
 
@@ -71,11 +78,11 @@ Toggle **auto-refresh** to automatically reload the preview when your applicatio
 
 The top bar displays:
 
-- **Workspace name** - click to rename your workspace
+- **Logo** - click to return to the workspace dashboard
+- **Workspace name** - the name of your current workspace
 - **Deployment status** - current state of your environment
-- **History** - browse and restore git snapshots
-- **Preview** - open the live preview in a new tab
 - **Publish** - submit your application for production deployment
+- **Actions menu** (...) - workspace actions including Restart, Stop, and Delete
 
 ## Your First Commands
 

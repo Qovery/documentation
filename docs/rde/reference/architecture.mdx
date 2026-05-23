@@ -114,6 +114,8 @@ The database holds:
 - Member role assignments
 - User tags and workspace tag assignments
 - One-time authentication tickets for secure sessions
+- Connection audit logs (shell and preview session history)
+- IP firewall rules and blocked connection events
 
 <Note>
 The database does **not** store workspace state. Workspace lifecycle (running, stopped, deploying, error) and configuration are managed entirely through the Qovery API.
@@ -201,6 +203,10 @@ When the portal needs to list a user's workspaces, it:
 <Tip>
 Because Qovery's API is the single source of truth, there are no sync issues between the portal and Qovery. If you modify a workspace directly in the Qovery Console, the portal reflects the change automatically.
 </Tip>
+
+<Info>
+The portal supports **multi-cluster** organizations. Admins can assign specific Kubernetes clusters to specific blueprints via the [Target Cluster](/rde/admin/blueprint-management#target-cluster) setting. Workspace discovery spans all clusters in the organization.
+</Info>
 
 ## Terminal & Preview
 
@@ -294,6 +300,8 @@ The portal splits data storage between its database and the Qovery API:
 | Theme and branding | Portal database |
 | Member roles | Portal database |
 | User tags | Portal database |
+| Connection audit logs | Portal database |
+| Firewall rules and events | Portal database |
 
 <Note>
 No source code, AI conversations, or application data is stored in the portal database. All development data lives exclusively in workspace containers on your cluster.

@@ -18,11 +18,16 @@ Navigate to **Admin > Settings** to configure portal-wide branding.
 | Setting | Description |
 |---------|-------------|
 | **Portal Name** | Displayed in the header and browser tab title. Use your company name or a team-specific label. |
-| **Logo** | Your company logo, shown in the top navigation bar. Upload a PNG or SVG file. |
-| **Primary Color** | The portal generates a full color palette from your primary brand color - buttons, links, accents, and hover states all adapt automatically. |
+| **Logo (Light)** | Your company logo for light mode, shown in the top navigation bar. Upload a PNG or SVG file. |
+| **Logo (Dark)** | Your company logo for dark mode. If not provided, the light logo is used in both modes. Upload a PNG or SVG file. |
+| **Accent Color** | The portal generates a full color palette from your accent color - buttons, links, accents, and hover states all adapt automatically. Use the color picker or enter a hex value. |
+
+<Tip>
+Use the **Reset** controls next to the accent color and logos to revert to the Qovery defaults at any time.
+</Tip>
 
 <Info>
-Branding changes take effect immediately for all users. No restart or redeployment is required.
+Branding changes take effect immediately for all users. No restart or redeployment is required. The portal automatically applies the appropriate logo variant based on the user's system theme (light or dark mode).
 </Info>
 
 ## Welcome Screen
@@ -73,38 +78,51 @@ Toggle the **preview panel** visibility for the blueprint. When enabled, builder
 
 Disable the preview panel for blueprints where a live preview is not relevant (e.g., backend API services, CLI tools, data processing scripts).
 
-## Claude Authentication
+## AI Configuration
 
-Configure how **Claude Code** authenticates in workspaces for each blueprint. Navigate to **Admin > Blueprints > [Blueprint] > Settings**.
+Configure AI providers for each blueprint in a single, unified settings panel. Navigate to **Admin > Blueprints > [Blueprint] > Settings > AI Configuration**.
 
-<Tabs>
-  <Tab title="User OAuth">
-    Builders authenticate with their own Anthropic account when they first open Claude Code. This is free to set up but usage is capped by each user's individual Anthropic plan.
+The AI configuration uses an accordion interface where each provider can be independently enabled and configured.
 
-    **Best for:** Teams where builders already have Anthropic accounts, or when you want each user to manage their own usage.
-  </Tab>
-  <Tab title="API Key">
-    You provide an Anthropic API key at the blueprint level. Claude Code authenticates automatically with no action required from the builder. Usage is billed to your organization's Anthropic account.
+### Anthropic (Claude)
 
-    **Best for:** Seamless onboarding where you want builders to start coding immediately without any authentication steps. You control and pay for the usage centrally.
-  </Tab>
-</Tabs>
-
-## LLM Provider Configuration
-
-Configure the **Chat panel** LLM provider for each blueprint. This controls which AI model powers the OpenCode chat experience in workspaces.
-
-Navigate to **Admin > Blueprints > [Blueprint] > Settings > Chat Provider**.
+Controls both Claude Code (terminal) and can power the Chat panel.
 
 | Setting | Description |
 |---------|-------------|
-| **Provider** | Choose between Anthropic, OpenAI, or a custom provider. |
-| **API Key** | The API key for the selected provider. |
-| **Model** | The specific model to use (e.g., `claude-sonnet-4-20250514`, `gpt-4o`). |
+| **Enabled** | Toggle to enable or disable Anthropic as a provider for this blueprint. |
+| **Authentication Mode** | Choose between **User OAuth** (builders authenticate with their own Anthropic account) or **API Key** (you provide a key, billed to your organization). |
+| **API Key** | Required when using API Key authentication mode. Stored encrypted with AES-256-GCM. |
+| **Model** | The Claude model to use (e.g., `claude-sonnet-4-20250514`). |
 
-<Note>
-LLM provider settings apply to the Chat panel only. Claude Code authentication is configured separately (see above).
-</Note>
+### OpenAI
+
+Powers the Chat panel with OpenAI models.
+
+| Setting | Description |
+|---------|-------------|
+| **Enabled** | Toggle to enable or disable OpenAI as a provider. |
+| **API Key** | Your OpenAI API key. Stored encrypted with AES-256-GCM. |
+| **Model** | The model to use (e.g., `gpt-4o`). |
+
+### Custom Provider
+
+Use any OpenAI-compatible API endpoint as the Chat panel provider.
+
+| Setting | Description |
+|---------|-------------|
+| **Enabled** | Toggle to enable or disable the custom provider. |
+| **API Key** | API key for the custom endpoint. Stored encrypted with AES-256-GCM. |
+| **Model** | The model identifier expected by the custom endpoint. |
+| **Endpoint URL** | The base URL of the OpenAI-compatible API (e.g., `https://your-llm-gateway.internal/v1`). |
+
+<Info>
+You can enable multiple providers simultaneously. Anthropic powers Claude Code, while the Chat panel uses whichever provider is configured for it (Anthropic, OpenAI, or Custom). If multiple chat providers are enabled, the first enabled provider in order (Anthropic, OpenAI, Custom) is used.
+</Info>
+
+<Tip>
+For organizations that require AI traffic to stay within your network, use the Custom provider with an internally hosted model endpoint. This ensures no AI data leaves your infrastructure.
+</Tip>
 
 <Tip>
 Start with the default layout and iterate based on builder feedback. You can change layout settings at any time - they apply to new workspaces and existing workspaces on their next load.

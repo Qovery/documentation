@@ -228,16 +228,14 @@ For high availability:
 
     #### Migrating from HPA to KEDA
 
-    <Warning>
-    If your application is currently using HPA (CPU/Memory) autoscaling and you want to migrate to KEDA, follow these steps:
+    Direct migration from HPA to KEDA is blocked. The reason is a Kubernetes conflict: both HPA and KEDA's `ScaledObject` target the same Deployment replica count simultaneously, causing unpredictable scaling behavior.
 
-    1. Switch your application to **No Scaling** mode
-    2. **Redeploy your application**
-    3. Switch to **KEDA (Event-Driven)** mode
-    4. Configure your KEDA scalers
+    The required migration path is **HPA → No Scaling → KEDA**:
 
-    Direct migration from HPA to KEDA is not supported and will not work properly.
-    </Warning>
+    1. Switch your application to **No autoscaling (fixed instances)** mode and save
+    2. **Redeploy** — this removes the HPA resource from the cluster
+    3. Switch to **KEDA (Event-Driven)** mode and configure your scalers
+    4. **Redeploy** again
 
     #### General Configuration
 

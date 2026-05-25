@@ -36,35 +36,37 @@ The pipeline view provides a centralized overview of your deployment process, sh
 
 ## Pre-Check Logs
 
-Before a deployment begins, Qovery runs a series of automated validations called **pre-checks**. These checks confirm that the environment is ready to accept the deployment and catch configuration problems early, before any infrastructure changes are made.
+Before sending work to the deployment engine, Qovery runs a **pre-check stage** that validates a set of preconditions. If any check fails, the deployment is stopped immediately — before any infrastructure change is made.
 
 ### What Pre-Checks Validate
 
-- **Resource quotas**: Ensures the cluster has enough CPU and memory headroom for the incoming workload
-- **Configuration validation**: Verifies that environment variables, secrets, and service settings are complete and well-formed
-- **Dependency readiness**: Confirms that services this deployment depends on (databases, other services) are available
-- **Cluster capacity**: Checks that the target node pool can schedule the new pods
+Pre-checks cover three areas:
+
+**1. Cloud provider credentials**
+Verifies that the credentials configured on the cluster are still valid and have the necessary permissions (AWS IAM role/static keys, GCP service account, Azure app registration, Scaleway secret key).
+
+**2. Git repository access**
+For services built from Git (applications, jobs, Helm charts):
+- The configured **root path** exists in the repository at the target commit
+- For Helm values files, the **file path** exists
+- The **Dockerfile** (if any) exists and contains a valid `FROM` directive
+- The repository **owner's git credentials** are still valid
+
+**3. Repository size**
+Rejects repositories exceeding **5 GB**.
 
 ### How to Access Pre-Check Logs
 
-Pre-check logs are accessible from the deployment detail page:
-
 1. Open the **Last Deployment** section or go to the **Deployment History** tab
-2. Click on a specific deployment to open the pipeline view
-3. Click the **pre-check stage** in the pipeline — this navigates to `/deployment/{deploymentId}/pre-check-logs`
-
-The pre-check logs view shows each validation step, its result, and the details of any failure.
+2. Click on a deployment to open the pipeline view
+3. Click the **pre-check stage** — the logs stream the full output including error messages and hints
 
 ### When Pre-Checks Fail
 
-If a pre-check fails, the deployment is stopped before any infrastructure change occurs. To resolve the issue:
-
-1. **Read the error message** in the pre-check logs — it identifies the specific validation that failed and the reason
-2. **Fix the configuration** based on the error: adjust resource limits, correct environment variable values, or wait for a dependency to become healthy
-3. **Re-deploy** once the underlying problem is resolved
+The error message in the logs identifies exactly what failed (e.g. invalid credentials, missing path, oversized repo). Fix the reported issue and trigger a new deployment.
 
 <Tip>
-Pre-check failures are not deployment failures — no rollback is needed because no changes were applied. Simply fix the root cause and trigger a new deployment.
+Pre-check failures are not deployment failures — no rollback is needed because no infrastructure changes were applied.
 </Tip>
 
 ## Deployment Logs

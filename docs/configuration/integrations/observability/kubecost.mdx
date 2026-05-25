@@ -14,7 +14,7 @@ Kubecost provides real-time cost visibility and insights for your Kubernetes clu
 ## Installation
 
 <Note>
-This tutorial is based on a specific version of Kubecost. We have created it to assist our users, but Qovery is not responsible for any configuration issues — please contact Kubecost support for chart-specific questions.
+This guide targets chart version 3.1.8. Steps may differ for other versions — check the [official Kubecost docs](https://www.ibm.com/docs/en/kubecost/self-hosted/3.x) for the latest.
 </Note>
 
 ### Step 1: Add the Kubecost Helm Repository
@@ -40,7 +40,7 @@ This tutorial is based on a specific version of Kubecost. We have created it to 
     In your environment:
     1. Click **Create** → **Helm Chart**
     2. Configure:
-       - Application name: `kubecost`
+       - Service name: `kubecost`
        - Helm source: `Helm repository`
        - Repository: `Kubecost`
        - Chart name: `kubecost`
@@ -51,7 +51,7 @@ This tutorial is based on a specific version of Kubecost. We have created it to 
   </Step>
 </Steps>
 
-### Step 3: Store Secrets and Variables
+### Step 3: Configure Variables and Values Override
 
 <Steps>
   <Step title="Add optional variables">
@@ -61,35 +61,35 @@ This tutorial is based on a specific version of Kubecost. We have created it to 
 
     | Variable | Value | Scope | Secret | Notes |
     |---|---|---|---|---|
-    | `KUBECOST_TOKEN` | `<your_token>` | Service | ✔️ | Optional — required for Kubecost Business/Enterprise features |
+    | `KUBECOST_TOKEN` | `<your_token>` | Service | ✔️ |  Required only for Kubecost Business/Enterprise features |
 
     See [Environment Variables](/configuration/environment-variables) for more details on managing variables in Qovery.
   </Step>
+
+  <Step title="Configure Values Override">
+    In the **Override as file** section of your Helm service, add the following configuration:
+
+    ```yaml
+    global:
+      clusterId: my-cluster-name  # A unique identifier for your cluster in Kubecost
+    ```
+
+    If you have a Kubecost token, add it to the override:
+
+    ```yaml
+    global:
+      clusterId: my-cluster-name
+
+    kubecostToken: qovery.env.KUBECOST_TOKEN
+    ```
+
+    <Note>
+    **How `qovery.env.*` works**: At deploy time, Qovery replaces `qovery.env.KUBECOST_TOKEN` with the actual value of the `KUBECOST_TOKEN` variable. The real value never appears in the Qovery UI — it is only injected at Helm install time. See [Environment Variables in Helm Values](/configuration/helm#environment-variables-in-values) for more details.
+    </Note>
+  </Step>
 </Steps>
 
-### Step 4: Configure Values Override
-
-In the **Override as file** section of your Helm service, add the following configuration:
-
-```yaml
-global:
-  clusterId: my-cluster-name  # A unique identifier for your cluster in Kubecost
-```
-
-If you have a Kubecost token, add it to the override:
-
-```yaml
-global:
-  clusterId: my-cluster-name
-
-kubecostToken: qovery.env.KUBECOST_TOKEN
-```
-
-<Note>
-**How `qovery.env.*` works**: At deploy time, Qovery replaces `qovery.env.KUBECOST_TOKEN` with the actual value of the `KUBECOST_TOKEN` variable. The real value never appears in the Qovery UI — it is only injected at Helm install time. See [Environment Variables in Helm Values](/configuration/helm#environment-variables-in-values) for more details.
-</Note>
-
-### Step 5: Deploy the Chart
+### Step 4: Deploy the Chart
 
 <Steps>
   <Step title="Deploy">
@@ -99,9 +99,9 @@ kubecostToken: qovery.env.KUBECOST_TOKEN
   </Step>
 </Steps>
 
-### Step 6: Access Kubecost via Port Forward
+### Step 5: Access Kubecost via Port Forward
 
-Instead of exposing Kubecost publicly, use `kubectl port-forward` to access the dashboard securely from your local machine.
+Kubecost does not provide authentication by default, so exposing it publicly would leave your cost data accessible to anyone. Use `kubectl port-forward` instead to access the dashboard securely from your local machine.
 
 <Steps>
   <Step title="Connect to your cluster">
@@ -158,7 +158,7 @@ Keep the terminal open while using Kubecost — closing it will terminate the po
 
 You've successfully deployed Kubecost on your Qovery cluster. You can now access the Kubecost dashboard to monitor your Kubernetes costs and get optimization recommendations.
 
-To learn more about using Kubecost, check out their [Getting Started guide](https://www.ibm.com/docs/en/kubecost/self-hosted/3.x).
+Kubecost is now part of IBM, which is why the official documentation is hosted on IBM's website. To learn more about using Kubecost, check out their [Getting Started guide](https://www.ibm.com/docs/en/kubecost/self-hosted/3.x).
 
 ## Next Steps
 

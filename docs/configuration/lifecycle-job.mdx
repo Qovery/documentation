@@ -36,11 +36,9 @@ Qovery pulls a pre-built container image from your configured registry and deplo
 ## Creating a Lifecycle Job
 
 <Steps>
-  <Step title="Select Source">
+  <Step title="Create new job">
     Choose **Git Repository** or **Container Registry** as your deployment source
-  </Step>
 
-  <Step title="Configure Source">
     **For Git Repository**:
     - Select Git provider
     - Choose repository
@@ -54,7 +52,7 @@ Qovery pulls a pre-built container image from your configured registry and deplo
     - Specify image tag
   </Step>
 
-  <Step title="Configure Triggers">
+  <Step title="Triggers">
     Select which lifecycle events should trigger this job:
     - **Deploy**: Run when environment is deployed
     - **Stop**: Run when environment is stopped
@@ -68,16 +66,16 @@ Qovery pulls a pre-built container image from your configured registry and deplo
     - Port (if needed for health checks)
   </Step>
 
-  <Step title="Configure Resources">
+  <Step title="Set resources">
     - **vCPU**: Default 500m (0.5 cores)
     - **RAM**: Default 512MB
   </Step>
 
-  <Step title="Input Variables">
+  <Step title="Set variable environments">
     Configure environment variables that the job needs
   </Step>
 
-  <Step title="Review and Deploy">
+  <Step title="Ready to install">
     Review configuration and click **Create** to deploy
   </Step>
 </Steps>

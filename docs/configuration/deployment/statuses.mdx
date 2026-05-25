@@ -63,13 +63,13 @@ The deployment follows these statuses:
 - **QUEUED**: The deployment request is in the queue
 - **BUILDING**: The code is being built into a container image (for Git deployments)
 - **DEPLOYING**: The container is being deployed to Kubernetes
-- **CANCELLING BUILDING**: The build is being cancelled
-- **CANCELLED**: The deployment has been cancelled
+- **CANCELING**: The build is being cancelled
+- **CANCELED**: The deployment has been cancelled
 
 **Final statuses:**
-- **BUILDING ERROR**: The build failed
+- **BUILD_ERROR**: The build failed
 - **DEPLOYMENT ERROR**: The deployment to Kubernetes failed
-- **DEPLOYMENT OK**: The deployment was successful
+- **DEPLOYED**: The deployment was successful
 - **SKIPPED**: The service was excluded from the deployment because it is marked as [skipped](/configuration/deployment/pipeline#skipped-services) in the deployment pipeline
 
 ### Important Note

@@ -5,6 +5,8 @@ description: "Restrict outbound HTTP(S) traffic for a single application using a
 
 This guide shows how to restrict outbound HTTP(S) traffic for a single application running on a Qovery-managed cluster. The goal is to enforce a domain allowlist so the application can only reach a predefined set of external services.
 
+For example: an AI agent that should only be allowed to call the Anthropic API and GitHub, a backend service restricted to your payment provider's endpoints, or a data pipeline that must only reach specific S3 buckets and your database host.
+
 <Info>
 Qovery's built-in controls focus on ingress. Per-application egress domain filtering is handled at the Kubernetes level using a dedicated forward proxy.
 </Info>

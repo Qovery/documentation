@@ -5,22 +5,35 @@ description: "Try Qovery on your local machine"
 
 ## Overview
 
-Try Qovery on your local machine with a demo environment. This command sets up a local Kubernetes cluster and deploys a sample application to help you learn Qovery.
+Try Qovery on your local machine with a demo environment. The `demo` command has two subcommands: `up` to create a local cluster and install Qovery, and `destroy` to tear it all down.
 
-## Command
+## Commands
+
+### demo up
+
+Set up a local Kubernetes cluster and install Qovery:
 
 ```bash
-qovery demo
+qovery demo up
 ```
 
-## What It Does
+| Flag | Description |
+|------|-------------|
+| `--cluster-name` / `-c` | The name of the cluster to create (default: `local-demo-<username>`) |
+| `--debug` | Enable debug mode |
 
-The demo command:
+### demo destroy
 
-1. **Sets up local Kubernetes** - Creates a local Kubernetes cluster using Docker Desktop or similar
-2. **Installs Qovery** - Deploys Qovery components to the local cluster
-3. **Deploys Sample App** - Deploys a demo application to showcase Qovery features
-4. **Provides Access** - Gives you access to explore Qovery features locally
+Destroy the local demo cluster:
+
+```bash
+qovery demo destroy
+```
+
+| Flag | Description |
+|------|-------------|
+| `--cluster-name` / `-c` | The name of the cluster to destroy (default: `local-demo-<username>`) |
+| `--delete-qovery-config` / `-d` | Delete the config on Qovery side as well (environments and associated cluster) |
 
 ## Prerequisites
 
@@ -30,51 +43,32 @@ Before running the demo:
 - **Kubectl** - Kubernetes CLI should be available
 - **Sufficient Resources** - At least 4GB RAM available for Docker
 
-## Usage
-
-```bash
-qovery demo [flags]
-```
-
-## Options
-
-| Flag | Description |
-|------|-------------|
-| `--help` | Show help for demo command |
-
 ## Examples
 
-### Run Demo
+### Start the Demo
 
 ```bash
-# Start Qovery demo
-qovery demo
+# Start with default cluster name
+qovery demo up
 
-# Follow the prompts to:
-# - Setup local Kubernetes cluster
-# - Install Qovery
-# - Deploy sample application
-# - Access the demo environment
+# Start with a custom cluster name
+qovery demo up --cluster-name "my-demo"
+
+# Start with debug output enabled
+qovery demo up --debug
 ```
 
-## What You Can Try
-
-Once the demo is running, you can:
-
-- **Deploy Applications** - Try deploying your own apps
-- **Manage Environments** - Create development/staging environments
-- **View Logs** - Stream real-time logs
-- **Access Shell** - Connect to running containers
-- **Test Databases** - Deploy and connect to databases
-- **Explore Features** - Try all Qovery CLI commands
-
-## Cleanup
-
-To stop and remove the demo environment:
+### Destroy the Demo
 
 ```bash
-# Stop demo (command may vary based on implementation)
-# Refer to demo output for cleanup instructions
+# Destroy the local cluster
+qovery demo destroy
+
+# Destroy the local cluster and remove Qovery-side config
+qovery demo destroy --delete-qovery-config
+
+# Destroy a specific named cluster
+qovery demo destroy --cluster-name "my-demo"
 ```
 
 ## Tips

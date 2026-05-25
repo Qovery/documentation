@@ -17,62 +17,206 @@ List all containers in current environment:
 qovery container list
 ```
 
+**Flags:**
+
+| Flag | Description |
+|------|-------------|
+| `--organization` | Organization Name |
+| `--project` | Project Name |
+| `--environment` | Environment Name |
+| `--json` | JSON output |
+
+### Create Container
+
+Create a new container service:
+
+```bash
+qovery container create \
+  --container "my-container" \
+  --registry "<registry-id>" \
+  --image-name "nginx" \
+  --tag "latest"
+```
+
+**Flags:**
+
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--container` | `-n` | Container Name (required) |
+| `--registry` | | Container Registry ID (required) |
+| `--image-name` | | Container Image Name (required) |
+| `--tag` | `-t` | Container Image Tag (required) |
+| `--port` | `-p` | Container Port (0 = no port exposed) |
+| `--cpu` | | CPU in millicores (default: 500) |
+| `--memory` | | Memory in MB (default: 512) |
+| `--min-instances` | | Minimum number of running instances (default: 1) |
+| `--max-instances` | | Maximum number of running instances (default: 1) |
+| `--organization` | | Organization Name |
+| `--project` | | Project Name |
+| `--environment` | | Environment Name |
+| `--json` | | JSON output |
+
 ### Deploy Container
 
 Deploy a container:
 
 ```bash
-qovery container deploy --container "container-id"
+qovery container deploy --container "my-container"
 ```
 
 Deploy with specific image tag:
 
 ```bash
 qovery container deploy \
-  --container "container-id" \
+  --container "my-container" \
   --tag "v1.2.0"
 ```
+
+Deploy multiple containers at once:
+
+```bash
+qovery container deploy \
+  --containers "container1,container2"
+```
+
+**Flags:**
+
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--container` | `-n` | Container Name |
+| `--containers` | | Container Names (comma separated) |
+| `--tag` | `-t` | Container Tag |
+| `--watch` | `-w` | Watch container status until it's ready or an error occurs |
+| `--organization` | | Organization Name |
+| `--project` | | Project Name |
+| `--environment` | | Environment Name |
 
 ### Redeploy Container
 
 Redeploy with same image:
 
 ```bash
-qovery container redeploy --container "container-id"
+qovery container redeploy --container "my-container"
 ```
+
+**Flags:**
+
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--container` | `-n` | Container Name (required) |
+| `--watch` | `-w` | Watch container status until it's ready or an error occurs |
+| `--organization` | | Organization Name |
+| `--project` | | Project Name |
+| `--environment` | | Environment Name |
 
 ### Stop Container
 
 Stop a running container:
 
 ```bash
-qovery container stop --container "container-id"
+qovery container stop --container "my-container"
 ```
 
-### Restart Container
-
-Restart a container:
+Stop multiple containers at once:
 
 ```bash
-qovery container restart --container "container-id"
+qovery container stop --containers "container1,container2"
 ```
+
+**Flags:**
+
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--container` | `-n` | Container Name |
+| `--containers` | | Container Names (comma separated) |
+| `--watch` | `-w` | Watch container status until it's ready or an error occurs |
+| `--organization` | | Organization Name |
+| `--project` | | Project Name |
+| `--environment` | | Environment Name |
+
+### Cancel Deployment
+
+Cancel a container deployment:
+
+```bash
+qovery container cancel --container "my-container"
+```
+
+**Flags:**
+
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--container` | `-n` | Container Name (required) |
+| `--watch` | `-w` | Watch cancel until it's done or an error occurs |
+| `--organization` | | Organization Name |
+| `--project` | | Project Name |
+| `--environment` | | Environment Name |
+
+### Update Container
+
+Update a container's image name or tag:
+
+```bash
+qovery container update \
+  --container "my-container" \
+  --tag "v2.0.0"
+```
+
+**Flags:**
+
+| Flag | Description |
+|------|-------------|
+| `--container` | Container Name (required) |
+| `--image-name` | Container Image Name |
+| `--tag` | Container Tag |
+| `--organization` | Organization Name |
+| `--project` | Project Name |
+| `--environment` | Environment Name |
+
+### Clone Container
+
+Clone a container to another environment or project:
+
+```bash
+qovery container clone --container "my-container"
+```
+
+**Flags:**
+
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--container` | `-n` | Container Name (required) |
+| `--target-project` | | Target Project Name |
+| `--target-environment` | | Target Environment Name |
+| `--target-container-name` | | Target Container Name |
+| `--organization` | | Organization Name |
+| `--project` | | Project Name |
+| `--environment` | | Environment Name |
 
 ### Delete Container
 
 Delete a container service:
 
 ```bash
-qovery container delete --container "container-id"
+qovery container delete --container "my-container"
 ```
 
-## Options
+Delete multiple containers at once:
 
-| Flag | Description |
-|------|-------------|
-| `--container` | Container ID or name |
-| `--tag` | Image tag to deploy |
-| `--output` | Output format (table, json, yaml) |
-| `--help` | Show help |
+```bash
+qovery container delete --containers "container1,container2"
+```
+
+**Flags:**
+
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--container` | `-n` | Container Name |
+| `--containers` | | Container Names (comma separated) |
+| `--watch` | `-w` | Watch container status until it's ready or an error occurs |
+| `--organization` | | Organization Name |
+| `--project` | | Project Name |
+| `--environment` | | Environment Name |
 
 ## Examples
 
@@ -85,8 +229,8 @@ qovery container list
 # Deploy container
 qovery container deploy --container "nginx-proxy"
 
-# Watch status
-qovery status --watch
+# Watch deployment status
+qovery container deploy --container "nginx-proxy" --watch
 ```
 
 ### Deploy Specific Image Version
@@ -96,6 +240,12 @@ qovery status --watch
 qovery container deploy \
   --container "nginx-proxy" \
   --tag "1.21-alpine"
+```
+
+### List Containers as JSON
+
+```bash
+qovery container list --json
 ```
 
 ## Related Commands

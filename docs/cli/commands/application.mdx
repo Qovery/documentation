@@ -7,6 +7,21 @@ description: "Application management commands"
 
 Deploy and manage applications within your Qovery environment.
 
+## Subcommands
+
+| Subcommand | Description |
+|------------|-------------|
+| `list` | List applications in the current environment |
+| `deploy` | Deploy an application |
+| `redeploy` | Redeploy an application |
+| `stop` | Stop a running application |
+| `cancel` | Cancel an application deployment |
+| `delete` | Delete an application |
+| `update` | Update an application |
+| `clone` | Clone an application |
+| `domain` | Manage application custom domains |
+| `env` | Manage application environment variables |
+
 ## Commands
 
 ### List Applications
@@ -17,28 +32,41 @@ List all applications in current environment:
 qovery application list
 ```
 
+Output as JSON:
+
+```bash
+qovery application list --json
+```
+
 ### Deploy Application
 
-Deploy specific application:
+Deploy a specific application:
 
 ```bash
-qovery application deploy --application "app-id"
+qovery application deploy --application "my-api"
 ```
 
-Deploy with specific commit:
+Deploy with a specific commit:
 
 ```bash
 qovery application deploy \
-  --application "app-id" \
-  --commit "abc123def"
+  --application "my-api" \
+  --commit-id "abc123def"
 ```
 
-Deploy with tag:
+Deploy multiple applications at once:
 
 ```bash
 qovery application deploy \
-  --application "app-id" \
-  --tag "v1.2.0"
+  --applications "app1,app2,app3"
+```
+
+Watch deployment progress:
+
+```bash
+qovery application deploy \
+  --application "my-api" \
+  --watch
 ```
 
 ### Redeploy Application
@@ -46,7 +74,7 @@ qovery application deploy \
 Redeploy the same version:
 
 ```bash
-qovery application redeploy --application "app-id"
+qovery application redeploy --application "my-api"
 ```
 
 ### Stop Application
@@ -54,34 +82,13 @@ qovery application redeploy --application "app-id"
 Stop a running application:
 
 ```bash
-qovery application stop --application "app-id"
+qovery application stop --application "my-api"
 ```
 
-### Restart Application
-
-Restart an application:
+Stop multiple applications:
 
 ```bash
-qovery application restart --application "app-id"
-```
-
-### Delete Application
-
-Delete an application:
-
-```bash
-qovery application delete --application "app-id"
-```
-
-### Update Application
-
-Update application configuration:
-
-```bash
-qovery application update \
-  --application "app-id" \
-  --cpu 1000 \
-  --memory 1024
+qovery application stop --applications "app1,app2"
 ```
 
 ### Cancel Deployment
@@ -89,73 +96,145 @@ qovery application update \
 Cancel an ongoing deployment:
 
 ```bash
-qovery application cancel --application "app-id"
+qovery application cancel --application "my-api"
+```
+
+### Delete Application
+
+Delete an application:
+
+```bash
+qovery application delete --application "my-api"
+```
+
+### Update Application
+
+Update application configuration (branch or auto-deploy setting):
+
+```bash
+qovery application update \
+  --application "my-api" \
+  --branch "main"
+```
+
+Enable auto-deploy:
+
+```bash
+qovery application update \
+  --application "my-api" \
+  --auto-deploy
 ```
 
 ## Options
 
-| Flag | Description |
-|------|-------------|
-| `--application` | Application ID or name |
-| `--commit` | Git commit SHA to deploy |
-| `--tag` | Git tag to deploy |
-| `--cpu` | CPU allocation in millicores |
-| `--memory` | Memory allocation in MB |
-| `--instances` | Number of instances |
-| `--output` | Output format (table, json, yaml) |
-| `--watch` | Watch deployment progress |
-| `--help` | Show help |
+### Common flags (available on most subcommands)
+
+| Flag | Shorthand | Description |
+|------|-----------|-------------|
+| `--organization` | | Organization Name |
+| `--project` | | Project Name |
+| `--environment` | | Environment Name |
+| `--application` | `-n` | Application Name |
+| `--applications` | | Application Names (comma-separated), e.g. `--applications "app1,app2,app3"` |
+
+### `deploy` flags
+
+| Flag | Shorthand | Description |
+|------|-----------|-------------|
+| `--commit-id` | `-c` | Git commit ID to deploy |
+| `--watch` | `-w` | Watch application status until ready or error |
+
+### `redeploy` flags
+
+| Flag | Shorthand | Description |
+|------|-----------|-------------|
+| `--commit-id` | `-c` | Git commit ID |
+| `--watch` | `-w` | Watch application status until ready or error |
+
+### `stop` flags
+
+| Flag | Shorthand | Description |
+|------|-----------|-------------|
+| `--watch` | `-w` | Watch application status until ready or error |
+
+### `cancel` flags
+
+| Flag | Shorthand | Description |
+|------|-----------|-------------|
+| `--watch` | `-w` | Watch cancel until done or an error occurs |
+
+### `delete` flags
+
+| Flag | Shorthand | Description |
+|------|-----------|-------------|
+| `--watch` | `-w` | Watch application status until ready or error |
+
+### `update` flags
+
+| Flag | Shorthand | Description |
+|------|-----------|-------------|
+| `--branch` | | Application Git Branch |
+| `--auto-deploy` | | Enable auto-deploy for the application |
+
+### `list` flags
+
+| Flag | Shorthand | Description |
+|------|-----------|-------------|
+| `--json` | | JSON output |
 
 ## Examples
 
 ### Deploy Application
 
 ```bash
-# Set context
+# Set context first if not already set
 qovery context set
 
 # Deploy latest commit
 qovery application deploy --application "my-api"
 
-# Watch deployment
-qovery status --watch
-```
-
-### Deploy Specific Version
-
-```bash
-# Deploy specific commit
+# Deploy with specific commit
 qovery application deploy \
   --application "my-api" \
-  --commit "a1b2c3d"
+  --commit-id "a1b2c3d"
 
-# Deploy tagged release
+# Watch deployment progress
 qovery application deploy \
   --application "my-api" \
-  --tag "v2.0.0"
+  --watch
 ```
 
-### Update Resources
+### Deploy Multiple Applications
 
 ```bash
-# Update CPU and memory
-qovery application update \
-  --application "my-api" \
-  --cpu 2000 \
-  --memory 4096
-
-# Redeploy to apply changes
-qovery application redeploy --application "my-api"
+qovery application deploy \
+  --applications "frontend,backend,worker"
 ```
 
 ### Rollback Deployment
 
 ```bash
-# Deploy previous commit
+# Deploy a previous commit
 qovery application deploy \
   --application "my-api" \
-  --commit "previous-commit-sha"
+  --commit-id "previous-commit-sha"
 ```
+
+### Update Branch
+
+```bash
+qovery application update \
+  --application "my-api" \
+  --branch "feature/new-branch"
+```
+
+## Additional Subcommand Groups
+
+The `application` command also has the following subcommand groups for more advanced management:
+
+- **`qovery application clone`** — Clone an application to another environment
+- **`qovery application domain`** — Manage custom domains (`list`, `create`, `delete`, `edit`)
+- **`qovery application env`** — Manage environment variables (`list`, `create`, `update`, `delete`, `alias`, `override`)
 
 ## Related Commands
 

@@ -17,46 +17,106 @@ List all environments in current project:
 qovery environment list
 ```
 
-### Create Environment
-
-Create a new environment:
-
-```bash
-qovery environment create \
-  --name "staging" \
-  --cluster "cluster-id" \
-  --mode STAGING
-```
+| Flag | Description |
+|------|-------------|
+| `--organization` | Organization Name |
+| `--project` | Project Name |
+| `--json` | JSON output |
 
 ### Deploy Environment
 
 Deploy all services in an environment:
 
 ```bash
-qovery environment deploy
+qovery environment deploy --environment "env-name"
 ```
 
-Deploy specific environment:
+Deploy with specific services or versions:
 
 ```bash
-qovery environment deploy --environment "env-id"
+qovery environment deploy \
+  --environment "env-name" \
+  --applications "app1:commit_id,app2:commit_id" \
+  --watch
 ```
+
+| Flag | Description |
+|------|-------------|
+| `--organization` | Organization Name |
+| `--project` | Project Name |
+| `--environment` | Environment Name |
+| `--services` | Services to deploy (JSON Format: https://api-doc.qovery.com/#tag/Environment-Actions/operation/deployAllServices) |
+| `--applications` | Applications to deploy e.g. `app1:commit_id,app2:commit_id`. Omit commit id to use the same commit. |
+| `--containers` | Containers to deploy e.g. `container1:image_tag,container2:image_tag`. Omit image tag to use the same tag. |
+| `--lifecycles` | Lifecycle jobs to deploy e.g. `job1:image_tag\|git_commit_id,job2:...`. Omit version to use the same. |
+| `--cronjobs` | Cronjobs to deploy e.g. `cronjob1:git_commit_id,cronjob2:git_commit_id`. Omit commit id to use the same. |
+| `--helms` | Helm charts to deploy e.g. `helm1:chart_version\|git_commit_id,helm2:...`. Omit version to use the same. |
+| `--watch` / `-w` | Watch environment status until it's ready or an error occurs |
+| `--skip-paused-services` | Skip paused services: paused services won't be started / deployed |
 
 ### Stop Environment
 
 Stop all services in an environment:
 
 ```bash
-qovery environment stop
+qovery environment stop --environment "env-name"
 ```
+
+| Flag | Description |
+|------|-------------|
+| `--organization` | Organization Name |
+| `--project` | Project Name |
+| `--environment` | Environment Name |
+| `--watch` / `-w` | Watch environment status until it's ready or an error occurs |
+
+### Cancel Environment Deployment
+
+Cancel an ongoing environment deployment:
+
+```bash
+qovery environment cancel --environment "env-name"
+```
+
+| Flag | Description |
+|------|-------------|
+| `--organization` | Organization Name |
+| `--project` | Project Name |
+| `--environment` | Environment Name |
+| `--force` / `-f` | Force cancel |
+| `--watch` / `-w` | Watch environment status until it's ready or an error occurs |
 
 ### Delete Environment
 
 Delete an environment:
 
 ```bash
-qovery environment delete --environment "env-id"
+qovery environment delete --environment "env-name"
 ```
+
+| Flag | Description |
+|------|-------------|
+| `--organization` | Organization Name |
+| `--project` | Project Name |
+| `--environment` | Environment Name |
+| `--watch` / `-w` | Watch environment status until it's ready or an error occurs |
+
+### Update Environment
+
+Update an environment's name or type:
+
+```bash
+qovery environment update \
+  --environment "env-name" \
+  --name "new-name"
+```
+
+| Flag | Description |
+|------|-------------|
+| `--organization` / `-o` | Organization Name |
+| `--project` / `-p` | Project Name |
+| `--environment` / `-e` | Environment Name |
+| `--name` | New Environment Name |
+| `--type` | Change Environment Type (`DEVELOPMENT\|STAGING\|PRODUCTION`) |
 
 ### Clone Environment
 
@@ -65,104 +125,51 @@ Clone an existing environment:
 ```bash
 qovery environment clone \
   --environment "production" \
-  --name "staging-clone"
+  --new-environment-name "staging-clone"
 ```
-
-## Environment Variables
-
-### List Variables
-
-```bash
-qovery environment env list
-```
-
-### Create Variable
-
-```bash
-qovery environment env create \
-  --key "API_KEY" \
-  --value "secret-value" \
-  --scope ENVIRONMENT
-```
-
-Create secret variable:
-
-```bash
-qovery environment env create \
-  --key "DATABASE_PASSWORD" \
-  --value "super-secret" \
-  --scope ENVIRONMENT \
-  --secret
-```
-
-### Update Variable
-
-```bash
-qovery environment env update \
-  --key "API_KEY" \
-  --value "new-value"
-```
-
-### Delete Variable
-
-```bash
-qovery environment env delete --key "API_KEY"
-```
-
-## Options
 
 | Flag | Description |
 |------|-------------|
-| `--name` | Environment name |
-| `--cluster` | Cluster ID |
-| `--mode` | Environment mode (DEVELOPMENT, STAGING, PRODUCTION) |
-| `--environment` | Environment ID or name |
-| `--key` | Variable key |
-| `--value` | Variable value |
-| `--scope` | Variable scope (ENVIRONMENT, PROJECT, BUILT_IN) |
-| `--secret` | Mark variable as secret |
-| `--output` | Output format (table, json, yaml) |
-| `--help` | Show help |
+| `--organization` / `-o` | Organization Name |
+| `--project` / `-p` | Project Name |
+| `--environment` / `-e` | Environment Name to clone |
+| `--new-environment-name` / `-n` | New Environment Name (required) |
+| `--cluster` / `-c` | Cluster Name where to clone the environment |
+| `--environment-type` / `-t` | Environment type for the new environment (`DEVELOPMENT\|STAGING\|PRODUCTION`) |
+| `--apply-deployment-rule` | Enable applying deployment rules on the new environment instead of having a pristine clone |
+| `--target-project` | Target Project Name |
 
 ## Examples
 
-### Create and Deploy Environment
+### Deploy Environment
 
 ```bash
 # Set context
 qovery context set
 
-# Create environment
-qovery environment create \
-  --name "feature-auth" \
-  --mode DEVELOPMENT
+# Deploy all services and watch
+qovery environment deploy \
+  --environment "my-env" \
+  --watch
 
-# Deploy all services
-qovery environment deploy
-
-# Watch deployment status
-qovery status --watch
+# Deploy specific applications with specific commits
+qovery environment deploy \
+  --environment "my-env" \
+  --applications "api:abc1234,frontend:def5678" \
+  --watch
 ```
 
-### Manage Environment Variables
+### Cancel a Deployment
 
 ```bash
-# List all variables
-qovery environment env list
+# Cancel current deployment
+qovery environment cancel --environment "my-env"
 
-# Add new variable
-qovery environment env create \
-  --key "FEATURE_FLAG_NEW_UI" \
-  --value "enabled"
-
-# Add secret
-qovery environment env create \
-  --key "STRIPE_API_KEY" \
-  --value "sk_test_..." \
-  --secret
-
-# Deploy to apply changes
-qovery environment deploy
+# Force cancel and watch
+qovery environment cancel \
+  --environment "my-env" \
+  --force \
+  --watch
 ```
 
 ### Clone Production to Staging
@@ -171,10 +178,32 @@ qovery environment deploy
 # Clone environment
 qovery environment clone \
   --environment "production" \
-  --name "staging-test"
+  --new-environment-name "staging-test" \
+  --environment-type STAGING
+
+# Clone to a different project and cluster
+qovery environment clone \
+  --environment "production" \
+  --new-environment-name "staging-test" \
+  --target-project "other-project" \
+  --cluster "staging-cluster"
 
 # Deploy cloned environment
 qovery environment deploy --environment "staging-test"
+```
+
+### Update Environment
+
+```bash
+# Rename an environment
+qovery environment update \
+  --environment "old-name" \
+  --name "new-name"
+
+# Change environment type
+qovery environment update \
+  --environment "my-env" \
+  --type PRODUCTION
 ```
 
 ## Related Commands

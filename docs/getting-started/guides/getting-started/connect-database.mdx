@@ -78,7 +78,7 @@ The easiest way to connect is using the connection URI environment variable:
 const { Pool } = require('pg');
 
 const pool = new Pool({
-  connectionString: process.env.QOVERY_DATABASE_MY_POSTGRESQL_CONNECTION_URI,
+  connectionString: process.env.QOVERY_POSTGRESQL_Z9XXXXXX_DATABASE_URL,
 });
 ```
 
@@ -86,15 +86,17 @@ const pool = new Pool({
 
 For each database, Qovery provides:
 
-- `QOVERY_DATABASE_<DB_NAME>_CONNECTION_URI` - Complete connection string
-- `QOVERY_DATABASE_<DB_NAME>_HOST` - Database host
-- `QOVERY_DATABASE_<DB_NAME>_PORT` - Database port
-- `QOVERY_DATABASE_<DB_NAME>_USERNAME` - Database username
-- `QOVERY_DATABASE_<DB_NAME>_PASSWORD` - Auto-generated password
-- `QOVERY_DATABASE_<DB_NAME>_DATABASE` - Database name
+- `QOVERY_POSTGRESQL_<DBID>_DATABASE_URL` - Complete connection string
+- `QOVERY_POSTGRESQL_<DBID>_HOST` - Database host
+- `QOVERY_POSTGRESQL_<DBID>_PORT` - Database port
+- `QOVERY_POSTGRESQL_<DBID>_LOGIN` - Database username
+- `QOVERY_POSTGRESQL_<DBID>_PASSWORD` - Auto-generated password
+- `QOVERY_POSTGRESQL_<DBID>_DEFAULT_DATABASE_NAME` - Default database name
+
+Replace `POSTGRESQL` with your actual database type (`MYSQL`, `MONGODB`, `REDIS`, etc.) and `<DBID>` with the database ID shown in the Console (visible in the **Variables** tab of your service).
 
 <Note>
-Replace `<DB_NAME>` with your actual database name (uppercased with underscores). You can find the exact variable names in your application's environment variables settings.
+The exact variable names are always visible in the **Variables** tab of any service that has the database attached. You can copy them directly from there.
 </Note>
 
 ## Database Management

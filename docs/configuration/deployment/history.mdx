@@ -21,6 +21,49 @@ Each service deployed during the execution is listed with:
 - Deployment status
 - Version deployed (commit hash or image tag)
 
+### Trigger Source
+
+Each deployment entry shows the origin of the trigger with an icon:
+
+| Icon | Source |
+|------|--------|
+| Git | Triggered by a push or merge to the configured branch |
+| Console | Triggered manually from the Qovery web console |
+| API | Triggered via the Qovery REST API |
+| CLI | Triggered via the Qovery CLI |
+| Terraform | Triggered by a Terraform provider apply |
+| Internal | Triggered automatically by Qovery (e.g. auto-deploy, scheduled action) |
+
+### Triggered By
+
+Shows who or what initiated the deployment: a user account (name or email) for manual triggers, or a system identifier for automated ones.
+
+### Duration
+
+The elapsed time between when the deployment started and when it reached a terminal status (success, failed, or cancelled).
+
+### Status
+
+The current or final status of the deployment. See [Deployment Statuses](/configuration/deployment/statuses) for the full list of possible values.
+
+## Available Actions
+
+### Cancel a Deployment
+
+Deployments in **Queued** or **In Progress** status can be cancelled. Click the cancel icon next to the deployment entry in the history table. Cancelling a running deployment stops the ongoing operation and leaves the environment in the state it was in before the deployment started.
+
+<Warning>
+Cancelling a deployment mid-execution may leave some services partially updated. Redeploy once the cancellation completes to restore a consistent state.
+</Warning>
+
+### Open Pipeline View
+
+Click **Pipeline view** on any deployment entry to see a stage-by-stage breakdown of that execution. The pipeline view shows which services were deployed in each stage, their individual statuses, and any dependency ordering that was applied.
+
+### View Logs
+
+Click **View logs** on any deployment entry to open the logs for that specific execution. This is useful for debugging failed deployments or reviewing what happened during a past run. See [Deployment Logs](/configuration/deployment/logs) for more details.
+
 ## Next Steps
 
 <CardGroup cols={2}>

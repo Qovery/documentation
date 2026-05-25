@@ -215,9 +215,9 @@ Qovery provides a built-in alerting system that proactively monitors your servic
 
 Navigate to the **Alerts** section from the main organization navigation (top-level sidebar item). This gives you a centralized, cross-service view with three sub-pages:
 
-- **Alert Rules**: Browse and manage all configured alert rules across all services in the organization
+- **Alert rules**: Browse and manage all configured alert rules across all services in the organization
 - **Issues**: View all currently fired alerts with their severity, target service, and duration. Each issue shows which alert rule triggered it and how long it has been active.
-- **Notification Channels**: Configure and manage notification channels (Slack, Email, and more integrations coming soon)
+- **Notification channel**: Configure and manage notification channels (Slack, Email, and more integrations coming soon)
 
 <img src="/images/observability/issues-overview.png" alt="Alerting Section - Issues Overview" />
 
@@ -227,6 +227,10 @@ Each service (Application or Container) has a dedicated **Monitoring** tab that 
 
 - **Dashboard**: Real-time metrics visualization with graphs for CPU, memory, network, and latency
 - **Alerts**: View and create alerts scoped to this specific service
+
+<Note>
+The **Alerts** sub-tab is only visible when alerting is enabled on the cluster (Cluster settings > General > Alerting).
+</Note>
 
 Navigate to a service > click the **Monitoring** tab > select the **Alerts** sub-tab to create or review alerts for that service.
 

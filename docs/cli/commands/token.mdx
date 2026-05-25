@@ -18,33 +18,21 @@ This command generates a new API token that can be used for authentication inste
 ## Usage
 
 ```bash
-qovery token [flags]
+qovery token
 ```
 
-## Options
-
-| Flag | Description |
-|------|-------------|
-| `--name` | Token name/description |
-| `--help` | Show help for token command |
+The command is fully interactive — it prompts you to select an organization, token name, description, and role. There are no flags to pass.
 
 ## Examples
 
 ### Generate Token
 
 ```bash
-# Generate new API token
+# Generate new API token (interactive prompts will guide you)
 qovery token
 
 # Copy the token output
 # Token: qov_abc123def456...
-```
-
-### Generate Named Token
-
-```bash
-# Generate token with descriptive name
-qovery token --name "CI/CD Pipeline Token"
 ```
 
 ## Using API Tokens
@@ -120,8 +108,8 @@ source .env
     Regularly rotate API tokens for security:
 
     ```bash
-    # 1. Generate new token
-    qovery token --name "New Token"
+    # 1. Generate new token (interactive)
+    qovery token
 
     # 2. Update CI/CD secrets with new token
 
@@ -130,17 +118,13 @@ source .env
   </Accordion>
 
   <Accordion title="Limited Scope Tokens">
-    Generate separate tokens for different purposes:
+    Generate separate tokens for different purposes by running `qovery token` for each and providing a descriptive name when prompted:
 
     ```bash
-    # Production deployments
-    qovery token --name "Production CI/CD"
-
-    # Staging deployments
-    qovery token --name "Staging CI/CD"
-
-    # Read-only monitoring
-    qovery token --name "Monitoring Read-Only"
+    # For each token, run:
+    qovery token
+    # Enter a descriptive name at the prompt, e.g.:
+    # "Production CI/CD", "Staging CI/CD", "Monitoring Read-Only"
     ```
   </Accordion>
 </AccordionGroup>

@@ -17,20 +17,55 @@ List all cronjobs in current environment:
 qovery cronjob list
 ```
 
+**Flags:**
+
+| Flag | Description |
+|------|-------------|
+| `--organization` | Organization Name |
+| `--project` | Project Name |
+| `--environment` | Environment Name |
+| `--json` | JSON output |
+
 ### Deploy Cronjob
 
-Deploy or update a cronjob:
+Deploy a cronjob:
 
 ```bash
-qovery cronjob deploy
+qovery cronjob deploy --cronjob "my-cron"
 ```
+
+Deploy multiple cronjobs at once:
+
+```bash
+qovery cronjob deploy --cronjobs "cron1,cron2"
+```
+
+Deploy with a specific commit ID or image tag:
+
+```bash
+qovery cronjob deploy --cronjob "my-cron" --commit-id "abc123"
+qovery cronjob deploy --cronjob "my-cron" --tag "v1.2.0"
+```
+
+**Flags:**
+
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--cronjob` | `-n` | Cronjob Name |
+| `--cronjobs` | | Cronjob Names (comma separated) |
+| `--commit-id` | `-c` | Cronjob Commit ID |
+| `--tag` | `-t` | Cronjob Tag |
+| `--watch` | `-w` | Watch cronjob status until it's ready or an error occurs |
+| `--organization` | | Organization Name |
+| `--project` | | Project Name |
+| `--environment` | | Environment Name |
 
 ### Redeploy Cronjob
 
-Redeploy an existing cronjob:
+Redeploy an existing cronjob with the same configuration:
 
 ```bash
-qovery cronjob redeploy
+qovery cronjob redeploy --cronjob "my-cron"
 ```
 
 ### Stop Cronjob
@@ -38,7 +73,7 @@ qovery cronjob redeploy
 Stop a cronjob:
 
 ```bash
-qovery cronjob stop
+qovery cronjob stop --cronjob "my-cron"
 ```
 
 ### Delete Cronjob
@@ -46,7 +81,7 @@ qovery cronjob stop
 Delete a cronjob:
 
 ```bash
-qovery cronjob delete
+qovery cronjob delete --cronjob "my-cron"
 ```
 
 ### Cancel Deployment
@@ -54,35 +89,64 @@ qovery cronjob delete
 Cancel a cronjob deployment:
 
 ```bash
-qovery cronjob cancel
+qovery cronjob cancel --cronjob "my-cron"
 ```
 
-### Clone Cronjob
+**Flags:**
 
-Clone an existing cronjob:
-
-```bash
-qovery cronjob clone
-```
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--cronjob` | `-n` | Cronjob Name (required) |
+| `--organization` | | Organization Name |
+| `--project` | | Project Name |
+| `--environment` | | Environment Name |
 
 ### Update Cronjob
 
-Update cronjob configuration:
+Update cronjob source configuration (branch, tag, or image name):
 
 ```bash
-qovery cronjob update
+# Update git branch (for Dockerfile-based cronjobs)
+qovery cronjob update --cronjob "my-cron" --branch "main"
+
+# Update image tag (for image-based cronjobs)
+qovery cronjob update --cronjob "my-cron" --tag "v2.0.0"
+
+# Update image name
+qovery cronjob update --cronjob "my-cron" --image-name "my-registry/my-image"
 ```
 
-## Options
+**Flags:**
 
-| Flag | Description |
-|------|-------------|
-| `--cronjob` | Cronjob ID or name |
-| `--organization` | Organization name |
-| `--project` | Project name |
-| `--environment` | Environment name |
-| `--output` | Output format (table, json, yaml) |
-| `--help` | Show help |
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--cronjob` | `-n` | Cronjob Name (required) |
+| `--branch` | `-b` | Cronjob Branch (for Dockerfile-based cronjobs) |
+| `--tag` | `-t` | Cronjob Tag (for image-based cronjobs) |
+| `--image-name` | | Cronjob Image Name (for image-based cronjobs) |
+| `--organization` | | Organization Name |
+| `--project` | | Project Name |
+| `--environment` | | Environment Name |
+
+### Clone Cronjob
+
+Clone a cronjob to another environment or project:
+
+```bash
+qovery cronjob clone --cronjob "my-cron"
+```
+
+**Flags:**
+
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--cronjob` | `-n` | Cronjob Name (required) |
+| `--target-project` | | Target Project Name |
+| `--target-environment` | | Target Environment Name |
+| `--target-cronjob-name` | | Target Cronjob Name |
+| `--organization` | | Organization Name |
+| `--project` | | Project Name |
+| `--environment` | | Environment Name |
 
 ## Examples
 
@@ -93,20 +157,32 @@ qovery cronjob update
 qovery cronjob list
 
 # Deploy cronjob
-qovery cronjob deploy
+qovery cronjob deploy --cronjob "backup-job"
 
-# View cronjob logs
-qovery log
+# Deploy and watch status
+qovery cronjob deploy --cronjob "backup-job" --watch
 ```
 
-### Update Cronjob Schedule
+### Update Cronjob and Redeploy
 
 ```bash
-# Update cronjob configuration
-qovery cronjob update
+# Update branch for a git-based cronjob
+qovery cronjob update --cronjob "backup-job" --branch "feature/new-schedule"
 
 # Redeploy to apply changes
-qovery cronjob redeploy
+qovery cronjob redeploy --cronjob "backup-job"
+```
+
+### Deploy Cronjob with Specific Tag
+
+```bash
+qovery cronjob deploy --cronjob "backup-job" --tag "v2.1.0"
+```
+
+### List Cronjobs as JSON
+
+```bash
+qovery cronjob list --json
 ```
 
 ## Related Commands

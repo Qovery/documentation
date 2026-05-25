@@ -17,71 +17,54 @@ List all projects in current organization:
 qovery project list
 ```
 
-### Create Project
-
-Create a new project:
-
-```bash
-qovery project create --name "My Project"
-```
-
-With description:
-
-```bash
-qovery project create \
-  --name "Backend Services" \
-  --description "Microservices for backend APIs"
-```
-
-### Delete Project
-
-Delete a project:
-
-```bash
-qovery project delete --project "project-id"
-```
-
-<Warning>
-Deleting a project will delete all environments and services within it. This action cannot be undone.
-</Warning>
-
-## Options
+**Flags:**
 
 | Flag | Description |
 |------|-------------|
-| `--name` | Project name |
-| `--description` | Project description |
-| `--project` | Project ID or name |
-| `--organization` | Organization ID or name |
-| `--output` | Output format (table, json, yaml) |
-| `--help` | Show help |
+| `--organization` | Organization Name |
+| `--json` | JSON output |
+
+### Manage Project Variables
+
+The `project env` subgroup provides commands to manage project-level environment variables and secrets.
+
+```bash
+qovery project env list --project "my-project"
+```
+
+**`project env list` flags:**
+
+| Flag | Description |
+|------|-------------|
+| `--organization` | Organization Name |
+| `--project` | Project Name (required) |
+| `--show-values` | Show env var values |
+| `--pretty-print` | Pretty print output |
+| `--sort` | Sort environment variables by key |
+| `--json` | JSON output |
 
 ## Examples
 
-### Create and Use Project
+### List Projects
 
 ```bash
 # Set organization context
-qovery context set --organization "My Org"
+qovery context set
 
-# Create project
-qovery project create --name "Mobile App"
-
-# List projects to verify
-qovery project list
-
-# Set project context
-qovery context set --project "Mobile App"
-```
-
-### Delete Project
-
-```bash
 # List projects
 qovery project list
 
-# Delete specific project
-qovery project delete --project "old-project-id"
+# List projects as JSON
+qovery project list --json
+```
+
+### List Project Variables
+
+```bash
+qovery project env list --project "my-project"
+
+# Show values
+qovery project env list --project "my-project" --show-values
 ```
 
 ## Related Commands

@@ -17,49 +17,130 @@ List all databases in current environment:
 qovery database list
 ```
 
+Show credentials in the output:
+
+```bash
+qovery database list --show-credentials
+```
+
+**Flags:**
+
+| Flag | Description |
+|------|-------------|
+| `--organization` | Organization Name |
+| `--project` | Project Name |
+| `--environment` | Environment Name |
+| `--show-credentials` | Show Credentials |
+| `--json` | JSON output |
+
 ### Deploy Database
 
 Deploy or start a database:
 
 ```bash
-qovery database deploy --database "db-id"
+qovery database deploy --database "my-db"
 ```
+
+Deploy multiple databases at once:
+
+```bash
+qovery database deploy --databases "db1,db2"
+```
+
+**Flags:**
+
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--database` | `-n` | Database Name |
+| `--databases` | | Database Names (comma separated) |
+| `--watch` | `-w` | Watch database status until it's ready or an error occurs |
+| `--organization` | | Organization Name |
+| `--project` | | Project Name |
+| `--environment` | | Environment Name |
+
+### Redeploy Database
+
+Redeploy an existing database:
+
+```bash
+qovery database redeploy --database "my-db"
+```
+
+**Flags:**
+
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--database` | `-n` | Database Name (required) |
+| `--watch` | `-w` | Watch database status until it's ready or an error occurs |
+| `--organization` | | Organization Name |
+| `--project` | | Project Name |
+| `--environment` | | Environment Name |
 
 ### Stop Database
 
 Stop a running database:
 
 ```bash
-qovery database stop --database "db-id"
+qovery database stop --database "my-db"
 ```
 
-### Restart Database
-
-Restart a database:
+Stop multiple databases at once:
 
 ```bash
-qovery database restart --database "db-id"
+qovery database stop --databases "db1,db2"
 ```
+
+**Flags:**
+
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--database` | `-n` | Database Name |
+| `--databases` | | Database Names (comma separated) |
+| `--watch` | `-w` | Watch database status until it's ready or an error occurs |
+| `--organization` | | Organization Name |
+| `--project` | | Project Name |
+| `--environment` | | Environment Name |
+
+### Cancel Deployment
+
+Cancel a database deployment:
+
+```bash
+qovery database cancel
+```
+
+<Note>
+Use `qovery environment cancel` to cancel a database deployment.
+</Note>
 
 ### Delete Database
 
 Delete a database:
 
 ```bash
-qovery database delete --database "db-id"
+qovery database delete --database "my-db"
+```
+
+Delete multiple databases at once:
+
+```bash
+qovery database delete --databases "db1,db2"
 ```
 
 <Warning>
 Deleting a database will permanently delete all data. Make sure you have backups before proceeding.
 </Warning>
 
-## Options
+**Flags:**
 
-| Flag | Description |
-|------|-------------|
-| `--database` | Database ID or name |
-| `--output` | Output format (table, json, yaml) |
-| `--help` | Show help |
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--database` | `-n` | Database Name |
+| `--databases` | | Database Names (comma separated) |
+| `--watch` | `-w` | Watch database status until it's ready or an error occurs |
+| `--organization` | | Organization Name |
+| `--project` | | Project Name |
+| `--environment` | | Environment Name |
 
 ## Examples
 
@@ -75,8 +156,8 @@ qovery database list
 # Deploy database
 qovery database deploy --database "postgres-main"
 
-# Check status
-qovery status
+# Watch deployment status
+qovery database deploy --database "postgres-main" --watch
 ```
 
 ### Stop Database for Maintenance
@@ -89,6 +170,18 @@ qovery database stop --database "postgres-main"
 
 # Restart database
 qovery database deploy --database "postgres-main"
+```
+
+### List Databases with Credentials
+
+```bash
+qovery database list --show-credentials
+```
+
+### List Databases as JSON
+
+```bash
+qovery database list --json
 ```
 
 ## Related Commands

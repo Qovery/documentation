@@ -13,7 +13,7 @@ Forward a local port to a service container port. This allows you to access serv
 qovery port-forward
 ```
 
-The command will interactively prompt you to select the organization, project, environment, and service to forward to.
+The command requires at least one `--port` flag specifying the port mapping in `local_port:remote_port` format.
 
 ## Usage
 
@@ -23,38 +23,33 @@ qovery port-forward [flags]
 
 ## Options
 
-| Flag | Description |
-|------|-------------|
-| `--organization` | Organization name |
-| `--project` | Project name |
-| `--environment` | Environment name |
-| `--service` | Service name |
-| `--port` | Port mapping (local:remote) |
-| `--pod` | Specific pod name |
-| `--help` | Show help |
+| Flag | Short | Required | Description |
+|------|-------|----------|-------------|
+| `--port` | `-p` | Yes | Port to forward. Format: `local_port:remote_port` (e.g. `8080:80`). Can be specified multiple times. |
+| `--pod` | | No | Pod name where to forward traffic |
+| `--help` | | | Show help |
 
 ## Examples
 
-### Interactive Port Forward
+### Forward a Single Port
 
 ```bash
-# Start port forwarding interactively
-qovery port-forward
+# Forward local port 8080 to remote port 80
+qovery port-forward --pod "my-app-7d8f9c5b6-xyz12" --port 8080:80
+```
 
-# Select organization, project, environment, service
-# Specify local and remote ports when prompted
+### Forward Multiple Ports
+
+```bash
+# Forward multiple ports at once
+qovery port-forward --pod "my-app-7d8f9c5b6-xyz12" --port 8080:80 --port 5432:5432
 ```
 
 ### Access PostgreSQL Database
 
 ```bash
 # Forward PostgreSQL port
-qovery port-forward \
-  --organization "My Org" \
-  --project "Backend" \
-  --environment "production" \
-  --service "postgres-main" \
-  --port 5432:5432
+qovery port-forward --pod "my-db-5f7c9b4d2-abc34" --port 5432:5432
 
 # In another terminal, connect with psql
 psql -h localhost -p 5432 -U myuser -d mydatabase
@@ -64,33 +59,10 @@ psql -h localhost -p 5432 -U myuser -d mydatabase
 
 ```bash
 # Forward application port
-qovery port-forward \
-  --service "my-api" \
-  --port 8080:8080
+qovery port-forward --pod "my-app-7d8f9c5b6-xyz12" --port 8080:8080
 
 # Access API on http://localhost:8080
 curl http://localhost:8080/api/health
-```
-
-### Forward to Different Local Port
-
-```bash
-# Forward remote port 3000 to local port 8000
-qovery port-forward \
-  --service "my-app" \
-  --port 8000:3000
-
-# Access on http://localhost:8000
-```
-
-### Forward to Specific Pod
-
-```bash
-# Forward to a specific pod instance
-qovery port-forward \
-  --service "my-app" \
-  --pod "my-app-7d8f9c5b6-xyz12" \
-  --port 8080:8080
 ```
 
 ## Use Cases
@@ -101,16 +73,16 @@ qovery port-forward \
 
     ```bash
     # PostgreSQL
-    qovery port-forward --service "postgres" --port 5432:5432
+    qovery port-forward --pod "my-db-5f7c9b4d2-abc34" --port 5432:5432
 
     # MySQL
-    qovery port-forward --service "mysql" --port 3306:3306
+    qovery port-forward --pod "my-db-5f7c9b4d2-abc34" --port 3306:3306
 
     # MongoDB
-    qovery port-forward --service "mongodb" --port 27017:27017
+    qovery port-forward --pod "my-db-5f7c9b4d2-abc34" --port 27017:27017
 
     # Redis
-    qovery port-forward --service "redis" --port 6379:6379
+    qovery port-forward --pod "my-db-5f7c9b4d2-abc34" --port 6379:6379
     ```
   </Accordion>
 
@@ -119,10 +91,10 @@ qovery port-forward \
 
     ```bash
     # Access admin panel
-    qovery port-forward --service "my-app" --port 8080:8080
+    qovery port-forward --pod "my-app-7d8f9c5b6-xyz12" --port 8080:8080
 
     # Access debug endpoint
-    qovery port-forward --service "my-app" --port 9090:9090
+    qovery port-forward --pod "my-app-7d8f9c5b6-xyz12" --port 9090:9090
     ```
   </Accordion>
 
@@ -131,7 +103,7 @@ qovery port-forward \
 
     ```bash
     # Forward remote database to local app
-    qovery port-forward --service "postgres" --port 5432:5432
+    qovery port-forward --pod "my-db-5f7c9b4d2-abc34" --port 5432:5432
 
     # Run local app connecting to remote DB
     DATABASE_URL=postgresql://localhost:5432/mydb npm run dev
@@ -143,7 +115,7 @@ qovery port-forward \
 
     ```bash
     # Forward internal API
-    qovery port-forward --service "internal-api" --port 8080:8080
+    qovery port-forward --pod "my-app-7d8f9c5b6-xyz12" --port 8080:8080
 
     # Test with curl
     curl http://localhost:8080/api/test
@@ -180,7 +152,7 @@ If the local port is already in use:
 lsof -i :8080
 
 # Use a different local port
-qovery port-forward --service "my-app" --port 8081:8080
+qovery port-forward --pod "my-app-7d8f9c5b6-xyz12" --port 8081:8080
 ```
 
 ### Connection Drops
@@ -189,7 +161,7 @@ If the connection drops frequently:
 
 ```bash
 # Use a specific pod instead of letting Kubernetes choose
-qovery port-forward --service "my-app" --pod "my-app-pod-name" --port 8080:8080
+qovery port-forward --pod "my-app-pod-name" --port 8080:8080
 ```
 
 ## Related Commands

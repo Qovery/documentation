@@ -5,7 +5,7 @@ description: "Service management commands"
 
 ## Overview
 
-Manage all types of services within your Qovery environment. This is a unified command to list services across applications, containers, databases, jobs, and Helm charts.
+Manage all types of services within your Qovery environment. This is a unified command to list and deploy services across applications, containers, databases, jobs, and Helm charts.
 
 ## Commands
 
@@ -19,15 +19,54 @@ qovery service list
 
 This displays all services regardless of type (applications, containers, databases, cronjobs, lifecycle jobs, Helm charts).
 
-## Options
+**Flags:**
 
 | Flag | Description |
 |------|-------------|
-| `--organization` | Organization name |
-| `--project` | Project name |
-| `--environment` | Environment name |
-| `--output` | Output format (table, json, yaml) |
-| `--help` | Show help |
+| `--organization` | Organization Name |
+| `--project` | Project Name |
+| `--environment` | Environment Name |
+| `--json` | JSON output |
+| `--markdown` | Markdown output |
+| `--jira` | Atlassian Jira output |
+
+### Deploy Service
+
+Deploy a service by automatically detecting its type. Works with applications, containers, databases, jobs (cronjobs and lifecycle), and Helm charts.
+
+```bash
+qovery service deploy --service "my-app"
+```
+
+Deploy multiple services at once:
+
+```bash
+qovery service deploy --services "service1,service2,service3"
+```
+
+Deploy with a specific version:
+
+```bash
+qovery service deploy --service "my-app" --version "abc123"
+```
+
+The `--version` parameter accepts:
+- Git commit IDs (for applications, git-based jobs, git-based helms)
+- Container image tags (for containers, image-based jobs)
+- Helm chart versions (for helm repository charts)
+
+**Flags:**
+
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--service` | `-n` | Service Name |
+| `--services` | | Service Names (comma separated) |
+| `--version` | `-v` | Version (git commit ID, image tag, or chart version) |
+| `--values-override-version` | | Helm values override version (git commit ID) |
+| `--watch` | `-w` | Watch service status until it's ready or an error occurs |
+| `--organization` | | Organization Name |
+| `--project` | | Project Name |
+| `--environment` | | Environment Name |
 
 ## Examples
 
@@ -52,8 +91,29 @@ qovery service list
 ### List Services with JSON Output
 
 ```bash
-# Get services as JSON for scripting
-qovery service list --format json
+qovery service list --json
+```
+
+### List Services with Markdown Output
+
+```bash
+qovery service list --markdown
+```
+
+### Deploy a Service by Name
+
+```bash
+# Deploy an application
+qovery service deploy --service "my-api"
+
+# Deploy a container with a specific tag
+qovery service deploy --service "my-container" --version "v1.2.3"
+
+# Deploy a helm chart with a specific version
+qovery service deploy --service "my-helm" --version "1.2.3"
+
+# Deploy multiple services
+qovery service deploy --services "frontend,backend,worker"
 ```
 
 ## Service Types

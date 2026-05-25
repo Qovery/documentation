@@ -204,22 +204,31 @@ Qovery collects and stores logs using **Loki + Promtail** with:
 
 ## Alerts
 
-Qovery provides a built-in alerting system that proactively monitors your services and notifies you when specific conditions are met. Access alerts through the **Monitoring** section at the service level or via the dedicated **Alerting** section in the navigation menu.
+Qovery provides a built-in alerting system that proactively monitors your services and notifies you when specific conditions are met. The Alerts section is available at **two levels** in the Console:
 
-### Alert Management
+| Level | How to access | What you see |
+|---|---|---|
+| **Organization (global view)** | Main navigation sidebar > **Alerts** | All alert rules, all active issues, and notification channels across every service in your organization |
+| **Service (per-service view)** | Open a service > **Monitoring** tab > **Alerts** sub-tab | Alerts scoped to that specific service only |
 
-Each service (Application or Container) has a **Monitoring** section that includes two tabs:
+### Organization-Level Alerts
 
-- **Dashboard**: Real-time metrics visualization with graphs for CPU, memory, network, and latency
-- **Alerts**: View existing alerts and create new ones for this specific service
+Navigate to the **Alerts** section from the main organization navigation (top-level sidebar item). This gives you a centralized, cross-service view with three sub-pages:
 
-The navigation menu also includes a dedicated **Alerting** section where you can manage all your alerts from a centralized location:
-
+- **Alert Rules**: Browse and manage all configured alert rules across all services in the organization
 - **Issues**: View all currently fired alerts with their severity, target service, and duration. Each issue shows which alert rule triggered it and how long it has been active.
-- **Alert rules**: Browse and manage all configured alert rules across your services
-- **Notification channel**: Configure and manage notification channels (Slack, Email, and more integrations coming soon)
+- **Notification Channels**: Configure and manage notification channels (Slack, Email, and more integrations coming soon)
 
 <img src="/images/observability/issues-overview.png" alt="Alerting Section - Issues Overview" />
+
+### Service-Level Alerts
+
+Each service (Application or Container) has a dedicated **Monitoring** tab that includes two sub-tabs:
+
+- **Dashboard**: Real-time metrics visualization with graphs for CPU, memory, network, and latency
+- **Alerts**: View and create alerts scoped to this specific service
+
+Navigate to a service > click the **Monitoring** tab > select the **Alerts** sub-tab to create or review alerts for that service.
 
 <Tip>
 To receive alerts, you first need to configure a notification channel. See the [Slack Integration guide](/configuration/integrations/slack) or [Email Integration guide](/configuration/integrations/email) to set up notification channels.

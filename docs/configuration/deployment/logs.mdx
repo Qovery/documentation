@@ -34,6 +34,39 @@ The pipeline view provides a centralized overview of your deployment process, sh
 - Direct access to specific deployment logs per service
 - Automatic filtering of services not involved in the deployment
 
+## Pre-Check Logs
+
+Before a deployment begins, Qovery runs a series of automated validations called **pre-checks**. These checks confirm that the environment is ready to accept the deployment and catch configuration problems early, before any infrastructure changes are made.
+
+### What Pre-Checks Validate
+
+- **Resource quotas**: Ensures the cluster has enough CPU and memory headroom for the incoming workload
+- **Configuration validation**: Verifies that environment variables, secrets, and service settings are complete and well-formed
+- **Dependency readiness**: Confirms that services this deployment depends on (databases, other services) are available
+- **Cluster capacity**: Checks that the target node pool can schedule the new pods
+
+### How to Access Pre-Check Logs
+
+Pre-check logs are accessible from the deployment detail page:
+
+1. Open the **Last Deployment** section or go to the **Deployment History** tab
+2. Click on a specific deployment to open the pipeline view
+3. Click the **pre-check stage** in the pipeline — this navigates to `/deployment/{deploymentId}/pre-check-logs`
+
+The pre-check logs view shows each validation step, its result, and the details of any failure.
+
+### When Pre-Checks Fail
+
+If a pre-check fails, the deployment is stopped before any infrastructure change occurs. To resolve the issue:
+
+1. **Read the error message** in the pre-check logs — it identifies the specific validation that failed and the reason
+2. **Fix the configuration** based on the error: adjust resource limits, correct environment variable values, or wait for a dependency to become healthy
+3. **Re-deploy** once the underlying problem is resolved
+
+<Tip>
+Pre-check failures are not deployment failures — no rollback is needed because no changes were applied. Simply fix the root cause and trigger a new deployment.
+</Tip>
+
 ## Deployment Logs
 
 By default, the deployment logs view shows the most recent deployment execution.

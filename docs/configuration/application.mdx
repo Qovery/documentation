@@ -199,10 +199,6 @@ For high availability:
     Scale your application based on external event sources like message queues, streams, databases, and more.
 
     <Warning>
-    **Beta Feature** - KEDA autoscaling is currently in beta and available to select customers only. Contact your Qovery account manager if you're interested in early access.
-    </Warning>
-
-    <Warning>
     **AWS and GCP clusters only** - KEDA autoscaling is currently available for applications deployed on AWS and GCP.
     </Warning>
 
@@ -233,14 +229,14 @@ For high availability:
     #### Migrating from HPA to KEDA
 
     <Warning>
-    **Beta Limitation**: If your application is currently using HPA (CPU/Memory) autoscaling and you want to migrate to KEDA, follow these steps:
+    If your application is currently using HPA (CPU/Memory) autoscaling and you want to migrate to KEDA, follow these steps:
 
     1. Switch your application to **No Scaling** mode
     2. **Redeploy your application**
     3. Switch to **KEDA (Event-Driven)** mode
     4. Configure your KEDA scalers
 
-    Direct migration from HPA to KEDA is not currently supported and will not work properly.
+    Direct migration from HPA to KEDA is not supported and will not work properly.
     </Warning>
 
     #### General Configuration

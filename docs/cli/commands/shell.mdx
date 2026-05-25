@@ -5,66 +5,82 @@ description: "Shell access and command execution"
 
 ## Overview
 
-Execute commands in running application or container instances, or open an interactive shell session.
+Connect to an application container and execute commands in running service instances, or open an interactive shell session.
+
+## Usage
+
+```bash
+qovery shell [flags]
+qovery shell <qovery_console_service_url>
+```
 
 ## Commands
 
-### Interactive Shell
+### Interactive Shell (interactive mode)
 
-Open interactive shell in application:
+When run without flags, `qovery shell` prompts you to select your organization, project, environment, and service interactively:
 
 ```bash
-qovery shell --application "app-id"
+qovery shell
 ```
 
-Open shell in specific pod:
+### Shell with explicit flags
 
 ```bash
-qovery shell --application "app-id" --pod "pod-name"
+qovery shell \
+  --organization "my-org" \
+  --project "my-project" \
+  --environment "production" \
+  --service "my-api"
+```
+
+### Shell into specific pod or container
+
+```bash
+qovery shell \
+  --organization "my-org" \
+  --project "my-project" \
+  --environment "production" \
+  --service "my-api" \
+  --pod "pod-name" \
+  --container "container-name"
 ```
 
 ### Execute Command
 
-Run a single command:
+Run a specific command instead of opening an interactive shell:
 
 ```bash
-qovery shell --application "app-id" --command "ls -la"
+qovery shell \
+  --organization "my-org" \
+  --project "my-project" \
+  --environment "production" \
+  --service "my-api" \
+  --command "ls,-la"
 ```
 
-Run multiple commands:
+The `--command` flag is a comma-separated string slice and can be repeated to pass multiple arguments.
+
+### Shell via Console URL
+
+Pass the Qovery Console URL directly:
 
 ```bash
-qovery shell --application "app-id" --command "cd /app && npm run migrate"
-```
-
-### Port Forward
-
-Forward local port to application:
-
-```bash
-qovery port-forward \
-  --application "app-id" \
-  --port 8080:8080
-```
-
-Forward to different local port:
-
-```bash
-qovery port-forward \
-  --application "app-id" \
-  --port 3000:8080
+qovery shell "https://console.qovery.com/organization/<org-id>/project/<project-id>/environment/<env-id>/application/<app-id>"
 ```
 
 ## Options
 
-| Flag | Description |
-|------|-------------|
-| `--application` | Application ID or name |
-| `--container` | Container ID or name |
-| `--command` | Command to execute |
-| `--pod` | Specific pod name |
-| `--port` | Port forwarding (local:remote) |
-| `--help` | Show help |
+| Flag | Shorthand | Description |
+|------|-----------|-------------|
+| `--organization` | | Organization Name |
+| `--project` | | Project Name |
+| `--environment` | | Environment Name |
+| `--service` | | Service Name |
+| `--pod` | `-p` | Pod name to exec into |
+| `--container` | | Container name inside the pod |
+| `--command` | `-c` | Command to launch inside the pod (string slice, default: `sh`; can be repeated) |
+| `--help` | | Show help |
 
 ## Examples
 
@@ -72,22 +88,25 @@ qovery port-forward \
 
 ```bash
 # Open interactive shell
-qovery shell --application "my-api"
+qovery shell
 
-# Inside the shell:
-$ ls -la
-$ cat config.json
-$ env | grep DATABASE
-$ exit
+# With explicit context flags
+qovery shell \
+  --organization "my-org" \
+  --project "my-project" \
+  --environment "production" \
+  --service "my-api"
 ```
 
 ### Run Database Migrations
 
 ```bash
-# Execute migration command
 qovery shell \
-  --application "my-api" \
-  --command "npm run migrate"
+  --organization "my-org" \
+  --project "my-project" \
+  --environment "production" \
+  --service "my-api" \
+  --command "npm,run,migrate"
 ```
 
 ### Check Application Files
@@ -95,47 +114,33 @@ qovery shell \
 ```bash
 # List application files
 qovery shell \
-  --application "my-api" \
-  --command "ls -lah /app"
-
-# Check environment variables
-qovery shell \
-  --application "my-api" \
-  --command "env"
+  --organization "my-org" \
+  --project "my-project" \
+  --environment "production" \
+  --service "my-api" \
+  --command "ls,-lah,/app"
 ```
 
-### Access Database
+### Debug Specific Container
 
 ```bash
-# Forward PostgreSQL port
-qovery port-forward \
-  --database "postgres-main" \
-  --port 5432:5432
-
-# In another terminal, connect with psql
-psql -h localhost -p 5432 -U user -d database
-```
-
-### Debug Container
-
-```bash
-# Shell into container
-qovery shell --container "nginx-proxy"
-
-# Run diagnostics
 qovery shell \
-  --container "nginx-proxy" \
-  --command "nginx -t"
+  --organization "my-org" \
+  --project "my-project" \
+  --environment "production" \
+  --service "my-api" \
+  --pod "my-api-7d4f9c-xvz" \
+  --container "nginx-proxy"
 ```
 
 ## Tips
 
 <Tip>
-Use interactive shell for exploratory debugging and one-off commands.
+Use interactive shell (run `qovery shell` without flags) for exploratory debugging when you don't know the exact service name.
 </Tip>
 
 <Tip>
-Port forwarding is useful for accessing databases or services locally without exposing them publicly.
+You can pass the Qovery Console URL as an argument to `qovery shell` to quickly connect to a service.
 </Tip>
 
 <Warning>

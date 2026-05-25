@@ -19,18 +19,44 @@ qovery lifecycle list
 
 ### Deploy Lifecycle Job
 
-Deploy or update a lifecycle job:
+Deploy a lifecycle job:
 
 ```bash
-qovery lifecycle deploy
+qovery lifecycle deploy --lifecycle "my-lifecycle"
 ```
+
+Deploy multiple lifecycle jobs at once:
+
+```bash
+qovery lifecycle deploy --lifecycles "lifecycle1,lifecycle2"
+```
+
+Deploy with a specific commit ID or image tag:
+
+```bash
+qovery lifecycle deploy --lifecycle "my-lifecycle" --commit-id "abc123"
+qovery lifecycle deploy --lifecycle "my-lifecycle" --tag "v1.2.0"
+```
+
+**Flags:**
+
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--lifecycle` | `-n` | Lifecycle Job Name |
+| `--lifecycles` | | Lifecycle Job Names (comma separated) |
+| `--commit-id` | `-c` | Lifecycle Commit ID |
+| `--tag` | `-t` | Lifecycle Tag |
+| `--watch` | `-w` | Watch lifecycle status until it's ready or an error occurs |
+| `--organization` | | Organization Name |
+| `--project` | | Project Name |
+| `--environment` | | Environment Name |
 
 ### Redeploy Lifecycle Job
 
-Redeploy an existing lifecycle job:
+Redeploy an existing lifecycle job with the same configuration:
 
 ```bash
-qovery lifecycle redeploy
+qovery lifecycle redeploy --lifecycle "my-lifecycle"
 ```
 
 ### Stop Lifecycle Job
@@ -38,7 +64,7 @@ qovery lifecycle redeploy
 Stop a lifecycle job:
 
 ```bash
-qovery lifecycle stop
+qovery lifecycle stop --lifecycle "my-lifecycle"
 ```
 
 ### Delete Lifecycle Job
@@ -46,7 +72,7 @@ qovery lifecycle stop
 Delete a lifecycle job:
 
 ```bash
-qovery lifecycle delete
+qovery lifecycle delete --lifecycle "my-lifecycle"
 ```
 
 ### Cancel Deployment
@@ -54,35 +80,55 @@ qovery lifecycle delete
 Cancel a lifecycle job deployment:
 
 ```bash
-qovery lifecycle cancel
-```
-
-### Clone Lifecycle Job
-
-Clone an existing lifecycle job:
-
-```bash
-qovery lifecycle clone
+qovery lifecycle cancel --lifecycle "my-lifecycle"
 ```
 
 ### Update Lifecycle Job
 
-Update lifecycle job configuration:
+Update lifecycle job source configuration (branch, tag, or image name):
 
 ```bash
-qovery lifecycle update
+# Update git branch (for Dockerfile-based lifecycle jobs)
+qovery lifecycle update --lifecycle "my-lifecycle" --branch "main"
+
+# Update image tag (for image-based lifecycle jobs)
+qovery lifecycle update --lifecycle "my-lifecycle" --tag "v2.0.0"
+
+# Update image name
+qovery lifecycle update --lifecycle "my-lifecycle" --image-name "my-registry/my-image"
 ```
 
-## Options
+**Flags:**
 
-| Flag | Description |
-|------|-------------|
-| `--lifecycle` | Lifecycle job ID or name |
-| `--organization` | Organization name |
-| `--project` | Project name |
-| `--environment` | Environment name |
-| `--output` | Output format (table, json, yaml) |
-| `--help` | Show help |
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--lifecycle` | `-n` | Lifecycle Name (required) |
+| `--branch` | `-b` | Lifecycle Branch (for Dockerfile-based lifecycle jobs) |
+| `--tag` | `-t` | Lifecycle Tag (for image-based lifecycle jobs) |
+| `--image-name` | | Lifecycle Image Name (for image-based lifecycle jobs) |
+| `--organization` | | Organization Name |
+| `--project` | | Project Name |
+| `--environment` | | Environment Name |
+
+### Clone Lifecycle Job
+
+Clone a lifecycle job to another environment or project:
+
+```bash
+qovery lifecycle clone --lifecycle "my-lifecycle"
+```
+
+**Flags:**
+
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--lifecycle` | `-n` | Lifecycle Name (required) |
+| `--target-project` | | Target Project Name |
+| `--target-environment` | | Target Environment Name |
+| `--target-lifecycle-name` | | Target Lifecycle Name |
+| `--organization` | | Organization Name |
+| `--project` | | Project Name |
+| `--environment` | | Environment Name |
 
 ## Examples
 
@@ -93,20 +139,26 @@ qovery lifecycle update
 qovery lifecycle list
 
 # Deploy migration job
-qovery lifecycle deploy
+qovery lifecycle deploy --lifecycle "db-migration"
 
-# Check status
-qovery status
+# Deploy and watch status
+qovery lifecycle deploy --lifecycle "db-migration" --watch
 ```
 
-### Run Post-Deployment Script
+### Update Lifecycle Job and Redeploy
 
 ```bash
-# Deploy lifecycle job that runs after environment deployment
-qovery lifecycle deploy
+# Update branch for a git-based lifecycle job
+qovery lifecycle update --lifecycle "db-migration" --branch "feature/new-migration"
 
-# View job logs
-qovery log
+# Redeploy to apply changes
+qovery lifecycle redeploy --lifecycle "db-migration"
+```
+
+### Run Post-Deployment Script with Specific Tag
+
+```bash
+qovery lifecycle deploy --lifecycle "post-deploy-script" --tag "v1.5.0"
 ```
 
 ## Lifecycle Job Types

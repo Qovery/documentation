@@ -1,0 +1,309 @@
+---
+title: "Troubleshooting"
+description: "Common issues and solutions for the RDE Portal"
+---
+
+<Warning>
+**Preview**: Remote Dev Environments Portal is in preview. Architecture details may change as the product evolves.
+</Warning>
+
+## Overview
+
+This page covers common issues you may encounter with the RDE Portal and how to resolve them. Issues are organized by category - expand the relevant section to find your problem and solution.
+
+## Portal Access Issues
+
+<AccordionGroup>
+  <Accordion title="Cannot log in to the portal">
+    **Symptoms:** The login page redirects endlessly, shows an error, or never completes.
+
+    **Solutions:**
+    - Verify you have an active **Qovery account** and that your organization has the portal deployed.
+    - Clear your browser cookies and local storage, then try logging in again.
+    - If your organization uses SSO, confirm with your admin that your identity provider is correctly configured with Auth0.
+    - Check that the portal's Auth0 configuration (domain, client ID, audience) matches your Qovery organization settings.
+  </Accordion>
+
+  <Accordion title="Portal loads but shows a blank page">
+    **Symptoms:** The browser loads the portal URL but the page is empty or shows a white screen.
+
+    **Solutions:**
+    - Open your browser's developer console (**F12** or **Cmd+Option+I**) and check for JavaScript errors.
+    - Ensure the **BFF URL** is correctly configured in the frontend's environment variables. The frontend must be able to reach the BFF.
+    - Try a hard refresh: **Cmd+Shift+R** (macOS) or **Ctrl+Shift+R** (Windows/Linux).
+    - Verify that the BFF service is running by checking its status in the Qovery Console.
+  </Accordion>
+
+  <Accordion title="Access denied / 403 error">
+    **Symptoms:** You can log in but receive a 403 Forbidden error when trying to access the portal.
+
+    **Solutions:**
+    - You may not have the required role in the portal. Contact your organization admin to verify your permissions.
+    - If you were recently added to the organization, the BFF's role cache may not have refreshed yet. Wait 2 minutes and try again.
+    - Confirm that your Qovery organization membership is active in the Qovery Console.
+  </Accordion>
+
+  <Accordion title="Redirect loop after login">
+    **Symptoms:** After entering credentials, the browser redirects back and forth between the portal and the login page.
+
+    **Solutions:**
+    - This usually indicates a mismatch between the Auth0 callback URL and the portal's configured URL. Ask your admin to verify the callback URLs in the Auth0 configuration.
+    - Check that your browser allows third-party cookies, or that `auth.qovery.com` is not blocked by browser extensions.
+    - Try logging in from an incognito/private window to rule out extension interference.
+  </Accordion>
+
+  <Accordion title="Browser compatibility warning banner">
+    **Symptoms:** A banner appears warning that your browser may not be fully supported.
+
+    **Solutions:**
+    - The RDE Portal is optimized for **Chromium-based browsers** (Google Chrome, Microsoft Edge, Brave, Arc). Terminal rendering and WebSocket connections work best on these browsers.
+    - Firefox and Safari may work for basic portal navigation but can have issues with terminal display and live preview.
+    - For the best experience, switch to a Chromium-based browser.
+  </Accordion>
+</AccordionGroup>
+
+## Workspace Issues
+
+<AccordionGroup>
+  <Accordion title="Workspace stuck in Deploying state">
+    **Symptoms:** The workspace status shows "Deploying" for more than 5 minutes.
+
+    **Solutions:**
+    - Workspace creation typically takes **2-4 minutes**. If it exceeds 5 minutes, the underlying Qovery deployment may have failed.
+    - Ask your admin to check the **Qovery Console** for the workspace's environment deployment logs. Look for container image pull failures, resource quota issues, or configuration errors.
+    - Try **deleting** the stuck workspace and creating a new one.
+    - If the issue persists across multiple attempts, the blueprint's source image or configuration may have a problem. Contact your admin.
+  </Accordion>
+
+  <Accordion title="Workspace shows Error status">
+    **Symptoms:** The workspace card displays a red "Error" badge.
+
+    **Solutions:**
+    - An Error status means the underlying Qovery environment has a **deployment failure**. The workspace containers could not start or crashed after starting.
+    - Ask your admin to check the Qovery Console for detailed error logs on the workspace's environment.
+    - Common causes include:
+      - **Container image pull failure** - the image registry may be unreachable or the image tag doesn't exist
+      - **Resource limits exceeded** - the cluster may not have enough CPU or memory for the workspace
+      - **Port conflicts** - another service may be using the same port
+      - **Environment variable misconfiguration** - a required variable may be missing or invalid
+    - Try **restarting** the workspace. If the error persists, delete and recreate it.
+  </Accordion>
+
+  <Accordion title="Cannot create a new workspace">
+    **Symptoms:** The "Launch" button is disabled or clicking it shows an error about workspace limits.
+
+    **Solutions:**
+    - You may have reached your **workspace limit**. Stop or delete an existing workspace to free up a slot.
+    - If you believe the limit is too low, contact your admin to increase it.
+    - Check that the blueprint you selected is still available - your admin may have removed it or changed its ACL.
+  </Accordion>
+
+  <Accordion title="No blueprints visible in the catalog">
+    **Symptoms:** The workspace dashboard shows no blueprint cards, or shows a message about no available blueprints.
+
+    **Solutions:**
+    - Your admin has not granted you access to any blueprints. Contact them to be added to a blueprint's ACL.
+    - If your admin recently added access, the catalog cache refreshes every **60 seconds**. Reload the page after a minute.
+    - Verify with your admin that blueprints have been registered in the portal.
+  </Accordion>
+
+  <Accordion title="Workspace disappeared from the dashboard">
+    **Symptoms:** A workspace you previously created is no longer visible.
+
+    **Solutions:**
+    - Your admin may have **deleted** the workspace from the workspace management page.
+    - The workspace's metadata environment variables may have been modified or removed in the Qovery Console. The portal relies on [convention-based discovery](/rde/reference/architecture#convention-based-discovery) to find workspaces.
+    - Check if the workspace still exists in the Qovery Console. If it does but is missing the `RDE_OWNER_EMAIL` variable, contact your admin.
+  </Accordion>
+</AccordionGroup>
+
+## Terminal Issues
+
+<AccordionGroup>
+  <Accordion title="Terminal not connecting">
+    **Symptoms:** The terminal tab shows "Connecting..." indefinitely or displays a connection error.
+
+    **Solutions:**
+    - **WebSocket connections** may be blocked by a corporate firewall, proxy, or VPN. Check with your network admin that WebSocket traffic to the BFF is allowed.
+    - Ensure the workspace is in **Running** state. Terminals cannot connect to stopped or deploying workspaces.
+    - Refresh the page to retry the connection. Each terminal connection uses a fresh [shell ticket](/rde/reference/architecture#terminal-shell-exec) with a 30-second TTL.
+    - If the issue persists, check the BFF logs in the Qovery Console for WebSocket relay errors.
+  </Accordion>
+
+  <Accordion title="Terminal disconnects frequently">
+    **Symptoms:** The terminal works initially but drops the connection after a period of inactivity.
+
+    **Solutions:**
+    - WebSocket connections drop after **idle periods**. This is expected behavior. Refresh the page to reconnect.
+    - Your running processes (dev servers, build scripts) are **not affected** by terminal disconnections - they continue running in the container.
+    - If disconnections happen during active use (not idle), check your network stability. Corporate proxies sometimes have aggressive WebSocket timeout settings.
+  </Accordion>
+
+  <Accordion title="Terminal shows garbled or misaligned output">
+    **Symptoms:** Text in the terminal appears corrupted, overlapping, or misaligned.
+
+    **Solutions:**
+    - **Resize** the terminal panel by dragging the divider. This triggers a terminal re-fit that recalculates dimensions.
+    - If the issue persists, open a new terminal tab.
+    - Some programs output ANSI escape codes that may not render correctly. Try running `reset` in the terminal to clear the state.
+  </Accordion>
+
+  <Accordion title="Terminal shows 'Connection blocked by firewall'">
+    **Symptoms:** The terminal displays a firewall blocked message instead of connecting.
+
+    **Solutions:**
+    - Your IP address has been blocked by a firewall rule configured by your admin. Contact your admin to verify your IP is allowed.
+    - If you are connecting from a VPN or corporate network, your outbound IP may differ from what you expect. Ask your admin to check the IP address shown in the Security Center's activity log.
+    - Your admin can review blocked connection attempts in **Admin > Security > Activity**.
+  </Accordion>
+</AccordionGroup>
+
+## Preview Issues
+
+<AccordionGroup>
+  <Accordion title="Preview shows a blank page or error">
+    **Symptoms:** The preview iframe is empty, shows "Unable to connect", or displays an error page.
+
+    **Solutions:**
+    - Your application may **not be running**. Open the Terminal tab and start your dev server first (e.g., `npm run dev`, `python manage.py runserver`).
+    - Verify your application is listening on the **expected port**. The preview panel connects to the port configured in your blueprint.
+    - If the dev server is running but the preview is still blank, the initial [port-forward connection](/rde/reference/architecture#live-preview-port-forward) may need a moment to establish. Wait a few seconds and click the refresh button in the preview panel.
+  </Accordion>
+
+  <Accordion title="Preview is not updating after code changes">
+    **Symptoms:** You edit code but the preview still shows the old version.
+
+    **Solutions:**
+    - If your framework supports **Hot Module Replacement (HMR)**, it should update automatically. Check the terminal for HMR errors.
+    - If your framework does not support HMR, enable **auto-refresh** in the preview panel settings, or click the **manual refresh** button.
+    - Some frameworks require a full page reload. Use the refresh button in the preview panel's toolbar.
+  </Accordion>
+
+  <Accordion title="Preview loads very slowly">
+    **Symptoms:** The first preview load takes a long time (10+ seconds).
+
+    **Solutions:**
+    - The **first preview load** establishes a port-forward connection through the BFF to your container. This initial connection can take a few seconds - subsequent loads should be significantly faster.
+    - If every load is slow, the application itself may be responding slowly. Check the terminal for performance-related errors or warnings.
+    - Large assets (images, bundles) are tunneled through the BFF's port-forward. For very large files, the tunnel adds latency compared to a direct connection.
+  </Accordion>
+</AccordionGroup>
+
+## Chat & Claude Code Issues
+
+<AccordionGroup>
+  <Accordion title="Chat panel shows 'Connecting...'">
+    **Symptoms:** The Chat tab displays a connecting message and never loads.
+
+    **Solutions:**
+    - The OpenCode server inside your workspace container may be **starting up**. Wait 10-15 seconds and try again.
+    - Ensure the workspace is in **Running** state.
+    - If the Chat panel still does not connect after 30 seconds, try switching to a different terminal tab and back, or refresh the page.
+    - If the issue persists, the OpenCode server may not be installed in the blueprint image. Contact your admin.
+  </Accordion>
+
+  <Accordion title="Claude Code not responding">
+    **Symptoms:** The Claude Code terminal opens but commands hang or return authentication errors.
+
+    **Solutions:**
+    - Check your **authentication settings**. Claude Code requires valid credentials to function.
+    - If using **User OAuth**, you may have reached your usage cap. Check your Anthropic account limits.
+    - If using an **API Key**, verify the key is valid and has not expired. Contact your admin to check the key configuration in the blueprint.
+    - Try running `claude doctor` in the Terminal tab to diagnose Claude Code configuration issues.
+  </Accordion>
+
+  <Accordion title="AI tools have no project context">
+    **Symptoms:** Chat or Claude Code responses seem generic and unaware of your project structure.
+
+    **Solutions:**
+    - Verify that the AI tools are running **inside your workspace container** where the project files are located.
+    - The Chat panel and Claude Code both have access to the filesystem. Try asking: "What files are in the current directory?" to confirm they can see your project.
+    - If the project directory is empty, your workspace may not have cloned the repository yet. Check your blueprint's init scripts.
+  </Accordion>
+</AccordionGroup>
+
+## Admin Issues
+
+<AccordionGroup>
+  <Accordion title="Cannot register a blueprint">
+    **Symptoms:** The blueprint registration form shows an error or the project/environment list is empty.
+
+    **Solutions:**
+    - Verify you have **admin access** in the portal. Only admins can register blueprints.
+    - Check that the selected Qovery project has **at least one environment**. Empty projects cannot be used as blueprints.
+    - Ensure your admin API token is still valid. If the token expired, re-configure it in the portal's organization settings.
+  </Accordion>
+
+  <Accordion title="API token error during setup">
+    **Symptoms:** Initial portal setup fails with an authentication or token error.
+
+    **Solutions:**
+    - Ensure you are using an **organization-level admin API token**. Project-level or member-level tokens will not work.
+    - The token must have **full admin permissions** in the Qovery organization.
+    - Generate a new API token in the Qovery Console under **Organization Settings > API Tokens** and re-enter it in the portal setup.
+    - The admin token is encrypted with AES-256-GCM before storage. If the encryption key has changed, you will need to re-enter the token.
+  </Accordion>
+
+  <Accordion title="Members not receiving portal invitations">
+    **Symptoms:** You invited a user to the portal but they cannot log in.
+
+    **Solutions:**
+    - Verify the **email address** is correct. Typos are a common cause.
+    - The portal uses Qovery's member system. Confirm in the **Qovery Console** that the invitation was sent and accepted.
+    - If the user has a Qovery account but still cannot access the portal, check that they are a member of the correct organization.
+    - New members may need to **log out and log back in** after accepting the invitation for their session to update.
+  </Accordion>
+
+  <Accordion title="Workspace management page shows no workspaces">
+    **Symptoms:** The admin workspace management page is empty even though builders have created workspaces.
+
+    **Solutions:**
+    - The workspace discovery scan runs with a **30-second cache**. Reload the page after a few seconds.
+    - Check that the admin API token is valid. Discovery requires the admin client to list environments across the organization.
+    - Verify that workspaces have the required metadata environment variables (`BLUEPRINT_PROJECT_ID`, `RDE_OWNER_EMAIL`). Workspaces missing these tags are not discoverable.
+  </Accordion>
+</AccordionGroup>
+
+## Performance Issues
+
+<AccordionGroup>
+  <Accordion title="Portal is slow to load workspace list">
+    **Symptoms:** The workspace dashboard takes several seconds to populate.
+
+    **Solutions:**
+    - The first load triggers a workspace discovery scan against the Qovery API. Subsequent loads use a **30-second cache** and should be faster.
+    - If your organization has many environments, discovery takes longer because the BFF scans all environments for metadata tags. Contact your admin about optimizing the environment structure.
+  </Accordion>
+
+  <Accordion title="Multiple users experiencing slow responses">
+    **Symptoms:** The portal feels sluggish for everyone, not just one user.
+
+    **Solutions:**
+    - Check the BFF's **resource allocation** in the Qovery Console. The container may need more CPU or memory.
+    - Review the BFF logs for rate-limiting responses from the Qovery API. The BFF's cache reduces API calls, but with many concurrent users, the cache may not be sufficient.
+    - Consider increasing cache TTLs if your use case allows slightly stale data.
+  </Accordion>
+</AccordionGroup>
+
+## Getting Help
+
+If the solutions above do not resolve your issue:
+
+1. **Check BFF logs** - The BFF logs detailed error information. View them in the Qovery Console under your portal environment's BFF service.
+2. **Check the Qovery Console** - For workspace-level issues, the Qovery Console provides deployment logs, container logs, and event history for the underlying environments.
+3. **Contact your organization admin** - Portal-specific configuration issues (tokens, ACLs, blueprint settings) require admin access to diagnose.
+4. **Reach out to Qovery support** - For platform-level issues (cluster problems, API errors, WebSocket connectivity), contact Qovery support through the [Qovery Console](https://console.qovery.com) or your support channel.
+
+## Next Steps
+
+<CardGroup cols={3}>
+  <Card title="Architecture" icon="sitemap" href="/rde/reference/architecture">
+    Understand how the portal components work together.
+  </Card>
+  <Card title="Admin Setup" icon="gear" href="/rde/getting-started/admin-setup">
+    Configure the portal on your Qovery infrastructure.
+  </Card>
+  <Card title="Workspace Dashboard" icon="table-columns" href="/rde/user/workspace-dashboard">
+    Learn to manage your workspaces from the dashboard.
+  </Card>
+</CardGroup>

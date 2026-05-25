@@ -220,6 +220,12 @@ These permissions are required to deploy and manage Qovery system components (Ng
 | `create`, `delete`, `get`, `list` | Creates custom routes for VPC traffic (e.g., routing to NAT gateway) |
 | `createTagBinding`, `deleteTagBinding`, `listEffectiveTags`, `listTagBindings` | Tags routes for lifecycle tracking |
 
+### Reserved External IPs for Cloud NAT — `compute.addresses.*`
+
+| Permission | Why |
+|---|---|
+| `create`, `delete`, `get`, `list` | Reserves and manages static external IP addresses when Cloud NAT is configured with manual IP allocation (`MANUAL_ONLY`) for deterministic outbound egress IPs (allowlisting with Stripe, payment providers, partner APIs) |
+
 ### Instance Groups — `compute.instanceGroupManagers.*`, `compute.instanceGroups.*`
 
 | Permission | Why |

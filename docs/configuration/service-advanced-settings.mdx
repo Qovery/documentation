@@ -778,11 +778,46 @@ The default `sleep 15` gives Kubernetes networking time to remove the pod from s
 
 **Type:** `boolean`
 
-**Description:** Enables session affinity (sticky sessions) to ensure that requests from the same client are always routed to the same backend pod. This is useful for applications that maintain session state locally.
+**Description:** Enables session affinity (sticky sessions) to ensure that requests from the same client are always routed to the same backend pod. Sticky session behavior is controlled by `network.gateway_api.sticky_session_type` (default: `Cookie`).
 
 **Use Case:** Enable for stateful applications that store session data in memory or local storage.
 
 **Default Value:** `false`
+
+<a id="network-gateway-api-sticky-session-type"></a>
+
+### network.gateway_api.sticky_session_type
+
+<span class="badge-app">Application</span> <span class="badge-container">Container</span> <span class="badge-helm">Helm</span>
+
+**Type:** `string`
+
+**Description:** Defines how session affinity is computed when `network.gateway_api.enable_sticky_session` is enabled.
+
+**Default Value:** `"Cookie"`
+
+**Valid values:**
+- `Cookie`: use cookie-based affinity.
+- `SourceIP`: use client source IP affinity.
+- `{"Header":{"name":"X-Header"}}`: use a specific HTTP header for affinity.
+- Legacy header name string (for backward compatibility), for example: `X-Header`.
+
+**How header-based sticky session works:**
+- The gateway uses the configured header name to identify a session key.
+- Requests carrying the same header value are consistently routed to the same backend pod (while that backend remains available).
+- If the header is missing, stickiness cannot be derived from that header for the request.
+
+**References:**
+- [Envoy Gateway: Session Persistence](https://gateway.envoyproxy.io/docs/tasks/traffic/session-persistence/)
+- [Envoy: Stateful Session Filter](https://www.envoyproxy.io/docs/envoy/latest/configuration/http/http_filters/stateful_session_filter)
+
+**Validation rules:**
+- Value cannot be empty.
+- Header names (legacy string or JSON `Header.name`) must match `[-a-zA-Z0-9]+`.
+
+**Behavior change (QOV-1862):**
+- Sticky session type is now explicitly configurable.
+- Existing services with sticky sessions enabled and no type set are automatically backfilled to `"Cookie"` to preserve previous behavior.
 
 <a id="network-gateway-api-force-ssl-redirect"></a>
 
@@ -899,7 +934,12 @@ The default `sleep 15` gives Kubernetes networking time to remove the pod from s
 
 **Type:** `string`
 
-**Description:** Name of the environment variable containing Basic Authentication credentials in the format `username:password`. When set, the gateway will require HTTP Basic Authentication for all requests.
+**Description:** Set the name of an environment variable containing htpasswd credentials for HTTP Basic Auth. The environment variable value must be plain htpasswd content (for example `username:{SHA}...`), not base64. Multiple users can be provided by adding one `username:{SHA}...` entry per line.
+
+**Password Generation Example (recommended `{SHA}` format):**
+```bash
+printf '%s\n' 'MyStrongPassword123!' | htpasswd -ni -s qovery-user
+```
 
 **Use Case:** Add simple authentication protection to your service without modifying application code.
 
@@ -1185,6 +1225,122 @@ The hardcoded error pages cannot be customized at this time. If you need to cust
 ```json
 120
 ```
+
+
+<a id="network-gateway-api-http-max-stream-duration-seconds"></a>
+
+### network.gateway_api.http_max_stream_duration_seconds
+
+<span class="badge-app">Application</span> <span class="badge-container">Container</span> <span class="badge-helm">Helm</span>
+
+**Type:** `integer` (unsigned)
+
+**Description:** Sets the maximum stream duration in seconds for HTTP streams proxied through the Gateway API route. When exceeded, the stream is terminated. This maps to Envoy `max_stream_duration` behavior. Learn more in the [Envoy timeout documentation](https://www.envoyproxy.io/docs/envoy/latest/faq/configuration/timeouts.html#stream-timeouts).
+
+**Use Case:** Add a hard cap for very long streams while still allowing long active responses like exports or server-sent events.
+
+**Default Value:** `null` (uses cluster default if set, otherwise Envoy Gateway default)
+
+**Example:**
+```json
+300
+```
+
+<a id="network-gateway-api-retry-num-retries"></a>
+
+### network.gateway_api.retry.num_retries
+
+<span class="badge-app">Application</span> <span class="badge-container">Container</span> <span class="badge-helm">Helm</span>
+
+**Type:** `integer` (unsigned)
+
+**Description:** Sets the number of retry attempts for failed upstream requests handled by Gateway API.
+
+**Use Case:** Set to `0` to explicitly disable retries for a service, or increase it for transient backend/network errors.
+
+<Info>
+Service value takes precedence over cluster value. If this setting is not set at service level, Qovery applies the cluster-level value from `envoy.gateway_api.retry.num_retries` when defined.
+</Info>
+
+**Default Value:** `null` (unset at service level; cluster defaults may apply)
+
+**Example:**
+```json
+2
+```
+
+<a id="network-gateway-api-retry-retry-on"></a>
+
+### network.gateway_api.retry.retry_on
+
+<span class="badge-app">Application</span> <span class="badge-container">Container</span> <span class="badge-helm">Helm</span>
+
+**Type:** `string` (CSV)
+
+**Description:** Defines retry conditions for Gateway API requests (for example `connect-failure`, `reset`, `refused-stream`, `retriable-status-codes`).
+
+**Use Case:** Control when retries happen. If you use `network.gateway_api.retry.http_status_codes`, this field must include `retriable-status-codes`.
+
+<Info>
+Service value takes precedence over cluster value. If this setting is not set at service level, Qovery applies the cluster-level value from `envoy.gateway_api.retry.retry_on` when defined.
+</Info>
+
+**Default Value:** `null` (unset at service level; cluster defaults may apply)
+
+**Example:**
+```json
+"connect-failure,reset,refused-stream"
+```
+
+**Learn More (retry_on values):** See [Envoy Gateway TriggerEnum reference](https://gateway.envoyproxy.io/v1.6/api/extension_types/#triggerenum).
+
+<a id="network-gateway-api-retry-http-status-codes"></a>
+
+### network.gateway_api.retry.http_status_codes
+
+<span class="badge-app">Application</span> <span class="badge-container">Container</span> <span class="badge-helm">Helm</span>
+
+**Type:** `string` (CSV of HTTP codes)
+
+**Description:** Restricts retries to specific HTTP status codes. Codes must be integers in range `100..599`.
+
+**Use Case:** Retry only selected upstream response codes (for example `503,504`) instead of broad retry categories.
+
+<Info>
+Service value takes precedence over cluster value. If this setting is not set at service level, Qovery applies the cluster-level value from `envoy.gateway_api.retry.http_status_codes` when defined.
+</Info>
+
+**Default Value:** `null` (unset)
+
+**Example:**
+```json
+"503,504"
+```
+
+<a id="network-gateway-api-retry-per-try-timeout-seconds"></a>
+
+### network.gateway_api.retry.per_try_timeout_seconds
+
+<span class="badge-app">Application</span> <span class="badge-container">Container</span> <span class="badge-helm">Helm</span>
+
+**Type:** `integer` (unsigned, `> 0`)
+
+**Description:** Sets a per-retry-attempt timeout in seconds. Each attempt is bounded by this timeout.
+
+**Use Case:** Prevent each retry attempt from running too long and keep total retry latency under control.
+
+<Info>
+Service value takes precedence over cluster value. If this setting is not set at service level, Qovery applies the cluster-level value from `envoy.gateway_api.retry.per_try_timeout_seconds` when defined.
+</Info>
+
+**Default Value:** `null` (unset)
+
+**Example:**
+```json
+3
+```
+
+**Learn More:** See [Envoy Gateway Retry Documentation](https://gateway.envoyproxy.io/latest/tasks/traffic/retry/).
 
 <a id="network-dns-ndots"></a>
 

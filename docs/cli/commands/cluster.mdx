@@ -17,21 +17,61 @@ List all clusters in current organization:
 qovery cluster list
 ```
 
-### Cluster Status
+| Flag | Description |
+|------|-------------|
+| `--organization` | Organization Name |
+| `--json` | JSON output |
 
-Get detailed cluster status:
+### Deploy Cluster
 
-```bash
-qovery cluster status --cluster "cluster-id"
-```
-
-### Cluster Info
-
-Get cluster information:
+Deploy a cluster:
 
 ```bash
-qovery cluster info --cluster "cluster-id"
+qovery cluster deploy --cluster "cluster-name"
 ```
+
+| Flag | Description |
+|------|-------------|
+| `--organization` | Organization Name |
+| `--cluster` / `-n` | Cluster Name (required) |
+| `--watch` / `-w` | Watch cluster status until it's ready or an error occurs |
+
+### Stop Cluster
+
+Stop a cluster:
+
+```bash
+qovery cluster stop --cluster "cluster-name"
+```
+
+| Flag | Description |
+|------|-------------|
+| `--organization` | Organization Name |
+| `--cluster` / `-n` | Cluster Name (required) |
+| `--watch` / `-w` | Watch cluster status until it's ready or an error occurs |
+
+### Install Cluster
+
+Install Qovery on your cluster:
+
+```bash
+qovery cluster install
+```
+
+### Upgrade Cluster
+
+Upgrade a cluster to the next Kubernetes version:
+
+```bash
+qovery cluster upgrade --cluster "cluster-name"
+```
+
+| Flag | Description |
+|------|-------------|
+| `--organization` | Organization Name |
+| `--cluster` / `-n` | Cluster Name (required) |
+| `--watch` / `-w` | Watch cluster status until it's ready or an error occurs |
+| `--skip-confirmation` / `-y` | Skip prompt confirmation |
 
 ### Download Kubeconfig
 
@@ -41,7 +81,63 @@ Download kubeconfig file for kubectl access:
 qovery cluster kubeconfig --cluster-id "cluster-id"
 ```
 
+| Flag | Description |
+|------|-------------|
+| `--cluster-id` / `-c` | Cluster ID (required) |
+
 This command generates a kubeconfig file that allows you to connect to your cluster using kubectl.
+
+### Get Cluster Token
+
+Get an auth token for a cluster:
+
+```bash
+qovery cluster get-token --cluster-id "cluster-id"
+```
+
+| Flag | Description |
+|------|-------------|
+| `--cluster-id` / `-c` | Cluster ID |
+
+### Lock Cluster
+
+Lock a cluster to prevent changes:
+
+```bash
+qovery cluster lock \
+  --cluster-id "cluster-id" \
+  --reason "maintenance"
+```
+
+| Flag | Description |
+|------|-------------|
+| `--cluster-id` / `-c` | Cluster ID (required) |
+| `--reason` / `-r` | Reason (required) |
+| `--ttl-in-days` / `-d` | Time-to-live for the lock in days (1 to 5 days) |
+
+### Unlock Cluster
+
+Unlock a cluster:
+
+```bash
+qovery cluster unlock --cluster-id "cluster-id"
+```
+
+| Flag | Description |
+|------|-------------|
+| `--cluster-id` / `-c` | Cluster ID |
+
+### List Cluster Nodes
+
+List nodes of a cluster:
+
+```bash
+qovery cluster list-nodes --cluster-id "cluster-id"
+```
+
+| Flag | Description |
+|------|-------------|
+| `--cluster-id` / `-c` | Cluster ID |
 
 ### Open Debug Pod
 
@@ -53,16 +149,14 @@ qovery cluster debug-pod \
   --cluster-id "cluster-id"
 ```
 
-This opens a debug shell inside your cluster with kubectl access, perfect for troubleshooting.
-
-## Options
-
 | Flag | Description |
 |------|-------------|
-| `--cluster` | Cluster ID or name |
-| `--organization` | Organization ID or name |
-| `--output` | Output format (table, json, yaml) |
-| `--help` | Show help |
+| `--organization-id` / `-o` | Organization ID |
+| `--cluster-id` / `-c` | Cluster ID (required) |
+| `--node-selector` / `-n` | Specify a node selector for the debug pod to be started on |
+| `--full-privilege` / `-p` | Start a full privileged debug pod which has access to host machine |
+
+This opens a debug shell inside your cluster with kubectl access, perfect for troubleshooting.
 
 ## Examples
 
@@ -75,29 +169,16 @@ qovery context set --organization "My Org"
 # List clusters
 qovery cluster list
 
-# Example output:
-# NAME           REGION        CLOUD     STATUS    VERSION
-# prod-us-east   us-east-1     AWS       Running   1.28
-# staging-eu     eu-west-1     AWS       Running   1.27
+# List clusters with JSON output
+qovery cluster list --json
 ```
 
-### Check Cluster Status
+### Deploy and Watch Cluster
 
 ```bash
-# Get detailed status
-qovery cluster status --cluster "prod-us-east"
-
-# Get JSON output
-qovery cluster status \
+qovery cluster deploy \
   --cluster "prod-us-east" \
-  --format json
-```
-
-### View Cluster Details
-
-```bash
-# Get cluster info
-qovery cluster info --cluster "prod-us-east"
+  --watch
 ```
 
 ### Get kubectl Access
@@ -121,30 +202,36 @@ qovery cluster debug-pod \
   --organization-id "org-abc123" \
   --cluster-id "cluster-abc123"
 
+# Launch privileged debug pod on a specific node
+qovery cluster debug-pod \
+  --organization-id "org-abc123" \
+  --cluster-id "cluster-abc123" \
+  --node-selector "kubernetes.io/hostname=my-node" \
+  --full-privilege
+
 # Inside the debug pod, you can run kubectl commands:
 # kubectl get pods --all-namespaces
 # kubectl logs <pod-name> -n <namespace>
 # exit
 ```
 
-## Cluster Status Values
+### Upgrade Cluster
 
-| Status | Description |
-|--------|-------------|
-| `RUNNING` | Cluster is operational |
-| `DEPLOYING` | Cluster is being deployed |
-| `WARNING` | Cluster has warnings |
-| `ERROR` | Cluster has errors |
-| `DELETING` | Cluster is being deleted |
+```bash
+# Upgrade with confirmation prompt
+qovery cluster upgrade --cluster "prod-us-east"
+
+# Upgrade without confirmation and watch progress
+qovery cluster upgrade \
+  --cluster "prod-us-east" \
+  --skip-confirmation \
+  --watch
+```
 
 ## Tips
 
 <Tip>
-Use cluster commands to verify cluster health before deploying applications.
-</Tip>
-
-<Tip>
-Check cluster status regularly to ensure your infrastructure is healthy.
+Use `qovery cluster deploy --watch` to monitor cluster deployment progress in real time.
 </Tip>
 
 <Tip>
@@ -153,6 +240,10 @@ Use `qovery cluster kubeconfig` to get full kubectl access to your cluster for a
 
 <Tip>
 The `debug-pod` command is perfect for quick troubleshooting without needing to configure kubectl locally.
+</Tip>
+
+<Tip>
+Use `qovery cluster lock` during planned maintenance to prevent accidental changes to your cluster.
 </Tip>
 
 ## Related Commands

@@ -213,6 +213,212 @@ Enabling this setting creates 3 additional Elastic IPs in your AWS account. Each
 
 **Default Value:** `12` (84 days)
 
+<a id="loki-deployment-mode"></a>
+
+### loki.deployment_mode
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/scaleway-icon.svg" alt="Scaleway" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/gcp-icon.svg" alt="GCP" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/azure-icon.svg" alt="Azure" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `enum (single_binary, simple_scalable)`
+
+**Description:** Loki deployment topology. `single_binary` runs Loki as a single pod; `simple_scalable` splits it into separate write, read, and backend components for larger clusters.
+
+**Use Case:** Switch to `simple_scalable` when the cluster ingests more logs than a single Loki pod can handle. Keep the default for small to medium clusters.
+
+**Default Value:** `single_binary`
+
+<a id="loki-single-binary-cpu-request-m"></a>
+
+### loki.single_binary.cpu_request_m
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/scaleway-icon.svg" alt="Scaleway" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/gcp-icon.svg" alt="GCP" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/azure-icon.svg" alt="Azure" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `integer`
+
+**Description:** CPU request (in milli-CPU) for the Loki pod when running in `single_binary` mode.
+
+**Default Value:** `300`
+
+<a id="loki-single-binary-cpu-limit-m"></a>
+
+### loki.single_binary.cpu_limit_m
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/scaleway-icon.svg" alt="Scaleway" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/gcp-icon.svg" alt="GCP" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/azure-icon.svg" alt="Azure" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `integer`
+
+**Description:** CPU limit (in milli-CPU) for the Loki pod when running in `single_binary` mode.
+
+**Default Value:** `8000`
+
+<a id="loki-single-binary-memory-request-mib"></a>
+
+### loki.single_binary.memory_request_mib
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/scaleway-icon.svg" alt="Scaleway" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/gcp-icon.svg" alt="GCP" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/azure-icon.svg" alt="Azure" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `integer`
+
+**Description:** Memory request (in MiB) for the Loki pod when running in `single_binary` mode.
+
+**Default Value:** `1024`
+
+<a id="loki-single-binary-memory-limit-mib"></a>
+
+### loki.single_binary.memory_limit_mib
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/scaleway-icon.svg" alt="Scaleway" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/gcp-icon.svg" alt="GCP" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/azure-icon.svg" alt="Azure" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `integer`
+
+**Description:** Memory limit (in MiB) for the Loki pod when running in `single_binary` mode.
+
+**Default Value:** `2048`
+
+<a id="loki-write-cpu-request-m"></a>
+
+### loki.write.cpu_request_m
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/scaleway-icon.svg" alt="Scaleway" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/gcp-icon.svg" alt="GCP" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/azure-icon.svg" alt="Azure" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `integer`
+
+**Description:** CPU request (in milli-CPU) for the Loki write component when running in `simple_scalable` mode.
+
+**Default Value:** `300`
+
+<a id="loki-write-cpu-limit-m"></a>
+
+### loki.write.cpu_limit_m
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/scaleway-icon.svg" alt="Scaleway" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/gcp-icon.svg" alt="GCP" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/azure-icon.svg" alt="Azure" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `integer`
+
+**Description:** CPU limit (in milli-CPU) for the Loki write component when running in `simple_scalable` mode.
+
+**Default Value:** `8000`
+
+<a id="loki-write-memory-request-mib"></a>
+
+### loki.write.memory_request_mib
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/scaleway-icon.svg" alt="Scaleway" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/gcp-icon.svg" alt="GCP" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/azure-icon.svg" alt="Azure" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `integer`
+
+**Description:** Memory request (in MiB) for the Loki write component when running in `simple_scalable` mode.
+
+**Default Value:** `1024`
+
+<a id="loki-write-memory-limit-mib"></a>
+
+### loki.write.memory_limit_mib
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/scaleway-icon.svg" alt="Scaleway" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/gcp-icon.svg" alt="GCP" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/azure-icon.svg" alt="Azure" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `integer`
+
+**Description:** Memory limit (in MiB) for the Loki write component when running in `simple_scalable` mode.
+
+**Default Value:** `2048`
+
+<a id="loki-read-cpu-request-m"></a>
+
+### loki.read.cpu_request_m
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/scaleway-icon.svg" alt="Scaleway" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/gcp-icon.svg" alt="GCP" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/azure-icon.svg" alt="Azure" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `integer`
+
+**Description:** CPU request (in milli-CPU) for the Loki read component when running in `simple_scalable` mode.
+
+**Default Value:** `300`
+
+<a id="loki-read-cpu-limit-m"></a>
+
+### loki.read.cpu_limit_m
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/scaleway-icon.svg" alt="Scaleway" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/gcp-icon.svg" alt="GCP" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/azure-icon.svg" alt="Azure" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `integer`
+
+**Description:** CPU limit (in milli-CPU) for the Loki read component when running in `simple_scalable` mode.
+
+**Default Value:** `8000`
+
+<a id="loki-read-memory-request-mib"></a>
+
+### loki.read.memory_request_mib
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/scaleway-icon.svg" alt="Scaleway" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/gcp-icon.svg" alt="GCP" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/azure-icon.svg" alt="Azure" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `integer`
+
+**Description:** Memory request (in MiB) for the Loki read component when running in `simple_scalable` mode.
+
+**Default Value:** `1024`
+
+<a id="loki-read-memory-limit-mib"></a>
+
+### loki.read.memory_limit_mib
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/scaleway-icon.svg" alt="Scaleway" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/gcp-icon.svg" alt="GCP" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/azure-icon.svg" alt="Azure" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `integer`
+
+**Description:** Memory limit (in MiB) for the Loki read component when running in `simple_scalable` mode.
+
+**Default Value:** `2048`
+
+<a id="loki-backend-cpu-request-m"></a>
+
+### loki.backend.cpu_request_m
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/scaleway-icon.svg" alt="Scaleway" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/gcp-icon.svg" alt="GCP" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/azure-icon.svg" alt="Azure" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `integer`
+
+**Description:** CPU request (in milli-CPU) for the Loki backend component when running in `simple_scalable` mode.
+
+**Default Value:** `300`
+
+<a id="loki-backend-cpu-limit-m"></a>
+
+### loki.backend.cpu_limit_m
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/scaleway-icon.svg" alt="Scaleway" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/gcp-icon.svg" alt="GCP" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/azure-icon.svg" alt="Azure" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `integer`
+
+**Description:** CPU limit (in milli-CPU) for the Loki backend component when running in `simple_scalable` mode.
+
+**Default Value:** `8000`
+
+<a id="loki-backend-memory-request-mib"></a>
+
+### loki.backend.memory_request_mib
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/scaleway-icon.svg" alt="Scaleway" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/gcp-icon.svg" alt="GCP" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/azure-icon.svg" alt="Azure" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `integer`
+
+**Description:** Memory request (in MiB) for the Loki backend component when running in `simple_scalable` mode.
+
+**Default Value:** `1024`
+
+<a id="loki-backend-memory-limit-mib"></a>
+
+### loki.backend.memory_limit_mib
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/scaleway-icon.svg" alt="Scaleway" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/gcp-icon.svg" alt="GCP" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/azure-icon.svg" alt="Azure" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `integer`
+
+**Description:** Memory limit (in MiB) for the Loki backend component when running in `simple_scalable` mode.
+
+**Default Value:** `2048`
+
 <a id="gcp-vpc-enable-flow-logs"></a>
 
 ### gcp.vpc.enable_flow_logs
@@ -437,6 +643,37 @@ Enabling this feature will create a 10 min max downtime on your application's pu
 **Description:** Sets AWS ALB controller VPA (vertical pod autoscaling) memory maximum value in mebibyte.
 
 **Default Value:** `128`
+
+<a id="aws-eks-alb-controller-load-balancer-source-ranges"></a>
+
+### aws.eks.alb_controller.load-balancer-source-ranges
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `list of cidr string`
+
+**Description:** Specifies the CIDRs that are allowed to access the NLB. https://kubernetes-sigs.github.io/aws-load-balancer-controller/v3.2/guide/service/annotations/#lb-source-ranges
+
+**Default Value:** `[]`
+
+**Example:** `["10.0.0.0/8", "192.168.0.0/16"]`
+
+
+<a id="aws-eks-alb-controller-load-balancer-scheme"></a>
+
+### aws.eks.alb_controller.load-balancer-scheme
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `string`
+
+**Description:** Specify if the load balancer is `internet-facing` and reachable from internet. Or if the load balancer is `internal` and reachable only from the cluster VPC.
+
+<Warning>
+Changing this value is going to replace your current load balancer and there will be up to a few minutes of downtime
+</Warning>
+
+**Default Value:** `internet-facing`
 
 <a id="load-balancer-size"></a>
 
@@ -752,6 +989,170 @@ If you don't specify custom image repository and tag, ensure your cluster includ
 
 **Default Value:** `false`
 
+<a id="k8s-gateway-load-balancer-ip-allocation-ids"></a>
+
+### k8s.gateway.load_balancer_ip_allocation_ids
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/scaleway-icon.svg" alt="Scaleway" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/gcp-icon.svg" alt="GCP" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/azure-icon.svg" alt="Azure" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `list(string)`
+
+**Description:** Sets static public IP allocations for the Gateway API `LoadBalancer` Service. Qovery maps this setting to provider-specific Kubernetes Service annotations.
+
+This setting is mainly a safety mechanism for re-creation scenarios: while a `LoadBalancer` Service usually keeps the same public IPs during its lifetime, those IPs are not guaranteed after Service or cloud Load Balancer re-creation unless explicit static allocations are configured.
+
+<Warning>
+  Changing this setting may require Service and cloud Load Balancer re-creation before new IPs are effectively used.
+  Plan a maintenance window: this operation can cause downtime, typically from tens of seconds to a few minutes (commonly around 1-3 minutes, sometimes longer depending on cloud LB provisioning and health checks).
+</Warning>
+
+**Default Value:** `null` (no explicit static LB IP allocation guarantee across Service/LB re-creation)
+
+**Provider constraints and examples**
+
+#### AWS (EKS)
+
+- Annotation used by Qovery: `service.beta.kubernetes.io/aws-load-balancer-eip-allocations`
+- Expected values: EIP allocation IDs (for example `eipalloc-0123456789abcdef0`)
+- Constraint: number of EIPs must match the number of subnets/AZs used by the NLB (1 EIP per subnet/AZ).
+
+Valid (3 subnets/AZs):
+```yaml
+k8s.gateway.load_balancer_ip_allocation_ids:
+  - eipalloc-0123456789abcdef0
+  - eipalloc-abcdef01234567890
+  - eipalloc-11111111222222222
+```
+
+Invalid (count mismatch for 3 subnets/AZs):
+```yaml
+k8s.gateway.load_balancer_ip_allocation_ids:
+  - eipalloc-0123456789abcdef0
+  - eipalloc-abcdef01234567890
+```
+
+#### GCP (GKE)
+
+- Annotation used by Qovery: `networking.gke.io/load-balancer-ip-addresses`
+- Expected values: static address resource names
+- Constraint: maximum 2 values (single-stack: 1, dual-stack: 2).
+
+Valid (single-stack):
+```yaml
+k8s.gateway.load_balancer_ip_allocation_ids:
+  - projects/my-project/regions/europe-west1/addresses/my-ipv4
+```
+
+Valid (dual-stack):
+```yaml
+k8s.gateway.load_balancer_ip_allocation_ids:
+  - projects/my-project/regions/europe-west1/addresses/my-ipv4
+  - projects/my-project/regions/europe-west1/addresses/my-ipv6-range
+```
+
+Invalid (>2 values):
+```yaml
+k8s.gateway.load_balancer_ip_allocation_ids:
+  - projects/my-project/regions/europe-west1/addresses/ip-1
+  - projects/my-project/regions/europe-west1/addresses/ip-2
+  - projects/my-project/regions/europe-west1/addresses/ip-3
+```
+
+#### Azure (AKS)
+
+- Annotations used by Qovery:
+  - `service.beta.kubernetes.io/azure-load-balancer-ipv4`
+  - `service.beta.kubernetes.io/azure-load-balancer-ipv6`
+- Expected values: IP addresses
+- Constraint: at most one IPv4 and one IPv6.
+
+Valid (IPv4 only):
+```yaml
+k8s.gateway.load_balancer_ip_allocation_ids:
+  - 20.1.2.3
+```
+
+Valid (IPv4 + IPv6):
+```yaml
+k8s.gateway.load_balancer_ip_allocation_ids:
+  - 20.1.2.3
+  - 2001:db8::1
+```
+
+Invalid (two IPv4 values):
+```yaml
+k8s.gateway.load_balancer_ip_allocation_ids:
+  - 20.1.2.3
+  - 20.1.2.4
+```
+
+#### Scaleway (Kapsule)
+
+- Annotation used by Qovery: `service.beta.kubernetes.io/scw-loadbalancer-ip-ids`
+- Expected values: Scaleway IP IDs in UUID format (without region prefix)
+- Constraint: maximum 2 values.
+
+Valid (1 value):
+```yaml
+k8s.gateway.load_balancer_ip_allocation_ids:
+  - 11111111-2222-3333-4444-555555555555
+```
+
+Valid (2 values):
+```yaml
+k8s.gateway.load_balancer_ip_allocation_ids:
+  - 11111111-2222-3333-4444-555555555555
+  - aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
+```
+
+Invalid (>2 values):
+```yaml
+k8s.gateway.load_balancer_ip_allocation_ids:
+  - 11111111-2222-3333-4444-555555555555
+  - aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
+  - cccccccc-dddd-eeee-ffff-000000000000
+```
+
+Invalid (region-prefixed format):
+```yaml
+k8s.gateway.load_balancer_ip_allocation_ids:
+  - fr-par-1/11111111-2222-3333-4444-555555555555
+```
+
+How to create and retrieve Scaleway Load Balancer IP IDs:
+
+1. Create a Load Balancer flexible IP in the same project and zone as your Kapsule cluster:
+```bash
+scw lb ip create zone=pl-waw-1
+```
+   If the Scaleway Console UI is inconsistent for LB IP creation/listing, prefer the CLI command above.
+2. List Load Balancer IP resources and retrieve their IDs:
+```bash
+scw lb ip list zone=pl-waw-1
+```
+3. Use the `id` value (UUID), not the `ip_address`, in cluster advanced settings:
+```text
+ID: 5f7a22ac-461e-4eea-867d-af671d9bcf86
+IP: 151.115.35.84
+```
+```yaml
+k8s.gateway.load_balancer_ip_allocation_ids:
+  - 5f7a22ac-461e-4eea-867d-af671d9bcf86
+```
+
+Notes:
+- Do not use a Public Gateway flexible IP ID for this setting.
+- Do not prefix IDs with the zone/region (for example `pl-waw-1/`).
+- If you cannot find an ID for an IP, verify that IP was created as a Load Balancer IP resource (`scw lb ip`), not another IP product.
+- The credentials used by your cluster/cloud-controller-manager must have Scaleway IAM permission set `LoadBalancersFullAccess` on the target project; otherwise reconciliation fails with `403 Permission denied with this ip_id` or `insufficient permissions: write loadbalancer`.
+
+**Troubleshooting**
+
+- If IP changes are not applied after updating this setting, recreate the Gateway `LoadBalancer` Service (or trigger a rollout path that recreates it).
+- For AWS, verify EIP count exactly matches NLB subnet/AZ count.
+- For Azure, verify values are valid IP addresses and that you provide at most one IPv4 and one IPv6.
+- For GCP and Scaleway, verify you do not exceed the maximum number of values.
+
 <a id="envoy-hpa-cpu-average-utilization-percentage-threshold"></a>
 
 ### envoy.hpa.cpu_average_utilization_percentage_threshold
@@ -870,7 +1271,7 @@ If you don't specify custom image repository and tag, ensure your cluster includ
 
 **Description:** vCPU request value in millicores assigned to Envoy Gateway pods. This defines the minimum CPU resources guaranteed for each pod. Must be less than or equal to `envoy.vcpu.limit_in_milli_cpu`.
 
-**Default Value:** `100`
+**Default Value:** `250`
 
 <a id="envoy-vcpu-limit-in-milli-cpu"></a>
 
@@ -882,7 +1283,7 @@ If you don't specify custom image repository and tag, ensure your cluster includ
 
 **Description:** vCPU limit value in millicores assigned to Envoy Gateway pods. This defines the maximum CPU resources that each pod can consume. Must be greater than or equal to `envoy.vcpu.request_in_milli_cpu`.
 
-**Default Value:** `1000`
+**Default Value:** `250`
 
 <a id="envoy-memory-request-in-mib"></a>
 
@@ -894,7 +1295,7 @@ If you don't specify custom image repository and tag, ensure your cluster includ
 
 **Description:** Memory request value in MiB assigned to Envoy Gateway pods. This defines the minimum memory resources guaranteed for each pod. Must be less than or equal to `envoy.memory.limit_in_mib`.
 
-**Default Value:** `256`
+**Default Value:** `768`
 
 <a id="envoy-memory-limit-in-mib"></a>
 
@@ -906,7 +1307,7 @@ If you don't specify custom image repository and tag, ensure your cluster includ
 
 **Description:** Memory limit value in MiB assigned to Envoy Gateway pods. This defines the maximum memory resources that each pod can consume. Must be greater than or equal to `envoy.memory.request_in_mib`.
 
-**Default Value:** `1024`
+**Default Value:** `768`
 
 <a id="envoy-gateway-api-http-request-timeout-seconds"></a>
 
@@ -954,6 +1355,150 @@ After changing this setting, redeploy your applications and services in this clu
 120
 ```
 
+
+<a id="envoy-gateway-api-http-stream-idle-timeout-seconds"></a>
+
+### envoy.gateway_api.http_stream_idle_timeout_seconds
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/scaleway-icon.svg" alt="Scaleway" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/gcp-icon.svg" alt="GCP" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/azure-icon.svg" alt="Azure" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `integer` (unsigned)
+
+**Description:** Sets the stream idle timeout in seconds for Envoy Gateway `ClientTrafficPolicy` at gateway level. A stream is considered idle when no upstream or downstream data is exchanged during the configured period. This maps to Envoy `stream_idle_timeout` behavior. Learn more in the [Envoy timeout documentation](https://www.envoyproxy.io/docs/envoy/latest/faq/configuration/timeouts.html#stream-timeouts).
+
+**Use Case:** Keep long-running streaming responses alive while still terminating genuinely stalled streams.
+
+<Warning>
+After changing this setting, redeploy your applications and services in this cluster to apply the new timeout on generated Gateway API resources.
+</Warning>
+
+**Default Value:** `null` (uses Envoy Gateway default)
+
+**Example:**
+```json
+300
+```
+
+
+<a id="envoy-gateway-api-http-max-stream-duration-seconds"></a>
+
+### envoy.gateway_api.http_max_stream_duration_seconds
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/scaleway-icon.svg" alt="Scaleway" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/gcp-icon.svg" alt="GCP" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/azure-icon.svg" alt="Azure" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `integer` (unsigned)
+
+**Description:** Sets the default maximum stream duration in seconds for Envoy Gateway `BackendTrafficPolicy`. This value is used when services do not define `network.gateway_api.http_max_stream_duration_seconds`. This maps to Envoy `max_stream_duration` behavior. Learn more in the [Envoy timeout documentation](https://www.envoyproxy.io/docs/envoy/latest/faq/configuration/timeouts.html#stream-timeouts).
+
+**Use Case:** Put a hard upper bound on stream lifetime while still allowing long-running active streams below that limit.
+
+<Warning>
+After changing this setting, redeploy your applications and services in this cluster to apply the new timeout on generated Gateway API resources.
+</Warning>
+
+**Default Value:** `null` (uses Envoy Gateway default)
+
+**Example:**
+```json
+600
+```
+
+<a id="envoy-gateway-api-retry-num-retries"></a>
+
+### envoy.gateway_api.retry.num_retries
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/scaleway-icon.svg" alt="Scaleway" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/gcp-icon.svg" alt="GCP" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/azure-icon.svg" alt="Azure" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `integer` (unsigned)
+
+**Description:** Sets the default retry attempt count for Gateway API traffic at cluster level. This value is used when services do not define `network.gateway_api.retry.num_retries`.
+
+**Use Case:** Define a consistent retry baseline for all services in the cluster while still allowing per-service overrides.
+
+<Warning>
+After changing this setting, redeploy your applications and services in this cluster to apply the new retry configuration on generated Gateway API resources.
+</Warning>
+
+**Default Value:** `2`
+
+**Example:**
+```json
+2
+```
+
+<a id="envoy-gateway-api-retry-retry-on"></a>
+
+### envoy.gateway_api.retry.retry_on
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/scaleway-icon.svg" alt="Scaleway" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/gcp-icon.svg" alt="GCP" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/azure-icon.svg" alt="Azure" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `string` (CSV)
+
+**Description:** Defines default retry conditions at cluster level (for example `connect-failure`, `reset`, `refused-stream`, `retriable-status-codes`). Used when services do not define `network.gateway_api.retry.retry_on`.
+
+**Use Case:** Apply consistent retry triggers across services while allowing local service overrides when needed.
+
+<Warning>
+After changing this setting, redeploy your applications and services in this cluster to apply the new retry configuration on generated Gateway API resources.
+</Warning>
+
+**Default Value:** `"connect-failure,reset,refused-stream"`
+
+**Example:**
+```json
+"connect-failure,reset,refused-stream"
+```
+
+**Learn More (retry_on values):** See [Envoy Gateway TriggerEnum reference](https://gateway.envoyproxy.io/v1.6/api/extension_types/#triggerenum).
+
+<a id="envoy-gateway-api-retry-http-status-codes"></a>
+
+### envoy.gateway_api.retry.http_status_codes
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/scaleway-icon.svg" alt="Scaleway" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/gcp-icon.svg" alt="GCP" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/azure-icon.svg" alt="Azure" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `string` (CSV of HTTP codes)
+
+**Description:** Defines default HTTP status codes to retry at cluster level. Codes must be integers in range `100..599`. Used when services do not define `network.gateway_api.retry.http_status_codes`.
+
+**Use Case:** Limit retries to specific response codes across services (for example `503,504`) without configuring each service separately.
+
+<Warning>
+After changing this setting, redeploy your applications and services in this cluster to apply the new retry configuration on generated Gateway API resources.
+</Warning>
+
+**Default Value:** `null` (unset)
+
+**Example:**
+```json
+"503,504"
+```
+
+<a id="envoy-gateway-api-retry-per-try-timeout-seconds"></a>
+
+### envoy.gateway_api.retry.per_try_timeout_seconds
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/scaleway-icon.svg" alt="Scaleway" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/gcp-icon.svg" alt="GCP" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/azure-icon.svg" alt="Azure" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `integer` (unsigned, `> 0`)
+
+**Description:** Sets the default timeout in seconds for each retry attempt. Used when services do not define `network.gateway_api.retry.per_try_timeout_seconds`.
+
+**Use Case:** Cap each retry attempt cluster-wide to reduce tail latency and avoid long blocked attempts.
+
+<Warning>
+After changing this setting, redeploy your applications and services in this cluster to apply the new retry configuration on generated Gateway API resources.
+</Warning>
+
+**Default Value:** `null` (unset)
+
+**Example:**
+```json
+3
+```
+
+**Learn More:** See [Envoy Gateway Retry Documentation](https://gateway.envoyproxy.io/latest/tasks/traffic/retry/).
+
 <a id="envoy-client-ip-detection-x-forwarded-for-number-trusted-hops"></a>
 
 ### envoy.client_ip_detection.x_forwarded_for.number_trusted_hops
@@ -962,21 +1507,71 @@ After changing this setting, redeploy your applications and services in this clu
 
 **Type:** `integer`
 
-**Description:** Number of trusted hops in the X-Forwarded-For header for client IP detection. This setting determines how many proxy hops to trust when extracting the real client IP address from the X-Forwarded-For header. See [Envoy Gateway documentation](https://gateway.envoyproxy.io/latest/tasks/traffic/client-traffic-policy/#configure-client-ip-detection) for more details.
+**Description:** Number of trusted hops in the `X-Forwarded-For` header for client IP detection. This setting determines how many proxy hops to trust when extracting the real client IP address. See [Envoy Gateway documentation](https://gateway.envoyproxy.io/latest/tasks/traffic/client-traffic-policy/#configure-client-ip-detection) for more details.
 
 <Info>
-**For customers migrating from NGINX:** This replaces the NGINX `use_forwarded_headers` and `compute_full_forwarded_for` settings. Instead of a boolean flag, Envoy uses a hop count to precisely control which IP addresses in the X-Forwarded-For chain to trust.
+**For customers migrating from NGINX:** This replaces the NGINX `use_forwarded_headers` and `compute_full_forwarded_for` settings. Envoy uses a hop count model, but `null` (unset) and `0` are **not equivalent** in Qovery.
 </Info>
 
 **How to configure:**
+- Leave as `null` (unset) to keep direct connection IP detection (`useRemoteAddress = true`). This is the safest migration option when existing RBAC / IP whitelist logic depends on source IP from the TCP peer.
+- Set to `0` to enable XFF-based detection with `useRemoteAddress = false` and `xffNumTrustedHops = 0`.
 - Set to `1` if your traffic passes through 1 trusted proxy (e.g., AWS ALB only)
 - Set to `2` if your traffic passes through 2 trusted proxies (e.g., CloudFront → ALB)
-- Set to `0` to use only the direct connection IP (equivalent to NGINX `use_forwarded_headers: false`)
-- Leave as `null` to use Envoy's default behavior
 
-**Example:** If a request arrives with `X-Forwarded-For: client-ip, proxy1-ip, proxy2-ip` and you set `number_trusted_hops: 2`, Envoy will trust the last 2 hops (proxy1 and proxy2) and identify `client-ip` as the real client.
+**Behavior summary in Qovery:**
+
+| `number_trusted_hops` value | `xffNumTrustedHops` | `useRemoteAddress` |
+| --- | --- | --- |
+| absent (`null`) | — | `true` |
+| `0` | `0` | `false` |
+| `1` | `0` | `false` |
+| `2` | `1` | `false` |
+| `3` | `2` | `false` |
+
+`0` and `1` therefore behave the same from an XFF trust perspective (`xffNumTrustedHops = 0`).
+
+**NGINX mapping note:** `nginx.controller.use_forwarded_headers = false` maps closest to leaving `envoy.client_ip_detection.x_forwarded_for.number_trusted_hops` unset (`null`), not to setting it to `0`.
+
+**Example:** If a request arrives with `X-Forwarded-For: client-ip, proxy1-ip, proxy2-ip`:
+- with `number_trusted_hops: 2` (mapped to `xffNumTrustedHops: 1`), detected client IP is `proxy1-ip`
+- with `number_trusted_hops: 3` (mapped to `xffNumTrustedHops: 2`), detected client IP is `client-ip`
 
 **Default Value:** `null` (uses Envoy default behavior)
+
+<Warning>
+`envoy.client_ip_detection.x_forwarded_for.number_trusted_hops` and `envoy.client_ip_detection.x_forwarded_for.trusted_cidrs` are **mutually exclusive**.
+
+Set **only one** of them.
+
+Qovery API validates this and returns a clear error if both are set.
+At engine rendering level, CIDR strategy has precedence when both values are present.
+</Warning>
+
+<a id="envoy-client-ip-detection-x-forwarded-for-trusted-cidrs"></a>
+
+### envoy.client_ip_detection.x_forwarded_for.trusted_cidrs
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/scaleway-icon.svg" alt="Scaleway" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/gcp-icon.svg" alt="GCP" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/azure-icon.svg" alt="Azure" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `array[string]`
+
+**Description:** List of trusted CIDR ranges used to evaluate `X-Forwarded-For` and determine the original client IP address. This is the CIDR-based strategy for Envoy client IP detection. See [Envoy Gateway documentation](https://gateway.envoyproxy.io/latest/tasks/traffic/client-traffic-policy/#configure-client-ip-detection).
+
+**How to configure:**
+- Add your trusted proxy CIDRs (for example the CIDRs used by your edge/load balancers)
+- Keep the list empty to disable this strategy
+- Use this strategy when proxy hop count is variable but source proxy networks are known
+
+**Example:**
+```json
+[
+  "10.0.0.0/8",
+  "192.168.0.0/16"
+]
+```
+
+**Default Value:** `[]`
 
 <a id="envoy-log-format"></a>
 
@@ -1049,6 +1644,28 @@ Without these fields, Qovery will not be able to properly associate logs with yo
   "qovery_com_associated_service_id": "%DYNAMIC_METADATA(envoy.lb:qovery_com_associated_service_id)%",
   "qovery_com_environment_id": "%DYNAMIC_METADATA(envoy.lb:qovery_com_environment_id)%"
 }
+```
+
+
+<a id="envoy-custom-certificate"></a>
+
+### envoy.custom_certificate
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/scaleway-icon.svg" alt="Scaleway" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/gcp-icon.svg" alt="GCP" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/azure-icon.svg" alt="Azure" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `string` (JSON format)
+
+**Description:** Allows you to upload your own TLS certificate that is going to be used by envoy when serving https traffic. Let's encrypt is not going to be used to generate the cluster certificate. The certificate must be PEM encoded
+
+<Warning>
+Changing this setting after the cluster has been deployed, requires manual intervention and will cause downtime. Please contact the support if you require it
+</Warning>
+
+**Default Value:** null
+
+**Example:** Custom JSON format with certificate and key PEM encoded:
+```json
+{"tls_crt":"-----BEGIN CERTIFICATE-----\nMIIXXXXX\n-----END CERTIFICATE-----\n","tls_key":"-----BEGIN RSA PRIVATE KEY-----\nMIIXXXXX\n-----END RSA PRIVATE KEY-----\n"}
 ```
 
 <a id="envoy-controller-custom-http-errors"></a>
@@ -1674,5 +2291,8 @@ Set to an empty string (`""`) to disable the lifecycle policy and keep all files
   </Card>
   <Card title="Terraform Provider" icon="/images/logos/terraform-icon.svg" href="/terraform-provider/overview">
     Manage infrastructure as code
+  </Card>
+  <Card title="Kubernetes Changelog" icon="newspaper" href="https://www.qovery.com/changelog---kubernetes">
+    Kubernetes cluster related updates
   </Card>
 </CardGroup>

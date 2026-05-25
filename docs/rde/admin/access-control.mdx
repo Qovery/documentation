@@ -1,0 +1,109 @@
+---
+title: "Access Control"
+description: "Control who can create workspaces from each blueprint using ACL rules"
+---
+
+<Warning>
+**Preview**: Remote Dev Environments Portal is in preview. Features may change as the product evolves.
+</Warning>
+
+## Overview
+
+Each blueprint has its own **access control list (ACL)**. ACL rules determine which authenticated users can see the blueprint in the catalog and create workspaces from it. Users who do not match any rule for a blueprint will not see it at all.
+
+This gives you fine-grained control over who can launch workspaces - you can open a blueprint to your entire organization, restrict it to a specific domain, or limit it to individual email addresses.
+
+## ACL Types
+
+The portal supports three access modes for each blueprint:
+
+<CardGroup cols={3}>
+  <Card title="Open Access" icon="globe">
+    **No rules configured.** Any authenticated user in your organization can see and use the blueprint. This is the default when you first register a blueprint.
+  </Card>
+  <Card title="Domain-Restricted" icon="building">
+    **Match by email domain.** Only users whose email address matches one of the specified domains can access the blueprint. For example, `@company.com` or `@contractor.io`.
+  </Card>
+  <Card title="Email-Restricted" icon="envelope">
+    **Match by specific email.** Only the exact email addresses you list can access the blueprint. Use this for individual access grants.
+  </Card>
+</CardGroup>
+
+## Configuring ACLs
+
+<Steps>
+  <Step title="Open the Blueprint Detail">
+    Navigate to **Admin > Blueprints** and select the blueprint you want to configure.
+  </Step>
+
+  <Step title="Go to the Access Control Tab">
+    Click the **Access Control** tab in the blueprint detail view.
+  </Step>
+
+  <Step title="Add Rules">
+    Click **Add Rule** and choose the rule type:
+
+    - **Domain rule** - Enter an email domain (e.g., `company.com`). All users with email addresses ending in `@company.com` will have access.
+    - **Email rule** - Enter a specific email address (e.g., `alice@partner.org`). Only that user will have access via this rule.
+  </Step>
+
+  <Step title="Save">
+    Click **Save** to apply the ACL changes. The rules take effect immediately - the catalog will update the next time users load the page.
+  </Step>
+</Steps>
+
+## How ACLs Work
+
+When a user opens the portal, the catalog endpoint checks their authenticated email address against each blueprint's ACL rules:
+
+1. If the blueprint has **no rules**, it is visible to all authenticated users (open access).
+2. If the blueprint has **one or more rules**, the user's email must match at least one rule to see the blueprint.
+3. Users who do not match any rule will **not see the blueprint** in their catalog.
+
+<Info>
+ACLs control visibility and workspace creation. They do not affect existing workspaces. If you remove a user's access to a blueprint, their previously created workspaces continue to function.
+</Info>
+
+## Combining Rules
+
+You can add multiple rules of different types to the same blueprint. **If any rule matches, the user gets access.** Rules are evaluated with OR logic.
+
+For example, you could configure a blueprint with:
+- Domain rule: `company.com`
+- Email rule: `freelancer@gmail.com`
+- Email rule: `contractor@partner.org`
+
+This would grant access to all `@company.com` employees plus two specific external users.
+
+## Common Patterns
+
+| Scenario | Rule Configuration |
+|----------|-------------------|
+| All engineers in your company | Domain rule: `company.com` |
+| External contractors | Individual email rules for each contractor |
+| Internal testing only | Email rules for specific team members |
+| Multiple subsidiaries | Multiple domain rules: `company.com`, `subsidiary.com` |
+| Open to everyone | No rules (open access - the default) |
+| Mixed internal and external | Domain rule for employees + email rules for external partners |
+
+## Removing Rules
+
+To remove an ACL rule, navigate to the blueprint's **Access Control** tab, find the rule you want to remove, and click the **delete** icon. Save your changes.
+
+<Note>
+Removing all rules from a blueprint returns it to **open access** mode. Any authenticated user in your organization will be able to see and use it.
+</Note>
+
+## Next Steps
+
+<CardGroup cols={3}>
+  <Card title="Blueprint Management" icon="cubes" href="/rde/admin/blueprint-management">
+    Register and configure blueprint templates.
+  </Card>
+  <Card title="Member Management" icon="users" href="/rde/admin/member-management">
+    Invite and manage team members in the portal.
+  </Card>
+  <Card title="Workspace Management" icon="server" href="/rde/admin/workspace-management">
+    Monitor and manage all workspaces.
+  </Card>
+</CardGroup>

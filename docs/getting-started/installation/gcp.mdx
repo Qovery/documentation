@@ -88,7 +88,7 @@ Qovery needs credentials to manage resources in your GCP project. We use a secur
 <Steps>
   <Step title="Start Cluster Creation">
     1. Go to [Qovery Console](https://console.qovery.com)
-    2. Click **Clusters** in the left sidebar
+    2. Go to your organization overview and click on the **Clusters** tab
     3. Click **Create Cluster**
     4. Select **GCP** as the cloud provider
   </Step>
@@ -105,12 +105,17 @@ Qovery needs credentials to manage resources in your GCP project. We use a secur
 
     The command will look like:
     ```bash
-    curl https://hub.qovery.com/files/create_credentials_gcp.sh | bash -s -- YOUR_PROJECT_ID qovery_role qovery-service-account
+    curl https://setup.qovery.com/create_credentials_gcp.sh | bash -s -- YOUR_PROJECT_ID qovery_role qovery-service-account
     ```
 
     <Info>
     This script creates a service account with minimal required permissions. For a detailed breakdown of every permission and why it's needed, see the [GCP IAM Permissions Reference](/getting-started/security-and-compliance/gcp-iam-permissions).
     </Info>
+
+    <Warning>
+    If you enable **static egress IPs** for GCP NAT Gateway, the role must also include `compute.addresses.create`, `compute.addresses.get`, `compute.addresses.list`, and `compute.addresses.delete`.
+    Typical Terraform failure when missing: `Required 'compute.addresses.create' permission ... forbidden`.
+    </Warning>
   </Step>
 </Steps>
 
@@ -554,4 +559,4 @@ Spot Pods can be terminated with 30 seconds notice. Not recommended for producti
 - [GCP Pricing Calculator](https://cloud.google.com/products/calculator)
 - [GCP Free Tier](https://cloud.google.com/free)
 - [Qovery Status Page](https://status.qovery.com)
-- [Qovery Community Forum](https://discuss.qovery.com) - Updates and announcements from the Qovery team
+- [Qovery Kubernetes Changelog](https://www.qovery.com/changelog---kubernetes) - Kubernetes cluster related updates

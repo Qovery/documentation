@@ -17,45 +17,175 @@ List all Helm charts in current environment:
 qovery helm list
 ```
 
+**Flags:**
+
+| Flag | Description |
+|------|-------------|
+| `--organization` | Organization Name |
+| `--project` | Project Name |
+| `--environment` | Environment Name |
+| `--json` | JSON output |
+
 ### Deploy Helm Chart
 
 Deploy or update a Helm chart:
 
 ```bash
-qovery helm deploy --helm "helm-id"
+qovery helm deploy --helm "my-helm"
 ```
+
+Deploy multiple charts at once:
+
+```bash
+qovery helm deploy --helms "helm1,helm2"
+```
+
+Deploy with a specific chart version:
+
+```bash
+qovery helm deploy --helm "my-helm" --chart_version "1.2.3"
+```
+
+**Flags:**
+
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--helm` | `-n` | Helm Name |
+| `--helms` | | Helm Names (comma separated) |
+| `--chart_version` | | Helm chart version |
+| `--chart_git_commit_id` | | Helm chart git commit ID |
+| `--values_override_git_commit_id` | | Helm values override git commit ID |
+| `--watch` | `-w` | Watch helm status until it's ready or an error occurs |
+| `--organization` | | Organization Name |
+| `--project` | | Project Name |
+| `--environment` | | Environment Name |
+
+### Redeploy Helm Chart
+
+Redeploy an existing Helm chart with the same configuration:
+
+```bash
+qovery helm redeploy --helm "my-helm"
+```
+
+**Flags:**
+
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--helm` | `-n` | Helm Name (required) |
+| `--watch` | `-w` | Watch helm status until it's ready or an error occurs |
+| `--organization` | | Organization Name |
+| `--project` | | Project Name |
+| `--environment` | | Environment Name |
 
 ### Stop Helm Chart
 
 Stop a Helm chart:
 
 ```bash
-qovery helm stop --helm "helm-id"
+qovery helm stop --helm "my-helm"
 ```
 
-### Restart Helm Chart
-
-Restart a Helm chart:
+Stop multiple charts at once:
 
 ```bash
-qovery helm restart --helm "helm-id"
+qovery helm stop --helms "helm1,helm2"
 ```
+
+**Flags:**
+
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--helm` | `-n` | Helm Name |
+| `--helms` | | Helm Names (comma separated) |
+| `--watch` | `-w` | Watch helm status until it's ready or an error occurs |
+| `--organization` | | Organization Name |
+| `--project` | | Project Name |
+| `--environment` | | Environment Name |
+
+### Cancel Deployment
+
+Cancel a Helm chart deployment:
+
+```bash
+qovery helm cancel --helm "my-helm"
+```
+
+**Flags:**
+
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--helm` | `-n` | Helm Name (required) |
+| `--watch` | `-w` | Watch cancel until it's done or an error occurs |
+| `--organization` | | Organization Name |
+| `--project` | | Project Name |
+| `--environment` | | Environment Name |
+
+### Update Helm Chart
+
+Update a Helm chart's source configuration:
+
+```bash
+qovery helm update --helm "my-helm" --chart_version "2.0.0"
+```
+
+**Flags:**
+
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--helm` | `-n` | Helm Name (required) |
+| `--chart_name` | | Helm chart name |
+| `--chart_version` | | Helm chart version |
+| `--chart_git_commit_branch` | | Helm chart git commit branch |
+| `--values_override_git_commit_branch` | | Helm values override git commit branch |
+| `--organization` | | Organization Name |
+| `--project` | | Project Name |
+| `--environment` | | Environment Name |
+
+### Clone Helm Chart
+
+Clone a Helm chart to another environment or project:
+
+```bash
+qovery helm clone --helm "my-helm"
+```
+
+**Flags:**
+
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--helm` | `-n` | Helm Name (required) |
+| `--target-project` | | Target Project Name |
+| `--target-environment` | | Target Environment Name |
+| `--target-helm-name` | | Target Helm Name |
+| `--organization` | | Organization Name |
+| `--project` | | Project Name |
+| `--environment` | | Environment Name |
 
 ### Delete Helm Chart
 
 Delete a Helm chart:
 
 ```bash
-qovery helm delete --helm "helm-id"
+qovery helm delete --helm "my-helm"
 ```
 
-## Options
+Delete multiple charts at once:
 
-| Flag | Description |
-|------|-------------|
-| `--helm` | Helm chart ID or name |
-| `--output` | Output format (table, json, yaml) |
-| `--help` | Show help |
+```bash
+qovery helm delete --helms "helm1,helm2"
+```
+
+**Flags:**
+
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--helm` | `-n` | Helm Name |
+| `--helms` | | Helm Names (comma separated) |
+| `--watch` | `-w` | Watch helm status until it's ready or an error occurs |
+| `--organization` | | Organization Name |
+| `--project` | | Project Name |
+| `--environment` | | Environment Name |
 
 ## Examples
 
@@ -68,15 +198,17 @@ qovery helm list
 # Deploy Helm chart
 qovery helm deploy --helm "redis-cluster"
 
-# Check deployment status
-qovery status
+# Deploy with a specific chart version
+qovery helm deploy --helm "redis-cluster" --chart_version "17.0.0"
+
+# Watch deployment status
+qovery helm deploy --helm "redis-cluster" --watch
 ```
 
-### Restart Helm Chart
+### List Helm Charts as JSON
 
 ```bash
-# Restart Helm chart
-qovery helm restart --helm "redis-cluster"
+qovery helm list --json
 ```
 
 ## Related Commands

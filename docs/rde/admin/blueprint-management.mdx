@@ -1,0 +1,476 @@
+---
+title: "Blueprint Management"
+description: "Register, configure, and manage blueprint templates for your team's workspaces"
+---
+
+<Warning>
+**Preview**: Remote Dev Environments Portal is in preview. Features may change as the product evolves.
+</Warning>
+
+## Overview
+
+A **blueprint** is a pre-configured workspace template. When a builder clicks "Create" in the RDE Portal, they are creating a private copy of a blueprint - pre-loaded with the right tools, the right database connections, and the right credentials for their role. They don't configure anything. They just pick a template and start building.
+
+From a technical perspective, each blueprint maps to a **Qovery project and environment**. When a builder creates a workspace, the system clones that environment into a new Qovery project scoped to that builder. The blueprint is the master template; each workspace is an isolated copy.
+
+As an admin, you decide what each blueprint contains, who can access it, and what it can connect to. This is where governance happens - invisibly to the builder, but completely under your control. The blueprint itself is a standard Qovery environment, managed through the Qovery Console, CLI, or [Terraform](/rde/admin/blueprint-management#managing-blueprints-with-terraform) as usual.
+
+## Registering a Blueprint
+
+<Steps>
+  <Step title="Open the Admin Panel">
+    Navigate to **Admin > Blueprints** in the RDE Portal.
+  </Step>
+
+  <Step title="Click Register">
+    Click the **Register Blueprint** button to open the registration form.
+  </Step>
+
+  <Step title="Select the Qovery Project">
+    Choose the Qovery project that contains your template environment. This project must already exist in your Qovery organization.
+  </Step>
+
+  <Step title="Choose the Environment">
+    Select the specific environment within the project to use as the blueprint source. This is the environment that will be cloned when builders create workspaces.
+
+    <Info>
+    If the selected project contains multiple environments, a dropdown appears to let you choose which environment to use as the blueprint source.
+    </Info>
+  </Step>
+
+  <Step title="Set Display Name">
+    Enter a display name that builders will see in the workspace catalog. Use a clear, descriptive name like "Full-Stack Starter" or "Python Data Science".
+  </Step>
+
+  <Step title="Save">
+    Click **Register** to add the blueprint. It will immediately appear in the catalog for users who have access.
+  </Step>
+</Steps>
+
+## Blueprint Requirements
+
+A good blueprint environment should include everything a builder needs to be productive from the moment their workspace is ready.
+
+**Required:**
+- At least one **service or container** (typically a workspace image with an IDE like VS Code Server)
+
+**Recommended:**
+- **Development tools** pre-installed - Claude Code, OpenCode, Git, language runtimes (Node.js, Python, etc.)
+- **Environment variables** configured - API keys, database credentials, service URLs
+- **Databases and backing services** - PostgreSQL, Redis, or any other services your builders need
+- **TTL auto-stop job** - A lifecycle job that automatically stops idle environments to save costs
+
+<Tip>
+Start with a lean blueprint that covers the basics. You can always iterate and add more tools or services based on builder feedback.
+</Tip>
+
+## Updating a Blueprint
+
+Changes you make to the source Qovery project and environment (adding services, updating environment variables, changing container images) are **reflected in new workspaces** created from the blueprint.
+
+<Info>
+Existing workspaces are **not** automatically updated when the blueprint changes. Builders keep working on their current environment until an action is taken.
+</Info>
+
+To apply updates to existing workspaces:
+- **Image updates** - Admins or builders can restart a workspace to pull the latest container image.
+- **Structural changes** - If the blueprint structure has changed significantly (new services added, environment variables renamed), you may need to use the **Upgrade** action from the workspace management page to redeploy with the latest blueprint configuration.
+
+## Removing a Blueprint
+
+To unregister a blueprint, navigate to **Admin > Blueprints**, select the blueprint, and click **Remove**.
+
+<Warning>
+Removing a blueprint does **not** delete existing workspaces created from it. Those workspaces continue to run normally. However, no new workspaces can be created from the removed blueprint.
+</Warning>
+
+If you want to permanently clean up, delete the associated workspaces from the [workspace management](/rde/admin/workspace-management) page before or after removing the blueprint.
+
+## Create Blueprint from Template
+
+Instead of registering an existing Qovery environment as a blueprint, you can create a new blueprint directly from a pre-built template - no pre-existing environment required.
+
+<Steps>
+  <Step title="Open the Template Gallery">
+    Navigate to **Admin > Blueprints**, click the dropdown arrow next to the **Register Blueprint** button, and select **Create from Template**.
+  </Step>
+
+  <Step title="Pick a Template">
+    Browse the template gallery organized by persona category:
+
+    <CardGroup cols={3}>
+      <Card title="Developers" icon="code">
+        Full-stack, frontend, and backend starter templates.
+      </Card>
+      <Card title="Data" icon="database">
+        Data science and analytics templates.
+      </Card>
+      <Card title="Marketing" icon="bullhorn">
+        Campaign tools and content management templates.
+      </Card>
+      <Card title="Sales" icon="chart-line">
+        CRM tools and pipeline reporting templates.
+      </Card>
+      <Card title="Finance" icon="calculator">
+        Financial analysis and reporting templates.
+      </Card>
+      <Card title="Other" icon="grid-2">
+        General-purpose templates.
+      </Card>
+    </CardGroup>
+
+    Select the template that best fits your use case.
+  </Step>
+
+  <Step title="Configure the Blueprint">
+    Fill in the configuration form:
+
+    - **Blueprint name** - Display name shown to builders in the catalog
+    - **Target cluster** - The Kubernetes cluster where workspaces will run
+    - **Resource allocation** - CPU, RAM, and storage limits for the workspace
+    - **Docker image repository** - Container registry and image for the workspace
+    - **Project repository URL** (optional) - Git repository to auto-clone into new workspaces
+  </Step>
+
+  <Step title="Create">
+    Click **Create**. The portal provisions the Qovery project and environment automatically. The new blueprint appears in the catalog once provisioning is complete.
+  </Step>
+</Steps>
+
+<Tip>
+Use templates when you want a quick starting point without manually setting up Qovery projects and environments first. You can always customize the resulting blueprint environment in the Qovery Console after creation.
+</Tip>
+
+## Blueprint Lifecycle
+
+Each blueprint has an **admin state** that controls its visibility and availability in the catalog.
+
+| State | Catalog Visibility | Description |
+|-------|-------------------|-------------|
+| **Testing** | Shown with a "Coming Soon" badge | New blueprints start in this state. Admins can test them before making them available. |
+| **Enabled** | Fully visible and launchable | Builders can create workspaces from this blueprint. |
+| **Disabled** | Hidden from catalog | The blueprint is not available to builders. Existing workspaces are unaffected. |
+
+To change a blueprint's state, open the blueprint detail page and use the state action buttons (**Enable**, **Disable**, **Set Testing**).
+
+<Info>
+When a blueprint is in **Testing** state, it appears in the catalog with a "Coming Soon" badge. Only admins can launch test sessions from it - builders see the badge but cannot create workspaces.
+</Info>
+
+## Primary Service
+
+By default, the portal connects terminal sessions and live preview to the first service in the blueprint environment. If your blueprint has multiple services, you can specify which service is the **primary service** - the one used for shell connections and preview.
+
+Navigate to **Admin > Blueprints > [Blueprint] > Settings** and select the primary service from the dropdown. The dropdown lists all services in the blueprint's Qovery environment.
+
+<Tip>
+Set the primary service to the container running your IDE (e.g., code-server) so that terminal sessions and live preview connect to the right service automatically.
+</Tip>
+
+## Workspace Project Mode
+
+Choose how the portal organizes Qovery projects when builders create workspaces:
+
+| Mode | Behavior |
+|------|----------|
+| **Dedicated** (default) | Each workspace gets its own Qovery project. Full isolation between workspaces. |
+| **Shared** | All workspaces from this blueprint share a single Qovery project. Environments are created within the shared project. Uses fewer Qovery resources. |
+
+Configure this in **Admin > Blueprints > [Blueprint] > Settings > Project Mode**.
+
+<Info>
+Use **shared** mode when you want to reduce the number of Qovery projects in your organization. Use **dedicated** mode (default) when workspace isolation is a priority.
+</Info>
+
+## Naming Templates
+
+Customize how workspace projects and environments are named in Qovery using template variables:
+
+| Variable | Resolves to |
+|----------|-------------|
+| `{user}` | The builder's username (from email) |
+| `{blueprint}` | The blueprint display name |
+| `{random}` | A random alphanumeric string |
+| `{name}` | The workspace name chosen by the builder |
+
+For example, a template of `rde-{user}-{blueprint}` for a user `alice@company.com` creating from "Frontend Starter" would produce `rde-alice-frontend-starter`.
+
+<Info>
+Names are automatically sanitized to be Qovery-compatible (lowercase, alphanumeric, hyphens only).
+</Info>
+
+Configure naming templates in **Admin > Blueprints > [Blueprint] > Settings > Workspace Naming**.
+
+## Target Cluster
+
+If your organization has multiple Kubernetes clusters, you can specify which cluster should be used for workspaces created from a specific blueprint.
+
+Navigate to **Admin > Blueprints > [Blueprint] > Settings > Target Cluster** and select the cluster from the dropdown. If no cluster is specified, the portal uses the default cluster.
+
+This is useful for:
+- **Data residency** - Route workspaces to clusters in specific regions
+- **Resource isolation** - Separate development workloads across clusters
+- **Specialized hardware** - Use different node types or GPU-enabled clusters for specific blueprint use cases
+
+## Managing Blueprints with Terraform
+
+Since blueprints are standard Qovery projects and environments, you can define and manage them entirely with the [Qovery Terraform Provider](/terraform-provider/overview). This lets you version-control your blueprint infrastructure, automate provisioning, and ensure consistency across environments.
+
+### Example: Blueprint with the Official Workspace Template
+
+```hcl
+terraform {
+  required_providers {
+    qovery = {
+      source  = "qovery/qovery"
+    }
+  }
+}
+
+provider "qovery" {
+  token = var.qovery_api_token
+}
+
+data "qovery_organization" "my_org" {
+  name = "My Organization"
+}
+
+data "qovery_cluster" "my_cluster" {
+  organization_id = data.qovery_organization.my_org.id
+  name            = "production"
+}
+
+# Create a project for the blueprint
+resource "qovery_project" "blueprint" {
+  organization_id = data.qovery_organization.my_org.id
+  name            = "rde-blueprint-fullstack"
+}
+
+# Create the blueprint environment
+resource "qovery_environment" "blueprint" {
+  project_id = qovery_project.blueprint.id
+  cluster_id = data.qovery_cluster.my_cluster.id
+  name       = "blueprint"
+  mode       = "DEVELOPMENT"
+}
+
+# Add the workspace container using the official template
+resource "qovery_container" "workspace" {
+  environment_id = qovery_environment.blueprint.id
+  name           = "workspace"
+  image_name     = "ghcr.io/evoxmusic/remote-dev-env-template"
+  tag            = "latest"
+  cpu            = 2000
+  memory         = 4096
+  auto_deploy    = false
+
+  ports = [
+    {
+      internal_port       = 8080
+      external_port       = 443
+      protocol            = "HTTP"
+      publicly_accessible = true
+      name                = "code-server"
+    },
+    {
+      internal_port       = 9100
+      external_port       = 443
+      protocol            = "HTTP"
+      publicly_accessible = true
+      name                = "opencode"
+    }
+  ]
+
+  environment_variables = [
+    {
+      key   = "GIT_REPO_URL"
+      value = "https://github.com/your-org/your-starter-template"
+    },
+    {
+      key   = "GIT_BRANCH"
+      value = "main"
+    },
+    {
+      key   = "DEV_PORT"
+      value = "3100"
+    }
+  ]
+}
+```
+
+<Tip>
+Using Terraform is especially useful when managing multiple blueprints, enforcing consistent configuration across environments, or automating blueprint updates as part of a CI/CD pipeline.
+</Tip>
+
+<CardGroup cols={2}>
+  <Card title="Terraform Provider Overview" icon="code" href="/terraform-provider/overview">
+    Get started with the Qovery Terraform Provider.
+  </Card>
+  <Card title="Provider Registry" icon="book" href="https://registry.terraform.io/providers/Qovery/qovery/latest/docs">
+    Complete resource reference on the Terraform Registry.
+  </Card>
+</CardGroup>
+
+## Official Workspace Template
+
+Qovery provides an official workspace template image you can use as the base container for your blueprints. It is designed for both technical and non-technical builders and comes pre-configured with everything needed for a productive development environment.
+
+<Info>
+Source code and documentation: [github.com/evoxmusic/remote-dev-env-template](https://github.com/evoxmusic/remote-dev-env-template)
+</Info>
+
+### What's Included
+
+<CardGroup cols={3}>
+  <Card title="code-server" icon="code">
+    VS Code running in the browser with a clean, builder-friendly UI. Dark theme, minimal distractions, Claude Code sidebar open by default.
+  </Card>
+  <Card title="AI Assistants" icon="robot">
+    Claude Code (VS Code sidebar + CLI) and OpenCode (web chat UI) are pre-installed and pre-configured with builder-friendly AI skills.
+  </Card>
+  <Card title="Language Runtimes" icon="layer-group">
+    Node.js 22, Python 3, Ruby + Bundler, and Go - ready to use out of the box for a wide range of project types.
+  </Card>
+  <Card title="Dev CLIs" icon="terminal">
+    GitHub CLI, Qovery CLI, and Git are pre-installed. Builders can push code, create PRs, and deploy without leaving the workspace.
+  </Card>
+  <Card title="Auto Dev Server" icon="bolt">
+    Automatically detects your project type and starts the right dev server - no manual configuration needed.
+  </Card>
+  <Card title="Live Preview" icon="eye">
+    Built-in VS Code Live Preview extension for viewing your application directly in the editor.
+  </Card>
+</CardGroup>
+
+### Using the Template
+
+To use this template as your blueprint's workspace container:
+
+1. Create a Qovery project and environment for your blueprint
+2. Add a container service using the image from the [template repository](https://github.com/evoxmusic/remote-dev-env-template)
+3. Configure the environment variables listed below
+4. Register the environment as a blueprint in the RDE Portal
+
+Alternatively, **fork the repository** and build a custom image tailored to your organization's needs.
+
+### Environment Variables
+
+Configure these environment variables on the workspace container service in your Qovery blueprint environment:
+
+| Variable | Required | Default | Description |
+|----------|----------|---------|-------------|
+| `GIT_REPO_URL` | No | - | HTTPS URL of a Git repo to auto-clone into the workspace on startup |
+| `GIT_TOKEN` | No | - | Personal access token for private repos. Auto-detects GitHub, GitLab, and Bitbucket. |
+| `GIT_BRANCH` | No | `main` | Branch to checkout after cloning |
+| `GIT_USER_NAME` | No | - | Git author name used for commits |
+| `GIT_USER_EMAIL` | No | - | Git author email used for commits |
+| `DEV_PORT` | No | `3100` | Port the auto-detected dev server listens on |
+| `ANTHROPIC_API_KEY` | No | - | API key for Claude Code (if using API key auth mode in blueprint settings) |
+| `DISABLE_CODE_SERVER` | No | - | Set to `true` to serve a welcome page instead of VS Code |
+
+<Tip>
+For blueprints where builders will work on an existing codebase, set `GIT_REPO_URL` to your repository. For open-ended "start from scratch" blueprints, leave it empty - builders get a blank workspace with a welcome guide.
+</Tip>
+
+### How the Startup Works
+
+When a workspace container starts, the template automatically:
+
+<Steps>
+  <Step title="Clone the repository">
+    If `GIT_REPO_URL` is configured, the repo is cloned and the specified branch is checked out. On subsequent restarts, the workspace pulls the latest changes instead of re-cloning.
+  </Step>
+  <Step title="Install dependencies">
+    Auto-detects the project type and installs dependencies - `npm install` for Node.js, `pip install` for Python, `bundle install` for Ruby, `go mod download` for Go.
+  </Step>
+  <Step title="Start the dev server">
+    Auto-detects the framework and starts the appropriate dev server in the background. Builders see their application running immediately.
+  </Step>
+  <Step title="Open the IDE">
+    code-server launches with the Claude Code sidebar open and a welcome guide ready. For fresh workspaces (no git repo), a beginner-friendly WELCOME.md is generated with usage tips and example prompts.
+  </Step>
+</Steps>
+
+### Supported Project Types
+
+The template auto-detects and handles the following project types:
+
+| Project Type | Detection | Dev Server |
+|-------------|-----------|------------|
+| **Vite** (React, Vue, Svelte) | `vite` in package.json | `vite --port $DEV_PORT --host` |
+| **Next.js** | `next` in package.json | `next dev -p $DEV_PORT` |
+| **Nuxt** | `nuxt` in package.json | `nuxt dev --port $DEV_PORT` |
+| **Node.js** (generic) | `package.json` with dev/start script | `npm run dev` or `npm start` |
+| **Django** | `manage.py` present | `python3 manage.py runserver 0.0.0.0:$DEV_PORT` |
+| **Flask** | `flask` in requirements.txt | `flask run --host=0.0.0.0 --port=$DEV_PORT` |
+| **FastAPI** | `fastapi` in requirements.txt | `uvicorn main:app --host 0.0.0.0 --port $DEV_PORT` |
+| **Ruby on Rails** | `rails` in Gemfile | `rails server -b 0.0.0.0 -p $DEV_PORT` |
+| **Go** | `go.mod` present | `go run .` |
+| **Static HTML** | `index.html` present | `npx serve -l $DEV_PORT` |
+
+### AI Skills
+
+The template includes pre-configured AI skills for both Claude Code and OpenCode that:
+
+- **Adapt to the builder's experience level** - On first interaction, the AI asks the builder how comfortable they are with coding and adjusts its communication style accordingly (no jargon for beginners, normal technical language for experienced developers)
+- **Take action directly** - The AI creates files, installs packages, and fixes errors autonomously instead of instructing the builder to run commands
+- **Use a sensible default stack** - When starting from scratch, the AI defaults to Vite + React + Tailwind CSS
+- **Support deployment** - When a builder says "put it online" or "deploy", the AI uses Qovery skills to deploy the application
+
+### Customization
+
+<AccordionGroup>
+  <Accordion title="Fork and add your own tools">
+    Fork the [template repository](https://github.com/evoxmusic/remote-dev-env-template), modify the Dockerfile to add your organization's specific tools, libraries, or CLI utilities, then build and push your custom image to your container registry.
+  </Accordion>
+
+  <Accordion title="Customize AI behavior">
+    The AI skill files (`builder-skill/CLAUDE.md` and `builder-skill/SKILL.md`) control how Claude Code and OpenCode interact with builders. Edit these files to match your organization's coding conventions, preferred tech stack, or domain-specific instructions.
+  </Accordion>
+
+  <Accordion title="Add VS Code extensions">
+    Add additional VS Code extensions to the Dockerfile using `code-server --install-extension <extension-id>`. This is useful for language-specific extensions, linters, or your organization's internal extensions.
+  </Accordion>
+
+  <Accordion title="Pre-configure for a specific stack">
+    If all your builders use the same tech stack, set `GIT_REPO_URL` to a starter template repo and configure the environment variables accordingly. Builders get a ready-to-code project from the moment their workspace starts.
+  </Accordion>
+</AccordionGroup>
+
+## Best Practices
+
+<AccordionGroup>
+  <Accordion title="Keep blueprints lean and focused">
+    Include only what builders actually need. A bloated blueprint means slower workspace creation, higher resource usage, and more maintenance. If different teams need different tools, create separate blueprints rather than one blueprint with everything.
+  </Accordion>
+
+  <Accordion title="Test blueprints before making them available">
+    Deploy and validate the blueprint environment in the Qovery Console before registering it in the portal. Create a test workspace yourself to confirm that all services start correctly and the developer experience is smooth.
+  </Accordion>
+
+  <Accordion title="Use descriptive names for builders">
+    Blueprint names appear in the workspace catalog. Use names that clearly communicate the purpose - "React Frontend Starter" is more helpful than "Template A". Builders should be able to pick the right blueprint without asking for help.
+  </Accordion>
+
+  <Accordion title="Version your blueprint container images">
+    Use tagged container images (e.g., `workspace:v2.1`) rather than `:latest` for production blueprints. This gives you control over when updates roll out and makes it easy to roll back if an update causes issues.
+  </Accordion>
+
+  <Accordion title="Configure auto-stop TTL policies">
+    Include a TTL lifecycle job in your blueprint environment that automatically stops idle workspaces. This prevents forgotten workspaces from running indefinitely and accumulating cloud costs.
+  </Accordion>
+</AccordionGroup>
+
+## Next Steps
+
+<CardGroup cols={3}>
+  <Card title="Access Control" icon="shield-halved" href="/rde/admin/access-control">
+    Control who can create workspaces from each blueprint.
+  </Card>
+  <Card title="Workspace Management" icon="server" href="/rde/admin/workspace-management">
+    Monitor and manage all workspaces across your organization.
+  </Card>
+  <Card title="Portal Customization" icon="palette" href="/rde/admin/portal-customization">
+    Customize branding, layouts, and the welcome screen.
+  </Card>
+</CardGroup>

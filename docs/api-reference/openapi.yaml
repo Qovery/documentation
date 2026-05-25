@@ -115,6 +115,7 @@ tags:
   - name: Project Secret
   - name: Projects
   - name: Referral & Rewards
+  - name: Secret Manager Access
   - name: Terraforms
   - name: Terraform Main Calls
   - name: Terraform Resources
@@ -1655,6 +1656,55 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ClusterLogsResponseList'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+  '/secretManagerAccess/{secretManagerAccessId}/secrets':
+    get:
+      summary: List upstream secrets from secret provider
+      description: List upstream secrets from secret provider
+      operationId: listUpstreamSecretsFromSecretProvider
+      parameters:
+        - $ref: '#/components/parameters/secretManagerAccessId'
+        - name: namePrefix
+          in: query
+          required: false
+          schema:
+            type: string
+      tags:
+        - Secret Manager Access
+      responses:
+        '200':
+          description: List upstream secrets from secret provider
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProviderSecrets'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+  '/secretManagerAccess/{secretManagerAccessId}/associatedServices':
+    get:
+      summary: List external secrets used by a secret manager access
+      description: List external secrets used by a secret manager access
+      operationId: listSecretManagerAccessExternalSecrets
+      parameters:
+        - $ref: '#/components/parameters/secretManagerAccessId'
+      tags:
+        - Secret Manager Access
+      responses:
+        '200':
+          description: List external secrets used by a secret manager access
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExternalSecretAssociatedServiceResponseList'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -3581,6 +3631,84 @@ paths:
           $ref: '#/components/responses/403'
         '404':
           $ref: '#/components/responses/404'
+  '/organization/{organizationId}/cluster/{clusterId}/eks-anywhere/jwt':
+    get:
+      summary: Get latest EKS Anywhere cluster JWT
+      description: Returns the latest valid JWT currently used for engine deployments for the specified EKS Anywhere cluster.
+      operationId: getEksAnywhereClusterJwt
+      parameters:
+        - $ref: '#/components/parameters/organizationId'
+        - $ref: '#/components/parameters/clusterId'
+      tags:
+        - Clusters
+      responses:
+        '200':
+          description: Latest EKS Anywhere cluster JWT
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EksAnywhereClusterJwtResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+  '/cluster/{clusterId}/dnsProvider':
+    get:
+      summary: Get cluster DNS provider
+      description: Retrieve the DNS provider currently associated with a cluster. Requires VIEWER role.
+      operationId: getClusterDnsProvider
+      parameters:
+        - $ref: '#/components/parameters/clusterId'
+      tags:
+        - Clusters
+      responses:
+        '200':
+          description: Cluster DNS provider
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClusterDnsProviderResponse'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+    put:
+      summary: Edit cluster DNS provider
+      description: |
+        Update the DNS provider associated with a cluster. Requires an Enterprise plan.
+        Cloudflare api_token and Route53 STATIC credentials aws_secret_access_key must be provided on every edit.
+      operationId: editClusterDnsProvider
+      parameters:
+        - $ref: '#/components/parameters/clusterId'
+      tags:
+        - Clusters
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClusterDnsProviderRequest'
+      responses:
+        '200':
+          description: Updated cluster DNS provider
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClusterDnsProviderResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
   '/cluster/{clusterId}/argoCdConfig':
     post:
       summary: Save ArgoCD credentials for a cluster
@@ -3673,6 +3801,97 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ArgoCdConnectionCheckResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+  '/organization/{organizationId}/argoCdDestinationClusterMapping':
+    post:
+      summary: Save an ArgoCD destination cluster mapping
+      description: |
+        Map an ArgoCD destination cluster URL to a Qovery cluster for a given agent cluster.
+        If a mapping for the same (agentClusterId, argocdClusterUrl) already exists, it is updated.
+        Requires ADMIN role on the agent cluster.
+      operationId: saveArgoCdDestinationClusterMapping
+      parameters:
+        - $ref: '#/components/parameters/organizationId'
+      tags:
+        - ArgoCD
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ArgoCdDestinationClusterMappingRequest'
+      responses:
+        '200':
+          description: Mapping saved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArgoCdDestinationClusterMappingResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+    get:
+      summary: List ArgoCD instance mappings for an organization
+      description: |
+        Returns one entry per ArgoCD agent cluster that has credentials configured.
+        Each entry lists linked clusters and unlinked clusters. Requires VIEWER role.
+      operationId: listArgoCdDestinationClusterMappings
+      parameters:
+        - $ref: '#/components/parameters/organizationId'
+      tags:
+        - ArgoCD
+      responses:
+        '200':
+          description: ArgoCD instance mapping list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArgoCdInstanceMappingResponseList'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+    delete:
+      summary: Delete an ArgoCD destination cluster mapping
+      description: |
+        Remove the mapping between an ArgoCD destination cluster URL and a Qovery cluster.
+        Requires ADMIN role on the agent cluster.
+      operationId: deleteArgoCdDestinationClusterMapping
+      parameters:
+        - $ref: '#/components/parameters/organizationId'
+        - name: agentClusterId
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: ID of the Qovery cluster where the ArgoCD instance is running
+        - name: argocdClusterUrl
+          in: query
+          required: true
+          schema:
+            type: string
+          description: ArgoCD destination cluster URL as reported by ArgoCD
+          example: 'https://kubernetes.default.svc'
+      tags:
+        - ArgoCD
+      responses:
+        '204':
+          description: Mapping deleted
         '400':
           $ref: '#/components/responses/400'
         '401':
@@ -4761,7 +4980,7 @@ paths:
           $ref: '#/components/responses/403'
         '404':
           $ref: '#/components/responses/404'
-  '/project/{projectId}/environmentOverview':
+  '/project/{projectId}/environment/overview':
     get:
       summary: List environments overview
       description: 'Returns a list of environments with their overview information including deployment status, service count, and cluster details.'
@@ -11836,6 +12055,7 @@ paths:
                         - $ref: '#/components/schemas/HelmResponse'
                         - $ref: '#/components/schemas/JobResponse'
                         - $ref: '#/components/schemas/TerraformResponse'
+                        - $ref: '#/components/schemas/ArgocdAppResponse'
                       discriminator:
                         propertyName: service_type
                         mapping:
@@ -11845,6 +12065,7 @@ paths:
                           HELM: '#/components/schemas/HelmResponse'
                           JOB: '#/components/schemas/JobResponse'
                           TERRAFORM: '#/components/schemas/TerraformResponse'
+                          ARGOCD_APP: '#/components/schemas/ArgocdAppResponse'
       operationId: listServicesByEnvironmentId
       x-stoplight:
         id: 9adquhr5t6qx3
@@ -13084,6 +13305,48 @@ paths:
           $ref: '#/components/responses/403'
         '404':
           $ref: '#/components/responses/404'
+  '/argocdApp/{argocdAppId}':
+    get:
+      summary: Get ArgoCD app by ID
+      operationId: getArgoCdApp
+      parameters:
+        - $ref: '#/components/parameters/argocdAppId'
+      tags:
+        - ArgoCD
+      responses:
+        '200':
+          description: Get ArgoCD app by ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArgocdAppResponse'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+  '/argocdApp/{argocdAppId}/manifest':
+    get:
+      summary: Get ArgoCD app manifest enrichment
+      operationId: getArgoCdAppManifest
+      parameters:
+        - $ref: '#/components/parameters/argocdAppId'
+      tags:
+        - ArgoCD
+      responses:
+        '200':
+          description: Manifest enrichment for the ArgoCD app, including managed Kubernetes resources
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArgocdAppManifestResponse'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
   '/organization/{organizationId}/credentials':
     parameters:
       - schema:
@@ -13843,6 +14106,14 @@ components:
       schema:
         type: string
         format: uuid
+    argocdAppId:
+      name: argocdAppId
+      in: path
+      description: ArgoCD App ID
+      required: true
+      schema:
+        type: string
+        format: uuid
     helmId:
       name: helmId
       in: path
@@ -13894,6 +14165,14 @@ components:
       schema:
         type: string
       description: KEDA triggerAuthentication ID
+    secretManagerAccessId:
+      name: secretManagerAccessId
+      in: path
+      description: Secret Manager Access ID
+      required: true
+      schema:
+        type: string
+        format: uuid
   schemas:
     ArgoCdCredentialsRequest:
       type: object
@@ -13941,18 +14220,20 @@ components:
         updated_at:
           type: string
           format: date-time
+    ArgoCdConnectionStatusEnum:
+      type: string
+      description: Connection status of an ArgoCD instance
+      enum:
+        - connected
+        - error
+      example: connected
     ArgoCdConnectionCheckResponse:
       type: object
       required:
         - status
       properties:
         status:
-          type: string
-          description: Connection result
-          enum:
-            - connected
-            - error
-          example: connected
+          $ref: '#/components/schemas/ArgoCdConnectionStatusEnum'
         app_count:
           type: integer
           description: Number of ArgoCD applications visible with the provided token. Present only when status is "connected".
@@ -13965,6 +14246,152 @@ components:
             - unreachable
             - insufficient_permissions
           example: authentication_failed
+    ArgoCdDestinationClusterMappingRequest:
+      type: object
+      required:
+        - agent_cluster_id
+        - argocd_cluster_url
+        - cluster_id
+      properties:
+        agent_cluster_id:
+          type: string
+          format: uuid
+          description: ID of the Qovery cluster where the ArgoCD instance is running
+        argocd_cluster_url:
+          type: string
+          description: ArgoCD destination cluster URL as reported by ArgoCD
+          example: 'https://kubernetes.default.svc'
+        cluster_id:
+          type: string
+          format: uuid
+          description: ID of the Qovery cluster to map this ArgoCD destination to
+    ArgoCdDestinationClusterMappingResponse:
+      type: object
+      required:
+        - agent_cluster_id
+        - argocd_cluster_url
+        - cluster_id
+      properties:
+        agent_cluster_id:
+          type: string
+          format: uuid
+        argocd_cluster_url:
+          type: string
+          example: 'https://kubernetes.default.svc'
+        cluster_id:
+          type: string
+          format: uuid
+          nullable: true
+    ArgoCdLinkedClusterDetails:
+      type: object
+      required:
+        - argocd_cluster_url
+        - argocd_cluster_name
+        - qovery_cluster_id
+        - qovery_cluster_name
+        - qovery_cluster_cloud_provider
+        - qovery_cluster_type
+        - applications_count
+      properties:
+        argocd_cluster_url:
+          type: string
+          description: ArgoCD destination cluster URL
+          example: 'https://kubernetes.default.svc'
+        argocd_cluster_name:
+          type: string
+          description: ArgoCD cluster name (currently same as URL; will use ArgoCD alias in future)
+          example: 'https://kubernetes.default.svc'
+        qovery_cluster_id:
+          type: string
+          format: uuid
+          description: ID of the Qovery cluster this destination is mapped to
+        qovery_cluster_name:
+          type: string
+          description: Display name of the mapped Qovery cluster
+          example: 'My EKS Cluster'
+        qovery_cluster_cloud_provider:
+          $ref: '#/components/schemas/CloudVendorEnum'
+        qovery_cluster_type:
+          $ref: '#/components/schemas/KubernetesEnum'
+        applications_count:
+          type: integer
+          description: Number of ArgoCD applications targeting this destination
+          example: 4
+    ArgoCdUnlinkedClusterDetails:
+      type: object
+      required:
+        - argocd_cluster_url
+        - argocd_cluster_name
+        - applications_count
+      properties:
+        argocd_cluster_url:
+          type: string
+          description: ArgoCD destination cluster URL for this stale mapping
+          example: 'https://old-cluster.example.com'
+        argocd_cluster_name:
+          type: string
+          description: ArgoCD cluster name (currently same as URL; will use ArgoCD alias in future)
+          example: 'https://old-cluster.example.com'
+        applications_count:
+          type: integer
+          description: Number of ArgoCD applications targeting this destination
+          example: 0
+    ArgoCdInstanceMappingResponse:
+      type: object
+      required:
+        - agent_cluster_id
+        - agent_cluster_name
+        - agent_cluster_cloud_provider
+        - credentials_id
+        - argocd_url
+        - status
+        - last_checked_at
+        - linked_clusters
+        - unlinked_clusters
+      properties:
+        agent_cluster_id:
+          type: string
+          format: uuid
+          description: ID of the Qovery cluster where the ArgoCD instance is running
+        agent_cluster_name:
+          type: string
+          description: Display name of the Qovery cluster where the ArgoCD instance is running
+          example: 'My Agent Cluster'
+        agent_cluster_cloud_provider:
+          $ref: '#/components/schemas/CloudVendorEnum'
+        credentials_id:
+          type: string
+          format: uuid
+          description: ID of the stored ArgoCD credentials for this instance
+        argocd_url:
+          type: string
+          description: URL of the ArgoCD instance
+          example: 'https://argocd.example.com'
+        status:
+          $ref: '#/components/schemas/ArgoCdConnectionStatusEnum'
+        last_checked_at:
+          type: string
+          format: date-time
+          description: Timestamp of the last configuration update (will use last connectivity check in future)
+        linked_clusters:
+          type: array
+          description: ArgoCD clusters detected and mapped to a Qovery cluster
+          items:
+            $ref: '#/components/schemas/ArgoCdLinkedClusterDetails'
+        unlinked_clusters:
+          type: array
+          description: ArgoCD clusters detected but mapping is missing
+          items:
+            $ref: '#/components/schemas/ArgoCdUnlinkedClusterDetails'
+    ArgoCdInstanceMappingResponseList:
+      type: object
+      required:
+        - results
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ArgoCdInstanceMappingResponse'
     TerraformBackend:
       oneOf:
         - type: object
@@ -13979,6 +14406,12 @@ components:
           properties:
             user_provided:
               $ref: '#/components/schemas/TerraformBackendUserProvided'
+        - type: object
+          required:
+            - blueprint
+          properties:
+            blueprint:
+              $ref: '#/components/schemas/TerraformBackendBlueprint'
       description: Configuration for Terraform backend - exactly one backend type must be specified
     TerraformBackendKubernetes:
       type: object
@@ -13986,6 +14419,20 @@ components:
     TerraformBackendUserProvided:
       type: object
       description: User-provided backend configuration
+    TerraformBackendBlueprint:
+      type: object
+      description: Blueprint-managed backend configuration. The user provides the backend type and config at blueprint creation time. The platform generates and injects backend.tf for the created service.
+      required:
+        - type
+      properties:
+        type:
+          type: string
+          description: 'Terraform backend type (e.g. s3, gcs, azurerm)'
+        config:
+          type: object
+          additionalProperties:
+            type: string
+          description: 'Static backend configuration (bucket, region, etc.). Credentials should be provided via environment variables, not here.'
     DeleteTerraformAction:
       type: string
       description: Action to force a specific Terraform behavior during deletion/uninstall.
@@ -14208,6 +14655,24 @@ components:
           nullable: true
           minimum: 0
           description: Sets the idle timeout (in seconds) for HTTP connections proxied through the Gateway API route.
+        network.gateway_api.retry.num_retries:
+          type: integer
+          nullable: true
+          minimum: 0
+          description: Sets the number of retry attempts for requests proxied through the Gateway API route.
+        network.gateway_api.retry.retry_on:
+          type: string
+          nullable: true
+          description: Comma-separated retry triggers (for example connect-failure,reset,refused-stream,retriable-status-codes) for requests proxied through the Gateway API route.
+        network.gateway_api.retry.http_status_codes:
+          type: string
+          nullable: true
+          description: Comma-separated HTTP status codes (100..599) retried when retry_on includes retriable-status-codes.
+        network.gateway_api.retry.per_try_timeout_seconds:
+          type: integer
+          nullable: true
+          minimum: 1
+          description: Sets the timeout (in seconds) applied to each retry attempt for requests proxied through the Gateway API route.
         hpa.cpu.average_utilization_percent:
           type: integer
           description: Percentage value of cpu usage at which point pods should scale up.
@@ -15292,6 +15757,8 @@ components:
               $ref: '#/components/schemas/ClusterKeda'
             labels_groups:
               $ref: '#/components/schemas/ClusterLabelsGroupList'
+            secret_manager_accesses:
+              $ref: '#/components/schemas/SecretManagerAccessList'
     ClusterDeleteMode:
       type: string
       description: |
@@ -15444,6 +15911,212 @@ components:
               type: string
         region:
           type: string
+    ClusterDnsProviderRequest:
+      type: object
+      required:
+        - dns_provider
+      properties:
+        dns_provider:
+          $ref: '#/components/schemas/ClusterDnsProviderRequestProvider'
+    ClusterDnsProviderResponse:
+      type: object
+      required:
+        - dns_provider
+      properties:
+        dns_provider:
+          $ref: '#/components/schemas/ClusterDnsProviderResponseProvider'
+    ClusterDnsProviderRequestProvider:
+      oneOf:
+        - $ref: '#/components/schemas/QoveryDnsProviderRequest'
+        - $ref: '#/components/schemas/CloudflareDnsProviderRequest'
+        - $ref: '#/components/schemas/Route53DnsProviderRequest'
+      discriminator:
+        propertyName: provider
+        mapping:
+          QOVERY: '#/components/schemas/QoveryDnsProviderRequest'
+          CLOUDFLARE: '#/components/schemas/CloudflareDnsProviderRequest'
+          ROUTE53: '#/components/schemas/Route53DnsProviderRequest'
+    ClusterDnsProviderResponseProvider:
+      oneOf:
+        - $ref: '#/components/schemas/QoveryDnsProviderResponse'
+        - $ref: '#/components/schemas/CloudflareDnsProviderResponse'
+        - $ref: '#/components/schemas/Route53DnsProviderResponse'
+      discriminator:
+        propertyName: provider
+        mapping:
+          QOVERY: '#/components/schemas/QoveryDnsProviderResponse'
+          CLOUDFLARE: '#/components/schemas/CloudflareDnsProviderResponse'
+          ROUTE53: '#/components/schemas/Route53DnsProviderResponse'
+    QoveryDnsProviderRequest:
+      type: object
+      required:
+        - provider
+        - domain
+      properties:
+        provider:
+          type: string
+          enum:
+            - QOVERY
+        domain:
+          type: string
+          example: example.com
+    CloudflareDnsProviderRequest:
+      type: object
+      required:
+        - provider
+        - domain
+        - email
+        - api_token
+      properties:
+        provider:
+          type: string
+          enum:
+            - CLOUDFLARE
+        domain:
+          type: string
+          example: example.com
+        email:
+          type: string
+          format: email
+          example: admin@example.com
+        api_token:
+          type: string
+          minLength: 1
+          writeOnly: true
+          description: Cloudflare API token. Must be provided when editing Cloudflare DNS provider.
+        proxied:
+          type: boolean
+          default: false
+    Route53DnsProviderRequest:
+      type: object
+      required:
+        - provider
+        - domain
+        - credentials
+        - aws_region
+      properties:
+        provider:
+          type: string
+          enum:
+            - ROUTE53
+        domain:
+          type: string
+          example: example.com
+        credentials:
+          $ref: '#/components/schemas/Route53DnsProviderRequestCredentials'
+        aws_region:
+          type: string
+          example: eu-west-3
+        hosted_zone_id:
+          type: string
+          nullable: true
+          example: Z0965488LE74BWDEVQDB
+    Route53DnsProviderRequestCredentials:
+      oneOf:
+        - $ref: '#/components/schemas/Route53StaticCredentialsRequest'
+      discriminator:
+        propertyName: type
+        mapping:
+          STATIC: '#/components/schemas/Route53StaticCredentialsRequest'
+    Route53StaticCredentialsRequest:
+      type: object
+      required:
+        - type
+        - aws_access_key_id
+        - aws_secret_access_key
+      properties:
+        type:
+          type: string
+          enum:
+            - STATIC
+        aws_access_key_id:
+          type: string
+          minLength: 1
+          description: AWS access key identifier. It is returned by the GET endpoint and must be sent back when editing Route53.
+        aws_secret_access_key:
+          type: string
+          minLength: 1
+          writeOnly: true
+          description: AWS secret access key. Must be provided when editing Route53 DNS provider.
+    QoveryDnsProviderResponse:
+      type: object
+      required:
+        - provider
+        - domain
+      properties:
+        provider:
+          type: string
+          enum:
+            - QOVERY
+        domain:
+          type: string
+          example: example.com
+    CloudflareDnsProviderResponse:
+      type: object
+      required:
+        - provider
+        - domain
+        - email
+        - proxied
+      properties:
+        provider:
+          type: string
+          enum:
+            - CLOUDFLARE
+        domain:
+          type: string
+          example: example.com
+        email:
+          type: string
+          format: email
+          example: admin@example.com
+        proxied:
+          type: boolean
+    Route53DnsProviderResponse:
+      type: object
+      required:
+        - provider
+        - domain
+        - credentials
+        - aws_region
+      properties:
+        provider:
+          type: string
+          enum:
+            - ROUTE53
+        domain:
+          type: string
+          example: example.com
+        credentials:
+          $ref: '#/components/schemas/Route53DnsProviderResponseCredentials'
+        aws_region:
+          type: string
+          example: eu-west-3
+        hosted_zone_id:
+          type: string
+          nullable: true
+          example: Z0965488LE74BWDEVQDB
+    Route53DnsProviderResponseCredentials:
+      oneOf:
+        - $ref: '#/components/schemas/Route53StaticCredentialsResponse'
+      discriminator:
+        propertyName: type
+        mapping:
+          STATIC: '#/components/schemas/Route53StaticCredentialsResponse'
+    Route53StaticCredentialsResponse:
+      type: object
+      required:
+        - type
+        - aws_access_key_id
+      properties:
+        type:
+          type: string
+          enum:
+            - STATIC
+        aws_access_key_id:
+          type: string
+          description: AWS access key identifier.
+
     ClusterKarpenterPrivateSubnetIdsPutRequest:
       type: object
       properties:
@@ -15669,6 +16342,7 @@ components:
             - $ref: '#/components/schemas/ClusterFeatureAwsExistingVpcResponse'
             - $ref: '#/components/schemas/ClusterFeatureGcpExistingVpcResponse'
             - $ref: '#/components/schemas/ClusterFeatureKarpenterParametersResponse'
+            - $ref: '#/components/schemas/ClusterFeatureNatGatewayParametersResponse'
           discriminator:
             propertyName: type
             mapping:
@@ -15677,6 +16351,7 @@ components:
               AWS_USER_PROVIDED_NETWORK: '#/components/schemas/ClusterFeatureAwsExistingVpcResponse'
               GCP_USER_PROVIDED_NETWORK: '#/components/schemas/ClusterFeatureGcpExistingVpcResponse'
               KARPENTER: '#/components/schemas/ClusterFeatureKarpenterParametersResponse'
+              NAT_GATEWAY: '#/components/schemas/ClusterFeatureNatGatewayParametersResponse'
         is_value_updatable:
           type: boolean
           default: false
@@ -15694,6 +16369,7 @@ components:
         - AWS_USER_PROVIDED_NETWORK
         - GCP_USER_PROVIDED_NETWORK
         - KARPENTER
+        - NAT_GATEWAY
     ClusterFeatureStringResponse:
       type: object
       required:
@@ -15734,6 +16410,18 @@ components:
           $ref: '#/components/schemas/ClusterFeatureResponseTypeEnum'
         value:
           $ref: '#/components/schemas/ClusterFeatureGcpExistingVpc'
+    ClusterFeatureNatGatewayParametersResponse:
+      type: object
+      required:
+        - type
+        - value
+      properties:
+        type:
+          $ref: '#/components/schemas/ClusterFeatureResponseTypeEnum'
+        value:
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/ClusterFeatureNatGatewayParameters'
     ClusterFeatureAwsExistingVpc:
       type: object
       required:
@@ -15854,6 +16542,53 @@ components:
           type: array
           items:
             type: string
+    ClusterFeatureNatGatewayParameters:
+      type: object
+      properties:
+        nat_gateway_type:
+          nullable: true
+          oneOf:
+            - $ref: '#/components/schemas/ClusterFeatureNatGatewayTypeScaleway'
+            - $ref: '#/components/schemas/ClusterFeatureNatGatewayTypeGcp'
+          discriminator:
+            propertyName: provider
+            mapping:
+              scaleway: '#/components/schemas/ClusterFeatureNatGatewayTypeScaleway'
+              gcp: '#/components/schemas/ClusterFeatureNatGatewayTypeGcp'
+    ClusterFeatureNatGatewayTypeScaleway:
+      type: object
+      required:
+        - provider
+        - type
+      properties:
+        provider:
+          type: string
+          enum:
+            - scaleway
+        type:
+          type: string
+          enum:
+            - VPC-GW-S
+            - VPC-GW-M
+            - VPC-GW-L
+            - VPC-GW-XL
+    ClusterFeatureNatGatewayTypeGcp:
+      type: object
+      required:
+        - provider
+        - static_ips_enabled
+        - static_ips_count
+      properties:
+        provider:
+          type: string
+          enum:
+            - gcp
+        static_ips_enabled:
+          type: boolean
+        static_ips_count:
+          type: integer
+          minimum: 1
+          description: Number of static IPs to allocate. Must be >= 1 when static_ips_enabled is true.
     ClusterFeatureResponseList:
       type: object
       properties:
@@ -16010,6 +16745,7 @@ components:
                   - $ref: '#/components/schemas/ClusterFeatureAwsExistingVpc'
                   - $ref: '#/components/schemas/ClusterFeatureGcpExistingVpc'
                   - $ref: '#/components/schemas/ClusterFeatureKarpenterParameters'
+                  - $ref: '#/components/schemas/ClusterFeatureNatGatewayParameters'
         metrics_parameters:
           $ref: '#/components/schemas/MetricsParameters'
         infrastructure_charts_parameters:
@@ -16018,6 +16754,8 @@ components:
           $ref: '#/components/schemas/ClusterKeda'
         labels_groups:
           $ref: '#/components/schemas/ClusterLabelsGroupList'
+        secret_manager_accesses:
+          $ref: '#/components/schemas/SecretManagerAccessRequestList'
     ClusterResponseList:
       type: object
       properties:
@@ -16072,6 +16810,11 @@ components:
                 type: string
     ClusterStatus:
       type: object
+      required:
+        - cluster_id
+        - status
+        - is_deployed
+        - reason
       properties:
         cluster_id:
           type: string
@@ -16086,13 +16829,24 @@ components:
           example: '1.28'
         last_execution_id:
           type: string
+          nullable: true
           example: f73e3833-922a-48a5-9dbd-6163f43f9143-1656410242
         cluster_lock:
-          $ref: '#/components/schemas/ClusterLock'
+          nullable: true
+          allOf:
+            - $ref: '#/components/schemas/ClusterLock'
         last_deployment_date:
           type: string
           format: date-time
+          nullable: true
           example: '2022-06-22T14:20:17.733084815Z'
+        reason:
+          $ref: '#/components/schemas/DeploymentInfraReason'
+    DeploymentInfraReason:
+      type: string
+      enum:
+        - UNSPECIFIED
+        - MAINTENANCE
     ClusterStatusResponseList:
       type: object
       properties:
@@ -16118,6 +16872,60 @@ components:
         loki.log_retention_in_week:
           type: integer
           description: For how long in week loki is going to keep logs of your applications
+        loki.deployment_mode:
+          type: string
+          description: 'Loki deployment topology. "single_binary" runs Loki as one pod; "simple_scalable" splits it into separate write, read, and backend components for larger clusters.'
+          enum:
+            - single_binary
+            - simple_scalable
+        loki.single_binary.cpu_request_m:
+          type: integer
+          description: CPU request (in milli-CPU) for the Loki pod when running in single_binary mode.
+        loki.single_binary.cpu_limit_m:
+          type: integer
+          description: CPU limit (in milli-CPU) for the Loki pod when running in single_binary mode.
+        loki.single_binary.memory_request_mib:
+          type: integer
+          description: Memory request (in MiB) for the Loki pod when running in single_binary mode.
+        loki.single_binary.memory_limit_mib:
+          type: integer
+          description: Memory limit (in MiB) for the Loki pod when running in single_binary mode.
+        loki.write.cpu_request_m:
+          type: integer
+          description: CPU request (in milli-CPU) for the Loki write component when running in simple_scalable mode.
+        loki.write.cpu_limit_m:
+          type: integer
+          description: CPU limit (in milli-CPU) for the Loki write component when running in simple_scalable mode.
+        loki.write.memory_request_mib:
+          type: integer
+          description: Memory request (in MiB) for the Loki write component when running in simple_scalable mode.
+        loki.write.memory_limit_mib:
+          type: integer
+          description: Memory limit (in MiB) for the Loki write component when running in simple_scalable mode.
+        loki.read.cpu_request_m:
+          type: integer
+          description: CPU request (in milli-CPU) for the Loki read component when running in simple_scalable mode.
+        loki.read.cpu_limit_m:
+          type: integer
+          description: CPU limit (in milli-CPU) for the Loki read component when running in simple_scalable mode.
+        loki.read.memory_request_mib:
+          type: integer
+          description: Memory request (in MiB) for the Loki read component when running in simple_scalable mode.
+        loki.read.memory_limit_mib:
+          type: integer
+          description: Memory limit (in MiB) for the Loki read component when running in simple_scalable mode.
+        loki.backend.cpu_request_m:
+          type: integer
+          description: CPU request (in milli-CPU) for the Loki backend component when running in simple_scalable mode.
+        loki.backend.cpu_limit_m:
+          type: integer
+          description: CPU limit (in milli-CPU) for the Loki backend component when running in simple_scalable mode.
+        loki.backend.memory_request_mib:
+          type: integer
+          description: Memory request (in MiB) for the Loki backend component when running in simple_scalable mode.
+        loki.backend.memory_limit_mib:
+          type: integer
+          description: Memory limit (in MiB) for the Loki backend component when running in simple_scalable mode.
         registry.image_retention_time:
           type: integer
           description: Configure the number of seconds before cleaning images in the registry
@@ -16259,6 +17067,24 @@ components:
           nullable: true
           minimum: 0
           description: Sets the default idle connection timeout (in seconds) applied to Gateway API routes when the service does not override it.
+        envoy.gateway_api.retry.num_retries:
+          type: integer
+          nullable: true
+          minimum: 0
+          description: Sets the default number of retry attempts applied to Gateway API routes when the service does not override it.
+        envoy.gateway_api.retry.retry_on:
+          type: string
+          nullable: true
+          description: Default comma-separated retry triggers applied to Gateway API routes when the service does not override them.
+        envoy.gateway_api.retry.http_status_codes:
+          type: string
+          nullable: true
+          description: Default comma-separated HTTP status codes (100..599) retried when retry_on includes retriable-status-codes.
+        envoy.gateway_api.retry.per_try_timeout_seconds:
+          type: integer
+          nullable: true
+          minimum: 1
+          description: Sets the default timeout (in seconds) applied to each retry attempt when the service does not override it.
         nginx.hpa.cpu_utilization_percentage_threshold:
           type: integer
           description: hpa cpu threshold in percentage
@@ -16336,6 +17162,13 @@ components:
         - commit_id
       properties:
         commit_id:
+          type: string
+    EksAnywhereClusterJwtResponse:
+      type: object
+      required:
+        - jwt
+      properties:
+        jwt:
           type: string
     CompanySizeEnum:
       type: string
@@ -16468,6 +17301,24 @@ components:
           nullable: true
           minimum: 0
           description: Sets the idle timeout (in seconds) for HTTP connections proxied through the Gateway API route.
+        network.gateway_api.retry.num_retries:
+          type: integer
+          nullable: true
+          minimum: 0
+          description: Sets the number of retry attempts for requests proxied through the Gateway API route.
+        network.gateway_api.retry.retry_on:
+          type: string
+          nullable: true
+          description: Comma-separated retry triggers (for example connect-failure,reset,refused-stream,retriable-status-codes) for requests proxied through the Gateway API route.
+        network.gateway_api.retry.http_status_codes:
+          type: string
+          nullable: true
+          description: Comma-separated HTTP status codes (100..599) retried when retry_on includes retriable-status-codes.
+        network.gateway_api.retry.per_try_timeout_seconds:
+          type: integer
+          nullable: true
+          minimum: 1
+          description: Sets the timeout (in seconds) applied to each retry attempt for requests proxied through the Gateway API route.
         network.ingress.basic_auth_env_var:
           type: string
           description: |
@@ -18120,7 +18971,8 @@ components:
         - updated_at
         - name
         - mode
-        - service_count
+        - services_overview
+        - cluster
       properties:
         id:
           type: string
@@ -18137,13 +18989,27 @@ components:
           $ref: '#/components/schemas/EnvironmentModeEnum'
         cluster:
           $ref: '#/components/schemas/ClusterOverviewResponse'
+        services_overview:
+          $ref: '#/components/schemas/ServicesOverviewResponse'
+        deployment_status:
           nullable: true
+          allOf:
+            - $ref: '#/components/schemas/EnvironmentStatus'
+    ServicesOverviewResponse:
+      type: object
+      required:
+        - service_count
+        - managed_by
+      properties:
         service_count:
           type: integer
           format: int32
-        deployment_status:
-          $ref: '#/components/schemas/EnvironmentStatus'
-          nullable: true
+        managed_by:
+          type: string
+          enum:
+            - QOVERY
+            - ARGOCD
+            - MIXED
     ClusterOverviewResponse:
       type: object
       required:
@@ -18709,13 +19575,14 @@ components:
     APIVariableTypeEnum:
       type: string
       description: |
-        type of the environment variable (VALUE, FILE, ALIAS, OVERRIDE or BUIT_IN)
+        type of the environment variable (VALUE, FILE, ALIAS, OVERRIDE, BUIT_IN, EXTERNAL_SECRET)
       enum:
         - VALUE
         - ALIAS
         - OVERRIDE
         - BUILT_IN
         - FILE
+        - EXTERNAL_SECRET
     GcpCredentialsRequest:
       type: object
       required:
@@ -18726,6 +19593,7 @@ components:
           type: string
         gcp_credentials:
           type: string
+          description: The json must be base64 encoded
     GenericObjectCurrentCost:
       type: object
       required:
@@ -19918,6 +20786,24 @@ components:
           nullable: true
           minimum: 0
           description: Sets the idle timeout (in seconds) for HTTP connections proxied through the Gateway API route.
+        network.gateway_api.retry.num_retries:
+          type: integer
+          nullable: true
+          minimum: 0
+          description: Sets the number of retry attempts for requests proxied through the Gateway API route.
+        network.gateway_api.retry.retry_on:
+          type: string
+          nullable: true
+          description: Comma-separated retry triggers (for example connect-failure,reset,refused-stream,retriable-status-codes) for requests proxied through the Gateway API route.
+        network.gateway_api.retry.http_status_codes:
+          type: string
+          nullable: true
+          description: Comma-separated HTTP status codes (100..599) retried when retry_on includes retriable-status-codes.
+        network.gateway_api.retry.per_try_timeout_seconds:
+          type: integer
+          nullable: true
+          minimum: 1
+          description: Sets the timeout (in seconds) applied to each retry attempt for requests proxied through the Gateway API route.
     HelmDeployRequest:
       type: object
       properties:
@@ -21755,6 +22641,7 @@ components:
         - JOB
         - HELM
         - TERRAFORM
+        - ARGOCD_APP
     SignUp:
       allOf:
         - $ref: '#/components/schemas/Base'
@@ -22234,6 +23121,10 @@ components:
           x-stoplight:
             id: docfts24qtko6
           nullable: true
+        secret_manager_access_id:
+          type: string
+          format: uuid
+          nullable: true
     VariableEditRequest:
       type: object
       required:
@@ -22255,6 +23146,10 @@ components:
           nullable: true
         enable_interpolation_in_file:
           type: boolean
+          nullable: true
+        secret_manager_access_id:
+          type: string
+          format: uuid
           nullable: true
     VariableResponse:
       allOf:
@@ -22305,6 +23200,10 @@ components:
               type: boolean
               x-stoplight:
                 id: 43yxsvszy5k8o
+            secret_manager_access_id:
+              type: string
+              format: uuid
+              nullable: true
     VariableResponseList:
       type: object
       properties:
@@ -26347,6 +27246,168 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/ClusterLabelsGroup'
+
+    SecretManagerAccessRequestList:
+      title: SecretManagerAccessRequestList
+      type: array
+      items:
+        $ref: '#/components/schemas/SecretManagerAccessRequest'
+    SecretManagerAccessRequest:
+      type: object
+      required:
+        - name
+        - endpoint
+        - authentication
+      properties:
+        id:
+          type: string
+          format: uuid
+          nullable: true
+        name:
+          type: string
+        endpoint:
+          $ref: '#/components/schemas/SecretManagerEndpointConfigurationDto'
+        authentication:
+          $ref: '#/components/schemas/SecretManagerAuthenticationDto'
+    SecretManagerAccessList:
+      title: SecretManagerAccessList
+      type: array
+      items:
+        $ref: '#/components/schemas/SecretManagerAccess'
+    SecretManagerAccess:
+      type: object
+      required:
+        - id
+        - name
+        - created_at
+        - updated_at
+        - endpoint
+        - authentication
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        endpoint:
+          $ref: '#/components/schemas/SecretManagerEndpointConfigurationDto'
+        authentication:
+          $ref: '#/components/schemas/SecretManagerAuthenticationDto'
+    SecretManagerEndpointConfigurationDto:
+      oneOf:
+        - $ref: '#/components/schemas/AwsSecretManagerEndpointDto'
+        - $ref: '#/components/schemas/AwsParameterStoreEndpointDto'
+        - $ref: '#/components/schemas/GcpSecretManagerEndpointDto'
+      discriminator:
+        propertyName: mode
+        mapping:
+          AWS_SECRET_MANAGER: '#/components/schemas/AwsSecretManagerEndpointDto'
+          AWS_PARAMETER_STORE: '#/components/schemas/AwsParameterStoreEndpointDto'
+          GCP_SECRET_MANAGER: '#/components/schemas/GcpSecretManagerEndpointDto'
+    AwsSecretManagerEndpointDto:
+      type: object
+      required:
+        - mode
+        - region
+      properties:
+        mode:
+          type: string
+          enum: [AWS_SECRET_MANAGER]
+        region:
+          type: string
+    AwsParameterStoreEndpointDto:
+      type: object
+      required:
+        - mode
+        - region
+      properties:
+        mode:
+          type: string
+          enum: [AWS_PARAMETER_STORE]
+        region:
+          type: string
+    GcpSecretManagerEndpointDto:
+      type: object
+      required:
+        - mode
+        - region
+        - projectId
+      properties:
+        mode:
+          type: string
+          enum: [GCP_SECRET_MANAGER]
+        region:
+          type: string
+        projectId:
+          type: string
+    SecretManagerAuthenticationDto:
+      oneOf:
+        - $ref: '#/components/schemas/AutomaticallyConfiguredAuthDto'
+        - $ref: '#/components/schemas/AwsRoleArnAuthDto'
+        - $ref: '#/components/schemas/AwsStaticCredentialsAuthDto'
+        - $ref: '#/components/schemas/GcpJsonCredentialsAuthDto'
+      discriminator:
+        propertyName: mode
+        mapping:
+          AUTOMATICALLY_CONFIGURED: '#/components/schemas/AutomaticallyConfiguredAuthDto'
+          AWS_ROLE_ARN: '#/components/schemas/AwsRoleArnAuthDto'
+          AWS_STATIC_CREDENTIALS: '#/components/schemas/AwsStaticCredentialsAuthDto'
+          GCP_JSON_CREDENTIALS: '#/components/schemas/GcpJsonCredentialsAuthDto'
+    AutomaticallyConfiguredAuthDto:
+      type: object
+      required:
+        - mode
+      properties:
+        mode:
+          type: string
+          enum: [AUTOMATICALLY_CONFIGURED]
+    AwsRoleArnAuthDto:
+      type: object
+      required:
+        - mode
+        - role_arn
+      properties:
+        mode:
+          type: string
+          enum: [AWS_ROLE_ARN]
+        role_arn:
+          type: string
+    AwsStaticCredentialsAuthDto:
+      type: object
+      required:
+        - mode
+        - region
+        - access_key
+      properties:
+        mode:
+          type: string
+          enum: [AWS_STATIC_CREDENTIALS]
+        region:
+          type: string
+        access_key:
+          type: string
+        secret_key:
+          type: string
+          nullable: true
+    GcpJsonCredentialsAuthDto:
+      type: object
+      required:
+        - mode
+      properties:
+        mode:
+          type: string
+          enum: [GCP_JSON_CREDENTIALS]
+        json_credentials:
+          type: string
+          nullable: true
+          description: The json must be base64 encoded
+
     ClusterEnvironmentResponseList:
       type: object
       properties:
@@ -26391,6 +27452,134 @@ components:
           type: string
         type:
           $ref: '#/components/schemas/LinkedServiceTypeEnum'
+    ArgocdAppResponse:
+      allOf:
+        - $ref: '#/components/schemas/Base'
+        - type: object
+          required:
+            - name
+            - service_type
+            - namespace
+            - environment
+            - environment_id
+            - cluster_id
+            - icon_uri
+          properties:
+            name:
+              type: string
+              description: name is case insensitive
+            service_type:
+              $ref: '#/components/schemas/ServiceTypeEnum'
+            namespace:
+              type: string
+            environment:
+              $ref: '#/components/schemas/ReferenceObject'
+            environment_id:
+              type: string
+              format: uuid
+            cluster_id:
+              type: string
+              format: uuid
+            icon_uri:
+              type: string
+              format: uri
+              default: app://qovery-console/argocd
+              description: Icon URI representing the ArgoCD service.
+            last_synced_at:
+              type: string
+              format: date-time
+              nullable: true
+            manifest_revision:
+              type: string
+              nullable: true
+            git_repository:
+              nullable: true
+              allOf:
+                - $ref: '#/components/schemas/ApplicationGitRepository'
+      description: An ArgoCD service
+    ArgocdAppManifestResponse:
+      type: object
+      required:
+        - manifest_metadata
+      properties:
+        manifest_revision:
+          type: string
+          nullable: true
+          description: Git revision the app is currently synced to
+        manifest_metadata:
+          type: object
+          description: Raw enrichment data fetched from the ArgoCD managed-resources API
+          properties:
+            managed_resources:
+              type: array
+              items:
+                $ref: '#/components/schemas/ArgocdManagedResource'
+    ArgocdManagedResource:
+      type: object
+      properties:
+        kind:
+          type: string
+          description: Kubernetes resource kind (e.g. Deployment, Service)
+        name:
+          type: string
+        namespace:
+          type: string
+        targetState:
+          type: string
+          description: JSON-encoded desired Kubernetes manifest
+        liveState:
+          type: string
+          description: JSON-encoded live Kubernetes manifest
+    ProviderSecrets:
+      type: object
+      required:
+        - results
+      properties:
+        results:
+          type: array
+          items:
+            type: string
+    ExternalSecretAssociatedServiceResponseList:
+      type: object
+      required:
+        - results
+      properties:
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExternalSecretAssociatedServiceResponse'
+    ExternalSecretAssociatedServiceResponse:
+      type: object
+      required:
+        - project_id
+        - project_name
+        - environment_id
+        - environment_name
+        - variable_name
+        - external_secret_name
+      properties:
+        project_id:
+          type: string
+          format: uuid
+        project_name:
+          type: string
+        environment_id:
+          type: string
+          format: uuid
+        environment_name:
+          type: string
+        service_id:
+          type: string
+          format: uuid
+        service_name:
+          type: string
+        service_type:
+          $ref: '#/components/schemas/APIVariableScopeEnum'
+        variable_name:
+          type: string
+        external_secret_name:
+          type: string
+
   responses:
     '204':
       description: no content

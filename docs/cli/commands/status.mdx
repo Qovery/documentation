@@ -9,74 +9,28 @@ Check the status of your services, environments, and deployments.
 
 ## Commands
 
-### Environment Status
+### Check Status
 
-Check status of all services in current environment:
+Print the status of your application:
 
 ```bash
 qovery status
 ```
 
-Status for specific environment:
-
-```bash
-qovery status --environment "env-id"
-```
-
-### Watch Status
-
-Continuously watch status updates:
-
-```bash
-qovery status --watch
-```
-
-Watch with refresh interval:
-
-```bash
-qovery status --watch --interval 5s
-```
-
-### Detailed Status
-
-Get detailed JSON output:
-
-```bash
-qovery status --format json
-```
-
-YAML output:
-
-```bash
-qovery status --format yaml
-```
+The command will interactively prompt you to select the service if no context is set.
 
 ## Options
 
 | Flag | Description |
 |------|-------------|
-| `--environment` | Environment ID or name |
-| `--watch` | Continuously watch status |
-| `--interval` | Refresh interval for watch mode |
-| `--format` | Output format (table, json, yaml) |
 | `--help` | Show help |
 
 ## Examples
 
-### Monitor Deployment
+### Check Service Status
 
 ```bash
-# Deploy application
-qovery application deploy --application "my-api"
-
-# Watch deployment progress
-qovery status --watch
-```
-
-### Check Environment Health
-
-```bash
-# Check all services
+# Check the status of the current service
 qovery status
 
 # Example output:
@@ -84,28 +38,6 @@ qovery status
 # my-api           Application  Running   2 minutes ago
 # postgres-main    Database     Running   1 hour ago
 # redis-cache      Container    Running   30 minutes ago
-```
-
-### Export Status for CI/CD
-
-```bash
-# Get JSON status
-qovery status --format json > status.json
-
-# Parse in CI/CD
-if [ $(jq -r '.status' status.json) == "DEPLOYED" ]; then
-  echo "Deployment successful"
-fi
-```
-
-### Watch Multiple Deployments
-
-```bash
-# Start deployments
-qovery environment deploy
-
-# Watch all services
-qovery status --watch --interval 3s
 ```
 
 ## Status Values
@@ -124,11 +56,7 @@ qovery status --watch --interval 3s
 ## Tips
 
 <Tip>
-Use `--watch` during deployments to monitor progress in real-time.
-</Tip>
-
-<Tip>
-The `--format json` output is useful for scripting and CI/CD integrations.
+Run `qovery status` after deploying to quickly verify the state of your service.
 </Tip>
 
 ## Related Commands

@@ -1,0 +1,204 @@
+---
+title: "Deploy with AI Agent"
+description: "Tell your AI coding agent to deploy. It handles everything — from your code to a live Kubernetes deployment."
+mode: "wide"
+---
+
+# Deploy to Kubernetes with your AI agent.
+
+<Check>**Qovery account** — [console.qovery.com](https://console.qovery.com) (free to start)</Check>
+<Check>**Git repository** — GitHub, GitLab, or Bitbucket</Check>
+
+<div className="ai-section">
+
+One install. Your agent picks the right skill automatically.
+
+```bash
+curl -fsSL https://skill.qovery.com/install.sh | bash
+```
+
+→ [All skills](/getting-started/quickstart/agent-skills)
+
+</div>
+
+Then open Claude Code, Cursor, OpenCode, or any compatible tool and say:
+
+<div className="terminal-window">
+  <div className="terminal-bar">
+    <div className="terminal-dots">
+      <div className="terminal-dot terminal-dot-red"></div>
+      <div className="terminal-dot terminal-dot-yellow"></div>
+      <div className="terminal-dot terminal-dot-green"></div>
+    </div>
+    <div className="terminal-title-bar">claude</div>
+    <button
+      className="terminal-copy"
+      title="Copy"
+      onClick={(e) => {
+        navigator.clipboard.writeText('Deploy my application with Qovery');
+        const btn = e.currentTarget;
+        btn.classList.add('terminal-copy-success');
+        setTimeout(() => btn.classList.remove('terminal-copy-success'), 1500);
+      }}
+    >
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+        <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"/>
+        <path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"/>
+      </svg>
+    </button>
+  </div>
+  <div className="terminal-body">
+    <span className="terminal-prompt">Deploy my application with Qovery<span className="terminal-cursor"></span></span>
+  </div>
+</div>
+
+No Dockerfile. No Kubernetes knowledge. No cluster needed upfront.
+
+---
+
+## Compatible Tools
+
+<CardGroup cols={4}>
+  <Card title="Claude Code" icon="/images/logos/ai-tools/anthropic.svg" href="https://claude.ai/code">
+    **Anthropic** · `Terminal` `Recommended`
+  </Card>
+  <Card title="OpenCode" icon="/images/logos/ai-tools/opencode.svg" href="https://opencode.ai">
+    **OpenCode** · `Terminal` `Open source`
+  </Card>
+  <Card title="Gemini CLI" icon="/images/logos/ai-tools/googlegemini.svg" href="https://github.com/google-gemini/gemini-cli">
+    **Google** · `Terminal`
+  </Card>
+  <Card title="Cursor" icon="/images/logos/ai-tools/cursor.svg" href="https://cursor.com">
+    **Anysphere** · `IDE`
+  </Card>
+  <Card title="VS Code Copilot" icon="/images/logos/ai-tools/githubcopilot.svg" href="https://github.com/features/copilot">
+    **GitHub** · `IDE Extension`
+  </Card>
+  <Card title="Roo Code" icon="/images/logos/ai-tools/roocode.png" href="https://roocode.com">
+    **Roo** · `IDE Extension`
+  </Card>
+  <Card title="Kiro" icon="/images/logos/ai-tools/kiro.svg" href="https://kiro.dev">
+    **Amazon** · `IDE`
+  </Card>
+  <Card title="Junie" icon="/images/logos/ai-tools/jetbrains.png" href="https://www.jetbrains.com/junie/">
+    **JetBrains** · `IDE Extension`
+  </Card>
+  <Card title="Goose" icon="/images/logos/ai-tools/goose.png" href="https://github.com/block/goose">
+    **Block** · `Standalone` `Open source`
+  </Card>
+  <Card title="Amp" icon="/images/logos/ai-tools/amp.svg" href="https://ampcode.com">
+    **Sourcegraph** · `Standalone`
+  </Card>
+  <Card title="OpenHands" icon="/images/logos/ai-tools/openhands.png" href="https://github.com/All-Hands-AI/OpenHands">
+    **All Hands AI** · `Standalone` `Open source`
+  </Card>
+  <Card title="OpenAI Codex" icon="/images/logos/ai-tools/openai.svg" href="https://openai.com/codex">
+    **OpenAI** · `Standalone`
+  </Card>
+  <Card title="Mistral Vibe" icon="/images/logos/ai-tools/mistral.png" href="https://mistral.ai">
+    **Mistral** · `Standalone`
+  </Card>
+  <Card title="TRAE" icon="/images/logos/ai-tools/bytedance.svg" href="https://trae.ai">
+    **ByteDance** · `Standalone`
+  </Card>
+</CardGroup>
+
+Any tool discovering skills from `.claude/skills/`, `.config/opencode/skills/`, or `.agents/skills/` is compatible.
+
+<Card title="8 skills, one selector — pick your use case" icon="wand-magic-sparkles" href="/getting-started/quickstart/agent-skills">
+  `qovery-deploy` · `qovery-preview` · `qovery-optimize` · `qovery-troubleshoot` · and 4 more →
+</Card>
+
+<Accordion title="How Deployment Works">
+  When you ask your agent to deploy, `qovery-deploy` runs through this workflow autonomously:
+
+  <Steps>
+    <Step title="Analyzes your codebase">
+      Detects language, framework, ports, database needs, and environment variables.
+    </Step>
+    <Step title="Creates a Dockerfile if missing">
+      Production-ready multi-stage template for your stack. Custom-generated for any other framework.
+    </Step>
+    <Step title="Asks the right questions">
+      Dev or production? Which database? CLI+API or Terraform? A few questions — no YAML to write.
+    </Step>
+    <Step title="Provisions infrastructure">
+      Cluster if needed, databases in container or managed mode, env vars with aliases and overrides.
+    </Step>
+    <Step title="Deploys and watches">
+      Monitors the rollout. Auto-fixes build errors, port mismatches, health check failures. Asks before touching your code.
+    </Step>
+  </Steps>
+</Accordion>
+
+---
+
+## How It Compares
+
+<table className="compare-table">
+  <thead>
+    <tr>
+      <th style={{width: '35%'}}></th>
+      <th>Console</th>
+      <th className="col-featured">AI Agent Skill</th>
+      <th>MCP Server</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Creates Dockerfiles</td>
+      <td><span className="cmp-no">— No</span></td>
+      <td className="col-featured"><span className="cmp-yes">✓ Yes, 12+ frameworks</span></td>
+      <td><span className="cmp-no">— No</span></td>
+    </tr>
+    <tr>
+      <td>Provisions databases</td>
+      <td><span className="cmp-no">Manual</span></td>
+      <td className="col-featured"><span className="cmp-yes">✓ Automatic</span></td>
+      <td><span className="cmp-no">— No</span></td>
+    </tr>
+    <tr>
+      <td>Monitors & fixes failures</td>
+      <td><span className="cmp-no">Manual</span></td>
+      <td className="col-featured"><span className="cmp-auto">✓ Auto-fix</span></td>
+      <td>Query-based</td>
+    </tr>
+    <tr>
+      <td>Best for</td>
+      <td>Fine-tuning</td>
+      <td className="col-featured">Deploying from code</td>
+      <td>Day-2 ops</td>
+    </tr>
+  </tbody>
+</table>
+
+<Info>
+The Skill deploys. The MCP Server operates. Use both together. [→ MCP Server](/copilot/mcp-server)
+</Info>
+
+---
+
+<Tip>
+**Project-only install:** `curl -fsSL https://skill.qovery.com/install.sh | bash -s -- --project`
+
+**Update:** re-run the install command.
+</Tip>
+
+---
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="All Skills" icon="wand-magic-sparkles" href="/getting-started/quickstart/agent-skills">
+    Deploy, troubleshoot, optimize, preview
+  </Card>
+  <Card title="MCP Server" icon="robot" href="/copilot/mcp-server">
+    Manage infrastructure from your AI agent
+  </Card>
+  <Card title="Terraform Provider" icon="code" href="/terraform-provider/overview">
+    Infrastructure as Code
+  </Card>
+  <Card title="Skill Source Code" icon="github" href="https://github.com/Qovery/qovery-skills">
+    Fork or contribute
+  </Card>
+</CardGroup>

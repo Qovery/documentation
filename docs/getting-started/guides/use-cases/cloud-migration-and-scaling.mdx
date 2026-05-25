@@ -1,245 +1,310 @@
 ---
-title: "Migrate Your Application from Heroku to AWS"
-description: "Learn how to migrate your applications from Heroku to AWS using Qovery"
+title: "Migrate to Kubernetes"
+description: "Migrate your applications from Heroku, Render, or any platform to Kubernetes on your cloud provider - fully automated by AI"
 ---
 
-This tutorial will guide you through all required steps you need to take to deploy your application on AWS and transfer your data from Heroku Postgres to the database managed by AWS via Qovery.
+## Overview
+
+Migrating to Kubernetes is traditionally the hardest part of modernizing your infrastructure. It means months of planning, rewriting deployment configs, learning Helm charts, and re-architecting your stack. Most teams get stuck halfway.
+
+Qovery removes that complexity entirely. With Qovery AI skills, you can migrate your applications from any platform - Heroku, Render, OpenShift, legacy VMs - to Kubernetes running on **your own cloud account** (AWS, GCP, Azure, or Scaleway). The AI agent analyzes your codebase, generates Dockerfiles, provisions databases, sets up environment variables, and deploys everything. No Kubernetes expertise required.
 
 <Info>
-This guide also works for migrating your application from Heroku to GCP, Azure, Scaleway.
+For complex migrations (microservices architectures, stateful workloads, compliance requirements), Qovery provides **cloud architect assistance**. [Book a demo](https://www.qovery.com/book-a-demo) to get a personalized migration plan.
 </Info>
 
-## What you will do
+## Why Migrate with Qovery?
 
-1. Create your Dockerfile(s)
-2. Create resources on Qovery (applications and databases)
-3. Configure your Environment Variables and Secrets
-4. Copy your data from Heroku databases to AWS
-5. Deploy your apps
+<CardGroup cols={3}>
+  <Card title="AI-Powered Migration" icon="wand-magic-sparkles">
+    The `/qovery-deploy` AI skill analyzes your codebase, creates Dockerfiles, provisions databases, and deploys - all from a single prompt
+  </Card>
 
-## 1. Create Your Dockerfile
+  <Card title="No Kubernetes Expertise" icon="graduation-cap">
+    Qovery abstracts the complexity of Kubernetes. You deploy applications - Qovery handles pods, ingress, TLS, RBAC, and networking
+  </Card>
 
-### Find a Dockerfile template
+  <Card title="Your Cloud, Your Control" icon="cloud">
+    Everything runs on your own AWS, GCP, Azure, or Scaleway account. No vendor lock-in, no shared infrastructure
+  </Card>
 
-We provide Dockerfile templates for Rails, NodeJS, React, VueJS, NextJS, Golang, Flask, Django, Laravel, Symfony, Spring, Rust, and many more.
+  <Card title="Cloud Architect Assistance" icon="headset">
+    Qovery's team helps with complex migrations. [Book a demo](https://www.qovery.com/book-a-demo) to get a personalized migration plan
+  </Card>
 
-### Example: Rails application
+  <Card title="Compliance Ready" icon="shield-check">
+    SOC2 Type II, ISO 27001, DORA, HIPAA, GDPR compliant infrastructure from day one
+  </Card>
 
-```dockerfile
-# syntax=docker/dockerfile:1
+  <Card title="Cost Savings" icon="dollar-sign">
+    Right-sized from the start. No over-provisioning, no surprise bills. Customers report $200K+ annual savings vs. DIY Kubernetes
+  </Card>
+</CardGroup>
 
-FROM ruby:2.7
+## Migrate from Any Platform
 
-RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
+<CardGroup cols={3}>
+  <Card title="Heroku" icon="h">
+    Dynos, add-ons, Heroku Postgres, Redis - all mapped to Kubernetes equivalents automatically
+  </Card>
 
-WORKDIR /myapp
+  <Card title="Render" icon="server">
+    Web services, background workers, cron jobs, managed databases - migrated with full parity
+  </Card>
 
-COPY Gemfile Gemfile
+  <Card title="OpenShift" icon="redhat">
+    DeploymentConfigs, Routes, BuildConfigs - converted to standard Kubernetes resources
+  </Card>
 
-COPY Gemfile.lock Gemfile.lock
+  <Card title="VMs / Bare Metal" icon="hard-drive">
+    Legacy applications running on EC2, DigitalOcean droplets, or bare metal servers
+  </Card>
 
-RUN bundle install
+  <Card title="Docker Compose" icon="docker">
+    Multi-container setups defined in docker-compose.yml - each service becomes a Qovery application
+  </Card>
 
-COPY . .
+  <Card title="Other PaaS" icon="cloud-arrow-up">
+    Fly.io, Railway, DigitalOcean App Platform, Google App Engine, Azure App Service, and more
+  </Card>
+</CardGroup>
 
-EXPOSE 3000
+## How It Works
 
-CMD ["rails", "server", "-b", "0.0.0.0", "-p", "3000"]
+```mermaid
+flowchart LR
+    SRC[Your Current Platform] -->|AI analyzes| AGENT[Qovery AI Agent]
+    AGENT -->|generates| DOCKER[Dockerfiles]
+    AGENT -->|provisions| DB[Databases]
+    AGENT -->|configures| ENV[Env Vars & Secrets]
+    AGENT -->|deploys to| K8S[Kubernetes on Your Cloud]
 ```
 
-### Example: Rails Sidekiq worker
+1. **Install** the Qovery AI skill (one command)
+2. **Ask** the AI agent to migrate your project
+3. **AI analyzes** your codebase - detects languages, frameworks, databases, dependencies
+4. **AI generates** optimized Dockerfiles if missing
+5. **AI provisions** databases (PostgreSQL, Redis, MongoDB, MySQL) and configures environment variables
+6. **AI deploys** everything to Kubernetes on your cloud provider
+7. **You verify** and go live
 
-```dockerfile
-# syntax=docker/dockerfile:1
+## Getting Started
 
-FROM ruby:2.7
+### Option 1: AI-Powered Migration (Recommended)
 
-RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
+The fastest path. The AI agent handles the entire migration end-to-end.
 
-WORKDIR /myapp
+<Steps>
+  <Step title="Install the Qovery AI Skill">
+    One command installs the skill globally for all your projects:
 
-COPY Gemfile Gemfile
+    ```bash
+    curl -fsSL https://skill.qovery.com/install.sh | bash
+    ```
+  </Step>
 
-COPY Gemfile.lock Gemfile.lock
+  <Step title="Open Your AI Coding Tool">
+    Launch [OpenCode](https://opencode.ai), Claude Code, Cursor, VS Code Copilot, or any compatible AI coding tool.
+  </Step>
 
-RUN bundle install
+  <Step title="Ask the Agent to Migrate">
+    ```
+    Migrate my project from Heroku to Kubernetes with Qovery
+    ```
 
-COPY . .
+    Or use the skill command directly:
 
-CMD ["bundle", "exec", "sidekiq"]
-```
+    ```
+    /qovery-deploy
+    ```
 
-### Test your Dockerfile
+    The agent will guide you through the entire process:
 
-Build your Dockerfile:
+    - **Analyze** your codebase and detect languages, frameworks, and databases
+    - **Create** optimized multi-stage Dockerfiles if your project doesn't have one
+    - **Provision** databases (PostgreSQL, Redis, MongoDB, MySQL) - managed or containerized
+    - **Set up** environment variables and secrets
+    - **Deploy** everything to Kubernetes on your cloud provider
+    - **Watch** the deployment and auto-fix any issues (up to 3 retries per service)
 
-```bash
-docker build -f Dockerfile.qovery .
-```
+    <Tip>
+    The AI agent supports Node.js, Python, Go, Java, Ruby, PHP, .NET, React, Vite, Next.js, Rails, Django, Spring, Laravel, and many more frameworks.
+    </Tip>
+  </Step>
 
-Then run your image:
+  <Step title="Migrate Environment Variables">
+    The AI agent handles environment variable migration as part of the deployment process.
 
-```bash
-docker run a0f90a6ec8bc4036a7b268479a0c0773ca324ba2de11fdef31309650743f4055
-```
+    For **Heroku** specifically, you can also export and import manually using the Qovery CLI:
 
-<Info>
-Once you successfully build your application with Docker, your app will run anywhere (not only on AWS with Qovery).
-</Info>
+    ```bash
+    qovery auth
+    qovery context set
+    heroku config --app <your_heroku_app_name> --json | \
+      qovery env parse --heroku-json > heroku.env && \
+      qovery env import heroku.env && \
+      rm heroku.env
+    ```
 
-### Environment variables at build time
+    <Warning>
+    Import sensitive data (API keys, credentials, tokens) as **Secrets**, not Environment Variables.
+    </Warning>
+  </Step>
 
-If your application needs environment variables at build time, you can use the `ARG` instruction in your Dockerfile:
+  <Step title="Verify and Go Live">
+    Once the deployment is complete:
 
-```dockerfile
-...
-ARG CONTENT_API_KEY
-ENV CONTENT_API_KEY $CONTENT_API_KEY
-...
-```
+    1. Check your application status in the [Qovery Console](https://console.qovery.com)
+    2. Test your endpoints using the auto-generated Qovery URL
+    3. [Configure your custom domain](/configuration/application#domains) when ready
+    4. Update your DNS records to point to Qovery
+  </Step>
+</Steps>
 
-### Add your Dockerfile to your Git repository
+### Option 2: Manual Migration
 
-```bash
-git add Dockerfile.qovery
-git commit -m "Add Qovery Dockerfile"
-git push origin
-```
+For teams that prefer full control over every step.
 
-## 2. Create Resources on Qovery
+<Steps>
+  <Step title="Create Your Dockerfile">
+    If your project doesn't have a Dockerfile, create one. Qovery provides templates for all major frameworks.
 
-### Create your application
+    Example for a Node.js application:
 
-1. Connect to the [Qovery Console](https://console.qovery.com)
-2. Create your Organization and Project
-3. Create your production Environment
-4. Create your application with the name of your repository
-5. Select your GitHub/GitLab/Bitbucket repository
-6. Select the branch you want to deploy
-7. Specify the port your application is listening on
-8. Click on create
+    ```dockerfile
+    FROM node:20-alpine AS builder
+    WORKDIR /app
+    COPY package*.json ./
+    RUN npm ci
+    COPY . .
+    RUN npm run build
 
-<Info>
-Your application is created but not deployed yet! You can configure the vCPU, Memory, Environment Variables... before deploying.
-</Info>
+    FROM node:20-alpine
+    WORKDIR /app
+    COPY --from=builder /app/dist ./dist
+    COPY --from=builder /app/node_modules ./node_modules
+    EXPOSE 3000
+    CMD ["node", "dist/index.js"]
+    ```
 
-### Create your database
+    <Tip>
+    Use multi-stage builds to keep your images small and secure. The AI agent generates these automatically when you use Option 1.
+    </Tip>
+  </Step>
 
-1. Go to your production Environment
-2. Click on "Add" and then "Database"
-3. Select your database type and version (PostgreSQL, MySQL, MongoDB, Redis)
-4. Select Managed or Container mode
-5. Select Public accessibility (or Private if you don't need to restore data from Heroku)
+  <Step title="Create Resources on Qovery">
+    1. Sign in to the [Qovery Console](https://console.qovery.com)
+    2. Create your Organization and Project
+    3. Create your production Environment
+    4. Add your application (select your Git repository, branch, and port)
+    5. Add your database (PostgreSQL, MySQL, MongoDB, or Redis - managed or containerized)
+  </Step>
 
-## 3. Configure Environment Variables and Secrets
+  <Step title="Configure Environment Variables">
+    1. Export your environment variables from your current platform
+    2. Import them into Qovery via the Console or [CLI](/cli/commands/env)
+    3. Create environment variable aliases to connect your services (e.g., link your app to your database using `DATABASE_URL`)
+  </Step>
 
-### Export your environment variables from Heroku
+  <Step title="Deploy">
+    Click "Deploy" in the Qovery Console or use the CLI:
 
-Use the Heroku CLI to export your environment variables:
+    ```bash
+    qovery deploy
+    ```
+  </Step>
+</Steps>
 
-```bash
-heroku config
-```
+### Need Help? Talk to a Cloud Architect
 
-Example output:
+<CardGroup cols={1}>
+  <Card title="Book a Migration Demo" icon="calendar" href="https://www.qovery.com/book-a-demo">
+    For complex migrations - microservices, stateful workloads, compliance requirements, or large-scale infrastructure - Qovery provides personalized cloud architect assistance. Get a migration plan tailored to your stack.
+  </Card>
+</CardGroup>
 
-```
-GREETINGS: hello world
-STRIPE_API_KEY: xxx-yyy-zzz
-IS_PRODUCTION: true
-```
+## What Gets Migrated?
 
-### Import your environment variables with Qovery CLI
+| Source | Qovery Equivalent | Handled by AI? |
+|--------|-------------------|----------------|
+| Web applications (any language/framework) | [Applications](/configuration/application) - containerized on Kubernetes | Yes |
+| Background workers (Sidekiq, Celery, etc.) | [Applications](/configuration/application) - separate services | Yes |
+| Cron jobs | [Cron Jobs](/configuration/cronjob) | Yes |
+| PostgreSQL, MySQL | [Managed Database](/configuration/database) (AWS RDS, GCP Cloud SQL, etc.) | Yes |
+| Redis, MongoDB | [Container Database](/configuration/database) or Managed | Yes |
+| Environment variables | [Environment Variables & Secrets](/configuration/environment-variable) | Yes |
+| Custom domains | [Custom Domains](/configuration/application#domains) | Manual DNS update required |
+| Add-ons (Memcached, Elasticsearch, etc.) | [Helm Charts](/configuration/helm) or container services | Partially |
+| Scheduled tasks | [Lifecycle Jobs](/configuration/lifecycle-job) | Yes |
 
-```bash
-qovery auth
-qovery context set
-heroku config --app <your_heroku_app_name> --json | \
-  qovery env parse --heroku-json > heroku.env && \
-  qovery env import heroku.env && \
-  rm heroku.env
-```
-
-<Warning>
-Import sensitive data (e.g., API keys, credentials...) as `Secret` and not `Environment Variable`.
-</Warning>
-
-### Connect your frontend to your backend
-
-Create environment variable aliases to connect your applications.
-
-### Connect your backend to your database
-
-Create environment variable alias on `_DATABASE_URL_INTERNAL` (not `_DATABASE_URL`).
-
-## 4. Copy Data from Heroku Databases to AWS
-
-Data migration support through Replibyte is coming soon.
-
-## 5. Deploy Your Apps
-
-After completing the configuration, you're ready to deploy through the Qovery console.
-
-## FAQ by Heroku Users
+## FAQ
 
 <AccordionGroup>
+  <Accordion title="How long does migration take?">
+    For most applications, less than a day. The AI agent handles Dockerfile creation, database provisioning, environment variable setup, and deployment in minutes. Complex multi-service architectures may take longer - [book a demo](https://www.qovery.com/book-a-demo) for a personalized timeline.
+  </Accordion>
+
+  <Accordion title="Do I need Kubernetes expertise?">
+    No. Qovery abstracts all Kubernetes complexity. You interact with applications, databases, and environment variables - not pods, deployments, or ingress controllers. The AI agent handles the Kubernetes-specific configuration automatically.
+  </Accordion>
+
+  <Accordion title="Which cloud providers are supported?">
+    AWS (EKS), Google Cloud (GKE), Azure (AKS), and Scaleway (Kapsule). You can also bring your own Kubernetes cluster (BYOK).
+  </Accordion>
+
+  <Accordion title="What about data migration?">
+    Database schema and application code are migrated automatically. For data transfer (copying production data), you'll need to handle the database dump/restore process. Qovery databases support standard import tools (pg_restore, mysql import, mongorestore).
+  </Accordion>
+
   <Accordion title="How to create a custom domain?">
     Check the [custom domain configuration documentation](/configuration/application#domains) for setup instructions.
   </Accordion>
 
   <Accordion title="How to monitor my apps?">
-    Qovery recommends using Datadog or comparable monitoring tools. See our [monitoring guide](/guides/qovery-101/observe).
+    Qovery provides built-in [observability](/getting-started/guides/qovery-101/observe) including logs, metrics, and alerts. You can also integrate with Datadog, New Relic, or other monitoring tools.
   </Accordion>
 
-  <Accordion title="Do you have Heroku 'Review App' equivalent?">
-    Yes, Qovery provides [Preview Environment](/configuration/environment#preview-environments) functionality.
+  <Accordion title="Do you have preview environments?">
+    Yes. Qovery provides [Preview Environments](/getting-started/guides/use-cases/preview-environments) that automatically create a clone of your environment on every pull request.
   </Accordion>
 
   <Accordion title="How to rollback?">
-    App rollback is available through the [deployment actions](/configuration/deployment/overview#rollback).
+    App rollback is available through the [deployment actions](/configuration/deployment/overview#rollback). You can roll back to any previous deployment in one click.
   </Accordion>
 
   <Accordion title="How does auto-scaling work?">
-    Auto-scaling is configured in the [application settings](/configuration/application#auto-scaling).
+    Auto-scaling is configured in the [application settings](/configuration/application#auto-scaling). Qovery supports horizontal pod autoscaling based on CPU/memory usage.
   </Accordion>
 
-  <Accordion title="How to manage database migration?">
-    Database migrations can be managed using [Lifecycle Jobs](/configuration/lifecycle-job).
+  <Accordion title="Can I use Terraform?">
+    Yes. Qovery has a [Terraform provider](/terraform/overview) for infrastructure-as-code deployment. The AI agent can also deploy via Terraform if you choose that option during setup.
   </Accordion>
 
-  <Accordion title="Is it possible to get a shell / connect to my app?">
-    Yes, via Qovery cloud shell button in the console interface, selecting pod and container. Also available through CLI with `qovery shell` command.
+  <Accordion title="Is it possible to get a shell into my app?">
+    Yes, via the cloud shell button in the Qovery Console or through the CLI with `qovery shell`.
   </Accordion>
 
-  <Accordion title="Can I use Terraform and Infrastructure as Code?">
-    Yes, Qovery has a [Terraform provider](/terraform/overview) available for infrastructure-as-code deployment.
-  </Accordion>
-
-  <Accordion title="How can I connect my app to MongoDB Atlas?">
-    Use [VPC peering](/integrations/networking/vpc-peering) for secure connection to MongoDB Atlas.
-  </Accordion>
-
-  <Accordion title="How can I connect my app to an AWS service not managed by Qovery?">
-    Use [VPC peering](/integrations/networking/vpc-peering) to connect to external AWS services.
+  <Accordion title="How to connect to external services (MongoDB Atlas, AWS services)?">
+    Use [VPC peering](/configuration/clusters#vpc-peering) for secure, private connectivity to external services in your cloud account.
   </Accordion>
 </AccordionGroup>
 
 ## Next Steps
 
 <CardGroup cols={2}>
-  <Card title="Deploy Your First App" icon="rocket" href="/getting-started/guides/getting-started/deploy-your-first-application">
-    Complete the deployment process
+  <Card title="Deploy with AI Agent" icon="wand-magic-sparkles" href="/getting-started/quickstart/ai-agent">
+    Full guide on installing and using Qovery AI skills
   </Card>
 
   <Card title="Production Setup" icon="server" href="/getting-started/guides/use-cases/production-environment-management">
-    Set up a production-ready environment
+    Set up a production-ready environment with best practices
   </Card>
 
-  <Card title="Qovery CLI" icon="terminal" href="/cli/overview">
-    Learn about the Qovery CLI
+  <Card title="Preview Environments" icon="code-branch" href="/getting-started/guides/use-cases/preview-environments">
+    Automatically create environments for every pull request
   </Card>
 
-  <Card title="Community Forum" icon="comments" href="https://discuss.qovery.com">
-    Read updates and announcements from the Qovery team
+  <Card title="Book a Demo" icon="calendar" href="https://www.qovery.com/book-a-demo">
+    Get cloud architect assistance for your migration
   </Card>
 </CardGroup>

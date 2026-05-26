@@ -28,11 +28,9 @@ Helm repositories must be configured at the organization level by administrators
 ## Creating a Helm Service
 
 <Steps>
-  <Step title="Select Source">
-    Choose **Git Repository** or **Helm Repository** as your deployment source
-  </Step>
+  <Step title="General data">
+    Choose **Git Repository** or **Helm Repository** as your deployment source and configure it:
 
-  <Step title="Configure Source">
     **For Git Repository**:
     - Select Git provider
     - Choose repository
@@ -47,14 +45,17 @@ Helm repositories must be configured at the organization level by administrators
     - Add arguments (optional)
   </Step>
 
-  <Step title="Configure Values Override">
-    Override chart values using:
-    - Values file (upload or specify path)
-    - Raw YAML override
-    - Arguments (`--set`, `--set-string`, `--set-json`)
+  <Step title="Values override as file">
+    Override chart values using a values file:
+    - Upload a custom `values.yaml` or specify a path from your Git repository
+    - Provide raw YAML content directly in the console
   </Step>
 
-  <Step title="Review and Deploy">
+  <Step title="Values override as arguments">
+    Override individual values using Helm `--set` arguments (`--set`, `--set-string`, `--set-json`)
+  </Step>
+
+  <Step title="Summary">
     Review configuration and click **Create** to deploy
   </Step>
 </Steps>

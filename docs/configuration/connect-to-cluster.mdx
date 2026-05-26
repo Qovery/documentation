@@ -7,7 +7,7 @@ description: "Learn how to connect to your Kubernetes cluster using kubectl with
 
 Connecting to your Kubernetes cluster with kubectl gives you direct access to manage and debug your Kubernetes resources. Qovery provides three methods to connect to your clusters:
 
-1. **Qovery Console Shell (Easiest)** - One-click access with k9s or kubectl directly in your browser
+1. **Qovery Console Shell (Easiest)** - Browser-based terminal with no local setup: cluster-level (kubectl + k9s) or service-level (shell inside a running container)
 2. **Qovery CLI Method (Recommended)** - Quick and easy access with automated configuration
 3. **AWS CLI Method (Traditional)** - Manual setup for advanced users who need full control
 
@@ -18,17 +18,24 @@ Connecting to your Kubernetes cluster with kubectl gives you direct access to ma
 
 ## Method 1: Using Qovery Console Shell (Easiest)
 
-The Qovery Console provides the fastest way to access your cluster - directly from your browser with no local setup required. No prerequisites needed - just your browser and Qovery Console access.
+The Qovery Console provides the fastest way to access your cluster or a running service container, directly from your browser with no local setup required. No prerequisites needed - just your browser and Qovery Console access.
 
-### Access Shell from Console
+The Console Shell is available at two levels:
+
+- **Cluster level**: a web terminal pre-configured with kubectl and k9s for full cluster access
+- **Service level**: a web terminal that opens a session inside a running container of a specific service
+
+### Cluster-Level Shell
+
+Use this when you need to inspect or manage Kubernetes resources across the entire cluster.
 
 <Steps>
   <Step title="Navigate to Your Cluster">
-    Open your [Qovery Console](https://console.qovery.com) and navigate to your cluster page.
+    Open your [Qovery Console](https://console.qovery.com), go to **Organization > Clusters**, and select your cluster.
   </Step>
 
-  <Step title="Open Shell">
-    Click on the Cloud shell tab to open an embedded terminal.
+  <Step title="Open Cloud Shell">
+    Click the **Cloud Shell** tab to open an embedded browser-based terminal.
 
     <Frame>
       <img src="/images/configuration/clusters/cluster-shell-access.png" alt="Cluster Shell Access" />
@@ -53,15 +60,48 @@ The Qovery Console provides the fastest way to access your cluster - directly fr
 </Steps>
 
 <Info>
-  The Console Shell comes pre-configured with: - **k9s** - Interactive
-  Kubernetes cluster management - **kubectl** - Full kubectl access - Cluster
-  credentials automatically configured - No local installation required
+  The cluster-level Cloud Shell comes pre-configured with: **k9s** for interactive Kubernetes cluster management, **kubectl** with cluster credentials automatically configured, and no local installation required.
+</Info>
+
+### Service-Level Shell
+
+Use this when you need to inspect or debug a running container directly: run one-off commands, check environment variables, inspect files, or run a database migration.
+
+<Steps>
+  <Step title="Navigate to Your Service">
+    Open your [Qovery Console](https://console.qovery.com), go to the relevant environment, and click on the service you want to connect to.
+  </Step>
+
+  <Step title="Open Cloud Shell">
+    Click the **Cloud Shell** tab. Qovery opens a terminal session inside a running container of that service.
+  </Step>
+
+  <Step title="Run Commands Inside the Container">
+    You now have a shell directly inside your container. Common use cases:
+
+    ```bash
+    # Inspect environment variables
+    env
+
+    # Check files on the filesystem
+    ls -la /app
+
+    # Run a database migration
+    ./manage.py migrate
+
+    # Inspect a running process
+    ps aux
+    ```
+
+  </Step>
+</Steps>
+
+<Info>
+  The service-level shell connects to an existing running container. If no container is running (e.g. the service is stopped), the shell will not be available.
 </Info>
 
 <Tip>
-  This method is perfect for quick debugging, viewing resources, or when you
-  don't have local tools installed. The shell runs directly in your cluster with
-  full access.
+  Both shell options are perfect for quick debugging, running one-off commands, or when you don't have local tools installed. No kubectl configuration or SSH access required.
 </Tip>
 
 ## Method 2: Using Qovery CLI (Recommended for Local Development)

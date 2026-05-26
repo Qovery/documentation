@@ -3,6 +3,10 @@ title: "Object Storage"
 description: "Use cloud object storage for persistent data in your applications"
 ---
 
+<Warning>
+**Object Storage is not a native Qovery service type.** You will not find an "Object Storage" option in the "New service" creation flow. This page explains how to connect your Qovery-deployed applications to external object storage providers (AWS S3, DigitalOcean Spaces, Scaleway Object Storage) using environment variables and compatible SDKs.
+</Warning>
+
 The default filesystem for Qovery applications is ephemeral, meaning data isn't retained across deploys and restarts. Object Storage addresses this limitation for applications needing persistent storage across restarts or managing large unstructured datasets unsuitable for traditional databases.
 
 ## Use Cases

@@ -17,12 +17,13 @@ Qovery's ArgoCD integration bridges GitOps-driven deployments with Qovery's plat
 - **Log streaming** — Access real-time logs for ArgoCD-managed workloads.
 - **Sync status** — Qovery reflects the current ArgoCD sync and health status of each application.
 
-ArgoCD-managed services are **read-only** in Qovery. Deployments and configuration changes must go through your GitOps pipeline.
+ArgoCD-managed services are largely **read-only** in Qovery — configuration and manifests stay in Git. Convenience [Sync and Rollback actions](#actions) on the ArgoCD application are planned (coming soon during beta).
 
 ## Prerequisites
 
-- An ArgoCD instance reachable from Qovery cluster agent running in your cluster
-- An ArgoCD API token with read access to applications and logs
+- A Qovery cluster that is **already added to Qovery** and hosts the ArgoCD instance. See [Clusters configuration](/configuration/clusters).
+- An ArgoCD instance reachable from the Qovery cluster agent running in the `qovery` namespace of that cluster.
+- An ArgoCD API token with read access to applications and logs.
 
 ### Create a dedicated ArgoCD user
 
@@ -57,8 +58,6 @@ metadata:
 data:
   policy.csv: |
     p, qovery, applications, get, *, allow
-    p, qovery, clusters, get, *, allow
-    p, qovery, logs, get, */*, allow
 ```
 
 
@@ -75,12 +74,8 @@ Copy the token printed to the terminal — you will need it during configuration
 
 ```bash
 argocd account can-i --auth-token <token> get applications '*'   # should return: yes
-argocd account can-i --auth-token <token> get clusters '*'       # should return: yes
-argocd account can-i --auth-token <token> get logs '*/*'         # should return: yes
 argocd account can-i --auth-token <token> delete applications '*' # should return: no
 ```
-
-For details on exposing the ArgoCD API endpoint, see the [ArgoCD ingress documentation](https://argo-cd.readthedocs.io/en/stable/operator-manual/ingress/#ui-and-api-content-path).
 
 ## Configuration
 
@@ -97,12 +92,12 @@ The ArgoCD integration is configured at the **organization level** under **Setti
 
     | Field | Description | Example |
     |---|---|---|
-    | **Target cluster** | The Qovery cluster that hosts the ArgoCD instance | My Production Cluster |
-    | **ArgoCD API URL** | The URL of your ArgoCD API/UI endpoint | http://argocd-server.argocd-namespace/ |
-    | **Access token** | An ArgoCD API token with application read access | xxxxxx |
+    | **Target cluster** | A cluster already added to Qovery — the one where ArgoCD itself is running. If your ArgoCD instance deploys to multiple clusters, also see [Step 2](#step-2-map-destination-clusters-multi-cluster-argocd). | My Production Cluster |
+    | **ArgoCD API URL** | The in-cluster URL of the ArgoCD API server. It must be reachable from the Qovery cluster-agent running in the `qovery` namespace, so the **internal Kubernetes service URL** is the right choice. A public ingress URL also works but is not required. | `http://argocd-server.argocd.svc.cluster.local/` or `http://argocd-server.argocd/` |
+    | **Access token** | The token generated from the dedicated `qovery` ArgoCD user (see [Create a dedicated ArgoCD user](#create-a-dedicated-argocd-user)). Do not use an admin token. | `xxxxxx` |
 
     <Note>
-      Generate a token with `argocd account generate-token`. For API URL configuration, see the [ArgoCD ingress guide](https://argo-cd.readthedocs.io/en/stable/operator-manual/ingress/#ui-and-api-content-path).
+      The token is the one printed by `argocd account generate-token --account qovery` during the prerequisites step. For ingress URL configuration, see the [ArgoCD ingress guide](https://argo-cd.readthedocs.io/en/stable/operator-manual/ingress/#ui-and-api-content-path).
     </Note>
   </Step>
   <Step title="Validate and save">
@@ -122,9 +117,36 @@ The ArgoCD integration is configured at the **organization level** under **Setti
   ArgoCD tokens are stored securely and are never returned in plain text via the Qovery API — the token field always appears as `REDACTED`. Treat your token as a secret and rotate it in ArgoCD if it is compromised, then update the integration.
 </Warning>
 
-### Step 2: Map destination clusters (optional)
+### Step 2: Map destination clusters (multi-cluster ArgoCD)
 
-If your ArgoCD instance deploys to clusters other than the one it is installed on, you can map those destination clusters to Qovery clusters from the integration settings page. This allows Qovery to correctly associate applications deployed to remote clusters.
+A common ArgoCD topology is a **central ArgoCD instance** driving applications across **several destination Kubernetes clusters** (for example one ArgoCD on a management cluster deploying to staging and production clusters). Qovery supports this setup, but it requires two things.
+
+**Install the Qovery stack on every cluster.** Both the cluster hosting ArgoCD *and* every destination cluster must run the Qovery stack:
+
+- The cluster running ArgoCD lets Qovery read application configuration and sync status from the ArgoCD API.
+- Each destination cluster lets Qovery observe the actual workloads — pods, logs, metrics — for the applications ArgoCD deploys there.
+
+**Map ArgoCD destination clusters to Qovery clusters.** From the integration's settings page, map each ArgoCD destination cluster name to the matching Qovery cluster. Without this mapping, Qovery cannot reconcile an application back to the right environment and cluster.
+
+```mermaid
+graph LR
+    subgraph mgmt[Management cluster · Qovery stack]
+        A[ArgoCD]
+    end
+    subgraph stg[Staging cluster · Qovery stack]
+        S1[App workloads]
+    end
+    subgraph prd[Production cluster · Qovery stack]
+        P1[App workloads]
+    end
+    A -- deploys --> S1
+    A -- deploys --> P1
+    Q[Qovery] -. reads app state .-> A
+    Q -. observes pods/logs .-> S1
+    Q -. observes pods/logs .-> P1
+```
+
+If ArgoCD only deploys to the cluster it is installed on, you can skip this step.
 
 ## Environment Visibility
 
@@ -152,14 +174,49 @@ Each ArgoCD application within a namespace appears as a service inside the corre
 | **Last operation** | The most recent ArgoCD sync status |
 | **Target version** | The Git revision or tag currently deployed |
 
-From any ArgoCD service, you can:
-- View **pod statuses**
-- Stream **logs**
-- Open a **shell** into a running container
+<Note>
+  Configuration and deployment manifests of ArgoCD-managed services stay **read-only** in Qovery — all changes must continue to go through your GitOps pipeline. The [Sync and Rollback actions](#actions) are planned exceptions and trigger ArgoCD on your behalf.
+</Note>
+
+## Monitoring & debugging
+
+Qovery surfaces the same observability primitives for ArgoCD-managed workloads as it does for native Qovery services:
+
+- **Pod metrics** — CPU and memory at the pod level, via the same metrics pipeline used for native Qovery services.
+- **Logs streaming** — real-time container logs for ArgoCD-managed workloads.
+- **Pod shell access** — open a shell into a running container directly from the Qovery Console.
+- **Sync & health status** — Qovery mirrors ArgoCD's current sync and health status for each application.
 
 <Note>
-  ArgoCD-managed services are **read-only** in Qovery. You cannot deploy, rollback, or modify them through Qovery — all changes must go through your GitOps pipeline.
+  Full **Qovery Observe** integration for ArgoCD-managed apps — alerts, events, 12-week log retention, service health dashboards — is **in progress** and will be enabled progressively.
 </Note>
+
+## Actions
+
+ArgoCD remains the source of truth for what gets deployed. To save round-trips to the ArgoCD UI, Qovery exposes convenience actions that call the ArgoCD API on your behalf:
+
+| Action | What it does |
+|---|---|
+| **Sync** | Triggers an ArgoCD `app sync` for the selected application. |
+| **Rollback** | Reverts the application to a previous synced revision via the ArgoCD rollback API. |
+
+<Warning>
+  Sync and Rollback actions are **coming soon** as part of the beta. Today, Qovery is read-only for ArgoCD-managed services — all operations must go through ArgoCD or your GitOps pipeline.
+</Warning>
+
+All other changes — application configuration, manifests, target revision, destination — still flow through Git and ArgoCD.
+
+## Manifest
+
+Each ArgoCD service in Qovery has a **Manifest** tab that lists every Kubernetes resource ArgoCD currently manages for the application (sourced from ArgoCD's managed-resources API).
+
+For each resource you can inspect:
+
+- **Live state** — the actual resource configuration running in the cluster.
+- **Target state** — the desired configuration declared in Git.
+- A **Diff** toggle to compare live vs target side-by-side and spot drift between Git and the cluster.
+
+A search input and an expandable resource tree make it easy to navigate large applications. The Manifest tab is useful for debugging drift, verifying a sync, or inspecting what ArgoCD currently manages — without leaving Qovery.
 
 ## How It Works
 

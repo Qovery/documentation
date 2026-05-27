@@ -396,6 +396,12 @@
                 ]
               },
               {
+                "group": "GitOps",
+                "pages": [
+                  "configuration/integrations/argocd"
+                ]
+              },
+              {
                 "group": "Notifications",
                 "pages": [
                   "configuration/integrations/webhooks",

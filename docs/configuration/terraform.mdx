@@ -238,6 +238,28 @@ Watch this interactive demo to see how to deploy S3 infrastructure using Terrafo
       **The last TFVAR file applied wins.** If multiple TFVAR files define the same variable, the value from the last file in the order takes precedence.
     </Info>
 
+    **Referencing Qovery Variables Inside a TFVAR File**
+
+    You can reference Qovery environment, project, and built-in variables directly inside a `.tfvars` file using the `"{{ VARIABLE_NAME }}"` syntax. The file stays in your git repository, and Qovery substitutes the references at deploy time against the variables of the environment being deployed.
+
+    ```hcl
+    # .tfvars file kept in your git repository
+    auth0_client_id           = "{{ AUTH0_CLIENT_ID }}"
+    auth0_client_secret       = "{{ AUTH0_CLIENT_SECRET }}"
+    postgresql_admin_password = "{{ POSTGRESQL_ADMIN_PASSWORD }}"
+    region                    = "eu-west-3"
+    ```
+
+    <Info>
+      Use this pattern to keep one `.tfvars` template in source control while injecting sensitive or generated values (database credentials, infrastructure outputs from another service) from the matching Qovery environment.
+    </Info>
+
+    <Warning>
+      Only the `{{ VARIABLE_NAME }}` form is interpolated. Other forms such as `${VAR}`, `${{VAR}}`, or a bare identifier `VAR` are treated as literals and passed to Terraform unchanged.
+      Qovery variables of type **File** or **External Secret** cannot be inlined as a Terraform variable value and are left as literals if referenced — those variable types only materialize inside the cluster and have no scalar form that Terraform can consume.
+      If a referenced Qovery variable does not exist, the literal `{{ NAME }}` is passed through unchanged. Define the variable in your environment to have it substituted.
+    </Warning>
+
     **Manual Variable Override**
 
     You can manually override any variable value in two ways:

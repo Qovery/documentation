@@ -1,15 +1,15 @@
 ---
 title: "Architecture"
-description: "Understand how the RDE Portal works under the hood"
+description: "Understand how the AI Builder Portal works under the hood"
 ---
 
 <Warning>
-**Preview**: Remote Dev Environments Portal is in preview. Architecture details may change as the product evolves.
+**Preview**: AI Builder Portal is in preview. Architecture details may change as the product evolves.
 </Warning>
 
 ## Overview
 
-The RDE Portal is a web application hosted by Qovery at [rde.qovery.com](https://rde.qovery.com). It consists of three components: a **web frontend**, an **API server** (Backend-for-Frontend), and a **database** - all managed by Qovery. The portal orchestrates workspace containers that run on **your** Kubernetes cluster.
+The AI Builder Portal is a web application hosted by Qovery at [rde.qovery.com](https://rde.qovery.com). It consists of three components: a **web frontend**, an **API server** (Backend-for-Frontend), and a **database** - all managed by Qovery. The portal orchestrates workspace containers that run on **your** Kubernetes cluster.
 
 A critical design principle: **your cluster is never exposed to the internet**. Qovery agents running on your cluster initiate all connections outbound to the Qovery control plane via TLS/gRPC. The control plane never connects inbound to your infrastructure.
 
@@ -20,7 +20,7 @@ This page explains the architecture, connectivity model, and data flow. For secu
 ```mermaid
 flowchart TB
     Browser["User's Browser"]
-    Portal["RDE Portal (rde.qovery.com)"]
+    Portal["AI Builder Portal (rde.qovery.com)"]
     CP["Qovery Control Plane"]
     Auth0["Auth0 (auth.qovery.com)"]
 
@@ -48,7 +48,7 @@ flowchart TB
 
 ## Cluster Connectivity Model
 
-This is the foundation of the RDE Portal's security architecture.
+This is the foundation of the AI Builder Portal's security architecture.
 
 Your Kubernetes cluster runs **Qovery agents** - Engine, Shell agent, and other components - that maintain persistent **outbound TLS/gRPC connections** to the Qovery control plane. Your cluster never exposes inbound ports to the internet.
 
@@ -243,7 +243,7 @@ Workspaces do not need public domains, load balancers, or ingress rules for deve
 
 ## Deployment Architecture
 
-The RDE Portal uses a **split deployment model**: the portal is hosted by Qovery as a managed service at `rde.qovery.com`, while workspace containers run on your Kubernetes cluster.
+The AI Builder Portal uses a **split deployment model**: the portal is hosted by Qovery as a managed service at `rde.qovery.com`, while workspace containers run on your Kubernetes cluster.
 
 ```mermaid
 flowchart TB
@@ -314,7 +314,7 @@ No source code, AI conversations, or application data is stored in the portal da
     How the portal keeps your data on your infrastructure with full admin control.
   </Card>
   <Card title="Troubleshooting" icon="wrench" href="/rde/reference/troubleshooting">
-    Common issues and solutions for the RDE Portal.
+    Common issues and solutions for the AI Builder Portal.
   </Card>
   <Card title="Admin Setup" icon="gear" href="/rde/getting-started/admin-setup">
     Configure the portal for your organization.

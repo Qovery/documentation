@@ -1,25 +1,25 @@
 ---
-title: "Remote Dev Environments Portal"
-description: "A self-service web portal that gives every team member their own isolated cloud development environment - no CLI or Kubernetes knowledge required."
+title: "AI Builder Portal"
+description: "A self-service web portal that gives every team member their own isolated cloud development environment with built-in AI tools - on your infrastructure, under your rules."
 ---
 
 <Warning>
-**Preview**: Remote Dev Environments Portal is currently in preview. Features and capabilities are under active development and may change.
+**Preview**: AI Builder Portal is currently in preview. Features and capabilities are under active development and may change.
 </Warning>
 
 <Note>
-**Plan requirement**: The RDE Portal is available as an add-on on the **Business** and **Enterprise** plans. See [Qovery Pricing](https://www.qovery.com/pricing) for details.
+**Plan requirement**: The AI Builder Portal is available as an add-on on the **Business** and **Enterprise** plans. See [Qovery Pricing](https://www.qovery.com/pricing) for details.
 </Note>
 
 <Info>
 Looking for the CLI-based approach? See [Remote Development Environments with the CLI](/getting-started/guides/use-cases/remote-development-environments) for managing RDEs via `qovery rde` commands.
 </Info>
 
-## Why Remote Dev Environments?
+## Your Team Is Already Building with AI
 
-AI coding tools have turned non-technical employees into builders. Finance analysts, sales ops leads, product managers, even executives - are using tools like Lovable, Bolt.new, and Replit to build and deploy applications with company data. No ticket filed. No IT approval. No one asking where the data goes.
+AI coding tools turned everyone into builders. But the apps they ship live on infrastructure you don't control. The AI Builder Portal gives them the same one-click experience - on your cloud, under your rules.
 
-Consider the example: your finance analyst builds a retention analysis tool connected to your production database on Lovable. She didn't know she needed to ask IT. She just described what she wanted and the AI built it. The tool is live, connected to sensitive data, running on shared infrastructure you don't control - and your security team has zero visibility into it.
+Finance analysts, sales ops leads, product managers, even executives - are using tools like Lovable, Bolt.new, and Replit to build and deploy applications with company data. No ticket filed. No IT approval. No one asking where the data goes.
 
 This is shadow IT. Not the spreadsheet macros of the past - deployed web applications with database access, API keys in vendor-managed servers, and no audit trail. Every one of these apps is a compliance surface your CISO can't see.
 
@@ -28,7 +28,7 @@ This is shadow IT. Not the spreadsheet macros of the past - deployed web applica
     On external platforms, your code, API keys, and data live on shared infrastructure you don't control. No VPC peering, no private networking, no meaningful audit trail. In regulated industries - finance, healthcare, legal - this creates compliance gaps that certifications alone can't close.
   </Card>
   <Card title="The Solution" icon="shield-check">
-    The RDE Portal provides the same one-click builder experience - but on your own infrastructure, under your control. SSO, pre-configured blueprints, workspace isolation, publish approvals, full audit trails. **Secure by architecture, not by policy.**
+    The AI Builder Portal provides the same one-click builder experience - but on your own infrastructure, under your control. SSO, pre-configured blueprints, workspace isolation, publish approvals, full audit trails. **Secure by architecture, not by policy.**
   </Card>
 </CardGroup>
 
@@ -40,17 +40,17 @@ For a full analysis of the enterprise risks of Lovable, Bolt.new, and Replit, re
 
 ## Overview
 
-The Remote Dev Environments (RDE) Portal is a **self-service web application** accessible at [rde.qovery.com](https://rde.qovery.com). It lets platform engineers define blueprint environments and gives builders - engineers and non-technical team members alike - the ability to create their own isolated cloud workspaces with one click. Just log in with your Qovery account to get started.
+The AI Builder Portal is a **self-service web application** accessible at [rde.qovery.com](https://rde.qovery.com). It lets platform engineers define blueprint environments and gives builders - engineers and non-technical team members alike - the ability to create their own isolated cloud workspaces with one click. Just log in with your Qovery account to get started.
 
 The portal includes a **built-in terminal with Claude Code and OpenCode chat** for AI-assisted development, **live app preview** with viewport switching, **publish workflows** for deploying to production, and **git snapshots** for versioning your work. Authentication is handled through your existing Qovery account - no additional signup required.
 
-## Two Approaches to RDE
+## Two Approaches
 
 <CardGroup cols={2}>
   <Card title="CLI-Based Management" icon="terminal" href="/getting-started/guides/use-cases/remote-development-environments">
     **Available Now** - Platform engineers use `qovery rde` CLI commands for full control over environment provisioning, lifecycle management, and user access. Best for teams that want programmatic or automated RDE workflows.
   </Card>
-  <Card title="Self-Service Portal" icon="browser" href="https://rde.qovery.com">
+  <Card title="AI Builder Portal" icon="browser" href="https://rde.qovery.com">
     **Preview** - A web-based UI at [rde.qovery.com](https://rde.qovery.com) where builders create environments themselves. No CLI, no Kubernetes knowledge needed. Requires a **Business** or **Enterprise** plan. This is what this documentation section covers.
   </Card>
 </CardGroup>
@@ -89,7 +89,7 @@ The portal includes a **built-in terminal with Claude Code and OpenCode chat** f
 
 ## Secure by Design
 
-The RDE Portal uses a **split architecture** - the portal itself (UI and API) is hosted by Qovery at `rde.qovery.com`, while your **workspace containers run entirely on your own Kubernetes cluster**. Your cluster is never exposed to the internet - Qovery agents on your cluster initiate all connections outbound via TLS/gRPC.
+The AI Builder Portal uses a **split architecture** - the portal itself (UI and API) is hosted by Qovery at `rde.qovery.com`, while your **workspace containers run entirely on your own Kubernetes cluster**. Your cluster is never exposed to the internet - Qovery agents on your cluster initiate all connections outbound via TLS/gRPC.
 
 <CardGroup cols={2}>
   <Card title="Your Code Stays on Your Infrastructure" icon="server">
@@ -183,11 +183,28 @@ Each workspace is an isolated clone of the blueprint. One builder's workspace ca
   </Card>
 </CardGroup>
 
+## Why Not Lovable, Bolt, or Replit?
+
+External AI builder platforms give your team speed. The AI Builder Portal gives them the same speed - with the governance, security, and data residency your organization requires.
+
+| Feature | Lovable / Bolt / Replit | AI Builder Portal |
+|---------|------------------------|-------------------|
+| **One-click environments** | Yes | Yes |
+| **Built-in AI coding** | Yes | Claude Code + OpenCode |
+| **Data residency** | Vendor servers | Your Kubernetes cluster |
+| **SSO / RBAC / Audit** | No | Yes |
+| **Publish approvals** | No | Admin-controlled |
+| **Compliance posture** | Vendor-dependent | Inherits your cluster |
+
+<Info>
+For a detailed security comparison, see [Security & Data Residency](/rde/reference/security#comparison-with-hosted-alternatives).
+</Info>
+
 ## Prerequisites
 
-Before using the RDE Portal, make sure you have:
+Before using the AI Builder Portal, make sure you have:
 
-- An **active Qovery account** on a **Business** or **Enterprise** plan with the **RDE Portal add-on** enabled - see [Pricing](https://www.qovery.com/pricing)
+- An **active Qovery account** on a **Business** or **Enterprise** plan with the **AI Builder Portal add-on** enabled - see [Pricing](https://www.qovery.com/pricing)
 - A **running Kubernetes cluster** on Qovery
 - At least one **Qovery project and environment** to use as a blueprint template
 - **Organization admin access** for initial portal configuration

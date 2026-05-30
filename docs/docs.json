@@ -581,8 +581,8 @@
         ]
       },
       {
-        "product": "RDE Portal",
-        "description": "Self-service remote development environments for your team",
+        "product": "AI Builder Portal",
+        "description": "Self-service AI builder portal for your team on your infrastructure",
         "icon": "laptop-code",
         "tabs": [
           {

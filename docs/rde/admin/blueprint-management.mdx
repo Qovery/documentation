@@ -4,12 +4,12 @@ description: "Register, configure, and manage blueprint templates for your team'
 ---
 
 <Warning>
-**Preview**: Remote Dev Environments Portal is in preview. Features may change as the product evolves.
+**Preview**: AI Builder Portal is in preview. Features may change as the product evolves.
 </Warning>
 
 ## Overview
 
-A **blueprint** is a pre-configured workspace template. When a builder clicks "Create" in the RDE Portal, they are creating a private copy of a blueprint - pre-loaded with the right tools, the right database connections, and the right credentials for their role. They don't configure anything. They just pick a template and start building.
+A **blueprint** is a pre-configured workspace template. When a builder clicks "Create" in the AI Builder Portal, they are creating a private copy of a blueprint - pre-loaded with the right tools, the right database connections, and the right credentials for their role. They don't configure anything. They just pick a template and start building.
 
 From a technical perspective, each blueprint maps to a **Qovery project and environment**. When a builder creates a workspace, the system clones that environment into a new Qovery project scoped to that builder. The blueprint is the master template; each workspace is an isolated copy.
 
@@ -19,7 +19,7 @@ As an admin, you decide what each blueprint contains, who can access it, and wha
 
 <Steps>
   <Step title="Open the Admin Panel">
-    Navigate to **Admin > Blueprints** in the RDE Portal.
+    Navigate to **Admin > Blueprints** in the AI Builder Portal.
   </Step>
 
   <Step title="Click Register">
@@ -161,7 +161,7 @@ When a blueprint is in **Testing** state, it appears in the catalog with a "Comi
 
 By default, the portal connects terminal sessions and live preview to the first service in the blueprint environment. If your blueprint has multiple services, you can specify which service is the **primary service** - the one used for shell connections and preview.
 
-Navigate to **Admin > Blueprints > [Blueprint] > Settings** and select the primary service from the dropdown. The dropdown lists all services in the blueprint's Qovery environment.
+Navigate to **Admin > Blueprints > [Blueprint] > General** and select the primary service from the dropdown. The dropdown lists all services in the blueprint's Qovery environment.
 
 <Tip>
 Set the primary service to the container running your IDE (e.g., code-server) so that terminal sessions and live preview connect to the right service automatically.
@@ -176,7 +176,7 @@ Choose how the portal organizes Qovery projects when builders create workspaces:
 | **Dedicated** (default) | Each workspace gets its own Qovery project. Full isolation between workspaces. |
 | **Shared** | All workspaces from this blueprint share a single Qovery project. Environments are created within the shared project. Uses fewer Qovery resources. |
 
-Configure this in **Admin > Blueprints > [Blueprint] > Settings > Project Mode**.
+Configure this in **Admin > Blueprints > [Blueprint] > General**.
 
 <Info>
 Use **shared** mode when you want to reduce the number of Qovery projects in your organization. Use **dedicated** mode (default) when workspace isolation is a priority.
@@ -199,13 +199,13 @@ For example, a template of `rde-{user}-{blueprint}` for a user `alice@company.co
 Names are automatically sanitized to be Qovery-compatible (lowercase, alphanumeric, hyphens only).
 </Info>
 
-Configure naming templates in **Admin > Blueprints > [Blueprint] > Settings > Workspace Naming**.
+Configure naming templates in **Admin > Blueprints > [Blueprint] > General**.
 
 ## Target Cluster
 
 If your organization has multiple Kubernetes clusters, you can specify which cluster should be used for workspaces created from a specific blueprint.
 
-Navigate to **Admin > Blueprints > [Blueprint] > Settings > Target Cluster** and select the cluster from the dropdown. If no cluster is specified, the portal uses the default cluster.
+Navigate to **Admin > Blueprints > [Blueprint] > General** and select the target cluster from the dropdown. If no cluster is specified, the portal uses the default cluster.
 
 This is useful for:
 - **Data residency** - Route workspaces to clusters in specific regions
@@ -349,7 +349,7 @@ To use this template as your blueprint's workspace container:
 1. Create a Qovery project and environment for your blueprint
 2. Add a container service using the image from the [template repository](https://github.com/evoxmusic/remote-dev-env-template)
 3. Configure the environment variables listed below
-4. Register the environment as a blueprint in the RDE Portal
+4. Register the environment as a blueprint in the AI Builder Portal
 
 Alternatively, **fork the repository** and build a custom image tailored to your organization's needs.
 

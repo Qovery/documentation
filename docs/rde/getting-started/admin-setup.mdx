@@ -1,21 +1,21 @@
 ---
 title: "Admin Setup"
-description: "Configure the RDE Portal, register blueprints, and set up access control for your team"
+description: "Configure the AI Builder Portal, register blueprints, and set up access control for your team"
 ---
 
 <Warning>
-**Preview**: Remote Dev Environments Portal is currently in preview. Setup steps may change as the product evolves.
+**Preview**: AI Builder Portal is currently in preview. Setup steps may change as the product evolves.
 </Warning>
 
 ## Overview
 
-As an admin, you configure the RDE Portal so your team can create their own workspaces. This guide walks through the complete setup - from portal configuration to inviting your first builder.
+As an admin, you configure the AI Builder Portal so your team can create their own workspaces. This guide walks through the complete setup - from portal configuration to inviting your first builder.
 
 ## Prerequisites
 
 Before starting, make sure you have:
 
-<Check>Qovery account on a **Business** or **Enterprise** plan with the **RDE Portal add-on** enabled - see [Pricing](https://www.qovery.com/pricing)</Check>
+<Check>Qovery account on a **Business** or **Enterprise** plan with the **AI Builder Portal add-on** enabled - see [Pricing](https://www.qovery.com/pricing)</Check>
 <Check>**Organization admin** access on your Qovery account</Check>
 <Check>A running Kubernetes cluster on Qovery</Check>
 <Check>At least one project with an environment to use as a blueprint template</Check>
@@ -25,7 +25,7 @@ Before starting, make sure you have:
 Connect the portal to your Qovery organization and apply your branding.
 
 <Steps>
-  <Step title="Open the RDE Portal">
+  <Step title="Open the AI Builder Portal">
     Go to [rde.qovery.com](https://rde.qovery.com) and log in with your Qovery credentials. You must have **organization admin** access to see the admin panel.
   </Step>
 
@@ -103,7 +103,7 @@ Control who can use each blueprint with access control lists (ACLs).
   </Step>
 
   <Step title="Go to Access Control">
-    Click the **Access Control** tab on the blueprint detail page.
+    Click the **Access** tab on the blueprint detail page.
   </Step>
 
   <Step title="Choose an Access Policy">
@@ -125,17 +125,23 @@ You can combine domain and email restrictions. For example, allow all `@yourcomp
 
 ## Step 4: Configure Blueprint Settings
 
-Optionally fine-tune each blueprint with AI provider configuration and workspace layout settings.
+Optionally fine-tune each blueprint using the dedicated tabs on the blueprint detail page.
 
-### AI Configuration
+### General Tab
 
-Configure AI providers for the workspace in a unified panel. Each provider can be independently enabled:
+Configure the blueprint's display name, description, target cluster, primary service, workspace project mode, and naming templates. Navigate to **Admin > Blueprints > [Blueprint] > General**.
+
+### AI & Data Tab
+
+Configure AI providers for the workspace. Each provider can be independently enabled:
 
 - **Anthropic** - Powers Claude Code and can power the Chat panel. Choose between User OAuth (builders use their own account) or API Key injection (seamless, billed to your organization).
 - **OpenAI** - Powers the Chat panel with GPT models. Requires an API key.
 - **Custom provider** - Any OpenAI-compatible API endpoint for the Chat panel. Useful for internally hosted models.
 
-### Layout
+The AI & Data tab also includes a **Data Sources** reference grid showing supported database types (PostgreSQL, MySQL, Snowflake, BigQuery, and others). Click any tile to view setup instructions for connecting that data source to your blueprint.
+
+### Workspace Tab
 
 Control which tabs appear in the workspace editor:
 
@@ -145,6 +151,10 @@ Control which tabs appear in the workspace editor:
 - **Custom commands** - admin-defined command tabs
 
 You can also **lock the layout** to prevent builders from rearranging tabs, and **toggle preview panel visibility** to show or hide the live app preview by default.
+
+### Access Tab
+
+Configure who can create workspaces from this blueprint using ACL rules. See [Step 3](#step-3-configure-access-control) above.
 
 ## Step 5: Invite Members
 

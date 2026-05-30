@@ -4,12 +4,12 @@ description: "Customize branding, welcome screens, and workspace layouts for you
 ---
 
 <Warning>
-**Preview**: Remote Dev Environments Portal is in preview. Features may change as the product evolves.
+**Preview**: AI Builder Portal is in preview. Features may change as the product evolves.
 </Warning>
 
 ## Overview
 
-Make the RDE Portal your own with **custom branding**, a tailored **welcome screen**, and per-blueprint **layout configuration**. These settings let you align the portal with your company identity and control the development experience your builders get.
+Make the AI Builder Portal your own with **custom branding**, a tailored **welcome screen**, and per-blueprint **layout configuration**. These settings let you align the portal with your company identity and control the development experience your builders get.
 
 ## Branding
 
@@ -44,7 +44,7 @@ Use the welcome screen to **onboard new builders**. Explain what they can do in 
 
 ## Layout Configuration
 
-Each blueprint can have its own **layout settings** that control what builders see inside the workspace editor. Navigate to **Admin > Blueprints > [Blueprint] > Settings > Layout**.
+Each blueprint can have its own **layout settings** that control what builders see inside the workspace editor. Navigate to **Admin > Blueprints > [Blueprint] > Workspace**.
 
 ### Tabs
 
@@ -78,9 +78,28 @@ Toggle the **preview panel** visibility for the blueprint. When enabled, builder
 
 Disable the preview panel for blueprints where a live preview is not relevant (e.g., backend API services, CLI tools, data processing scripts).
 
-## AI Configuration
+## AI & Data Tab
 
-Configure AI providers for each blueprint in a single, unified settings panel. Navigate to **Admin > Blueprints > [Blueprint] > Settings > AI Configuration**.
+The AI & Data tab combines AI provider configuration and a data sources reference grid into a single view. Navigate to **Admin > Blueprints > [Blueprint] > AI & Data**.
+
+### Data Sources
+
+The AI & Data tab includes a **Data Sources** grid showing supported database types. Each tile represents a database or data warehouse that can be connected to your blueprint:
+
+<CardGroup cols={4}>
+  <Card title="PostgreSQL" icon="database" />
+  <Card title="MySQL" icon="database" />
+  <Card title="Snowflake" icon="snowflake" />
+  <Card title="BigQuery" icon="chart-simple" />
+</CardGroup>
+
+Click any tile to view setup instructions for connecting that data source to your blueprint environment. The instructions guide you through configuring the necessary environment variables and connection credentials in your Qovery blueprint environment.
+
+<Info>
+Data source connections are configured at the Qovery environment level using environment variables. The Data Sources grid provides setup guidance for each database type - the actual credentials and connection parameters are managed through your blueprint's Qovery environment configuration.
+</Info>
+
+### AI Configuration
 
 The AI configuration uses an accordion interface where each provider can be independently enabled and configured.
 

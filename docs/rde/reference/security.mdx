@@ -1,15 +1,15 @@
 ---
 title: "Security & Data Residency"
-description: "How the RDE Portal keeps your data on your infrastructure with full admin control"
+description: "How the AI Builder Portal keeps your data on your infrastructure with full admin control"
 ---
 
 <Warning>
-**Preview**: Remote Dev Environments Portal is in preview. Security features are under active development and may evolve.
+**Preview**: AI Builder Portal is in preview. Security features are under active development and may evolve.
 </Warning>
 
 ## Overview
 
-Security is a foundational principle of the RDE Portal. The portal uses a **split architecture**: the control plane (portal UI and API) is hosted by Qovery at `rde.qovery.com`, while the **data plane** (workspace containers where your code, AI interactions, and applications run) stays **entirely on your own Kubernetes cluster**.
+Security is a foundational principle of the AI Builder Portal. The portal uses a **split architecture**: the control plane (portal UI and API) is hosted by Qovery at `rde.qovery.com`, while the **data plane** (workspace containers where your code, AI interactions, and applications run) stays **entirely on your own Kubernetes cluster**.
 
 **Your cluster is never exposed to the internet.** Qovery agents running on your cluster initiate all connections **outbound** to the Qovery control plane via TLS/gRPC. The control plane never connects inbound to your infrastructure. Source code, AI conversations, and development data never leave your cluster.
 
@@ -17,12 +17,12 @@ This page explains the security architecture in detail: the connectivity model, 
 
 ## Split Architecture: Control Plane vs. Data Plane
 
-The RDE Portal separates **orchestration** from **execution**. Qovery hosts the portal that manages the workflow. Your cluster hosts the workspaces where actual development happens.
+The AI Builder Portal separates **orchestration** from **execution**. Qovery hosts the portal that manages the workflow. Your cluster hosts the workspaces where actual development happens.
 
 ```mermaid
 flowchart TB
     subgraph Qovery["Qovery-Hosted (rde.qovery.com)"]
-        Portal["RDE Portal"]
+        Portal["AI Builder Portal"]
         DB["Database (Config Only)"]
     end
 
@@ -56,7 +56,7 @@ flowchart TB
 
 | Component | Where it runs | What it stores |
 |-----------|---------------|----------------|
-| **RDE Portal** | Qovery (rde.qovery.com) | Portal configuration (ACLs, theme, publish settings). Relays streaming traffic in memory - no code persisted. |
+| **AI Builder Portal** | Qovery (rde.qovery.com) | Portal configuration (ACLs, theme, publish settings). Relays streaming traffic in memory - no code persisted. |
 | **Portal Database** | Qovery (rde.qovery.com) | Configuration metadata only. No source code, no user data, no AI conversations. |
 | **Qovery Agents** | Your cluster | No persistent storage - agents relay traffic between the control plane and workspace containers. |
 | **Workspace containers** | Your cluster | Source code, dependencies, environment variables - isolated per user |
@@ -70,7 +70,7 @@ flowchart TB
 
 ## Cluster Connectivity Model
 
-This is the most important security property of the RDE Portal.
+This is the most important security property of the AI Builder Portal.
 
 Your Kubernetes cluster runs **Qovery agents** (Engine, Shell agent, and other components) that maintain persistent **outbound TLS/gRPC connections** to the Qovery control plane. Your cluster never exposes inbound ports to the internet - it is never directly addressable from outside your network.
 
@@ -260,7 +260,7 @@ For organizations in regulated industries - **financial services, healthcare, in
 
 When a finance analyst builds an internal tool on Lovable, that tool's code and the data it touches live on Lovable's shared infrastructure. Your auditor is not looking at Lovable's SOC 2 certificate - they are looking at your data perimeter. If company data flows through a vendor's shared cloud, you have a gap that no policy document closes.
 
-The RDE Portal solves this at the architecture level, not the policy level:
+The AI Builder Portal solves this at the architecture level, not the policy level:
 
 - **Your code never leaves your cluster.** Workspace containers run on your Kubernetes infrastructure. Source code, AI interactions, and application data stay inside your perimeter.
 - **Your cluster is never exposed.** Qovery agents initiate outbound TLS/gRPC connections to the control plane. No inbound ports. Not directly reachable from the internet. Ever.
@@ -273,13 +273,13 @@ For a CISO review, share the [Security & Data Residency](/rde/reference/security
 
 ## Comparison with Hosted Alternatives
 
-Non-technical teams across your organization are already using AI-powered builder tools like Lovable, Bolt.new, and Replit to create applications - often with company data and without IT oversight. These platforms offer consumer-grade governance: shared multi-tenant infrastructure, limited networking controls, no VPC peering, and incomplete audit trails. The RDE Portal provides the same ease of use with enterprise-grade security - your code and data stay on your infrastructure.
+Non-technical teams across your organization are already using AI-powered builder tools like Lovable, Bolt.new, and Replit to create applications - often with company data and without IT oversight. These platforms offer consumer-grade governance: shared multi-tenant infrastructure, limited networking controls, no VPC peering, and incomplete audit trails. The AI Builder Portal provides the same ease of use with enterprise-grade security - your code and data stay on your infrastructure.
 
 <Info>
 For a detailed analysis, read [Lovable, Bolt, and Replit Are Wonderful - Until Your CISO Finds Out](https://www.qovery.com/blog/lovable-bolt-replit-enterprise-limitations).
 </Info>
 
-| Aspect | RDE Portal | External AI Builders (Lovable, Bolt, Replit) |
+| Aspect | AI Builder Portal | External AI Builders (Lovable, Bolt, Replit) |
 |--------|-----------|------------------------|
 | **Where code lives** | Your Kubernetes cluster | Vendor's shared infrastructure |
 | **Where AI runs** | Your containers | Vendor's servers |
@@ -299,7 +299,7 @@ Because workspace containers run on your existing Qovery cluster, they inherit y
 
 ## Summary
 
-The RDE Portal is **secure by architecture, not by policy.** Security is not a layer added on top - it is the foundational design. The model can be summarized in three principles:
+The AI Builder Portal is **secure by architecture, not by policy.** Security is not a layer added on top - it is the foundational design. The model can be summarized in three principles:
 
 1. **Your code and data stay on your infrastructure.** Workspace containers run on your Kubernetes cluster. Source code, AI conversations, terminal history, and application data never leave your environment. The portal control plane (hosted by Qovery) manages orchestration and configuration only.
 

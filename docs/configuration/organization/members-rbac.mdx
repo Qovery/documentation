@@ -39,13 +39,12 @@ You can invite someone to join your organization by email. Once they accept the 
 The invited member will receive an email with instructions to join the organization.
 
 <Info>
-  Changing the role of a member requires the user to logout/login to make the
-  changes effective or wait a few minutes (max 1 hour).
+  Each user can only hold **one** role at a time. Changing the role of a member requires the user to logout/login to make the changes effective or wait a few minutes (max 1 hour).
 </Info>
 
 ## Default Roles
 
-Qovery provides 5 built-in roles. Each user can only hold **one** role at a time.
+Qovery provides 5 built-in roles with predefined permissions that apply across the entire organization.
 
 ### Owner
 
@@ -57,11 +56,11 @@ Same as Owner except cannot delete the organization or transfer ownership.
 
 ### DevOps
 
-Can manage organization infrastructure (clusters, registries, webhooks, API tokens) and has full access to all projects and environments across the organization.
+Can manage organization infrastructure (clusters, registries, webhooks, API tokens) and has full access to all projects and environments across the organization. Cannot manage members, roles, or billing.
 
 ### Billing Manager
 
-Can only manage billing. Has read-only access to clusters but no access to any project.
+Can manage billing only. Has read-only access to cluster information but no access to any project.
 
 ### Viewer
 
@@ -71,7 +70,7 @@ Read-only access to all organization resources, clusters, and projects.
 
 | Action | Owner | Admin | DevOps | Billing Manager | Viewer |
 | --- | :---: | :---: | :---: | :---: | :---: |
-| Read organization data | yes | yes | yes | yes | yes |
+| Read organization data (registries, clusters, label groups) | yes | yes | yes | yes | yes |
 | Edit organization settings | yes | yes | no | no | no |
 | Delete organization | yes | no | no | no | no |
 | Transfer ownership | yes | no | no | no | no |
@@ -80,41 +79,36 @@ Read-only access to all organization resources, clusters, and projects.
 | Manage clusters & container registries | yes | yes | yes | no | no |
 | Manage organization setup (API tokens, webhooks, SSO) | yes | yes | yes | no | no |
 | Create project | yes | yes | yes | no | no |
-| Full access to ALL projects & environments | yes | yes | yes | no | no |
-| Read-only access to ALL projects & environments | yes | yes | yes | no | yes |
+| Read any project & environment | yes | yes | yes | no | yes |
+| Deploy, manage, and configure any environment | yes | yes | yes | no | no |
 | Read cluster info | yes | yes | yes | yes | yes |
-
-<Info>
-  **DevOps vs Admin:** The main difference is that Admin can manage members/roles and billing, while DevOps cannot. Both have full access to all projects and environments, and both can generate API tokens.
-</Info>
 
 ## Custom Roles
 
-Custom roles let you grant access scoped to specific projects and clusters, instead of giving access across the entire organization.
+Custom roles let you grant access scoped to specific projects and clusters, instead of applying permissions across the entire organization. This is useful when you want to give a user access to only certain projects or restrict what they can do within a project.
 
-### What custom roles can and cannot do
+### Scope and limitations
 
-Custom roles are configured through **cluster-level** and **project-level** permissions only. They **always** inherit the ability to read organization data (registries, clusters, label groups), which is necessary to work with Qovery resources.
+Custom roles are configured through **cluster-level** and **project-level** permissions only. They always inherit the ability to read organization data (registries, clusters, label groups).
 
 **Custom roles cannot:**
 - Generate API tokens
 - Manage organization settings (webhooks, SSO)
 - Manage members & roles
 - Manage billing
-- Access projects or clusters beyond what is explicitly granted
 
-<Warning>
-  Because custom roles cannot generate API tokens, a user with a custom role cannot run `qovery token`. To use the Terraform provider, an org admin must generate an API token on their behalf, or the user must temporarily be assigned the built-in **DevOps** role.
-</Warning>
+<Info>
+  If a user with a custom role needs to generate an API token (e.g. for the CLI or Terraform provider), an org admin or DevOps user must generate it for them.
+</Info>
 
 ### Cluster Level Permissions
 
-Set per cluster (or for all clusters at once):
+Set per cluster, or applied to all clusters at once:
 
 | Level | What it allows |
 | --- | --- |
-| **Read-Only** | View cluster information (name, region, status). Minimum level. |
-| **Create Environment** | Create and manage environments on this cluster. Cluster settings (nodes, type) remain read-only. Required for `terraform apply` when managing environments. |
+| **Read-Only** | View cluster information (name, region, status). |
+| **Create Environment** | Create and manage environments on this cluster. Cluster settings (nodes, instance type) remain read-only. |
 | **Full Access** | Everything in Create Environment, plus manage cluster settings (start/stop, node scaling, configuration). |
 
 ### Project Level Permissions
@@ -123,41 +117,68 @@ Set per project, independently for each environment type (Development, Preview, 
 
 | Level | What it allows |
 | --- | --- |
-| **No Access** | The user cannot see or interact with this environment type. |
+| **No Access** | No visibility or interaction with this environment type. |
 | **Read-Only** | View environments, services, logs, and variables. No write access. |
 | **Deploy** | Everything in Read-Only, plus trigger deployments, stop services, and connect via shell. Cannot modify service configuration or environment variables. |
-| **Manage** | Everything in Deploy, plus edit service configuration, manage environment variables and secrets, create and delete services. Required for `terraform apply`. |
-| **Full Access** | Everything in Manage, plus delete environments and manage project-level settings. Equivalent to project admin. |
+| **Manage** | Everything in Deploy, plus edit service configuration, manage environment variables and secrets, and create or delete services. |
+| **Full Access** | Everything in Manage, plus delete environments and manage project-level settings. |
 
-### Comparing a custom role to the built-in DevOps role
+### Custom roles vs built-in DevOps role
 
-A common question is whether a custom role with **Full Access** on clusters and **Full Access** on all projects is equivalent to the DevOps role.
+A custom role configured with Full Access on all clusters and Full Access on all projects covers the same day-to-day operations as the DevOps role, but with two differences: it cannot generate API tokens or manage org-level settings, and it can optionally be scoped to specific projects only.
 
-| Capability | DevOps (built-in) | Custom role (Full Access clusters + Full Access all projects) |
+| Capability | DevOps (built-in) | Custom role |
 | --- | :---: | :---: |
-| Full access to all clusters | yes | yes (if set on all clusters) |
-| Full access to all projects & environments | yes | yes (if set on all projects) |
+| Access to all projects & environments | yes | only if explicitly granted |
+| Full cluster management | yes | only if explicitly granted |
 | Read org data (registries, label groups) | yes | yes |
-| Generate API tokens | yes | **no** |
-| Manage org setup (webhooks, SSO) | yes | **no** |
+| Generate API tokens | yes | no |
+| Manage org setup (webhooks, SSO) | yes | no |
 | Manage members & roles | no | no |
 | Manage billing | no | no |
-| Scoped to specific projects only | no | **yes** |
 
-**Key takeaway:** A custom role with Full Access everywhere is close to DevOps for day-to-day operations, but cannot generate API tokens or manage org-level settings. If a user needs to generate a Terraform API token themselves, they need the built-in **DevOps** role (or Admin/Owner).
+### Example configurations
 
-### Minimum custom role for Terraform
+**Developer — access to a specific project**
 
-To run `terraform plan` and `terraform apply` against a specific project:
+A developer who should deploy and configure services in one project but have no visibility into other projects:
 
-| Scope | Minimum level |
+| Scope | Level |
 | --- | --- |
-| Cluster (hosting the target environment) | **Create Environment** |
-| Project — target environment type | **Manage** |
-| Project — other environment types | No Access (or higher if needed) |
+| Cluster | Read-Only |
+| Target project — Development | Manage |
+| Target project — Preview | Manage |
+| Target project — Staging | Read-Only |
+| Target project — Production | No Access |
 | Other projects | No Access |
 
-The API token itself must be generated by an org admin or a DevOps user and shared with the custom-role user as `QOVERY_API_TOKEN`.
+**On-call engineer — deploy to any project, no config changes**
+
+An engineer who needs to trigger deployments and read logs across all projects in an incident, but should not be able to modify service configuration:
+
+| Scope | Level |
+| --- | --- |
+| All clusters | Read-Only |
+| All projects — all environment types | Deploy |
+
+**Security auditor — read-only across everything**
+
+A user who needs visibility into all environments for audit purposes:
+
+| Scope | Level |
+| --- | --- |
+| All clusters | Read-Only |
+| All projects — all environment types | Read-Only |
+
+**Infrastructure-as-code operator — manage a specific environment**
+
+A user running Terraform or similar tooling against a single environment (API token must be generated by an admin):
+
+| Scope | Level |
+| --- | --- |
+| Cluster hosting the target environment | Create Environment |
+| Target project — relevant environment type | Manage |
+| Other environment types / projects | No Access |
 
 ## Transfer Ownership
 

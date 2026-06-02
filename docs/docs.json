@@ -375,7 +375,8 @@
                       "configuration/integrations/ci-cd/github-actions",
                       "configuration/integrations/ci-cd/gitlab-ci",
                       "configuration/integrations/ci-cd/circleci",
-                      "configuration/integrations/ci-cd/jenkins"
+                      "configuration/integrations/ci-cd/jenkins",
+                      "configuration/integrations/argocd"
                     ]
                   }
                 ]
@@ -393,12 +394,6 @@
                   "configuration/integrations/observability/qovery-observe",
                   "configuration/integrations/observability/datadog",
                   "configuration/integrations/observability/kubecost"
-                ]
-              },
-              {
-                "group": "GitOps",
-                "pages": [
-                  "configuration/integrations/argocd"
                 ]
               },
               {

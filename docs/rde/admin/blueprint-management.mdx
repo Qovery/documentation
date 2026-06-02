@@ -447,7 +447,7 @@ RUN RDE_CONFIG=/path/to/custom-config.yml curl -fsSL https://rde.qovery.com/inst
 | Qovery CLI | `qovery_cli` | latest | Qovery management CLI |
 | Zellij | `zellij` | `0.44.3` | Terminal multiplexer for session persistence |
 | ttyd | `ttyd` | `1.7.7` | Web-based terminal server |
-| RTK | `rtk` | latest | Token compression for LLM tools |
+| RTK | `rtk` | `0.42.0` | Token compression for LLM tools |
 | code-server | `code_server` | `4.118.0` | VS Code in the browser |
 | ripgrep | `ripgrep` | system | Fast recursive search |
 | fzf | `fzf` | system | Fuzzy file finder |
@@ -455,6 +455,29 @@ RUN RDE_CONFIG=/path/to/custom-config.yml curl -fsSL https://rde.qovery.com/inst
 <Tip>
 The install script and forking the template repository are complementary approaches. Use the install script when you want to keep your existing base image and add RDE tools on top. Fork the template when you want full control over the workspace image from scratch.
 </Tip>
+
+#### Integrity & Reproducibility
+
+All binary downloads (Go, GitHub CLI, Zellij, ttyd, RTK) are **SHA256-verified** - the script checks each downloaded artifact against a pinned checksum and aborts the build if it doesn't match. Node.js is installed via a **GPG-verified apt source** instead of piping a setup script into bash.
+
+For production deployments where you need full control over what runs during your Docker build, **vendor the install script** into your repository instead of fetching it at build time:
+
+```dockerfile
+# 1. Download the script once and commit it to your repo:
+#    curl -fsSL https://rde.qovery.com/install.sh -o vendor/rde-install.sh
+
+# 2. Use COPY instead of curl in your Dockerfile:
+COPY .config.rde.qovery.yml /tmp/.config.rde.qovery.yml
+COPY vendor/rde-install.sh /tmp/rde-install.sh
+RUN RDE_CONFIG=/tmp/.config.rde.qovery.yml bash /tmp/rde-install.sh \
+    && rm /tmp/rde-install.sh /tmp/.config.rde.qovery.yml
+```
+
+This eliminates the network fetch during build, pins the script to a known-good version in your git history, and lets you review changes before updating.
+
+<Info>
+The Qovery CLI and Qovery Skills installs currently use unpinned `curl | bash` from Qovery-controlled endpoints (`get.qovery.com` and `skill.qovery.com`). Version pinning for these components is planned.
+</Info>
 
 ### Environment Variables
 

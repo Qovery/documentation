@@ -386,6 +386,9 @@ Each value can be:
 ```yaml
 # .config.rde.qovery.yml
 
+# Workspace user (default: coder)
+rde_user: "coder"
+
 # Runtimes
 nodejs: "22"        # Node.js 22 LTS
 python: true        # latest Python 3
@@ -442,6 +445,7 @@ RUN RDE_CONFIG=/path/to/custom-config.yml curl -fsSL https://rde.qovery.com/inst
 
 | Component | Config Key | Default Version | Description |
 |-----------|-----------|-----------------|-------------|
+| Workspace user | `rde_user` | `coder` | Non-root user that owns the workspace |
 | Node.js | `nodejs` | `22` | Node.js LTS via NodeSource |
 | Python | `python` | system | Python 3 + pip + venv |
 | Ruby | `ruby` | system | Ruby + Bundler |
@@ -514,6 +518,27 @@ This eliminates the network fetch during build, pins the script to a known-good 
 <Info>
 The Qovery CLI and Qovery Skills installs currently use unpinned `curl | bash` from Qovery-controlled endpoints (`get.qovery.com` and `skill.qovery.com`). Version pinning for these components is planned.
 </Info>
+
+##### Custom workspace user
+
+By default, the install script creates a `coder` user and installs everything under `/home/coder`. To use a different user, set `rde_user` in your config or the `RDE_USER` environment variable:
+
+```yaml
+rde_user: "builder"
+```
+
+Or via environment variable (takes priority over config):
+
+```dockerfile
+RUN RDE_USER=ubuntu curl -fsSL https://rde.qovery.com/install.sh | bash
+WORKDIR /home/ubuntu/project
+```
+
+If the user already exists in your base image (e.g., `node` in `node:22`, `ubuntu` in `ubuntu:24.04`), the script will use it as-is and detect its home directory automatically. If it doesn't exist, the script creates it with `/home/<user>`.
+
+<Tip>
+When using a custom user, update the `WORKDIR` in your Dockerfile to match the user's home directory (e.g., `/home/builder/project`).
+</Tip>
 
 ### Environment Variables
 

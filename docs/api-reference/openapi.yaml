@@ -17236,6 +17236,19 @@ components:
           nullable: true
           minimum: 0
           description: Sets the default idle connection timeout (in seconds) applied to Gateway API routes when the service does not override it.
+        envoy.gateway_api.path_disable_merge_slashes:
+          type: boolean
+          default: false
+          description: Disables Envoy Gateway merging of adjacent slashes in incoming request paths at gateway level.
+        envoy.gateway_api.path_escaped_slashes_action:
+          type: string
+          enum:
+            - KeepUnchanged
+            - RejectRequest
+            - UnescapeAndForward
+            - UnescapeAndRedirect
+          default: UnescapeAndRedirect
+          description: Controls how escaped slash and backslash sequences in incoming request paths are handled at gateway level.
         envoy.gateway_api.retry.num_retries:
           type: integer
           nullable: true

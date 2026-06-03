@@ -1403,6 +1403,54 @@ After changing this setting, redeploy your applications and services in this clu
 600
 ```
 
+<a id="envoy-gateway-api-path-disable-merge-slashes"></a>
+
+### envoy.gateway_api.path_disable_merge_slashes
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/scaleway-icon.svg" alt="Scaleway" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/gcp-icon.svg" alt="GCP" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/azure-icon.svg" alt="Azure" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `boolean`
+
+**Description:** Controls Envoy Gateway path handling at cluster level by disabling the default behavior that merges adjacent slashes in the request path. When set to `true`, repeated slashes such as `//` are preserved instead of being collapsed.
+
+**Use Case:** Preserve application routing semantics when duplicate slashes are meaningful in upstream paths.
+
+**Learn More:** See [Envoy Gateway PathSettings reference](https://gateway.envoyproxy.io/latest/api/extension_types/#pathsettings).
+
+**Default Value:** `false`
+
+**Example:**
+```json
+true
+```
+
+<a id="envoy-gateway-api-path-escaped-slashes-action"></a>
+
+### envoy.gateway_api.path_escaped_slashes_action
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/scaleway-icon.svg" alt="Scaleway" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/gcp-icon.svg" alt="GCP" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/azure-icon.svg" alt="Azure" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `string` (enum)
+
+**Description:** Controls how Envoy Gateway handles escaped slash and backslash sequences in incoming request paths at cluster level, including `%2F`, `%2f`, `%5C`, and `%5c`.
+
+**Possible Values:**
+- `KeepUnchanged`: Preserve escaped sequences exactly as received.
+- `RejectRequest`: Reject requests containing escaped slash or backslash sequences.
+- `UnescapeAndForward`: Decode escaped sequences and forward the request without redirecting.
+- `UnescapeAndRedirect`: Decode escaped sequences and redirect to the normalized path.
+
+**Use Case:** Preserve encoded path segments for applications such as WOPI / Collabora, or explicitly standardize on Envoy path normalization behavior cluster-wide.
+
+**Learn More:** See [Envoy Gateway PathEscapedSlashAction reference](https://gateway.envoyproxy.io/latest/api/extension_types/#pathescapedslashaction) and [PathSettings reference](https://gateway.envoyproxy.io/latest/api/extension_types/#pathsettings).
+
+**Default Value:** `UnescapeAndRedirect`
+
+**Example:**
+```json
+"KeepUnchanged"
+```
+
 <a id="envoy-gateway-api-retry-num-retries"></a>
 
 ### envoy.gateway_api.retry.num_retries

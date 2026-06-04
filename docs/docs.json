@@ -384,7 +384,8 @@
               {
                 "group": "Secrets Management",
                 "pages": [
-                  "configuration/integrations/secret-managers/doppler"
+                  "configuration/integrations/secret-managers/doppler",
+                  "configuration/integrations/secret-managers/secret-manager-access"
                 ]
               },
               {

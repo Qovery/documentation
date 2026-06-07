@@ -39,7 +39,7 @@ These settings are specific to agent blueprints. They control which runtime exec
 | **In-Review State** | String or null | `null` | The Linear workflow state the issue transitions to when the agent opens a pull request. Optional. |
 | **Needs-Human State** | String or null | `null` | The Linear workflow state the issue transitions to when the agent fails or times out. Optional. |
 | **Max Concurrent Runs** | Number | `3` | Maximum number of issues the agent works on simultaneously. Each concurrent run launches a separate workspace. |
-| **Run Timeout** | Number (minutes) | `30` | Maximum duration for a single agent run. The workspace is stopped when the timeout is reached, and the issue transitions to the Needs-Human state if configured. |
+| **Run Timeout** | Number (minutes) | `60` | Maximum duration for a single agent run. The workspace is stopped when the timeout is reached, and the issue transitions to the Needs-Human state if configured. |
 
 ## Runtime Details
 

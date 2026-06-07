@@ -159,6 +159,23 @@ All comments are posted by the **Qovery Autonomous Agent** bot identity (`autono
 Lifecycle comments are append-only. The system never edits or deletes previous comments, preserving a complete history of agent activity on each issue.
 </Info>
 
+## Controlling Agents from Linear
+
+Once an agent is running, you can control it directly from the Linear issue by posting a comment with one of these commands:
+
+| Command | Action |
+|---------|--------|
+| `/stop` | Stop the agent and its workspace environment |
+| `/restart` | Restart the workspace environment |
+| `/delete` | Stop the agent and mark the run as done |
+| `/status` | Show the current agent status and workspace state |
+
+Commands are processed by the portal and take effect within seconds. The system posts a confirmation comment on the issue when the action completes.
+
+<Tip>
+This gives your team a way to manage autonomous agents without leaving Linear. If an agent is heading in the wrong direction, a developer can `/stop` it, update the issue description with more context, and let the agent retry.
+</Tip>
+
 ## Concurrency and Timing
 
 ### Polling Interval

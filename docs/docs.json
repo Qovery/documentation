@@ -628,7 +628,8 @@
                   "rde/agents/getting-started",
                   "rde/agents/agent-blueprints",
                   "rde/agents/managing-runs",
-                  "rde/agents/linear-integration"
+                  "rde/agents/linear-integration",
+                  "rde/agents/agent-template"
                 ]
               }
             ]

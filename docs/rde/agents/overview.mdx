@@ -13,11 +13,11 @@ Linear is currently supported as the project tracker. Jira and GitHub Issues int
 
 ## How It Works
 
-When an issue is labeled in your project tracker, an agent claims it, launches a workspace, writes the code, opens a pull request, and shuts down.
+When a user @mentions or assigns the agent on a Linear issue, the agent claims it instantly, launches a workspace, writes the code, opens a pull request, and shuts down. Progress is streamed back to Linear in real time.
 
 ```mermaid
 flowchart LR
-    A["Issue labeled\nin Linear"] --> B["Agent\nclaims issue"]
+    A["Agent @mentioned\nor assigned"] --> B["Agent\nclaims issue"]
     B --> C["Workspace\nlaunches"]
     C --> D["Agent\nwrites code"]
     D --> E["PR opened"]
@@ -37,7 +37,7 @@ Autonomous agents and workspaces share the same underlying infrastructure but se
 
 | | Workspaces | Autonomous Agents |
 |---|---|---|
-| **Trigger** | Human clicks "Create" | Issue labeled in project tracker |
+| **Trigger** | Human clicks "Create" | Agent @mentioned or assigned on issue |
 | **Interaction** | Human works in browser | AI agent runs autonomously |
 | **Output** | Running application | Pull request |
 | **Lifecycle** | Manual start/stop | Auto-launch, auto-stop on completion |
@@ -74,7 +74,7 @@ For details on the underlying infrastructure, see [Architecture](/rde/reference/
 
 ## Supported Project Trackers
 
-**Linear** is the currently supported project tracker. You connect your Linear workspace, configure which labels trigger agent runs, and the system handles the rest - from issue assignment to PR creation.
+**Linear** is the currently supported project tracker. You connect your Linear workspace via OAuth, and your team triggers agents by @mentioning or assigning them on issues. The agent responds instantly with a real-time plan and progress updates visible directly in Linear.
 
 <Info>
 **Jira** and **GitHub Issues** integrations are planned. If you need a specific integration, contact the Qovery team.

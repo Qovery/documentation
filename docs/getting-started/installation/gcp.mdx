@@ -3,6 +3,8 @@ title: "Install Qovery on GCP"
 description: "Complete guide to installing Qovery on Google Cloud Platform with GKE Autopilot"
 ---
 
+import GcpCredentials from "/snippets/gcp-credentials.mdx";
+
 Install Qovery on your GCP account and deploy a fully managed Kubernetes cluster (GKE Autopilot) in less than 20 minutes.
 
 ## Overview
@@ -53,142 +55,7 @@ If you don't have enough quota, request an increase through the GCP Console. Quo
 
 ## Step 1: Create GCP Credentials
 
-Qovery needs credentials to manage resources in your GCP project. We use a secure service account approach with minimal required permissions.
-
-### Prepare Your GCP Project
-
-<Steps>
-  <Step title="Create or Select Project">
-    1. Go to [Google Cloud Console](https://console.cloud.google.com)
-    2. Either create a new project or select an existing one
-    3. Ensure billing is enabled for the project
-
-    <Frame>
-      <img src="/images/gcp-credentials/gcp_project.png" alt="Select or create GCP project" />
-    </Frame>
-
-    <Tip>
-    Use a dedicated project for Qovery to keep resources organized and costs trackable.
-    </Tip>
-  </Step>
-
-  <Step title="Note Your Project ID">
-    Copy your **Project ID** (not the project name) from the project selector.
-
-    Example: `my-company-production-123456`
-
-    <Info>
-    You'll need this Project ID in the next steps.
-    </Info>
-  </Step>
-</Steps>
-
-### Generate Installation Command
-
-<Steps>
-  <Step title="Start Cluster Creation">
-    1. Go to [Qovery Console](https://console.qovery.com)
-    2. Go to your organization overview and click on the **Clusters** tab
-    3. Click **Create Cluster**
-    4. Select **GCP** as the cloud provider
-  </Step>
-
-  <Step title="Enter Project Details">
-    1. Enter your **Project ID**
-    2. Click **Next**
-
-    Qovery will generate a secure installation command for you.
-  </Step>
-
-  <Step title="Copy the Command">
-    Copy the generated command to your clipboard.
-
-    The command will look like:
-    ```bash
-    curl https://setup.qovery.com/create_credentials_gcp.sh | bash -s -- YOUR_PROJECT_ID qovery_role qovery-service-account
-    ```
-
-    <Info>
-    This script creates a service account with minimal required permissions. For a detailed breakdown of every permission and why it's needed, see the [GCP IAM Permissions Reference](/getting-started/security-and-compliance/gcp-iam-permissions).
-    </Info>
-
-    <Warning>
-    If you enable **static egress IPs** for GCP NAT Gateway, the role must also include `compute.addresses.create`, `compute.addresses.get`, `compute.addresses.list`, and `compute.addresses.delete`.
-    Typical Terraform failure when missing: `Required 'compute.addresses.create' permission ... forbidden`.
-    </Warning>
-  </Step>
-</Steps>
-
-### Run Installation Script
-
-<Steps>
-  <Step title="Open Google Cloud Shell">
-    1. In Google Cloud Console, click the **Cloud Shell** icon (terminal icon) in the top-right
-    2. Wait for Cloud Shell to initialize
-    3. Ensure you're in the correct project: `gcloud config get-value project`
-
-    ![Google Cloud Shell](/images/gcp-credentials/cloud-shell.png)
-  </Step>
-
-  <Step title="Run the Command">
-    1. Paste the command from Qovery into Cloud Shell
-    2. Press **Enter**
-    3. The script will:
-       - Enable required GCP APIs (Container, Compute, Artifact Registry, Storage, Cloud Resource Manager, Cloud Run)
-       - Create a service account named `qovery-service-account`
-       - Assign necessary IAM roles
-       - Generate and download a JSON key file (`key.json`)
-
-    <Frame>
-      <img src="/images/gcp-credentials/gcp_shell_1.png" alt="Run credential creation script" />
-    </Frame>
-
-    **Example output:**
-    ```bash
-    Activating services APIs
-    Operation "operations/acf.p2-..." finished successfully.
-    ...
-    Creating service account qovery-service-account
-    Created service account [qovery-service-account].
-    ...
-    created key [abc123...] of type [json] as [key.json]
-    ✓ Credentials configured successfully
-    ```
-  </Step>
-
-  <Step title="Download the Key File">
-    1. In Cloud Shell, click the **More** menu (three dots)
-    2. Select **Download**
-    3. Enter the file path: `key.json`
-    4. Save the file securely
-
-    <Frame>
-      <img src="/images/gcp-credentials/gcp_shell_5.png" alt="Download key.json file from Cloud Shell" />
-    </Frame>
-
-    <Warning>
-    **Keep this JSON key file secure!** It provides access to your GCP project. Never commit it to version control.
-    </Warning>
-  </Step>
-
-  <Step title="Upload to Qovery">
-    1. Return to Qovery Console
-    2. Upload the `key.json` file when prompted
-    3. Qovery will verify the credentials
-
-    <Frame>
-      <img src="/images/gcp-credentials/gcp_shell_6.png" alt="Upload credentials to Qovery Console" />
-    </Frame>
-
-    <Tip>
-    You can reuse these credentials for multiple clusters in the same GCP project.
-    </Tip>
-  </Step>
-</Steps>
-
-<Info>
-**Source**: Content above is maintained in `/snippets/gcp-credentials.mdx`. Update snippet first, then copy to all usage locations.
-</Info>
+<GcpCredentials />
 
 ## Step 2: Configure Your Cluster
 

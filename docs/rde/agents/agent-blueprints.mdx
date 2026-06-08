@@ -18,7 +18,7 @@ Agent blueprints share the same underlying infrastructure as workspace blueprint
 | Aspect | Workspace Blueprint | Agent Blueprint |
 |---|---|---|
 | **Purpose** | Human development environment | Autonomous AI agent |
-| **Trigger** | User creates workspace from catalog | Issue labeled in project tracker |
+| **Trigger** | User creates workspace from catalog | Agent @mentioned or assigned on issue |
 | **Appears in catalog** | Yes | No |
 | **Additional config** | None | Runtime, repositories, Linear mapping |
 | **Lifecycle states** | Testing / Enabled / Disabled | Testing / Enabled / Disabled |
@@ -34,10 +34,10 @@ These settings are specific to agent blueprints. They control which runtime exec
 | **Autonomous Enabled** | Boolean | `false` | Enables autonomous mode on the blueprint. When disabled, the blueprint behaves as a standard workspace blueprint. |
 | **Agent Runtime** | Enum | `claude` | The AI coding runtime that drives the agent. See [Runtime Details](#runtime-details) for options. |
 | **Linear Team** | String or null | `null` | The Linear team whose issues the agent monitors. Required when autonomous mode is enabled. |
-| **Issue Label** | String | `qovery-agent-ready` | The Linear label that triggers an agent run. When an issue in the configured team receives this label, the agent claims it. |
 | **In-Progress State** | String or null | `null` | The Linear workflow state the issue transitions to when the agent claims it. Required when autonomous mode is enabled. |
 | **In-Review State** | String or null | `null` | The Linear workflow state the issue transitions to when the agent opens a pull request. Optional. |
 | **Needs-Human State** | String or null | `null` | The Linear workflow state the issue transitions to when the agent fails or times out. Optional. |
+| **System Prompt** | String | (empty) | Optional instructions prepended to the issue context when the agent starts. Use this to provide project-specific guidance to the AI runtime. |
 | **Max Concurrent Runs** | Number | `3` | Maximum number of issues the agent works on simultaneously. Each concurrent run launches a separate workspace. |
 | **Run Timeout** | Number (minutes) | `60` | Maximum duration for a single agent run. The workspace is stopped when the timeout is reached, and the issue transitions to the Needs-Human state if configured. |
 
@@ -109,14 +109,14 @@ From this tab you can:
 
 - Enable or disable autonomous mode
 - Change the AI runtime
-- Update the Linear team, issue label, and workflow state mappings
+- Update the Linear team and workflow state mappings
 - Adjust concurrency limits and run timeout
 
 <Warning>
 The **In-Progress State** is required for the agent to claim issues. If autonomous mode is enabled but no In-Progress state is set, the save button is disabled and the agent cannot run. Configure this field before enabling autonomous mode.
 </Warning>
 
-If the portal does not have a Linear token configured, a warning is displayed on the Autonomous tab prompting you to connect Linear first. See [Linear Integration](/rde/agents/linear-integration) for setup instructions.
+If the portal does not have Linear connected via OAuth, a warning is displayed on the Autonomous tab prompting you to connect Linear first. See [Linear Integration](/rde/agents/linear-integration#connecting-linear) for setup instructions.
 
 ## Next Steps
 

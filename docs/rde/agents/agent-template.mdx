@@ -63,6 +63,8 @@ When the portal launches a workspace from the template, the container executes a
     | Cursor CLI | `cursor-agent "<task>"` |
 
     The command is wrapped in a `timeout` using the configured run timeout. Exit code 124 indicates a timeout.
+
+    During execution, the agent can stream live progress updates to Linear via the portal's progress endpoint. These appear as real-time "thought" activities in the Linear issue, giving your team visibility into what the agent is doing.
   </Step>
 
   <Step title="Commit and push">
@@ -74,7 +76,7 @@ When the portal launches a workspace from the template, the container executes a
   </Step>
 
   <Step title="Report results">
-    The container posts a lifecycle comment on the Linear issue with the PR URL, transitions the issue to the In-Review state (if configured), and calls back to the portal API to record the result. The portal then stops the workspace.
+    The container calls back to the portal API to record the result. The portal then emits structured activities to the Linear agent session - updating the plan to completed, adding external URLs (dashboard link, PR link), and posting a response or error activity visible inline in Linear. A lifecycle comment is also posted on the issue for audit purposes. The workspace is automatically cleaned up after completion.
   </Step>
 </Steps>
 

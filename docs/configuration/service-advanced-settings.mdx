@@ -105,6 +105,20 @@ Use the **Show only overridden** toggle to view only settings that differ from d
 
 **Use Case:** Enable this setting when your build tool (such as Turbo, Bazel, or Nx) has its own caching mechanism. In these cases, BuildKit's registry cache import/export operations add overhead without benefit, as the application-level cache is more effective. Disabling BuildKit cache can significantly reduce build times for projects using these tools.
 
+<a id="build-skip-git-submodules"></a>
+
+### build.skip_git_submodules
+
+<span class="badge-app">Application</span> <span class="badge-cronjob">Cronjob</span> <span class="badge-job">Job</span>
+
+**Type:** `boolean`
+
+**Description:** Allows you to skip the Git submodules retrieval when Qovery clones your repository. By default, when a `.gitmodules` file is present, Qovery clones every submodule defined in it before building your service.
+
+**Default Value:** `false`
+
+**Use Case:** Enable this setting when your repository contains submodules that are not required to build your service — for example, a private submodule used only for infrastructure workflows. Without it, the deployment fails if Qovery has no credentials for the private submodule, forcing you to configure SSH keys for code that is never used in the build.
+
 ---
 
 ## Deployment Settings

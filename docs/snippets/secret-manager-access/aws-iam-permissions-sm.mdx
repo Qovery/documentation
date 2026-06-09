@@ -1,0 +1,53 @@
+<AccordionGroup>
+  <Accordion title="IAM permissions for AWS Secrets Manager">
+    ```
+    {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Effect": "Allow",
+          "Action": [
+            "secretsmanager:GetResourcePolicy",
+            "secretsmanager:GetSecretValue",
+            "secretsmanager:DescribeSecret",
+            "secretsmanager:ListSecretVersionIds",
+            "secretsmanager:ListSecrets"
+          ],
+          "Resource": "*"
+        }
+      ]
+    }
+    ```
+    <Warning>
+      You can restrict access to specific resources using wildcards.
+
+      However, `secretsmanager:ListSecrets` must always target `Resource: "*"` — AWS does not support resource-level restrictions for this action. Without it, Qovery cannot list available secrets when configuring an external secret.
+
+      Example:
+      ```
+      {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Action": [
+              "secretsmanager:GetResourcePolicy",
+              "secretsmanager:GetSecretValue",
+              "secretsmanager:DescribeSecret",
+              "secretsmanager:ListSecretVersionIds"
+            ],
+            "Resource": "arn:aws:secretsmanager:eu-west-3:XXXXXXXXXXXX:secret:staging*"
+          },
+          {
+            "Effect": "Allow",
+            "Action": [
+              "secretsmanager:ListSecrets"
+            ],
+            "Resource": "*"
+          }
+        ]
+      }
+      ```
+    </Warning>
+  </Accordion>
+</AccordionGroup>

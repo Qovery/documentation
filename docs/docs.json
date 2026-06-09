@@ -385,7 +385,15 @@
                 "group": "Secrets Management",
                 "pages": [
                   "configuration/integrations/secret-managers/doppler",
-                  "configuration/integrations/secret-managers/secret-manager-access"
+                  {
+                    "group": "Secret Manager Integration",
+                    "pages": [
+                      "configuration/integrations/secret-managers/secret-manager-access",
+                      "configuration/integrations/secret-managers/aws-secrets-manager",
+                      "configuration/integrations/secret-managers/aws-parameter-store",
+                      "configuration/integrations/secret-managers/gcp-secret-manager"
+                    ]
+                  }
                 ]
               },
               {

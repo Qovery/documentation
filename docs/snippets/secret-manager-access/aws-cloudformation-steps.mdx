@@ -1,0 +1,29 @@
+#### Use our CloudFormation stack to create the AWS Role
+
+Use our CloudFormation stack to create the AWS Role with the necessary permissions.
+<Frame>
+  <img src="/images/configuration/secret-manager-access/sma-arn-role-aws-secret-manager.png" alt="Configure AWS ARN Role authentication"/>
+</Frame>
+
+**Setup Steps**:
+
+1. **Open CloudFormation**: click on the link "Cloudformation stack"
+   - This opens AWS CloudFormation in a new tab (login to AWS if needed)
+
+2. **In AWS CloudFormation Console**:
+   - Click **Next** (template is pre-filled with Qovery's requirements)
+   - Stack name: Keep default `qovery-secrets-manager-role-creation` or customize
+   - **Parameters**:
+     - **OIDCProviderURL**: this is your cluster OIDC Provider URL automatically filled, no need to edit it
+     - **RoleName**: this is the name of the IAM Role that will be created, keep default or customize
+   - ✅ **Important**: Check **"I acknowledge that AWS CloudFormation might create IAM resources"**
+   - Click **Create stack**
+
+3. **Wait for completion** (~1 minute):
+   - Status changes: `CREATE_IN_PROGRESS` → `CREATE_COMPLETE`
+   - Refresh page if needed
+
+4. **Get the Role ARN**:
+   - Click on the **Outputs** tab
+   - Find **RoleARN** key
+   - Copy the value

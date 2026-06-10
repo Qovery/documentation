@@ -313,8 +313,7 @@
                 "group": "Projects & Environments",
                 "pages": [
                   "configuration/project",
-                  "configuration/environment",
-                  "configuration/environment-variables"
+                  "configuration/environment"
                 ]
               },
               {
@@ -382,11 +381,12 @@
                 ]
               },
               {
-                "group": "Secrets Management",
+                "group": "Environment Variables & Secrets",
                 "pages": [
+                  "configuration/environment-variables",
                   "configuration/integrations/secret-managers/doppler",
                   {
-                    "group": "Overview",
+                    "group": "Secret Manager Integration",
                     "pages": [
                       "configuration/integrations/secret-managers/secret-manager-access",
                       "configuration/integrations/secret-managers/aws-secrets-manager",

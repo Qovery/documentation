@@ -55,6 +55,24 @@ Secrets are encrypted variables for sensitive data. They are encrypted at rest a
 Always mark sensitive data as secrets. Secret values cannot be viewed in the console once created - you can only update or delete them.
 </Warning>
 
+## External Secrets
+
+External secrets let you inject values stored in a third-party secrets manager directly into your services as environment variables, without copying them into Qovery. The secret value is fetched from your provider at deployment time.
+
+**Supported providers**:
+- AWS Secrets Manager
+- AWS Parameter Store
+- GCP Secret Manager
+
+**When to use external secrets instead of built-in secrets**:
+- Your secrets are already managed centrally in a secrets manager
+- You need fine-grained access control at the secrets manager level
+- You want a single source of truth across multiple tools and teams
+
+<Card title="Configure Secret Manager Integration" icon="key" href="/configuration/integrations/secret-managers/secret-manager-access">
+  Set up ESO and connect your cluster to AWS or GCP secrets providers
+</Card>
+
 ## Variable Scopes
 
 Environment variables can be defined at three different scopes:

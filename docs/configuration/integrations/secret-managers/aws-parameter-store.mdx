@@ -1,13 +1,13 @@
 ---
-title: "AWS Secrets Manager"
-description: "Connect your Qovery cluster to AWS Secrets Manager using ESO"
+title: "AWS Parameter Store"
+description: "Connect your Qovery cluster to AWS Parameter Store using ESO"
 ---
 
-import AwsIamPermissionsSm from '/snippets/secret-manager-access/aws-iam-permissions-sm.mdx';
+import AwsIamPermissionsPs from '/snippets/secret-manager-access/aws-iam-permissions-ps.mdx';
 import AwsCloudFormationSteps from '/snippets/secret-manager-access/aws-cloudformation-steps.mdx';
 
 <Info>
-  Available on **AWS Managed Clusters**. You can also access AWS Secrets Manager from a GCP Managed Cluster using cross-cloud static credentials.
+  Available on **AWS Managed Clusters**. You can also access AWS Parameter Store from a GCP Managed Cluster using cross-cloud static credentials.
 </Info>
 
 ## From an AWS Managed Cluster
@@ -17,7 +17,7 @@ Choose the authentication method that best fits your security requirements:
 <Tabs>
   <Tab title="AWS Automatic Authentication">
     <Info>
-      This authentication gives you access to **all secrets** located in the same AWS account as your cluster.
+      This authentication gives you access to **all parameters** located in the same AWS account as your cluster.
     </Info>
     <Info>
       AWS Automatic & AWS Role authentications are mutually exclusive.
@@ -26,7 +26,7 @@ Choose the authentication method that best fits your security requirements:
     This is the simplest and quickest way to use your external secrets inside your services.
 
     The following information is required:
-    * The target AWS Region where your secrets live
+    * The target AWS Region where your parameters live
     * The secret manager access name
 
     <Frame>
@@ -35,7 +35,7 @@ Choose the authentication method that best fits your security requirements:
 
     Qovery automatically creates an AWS IAM Role with the following permissions:
     <AccordionGroup>
-      <Accordion title="IAM permissions details for AWS Secrets Manager">
+      <Accordion title="IAM permissions details for AWS Parameter Store">
         ```
         {
           "Version": "2012-10-17",
@@ -43,11 +43,10 @@ Choose the authentication method that best fits your security requirements:
             {
               "Effect": "Allow",
               "Action": [
-                "secretsmanager:GetResourcePolicy",
-                "secretsmanager:GetSecretValue",
-                "secretsmanager:DescribeSecret",
-                "secretsmanager:ListSecretVersionIds",
-                "secretsmanager:ListSecrets"
+                "ssm:GetParameter",
+                "ssm:GetParameters",
+                "ssm:GetParametersByPath",
+                "ssm:DescribeParameters"
               ],
               "Resource": "*"
             }
@@ -65,10 +64,10 @@ Choose the authentication method that best fits your security requirements:
       AWS Automatic & AWS Role authentications are mutually exclusive.
     </Info>
 
-    Creating your own AWS Role lets you control which secrets are accessible.
+    Creating your own AWS Role lets you control which parameters are accessible.
 
     The following information is required:
-    * The target AWS Region where your secrets live
+    * The target AWS Region where your parameters live
     * Your AWS Role ARN
     * The secret manager access name
 
@@ -78,33 +77,33 @@ Choose the authentication method that best fits your security requirements:
 
     <AwsCloudFormationSteps />
 
-    You can edit the permissions attached to the created role to restrict access to your secrets as you wish (see below):
-    <AwsIamPermissionsSm />
+    You can edit the permissions attached to the created role to restrict access to your parameters as you wish (see below):
+    <AwsIamPermissionsPs />
   </Tab>
   <Tab title="AWS Static Credentials">
     The following information is required:
     * Your AWS Access Key
     * Your AWS Secret Access Key
-    * The target AWS Region where your secrets live
+    * The target AWS Region where your parameters live
     * The secret manager access name
 
     You need to configure the following permissions:
-    <AwsIamPermissionsSm />
+    <AwsIamPermissionsPs />
   </Tab>
 </Tabs>
 
 ## From a GCP Managed Cluster (cross-cloud)
 
-You can access AWS Secrets Manager from a GCP cluster using static credentials.
+You can access AWS Parameter Store from a GCP cluster using static credentials.
 
 The following information is required:
 * Your AWS Access Key
 * Your AWS Secret Access Key
-* The target AWS Region where your secrets live
+* The target AWS Region where your parameters live
 * The secret manager access name
 
 You need to configure the following permissions:
-<AwsIamPermissionsSm />
+<AwsIamPermissionsPs />
 
 ---
 

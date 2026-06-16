@@ -7,6 +7,10 @@ description: "Grant AI agents safe, read-only access to your Qovery infrastructu
 
 When you let an AI agent (Claude Code, Cursor, the Qovery Agent Skill, etc.) interact with your infrastructure, you want it to **investigate freely but never mutate or leak anything**. Approving each generated command one by one creates decision fatigue, and a single misread `curl` or `qovery api ... --method DELETE` can exfiltrate data or change production state.
 
+<Note>
+The classifications and the permission template on this page are a **recommendation, not an absolute rule** — adapt them to suit your team's needs. In all cases, these guardrails sit **on top of** the permissions granted by the token used to authenticate: a command can never do more than the token allows, so a read-only token remains your strongest safeguard regardless of what the allowlist contains.
+</Note>
+
 This page describes the two recommended ways to give an agent a safe, read-only footprint:
 
 1. **[MCP Server in read-only mode](#option-1-mcp-server-read-only)** — the native, recommended option. No allowlist to maintain.

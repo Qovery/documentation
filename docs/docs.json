@@ -460,6 +460,7 @@
                   "copilot/console",
                   "copilot/slack-bot",
                   "copilot/mcp-server",
+                  "copilot/securing-ai-access",
                   "getting-started/quickstart/agent-skills"
                 ]
               },

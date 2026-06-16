@@ -8,13 +8,13 @@ description: "Grant AI agents safe, read-only access to your Qovery infrastructu
 When you let an AI agent (Claude Code, Cursor, the Qovery Agent Skill, etc.) interact with your infrastructure, you want it to **investigate freely but never mutate or leak anything**. Approving each generated command one by one creates decision fatigue, and a single misread `curl` or `qovery api ... --method DELETE` can exfiltrate data or change production state.
 
 <Note>
-The classifications and the permission template on this page are a **recommendation, not an absolute rule** — adapt them to suit your team's needs. In all cases, these guardrails sit **on top of** the permissions granted by the token used to authenticate: a command can never do more than the token allows, so a read-only token remains your strongest safeguard regardless of what the allowlist contains.
+The classifications and the permission template on this page are a **recommendation, not an absolute rule** - adapt them to suit your team's needs. In all cases, these guardrails sit **on top of** the permissions granted by the token used to authenticate: a command can never do more than the token allows, so a read-only token remains your strongest safeguard regardless of what the allowlist contains.
 </Note>
 
 This page describes the two recommended ways to give an agent a safe, read-only footprint:
 
-1. **[MCP Server in read-only mode](#option-1-mcp-server-read-only)** — the native, recommended option. No allowlist to maintain.
-2. **[A CLI permission allowlist](#option-2-cli-permission-allowlist)** — for agents driving the `qovery` CLI directly (e.g. Claude Code with the Qovery Agent Skill).
+1. **[MCP Server in read-only mode](#option-1-mcp-server-read-only)** - the native, recommended option. No allowlist to maintain.
+2. **[A CLI permission allowlist](#option-2-cli-permission-allowlist)** - for agents driving the `qovery` CLI directly (e.g. Claude Code with the Qovery Agent Skill).
 
 <Tip>
 These two approaches complement each other. The MCP Server is the simplest guardrail; the CLI allowlist is for workflows where the agent runs `qovery` commands in a shell.
@@ -22,15 +22,15 @@ These two approaches complement each other. The MCP Server is the simplest guard
 
 ---
 
-## Option 1 — MCP Server (read-only)
+## Option 1 - MCP Server (read-only)
 
 The [Qovery MCP Server](/copilot/mcp-server) is **read-only by default**. It can query and list resources but cannot deploy, update, or delete anything unless you explicitly opt into write mode with `read_write=true`.
 
 ```bash
-# Read-only (default) — safe for troubleshooting
+# Read-only (default) - safe for troubleshooting
 claude mcp add --transport http qovery https://mcp.qovery.com/mcp --callback-port 4242
 
-# Read/write — only when you intend to make changes
+# Read/write - only when you intend to make changes
 claude mcp add --transport http qovery "https://mcp.qovery.com/mcp?read_write=true" --callback-port 4242
 ```
 
@@ -42,7 +42,7 @@ Enable write mode only when needed. Prefer read-only mode to limit the blast rad
 
 ---
 
-## Option 2 — CLI permission allowlist
+## Option 2 - CLI permission allowlist
 
 If your agent drives the `qovery` CLI directly, you can constrain it at the tool-permission level. The example below is a Claude Code `.claude/settings.json` that you can commit to your repo and share across your team.
 
@@ -51,8 +51,8 @@ The policy follows three tiers:
 | Tier | Meaning |
 |------|---------|
 | **allow** | Read-only commands, safe to run without confirmation |
-| **ask** | Reads that could expose sensitive data or commands that can mutate depending on flags — require confirmation |
-| **deny** | Mutating commands and commands that return credentials/tokens in clear text — never run |
+| **ask** | Reads that could expose sensitive data or commands that can mutate depending on flags - require confirmation |
+| **deny** | Mutating commands and commands that return credentials/tokens in clear text - never run |
 
 ```json
 {
@@ -171,7 +171,7 @@ The policy follows three tiers:
 ```
 
 <Info>
-The `Bash(...:*)` syntax is Claude Code's current permission format. Other agents use their own permission files but follow the same allow / ask / deny model — adapt the command patterns accordingly.
+The `Bash(...:*)` syntax is Claude Code's current permission format. Other agents use their own permission files but follow the same allow / ask / deny model - adapt the command patterns accordingly.
 </Info>
 
 ### Why `qovery api` is in `ask`, not `allow`
@@ -184,7 +184,7 @@ The `Bash(...:*)` syntax is Claude Code's current permission format. Other agent
 
 ### Safe (read-only)
 
-These only read and display data. They never return secret values — environment-variable and secret commands return **names only**.
+These only read and display data. They never return secret values - environment-variable and secret commands return **names only**.
 
 | Area | Commands |
 |------|----------|
@@ -201,10 +201,10 @@ These only read and display data. They never return secret values — environmen
 | Command | Reason |
 |---------|--------|
 | `qovery api` | Mutates when `--field`/`--input`/`--method` is used; can reach sensitive endpoints |
-| `qovery shell`, `qovery port-forward` | Interactive access — can modify container state |
+| `qovery shell`, `qovery port-forward` | Interactive access - can modify container state |
 | `qovery cluster kubeconfig` | Returns a cluster access token |
 | `qovery env import`, `qovery env parse` | Reads/writes variable values (including secrets) locally |
-| `curl`, `wget` | Raw HTTP — can exfiltrate to arbitrary domains |
+| `curl`, `wget` | Raw HTTP - can exfiltrate to arbitrary domains |
 
 ### Never run
 
@@ -230,7 +230,7 @@ Even though they are `GET` requests, these endpoints return credentials in clear
 | `GET /cluster/{clusterId}/argoCdConfig` | ArgoCD token |
 
 <Warning>
-Secret **values** are never returned by standard `env list` commands or service endpoints — but **tokens and cloud credentials** are returned by the endpoints above and by `qovery token`. Keep those in the deny list.
+Secret **values** are never returned by standard `env list` commands or service endpoints - but **tokens and cloud credentials** are returned by the endpoints above and by `qovery token`. Keep those in the deny list.
 </Warning>
 
 ---

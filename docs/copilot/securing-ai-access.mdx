@@ -1,0 +1,267 @@
+---
+title: "Securing AI Agent Access"
+description: "Grant AI agents safe, read-only access to your Qovery infrastructure for troubleshooting and investigation"
+---
+
+## Overview
+
+When you let an AI agent (Claude Code, Cursor, the Qovery Agent Skill, etc.) interact with your infrastructure, you want it to **investigate freely but never mutate or leak anything**. Approving each generated command one by one creates decision fatigue, and a single misread `curl` or `qovery api ... --method DELETE` can exfiltrate data or change production state.
+
+<Note>
+The classifications and the permission template on this page are a **recommendation, not an absolute rule** - adapt them to suit your team's needs. In all cases, these guardrails sit **on top of** the permissions granted by the token used to authenticate: a command can never do more than the token allows, so a read-only token remains your strongest safeguard regardless of what the allowlist contains.
+</Note>
+
+This page describes the two recommended ways to give an agent a safe, read-only footprint:
+
+1. **[MCP Server in read-only mode](#option-1-mcp-server-read-only)** - the native, recommended option. No allowlist to maintain.
+2. **[A CLI permission allowlist](#option-2-cli-permission-allowlist)** - for agents driving the `qovery` CLI directly (e.g. Claude Code with the Qovery Agent Skill).
+
+<Tip>
+These two approaches complement each other. The MCP Server is the simplest guardrail; the CLI allowlist is for workflows where the agent runs `qovery` commands in a shell.
+</Tip>
+
+---
+
+## Option 1 - MCP Server (read-only)
+
+The [Qovery MCP Server](/copilot/mcp-server) is **read-only by default**. It can query and list resources but cannot deploy, update, or delete anything unless you explicitly opt into write mode with `read_write=true`.
+
+```bash
+# Read-only (default) - safe for troubleshooting
+claude mcp add --transport http qovery https://mcp.qovery.com/mcp --callback-port 4242
+
+# Read/write - only when you intend to make changes
+claude mcp add --transport http qovery "https://mcp.qovery.com/mcp?read_write=true" --callback-port 4242
+```
+
+For an extra layer, generate a **read-only API token** in the Console (**Settings > API Tokens**) and pass it to the MCP Server. Even if write mode were requested, the token's permissions would block any destructive action.
+
+<Warning>
+Enable write mode only when needed. Prefer read-only mode to limit the blast radius of unintended AI actions.
+</Warning>
+
+---
+
+## Option 2 - CLI permission allowlist
+
+If your agent drives the `qovery` CLI directly, you can constrain it at the tool-permission level. The example below is a Claude Code `.claude/settings.json` that you can commit to your repo and share across your team.
+
+The policy follows three tiers:
+
+| Tier | Meaning |
+|------|---------|
+| **allow** | Read-only commands, safe to run without confirmation |
+| **ask** | Reads that could expose sensitive data or commands that can mutate depending on flags - require confirmation |
+| **deny** | Mutating commands and commands that return credentials/tokens in clear text - never run |
+
+```json
+{
+  "permissions": {
+    "allow": [
+      "Bash(qovery status:*)",
+      "Bash(qovery environment statuses:*)",
+      "Bash(qovery environment deployment list:*)",
+      "Bash(qovery environment deployment explain:*)",
+
+      "Bash(qovery application list:*)",
+      "Bash(qovery container list:*)",
+      "Bash(qovery database list:*)",
+      "Bash(qovery environment list:*)",
+      "Bash(qovery project list:*)",
+      "Bash(qovery service list:*)",
+      "Bash(qovery helm list:*)",
+      "Bash(qovery cronjob list:*)",
+      "Bash(qovery lifecycle list:*)",
+      "Bash(qovery cluster list:*)",
+      "Bash(qovery cluster list-nodes:*)",
+      "Bash(qovery terraform list:*)",
+      "Bash(qovery webhook list:*)",
+      "Bash(qovery webhook list-event:*)",
+
+      "Bash(qovery application env list:*)",
+      "Bash(qovery container env list:*)",
+      "Bash(qovery database env list:*)",
+      "Bash(qovery environment env list:*)",
+      "Bash(qovery project env list:*)",
+      "Bash(qovery helm env list:*)",
+      "Bash(qovery cronjob env list:*)",
+      "Bash(qovery lifecycle env list:*)",
+
+      "Bash(qovery application domain list:*)",
+      "Bash(qovery container domain list:*)",
+      "Bash(qovery helm domain list:*)",
+      "Bash(qovery container registry list:*)",
+      "Bash(qovery environment stage list:*)",
+
+      "Bash(qovery log:*)",
+
+      "Bash(qovery rde list:*)",
+      "Bash(qovery rde info:*)",
+      "Bash(qovery rde status:*)",
+      "Bash(qovery rde logs:*)",
+      "Bash(qovery rde urls:*)",
+      "Bash(qovery rde blueprint list:*)",
+      "Bash(qovery rde blueprint status:*)",
+
+      "Bash(qovery version:*)",
+      "Bash(qovery list-commands:*)",
+      "Bash(qovery console:*)"
+    ],
+
+    "ask": [
+      "Bash(qovery api:*)",
+      "Bash(qovery shell:*)",
+      "Bash(qovery port-forward:*)",
+      "Bash(qovery cluster kubeconfig:*)",
+      "Bash(qovery env import:*)",
+      "Bash(qovery env parse:*)",
+      "Bash(qovery context set:*)",
+      "Bash(curl:*)",
+      "Bash(wget:*)"
+    ],
+
+    "deny": [
+      "Bash(qovery token:*)",
+      "Bash(qovery auth token:*)",
+
+      "Bash(qovery * deploy:*)",
+      "Bash(qovery * redeploy:*)",
+      "Bash(qovery * stop:*)",
+      "Bash(qovery * cancel:*)",
+      "Bash(qovery * delete:*)",
+      "Bash(qovery * update:*)",
+      "Bash(qovery * create:*)",
+      "Bash(qovery * clone:*)",
+      "Bash(qovery * edit:*)",
+      "Bash(qovery cluster install:*)",
+      "Bash(qovery cluster upgrade:*)",
+      "Bash(qovery cluster lock:*)",
+      "Bash(qovery cluster unlock:*)",
+
+      "Bash(qovery * env create:*)",
+      "Bash(qovery * env update:*)",
+      "Bash(qovery * env delete:*)",
+      "Bash(qovery * env alias:*)",
+      "Bash(qovery * env override:*)",
+
+      "Bash(qovery terraform plan-and-apply:*)",
+      "Bash(qovery terraform delete:*)",
+      "Bash(qovery terraform force-unlock:*)",
+      "Bash(qovery terraform migrate-state:*)",
+
+      "Bash(qovery rde create:*)",
+      "Bash(qovery rde delete:*)",
+      "Bash(qovery rde delete-all:*)",
+      "Bash(qovery rde stop:*)",
+      "Bash(qovery rde stop-all:*)",
+      "Bash(qovery rde upgrade:*)",
+      "Bash(qovery rde blueprint deploy:*)",
+
+      "Bash(qovery api * --method POST:*)",
+      "Bash(qovery api * --method PUT:*)",
+      "Bash(qovery api * --method PATCH:*)",
+      "Bash(qovery api * --method DELETE:*)",
+      "Bash(qovery api * -X POST:*)",
+      "Bash(qovery api * -X PUT:*)",
+      "Bash(qovery api * -X PATCH:*)",
+      "Bash(qovery api * -X DELETE:*)"
+    ]
+  }
+}
+```
+
+<Info>
+The `Bash(...:*)` syntax is Claude Code's current permission format. Other agents use their own permission files but follow the same allow / ask / deny model - adapt the command patterns accordingly.
+</Info>
+
+### Why `qovery api` is in `ask`, not `allow`
+
+`qovery api` is a raw passthrough to the Qovery API. It defaults to `GET`, **but** it switches to `POST` as soon as you pass `--field` or `--input`, and it accepts `--method DELETE` / `PUT` / `PATCH`. It can also reach endpoints that return secrets. Because permission patterns are glob-based (not regex with negation), there is no clean way to allow "`qovery api` in GET only." The safe compromise is to **ask** for every `qovery api` call and **deny** the explicitly mutating method flags as a backstop.
+
+---
+
+## Command reference
+
+### Safe (read-only)
+
+These only read and display data. They never return secret values - environment-variable and secret commands return **names only**.
+
+| Area | Commands |
+|------|----------|
+| Status | `status`, `environment statuses`, `environment deployment list`, `environment deployment explain` |
+| Listings | `<service> list`, `cluster list`, `cluster list-nodes`, `project list`, `terraform list`, `webhook list`, `webhook list-event` |
+| Variables (names only) | `<service> env list` |
+| Domains / stages / registries | `<service> domain list`, `environment stage list`, `container registry list` |
+| Logs | `log` |
+| RDE | `rde list`, `rde info`, `rde status`, `rde logs`, `rde urls`, `rde blueprint list`, `rde blueprint status` |
+| Meta | `version`, `list-commands`, `console` |
+
+### Confirm before running
+
+| Command | Reason |
+|---------|--------|
+| `qovery api` | Mutates when `--field`/`--input`/`--method` is used; can reach sensitive endpoints |
+| `qovery shell`, `qovery port-forward` | Interactive access - can modify container state |
+| `qovery cluster kubeconfig` | Returns a cluster access token |
+| `qovery env import`, `qovery env parse` | Reads/writes variable values (including secrets) locally |
+| `curl`, `wget` | Raw HTTP - can exfiltrate to arbitrary domains |
+
+### Never run
+
+| Command | Reason |
+|---------|--------|
+| `qovery token`, `qovery auth token` | Print an API/access token in clear text |
+| `deploy`, `redeploy`, `stop`, `cancel`, `delete`, `update`, `create`, `clone`, `edit` (any service) | Mutate platform state |
+| `cluster install` / `upgrade` / `lock` / `unlock` | Mutate cluster state |
+| `<service> env create` / `update` / `delete` / `alias` / `override` | Mutate variables and secrets |
+| `terraform plan-and-apply` / `delete` / `force-unlock` / `migrate-state` | Mutate infrastructure and Terraform state |
+| `rde create` / `delete` / `stop` / `upgrade`, `rde blueprint deploy` | Mutate RDE state |
+
+### API endpoints that return secrets
+
+Even though they are `GET` requests, these endpoints return credentials in clear text. Block them in any read-only setup (they are covered by the `qovery api` rules above, but list them explicitly if you allow `curl`):
+
+| Endpoint | Exposes |
+|----------|---------|
+| `GET /database/{databaseId}/masterCredentials` | Database master password |
+| `GET /organization/{organizationId}/{aws,gcp,scaleway,onPremise}/credentials` | Cloud provider credentials |
+| `GET /organization/{organizationId}/cluster/{clusterId}/cloudProviderInfo` | Cloud provider credentials |
+| `GET /cluster/{clusterId}/token` | Cluster token |
+| `GET /cluster/{clusterId}/argoCdConfig` | ArgoCD token |
+
+<Warning>
+Secret **values** are never returned by standard `env list` commands or service endpoints - but **tokens and cloud credentials** are returned by the endpoints above and by `qovery token`. Keep those in the deny list.
+</Warning>
+
+---
+
+## Best practices
+
+<Steps>
+  <Step title="Prefer read-only mode end to end">
+    Use the MCP Server in its default read-only mode, and/or back the agent with a read-only API token created in **Settings > API Tokens**.
+  </Step>
+
+  <Step title="Commit the permission policy">
+    Check the `.claude/settings.json` (or equivalent) into your repository so the whole team inherits the same guardrails.
+  </Step>
+
+  <Step title="Keep secrets out of logs">
+    `qovery log` is safe to allow, but logs reflect whatever your application writes. Avoid logging PII or credentials in the first place.
+  </Step>
+
+  <Step title="Review the deny list when the CLI updates">
+    New mutating commands may be added over time. The verb-based deny patterns (`deploy`, `delete`, etc.) cover most cases, but review periodically.
+  </Step>
+</Steps>
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="MCP Server" icon="plug" href="/copilot/mcp-server">
+    Connect any MCP-compatible client in read-only mode.
+  </Card>
+  <Card title="Qovery Agent Skill" icon="robot" href="/getting-started/quickstart/agent-skills">
+    Deploy and manage from your AI coding tool.
+  </Card>
+</CardGroup>

@@ -354,6 +354,8 @@ When using an existing VPC, ensure it has:
 - Proper subnet configuration
 - Cloud NAT configured for internet access
 - Required firewall rules
+
+You can also enable **Private nodes** during cluster creation to remove public IPs from GKE nodes and route node traffic through your gateway. This setting cannot be changed after the cluster is created.
 </Warning>
 
 ### Spot Pods (Preemptible VMs)

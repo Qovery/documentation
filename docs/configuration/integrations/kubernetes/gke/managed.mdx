@@ -107,6 +107,8 @@ import GcpCredentials from "/snippets/gcp-credentials.mdx";
         * Your VPC Name
         * External project id (optional): by default, the project id used is the one specified in the credentials file. But if your VPC is defined in another GCP project, you have to specify the Project id.
 
+        You can also enable **Private nodes** to create GKE nodes without public IPs. In this mode, node traffic goes through your gateway instead of exposing public node addresses.
+
         In addition if you are using a custom VPC, you have to set:
         * Your Subnet range name (`https://console.cloud.google.com/networking/networks/details/<your-vpc>?project=<your-project>&pageTab=SUBNETS`)
 
@@ -118,6 +120,10 @@ import GcpCredentials from "/snippets/gcp-credentials.mdx";
 
         For these ranges, you have to create Secondary IPv4 ranges inside your subnet.
         </Info>
+
+        <Warning>
+        The **Deploy on my existing VPC** and **Private nodes** settings are fixed at cluster creation time. After the cluster is created, you can view them in the **Network** tab, but you cannot change them in place.
+        </Warning>
       </Tab>
     </Tabs>
 
@@ -187,4 +193,4 @@ Check [this link](/configuration/deployment/image-mirroring) for more informatio
 
 ### Network
 
-The `Network` tab in your cluster settings allows you to check if the [**Static IP**](#static-ip), [**Deploy on existing VPC**](#use-existing-vpc) features are enabled on your cluster. The enabled features cannot be changed after the creation of the cluster.
+The `Network` tab in your cluster settings allows you to check if the [**Static IP**](#static-ip), [**Deploy on existing VPC**](#use-existing-vpc), and **Private nodes** features are enabled on your cluster. These settings cannot be changed after the creation of the cluster.

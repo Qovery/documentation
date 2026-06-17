@@ -35,12 +35,12 @@ The Qovery AI Copilot supports two operating modes:
     - ❌ Execute any write operations
 
     <Note>
-    Read-only mode is **enabled by default** for safety. The Console Copilot currently operates exclusively in read-only mode.
+    Read-only mode is **enabled by default** for safety. Each new thread starts in read-only mode, even when read-write is enabled in the settings.
     </Note>
   </Tab>
 
   <Tab title="Read-Write Mode">
-    **Full automation capabilities** - Available in Slack Bot and MCP Server
+    **Full automation capabilities** - When you need to take action
 
     **What it can do:**
     - ✅ Everything in read-only mode, plus:
@@ -53,14 +53,32 @@ The Qovery AI Copilot supports two operating modes:
     - ✅ Delete resources
 
     <Warning>
-    Read-write mode allows the Copilot to make **real changes** to your infrastructure. The Copilot will ask for confirmation before performing destructive operations.
+    Read-write mode allows the Copilot to make **real changes** to your infrastructure. The Copilot will always ask for confirmation before performing destructive operations.
     </Warning>
-
-    <Info>
-    To enable read-write capabilities, use the [Slack Bot](/copilot/slack-bot) or [MCP Server](/copilot/mcp-server) interfaces.
-    </Info>
   </Tab>
 </Tabs>
+
+## Enabling Read-Write Mode
+
+Read-write capabilities must first be enabled by an organization administrator in the Copilot settings panel.
+
+<Steps>
+  <Step title="Open the Copilot Settings">
+    In the Qovery Console, open the AI Copilot panel and navigate to its **settings**.
+  </Step>
+
+  <Step title="Enable Read-Write Mode">
+    Toggle on the **Read-Write Mode** option. This unlocks write capabilities for all users in your organization who have the appropriate permissions.
+  </Step>
+
+  <Step title="Switch Mode Per Thread">
+    Once enabled, a **read/write toggle** appears at the bottom of each Copilot thread. Each new thread starts in **read-only mode** by default — switch the toggle to read-write only when you intend to make changes.
+  </Step>
+</Steps>
+
+<Info>
+This setting applies to the Console Copilot and the [MCP Server](/copilot/mcp-server). The [Slack Bot](/copilot/slack-bot) is always read-only.
+</Info>
 
 ## Accessing the AI Copilot
 
@@ -231,14 +249,7 @@ When was my last deployment?
 ## Current Mode in Console
 
 <Note>
-**Console = Read-Only Mode Only**: The Console Copilot currently operates exclusively in **read-only mode** for safety and security. This means:
-
-- ✅ You can explore, learn, and get help safely
-- ✅ No risk of accidental changes to your infrastructure
-- ✅ Perfect for understanding and troubleshooting
-- ❌ Cannot execute actions or make changes
-
-**Need write capabilities?** Switch to [Slack Bot](/copilot/slack-bot) or [MCP Server](/copilot/mcp-server) for read-write mode.
+Each Copilot thread starts in **read-only mode** by default, even if read-write is enabled in your organization settings. Use the **toggle at the bottom of the thread** to switch to read-write mode when you need to make changes.
 </Note>
 
 ## Context Switching
@@ -308,6 +319,20 @@ At the bottom of the Copilot panel, you'll see the system status:
 
 This helps you understand if issues you're experiencing are related to the Qovery platform itself.
 
+## Authentication Modes
+
+The Copilot supports two authentication modes, configured by an organization administrator in the Copilot settings. See the [Getting Started guide](/copilot/getting-started#authentication-modes) for full details.
+
+<CardGroup cols={2}>
+  <Card title="JWT Mode (Default)" icon="user">
+    The Copilot acts on behalf of the currently logged-in user, using their JWT token. Actions are limited to what that user is authorized to do in Qovery.
+  </Card>
+
+  <Card title="Role Mode" icon="shield-halved">
+    The Copilot uses a token linked to a dedicated **"AI Copilot"** role. An admin can configure this role to define exactly which permissions the Copilot has, the role has viewer permissions by default — independently of individual users. Useful for centralized access control and cleaner audit trails.
+  </Card>
+</CardGroup>
+
 ## Privacy & Security
 
 <AccordionGroup>
@@ -344,49 +369,40 @@ This helps you understand if issues you're experiencing are related to the Qover
     - Troubleshooting guidance
 
     **Mode:**
-    - 🔒 Read-only mode only (default)
+    - Read-only by default per thread
+    - Read-write available (requires admin activation in Copilot settings)
 
     **Advantages:**
     - No setup required
     - Contextual awareness
     - Always available
     - Integrated experience
-    - Safe exploration
-
-    **Limitations:**
-    - Cannot execute actions
-    - Cannot modify infrastructure
-    - Web interface only
+    - Safe exploration by default
 
     **Use when:**
     - You're already in the console
-    - You need quick answers
-    - You want contextual help
+    - You need quick answers or contextual help
     - Learning the platform
-    - Don't need to make changes
+    - You want to take actions directly from the console
   </Tab>
 
   <Tab title="Slack Bot">
     **Best for:**
     - Team collaboration
-    - Executing deployments
-    - Shared infrastructure management
+    - Shared status monitoring
     - ChatOps workflows
 
     **Mode:**
-    - 🔓 Read-write mode supported (defaults to read-only)
+    - Read-only
 
     **Advantages:**
-    - Full automation capabilities
-    - Can create, modify, delete resources
     - Team collaboration
     - Mobile access
     - No installation required
 
     **Use when:**
     - Working with a team
-    - Need to execute actions
-    - Want to deploy/modify services
+    - Need status checks and monitoring
     - Want mobile access
     - Prefer Slack interface
 
@@ -401,7 +417,7 @@ This helps you understand if issues you're experiencing are related to the Qover
     - Advanced integrations
 
     **Mode:**
-    - 🔓 Read-write mode supported (defaults to read-only)
+    - Read-write mode supported (defaults to read-only)
 
     **Advantages:**
     - Most powerful capabilities

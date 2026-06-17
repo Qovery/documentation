@@ -44,12 +44,52 @@ Only **organization administrators** can enable or disable the AI Copilot for th
 **Experimental Feature**: This is an experimental feature. Functionality may change, and billing terms are not final.
 </Warning>
 
+## Authentication Modes
+
+The Qovery AI Copilot supports two authentication modes, configurable by an organization administrator in the Copilot settings:
+
+<Tabs>
+  <Tab title="JWT Mode (Default)">
+    **Uses the logged-in user's identity**
+
+    In this mode, the Copilot authenticates using the JWT token of the user who is actively interacting with it. Every action the Copilot takes is performed with that user's permissions — it can only do what the user themselves is authorized to do.
+
+    - Actions are scoped to the current user's RBAC permissions
+    - No additional configuration required
+    - Natural permission boundary: the Copilot cannot exceed the user's own access level
+
+    <Note>
+    This is the default mode. It provides the simplest setup and ensures the Copilot never acts beyond what the user is allowed to do.
+    </Note>
+  </Tab>
+
+  <Tab title="Role Mode (AI Copilot Role)">
+    **Uses a dedicated AI Copilot role token**
+
+    In this mode, the Copilot authenticates using a token linked to a dedicated **"AI Copilot"** role. An organization administrator can configure this role to define exactly which permissions the Copilot has — independently of individual user permissions. The role has **viewer permissions by default**.
+
+    - Admin configures the "AI Copilot" role (viewer by default) with the desired permissions
+    - All users interact with the Copilot through this shared role
+    - Admin can restrict or expand Copilot capabilities at any time by modifying the role
+    - Actions are attributed to the AI Copilot role in audit logs, not to individual users
+
+    <Warning>
+    This mode requires careful configuration. Granting broad permissions to the AI Copilot role means **all users** interact with those permissions, regardless of their own access level. Scope the role to the minimum permissions needed.
+    </Warning>
+
+    **When to use Role Mode:**
+    - You want to centrally control what the Copilot can and cannot do
+    - You need the Copilot to have access that differs from individual users' permissions
+    - You want clear audit separation between human actions and Copilot actions
+  </Tab>
+</Tabs>
+
 ## Operating Modes
 
 The Qovery AI Copilot operates in two modes:
 
 <CardGroup cols={2}>
-  <Card title="Read-Only Mode (Current)" icon="eye">
+  <Card title="Read-Only Mode (Default)" icon="eye">
     **Safe exploration and information access**
 
     - View information and status
@@ -61,8 +101,8 @@ The Qovery AI Copilot operates in two modes:
     **Available in:** Console, Slack Bot, MCP Server
   </Card>
 
-  <Card title="Read-Write Mode (Coming Soon)" icon="pen-to-square">
-    **Full automation capabilities - In Development**
+  <Card title="Read-Write Mode" icon="pen-to-square">
+    **Full automation capabilities**
 
     - Everything in read-only mode
     - Deploy and restart services
@@ -70,13 +110,9 @@ The Qovery AI Copilot operates in two modes:
     - Update configurations
     - Manage environment variables
 
-    **Status:** Coming soon for Slack Bot and MCP Server
+    **Available in:** Console, MCP Server (requires admin activation)
   </Card>
 </CardGroup>
-
-<Note>
-**Current Status**: The AI Copilot currently operates in **read-only mode** across all interfaces. Read-write mode is under active development and will be available soon.
-</Note>
 
 ## Choose Your Interface
 
@@ -88,7 +124,8 @@ Qovery AI Copilot is available through three interfaces:
 
     Get contextual assistance directly in the Qovery Console.
 
-    - 🔒 Read-only mode only
+    - Read-only by default per thread
+    - Read-write available (requires admin activation)
     - No setup required
     - Contextual awareness
     - Always available
@@ -100,10 +137,9 @@ Qovery AI Copilot is available through three interfaces:
 
     Use Copilot in Slack for collaborative infrastructure management.
 
-    - 🔓 Read-write mode supported
+    - Read-only
     - Team collaboration
     - Mobile access
-    - Full automation
     - Shared visibility
   </Card>
 
@@ -112,7 +148,8 @@ Qovery AI Copilot is available through three interfaces:
 
     Use Copilot in Claude Desktop for advanced workflows.
 
-    - 🔓 Read-write mode supported
+    - Read-only by default per thread
+    - Read-write available (requires admin activation)
     - Desktop integration
     - Most powerful
     - Advanced features

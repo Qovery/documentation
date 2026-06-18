@@ -12,7 +12,9 @@
     } catch (e) { return null; }
   }
 
-  function applyVariant(variant) {
+  function applyVariant() {
+    var variant = readVariant();
+    if (!variant) return;
     document.querySelectorAll('.cta-banner-subtitle').forEach(function (el) {
       el.style.display = variant === 'no-subtitle' ? 'none' : '';
     });
@@ -43,12 +45,11 @@
     });
   }
 
-  var v = readVariant();
-  if (v) { applyVariant(v); return; }
+  applyVariant();
 
-  var attempts = 0;
-  var t = setInterval(function () {
-    var v = readVariant();
-    if (v || ++attempts > 30) { clearInterval(t); if (v) applyVariant(v); }
-  }, 100);
+  var debounce;
+  new MutationObserver(function () {
+    clearTimeout(debounce);
+    debounce = setTimeout(applyVariant, 100);
+  }).observe(document.documentElement, { childList: true, subtree: true });
 })();

@@ -1621,6 +1621,66 @@ At engine rendering level, CIDR strategy has precedence when both values are pre
 
 **Default Value:** `[]`
 
+<a id="envoy-client-validation-ca-certificate-secret-names"></a>
+
+### envoy.client_validation.ca_certificates
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/scaleway-icon.svg" alt="Scaleway" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/gcp-icon.svg" alt="GCP" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/azure-icon.svg" alt="Azure" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `array[object]`
+
+**Description:** List of CA certificates used as trust anchors for client TLS validation on the shared Envoy Gateway listener. Qovery creates and manages the backing Kubernetes Secrets in the `qovery` namespace, then references them from Envoy Gateway `ClientTrafficPolicy.spec.tls.clientValidation.caCertificateRefs`.
+
+**Use Case:** Enable client certificate validation between an upstream proxy such as Cloudflare and the Qovery-managed Envoy public gateway. A common use case is Cloudflare Authenticated Origin Pulls.
+
+**Official Envoy Gateway references:**
+- [Mutual TLS: External Clients to the Gateway](https://gateway.envoyproxy.io/latest/tasks/security/mutual-tls/)
+- [Gateway API extension types (`ClientValidationContext.caCertificateRefs`)](https://gateway.envoyproxy.io/latest/api/extension_types/)
+
+**How to configure:**
+- Add one or more objects with:
+  - `name`: logical certificate name used by Qovery to derive the managed Secret name
+  - `ca_crt`: PEM-encoded CA certificate or CA bundle
+- Use this setting only when the cluster is using Envoy Gateway
+
+**Important behavior:**
+- This setting is cluster-wide because it applies to the shared Envoy Gateway listener, not to individual services
+- Qovery creates the Secrets in the `qovery` namespace
+- Qovery prefixes the final Secret name with `envoy-client-validation-`
+- The provided `name` must be a valid Kubernetes DNS-1123 label and must remain valid after that prefix is added
+- After changing this setting, redeploy the cluster for the new listener policy to be applied
+
+**Example advanced setting payload:**
+```json
+{
+  "envoy.client_validation.ca_certificates": [
+    {
+      "name": "cloudflare-origin-pull-ca",
+      "ca_crt": "-----BEGIN CERTIFICATE-----\n...\n-----END CERTIFICATE-----"
+    }
+  ]
+}
+```
+
+**Rendered Secret example:**
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: envoy-client-validation-cloudflare-origin-pull-ca
+  namespace: qovery
+type: Opaque
+data:
+  ca.crt: |
+    <base64-encoded PEM content>
+```
+
+<Warning>
+Do not put a private key in this Secret. This setting expects a CA certificate bundle used to validate client certificates, not a server certificate/key pair.
+</Warning>
+
+**Default Value:** `[]`
+
 <a id="envoy-log-format"></a>
 
 ### envoy.log_format

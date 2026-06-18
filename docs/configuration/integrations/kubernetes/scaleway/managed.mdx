@@ -133,6 +133,10 @@ In the **Network** tab, you can configure advanced networking options for your S
 
 By default, Scaleway clusters use random public IPs for outbound traffic. Enable the **Static IP for egress traffic** option if your applications need to connect to external services that require IP allowlisting.
 
+<Warning>
+  This feature requires the **VPCGatewayFullAccess** IAM permission set in addition to the standard Qovery permissions. Make sure it is added to your Qovery IAM policy before enabling this option. See the [Scaleway IAM Permissions Reference](/getting-started/security-and-compliance/scaleway-iam-permissions#vpcgatewayfullaccess--static-ip-for-egress-traffic) for details.
+</Warning>
+
 **When to use:**
 - External databases with IP-based authentication
 - Third-party APIs requiring IP allowlisting

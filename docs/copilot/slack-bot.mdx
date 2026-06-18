@@ -15,40 +15,17 @@ The Qovery Slack Bot brings AI Copilot capabilities directly into your Slack wor
 **Beta Status**: The Qovery Slack Bot is currently in beta. Features and capabilities are being actively developed.
 </Warning>
 
-## Operating Modes
+## Operating Mode
 
-The Slack Bot supports both operating modes:
+<Note>
+The Slack Bot operates exclusively in **read-only mode**. It can query your infrastructure, display status, and provide guidance, but cannot make any changes. For write operations, use the [Console Copilot](/copilot/console) or the [MCP Server](/copilot/mcp-server).
+</Note>
 
-<Tabs>
-  <Tab title="Read-Only Mode (Default)">
-    **Default behavior** - Safe for exploration
-
-    The Slack Bot starts in **read-only mode** by default, allowing you to:
-    - View information and status
-    - Get help and recommendations
-    - Troubleshoot issues
-    - Monitor deployments
-    - **No changes** to infrastructure
-
-    This ensures safe exploration without risk of accidental modifications.
-  </Tab>
-
-  <Tab title="Read-Write Mode">
-    **Full automation** - When you need to take action
-
-    When needed, the Slack Bot can operate in **read-write mode** to:
-    - Deploy applications and services
-    - Create new environments
-    - Update configurations
-    - Add/modify/delete environment variables
-    - Scale, restart, or stop services
-    - Delete resources (with confirmation)
-
-    <Warning>
-    The Copilot will **ask for confirmation** before performing destructive operations like deletions.
-    </Warning>
-  </Tab>
-</Tabs>
+What the Slack Bot can do:
+- View information and status
+- Get help and recommendations
+- Troubleshoot issues
+- Monitor deployments
 
 ## Prerequisites
 
@@ -146,25 +123,12 @@ https://app.slack.com/client/T123ABC/C09M85XK3GQ
 
 Interact with the bot using natural language in your configured channel:
 
-**Read-only commands** (default, always safe):
 ```
 @qovery Show me all production environments
 @qovery What's the status of the database?
 @qovery List all applications in the dev environment
 @qovery Show me recent deployment history
 ```
-
-**Read-write commands** (when you need to take action):
-```
-@qovery Deploy the api-service to staging
-@qovery Restart the frontend application
-@qovery Scale the api to 3 replicas
-@qovery Add environment variable API_KEY=xxx to production
-```
-
-<Note>
-The bot will **confirm destructive actions** before executing them in read-write mode.
-</Note>
 
 ### Common Use Cases
 
@@ -293,19 +257,16 @@ Consider organizing channels by:
     - ChatOps workflows
 
     **Mode:**
-    - 🔓 Read-write mode supported (defaults to read-only)
+    - Read-only
 
     **Advantages:**
-    - Full automation capabilities
-    - Can create, modify, delete resources
     - Works on any device with Slack
     - Team visibility
     - Mobile access
 
     **Use when:**
     - Working with a team
-    - Need to execute actions
-    - Want mobile access
+    - Need status checks and monitoring
     - Want shared visibility
     - Prefer Slack interface
   </Tab>

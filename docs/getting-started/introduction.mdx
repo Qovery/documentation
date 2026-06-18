@@ -4,6 +4,65 @@ description: "The Kubernetes control plane for humans and AI agents — on your 
 mode: "wide"
 ---
 
+export const CTABanner = () => {
+  const [variant, setVariant] = useState('control')
+
+  useEffect(() => {
+    function readVariant() {
+      const key = Object.keys(localStorage).find(k => k.startsWith('ph_phc_') && k.endsWith('_posthog'))
+      if (!key) return null
+      try {
+        const data = JSON.parse(localStorage.getItem(key)) || {}
+        return (data.$enabled_feature_flags || {})['docs-cta-subtitle-v2'] || null
+      } catch (e) { return null }
+    }
+
+    const v = readVariant()
+    if (v) { setVariant(v); return }
+
+    let attempts = 0
+    const t = setInterval(() => {
+      const v = readVariant()
+      if (v || ++attempts > 30) { clearInterval(t); if (v) setVariant(v) }
+    }, 100)
+
+    return () => clearInterval(t)
+  }, [])
+
+  return (
+    <div className="cta-banner">
+      <div className="cta-banner-text">
+        <h3>Ready to deploy on your own cloud?</h3>
+        {variant !== 'no-subtitle' && (
+          <p className="cta-banner-subtitle">Kubernetes on AWS, GCP, Azure, or Scaleway. Managed by Qovery. No expertise required. Free to start.</p>
+        )}
+      </div>
+      <a
+        href="https://console.qovery.com"
+        className="cta-banner-button"
+        onClick={() => {
+          const key = Object.keys(localStorage).find(k => k.startsWith('ph_phc_') && k.endsWith('_posthog'))
+          if (!key) return
+          try {
+            const data = JSON.parse(localStorage.getItem(key)) || {}
+            const pid = data.distinct_id
+            const apiKey = key.slice(3, -8)
+            if (!pid) return
+            fetch('https://phprox.qovery.com/capture/', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              keepalive: true,
+              body: JSON.stringify({ api_key: apiKey, event: 'docs_cta_click', distinct_id: pid, properties: { variant, page: location.pathname, $current_url: location.href } })
+            })
+          } catch (e) {}
+        }}
+      >
+        Create free account →
+      </a>
+    </div>
+  )
+}
+
 ## Welcome to Qovery
 
 Qovery is the **Kubernetes control plane for humans and AI agents** — running on your own infrastructure, whether on a public cloud (AWS, GCP, Azure, Scaleway…) or on-premise.
@@ -51,3 +110,5 @@ Describe what you want to deploy and an AI agent handles the rest — or use the
     Essential terminology
   </Card>
 </CardGroup>
+
+<CTABanner />

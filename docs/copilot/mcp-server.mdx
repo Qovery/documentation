@@ -3,8 +3,6 @@ title: "MCP Server"
 description: "Connect any MCP-compatible client to your Qovery infrastructure"
 ---
 
-import { CTABanner } from '/snippets/cta-banner'
-
 ## Overview
 
 The Qovery MCP Server lets you interact with your Qovery infrastructure from any MCP-compatible client (Claude, Claude Code, ChatGPT, etc.) using natural language.
@@ -205,8 +203,10 @@ The API token has the same permissions as the role you selected during creation:
 - **Claude**: [claude.ai](https://claude.ai)
 - **Technical Blog**: [How We Built an Agentic DevOps Copilot](https://www.qovery.com/blog/how-we-built-an-agentic-devops-copilot-to-automate-infrastructure-tasks-and-beyond)
 
-<CTABanner
-  title="Manage your infrastructure and applications with natural language"
-  subtitle="Ask Claude to list environments, check application status, tail logs, or trigger a deploy. All through Qovery's MCP Server. No kubectl needed."
-  button="Try Qovery free →"
-/>
+<div className="cta-banner">
+  <div className="cta-banner-text">
+    <h3>Manage your infrastructure and applications with natural language</h3>
+    <p className="cta-banner-subtitle">Ask Claude to list environments, check application status, tail logs, or trigger a deploy. All through Qovery's MCP Server. No kubectl needed.</p>
+  </div>
+  <a href="https://console.qovery.com" className="cta-banner-button">Try Qovery free →</a>
+</div>

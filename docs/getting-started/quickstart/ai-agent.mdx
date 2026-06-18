@@ -4,8 +4,6 @@ description: "Tell your AI coding agent to deploy. It handles everything — fro
 mode: "wide"
 ---
 
-import { CTABanner } from '/snippets/cta-banner'
-
 # Deploy to Kubernetes with your AI agent.
 
 <Check>**Qovery account** — [console.qovery.com](https://console.qovery.com) (free to start)</Check>
@@ -205,7 +203,10 @@ The Skill deploys. The MCP Server operates. Use both together. [→ MCP Server](
   </Card>
 </CardGroup>
 
-<CTABanner
-  title="Let your AI agent deploy, under your control"
-  subtitle="Qovery runs on your cloud, your cluster, your rules. Set guardrails and RBAC. Your agent operates within them. No vendor lock-in."
-/>
+<div className="cta-banner">
+  <div className="cta-banner-text">
+    <h3>Let your AI agent deploy, under your control</h3>
+    <p className="cta-banner-subtitle">Qovery runs on your cloud, your cluster, your rules. Set guardrails and RBAC. Your agent operates within them. No vendor lock-in.</p>
+  </div>
+  <a href="https://console.qovery.com" className="cta-banner-button">Create free account →</a>
+</div>

@@ -3,8 +3,6 @@ title: "Ephemeral Environments"
 description: "Create on-demand temporary environments for development, testing, and E2E testing with automated CI/CD workflows"
 ---
 
-import { CTABanner } from '/snippets/cta-banner'
-
 ## Overview
 
 Ephemeral environments are temporary, isolated environments that are automatically created for specific purposes (like feature development or testing) and destroyed when no longer needed. They provide developers with production-like environments without the cost and complexity of maintaining permanent infrastructure.
@@ -97,8 +95,10 @@ Qovery offers **two approaches** to create and manage ephemeral environments, de
   </Card>
 </CardGroup>
 
-<CTABanner
-  title="Stop configuring ephemeral environments manually"
-  subtitle="Qovery auto-creates a full-stack preview environment for every pull request and destroys it on merge. Setup in 15 minutes."
-  button="Try Qovery free →"
-/>
+<div className="cta-banner">
+  <div className="cta-banner-text">
+    <h3>Stop configuring ephemeral environments manually</h3>
+    <p className="cta-banner-subtitle">Qovery auto-creates a full-stack preview environment for every pull request and destroys it on merge. Setup in 15 minutes.</p>
+  </div>
+  <a href="https://console.qovery.com" className="cta-banner-button">Try Qovery free →</a>
+</div>

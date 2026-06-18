@@ -24,7 +24,7 @@ You can review the full setup process in the [Scaleway installation guide](/gett
 
 ## Required Permission Sets
 
-Qovery requires **five IAM permission sets**, each granting full access to a specific Scaleway product. Below is a detailed explanation of what Qovery does with each.
+Qovery requires **five core IAM permission sets**, each granting full access to a specific Scaleway product. Some optional features require additional permissions — see [Optional Permissions](#optional-permissions) below. Below is a detailed explanation of what Qovery does with each.
 
 ---
 
@@ -156,6 +156,23 @@ This permission set provides additional VPC-level controls beyond what Network S
 <Info>
   The **VPC** and **Network Services** permission sets are both required because Scaleway splits networking permissions across two product scopes. VPC covers the top-level virtual private cloud, while Network Services covers the resources within it (private networks, gateways, load balancers).
 </Info>
+
+---
+
+## Optional Permissions
+
+### VPCGatewayFullAccess — Static IP for Egress Traffic
+
+If you enable the **Static IP for egress traffic** feature on your Kapsule cluster, Qovery needs to provision and manage Scaleway Public Gateways. This requires an additional permission set: **VPCGatewayFullAccess**.
+
+| What Qovery does | Why |
+|---|---|
+| Allocates static Public Gateway IPs | Reserves a dedicated public IP address so all outbound traffic from the cluster uses a stable, predictable source IP (useful for IP allowlisting) |
+| Creates Public Gateways | Provisions a NAT gateway (VPC-GW-S, VPC-GW-M, VPC-GW-L, or VPC-GW-XL) attached to the cluster's private network |
+| Associates Gateways to Private Networks | Binds the gateway to the cluster's private network with MASQUERADE/IPAM configuration for outbound connectivity |
+| Deletes Gateways and IPs | Cleans up gateway resources when the feature is disabled or the cluster is deleted |
+
+See [Static IP for Egress Traffic](/configuration/integrations/kubernetes/scaleway/managed#static-ip-for-egress-traffic) for how to enable this feature.
 
 ---
 

@@ -106,10 +106,10 @@ qovery log
   Explore all available commands and examples
 </Card>
 
-<div className="cta-banner">
-  <div className="cta-banner-text">
-    <h3>Your entire infrastructure, one terminal command away</h3>
-    <p className="cta-banner-subtitle">Deploy, manage, and monitor without ever opening a Kubernetes dashboard. Qovery turns complex cluster operations into simple CLI calls.</p>
-  </div>
-  <a href="https://console.qovery.com" className="cta-banner-button">Get started free →</a>
-</div>
+import { CTABanner } from '/snippets/cta-banner'
+
+<CTABanner
+  title="Your entire infrastructure, one terminal command away"
+  subtitle="Deploy, manage, and monitor without ever opening a Kubernetes dashboard. Qovery turns complex cluster operations into simple CLI calls."
+  button="Get started free →"
+/>

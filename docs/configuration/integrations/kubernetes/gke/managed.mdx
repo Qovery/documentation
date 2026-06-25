@@ -11,6 +11,105 @@ import GcpCredentials from "/snippets/gcp-credentials.mdx";
 
 <GcpCredentials />
 
+### CMEK requirements (optional)
+
+CMEK (Customer-Managed Encryption Key) lets you control the GCP KMS key used to encrypt your cluster's data at rest instead of relying on Google-managed keys.
+See [GCP documentation](https://docs.cloud.google.com/kubernetes-engine/docs/how-to/using-cmek) for more details.
+
+<Warning>
+  You can provide your own KMS key only at cluster creation.
+  It is not possible to change the KMS key of an existing running cluster.
+</Warning>
+
+Your key encrypts the following resources:
+* node boot disks
+* etcd data
+* storage buckets
+* persistent volume claims (PVCs)
+
+#### Step 1 - Create the key ring and key
+
+<Warning>
+  * The KMS key **must be in the same region as your GKE cluster**.
+  * **Never delete the KMS key associated with your cluster** - doing so will permanently and irrecoverably destroy all encrypted data, including node disks, persistent volumes, and Kubernetes secrets.
+</Warning>
+
+```bash
+# Create a key ring
+gcloud kms keyrings create <KEY_RING> \
+  --project=<KMS_KEY_PROJECT_ID> \
+  --location=<LOCATION>
+
+# Create the key inside that ring
+gcloud kms keys create <KEY_NAME> \
+  --project=<KMS_KEY_PROJECT_ID> \
+  --location=<LOCATION> \
+  --keyring=<KEY_RING> \
+  --purpose=encryption
+```
+
+The full resource path for the key is:
+```
+projects/<KMS_KEY_PROJECT_ID>/locations/<LOCATION>/keyRings/<KEY_RING>/cryptoKeys/<KEY_NAME>
+```
+
+You will need to paste this path into the **GKE KMS key** field when creating the cluster.
+
+#### Step 2 - Grant required permissions
+
+Three GCP service agents need `cryptoKeyEncrypterDecrypter` rights on the key.
+
+* **Google Cloud Storage Service Agent** - encrypts GCS bucket data
+
+```bash
+gcloud storage service-agent \
+  --project=<CLUSTER_PROJECT_NUMBER> \
+  --authorize-cmek projects/<KMS_KEY_PROJECT_ID>/locations/<LOCATION>/keyRings/<KEY_RING>/cryptoKeys/<KEY_NAME>
+```
+
+* **Kubernetes Engine Service Agent** - encrypts GKE node boot disks and secrets
+
+```bash
+gcloud kms keys add-iam-policy-binding <KEY_NAME> \
+  --project=<KMS_KEY_PROJECT_ID> \
+  --location=<LOCATION> \
+  --keyring=<KEY_RING> \
+  --member="serviceAccount:service-<CLUSTER_PROJECT_NUMBER>@container-engine-robot.iam.gserviceaccount.com" \
+  --role="roles/cloudkms.cryptoKeyEncrypterDecrypter"
+```
+
+* **Compute Engine Service Agent** - encrypts persistent disks
+
+```bash
+gcloud kms keys add-iam-policy-binding <KEY_NAME> \
+  --project=<KMS_KEY_PROJECT_ID> \
+  --location=<LOCATION> \
+  --keyring=<KEY_RING> \
+  --member="serviceAccount:service-<CLUSTER_PROJECT_NUMBER>@compute-system.iam.gserviceaccount.com" \
+  --role="roles/cloudkms.cryptoKeyEncrypterDecrypter"
+```
+
+<Info>
+  `<KMS_KEY_PROJECT_ID>` - the GCP project ID of the project where your KMS key is stored (e.g. my-test-project)
+
+  `<CLUSTER_PROJECT_ID>` - the GCP project ID of the project where your GKE cluster is created (e.g. my-test-project)
+
+  `<CLUSTER_PROJECT_NUMBER>` - the numeric project number where your cluster is created (find it with `gcloud projects describe <CLUSTER_PROJECT_ID> --format="value(projectNumber)"`)
+
+  `<LOCATION>` - the region of your GKE cluster (e.g. `europe-west9`); the KMS key must be in the same region
+
+  `<KEY_RING>` - the name of the key ring containing your KMS key (e.g. my-key-ring)
+
+  `<KEY_NAME>` - the name of the KMS key (e.g. my-key)
+</Info>
+
+#### Step 3 - Set your KMS key on cluster creation
+
+Enable the GKE KMS key option when creating your cluster:
+<Frame>
+  <img src="/images/configuration/clusters/gcp-kms-key-creation-cluster.png" alt="Configure AWS Automatic authentication"/>
+</Frame>
+
 ### Create the Cluster
 
 <Steps>
@@ -22,6 +121,7 @@ import GcpCredentials from "/snippets/gcp-credentials.mdx";
     * **Cluster name**: enter the name of your choice for your cluster.
     * **Description**: enter a description to identify better your cluster.
     * **Production cluster**: select this option if your cluster will be used for production.
+    * **GKE KMS key**: (optional) paste the full KMS key resource path created in the [CMEK requirements](#cmek-requirements-optional) section above (format: `projects/<KMS_KEY_PROJECT_ID>/locations/<LOCATION>/keyRings/<KEY_RING>/cryptoKeys/<KEY_NAME>`).
     * **Region**: select the geographical area in which you want your cluster to be hosted.
     * **Credentials**: select one of the existing cloud provider credentials or [create new credentials](/getting-started/installation/gcp#connect-your-gcp-account).
 

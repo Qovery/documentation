@@ -1652,14 +1652,12 @@ At engine rendering level, CIDR strategy has precedence when both values are pre
 
 **Example advanced setting payload:**
 ```json
-{
-  "envoy.client_validation.ca_certificates": [
-    {
-      "name": "cloudflare-origin-pull-ca",
-      "ca_crt": "-----BEGIN CERTIFICATE-----\n...\n-----END CERTIFICATE-----"
-    }
-  ]
-}
+[
+  {
+    "name": "cloudflare-origin-pull-ca",
+    "ca_crt": "-----BEGIN CERTIFICATE-----\n...\n-----END CERTIFICATE-----"
+  }
+]
 ```
 
 **Rendered Secret example:**

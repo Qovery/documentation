@@ -88,7 +88,6 @@ gcloud kms keys add-iam-policy-binding <KEY_NAME> \
   --member="serviceAccount:service-<CLUSTER_PROJECT_NUMBER>@compute-system.iam.gserviceaccount.com" \
   --role="roles/cloudkms.cryptoKeyEncrypterDecrypter"
 ```
-
 <Info>
   `<KMS_KEY_PROJECT_ID>` - the GCP project ID of the project where your KMS key is stored (e.g. my-test-project)
 
@@ -103,7 +102,32 @@ gcloud kms keys add-iam-policy-binding <KEY_NAME> \
   `<KEY_NAME>` - the name of the KMS key (e.g. my-key)
 </Info>
 
-#### Step 3 - Set your KMS key on cluster creation
+#### Step 3 - Grant your cluster service account on your KMS key
+
+<Warning>
+  This step is needed only for GKE clusters in a different project than the KMS key created
+</Warning>
+
+* Create dedicated role in your KMS Key project:
+  ```bash
+  gcloud iam roles create qovery-role-kms-get-iam-policy \
+     --project=<KMS_KEY_PROJECT_ID> \
+     --title="Qovery KMS Get IAM Policy" \
+     --description="Allows reading IAM policy on KMS resources only" \
+     --permissions=cloudkms.cryptoKeys.getIamPolicy \
+     --stage=GA
+  ```
+* Grant your service account on your kms key with the new role:
+  ```bash
+  gcloud kms keys add-iam-policy-binding <KEY_NAME> \
+    --keyring=<KEY_RING> \
+    --location=<LOCATION> \
+    --project=<KMS_KEY_PROJECT_ID> \
+    --member="serviceAccount:<SERVICE_ACCOUNT_EMAIL>" \
+    --role="projects/<KMS_KEY_PROJECT_ID>/roles/qovery-role-kms-get-iam-policy"
+  ```
+
+#### Step 4 - Set your KMS key on cluster creation
 
 Enable the GKE KMS key option when creating your cluster:
 <Frame>

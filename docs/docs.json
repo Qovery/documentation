@@ -234,6 +234,7 @@
                   "configuration/cluster-advanced-settings",
                   "configuration/connect-to-cluster",
                   "configuration/organization/cloud-credentials",
+                  "configuration/cloud-provider-resource-tags",
                   {
                     "group": "AWS EKS",
                     "pages": [

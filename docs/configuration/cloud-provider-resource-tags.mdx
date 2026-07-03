@@ -1,0 +1,92 @@
+---
+title: "Cloud Provider Resource Tags"
+description: "Default tags Qovery applies to the cloud resources it provisions on AWS, GCP, Azure, and Scaleway"
+---
+
+## Overview
+
+When Qovery provisions infrastructure on a cloud provider (cluster, network, IAM roles, security groups, and related resources), it automatically applies a set of system tags to every resource it creates. These tags are used for traceability, cost allocation, and to identify Qovery-managed resources within a cloud account.
+
+This is distinct from the [Labels & Annotations](/configuration/organization/labels-annotations) feature, which lets you define your own Kubernetes label/annotation groups and optionally propagate them as cloud provider tags on specific resources (managed databases and AWS clusters). The tags described on this page are applied unconditionally by Qovery, independently of any labels/annotations configuration.
+
+<Info>
+  On AWS, custom tags and Qovery's system tags can coexist on the same resource. If a custom tag key collides with a system tag key, the system tag always takes precedence and cannot be overridden.
+</Info>
+
+## AWS (EKS)
+
+| Tag key | Description |
+|---|---|
+| `ClusterId` | Qovery internal (short) cluster ID |
+| `ClusterLongId` | Qovery internal long/UUID cluster ID |
+| `OrganizationId` | Qovery organization short ID |
+| `OrganizationLongId` | Qovery organization UUID |
+| `Region` | AWS region of the cluster |
+| `creationDate` | Timestamp (RFC3339) captured once when the cluster is created |
+| `QoveryProduct` | Always `EKS` |
+| `aws-apn-id` | AWS Partner Network identifier, used to measure Qovery-managed resources for the AWS Marketplace listing |
+| `ttl` | Resource expiration in seconds, only present on resources with an expiration configured (for example, ephemeral test clusters) |
+| `Service` | Identifies the resource category on service-scoped resources, for example `EKS`, `RDS`, `DocumentDB`, or `Elasticache` |
+
+Additional resource-specific tags are applied where required by AWS itself, for example `kubernetes.io/cluster/qovery-<id>=shared` and `kubernetes.io/role/elb`/`kubernetes.io/role/internal-elb` on VPC subnets, so that the AWS cloud controller and load balancer controller can discover them.
+
+Nodes provisioned by Karpenter receive the same `ClusterId`, `ClusterLongId`, `OrganizationId`, `OrganizationLongId`, and `Region` tags.
+
+## Google Cloud (GKE)
+
+On GCP, these are applied as resource [labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels) rather than free-form tags.
+
+| Tag key | Description |
+|---|---|
+| `cluster_id` | Qovery internal (short) cluster ID |
+| `cluster_long_id` | Qovery internal long/UUID cluster ID |
+| `organization_id` | Qovery organization short ID |
+| `organization_long_id` | Qovery organization UUID |
+| `region` | GCP region of the cluster |
+| `creation_date` | Unix timestamp captured once when the cluster is created |
+| `qovery_product` | Always `gke` |
+| `ttl` | Resource expiration in seconds, only present on resources with an expiration configured |
+| `service` | Always `gke` on the GKE cluster resource |
+
+A reduced label set (`cluster_long_id`, `organization_long_id`, `region`, `creation_date`, `ttl`) is used on resources with tighter metadata limits, such as service accounts.
+
+## Azure (AKS)
+
+| Tag key | Description |
+|---|---|
+| `cluster_id` | Qovery internal (short) cluster ID |
+| `cluster_long_id` | Qovery internal long/UUID cluster ID |
+| `organization_id` | Qovery organization short ID |
+| `organization_long_id` | Qovery organization UUID |
+| `region` | Azure location of the cluster |
+| `creation_date` | Unix timestamp captured once when the cluster is created |
+| `qovery_product` | Always `aks` |
+| `ttl` | Resource expiration in seconds, only present on resources with an expiration configured |
+| `service` | Always `aks` |
+
+These tags are applied to the AKS cluster and node pools, managed identities, the resource group, the virtual network and subnets, and the storage account.
+
+## Scaleway (Kapsule)
+
+Scaleway resources take tags as a flat list of `key=value` strings rather than a key/value map.
+
+| Tag key | Description |
+|---|---|
+| `ClusterId` | Qovery internal (short) cluster ID |
+| `ClusterLongId` | Qovery internal long/UUID cluster ID |
+| `OrganizationId` | Qovery organization short ID |
+| `OrganizationLongId` | Qovery organization UUID |
+| `Region` | Scaleway region of the cluster |
+| `creationDate` | Timestamp (RFC3339) captured once when the cluster is created |
+| `QoveryProduct` | Always `Kapsule` |
+| `ttl` | Resource expiration in seconds, only present on resources with an expiration configured |
+
+Worker nodes additionally receive `QoveryNodeGroupName` and `QoveryNodeGroupId`, identifying the node group and instance type/index they belong to.
+
+## Summary
+
+| | AWS | GCP | Azure | Scaleway |
+|---|---|---|---|---|
+| Product tag value | `EKS` | `gke` | `aks` | `Kapsule` |
+| Custom tag merge support | Yes | No | No | No |
+| Cloud-specific extra tag | `aws-apn-id` | — | — | `QoveryNodeGroupName` / `QoveryNodeGroupId` on worker nodes |

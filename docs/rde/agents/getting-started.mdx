@@ -17,7 +17,7 @@ Before starting, make sure you have:
 
 - AI Builder Portal configured - see [Admin Setup](/rde/getting-started/admin-setup)
 - A running Kubernetes cluster on Qovery
-- A Linear workspace with API access connected to the portal
+- Linear connected to the portal via OAuth - see [Linear Integration](/rde/agents/linear-integration#connecting-linear)
 - A git repository the agent will work on
 - An API key for your chosen AI runtime (Anthropic, OpenAI, or Google)
 
@@ -57,8 +57,7 @@ Before starting, make sure you have:
     Configure the Linear integration that drives the agent's work queue.
 
     **Required fields:**
-    - **Linear Team** - the team whose issues the agent will pick up
-    - **Issue Label** - the label that triggers a run (default: `qovery-agent-ready`)
+    - **Linear Team** - the team whose issues the agent will respond to
     - **In-Progress State** - the workflow state the issue transitions to when claimed by the agent
 
     **Optional fields:**
@@ -68,6 +67,10 @@ Before starting, make sure you have:
     **Resource limits:**
     - **Max concurrent runs** - how many issues the agent works on simultaneously (default: `3`)
     - **Run timeout** - maximum duration per run in minutes (default: `60`)
+
+    <Info>
+    The wizard also shows a **label** field (default: `qovery-agent-ready`). This label is stored for organization and display purposes. Triggering happens when users @mention or assign the agent on an issue - not via labels.
+    </Info>
 
     <Tip>
     Under **Advanced**, you can customize the blueprint name (default: `Autonomous Agent`), description, target cluster, and resource allocation (CPU, memory, storage). The defaults - 4000 mCPU, 4096 MB memory, 10 GB storage - work well for most workloads.
@@ -86,13 +89,13 @@ The wizard uses the [official agent template](https://github.com/Qovery/autonomo
 ## Trigger Your First Run
 
 1. Open your Linear workspace and navigate to the team you configured in the blueprint.
-2. Create or select an existing issue.
-3. Add the trigger label to the issue (e.g., `qovery-agent-ready`).
-4. The background runner picks up the labeled issue within 60 seconds.
-5. The issue automatically transitions to the **In-Progress** state, and a comment is posted on the issue confirming the agent has claimed it.
+2. Open an existing issue or create a new one.
+3. **@mention the agent** in a comment, or **assign the agent** to the issue.
+4. The agent responds within seconds - a plan with four steps appears directly in the Linear issue.
+5. The issue automatically transitions to the **In-Progress** state.
 
 <Info>
-The background runner polls Linear every 60 seconds. There may be up to a one-minute delay between labeling an issue and the agent claiming it.
+The agent is triggered by @mention or assignment, not by labels. The response is instant - driven by webhooks, not polling.
 </Info>
 
 ## Monitor the Run
@@ -124,18 +127,21 @@ stateDiagram-v2
 
 The runs table auto-refreshes every 30 seconds. When a run completes successfully, the PR URL appears in the table.
 
+You can also follow the agent's progress directly in the Linear issue, where it posts a real-time plan and status updates as structured activities.
+
 ## What Happens Under the Hood
 
 <Tip>
-Here is what the system does end-to-end when an issue is labeled:
+Here is what the system does end-to-end when the agent is triggered:
 
-1. The background runner polls Linear every 60 seconds for issues with the trigger label.
-2. It claims the issue atomically - a database constraint prevents duplicate runs for the same issue.
-3. The issue transitions to the In-Progress state and a lifecycle comment is posted.
-4. A cloud workspace launches with the configured runtime, repositories, and API key.
-5. The AI agent receives the issue title, description, and context, then works on the code.
-6. When the agent finishes, it reports the result (PR URL or error) back via a callback.
-7. The portal stops the workspace, updates the Linear issue state, and posts a final comment with the outcome.
+1. A user @mentions or assigns the agent on a Linear issue.
+2. Linear sends a webhook to the portal. The session handler acknowledges within 10 seconds.
+3. The handler finds the matching agent blueprint by the issue's team.
+4. It claims the issue atomically - a database constraint prevents duplicate runs.
+5. A 4-step plan appears in the Linear issue, and the issue transitions to the In-Progress state.
+6. A cloud workspace launches with the configured runtime, repositories, and API key.
+7. The AI agent works on the code, streaming live progress updates to the Linear issue.
+8. When the agent finishes, the portal updates the plan, posts the PR link (or error), transitions the issue state, and cleans up the workspace.
 </Tip>
 
 ## Next Steps

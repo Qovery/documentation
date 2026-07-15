@@ -12,7 +12,7 @@ description: "A self-service web portal that gives every team member their own i
 </Note>
 
 <Info>
-Looking for the CLI-based approach? See [Remote Development Environments with the CLI](/getting-started/guides/use-cases/remote-development-environments) for managing RDEs via `qovery rde` commands.
+Looking for the CLI-based approach? See [Remote Development Environments with the CLI](/cli/commands/rde) for managing RDEs via `qovery rde` commands.
 </Info>
 
 ## Your Team Is Already Building with AI
@@ -85,6 +85,9 @@ The portal includes a **built-in terminal with Claude Code and OpenCode chat** f
   <Card title="Multi-Cluster Support" icon="server">
     Route workspaces to specific Kubernetes clusters per blueprint for data residency, resource isolation, or specialized hardware requirements.
   </Card>
+  <Card title="Autonomous Agents" icon="robot">
+    Connect AI agents to your project tracker. They pick up issues, write code in isolated environments, and open pull requests - autonomously.
+  </Card>
 </CardGroup>
 
 ## Secure by Design
@@ -140,6 +143,11 @@ flowchart LR
 A **blueprint** is a pre-configured workspace template created by your platform team. Think of it as a ready-to-use work environment - the right tools, the right database connections, the right API credentials - all set up and secured. Builders don't configure anything. They pick a blueprint, click Create, and start building.
 
 The platform team controls what each blueprint can access: which databases, which internal APIs, which credentials. That governance is invisible to the builder. From their perspective, they just pick a template and get to work.
+
+Blueprints come in two types:
+
+- **Workspace Blueprints** - The default. A human creates a workspace, works in the browser with built-in AI tools, and publishes their application.
+- **Agent Blueprints** - Configured for autonomous AI agents. Instead of a human, an AI agent runs in the workspace, picks up issues from your project tracker, writes code, and opens pull requests. See [Autonomous Agents](/rde/agents/overview) for details.
 
 Different teams get different blueprints, scoped to what they actually need:
 
@@ -234,5 +242,8 @@ Before using the AI Builder Portal, make sure you have:
   </Card>
   <Card title="Architecture" icon="sitemap" href="/rde/reference/architecture">
     Understand how the portal works under the hood.
+  </Card>
+  <Card title="Autonomous Agents" icon="robot" href="/rde/agents/overview">
+    Let AI agents resolve issues and open pull requests autonomously.
   </Card>
 </CardGroup>

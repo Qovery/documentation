@@ -302,10 +302,56 @@ The portal splits data storage between its database and the Qovery API:
 | User tags | Portal database |
 | Connection audit logs | Portal database |
 | Firewall rules and events | Portal database |
+| Autonomous run state | Portal database |
+| Linear issue mapping | Portal database |
+| Agent run results (PR URL, failure reason) | Portal database |
 
 <Note>
 No source code, AI conversations, or application data is stored in the portal database. All development data lives exclusively in workspace containers on your cluster.
 </Note>
+
+## Autonomous Agent Architecture
+
+Autonomous agents extend the portal with an automated issue-to-PR pipeline. Three components are added on top of the existing workspace infrastructure:
+
+**Background Runner** - A polling job that runs every 60 seconds. It scans all organizations with agent blueprints enabled, queries Linear for issues matching the configured team and label, claims them atomically via a database unique constraint, and launches workspaces.
+
+**Agent Workspace** - A standard workspace environment with the AI runtime (Claude Code, OpenCode, Codex, Gemini CLI, or Cursor CLI) pre-configured. The agent receives the Linear issue context, works on the code, and reports results via a callback endpoint.
+
+**Result Callback** - When the agent finishes, the workspace calls back to the API server with the result (PR opened, failed, or timed out). The API server updates the run status, stops the workspace, and posts a lifecycle comment on the Linear issue.
+
+```mermaid
+sequenceDiagram
+    participant Linear
+    participant Runner as Background Runner
+    participant API as API Server
+    participant DB as Database
+    participant CP as Qovery Control Plane
+    participant Agent as Agent Workspace
+
+    Runner->>Linear: Query issues with trigger label
+    Linear-->>Runner: Matching issues
+    Runner->>DB: Claim issue (atomic)
+    Runner->>Linear: Transition to In-Progress
+    Runner->>Linear: Post comment
+    Runner->>CP: Launch workspace
+    CP->>Agent: Deploy environment
+    Agent->>Agent: AI agent works on issue
+    Agent->>API: Report result
+    API->>DB: Update run status
+    API->>CP: Stop workspace
+    API->>Linear: Post result comment
+    API->>Linear: Transition state
+
+    style Runner fill:#642DFF,color:#fff
+    style API fill:#642DFF,color:#fff
+    style DB fill:#642DFF,color:#fff
+    style CP fill:#1a1a2e,color:#fff
+    style Agent fill:#0d9488,color:#fff
+    style Linear fill:#1a1a2e,color:#fff
+```
+
+For a full walkthrough of the Linear integration, issue flow, and lifecycle comments, see [Linear Integration](/rde/agents/linear-integration).
 
 ## Next Steps
 

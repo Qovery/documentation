@@ -1,0 +1,185 @@
+---
+title: "Getting Started with Autonomous Agents"
+description: "Set up your first autonomous agent - from creating a blueprint to triggering your first run and reviewing the pull request."
+---
+
+import RdePreviewWarning from "/snippets/rde-preview-warning.mdx";
+
+<RdePreviewWarning />
+
+## Overview
+
+Autonomous agents pick up Linear or Jira issues, work on them in isolated cloud workspaces, and open pull requests - without human intervention. This guide walks you through creating an agent blueprint and triggering your first run.
+
+## Prerequisites
+
+Before starting, make sure you have:
+
+- AI Builder Portal configured - see [Admin Setup](/rde/getting-started/admin-setup)
+- A running Kubernetes cluster on Qovery
+- Linear connected via OAuth (see [Linear Integration](/rde/agents/linear-integration#connecting-linear)) **or** Jira connected via OAuth (see [Jira Integration](/rde/agents/jira-integration#connecting-jira))
+- A git repository the agent will work on
+- An API key for your chosen AI runtime (Anthropic, OpenAI, or Google)
+
+## Create an Agent Blueprint
+
+<Steps>
+  <Step title="Open the Agent Blueprints page">
+    Go to **Admin > Agent Blueprints** and click **Create Agent Blueprint** to open the wizard.
+  </Step>
+
+  <Step title="Choose a Runtime">
+    Select one of the five supported AI runtimes:
+
+    | Runtime | Command | API Key Variable |
+    |---------|---------|-----------------|
+    | Claude Code | `claude -p` | `ANTHROPIC_API_KEY` |
+    | OpenCode | `opencode run` | `ANTHROPIC_API_KEY` |
+    | Codex | `codex --full-auto` | `OPENAI_API_KEY` |
+    | Gemini CLI | `gemini -p` | `GEMINI_API_KEY` |
+    | Cursor CLI | `cursor-agent` | `ANTHROPIC_API_KEY` |
+
+    Optionally enter the API key for the selected runtime. The key is stored encrypted and injected into the workspace at launch.
+  </Step>
+
+  <Step title="Configure Repositories">
+    Add one or more git repositories the agent will work on.
+
+    For each repository:
+    - **URL** (required) - the HTTPS clone URL
+    - **Branch** - defaults to `main`
+    - **Token** - optional, required for private repositories
+
+    At least one repository URL must be provided.
+  </Step>
+
+  <Step title="Configure the Issue Tracker">
+    In the third step, select the **Issue Tracker** provider. The selector defaults to whichever tracker is connected (Jira if only Jira is connected, otherwise Linear).
+
+    <Tabs>
+      <Tab title="Linear">
+        **Required fields:**
+        - **Linear Team** - the team whose issues the agent will respond to
+        - **In-Progress State** - the workflow state the issue transitions to when claimed by the agent
+
+        **Optional fields:**
+        - **In-Review State** - the workflow state when the agent opens a PR
+        - **Needs-Human State** - the workflow state when the agent fails or times out
+        - **Issue Label** - default `qovery-agent-ready`, stored for organization and display. Triggering happens when users @mention or assign the agent on an issue, not via labels.
+      </Tab>
+      <Tab title="Jira">
+        **Required fields:**
+        - **Jira Project** - the project whose issues the agent will respond to
+        - **Claimed Status** - the status the issue transitions to when claimed by the agent
+
+        **Optional fields:**
+        - **Review Status** - the status when the agent opens a PR
+        - **Failed Status** - the status when the agent fails or times out
+
+        Jira runs are triggered by assigning an issue to the agent's Jira user. There is no label field.
+      </Tab>
+    </Tabs>
+
+    **Resource limits (both trackers):**
+    - **Max concurrent runs** - how many issues the agent works on simultaneously (default: `3`)
+    - **Run timeout** - maximum duration per run in minutes (default: `60`)
+
+    <Tip>
+    Under **Advanced**, you can customize the blueprint name (default: `Autonomous Agent`), description, target cluster, and resource allocation (CPU, memory, storage). The defaults - 4000 mCPU, 4096 MB memory, 10 GB storage - work well for most workloads.
+    </Tip>
+  </Step>
+
+  <Step title="Create the Blueprint">
+    Click **Create**. The portal provisions a Qovery project and environment for the agent. Once complete, the blueprint appears under **Admin > Agent Blueprints**, tagged with a Linear or Jira provider badge.
+  </Step>
+</Steps>
+
+<Info>
+The wizard uses the [official agent template](https://github.com/Qovery/autonomous-agent-template) as the base image. For advanced customization - adding project dependencies, custom agent instructions, or setup scripts - see [Agent Template](/rde/agents/agent-template).
+</Info>
+
+## Trigger Your First Run
+
+<Tabs>
+  <Tab title="Linear">
+    1. Open your Linear workspace and navigate to the team you configured in the blueprint.
+    2. Open an existing issue or create a new one.
+    3. **@mention the agent** in a comment, or **assign the agent** to the issue.
+    4. The agent responds within seconds - a plan with four steps appears directly in the Linear issue.
+    5. The issue automatically transitions to the **In-Progress** state.
+  </Tab>
+  <Tab title="Jira">
+    1. Open your Jira project and navigate to the project you configured in the blueprint.
+    2. Open an existing issue or create a new one.
+    3. **Assign the issue to the agent's Jira user.**
+    4. The agent claims the issue and posts a comment confirming it has started.
+    5. The issue automatically transitions to the **Claimed** status.
+  </Tab>
+</Tabs>
+
+<Info>
+The agent is triggered by assignment (or @mention in Linear), not by labels. The response is driven by webhooks, not polling.
+</Info>
+
+## Monitor the Run
+
+Navigate to **Admin > Agents > Runs** to watch the agent work.
+
+A run progresses through these statuses:
+
+```mermaid
+stateDiagram-v2
+    classDef qoveryPurple fill:#642DFF,color:#fff,stroke:#7C3FFF
+    [*] --> claimed:::qoveryPurple
+    claimed --> launching:::qoveryPurple
+    launching --> running:::qoveryPurple
+    running --> pr_opened:::qoveryPurple
+    running --> failed
+    running --> timed_out
+    pr_opened --> [*]
+    failed --> [*]
+    timed_out --> [*]
+```
+
+- **claimed** - the agent has picked up the issue and reserved it
+- **launching** - the cloud workspace is being provisioned
+- **running** - the AI runtime is actively working on the issue
+- **pr_opened** - the agent opened a pull request (success)
+- **failed** - the agent encountered an error
+- **timed_out** - the run exceeded the configured timeout
+
+The runs table auto-refreshes every 30 seconds. When a run completes successfully, the PR URL appears in the table.
+
+You can also follow the agent's progress directly on the issue. In Linear, it posts a real-time plan and status updates as structured agent activities; in Jira, it posts progress comments and transitions the issue status.
+
+## What Happens Under the Hood
+
+<Tip>
+Here is what the system does end-to-end when the agent is triggered:
+
+1. A user triggers the agent on an issue (@mention or assignment in Linear; assignment to the agent user in Jira).
+2. The tracker sends a webhook to the portal, which the session handler verifies and acknowledges quickly.
+3. The handler finds the matching agent blueprint by the issue's team (Linear) or project (Jira).
+4. It claims the issue atomically - a database constraint prevents duplicate runs.
+5. The issue transitions to the claimed state, and progress reporting begins (a 4-step plan in Linear, or a comment in Jira).
+6. A cloud workspace launches with the configured runtime, repositories, and API key.
+7. The AI agent works on the code, streaming live progress updates back to the issue.
+8. When the agent finishes, the portal posts the PR link (or error), transitions the issue state, and cleans up the workspace.
+</Tip>
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Agent Blueprints" icon="robot" href="/rde/agents/agent-blueprints">
+    Deep dive on agent blueprint configuration, runtimes, and resource tuning.
+  </Card>
+  <Card title="Managing Runs" icon="list-check" href="/rde/agents/managing-runs">
+    Monitor active runs, review logs, and handle failures.
+  </Card>
+  <Card title="Linear Integration" icon="arrows-rotate" href="/rde/agents/linear-integration">
+    Configure the issue flow, labels, and workflow state mapping.
+  </Card>
+  <Card title="Jira Integration" icon="arrows-rotate" href="/rde/agents/jira-integration">
+    Connect Jira, map statuses, and trigger agents by assignment.
+  </Card>
+</CardGroup>

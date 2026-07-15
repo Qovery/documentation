@@ -1,0 +1,11 @@
+<Accordion title="Requirements to use your KMS key">
+  If your secrets are encrypted with a customer-managed KMS key (rather than the default AWS-managed key), you must also grant the `kms:Decrypt` action on your Role permissions by adding the following:
+  ```
+  {
+    "Sid": "AllowKMSDecrypt",
+    "Effect": "Allow",
+    "Action": "kms:Decrypt",
+    "Resource": "arn:aws:kms:region:accountid:key/your-key-id"
+  }
+  ```
+</Accordion>

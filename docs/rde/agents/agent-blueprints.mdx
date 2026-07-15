@@ -65,6 +65,24 @@ Agent blueprints created through the wizard use these default resource allocatio
 
 The target cluster defaults to the first non-production cluster in your organization.
 
+## Git Provider Support
+
+Agent blueprints support three git providers for cloning repositories, pushing branches, and creating pull requests:
+
+| Provider | Supported |
+|----------|-----------|
+| GitHub | Yes |
+| GitLab | Yes |
+| Bitbucket | Yes |
+
+The provider is detected automatically from the repository URL configured in the blueprint. The agent template handles authentication, branch creation, and PR creation for all three providers.
+
+## Official Agent Template
+
+Agent blueprints created through the wizard use the [official agent template](https://github.com/Qovery/autonomous-agent-template) (`ghcr.io/qovery/autonomous-agent-template:latest`) as the base Docker image. This image includes all five AI runtimes, development tooling, and the autonomous entrypoint script.
+
+You can extend the template with project-specific dependencies by creating a custom Dockerfile that builds on top of the official image. See [Agent Template](/rde/agents/agent-template) for details on customization, environment variables, and the governance proxy.
+
 ## API Key Management
 
 The API key for the selected runtime is stored as an environment variable on the blueprint's Qovery environment. Different runtimes use different environment variable names - see the [Runtime Details](#runtime-details) table for the mapping.

@@ -1,0 +1,189 @@
+---
+title: "Agent Template"
+description: "The official Docker image template for running autonomous AI agents on Qovery - architecture, environment variables, customization, and governance."
+---
+
+import RdePreviewWarning from "/snippets/rde-preview-warning.mdx";
+
+<RdePreviewWarning />
+
+## Overview
+
+The [autonomous agent template](https://github.com/Qovery/autonomous-agent-template) is the official Docker image for running headless AI agents on Qovery. When deployed as a workspace, the container automatically fetches a Linear issue, runs an AI agent, opens a pull request, and exits.
+
+You can use the template directly or extend it with project-specific dependencies.
+
+## Quick Start
+
+### Use the image directly
+
+```dockerfile
+FROM ghcr.io/qovery/autonomous-agent-template:latest
+
+# Add your project-specific dependencies
+RUN apt-get update && apt-get install -y your-deps
+```
+
+### Or build from source
+
+```bash
+git clone https://github.com/Qovery/autonomous-agent-template.git
+cd autonomous-agent-template
+docker build -t my-autonomous-agent .
+```
+
+Then register the image as a blueprint in the portal and enable autonomous mode. See [Getting Started](/rde/agents/getting-started) for the full walkthrough.
+
+## How the Agent Run Works
+
+When the portal launches a workspace from the template, the container executes a 7-step autonomous cycle:
+
+<Steps>
+  <Step title="Start governance proxy">
+    If configured, the entrypoint starts an HTTP proxy that intercepts all outbound traffic from the agent and applies organization policies (allowlists, secret detection, rate limiting).
+  </Step>
+
+  <Step title="Fetch the Linear issue">
+    The script reads the issue ID from environment variables, calls the Linear API, and writes the issue title and description to a task file.
+  </Step>
+
+  <Step title="Clone the repository and create a branch">
+    The target repository is cloned using the configured git token. A branch is created automatically from the issue key and title (e.g., `agent/ENG-123-fix-login-validation`).
+  </Step>
+
+  <Step title="Run the AI agent">
+    The configured runtime executes headlessly with the task file as the prompt:
+
+    | Runtime | Command |
+    |---------|---------|
+    | Claude Code | `claude -p "<task>"` |
+    | OpenCode | `opencode run "<task>"` |
+    | Codex | `codex --full-auto "<task>"` |
+    | Gemini CLI | `gemini -p "<task>"` |
+    | Cursor CLI | `cursor-agent "<task>"` |
+
+    The command is wrapped in a `timeout` using the configured run timeout. Exit code 124 indicates a timeout.
+  </Step>
+
+  <Step title="Commit and push">
+    If the agent made code changes, they are committed and pushed to the branch. If no changes were made, the run reports a failure ("no code changes").
+  </Step>
+
+  <Step title="Open a pull request">
+    A PR is created on the git provider (GitHub, GitLab, or Bitbucket) with the issue context in the body. The PR title includes the Linear issue key.
+  </Step>
+
+  <Step title="Report results">
+    The container posts a lifecycle comment on the Linear issue with the PR URL, transitions the issue to the In-Review state (if configured), and calls back to the portal API to record the result. The portal then stops the workspace.
+  </Step>
+</Steps>
+
+## Environment Variables
+
+These variables are injected automatically by the portal when it launches the workspace. You do not set them manually.
+
+| Variable | Description |
+|----------|-------------|
+| `LINEAR_API_TOKEN` | Linear API token for reading issues and posting comments |
+| `LINEAR_ISSUE_ID` | Linear issue node ID to work on |
+| `LINEAR_ISSUE_KEY` | Human-readable issue key (e.g., `ENG-123`) |
+| `RDE_AUTONOMOUS_AGENT` | Runtime to use: `claude`, `opencode`, `codex`, `gemini`, or `cursor` |
+| `RDE_RUN_CALLBACK_URL` | Portal API callback URL for reporting results |
+| `RDE_RUN_TIMEOUT_MIN` | Hard timeout for the agent run (minutes) |
+| `RDE_LINEAR_STATE_REVIEW_ID` | Linear workflow state ID for the In-Review transition (optional) |
+| `RDE_LINEAR_STATE_FAILED_ID` | Linear workflow state ID for the Needs-Human transition (optional) |
+| `ANTHROPIC_API_KEY` | API key for Claude Code, OpenCode, or Cursor runtimes |
+| `OPENAI_API_KEY` | API key for Codex runtime |
+| `GEMINI_API_KEY` | API key for Gemini CLI runtime |
+| `BLUEPRINT_GIT_REPOSITORY` | Target repository URL |
+| `BLUEPRINT_GIT_TOKEN` | Git token for clone, push, and PR creation |
+| `BLUEPRINT_GIT_PROVIDER` | Git provider: `github`, `gitlab`, or `bitbucket` |
+
+## Git Provider Support
+
+The template supports three git providers for cloning repositories, pushing branches, and creating pull requests:
+
+| Provider | Value | PR API |
+|----------|-------|--------|
+| GitHub | `github` | GitHub REST API |
+| GitLab | `gitlab` | GitLab REST API |
+| Bitbucket | `bitbucket` | Bitbucket REST API |
+
+The provider is determined by the `BLUEPRINT_GIT_PROVIDER` environment variable, which is set automatically based on the repository URL configured in the agent blueprint.
+
+## RDE Configuration
+
+The template includes a `.config.rde.qovery.yml` file that customizes which components are installed by the Qovery RDE install script. It disables web IDE components that are not needed for headless autonomous mode while keeping all AI runtimes and development tooling.
+
+**Enabled components:**
+- All AI runtimes (Claude Code, OpenCode, Codex, Cursor)
+- Development tools (Node.js, Python, Ruby, Go)
+- Git tooling (gh CLI, Qovery CLI)
+- Terminal utilities (zellij, fzf, ripgrep)
+
+**Disabled components:**
+- Code Server (web IDE) - not needed for headless mode
+- Standard entrypoint - replaced by the autonomous entrypoint
+- Browser-based extensions and resources
+
+See [Blueprint Management](/rde/admin/blueprint-management#official-workspace-template) for details on the RDE install script and `.config.rde.qovery.yml` configuration.
+
+## Agent Governance Proxy
+
+When the `RDE_PROXY_SCRIPT_GZ_B64` environment variable is set, the template starts an HTTP proxy before running the agent. This proxy intercepts all outbound HTTP/HTTPS traffic from the AI agent and enforces organization policies.
+
+The proxy supports:
+- **Allowlists** - restrict which external hosts the agent can reach
+- **Secret detection** - prevent accidental exfiltration of credentials
+- **Rate limiting** - throttle API calls to prevent abuse
+- **Kill switch** - immediately halt all agent egress
+
+The proxy runs on port 8877 and is transparent to the agent. All outbound traffic is routed through it automatically.
+
+<Info>
+The governance proxy is configured at the organization level by the Qovery team. Contact Qovery support to enable and configure proxy policies for your autonomous agents.
+</Info>
+
+## Customizing the Template
+
+To extend the template for your project:
+
+```dockerfile
+FROM ghcr.io/qovery/autonomous-agent-template:latest
+
+# Add project-specific dependencies
+RUN apt-get update && apt-get install -y \
+    postgresql-client \
+    redis-tools
+
+# Add custom agent instructions
+COPY AGENTS.md /home/coder/project/AGENTS.md
+
+# Add custom scripts
+COPY my-setup.sh /usr/local/bin/my-setup.sh
+RUN chmod +x /usr/local/bin/my-setup.sh
+```
+
+Common customizations:
+- **Project dependencies** - install language-specific packages or system libraries your codebase requires
+- **Agent instructions** - add an `AGENTS.md` or `.claude/` directory with project-specific context for the AI agent
+- **Setup scripts** - run initialization steps before the agent starts (e.g., database migrations, seed data)
+- **Additional tools** - install linters, formatters, or test frameworks the agent needs
+
+<Tip>
+Keep the base image as your `FROM` layer and add customizations on top. This ensures you get updates to the AI runtimes, governance proxy, and core scripts automatically when the base image is updated.
+</Tip>
+
+## Next Steps
+
+<CardGroup cols={3}>
+  <Card title="Getting Started" icon="play" href="/rde/agents/getting-started">
+    Set up your first autonomous agent from scratch.
+  </Card>
+  <Card title="Agent Blueprints" icon="cubes" href="/rde/agents/agent-blueprints">
+    Configure runtime, repositories, and Linear integration.
+  </Card>
+  <Card title="Linear Integration" icon="arrows-rotate" href="/rde/agents/linear-integration">
+    Configure the issue flow, labels, and workflow states.
+  </Card>
+</CardGroup>

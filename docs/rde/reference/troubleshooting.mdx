@@ -267,17 +267,17 @@ This page covers common issues you may encounter with the AI Builder Portal and 
 ## Autonomous Agent Issues
 
 <AccordionGroup>
-  <Accordion title="Agent not picking up Linear issues">
-    **Symptoms:** Issues are labeled correctly in Linear but no run is created.
+  <Accordion title="Agent not responding to @mentions">
+    **Symptoms:** You @mentioned or assigned the agent on a Linear issue but nothing happened.
 
     **Solutions:**
-    - Verify the agent blueprint has autonomous mode enabled in **Admin > Blueprints > [Blueprint] > Autonomous**.
-    - Check that the **Linear API token** is configured in the portal settings. The Autonomous tab shows a warning if no token is set.
-    - Confirm the **issue label** matches exactly what is configured on the blueprint (default: `qovery-agent-ready`).
-    - Confirm the **Linear team** matches the blueprint's configured team. Issues from other teams are ignored.
-    - The **In-Progress state** must be configured. The blueprint cannot claim issues without it.
-    - The background runner polls every **60 seconds**. Wait at least one minute after labeling the issue.
+    - Verify **Linear is connected** via OAuth in **Admin > Settings**. The Autonomous Agent section should show a green "Linear Agent connected" badge.
+    - Verify the agent blueprint's **Linear team** matches the issue's team. The system finds blueprints by team - if no blueprint is configured for the issue's team, the agent cannot respond.
+    - Make sure you **@mentioned or assigned the agent** on the issue. Labeling an issue alone does not trigger the agent.
+    - Verify the blueprint has **autonomous mode enabled** in **Admin > Blueprints > [Blueprint] > Autonomous**.
+    - The **In-Progress state** must be configured on the blueprint. Without it, the agent cannot claim issues.
     - Check that the blueprint's **max concurrent runs** limit has not been reached. View active runs in **Admin > Agents > Runs**.
+    - If the agent still does not respond, the webhook configuration may need attention. Contact Qovery support.
   </Accordion>
 
   <Accordion title="Run stuck in 'claimed' or 'launching' state">
@@ -313,7 +313,7 @@ This page covers common issues you may encounter with the AI Builder Portal and 
 
     **Solutions:**
     - This should not happen under normal operation. The system uses a database unique constraint to prevent duplicate claims.
-    - If you see duplicates, one may have been created manually via the **Create** button while the background runner also picked it up. The atomic constraint prevents this, but check if the runs are for different blueprints (which is allowed).
+    - If you see duplicates, one may have been created manually via the **Create** button while a webhook also triggered a run. The atomic constraint prevents this, but check if the runs are for different blueprints (which is allowed).
     - Contact Qovery support if genuine duplicates appear for the same blueprint and issue.
   </Accordion>
 </AccordionGroup>

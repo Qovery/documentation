@@ -1,0 +1,115 @@
+---
+title: "Agent Blueprints"
+description: "Configure blueprints for autonomous AI agents - runtime selection, repository setup, Linear integration, and resource tuning."
+---
+
+import RdePreviewWarning from "/snippets/rde-preview-warning.mdx";
+
+<RdePreviewWarning />
+
+## Overview
+
+An agent blueprint is a blueprint with autonomous mode enabled. It defines which AI runtime to use, which repositories to clone, and how to connect to your project tracker. When a matching issue appears in Linear, the system launches a workspace from this blueprint and runs the agent autonomously.
+
+Agent blueprints share the same underlying infrastructure as workspace blueprints - lifecycle states, target cluster selection, and Qovery environment mapping all work the same way. See [Blueprint Management](/rde/admin/blueprint-management) for those shared concepts.
+
+## Workspace vs Agent Blueprints
+
+| Aspect | Workspace Blueprint | Agent Blueprint |
+|---|---|---|
+| **Purpose** | Human development environment | Autonomous AI agent |
+| **Trigger** | User creates workspace from catalog | Issue labeled in project tracker |
+| **Appears in catalog** | Yes | No |
+| **Additional config** | None | Runtime, repositories, Linear mapping |
+| **Lifecycle states** | Testing / Enabled / Disabled | Testing / Enabled / Disabled |
+| **Target cluster** | Configurable | Configurable |
+| **Access control** | ACLs apply | N/A (not in user catalog) |
+
+## Configuration Reference
+
+These settings are specific to agent blueprints. They control which runtime executes the agent, how the agent connects to Linear, and how many runs can execute concurrently.
+
+| Setting | Type | Default | Description |
+|---|---|---|---|
+| **Autonomous Enabled** | Boolean | `false` | Enables autonomous mode on the blueprint. When disabled, the blueprint behaves as a standard workspace blueprint. |
+| **Agent Runtime** | Enum | `claude` | The AI coding runtime that drives the agent. See [Runtime Details](#runtime-details) for options. |
+| **Linear Team** | String or null | `null` | The Linear team whose issues the agent monitors. Required when autonomous mode is enabled. |
+| **Issue Label** | String | `qovery-agent-ready` | The Linear label that triggers an agent run. When an issue in the configured team receives this label, the agent claims it. |
+| **In-Progress State** | String or null | `null` | The Linear workflow state the issue transitions to when the agent claims it. Required when autonomous mode is enabled. |
+| **In-Review State** | String or null | `null` | The Linear workflow state the issue transitions to when the agent opens a pull request. Optional. |
+| **Needs-Human State** | String or null | `null` | The Linear workflow state the issue transitions to when the agent fails or times out. Optional. |
+| **Max Concurrent Runs** | Number | `3` | Maximum number of issues the agent works on simultaneously. Each concurrent run launches a separate workspace. |
+| **Run Timeout** | Number (minutes) | `30` | Maximum duration for a single agent run. The workspace is stopped when the timeout is reached, and the issue transitions to the Needs-Human state if configured. |
+
+## Runtime Details
+
+Each agent blueprint specifies one AI coding runtime. The runtime determines which CLI tool runs inside the workspace and which API key environment variable is required.
+
+| Runtime | CLI Command | API Key Env Var |
+|---|---|---|
+| Claude Code | `claude -p` | `ANTHROPIC_API_KEY` |
+| OpenCode | `opencode run` | `ANTHROPIC_API_KEY` |
+| Codex | `codex --full-auto` | `OPENAI_API_KEY` |
+| Gemini CLI | `gemini -p` | `GEMINI_API_KEY` |
+| Cursor CLI | `cursor-agent` | `ANTHROPIC_API_KEY` |
+
+## Resource Defaults
+
+Agent blueprints created through the wizard use these default resource allocations. You can adjust them under **Advanced** during creation or by editing the blueprint later.
+
+| Resource | Default |
+|---|---|
+| CPU | 4000 mCPU (4 vCPU) |
+| Memory | 4096 MB (4 GB) |
+| Storage | 10 GB |
+
+The target cluster defaults to the first non-production cluster in your organization.
+
+## API Key Management
+
+The API key for the selected runtime is stored as an environment variable on the blueprint's Qovery environment. Different runtimes use different environment variable names - see the [Runtime Details](#runtime-details) table for the mapping.
+
+The key is set during blueprint creation when you enter it in the wizard. To update it later:
+
+1. Open the Qovery Console.
+2. Navigate to the project and environment backing the agent blueprint.
+3. Edit the environment variables and update the relevant API key.
+
+<Info>
+The API key is stored encrypted and injected into the workspace container at launch. It is never exposed in the portal UI after initial entry.
+</Info>
+
+## Editing Agent Blueprint Settings
+
+To modify an existing agent blueprint:
+
+1. Navigate to **Admin > Blueprints** in the portal.
+2. Click the blueprint name to open its settings.
+3. Select the **Autonomous** tab.
+
+From this tab you can:
+
+- Enable or disable autonomous mode
+- Change the AI runtime
+- Update the Linear team, issue label, and workflow state mappings
+- Adjust concurrency limits and run timeout
+
+<Warning>
+The **In-Progress State** is required for the agent to claim issues. If autonomous mode is enabled but no In-Progress state is set, the save button is disabled and the agent cannot run. Configure this field before enabling autonomous mode.
+</Warning>
+
+If the portal does not have a Linear token configured, a warning is displayed on the Autonomous tab prompting you to connect Linear first. See [Linear Integration](/rde/agents/linear-integration) for setup instructions.
+
+## Next Steps
+
+<CardGroup cols={3}>
+  <Card title="Getting Started" icon="play" href="/rde/agents/getting-started">
+    Set up your first autonomous agent from scratch.
+  </Card>
+  <Card title="Managing Runs" icon="list-check" href="/rde/agents/managing-runs">
+    Monitor active runs, review results, and troubleshoot failures.
+  </Card>
+  <Card title="Linear Integration" icon="arrows-rotate" href="/rde/agents/linear-integration">
+    Configure labels, workflow states, and issue routing.
+  </Card>
+</CardGroup>

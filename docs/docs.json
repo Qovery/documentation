@@ -629,6 +629,7 @@
                   "rde/agents/agent-blueprints",
                   "rde/agents/managing-runs",
                   "rde/agents/linear-integration",
+                  "rde/agents/jira-integration",
                   "rde/agents/agent-template"
                 ]
               }

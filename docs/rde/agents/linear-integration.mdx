@@ -11,7 +11,7 @@ import RdePreviewWarning from "/snippets/rde-preview-warning.mdx";
 
 Autonomous agents integrate with Linear via OAuth. When a user @mentions or assigns the agent on a Linear issue, Linear sends a webhook to the portal, which instantly claims the issue, launches a workspace, and streams progress back to Linear. No polling and no labels are required for triggering.
 
-Linear is the currently supported project tracker. Jira and GitHub Issues integrations are planned.
+Linear and Jira are both supported. For Jira, see [Jira Integration](/rde/agents/jira-integration).
 
 ## Connecting Linear
 
@@ -211,10 +211,10 @@ When the webhook fires, the session handler claims the issue atomically via a da
 
 To disconnect, navigate to **Admin > Settings** and click the **Disconnect** link under the **Autonomous Agent** section. This revokes the OAuth tokens and removes the organization mapping. Existing runs are not affected, but no new runs can be triggered.
 
-## Future Integrations
+## Other Trackers
 
 <Info>
-**Jira** and **GitHub Issues** integrations are planned. The agent blueprint configuration will be extended with additional project tracker options. If you need a specific integration, contact the Qovery team.
+**Jira** is also supported - see [Jira Integration](/rde/agents/jira-integration). A **GitHub Issues** integration is planned. If you need a specific integration, contact the Qovery team.
 </Info>
 
 ## Next Steps

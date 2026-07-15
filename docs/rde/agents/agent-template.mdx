@@ -9,7 +9,7 @@ import RdePreviewWarning from "/snippets/rde-preview-warning.mdx";
 
 ## Overview
 
-The [autonomous agent template](https://github.com/Qovery/autonomous-agent-template) is the official Docker image for running headless AI agents on Qovery. When deployed as a workspace, the container automatically fetches a Linear issue, runs an AI agent, opens a pull request, and exits.
+The [autonomous agent template](https://github.com/Qovery/autonomous-agent-template) is the official Docker image for running headless AI agents on Qovery. When deployed as a workspace, the container automatically reads the issue context (from Linear or Jira) injected by the portal, runs an AI agent, opens a pull request, and exits.
 
 You can use the template directly or extend it with project-specific dependencies.
 
@@ -43,8 +43,8 @@ When the portal launches a workspace from the template, the container executes a
     If configured, the entrypoint starts an HTTP proxy that intercepts all outbound traffic from the agent and applies organization policies (allowlists, secret detection, rate limiting).
   </Step>
 
-  <Step title="Fetch the Linear issue">
-    The script reads the issue ID from environment variables, calls the Linear API, and writes the issue title and description to a task file.
+  <Step title="Read the issue context">
+    The portal injects the issue key, title, and description as environment variables (tracker-agnostic). The script writes them to a task file. The container talks only to the portal - no tracker token or tracker-specific identifiers are injected.
   </Step>
 
   <Step title="Clone the repository and create a branch">
@@ -64,7 +64,7 @@ When the portal launches a workspace from the template, the container executes a
 
     The command is wrapped in a `timeout` using the configured run timeout. Exit code 124 indicates a timeout.
 
-    During execution, the agent can stream live progress updates to Linear via the portal's progress endpoint. These appear as real-time "thought" activities in the Linear issue, giving your team visibility into what the agent is doing.
+    During execution, the agent can stream live progress updates via the portal's progress endpoint (`RDE_RUN_PROGRESS_URL`). The portal relays them to the tracker - as real-time "thought" activities in Linear, or as progress comments in Jira.
   </Step>
 
   <Step title="Commit and push">
@@ -72,11 +72,11 @@ When the portal launches a workspace from the template, the container executes a
   </Step>
 
   <Step title="Open a pull request">
-    A PR is created on the git provider (GitHub, GitLab, or Bitbucket) with the issue context in the body. The PR title includes the Linear issue key.
+    A PR is created on the git provider (GitHub, GitLab, or Bitbucket) with the issue context in the body. The PR title includes the issue key.
   </Step>
 
   <Step title="Report results">
-    The container calls back to the portal API to record the result. The portal then emits structured activities to the Linear agent session - updating the plan to completed, adding external URLs (dashboard link, PR link), and posting a response or error activity visible inline in Linear. A lifecycle comment is also posted on the issue for audit purposes. The workspace is automatically cleaned up after completion.
+    The container calls back to the portal API (`RDE_RUN_CALLBACK_URL`) to record the result. The portal then reports back on the tracker - in Linear, updating the agent plan, adding external URLs (dashboard link, PR link), and posting a response or error activity inline; in Jira, posting a comment and transitioning the issue status. A lifecycle comment is posted for audit purposes. The workspace is automatically cleaned up after completion.
   </Step>
 </Steps>
 
@@ -84,22 +84,30 @@ When the portal launches a workspace from the template, the container executes a
 
 These variables are injected automatically by the portal when it launches the workspace. You do not set them manually.
 
+The issue context is injected in a tracker-agnostic form. The container never receives a tracker token or tracker-specific identifiers - it reports back to the portal, which talks to Linear or Jira on its behalf.
+
 | Variable | Description |
 |----------|-------------|
-| `LINEAR_API_TOKEN` | Linear API token for reading issues and posting comments |
-| `LINEAR_ISSUE_ID` | Linear issue node ID to work on |
-| `LINEAR_ISSUE_KEY` | Human-readable issue key (e.g., `ENG-123`) |
+| `RDE_AUTONOMOUS` | Set to `1` when running in autonomous mode |
+| `RDE_AUTONOMOUS_PROVIDER` | Issue tracker for this run: `linear` or `jira` |
 | `RDE_AUTONOMOUS_AGENT` | Runtime to use: `claude`, `opencode`, `codex`, `gemini`, or `cursor` |
-| `RDE_RUN_CALLBACK_URL` | Portal API callback URL for reporting results |
+| `RDE_ISSUE_KEY` | Human-readable issue key (e.g., `ENG-123`) |
+| `RDE_ISSUE_TITLE` | Issue title |
+| `RDE_ISSUE_DESCRIPTION` | Issue description |
+| `RDE_AGENT_SYSTEM_PROMPT` | Optional system prompt from the blueprint |
+| `RDE_RUN_ID` | Unique run identifier |
+| `RDE_RUN_CALLBACK_URL` | Portal API callback URL for reporting the final result |
+| `RDE_RUN_PROGRESS_URL` | Portal endpoint for streaming live progress updates |
+| `RDE_RUN_MESSAGES_URL` | Portal endpoint for polling follow-up instructions |
 | `RDE_RUN_TIMEOUT_MIN` | Hard timeout for the agent run (minutes) |
-| `RDE_LINEAR_STATE_REVIEW_ID` | Linear workflow state ID for the In-Review transition (optional) |
-| `RDE_LINEAR_STATE_FAILED_ID` | Linear workflow state ID for the Needs-Human transition (optional) |
 | `ANTHROPIC_API_KEY` | API key for Claude Code, OpenCode, or Cursor runtimes |
 | `OPENAI_API_KEY` | API key for Codex runtime |
 | `GEMINI_API_KEY` | API key for Gemini CLI runtime |
-| `BLUEPRINT_GIT_REPOSITORY` | Target repository URL |
+| `BLUEPRINT_GIT_REPOSITORY` | Target repository URL (inherited from the blueprint environment) |
 | `BLUEPRINT_GIT_TOKEN` | Git token for clone, push, and PR creation |
 | `BLUEPRINT_GIT_PROVIDER` | Git provider: `github`, `gitlab`, or `bitbucket` |
+
+The portal also injects Qovery deploy credentials (`QOVERY_CLI_ACCESS_TOKEN`, `QOVERY_ORGANIZATION_ID`, `QOVERY_CLUSTER_ID`, `QOVERY_PROJECT_ID`) so the agent can run preview deployments.
 
 ## Git Provider Support
 
@@ -183,9 +191,9 @@ Keep the base image as your `FROM` layer and add customizations on top. This ens
     Set up your first autonomous agent from scratch.
   </Card>
   <Card title="Agent Blueprints" icon="cubes" href="/rde/agents/agent-blueprints">
-    Configure runtime, repositories, and Linear integration.
+    Configure runtime, repositories, and tracker integration.
   </Card>
-  <Card title="Linear Integration" icon="arrows-rotate" href="/rde/agents/linear-integration">
-    Configure the issue flow, labels, and workflow states.
+  <Card title="Jira Integration" icon="arrows-rotate" href="/rde/agents/jira-integration">
+    Connect Jira, map statuses, and trigger agents by assignment.
   </Card>
 </CardGroup>

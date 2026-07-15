@@ -9,15 +9,15 @@ import RdePreviewWarning from "/snippets/rde-preview-warning.mdx";
 
 Autonomous agents pick up issues from your project tracker, work on them in isolated cloud environments, and open pull requests - without human intervention. They use the same blueprint and governance infrastructure as workspaces, but operate autonomously.
 
-Linear is currently supported as the project tracker. Jira and GitHub Issues integrations are planned.
+Linear and Jira are supported as project trackers. A GitHub Issues integration is planned.
 
 ## How It Works
 
-When a user @mentions or assigns the agent on a Linear issue, the agent claims it instantly, launches a workspace, writes the code, opens a pull request, and shuts down. Progress is streamed back to Linear in real time.
+When a user triggers the agent on an issue - by @mentioning or assigning it in Linear, or by assigning it to the agent's user in Jira - the agent claims it, launches a workspace, writes the code, opens a pull request, and shuts down. Progress is reported back on the issue in real time.
 
 ```mermaid
 flowchart LR
-    A["Agent @mentioned\nor assigned"] --> B["Agent\nclaims issue"]
+    A["Agent triggered\non issue"] --> B["Agent\nclaims issue"]
     B --> C["Workspace\nlaunches"]
     C --> D["Agent\nwrites code"]
     D --> E["PR opened"]
@@ -37,7 +37,7 @@ Autonomous agents and workspaces share the same underlying infrastructure but se
 
 | | Workspaces | Autonomous Agents |
 |---|---|---|
-| **Trigger** | Human clicks "Create" | Agent @mentioned or assigned on issue |
+| **Trigger** | Human clicks "Create" | Agent triggered from a Linear or Jira issue |
 | **Interaction** | Human works in browser | AI agent runs autonomously |
 | **Output** | Running application | Pull request |
 | **Lifecycle** | Manual start/stop | Auto-launch, auto-stop on completion |
@@ -74,10 +74,13 @@ For details on the underlying infrastructure, see [Architecture](/rde/reference/
 
 ## Supported Project Trackers
 
-**Linear** is the currently supported project tracker. You connect your Linear workspace via OAuth, and your team triggers agents by @mentioning or assigning them on issues. The agent responds instantly with a real-time plan and progress updates visible directly in Linear.
+Both trackers connect via OAuth and auto-refresh their tokens. You configure which tracker an agent blueprint uses in the [Create Agent Blueprint](/rde/agents/getting-started#create-an-agent-blueprint) wizard.
+
+- **Linear** - trigger agents by @mentioning or assigning them on issues. The agent responds with a real-time plan and progress updates visible directly in Linear as agent activities. See [Linear Integration](/rde/agents/linear-integration).
+- **Jira** - trigger agents by assigning an issue to the agent's Jira user. Progress is reported as issue comments and workflow status transitions. See [Jira Integration](/rde/agents/jira-integration).
 
 <Info>
-**Jira** and **GitHub Issues** integrations are planned. If you need a specific integration, contact the Qovery team.
+A **GitHub Issues** integration is planned. If you need a specific integration, contact the Qovery team.
 </Info>
 
 ## Next Steps
@@ -94,5 +97,8 @@ For details on the underlying infrastructure, see [Architecture](/rde/reference/
   </Card>
   <Card title="Linear Integration" icon="link" href="/rde/agents/linear-integration">
     Connect Linear, configure labels, and manage issue routing.
+  </Card>
+  <Card title="Jira Integration" icon="link" href="/rde/agents/jira-integration">
+    Connect Jira, map statuses, and trigger agents by assignment.
   </Card>
 </CardGroup>

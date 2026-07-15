@@ -9,7 +9,7 @@ import RdePreviewWarning from "/snippets/rde-preview-warning.mdx";
 
 ## Overview
 
-When a user @mentions or assigns the agent on a Linear issue that matches a blueprint's team, the system creates a **run**. A run tracks the full lifecycle from issue claim to pull request creation (or failure). This page covers the admin dashboard, run lifecycle, and management actions available to administrators.
+When a user triggers the agent on an issue that matches a blueprint - by @mentioning or assigning it in Linear, or by assigning it to the agent's user in Jira - the system creates a **run**. A run tracks the full lifecycle from issue claim to pull request creation (or failure). This page covers the admin dashboard, run lifecycle, and management actions available to administrators, and applies to both trackers.
 
 ## Run Statuses
 
@@ -17,7 +17,7 @@ Every run moves through a series of statuses that reflect its current stage.
 
 | Status | Description |
 |--------|-------------|
-| `claimed` | Issue claimed in Linear, workspace preparation started |
+| `claimed` | Issue claimed on the tracker, workspace preparation started |
 | `launching` | Workspace environment is deploying on your cluster |
 | `running` | Agent is actively working on the issue |
 | `pr_opened` | Agent completed successfully and opened a pull request. Workspace is kept alive briefly, then auto-deleted. |
@@ -90,7 +90,7 @@ The table includes these columns:
 
 | Column | Description |
 |--------|-------------|
-| Issue | Linear issue key, linked to the run detail page |
+| Issue | Linear or Jira issue key, linked to the run detail page |
 | Owner | Assigned owner email, with a fallback badge if applicable |
 | Status | Current run status |
 | PR | Link to the pull request (when available) |
@@ -107,14 +107,14 @@ Each run supports a set of actions based on its current status.
 
 | Action | Available When | Effect |
 |--------|---------------|--------|
-| **Stop** | `claimed`, `launching`, `running` | Stops the workspace, marks the run as `failed` with reason "Stopped via portal", and posts a comment on the Linear issue |
-| **Restart** | `running` (with active workspace) | Restarts the workspace environment and posts a comment on the Linear issue |
-| **Retry** | `failed`, `timed_out` | Resets the run, re-claims the Linear issue, and launches a new workspace |
-| **Delete** | `claimed`, `launching`, `running` | Stops the workspace, marks the run as `done` with reason "Deleted via portal", and posts a comment on the Linear issue |
+| **Stop** | `claimed`, `launching`, `running` | Stops the workspace, marks the run as `failed` with reason "Stopped via portal", and posts a comment on the issue |
+| **Restart** | `running` (with active workspace) | Restarts the workspace environment and posts a comment on the issue |
+| **Retry** | `failed`, `timed_out` | Resets the run, re-claims the issue, and launches a new workspace |
+| **Delete** | `claimed`, `launching`, `running` | Stops the workspace, marks the run as `done` with reason "Deleted via portal", and posts a comment on the issue |
 | **View Workspace** | Any run with an active workspace | Opens the workspace in the portal |
 
 <Info>
-All actions that modify a run are reflected in the Linear issue as lifecycle comments. This keeps your project tracker in sync with agent activity.
+All actions that modify a run are reflected on the issue as lifecycle comments (and status transitions where configured). This keeps your project tracker in sync with agent activity.
 </Info>
 
 ## Run Detail Page
@@ -123,7 +123,7 @@ View detailed information for a single run at **Admin > Agents > Runs > [Run]**.
 
 The detail page shows:
 
-- **Linear issue title and description** - the full context the agent is working from
+- **Issue title and description** - the full context the agent is working from
 - **Status** - current run status with timestamps
 - **Owner** - assigned owner, with a dropdown to reassign
 - **PR URL** - link to the pull request (when available)
@@ -133,15 +133,19 @@ Quick links at the top provide direct access to:
 
 - **Workspace** - open the agent's workspace in the portal
 - **Qovery Console** - view the underlying environment in the Qovery dashboard
-- **Linear issue** - jump to the issue in Linear
+- **Issue** - jump to the issue in Linear or Jira
 
 <Tip>
-When a run is assigned to the system fallback account, a **fallback** badge appears next to the owner. This indicates no human assignee was found on the Linear issue.
+When a run is assigned to the system fallback account, a **fallback** badge appears next to the owner. This indicates no human assignee was found on the issue.
 </Tip>
 
 ## Creating a Run Manually
 
 You can trigger a run manually without @mentioning the agent in Linear.
+
+<Info>
+Manual run creation currently searches Linear issues only. For Jira, trigger runs by assigning the issue to the agent's Jira user.
+</Info>
 
 <Steps>
   <Step title="Open the Create dialog">
@@ -161,20 +165,20 @@ You can trigger a run manually without @mentioning the agent in Linear.
   </Step>
 
   <Step title="Submit">
-    Click **Create**. The system validates that the selected blueprint has autonomous mode enabled and the In-Progress state is configured, then launches the run.
+    Click **Create**. The system validates that the selected blueprint has autonomous mode enabled and the claimed state is configured, then launches the run.
   </Step>
 </Steps>
 
 <Warning>
-Manual run creation requires a blueprint with autonomous mode enabled and a configured In-Progress workflow state. If either is missing, the creation will fail with a validation error.
+Manual run creation requires a blueprint with autonomous mode enabled and a configured claimed workflow state. If either is missing, the creation will fail with a validation error.
 </Warning>
 
 ## Owner Assignment
 
 Runs are assigned an owner based on the following logic:
 
-1. **Linear issue assignee** - the email of the person assigned to the Linear issue is used by default.
-2. **System fallback** - if the Linear issue has no assignee, the run is assigned to `autonomous-agent@qovery.com` and marked with `owner_fallback = true`. A **fallback** badge appears in the UI.
+1. **Issue assignee** - the email of the person assigned to the issue is used by default.
+2. **System fallback** - if the issue has no assignee, the run is assigned to `autonomous-agent@qovery.com` and marked with `owner_fallback = true`. A **fallback** badge appears in the UI.
 3. **Admin reassignment** - administrators can change the owner from the run detail page using the owner dropdown.
 
 ## My Runs (User View)
@@ -182,7 +186,7 @@ Runs are assigned an owner based on the following logic:
 Users can view their assigned runs from their personal dashboard. The **My Runs** view shows the latest 50 runs assigned to the authenticated user, including:
 
 - Run status
-- Linear issue link
+- Linear or Jira issue link
 - Pull request link (when available)
 - Timestamps
 

@@ -1,6 +1,6 @@
 ---
 title: "Agent Blueprints"
-description: "Configure blueprints for autonomous AI agents - runtime selection, repository setup, Linear integration, and resource tuning."
+description: "Configure blueprints for autonomous AI agents - runtime selection, repository setup, Linear or Jira integration, and resource tuning."
 ---
 
 import RdePreviewWarning from "/snippets/rde-preview-warning.mdx";
@@ -9,7 +9,7 @@ import RdePreviewWarning from "/snippets/rde-preview-warning.mdx";
 
 ## Overview
 
-An agent blueprint is a blueprint with autonomous mode enabled. It defines which AI runtime to use, which repositories to clone, and how to connect to your project tracker. When a matching issue appears in Linear, the system launches a workspace from this blueprint and runs the agent autonomously.
+An agent blueprint is a blueprint with autonomous mode enabled. It defines which AI runtime to use, which repositories to clone, and how to connect to your project tracker (Linear or Jira). When a matching issue is triggered, the system launches a workspace from this blueprint and runs the agent autonomously.
 
 Agent blueprints share the same underlying infrastructure as workspace blueprints - lifecycle states, target cluster selection, and Qovery environment mapping all work the same way. See [Blueprint Management](/rde/admin/blueprint-management) for those shared concepts.
 
@@ -18,28 +18,31 @@ Agent blueprints share the same underlying infrastructure as workspace blueprint
 | Aspect | Workspace Blueprint | Agent Blueprint |
 |---|---|---|
 | **Purpose** | Human development environment | Autonomous AI agent |
-| **Trigger** | User creates workspace from catalog | Agent @mentioned or assigned on issue |
+| **Trigger** | User creates workspace from catalog | Agent triggered from a Linear or Jira issue |
 | **Appears in catalog** | Yes | No |
-| **Additional config** | None | Runtime, repositories, Linear mapping |
+| **Additional config** | None | Runtime, repositories, tracker mapping |
 | **Lifecycle states** | Testing / Enabled / Disabled | Testing / Enabled / Disabled |
 | **Target cluster** | Configurable | Configurable |
 | **Access control** | ACLs apply | N/A (not in user catalog) |
 
 ## Configuration Reference
 
-These settings are specific to agent blueprints. They control which runtime executes the agent, how the agent connects to Linear, and how many runs can execute concurrently.
+These settings are specific to agent blueprints. They control which runtime executes the agent, which tracker the agent connects to, and how many runs can execute concurrently.
 
 | Setting | Type | Default | Description |
 |---|---|---|---|
 | **Autonomous Enabled** | Boolean | `false` | Enables autonomous mode on the blueprint. When disabled, the blueprint behaves as a standard workspace blueprint. |
 | **Agent Runtime** | Enum | `claude` | The AI coding runtime that drives the agent. See [Runtime Details](#runtime-details) for options. |
-| **Linear Team** | String or null | `null` | The Linear team whose issues the agent monitors. Required when autonomous mode is enabled. |
-| **In-Progress State** | String or null | `null` | The Linear workflow state the issue transitions to when the agent claims it. Required when autonomous mode is enabled. |
-| **In-Review State** | String or null | `null` | The Linear workflow state the issue transitions to when the agent opens a pull request. Optional. |
-| **Needs-Human State** | String or null | `null` | The Linear workflow state the issue transitions to when the agent fails or times out. Optional. |
+| **Provider** | Enum | `linear` | The project tracker the agent connects to: `linear` or `jira`. Defaults to whichever tracker is connected. |
+| **Team / Project** | String or null | `null` | The Linear team or Jira project whose issues the agent monitors. Required when autonomous mode is enabled. |
+| **Claimed State / Status** | String or null | `null` | The workflow state (Linear) or status (Jira) the issue transitions to when the agent claims it. Required when autonomous mode is enabled. |
+| **Review State / Status** | String or null | `null` | The state or status the issue transitions to when the agent opens a pull request. Optional. |
+| **Failed State / Status** | String or null | `null` | The state or status the issue transitions to when the agent fails or times out. Optional. |
 | **System Prompt** | String | (empty) | Optional instructions prepended to the issue context when the agent starts. Use this to provide project-specific guidance to the AI runtime. |
 | **Max Concurrent Runs** | Number | `3` | Maximum number of issues the agent works on simultaneously. Each concurrent run launches a separate workspace. |
-| **Run Timeout** | Number (minutes) | `60` | Maximum duration for a single agent run. The workspace is stopped when the timeout is reached, and the issue transitions to the Needs-Human state if configured. |
+| **Run Timeout** | Number (minutes) | `60` | Maximum duration for a single agent run. The workspace is stopped when the timeout is reached, and the issue transitions to the failed state if configured. |
+
+Tracker-specific field names and semantics differ slightly between Linear and Jira. See [Linear Integration](/rde/agents/linear-integration#workflow-state-mapping) and [Jira Integration](/rde/agents/jira-integration#status-mapping) for the exact mappings.
 
 ## Runtime Details
 
@@ -99,6 +102,8 @@ The API key is stored encrypted and injected into the workspace container at lau
 
 ## Editing Agent Blueprint Settings
 
+New agent blueprints are created from the **Admin > Agent Blueprints** page using the **Create Agent Blueprint** wizard. This page lists all agent blueprints, each tagged with a Linear or Jira provider badge.
+
 To modify an existing agent blueprint:
 
 1. Navigate to **Admin > Blueprints** in the portal.
@@ -109,14 +114,14 @@ From this tab you can:
 
 - Enable or disable autonomous mode
 - Change the AI runtime
-- Update the Linear team and workflow state mappings
+- Update the tracker's team/project and state/status mappings
 - Adjust concurrency limits and run timeout
 
 <Warning>
-The **In-Progress State** is required for the agent to claim issues. If autonomous mode is enabled but no In-Progress state is set, the save button is disabled and the agent cannot run. Configure this field before enabling autonomous mode.
+The **claimed state/status** is required for the agent to claim issues. If autonomous mode is enabled but no claimed state is set, the save button is disabled and the agent cannot run. Configure this field before enabling autonomous mode.
 </Warning>
 
-If the portal does not have Linear connected via OAuth, a warning is displayed on the Autonomous tab prompting you to connect Linear first. See [Linear Integration](/rde/agents/linear-integration#connecting-linear) for setup instructions.
+If the portal does not have the selected tracker connected via OAuth, a warning is displayed prompting you to connect it first. See [Linear Integration](/rde/agents/linear-integration#connecting-linear) or [Jira Integration](/rde/agents/jira-integration#connecting-jira) for setup instructions.
 
 ## Next Steps
 
@@ -129,5 +134,8 @@ If the portal does not have Linear connected via OAuth, a warning is displayed o
   </Card>
   <Card title="Linear Integration" icon="arrows-rotate" href="/rde/agents/linear-integration">
     Configure labels, workflow states, and issue routing.
+  </Card>
+  <Card title="Jira Integration" icon="arrows-rotate" href="/rde/agents/jira-integration">
+    Configure the project, status mapping, and assignment triggering.
   </Card>
 </CardGroup>

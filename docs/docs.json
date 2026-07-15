@@ -618,6 +618,22 @@
             ]
           },
           {
+            "tab": "Autonomous Agents",
+            "icon": "robot",
+            "groups": [
+              {
+                "group": "Autonomous Agents",
+                "pages": [
+                  "rde/agents/overview",
+                  "rde/agents/getting-started",
+                  "rde/agents/agent-blueprints",
+                  "rde/agents/managing-runs",
+                  "rde/agents/linear-integration"
+                ]
+              }
+            ]
+          },
+          {
             "tab": "For Users",
             "icon": "user",
             "groups": [

@@ -1485,9 +1485,15 @@ Setting `ndots=2` reduces this to **1 DNS query** since the hostname already has
 
 **Type:** `integer`
 
-**Description:** Allows you to override the CPU limit for your service pods in millicores (1000m = 1 vCPU).
+**Description:** Allows you to override the CPU limit for your service pods in millicores (1000m = 1 vCPU). Set to `-1` to disable the CPU limit entirely, so the container is not capped and can use all the CPU available on the node.
 
-**Use Case:** Use this to fine-tune CPU allocation beyond the standard Qovery instance sizes.
+**Use Case:** Use a positive value to fine-tune CPU allocation beyond the standard Qovery instance sizes, or use `-1` to remove CPU throttling for CPU-bound workloads that need to burst freely.
+
+<Info>
+Setting a custom CPU limit (including `-1` to disable it) requires CPU overcommit to be enabled on the cluster via the `allow_service_cpu_overcommit` cluster advanced setting. This only affects the CPU limit; the RAM limit (`resources.override.limit.ram_in_mib`) remains mandatory and cannot be disabled, since it protects the pod from being OOMKilled.
+</Info>
+
+**Valid values:** `-1` (disabled) or a positive integer greater than the service's CPU request
 
 **Default Value:** `null`
 

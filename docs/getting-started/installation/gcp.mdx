@@ -365,7 +365,7 @@ Save up to 91% on compute costs:
 1. Add node selector to your deployments:
    ```yaml
    nodeSelector:
-     cloud.google.com/gke-spot: "true"
+     "cloud.google.com/gke-spot": true
    ```
 2. Ensure your application handles interruptions gracefully
 3. Use for stateless, fault-tolerant workloads only

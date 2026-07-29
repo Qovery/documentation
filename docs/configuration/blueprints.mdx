@@ -52,13 +52,11 @@ The catalog is expanding. Blueprints available today include:
 
 ## How Blueprints Work
 
-Every catalog entry is identified by a **tag** in the form `{provider}/{service}/{majorVersion}/{semanticVersion}` — for example `AWS/postgres/17/1.2.6`. The tag pins the exact version of the template you deploy.
+When you create a blueprint service, you fill in a short form built from the blueprint's template: the **variables** it exposes (with defaults, dropdowns, and validation), while read-only **context variables** such as the cluster region and name are resolved automatically. Qovery then provisions the resource on your cluster as a managed **Terraform (or OpenTofu) service** or **Helm service** and links it to the blueprint.
 
-When you create a blueprint service, Qovery:
+Once deployed, the service publishes its **outputs** — endpoints, ports, credentials — so other services in the same environment can consume them, just like any other Qovery service.
 
-1. Reads the blueprint's manifest to build the input form — **variables** you fill in, plus read-only **context variables** (such as the cluster region and name) that Qovery resolves automatically from the target environment's cluster.
-2. Provisions the real resource in your cluster (running `terraform apply` or `helm install` under the hood) and creates a managed Terraform or Helm service linked to the blueprint.
-3. Exposes the service's **outputs** — endpoints, ports, credentials — so other services in the same environment can consume them.
+Blueprints are versioned: you pick a version when you create the service, and Qovery flags when a newer one is available (see [Updating a Blueprint](#updating-a-blueprint)).
 
 ## Browsing the Catalog
 

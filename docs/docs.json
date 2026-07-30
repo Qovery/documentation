@@ -342,6 +342,7 @@
                       "configuration/terraform"
                     ]
                   },
+                  "configuration/blueprints",
                   "configuration/service-health-checks",
                   "configuration/service-advanced-settings"
                 ]

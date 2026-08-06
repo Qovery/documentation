@@ -3,13 +3,21 @@ title: "Use AWS IAM Roles with Qovery"
 description: "Grant AWS IAM permissions to applications without managing credentials"
 ---
 
-This tutorial demonstrates how to grant AWS IAM permissions to applications, containers, or jobs deployed through Qovery. This approach eliminates credential management by automatically rotating tokens through AWS's identity service.
+This tutorial demonstrates how to grant AWS IAM permissions to applications, containers, or jobs deployed through Qovery, using IRSA (IAM Roles for Service Accounts). This approach eliminates credential management by automatically rotating tokens through AWS's identity service.
+
+Everything deploys through Qovery services from the [create_service_account](https://github.com/Qovery/create_service_account) repository:
+
+1. A **Terraform service** creates the IAM role (and the OIDC identity provider if needed)
+2. A **Helm service** creates the Kubernetes ServiceAccount annotated with the role ARN
+3. Your application picks up the ServiceAccount through the **Service account** advanced setting
+
+The Terraform outputs flow into the Helm values automatically, so nothing is hardcoded. If you prefer to create the IAM resources by hand, the manual AWS Console path is kept as an alternative in step 2.
 
 ## Prerequisites
 
 - A Qovery cluster running on AWS EKS
 - Basic knowledge of AWS IAM and Kubernetes
-- Access to AWS Console and Qovery Console
+- AWS credentials allowed to manage IAM (for the Terraform service or the Console)
 
 ## Step 1: Create an Application Requiring S3 Permissions
 
@@ -32,69 +40,91 @@ First, deploy a simple Debian container that will need S3 access:
 
 ---
 
-## Step 2: Configure OIDC Provider
-
-###Get Cluster OIDC Provider URL
-
-1. Navigate to your AWS EKS cluster Overview section
-2. Copy the OpenID Connect provider URL
-
-<Frame>
-  <img
-    src="/images/aws-iam-assume-role/eks_oidc.png"
-    alt="EKS OIDC provider URL"
-  />
-</Frame>
-
-### Create Identity Provider
-
-1. In AWS IAM, access the **Identity providers** section
-2. Select **OpenID Connect** provider type
-3. Paste the provider URL
-4. Click **Get thumbprint**
-5. Add `sts.amazonaws.com` as **Audience**
-6. Create the provider
-
-<Frame>
-  <img
-    src="/images/aws-iam-assume-role/oidc_connect.png"
-    alt="Create OIDC identity provider"
-  />
-</Frame>
-
----
-
-## Step 3: Configure AWS IAM Roles
-
-### Create a Role
-
-1. In IAM Roles section, select **Create role**
-2. Choose **Web identity** as Trusted entity type
-3. Set **Identity provider** and **Audience** to `sts.amazonaws.com`
-
-<Frame>
-  <img
-    src="/images/aws-iam-assume-role/role_create_step1.png"
-    alt="Create IAM role step 1"
-  />
-</Frame>
-
-### Add Role Permissions
-
-1. Select the desired policy (example uses `AmazonS3ReadOnlyAccess`)
-2. Set role name and description
-3. Proceed to creation
-
-### Configure Trusted Entities
+## Step 2: Create the OIDC Provider and IAM Role
 
 <Tabs>
-  <Tab title="Environment-Scoped Role">
-    Update the trust policy from:
+  <Tab title="Terraform service (recommended)">
+    Add a **Terraform service** to the same environment:
+
+    - Source: Git repository `https://github.com/Qovery/create_service_account`
+    - Root path: `terraform/`
+
+    Set these variables on the service:
+
+    | Variable | Value |
+    |----------|-------|
+    | `TF_VAR_cluster_name` | Alias of the built-in `QOVERY_KUBERNETES_CLUSTER_NAME` |
+    | `TF_VAR_role_name` | Name for the IAM role, e.g. `my-s3-role` |
+    | `TF_VAR_service_account_name` | ServiceAccount name, e.g. `my-app-sa` |
+    | `TF_VAR_policy_arns` | e.g. `["arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"]` |
+    | `TF_VAR_namespace` | Alias of `QOVERY_KUBERNETES_NAMESPACE_NAME` to scope the role to this environment, or empty for a cluster-scoped role (required for Preview/Clone) |
+    | `TF_VAR_create_oidc_provider` | `true` the first time, if the cluster's OIDC provider is not registered in IAM yet |
+    | `AWS_ACCESS_KEY_ID` / `AWS_SECRET_ACCESS_KEY` / `AWS_REGION` | Credentials allowed to manage IAM (mark the secret as such) |
+
+    Deploy the service. The module creates the trust policy for you (namespace-scoped `StringEquals`, or cluster-scoped `StringLike` on `system:serviceaccount:z*:<service_account_name>` when `TF_VAR_namespace` is empty).
+
+    The module outputs `role_arn`. Qovery exposes it to the environment as a variable named `QOVERY_OUTPUT_TERRAFORM_<service short id>_ROLE_ARN`; check the exact name in your environment variables after the first deployment. You will reference it in step 3.
+
+  </Tab>
+
+  <Tab title="Manually (AWS Console)">
+    ### Get Cluster OIDC Provider URL
+
+    1. Navigate to your AWS EKS cluster Overview section
+    2. Copy the OpenID Connect provider URL
+
+    <Frame>
+      <img
+        src="/images/aws-iam-assume-role/eks_oidc.png"
+        alt="EKS OIDC provider URL"
+      />
+    </Frame>
+
+    ### Create Identity Provider
+
+    1. In AWS IAM, access the **Identity providers** section
+    2. Select **OpenID Connect** provider type
+    3. Paste the provider URL
+    4. Click **Get thumbprint**
+    5. Add `sts.amazonaws.com` as **Audience**
+    6. Create the provider
+
+    <Frame>
+      <img
+        src="/images/aws-iam-assume-role/oidc_connect.png"
+        alt="Create OIDC identity provider"
+      />
+    </Frame>
+
+    ### Create a Role
+
+    1. In IAM Roles section, select **Create role**
+    2. Choose **Web identity** as Trusted entity type
+    3. Set **Identity provider** and **Audience** to `sts.amazonaws.com`
+
+    <Frame>
+      <img
+        src="/images/aws-iam-assume-role/role_create_step1.png"
+        alt="Create IAM role step 1"
+      />
+    </Frame>
+
+    ### Add Role Permissions
+
+    1. Select the desired policy (example uses `AmazonS3ReadOnlyAccess`)
+    2. Set role name and description
+    3. Proceed to creation
+
+    ### Configure Trusted Entities
+
+    For a role scoped to one environment, update the trust policy from:
+
     ```json
     "oidc.eks.eu-west-3.amazonaws.com/id/xxxxxxx:aud": "sts.amazonaws.com"
     ```
 
     To:
+
     ```json
     "oidc.eks.eu-west-3.amazonaws.com/id/xxxxxxx:sub":
     "system:serviceaccount:kubernetes_namespace:service_account_name"
@@ -102,12 +132,9 @@ First, deploy a simple Debian container that will need S3 access:
 
     Replace placeholders:
     - `kubernetes_namespace`: Your Qovery environment namespace
-    - `service_account_name`: Define a service account name (e.g., `my-s3-role`)
+    - `service_account_name`: Define a service account name (e.g., `my-app-sa`)
 
-  </Tab>
-
-  <Tab title="Cluster-Scoped Role">
-    For On-demand/Clone features, use `StringLike` with wildcard:
+    For a cluster-scoped role (required by On-demand/Clone features), use `StringLike` with a wildcard:
 
     ```json
     "Condition": {
@@ -120,43 +147,46 @@ First, deploy a simple Debian container that will need S3 access:
 
     This allows the service account to be used across all namespaces starting with `z`.
 
+    <Frame>
+      <img
+        src="/images/aws-iam-assume-role/role_trusted_entities_default.png"
+        alt="Configure trusted entities"
+      />
+    </Frame>
+
+    Save the **role ARN** for step 3.
+
   </Tab>
 </Tabs>
 
-<Frame>
-  <img
-    src="/images/aws-iam-assume-role/role_trusted_entities_default.png"
-    alt="Configure trusted entities"
-  />
-</Frame>
-
-Save the **role ARN** for later use.
-
 ---
 
-## Step 4: Create a Service Account
+## Step 3: Create the Service Account
 
-### Service Account Manifest
+A Helm chart creates the ServiceAccount annotated for IRSA:
 
 ```yaml
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: $SERVICE_ACCOUNT_NAME
-  namespace: $QOVERY_KUBERNETES_NAMESPACE_NAME
+  name: <service_account_name>
   annotations:
-    eks.amazonaws.com/role-arn: $AWS_ROLE_ARN
+    eks.amazonaws.com/role-arn: <role_arn>
 ```
 
-### Deploy with Helm
+Add a **Helm service** to the same environment:
 
-We'll use a Helm chart to deploy the service account:
+**Repository Details:**
+
+1. Repository name: `Qovery Service Account Helper`
+2. Kind: `HTTPS`
+3. URL: `https://qovery.github.io/create_service_account/`
 
 **Chart Configuration:**
 
 - Helm source: Helm repository
 - Chart name: `qovery-sa-helper`
-- Version: `0.1.0`
+- Version: `0.2.0`
 
 <Frame>
   <img
@@ -164,12 +194,6 @@ We'll use a Helm chart to deploy the service account:
     alt="Create service account"
   />
 </Frame>
-
-**Repository Details:**
-
-1. Repository name: `Qovery Service Account Helper`
-2. Kind: `HTTPS`
-3. URL: `https://qovery.github.io/create_service_account/`
 
 <Frame>
   <img
@@ -185,10 +209,29 @@ We'll use a Helm chart to deploy the service account:
   />
 </Frame>
 
-**Override Arguments:**
+**Values override:**
 
-1. `serviceAccount.name`: Your service account name
-2. `awsRoleArn`: Your role ARN
+<Tabs>
+  <Tab title="With the Terraform service">
+    Reference the Terraform output with the `qovery.env` macro, so the role ARN is never hardcoded:
+
+    ```yaml
+    serviceAccount:
+      name: my-app-sa   # same as TF_VAR_service_account_name
+    awsRoleArn: qovery.env.QOVERY_OUTPUT_TERRAFORM_<SHORT_ID>_ROLE_ARN
+    ```
+
+  </Tab>
+
+  <Tab title="With a manually created role">
+    ```yaml
+    serviceAccount:
+      name: my-app-sa
+    awsRoleArn: arn:aws:iam::xxxxxx:role/my-s3-role
+    ```
+
+  </Tab>
+</Tabs>
 
 <Frame>
   <img
@@ -215,12 +258,12 @@ Deploy the Helm service and verify it completes successfully:
 
 ---
 
-## Step 5: Set Application Service Account
+## Step 4: Set Application Service Account
 
 ### Configure Service Account
 
 1. Access your application **Advanced settings**
-2. Set **Service account** to the created service account name
+2. Set **Service account** (`security.service_account_name`) to the created service account name
 3. Deploy using the **Deploy now** button
 
 <Frame>
@@ -263,19 +306,19 @@ $ aws s3 ls
 - **OIDC Integration**: Enables Kubernetes service accounts to assume AWS roles
 - **Token Rotation**: Automatic credential rotation without manual management
 - **Namespace Scoping**: Restricts role access to specific Kubernetes namespaces
-- **Cluster-Wide Availability**: Service accounts accessible by all applications in the same namespace
+- **Everything as Qovery services**: The IAM role and the ServiceAccount are regular services in your environment, so they are versioned, visible in the Console, replicated with Clone/Preview, and cleaned up with the environment
 
 ## Conclusion
 
-Initial setup requires multiple configuration steps across AWS and Kubernetes. Once configured, applying roles to applications becomes straightforward, enabling secure access to AWS services without credential management overhead.
+With the Terraform and Helm services in place, granting a role to a new application comes down to setting one advanced setting. The IAM side lives in your environment like any other service, without credential management overhead.
 
 ---
 
 ## Related Documentation
 
 <CardGroup cols={2}>
-  <Card title="AWS EKS Integration" icon="/images/logos/cloud-providers/aws-icon.svg" href="/configuration/integrations/kubernetes/eks/overview">
-    Learn about EKS cluster management
+  <Card title="Terraform Services" icon="/images/logos/terraform-icon.svg" href="/configuration/terraform">
+    Deploy Terraform manifests with Qovery
   </Card>
 
 <Card

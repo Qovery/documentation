@@ -760,7 +760,8 @@
     "/custom.css"
   ],
   "js": [
-    "/custom.js"
+    "/custom.js",
+    "/reo.js"
   ],
   "integrations": {
     "posthog": {

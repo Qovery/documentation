@@ -1996,7 +1996,7 @@ Envoy Gateway automatically selects the best compression algorithm based on the 
 CPU overcommit can cause CPU throttling and unpredictable latency when nodes are under pressure. Use with caution in production.
 </Warning>
 
-**Use Case:** Once enabled, you can update the service advanced setting `resources.override.limit.cpu_in_milli` to set a CPU limit higher than the request.
+**Use Case:** Once enabled, you can update the service advanced setting `resources.override.limit.cpu_in_milli` to set a CPU limit higher than the request, or set it to `-1` to disable the CPU limit for that service entirely.
 
 **Default Value:** `false`
 

@@ -845,6 +845,8 @@ The default `sleep 15` gives Kubernetes networking time to remove the pod from s
 
 **Use Case:** Enforce secure connections for all traffic to your application.
 
+**Learn More:** See [Envoy Gateway HTTP Redirect Documentation](https://gateway.envoyproxy.io/docs/tasks/traffic/http-redirect/).
+
 **Default Value:** `true`
 
 <a id="network-gateway-api-enable-cors"></a>
@@ -859,6 +861,8 @@ The default `sleep 15` gives Kubernetes networking time to remove the pod from s
 
 **Use Case:** Enable when your application needs to be accessed from web browsers on different domains.
 
+**Learn More:** See [Envoy Gateway CORS Documentation](https://gateway.envoyproxy.io/docs/tasks/security/cors/).
+
 **Default Value:** `false`
 
 <a id="network-gateway-api-cors-allow-origin"></a>
@@ -870,6 +874,8 @@ The default `sleep 15` gives Kubernetes networking time to remove the pod from s
 **Type:** `string`
 
 **Description:** Specifies which origins are allowed to access the resource when CORS is enabled. Sets the `Access-Control-Allow-Origin` header.
+
+**Learn More:** See [Envoy Gateway CORS Documentation](https://gateway.envoyproxy.io/docs/tasks/security/cors/).
 
 **Default Value:** `"*"` (allows all origins)
 
@@ -888,6 +894,8 @@ The default `sleep 15` gives Kubernetes networking time to remove the pod from s
 
 **Description:** Specifies which HTTP methods are allowed when CORS is enabled. Sets the `Access-Control-Allow-Methods` header.
 
+**Learn More:** See [Envoy Gateway CORS Documentation](https://gateway.envoyproxy.io/docs/tasks/security/cors/).
+
 **Default Value:** `"GET, PUT, POST, DELETE, PATCH, OPTIONS"`
 
 <a id="network-gateway-api-cors-allow-headers"></a>
@@ -899,6 +907,8 @@ The default `sleep 15` gives Kubernetes networking time to remove the pod from s
 **Type:** `string`
 
 **Description:** Specifies which HTTP headers are allowed in CORS requests. Sets the `Access-Control-Allow-Headers` header.
+
+**Learn More:** See [Envoy Gateway CORS Documentation](https://gateway.envoyproxy.io/docs/tasks/security/cors/).
 
 **Default Value:** `"DNT,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization"`
 
@@ -913,6 +923,8 @@ The default `sleep 15` gives Kubernetes networking time to remove the pod from s
 **Description:** Comma-separated list of IP addresses or CIDR ranges that are allowed to access the service. All other IP addresses will be denied. Use this for IP-based access control.
 
 **Use Case:** Restrict access to your service to specific IP ranges (e.g., corporate VPN, trusted partners).
+
+**Learn More:** See [Envoy Gateway IP Access Restriction Documentation](https://gateway.envoyproxy.io/docs/tasks/security/restrict-ip-access/).
 
 **Default Value:** `"0.0.0.0/0, ::/0"` (allows all IPv4 and IPv6 addresses)
 
@@ -932,6 +944,8 @@ The default `sleep 15` gives Kubernetes networking time to remove the pod from s
 **Description:** Comma-separated list of IP addresses or CIDR ranges that are explicitly denied access to the service. All other IP addresses will be allowed.
 
 **Use Case:** Block specific IP addresses or ranges that are known to be malicious or unwanted.
+
+**Learn More:** See [Envoy Gateway IP Access Restriction Documentation](https://gateway.envoyproxy.io/docs/tasks/security/restrict-ip-access/).
 
 **Default Value:** `""` (no IPs are blocked)
 
@@ -957,6 +971,8 @@ printf '%s\n' 'MyStrongPassword123!' | htpasswd -ni -s qovery-user
 
 **Use Case:** Add simple authentication protection to your service without modifying application code.
 
+**Learn More:** See [Envoy Gateway Basic Authentication Documentation](https://gateway.envoyproxy.io/docs/tasks/security/basic-auth/).
+
 **Default Value:** `""` (Basic Auth disabled)
 
 **Example:**
@@ -975,6 +991,8 @@ printf '%s\n' 'MyStrongPassword123!' | htpasswd -ni -s qovery-user
 **Description:** Maximum number of requests per minute (RPM) allowed to the service. When exceeded, requests will be rejected with HTTP 429 (Too Many Requests).
 
 **Use Case:** Protect your service from excessive traffic or implement rate-based access control.
+
+**Learn More:** See [Envoy Gateway Global Rate Limit Documentation](https://gateway.envoyproxy.io/docs/tasks/traffic/global-rate-limit/).
 
 **Default Value:** `null` (no limit)
 
@@ -995,6 +1013,8 @@ printf '%s\n' 'MyStrongPassword123!' | htpasswd -ni -s qovery-user
 
 **Use Case:** Enforce fine-grained rate limiting on a per-second basis for high-traffic services.
 
+**Learn More:** See [Envoy Gateway Global Rate Limit Documentation](https://gateway.envoyproxy.io/docs/tasks/traffic/global-rate-limit/).
+
 **Default Value:** `null` (no limit)
 
 **Example:**
@@ -1013,6 +1033,8 @@ printf '%s\n' 'MyStrongPassword123!' | htpasswd -ni -s qovery-user
 **Description:** Comma-separated list of IP addresses or CIDR ranges to which rate limiting applies. When specified, only traffic from these sources will be subject to the configured rate limits.
 
 **Use Case:** Apply rate limiting selectively to specific IP ranges while allowing unlimited access from trusted networks.
+
+**Learn More:** See [Envoy Gateway Global Rate Limit Documentation](https://gateway.envoyproxy.io/docs/tasks/traffic/global-rate-limit/).
 
 **Default Value:** `""` (rate limiting applies to all sources)
 
@@ -1033,6 +1055,8 @@ printf '%s\n' 'MyStrongPassword123!' | htpasswd -ni -s qovery-user
 
 **Use Case:** Implement per-user or per-API-key rate limiting by using authentication headers.
 
+**Learn More:** See [Envoy Gateway Global Rate Limit Documentation](https://gateway.envoyproxy.io/docs/tasks/traffic/global-rate-limit/).
+
 **Default Value:** `""` (rate limiting is per source IP)
 
 **Example:**
@@ -1051,6 +1075,8 @@ printf '%s\n' 'MyStrongPassword123!' | htpasswd -ni -s qovery-user
 **Description:** Map of custom HTTP headers to add to responses sent to clients. Header names must be valid HTTP header names, and values must contain only valid ASCII characters.
 
 **Use Case:** Add custom headers for security policies (e.g., CSP, HSTS) or application-specific metadata.
+
+**Learn More:** See [Envoy Gateway HTTP Response Header Modifier Documentation](https://gateway.envoyproxy.io/docs/tasks/traffic/http-response-headers/).
 
 **Default Value:** `{}` (no headers added)
 
@@ -1074,6 +1100,8 @@ printf '%s\n' 'MyStrongPassword123!' | htpasswd -ni -s qovery-user
 
 **Use Case:** Pass additional context to your application (e.g., original client IP, authentication context) or override default headers.
 
+**Learn More:** See [Envoy Gateway HTTP Request Header Modifier Documentation](https://gateway.envoyproxy.io/docs/tasks/traffic/http-request-headers/).
+
 **Default Value:** `{}` (no headers modified)
 
 **Example:**
@@ -1095,6 +1123,8 @@ printf '%s\n' 'MyStrongPassword123!' | htpasswd -ni -s qovery-user
 **Description:** Comma-separated list of HTTP status codes for which Envoy Gateway should serve custom error pages. When you specify a status code in this list, Envoy Gateway will intercept that error and serve a hardcoded HTML error page instead of passing through the upstream error response. Valid status codes must be between 100 and 599.
 
 **Use Case:** Provide consistent error pages for specific HTTP errors across your services.
+
+**Learn More:** See [Envoy Gateway Response Override Documentation](https://gateway.envoyproxy.io/docs/tasks/traffic/response-override/).
 
 **Default Value:** `null` (no custom error pages)
 
@@ -1119,6 +1149,8 @@ The hardcoded error pages cannot be customized at this time. If you need to cust
 
 **Use Case:** Protect backend services from connection exhaustion and prevent cascading failures during traffic spikes.
 
+**Learn More:** See [Envoy Gateway Circuit Breaker Documentation](https://gateway.envoyproxy.io/docs/tasks/traffic/circuit-breaker/).
+
 **Default Value:** `null` (no limit)
 
 **Example:**
@@ -1137,6 +1169,8 @@ The hardcoded error pages cannot be customized at this time. If you need to cust
 **Description:** Maximum number of requests that can be queued while waiting for a connection to become available. When this limit is reached, new requests will be rejected with HTTP 503.
 
 **Use Case:** Prevent queue buildup during backend slowdowns and maintain predictable latency.
+
+**Learn More:** See [Envoy Gateway Circuit Breaker Documentation](https://gateway.envoyproxy.io/docs/tasks/traffic/circuit-breaker/).
 
 **Default Value:** `null` (no limit)
 
@@ -1157,6 +1191,8 @@ The hardcoded error pages cannot be customized at this time. If you need to cust
 
 **Use Case:** Set an overall cap on total inflight requests to protect backend services from overload.
 
+**Learn More:** See [Envoy Gateway Circuit Breaker Documentation](https://gateway.envoyproxy.io/docs/tasks/traffic/circuit-breaker/).
+
 **Default Value:** `null` (no limit)
 
 **Example:**
@@ -1175,6 +1211,8 @@ The hardcoded error pages cannot be customized at this time. If you need to cust
 **Description:** Sets the idle time in seconds before TCP keepalive probes are sent on backend connections. This is the duration a connection must be idle before the first keepalive probe is sent.
 
 **Use Case:** Configure TCP keepalive idle time to detect dead connections earlier or to keep connections alive through firewalls/load balancers that have aggressive idle timeouts. A lower value (e.g., 60s) helps detect dead connections faster, while a higher value reduces keepalive overhead.
+
+**Learn More:** See [Envoy Gateway TCPKeepalive API Reference](https://gateway.envoyproxy.io/v1.8/api/extension_types/#tcpkeepalive).
 
 **Default Value:** `null` (uses Envoy Gateway default)
 
@@ -1195,6 +1233,8 @@ The hardcoded error pages cannot be customized at this time. If you need to cust
 
 **Use Case:** Control how frequently keepalive probes are sent once the connection becomes idle. A shorter interval (e.g., 30s) provides faster failure detection, while a longer interval reduces network overhead.
 
+**Learn More:** See [Envoy Gateway TCPKeepalive API Reference](https://gateway.envoyproxy.io/v1.8/api/extension_types/#tcpkeepalive).
+
 **Default Value:** `null` (uses Envoy Gateway default)
 
 **Example:**
@@ -1214,6 +1254,8 @@ The hardcoded error pages cannot be customized at this time. If you need to cust
 
 **Use Case:** Configure request timeouts to match your application's expected response times. Increase for long-running operations (e.g., batch processing, large file uploads) or decrease to fail fast for quick operations. This prevents clients from waiting indefinitely for unresponsive backends.
 
+**Learn More:** See [Envoy Gateway HTTPTimeout API Reference](https://gateway.envoyproxy.io/v1.8/api/extension_types/#httptimeout).
+
 **Default Value:** `null` (uses Envoy Gateway default)
 
 **Example:**
@@ -1232,6 +1274,8 @@ The hardcoded error pages cannot be customized at this time. If you need to cust
 **Description:** Sets the maximum idle time in seconds for HTTP connections between Envoy Gateway and backend pods. If no data is exchanged during this period, the connection is closed.
 
 **Use Case:** Control how long idle backend connections stay open to balance performance and resource usage. Increase it for long-lived or bursty traffic patterns; decrease it to reclaim resources faster and reduce stale connections.
+
+**Learn More:** See [Envoy Gateway HTTPTimeout API Reference](https://gateway.envoyproxy.io/v1.8/api/extension_types/#httptimeout).
 
 **Default Value:** `null` (uses Envoy Gateway default)
 
@@ -1275,6 +1319,8 @@ The hardcoded error pages cannot be customized at this time. If you need to cust
 <Info>
 Service value takes precedence over cluster value. If this setting is not set at service level, Qovery applies the cluster-level value from `envoy.gateway_api.retry.num_retries` when defined.
 </Info>
+
+**Learn More:** See [Envoy Gateway Retry Documentation](https://gateway.envoyproxy.io/latest/tasks/traffic/retry/).
 
 **Default Value:** `null` (unset at service level; cluster defaults may apply)
 
@@ -1323,6 +1369,8 @@ Service value takes precedence over cluster value. If this setting is not set at
 <Info>
 Service value takes precedence over cluster value. If this setting is not set at service level, Qovery applies the cluster-level value from `envoy.gateway_api.retry.http_status_codes` when defined.
 </Info>
+
+**Learn More:** See [Envoy Gateway Retry Documentation](https://gateway.envoyproxy.io/latest/tasks/traffic/retry/).
 
 **Default Value:** `null` (unset)
 

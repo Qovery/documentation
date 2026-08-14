@@ -7,6 +7,15 @@ An API Token is used by third-party applications or scripts to access to your or
 
 You can manage API tokens attached to your organization directly from the Qovery Console or using the [Qovery CLI](/cli/commands/token).
 
+<Note>
+  Qovery offers a second kind of token. An **API Token** carries a
+  [role](/configuration/organization/members-rbac) and is the right choice for
+  CI/CD, Terraform and scripts. An
+  [**API Policy Token**](/configuration/organization/api-policy-token) carries no
+  role but a policy evaluated on every request, and is meant for autonomous
+  agents that need a narrower footprint than any role can express.
+</Note>
+
 ## Accessing API Tokens
 
 <Steps>

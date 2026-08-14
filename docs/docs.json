@@ -222,7 +222,8 @@
                     "pages": [
                       "configuration/organization/members-rbac",
                       "configuration/organization/sso",
-                      "configuration/organization/api-token"
+                      "configuration/organization/api-token",
+                      "configuration/organization/api-policy-token"
                     ]
                   }
                 ]

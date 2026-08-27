@@ -70,7 +70,7 @@ Qovery integrates with Amazon Elastic Kubernetes Service (EKS) to provide manage
     **Security**:
     - Private EKS endpoint option
     - Encryption at rest (EBS volumes)
-    - Secrets encryption with KMS
+    - Kubernetes API data encryption with KMS (Secrets, and ConfigMaps on Kubernetes 1.28+)
     - IAM for service accounts (IRSA)
     - Pod security policies
     - Network policies
@@ -277,7 +277,7 @@ All AWS regions supported:
   <Accordion title="Data Encryption" icon="lock">
     **At Rest**:
     - EBS volume encryption with KMS
-    - Secrets encryption with KMS
+    - Kubernetes API data encryption with KMS (Secrets, and ConfigMaps on clusters running Kubernetes 1.28+)
     - Custom KMS keys supported
 
     **In Transit**:

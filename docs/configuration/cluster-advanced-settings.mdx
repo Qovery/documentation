@@ -2096,6 +2096,8 @@ Memory overcommit is riskier than CPU overcommit. Unlike CPU (which is throttled
 
 **Description:** Allows you to activate KMS encryption of your Kubernetes secrets. Specify the [key ARN](https://docs.aws.amazon.com/kms/latest/developerguide/find-cmk-id-arn.html) of your AWS KMS key.
 
+On clusters running Kubernetes 1.28 or later, AWS automatically extends the use of this same key to encrypt other Kubernetes API data as well (e.g. ConfigMaps), not just Secrets — this is AWS's default behavior for 1.28+ clusters and applies regardless of Qovery's configuration. It does not cover node/EBS volume data, which is encrypted separately.
+
 <Warning>
 It won't be possible to go back once this feature is activated.
 </Warning>

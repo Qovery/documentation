@@ -1,23 +1,25 @@
 ---
 title: "Migrate to Kubernetes"
-description: "Migrate your applications from Heroku, Render, or any platform to Kubernetes on your cloud provider - fully automated by AI"
+description: "Leave the PaaS, keep the workflow. Migrate from Heroku, Render, or Railway to Kubernetes on your own cloud, fully automated by AI"
 ---
 
 ## Overview
 
-Migrating to Kubernetes is traditionally the hardest part of modernizing your infrastructure. It means months of planning, rewriting deployment configs, learning Helm charts, and re-architecting your stack. Most teams get stuck halfway.
+**Leave the PaaS. Keep the workflow.** Moving off Heroku, Render, or Railway onto infrastructure you own doesn't have to mean months of planning, rewriting deployment configs, learning Helm charts, or re-architecting your stack. Most teams attempting a DIY Kubernetes migration get stuck halfway.
 
-Qovery removes that complexity entirely. With Qovery AI skills, you can migrate your applications from any platform - Heroku, Render, OpenShift, legacy VMs - to Kubernetes running on **your own cloud account** (AWS, GCP, Azure, or Scaleway). The AI agent analyzes your codebase, generates Dockerfiles, provisions databases, sets up environment variables, and deploys everything. No Kubernetes expertise required.
+Qovery removes that complexity entirely. One command: an AI agent reads your repository and deploys it into the cloud account you already own (AWS, GCP, Azure, or Scaleway), after you approve the plan. It analyzes your codebase, generates Dockerfiles, provisions databases, sets up environment variables, and deploys everything as standard Terraform and Kubernetes manifests. No re-architecture, no Kubernetes expertise required.
+
+The migration is non-destructive: your new environment runs alongside your current platform. Switch your domain over only once you're confident. Stop paying for your old PaaS and everything keeps running, on infrastructure and cloud billing you fully own.
 
 <Info>
-For complex migrations (microservices architectures, stateful workloads, compliance requirements), Qovery provides **cloud architect assistance**. [Book a demo](https://www.qovery.com/book-a-demo) to get a personalized migration plan.
+For complex migrations (microservices architectures, stateful workloads, compliance requirements), Qovery provides **cloud architect assistance**. [Talk to a migration engineer](https://www.qovery.com/book-a-demo) to get a personalized migration plan.
 </Info>
 
 ## Why Migrate with Qovery?
 
 <CardGroup cols={3}>
   <Card title="AI-Powered Migration" icon="wand-magic-sparkles">
-    The `/qovery-deploy` AI skill analyzes your codebase, creates Dockerfiles, provisions databases, and deploys - all from a single prompt
+    The `/qovery-onboard` AI skill maps your current platform's concepts to Qovery, then analyzes your codebase, creates Dockerfiles, provisions databases, and deploys - all from a single prompt
   </Card>
 
   <Card title="No Kubernetes Expertise" icon="graduation-cap">
@@ -52,6 +54,10 @@ For complex migrations (microservices architectures, stateful workloads, complia
     Web services, background workers, cron jobs, managed databases - migrated with full parity
   </Card>
 
+  <Card title="Railway" icon="train">
+    Services, plugins, and managed databases - mapped to Kubernetes equivalents automatically
+  </Card>
+
   <Card title="OpenShift" icon="redhat">
     DeploymentConfigs, Routes, BuildConfigs - converted to standard Kubernetes resources
   </Card>
@@ -65,7 +71,7 @@ For complex migrations (microservices architectures, stateful workloads, complia
   </Card>
 
   <Card title="Other PaaS" icon="cloud-arrow-up">
-    Fly.io, Railway, DigitalOcean App Platform, Google App Engine, Azure App Service, and more
+    Fly.io, DigitalOcean App Platform, Google App Engine, Azure App Service, and more
   </Card>
 </CardGroup>
 
@@ -109,17 +115,19 @@ The fastest path. The AI agent handles the entire migration end-to-end.
 
   <Step title="Ask the Agent to Migrate">
     ```
-    Migrate my project from Heroku to Kubernetes with Qovery
+    Migrate me from Heroku to AWS
     ```
 
     Or use the skill command directly:
 
     ```
-    /qovery-deploy
+    /qovery-onboard
     ```
 
-    The agent will guide you through the entire process:
+    The `qovery-onboard` skill acts as your personal cloud architect. It will guide you through the entire process:
 
+    - **Understand** your context - platform you're leaving, cloud provider you're moving to, constraints
+    - **Map** concepts from your current platform (dynos, add-ons, services...) to their Qovery equivalents
     - **Analyze** your codebase and detect languages, frameworks, and databases
     - **Create** optimized multi-stage Dockerfiles if your project doesn't have one
     - **Provision** databases (PostgreSQL, Redis, MongoDB, MySQL) - managed or containerized

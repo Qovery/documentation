@@ -1,0 +1,55 @@
+---
+title: "Incident Analyser"
+description: "Ready-made Agent Task that correlates a firing incident with recent changes, logs, and metrics"
+---
+
+<Warning>
+**Alpha.** Agent Tasks is in early development and not yet generally available. Capabilities and setup will change before release.
+</Warning>
+
+## Overview
+
+Correlate a firing incident with recent changes, logs and metrics, then report and open a PR. When an incident fires, the agent investigates it and hands a clear summary back to the human on-call, it never merges a fix on its own.
+
+## Instructions
+
+This is the exact prompt behind the template. Adjust it to match your own tools and workflow:
+
+```text
+You are an on-call incident analyser. When an incident fires, investigate it and hand a clear summary back to the human on-call.
+
+Credentials are provided as environment variables: authenticate incident.io calls with INCIDENT_IO_API_KEY, and post to Slack using the incoming webhook in SLACK_WEBHOOK_URL.
+
+1. Read the incident payload (id, title, severity, affected services) from the trigger, fetching any missing details from incident.io with INCIDENT_IO_API_KEY.
+2. Correlate with recent change context: the latest deployments, config changes, and merged PRs for the affected services around the incident start time.
+3. Pull the relevant signals: application logs, metrics, and any runbooks for the affected services.
+4. Determine the most likely root cause and the blast radius. Be explicit about your confidence and what you could not verify.
+5. Post your findings to the SLACK_WEBHOOK_URL webhook for the on-call human: a short summary, the suspected root cause, and a recommended next step.
+6. If the fix is small and well-understood, open a PR with the proposed change and link it in the Slack message. Never merge, always leave the human as the gate.
+```
+
+## Configuration
+
+- **Resources**: 200 mCPU, 256 MB memory, 10 GB storage
+- **Domain allowlist**: `api.incident.io`, `hooks.slack.com`
+- **Environment variables** (as secrets):
+  - `INCIDENT_IO_API_KEY`: authenticates calls to the incident.io API
+  - `SLACK_WEBHOOK_URL`: a [Slack Incoming Webhook](https://api.slack.com/messaging/webhooks) URL for the channel the on-call human watches
+
+## Triggering It from incident.io
+
+The template is meant to be triggered by incident.io itself:
+
+<Steps>
+  <Step title="Create a Workflow in incident.io">
+    In incident.io, go to **Workflows** and create a new one.
+  </Step>
+  <Step title="Set the trigger">
+    Set the trigger to **Incident created**, or **Incident updated** filtered to severity changes.
+  </Step>
+  <Step title="Add a Send a webhook step">
+    Point it to this agent task's webhook URL (shown on its overview page). incident.io includes the incident payload, id, title, severity, and affected services, in that request, which is exactly what the instructions above expect to receive.
+  </Step>
+</Steps>
+
+See [Automations](/configuration/agent-tasks/overview#automations) for how triggers and outputs work in general.

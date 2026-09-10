@@ -3,20 +3,38 @@ title: "Install Qovery on AWS"
 description: "Create your first Kubernetes cluster on AWS in under 30 minutes"
 ---
 
+import AwsCredentialsSts from "/snippets/aws-credentials-sts.mdx";
+import AwsCredentialsStatic from "/snippets/aws-credentials-static.mdx";
+
 Get your first production-ready Kubernetes cluster running on AWS. This guide walks you through the entire setup from connecting AWS to deploying your cluster.
 
 <Info>
   Already have a Kubernetes cluster? See the [BYOK guide](/getting-started/installation/kubernetes) instead.
 </Info>
 
-## What You'll Get
+## Overview
 
-- ✅ Production-ready EKS cluster in ~30 minutes
-- ✅ **Karpenter auto-scaling** - Save up to 60% on AWS costs
-- ✅ Automatic load balancing with SSL certificates
-- ✅ Spot instance support for cost optimization
-- ✅ Monitoring and logging built-in
-- ✅ Ready to deploy your applications
+Qovery simplifies Amazon EKS management by:
+- Automating EKS cluster creation and configuration
+- Managing networking, load balancers, and DNS
+- Providing built-in monitoring and logging
+- Handling rolling updates and scaling via Karpenter
+- Securing your infrastructure with best practices
+
+<CardGroup cols={2}>
+  <Card title="Fully Managed" icon="wand-magic-sparkles">
+    Qovery creates and manages your EKS cluster automatically
+  </Card>
+  <Card title="Production Ready" icon="shield-check">
+    Best practices for security, networking, and reliability
+  </Card>
+  <Card title="Karpenter Auto-Scaling" icon="chart-line">
+    Intelligent, cost-optimized node provisioning built in
+  </Card>
+  <Card title="Ready in ~30 Minutes" icon="clock">
+    From connecting your AWS account to a running cluster
+  </Card>
+</CardGroup>
 
 ### About Karpenter
 
@@ -52,8 +70,6 @@ Qovery uses [Karpenter](https://karpenter.sh/) for intelligent node provisioning
   You can access the AWS Console
 </Check>
 
-No AWS expertise required - we'll guide you through everything!
-
 ---
 
 ## Quick Demo
@@ -64,7 +80,7 @@ Watch this walkthrough to see the entire cluster creation process:
 
 ---
 
-## Create Your Cluster
+## AWS Cluster Setup
 
 Follow these steps to create your first Qovery cluster on AWS:
 
@@ -87,268 +103,10 @@ Follow these steps to create your first Qovery cluster on AWS:
 
     <Tabs>
       <Tab title="STS Assume Role (Recommended)">
-        **Most secure method** - Uses temporary credentials that auto-rotate. No access keys to manage.
-
-        **What gets created**: A CloudFormation stack creates an IAM role with this policy:
-
-        ```json
-        {
-            "Version": "2012-10-17",
-            "Statement": [
-                {
-                    "Effect": "Allow",
-                    "Action": [
-                        "application-autoscaling:*",
-                        "autoscaling:*",
-                        "cloudtrail:LookupEvents",
-                        "cloudwatch:*",
-                        "dynamodb:*",
-                        "ec2:*",
-                        "ecr:*",
-                        "ecs:*",
-                        "eks:*",
-                        "elasticache:*",
-                        "elasticloadbalancing:*",
-                        "es:AddTags",
-                        "es:CreateElasticsearchDomain",
-                        "es:DeleteElasticsearchDomain",
-                        "es:DescribeElasticsearchDomain",
-                        "es:ListTags",
-                        "es:RemoveTags",
-                        "events:DeleteRule",
-                        "events:DescribeRule",
-                        "events:ListRuleNamesByTarget",
-                        "events:ListTagsForResource",
-                        "events:ListTargetsByRule",
-                        "events:PutRule",
-                        "events:PutTargets",
-                        "events:RemoveTargets",
-                        "events:TagResource",
-                        "events:UntagResource",
-                        "iam:*",
-                        "kms:*",
-                        "logs:*",
-                        "organizations:DescribeAccount",
-                        "organizations:DescribeOrganization",
-                        "organizations:DescribeOrganizationalUnit",
-                        "organizations:DescribePolicy",
-                        "organizations:ListChildren",
-                        "organizations:ListParents",
-                        "organizations:ListPolicies",
-                        "organizations:ListPoliciesForTarget",
-                        "organizations:ListRoots",
-                        "organizations:ListTargetsForPolicy",
-                        "rds:*",
-                        "s3:ListAllMyBuckets",
-                        "servicequotas:GetServiceQuota",
-                        "tag:GetResources"
-                    ],
-                    "Resource": "*"
-                },
-                {
-                    "Action": [
-                        "s3:*",
-                        "sqs:*"
-                    ],
-                    "Effect": "Allow",
-                    "Resource": [
-                        "arn:aws:s3:::qovery*",
-                        "arn:aws:s3:::qovery*/*",
-                        "arn:aws:sqs:*:*:qovery*",
-                        "arn:aws:sqs:*:*:qovery*/*"
-                    ]
-                }
-            ]
-        }
-        ```
-
-        **Setup Steps**:
-
-        1. **Open CloudFormation**: Click this link to create the IAM role
-           - [Launch CloudFormation Stack](https://console.aws.amazon.com/cloudformation/home?#/stacks/quickcreate?templateURL=https%3A%2F%2Fcloudformation-qovery-role-creation.s3.amazonaws.com%2Ftemplate.json&stackName=qovery-role-creation)
-           - This opens AWS CloudFormation in a new tab (login to AWS if needed)
-        2. **In AWS CloudFormation Console**:
-           - Click **Next** (template is pre-filled with Qovery's requirements)
-           - Stack name: Keep default `qovery-iam-role` or customize
-           - Click **Next** (skip stack options)
-           - Click **Next** again (skip tags)
-           - ✅ **Important**: Check **"I acknowledge that AWS CloudFormation might create IAM resources"**
-           - Click **Create stack**
-        3. **Wait for completion** (~1 minute):
-           - Status changes: `CREATE_IN_PROGRESS` → `CREATE_COMPLETE`
-           - Refresh page if needed
-        4. **Get the Role ARN**:
-           - Click on the **Outputs** tab
-           - Find **RoleArn** key
-           - Copy the value (looks like: `arn:aws:iam::123456789012:role/qovery-role`)
-           <Frame>
-             ![CloudFormation stack output with Role ARN](/images/aws-credentials/stack-output.png)
-           </Frame>
-        5. **Complete in Qovery**:
-           - Back in Qovery, paste the **Role ARN**
-           - Give it a name like `AWS Production`
-           - Click **Save**
-           <Frame>
-             ![Enter Role ARN in Qovery Console](/images/install-qovery/aws/create-credentials.png)
-           </Frame>
-
-        <Tip>
-          **Why this is recommended**: The IAM role uses AWS STS (Security Token Service) to generate temporary credentials that automatically rotate. Qovery never has access to long-lived credentials, and you can revoke access instantly by deleting the CloudFormation stack.
-        </Tip>
-
-        <AccordionGroup>
-          <Accordion title="What permissions does Qovery need?">
-            Qovery requires these AWS permissions to manage your infrastructure:
-
-            - **EC2**: Create VPCs, subnets, security groups, and instances
-            - **EKS**: Create and manage Kubernetes clusters
-            - **IAM**: Create service roles for EKS and EC2
-            - **ELB**: Create load balancers for your applications
-            - **S3**: Store Terraform state and logs
-            - **CloudWatch**: Collect logs and metrics
-
-            For a detailed breakdown of every permission and why it's needed, see the [AWS IAM Permissions Reference](/getting-started/security-and-compliance/aws-iam-permissions).
-          </Accordion>
-
-          <Accordion title="Can I use a custom IAM policy?">
-            Yes! For production environments, you can create a custom IAM policy with minimum required permissions. Contact support for the minimal policy template.
-          </Accordion>
-        </AccordionGroup>
+        <AwsCredentialsSts />
       </Tab>
       <Tab title="Static Credentials">
-        **Alternative method** - Uses AWS Access Keys (requires manual rotation every 90 days).
-
-        <Warning>
-          **Security Note**: Static credentials are long-lived and more exposed to leaks. For production, we strongly recommend STS Assume Role which provides short-lived, automatically refreshed credentials with granular access control.
-        </Warning>
-
-        **Setup Steps**:
-
-        1. **Connect to AWS Console**:
-           - Go to [AWS Console](https://console.aws.amazon.com)
-        2. **Navigate to IAM**:
-           - Go to **IAM** service
-           <Frame>
-             ![Navigate to IAM](/images/aws-credentials/aws-my-security-credentials.png)
-           </Frame>
-        3. **Create IAM User**:
-           - Create one IAM user called `qovery`
-           <Frame>
-             ![Create user - step 1](/images/aws-credentials/create-user-1.png)
-           </Frame>
-           <Frame>
-             ![Create user - step 2](/images/aws-credentials/create-user-2.png)
-           </Frame>
-           <Frame>
-             ![Create user - step 3](/images/aws-credentials/create-user-3.png)
-           </Frame>
-        4. **Setup IAM Permissions**:
-           - Apply the required [IAM permissions](https://www.qovery.com/docs/files/qovery-iam-aws.json) to the `qovery` user
-           <Warning>
-             **Download**: [IAM permissions JSON](https://www.qovery.com/docs/files/qovery-iam-aws.json)
-             Or copy the policy from below:
-             ```json
-             {
-                 "Version": "2012-10-17",
-                 "Statement": [
-                     {
-                         "Effect": "Allow",
-                         "Action": [
-                             "application-autoscaling:*",
-                             "autoscaling:*",
-                             "cloudtrail:LookupEvents",
-                             "cloudwatch:*",
-                             "dynamodb:*",
-                             "ec2:*",
-                             "ecr:*",
-                             "ecs:*",
-                             "eks:*",
-                             "elasticache:*",
-                             "elasticloadbalancing:*",
-                             "es:AddTags",
-                             "es:CreateElasticsearchDomain",
-                             "es:DeleteElasticsearchDomain",
-                             "es:DescribeElasticsearchDomain",
-                             "es:ListTags",
-                             "es:RemoveTags",
-                             "events:DeleteRule",
-                             "events:DescribeRule",
-                             "events:ListRuleNamesByTarget",
-                             "events:ListTagsForResource",
-                             "events:ListTargetsByRule",
-                             "events:PutRule",
-                             "events:PutTargets",
-                             "events:RemoveTargets",
-                             "events:TagResource",
-                             "events:UntagResource",
-                             "iam:*",
-                             "kms:*",
-                             "logs:*",
-                             "organizations:DescribeAccount",
-                             "organizations:DescribeOrganization",
-                             "organizations:DescribeOrganizationalUnit",
-                             "organizations:DescribePolicy",
-                             "organizations:ListChildren",
-                             "organizations:ListParents",
-                             "organizations:ListPolicies",
-                             "organizations:ListPoliciesForTarget",
-                             "organizations:ListRoots",
-                             "organizations:ListTargetsForPolicy",
-                             "rds:*",
-                             "s3:ListAllMyBuckets",
-                             "servicequotas:GetServiceQuota",
-                             "tag:GetResources"
-                         ],
-                         "Resource": "*"
-                     },
-                     {
-                         "Action": [
-                             "s3:*",
-                             "sqs:*"
-                         ],
-                         "Effect": "Allow",
-                         "Resource": [
-                             "arn:aws:s3:::qovery*",
-                             "arn:aws:s3:::qovery*/*",
-                             "arn:aws:sqs:*:*:qovery*",
-                             "arn:aws:sqs:*:*:qovery*/*"
-                         ]
-                     }
-                 ]
-             }
-             ```
-           </Warning>
-           **Follow the steps in AWS console to create AWS credentials with required IAM permissions:**
-           <Frame>
-             ![Add policy - step 1](/images/aws-credentials/aws-add-policy-1.jpg)
-           </Frame>
-           <Frame>
-             ![Add policy - step 2](/images/aws-credentials/aws-add-policy-2.png)
-           </Frame>
-           <Frame>
-             ![Add policy - step 3](/images/aws-credentials/aws-add-policy-3.jpg)
-           </Frame>
-           <Frame>
-             ![Add policy - step 4](/images/aws-credentials/aws-add-policy-4.jpg)
-           </Frame>
-        5. **Create Access Keys**:
-           - Go to the **Security Credentials** tab of the `qovery` user
-           - Click **Create access key**
-           <Frame>
-             ![Create access key - step 1](/images/aws-credentials/aws-create-credentials-1.png)
-           </Frame>
-           <Frame>
-             ![Create access key - step 2](/images/aws-credentials/aws-create-credentials-2.png)
-           </Frame>
-           <Frame>
-             ![Create access key - step 3](/images/aws-credentials/aws-create-credentials-3.png)
-           </Frame>
-           - Save the **Access Key ID** and **Secret Access Key**
-           <Frame>
-             ![Save credentials](/images/aws-credentials/aws-create-credentials-4.png)
-           </Frame>
-
-        **Well done!** You now have your AWS `access key id` and `secret access key` and your permissions are set up.
+        <AwsCredentialsStatic />
       </Tab>
     </Tabs>
   </Step>
@@ -462,28 +220,30 @@ Follow these steps to create your first Qovery cluster on AWS:
 
 ---
 
+## What Gets Created
+
 <AccordionGroup>
   <Accordion title="What Qovery Creates for You" icon="list-check">
     When you create a cluster, Qovery automatically provisions a complete, production-ready infrastructure:
 
     ### Network Architecture
 
-    - ✅ **Dedicated VPC** - Multi-AZ VPC isolating your infrastructure
-    - ✅ **Subnets & Routing** - Public/private subnets across 3 availability zones with routing tables
-    - ✅ **Internet Gateway** - For outbound container connectivity
-    - ✅ **Network Load Balancer** - Redirects HTTPS traffic to Nginx Ingress
-    - ✅ **NAT Gateways (Optional)** - With Elastic IPs for static outbound addresses
-    - ✅ **Database Networks** - Dedicated security groups and subnets for:
+    - **Dedicated VPC** - Multi-AZ VPC isolating your infrastructure
+    - **Subnets & Routing** - Public/private subnets across 3 availability zones with routing tables
+    - **Internet Gateway** - For outbound container connectivity
+    - **Network Load Balancer** - Redirects HTTPS traffic to Nginx Ingress
+    - **NAT Gateways (Optional)** - With Elastic IPs for static outbound addresses
+    - **Database Networks** - Dedicated security groups and subnets for:
       - RDS (relational databases)
       - DocumentDB (document storage)
       - ElastiCache (cache layers)
 
     ### Kubernetes Infrastructure
 
-    - ✅ **EKS Cluster** - Multi-AZ, latest stable Kubernetes version
-    - ✅ **Managed Worker Nodes** - AWS-managed EC2 instances with Karpenter
-    - ✅ **Security Groups** - Dual authentication for EKS remote access (TLS \+ IAM authenticator)
-    - ✅ **IAM Components**:
+    - **EKS Cluster** - Multi-AZ, latest stable Kubernetes version
+    - **Managed Worker Nodes** - AWS-managed EC2 instances with Karpenter
+    - **Security Groups** - Dual authentication for EKS remote access (TLS \+ IAM authenticator)
+    - **IAM Components**:
       - EBS CSI driver access for persistent volumes
       - IAM User Sync for Kubernetes authentication
       - Cluster Autoscaler permissions
@@ -491,22 +251,22 @@ Follow these steps to create your first Qovery cluster on AWS:
 
     ### Installed Components
 
-    - ✅ **Karpenter** - Intelligent auto-scaling for cost optimization
-    - ✅ **AWS Load Balancer Controller** - Automatic ingress management
-    - ✅ **EBS CSI Driver** - Persistent volume support
-    - ✅ **Metrics Server** - Resource monitoring
-    - ✅ **Qovery Agent** - Observability and management
+    - **Karpenter** - Intelligent auto-scaling for cost optimization
+    - **AWS Load Balancer Controller** - Automatic ingress management
+    - **EBS CSI Driver** - Persistent volume support
+    - **Metrics Server** - Resource monitoring
+    - **Qovery Agent** - Observability and management
 
     ### Storage & Logging
 
-    - ✅ **KMS-Encrypted S3 Buckets** - For:
+    - **KMS-Encrypted S3 Buckets** - For:
       - Application logs
       - Kubeconfig storage (versioned, private)
-    - ✅ **CloudWatch Log Groups** - Cluster diagnostics and logging
+    - **CloudWatch Log Groups** - Cluster diagnostics and logging
 
     ### Karpenter Auto-Scaling
 
-    Qovery uses [Karpenter](https://karpenter.sh/) for intelligent node provisioning, which can **save up to 60% on AWS costs**:
+    Qovery uses [Karpenter](https://karpenter.sh/) for intelligent node provisioning, which reduces AWS compute costs through spot instances and workload consolidation:
 
     **How Karpenter Works**:
 
@@ -542,7 +302,9 @@ Follow these steps to create your first Qovery cluster on AWS:
 
 ---
 
-## Wait for Cluster to Be Ready
+## Post-Installation Steps
+
+### Wait for Cluster to Be Ready
 
 **Cluster creation takes 20-30 minutes.** Here's what's happening:
 
@@ -559,14 +321,13 @@ Follow these steps to create your first Qovery cluster on AWS:
 
 **While you wait:**
 
-- ☕ Grab a coffee
-- 📖 Learn about [deploying your first app](/guides/getting-started/deploy-your-first-application)
-- 👥 [Invite your team](/configuration/organization/members-rbac)
-- 🔗 [Connect Git](/integrations/git-providers/overview)
+- Learn about [deploying your first app](/getting-started/guides/getting-started/deploy-your-first-application)
+- [Invite your team](/configuration/organization/members-rbac)
+- [Connect Git](/configuration/organization/git-repository-access)
 
 ---
 
-## Next: Deploy Your First Application
+### Deploy Your First Application
 
 Once your cluster shows **Ready** status:
 
@@ -631,6 +392,23 @@ Once your cluster shows **Ready** status:
     - Ensure keys are not disabled or expired
   </Accordion>
 </AccordionGroup>
+
+## Best Practices
+
+<CardGroup cols={2}>
+  <Card title="Select Diverse Instance Types" icon="layer-group">
+    Aim for 10-20 instance types across multiple families and sizes (t3, m5, m6i, and Graviton where possible) so Karpenter has room to optimize for cost and availability.
+  </Card>
+  <Card title="Enable Spot Instances" icon="dollar-sign">
+    Karpenter handles spot interruptions gracefully and falls back to on-demand automatically, so spot is safe to enable for most non-stateful workloads.
+  </Card>
+  <Card title="Use VPC Peering for External Resources" icon="network-wired">
+    Connect to resources on your existing AWS VPC (databases, internal services) via [VPC peering](/configuration/integrations/aws/vpc-peering) instead of exposing them publicly.
+  </Card>
+  <Card title="Rotate Static Credentials Regularly" icon="key">
+    If you use Static Credentials instead of STS Assume Role, rotate the access key every 90 days.
+  </Card>
+</CardGroup>
 
 ## Additional Resources
 

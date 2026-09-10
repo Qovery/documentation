@@ -3,7 +3,13 @@ title: "Install Qovery on Scaleway"
 description: "Complete guide to installing Qovery on Scaleway with Kapsule Kubernetes"
 ---
 
+import ScalewayCredentials from "/snippets/scaleway-credentials.mdx";
+
 Install Qovery on your Scaleway account and deploy a fully managed Kubernetes cluster (Kapsule) in less than 20 minutes.
+
+<Info>
+  Already have a Kubernetes cluster? See the [BYOK guide](/getting-started/installation/kubernetes) instead.
+</Info>
 
 ## Overview
 
@@ -38,151 +44,9 @@ Before you begin, ensure you have:
 <Check>**Qovery Account**: Free account at [console.qovery.com](https://console.qovery.com/signup)</Check>
 <Check>**IAM Access**: Ability to create applications and API keys</Check>
 
-### Why Choose Scaleway?
-
-<AccordionGroup>
-  <Accordion title="European Data Sovereignty">
-    - All data centers located in Europe (Paris, Amsterdam, Warsaw)
-    - GDPR compliant by design
-    - No data transfer outside EU
-    - Sovereignty for sensitive workloads
-  </Accordion>
-
-  <Accordion title="Cost-Effective">
-    - Free Kubernetes control plane (mutualized option)
-    - Transparent, predictable pricing
-    - No egress fees within regions
-  </Accordion>
-
-  <Accordion title="Simplified Infrastructure">
-    - Easy-to-use console and APIs
-    - Fast provisioning times
-    - Good performance-to-price ratio
-    - European-based support team
-  </Accordion>
-</AccordionGroup>
-
 ## Step 1: Create Scaleway Credentials
 
-Qovery needs API credentials to manage resources in your Scaleway account. We use a secure API key approach with granular permissions.
-
-### Generate API Key
-
-<Steps>
-  <Step title="Access IAM Console">
-    1. Log into [Scaleway Console](https://console.scaleway.com)
-    2. Click your profile/organization name in the top-right
-    3. Select **Identity and Access Management (IAM)**
-
-    ![Scaleway IAM](/images/scaleway-credentials/iam-menu.png)
-  </Step>
-
-  <Step title="Create Application">
-    1. Navigate to **Applications** tab
-    2. Click **+ Create application**
-    3. Name it: `qovery-manager` or similar
-    4. Description: "Qovery cluster management"
-    5. Click **Create application**
-
-    <Tip>
-    Applications help organize API keys by purpose. You can reuse this application for multiple clusters.
-    </Tip>
-  </Step>
-
-  <Step title="Generate API Key">
-    1. Click on your newly created application
-    2. Go to **API keys** tab
-    3. Click **+ Generate API key**
-    4. Description: "Qovery cluster access"
-    5. Select **Object Storage preferred Project** (your main project)
-    6. Click **Generate API key**
-
-    <Warning>
-    **Save these credentials immediately!** The secret key is only shown once and cannot be retrieved later.
-    </Warning>
-
-    You'll see:
-    - **Access key ID**: `SCWxxxxxxxxxxxxxxxxx`
-    - **Secret access key**: `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`
-
-    Copy both to a secure location.
-  </Step>
-
-  <Step title="Configure Permissions">
-    1. Go to **Policies** tab in IAM
-    2. Click **+ Create policy**
-    3. Name it: `qovery-permissions`
-    4. Click **Add rule** for each of these permission sets:
-
-    **Required Permissions:**
-    - ✅ **Containers** - Full access (for Kapsule management)
-    - ✅ **Network Services** - Full access (for VPC, Load Balancers)
-    - ✅ **Compute** - Full access (for instances)
-    - ✅ **Storage** - Full access (for persistent volumes)
-    - ✅ **VPC** - Full access (for networking)
-
-    5. Under **Principal**, attach this policy to your application
-    6. Click **Create policy**
-
-    <Info>
-    These permissions allow Qovery to fully manage your Kubernetes infrastructure, including creating instances, configuring networking, and managing storage. For a detailed breakdown of every permission and why it's needed, see the [Scaleway IAM Permissions Reference](/getting-started/security-and-compliance/scaleway-iam-permissions).
-    </Info>
-  </Step>
-
-  <Step title="Gather Required IDs">
-    You'll need these identifiers:
-
-    **Organization ID:**
-    1. Go to **Organization Settings**
-    2. Copy the **Organization ID** (format: `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`)
-
-    **Project ID:**
-    1. Go to your **Project Dashboard**
-    2. Click **Project settings**
-    3. Copy the **Project ID** (format: `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`)
-
-    <Tip>
-    Keep these IDs handy - you'll need them when configuring Qovery.
-    </Tip>
-  </Step>
-</Steps>
-
-### Add Credentials to Qovery
-
-<Steps>
-  <Step title="Start Cluster Creation">
-    1. Go to [Qovery Console](https://console.qovery.com)
-    2. Go to your organization overview and click on the **Clusters** tab
-    3. Click **Create Cluster**
-    4. Select **Scaleway** as the cloud provider
-  </Step>
-
-  <Step title="Enter Credentials">
-    Provide the information you gathered:
-    - **Access Key ID**: Your Scaleway access key
-    - **Secret Access Key**: Your Scaleway secret key
-    - **Organization ID**: Your Scaleway organization ID
-    - **Project ID**: Your Scaleway project ID
-
-    <Frame>
-      <img src="/images/scaleway-credentials/create-credentials.png" alt="Enter Scaleway credentials in Qovery Console" />
-    </Frame>
-
-    Click **Next** to validate the credentials.
-  </Step>
-
-  <Step title="Verify Connection">
-    Qovery will test the credentials and verify it can access your Scaleway account.
-
-    <Info>
-    If validation fails, double-check your API key has all required permissions attached via the policy.
-    </Info>
-  </Step>
-</Steps>
-
-<Info>
-**Source**: Content above is maintained in `/snippets/scaleway-credentials.mdx`. Update snippet first, then copy to all usage locations.
-</Info>
+<ScalewayCredentials />
 
 ## Step 2: Configure Your Cluster
 
@@ -353,9 +217,9 @@ Node Pool Settings:
     - **15-20 min**: Installing Qovery components (ingress, monitoring, etc.)
 
     **Status indicators:**
-    - 🟡 **Creating**: Infrastructure provisioning in progress
-    - 🟢 **Running**: Cluster is ready to use
-    - 🔴 **Error**: Check logs for troubleshooting
+    - **Creating**: Infrastructure provisioning in progress
+    - **Running**: Cluster is ready to use
+    - **Error**: Check logs for troubleshooting
   </Step>
 
   <Step title="Verify Installation">
@@ -406,15 +270,15 @@ Once your cluster is running:
 
 <Steps>
   <Step title="Deploy Your First Application">
-    Follow the [Deploy Your First App](/guides/getting-started/deploy-your-first-application) guide
+    Follow the [Deploy Your First App](/getting-started/guides/getting-started/deploy-your-first-application) guide
   </Step>
 
   <Step title="Configure Custom Domain">
-    Set up your own domain instead of the default Qovery domain
+    [Set up your own domain](/getting-started/guides/advanced-tutorials/cloudflare-custom-domain) instead of the default Qovery domain
   </Step>
 
   <Step title="Set Up Monitoring">
-    Configure [monitoring and observability](/integrations/observability/overview)
+    Configure [monitoring and observability](/configuration/integrations/observability/qovery-observe)
   </Step>
 
   <Step title="Configure Backups">

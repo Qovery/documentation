@@ -21,7 +21,7 @@ Agent Tasks are one-time or scheduled jobs delegated to AI agents, running on yo
     Only Anthropic is supported today, with your own API key.
   </Step>
   <Step title="Add MCP Servers (Optional)">
-    Qovery's own MCP server is available by default in read-only mode. Add it, or connect any remote HTTPS MCP server with its own name, URL, and headers.
+    Qovery's own MCP server is not added automatically, add it manually (`https://mcp.qovery.com/mcp`), or connect any remote HTTPS MCP server with its own name, URL, and headers. Authenticate with an API token or an [API Policy Token](/configuration/organization/api-policy-token) for scoped access. MCP servers added here are shared with every agent task in the organization, and can also be managed from **Organization Settings > AI settings > Agents**.
   </Step>
   <Step title="Write Instructions">
     Describe the agent's role and the steps it should follow in plain text. Reference credentials by the environment variable names you configure below, for example `INCIDENT_IO_API_KEY`.
@@ -44,7 +44,7 @@ An automation needs at least one trigger, and can optionally send its result to 
 
 Send the automation's result to a webhook: a destination URL, custom headers, and a prompt describing how to shape the result before sending it.
 
-To post the result to a Slack channel:
+For example, to post the result to a Slack channel:
 
 <Steps>
   <Step title="Create a Slack Incoming Webhook">
@@ -84,7 +84,7 @@ The Incident Analyser template uses a different, more direct pattern: it stores 
 
 ## After You Create It
 
-Agent Tasks appear in your environment overview under **Agent Tasks**, one-time tasks delegated to AI agents. Each one lists its status, last operation, underlying model, and a dedicated webhook URL you can call to trigger it from outside Qovery. That same webhook URL is also shown on the agent task's own overview page.
+Agent Tasks appear in your environment overview under **Agent Tasks**, jobs delegated to AI agents, run once or on a schedule. Each one lists its status, last operation, underlying model, and a dedicated webhook URL you can call to trigger it from outside Qovery. That same webhook URL is also shown on the agent task's own overview page.
 
 ## Related Resources
 

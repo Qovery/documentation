@@ -19,7 +19,7 @@ For complex migrations (microservices architectures, stateful workloads, complia
 
 <CardGroup cols={3}>
   <Card title="AI-Powered Migration" icon="wand-magic-sparkles">
-    The `/qovery-onboard` AI skill maps your current platform's concepts to Qovery, then analyzes your codebase, creates Dockerfiles, provisions databases, and deploys - all from a single prompt
+    The `/qovery-onboard` AI skill maps your current platform's concepts to Qovery and guides your cluster setup, then `qovery-deploy` analyzes your codebase, creates Dockerfiles, provisions databases, and deploys - all from a single prompt
   </Card>
 
   <Card title="No Kubernetes Expertise" icon="graduation-cap">
@@ -124,10 +124,14 @@ The fastest path. The AI agent handles the entire migration end-to-end.
     /qovery-onboard
     ```
 
-    The `qovery-onboard` skill acts as your personal cloud architect. It will guide you through the entire process:
+    The `qovery-onboard` skill acts as your personal cloud architect:
 
     - **Understand** your context - platform you're leaving, cloud provider you're moving to, constraints
     - **Map** concepts from your current platform (dynos, add-ons, services...) to their Qovery equivalents
+    - **Guide** you through cluster and environment setup
+
+    From there, `qovery-deploy` takes over to get your code running:
+
     - **Analyze** your codebase and detect languages, frameworks, and databases
     - **Create** optimized multi-stage Dockerfiles if your project doesn't have one
     - **Provision** databases (PostgreSQL, Redis, MongoDB, MySQL) - managed or containerized

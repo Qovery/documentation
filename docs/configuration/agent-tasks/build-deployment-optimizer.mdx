@@ -24,7 +24,7 @@ To find concrete ways to make builds and deployments faster and cheaper, the age
 ## Setting It Up
 
 - **Context**: add the service's Git repository so the agent can inspect the Dockerfile and build setup.
-- **Access**: give it access to the Qovery API, via the default read-only Qovery MCP server, or a Policy API token, to read and propose changes to the build/deploy configuration.
+- **Access**: add the Qovery MCP server manually (`https://mcp.qovery.com/mcp`). A read-only [API Policy Token](/configuration/organization/api-policy-token) is enough to read the build/deploy configuration and propose changes via PR. Use one with write permissions instead if the agent should update Qovery directly.
 - **Resources and environment variables**: see [Configuration](/configuration/agent-tasks/overview#configuration) for the general settings shared by every agent task.
 
 ## Triggering It

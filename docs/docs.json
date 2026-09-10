@@ -319,12 +319,17 @@
                 "group": "Jobs",
                 "pages": [
                   "configuration/cronjob",
-                  "configuration/lifecycle-job",
+                  "configuration/lifecycle-job"
+                ]
+              },
+              {
+                "group": "Agent Tasks",
+                "tag": "NEW",
+                "pages": [
+                  "configuration/agent-tasks/overview",
                   {
-                    "group": "Agent Tasks",
-                    "tag": "NEW",
+                    "group": "Examples",
                     "pages": [
-                      "configuration/agent-tasks/overview",
                       "configuration/agent-tasks/incident-analyser",
                       "configuration/agent-tasks/build-deployment-optimizer"
                     ]

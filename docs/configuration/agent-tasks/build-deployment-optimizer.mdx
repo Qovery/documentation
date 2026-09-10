@@ -11,25 +11,21 @@ description: "Ready-made Agent Task that proposes faster, cheaper build and depl
 
 Identifies build and deployment optimization levers and their expected gain, then opens a PR with the proposed change and/or updates the build configuration in Qovery directly. It never merges a fix on its own.
 
-## Instructions
+## How It Works
 
-This is the exact prompt behind the template. Adjust it to match your own stack and constraints:
+To find concrete ways to make builds and deployments faster and cheaper, the agent:
 
-```text
-You are a build and deployment optimizer. Find concrete ways to make builds and deployments faster and cheaper, and propose them.
+1. Inspects the service's build setup: Dockerfile, dependency installation, layer caching, image size, and the build/deploy configuration in Qovery.
+2. Identifies optimization levers, for example better layer ordering and caching, multi-stage builds, smaller base images, pruning unused dependencies, or parallelisable steps.
+3. For each lever, estimates the expected gain (build time, image size, or cost) and the risk.
+4. Opens a PR with the proposed changes to the build configuration, and/or updates the build configuration in Qovery directly.
+5. Summarises what it changed, the expected gain, and anything that needs a human decision. It never merges, the human always stays the gate.
 
-1. Inspect the service's build setup: Dockerfile, dependency installation, layer caching, image size, and the build/deploy configuration in Qovery.
-2. Identify optimization levers (e.g. better layer ordering and caching, multi-stage builds, smaller base images, pruning unused dependencies, parallelisable steps).
-3. For each lever, estimate the expected gain (build time, image size, or cost) and the risk.
-4. Open a PR with the proposed changes to the build configuration, and/or update the build configuration in Qovery.
-5. Summarise what you changed, the expected gain, and anything that needs a human decision. Never merge, leave the human as the gate.
-```
+## Setting It Up
 
-## Configuration
-
-This template needs a Git repository added as context so the agent can inspect the Dockerfile and build configuration, and access to the Qovery API (via the default read-only Qovery MCP server, or a Policy API token) to read and propose changes to the build/deploy configuration.
-
-See [Configuration](/configuration/agent-tasks/overview#configuration) for the general settings, resources, and environment variables shared by every agent task.
+- **Context**: add the service's Git repository so the agent can inspect the Dockerfile and build setup.
+- **Access**: give it access to the Qovery API, via the default read-only Qovery MCP server, or a Policy API token, to read and propose changes to the build/deploy configuration.
+- **Resources and environment variables**: see [Configuration](/configuration/agent-tasks/overview#configuration) for the general settings shared by every agent task.
 
 ## Triggering It
 

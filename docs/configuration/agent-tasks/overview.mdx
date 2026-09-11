@@ -14,6 +14,13 @@ Agent Tasks are one-time or scheduled jobs delegated to AI agents, running on yo
 ## Creating an Agent
 
 <Steps>
+  <Step title="Create New Service">
+    In your environment, click **New Service > Create new service**. Under **Agent use cases**, pick a ready-made template (Incident Analyser, Build & Deployment Optimizer) or **Start from scratch**.
+
+    <Frame>
+      <img src="/images/configuration/agent-tasks/agent-task-services-list.png" alt="Create new service screen showing the Agent use cases section" />
+    </Frame>
+  </Step>
   <Step title="Add Context (Optional)">
     Connect a Git repository for the agent to load as context.
   </Step>
@@ -21,7 +28,7 @@ Agent Tasks are one-time or scheduled jobs delegated to AI agents, running on yo
     Only Anthropic is supported today, with your own API key.
   </Step>
   <Step title="Add MCP Servers (Optional)">
-    Qovery's own MCP server is not added automatically, add it manually (`https://mcp.qovery.com/mcp`), or connect any remote HTTPS MCP server with its own name, URL, and headers. Authenticate with an API token or an [API Policy Token](/configuration/organization/api-policy-token) for scoped access. MCP servers added here are shared with every agent task in the organization, and can also be managed from **Organization Settings > AI settings > Agents**.
+    Qovery's own MCP server is not added automatically, add it manually (`https://mcp.qovery.com/mcp`) using an API token or an [API Policy Token](/configuration/organization/api-policy-token) for scoped access, or connect any remote HTTPS MCP server with its own name, URL, and headers. MCP servers added here are shared with every agent task in the organization, and can also be managed from **Organization Settings > AI settings > Agents**.
   </Step>
   <Step title="Write Instructions">
     Describe the agent's role and the steps it should follow in plain text. Reference credentials by the environment variable names you configure below, for example `INCIDENT_IO_API_KEY`.
@@ -30,6 +37,10 @@ Agent Tasks are one-time or scheduled jobs delegated to AI agents, running on yo
     Trigger the agent automatically and optionally send its result somewhere when it's done. See [Automations](#automations) below.
   </Step>
 </Steps>
+
+<Frame>
+  <img src="/images/configuration/agent-tasks/agent-task-creation-flow.png" alt="New agent task form with Context, Provider, MCP, Automations, and Instructions on the left, and Resources, Governance, Environment variables, and Advanced settings on the right" />
+</Frame>
 
 ## Automations
 

@@ -23,10 +23,24 @@ To find concrete ways to make builds and deployments faster and cheaper, the age
 
 ## Setting It Up
 
-- **Context**: add the service's Git repository so the agent can inspect the Dockerfile and build setup.
-- **Access**: add the Qovery MCP server manually (`https://mcp.qovery.com/mcp`). A read-only [API Policy Token](/configuration/organization/api-policy-token) is enough to read the build/deploy configuration and propose changes via PR. Use one with write permissions instead if the agent should update Qovery directly.
-- **Resources and environment variables**: see [Configuration](/configuration/agent-tasks/overview#configuration) for the general settings shared by every agent task.
+<Steps>
+  <Step title="Create the agent task">
+    From the **Agent use cases** section when creating a new service, pick **Build & deployment optimizer** (see [Creating an Agent](/configuration/agent-tasks/overview#creating-an-agent)), or start from scratch and paste in the instructions above.
+  </Step>
+  <Step title="Connect the repository">
+    Add the Git repository of the service to optimize as its Context, so the agent can inspect the Dockerfile and build setup.
+  </Step>
+  <Step title="Add the Qovery MCP server">
+    Add Qovery's MCP server (`https://mcp.qovery.com/mcp`) so the agent can read, and optionally update, the service's build/deploy configuration:
+    - A read-only [API Policy Token](/configuration/organization/api-policy-token) is enough if you only want it to **propose** changes (open a PR).
+    - Use a Policy API token with write permissions on that service's build/deploy configuration if you want it to **apply** changes to Qovery directly.
+  </Step>
+  <Step title="Add an automation (optional)">
+    Add a schedule trigger, for example weekly, to periodically review build performance, or a webhook trigger. See [Automations](/configuration/agent-tasks/overview#automations) for how triggers and outputs work in general.
+  </Step>
+  <Step title="Trigger a first run and check the results">
+    Send a POST request to the agent task's webhook URL (shown on its overview page) to run it on demand. Check the run under the agent task's **Deployments** tab, and review the PR it opened (or the build configuration it updated, if you granted write access).
+  </Step>
+</Steps>
 
-## Triggering It
-
-Add a schedule trigger, for example weekly, to periodically review build performance, or trigger it from a webhook. See [Automations](/configuration/agent-tasks/overview#automations) for how triggers and outputs work in general.
+See [Configuration](/configuration/agent-tasks/overview#configuration) for resources and environment variables, general settings shared by every agent task.

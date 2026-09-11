@@ -24,9 +24,28 @@ When an incident fires, the agent:
 
 ## Setting It Up
 
-- **Credentials**: add your incident management tool's API key and a chat webhook URL (a [Slack Incoming Webhook](https://api.slack.com/messaging/webhooks), for example) as secrets, then reference them by name in the agent's instructions.
-- **Domain allowlist**: add the hostnames the agent needs to reach, your incident management tool's API and your chat webhook's domain.
-- **Resources**: this agent mainly makes API calls and reads logs and metrics, a small allocation is enough to start. See [Configuration](/configuration/agent-tasks/overview#configuration) for how resources are set.
+<Steps>
+  <Step title="Create the agent task">
+    From the **Agent use cases** section when creating a new service, pick **Incident Analyser** (see [Creating an Agent](/configuration/agent-tasks/overview#creating-an-agent)), or start from scratch and paste in the instructions above.
+  </Step>
+  <Step title="Connect the repository">
+    Add the Git repository of the service(s) this agent should investigate as its Context, so it can read recent commits and merged PRs around the incident.
+  </Step>
+  <Step title="Add the Qovery MCP server">
+    Add Qovery's MCP server (`https://mcp.qovery.com/mcp`) so the agent can read deployment history, logs, and metrics for the affected services. A read-only [API Policy Token](/configuration/organization/api-policy-token) is enough, this agent only reads and reports, it never applies a fix directly.
+  </Step>
+  <Step title="Add credentials and domain allowlist">
+    Add your incident management tool's API key and a chat webhook URL (a [Slack Incoming Webhook](https://api.slack.com/messaging/webhooks), for example) as secrets, referenced by name in the instructions above (`INCIDENT_IO_API_KEY`, `SLACK_WEBHOOK_URL`). Add their hostnames to the domain allowlist, for example `api.incident.io` and `hooks.slack.com`.
+  </Step>
+  <Step title="Configure the trigger">
+    Set up the incident.io Workflow described below, pointing to this agent task's webhook URL.
+  </Step>
+  <Step title="Trigger a first run and check the results">
+    Before wiring up incident.io, test the agent by sending a POST request with a sample incident payload directly to its webhook URL (shown on the agent task's overview page). Check the run under the agent task's **Deployments** tab, and confirm the summary reaches the Slack channel tied to your webhook URL.
+  </Step>
+</Steps>
+
+Resources: this agent mainly makes API calls and reads logs and metrics, a small allocation is enough to start. See [Configuration](/configuration/agent-tasks/overview#configuration) for how resources are set.
 
 ## Triggering It from incident.io
 

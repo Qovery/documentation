@@ -4,7 +4,7 @@ description: "Ready-made Agent Task that proposes faster, cheaper build and depl
 ---
 
 <Warning>
-**Alpha.** Agent Tasks is in early development and not yet generally available. Capabilities and setup will change before release.
+**Early Preview.** Agent Tasks is in early development and not yet generally available. Capabilities and setup will change before release.
 </Warning>
 
 ## Overview
@@ -28,18 +28,21 @@ To find concrete ways to make builds and deployments faster and cheaper, the age
     From the **Agent use cases** section when creating a new service, pick **Build & deployment optimizer** (see [Creating an Agent](/configuration/agent-tasks/overview#creating-an-agent)), or start from scratch and paste in the instructions above.
   </Step>
   <Step title="Connect the repository">
-    Add the Git repository of the service to optimize as its Context, so the agent can inspect the Dockerfile and build setup.
+    Add the Git repository of the service to optimize as its Context, so the agent can inspect the Dockerfile and build setup. You can also add the Qovery service itself as Context, alongside its repository.
   </Step>
   <Step title="Add the Qovery MCP server">
     Add Qovery's MCP server (`https://mcp.qovery.com/mcp`) so the agent can read, and optionally update, the service's build/deploy configuration:
     - A read-only [API Policy Token](/configuration/organization/api-policy-token) is enough if you only want it to **propose** changes (open a PR).
     - Use a Policy API token with write permissions on that service's build/deploy configuration if you want it to **apply** changes to Qovery directly.
   </Step>
-  <Step title="Add an automation (optional)">
-    Add a schedule trigger, for example weekly, to periodically review build performance, or a webhook trigger. See [Automations](/configuration/agent-tasks/overview#automations) for how triggers and outputs work in general.
+  <Step title="Add a trigger (optional)">
+    Add a schedule trigger, for example weekly, to periodically review build performance, or a webhook trigger. See [Triggers and Outputs](/configuration/agent-tasks/overview#triggers-and-outputs) for how they work in general.
+  </Step>
+  <Step title="Keep In Place as the execution mode">
+    This agent is typically run on a schedule rather than triggered concurrently, so **In Place** (the default) works well. Use **Clone Environment** instead if you expect overlapping runs. See [Execution Mode](/configuration/agent-tasks/overview#execution-mode).
   </Step>
   <Step title="Trigger a first run and check the results">
-    Send a POST request to the agent task's webhook URL (shown on its overview page) to run it on demand. Check the run under the agent task's **Deployments** tab, and review the PR it opened (or the build configuration it updated, if you granted write access).
+    Click **Trigger** on the agent task's overview page to run it on demand. Check the run under its **Deployments** tab, and review the PR it opened (or the build configuration it updated, if you granted write access).
   </Step>
 </Steps>
 

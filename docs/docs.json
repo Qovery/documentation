@@ -331,7 +331,10 @@
                     "group": "Examples",
                     "pages": [
                       "configuration/agent-tasks/incident-analyser",
-                      "configuration/agent-tasks/build-deployment-optimizer"
+                      "configuration/agent-tasks/incident-analyser-honeybadger",
+                      "configuration/agent-tasks/build-deployment-optimizer",
+                      "configuration/agent-tasks/jira-coding-agent",
+                      "configuration/agent-tasks/linear-coding-agent"
                     ]
                   }
                 ]

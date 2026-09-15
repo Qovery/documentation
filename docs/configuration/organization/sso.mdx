@@ -79,6 +79,12 @@ The following sections use Okta as IDP to illustrate the setup and information t
     You may not see the "user.displayName" populated in the Okta admin console. See this [Okta documentation](https://support.okta.com/help/s/article/okta-display-name-and-group-rules?language=en_US) for more information.
     </Info>
 
+    ##### Google SAML
+
+    <Warning>
+    **Google Workspace** does not expose a full name property. Instead of mapping the `name` attribute, you must map `firstName` and `lastName` to the **First name** and **Last name** fields in the Google Admin console attribute mapping. These two attributes are mandatory for Google SAML.
+    </Warning>
+
     #### (Optional) Configure Group Attribute Statements
 
     If you want to automatically assign a Qovery role according to your users' groups (see [Configure Group Synchronization](#configure-group-synchronization)), you need to expose this information:

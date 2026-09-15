@@ -1,0 +1,64 @@
+---
+title: "Incident Analyzer with Honeybadger"
+description: "Ready-made Agent Task that correlates a firing Honeybadger incident with recent changes, logs, and metrics"
+---
+
+<Warning>
+**Early Preview.** Agent Tasks is in early development and not yet generally available. Capabilities and setup will change before release.
+</Warning>
+
+## Overview
+
+Correlate a firing Honeybadger incident with recent changes, logs and metrics, then report and open a PR. When an incident fires, the agent investigates it and hands a clear summary back to the human on-call, it never merges a fix on its own.
+
+## How It Works
+
+When an incident fires, the agent:
+
+1. Reads the incident details (id, title, severity, affected services) from the trigger, fetching any missing details from Honeybadger.
+2. Correlates the incident with recent change context: the latest deployments, config changes, and merged PRs for the affected services around the incident start time.
+3. Pulls the relevant signals: application logs, metrics, and any runbooks for the affected services.
+4. Determines the most likely root cause and the blast radius, and is explicit about its confidence and what it could not verify.
+5. Reports its findings to the on-call human in chat: a short summary, the suspected root cause, and a recommended next step.
+6. If the fix is small and well-understood, opens a PR with the proposed change and links it in the message. It never merges, the human always stays the gate.
+
+## Setting It Up
+
+<Steps>
+  <Step title="Create the agent task">
+    From the **Agent use cases** section when creating a new service, pick **Incident Analyzer with Honeybadger** (see [Creating an Agent](/configuration/agent-tasks/overview#creating-an-agent)), or start from scratch and paste in the instructions above.
+  </Step>
+  <Step title="Connect the repository">
+    Add the Git repository of the service(s) this agent should investigate as its Context, so it can read recent commits and merged PRs around the incident. You can also add the Qovery service(s) themselves as Context, in addition to or instead of their repository.
+  </Step>
+  <Step title="Add the Qovery MCP server">
+    Add Qovery's MCP server (`https://mcp.qovery.com/mcp`) so the agent has more context on the applications it needs to monitor, deployment history, logs, and metrics for the affected services. A read-only [API Policy Token](/configuration/organization/api-policy-token) is enough, this agent only reads and reports, it never applies a fix directly.
+  </Step>
+  <Step title="Choose a Provider">
+    Enter your Anthropic API key, the only provider supported today.
+  </Step>
+  <Step title="Add credentials and domain allowlist">
+    Add your Honeybadger API key as a secret, referenced by name in the instructions above (for example `HONEYBADGER_API_KEY`), for more context on the incident if needed. In Honeybadger, go to **Settings > API keys** to create one. Add its hostname to the domain allowlist, for example `api.honeybadger.io`.
+  </Step>
+  <Step title="Add a trigger">
+    Select **From a webhook**, the default for this template, and copy the generated webhook URL from the agent task's overview page, you'll need it next.
+  </Step>
+  <Step title="Point Honeybadger at the webhook">
+    In Honeybadger, go to **Alerts & Integrations**, add the **Webhook** integration, and paste the URL from the previous step. Under **Error events**, check **When an error is initially reported or when reported again after being resolved**, then save.
+
+    <Frame>
+      <img src="/images/configuration/agent-tasks/honeybadger-workflow.png" alt="Honeybadger webhook integration settings with the webhook URL and the error event set to when an error is initially reported or reported again after being resolved" />
+    </Frame>
+  </Step>
+  <Step title="Add an output (optional)">
+    Same as any other agent task, see [Outputs](/configuration/agent-tasks/overview#outputs).
+  </Step>
+  <Step title="Use Clone Environment as the execution mode">
+    Incidents can fire frequently, so use **Clone Environment** rather than **In Place**: an overlapping trigger would otherwise replace the currently running investigation. See [Execution Mode](/configuration/agent-tasks/overview#execution-mode).
+  </Step>
+  <Step title="Trigger a first run and check the results">
+    Test the agent by clicking **Trigger** on its overview page, or by sending a POST request with a sample incident payload to its webhook URL. Check the run under the agent task's **Deployments** tab, and confirm the summary reaches the Slack channel tied to your webhook URL.
+  </Step>
+</Steps>
+
+Resources: this agent mainly makes API calls and reads logs and metrics, a small allocation is enough to start. See [Configuration](/configuration/agent-tasks/overview#configuration) for how resources are set, and [Triggers and Outputs](/configuration/agent-tasks/overview#triggers-and-outputs) for how triggers work in general.

@@ -1,0 +1,61 @@
+---
+title: "Agent Tasks"
+description: "Deploy AI agents directly on your own infrastructure"
+tag: "NEW"
+---
+
+<Warning>
+**Early Preview.** Agent Tasks is in early development and not yet generally available. Capabilities and setup will change before release. Want early access? Reach out to us directly in the product (help button in the console, or your dedicated Slack channel).
+</Warning>
+
+## Overview
+
+Agent Tasks let you delegate a job, investigating an incident, optimizing a build, or anything else you describe, to an AI agent running on your own Qovery-managed infrastructure. For how an agent is configured and what settings are available, see the [Configuration Reference](/configuration/agent-tasks/overview).
+
+## Why Run Agent Tasks in Qovery?
+
+<CardGroup cols={2}>
+  <Card title="Runs on Your Own Infrastructure" icon="server">
+    The agent runs as a service on your Qovery-managed cluster, on your own cloud account, not on a third-party SaaS runner you don't control.
+  </Card>
+  <Card title="Same Guardrails as Everything Else" icon="shield-check">
+    Scoped access via Policy API tokens, network boundaries from a domain allowlist controlling exactly what it can reach, resource limits, and execution timeouts, the same governance model as any other Qovery service.
+  </Card>
+  <Card title="Full Audit Trail" icon="list-check">
+    Every run shows up under the agent task's Deployments tab, with logs, like any other deployment.
+  </Card>
+  <Card title="Isolated by Design" icon="clone">
+    Clone Environment mode gives a run its own throwaway copy of the environment, so an agent investigating an incident or proposing a code change can't interfere with what's actually running in production.
+  </Card>
+  <Card title="Your Qovery Context, in One Click" icon="plug">
+    Add your environments, services, and their configuration as context directly, alongside or instead of a Git repository, so the agent has the same view of your infrastructure you do.
+  </Card>
+  <Card title="Ready-Made Templates" icon="wand-magic-sparkles">
+    Start from a template built for your use case, incident response, build optimization, or picking up tickets, and adjust it instead of starting from a blank prompt.
+  </Card>
+</CardGroup>
+
+## Use Cases
+
+Today there are a few ready-made agent configurations, or you can start from scratch and configure every part yourself. Don't hesitate to reach out to us directly in the product if you have a specific need so we can add it.
+
+<CardGroup cols={2}>
+  <Card title="Incident Analyzer with incident.io" icon="/images/logos/incident-io-icon.svg" href="/configuration/agent-tasks/incident-analyser">
+    Correlates a firing incident.io incident with recent changes, logs, and metrics, then reports back to the on-call human and opens a PR if the fix is small and well-understood.
+  </Card>
+  <Card title="Incident Analyzer with Honeybadger" icon="/images/logos/honeybadger-icon.svg" href="/configuration/agent-tasks/incident-analyser-honeybadger">
+    Same behavior, for teams using Honeybadger instead of incident.io.
+  </Card>
+  <Card title="Build & deployment optimizer" icon="gauge" href="/configuration/agent-tasks/build-deployment-optimizer">
+    Identifies build and deployment optimization levers and expected gain, opens a PR with the proposed change and/or modifies the build configuration in Qovery.
+  </Card>
+  <Card title="Jira Coding Agent" icon="/images/logos/jira-icon.svg" href="/configuration/agent-tasks/jira-coding-agent">
+    Picks up a Jira issue and proposes the corresponding code change as a pull request.
+  </Card>
+  <Card title="Linear Coding Agent" icon="/images/logos/linear-icon.svg" href="/configuration/agent-tasks/linear-coding-agent">
+    Picks up a Linear issue and proposes the corresponding code change as a pull request.
+  </Card>
+  <Card title="Start from Scratch" icon="plus" href="/configuration/agent-tasks/overview">
+    Configure every part of the agent yourself. Also the full configuration reference: creating an agent, execution mode, triggers and outputs, resources, governance, and environment variables.
+  </Card>
+</CardGroup>

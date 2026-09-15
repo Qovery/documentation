@@ -1,37 +1,37 @@
 ---
 title: "How Qovery Works"
-description: "Understand the architecture behind Qovery — the Kubernetes control plane for humans and AI agents"
+description: "Understand the architecture behind Qovery: the Kubernetes control plane for humans and AI agents"
 ---
 
 ## The Big Picture
 
-Qovery is **the Kubernetes control plane for humans and AI agents** — running entirely on your own cloud infrastructure.
+Qovery is **the Kubernetes control plane for humans and AI agents**, running entirely on your own cloud infrastructure.
 
 Whether a developer deploys via the console, an AI agent deploys via the Agent Skill, or a platform engineer manages clusters via Terraform, they all drive the same control plane. One consistent model, every interface.
 
-<img src="/images/qovery-architecture.svg" alt="Qovery Architecture - Five products running on Kubernetes across multiple cloud providers" className="light-mode-only" />
-<img src="/images/qovery-architecture-dark.svg" alt="Qovery Architecture - Five products running on Kubernetes across multiple cloud providers" className="dark-mode-only" />
+<img src="/images/qovery-architecture.svg" alt="Qovery Architecture diagram: Provision, Deploy, Observe, Optimize, and Secure running on Kubernetes across multiple cloud providers" className="light-mode-only" />
+<img src="/images/qovery-architecture-dark.svg" alt="Qovery Architecture diagram: Provision, Deploy, Observe, Optimize, and Secure running on Kubernetes across multiple cloud providers" className="dark-mode-only" />
 
 ## How AI Agents Interact with Qovery
 
 AI coding agents (Claude Code, Cursor, OpenCode, and 30+ others) interact with Qovery through two complementary interfaces:
 
 <CardGroup cols={2}>
-  <Card title="Agent Skill — Forward Engineering" icon="wand-magic-sparkles" href="/getting-started/quickstart/ai-agent">
+  <Card title="Agent Skill: Forward Engineering" icon="wand-magic-sparkles" href="/getting-started/quickstart/ai-agent">
     **Takes your source code → deploys it on Qovery**
 
-    The AI agent analyzes your project, generates a Dockerfile, provisions databases, configures environment variables, and deploys — all autonomously. No Kubernetes knowledge required from the developer.
+    The AI agent analyzes your project, generates a Dockerfile, provisions databases, configures environment variables, and deploys, all autonomously. No Kubernetes knowledge required from the developer.
   </Card>
-  <Card title="MCP Server — Operations" icon="robot" href="/copilot/mcp-server">
+  <Card title="MCP Server: Operations" icon="robot" href="/copilot/mcp-server">
     **Manages existing infrastructure via natural language**
 
-    Once deployed, use the Qovery MCP Server to query environments, troubleshoot deployments, scale services, and manage infrastructure — all through conversation.
+    Once deployed, use the Qovery MCP Server to query environments, troubleshoot deployments, scale services, and manage infrastructure, all through conversation.
   </Card>
 </CardGroup>
 
 ## Why Kubernetes?
 
-Kubernetes was designed for infrastructure operators — not developers, and certainly not AI agents. Qovery bridges this gap by adding:
+Kubernetes was designed for infrastructure operators, not developers, and certainly not AI agents. Qovery bridges this gap by adding:
 
 - **Developer Experience** - Deploy without Kubernetes expertise
 - **AI Agent Interface** - Agent Skill and MCP Server for autonomous operations
@@ -39,9 +39,9 @@ Kubernetes was designed for infrastructure operators — not developers, and cer
 - **Multi-Cloud** - Works on AWS, GCP, Azure, Scaleway, on-premise
 - **Universal Orchestration** - Manages containers, databases, Terraform, and more
 
-## The Five Products
+## The Six Products
 
-Qovery's architecture consists of five integrated products:
+Qovery's architecture consists of six integrated products:
 
 <CardGroup cols={2}>
   <Card title="Provision" icon="/images/logos/provision-logo-only.svg" href="/getting-started/guides/qovery-101/provision">
@@ -50,6 +50,12 @@ Qovery's architecture consists of five integrated products:
 
   <Card title="Deploy" icon="/images/logos/deploy-logo-only.svg" href="/getting-started/guides/qovery-101/deploy">
     GitOps-based deployment for applications, databases, and services. Automatic builds and rollbacks.
+  </Card>
+
+  <Card title="Agents" icon="robot" href="/getting-started/agent-tasks">
+    <span className="badge-new">New</span>
+
+    Deploy AI agents directly on your own infrastructure.
   </Card>
 
   <Card title="Observe" icon="/images/logos/observe-logo-only.svg" href="/getting-started/guides/qovery-101/observe">
@@ -78,14 +84,14 @@ Unlike traditional PaaS (Heroku, Platform.sh), Qovery runs on **your own cloud a
 
 ### 1. Multiple Interfaces
 
-Work with Qovery through your preferred method — all driving the same control plane:
+Work with Qovery through your preferred method, all driving the same control plane:
 
 - **[AI Agent Skill](/getting-started/quickstart/ai-agent)** - Deploy from Claude Code, Cursor, or any AI coding tool
 - **[MCP Server](/copilot/mcp-server)** - Manage infrastructure via natural language
 - **Web Console** - Visual interface for teams
 - **[CLI](/cli/overview)** - Command-line for developers
-- **[Terraform](/terraform/overview)** - Infrastructure as Code
-- **[API](/api/overview)** - Programmatic control
+- **[Terraform](/terraform-provider/overview)** - Infrastructure as Code
+- **[API](/api-reference/overview)** - Programmatic control
 
 ### 2. Production-Ready Features
 
@@ -127,7 +133,7 @@ This means **one control plane** for your entire cloud infrastructure.
   </Step>
 
   <Step title="Ask the agent to deploy">
-    Say "Deploy my application with Qovery" — the agent handles everything from Dockerfile to running deployment
+    Say "Deploy my application with Qovery": the agent handles everything from Dockerfile to running deployment
   </Step>
 
   <Step title="Manage with the MCP Server">
@@ -151,7 +157,7 @@ This means **one control plane** for your entire cloud infrastructure.
   </Step>
 
   <Step title="Scale & Monitor">
-    Track metrics, scale, optimize — all from one interface
+    Track metrics, scale, optimize, all from one interface
   </Step>
 </Steps>
 
@@ -168,6 +174,6 @@ This means **one control plane** for your entire cloud infrastructure.
     Learn essential terminology
   </Card>
   <Card title="Platform Products" icon="graduation-cap" href="/getting-started/guides/qovery-101/provision">
-    Deep dive into all five products
+    Deep dive into all six products
   </Card>
 </CardGroup>

@@ -48,396 +48,126 @@
     }
   ],
   "navigation": {
-    "products": [
+    "tabs": [
       {
-        "product": "Platform",
-        "description": "Deploy and manage applications on Kubernetes",
-        "icon": "server",
-        "tabs": [
+        "tab": "Getting Started",
+        "icon": "rocket",
+        "groups": [
           {
-            "tab": "Getting Started",
-            "icon": "rocket",
-            "groups": [
+            "group": "Get Started",
+            "pages": [
+              "getting-started/introduction",
+              "getting-started/quickstart",
+              "getting-started/quickstart/ai-agent",
+              "getting-started/how-it-works",
+              "getting-started/basic-concepts",
               {
-                "group": "Get Started",
+                "group": "Installation",
                 "pages": [
-                  "getting-started/introduction",
-                  "getting-started/quickstart",
-                  "getting-started/how-it-works",
-                  "getting-started/basic-concepts",
+                  "getting-started/quickstart/docker",
                   {
-                    "group": "Installation",
+                    "group": "Managed Cluster",
                     "pages": [
-                      "getting-started/quickstart/docker-desktop",
                       "getting-started/quickstart/cloud",
-                      {
-                        "group": "Managed Cluster",
-                        "pages": [
-                          "getting-started/installation/aws",
-                          "getting-started/installation/gcp",
-                          "getting-started/installation/azure",
-                          "getting-started/installation/scaleway"
-                        ]
-                      },
-                      "getting-started/installation/kubernetes"
+                      "getting-started/installation/aws",
+                      "getting-started/installation/gcp",
+                      "getting-started/installation/azure",
+                      "getting-started/installation/scaleway"
                     ]
                   },
-                  {
-                    "group": "Quickstart",
-                    "pages": [
-                      "getting-started/guides/getting-started/deploy-your-first-application",
-                      "getting-started/quickstart/ai-agent",
-                      "getting-started/quickstart/remote-dev-environments",
-                      "getting-started/guides/use-cases/ephemeral-environment"
-                    ]
-                  }
-                ]
-              },
-              {
-                "group": "Platform Capabilities",
-                "pages": [
-                  {
-                    "group": "Core Products",
-                    "pages": [
-                      "getting-started/guides/qovery-101/provision",
-                      "getting-started/guides/qovery-101/deploy",
-                      "getting-started/guides/qovery-101/observe",
-                      "getting-started/guides/qovery-101/optimize",
-                      "getting-started/guides/qovery-101/secure"
-                    ]
-                  },
-                  {
-                    "group": "Security & Compliance",
-                    "pages": [
-                      "getting-started/security-and-compliance/overview",
-                      {
-                        "group": "IAM Permissions Reference",
-                        "pages": [
-                          "getting-started/security-and-compliance/aws-iam-permissions",
-                          "getting-started/security-and-compliance/gcp-iam-permissions",
-                          "getting-started/security-and-compliance/azure-iam-permissions",
-                          "getting-started/security-and-compliance/scaleway-iam-permissions"
-                        ]
-                      },
-                      "getting-started/security-and-compliance/audit-logs",
-                      "getting-started/security-and-compliance/soc2",
-                      "getting-started/security-and-compliance/gdpr",
-                      "getting-started/security-and-compliance/dora",
-                      "getting-started/security-and-compliance/hipaa"
-                    ]
-                  },
-                  "getting-started/configuration/maintenance"
-                ]
-              },
-              {
-                "group": "How-to Guides",
-                "pages": [
-                  "getting-started/guides/use-cases/production-environment-management",
-                  "getting-started/guides/use-cases/cloud-migration-and-scaling",
-                  {
-                    "group": "Ephemeral Environments",
-                    "pages": [
-                      "getting-started/guides/use-cases/ephemeral-environment",
-                      "getting-started/guides/use-cases/preview-environments",
-                      "getting-started/guides/use-cases/e2e-testing"
-                    ]
-                  },
-                  "getting-started/guides/use-cases/remote-development-environments"
-                ]
-              },
-              {
-                "group": "Tutorials",
-                "pages": [
-                  "getting-started/guides/getting-started/deploy-your-first-application",
-                  "getting-started/guides/getting-started/connect-database",
-                  "getting-started/guides/others/database-seeding-lifecycle-job",
-                  {
-                    "group": "Advanced Tutorials",
-                    "pages": [
-                      {
-                        "group": "Infrastructure & Security",
-                        "pages": [
-                          "getting-started/guides/advanced-tutorials/aws-iam-roles",
-                          "getting-started/guides/advanced-tutorials/certificate-management-multi-tenant",
-                          "getting-started/guides/advanced-tutorials/cloudwatch-integration",
-                          "getting-started/guides/advanced-tutorials/deploy-daemonset-karpenter",
-                          "getting-started/guides/advanced-tutorials/upgrading-rds-instance"
-                        ]
-                      },
-                      {
-                        "group": "Networking & Access Control",
-                        "pages": [
-                          "getting-started/guides/advanced-tutorials/cloudflare-custom-domain",
-                          "getting-started/guides/advanced-tutorials/rate-limiting",
-                          "getting-started/guides/advanced-tutorials/ip-header-authorization",
-                          "getting-started/guides/advanced-tutorials/egress-filtering-squid-proxy",
-                          "getting-started/guides/advanced-tutorials/customizing-preview-url-with-qovery-cli"
-                        ]
-                      },
-                      {
-                        "group": "Development & Deployment",
-                        "pages": [
-                          "getting-started/guides/advanced-tutorials/write-dockerfile",
-                          "getting-started/guides/advanced-tutorials/import-env-vars-cli",
-                          "getting-started/guides/advanced-tutorials/deploy-jupyterhub",
-                          "getting-started/guides/advanced-tutorials/rust-api-part-1"
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "group": "Troubleshooting",
-                "pages": [
-                  "getting-started/troubleshoot/overview"
-                ]
-              },
-              {
-                "group": "Useful Resources",
-                "pages": [
-                  "getting-started/useful-resources/faq",
-                  "getting-started/useful-resources/help-and-support"
+                  "getting-started/installation/kubernetes"
                 ]
               }
             ]
           },
           {
-            "tab": "Configuration",
-            "icon": "sliders",
-            "groups": [
+            "group": "Platform Capabilities",
+            "pages": [
               {
-                "group": "Overview",
+                "group": "Core Products",
                 "pages": [
-                  "configuration/overview"
+                  "getting-started/guides/qovery-101/provision",
+                  "getting-started/guides/qovery-101/deploy",
+                  "getting-started/guides/qovery-101/observe",
+                  "getting-started/guides/qovery-101/optimize",
+                  "getting-started/guides/qovery-101/secure",
+                  "getting-started/agent-tasks"
                 ]
               },
               {
-                "group": "Account & Organization",
+                "group": "Security & Compliance",
                 "pages": [
-                  "configuration/user-account",
-                  "configuration/organization",
+                  "getting-started/security-and-compliance/overview",
                   {
-                    "group": "Access & Security",
+                    "group": "IAM Permissions Reference",
                     "pages": [
-                      "configuration/organization/members-rbac",
-                      "configuration/organization/sso",
-                      "configuration/organization/api-token",
-                      "configuration/organization/api-policy-token"
+                      "getting-started/security-and-compliance/aws-iam-permissions",
+                      "getting-started/security-and-compliance/gcp-iam-permissions",
+                      "getting-started/security-and-compliance/azure-iam-permissions",
+                      "getting-started/security-and-compliance/scaleway-iam-permissions"
                     ]
-                  }
+                  },
+                  "getting-started/security-and-compliance/audit-logs",
+                  "getting-started/security-and-compliance/soc2",
+                  "getting-started/security-and-compliance/gdpr",
+                  "getting-started/security-and-compliance/dora",
+                  "getting-started/security-and-compliance/hipaa"
                 ]
               },
+              "getting-started/configuration/maintenance"
+            ]
+          },
+          {
+            "group": "How-to Guides",
+            "pages": [
+              "getting-started/guides/use-cases/production-environment-management",
+              "getting-started/guides/use-cases/cloud-migration-and-scaling",
               {
-                "group": "Clusters & Cloud",
+                "group": "Ephemeral Environments",
                 "pages": [
-                  "configuration/clusters",
-                  "configuration/cluster-advanced-settings",
-                  "configuration/connect-to-cluster",
-                  "configuration/organization/cloud-credentials",
-                  "configuration/cloud-provider-resource-tags",
-                  {
-                    "group": "AWS EKS",
-                    "pages": [
-                      "configuration/integrations/kubernetes/eks/overview",
-                      "configuration/integrations/kubernetes/eks/managed",
-                      "configuration/integrations/kubernetes/eks/preflight-checks",
-                      "configuration/integrations/kubernetes/eks/eks-anywhere"
-                    ]
-                  },
-                  {
-                    "group": "Google GKE",
-                    "pages": [
-                      "configuration/integrations/kubernetes/gke/overview",
-                      "configuration/integrations/kubernetes/gke/managed"
-                    ]
-                  },
-                  {
-                    "group": "Azure AKS",
-                    "pages": [
-                      "configuration/integrations/kubernetes/aks/overview",
-                      "configuration/integrations/kubernetes/aks/managed"
-                    ]
-                  },
-                  {
-                    "group": "Scaleway Kapsule",
-                    "pages": [
-                      "configuration/integrations/kubernetes/scaleway/overview",
-                      "configuration/integrations/kubernetes/scaleway/managed"
-                    ]
-                  },
-                  {
-                    "group": "Other Kubernetes",
-                    "pages": [
-                      "configuration/integrations/kubernetes/byok",
-                      "configuration/integrations/kubernetes/docker"
-                    ]
-                  }
+                  "getting-started/guides/use-cases/ephemeral-environment",
+                  "getting-started/guides/use-cases/preview-environments",
+                  "getting-started/guides/use-cases/e2e-testing"
                 ]
-              },
+              }
+            ]
+          },
+          {
+            "group": "Tutorials",
+            "pages": [
+              "getting-started/guides/getting-started/deploy-your-first-application",
+              "getting-started/guides/getting-started/connect-database",
+              "getting-started/guides/others/database-seeding-lifecycle-job",
               {
-                "group": "Source Control",
+                "group": "Advanced Tutorials",
                 "pages": [
-                  "configuration/organization/git-repository-access",
                   {
-                    "group": "Container Registries",
+                    "group": "Infrastructure & Security",
                     "pages": [
-                      "configuration/organization/container-registry",
-                      "configuration/integrations/container-registries/docker-hub",
-                      {
-                        "group": "Cloud Registries",
-                        "pages": [
-                          "configuration/integrations/container-registries/aws-ecr",
-                          "configuration/integrations/container-registries/gcp-artifact-registry",
-                          "configuration/integrations/container-registries/azure-acr",
-                          "configuration/integrations/container-registries/scaleway-cr"
-                        ]
-                      },
-                      {
-                        "group": "Git-based Registries",
-                        "pages": [
-                          "configuration/integrations/container-registries/github-cr",
-                          "configuration/integrations/container-registries/gitlab-cr"
-                        ]
-                      },
-                      "configuration/integrations/container-registries/generic"
+                      "getting-started/guides/advanced-tutorials/aws-iam-roles",
+                      "getting-started/guides/advanced-tutorials/certificate-management-multi-tenant",
+                      "getting-started/guides/advanced-tutorials/cloudwatch-integration",
+                      "getting-started/guides/advanced-tutorials/deploy-daemonset-karpenter",
+                      "getting-started/guides/advanced-tutorials/upgrading-rds-instance"
                     ]
                   },
                   {
-                    "group": "Helm Repositories",
+                    "group": "Networking & Access Control",
                     "pages": [
-                      "configuration/organization/helm-repository"
-                    ]
-                  }
-                ]
-              },
-              {
-                "group": "Projects & Environments",
-                "pages": [
-                  "configuration/project",
-                  "configuration/environment"
-                ]
-              },
-              {
-                "group": "Services",
-                "pages": [
-                  {
-                    "group": "Workloads",
-                    "pages": [
-                      "configuration/application",
-                      "configuration/helm"
+                      "getting-started/guides/advanced-tutorials/cloudflare-custom-domain",
+                      "getting-started/guides/advanced-tutorials/rate-limiting",
+                      "getting-started/guides/advanced-tutorials/ip-header-authorization",
+                      "getting-started/guides/advanced-tutorials/egress-filtering-squid-proxy",
+                      "getting-started/guides/advanced-tutorials/customizing-preview-url-with-qovery-cli"
                     ]
                   },
                   {
-                    "group": "Jobs",
+                    "group": "Development & Deployment",
                     "pages": [
-                      "configuration/cronjob",
-                      "configuration/lifecycle-job"
-                    ]
-                  },
-                  {
-                    "group": "Data & Infrastructure",
-                    "pages": [
-                      "configuration/database",
-                      "configuration/object-storage",
-                      "configuration/terraform"
-                    ]
-                  },
-                  "configuration/blueprints",
-                  "configuration/service-health-checks",
-                  "configuration/service-advanced-settings"
-                ]
-              },
-              {
-                "group": "Deployment & CI/CD",
-                "pages": [
-                  "configuration/deployment/overview",
-                  "configuration/deployment/pipeline",
-                  "configuration/deployment/auto-deploy",
-                  {
-                    "group": "Deployment Configuration",
-                    "pages": [
-                      "configuration/deployment/actions",
-                      "configuration/deployment/strategies",
-                      "configuration/deployment/image-mirroring",
-                      "configuration/deployment-rule"
-                    ]
-                  },
-                  {
-                    "group": "Monitoring Deployments",
-                    "pages": [
-                      "configuration/deployment/statuses",
-                      "configuration/deployment/logs",
-                      "configuration/deployment/history"
-                    ]
-                  },
-                  {
-                    "group": "CI/CD Integrations",
-                    "pages": [
-                      "configuration/integrations/ci-cd/github-actions",
-                      "configuration/integrations/ci-cd/gitlab-ci",
-                      "configuration/integrations/ci-cd/circleci",
-                      "configuration/integrations/ci-cd/jenkins",
-                      "configuration/integrations/argocd"
-                    ]
-                  }
-                ]
-              },
-              {
-                "group": "Environment Variables & Secrets",
-                "pages": [
-                  "configuration/environment-variables",
-                  "configuration/integrations/secret-managers/doppler",
-                  {
-                    "group": "Secret Manager Integration",
-                    "pages": [
-                      "configuration/integrations/secret-managers/secret-manager-access",
-                      "configuration/integrations/secret-managers/aws-secrets-manager",
-                      "configuration/integrations/secret-managers/aws-parameter-store",
-                      "configuration/integrations/secret-managers/gcp-secret-manager"
-                    ]
-                  }
-                ]
-              },
-              {
-                "group": "Observability",
-                "pages": [
-                  "configuration/integrations/observability/qovery-observe",
-                  "configuration/integrations/observability/datadog",
-                  "configuration/integrations/observability/kubecost"
-                ]
-              },
-              {
-                "group": "Notifications",
-                "pages": [
-                  "configuration/integrations/webhooks",
-                  "configuration/integrations/slack",
-                  "configuration/integrations/email"
-                ]
-              },
-              {
-                "group": "Networking & Advanced",
-                "pages": [
-                  {
-                    "group": "Networking",
-                    "pages": [
-                      "configuration/integrations/aws/vpc-peering",
-                      "configuration/integrations/api-gateway-nginx"
-                    ]
-                  },
-                  {
-                    "group": "Advanced Configuration",
-                    "pages": [
-                      "configuration/organization/labels-annotations",
-                      "configuration/disaster-recovery"
-                    ]
-                  },
-                  {
-                    "group": "Infrastructure as Code",
-                    "pages": [
-                      "configuration/integrations/iac/overview",
-                      "configuration/integrations/iac/terraform",
-                      "configuration/integrations/iac/cloudformation"
+                      "getting-started/guides/advanced-tutorials/write-dockerfile",
+                      "getting-started/guides/advanced-tutorials/import-env-vars-cli",
+                      "getting-started/guides/advanced-tutorials/deploy-jupyterhub",
+                      "getting-started/guides/advanced-tutorials/rust-api-part-1"
                     ]
                   }
                 ]
@@ -445,242 +175,428 @@
             ]
           },
           {
-            "tab": "AI",
-            "icon": "robot",
-            "groups": [
-              {
-                "group": "Overview",
-                "pages": [
-                  "copilot/ai-overview",
-                  "copilot/overview",
-                  "copilot/what-is-agentic-ai"
-                ]
-              },
-              {
-                "group": "Getting Started",
-                "pages": [
-                  "copilot/getting-started",
-                  "copilot/console",
-                  "copilot/slack-bot",
-                  "copilot/mcp-server",
-                  "copilot/securing-ai-access",
-                  "getting-started/quickstart/agent-skills"
-                ]
-              },
-              {
-                "group": "Capabilities",
-                "pages": [
-                  "copilot/capabilities/infrastructure-management",
-                  "copilot/capabilities/deployment-automation",
-                  "copilot/capabilities/optimization",
-                  "copilot/capabilities/troubleshooting"
-                ]
-              },
-              {
-                "group": "Examples",
-                "pages": [
-                  "copilot/examples/common-tasks",
-                  "copilot/examples/advanced-workflows"
-                ]
-              }
+            "group": "Troubleshooting",
+            "pages": [
+              "getting-started/troubleshoot/overview"
             ]
           },
           {
-            "tab": "Terraform Provider",
-            "icon": "code",
-            "groups": [
-              {
-                "group": "Getting Started",
-                "pages": [
-                  "terraform-provider/overview",
-                  "terraform-provider/exporter"
-                ]
-              },
-              {
-                "group": "Examples",
-                "pages": [
-                  "terraform-provider/basic-application",
-                  "terraform-provider/application-with-database",
-                  "terraform-provider/linking-services",
-                  "terraform-provider/multi-environment",
-                  "terraform-provider/airbyte-deployment",
-                  "terraform-provider/advanced-patterns"
-                ]
-              }
+            "group": "Useful Resources",
+            "pages": [
+              "getting-started/useful-resources/faq",
+              "getting-started/useful-resources/help-and-support"
             ]
-          },
-          {
-            "tab": "CLI",
-            "icon": "terminal",
-            "groups": [
-              {
-                "group": "Getting Started",
-                "pages": [
-                  "cli/overview"
-                ]
-              },
-              {
-                "group": "Commands",
-                "pages": [
-                  "cli/commands/overview",
-                  "cli/commands/api",
-                  "cli/commands/application",
-                  "cli/commands/audit-log",
-                  "cli/commands/auth",
-                  "cli/commands/cluster",
-                  "cli/commands/completion",
-                  "cli/commands/console",
-                  "cli/commands/container",
-                  "cli/commands/context",
-                  "cli/commands/cronjob",
-                  "cli/commands/database",
-                  "cli/commands/demo",
-                  "cli/commands/enterprise-connection",
-                  "cli/commands/env",
-                  "cli/commands/environment",
-                  "cli/commands/helm",
-                  "cli/commands/help",
-                  "cli/commands/lifecycle",
-                  "cli/commands/list-commands",
-                  "cli/commands/list-pods",
-                  "cli/commands/log",
-                  "cli/commands/port-forward",
-                  "cli/commands/project",
-                  "cli/commands/rde",
-                  "cli/commands/service",
-                  "cli/commands/shell",
-                  "cli/commands/status",
-                  "cli/commands/terraform",
-                  "cli/commands/token",
-                  "cli/commands/upgrade",
-                  "cli/commands/version"
-                ]
-              },
-              {
-                "group": "Troubleshooting",
-                "pages": [
-                  "cli/troubleshoot/overview"
-                ]
-              }
-            ]
-          },
-          {
-            "tab": "API Reference",
-            "icon": "brackets-curly",
-            "groups": [
-              {
-                "group": "Getting Started",
-                "pages": [
-                  "api-reference/introduction",
-                  "api-reference/authentication"
-                ]
-              },
-              {
-                "group": "Guides",
-                "pages": [
-                  "api-reference/overview",
-                  "api-reference/examples"
-                ]
-              }
-            ],
-            "openapi": "/api-reference/openapi.yaml"
           }
         ]
       },
       {
-        "product": "AI Builder Portal",
-        "description": "Self-service AI builder portal for your team on your infrastructure",
-        "icon": "laptop-code",
-        "tabs": [
+        "tab": "Configuration",
+        "icon": "sliders",
+        "groups": [
           {
-            "tab": "Overview",
-            "icon": "house",
-            "groups": [
+            "group": "Overview",
+            "pages": [
+              "configuration/overview"
+            ]
+          },
+          {
+            "group": "Account & Organization",
+            "pages": [
+              "configuration/user-account",
+              "configuration/organization",
               {
-                "group": "Overview",
+                "group": "Access & Security",
                 "pages": [
-                  "rde/overview"
+                  "configuration/organization/members-rbac",
+                  "configuration/organization/sso",
+                  "configuration/organization/api-token",
+                  "configuration/organization/api-policy-token"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Clusters & Cloud",
+            "pages": [
+              "configuration/clusters",
+              "configuration/cluster-advanced-settings",
+              "configuration/connect-to-cluster",
+              "configuration/organization/cloud-credentials",
+              "configuration/cloud-provider-resource-tags",
+              {
+                "group": "AWS EKS",
+                "pages": [
+                  "configuration/integrations/kubernetes/eks/overview",
+                  "configuration/integrations/kubernetes/eks/managed",
+                  "configuration/integrations/kubernetes/eks/preflight-checks",
+                  "configuration/integrations/kubernetes/eks/eks-anywhere"
                 ]
               },
               {
-                "group": "Getting Started",
+                "group": "Google GKE",
                 "pages": [
-                  "rde/getting-started/admin-setup",
-                  "rde/getting-started/create-your-first-workspace"
+                  "configuration/integrations/kubernetes/gke/overview",
+                  "configuration/integrations/kubernetes/gke/managed"
+                ]
+              },
+              {
+                "group": "Azure AKS",
+                "pages": [
+                  "configuration/integrations/kubernetes/aks/overview",
+                  "configuration/integrations/kubernetes/aks/managed"
+                ]
+              },
+              {
+                "group": "Scaleway Kapsule",
+                "pages": [
+                  "configuration/integrations/kubernetes/scaleway/overview",
+                  "configuration/integrations/kubernetes/scaleway/managed"
+                ]
+              },
+              {
+                "group": "Other Kubernetes",
+                "pages": [
+                  "configuration/integrations/kubernetes/byok",
+                  "configuration/integrations/kubernetes/docker"
                 ]
               }
             ]
           },
           {
-            "tab": "For Admins",
-            "icon": "shield-halved",
-            "groups": [
+            "group": "Source Control",
+            "pages": [
+              "configuration/organization/git-repository-access",
               {
-                "group": "For Admins",
+                "group": "Container Registries",
                 "pages": [
-                  "rde/admin/blueprint-management",
-                  "rde/admin/access-control",
-                  "rde/admin/workspace-management",
-                  "rde/admin/publish-approvals",
-                  "rde/admin/member-management",
-                  "rde/admin/portal-customization",
-                  "rde/admin/security-center"
+                  "configuration/organization/container-registry",
+                  "configuration/integrations/container-registries/docker-hub",
+                  {
+                    "group": "Cloud Registries",
+                    "pages": [
+                      "configuration/integrations/container-registries/aws-ecr",
+                      "configuration/integrations/container-registries/gcp-artifact-registry",
+                      "configuration/integrations/container-registries/azure-acr",
+                      "configuration/integrations/container-registries/scaleway-cr"
+                    ]
+                  },
+                  {
+                    "group": "Git-based Registries",
+                    "pages": [
+                      "configuration/integrations/container-registries/github-cr",
+                      "configuration/integrations/container-registries/gitlab-cr"
+                    ]
+                  },
+                  "configuration/integrations/container-registries/generic"
+                ]
+              },
+              {
+                "group": "Helm Repositories",
+                "pages": [
+                  "configuration/organization/helm-repository"
                 ]
               }
             ]
           },
           {
-            "tab": "Autonomous Agents",
-            "icon": "robot",
-            "groups": [
+            "group": "Projects & Environments",
+            "pages": [
+              "configuration/project",
+              "configuration/environment"
+            ]
+          },
+          {
+            "group": "Services",
+            "pages": [
               {
-                "group": "Autonomous Agents",
+                "group": "Workloads",
                 "pages": [
-                  "rde/agents/overview",
-                  "rde/agents/getting-started",
-                  "rde/agents/agent-blueprints",
-                  "rde/agents/managing-runs",
-                  "rde/agents/linear-integration",
-                  "rde/agents/jira-integration",
-                  "rde/agents/agent-template"
+                  "configuration/application",
+                  "configuration/helm"
+                ]
+              },
+              {
+                "group": "Jobs",
+                "pages": [
+                  "configuration/cronjob",
+                  "configuration/lifecycle-job"
+                ]
+              },
+              {
+                "group": "Agent Tasks",
+                "tag": "NEW",
+                "pages": [
+                  "configuration/agent-tasks/overview",
+                  {
+                    "group": "Examples",
+                    "pages": [
+                      "configuration/agent-tasks/incident-analyser",
+                      "configuration/agent-tasks/incident-analyser-honeybadger",
+                      "configuration/agent-tasks/build-deployment-optimizer",
+                      "configuration/agent-tasks/jira-coding-agent",
+                      "configuration/agent-tasks/linear-coding-agent"
+                    ]
+                  }
+                ]
+              },
+              {
+                "group": "Data & Infrastructure",
+                "pages": [
+                  "configuration/database",
+                  "configuration/object-storage",
+                  "configuration/terraform"
+                ]
+              },
+              "configuration/blueprints",
+              "configuration/service-health-checks",
+              "configuration/service-advanced-settings"
+            ]
+          },
+          {
+            "group": "Deployment & CI/CD",
+            "pages": [
+              "configuration/deployment/overview",
+              "configuration/deployment/pipeline",
+              "configuration/deployment/auto-deploy",
+              {
+                "group": "Deployment Configuration",
+                "pages": [
+                  "configuration/deployment/actions",
+                  "configuration/deployment/strategies",
+                  "configuration/deployment/image-mirroring",
+                  "configuration/deployment-rule"
+                ]
+              },
+              {
+                "group": "Monitoring Deployments",
+                "pages": [
+                  "configuration/deployment/statuses",
+                  "configuration/deployment/logs",
+                  "configuration/deployment/history"
+                ]
+              },
+              {
+                "group": "CI/CD Integrations",
+                "pages": [
+                  "configuration/integrations/ci-cd/github-actions",
+                  "configuration/integrations/ci-cd/gitlab-ci",
+                  "configuration/integrations/ci-cd/circleci",
+                  "configuration/integrations/ci-cd/jenkins",
+                  "configuration/integrations/argocd"
                 ]
               }
             ]
           },
           {
-            "tab": "For Users",
-            "icon": "user",
-            "groups": [
+            "group": "Environment Variables & Secrets",
+            "pages": [
+              "configuration/environment-variables",
+              "configuration/integrations/secret-managers/doppler",
               {
-                "group": "For Users",
+                "group": "Secret Manager Integration",
                 "pages": [
-                  "rde/user/workspace-dashboard",
-                  "rde/user/using-the-editor",
-                  "rde/user/live-preview",
-                  "rde/user/publishing",
-                  "rde/user/git-history"
+                  "configuration/integrations/secret-managers/secret-manager-access",
+                  "configuration/integrations/secret-managers/aws-secrets-manager",
+                  "configuration/integrations/secret-managers/aws-parameter-store",
+                  "configuration/integrations/secret-managers/gcp-secret-manager"
                 ]
               }
             ]
           },
           {
-            "tab": "Reference",
-            "icon": "book",
-            "groups": [
+            "group": "Observability",
+            "pages": [
+              "configuration/integrations/observability/qovery-observe",
+              "configuration/integrations/observability/datadog",
+              "configuration/integrations/observability/kubecost"
+            ]
+          },
+          {
+            "group": "Notifications",
+            "pages": [
+              "configuration/integrations/webhooks",
+              "configuration/integrations/slack",
+              "configuration/integrations/email"
+            ]
+          },
+          {
+            "group": "Networking & Advanced",
+            "pages": [
               {
-                "group": "Reference",
+                "group": "Networking",
                 "pages": [
-                  "rde/reference/security",
-                  "rde/reference/architecture",
-                  "rde/reference/troubleshooting"
+                  "configuration/integrations/aws/vpc-peering",
+                  "configuration/integrations/api-gateway-nginx"
+                ]
+              },
+              {
+                "group": "Advanced Configuration",
+                "pages": [
+                  "configuration/organization/labels-annotations",
+                  "configuration/disaster-recovery"
+                ]
+              },
+              {
+                "group": "Infrastructure as Code",
+                "pages": [
+                  "configuration/integrations/iac/overview",
+                  "configuration/integrations/iac/terraform",
+                  "configuration/integrations/iac/cloudformation"
                 ]
               }
             ]
           }
         ]
+      },
+      {
+        "tab": "AI",
+        "icon": "robot",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "copilot/ai-overview",
+              "copilot/overview",
+              "copilot/what-is-agentic-ai"
+            ]
+          },
+          {
+            "group": "Getting Started",
+            "pages": [
+              "copilot/getting-started",
+              "copilot/console",
+              "copilot/slack-bot",
+              "copilot/mcp-server",
+              "copilot/securing-ai-access",
+              "getting-started/quickstart/agent-skills"
+            ]
+          },
+          {
+            "group": "Capabilities",
+            "pages": [
+              "copilot/capabilities/infrastructure-management",
+              "copilot/capabilities/deployment-automation",
+              "copilot/capabilities/optimization",
+              "copilot/capabilities/troubleshooting"
+            ]
+          },
+          {
+            "group": "Examples",
+            "pages": [
+              "copilot/examples/common-tasks",
+              "copilot/examples/advanced-workflows"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Terraform Provider",
+        "icon": "code",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "terraform-provider/overview",
+              "terraform-provider/exporter"
+            ]
+          },
+          {
+            "group": "Examples",
+            "pages": [
+              "terraform-provider/basic-application",
+              "terraform-provider/application-with-database",
+              "terraform-provider/linking-services",
+              "terraform-provider/multi-environment",
+              "terraform-provider/airbyte-deployment",
+              "terraform-provider/advanced-patterns"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "CLI",
+        "icon": "terminal",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "cli/overview"
+            ]
+          },
+          {
+            "group": "Commands",
+            "pages": [
+              "cli/commands/overview",
+              "cli/commands/api",
+              "cli/commands/application",
+              "cli/commands/audit-log",
+              "cli/commands/auth",
+              "cli/commands/cluster",
+              "cli/commands/completion",
+              "cli/commands/console",
+              "cli/commands/container",
+              "cli/commands/context",
+              "cli/commands/cronjob",
+              "cli/commands/database",
+              "cli/commands/demo",
+              "cli/commands/enterprise-connection",
+              "cli/commands/env",
+              "cli/commands/environment",
+              "cli/commands/helm",
+              "cli/commands/help",
+              "cli/commands/lifecycle",
+              "cli/commands/list-commands",
+              "cli/commands/list-pods",
+              "cli/commands/log",
+              "cli/commands/port-forward",
+              "cli/commands/project",
+              "cli/commands/rde",
+              "cli/commands/service",
+              "cli/commands/shell",
+              "cli/commands/status",
+              "cli/commands/terraform",
+              "cli/commands/token",
+              "cli/commands/upgrade",
+              "cli/commands/version"
+            ]
+          },
+          {
+            "group": "Troubleshooting",
+            "pages": [
+              "cli/troubleshoot/overview"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "icon": "brackets-curly",
+        "groups": [
+          {
+            "group": "Getting Started",
+            "pages": [
+              "api-reference/introduction",
+              "api-reference/authentication"
+            ]
+          },
+          {
+            "group": "Guides",
+            "pages": [
+              "api-reference/overview",
+              "api-reference/examples"
+            ]
+          }
+        ],
+        "openapi": "/api-reference/openapi.yaml"
       }
     ]
   },
+  "redirects": [
+    {
+      "source": "/getting-started/quickstart/docker-desktop",
+      "destination": "/getting-started/quickstart/docker"
+    }
+  ],
   "footerSocials": {
     "github": "https://github.com/Qovery",
     "x": "https://twitter.com/Qovery_",

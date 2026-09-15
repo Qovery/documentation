@@ -113,6 +113,18 @@ Configure basic organization details:
 
 Click **Update** to save your changes.
 
+### AI Settings: Agents
+
+<Warning>
+**Early Preview.** Agent Tasks is in early development and not yet generally available.
+</Warning>
+
+Under **AI settings > Agents**, manage the MCP servers shared with every [Agent Task](/configuration/agent-tasks/overview) in the organization. Connect any remote HTTPS MCP server here (name, URL, and headers) to make it available when configuring an individual agent.
+
+<Info>
+Qovery's own MCP server is not added automatically. To add it, use `https://mcp.qovery.com/mcp` and authenticate with an API token or an [API Policy Token](/configuration/organization/api-policy-token) to scope the agent's access, for example to read-only.
+</Info>
+
 ### Other Settings
 
 <CardGroup cols={2}>

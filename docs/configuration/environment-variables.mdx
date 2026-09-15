@@ -350,32 +350,131 @@ BACKEND_API={{QOVERY_APPLICATION_API_HOST_INTERNAL}}:{{QOVERY_APPLICATION_API_PO
 
 ## Aliases
 
-Create aliases to rename built-in variables to match your application's expected variable names.
+An alias exposes an existing variable under a different name, without duplicating its value. Use one when your application expects a specific variable name but the value is produced by Qovery (a built-in variable, a Terraform output, a Blueprint output) or defined elsewhere in your environment.
 
-### Database Aliases
+An alias always has a single **target**: the variable it points to. Resolving the alias at deployment time returns the target's current value.
 
-If your application expects specific variable names, create aliases:
+### Creating an alias
+
+An alias is created from its target, not from scratch. In the Console, open the **Variables** section, find the variable you want to expose, and select **Create alias**. Then enter the name your application expects.
 
 ![Database Alias](/images/configuration/environment-variable/database_alias.png)
 
 ```bash
 # Application expects DATABASE_URL
-# Create alias from built-in variable:
-DATABASE_URL = {{QOVERY_DATABASE_MAIN_DB_CONNECTION_URI}}
+# Create an alias on the built-in variable of your database:
+DATABASE_URL -> QOVERY_POSTGRESQL_Z1234ABCD_DATABASE_URL_INTERNAL
 ```
 
-### Application Host Aliases
-
-Create friendly names for service communication:
+Create friendly names for service communication the same way:
 
 ![Host Alias](/images/configuration/environment-variable/host_alias.png)
 
 ```bash
-# Simple aliases for services
-API_HOST = {{QOVERY_APPLICATION_API_HOST_INTERNAL}}
-REDIS_HOST = {{QOVERY_CONTAINER_REDIS_HOST_INTERNAL}}
-POSTGRES_HOST = {{QOVERY_DATABASE_MAIN_DB_HOST}}
+API_HOST      -> QOVERY_APPLICATION_Z5678EF90_HOST_INTERNAL
+REDIS_HOST    -> QOVERY_CONTAINER_Z2468ACE0_HOST_INTERNAL
+POSTGRES_HOST -> QOVERY_POSTGRESQL_Z1234ABCD_HOST_INTERNAL
 ```
+
+Built-in variable names embed the service identifier, so copy the exact name from the **Variables** list rather than typing it.
+
+<Info>
+Pick the variable your application can actually reach. `..._DATABASE_URL` and `..._HOST` are the external endpoints and only resolve when the database visibility is set to `PUBLIC`. For a service running inside the cluster, target `..._DATABASE_URL_INTERNAL` or `..._HOST_INTERNAL`, as in the examples above.
+</Info>
+
+### Alias rules
+
+- **The alias inherits the target's type.** An alias on a secret is a secret; an alias on a plain variable is a plain variable. You do not choose this, and it cannot be changed afterwards. Re-pointing a secret alias to a plain variable (or the reverse) is rejected with `400 Variable tries to alias between secret and env`.
+- **An alias cannot target another alias.** This would allow circular references that never resolve.
+- **An alias cannot target an external secret.**
+- **An alias cannot target a variable defined at a narrower scope.** An environment-scoped alias cannot point to a service-scoped variable.
+- **Two variables cannot share a name in the same scope.** Creating or renaming a variable to a name already in use returns `409 Variable already exists`.
+- **Changes take effect on the next deployment.** Creating, renaming, re-pointing, or deleting a variable does not alter the environment of pods that are already running. Redeploy the service to apply it.
+
+### Changing the target of an alias
+
+The Console does not allow changing an alias target: the target field is read-only once the alias exists. The API does, with a single call that keeps the alias name, its ID, and its history:
+
+```bash
+curl -X PUT "https://api.qovery.com/variable/<ALIAS_ID>" \
+  -H "Authorization: Token $QOVERY_API_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+        "key": "REDIS_URL",
+        "value": "QOVERY_OUTPUT_TERRAFORM_Z1234ABCD_VALKEY_URL"
+      }'
+```
+
+`key` is the alias name and must be sent unchanged. `value` is the **name of the new target variable**, not a value. The new target must satisfy every rule above, in particular matching secret or plain type.
+
+This is the recommended way to move an alias from one backing resource to another, for example when migrating a service from a legacy database to a new one.
+
+<Warning>
+This call only re-points a variable whose type is already `ALIAS`. Sending it to a plain variable does **not** turn it into an alias: types cannot be changed after creation, so the request succeeds with `200` and stores the target name as a literal string. The service then starts with `REDIS_URL=QOVERY_OUTPUT_TERRAFORM_Z1234ABCD_VALKEY_URL` instead of a connection URL, with no error reported. Check `variable_type` in the response of `GET /variable` before re-pointing. To replace a plain variable with an alias, follow [Converting a plain variable into an alias](#converting-a-plain-variable-into-an-alias).
+</Warning>
+
+<Warning>
+Do not delete an alias in order to recreate it against a different target. Between the delete and the recreation the variable no longer exists, and any deployment triggered in that window starts your service without it.
+</Warning>
+
+### Swapping aliases from the Console
+
+If you cannot use the API, you can reach the same result by renaming, which the Console does allow. The order matters: a name can only be taken once it has been freed.
+
+<Steps>
+  <Step title="Create the new alias under a temporary name">
+    Create an alias on the new target, named `REDIS_URL_NEW`. The existing `REDIS_URL` is untouched and still resolves to the old target.
+  </Step>
+
+  <Step title="Free the production name">
+    Rename `REDIS_URL` to `REDIS_URL_LEGACY`. Renaming before this step fails with `409 Variable already exists`.
+  </Step>
+
+  <Step title="Take the production name">
+    Rename `REDIS_URL_NEW` to `REDIS_URL`.
+  </Step>
+
+  <Step title="Deploy">
+    Redeploy the service. It now reads the new target. Keep `REDIS_URL_LEGACY` until the migration is confirmed, then delete it.
+  </Step>
+</Steps>
+
+### Converting a plain variable into an alias
+
+A variable's type cannot be changed after creation, and neither can its secret flag. Turning an existing plain variable into an alias means deleting it and creating the alias in its place, since both would otherwise share the same name in the same scope.
+
+Perform both operations before triggering a deployment. Running pods keep their current environment, so the intermediate state is not visible to your application as long as no deployment happens in between. The order cannot be reversed: creating the alias first returns `409 Variable already exists`.
+
+```bash
+# 1. Remove the plain variable that occupies the name
+curl -X DELETE "https://api.qovery.com/variable/<PLAIN_VARIABLE_ID>" \
+  -H "Authorization: Token $QOVERY_API_TOKEN"
+
+# 2. Create the alias on the target variable, under the freed name
+curl -X POST "https://api.qovery.com/variable/<TARGET_VARIABLE_ID>/alias" \
+  -H "Authorization: Token $QOVERY_API_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+        "key": "REDIS_URL",
+        "alias_scope": "ENVIRONMENT",
+        "alias_parent_id": "<ENVIRONMENT_ID>"
+      }'
+
+# 3. Redeploy the service
+```
+
+Note that the alias is created on the **target's** ID, and that no target name is sent: the alias is derived from the variable the call is addressed to, and inherits its secret flag. Both IDs come from `GET /variable?parent_id=<ENVIRONMENT_ID>&scope=ENVIRONMENT`.
+
+This is the correct fix when a connection string has been pasted in as a plain value: delete the plain variable, then create an alias on the built-in variable that produces the same URL. The credential then stays in the built-in secret instead of being stored, displayed, and exported as text.
+
+### Deleting an alias or its target
+
+- **Deleting an alias** removes only that alias. The target variable and its value are preserved.
+- **Deleting a target** also deletes every alias pointing to it, along with any override defined at a narrower scope. Check which aliases depend on a variable before deleting it.
+
+<Warning>
+Deleting a database, a Terraform service, or a Blueprint removes its built-in and output variables, and therefore every alias built on them.
+</Warning>
 
 ## Overrides
 

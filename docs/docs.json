@@ -544,6 +544,7 @@
                   "cli/commands/list-commands",
                   "cli/commands/list-pods",
                   "cli/commands/log",
+                  "cli/commands/organization",
                   "cli/commands/port-forward",
                   "cli/commands/project",
                   "cli/commands/rde",

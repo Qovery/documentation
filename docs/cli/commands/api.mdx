@@ -60,6 +60,10 @@ Build a JSON body from key=value pairs:
 qovery api organization --field name=my-org --field plan=FREE
 ```
 
+<Info>
+Creating an organization with `qovery api organization --method POST` (or `--field`) works even when your account does not yet belong to any organization. This is the one case where the usual "you don't have any organization" guard is skipped, so you can bootstrap your very first organization from the CLI.
+</Info>
+
 ### Send a JSON Body from Stdin
 
 ```bash
@@ -92,6 +96,31 @@ qovery api organization -H "X-Request-Id: abc123"
 
 ```bash
 QOVERY_API_URL=https://staging.api.qovery.com qovery api organization
+```
+
+## API Specification
+
+Use `qovery api spec` to fetch and print the Qovery API's OpenAPI specification (YAML), sourced from [github.com/Qovery/qovery-openapi-spec](https://github.com/Qovery/qovery-openapi-spec). Read it to discover valid endpoints, methods, and request/response shapes before calling `qovery api <endpoint>`, instead of guessing or relying on a copy that may be out of date.
+
+Unlike `qovery api`, this command does not require authentication.
+
+```bash
+qovery api spec [flags]
+```
+
+**Flags:**
+- `-o, --output` — Write the spec to a file instead of stdout
+
+**Examples:**
+```bash
+# Print the spec to stdout
+qovery api spec
+
+# Save it to a file
+qovery api spec -o openapi.yaml
+
+# Look up one path with a YAML query tool
+qovery api spec | yq '.paths["/organization"]'
 ```
 
 ## Related Commands

@@ -1,0 +1,48 @@
+---
+title: "qovery organization"
+description: "Organization management commands"
+---
+
+## Overview
+
+Manage the organizations your Qovery account has access to.
+
+## Commands
+
+### List Organizations
+
+List all organizations the authenticated token has access to:
+
+```bash
+qovery organization list
+```
+
+The output is a table with the organization `Id`, `Name`, and `Plan`.
+
+**Flags:**
+
+| Flag | Description |
+|------|-------------|
+| `--json` | JSON output |
+
+## Examples
+
+### List Organizations
+
+```bash
+# Human-readable table
+qovery organization list
+
+# Structured output for scripting
+qovery organization list --json
+```
+
+<Tip>
+To create your first organization from the command line, use [`qovery api`](/cli/commands/api): `qovery api organization --field name=my-org --field plan=FREE`.
+</Tip>
+
+## Related Commands
+
+- [`qovery context`](/cli/commands/context) - Set the active organization, project, and environment
+- [`qovery api`](/cli/commands/api) - Make authenticated HTTP requests to the Qovery API
+- [`qovery project`](/cli/commands/project) - List and manage projects

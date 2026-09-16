@@ -94,8 +94,49 @@ qovery api organization -H "X-Request-Id: abc123"
 QOVERY_API_URL=https://staging.api.qovery.com qovery api organization
 ```
 
+### Create Your First Organization
+
+Most commands require at least one existing organization. Creating the very first organization with `POST /organization` is the one case where the caller is expected to have none yet, so this specific request skips the usual "you don't have any organization" guard:
+
+```bash
+qovery api organization --method POST --field name=my-org --field plan=FREE
+```
+
+## Discover the API with `qovery api spec`
+
+Fetch and print the Qovery API's OpenAPI specification (YAML), sourced from [github.com/Qovery/qovery-openapi-spec](https://github.com/Qovery/qovery-openapi-spec). Use it to discover valid endpoints, methods, and request/response shapes before calling `qovery api <endpoint>`.
+
+```bash
+qovery api spec [flags]
+```
+
+<Info>
+`qovery api spec` does not require authentication — it fetches the public specification directly.
+</Info>
+
+**Flags:**
+
+| Flag | Description |
+|------|-------------|
+| `-o, --output` | Write the spec to a file instead of stdout |
+| `--help` | Show help |
+
+**Examples:**
+
+```bash
+# Print the spec to stdout
+qovery api spec
+
+# Save it to a file
+qovery api spec -o openapi.yaml
+
+# Look up a single path with a YAML query tool
+qovery api spec | yq '.paths["/organization"]'
+```
+
 ## Related Commands
 
 - [`qovery auth`](/cli/commands/auth) - Log in and out of Qovery
 - [`qovery auth token`](/cli/commands/auth) - Output the current valid access token
+- [`qovery organization`](/cli/commands/organization) - List organizations the authenticated token can access
 - [`qovery context`](/cli/commands/context) - Set the active organization, project, and environment

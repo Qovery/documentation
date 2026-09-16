@@ -1,0 +1,52 @@
+---
+title: "qovery organization"
+description: "Organization management commands"
+---
+
+## Overview
+
+Manage the organizations your authenticated token has access to.
+
+## Commands
+
+### List Organizations
+
+List all organizations the currently authenticated token can access:
+
+```bash
+qovery organization list
+```
+
+The output lists each organization's ID, name, and plan.
+
+**Flags:**
+
+| Flag | Description |
+|------|-------------|
+| `--json` | JSON output |
+| `--help` | Show help for the command |
+
+## Examples
+
+### List Organizations
+
+```bash
+# List organizations in a table
+qovery organization list
+
+# List organizations as JSON (useful for scripting)
+qovery organization list --json
+```
+
+### Retrieve an Organization ID for Scripting
+
+```bash
+# Get the ID of the first organization
+qovery organization list --json | jq -r '.[0].id'
+```
+
+## Related Commands
+
+- [`qovery context`](/cli/commands/context) - Set the active organization, project, and environment
+- [`qovery api`](/cli/commands/api) - Make authenticated HTTP requests to the Qovery API
+- [`qovery auth`](/cli/commands/auth) - Log in to Qovery

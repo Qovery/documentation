@@ -57,7 +57,7 @@ When an incident fires, the agent:
     Incidents can fire frequently, so use **Clone Environment** rather than **In Place**: an overlapping trigger would otherwise replace the currently running investigation. See [Execution Mode](/configuration/agent-tasks/overview#execution-mode).
   </Step>
   <Step title="Trigger a first run and check the results">
-    Test the agent by clicking **Trigger** on its overview page, or by sending a POST request with a sample incident payload to its webhook URL. Check the run under the agent task's **Deployments** tab, and confirm the summary reaches the Slack channel tied to your webhook URL.
+    Test the agent by clicking **Trigger** on its overview page, or by sending a POST request with a sample incident payload to its webhook URL. Check the run under the agent task's **Deployments** tab. If you added a Slack output in the optional step above, confirm the summary reached the channel tied to that webhook URL.
   </Step>
 </Steps>
 

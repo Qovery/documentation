@@ -21,7 +21,7 @@ Picks up a Jira issue and proposes the corresponding code change as a pull reque
     From the **Agent use cases** section when creating a new service, pick **Jira Coding Agent** (see [Creating an Agent](/configuration/agent-tasks/overview#creating-an-agent)).
   </Step>
   <Step title="Configure Jira access (optional)">
-    The template ships with three environment variables for connecting to Jira: a base URL (for example `company.atlassian.net`), an email, and an API token. If you don't need Jira access for your workflow, remove these and adapt the instructions accordingly.
+    The template ships with three environment variables for connecting to Jira: a base URL (for example `https://company.atlassian.net`), an email, and an API token. Add `company.atlassian.net` to the domain allowlist so the agent can reach the Jira API. If you don't need Jira access for your workflow, remove these and adapt the instructions accordingly.
 
     To create the API token:
     1. Click your profile in the top right of Jira, then **Account Settings**

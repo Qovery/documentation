@@ -30,14 +30,14 @@ graph TD
     D --> E5
 
     style A fill:#642DFF,stroke:#642DFF,color:#fff
-    style B fill:#8B5CF6,stroke:#8B5CF6,color:#fff
-    style C fill:#A78BFA,stroke:#A78BFA,color:#fff
-    style D fill:#C4B5FD,stroke:#C4B5FD,color:#fff
-    style E1 fill:#DDD6FE,stroke:#DDD6FE,color:#333
-    style E2 fill:#DDD6FE,stroke:#DDD6FE,color:#333
-    style E3 fill:#DDD6FE,stroke:#DDD6FE,color:#333
-    style E4 fill:#DDD6FE,stroke:#DDD6FE,color:#333
-    style E5 fill:#DDD6FE,stroke:#DDD6FE,color:#333
+    style B fill:#7C3FFF,stroke:#7C3FFF,color:#fff
+    style C fill:#965FFF,stroke:#965FFF,color:#fff
+    style D fill:#B080FF,stroke:#B080FF,color:#fff
+    style E1 fill:#B080FF,stroke:#B080FF,color:#fff
+    style E2 fill:#B080FF,stroke:#B080FF,color:#fff
+    style E3 fill:#B080FF,stroke:#B080FF,color:#fff
+    style E4 fill:#B080FF,stroke:#B080FF,color:#fff
+    style E5 fill:#B080FF,stroke:#B080FF,color:#fff
 ```
 
 Let's break down each level.
@@ -46,7 +46,7 @@ Let's break down each level.
 
 ## Organization
 
-Your **Organization** is your company's workspace—the top-level container for everything in Qovery.
+Your **Organization** is your company's workspace: the top-level container for everything in Qovery.
 
 **Key features:**
 - Team collaboration across multiple projects
@@ -62,7 +62,7 @@ Most companies have one Organization. Users can belong to multiple Organizations
 
 ## Cluster
 
-A **Cluster** is a Kubernetes cluster where your services run—a collection of machines (nodes) that execute containerized applications.
+A **Cluster** is a Kubernetes cluster where your services run: a collection of machines (nodes) that execute containerized applications.
 
 **Two types of clusters:**
 
@@ -76,7 +76,7 @@ A **Cluster** is a Kubernetes cluster where your services run—a collection of 
 
     **Supported providers:** AWS (EKS), GCP (GKE), Azure (AKS), Scaleway (Kapsule)
 
-    [Create a managed cluster →](/installation/aws)
+    [Create a managed cluster →](/getting-started/quickstart/cloud)
   </Tab>
 
   <Tab title="Self-Managed (BYOK)">
@@ -128,7 +128,7 @@ An **Environment** is a deployment stage containing services at a specific versi
 - **Preview** - Temporary per-pull-request environments
 
 <Info>
-**Preview Environments** are automatically created for each pull request and deleted when merged. Perfect for testing changes in isolation before production. [Learn more →](/guides/use-cases/ephemeral-environment)
+**Preview Environments** are automatically created for each pull request and deleted when merged. Perfect for testing changes in isolation before production. [Learn more →](/getting-started/guides/use-cases/ephemeral-environment)
 </Info>
 
 [Learn more about Environments →](/configuration/environment)
@@ -137,7 +137,7 @@ An **Environment** is a deployment stage containing services at a specific versi
 
 ## Services
 
-**Services** are the building blocks of your environment—applications, databases, jobs, and more.
+**Services** are the building blocks of your environment: applications, databases, jobs, and more.
 
 <CardGroup cols={2}>
   <Card title="Application" icon="window">

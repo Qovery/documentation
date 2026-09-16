@@ -417,7 +417,8 @@ html[data-theme="dark"] .badge-icon-scaleway-dark {
 .badge-container,
 .badge-cronjob,
 .badge-job,
-.badge-helm {
+.badge-helm,
+.badge-new {
   display: inline-block;
   padding: 3px 8px;
   border-radius: 4px;
@@ -467,6 +468,10 @@ html[data-theme="dark"] .badge-icon-scaleway-dark {
 
 .badge-helm {
   background-color: #0f1689; /* Helm Blue */
+}
+
+.badge-new {
+  background-color: #642DFF; /* Qovery Purple */
 }
 
 .badge-terraform {

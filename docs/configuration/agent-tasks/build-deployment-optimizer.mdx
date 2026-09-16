@@ -1,0 +1,49 @@
+---
+title: "Build & Deployment Optimizer"
+description: "Ready-made Agent Task that proposes faster, cheaper build and deployment configurations"
+---
+
+import AgentTasksEarlyPreviewWarning from '/snippets/agent-tasks-early-preview-warning.mdx';
+
+<AgentTasksEarlyPreviewWarning />
+
+## Overview
+
+Identifies build and deployment optimization levers and their expected gain, then opens a PR with the proposed change and/or updates the build configuration in Qovery directly. It never merges a fix on its own.
+
+## How It Works
+
+To find concrete ways to make builds and deployments faster and cheaper, the agent:
+
+1. Inspects the service's build setup: Dockerfile, dependency installation, layer caching, image size, and the build/deploy configuration in Qovery.
+2. Identifies optimization levers, for example better layer ordering and caching, multi-stage builds, smaller base images, pruning unused dependencies, or parallelisable steps.
+3. For each lever, estimates the expected gain (build time, image size, or cost) and the risk.
+4. Opens a PR with the proposed changes to the build configuration, and/or updates the build configuration in Qovery directly.
+5. Summarises what it changed, the expected gain, and anything that needs a human decision. It never merges, the human always stays the gate.
+
+## Setting It Up
+
+<Steps>
+  <Step title="Create the agent task">
+    From the **Agent use cases** section when creating a new service, pick **Build & deployment optimizer** (see [Creating an Agent](/configuration/agent-tasks/overview#creating-an-agent)), or start from scratch and paste in the instructions above.
+  </Step>
+  <Step title="Connect the repository">
+    Add the Git repository of the service to optimize as its Context, so the agent can inspect the Dockerfile and build setup. You can also add the Qovery service itself as Context, alongside its repository.
+  </Step>
+  <Step title="Add the Qovery MCP server">
+    Since you added the service as Context, Qovery's own MCP server is created and selected automatically: organization-scoped, read-only, backed by a Viewer API token. That's enough for the agent to **propose** changes (open a PR).
+
+    To let it **apply** changes to Qovery directly instead, add the MCP server manually with an API Policy Token that has write permissions on that service's build/deploy configuration. See [Add MCP Servers](/configuration/agent-tasks/overview#creating-an-agent).
+  </Step>
+  <Step title="Add a trigger">
+    Add a schedule trigger, for example weekly, to periodically review build performance, or a webhook trigger. See [Triggers](/configuration/agent-tasks/overview#triggers) for how they work in general.
+  </Step>
+  <Step title="Keep In Place as the execution mode">
+    This agent is typically run on a schedule rather than triggered concurrently, so **In Place** (the default) works well. Use **Clone Environment** instead if you expect overlapping runs. See [Execution Mode](/configuration/agent-tasks/overview#execution-mode).
+  </Step>
+  <Step title="Trigger a first run and check the results">
+    Click **Trigger** on the agent task's overview page to run it on demand. Check the run under its **Deployments** tab, and review the PR it opened (or the build configuration it updated, if you granted write access).
+  </Step>
+</Steps>
+
+See [Configuration](/configuration/agent-tasks/overview#configuration) for resources and environment variables, general settings shared by every agent task.

@@ -4,8 +4,13 @@ description: "Install Qovery on your own Kubernetes cluster"
 ---
 
 import InstallQoveryCLI from '/snippets/install-qovery-cli.mdx';
+import QoveryCliAuth from '/snippets/qovery-cli-auth.mdx';
 
-Qovery Self-Managed (also known as BYOK: Bring Your Own Kubernetes) is a self-hosted version of Qovery. It allows you to install Qovery on your own Kubernetes cluster.
+Qovery Self-Managed (BYOK) is a self-hosted version of Qovery. It allows you to install Qovery on your own Kubernetes cluster.
+
+<Info>
+Want Qovery to provision and manage the cluster for you instead? See [Create Your Cluster](/getting-started/quickstart/cloud) for the managed path (AWS, GCP, Azure, Scaleway).
+</Info>
 
 <Warning>
   **For Kubernetes Experts Only**: Qovery BYOK is for Kubernetes experts who
@@ -38,19 +43,7 @@ Install the Qovery CLI on your local machine:
 
 ### Step 2: Authenticate
 
-Authenticate with your Qovery account:
-
-```bash
-qovery auth
-```
-
-This will open a browser window for authentication.
-
-<Tip>
-  For headless environments (CI/CD, remote servers) without a graphical
-  interface, use `qovery auth --headless` and follow the instructions to
-  authenticate manually.
-</Tip>
+<QoveryCliAuth />
 
 ### Step 3: Deploy to Kubernetes
 

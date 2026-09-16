@@ -36,7 +36,7 @@ When updating CLI installation instructions:
 Contains the AWS STS Assume Role credentials setup instructions with CloudFormation stack creation and IAM role configuration.
 
 **Used in:**
-- `/installation/aws.mdx` - Step 3: Connect AWS Account → STS Assume Role tab
+- `/getting-started/installation/aws.mdx` - Step "Connect AWS Account" → STS Assume Role tab (imported via `<AwsCredentialsSts />`)
 - `/configuration/organization/cloud-credentials.mdx` - AWS section → STS Assume Role tab
 
 **Update Instructions:**
@@ -58,7 +58,7 @@ When updating AWS STS credentials instructions:
 Contains the AWS Static Credentials (Access Keys) setup instructions with IAM user creation and access key generation.
 
 **Used in:**
-- `/installation/aws.mdx` - Step 3: Connect AWS Account → Static Credentials tab
+- `/getting-started/installation/aws.mdx` - Step "Connect AWS Account" → Static Credentials tab (imported via `<AwsCredentialsStatic />`)
 - `/configuration/organization/cloud-credentials.mdx` - AWS section → Static Credentials tab
 
 **Update Instructions:**
@@ -118,7 +118,7 @@ When updating GCP credentials instructions:
 Contains the Scaleway credentials setup instructions using IAM applications, API keys, and granular permission policies.
 
 **Used in:**
-- `/installation/scaleway.mdx` - Step 1: Create Scaleway Credentials
+- `/getting-started/installation/scaleway.mdx` - Step 1: Create Scaleway Credentials (imported via `<ScalewayCredentials />`)
 - `/configuration/organization/cloud-credentials.mdx` - Scaleway section
 
 **Update Instructions:**
@@ -148,7 +148,7 @@ When updating Scaleway credentials instructions:
 Contains the Azure credentials setup instructions using service principals, Tenant ID, Subscription ID, and automated script execution via Azure Cloud Shell.
 
 **Used in:**
-- `/installation/azure.mdx` - Step 1: Create Azure Credentials
+- `/getting-started/installation/azure.mdx` - Step 1: Create Azure Credentials (imported via `<AzureCredentials />`)
 - `/configuration/organization/cloud-credentials.mdx` - Azure section
 
 **Update Instructions:**
@@ -173,7 +173,7 @@ When updating Azure credentials instructions:
 
 ## Note on Reusability
 
-Currently, Mintlify doesn't support dynamic includes/imports for MDX snippets. Therefore:
-- Content must be manually copied to each location
-- This directory serves as the **single source of truth**
-- Always update the snippet file first, then propagate changes to usage locations
+Mintlify supports importing snippets as MDX components (`import Foo from "/snippets/foo.mdx"; <Foo />`), and every credentials snippet listed above is now consumed this way. Therefore:
+- Update the snippet file, and every page that imports it picks up the change automatically. No manual copying.
+- This directory is the **single source of truth**: never hand-duplicate its content into a page.
+- The `configuration/organization/cloud-credentials.mdx` usages listed above are inline (not yet converted to imports) — converting them is a good follow-up to fully retire manual copying for this content.

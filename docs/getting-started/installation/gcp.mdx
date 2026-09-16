@@ -7,6 +7,10 @@ import GcpCredentials from "/snippets/gcp-credentials.mdx";
 
 Install Qovery on your GCP account and deploy a fully managed Kubernetes cluster (GKE Autopilot) in less than 20 minutes.
 
+<Info>
+  Already have a Kubernetes cluster? See the [BYOK guide](/getting-started/installation/kubernetes) instead.
+</Info>
+
 ## Overview
 
 Qovery simplifies Google Kubernetes Engine (GKE) management by:
@@ -56,6 +60,8 @@ If you don't have enough quota, request an increase through the GCP Console. Quo
 ## Step 1: Create GCP Credentials
 
 <GcpCredentials />
+
+For a detailed breakdown of every permission and why it's needed, see the [GCP IAM Permissions Reference](/getting-started/security-and-compliance/gcp-iam-permissions).
 
 ## Step 2: Configure Your Cluster
 
@@ -198,9 +204,9 @@ Qovery automatically configures GCP networking:
     - **15-20 min**: Installing Qovery components (ingress, monitoring, etc.)
 
     **Status indicators:**
-    - 🟡 **Creating**: Infrastructure provisioning in progress
-    - 🟢 **Running**: Cluster is ready to use
-    - 🔴 **Error**: Check logs for troubleshooting
+    - **Creating**: Infrastructure provisioning in progress
+    - **Running**: Cluster is ready to use
+    - **Error**: Check logs for troubleshooting
   </Step>
 
   <Step title="Verify Installation">
@@ -251,15 +257,15 @@ Once your cluster is running:
 
 <Steps>
   <Step title="Deploy Your First Application">
-    Follow the [Deploy Your First App](/guides/getting-started/deploy-your-first-application) guide
+    Follow the [Deploy Your First App](/getting-started/guides/getting-started/deploy-your-first-application) guide
   </Step>
 
   <Step title="Configure Custom Domain">
-    Set up your own domain instead of the default Qovery domain
+    [Set up your own domain](/getting-started/guides/advanced-tutorials/cloudflare-custom-domain) instead of the default Qovery domain
   </Step>
 
   <Step title="Set Up Monitoring">
-    Configure [Cloud Monitoring](/integrations/observability/overview) or [Datadog](/integrations/observability/datadog)
+    Configure [Cloud Monitoring](/configuration/integrations/observability/qovery-observe) or [Datadog](/configuration/integrations/observability/datadog)
   </Step>
 
   <Step title="Configure Backups">
@@ -360,7 +366,7 @@ You can also enable **Private nodes** during cluster creation to remove public I
 
 ### Spot Pods (Preemptible VMs)
 
-Save up to 91% on compute costs:
+Google discounts Spot VMs up to 91% versus on-demand pricing:
 
 1. Add node selector to your deployments:
    ```yaml
@@ -378,7 +384,7 @@ Spot Pods can be terminated with 30 seconds notice. Not recommended for producti
 
 <CardGroup cols={2}>
   <Card title="Use Spot Pods Wisely" icon="dollar-sign">
-    Enable Spot Pods for dev/staging and fault-tolerant workloads to save up to 91%
+    Enable Spot Pods for dev/staging and fault-tolerant workloads to cut compute costs
   </Card>
 
   <Card title="Right-Size Resources" icon="gauge">

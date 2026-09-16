@@ -9,31 +9,23 @@ Ephemeral environments are temporary, isolated environments that are automatical
 
 Ephemeral environments (also called Preview Environments) are automatically created when you open a pull request and deleted when it's merged or closed, giving you on-demand testing environments that mirror your production setup.
 
-## Benefits
+## How It Helps
 
-<CardGroup cols={3}>
-  <Card title="Faster Development" icon="rocket">
-    Test changes in isolation without affecting other developers
+<CardGroup cols={2}>
+  <Card title="Isolated per Pull Request" icon="code-branch">
+    Each PR gets its own full-stack environment, created automatically and destroyed on merge or close. No shared staging environment to coordinate around.
   </Card>
 
-  <Card title="Cost Savings" icon="dollar-sign">
-    Pay only for environments when they're in use
+  <Card title="Cost Only While Active" icon="dollar-sign">
+    Environments run only for the lifetime of the PR. No idle infrastructure to pay for once it's merged.
   </Card>
 
-  <Card title="Improved Testing" icon="flask">
-    Test in production-like environments before deployment
+  <Card title="Mirrors Production" icon="flask">
+    Same services, same configuration as production, so what you test in preview behaves the same way once deployed.
   </Card>
 
-  <Card title="Better Collaboration" icon="users">
-    Stakeholders can review changes in live environments
-  </Card>
-
-  <Card title="Reduced Risk" icon="shield">
-    Catch issues early before they reach production
-  </Card>
-
-  <Card title="Faster Feedback" icon="comments">
-    Get immediate feedback from team members and stakeholders
+  <Card title="Shareable Live URL" icon="link">
+    Reviewers and stakeholders get a working URL for the PR, no local setup required to see the change running.
   </Card>
 </CardGroup>
 
@@ -98,7 +90,7 @@ Qovery offers **two approaches** to create and manage ephemeral environments, de
 <div className="cta-banner">
   <div className="cta-banner-text">
     <h3>Stop configuring ephemeral environments manually</h3>
-    <p className="cta-banner-subtitle">Qovery auto-creates a full-stack preview environment for every pull request and destroys it on merge. Setup in 15 minutes.</p>
+    <p className="cta-banner-subtitle">Qovery auto-creates a full-stack preview environment for every pull request and destroys it on merge. Enable it in 10-15 minutes, no CI/CD changes required.</p>
   </div>
-  <a href="https://console.qovery.com" className="cta-banner-button">Try Qovery free →</a>
+  <a href="https://console.qovery.com" className="cta-banner-button">Start for free →</a>
 </div>

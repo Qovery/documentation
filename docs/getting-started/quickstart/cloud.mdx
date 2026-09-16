@@ -9,7 +9,7 @@ description: "Set up a managed Kubernetes cluster as the foundation for your Qov
 
 ## Why Create a Cluster First?
 
-Your Kubernetes cluster is the foundation where all your applications, databases, and services will run. Qovery handles all the complexity:
+Your Kubernetes cluster is the foundation where all your applications, databases, and services will run. Qovery provisions and manages:
 
 <CardGroup cols={2}>
   <Card title="Infrastructure Management" icon="server">
@@ -26,93 +26,33 @@ Your Kubernetes cluster is the foundation where all your applications, databases
   </Card>
 </CardGroup>
 
-<Note>
-**After creating your cluster**, return to your use case guide:
-- [Production Applications](/getting-started/guides/use-cases/production-environment-management)
-- [Ephemeral Environments](/getting-started/guides/use-cases/ephemeral-environment)
-</Note>
-
 ---
 
 ## Choose Your Cloud Provider
 
-Select where you want Qovery to create your managed Kubernetes cluster:
+Select where you want Qovery to create your managed Kubernetes cluster. Each guide details exactly what gets created (networking, IAM, node pools) for that provider:
 
 <CardGroup cols={2}>
   <Card title="Amazon Web Services" icon="/images/logos/cloud-providers/aws-icon.svg" href="/getting-started/installation/aws">
-    <Badge text="Most Popular Choice" />
+    Elastic Kubernetes Service (EKS)
   </Card>
 
   <Card title="Google Cloud Platform" icon="/images/logos/cloud-providers/gcp-icon.svg" href="/getting-started/installation/gcp">
-    <Badge text="Best Performance" />
+    Google Kubernetes Engine (GKE Autopilot)
   </Card>
 
   <Card title="Microsoft Azure" icon="/images/logos/cloud-providers/azure-icon.svg" href="/getting-started/installation/azure">
-    <Badge text="Enterprise Ready" />
+    Azure Kubernetes Service (AKS)
   </Card>
 
   <Card title="Scaleway" icon="/images/logos/cloud-providers/scaleway-icon.svg" href="/getting-started/installation/scaleway">
-    <Badge text="Europe First" />
+    Kapsule Kubernetes
   </Card>
 </CardGroup>
 
----
-
-## What You'll Get
-
-<AccordionGroup>
-  <Accordion title="Managed Kubernetes Cluster" icon="server">
-    Your cluster will be created using your cloud provider's managed Kubernetes service:
-    - **AWS**: Elastic Kubernetes Service (EKS)
-    - **GCP**: Google Kubernetes Engine (GKE)
-    - **Azure**: Azure Kubernetes Service (AKS)
-    - **Scaleway**: Kapsule Kubernetes
-
-    Qovery automatically configures:
-    - Latest stable Kubernetes version
-    - Multi-node setup for high availability
-    - Automatic updates and patches
-    - Optimized configurations for production
-  </Accordion>
-
-  <Accordion title="Production Networking" icon="network-wired">
-    Complete networking infrastructure:
-    - **VPC/VNet**: Isolated network for your resources
-    - **Load Balancers**: Automatic traffic distribution
-    - **NAT Gateways**: Secure outbound connectivity
-    - **Security Groups**: Firewall rules and access control
-    - **SSL/TLS Certificates**: Automatic HTTPS encryption
-    - **Custom Domains**: Support for your own domains
-  </Accordion>
-
-  <Accordion title="Auto-Scaling & High Availability" icon="chart-line">
-    Built-in scalability and reliability:
-    - **Node Auto-Scaling**: Automatically add/remove cluster nodes based on demand
-    - **Multi-Availability Zones**: Resources distributed across multiple data centers
-    - **Pod Auto-Scaling**: Scale applications based on CPU/memory usage
-    - **Health Checks**: Automatic failure detection and recovery
-    - **Zero-Downtime Updates**: Deploy without service interruption
-  </Accordion>
-
-  <Accordion title="Security & Compliance" icon="shield">
-    Enterprise-grade security:
-    - **Private Container Registry**: Secure image storage
-    - **Secrets Management**: Encrypted environment variables
-    - **Network Isolation**: Private subnets and security groups
-    - **Role-Based Access Control (RBAC)**: Team permissions management
-    - **Audit Logs**: Track all infrastructure changes
-    - **Encryption**: Data encrypted at rest and in transit
-  </Accordion>
-
-  <Accordion title="Monitoring & Logging" icon="chart-bar">
-    Complete observability:
-    - **Real-Time Logs**: Application and infrastructure logs
-    - **Metrics & Dashboards**: CPU, memory, network usage
-    - **Deployment History**: Track all changes and rollbacks
-    - **Build Logs**: Complete CI/CD pipeline visibility
-    - **Alerting**: Optional integration with Datadog, Grafana
-  </Accordion>
-</AccordionGroup>
+<Info>
+Already have a Kubernetes cluster? [Connect it instead (BYOK)](/getting-started/installation/kubernetes) rather than provisioning a new one.
+</Info>
 
 ---
 

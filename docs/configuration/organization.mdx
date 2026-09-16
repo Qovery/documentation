@@ -3,6 +3,8 @@ title: "Organization"
 description: "Configure and manage your Qovery organization"
 ---
 
+import AgentTasksEarlyPreviewWarning from '/snippets/agent-tasks-early-preview-warning.mdx';
+
 An organization is a shared account where developers can collaborate across many projects. Organization owners and admins can manage all aspects of the organization, from clusters to member access.
 
 ## Prerequisites
@@ -112,6 +114,16 @@ Configure basic organization details:
 </Info>
 
 Click **Update** to save your changes.
+
+### AI Settings: Agents
+
+<AgentTasksEarlyPreviewWarning />
+
+Under **AI settings > Agents**, manage the MCP servers shared with every [Agent Task](/configuration/agent-tasks/overview) in the organization. Connect any remote HTTPS MCP server here (name, URL, and headers) to make it available when configuring an individual agent.
+
+<Info>
+Qovery's own MCP server is added here automatically, organization-scoped and read-only, as soon as any agent task adds a Qovery service as Context, see [Add MCP Servers](/configuration/agent-tasks/overview#creating-an-agent). To add it yourself instead, for example with write access, use `https://mcp.qovery.com/mcp` and authenticate with an [API Policy Token](/configuration/organization/api-policy-token) (a regular API token works too).
+</Info>
 
 ### Other Settings
 

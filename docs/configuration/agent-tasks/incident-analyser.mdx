@@ -32,7 +32,7 @@ When an incident fires, the agent:
     Add the Git repository of the service(s) this agent should investigate as its Context, so it can read recent commits and merged PRs around the incident. You can also add the Qovery service(s) themselves as Context, in addition to or instead of their repository.
   </Step>
   <Step title="Add the Qovery MCP server">
-    Add Qovery's MCP server (`https://mcp.qovery.com/mcp`) so the agent has more context on the applications it needs to monitor, deployment history, logs, and metrics for the affected services. A read-only [API Policy Token](/configuration/organization/api-policy-token) is enough, this agent only reads and reports, it never applies a fix directly.
+    Add Qovery's MCP server (`https://mcp.qovery.com/mcp`), with the HTTP header `Authorization` set to `Token <your policy API token>`. A read-only [API Policy Token](/configuration/organization/api-policy-token) is enough, this agent only reads and reports, it never applies a fix directly.
   </Step>
   <Step title="Choose a Provider">
     Enter your Anthropic API key, the only provider supported today.

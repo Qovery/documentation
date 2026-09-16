@@ -3,9 +3,9 @@ title: "Incident Analyzer with incident.io"
 description: "Ready-made Agent Task that correlates a firing incident.io incident with recent changes, logs, and metrics"
 ---
 
-<Warning>
-**Early Preview.** Agent Tasks is in early development and not yet generally available. Capabilities and setup will change before release.
-</Warning>
+import AgentTasksEarlyPreviewWarning from '/snippets/agent-tasks-early-preview-warning.mdx';
+
+<AgentTasksEarlyPreviewWarning />
 
 ## Overview
 
@@ -31,8 +31,8 @@ When an incident fires, the agent:
   <Step title="Connect the repository">
     Add the Git repository of the service(s) this agent should investigate as its Context, so it can read recent commits and merged PRs around the incident. You can also add the Qovery service(s) themselves as Context, in addition to or instead of their repository.
   </Step>
-  <Step title="Add the Qovery MCP server">
-    Add Qovery's MCP server (`https://mcp.qovery.com/mcp`) so the agent has more context on the applications it needs to monitor, deployment history, logs, and metrics for the affected services. A read-only [API Policy Token](/configuration/organization/api-policy-token) is enough, this agent only reads and reports, it never applies a fix directly.
+  <Step title="Qovery MCP server (automatic)">
+    Since you added the service(s) as Context, Qovery's own MCP server is created and selected automatically: organization-scoped, read-only, backed by a Viewer API token. That's enough for the agent to get deployment history, logs, and metrics for the affected services, this agent only reads and reports, it never applies a fix directly.
   </Step>
   <Step title="Choose a Provider">
     Enter your Anthropic API key, the only provider supported today.

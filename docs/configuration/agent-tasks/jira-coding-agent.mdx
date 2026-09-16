@@ -3,9 +3,12 @@ title: "Jira Coding Agent"
 description: "Ready-made Agent Task that picks up a Jira issue and proposes the corresponding code change"
 ---
 
-<Warning>
-**Early Preview.** Agent Tasks is in early development and not yet generally available. Capabilities and setup will change before release.
-</Warning>
+import CodingAgentSetupSteps from '/snippets/coding-agent-setup-steps.mdx';
+import CodingAgentOutputStep from '/snippets/coding-agent-output-step.mdx';
+import CodingAgentFooterLinks from '/snippets/coding-agent-footer-links.mdx';
+import AgentTasksEarlyPreviewWarning from '/snippets/agent-tasks-early-preview-warning.mdx';
+
+<AgentTasksEarlyPreviewWarning />
 
 ## Overview
 
@@ -25,18 +28,7 @@ Picks up a Jira issue and proposes the corresponding code change as a pull reque
     2. Go to **Security**
     3. Under **Create and manage API tokens**, click **Create API token**
   </Step>
-  <Step title="Connect the repository">
-    Add the Git repository, or repositories, this agent should code against as its Context. You can also add a Qovery service as Context, alongside its repository.
-  </Step>
-  <Step title="Choose a Provider">
-    Enter your Anthropic API key, the only provider supported today.
-  </Step>
-  <Step title="Add MCP Servers (Optional)">
-    Not required for this use case by default, add any if your workflow needs them. See [Add MCP Servers](/configuration/agent-tasks/overview#creating-an-agent).
-  </Step>
-  <Step title="Add a trigger">
-    Select **From a webhook**, and copy the generated webhook URL from the agent task's overview page, you'll need it next.
-  </Step>
+  <CodingAgentSetupSteps />
   <Step title="Point Jira at the webhook">
     In Jira, go to your project's **Settings > Automation**, then **Create flow > Create from scratch**. For example, to call the agent whenever a label is added: choose the **Field value changed** trigger, select **Labels** as the field, and leave the change type as **Any changes to the field value**. Add a JQL condition to scope it (for example `labels = "go-agent"`), then add a **Send web request** action with the URL from the previous step, method `POST`, and body **Issue data (Automation format)**.
 
@@ -46,9 +38,7 @@ Picks up a Jira issue and proposes the corresponding code change as a pull reque
 
     Save the flow, then add the label (for example `go-agent`) to a Jira issue to test it: your environment will be cloned to work on the ticket's request.
   </Step>
-  <Step title="Add an output (optional)">
-    To have the agent post to Slack when it's done, add a webhook output pointing to a [Slack Incoming Webhook](https://api.slack.com/messaging/webhooks) URL. See [Outputs](/configuration/agent-tasks/overview#outputs) for the setup steps.
-  </Step>
+  <CodingAgentOutputStep />
 </Steps>
 
-See [Configuration](/configuration/agent-tasks/overview#configuration) for resources, governance, and environment variables shared by every agent task, and [Execution Mode](/configuration/agent-tasks/overview#execution-mode) for choosing how it runs.
+<CodingAgentFooterLinks />

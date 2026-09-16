@@ -3,9 +3,12 @@ title: "Linear Coding Agent"
 description: "Ready-made Agent Task that picks up a Linear issue and proposes the corresponding code change"
 ---
 
-<Warning>
-**Early Preview.** Agent Tasks is in early development and not yet generally available. Capabilities and setup will change before release.
-</Warning>
+import CodingAgentSetupSteps from '/snippets/coding-agent-setup-steps.mdx';
+import CodingAgentOutputStep from '/snippets/coding-agent-output-step.mdx';
+import CodingAgentFooterLinks from '/snippets/coding-agent-footer-links.mdx';
+import AgentTasksEarlyPreviewWarning from '/snippets/agent-tasks-early-preview-warning.mdx';
+
+<AgentTasksEarlyPreviewWarning />
 
 ## Overview
 
@@ -25,18 +28,7 @@ Picks up a Linear issue and proposes the corresponding code change as a pull req
     2. Go to **Security & access**
     3. Under **Personal API keys**, create a new key
   </Step>
-  <Step title="Connect the repository">
-    Add the Git repository, or repositories, this agent should code against as its Context. You can also add a Qovery service as Context, alongside its repository.
-  </Step>
-  <Step title="Choose a Provider">
-    Enter your Anthropic API key, the only provider supported today.
-  </Step>
-  <Step title="Add MCP Servers (Optional)">
-    Not required for this use case by default, add any if your workflow needs them. See [Add MCP Servers](/configuration/agent-tasks/overview#creating-an-agent).
-  </Step>
-  <Step title="Add a trigger">
-    Select **From a webhook**, and copy the generated webhook URL from the agent task's overview page, you'll need it next.
-  </Step>
+  <CodingAgentSetupSteps />
   <Step title="Point Linear at the webhook">
     In Linear, go to **Settings > API > Webhooks** and create one: add a description, paste the webhook URL from the previous step, and under **Data change events**, select **Issues**.
 
@@ -44,9 +36,7 @@ Picks up a Linear issue and proposes the corresponding code change as a pull req
     Unlike Jira, Linear's webhook can't filter which change on an issue triggers it, every issue event is sent. Filter by adding a command to the agent's instructions instead, for example: "If the ticket doesn't have the label `execute-agent`, don't start the work."
     </Warning>
   </Step>
-  <Step title="Add an output (optional)">
-    To have the agent post to Slack when it's done, add a webhook output pointing to a [Slack Incoming Webhook](https://api.slack.com/messaging/webhooks) URL. See [Outputs](/configuration/agent-tasks/overview#outputs) for the setup steps.
-  </Step>
+  <CodingAgentOutputStep />
 </Steps>
 
-See [Configuration](/configuration/agent-tasks/overview#configuration) for resources, governance, and environment variables shared by every agent task, and [Execution Mode](/configuration/agent-tasks/overview#execution-mode) for choosing how it runs.
+<CodingAgentFooterLinks />

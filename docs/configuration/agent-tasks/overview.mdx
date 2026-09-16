@@ -3,9 +3,9 @@ title: "Agent Tasks"
 description: "Configure AI agents that run as jobs on your Qovery infrastructure"
 ---
 
-<Warning>
-**Early Preview.** Agent Tasks is in early development and not yet generally available. Capabilities and setup will change before release.
-</Warning>
+import AgentTasksEarlyPreviewWarning from '/snippets/agent-tasks-early-preview-warning.mdx';
+
+<AgentTasksEarlyPreviewWarning />
 
 ## Overview
 
@@ -28,9 +28,11 @@ Agent Tasks are one-time or scheduled jobs delegated to AI agents, running on yo
     Enter your Anthropic API key, the only provider supported today.
   </Step>
   <Step title="Add MCP Servers (Optional)">
-    Connect any remote HTTPS MCP server with its own name, URL, and headers. MCP servers added here are shared with every agent task in the organization, and can also be managed from **Organization Settings > AI settings > Agents**.
+    If you added a Qovery service as Context in the previous step, Qovery's own MCP server is created and selected automatically: organization-scoped, read-only, backed by a Viewer API token. No URL, header, or token to configure. This is also preconfigured for the Incident Analyzer (incident.io and Honeybadger) and Build & deployment optimizer templates.
 
-    Qovery's own MCP server isn't added automatically. To add it, use an [API Policy Token](/configuration/organization/api-policy-token) for scoped, read-only access (a regular API token works too):
+    For anything else, connect any remote HTTPS MCP server with its own name, URL, and headers. MCP servers added here are shared with every agent task in the organization, and can also be managed from **Organization Settings > AI settings > Agents**.
+
+    To add Qovery's own MCP server manually, for example with write access instead of the automatic read-only setup, use an [API Policy Token](/configuration/organization/api-policy-token) (a regular API token works too):
 
     - **Server URL**: `https://mcp.qovery.com/mcp`
     - **HTTP header name**: `Authorization`
@@ -42,8 +44,11 @@ Agent Tasks are one-time or scheduled jobs delegated to AI agents, running on yo
   <Step title="Choose an Execution Mode">
     Run the agent in place, or in a clone of the environment. See [Execution Mode](#execution-mode) below.
   </Step>
-  <Step title="Add a Trigger and Output (Optional)">
-    Trigger the agent automatically, and optionally send its result somewhere when it's done. See [Triggers and Outputs](#triggers-and-outputs) below.
+  <Step title="Add a Trigger">
+    Required to run the agent automatically. See [Triggers](#triggers) below.
+  </Step>
+  <Step title="Add an Output (Optional)">
+    Send the agent's result somewhere when it's done. See [Outputs](#outputs) below.
   </Step>
 </Steps>
 
@@ -62,7 +67,7 @@ Choose where the agent runs when it's triggered:
 In **In Place** mode, a new trigger replaces the currently running execution, there's no run history if the agent is triggered multiple times. Use **Clone Environment** for agents that can be triggered frequently or concurrently, and **In Place** for agents on a predictable schedule where overlap isn't a concern.
 </Warning>
 
-Each ready-made template has a sensible default: the Incident Analyzer and Jira Coding Agent templates default to Clone Environment since they can be triggered frequently or concurrently, while Build & deployment optimizer, typically run on a schedule, defaults to In Place.
+Each ready-made template has a sensible default: Incident Analyzer (both the incident.io and Honeybadger variants), Jira Coding Agent, and Linear Coding Agent default to Clone Environment, since an incident or a labeled ticket can trigger them frequently or concurrently. Build & deployment optimizer, typically run on a schedule, defaults to In Place.
 
 ### Limits
 

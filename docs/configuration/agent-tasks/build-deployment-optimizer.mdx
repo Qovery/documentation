@@ -33,7 +33,7 @@ To find concrete ways to make builds and deployments faster and cheaper, the age
   <Step title="Add the Qovery MCP server">
     Add Qovery's MCP server (`https://mcp.qovery.com/mcp`) so the agent can read, and optionally update, the service's build/deploy configuration:
     - A read-only [API Policy Token](/configuration/organization/api-policy-token) is enough if you only want it to **propose** changes (open a PR).
-    - Use a Policy API token with write permissions on that service's build/deploy configuration if you want it to **apply** changes to Qovery directly.
+    - Use an API Policy Token with write permissions on that service's build/deploy configuration if you want it to **apply** changes to Qovery directly.
   </Step>
   <Step title="Add a trigger (optional)">
     Add a schedule trigger, for example weekly, to periodically review build performance, or a webhook trigger. See [Triggers and Outputs](/configuration/agent-tasks/overview#triggers-and-outputs) for how they work in general.

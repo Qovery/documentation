@@ -30,7 +30,7 @@ Agent Tasks are one-time or scheduled jobs delegated to AI agents, running on yo
   <Step title="Add MCP Servers (Optional)">
     If you added a Qovery service as Context in the previous step, Qovery's own MCP server is created and selected automatically: organization-scoped, read-only, backed by a Viewer API token. No URL, header, or token to configure. This is also preconfigured for the Incident Analyzer (incident.io and Honeybadger) and Build & deployment optimizer templates.
 
-    For anything else, connect any remote HTTPS MCP server with its own name, URL, and headers. MCP servers added here are shared with every agent task in the organization, and can also be managed from **Organization Settings > AI settings > Agents**.
+    For anything else, connect any remote HTTPS MCP server with its own name, URL, and headers. MCP servers added here are available to every agent task in the organization and can also be managed from **Organization Settings > AI settings > Agents**.
 
     To add Qovery's own MCP server manually, for example with write access instead of the automatic read-only setup, use an [API Policy Token](/configuration/organization/api-policy-token) (a regular API token works too):
 

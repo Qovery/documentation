@@ -33,7 +33,7 @@ To find concrete ways to make builds and deployments faster and cheaper, the age
   <Step title="Add the Qovery MCP server">
     Since you added the service as Context, Qovery's own MCP server is created and selected automatically: organization-scoped, read-only, backed by a Viewer API token. That's enough for the agent to **propose** changes (open a PR).
 
-    To let it **apply** changes to Qovery directly instead, add the MCP server manually with a Policy API token that has write permissions on that service's build/deploy configuration. See [Add MCP Servers](/configuration/agent-tasks/overview#creating-an-agent).
+    To let it **apply** changes to Qovery directly instead, add the MCP server manually with an API Policy Token that has write permissions on that service's build/deploy configuration. See [Add MCP Servers](/configuration/agent-tasks/overview#creating-an-agent).
   </Step>
   <Step title="Add a trigger">
     Add a schedule trigger, for example weekly, to periodically review build performance, or a webhook trigger. See [Triggers](/configuration/agent-tasks/overview#triggers) for how they work in general.

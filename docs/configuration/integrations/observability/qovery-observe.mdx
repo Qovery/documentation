@@ -95,7 +95,7 @@ Lowering the profile reduces what the observability stack reserves on your clust
 </Info>
 
 <Warning>
-`LOW` is intended for small or development clusters. It takes Prometheus from 4Gi to 1Gi and the Thanos Compactor from 4Gi to 1Gi. Compaction is memory-bound, so on clusters with a high number of series these limits can cause OOMKills.
+`LOW` is intended for small or development clusters. It cuts the memory available to Prometheus and to the Thanos Compactor, as shown in the LOW column above. Compaction is memory-bound, so on clusters with a high number of series those limits can cause OOMKills.
 </Warning>
 
 A profile change applies on the next cluster deployment.

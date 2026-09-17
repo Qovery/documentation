@@ -191,6 +191,24 @@ This value must be **greater than** the time your `deployment.lifecycle.pre_stop
 If no node matches the required labels, your pods will stay in `Pending` state. Make sure the target node pool or nodes exist before applying this setting.
 </Warning>
 
+#### Targeting the `stable` node pool on AWS with Karpenter
+
+The `stable` node pool carries a `nodepool/stable:NoSchedule` taint. Node affinity alone is not enough: a pod also needs a matching toleration, and this setting only controls the affinity.
+
+Qovery adds the toleration for you on **Applications** and **Containers**. Setting `{"karpenter.sh/nodepool": "stable"}` on those services is enough, and their pods schedule normally. Container-mode databases are pinned to `stable` automatically, with their toleration, and need no setting at all.
+
+<Warning>
+On **Jobs** and **Cronjobs**, the `stable` toleration is not added. Setting `{"karpenter.sh/nodepool": "stable"}` on those services applies the affinity without the toleration, and their pods stay in `Pending`.
+</Warning>
+
+This is separate from the optional `cronjob` node pool, which has its own taint and its own automatic toleration. See [Dedicated Cronjob Node Pool](/configuration/cronjob#dedicated-cronjob-node-pool).
+
+<Info>
+On EKS clusters with Karpenter, Applications and Containers are placed on the `stable` node pool automatically, affinity and toleration included, when the service has `min_instances` set to `1` or when it has storage attached. In those cases you do not need to set this advanced setting yourself.
+</Info>
+
+For Helm services, Qovery does not inject affinity or tolerations, so you declare both in your own `values.yaml`. See [Change the node pool of your service when using Helm](/configuration/integrations/kubernetes/eks/managed#change-the-node-pool-of-your-service-when-using-helm).
+
 <a id="deployment-antiaffinity-pod"></a>
 
 ### deployment.antiaffinity.pod

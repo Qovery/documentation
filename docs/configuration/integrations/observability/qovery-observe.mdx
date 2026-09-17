@@ -73,7 +73,7 @@ Qovery's observability combines open-source tools to monitor your Kubernetes inf
 
 The observability stack runs under one of three resource profiles, set on the cluster through the `metrics_parameters.configuration.resource_profile` API field. `NORMAL` is the default.
 
-The profile changes the CPU and memory requests and limits of the observability components, and nothing else. Retention, scrape interval, replica counts and alerting configuration are the same on all three levels.
+The profile changes the CPU and memory requests and limits of the metrics components listed below, and nothing else. Retention, scrape interval, replica counts and alerting configuration are the same on all three levels. Log and event collection are not affected: Loki, Promtail and the Qovery Event Logger are sized independently of this setting.
 
 CPU is shown as request/limit. Memory is shown as a single value when the request and the limit are equal, and as request/limit when they differ.
 

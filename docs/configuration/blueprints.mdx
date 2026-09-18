@@ -21,7 +21,7 @@ The catalog is maintained by Qovery in the public [`Qovery/service-catalog`](htt
 
 ### Where a blueprint provisions
 
-Blueprints come from four sources, and the source decides what the resource runs on and how it authenticates.
+Blueprints come from three kinds of source — cloud provider, Helm, and External — and the source decides what the resource runs on and how it authenticates.
 
 | Source | What it provisions | Credentials |
 |--------|--------------------|-------------|
@@ -110,7 +110,7 @@ Blueprints are versioned: you pick a version when you create the service, and Qo
     In the Qovery Console, open the environment where you want the resource, then start creating a new service and choose **Blueprint** (create from catalog).
   </Step>
   <Step title="Pick a blueprint">
-    Browse the catalog by category (databases & caches, messaging & streaming, storage, networking & edge, compute & runtime, AI, analytics, observability) and select the blueprint you need. Cloud-provider blueprints are filtered to the target cluster's provider; External blueprints show up on every cluster.
+    Browse the catalog by category (databases & caches, messaging & streaming, storage, networking & edge, compute & runtime, AI & analytics, observability) and select the blueprint you need. Cloud-provider blueprints are filtered to the target cluster's provider; External blueprints show up on every cluster.
   </Step>
   <Step title="Choose a version">
     Select the major version (for example PostgreSQL 17). Qovery uses the latest released tag for that major version.
@@ -231,7 +231,7 @@ Applying an update changes live infrastructure. Always review the preview diff b
 An existing Qovery **managed database** can be migrated to blueprint-backed provisioning. Terraform adopts the *running* instance — no re-provisioning, no data movement, no change of endpoint or password — and the Qovery database is converted rather than deleted, so applications keep the connection environment variables they already use. Afterwards the resource is an ordinary blueprint service: versioned template, preview-then-apply update path, and access to every variable the template exposes.
 
 <Warning>
-**Migration is not self-service.** It is run by the Qovery team together with you. To start one, [contact our team](https://www.qovery.com/contact) or reach out directly in the product (help button in the Console, or your dedicated Slack channel).
+**Migration is not self-service.** It is run by the Qovery team together with you. To start one, reach out directly in the product (help button in the Console, or your dedicated Slack channel).
 </Warning>
 
 ### What can be migrated
@@ -239,7 +239,7 @@ An existing Qovery **managed database** can be migrated to blueprint-backed prov
 | Requirement | Supported today |
 |-------------|-----------------|
 | Cloud provider | AWS only |
-| Database engine | PostgreSQL. MySQL is not wired yet. |
+| Database engine | PostgreSQL only. MySQL, Redis, and MongoDB are not wired yet. |
 | PostgreSQL major version | 14, 15, 16, 17 |
 | Database mode | `MANAGED` (a container database has nothing to adopt) |
 

@@ -1,11 +1,11 @@
 ---
 title: "Blueprints"
-description: "Provision managed cloud infrastructure and add-on services from Qovery's catalog, no Terraform or Helm required"
+description: "Provision managed cloud infrastructure, Kubernetes add-ons, and third-party SaaS resources from Qovery's catalog, no Terraform or Helm required"
 ---
 
 ## Overview
 
-A **Blueprint** is a versioned, ready-to-use template for a single piece of cloud infrastructure or a Kubernetes add-on service — a managed database, an object storage bucket, a cache, or a message broker. Instead of writing Terraform or Helm from scratch, you browse Qovery's catalog, pick a blueprint and version, fill in a short form, and Qovery provisions the resource as a fully managed service inside one of your environments.
+A **Blueprint** is a versioned, ready-to-use template for a single piece of infrastructure — a managed database, an object storage bucket, a cache, a message broker, a CDN distribution, or a third-party SaaS resource such as a Snowflake database or a MongoDB Atlas cluster. Instead of writing Terraform or Helm from scratch, you browse Qovery's catalog, pick a blueprint and version, fill in a short form, and Qovery provisions the resource as a fully managed service inside one of your environments.
 
 Blueprints turn infrastructure provisioning into governed self-service. The platform team curates which templates are available, and [role-based access control](/configuration/organization/members-rbac) governs who can deploy them. Developers — and AI agents working through the API — provision what they need without a review queue, and without direct access to the underlying cloud account.
 
@@ -19,42 +19,87 @@ The catalog is maintained by Qovery in the public [`Qovery/service-catalog`](htt
 - The **Blueprint** in the [AI Builder Portal](/rde/admin/blueprint-management) — a workspace template.
 </Info>
 
+### Where a blueprint provisions
+
+Blueprints come from three kinds of source — cloud provider, Helm, and External — and the source decides what the resource runs on and how it authenticates.
+
+| Source | What it provisions | Credentials |
+|--------|--------------------|-------------|
+| **AWS / GCP / Scaleway** | A managed resource in the cloud account backing the target cluster (RDS, ElastiCache, S3, Memorystore, Scaleway Managed Database…). | Reuses the cluster's cloud credentials by default. |
+| **Helm** | A Kubernetes add-on deployed on the cluster itself, from a curated Helm chart. | Runs in-cluster, no cloud credentials needed. |
+| **External** | A third-party SaaS resource provisioned through that vendor's own Terraform provider. Available on **every** cluster regardless of its cloud provider. | You supply the vendor's credentials as secret variables on the service. |
+
 ### What's in the catalog
 
-The catalog is expanding. Blueprints available today include:
+The catalog is expanding — [`catalog.json`](https://github.com/Qovery/service-catalog/blob/main/catalog.json) in the repository is the source of truth, and the Console groups blueprints by the categories below.
 
-<CardGroup cols={3}>
-  <Card title="AWS RDS PostgreSQL" icon="database">
-    Managed PostgreSQL on Amazon RDS (major versions 14–17), with configurable size, storage, backups, monitoring, and networking.
-  </Card>
-  <Card title="AWS RDS MySQL" icon="database">
-    Managed MySQL on Amazon RDS with configurable size, storage, backups, maintenance, and monitoring.
-  </Card>
-  <Card title="AWS S3" icon="box-archive">
-    An S3 bucket with encryption, versioning, and public-access blocking.
-  </Card>
-  <Card title="Scaleway PostgreSQL" icon="database">
-    Scaleway Managed Database for PostgreSQL, with configurable node type, storage, backups, and network ACLs.
-  </Card>
-  <Card title="Scaleway MySQL" icon="database">
-    Scaleway Managed Database for MySQL, with configurable node type, storage, backups, and network ACLs.
-  </Card>
-  <Card title="Scaleway Object Storage" icon="box-archive">
-    A Scaleway Object Storage bucket.
-  </Card>
-  <Card title="Redis" icon="layer-group">
-    A Redis cache, deployed via a community Helm chart on your cluster.
-  </Card>
-  <Card title="RabbitMQ" icon="layer-group">
-    A RabbitMQ message broker, deployed via a community Helm chart on your cluster.
-  </Card>
-</CardGroup>
+#### Databases & Caches
+
+| Blueprint | Source | Versions |
+|-----------|--------|----------|
+| **Amazon RDS for PostgreSQL** | AWS | 14–17 |
+| **Amazon RDS for MySQL** | AWS | 8 |
+| **Amazon ElastiCache for Redis** | AWS | 7 |
+| **Amazon ElastiCache for Valkey** | AWS | 9 |
+| **Google Cloud Memorystore for Redis** | GCP | 7 |
+| **Scaleway Managed PostgreSQL** | Scaleway | 16 |
+| **Scaleway MySQL** | Scaleway | 8 |
+| **Redis** | Helm | 8 |
+| **MongoDB Atlas Cluster** | External | — |
+| **PlanetScale Database** | External | — |
+| **Timescale Cloud Service** | External | — |
+
+#### Messaging & Streaming
+
+| Blueprint | Source | Versions |
+|-----------|--------|----------|
+| **Amazon MSK** (Kafka, serverless) | AWS | — |
+| **RabbitMQ** | Helm | 4 |
+| **Aiven for Apache Kafka** | External | — |
+| **Confluent Cloud for Apache Kafka** | External | — |
+| **Redpanda Cloud** | External | — |
+
+#### Storage
+
+| Blueprint | Source | Versions |
+|-----------|--------|----------|
+| **Amazon S3** | AWS | — |
+| **Scaleway Object Storage** | Scaleway | — |
+
+#### Networking & Edge
+
+| Blueprint | Source | Versions |
+|-----------|--------|----------|
+| **AWS CloudFront** | AWS | — |
+| **Cloudflare DNS Zone** | External | — |
+
+#### Compute & Runtime
+
+| Blueprint | Source | Versions |
+|-----------|--------|----------|
+| **Cloudflare Workers** | External | — |
+| **Temporal Cloud Namespace** | External | — |
+
+#### AI & Analytics
+
+| Blueprint | Source | Versions |
+|-----------|--------|----------|
+| **AWS Bedrock Access** (scoped IAM policy, optional user and keys) | External | — |
+| **Google BigQuery Dataset** | External | — |
+| **Snowflake Database** | External | — |
+
+#### Observability
+
+| Blueprint | Source | Versions |
+|-----------|--------|----------|
+| **Datadog** (agent, metrics, logs, optional APM) | Helm | 7 |
+| **New Relic** (`nri-bundle`) | Helm | — |
 
 ## How Blueprints Work
 
 When you create a blueprint service, you fill in a short form built from the blueprint's template: the **variables** it exposes (with defaults, dropdowns, and validation), while read-only **context variables** such as the cluster region and name are resolved automatically. Qovery then provisions the resource on your cluster as a managed **Terraform (or OpenTofu) service** or **Helm service** and links it to the blueprint.
 
-Once deployed, the service publishes its **outputs** — endpoints, ports, credentials — so other services in the same environment can consume them, just like any other Qovery service.
+Once deployed, the service publishes its **outputs** — endpoints, ports, credentials — so other services in the same environment can consume them through variable interpolation, just like any other Qovery service. Outputs marked sensitive (passwords, tokens) are stored encrypted and hidden in the Console.
 
 Blueprints are versioned: you pick a version when you create the service, and Qovery flags when a newer one is available (see [Updating a Blueprint](#updating-a-blueprint)).
 
@@ -65,7 +110,7 @@ Blueprints are versioned: you pick a version when you create the service, and Qo
     In the Qovery Console, open the environment where you want the resource, then start creating a new service and choose **Blueprint** (create from catalog).
   </Step>
   <Step title="Pick a blueprint">
-    Browse the catalog by provider and category (database, storage, cache, messaging) and select the blueprint you need.
+    Browse the catalog by category (databases & caches, messaging & streaming, storage, networking & edge, compute & runtime, AI & analytics, observability) and select the blueprint you need. Cloud-provider blueprints are filtered to the target cluster's provider; External blueprints show up on every cluster.
   </Step>
   <Step title="Choose a version">
     Select the major version (for example PostgreSQL 17). Qovery uses the latest released tag for that major version.
@@ -89,6 +134,8 @@ Each blueprint ships with a README describing the resource it provisions and its
     <Info>
     Context variables such as the cluster region and name are filled in automatically from the target environment's cluster — you don't set them.
     </Info>
+
+    For an **External** blueprint, the vendor credentials are part of this form — for example the Snowflake account identifier, user, and PEM-encoded private key, or the Cloudflare API token. Create the vendor-side service account first; the blueprint does not create it for you.
   </Step>
   <Step title="Review advanced settings (optional)">
     Some blueprints let you override engine-level settings the template author marked as overridable — for example the Terraform/OpenTofu version, credentials mode, state backend, or compute resources. See [Variables & Engine Reference](#variables--engine-reference). If a setting is not overridable, the blueprint's default applies.
@@ -127,6 +174,10 @@ Context variables are **read-only** and resolved automatically from the target e
 | `region` | `cluster.region` |
 | `cluster_name` | `cluster.name` |
 
+### Outputs
+
+Outputs are the values the deployed service publishes back to Qovery — endpoints, ports, bucket names, generated credentials. Other services in the same environment consume them by variable interpolation, so an application can point at a blueprint-provisioned database without anyone copying a hostname by hand. Sensitive outputs are encrypted and masked in the Console.
+
 ### Engine & advanced settings
 
 The engine block defines how the resource is provisioned. Which settings you can override is controlled by the blueprint author (via `overridable` and `allowed_values` in the manifest).
@@ -135,14 +186,14 @@ The engine block defines how the resource is provisioned. Which settings you can
 |---------|-----------|-------------|
 | **Engine** | all | `terraform`, `opentofu`, or `helm` — the tool used to provision the resource. |
 | **Version** | Terraform / OpenTofu | Engine version. Editable only if the author marked it overridable, and constrained to the allowed values. |
-| **Credentials** | Terraform / OpenTofu | `cluster` (use the cluster's cloud credentials) or `env` (use environment-scoped credentials). |
+| **Credentials** | Terraform / OpenTofu | `cluster` (use the cluster's cloud credentials) or `env` (credentials supplied as variables on the service). External blueprints are always `env`. |
 | **State backend** | Terraform / OpenTofu | `qovery` (Qovery-managed state) or `user_provided` (bring your own backend, e.g. S3/GCS/Azure). |
-| **Resources** | all | CPU, RAM, and storage allocated to the provisioning job (for example `500m`, `512Mi`, `1Gi`). |
+| **Resources** | all | CPU, RAM, and ephemeral storage allocated to the provisioning job (for example `500m`, `512Mi`, `1Gi`). |
 | **Timeout** | all | Maximum duration, in seconds, for the provisioning run. |
 | **Chart** | Helm | Chart repository, name, and version (fixed by the blueprint). |
 
 <Info>
-For Helm blueprints, engine version, credentials, and state backend do not apply — the chart and its version are defined by the blueprint.
+For Helm blueprints, engine version, credentials, and state backend do not apply — the chart and its version are defined by the blueprint, and the resources block is ignored because the chart declares its own.
 </Info>
 
 ## Updating a Blueprint
@@ -177,15 +228,42 @@ Applying an update changes live infrastructure. Always review the preview diff b
 
 ## Migrating a Managed Database to a Blueprint
 
-An existing Qovery **managed database** can be migrated to blueprint-backed provisioning: the underlying cloud resource (for example the RDS instance) becomes owned by a service-catalog blueprint, while Qovery continues to manage the connection environment variables your applications rely on.
+An existing Qovery **managed database** can be migrated to blueprint-backed provisioning. Terraform adopts the *running* instance — no re-provisioning, no data movement, no change of endpoint or password — and the Qovery database is converted rather than deleted, so applications keep the connection environment variables they already use. Afterwards the resource is an ordinary blueprint service: versioned template, preview-then-apply update path, and access to every variable the template exposes.
 
-<Info>
-This applies to existing managed databases only. New resources are created directly from the catalog as described above. If you're considering a migration for a production database, review the preview diff carefully and back up your data first.
-</Info>
+<Warning>
+**Migration is not self-service.** It is run by the Qovery team together with you. To start one, reach out directly in the product (help button in the Console, or your dedicated Slack channel).
+</Warning>
+
+### What can be migrated
+
+| Requirement | Supported today |
+|-------------|-----------------|
+| Cloud provider | AWS only |
+| Database engine | PostgreSQL only. MySQL, Redis, and MongoDB are not wired yet. |
+| PostgreSQL major version | 14, 15, 16, 17 |
+| Database mode | `MANAGED` (a container database has nothing to adopt) |
+
+### How a migration runs
+
+<Steps>
+  <Step title="You get in touch">
+    Tell us which database you want migrated. We confirm eligibility and check that the cluster is on an engine version able to plan the target catalog template.
+  </Step>
+  <Step title="Preview">
+    Qovery runs a preview: a `terraform plan` against the live instance with the connection details, sizing, and storage settings read from your existing database. A safety gate rejects any plan that would replace or destroy the instance, and nothing is persisted unless the plan is clean. We review the diff with you.
+  </Step>
+  <Step title="Apply">
+    Once you approve the plan, we apply it. The blueprint service is created, it imports the live instance, and the Qovery database converts to blueprint-backed provisioning.
+  </Step>
+</Steps>
+
+<Warning>
+Applying a migration is irreversible — there is no rollback endpoint. Review the preview diff carefully and take a database backup before approving. New resources do not need any of this: create them directly from the catalog as described above.
+</Warning>
 
 ## Permissions
 
-Creating, updating, and deploying a blueprint requires the **Manager** role on the target environment. Access follows Qovery's standard role-based access control — see [Members & RBAC](/configuration/organization/members-rbac).
+Creating, updating, and deploying a blueprint requires the **Manager** role on the target environment. Access follows Qovery's standard role-based access control — see [Members & RBAC](/configuration/organization/members-rbac). Migrating an existing managed database is a Qovery-side operation and is not exposed to organization members; every attempt is recorded in the organization audit logs.
 
 ## Best Practices
 
@@ -200,7 +278,13 @@ Creating, updating, and deploying a blueprint requires the **Manager** role on t
     Use the Qovery-managed Terraform backend unless you have a specific reason to bring your own. Qovery handles state storage, locking, and safety for you.
   </Accordion>
   <Accordion title="Keep sensitive inputs as secrets" icon="key">
-    Mark passwords, tokens, and keys as secret variables so they're stored encrypted and hidden in the Console.
+    Mark passwords, tokens, and keys as secret variables so they're stored encrypted and hidden in the Console. This matters most for External blueprints, where the vendor credentials live in the form.
+  </Accordion>
+  <Accordion title="Scope the credentials you give an External blueprint" icon="user-shield">
+    Create a dedicated vendor-side service account per blueprint service, limited to what the template provisions, rather than reusing an administrator token.
+  </Accordion>
+  <Accordion title="Consume outputs instead of hardcoding endpoints" icon="link">
+    Wire applications to a blueprint's published outputs. A later update that changes an endpoint then propagates on its own.
   </Accordion>
   <Accordion title="Use blueprints over hand-written Terraform for supported services" icon="cubes">
     For anything the catalog covers, a blueprint gives you a maintained, versioned template with a built-in upgrade path — less to write and less to keep current yourself.
@@ -209,7 +293,15 @@ Creating, updating, and deploying a blueprint requires the **Manager** role on t
 
 ## API Reference
 
-Blueprints are fully scriptable through the Qovery API. The relevant endpoints are grouped under the **Blueprint** tags and cover listing the catalog, reading a blueprint's README and manifest, creating a blueprint in an environment, checking for and previewing updates, and deploying. See the [API Reference](/api-reference/introduction).
+Blueprints are fully scriptable through the Qovery API. The endpoints live under the **Blueprint Catalog** and **Blueprint Main Calls** tags and cover:
+
+- Listing the catalog, and reading a blueprint's README and manifest (the form fields the Console renders).
+- Creating a blueprint in an environment, with or without an immediate deploy.
+- Creating a blueprint and getting back the deployment identifiers of the dispatch it started, so a script can follow the provisioning run.
+- Reading a blueprint together with the underlying Terraform or Helm service and the status of its latest dispatch.
+- Checking for an available update, previewing it, saving new values, and deploying.
+
+See the [API Reference](/api-reference/introduction).
 
 ## Next Steps
 

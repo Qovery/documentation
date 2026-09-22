@@ -142,6 +142,12 @@ RUN --mount=type=secret,id=NPM_TOKEN,required=true npm ci
 
 **Changing a build variable triggers a rebuild.** The value of every variable the Dockerfile declares — as an `ARG` or as a secret mount `id` — is part of the image tag Qovery computes. Changing a value produces a new tag, so the image is rebuilt instead of being reused.
 
+Variables that the Dockerfile does not declare do not change the final image
+tag. Qovery first makes a prediction from the request, then parses the
+Dockerfile and recomputes the tag using only its declared `ARG` values and
+secret mount IDs. See [when Docker images are rebuilt](/configuration/deployment/image-mirroring#when-is-the-docker-image-rebuilt)
+for the complete list of tag inputs.
+
 <Warning>
 Rotating a build secret does not by itself re-run the step that reads it. BuildKit deliberately keeps secret values out of its build cache keys, so a cached `RUN --mount=type=secret` step is reused whatever the new value is. This is usually what you want — the dependencies were already fetched — but if the step must run again, enable [build.disable_buildkit_cache](/configuration/service-advanced-settings#build-disable-buildkit-cache) on that service. That setting is available on applications, cronjobs and lifecycle jobs; on a Terraform service, change something the build cache does key on to force the step to re-run.
 </Warning>

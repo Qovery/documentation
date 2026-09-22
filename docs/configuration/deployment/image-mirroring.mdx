@@ -26,11 +26,47 @@ When Qovery builds your application from Git:
 
 1. After building, Qovery CI pushes the generated image to the mirroring registry
 2. Images are organized by Git repository with naming: `z<short_cluster_id>-git_repo_name`
-3. Image tags are derived from: commit ID, repository path, Dockerfile path, content, and ARGS variables
-4. Before building, Qovery checks if a matching image already exists
-5. If found, the build is skipped and the cached image is used
+3. Qovery computes an image tag from the build inputs
+4. Before cloning and again after reading the Dockerfile, Qovery checks whether that exact tag already exists
+5. If the tag exists and the build is not forced, the Docker build is skipped and the existing image is used
 6. Unused images are automatically deleted when no longer referenced
 7. Remote cache functionality (AWS, GCP, Scaleway) rebuilds only changed layers
+
+### When Is the Docker Image Rebuilt?
+
+Qovery reuses an image only when the generated tag already exists in the target
+registry. The tag is based on the inputs that can change the image:
+
+- Git commit ID and repository root path
+- Dockerfile path and content
+- Values of build arguments declared by the Dockerfile
+- Values of build secrets referenced by `RUN --mount=type=secret,id=...`
+- Target build stage
+- Injected files, including their paths and contents
+- Inline Dockerfile fragments, or the path of a file-based fragment
+- Whether Git submodules are skipped
+
+Changing any of these inputs produces a different tag and causes a new image
+to be built when that tag is not already present. Variables that are not
+declared as Dockerfile `ARG` values or secret mount IDs do not affect the final
+tag.
+
+The engine performs two image-existence checks. The first uses the inputs
+available before the repository is cloned. The second parses the Dockerfile,
+keeps only the arguments and secrets it actually declares, and computes the
+final tag. An incomplete or incorrect `tag_build_args` selection can therefore
+cause the first check to miss an image even when the final tag is reusable.
+
+This image-reuse check is different from Docker layer caching. Disabling
+`build.disable_buildkit_cache` disables registry layer-cache import/export; it
+does not force a rebuild when the generated image tag already exists. Secret
+values change the image tag, but BuildKit may still reuse layers from a step
+that consumes a secret because secret values are not part of BuildKit's layer
+cache key.
+
+`force_build` bypasses the initial check, but the post-Dockerfile check can
+still skip the build if the final tag exists. The lookup is performed for the
+generated tag, not for `latest`.
 
 ### For Applications from Third-Party Registries
 

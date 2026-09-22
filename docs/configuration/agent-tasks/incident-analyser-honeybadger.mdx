@@ -29,13 +29,13 @@ When an incident fires, the agent:
     From the **Agent use cases** section when creating a new service, pick **Incident Analyzer with Honeybadger** (see [Creating an Agent](/configuration/agent-tasks/overview#creating-an-agent)), or start from scratch and paste in the instructions above.
   </Step>
   <Step title="Connect the repository">
-    Add the Git repository of the service(s) this agent should investigate as its Context, so it can read recent commits and merged PRs around the incident. You can also add the Qovery service(s) themselves as Context, in addition to or instead of their repository.
+    Add the Qovery service(s) this agent should investigate as its Context, their linked Git repository is included automatically so the agent can read recent commits and merged PRs around the incident. Add a repository on its own only if it isn't tied to a Qovery service.
   </Step>
   <Step title="Qovery MCP server (automatic)">
     Since you added the service(s) as Context, Qovery's own MCP server is created and selected automatically: organization-scoped, read-only, backed by a Viewer API token. That's enough for the agent to get deployment history, logs, and metrics for the affected services, this agent only reads and reports, it never applies a fix directly.
   </Step>
   <Step title="Choose a Provider">
-    Enter your Anthropic API key, the only provider supported today.
+    Pick **Claude** (Anthropic) or **AWS Bedrock**, then select an existing token or create a new one on the fly, see [Choose a Provider](/configuration/agent-tasks/overview#creating-an-agent).
   </Step>
   <Step title="Add credentials and domain allowlist">
     Add your Honeybadger API key as a secret, referenced by name in the instructions above (for example `HONEYBADGER_API_KEY`), for more context on the incident if needed. In Honeybadger, go to **Settings > API keys** to create one. Add its hostname to the domain allowlist, for example `api.honeybadger.io`.

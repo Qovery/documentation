@@ -115,11 +115,15 @@ Configure basic organization details:
 
 Click **Update** to save your changes.
 
-### AI Settings: Agents
+### Agent
 
 <AgentTasksEarlyPreviewWarning />
 
-Under **AI settings > Agents**, manage the MCP servers shared with every [Agent Task](/configuration/agent-tasks/overview) in the organization. Connect any remote HTTPS MCP server here (name, URL, and headers) to make it available when configuring an individual agent.
+The **Agent** section manages what's shared with every [Agent Task](/configuration/agent-tasks/overview) in the organization: AI provider tokens under **Agent > Token**, and MCP servers under **Agent > MCP**.
+
+**Token**: create and manage the AI provider tokens used by agent tasks. Qovery currently supports [Claude](https://www.anthropic.com/) (Anthropic) and [AWS Bedrock](https://aws.amazon.com/bedrock/) as providers. A token created here, or created on the fly from an agent task's **Choose a Provider** step, is saved to this list and can be reused by any other agent task in the organization instead of re-entering credentials each time.
+
+**MCP**: connect any remote HTTPS MCP server here (name, URL, and headers) to make it available when configuring an individual agent.
 
 <Info>
 Qovery's own MCP server is added here automatically, organization-scoped and read-only, as soon as any agent task adds a Qovery service as Context, see [Add MCP Servers](/configuration/agent-tasks/overview#creating-an-agent). To add it yourself instead, for example with write access, use `https://mcp.qovery.com/mcp` and authenticate with an [API Policy Token](/configuration/organization/api-policy-token) (a regular API token works too).

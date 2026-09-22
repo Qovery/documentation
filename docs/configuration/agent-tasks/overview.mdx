@@ -22,15 +22,15 @@ Agent Tasks are one-time or scheduled jobs delegated to AI agents, running on yo
     </Frame>
   </Step>
   <Step title="Add Context (Optional)">
-    Connect a Git repository, a Qovery service, or both, for the agent to load as context.
+    Connect a Qovery service, a Git repository, or both, for the agent to load as context. A Qovery service's linked Git repository is included automatically, no need to add it separately, connect a repository on its own only when it isn't tied to a Qovery service.
   </Step>
   <Step title="Choose a Provider">
-    Enter your Anthropic API key, the only provider supported today.
+    Pick **Claude** (Anthropic) or **AWS Bedrock**, then select an existing token or create a new one on the fly. A token created here is saved and can be reused by any other agent task in the organization, no need to re-enter credentials each time. Tokens can also be managed centrally from **Organization Settings > Agent > Token**.
   </Step>
   <Step title="Add MCP Servers (Optional)">
     If you added a Qovery service as Context in the previous step, Qovery's own MCP server is created and selected automatically: organization-scoped, read-only, backed by a Viewer API token. No URL, header, or token to configure. This is also preconfigured for the Incident Analyzer (incident.io and Honeybadger) and Build & deployment optimizer templates.
 
-    For anything else, connect any remote HTTPS MCP server with its own name, URL, and headers. MCP servers added here are available to every agent task in the organization and can also be managed from **Organization Settings > AI settings > Agents**.
+    For anything else, connect any remote HTTPS MCP server with its own name, URL, and headers. MCP servers added here are available to every agent task in the organization and can also be managed from **Organization Settings > Agent > MCP**.
 
     To add Qovery's own MCP server manually, for example with write access instead of the automatic read-only setup, use an [API Policy Token](/configuration/organization/api-policy-token) (a regular API token works too):
 

@@ -193,9 +193,9 @@ Qovery optimizes your application builds to save time and resources.
 
 Qovery avoids unnecessary rebuilds by:
 
-- **Detecting code changes**: Only rebuilds when application code changes
+- **Detecting build-input changes**: Rebuilds when the commit, Dockerfile, declared build arguments or secrets, target stage, injected files, fragments, or submodule setting changes
 - **Skipping unchanged services**: If no changes detected, uses previous build
-- **Monitoring Git commits**: Tracks which services are affected by commits
+- **Monitoring Git commits**: Includes the Git commit in the generated image tag
 
 This reduces build times and CI/CD costs by avoiding redundant builds.
 

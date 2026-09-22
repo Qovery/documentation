@@ -103,7 +103,7 @@ Use the **Show only overridden** toggle to view only settings that differ from d
 
 **Default Value:** `false`
 
-**Use Case:** Enable this setting when your build tool (such as Turbo, Bazel, or Nx) has its own caching mechanism. In these cases, BuildKit's registry cache import/export operations add overhead without benefit, as the application-level cache is more effective. Disabling BuildKit cache can significantly reduce build times for projects using these tools.
+**Use Case:** Enable this setting when your build tool (such as Turbo, Bazel, or Nx) has its own caching mechanism. In these cases, BuildKit's registry cache import/export operations add overhead without benefit, as the application-level cache is more effective. Disabling BuildKit cache can significantly reduce build times for projects using these tools. This setting does not force a Docker rebuild: if the generated image tag already exists, Qovery still reuses that image.
 
 <a id="build-skip-git-submodules"></a>
 
@@ -118,6 +118,8 @@ Use the **Show only overridden** toggle to view only settings that differ from d
 **Default Value:** `false`
 
 **Use Case:** Enable this setting when your repository contains submodules that are not required to build your service — for example, a private submodule used only for infrastructure workflows. Without it, the deployment fails if Qovery has no credentials for the private submodule, forcing you to configure SSH keys for code that is never used in the build.
+
+Changing this setting changes the generated image tag. Switching it can therefore cause Qovery to build a new image.
 
 ---
 

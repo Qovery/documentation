@@ -333,7 +333,7 @@ This alert monitors scheduled renewals. It does not detect initial certificate i
 | Notification text | Optional | Yes |
 | Notification channels | None selected | Select at least one |
 
-Choose a **Duration** of **Immediate**, **Last 1 minute**, **Last 5 minutes**, **Last 10 minutes**, **Last 15 minutes**, or **Last 30 minutes**. The one-hour renewal delay is part of the detection rule; the selected duration is the additional time the condition must remain true before the alert fires. Selecting **Immediate** removes only that additional wait.
+Choose a **Duration** from the [available duration options](#duration). The one-hour renewal delay is part of the detection rule; the selected duration is the additional time the condition must remain true before the alert fires. Selecting **Immediate** removes only that additional wait.
 
 Set the alert name, adjust the severity or notification text if needed, select your notification channels, and click **Create**.
 
@@ -425,13 +425,16 @@ Define when the alert should fire based on the comparison between your metric an
 
 #### Duration
 
-The duration specifies how long the condition must be true before the alert fires. This prevents false positives from temporary spikes.
+The duration specifies how long the condition must remain true before the alert fires. A nonzero duration helps filter temporary spikes.
 
 **Duration options:**
-- **Last 1 minute**: Very sensitive, catches issues immediately but may have false positives
-- **Last 5 minutes**: Balanced approach, good for most alerts
-- **Last 10 minutes**: Conservative, reduces noise but may delay critical alerts
-- **Last 15 minutes**: Best for informational alerts or gradual trends
+
+- **Immediate**: Fires when the condition evaluates to true, without an additional waiting period
+- **Last 1 minute**: Requires the condition to remain true for 1 minute
+- **Last 5 minutes**: Requires the condition to remain true for 5 minutes
+- **Last 10 minutes**: Requires the condition to remain true for 10 minutes
+- **Last 15 minutes**: Requires the condition to remain true for 15 minutes
+- **Last 30 minutes**: Requires the condition to remain true for 30 minutes
 
 <Warning>
 Shorter durations increase alert sensitivity but also increase false positives. Longer durations reduce noise but may delay critical notifications.
@@ -494,16 +497,16 @@ Shorter durations increase alert sensitivity but also increase false positives. 
     **Recommended configuration:**
     - **Aggregation**: Average (across all requests)
     - **Trigger condition**: Above 5%
-    - **Duration**: Last 3 minutes
+    - **Duration**: Last 5 minutes
 
     **Query example:**
     ```
     SEND A NOTIFICATION WHEN THE AVERAGE OF 5XX ERROR RATE
     FOR [SERVICE_NAME] IS ABOVE 5 %
-    DURING THE LAST 3 MINUTES
+    DURING THE LAST 5 MINUTES
     ```
 
-    **Why**: Average 5xx error rate shows server-side issues, 5% indicates significant problems, 3 minutes for faster detection of service degradation.
+    **Why**: Average 5xx error rate shows server-side issues, 5% indicates significant problems, and 5 minutes helps filter temporary error spikes.
   </Tab>
 </Tabs>
 

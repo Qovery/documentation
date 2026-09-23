@@ -223,7 +223,7 @@ Navigate to the **Alerts** section from the main organization navigation (top-le
 
 ### Service-Level Alerts
 
-Each service (Application or Container) has a dedicated **Monitoring** tab that includes two sub-tabs:
+The service-level **Monitoring** tab includes two sub-tabs:
 
 - **Dashboard**: Real-time metrics visualization with graphs for CPU, memory, network, and latency
 - **Alerts**: View and create alerts scoped to this specific service
@@ -264,35 +264,78 @@ Create alerts based on these monitoring categories:
   <Card title="Auto-Scaling Limit" icon="arrow-up-to-line">
     Alert when service reaches maximum instance limit
   </Card>
+  <Card title="Certificate renewal failed" icon="file-signature" href="#certificate-renewal-failed-alerts">
+    Detect failed or overdue TLS certificate renewals for your service
+  </Card>
 </CardGroup>
 
 ### Creating an Alert
 
 <Steps>
   <Step title="Select Alert Category">
-    Choose the type of alert you want to create (CPU, Memory, HTTP Errors, etc.)
+    From your service's **Monitoring > Alerts** tab, click **New alert**. Select one or more categories, such as **CPU**, **Memory**, or **Certificate renewal failed**, then click **Configure alerts**.
   </Step>
 
   <Step title="Configure Conditions">
     Define the trigger conditions for your alert:
-    - View the underlying query powering the alert
-    - Customize threshold values and duration
-    - Preview how the condition evaluates against your metrics
+
+    - Customize the available threshold values and duration. For **Certificate renewal failed**, the trigger is preset and only the duration can be changed.
+    - Review the **Main condition query** preview to check the configured condition.
   </Step>
 
   <Step title="Configure Alert Details">
     Set up the alert notification:
+
     - **Alert name**: Descriptive name for easy identification
-    - **Notification message**: Custom text included in notifications
-    - **Notification channel**: Select a configured notification channel (Slack, Email, or more integrations coming soon)
+    - **Notification text**: Optional custom text included in notifications
+    - **Severity**: Select the alert severity
+    - **Notification channels**: Select one or more configured notification channels
+
+    If you selected multiple categories, click **Include** to configure the next alert. Click **Create** on the last category to create the alerts.
   </Step>
 </Steps>
 
-<img src="/images/observability/create-alert.png" alt="Creating an Alert" />
+<img src="/images/observability/create-alert.png" alt="Alert category selection, including Certificate renewal failed" />
 
 <Tip>
-Start with pre-configured alert templates and adjust thresholds based on your service's normal behavior.
+Start with pre-configured alert templates and adjust the available thresholds and duration based on your service's normal behavior.
 </Tip>
+
+### Certificate Renewal Failed Alerts
+
+Select **Certificate renewal failed** to monitor TLS certificates associated with the selected service.
+
+<Note>
+This category is available for Applications and Containers. It is not available for databases or jobs.
+</Note>
+
+#### When the Alert Fires
+
+A certificate must have a scheduled renewal time that is **more than one hour in the past**. It then matches the alert if at least one of these conditions applies:
+
+- The certificate has not expired, but its scheduled renewal is overdue.
+- The certificate is still being issued (`Issuing` is true).
+- The certificate is not ready (`Ready` is false).
+
+The alert triggers when at least one certificate matches these conditions for the configured duration. All checks are scoped to the selected service.
+
+<Info>
+This alert monitors scheduled renewals. It does not detect initial certificate issuance failures when no renewal time exists.
+</Info>
+
+#### Configuration
+
+| Setting | Default | Can be changed? |
+|---|---|---|
+| Trigger | At least one matching certificate | No; aggregation, operator, and threshold are preset |
+| Duration | Last 15 minutes | Yes |
+| Severity | High | Yes |
+| Notification text | Optional | Yes |
+| Notification channels | None selected | Select at least one |
+
+Choose a **Duration** from the [available duration options](#duration). The one-hour renewal delay is part of the detection rule; the selected duration is the additional time the condition must remain true before the alert fires. Selecting **Immediate** removes only that additional wait.
+
+Set the alert name, adjust the severity or notification text if needed, select your notification channels, and click **Create**.
 
 ### Alert Conditions Guide
 
@@ -382,13 +425,16 @@ Define when the alert should fire based on the comparison between your metric an
 
 #### Duration
 
-The duration specifies how long the condition must be true before the alert fires. This prevents false positives from temporary spikes.
+The duration specifies how long the condition must remain true before the alert fires. A nonzero duration helps filter temporary spikes.
 
 **Duration options:**
-- **Last 1 minute**: Very sensitive, catches issues immediately but may have false positives
-- **Last 5 minutes**: Balanced approach, good for most alerts
-- **Last 10 minutes**: Conservative, reduces noise but may delay critical alerts
-- **Last 15 minutes**: Best for informational alerts or gradual trends
+
+- **Immediate**: Fires when the condition evaluates to true, without an additional waiting period
+- **Last 1 minute**: Requires the condition to remain true for 1 minute
+- **Last 5 minutes**: Requires the condition to remain true for 5 minutes
+- **Last 10 minutes**: Requires the condition to remain true for 10 minutes
+- **Last 15 minutes**: Requires the condition to remain true for 15 minutes
+- **Last 30 minutes**: Requires the condition to remain true for 30 minutes
 
 <Warning>
 Shorter durations increase alert sensitivity but also increase false positives. Longer durations reduce noise but may delay critical notifications.
@@ -451,16 +497,16 @@ Shorter durations increase alert sensitivity but also increase false positives. 
     **Recommended configuration:**
     - **Aggregation**: Average (across all requests)
     - **Trigger condition**: Above 5%
-    - **Duration**: Last 3 minutes
+    - **Duration**: Last 5 minutes
 
     **Query example:**
     ```
     SEND A NOTIFICATION WHEN THE AVERAGE OF 5XX ERROR RATE
     FOR [SERVICE_NAME] IS ABOVE 5 %
-    DURING THE LAST 3 MINUTES
+    DURING THE LAST 5 MINUTES
     ```
 
-    **Why**: Average 5xx error rate shows server-side issues, 5% indicates significant problems, 3 minutes for faster detection of service degradation.
+    **Why**: Average 5xx error rate shows server-side issues, 5% indicates significant problems, and 5 minutes helps filter temporary error spikes.
   </Tab>
 </Tabs>
 

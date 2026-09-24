@@ -157,6 +157,21 @@ Qovery tracks cluster health using two status categories:
 | **Last Deployment Failed**    | The most recent deployment encountered errors     |
 | **Last Deployment Succeeded** | The most recent deployment completed successfully |
 
+#### AWS Quota Warnings
+
+On AWS clusters, when an AWS service quota is reached and Karpenter can no longer create new nodes, Qovery surfaces a quota warning:
+
+- The **cluster overview** displays a warning callout with the quota name, the impacted resource, the reported message, and the suggested action to run in your AWS account.
+- While the warning is active, the cluster-status indicator of services running on the cluster reads **Quota issue** in its tooltip instead of the generic **Warning**.
+
+Follow the suggested action (for example, requesting a quota increase in AWS) so Karpenter can resume creating nodes.
+
+### Deployment History
+
+The cluster's **Deployments** view lists its past deployments, most recent first, each with its status and timestamp. Open a deployment to read its deployment logs.
+
+Deployments that ran as a dry run are marked with a **Dry run** badge in the list.
+
 ### Performing Actions on Clusters
 
 Available cluster operations and their cloud provider compatibility:

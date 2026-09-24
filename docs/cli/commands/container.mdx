@@ -109,6 +109,35 @@ qovery container redeploy --container "my-container"
 | `--project` | | Project Name |
 | `--environment` | | Environment Name |
 
+### Restart Container
+
+Restart a running container without redeploying it:
+
+```bash
+qovery container restart --container "my-container"
+```
+
+Restart multiple containers at once:
+
+```bash
+qovery container restart --containers "container1,container2"
+```
+
+**Flags:**
+
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--container` | `-n` | Container Name |
+| `--containers` | | Container Names (comma separated) |
+| `--watch` | `-w` | Watch container status until it's ready or an error occurs |
+| `--organization` | | Organization Name |
+| `--project` | | Project Name |
+| `--environment` | | Environment Name |
+
+<Note>
+With `--watch`, the command follows only the selected containers and exits with code 1 if one of them fails, is canceled, or no longer exists.
+</Note>
+
 ### Stop Container
 
 Stop a running container:

@@ -40,10 +40,11 @@ Deploy multiple cronjobs at once:
 qovery cronjob deploy --cronjobs "cron1,cron2"
 ```
 
-Deploy with a specific commit ID or image tag:
+Deploy with a specific commit ID or image tag. For a git-sourced cronjob, `latest` deploys the newest commit of the branch:
 
 ```bash
 qovery cronjob deploy --cronjob "my-cron" --commit-id "abc123"
+qovery cronjob deploy --cronjob "my-cron" --commit-id latest
 qovery cronjob deploy --cronjob "my-cron" --tag "v1.2.0"
 ```
 
@@ -53,7 +54,7 @@ qovery cronjob deploy --cronjob "my-cron" --tag "v1.2.0"
 |------|-------|-------------|
 | `--cronjob` | `-n` | Cronjob Name |
 | `--cronjobs` | | Cronjob Names (comma separated) |
-| `--commit-id` | `-c` | Cronjob Commit ID |
+| `--commit-id` | `-c` | Cronjob Commit ID, or `latest` for the newest commit of the branch |
 | `--tag` | `-t` | Cronjob Tag |
 | `--watch` | `-w` | Watch cronjob status until it's ready or an error occurs |
 | `--organization` | | Organization Name |

@@ -14,6 +14,7 @@ Deploy and manage applications within your Qovery environment.
 | `list` | List applications in the current environment |
 | `deploy` | Deploy an application |
 | `redeploy` | Redeploy an application |
+| `restart` | Restart an application without redeploying it |
 | `stop` | Stop a running application |
 | `cancel` | Cancel an application deployment |
 | `delete` | Delete an application |
@@ -76,6 +77,26 @@ Redeploy the same version:
 ```bash
 qovery application redeploy --application "my-api"
 ```
+
+### Restart Application
+
+Restart a running application without redeploying it:
+
+```bash
+qovery application restart --application "my-api"
+```
+
+Restart multiple applications and wait until they are restarted:
+
+```bash
+qovery application restart \
+  --applications "app1,app2" \
+  --watch
+```
+
+<Note>
+With `--watch`, the command follows only the selected applications and exits with code 1 if one of them fails, is canceled, or no longer exists.
+</Note>
 
 ### Stop Application
 
@@ -150,6 +171,12 @@ qovery application update \
 |------|-----------|-------------|
 | `--commit-id` | `-c` | Git commit ID |
 | `--watch` | `-w` | Watch application status until ready or error |
+
+### `restart` flags
+
+| Flag | Shorthand | Description |
+|------|-----------|-------------|
+| `--watch` | `-w` | Watch application status until it's ready or an error occurs |
 
 ### `stop` flags
 

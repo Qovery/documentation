@@ -5,7 +5,7 @@ description: "Shell access and command execution"
 
 ## Overview
 
-Connect to an application container and execute commands in running service instances, or open an interactive shell session.
+Connect to an application container and execute commands in running service instances, or open an interactive shell session. With `--ephemeral`, open the shell in a temporary pod or container instead.
 
 ## Usage
 
@@ -69,6 +69,65 @@ Pass the Qovery Console URL directly:
 qovery shell "https://console.qovery.com/organization/<org-id>/project/<project-id>/environment/<env-id>/application/<app-id>"
 ```
 
+### Ephemeral Shell
+
+`--ephemeral` opens the shell in a temporary pod or in a temporary container, instead of the application container. It requires Qovery CLI v1.162.1 or later. Choose where the shell runs with `--mode`:
+
+| Mode | What it does | Use it to |
+|------|--------------|-----------|
+| `clone` (default) | Creates a separate pod from the service image. It receives no traffic. | Run one-off commands or inspect the service configuration without touching the running pods |
+| `debug` | Adds a debug container to a running pod of the service. That pod keeps serving traffic. | Troubleshoot a running pod, for example an image that has no shell or tools |
+
+#### Clone mode
+
+```bash
+qovery shell --ephemeral \
+  --organization "my-org" \
+  --project "my-project" \
+  --environment "production" \
+  --service "my-api"
+```
+
+The new pod uses the same image, environment variables, secrets, volumes, service account, security context and node placement as the service. It runs `sleep infinity` instead of the service entrypoint, so your application does not start in it and the pod receives no traffic.
+
+The pod gets the same CPU and memory as the service. Use `--cpu` and `--memory` to give it more, for example for a heavy script or a data migration. Each flag sets both the request and the limit:
+
+```bash
+qovery shell --ephemeral --mode clone \
+  --memory 2Gi \
+  --cpu 1 \
+  --organization "my-org" \
+  --project "my-project" \
+  --environment "production" \
+  --service "my-api"
+```
+
+The pod is deleted when you exit the shell, and after 24 hours at most. The CLI waits up to 5 minutes for it to start.
+
+<Note>
+Clone mode works for applications and containers without persistent storage. It fails with `No deployment found for service` on services that use persistent storage.
+</Note>
+
+#### Debug mode
+
+```bash
+qovery shell --ephemeral --mode debug \
+  --organization "my-org" \
+  --project "my-project" \
+  --environment "production" \
+  --service "my-api"
+```
+
+Qovery adds a `debian:stable-slim` container to the newest running pod of the service. The container shares the process namespace of the application container, so tools like `ps` and `top` show the application processes. The CLI waits up to 2 minutes for the container to start. `--cpu` and `--memory` do not apply in this mode and are ignored.
+
+<Warning>
+Kubernetes cannot remove a debug container from a pod. The container stays in the pod until the pod is replaced, for example by the next deployment. If you open another debug shell on the same pod, Qovery reuses the existing container.
+</Warning>
+
+#### Permissions
+
+Clone mode requires the same permissions as `qovery shell`. Debug mode requires admin access to the cluster. Both are recorded in the audit logs.
+
 ## Options
 
 | Flag | Shorthand | Description |
@@ -80,6 +139,10 @@ qovery shell "https://console.qovery.com/organization/<org-id>/project/<project-
 | `--pod` | `-p` | Pod name to exec into |
 | `--container` | | Container name inside the pod |
 | `--command` | `-c` | Command to launch inside the pod (string slice, default: `sh`; can be repeated) |
+| `--ephemeral` | | Open the shell in an ephemeral pod or container instead of an existing pod |
+| `--mode` | | Ephemeral mode, used with `--ephemeral`: `clone` (default) or `debug` |
+| `--cpu` | | CPU request and limit of the clone pod, e.g. `500m` or `2` (`--mode clone` only) |
+| `--memory` | | Memory request and limit of the clone pod, e.g. `512Mi` or `2Gi` (`--mode clone` only) |
 | `--help` | | Show help |
 
 ## Examples
@@ -119,6 +182,18 @@ qovery shell \
   --environment "production" \
   --service "my-api" \
   --command "ls,-lah,/app"
+```
+
+### Run a Script Without Touching Production Pods
+
+```bash
+qovery shell --ephemeral \
+  --memory 4Gi \
+  --organization "my-org" \
+  --project "my-project" \
+  --environment "production" \
+  --service "my-api" \
+  --command "python,scripts/backfill.py"
 ```
 
 ### Debug Specific Container

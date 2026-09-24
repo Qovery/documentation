@@ -76,6 +76,35 @@ qovery database redeploy --database "my-db"
 | `--project` | | Project Name |
 | `--environment` | | Environment Name |
 
+### Restart Database
+
+Restart a running database without redeploying it:
+
+```bash
+qovery database restart --database "my-db"
+```
+
+Restart multiple databases at once:
+
+```bash
+qovery database restart --databases "db1,db2"
+```
+
+**Flags:**
+
+| Flag | Short | Description |
+|------|-------|-------------|
+| `--database` | `-n` | Database Name |
+| `--databases` | | Database Names (comma separated) |
+| `--watch` | `-w` | Watch database status until it's ready or an error occurs |
+| `--organization` | | Organization Name |
+| `--project` | | Project Name |
+| `--environment` | | Environment Name |
+
+<Note>
+With `--watch`, the command follows only the selected databases and exits with code 1 if one of them fails, is canceled, or no longer exists.
+</Note>
+
 ### Stop Database
 
 Stop a running database:
@@ -168,7 +197,7 @@ qovery database stop --database "postgres-main"
 
 # Perform maintenance...
 
-# Restart database
+# Start the database again
 qovery database deploy --database "postgres-main"
 ```
 

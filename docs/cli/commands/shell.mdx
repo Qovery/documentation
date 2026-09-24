@@ -71,12 +71,12 @@ qovery shell "https://console.qovery.com/organization/<org-id>/project/<project-
 
 ### Ephemeral Shell
 
-`--ephemeral` opens a shell without connecting to a pod that serves traffic. It requires Qovery CLI v1.162.1 or later. Choose how the shell is created with `--mode`:
+`--ephemeral` opens the shell in a temporary pod or in a temporary container, instead of the application container. It requires Qovery CLI v1.162.1 or later. Choose where the shell runs with `--mode`:
 
 | Mode | What it does | Use it to |
 |------|--------------|-----------|
-| `clone` (default) | Creates a new, separate pod from the service image | Run one-off commands or inspect the service configuration without touching the running pods |
-| `debug` | Adds a debug container to a running pod of the service | Troubleshoot a running pod, for example an image that has no shell or tools |
+| `clone` (default) | Creates a separate pod from the service image. It receives no traffic. | Run one-off commands or inspect the service configuration without touching the running pods |
+| `debug` | Adds a debug container to a running pod of the service. That pod keeps serving traffic. | Troubleshoot a running pod, for example an image that has no shell or tools |
 
 #### Clone mode
 
@@ -107,10 +107,6 @@ The pod is deleted when you exit the shell, and after 24 hours at most. The CLI 
 <Note>
 Clone mode works for applications and containers without persistent storage. It fails with `No deployment found for service` on services that use persistent storage.
 </Note>
-
-<Warning>
-If the service mounts a volume that only one pod can attach at a time, the new pod can stay pending until the 5 minutes timeout.
-</Warning>
 
 #### Debug mode
 

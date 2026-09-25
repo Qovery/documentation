@@ -57,6 +57,17 @@ qovery context set
 qovery context list
 ```
 
+## Watching Operations
+
+Most deployment commands accept the `--watch` (`-w`) flag to wait until the targeted services finish and report their final status. The command exits with a non-zero status if a watched service fails, is canceled, ends in an unexpected state, or no longer exists — useful in CI/CD pipelines.
+
+By default, a watch stops after **1 hour** and exits with an error if the services have not finished. To wait longer (for example for long builds or Terraform runs), set the `QOVERY_CLI_WATCH_TIMEOUT` environment variable to a [Go duration](https://pkg.go.dev/time#ParseDuration) such as `2h`:
+
+```bash
+export QOVERY_CLI_WATCH_TIMEOUT="2h"
+qovery environment deploy --watch
+```
+
 ## Key Features
 
 <CardGroup cols={2}>

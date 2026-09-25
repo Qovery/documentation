@@ -31,10 +31,11 @@ Deploy multiple lifecycle jobs at once:
 qovery lifecycle deploy --lifecycles "lifecycle1,lifecycle2"
 ```
 
-Deploy with a specific commit ID or image tag:
+Deploy with a specific commit ID or image tag. For a git-sourced lifecycle job, `latest` deploys the newest commit of the branch:
 
 ```bash
 qovery lifecycle deploy --lifecycle "my-lifecycle" --commit-id "abc123"
+qovery lifecycle deploy --lifecycle "my-lifecycle" --commit-id latest
 qovery lifecycle deploy --lifecycle "my-lifecycle" --tag "v1.2.0"
 ```
 
@@ -44,7 +45,7 @@ qovery lifecycle deploy --lifecycle "my-lifecycle" --tag "v1.2.0"
 |------|-------|-------------|
 | `--lifecycle` | `-n` | Lifecycle Job Name |
 | `--lifecycles` | | Lifecycle Job Names (comma separated) |
-| `--commit-id` | `-c` | Lifecycle Commit ID |
+| `--commit-id` | `-c` | Lifecycle Commit ID, or `latest` for the newest commit of the branch |
 | `--tag` | `-t` | Lifecycle Tag |
 | `--watch` | `-w` | Watch lifecycle status until it's ready or an error occurs |
 | `--organization` | | Organization Name |

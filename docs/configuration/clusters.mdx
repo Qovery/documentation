@@ -144,7 +144,7 @@ Qovery tracks cluster health using two status categories:
 | Status                                                                           | Description                               |
 | -------------------------------------------------------------------------------- | ----------------------------------------- |
 | <Icon icon="circle-check" iconType="solid" color="green" /> **Running**          | Cluster is healthy and operational        |
-| <Icon icon="triangle-exclamation" iconType="solid" color="yellow" /> **Warning** | Minor issues detected, requires attention |
+| <Icon icon="triangle-exclamation" iconType="solid" color="yellow" /> **Warning** | Minor issues detected, requires attention — for example an [AWS quota warning](#aws-quota-warnings) |
 | <Icon icon="circle-xmark" iconType="solid" color="red" /> **Error**              | Critical issues, intervention required    |
 | <Icon icon="circle" iconType="regular" color="gray" /> **Status unavailable**    | Cluster unreachable or offline            |
 
@@ -156,6 +156,17 @@ Qovery tracks cluster health using two status categories:
 | **Deploying**                 | Deployment is currently in progress               |
 | **Last Deployment Failed**    | The most recent deployment encountered errors     |
 | **Last Deployment Succeeded** | The most recent deployment completed successfully |
+
+#### AWS Quota Warnings
+
+On AWS clusters, when Karpenter cannot create new nodes because an AWS service quota has been reached, the cluster status becomes **Warning** and a yellow callout is shown on the cluster overview. The callout reports:
+
+- the **quota name** (or code) that was hit,
+- the **impacted resource**,
+- a **message** describing the issue,
+- a **suggested action** — typically requesting an AWS quota increase, then retrying or waiting for the cluster to scale again.
+
+While the warning is active, the cluster-status indicator shown next to your services (on the service overview) reads **Quota issue** instead of the generic warning label. The warning clears automatically once new nodes can be scheduled again; it may remain visible for a short time after the last occurrence.
 
 ### Performing Actions on Clusters
 
@@ -239,6 +250,16 @@ Permanently removes your cluster. You have three deletion options:
   **Security Best Practice**: Kubeconfig provides cluster-admin access. Store
   securely and never commit to version control.
 </Warning>
+
+## Deployments
+
+Each cluster has its own **Deployments** tab that lists its past deployments, most recent first — each with its status, timestamp, duration, and who or what triggered it. Select a deployment to open its logs. This is the same [deployment history](/configuration/deployment/history) available on environments and services, applied to the cluster itself.
+
+A cluster deployment run with the **Dry-run** option enabled — a checkbox in the cluster update dialog that previews the changes without applying them — is tagged with a **Dry run** badge in the list.
+
+<Info>
+Bookmarked links to the previous cluster logs URL are automatically redirected to the **Deployments** tab.
+</Info>
 
 ## Logs
 

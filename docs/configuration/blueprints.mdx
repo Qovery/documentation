@@ -196,6 +196,16 @@ The engine block defines how the resource is provisioned. Which settings you can
 For Helm blueprints, engine version, credentials, and state backend do not apply — the chart and its version are defined by the blueprint, and the resources block is ignored because the chart declares its own.
 </Info>
 
+## Editing a Blueprint Service
+
+After a blueprint service is created, you can change the inputs it was provisioned with from its **Blueprint configuration** settings page. Open the blueprint service, go to its **Settings**, and select **Blueprint configuration** to review and edit the variables and any overridable engine settings the blueprint exposes (see [Variables & Engine Reference](#variables--engine-reference)). Secret values are handled without exposing the stored secret, and the **Overrides** section is collapsed by default.
+
+Save your changes, then redeploy the service to apply them.
+
+<Info>
+The **Blueprint configuration** page is only available for blueprint-backed services. For a blueprint service, source, build, and deployment-restriction settings are not shown, since they are managed by the blueprint.
+</Info>
+
 ## Updating a Blueprint
 
 When Qovery maintains a newer version of a blueprint's template, the linked service surfaces an available update. Qovery compares your current tag to the latest catalog tag and reports exactly what changed:

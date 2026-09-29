@@ -81,7 +81,7 @@ Full hot multi-cloud DR is possible but usually justified only by strict RPO/com
 
 ## Infrastructure as Code: The GitOps Approach
 
-The most important principle for a reliable DR strategy with Qovery is to **manage everything as code**. Manual configurations create drift, are error-prone during high-pressure incidents, and are difficult to test. Qovery's [Terraform provider](/configuration/integrations/iac/terraform) enables a fully declarative, GitOps-driven DR setup.
+The most important principle for a reliable DR strategy with Qovery is to **manage everything as code**. Manual configurations create drift, are error-prone during high-pressure incidents, and are difficult to test. Qovery's [Terraform provider](/terraform-provider/overview) enables a fully declarative, GitOps-driven DR setup.
 
 ### Terraform Provider Setup
 
@@ -123,7 +123,7 @@ The key to a maintainable DR setup is proper parameterization. Every value that 
 Use **separate `.tfvars` files** for production (`prod.tfvars`) and DR (`dr.tfvars`). This prevents configuration drift and makes DR reproducible.
 
 <Info>
-**Terraform Exporter** — If your current stack is configured through the Qovery console, you can use Qovery's Terraform exporter feature to generate the corresponding Terraform code as a starting point. This saves significant time when migrating to a GitOps approach.
+**Terraform Exporter** — If your current stack is configured through the Qovery console, you can use the Qovery [Terraform exporter](/terraform-provider/exporter) to generate the corresponding Terraform code as a starting point. This saves significant time when migrating to a GitOps approach.
 </Info>
 
 ### Secrets Management
@@ -140,7 +140,7 @@ Secrets are a critical part of any DR setup. The recommended approach depends on
     Inject sensitive values from your CI secret store (e.g., GitLab CI variables, GitHub Secrets, Vault) at `terraform apply` time.
   </Step>
   <Step title="Use Qovery Secrets for runtime">
-    Use [Qovery Secrets](/configuration/environment-variable) via the Terraform provider or API for runtime secret injection into environments.
+    Use [Qovery Secrets](/configuration/environment-variables#secrets) via the Terraform provider or API for runtime secret injection into environments.
   </Step>
 </Steps>
 

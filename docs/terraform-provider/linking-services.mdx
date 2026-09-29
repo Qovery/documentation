@@ -3,7 +3,9 @@ title: "Linking Services Together"
 description: "Use environment variable aliases to connect services using Qovery's built-in variables in Terraform"
 ---
 
-When one service needs to call another, Qovery automatically generates built-in variables exposing each service's hostname. In Terraform, you expose those variables to a dependent service using `environment_variable_aliases`.
+When one service needs to call another, Qovery generates built-in variables that hold the host name of each service. In Terraform, you expose those variables to a dependent service with `environment_variable_aliases`.
+
+To connect an application to a database, see [Application with Database](/terraform-provider/application-with-database).
 
 ## How built-in variable names work
 
@@ -20,52 +22,234 @@ For example, if the application ID is `a1b2c3d4-xxxx-xxxx-xxxx-xxxxxxxxxxxx`, th
 QOVERY_APPLICATION_ZA1B2C3D4_HOST_INTERNAL
 ```
 
+Containers and Helm services follow the same pattern with `QOVERY_CONTAINER_` and `QOVERY_HELM_`. `HOST_EXTERNAL` exists only for a service with a publicly accessible port.
+
 <Info>
 Use `HOST_INTERNAL` for service-to-service communication within the same cluster. Use `HOST_EXTERNAL` only when the consumer must reach the other service from outside the cluster.
 </Info>
 
 ## Linking two services with an alias
 
-In Terraform, you can compute the built-in variable name directly from the resource ID and pass it as an alias to the dependent service:
+In Terraform, you can compute the built-in variable name from the resource ID and pass it as an alias to the dependent service. This configuration creates an environment in an existing project, deploys a backend and a frontend in it, and gives the frontend the internal host name of the backend as `BACKEND_HOST_INTERNAL`:
 
-```hcl
+```hcl main.tf
+terraform {
+  required_providers {
+    qovery = {
+      source  = "qovery/qovery"
+      version = "~> 1.0"
+    }
+  }
+}
+
+provider "qovery" {}
+
+variable "project_id" {
+  description = "ID of an existing project"
+  type        = string
+}
+
+variable "cluster_id" {
+  description = "ID of the cluster that runs the environment"
+  type        = string
+}
+
+# The configuration owns the environment: destroying qovery_deployment deletes it.
+resource "qovery_environment" "demo" {
+  project_id = var.project_id
+  cluster_id = var.cluster_id
+  name       = "demo"
+}
+
 resource "qovery_application" "backend" {
-  environment_id = qovery_environment.prod.id
+  environment_id = qovery_environment.demo.id
   name           = "backend"
-  # ...
+
+  git_repository = {
+    url    = "https://github.com/your-org/backend.git"
+    branch = "main"
+  }
+  build_mode      = "DOCKER"
+  dockerfile_path = "Dockerfile"
+
+  # Internal port only: the frontend reaches the backend inside the cluster.
+  ports = [
+    {
+      internal_port       = 8080
+      publicly_accessible = false
+    }
+  ]
+
+  healthchecks = {
+    readiness_probe = {
+      type = {
+        tcp = {
+          port = 8080
+        }
+      }
+      initial_delay_seconds = 30
+      period_seconds        = 10
+      timeout_seconds       = 5
+      success_threshold     = 1
+      failure_threshold     = 3
+    }
+  }
 }
 
 resource "qovery_application" "frontend" {
-  environment_id = qovery_environment.prod.id
+  environment_id = qovery_environment.demo.id
   name           = "frontend"
 
-  # ...
+  git_repository = {
+    url    = "https://github.com/your-org/frontend.git"
+    branch = "main"
+  }
+  build_mode      = "DOCKER"
+  dockerfile_path = "Dockerfile"
+
+  ports = [
+    {
+      internal_port       = 3000
+      external_port       = 443
+      protocol            = "HTTP"
+      publicly_accessible = true
+    }
+  ]
+
+  healthchecks = {
+    readiness_probe = {
+      type = {
+        tcp = {
+          port = 3000
+        }
+      }
+      initial_delay_seconds = 30
+      period_seconds        = 10
+      timeout_seconds       = 5
+      success_threshold     = 1
+      failure_threshold     = 3
+    }
+  }
 
   environment_variable_aliases = [
     {
       key   = "BACKEND_HOST_INTERNAL"
-      value = "QOVERY_APPLICATION_Z${upper(element(split("-", qovery_application.backend.id), 0))}_HOST_INTERNAL"
+      value = "QOVERY_APPLICATION_Z${upper(split("-", qovery_application.backend.id)[0])}_HOST_INTERNAL"
     }
+  ]
+}
+
+# Creating the services does not deploy them: this resource deploys the environment.
+resource "qovery_deployment" "environment" {
+  environment_id = qovery_environment.demo.id
+  desired_state  = "RUNNING"
+
+  depends_on = [
+    qovery_application.backend,
+    qovery_application.frontend,
   ]
 }
 ```
 
-The expression `upper(element(split("-", qovery_application.backend.id), 0))` splits the UUID on `-`, takes the first segment, and uppercases it — matching the name Qovery generates for that service.
+The expression `upper(split("-", qovery_application.backend.id)[0])` splits the UUID on `-`, takes the first segment, and uppercases it, which matches the name Qovery generates for that service. The frontend then calls the backend at `http://$BACKEND_HOST_INTERNAL:8080`.
+
+Referencing `qovery_application.backend.id` also makes Terraform create the backend first, so the built-in variable exists when Terraform creates the alias.
 
 ## Cleaner approach: helper outputs in a module
 
-If you wrap `qovery_application` in a reusable Terraform module, expose the built-in variable name as an output. This avoids repeating the string manipulation everywhere the module is used.
+If you wrap `qovery_application` in a reusable Terraform module, expose the built-in variable name as an output. This avoids repeating the string manipulation everywhere the module is used. The module takes the aliases of the service as an input.
+
+**modules/application/main.tf**
+
+```hcl
+terraform {
+  required_providers {
+    qovery = {
+      source  = "qovery/qovery"
+      version = "~> 1.0"
+    }
+  }
+}
+
+resource "qovery_application" "app" {
+  environment_id = var.environment_id
+  name           = var.name
+
+  git_repository = {
+    url    = var.git_url
+    branch = "main"
+  }
+  build_mode      = "DOCKER"
+  dockerfile_path = "Dockerfile"
+
+  ports = [
+    {
+      internal_port       = var.port
+      external_port       = 443
+      protocol            = "HTTP"
+      publicly_accessible = true
+    }
+  ]
+
+  healthchecks = {
+    readiness_probe = {
+      type = {
+        tcp = {
+          port = var.port
+        }
+      }
+      initial_delay_seconds = 30
+      period_seconds        = 10
+      timeout_seconds       = 5
+      success_threshold     = 1
+      failure_threshold     = 3
+    }
+  }
+
+  environment_variable_aliases = var.env_var_aliases
+}
+```
+
+**modules/application/variables.tf**
+
+```hcl
+variable "environment_id" {
+  type = string
+}
+
+variable "name" {
+  type = string
+}
+
+variable "git_url" {
+  type = string
+}
+
+variable "port" {
+  type    = number
+  default = 8080
+}
+
+variable "env_var_aliases" {
+  description = "Aliases of the service: key is the name of the alias, value is the name of the aliased variable"
+  type = list(object({
+    key   = string
+    value = string
+  }))
+  default = []
+}
+```
 
 **modules/application/outputs.tf**
 
 ```hcl
 output "internal_host_envvar" {
-  value       = "QOVERY_APPLICATION_Z${upper(element(split("-", qovery_application.app.id), 0))}_HOST_INTERNAL"
+  value       = "QOVERY_APPLICATION_Z${upper(split("-", qovery_application.app.id)[0])}_HOST_INTERNAL"
   description = "Built-in variable name for this service's internal hostname"
 }
 
 output "external_host_envvar" {
-  value       = "QOVERY_APPLICATION_Z${upper(element(split("-", qovery_application.app.id), 0))}_HOST_EXTERNAL"
+  value       = "QOVERY_APPLICATION_Z${upper(split("-", qovery_application.app.id)[0])}_HOST_EXTERNAL"
   description = "Built-in variable name for this service's external hostname"
 }
 ```
@@ -73,17 +257,44 @@ output "external_host_envvar" {
 **main.tf**
 
 ```hcl
+terraform {
+  required_providers {
+    qovery = {
+      source  = "qovery/qovery"
+      version = "~> 1.0"
+    }
+  }
+}
+
+provider "qovery" {}
+
+variable "project_id" {
+  type = string
+}
+
+variable "cluster_id" {
+  type = string
+}
+
+resource "qovery_environment" "demo" {
+  project_id = var.project_id
+  cluster_id = var.cluster_id
+  name       = "demo"
+}
+
 module "backend" {
   source         = "./modules/application"
-  environment_id = qovery_environment.prod.id
+  environment_id = qovery_environment.demo.id
   name           = "backend"
-  # ...
+  git_url        = "https://github.com/your-org/backend.git"
 }
 
 module "frontend" {
   source         = "./modules/application"
-  environment_id = qovery_environment.prod.id
+  environment_id = qovery_environment.demo.id
   name           = "frontend"
+  git_url        = "https://github.com/your-org/frontend.git"
+  port           = 3000
 
   env_var_aliases = [
     {
@@ -92,7 +303,16 @@ module "frontend" {
     }
   ]
 }
+
+resource "qovery_deployment" "environment" {
+  environment_id = qovery_environment.demo.id
+  desired_state  = "RUNNING"
+
+  depends_on = [module.backend, module.frontend]
+}
 ```
+
+A module that uses the Qovery provider declares it in its own `required_providers` block. Otherwise Terraform looks for a `hashicorp/qovery` provider.
 
 This keeps the string manipulation in one place and makes service dependencies explicit and readable across your whole Terraform codebase.
 
@@ -100,18 +320,18 @@ This keeps the string manipulation in one place and makes service dependencies e
 
 <CardGroup cols={2}>
   <Card title="Application with Database" icon="database" href="/terraform-provider/application-with-database">
-    Connect an application to a managed database
+    Connect an application to a database
   </Card>
 
   <Card title="Advanced Patterns" icon="code" href="/terraform-provider/advanced-patterns">
     Reusable modules and workspace management
   </Card>
 
-  <Card title="Environment Variables" icon="key" href="/configuration/environment-variable">
-    Built-in variables reference
+  <Card title="Environment Variables" icon="key" href="/configuration/environment-variables#aliases">
+    Built-in variables and aliases
   </Card>
 
-  <Card title="Provider Reference" icon="book" href="https://registry.terraform.io/providers/Qovery/qovery/latest/docs">
+  <Card title="Provider Reference" icon="book" href="https://registry.terraform.io/providers/qovery/qovery/latest/docs">
     Full Terraform provider documentation
   </Card>
 </CardGroup>

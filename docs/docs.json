@@ -550,7 +550,6 @@
               "cli/commands/log",
               "cli/commands/port-forward",
               "cli/commands/project",
-              "cli/commands/rde",
               "cli/commands/service",
               "cli/commands/shell",
               "cli/commands/status",

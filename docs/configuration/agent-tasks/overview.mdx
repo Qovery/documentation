@@ -25,9 +25,9 @@ Agent Tasks are one-time or scheduled jobs delegated to AI agents, running on yo
     Connect a Qovery service, a Git repository, or both, for the agent to load as context. A Qovery service's linked Git repository is included automatically, no need to add it separately, connect a repository on its own only when it isn't tied to a Qovery service.
   </Step>
   <Step title="Choose a Provider and Model">
-    Pick **Claude** (Anthropic) or **AWS Bedrock**, then select an existing token or create a new one on the fly. A token created here is saved and can be reused by any other agent task in the organization, no need to re-enter credentials each time. Tokens can also be managed centrally from **Organization Settings > Agent > Token**.
+    Pick **Claude** (Anthropic) or **AWS Bedrock**, then select an existing token or create a new one on the fly. A token created here is saved and can be reused by any other agent task in the organization, no need to re-enter credentials each time. Tokens can also be managed centrally from **Organization Settings > Agent > Token**. When you create an AWS Bedrock token, also select its **AWS region** (`eu-west-1` by default).
 
-    Once a token is selected, pick the **Model** the agent runs on from the list of models available to that token. The first available model is selected by default. For AWS Bedrock, the models offered depend on the token's AWS region. You can change the model later from the agent task's **Settings > AI configuration**.
+    Once a token is selected, pick the **Model** the agent runs on from the list of models available to that token. The first available model is selected by default. For AWS Bedrock, the models offered depend on the token's AWS region. If the models can't be loaded, check the token's API key (Claude) or its AWS credentials and region (AWS Bedrock). Use **Edit token** next to the token selector to update the selected token. You can change the model later from the agent task's **Settings > AI configuration**.
   </Step>
   <Step title="Add MCP Servers (Optional)">
     If you added a Qovery service as Context in the previous step, Qovery's own MCP server is created and selected automatically: organization-scoped, read-only, backed by a Viewer API token. No URL, header, or token to configure. This is also preconfigured for the Incident Analyzer (incident.io and Honeybadger) and Build & deployment optimizer templates.
@@ -132,6 +132,8 @@ Some agents use a different, more direct pattern instead: storing a chat webhook
     A Dockerfile fragment lets you install additional CLIs or binaries in the agent's runtime before it starts.
   </Accordion>
 </AccordionGroup>
+
+On an existing agent task, the **Connections**, **Automations**, and **Outputs** settings, and the Dockerfile fragment under **Advanced settings**, are edited in a modal or side panel and saved from there with **Save**. These pages have no page-level save button. If saving fails, the modal or side panel stays open and shows an error.
 
 ## After You Create It
 

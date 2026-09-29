@@ -109,6 +109,8 @@ Using tags like `latest` or other mutable tags can cause serious issues because 
 
 ## Disabling Mirroring
 
+### Push Images to the Mirroring Registry
+
 To skip mirroring operations, you can push your built images directly into the mirroring registry within repositories that match your image names.
 
 Alternatively, if the source registry URL matches the cluster registry URL, mirroring is automatically skipped.
@@ -118,6 +120,75 @@ Alternatively, if the source registry URL matches the cluster registry URL, mirr
 For an image `nginx` with cluster registry `https://32432542.dkr.ecr.eu-west-3.amazonaws.com`:
 
 Push to: `https://32432542.dkr.ecr.eu-west-3.amazonaws.com/nginx`
+
+<a id="disable-mirroring-on-scaleway-kapsule"></a>
+
+### Disable Mirroring on Scaleway Kapsule
+
+On Scaleway Kapsule clusters, you can turn mirroring off so that pods pull images directly from the registry they are stored in. Images are no longer copied into the cluster's Scaleway Container Registry, and deployments no longer depend on it being available.
+
+This applies to **containers** and **jobs** that deploy an image from a container registry. Applications and jobs built from Git are not affected: Qovery keeps pushing the images it builds to the cluster's Scaleway Container Registry.
+
+#### Requirements
+
+- A **Scaleway Kapsule** cluster managed by Qovery. The setting is rejected on other cluster types.
+- The image's registry is declared in your organization's [container registries](/configuration/organization/container-registry). For a private registry, its credentials must be able to **read** the image; public registries work without credentials. Qovery only pulls from the registry; it never pushes to it or deletes from it. For GitHub Container Registry, a token with the `read:packages` scope is enough (see [GitHub Container Registry](/configuration/integrations/container-registries/github-cr)).
+- The registry uses long-lived credentials and an `https://` URL without a path. The table below lists which registries are pulled directly.
+
+| Registry | With mirroring disabled |
+|----------|-------------------------|
+| GitHub Container Registry, GitHub Enterprise, GitLab | Pulled directly |
+| Generic registry | Pulled directly when its URL is `https://` without a path |
+| Docker Hub with your own credentials | Pulled directly |
+| Docker Hub without credentials | Still mirrored when Qovery pulls it with its own Docker Hub account; otherwise pulled directly and anonymously |
+| Scaleway Container Registry, DigitalOcean Container Registry | Pulled directly. A Scaleway registry on the same host as the cluster registry (same region) is pulled with the cluster registry's credentials, as before |
+| Amazon ECR Public | Pulled directly (anonymous) |
+| Amazon ECR (private), Azure Container Registry, GCP Artifact Registry | Still mirrored: their credentials are temporary, or their URL contains a path |
+
+Images that are still mirrored follow the [Service Mode](#service-mode-default) behavior, and the deployment logs say why.
+
+#### Steps
+
+<Steps>
+  <Step title="Declare the registry in your organization">
+    Add the registry your images are stored in to your organization, with credentials that can read the images. See [Container Registry](/configuration/organization/container-registry). Skip this step if your services already deploy from it.
+  </Step>
+
+  <Step title="Set the mirroring mode to Disabled">
+    In the cluster's **Settings** > **Advanced Settings**, set [`registry.mirroring_mode`](/configuration/cluster-advanced-settings#registry-mirroring-mode) to `Disabled` and save.
+
+    With Terraform, set it in `advanced_settings_json` on the `qovery_cluster` resource:
+
+    ```hcl
+    advanced_settings_json = jsonencode({
+      "registry.mirroring_mode" = "Disabled"
+    })
+    ```
+  </Step>
+
+  <Step title="Redeploy your services">
+    Each container and job switches on its next deployment. Redeploying the cluster is not needed for this setting. Running pods keep their current image until their service is redeployed.
+  </Step>
+</Steps>
+
+#### What Changes
+
+- Pods run the image from its original registry (for example `ghcr.io/my-org/my-app:1.2.3`), with a pull secret built from the credentials of that registry in Qovery.
+- Before starting the pods, the deployment logs in to the registry and checks that the image exists:
+  - Invalid credentials fail the deployment with `Failed to login to registry`.
+  - A missing tag, or an image the credentials cannot read, fails the deployment with `SOURCE_IMAGE_NOT_FOUND`.
+  - If the registry cannot be reached at that moment (network error, rate limit, outage), the deployment continues with a warning and Kubernetes retries the pull.
+- The deployment logs show `Skipping image mirroring: mirroring is disabled on the cluster, pods pull <image> directly`.
+
+#### Things to Know
+
+<Warning>
+Your pods depend on the source registry being available whenever Kubernetes pulls an image: on deployment, on restart, when scaling up, and when a node is replaced. If a tag is deleted from the source registry, pods using it can no longer restart.
+</Warning>
+
+- **Docker Hub rate limits:** each node pulls from Docker Hub with the registry's credentials, and anonymous pulls are limited per IP address. Add your Docker Hub credentials to the registry to pull directly with your own account. Without them, images are mirrored with Qovery's Docker Hub account when one is available, and pulled anonymously otherwise.
+- **Unique image tags** remain required. See [Use Unique Image Tags](#important-use-unique-image-tags).
+- **Switching back:** set `registry.mirroring_mode` to `Service` and redeploy your services. The `qovery-mirror-*` repositories stay in the Scaleway Container Registry, but a service's previously mirrored tag is deleted on its first deployment with mirroring disabled, so switching back mirrors the images again.
 
 ## Image Retention Policy
 

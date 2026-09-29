@@ -82,24 +82,27 @@ curl -X PATCH "https://api.qovery.com/cluster/{cluster_id}/advancedSettings" \
 
 ### Via Terraform
 
-Use the Qovery Terraform Provider to manage cluster advanced settings as code:
+Use the [Qovery Terraform Provider](/terraform-provider/overview) to manage cluster advanced settings as code, with the `advanced_settings_json` attribute of the `qovery_cluster` resource:
 
 ```hcl
 resource "qovery_cluster" "my_cluster" {
-  name                = "production-cluster"
-  organization_id     = var.organization_id
-  cloud_provider      = "AWS"
-  region              = "us-east-1"
+  organization_id = var.organization_id
+  credentials_id  = var.aws_credentials_id
+  name            = "production-cluster"
+  cloud_provider  = "AWS"
+  region          = "us-east-1"
 
   advanced_settings_json = jsonencode({
-    "loki.log_retention_in_week" = 24
-    "nginx.hpa.min_number_instances" = 3
-    "nginx.controller.enable_client_ip" = true
+    "loki.log_retention_in_week"          = 24
+    "nginx.hpa.min_number_instances"      = 3
+    "nginx.controller.enable_client_ip"   = true
     "database.postgresql.deny_any_access" = false
-    "database.postgresql.allowed_cidrs" = ["10.0.0.0/16"]
+    "database.postgresql.allowed_cidrs"   = ["10.0.0.0/16"]
   })
 }
 ```
+
+Only list the settings you override. Removing a key from `advanced_settings_json` does not reset the setting: set it to its default value instead.
 
 ---
 

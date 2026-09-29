@@ -1,155 +1,161 @@
 ---
 title: "Basic Application"
-description: "Deploy a containerized application with Terraform"
+description: "Deploy an application built from a git repository with Terraform"
 ---
 
-## Overview
-
-This example shows how to deploy a simple containerized application using the Qovery Terraform provider.
+This example creates a project, an environment and an application built from the Dockerfile of a public git repository, then deploys the environment on an existing cluster.
 
 ## Prerequisites
 
-- Terraform installed
-- Qovery API token
-- Existing organization, project, and cluster in Qovery
+- The provider set up as described in the [overview](/terraform-provider/overview), with the `QOVERY_API_TOKEN` environment variable set.
+- The ID of your organization and the ID of an existing cluster. See [Find resource IDs](/terraform-provider/overview#find-resource-ids).
 
 ## Configuration
 
-```hcl
+```hcl variables.tf
+variable "organization_id" {
+  description = "ID of the Qovery organization"
+  type        = string
+}
+
+variable "cluster_id" {
+  description = "ID of the cluster that runs the environment"
+  type        = string
+}
+```
+
+```hcl main.tf
 terraform {
   required_providers {
     qovery = {
       source  = "qovery/qovery"
-      version = "~> 0.48.2"
+      version = "~> 1.0"
     }
   }
 }
 
-provider "qovery" {
-  token = var.qovery_api_token
+provider "qovery" {}
+
+resource "qovery_project" "demo" {
+  organization_id = var.organization_id
+  name            = "demo"
 }
 
-# Look up existing resources
-data "qovery_organization" "my_org" {
-  name = "My Organization"
-}
-
-data "qovery_project" "my_project" {
-  organization_id = data.qovery_organization.my_org.id
-  name            = "My Project"
-}
-
-data "qovery_cluster" "my_cluster" {
-  organization_id = data.qovery_organization.my_org.id
-  name            = "production"
-}
-
-# Create an environment
 resource "qovery_environment" "production" {
-  project_id = data.qovery_project.my_project.id
-  cluster_id = data.qovery_cluster.my_cluster.id
+  project_id = qovery_project.demo.id
+  cluster_id = var.cluster_id
   name       = "production"
   mode       = "PRODUCTION"
 }
 
-# Deploy an application
 resource "qovery_application" "api" {
   environment_id = qovery_environment.production.id
   name           = "api"
 
   git_repository = {
-    url    = "https://github.com/your-org/your-app"
+    url    = "https://github.com/your-org/your-app.git"
     branch = "main"
   }
-
   build_mode      = "DOCKER"
   dockerfile_path = "Dockerfile"
 
-  cpu    = 500
-  memory = 512
+  cpu                   = 500
+  memory                = 512
+  min_running_instances = 1
+  max_running_instances = 1
 
-  ports = [{
-    internal_port       = 8080
-    external_port       = 443
-    protocol            = "HTTP"
-    publicly_accessible = true
-  }]
+  ports = [
+    {
+      internal_port       = 8080
+      external_port       = 443
+      protocol            = "HTTP"
+      publicly_accessible = true
+    }
+  ]
 
-  auto_deploy = true
+  healthchecks = {
+    readiness_probe = {
+      type = {
+        http = {
+          port   = 8080
+          path   = "/"
+          scheme = "HTTP"
+        }
+      }
+      initial_delay_seconds = 30
+      period_seconds        = 10
+      timeout_seconds       = 5
+      success_threshold     = 1
+      failure_threshold     = 3
+    }
+    liveness_probe = {
+      type = {
+        tcp = {
+          port = 8080
+        }
+      }
+      initial_delay_seconds = 30
+      period_seconds        = 10
+      timeout_seconds       = 5
+      success_threshold     = 1
+      failure_threshold     = 3
+    }
+  }
 }
-```
 
-## Variables
+# Creating a service does not deploy it: this resource deploys the environment.
+resource "qovery_deployment" "production" {
+  environment_id = qovery_environment.production.id
+  desired_state  = "RUNNING"
 
-Create a `variables.tf` file:
-
-```hcl
-variable "qovery_api_token" {
-  description = "Qovery API token"
-  type        = string
-  sensitive   = true
-}
-```
-
-## Deployment
-
-```bash
-# Initialize Terraform
-terraform init
-
-# Set your API token
-export TF_VAR_qovery_api_token="your-api-token"
-
-# Plan changes
-terraform plan
-
-# Apply configuration
-terraform apply
-```
-
-## Outputs
-
-Add outputs to track deployed resources:
-
-```hcl
-output "application_id" {
-  value       = qovery_application.api.id
-  description = "Application ID"
+  depends_on = [qovery_application.api]
 }
 
 output "application_url" {
-  value       = qovery_application.api.external_host
-  description = "Application URL"
-}
-
-output "environment_id" {
-  value       = qovery_environment.production.id
-  description = "Environment ID"
+  value = "https://${qovery_application.api.external_host}"
 }
 ```
 
-## Cleanup
+About this configuration:
+
+- `healthchecks` is required. Set the probe ports and path to what your application serves. An HTTP probe requires `scheme`.
+- `auto_deploy` is `true` by default: Qovery redeploys the application on each new commit to `main`.
+- Changing the application in the configuration updates it in Qovery but does not redeploy it. To redeploy on the next `terraform apply`, set `version` on `qovery_deployment` to a new UUID, or deploy from the Console.
+
+## Deploy
+
+```bash
+export TF_VAR_organization_id="<organization_id>"
+export TF_VAR_cluster_id="<cluster_id>"
+
+terraform init
+terraform plan
+terraform apply
+```
+
+`terraform apply` waits for the deployment to finish, then prints the application URL.
+
+## Clean up
 
 ```bash
 terraform destroy
 ```
 
-## Next Steps
+This deletes the application, the environment and the project.
+
+## Next steps
 
 <CardGroup cols={2}>
   <Card title="Application with Database" icon="database" href="/terraform-provider/application-with-database">
-    Add a database to your application
+    Connect the application to a database
   </Card>
-
   <Card title="Multi-Environment Setup" icon="layer-group" href="/terraform-provider/multi-environment">
-    Deploy to multiple environments
+    Deploy the same stack to several environments
   </Card>
-
-  <Card title="Provider Documentation" icon="book" href="https://registry.terraform.io/providers/Qovery/qovery/latest/docs">
-    Complete provider reference
+  <Card title="qovery_application reference" icon="book-open" href="https://registry.terraform.io/providers/qovery/qovery/latest/docs/resources/application">
+    Every attribute of the application resource
   </Card>
-
-  <Card title="Terraform Provider" icon="code" href="/terraform-provider/overview">
-    Back to overview
+  <Card title="qovery_deployment reference" icon="book-open" href="https://registry.terraform.io/providers/qovery/qovery/latest/docs/resources/deployment">
+    Deploy, stop or restart an environment
   </Card>
 </CardGroup>

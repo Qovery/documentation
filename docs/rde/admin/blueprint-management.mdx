@@ -222,38 +222,44 @@ Since blueprints are standard Qovery projects and environments, you can define a
 
 ### Example: Blueprint with the Official Workspace Template
 
+The example takes the IDs of your organization, of the target cluster and of a [container registry](/configuration/organization/container-registry) connected to `https://ghcr.io` as input variables. See [Find resource IDs](/terraform-provider/overview#find-resource-ids).
+
 ```hcl
 terraform {
   required_providers {
     qovery = {
       source  = "qovery/qovery"
+      version = "~> 1.0"
     }
   }
 }
 
-provider "qovery" {
-  token = var.qovery_api_token
+# Reads the API token from the QOVERY_API_TOKEN environment variable.
+provider "qovery" {}
+
+variable "organization_id" {
+  type = string
 }
 
-data "qovery_organization" "my_org" {
-  name = "My Organization"
+variable "cluster_id" {
+  type = string
 }
 
-data "qovery_cluster" "my_cluster" {
-  organization_id = data.qovery_organization.my_org.id
-  name            = "production"
+variable "ghcr_registry_id" {
+  description = "ID of a container registry connected to https://ghcr.io"
+  type        = string
 }
 
 # Create a project for the blueprint
 resource "qovery_project" "blueprint" {
-  organization_id = data.qovery_organization.my_org.id
+  organization_id = var.organization_id
   name            = "rde-blueprint-fullstack"
 }
 
 # Create the blueprint environment
 resource "qovery_environment" "blueprint" {
   project_id = qovery_project.blueprint.id
-  cluster_id = data.qovery_cluster.my_cluster.id
+  cluster_id = var.cluster_id
   name       = "blueprint"
   mode       = "DEVELOPMENT"
 }
@@ -262,11 +268,27 @@ resource "qovery_environment" "blueprint" {
 resource "qovery_container" "workspace" {
   environment_id = qovery_environment.blueprint.id
   name           = "workspace"
-  image_name     = "ghcr.io/evoxmusic/remote-dev-env-template"
+  registry_id    = var.ghcr_registry_id
+  image_name     = "evoxmusic/remote-dev-env-template"
   tag            = "latest"
   cpu            = 2000
   memory         = 4096
   auto_deploy    = false
+
+  healthchecks = {
+    readiness_probe = {
+      type = {
+        tcp = {
+          port = 8080
+        }
+      }
+      initial_delay_seconds = 30
+      period_seconds        = 10
+      timeout_seconds       = 5
+      success_threshold     = 1
+      failure_threshold     = 3
+    }
+  }
 
   ports = [
     {

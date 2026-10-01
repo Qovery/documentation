@@ -22,7 +22,7 @@ Agent Tasks let you delegate a job, investigating an incident, optimizing a buil
     Scoped access via Policy API tokens, network boundaries from a domain allowlist controlling exactly what it can reach, resource limits, and execution timeouts, the same governance model as any other Qovery service.
   </Card>
   <Card title="Full Audit Trail" icon="list-check">
-    Every run shows up under the agent task's Deployments tab, with logs, like any other deployment.
+    Every run is listed under the agent task's Runs tab with its trigger, status, payload, and prompt, and shows up under its Deployments tab, with logs, like any other deployment.
   </Card>
   <Card title="Isolated by Design" icon="clone">
     Clone Environment mode gives a run its own throwaway copy of the environment, so an agent investigating an incident or proposing a code change can't interfere with what's actually running in production.
@@ -37,7 +37,7 @@ Agent Tasks let you delegate a job, investigating an incident, optimizing a buil
 
 ## Use Cases
 
-Today there are a few ready-made agent configurations, or you can start from scratch and configure every part yourself. Don't hesitate to reach out to us directly in the product if you have a specific need so we can add it.
+Today there are a few ready-made agent configurations, listed in the [template catalog](/configuration/agent-tasks/overview#ready-made-templates) of your environment's **Automations** tab, or you can create an agent task from scratch and configure every part yourself. Don't hesitate to reach out to us directly in the product if you have a specific need so we can add it.
 
 <CardGroup cols={2}>
   <Card title="Incident Analyzer with incident.io" icon="/images/logos/incident-io-icon.svg" href="/configuration/agent-tasks/incident-analyser">
@@ -55,7 +55,7 @@ Today there are a few ready-made agent configurations, or you can start from scr
   <Card title="Linear Coding Agent" icon="/images/logos/linear-icon.svg" href="/configuration/agent-tasks/linear-coding-agent">
     Picks up a Linear issue and proposes the corresponding code change as a pull request.
   </Card>
-  <Card title="Start from Scratch" icon="plus" href="/configuration/agent-tasks/overview">
+  <Card title="Create from Scratch" icon="plus" href="/configuration/agent-tasks/overview">
     Configure every part of the agent yourself. Also the full configuration reference: creating an agent, execution mode, triggers and outputs, resources, governance, and environment variables.
   </Card>
 </CardGroup>

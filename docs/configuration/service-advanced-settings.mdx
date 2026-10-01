@@ -43,6 +43,23 @@ Use the **Show only overridden** toggle to view only settings that differ from d
 
 ## Build Settings
 
+For Applications, Cronjobs, Lifecycle jobs, and Terraform services, the `build.*` settings are not listed in **Advanced settings** in the Qovery Console. Edit them from the dedicated **Build settings** page, available in the service **Settings** just before **Advanced settings**.
+
+| Field in the Console | Setting |
+|----------------------|---------|
+| Timeout (seconds) | [`build.timeout_max_sec`](#build-timeout-max-sec) |
+| CPU (millicores) | [`build.cpu_max_in_milli`](#build-cpu-max-in-milli) |
+| RAM (GiB) | [`build.ram_max_in_gib`](#build-ram-max-in-gib) |
+| Ephemeral storage (GiB) | [`build.ephemeral_storage_in_gib`](#build-ephemeral-storage-in-gib) |
+| Disable BuildKit cache | [`build.disable_buildkit_cache`](#build-disable-buildkit-cache) |
+| Skip Git submodules | [`build.skip_git_submodules`](#build-skip-git-submodules) |
+
+The placeholder of each numeric field shows the default value. The **Disable BuildKit cache** toggle is not displayed for Terraform services.
+
+<Info>
+If build settings customization is not available for your organization, the fields are read-only and the page displays a message with a **Contact support** button.
+</Info>
+
 <a id="build-timeout-max-sec"></a>
 
 ### build.timeout_max_sec

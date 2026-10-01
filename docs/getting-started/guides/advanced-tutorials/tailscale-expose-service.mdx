@@ -109,7 +109,7 @@ operatorConfig:
 Qovery replaces each `qovery.env.*` reference at deploy time, so the secret never appears in the Qovery UI or in the override. The chart then stores it in a Kubernetes `Secret` in the operator's namespace.
 
 <Tip>
-Variable names are case-sensitive. If a name does not match a variable on the Helm service, Qovery passes the literal string `qovery.env.TS_OAUTH_CLIENT_ID` to the chart and the operator fails to authenticate. Built-in variables such as `QOVERY_KUBERNETES_CLUSTER_NAME` cannot be referenced directly; create an alias variable and reference the alias.
+Variable names are case-sensitive. If a `qovery.env.*` reference does not match a variable available to the Helm service, the deployment fails with `Invalid variable, specified "qovery.env.TS_OAUTH_CLIENT_ID" variable does not exist`. Define the variable on the Helm service before deploying. Built-in variables whose name contains a service ID, such as `QOVERY_HELM_Z<ID>_ENVIRONMENT_NAME`, are rejected because a clone would break them; create an alias variable and reference the alias.
 </Tip>
 
 ![The Qovery Service variables tab listing TS_OAUTH_CLIENT_ID and TS_OAUTH_CLIENT_SECRET, the secret value masked](/images/tailscale/tailscale-qovery-service-variables.webp)
@@ -271,6 +271,33 @@ The operator creates an egress proxy and points the `Service` at it. Application
 
 The egress proxy is a tailnet device tagged `tag:k8s`, so the policy must also allow `tag:k8s` to reach the target machine on the ports you need.
 
+To reuse the same Git chart on every cluster, template the per-cluster fields and set them in the Helm service's **Value override as arguments**, as in the screenshot below. Default the egress `Service` to disabled in `values.yaml`:
+
+```yaml
+egress:
+  enabled: false
+  name: legacy-db
+  tailnetFqdn: ""
+```
+
+Then wrap the template in a condition:
+
+```yaml
+{{- if .Values.egress.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.egress.name }}
+  annotations:
+    tailscale.com/tailnet-fqdn: {{ .Values.egress.tailnetFqdn }}
+spec:
+  type: ExternalName
+  externalName: placeholder
+{{- end }}
+```
+
+Set `egress.enabled` to `true`, `egress.name` to EGRESS_SERVICE_NAME and `egress.tailnetFqdn` to TAILNET_MACHINE.TAILNET_NAME.ts.net as arguments on the Helm service.
+
 ![The Qovery Value override as arguments screen for the second Helm service, setting egress.enabled, egress.name and egress.tailnetFqdn](/images/tailscale/tailscale-qovery-egress-values-override.webp)
 
 ![The Tailscale Machines screen listing seven machines, including a subnet router tagged tag:k8s with a Subnets badge, the operator, and an exposed service proxy](/images/tailscale/tailscale-qovery-subnet-router-machines.webp)
@@ -279,7 +306,8 @@ The egress proxy is a tailnet device tagged `tag:k8s`, so the policy must also a
 
 | Symptom | Check |
 | :---- | :---- |
-| Operator pod crash-loops with an auth error | The OAuth client has `write` on all three scopes and the `tag:k8s-operator` tag. Variable names in the override match the Qovery variables exactly, otherwise the chart receives the literal `qovery.env.*` string |
+| Deployment fails with `Invalid variable, specified "qovery.env.*" variable does not exist` | The variable is defined on the Helm service and its name matches the override exactly, including case |
+| Operator pod crash-loops with an auth error | The OAuth client has `write` on all three scopes and the `tag:k8s-operator` tag |
 | `requested tags [tag:k8s] are invalid or not permitted` | `tagOwners` contains `"tag:k8s": ["tag:k8s-operator"]` |
 | Annotation group attached, but no proxy appears | The group scope is **Services**, the application declares a port, and the application was redeployed after the group was attached |
 | Device visible, connection times out | A grant allows your user or group to `tag:k8s` (or the per-service tag) on the right port |

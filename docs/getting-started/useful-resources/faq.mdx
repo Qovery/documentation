@@ -9,7 +9,7 @@ description: "Frequently Asked Questions"
   </Accordion>
 
   <Accordion title="How does Qovery manage databases?">
-    Qovery provides `managed` and `container` modes for your databases. Basically, `managed` mode relies on the managed database provided by the cloud provider. E.g. if you choose `Postgres` with the `managed` mode while your environment is running on AWS, then Qovery provides an [AWS RDS](https://aws.amazon.com/rds) instance. Please check out our [database section](/configuration/database) for further details.
+    Databases created from the Console run in `container` mode, directly on your Kubernetes cluster. They are well suited for development and testing. For production, provision a cloud provider managed database with a [Blueprint](/configuration/blueprints): e.g. on AWS, the **Amazon RDS for PostgreSQL** blueprint provides an [AWS RDS](https://aws.amazon.com/rds) instance. Existing databases in `managed` mode keep working. Please check out our [database section](/configuration/database) for further details.
   </Accordion>
 
   <Accordion title="Does Qovery replace Kubernetes?">

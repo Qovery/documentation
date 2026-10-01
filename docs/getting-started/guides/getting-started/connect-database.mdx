@@ -13,7 +13,7 @@ This guide shows you how to create a database in your environment and connect it
 
 ## Supported Databases
 
-Qovery supports the following managed databases on AWS:
+Qovery supports the following databases, deployed as containers on your cluster:
 
 <CardGroup cols={2}>
   <Card title="PostgreSQL" icon="database">
@@ -49,15 +49,14 @@ Qovery supports the following managed databases on AWS:
     - **Database Type**: PostgreSQL, MySQL, MongoDB, or Redis
     - **Name**: Give your database a name
     - **Version**: Choose the database version
-    - **Mode**: Managed (uses AWS managed services like RDS, DocumentDB, and ElastiCache)
   </Step>
 
   <Step title="Configure Resources">
     Set the resource allocation for your database:
 
-    - **Instance Type**: Select from available AWS instance types
-    - **Storage Size**: Configure storage capacity based on your needs
-    - **Storage Type**: Choose storage performance tier (e.g., gp3, io1)
+    - **vCPU**: CPU assigned to the database container
+    - **Memory**: RAM assigned to the database container
+    - **Storage**: Size of the persistent storage attached to the database
   </Step>
 
   <Step title="Create and Deploy">
@@ -103,16 +102,12 @@ The exact variable names are always visible in the **Variables** tab of any serv
 
 ### Backups
 
-Backups are handled automatically by AWS managed database services (RDS, DocumentDB, ElastiCache).
+Databases created this way run as containers and have no automated backups or snapshots. For production, provision a cloud provider managed database (RDS, ElastiCache…) with a [Blueprint](/configuration/blueprints), which relies on the cloud provider's backup features.
 
 ## Best Practices
 
 <Tip>
-Choose the appropriate AWS instance type based on your workload. Start with smaller instances and scale up as needed.
-</Tip>
-
-<Tip>
-Enable automated backups and set an appropriate retention period for your use case.
+Start with small CPU and memory values and scale up as needed. For production workloads, use a [Blueprint](/configuration/blueprints) to provision a managed database.
 </Tip>
 
 <Warning>

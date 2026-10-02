@@ -1490,7 +1490,7 @@ Setting `ndots=2` reduces this to **1 DNS query** since the hostname already has
 **Use Case:** Use a positive value to fine-tune CPU allocation beyond the standard Qovery instance sizes, or use `-1` to remove CPU throttling for CPU-bound workloads that need to burst freely.
 
 <Info>
-Setting a custom CPU limit (including `-1` to disable it) requires CPU overcommit to be enabled on the cluster via the `allow_service_cpu_overcommit` cluster advanced setting. This only affects the CPU limit; the RAM limit (`resources.override.limit.ram_in_mib`) remains mandatory and cannot be disabled, since it protects the pod from being OOMKilled.
+Setting a custom CPU limit (including `-1` to disable it) requires CPU overcommit to be enabled on the cluster via the `allow_service_cpu_overcommit` cluster advanced setting. This only affects the CPU limit; the RAM limit (`resources.override.limit.ram_in_mib`) remains mandatory and cannot be disabled: a container that exceeds it is OOMKilled, which keeps a single service from exhausting the memory of the node.
 </Info>
 
 **Valid values:** `-1` (disabled) or a positive integer greater than or equal to the service's CPU request

@@ -57,7 +57,7 @@ To change the database settings later, or to move to a newer blueprint version, 
 
 ## Container database
 
-The database runs as a container with attached persistent storage directly on your Kubernetes cluster (1 instance). Use it for development and testing. Supported databases are PostgreSQL, MySQL, MongoDB and Redis.
+The database runs as a container with attached persistent storage directly on your Kubernetes cluster (1 instance). Use it for development and testing only: container databases have no automated backups or snapshots. For production, use a managed database Blueprint. Supported databases are PostgreSQL, MySQL, MongoDB and Redis.
 
 ### Create a container database
 

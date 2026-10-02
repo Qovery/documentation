@@ -46,13 +46,51 @@ qovery environment deploy \
 | `--project` | Project Name |
 | `--environment` | Environment Name |
 | `--services` | Services to deploy (JSON Format: https://api-doc.qovery.com/#tag/Environment-Actions/operation/deployAllServices) |
-| `--applications` | Applications to deploy e.g. `app1:commit_id,app2:commit_id`. Omit commit id to use the same commit. |
+| `--applications` | Applications to deploy e.g. `app1:commit_id,app2:commit_id`. Omit commit id to use the same commit. Use `app:latest` to deploy the newest commit of the branch. |
 | `--containers` | Containers to deploy e.g. `container1:image_tag,container2:image_tag`. Omit image tag to use the same tag. |
-| `--lifecycles` | Lifecycle jobs to deploy e.g. `job1:image_tag\|git_commit_id,job2:...`. Omit version to use the same. |
-| `--cronjobs` | Cronjobs to deploy e.g. `cronjob1:git_commit_id,cronjob2:git_commit_id`. Omit commit id to use the same. |
-| `--helms` | Helm charts to deploy e.g. `helm1:chart_version\|git_commit_id,helm2:...`. Omit version to use the same. |
+| `--lifecycles` | Lifecycle jobs to deploy e.g. `job1:image_tag\|git_commit_id,job2:...`. Omit version to use the same. Use `job:latest` to deploy the newest commit of the branch for a git-sourced job. |
+| `--cronjobs` | Cronjobs to deploy e.g. `cronjob1:git_commit_id,cronjob2:git_commit_id`. Omit commit id to use the same. Use `cronjob:latest` to deploy the newest commit of the branch for a git-sourced cronjob. |
+| `--helms` | Helm charts to deploy e.g. `helm1:chart_version\|git_commit_id,helm2:...`. Omit version to use the same. Use `helm:latest` to deploy the newest commit of the branch for a git-sourced chart. |
 | `--watch` / `-w` | Watch environment status until it's ready or an error occurs |
 | `--skip-paused-services` | Skip paused services: paused services won't be started / deployed |
+
+### Deployment Logs
+
+Print the deployment logs of an environment — the engine output (build, deploy, health checks) shown in the **Deployment logs** tab of the console. These are the logs of the deployment itself, not the runtime output of a running service. For runtime logs, use [`qovery log`](/cli/commands/log).
+
+```bash
+qovery environment deployment logs --environment "env-name"
+```
+
+Without `--execution-id`, the logs of the latest deployment are printed (the API returns at most the last 1000 lines). To read a past deployment, pass its execution ID as listed by `qovery environment deployment list`:
+
+```bash
+qovery environment deployment logs \
+  --environment "env-name" \
+  --execution-id "<execution-id>"
+```
+
+Scope the output to a single service with `--service` (by name) or `--service-id` (by UUID); the two are mutually exclusive. Environment-level lines are kept for context:
+
+```bash
+qovery environment deployment logs --environment "env-name" --service "my-api"
+```
+
+| Flag | Description |
+|------|-------------|
+| `--organization` | Organization Name |
+| `--project` | Project Name |
+| `--environment` | Environment Name |
+| `--execution-id` / `--id` | Execution ID of a past deployment, as listed by `qovery environment deployment list` (default: latest deployment) |
+| `--service` / `-s` | Only print the log lines related to that service's deployment (matched by service name) |
+| `--service-id` | Same as `--service`, matching on the service UUID instead |
+| `--pre-check` | Only print the pre-check log lines (cannot be combined with `--service` or `--service-id`) |
+| `--errors-only` | Only print the log lines carrying an error |
+| `--json` | Print the logs as JSON |
+
+<Note>
+The console additionally scopes lines to the deployment stage a service belongs to, which the CLI does not resolve, so a few stage-level lines from other stages may appear in a service-scoped view.
+</Note>
 
 ### Stop Environment
 

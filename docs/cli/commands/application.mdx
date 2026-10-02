@@ -55,6 +55,14 @@ qovery application deploy \
   --commit-id "abc123def"
 ```
 
+Deploy the newest commit of the branch with `latest`. The CLI resolves it to a commit SHA, prints the resolved SHA, and deploys it:
+
+```bash
+qovery application deploy \
+  --application "my-api" \
+  --commit-id latest
+```
+
 Deploy multiple applications at once:
 
 ```bash
@@ -76,6 +84,13 @@ Redeploy the same version:
 
 ```bash
 qovery application redeploy --application "my-api"
+```
+
+Redeploy a specific commit, or the newest commit of the branch with `latest`. When `--commit-id` is omitted, the currently deployed commit is reused:
+
+```bash
+qovery application redeploy --application "my-api" --commit-id "a1b2c3d"
+qovery application redeploy --application "my-api" --commit-id latest
 ```
 
 ### Restart Application
@@ -162,14 +177,14 @@ qovery application update \
 
 | Flag | Shorthand | Description |
 |------|-----------|-------------|
-| `--commit-id` | `-c` | Git commit ID to deploy |
+| `--commit-id` | `-c` | Git commit ID to deploy, or `latest` for the newest commit of the branch |
 | `--watch` | `-w` | Watch application status until ready or error |
 
 ### `redeploy` flags
 
 | Flag | Shorthand | Description |
 |------|-----------|-------------|
-| `--commit-id` | `-c` | Git commit ID |
+| `--commit-id` | `-c` | Git commit ID to redeploy, or `latest` for the newest commit of the branch. Omit it to reuse the currently deployed commit |
 | `--watch` | `-w` | Watch application status until ready or error |
 
 ### `restart` flags

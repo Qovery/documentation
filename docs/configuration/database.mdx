@@ -27,17 +27,13 @@ Looking for **Managed mode**? Databases created in Managed mode before Blueprint
 
 A managed database is provisioned through a [Blueprint](/configuration/blueprints). With a cloud provider blueprint (AWS, GCP, Scaleway), the database runs as a managed service in the cloud account backing your cluster. Backup and maintenance behavior depends on the provider and the Blueprint configuration. Helm blueprints run on the cluster itself, and External blueprints provision a third-party SaaS resource (for example MongoDB Atlas).
 
-The **Databases & Caches** category of the catalog includes, among others, Amazon RDS for PostgreSQL and MySQL, Amazon ElastiCache for Redis and Valkey, Google Cloud Memorystore for Redis, and Scaleway Managed PostgreSQL and MySQL. See the [Blueprints catalog](/configuration/blueprints) for the full list and supported versions.
+The **Databases & Caches** category of the catalog includes, among others, Amazon RDS for PostgreSQL and MySQL, Amazon ElastiCache for Redis and Valkey, Google Cloud Memorystore for Redis, Scaleway Managed PostgreSQL, and Scaleway MySQL. See the [Blueprints catalog](/configuration/blueprints) for the full list and supported versions.
 
 ### Create a managed database
 
 <Steps>
-  <Step title="Open the service creation flow">
-    In the [Console](https://console.qovery.com), open the environment where you want the database, click the `New service` button, then choose **Blueprint** (create from catalog).
-  </Step>
-
   <Step title="Pick a database blueprint">
-    In the **Databases & Caches** category, select the blueprint you need (for example **Amazon RDS for PostgreSQL**). Cloud provider blueprints are filtered to the provider of the target cluster.
+    In the [Console](https://console.qovery.com), open the environment where you want the database and click the `New service` button. In the **Databases & Caches** category, select the blueprint you need (for example **Amazon RDS for PostgreSQL**). Cloud provider blueprints are filtered to the provider of the target cluster.
   </Step>
 
   <Step title="Choose a version">
@@ -190,8 +186,14 @@ Delete action drops the service and its data!
 <Warning>
 Managed mode is deprecated and can no longer be selected when creating a database from the Console. To create a new managed database, use a [Blueprint](#managed-database-blueprint).
 
-Existing managed databases keep working. They are configured, [cloned](#clone) and [deleted](#delete-a-database) the same way as container databases, with the differences below. Eligible AWS PostgreSQL managed databases can be [migrated to a blueprint](/configuration/blueprints#migrating-a-managed-database-to-a-blueprint).
+Existing managed databases keep working. They are configured, [cloned](#clone) and [deleted](#delete-a-database) the same way as container databases, with the differences below.
 </Warning>
+
+### Migrate to a blueprint
+
+Eligible AWS PostgreSQL managed databases can be migrated to a blueprint without re-provisioning or data movement. See [Migrating a Managed Database to a Blueprint](/configuration/blueprints#migrating-a-managed-database-to-a-blueprint).
+
+### Differences with container databases
 
 Existing managed databases expose the same [built-in environment variables](#credentials-and-connectivity) as container databases. Instead of CPU / Memory, their Resources tab lets you change the **Instance Type** of the instance running the database. Annotation groups are not supported for managed databases.
 

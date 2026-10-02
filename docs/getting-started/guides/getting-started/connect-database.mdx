@@ -11,9 +11,13 @@ description: "Learn how to create and connect databases to your applications"
 
 This guide shows you how to create a database in your environment and connect it to your application.
 
+<Tip>
+For production, deploy a cloud provider managed database (for example Amazon RDS for PostgreSQL or MySQL, or Amazon ElastiCache for Redis) with a [Blueprint](/configuration/blueprints). See [Creating a Blueprint Service](/configuration/blueprints#creating-a-blueprint-service).
+</Tip>
+
 ## Supported Databases
 
-Qovery supports the following databases, deployed as containers on your cluster:
+Managed databases are supported through [Blueprints](/configuration/blueprints). For development and testing, Qovery can also deploy the following databases as containers on your cluster, as described in this guide:
 
 <CardGroup cols={2}>
   <Card title="PostgreSQL" icon="database">
@@ -102,7 +106,7 @@ The exact variable names are always visible in the **Variables** tab of any serv
 
 ### Backups
 
-Databases created this way run as containers and have no automated backups or snapshots. For production, provision a cloud provider managed database (RDS, ElastiCache…) with a [Blueprint](/configuration/blueprints), which relies on the cloud provider's backup features.
+Databases created this way run as containers and have no automated backups or snapshots. For production, provision a cloud provider managed database with a [Blueprint](/configuration/blueprints) and configure and verify the provider's backup and retention settings.
 
 ## Best Practices
 

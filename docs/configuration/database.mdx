@@ -7,23 +7,13 @@ description: "Learn how to configure Databases on Qovery"
 You need to have created an [Environment](/configuration/environment) first.
 </Info>
 
-Qovery natively lets you deploy and access the most popular SQL and NoSQL databases available on the major cloud providers. Reliability and resiliency are at the heart of their services, so you don't have to worry about your data on Qovery.
+Qovery lets you deploy and access the most popular SQL and NoSQL databases.
 
-Qovery natively supports the following databases:
-- PostgreSQL
-- MySQL
-- MongoDB
-- Redis
+The recommended way to deploy a database is a [Blueprint](/configuration/blueprints). A blueprint provisions a cloud provider managed database (for example Amazon RDS for PostgreSQL or MySQL, Amazon ElastiCache for Redis or Valkey, or Scaleway Managed PostgreSQL) and relies on the cloud provider for backups and maintenance. See the [Blueprints catalog](/configuration/blueprints) for the full list.
 
-Qovery can natively operate a database in two different ways (called "Mode"):
-- Container mode: preferred for testing and development
-- Managed mode: no longer available when creating a database from the Console (see the [Managed mode](#managed-mode) section).
+For development and testing, Qovery can also run PostgreSQL, MySQL, MongoDB and Redis as containers on your cluster ([Container mode](#container-mode)). Managed mode is deprecated (see [Managed mode](#managed-mode)).
 
-<Info>
-New databases created from the Console run in Container mode. To provision a cloud provider managed database (for example RDS or ElastiCache on AWS) for production, use a [Blueprint](/configuration/blueprints).
-</Info>
-
-If the natively supported databases or operation modes are not enough for you, depending on your use case you have the following alternative solutions:
+If Blueprints and Container mode are not enough for you, depending on your use case you have the following alternative solutions:
 - Use an existing DB on a dedicated VPC: your applications can access this database via VPC peering. Have a look at [this guide](/configuration/integrations/aws/vpc-peering) for more information.
 - Create your custom database via Qovery: You will be able to deploy any kind of database through Qovery by using a [lifecycle jobs](/configuration/lifecycle-job). For example, you can use a terraform script to deploy your custom RDS instance on AWS via Terraform (have a look at [this example](https://github.com/Qovery/lifecycle-job-examples/tree/main/examples/aws-rds-with-terraform)).
 
@@ -31,14 +21,12 @@ The following sections will show you how you can create and manage the databases
 
 ## Container mode
 
-The database is created as a container with attached persistent storage directly on your Kubernetes cluster (1 instance). They are perfect for development and testing, as they are significantly cheaper than services provided by cloud providers.
+The database is created as a container with attached persistent storage directly on your Kubernetes cluster (1 instance). Use it for development and testing only. For production, use a [Blueprint](/configuration/blueprints).
 
 ## Managed mode
 
-Qovery creates and manages the lifecycle of a cloud provider managed database instance (for example an RDS instance on AWS).
-
 <Note>
-Managed mode can no longer be selected when creating a database from the Console. Use a [Blueprint](/configuration/blueprints) to provision a new managed database. Existing managed databases keep working and can still be configured as described below. Eligible AWS PostgreSQL managed databases can also be [migrated to a blueprint](/configuration/blueprints#migrating-a-managed-database-to-a-blueprint).
+Managed mode is deprecated and can no longer be selected when creating a database from the Console. Use a [Blueprint](/configuration/blueprints) to provision a new managed database. Existing managed databases keep working and can still be configured as described below. Eligible AWS PostgreSQL managed databases can also be [migrated to a blueprint](/configuration/blueprints#migrating-a-managed-database-to-a-blueprint).
 </Note>
 
 ### Applying changes to a managed database
@@ -108,14 +96,14 @@ You can find below the description of each of the tabs available in this section
 
 #### Modes
 
-As described at the beginning of this document, databases can operate in two modes:
+Databases created outside of Blueprints operate in one of two modes:
 
 - Managed
 - Container
 
-**Managed** databases are provided and managed by major cloud providers like AWS. This mode can no longer be selected when creating a database from the Console: new managed databases are provisioned with a [Blueprint](/configuration/blueprints).
+**Managed** databases are provided and managed by major cloud providers like AWS. This mode is deprecated and can no longer be selected when creating a database from the Console: new managed databases are provisioned with a [Blueprint](/configuration/blueprints).
 
-**Container** databases are managed by Qovery as Docker containers with attached persistent storage directly on your Kubernetes cluster (1 instance). They are perfect for development and testing, as they are significantly cheaper than services provided by cloud providers.
+**Container** databases are managed by Qovery as Docker containers with attached persistent storage directly on your Kubernetes cluster (1 instance). Use them for development and testing only. For production, use a [Blueprint](/configuration/blueprints).
 
 Please refer to the dedicated database sub-pages to get more information on the supported mode for each cloud provider.
 

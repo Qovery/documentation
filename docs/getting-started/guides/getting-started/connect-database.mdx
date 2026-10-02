@@ -11,9 +11,13 @@ description: "Learn how to create and connect databases to your applications"
 
 This guide shows you how to create a database in your environment and connect it to your application.
 
+<Tip>
+For production, deploy a cloud provider managed database (for example Amazon RDS for PostgreSQL or MySQL, or Amazon ElastiCache for Redis) with a [Blueprint](/configuration/blueprints). See [Creating a Blueprint Service](/configuration/blueprints#creating-a-blueprint-service).
+</Tip>
+
 ## Supported Databases
 
-Qovery supports the following managed databases on AWS:
+Managed databases are supported through [Blueprints](/configuration/blueprints). For development and testing, Qovery can also deploy the following databases as containers on your cluster, as described in this guide:
 
 <CardGroup cols={2}>
   <Card title="PostgreSQL" icon="database">
@@ -49,15 +53,14 @@ Qovery supports the following managed databases on AWS:
     - **Database Type**: PostgreSQL, MySQL, MongoDB, or Redis
     - **Name**: Give your database a name
     - **Version**: Choose the database version
-    - **Mode**: Managed (uses AWS managed services like RDS, DocumentDB, and ElastiCache)
   </Step>
 
   <Step title="Configure Resources">
     Set the resource allocation for your database:
 
-    - **Instance Type**: Select from available AWS instance types
-    - **Storage Size**: Configure storage capacity based on your needs
-    - **Storage Type**: Choose storage performance tier (e.g., gp3, io1)
+    - **vCPU**: CPU assigned to the database container
+    - **Memory**: RAM assigned to the database container
+    - **Storage**: Size of the persistent storage attached to the database
   </Step>
 
   <Step title="Create and Deploy">
@@ -103,16 +106,12 @@ The exact variable names are always visible in the **Variables** tab of any serv
 
 ### Backups
 
-Backups are handled automatically by AWS managed database services (RDS, DocumentDB, ElastiCache).
+Databases created this way run as containers and have no automated backups or snapshots. For production, provision a cloud provider managed database with a [Blueprint](/configuration/blueprints) and configure and verify the provider's backup and retention settings.
 
 ## Best Practices
 
 <Tip>
-Choose the appropriate AWS instance type based on your workload. Start with smaller instances and scale up as needed.
-</Tip>
-
-<Tip>
-Enable automated backups and set an appropriate retention period for your use case.
+Start with small CPU and memory values and scale up as needed. For production workloads, use a [Blueprint](/configuration/blueprints) to provision a managed database.
 </Tip>
 
 <Warning>

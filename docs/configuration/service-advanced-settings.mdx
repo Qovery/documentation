@@ -1493,7 +1493,7 @@ Setting `ndots=2` reduces this to **1 DNS query** since the hostname already has
 Setting a custom CPU limit (including `-1` to disable it) requires CPU overcommit to be enabled on the cluster via the `allow_service_cpu_overcommit` cluster advanced setting. This only affects the CPU limit; the RAM limit (`resources.override.limit.ram_in_mib`) remains mandatory and cannot be disabled, since it protects the pod from being OOMKilled.
 </Info>
 
-**Valid values:** `-1` (disabled) or a positive integer greater than the service's CPU request
+**Valid values:** `-1` (disabled) or a positive integer greater than or equal to the service's CPU request
 
 **Default Value:** `null`
 

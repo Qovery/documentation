@@ -69,6 +69,37 @@ Qovery's observability combines open-source tools to monitor your Kubernetes inf
 - **Thanos**: Raw metrics (15 days), 5-minute resolution (30 days), 1-hour resolution (30 days)
 - **Loki**: 12-week log retention
 
+### Resource Profiles
+
+The observability stack runs under one of three resource profiles, set on the cluster through the `metrics_parameters.configuration.resource_profile` API field. `NORMAL` is the default.
+
+The profile changes the CPU and memory requests and limits of the metrics components listed below, and nothing else. Retention, scrape interval, replica counts and alerting configuration are the same on all three levels. Log and event collection are not affected: Loki, Promtail and the Qovery Event Logger are sized independently of this setting.
+
+CPU is shown as request/limit. Memory is shown as a single value when the request and the limit are equal, and as request/limit when they differ.
+
+| Component | LOW | NORMAL | HIGH |
+|---|---|---|---|
+| Prometheus | 500m/2000m, 1Gi | 1000m/4000m, 4Gi | 2000m/4000m, 8Gi |
+| Prometheus Operator | 200m/1000m, 512Mi/1Gi | 200m/1000m, 1Gi | 500m/1000m, 1Gi |
+| Node Exporter | 10m/20m, 32Mi | 10m/20m, 32Mi | 10m/20m, 32Mi |
+| kube-state-metrics | 150m/150m, 512Mi | 150m/150m, 768Mi | 500m/500m, 1Gi |
+| Thanos Query | 500m/500m, 512Mi | 1000m/1000m, 768Mi | 2000m/2000m, 1Gi |
+| Thanos Store Gateway | 500m/500m, 512Mi | 500m/500m, 1Gi | 1000m/1000m, 2Gi |
+| Thanos Compactor | 500m/500m, 1Gi | 2000m/2000m, 4Gi | 2000m/2000m, 6Gi |
+| Prometheus Adapter | 250m/250m, 384Mi | 250m/250m, 384Mi | 400m/400m, 512Mi |
+| AlertManager | 50m/100m, 128Mi/256Mi | 100m/200m, 256Mi/512Mi | 200m/500m, 512Mi/1Gi |
+| CloudWatch Exporter | 150m/150m, 256Mi | 250m/250m, 512Mi | 500m/500m, 768Mi |
+
+<Info>
+Lowering the profile reduces what the observability stack reserves on your cluster, not the data it keeps. Retention stays as described in [Data Retention](#data-retention) on every profile.
+</Info>
+
+<Warning>
+`LOW` is intended for small or development clusters. It cuts the memory available to Prometheus and to the Thanos Compactor, as shown in the LOW column above. Compaction is memory-bound, so on clusters with a high number of series those limits can cause OOMKills.
+</Warning>
+
+A profile change applies on the next cluster deployment.
+
 ### Key Features
 
 - **Per-cluster isolation**: Data protection and performance optimization

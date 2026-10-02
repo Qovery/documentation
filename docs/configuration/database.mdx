@@ -7,49 +7,66 @@ description: "Learn how to configure Databases on Qovery"
 You need to have created an [Environment](/configuration/environment) first.
 </Info>
 
-Qovery lets you deploy and access the most popular SQL and NoSQL databases.
+Qovery lets you deploy two kinds of databases. Pick one based on what you need:
 
-The recommended way to deploy a cloud-managed database is a [Blueprint](/configuration/blueprints) (for example Amazon RDS for PostgreSQL or MySQL, Amazon ElastiCache for Redis or Valkey, or Scaleway Managed PostgreSQL). Backup and maintenance behavior depends on the provider and the Blueprint configuration. See the [Blueprints catalog](/configuration/blueprints) for the full list.
+| | Managed database (Blueprint) | Container database |
+|---|---|---|
+| **Use for** | Production | Development and testing |
+| **Runs on** | Depends on the blueprint: cloud provider managed service (for example Amazon RDS), Helm chart on your cluster, or third-party SaaS | Container with persistent storage on your Kubernetes cluster (1 instance) |
+| **Created with** | [Blueprint](/configuration/blueprints) | `Database` service |
 
-For development and testing, Qovery can also run PostgreSQL, MySQL, MongoDB and Redis as containers on your cluster ([Container mode](#container-mode)). Managed mode is deprecated (see [Managed mode](#managed-mode)).
-
-If Blueprints and Container mode are not enough for you, depending on your use case you have the following alternative solutions:
+If neither option fits your use case, you can also:
 - Use an existing DB on a dedicated VPC: your applications can access this database via VPC peering. Have a look at [this guide](/configuration/integrations/aws/vpc-peering) for more information.
-- Create your custom database via Qovery: You will be able to deploy any kind of database through Qovery by using a [lifecycle jobs](/configuration/lifecycle-job). For example, you can use a terraform script to deploy your custom RDS instance on AWS via Terraform (have a look at [this example](https://github.com/Qovery/lifecycle-job-examples/tree/main/examples/aws-rds-with-terraform)).
-
-The following sections will show you how you can create and manage the databases natively supported by Qovery. For any other use case, please refer to the guides provided above.
-
-## Container mode
-
-The database is created as a container with attached persistent storage directly on your Kubernetes cluster (1 instance). Use it for development and testing only. For production, use a [Blueprint](/configuration/blueprints).
-
-## Managed mode
+- Create your custom database via Qovery: You will be able to deploy any kind of database through Qovery by using a [lifecycle jobs](/configuration/lifecycle-job).
 
 <Note>
-Managed mode is deprecated and can no longer be selected when creating a database from the Console. Use a [Blueprint](/configuration/blueprints) to provision a new managed database. Existing managed databases keep working and can still be configured as described below. Eligible AWS PostgreSQL managed databases can also be [migrated to a blueprint](/configuration/blueprints#migrating-a-managed-database-to-a-blueprint).
+Looking for **Managed mode**? Databases created in Managed mode before Blueprints keep working. See [Legacy managed databases](#legacy-managed-databases).
 </Note>
 
-### Applying changes to a managed database
+## Managed database (Blueprint)
+
+A managed database is provisioned through a [Blueprint](/configuration/blueprints). With a cloud provider blueprint (AWS, GCP, Scaleway), the database runs as a managed service in the cloud account backing your cluster. Backup and maintenance behavior depends on the provider and the Blueprint configuration. Helm blueprints run on the cluster itself, and External blueprints provision a third-party SaaS resource (for example MongoDB Atlas).
+
+The **Databases & Caches** category of the catalog includes, among others, Amazon RDS for PostgreSQL and MySQL, Amazon ElastiCache for Redis and Valkey, Google Cloud Memorystore for Redis, and Scaleway Managed PostgreSQL and MySQL. See the [Blueprints catalog](/configuration/blueprints) for the full list and supported versions.
+
+### Create a managed database
+
+<Steps>
+  <Step title="Open the service creation flow">
+    In the [Console](https://console.qovery.com), open the environment where you want the database, click the `New service` button, then choose **Blueprint** (create from catalog).
+  </Step>
+
+  <Step title="Pick a database blueprint">
+    In the **Databases & Caches** category, select the blueprint you need (for example **Amazon RDS for PostgreSQL**). Cloud provider blueprints are filtered to the provider of the target cluster.
+  </Step>
+
+  <Step title="Choose a version">
+    Select the major version (for example PostgreSQL 17).
+  </Step>
+
+  <Step title="Fill in the variables">
+    Complete the form generated from the blueprint. Required variables are marked, optional ones fall back to their defaults. Read the blueprint README to know which inputs are required.
+  </Step>
+
+  <Step title="Create and deploy">
+    Create the service, and deploy it immediately or later.
+  </Step>
+</Steps>
+
+### Connect your application
+
+Once deployed, the blueprint service publishes its outputs (endpoint, port, credentials). Other services in the same environment consume them through variable interpolation. See [Outputs](/configuration/blueprints#outputs).
+
+To change the database settings later, or to move to a newer blueprint version, see [Editing a Blueprint Service](/configuration/blueprints#editing-a-blueprint-service) and [Updating a Blueprint](/configuration/blueprints#updating-a-blueprint).
+
+## Container database
+
+The database runs as a container with attached persistent storage directly on your Kubernetes cluster (1 instance). Use it for development and testing. Supported databases are PostgreSQL, MySQL, MongoDB and Redis.
+
+### Create a container database
 
 <Info>
-Since Qovery manages the lifecycle of your database, DO NOT change the database settings directly from within the cloud provider console (to avoid configuration drifts).
-</Info>
-
-Once you request to change the version, instance type or disk size of your Managed database, the cloud provider applies the update based on its own internal rules and might cause downtime of your database.
-
-For example, by default AWS doesn't apply major updates immediately on the database and instead, it waits for a `maintenance window`. This means that your change will not be applied immediately but you can always force the change directly from your AWS console AFTER having applied the change on Qovery (to avoid configuration drifts).
-
-Have a look at your cloud provider documentation to know more about how version upgrades are managed:
-
-- AWS RDS DB engine upgrade: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.MySQL.html
-- AWS maintenance window: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Maintenance.html
-
-If you need to minimize downtime during an RDS upgrade, check out our tutorial: [Minimize downtime while upgrading RDS instances](/getting-started/guides/advanced-tutorials/upgrading-rds-instance).
-
-## Create a database
-
-<Info>
-Check out [this video guide](/getting-started/guides/getting-started/connect-database) to create and deploy your first database
+Check out [this guide](/getting-started/guides/getting-started/connect-database) to create and deploy your first database.
 </Info>
 
 <Steps>
@@ -66,7 +83,7 @@ Check out [this video guide](/getting-started/guides/getting-started/connect-dat
   </Step>
 
   <Step title="Select database configuration">
-    Select database type, name, description (optional), version and accessibility. The database is created in `Container` mode.
+    Select database type, name, description (optional), version and accessibility.
 
     <Info>
     Please refer to the Configuration section below to know more about each of these parameters.
@@ -86,75 +103,22 @@ Check out [this video guide](/getting-started/guides/getting-started/connect-dat
   </Step>
 </Steps>
 
-## Configuration
+### Configuration
 
 Once created, you can access the configuration of a database at any time via the Settings tab available on the database page.
 
-You can find below the description of each of the tabs available in this section
+#### General
 
-### General
+- **Version**: we regularly update the versions available for each database. You can upgrade the version of your database directly from the Qovery interface.
+- **Accessibility**: decide whether to expose your database publicly or not. **Public** access makes your database accessible via the public network. **Private** access makes it accessible only by applications in your environment.
+- **Extra labels/annotations**: add your extra annotation/label groups. See the [Add annotation/label group](/configuration/organization#labels-and-annotations) section for more information.
 
-#### Modes
+#### Resources
 
-Databases created outside of Blueprints operate in one of two modes:
+- **CPU / Memory**: the CPU and memory assigned to the Kubernetes pod running the database instance.
+- **Storage**: the size of the persistent storage attached to the container database.
 
-- Managed
-- Container
-
-**Managed** databases are provided and managed by major cloud providers like AWS. This mode is deprecated and can no longer be selected when creating a database from the Console: new managed databases are provisioned with a [Blueprint](/configuration/blueprints).
-
-**Container** databases are managed by Qovery as Docker containers with attached persistent storage directly on your Kubernetes cluster (1 instance). Use them for development and testing only. For production, use a [Blueprint](/configuration/blueprints).
-
-Please refer to the dedicated database sub-pages to get more information on the supported mode for each cloud provider.
-
-#### Versions
-
-We regularly update the version available for each database. Please refer to the dedicated database sub-pages to get more information on the supported version for each database types and cloud provider.
-
-You can upgrade the version of your database directly from the Qovery interface.
-
-<Info>
-Any change on this field will not be applied immediately to your database, check the [managed mode](#applying-changes-to-a-managed-database) section.
-</Info>
-
-#### Accessibility
-
-This parameter lets you decide whether to expose publicly or not your database.
-
-- **Public** access will make your database accessible via the public network
-- **Private** access will make your database accessible only by applications in your environment
-
-#### Extra labels/annotations
-
-Add your extra annotation/label groups. See the [Add annotation/label group](/configuration/organization#labels-and-annotations) section for more information. Annotation groups are not supported for managed databases.
-
-### Resources
-
-#### CPU / Memory
-
-This configuration is available only for databases in **Container** mode
-
-You can select the CPU assigned to the Kubernetes pod running the database instance
-
-#### Instance Type
-
-This configuration is available only for databases in **Managed** mode
-
-You can modify the CPU assigned to the instance running your database (And thus, its resources).
-
-<Info>
-Any change on this field will not be applied immediately to your database, check the [managed mode](#applying-changes-to-a-managed-database) section.
-</Info>
-
-#### Storage
-
-You can select the size of the persistent storage attached to the container database.
-
-<Info>
-Any change on this field will not be applied immediately to your database, check the [managed mode](#applying-changes-to-a-managed-database) section.
-</Info>
-
-## Credentials and connectivity
+### Credentials and connectivity
 
 When a database is created in your environment, Qovery will automatically create and inject a set of BUILT_IN environment variables containing all the parameters necessary to your application to connect to the database.
 
@@ -178,7 +142,7 @@ Please note that the built-in variables follow the naming pattern: `QOVERY_DATAB
 
 To know how to access your database from your application, [have a look at the database section](/configuration/environment-variables#connecting-to-a-database).
 
-## Clone
+### Clone
 
 You can create a clone of the service via the clone feature. A new service with the same configuration (see below for exceptions) will be created into the target environment.
 
@@ -201,15 +165,11 @@ Please check the configuration of the new service before deploying it.
 Note that only the instance configuration will be copied, not the data contained within the database.
 </Info>
 
-## Delete your database instance
+### Delete a database
 
 <Warning>
 Delete action drops the service and its data!
 </Warning>
-
-<Info>
-As Managed Services databases (like RDS) are mainly used for production, Qovery does not delete automated snapshots and backups on deletion. It is up to the user or Cloud provider Administrator to delete it manually.
-</Info>
 
 <Steps>
   <Step title="Navigate to Console">
@@ -225,22 +185,31 @@ As Managed Services databases (like RDS) are mainly used for production, Qovery 
   </Step>
 </Steps>
 
-## Available Databases
+## Legacy managed databases
 
-<CardGroup cols={2}>
-  <Card title="MongoDB" icon="leaf">
-    NoSQL document database
-  </Card>
+<Warning>
+Managed mode is deprecated and can no longer be selected when creating a database from the Console. To create a new managed database, use a [Blueprint](#managed-database-blueprint).
 
-  <Card title="MySQL" icon="database">
-    Popular relational database
-  </Card>
+Existing managed databases keep working. They are configured, [cloned](#clone) and [deleted](#delete-a-database) the same way as container databases, with the differences below. Eligible AWS PostgreSQL managed databases can be [migrated to a blueprint](/configuration/blueprints#migrating-a-managed-database-to-a-blueprint).
+</Warning>
 
-  <Card title="PostgreSQL" icon="elephant">
-    Advanced relational database
-  </Card>
+Existing managed databases expose the same [built-in environment variables](#credentials-and-connectivity) as container databases. Instead of CPU / Memory, their Resources tab lets you change the **Instance Type** of the instance running the database. Annotation groups are not supported for managed databases.
 
-  <Card title="Redis" icon="bolt">
-    In-memory data store
-  </Card>
-</CardGroup>
+As managed databases (like RDS) are mainly used for production, Qovery does not delete automated snapshots and backups on deletion. It is up to the user or Cloud provider Administrator to delete them manually.
+
+### Applying changes to a managed database
+
+<Info>
+Since Qovery manages the lifecycle of your database, DO NOT change the database settings directly from within the cloud provider console (to avoid configuration drifts).
+</Info>
+
+Once you request to change the version, instance type or disk size of your Managed database, the cloud provider applies the update based on its own internal rules and might cause downtime of your database.
+
+For example, by default AWS doesn't apply major updates immediately on the database and instead, it waits for a `maintenance window`. This means that your change will not be applied immediately but you can always force the change directly from your AWS console AFTER having applied the change on Qovery (to avoid configuration drifts).
+
+Have a look at your cloud provider documentation to know more about how version upgrades are managed:
+
+- AWS RDS DB engine upgrade: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.MySQL.html
+- AWS maintenance window: https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_UpgradeDBInstance.Maintenance.html
+
+If you need to minimize downtime during an RDS upgrade, check out our tutorial: [Minimize downtime while upgrading RDS instances](/getting-started/guides/advanced-tutorials/upgrading-rds-instance).

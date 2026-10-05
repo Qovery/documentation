@@ -93,7 +93,8 @@ resource "qovery_blueprint" "postgres" {
   blueprint      = "AWS/postgres/17"
 
   variables = {
-    db_name           = "shop"
+    # Also names the RDS instance: it must be unique in the AWS account and region.
+    db_name           = "shop_${each.key}"
     instance_class    = "db.t3.medium"
     allocated_storage = "50"
   }

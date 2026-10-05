@@ -297,7 +297,8 @@ resource "qovery_blueprint" "db" {
   blueprint      = "AWS/postgres/17"
 
   variables = {
-    db_name = "app"
+    # Also names the RDS instance: it must be unique in the AWS account and region.
+    db_name = "app_${local.environment}"
   }
 }
 
@@ -576,6 +577,7 @@ resource "qovery_blueprint" "postgres" {
   blueprint      = "AWS/postgres/17"
 
   variables = {
+    # Also names the RDS instance: it must be unique in the AWS account and region.
     db_name = "app"
   }
 }
@@ -589,6 +591,7 @@ resource "qovery_blueprint" "redis" {
   blueprint      = "AWS/redis/7"
 
   variables = {
+    # Also names the ElastiCache cluster: it must be unique in the AWS account and region.
     redis_name = "my-app-redis"
   }
 }

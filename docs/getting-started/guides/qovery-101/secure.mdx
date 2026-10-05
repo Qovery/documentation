@@ -145,7 +145,7 @@ QOVERY_APPLICATION_MY_API_URL
   </Tab>
 
   <Tab title="Terraform">
-    Declare secrets on the resource of the service, here a `qovery_application`. Pass their values through sensitive input variables, so that they stay out of your configuration files. See the [basic application example](/terraform-provider/basic-application) for a complete application.
+    Declare secrets on the resource of the service, here a `qovery_application`. Pass their values through sensitive input variables, so that they stay out of your configuration files. `sensitive` only hides them in the CLI output: Terraform still stores them in its state, so keep the state in a protected backend and out of version control. See the [basic application example](/terraform-provider/basic-application) for a complete application.
 
     ```hcl
     variable "database_password" {

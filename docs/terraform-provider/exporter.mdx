@@ -28,7 +28,7 @@ The export does not contain a `qovery_deployment` resource. Build settings are e
     Turn on **Export secrets** to include the secret values in the export.
 
     <Warning>
-    Exported secret values are written in plain text in `variables.tf`. Do not commit them to version control.
+    Exported secret values are written in plain text in `variables.tf`, and Terraform also stores them in its state. Do not commit either to version control, and keep the state in a protected backend.
     </Warning>
   </Step>
   <Step title="Download">
@@ -57,7 +57,7 @@ The export does not contain a `qovery_deployment` resource. Build settings are e
     ```
   </Step>
   <Step title="Add an import block for every resource">
-    In a new file, such as `imports.tf`, add an `import` block for every resource of `main.tf`, except the blueprints: `main.tf` already imports them, and a second `import` block for the same resource is an error. Each resource is named after its kind, followed by `z` and the first eight characters of its ID. For example, the environment `a1b2c3d4-…` is `qovery_environment.environment_za1b2c3d4`.
+    In a new file, such as `imports.tf`, add an `import` block for every resource of `main.tf`, except the blueprints: `main.tf` already imports them, and a second `import` block for the same resource is an error. `import` blocks need Terraform 1.5 or later. Each resource is named after its kind, followed by `z` and the first eight characters of its ID. For example, the environment `a1b2c3d4-…` is `qovery_environment.environment_za1b2c3d4`.
 
     ```hcl imports.tf
     import {

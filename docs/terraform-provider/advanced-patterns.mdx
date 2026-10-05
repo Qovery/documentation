@@ -342,6 +342,8 @@ Store Terraform state remotely for team collaboration.
 
 ### S3 Backend
 
+`use_lockfile`, which locks the state in the bucket itself, needs Terraform 1.10 or later.
+
 ```hcl
 terraform {
   backend "s3" {
@@ -414,12 +416,6 @@ terraform/
 ### variables.tf
 
 ```hcl
-variable "qovery_api_token" {
-  description = "Qovery API token"
-  type        = string
-  sensitive   = true
-}
-
 variable "environment_name" {
   description = "Environment name"
   type        = string
@@ -466,7 +462,7 @@ memory           = 256
 replicas         = 1
 ```
 
-Keep the API token out of these files: set it with the `TF_VAR_qovery_api_token` environment variable.
+Keep the API token out of these files: the provider reads it from the `QOVERY_API_TOKEN` environment variable.
 
 ### Deploy with Variable Files
 

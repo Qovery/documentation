@@ -185,9 +185,9 @@ resource "qovery_application" "app" {
   ports = [
     {
       internal_port       = var.port
-      external_port       = 443
+      external_port       = var.publicly_accessible ? 443 : null
       protocol            = "HTTP"
-      publicly_accessible = true
+      publicly_accessible = var.publicly_accessible
     }
   ]
 
@@ -228,6 +228,12 @@ variable "git_url" {
 variable "port" {
   type    = number
   default = 8080
+}
+
+variable "publicly_accessible" {
+  description = "Whether the port is exposed to the internet. Keep it false for a service only other services call."
+  type        = bool
+  default     = false
 }
 
 variable "env_var_aliases" {
@@ -295,6 +301,8 @@ module "frontend" {
   name           = "frontend"
   git_url        = "https://github.com/your-org/frontend.git"
   port           = 3000
+
+  publicly_accessible = true
 
   env_var_aliases = [
     {

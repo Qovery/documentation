@@ -196,7 +196,7 @@ What differs between the environments:
 - **Git branch**: each environment builds its own branch.
 - **Instances**: production runs three instances of the application.
 - **Database**: development and staging run PostgreSQL in a container on the cluster. Production runs Amazon RDS for PostgreSQL, created from a blueprint of the [service catalog](/configuration/blueprints) with [`qovery_blueprint`](https://registry.terraform.io/providers/qovery/qovery/latest/docs/resources/blueprint). This blueprint needs an AWS cluster. `instance_class` and `allocated_storage` are variables of the blueprint.
-- **Auto-deploy**: new commits redeploy development and staging. Production is deployed by `qovery_deployment` or from the Console.
+- **Auto-deploy**: new commits redeploy development and staging. Production is deployed by `qovery_deployment` or from the Console: to deploy it again after a change, set `version` on its `qovery_deployment` to a new UUID.
 
 The application reads the database connection string from `DATABASE_URL`. For a container database, it is an alias of a built-in secret. For the managed database, it is a secret that Qovery builds from the outputs of the blueprint when it deploys the application. [Application with Database](/terraform-provider/application-with-database) explains both.
 

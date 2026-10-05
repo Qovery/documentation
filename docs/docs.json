@@ -158,7 +158,8 @@
                       "getting-started/guides/advanced-tutorials/rate-limiting",
                       "getting-started/guides/advanced-tutorials/ip-header-authorization",
                       "getting-started/guides/advanced-tutorials/egress-filtering-squid-proxy",
-                      "getting-started/guides/advanced-tutorials/customizing-preview-url-with-qovery-cli"
+                      "getting-started/guides/advanced-tutorials/customizing-preview-url-with-qovery-cli",
+                      "getting-started/guides/advanced-tutorials/tailscale-expose-service"
                     ]
                   },
                   {
@@ -167,7 +168,8 @@
                       "getting-started/guides/advanced-tutorials/write-dockerfile",
                       "getting-started/guides/advanced-tutorials/import-env-vars-cli",
                       "getting-started/guides/advanced-tutorials/deploy-jupyterhub",
-                      "getting-started/guides/advanced-tutorials/rust-api-part-1"
+                      "getting-started/guides/advanced-tutorials/rust-api-part-1",
+                      "getting-started/guides/advanced-tutorials/microservices-monorepo"
                     ]
                   }
                 ]
@@ -550,7 +552,6 @@
               "cli/commands/log",
               "cli/commands/port-forward",
               "cli/commands/project",
-              "cli/commands/rde",
               "cli/commands/service",
               "cli/commands/shell",
               "cli/commands/status",

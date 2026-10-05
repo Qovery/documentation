@@ -192,10 +192,12 @@ Watch this interactive demo to see how to deploy S3 infrastructure using Terrafo
     Terraform execution uses the following default compute resources:
 
     - **CPU**: 500 millicores (500 mCPU or 0.5 vCPU)
-    - **Memory**: 512 MB
-    - **Storage**: 1 GB
+    - **Memory**: 256 MiB
+    - **Storage**: 5 GiB
 
     These resources can be updated later in the **Service Settings** if your Terraform operations require more capacity.
+
+    These defaults, and the 1 hour timeout, apply to services created from the Console. The Terraform provider has its own defaults, listed on the [`qovery_terraform_service`](https://registry.terraform.io/providers/qovery/qovery/latest/docs/resources/terraform_service) resource page.
   </Step>
   <Step title="Configure Terraform Variables">
     Qovery provides comprehensive variable management for Terraform, automatically detecting variables from your code and allowing flexible configuration.
@@ -479,8 +481,8 @@ All parameters from the creation flow can be modified:
 
   <Accordion title="Execution Resources">
     - Update CPU allocation (default: 500 mCPU)
-    - Modify memory allocation (default: 512 MB)
-    - Adjust storage allocation (default: 1 GB)
+    - Modify memory allocation (default: 256 MiB)
+    - Adjust storage allocation (default: 5 GiB)
 
     Increase these resources if your Terraform operations:
 

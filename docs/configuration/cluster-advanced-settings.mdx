@@ -556,7 +556,7 @@ See [Amazon ECR pull through cache rules](https://docs.aws.amazon.com/AmazonECR/
 
 ### registry.mirroring_mode
 
-**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/scaleway-icon.svg" alt="Scaleway" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
 
 **Type:** `string`
 
@@ -565,10 +565,15 @@ See [Amazon ECR pull through cache rules](https://docs.aws.amazon.com/AmazonECR/
 **Valid values:**
 - `Service` — each service gets its own mirror repository (`qovery-mirror-{service_id}`). Provides better isolation but creates more repositories. Works on **all** cluster types.
 - `Cluster` — all services in the cluster share a single mirror repository (`qovery-mirror-cluster-{cluster_id}`). Fewer repositories, but requires registry lifecycle policy support for automated image cleanup.
+- `Disabled` — images are not mirrored: pods pull them directly from the registry of each container or job, with its credentials. Only available on **Scaleway Kapsule**. See [Disable Mirroring on Scaleway Kapsule](/configuration/deployment/image-mirroring#disable-mirroring-on-scaleway-kapsule) for requirements and limits.
 
 <Warning>
 `Cluster` mode is only available on cluster types that support registry lifecycle policies: **EKS**, **GKE**, **AKS** (and their self-managed variants). It is not supported on DOKS, Scaleway Kapsule, or full self-managed clusters.
 </Warning>
+
+<Note>
+A change to `registry.mirroring_mode` applies to each service on its next deployment. Redeploying the cluster is not required.
+</Note>
 
 **Default Value:** `Service`
 
@@ -2036,7 +2041,7 @@ Envoy Gateway automatically selects the best compression algorithm based on the 
 CPU overcommit can cause CPU throttling and unpredictable latency when nodes are under pressure. Use with caution in production.
 </Warning>
 
-**Use Case:** Once enabled, you can update the service advanced setting `resources.override.limit.cpu_in_milli` to set a CPU limit higher than the request.
+**Use Case:** Once enabled, you can update the service advanced setting `resources.override.limit.cpu_in_milli` to set a CPU limit higher than the request, or set it to `-1` to disable the CPU limit for that service entirely.
 
 **Default Value:** `false`
 

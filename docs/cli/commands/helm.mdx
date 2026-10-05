@@ -46,6 +46,12 @@ Deploy with a specific chart version:
 qovery helm deploy --helm "my-helm" --chart_version "1.2.3"
 ```
 
+For a chart sourced from git, deploy the newest commit of the branch with `latest`:
+
+```bash
+qovery helm deploy --helm "my-helm" --chart_git_commit_id latest
+```
+
 **Flags:**
 
 | Flag | Short | Description |
@@ -53,7 +59,7 @@ qovery helm deploy --helm "my-helm" --chart_version "1.2.3"
 | `--helm` | `-n` | Helm Name |
 | `--helms` | | Helm Names (comma separated) |
 | `--chart_version` | | Helm chart version |
-| `--chart_git_commit_id` | | Helm chart git commit ID |
+| `--chart_git_commit_id` | | Helm chart git commit ID, or `latest` for the newest commit of the branch |
 | `--values_override_git_commit_id` | | Helm values override git commit ID |
 | `--watch` | `-w` | Watch helm status until it's ready or an error occurs |
 | `--organization` | | Organization Name |

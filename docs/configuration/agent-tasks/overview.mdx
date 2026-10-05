@@ -14,20 +14,18 @@ Agent Tasks are one-time or scheduled jobs delegated to AI agents, running on yo
 ## Creating an Agent
 
 <Steps>
-  <Step title="Create New Service">
-    In your environment, click **New Service > Create new service**. Under **Agent use cases**, pick a ready-made template (see [Tutorials](#tutorials) below) or **Start from scratch**.
+  <Step title="Create an Agent Task">
+    In your environment, open the **Automations** tab and click **Create agent task**. Choose **Create from template** to pick a ready-made template (see [Ready-Made Templates](#ready-made-templates) below), or **Create from scratch** to configure every part yourself.
 
-    <Frame>
-      <img src="/images/configuration/agent-tasks/agent-task-services-list.png" alt="Create new service screen showing the Agent use cases section" />
-    </Frame>
+    While the environment has no agent task yet, the **Automations** tab shows the template catalog directly. Selecting a template opens the creation form pre-filled with that template.
   </Step>
   <Step title="Add Context (Optional)">
     Connect a Qovery service, a Git repository, or both, for the agent to load as context. A Qovery service's linked Git repository is included automatically, no need to add it separately, connect a repository on its own only when it isn't tied to a Qovery service.
   </Step>
   <Step title="Choose a Provider and Model">
-    Pick **Claude** (Anthropic) or **AWS Bedrock**, then select an existing token or create a new one on the fly. A token created here is saved and can be reused by any other agent task in the organization, no need to re-enter credentials each time. Tokens can also be managed centrally from **Organization Settings > Agent > Token**.
+    Pick **Claude** (Anthropic) or **AWS Bedrock**, then select an existing token or create a new one on the fly. A token created here is saved and can be reused by any other agent task in the organization, no need to re-enter credentials each time. Tokens can also be managed centrally from **Organization Settings > Agent > Token**. When you create an AWS Bedrock token, also select its **AWS region** (`eu-west-1` by default).
 
-    Once a token is selected, pick the **Model** the agent runs on from the list of models available to that token. The first available model is selected by default. For AWS Bedrock, the models offered depend on the token's AWS region. You can change the model later from the agent task's **Settings > AI configuration**.
+    Once a token is selected, pick the **Model** the agent runs on from the list of models available to that token. The first available model is selected by default. For AWS Bedrock, the models offered depend on the token's AWS region. If the models can't be loaded, check the token's API key (Claude) or its AWS credentials and region (AWS Bedrock). Use **Edit token** next to the token selector to update the selected token. You can change the model later from the agent task's **Settings > AI configuration**.
   </Step>
   <Step title="Add MCP Servers (Optional)">
     If you added a Qovery service as Context in the previous step, Qovery's own MCP server is created and selected automatically: organization-scoped, read-only, backed by a Viewer API token. No URL, header, or token to configure. This is also preconfigured for the Incident Analyzer (incident.io and Honeybadger) and Build & deployment optimizer templates.
@@ -58,6 +56,18 @@ Agent Tasks are one-time or scheduled jobs delegated to AI agents, running on yo
   <img src="/images/configuration/agent-tasks/agent-task-creation-flow.png" alt="New agent task form with Context, Provider, MCP, Automations, and Instructions on the left, and Resources, Governance, Environment variables, and Advanced settings on the right" />
 </Frame>
 
+## Ready-Made Templates
+
+The template catalog groups the available templates by category:
+
+- **Optimization**: [Build & deployment optimizer](/configuration/agent-tasks/build-deployment-optimizer)
+- **Incident Analyzer**: [Incident Analyzer with incident.io](/configuration/agent-tasks/incident-analyser), [Incident Analyzer with Honeybadger](/configuration/agent-tasks/incident-analyser-honeybadger), Sentry Incident Analyzer, and Incident Analyzer
+- **Coding Agent**: [Jira Coding Agent](/configuration/agent-tasks/jira-coding-agent), [Linear Coding Agent](/configuration/agent-tasks/linear-coding-agent), Slack Coding Agent, and Coding Agent
+
+Sentry Incident Analyzer and Slack Coding Agent ship with a secret environment variable to fill in (`SENTRY_AUTH_TOKEN` and `SLACK_BOT_TOKEN` respectively), and a domain allowlist pre-filled with the hosts they need (`sentry.io` and `*.sentry.io`, or `slack.com`, plus GitHub, GitLab, and Bitbucket). Incident Analyzer and Coding Agent are not tied to a specific provider: they work on the payload sent to their webhook.
+
+If the template you need isn't listed, click **Request agent template** in the **Automations** tab, describe the template you'd like Qovery to add next, and click **Send request**.
+
 ## Execution Mode
 
 Choose where the agent runs when it's triggered:
@@ -69,18 +79,18 @@ Choose where the agent runs when it's triggered:
 In **In Place** mode, a new trigger replaces the currently running execution, there's no run history if the agent is triggered multiple times. Use **Clone Environment** for agents that can be triggered frequently or concurrently, and **In Place** for agents on a predictable schedule where overlap isn't a concern.
 </Warning>
 
-Each ready-made template has a sensible default: Incident Analyzer (both the incident.io and Honeybadger variants), Jira Coding Agent, and Linear Coding Agent default to Clone Environment, since an incident or a labeled ticket can trigger them frequently or concurrently. Build & deployment optimizer, typically run on a schedule, defaults to In Place.
+Each ready-made template has a sensible default: the Incident Analyzer and Coding Agent templates default to Clone Environment, since an incident, a ticket, or a request can trigger them frequently or concurrently. Build & deployment optimizer, typically run on a schedule, defaults to In Place.
 
 ### Limits
 
 - **Execution timeout**: each run is capped at 1 hour.
 - **Cloned environment TTL**: environments created by Clone Environment mode are deleted 3 days after creation.
-- **Iterations per run**: up to 50 agent iterations per run by default. Override this with the `MAX_TURNS` environment variable.
+- **Iterations per run**: up to 50 agent iterations per run by default. Override this with the `MAX_TURNS` environment variable. The creation flow in the Console pre-fills the `MAX_TURNS` variable with `200`, which you can change before creating the agent task.
 - **Clone rate limit**: up to 60 clones per hour, per organization, to prevent runaway environment creation.
 
 ## Triggers and Outputs
 
-Add a trigger to run the agent automatically, and optionally an output to send its result somewhere when it's done. You can also trigger any agent task on demand: click the **Trigger** (play) button on its overview page, or from the environment's services list.
+Add a trigger to run the agent automatically, and optionally an output to send its result somewhere when it's done. You can also trigger any agent task on demand: click the **Trigger** (play) button on its overview page, or from the **Agent tasks** list in the environment's **Automations** tab.
 
 <Frame>
   <img src="/images/configuration/agent-tasks/trigger-agent-task.png" alt="Agent task overview page with the Trigger play button highlighted in the top right" />
@@ -89,7 +99,7 @@ Add a trigger to run the agent automatically, and optionally an output to send i
 ### Triggers
 
 - **On a schedule**: a cron expression and timezone, for example `0 8 * * 1-5` for 8:00 AM, Monday through Friday.
-- **From a webhook**: Qovery generates a unique URL for the agent task, visible later in the environment's **Agent Tasks** list (for example `https://webhook.qovery.com/api/v1/hook/...`). Anything that can send a POST request to that URL starts the agent.
+- **From a webhook**: Qovery generates a unique URL for the agent task, visible later by hovering **Webhook** in the **Trigger** column of the **Agent tasks** list in the environment's **Automations** tab (for example `https://webhook.qovery.com/api/v1/hook/...`). Anything that can send a POST request to that URL starts the agent.
 
 ### Outputs
 
@@ -120,7 +130,7 @@ Some agents use a different, more direct pattern instead: storing a chat webhook
     A description of what the agent does.
   </Accordion>
   <Accordion title="Resources" icon="gauge-high">
-    CPU (mCPU), memory (MB), and storage (GB) allocated to the agent, same as any other Qovery service.
+    CPU (mCPU), memory (MiB), and storage (GB) allocated to the agent, same as any other Qovery service. CPU and memory are required, with a minimum of 1000 mCPU and 2048 MiB. The ready-made templates start at these minimums.
   </Accordion>
   <Accordion title="Governance" icon="shield-check">
     A domain allowlist controls which external hosts the agent task can reach: comma-separated hostnames, or `*` for all domains.
@@ -133,9 +143,26 @@ Some agents use a different, more direct pattern instead: storing a chat webhook
   </Accordion>
 </AccordionGroup>
 
+On an existing agent task, the **Connections**, **Automations**, and **Outputs** settings, and the Dockerfile fragment under **Advanced settings**, are edited in a modal or side panel and saved from there with **Save**. These pages have no page-level save button. If saving fails, the modal or side panel stays open and shows an error.
+
 ## After You Create It
 
-Agent Tasks appear in your environment overview under **Agent Tasks**, jobs delegated to AI agents, run once or on a schedule. Each one lists its status, last operation, underlying model, and a dedicated webhook URL you can call to trigger it from outside Qovery. That same webhook URL is also shown on the agent task's own overview page.
+Agent tasks appear in the **Agent tasks** list of your environment's **Automations** tab, one-time tasks delegated to AI agents. Each one lists its name, whether it is enabled, its state, its last operation, and its trigger: **Schedule** with the date of the next run (or **Paused**), or **Webhook**, whose dedicated URL you can call to trigger the agent from outside Qovery. That same webhook URL is also shown on the agent task's own overview page.
+
+## Run History
+
+The **Runs** tab of an agent task lists its runs, with these columns:
+
+- **Date**: when the run started and, once finished, when it ended (UTC), with the run ID. Hover the date to see the exact start and end times, or click the copy icon next to the run ID to copy it.
+- **Status**: `Queued`, `Running`, `Completed`, `Failed`, or `Cancelled`.
+- **Trigger**: `Manual`, `Schedule`, or `Webhook`.
+- **Payload**: the payload recorded for the run, or `—` when there is none.
+- **Duration**: how long the run took.
+- **Prompt**: the prompt the run used.
+
+Click a run to open its **Run details** side panel, which shows the run ID, trigger, status, start and end times (UTC), duration, full payload, and full prompt. Until the agent task has run, the tab shows **No runs yet**: use the **Trigger** (play) button in the header to start one.
+
+The agent task's overview page also has a **Last run** section showing the trigger, how long ago the latest run happened, and its status. Click it to open that run's details, or click **See all runs** to go to the **Runs** tab. The **Deployments** tab of an agent task lists its deployments, like any other service.
 
 ## Tutorials
 

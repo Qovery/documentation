@@ -135,6 +135,15 @@ Once your cluster is created, the cluster card displays comprehensive informatio
   />
 </Frame>
 
+### Workloads
+
+The **Workloads** tab of a cluster shows how much CPU and memory the pods running on the cluster have requested, per environment and per service. The data comes from the live cluster metrics: if the metrics are unavailable, the tab displays a message instead.
+
+- **CPU and Memory bars**: each bar shows the requested resources against the cluster capacity. It is split into the top environments, the other environments, the cluster system pods, and the remaining available capacity.
+- **Environments table**: lists each environment with its namespace, number of pods, and the CPU and memory it requests, along with its share of the cluster. Click the CPU or memory column header to change the sort order.
+- **Services**: expand an environment row to list its services, and click a service to open its page.
+- **Cluster system**: groups the pods that are not linked to a Qovery service, by namespace.
+
 ### Statuses
 
 Qovery tracks cluster health using two status categories:

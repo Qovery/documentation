@@ -1670,7 +1670,11 @@ paths:
         `ecr:DescribeRepositories` in `us-east-1`, which Qovery calls to check the credential
         whatever the cluster region; features that call other AWS services with the credential,
         such as managed databases or Terraform services using the cluster credentials, need more.
-        The credential, including its ECR access in the cluster region, and the platform
+        Without `platform.templateKey` and `platform.templateVersion`, Qovery selects its
+        self-managed platform template release and the response returns it: `"platform": {}` gives
+        that release with its default configuration. Without `clusterInputs`, the cluster has no
+        cluster inputs. The credential,
+        including its ECR access in the cluster region, and the platform
         configuration are checked before anything is created. One transaction then writes the
         cluster, its Qovery DNS and build providers, its default ECR registry derived from the
         credential, its initial deployment status, its platform configuration and its Qovery
@@ -1696,8 +1700,10 @@ paths:
                 $ref: '#/components/schemas/SelfManagedClusterResponse'
         '400':
           description: >-
-            Invalid body, provider other than AWS, unknown region, invalid name, cloud credential of
-            another provider, ECR refusing the credential, or invalid platform configuration
+            Invalid body, including only one of `platform.templateKey` and
+            `platform.templateVersion`, provider other than AWS, unknown region, invalid name, cloud
+            credential of another provider, ECR refusing the credential, or invalid platform
+            configuration
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -1714,7 +1720,10 @@ paths:
             failed, such as writing the cluster's initial deployment status or the Qovery Operator
             enrollment
         '503':
-          description: The platform template catalog is temporarily unavailable
+          description: >-
+            The platform template catalog is temporarily unavailable, or, for a request without
+            `platform.templateKey` and `platform.templateVersion`, the self-managed platform
+            template release is missing from it or not published
   '/organization/{organizationId}/cluster/status':
     get:
       summary: List all clusters statuses
@@ -12824,8 +12833,10 @@ paths:
           $ref: '#/components/responses/403'
         '404':
           $ref: '#/components/responses/404'
-        '422':
-          description: 'Cannot configure webhook (provider-specific issues, insufficient permissions)'
+        '424':
+          description: |
+            The git account or token used by the service is not allowed to manage webhooks on the repository.
+            It needs admin rights on the repository, and a git token also needs the webhooks permission.
         '429':
           description: Git provider rate limit exceeded
   /variable:
@@ -14444,7 +14455,9 @@ paths:
       summary: Deploy an agentic workflow
       description: >-
         Deploy the agentic workflow service so its configuration can be tested. Routine runs of the
-        workflow are triggered by its webhook or its schedule, not by this endpoint.
+        workflow are triggered by its webhook or its schedule, not by this endpoint. Each deploy is
+        recorded in the run history as a MANUAL run before it is queued: if the run cannot be
+        recorded, the deploy is not queued and the call fails with a 500 that is safe to retry.
       operationId: deployAgenticWorkflow
       parameters:
         - $ref: '#/components/parameters/agenticWorkflowId'
@@ -16533,6 +16546,13 @@ components:
           nullable: true
         sensitive:
           type: boolean
+        readOnly:
+          type: boolean
+          description: >-
+            Omitted when false. A read-only field is never required or sensitive, and its
+            defaultValue is null. Its value comes from resolvedValues in the same response,
+            never from the client draft. Read-only fields appear only at the top level of the
+            fields of a resolve response; catalog descriptors are never read-only.
         constraints:
           $ref: '#/components/schemas/FieldSchemaConstraintsResponse'
         format:
@@ -16763,9 +16783,32 @@ components:
         credentials:
           $ref: '#/components/schemas/SelfManagedClusterCredentials'
         platform:
-          $ref: '#/components/schemas/PlatformSelection'
+          $ref: '#/components/schemas/SelfManagedClusterPlatformSelection'
         clusterInputs:
           $ref: '#/components/schemas/PlatformComponentStringValuesMap'
+    SelfManagedClusterPlatformSelection:
+      type: object
+      description: >-
+        Platform template release and configuration of a new self-managed cluster. Set templateKey
+        and templateVersion together to select a release, or omit both and Qovery selects its
+        self-managed platform template release; only one of them answers 400. layerSelections and
+        managedConfig are validated against the selected release, and `{}` gives that release with
+        its default configuration. Send them without templateKey and templateVersion only if you
+        already know the components of the self-managed platform template; a client that renders
+        the fields of a release must send that release's coordinates, and selections of mandatory
+        layers are rejected. The response returns the selected release, and the cluster keeps it
+        even if Qovery later selects another one.
+      properties:
+        templateKey:
+          type: string
+          description: Key of the platform template release, set together with templateVersion.
+        templateVersion:
+          type: string
+          description: Version of the platform template release, set together with templateKey.
+        layerSelections:
+          $ref: '#/components/schemas/PlatformLayerSelections'
+        managedConfig:
+          $ref: '#/components/schemas/PlatformComponentConfigurationMap'
     SelfManagedClusterCredentials:
       type: object
       description: >-
@@ -16862,6 +16905,7 @@ components:
         - requirements
         - componentBindings
         - violations
+        - resolvedValues
       properties:
         clusterId:
           type: string
@@ -16884,6 +16928,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PlatformComponentConfigurationViolationResponse'
+        resolvedValues:
+          $ref: '#/components/schemas/PlatformResolvedValues'
     PlatformComponentConfigurationResolutionResponse:
       type: object
       description: >-
@@ -16895,6 +16941,7 @@ components:
         - requirements
         - componentBindings
         - violations
+        - resolvedValues
       properties:
         componentKey:
           type: string
@@ -16914,11 +16961,23 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PlatformComponentConfigurationViolationResponse'
+        resolvedValues:
+          $ref: '#/components/schemas/PlatformResolvedValues'
+    PlatformResolvedValues:
+      type: object
+      description: >-
+        Value of each read-only field in fields, keyed by field key, with no other entry; `{}`
+        when no field is read-only. Values are encoded as strings, like defaultValue, and `null`
+        means that no value is set, such as no CPU limit. A value is the configuration computed
+        for this draft, not proof of what runs on the cluster.
+      additionalProperties:
+        type: string
+        nullable: true
     PlatformComponentInputRequirementResponse:
       description: >-
         A catalog field the cluster must provide for the selected configuration:
         the scalar field descriptor extended with its resolution scope and readiness.
-        Input requirements cannot be object or array descriptors.
+        Input requirements cannot be object or array descriptors and are never read-only.
       allOf:
         - $ref: '#/components/schemas/ScalarFieldSchemaResponse'
         - type: object
@@ -18416,6 +18475,7 @@ components:
       allOf:
         - $ref: '#/components/schemas/Base'
         - $ref: '#/components/schemas/ServiceStorage'
+        - $ref: '#/components/schemas/ServiceEditWarnings'
         - type: object
           required:
             - environment
@@ -18978,6 +19038,37 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Application'
+    ServiceEditWarnings:
+      type: object
+      properties:
+        warnings:
+          type: array
+          description: |
+            Non-blocking problems found while applying a service edit. Only present on the response of an edit,
+            and only when there is at least one warning. The edit itself is saved.
+          items:
+            $ref: '#/components/schemas/ServiceEditWarning'
+    ServiceEditWarning:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          $ref: '#/components/schemas/ServiceEditWarningCodeEnum'
+        message:
+          type: string
+          description: Human-readable explanation of the warning
+    ServiceEditWarningCodeEnum:
+      type: string
+      enum:
+        - GIT_WEBHOOK_PERMISSION_DENIED
+        - GIT_WEBHOOK_SETUP_FAILED
+        - GIT_REPOSITORY_OWNER_CHANGED
+      description: |
+        - GIT_WEBHOOK_PERMISSION_DENIED: the git account or token used by the service lacks admin rights on the repository, so the auto-deploy webhook could not be created
+        - GIT_WEBHOOK_SETUP_FAILED: the auto-deploy webhook could not be created for another reason
+        - GIT_REPOSITORY_OWNER_CHANGED: the previous git account lost access to the repository, so the account of the user who made the edit is now used for this service
     ServiceStorage:
       type: object
       properties:
@@ -25095,6 +25186,7 @@ components:
     HelmResponse:
       allOf:
         - $ref: '#/components/schemas/Base'
+        - $ref: '#/components/schemas/ServiceEditWarnings'
         - type: object
           required:
             - environment
@@ -28126,10 +28218,12 @@ components:
       enum:
         - Cluster
         - Service
+        - Disabled
       description: |
         Mirroring mode when deploying a service from a container registry
         - Cluster: This is not available on Scaleway. Images within the mirroring registry are organized by "Qovery cluster", meaning that the application deployed on the same cluster are all mirrored on the same repository.
         - Service: Images within the mirroring registry are organized by "Qovery service", each service has its own repository
+        - Disabled: Only available on Scaleway Kapsule. Images are not copied into the cluster registry: pods pull them directly from the service container registry, with its credentials. Registries with temporary credentials (AWS ECR, Azure, GCP Artifact Registry) are still mirrored. Images built by Qovery still go to the cluster registry.
     ServiceTypeForVariableEnum:
       type: string
       description: type of the service
@@ -28243,6 +28337,7 @@ components:
     BaseJobResponse:
       allOf:
         - $ref: '#/components/schemas/Base'
+        - $ref: '#/components/schemas/ServiceEditWarnings'
         - type: object
           required:
             - environment
@@ -29275,8 +29370,16 @@ components:
     KarpenterStableNodePoolOverride:
       title: KarpenterStableNodePoolOverride
       type: object
+      description: >-
+        The optional `drift_blocking` setting defines one recurring UTC window during which
+        Karpenter drift disruptions are blocked on the stable node pool. When omitted on creation
+        or disabled, drift behavior is unchanged; omitting it on update preserves the existing
+        setting. When enabled, `days` must contain all seven weekdays and `duration` must be
+        between PT1M and PT23H, leaving at least one hour each day when drift is permitted.
       properties:
         consolidation:
+          $ref: '#/components/schemas/KarpenterNodePoolConsolidation'
+        drift_blocking:
           $ref: '#/components/schemas/KarpenterNodePoolConsolidation'
         limits:
           $ref: '#/components/schemas/KarpenterNodePoolLimits'
@@ -30258,6 +30361,7 @@ components:
     TerraformResponse:
       allOf:
         - $ref: '#/components/schemas/Base'
+        - $ref: '#/components/schemas/ServiceEditWarnings'
         - type: object
           required:
             - name
@@ -32601,6 +32705,7 @@ components:
         - source_workflow_id
         - trigger
         - prompt
+        - payload
         - created_at
         - recorded_at
         - status
@@ -32627,6 +32732,14 @@ components:
           description: >-
             Agent prompt captured when the run was requested. It is a snapshot, so later edits to
             the workflow do not change it. Null when the workflow had no prompt.
+        payload:
+          type: string
+          nullable: true
+          description: >-
+            Body of the event that triggered the run, as it was received: the webhook request body
+            for a WEBHOOK run, empty for a SCHEDULE or MANUAL run. Request headers are never
+            stored. The value is unredacted and supplied by the caller of the webhook, so treat it
+            as untrusted text. Null when the run has no stored payload.
         created_at:
           type: string
           format: date-time
@@ -32682,8 +32795,8 @@ components:
     AgenticWorkflowRunTrigger:
       type: string
       description: >-
-        What triggered the run. MANUAL is reserved for manual runs; no backend producer emits it
-        yet.
+        What triggered the run. MANUAL is a run started through the deploy endpoint, SCHEDULE a
+        run started by the workflow's cron schedule, WEBHOOK a run started by its webhook.
       enum:
         - MANUAL
         - SCHEDULE

@@ -43,6 +43,23 @@ Use the **Show only overridden** toggle to view only settings that differ from d
 
 ## Build Settings
 
+For Applications, Cronjobs, Lifecycle jobs, and Terraform services, the `build.*` settings are not listed in **Advanced settings** in the Qovery Console. Edit them from the dedicated **Build settings** page, available in the service **Settings** just before **Advanced settings**.
+
+| Field in the Console | Setting |
+|----------------------|---------|
+| Timeout (seconds) | [`build.timeout_max_sec`](#build-timeout-max-sec) |
+| CPU (millicores) | [`build.cpu_max_in_milli`](#build-cpu-max-in-milli) |
+| RAM (GiB) | [`build.ram_max_in_gib`](#build-ram-max-in-gib) |
+| Ephemeral storage (GiB) | [`build.ephemeral_storage_in_gib`](#build-ephemeral-storage-in-gib) |
+| Disable BuildKit cache | [`build.disable_buildkit_cache`](#build-disable-buildkit-cache) |
+| Skip Git submodules | [`build.skip_git_submodules`](#build-skip-git-submodules) |
+
+The placeholder of each numeric field shows the default value. The **Disable BuildKit cache** toggle is not displayed for Terraform services.
+
+<Info>
+If build settings customization is not available for your organization, the fields are read-only and the page displays a message with a **Contact support** button.
+</Info>
+
 <a id="build-timeout-max-sec"></a>
 
 ### build.timeout_max_sec
@@ -192,6 +209,24 @@ This value must be **greater than** the time your `deployment.lifecycle.pre_stop
 <Warning>
 If no node matches the required labels, your pods will stay in `Pending` state. Make sure the target node pool or nodes exist before applying this setting.
 </Warning>
+
+#### Targeting the `stable` node pool on AWS with Karpenter
+
+The `stable` node pool carries a `nodepool/stable:NoSchedule` taint. Node affinity alone is not enough: a pod also needs a matching toleration, and this setting only controls the affinity.
+
+Qovery adds the toleration for you on **Applications** and **Containers**. Setting `{"karpenter.sh/nodepool": "stable"}` on those services is enough, and their pods schedule normally. Container-mode databases are pinned to `stable` automatically, with their toleration, and need no setting at all.
+
+<Warning>
+On **Jobs** and **Cronjobs**, the `stable` toleration is not added. Setting `{"karpenter.sh/nodepool": "stable"}` on those services applies the affinity without the toleration, and their pods stay in `Pending`.
+</Warning>
+
+This is separate from the optional `cronjob` node pool, which has its own taint and its own automatic toleration. See [Dedicated Cronjob Node Pool](/configuration/cronjob#dedicated-cronjob-node-pool).
+
+<Info>
+On EKS clusters with Karpenter, Applications and Containers are placed on the `stable` node pool automatically, affinity and toleration included, when the service has `min_instances` set to `1` or when it has storage attached. In those cases you do not need to set this advanced setting yourself.
+</Info>
+
+For Helm services, Qovery does not inject affinity or tolerations, so you declare both in your own `values.yaml`. See [Change the node pool of your service when using Helm](/configuration/integrations/kubernetes/eks/managed#change-the-node-pool-of-your-service-when-using-helm).
 
 <a id="deployment-antiaffinity-pod"></a>
 
@@ -1535,9 +1570,15 @@ Setting `ndots=2` reduces this to **1 DNS query** since the hostname already has
 
 **Type:** `integer`
 
-**Description:** Allows you to override the CPU limit for your service pods in millicores (1000m = 1 vCPU).
+**Description:** Allows you to override the CPU limit for your service pods in millicores (1000m = 1 vCPU). Set to `-1` to disable the CPU limit entirely, so the container is not capped and can use all the CPU available on the node.
 
-**Use Case:** Use this to fine-tune CPU allocation beyond the standard Qovery instance sizes.
+**Use Case:** Use a positive value to fine-tune CPU allocation beyond the standard Qovery instance sizes, or use `-1` to remove CPU throttling for CPU-bound workloads that need to burst freely.
+
+<Info>
+Setting a custom CPU limit (including `-1` to disable it) requires CPU overcommit to be enabled on the cluster via the `allow_service_cpu_overcommit` cluster advanced setting. This only affects the CPU limit; the RAM limit (`resources.override.limit.ram_in_mib`) remains mandatory and cannot be disabled: a container that exceeds it is OOMKilled, which keeps a single service from exhausting the memory of the node.
+</Info>
+
+**Valid values:** `-1` (disabled) or a positive integer greater than or equal to the service's CPU request
 
 **Default Value:** `null`
 

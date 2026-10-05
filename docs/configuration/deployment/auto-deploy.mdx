@@ -15,6 +15,16 @@ You can activate the auto-deploy flag either within the application settings or 
 
 Once activated, each commit on the application branch will automatically trigger the deployment of the new version of your application.
 
+## Webhook Warnings
+
+When you save the settings of an application, job, Helm chart, or Terraform service, the Console displays a warning if the auto-deploy webhook could not be set up. The settings are saved, but pushes to the repository will not trigger deployments until the issue is fixed.
+
+| Warning | Meaning | What to do |
+|---------|---------|------------|
+| Auto-deploy webhook not created (permission) | The Git account used by the service does not have admin rights on the repository, which are required to create the webhook. | Ask a repository admin to save the change, or use a Git token with admin rights. |
+| Auto-deploy webhook not created (setup failed) | Qovery could not create the webhook on the repository. | Check the webhook status in the auto-deploy settings. |
+| Git account changed | The previous Git account can no longer access the repository, so your Git account is now used for the service. | No action required, unless you want to use another Git account. |
+
 ## Filtering Commits
 
 The "Deployment restrictions" feature allows you to better control which commits should trigger a new deployment and which should not.

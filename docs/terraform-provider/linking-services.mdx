@@ -255,8 +255,8 @@ output "internal_host_envvar" {
 }
 
 output "external_host_envvar" {
-  value       = "QOVERY_APPLICATION_Z${upper(split("-", qovery_application.app.id)[0])}_HOST_EXTERNAL"
-  description = "Built-in variable name for this service's external hostname"
+  value       = var.publicly_accessible ? "QOVERY_APPLICATION_Z${upper(split("-", qovery_application.app.id)[0])}_HOST_EXTERNAL" : null
+  description = "Built-in variable name for this service's external hostname, or null for a private service, which has none"
 }
 ```
 

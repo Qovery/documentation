@@ -85,7 +85,7 @@ Each ready-made template has a sensible default: the Incident Analyzer and Codin
 
 - **Execution timeout**: each run is capped at 1 hour.
 - **Cloned environment TTL**: environments created by Clone Environment mode are deleted 3 days after creation.
-- **Iterations per run**: up to 50 agent iterations per run by default. Override this with the `MAX_TURNS` environment variable.
+- **Iterations per run**: up to 50 agent iterations per run by default. Override this with the `MAX_TURNS` environment variable. The creation flow in the Console pre-fills the `MAX_TURNS` variable with `200`, which you can change before creating the agent task.
 - **Clone rate limit**: up to 60 clones per hour, per organization, to prevent runaway environment creation.
 
 ## Triggers and Outputs

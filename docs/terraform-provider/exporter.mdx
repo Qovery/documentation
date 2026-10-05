@@ -5,23 +5,18 @@ description: "Generate the Terraform configuration of an existing environment"
 
 The Terraform exporter generates the Terraform configuration of an environment set up from the Console. After you import the exported resources into a Terraform state, Terraform manages the environment.
 
-<Warning>
-**Change the provider version of the export.** Until the exporter is updated for provider 1.0, the exported `main.tf` pins the provider below 1.0 (`version = ">= 0.87.0, < 1.0.0"`). Change the constraint to `version = "~> 1.0"` before you run `terraform init`.
-
-On a cluster that uses Karpenter, the export also sets `features.karpenter.spot_enabled`, which provider 1.0 removed. Delete it and set `spot_enabled` on each node pool, as described in the [1.0 upgrade guide](https://registry.terraform.io/providers/qovery/qovery/latest/docs/guides/upgrade-to-1.0).
-</Warning>
-
 ## What gets exported
 
 The export contains a `resource` block for each of these:
 
 - The organization (`qovery_organization`), and all of its container registries, Helm repositories, labels groups and annotations groups.
-- The cluster of the environment (`qovery_cluster`) and its cloud credentials (`qovery_aws_credentials`, `qovery_gcp_credentials`, `qovery_scaleway_credentials` or `qovery_eks_anywhere_vsphere_credentials`).
+- The cluster of the environment (`qovery_cluster`) and its cloud credentials (`qovery_aws_credentials`, `qovery_gcp_credentials`, `qovery_scaleway_credentials` or `qovery_eks_anywhere_vsphere_credentials`). The provider has no resource for Azure credentials: an AKS cluster references its credentials through a `qovery_azure_credentials` data source.
 - The git tokens that the applications, jobs and Terraform services of the environment use (`qovery_git_token`).
 - The project, the environment and its deployment stages.
 - The services of the environment: applications, containers, jobs, Helm charts, Terraform services and databases, with their variables and secrets.
+- The services created from the [service catalog](/configuration/blueprints), exported as the `qovery_blueprint` that manages them rather than as a Helm chart or a Terraform service. Each one comes with its own `import` block.
 
-The export does not contain Azure credentials or a `qovery_deployment` resource.
+The export does not contain a `qovery_deployment` resource. Build settings are exported as `build.*` keys in `advanced_settings_json`, not as a `build_settings` block.
 
 ## Export an environment
 
@@ -40,16 +35,13 @@ The export does not contain Azure credentials or a `qovery_deployment` resource.
     Click **Export**. The download is a zip file with two files:
 
     - `main.tf`: the provider configuration and the resources.
-    - `variables.tf`: the input variables. `qovery_access_token` holds the API token of the provider. The other variables hold the secrets of the project, the environment and the services, the cloud credentials, the registry and Helm repository credentials, and the git tokens. With **Export secrets** on, each of them defaults to its value. Otherwise they have no default, and you set them yourself.
+    - `variables.tf`: the input variables. `qovery_access_token` holds the API token of the provider. The other variables hold the secrets of the project, the environment, the services and the blueprints, the cloud credentials, the registry and Helm repository credentials, and the git tokens. With **Export secrets** on, each of them defaults to its value. Otherwise they have no default, and you set them yourself.
   </Step>
 </Steps>
 
 ## Import the exported resources
 
 <Steps>
-  <Step title="Set the provider version">
-    In `main.tf`, set the provider `version` to `"~> 1.0"`, as described at the top of this page.
-  </Step>
   <Step title="Set the input variables">
     The provider reads its token from the `qovery_access_token` variable:
 
@@ -65,7 +57,7 @@ The export does not contain Azure credentials or a `qovery_deployment` resource.
     ```
   </Step>
   <Step title="Add an import block for every resource">
-    In a new file, such as `imports.tf`, add an `import` block for every resource of `main.tf`. Each resource is named after its kind, followed by `z` and the first eight characters of its ID. For example, the environment `a1b2c3d4-…` is `qovery_environment.environment_za1b2c3d4`.
+    In a new file, such as `imports.tf`, add an `import` block for every resource of `main.tf`, except the blueprints: `main.tf` already imports them, and a second `import` block for the same resource is an error. Each resource is named after its kind, followed by `z` and the first eight characters of its ID. For example, the environment `a1b2c3d4-…` is `qovery_environment.environment_za1b2c3d4`.
 
     ```hcl imports.tf
     import {
@@ -86,7 +78,7 @@ The export does not contain Azure credentials or a `qovery_deployment` resource.
     terraform plan
     ```
 
-    The plan lists every import. The Qovery API never returns secret values, so the plan also updates each secret once with the value of its variable. Apart from that, a complete import plans no change. Review any other change before you apply it: it is a difference between the exported configuration and Qovery.
+    The plan lists every import. The Qovery API never returns secret values or the `spec_overrides` of blueprints, so the plan also sets them once from the configuration. For a blueprint that has secret variables or spec overrides, that apply redeploys its service. Apart from that, a complete import plans no change. Review any other change before you apply it: it is a difference between the exported configuration and Qovery.
   </Step>
   <Step title="Apply">
     ```bash

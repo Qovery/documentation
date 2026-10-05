@@ -142,9 +142,46 @@ At runtime, `DATABASE_URL` holds a URL of the form `postgresql://<login>:<passwo
 
 To deploy, set `TF_VAR_organization_id` and `TF_VAR_cluster_id`, then run `terraform init` and `terraform apply`, as in the [basic application example](/terraform-provider/basic-application#deploy).
 
-<Tip>
-For production, you can run the database with your cloud provider's managed service: set `mode = "MANAGED"` and `instance_type`, such as `db.t3.medium` on AWS, and remove `cpu` and `memory`. The [multi-environment example](/terraform-provider/multi-environment) does this. `mode` cannot change after creation.
-</Tip>
+## Use a managed database
+
+For production, use a managed database. Managed databases are created from a blueprint of the [service catalog](/configuration/blueprints), with the [`qovery_blueprint`](https://registry.terraform.io/providers/qovery/qovery/latest/docs/resources/blueprint) resource. The Amazon RDS for PostgreSQL blueprint below needs an AWS cluster.
+
+Replace `qovery_database.postgres`, the `postgres_variables` local and the `secret_aliases` of the application with:
+
+```hcl
+# Amazon RDS for PostgreSQL from the service catalog. Requires an AWS cluster.
+resource "qovery_blueprint" "postgres" {
+  environment_id = qovery_environment.production.id
+  name           = "postgres"
+  blueprint      = "AWS/postgres/17"
+
+  variables = {
+    db_name        = "app"
+    instance_class = "db.t3.medium"
+  }
+}
+
+locals {
+  # Prefix of the output variables of the blueprint, for example QOVERY_OUTPUT_TERRAFORM_ZA1B2C3D4.
+  postgres_outputs = "QOVERY_OUTPUT_TERRAFORM_Z${upper(split("-", qovery_blueprint.postgres.service_id)[0])}"
+}
+
+resource "qovery_application" "backend" {
+  # ... the arguments of the configuration above, without secret_aliases
+
+  # Qovery replaces each {{...}} with the matching output of the blueprint when it deploys the application.
+  secrets = [
+    {
+      key   = "DATABASE_URL"
+      value = "postgresql://{{${local.postgres_outputs}_DB_USERNAME}}:{{${local.postgres_outputs}_DB_PASSWORD}}@{{${local.postgres_outputs}_DB_ADDRESS}}:{{${local.postgres_outputs}_DB_PORT}}/{{${local.postgres_outputs}_DB_NAME}}"
+    }
+  ]
+}
+```
+
+In `qovery_deployment`, replace `qovery_database.postgres` with `qovery_blueprint.postgres` in `depends_on`.
+
+A blueprint publishes its outputs as variables of the environment, named `QOVERY_OUTPUT_TERRAFORM_Z<ID>_<OUTPUT>`, where `<ID>` is the first eight characters of `service_id`, in uppercase. `service_id` is the ID of the Terraform service that runs the blueprint. Terraform creates the blueprint and waits for its deployment before it creates the application, so the outputs exist when the application deploys. Reference them through `{{...}}` interpolation, not with aliases: an alias must be a secret exactly when its target is one, and the blueprint decides which outputs are secrets.
 
 ## Next steps
 

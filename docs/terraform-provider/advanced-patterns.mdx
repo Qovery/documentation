@@ -251,22 +251,16 @@ locals {
   # Environment-specific configuration
   config = {
     dev = {
-      mode                   = "DEVELOPMENT"
-      database_mode          = "CONTAINER"
-      database_instance_type = null
-      database_storage       = 10
+      mode             = "DEVELOPMENT"
+      managed_database = false
     }
     staging = {
-      mode                   = "STAGING"
-      database_mode          = "CONTAINER"
-      database_instance_type = null
-      database_storage       = 20
+      mode             = "STAGING"
+      managed_database = false
     }
     production = {
-      mode                   = "PRODUCTION"
-      database_mode          = "MANAGED"
-      database_instance_type = "db.t3.medium"
-      database_storage       = 50
+      mode             = "PRODUCTION"
+      managed_database = true
     }
   }
 
@@ -281,21 +275,36 @@ resource "qovery_environment" "env" {
   mode       = local.current_config.mode
 }
 
+# PostgreSQL in a container on the cluster, outside production
 resource "qovery_database" "db" {
+  count = local.current_config.managed_database ? 0 : 1
+
   environment_id = qovery_environment.env.id
   name           = "database"
   type           = "POSTGRESQL"
   version        = "16"
-  mode           = local.current_config.database_mode
-  instance_type  = local.current_config.database_instance_type
+  mode           = "CONTAINER"
   accessibility  = "PRIVATE"
-  storage        = local.current_config.database_storage
+  storage        = 10
+}
+
+# Amazon RDS for PostgreSQL from the service catalog, in production. Requires an AWS cluster.
+resource "qovery_blueprint" "db" {
+  count = local.current_config.managed_database ? 1 : 0
+
+  environment_id = qovery_environment.env.id
+  name           = "database"
+  blueprint      = "AWS/postgres/17"
+
+  variables = {
+    db_name = "app"
+  }
 }
 
 # Declare the services the same way, with values from local.current_config.
 ```
 
-A `MANAGED` database requires `instance_type`. `db.t3.medium` is an AWS RDS instance type: use one that your cloud provider offers.
+Production uses a managed database, created from a blueprint of the [service catalog](/configuration/blueprints) with [`qovery_blueprint`](https://registry.terraform.io/providers/qovery/qovery/latest/docs/resources/blueprint). The Amazon RDS blueprint needs an AWS cluster. [Application with Database](/terraform-provider/application-with-database#use-a-managed-database) shows how an application connects to it.
 
 ### Using Workspaces
 
@@ -558,34 +567,34 @@ variable "enable_redis" {
   default     = false
 }
 
-resource "qovery_database" "postgres" {
+# Amazon RDS for PostgreSQL from the service catalog
+resource "qovery_blueprint" "postgres" {
   count = var.enable_database ? 1 : 0
 
   environment_id = qovery_environment.prod.id
   name           = "postgres"
-  type           = "POSTGRESQL"
-  version        = "16"
-  mode           = "MANAGED"
-  instance_type  = "db.t3.micro"
-  accessibility  = "PRIVATE"
-  storage        = 20
+  blueprint      = "AWS/postgres/17"
+
+  variables = {
+    db_name = "app"
+  }
 }
 
-resource "qovery_database" "redis" {
+# Amazon ElastiCache for Redis from the service catalog
+resource "qovery_blueprint" "redis" {
   count = var.enable_redis ? 1 : 0
 
   environment_id = qovery_environment.prod.id
   name           = "redis"
-  type           = "REDIS"
-  version        = "7.0"
-  mode           = "MANAGED"
-  instance_type  = "cache.t3.micro"
-  accessibility  = "PRIVATE"
-  storage        = 10
+  blueprint      = "AWS/redis/7"
+
+  variables = {
+    redis_name = "my-app-redis"
+  }
 }
 ```
 
-`MANAGED` databases require `instance_type`. `db.t3.micro` and `cache.t3.micro` are AWS instance types: use ones that your cloud provider offers.
+These managed databases are blueprints of the [service catalog](/configuration/blueprints), created with [`qovery_blueprint`](https://registry.terraform.io/providers/qovery/qovery/latest/docs/resources/blueprint). Both blueprints need an AWS cluster. `db_name` and `redis_name` are the only variables they require; the others use their catalog defaults.
 
 ## Best Practices
 
@@ -627,7 +636,7 @@ resource "qovery_database" "redis" {
   <Accordion title="Protect Production" icon="shield">
     Add lifecycle rules to prevent accidental deletion:
     ```hcl
-    resource "qovery_database" "prod" {
+    resource "qovery_blueprint" "prod_database" {
       # ... configuration ...
 
       lifecycle {

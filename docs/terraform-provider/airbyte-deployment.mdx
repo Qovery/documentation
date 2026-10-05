@@ -13,7 +13,7 @@ This page is based on [qovery-airbyte](https://github.com/evoxmusic/qovery-airby
 
 ## What You'll Deploy
 
-- **PostgreSQL Database**: Managed database for Airbyte metadata
+- **PostgreSQL Database**: Amazon RDS for PostgreSQL for Airbyte metadata, created from a blueprint of the [service catalog](/configuration/blueprints)
 - **Airbyte (Helm)**: Airbyte deployed from the official Helm chart
 - **Proxy Application**: Reverse proxy with basic authentication in front of the Airbyte web app
 - **Deployment Stages**: Ordered deployment (Database → App → Proxy)
@@ -23,7 +23,7 @@ This page is based on [qovery-airbyte](https://github.com/evoxmusic/qovery-airby
 Before deploying, gather these values:
 
 - A Qovery API token and the IDs of your organization, project and cluster. See [Find resource IDs](/terraform-provider/overview#find-resource-ids).
-- A cluster on AWS. The database uses `db.t3.small`, an AWS RDS instance type. On another cloud provider, set an instance type that the provider offers.
+- A cluster on AWS: the Amazon RDS for PostgreSQL blueprint is available on AWS clusters only.
 - Basic authentication credentials for the proxy: one htpasswd entry with a SHA-1 password, `username:{SHA}...`. The Gateway API expects this format, and NGINX accepts it too, so the credentials work whichever of the two routes the traffic.
 
 ## File Structure
@@ -102,16 +102,11 @@ resource "qovery_environment" "airbyte" {
   mode       = "PRODUCTION"
 }
 
-# Deployment stages: the database, then Airbyte, then the proxy
-resource "qovery_deployment_stage" "database" {
-  environment_id = qovery_environment.airbyte.id
-  name           = "DATABASE"
-}
-
+# Deployment stages: Airbyte, then the proxy. Qovery adds a new stage after the existing ones,
+# so both come after the default stages, including the one of the database blueprint.
 resource "qovery_deployment_stage" "app" {
   environment_id = qovery_environment.airbyte.id
   name           = "APP"
-  is_after       = qovery_deployment_stage.database.id
 }
 
 resource "qovery_deployment_stage" "proxy" {
@@ -120,22 +115,22 @@ resource "qovery_deployment_stage" "proxy" {
   is_after       = qovery_deployment_stage.app.id
 }
 
-# Create PostgreSQL database for Airbyte
-resource "qovery_database" "airbyte_db" {
-  environment_id      = qovery_environment.airbyte.id
-  deployment_stage_id = qovery_deployment_stage.database.id
-  name                = "airbyte-db"
-  type                = "POSTGRESQL"
-  version             = "17"
-  mode                = "MANAGED"
-  instance_type       = "db.t3.small"
-  storage             = 20
-  accessibility       = "PRIVATE"
+# Create PostgreSQL database for Airbyte: Amazon RDS for PostgreSQL from the service catalog.
+# Terraform waits for its deployment, so its outputs exist before the Helm chart is created.
+resource "qovery_blueprint" "airbyte_db" {
+  environment_id = qovery_environment.airbyte.id
+  name           = "airbyte-db"
+  blueprint      = "AWS/postgres/17"
+
+  variables = {
+    db_name        = "airbyte"
+    instance_class = "db.t3.small"
+  }
 }
 
 locals {
-  # Prefix of the built-in variables of the database, for example QOVERY_POSTGRESQL_ZA1B2C3D4
-  airbyte_db_variables = "QOVERY_POSTGRESQL_Z${upper(split("-", qovery_database.airbyte_db.id)[0])}"
+  # Prefix of the output variables of the blueprint, for example QOVERY_OUTPUT_TERRAFORM_ZA1B2C3D4
+  airbyte_db_outputs = "QOVERY_OUTPUT_TERRAFORM_Z${upper(split("-", qovery_blueprint.airbyte_db.service_id)[0])}"
 }
 
 # Add Airbyte Helm repository
@@ -176,30 +171,31 @@ resource "qovery_helm" "airbyte" {
     }
   }
 
-  # Database connection details, referenced as qovery.env.<NAME> in airbyte-values.yaml
-  environment_variable_aliases = [
+  # Database connection details, referenced as qovery.env.<NAME> in airbyte-values.yaml.
+  # Qovery replaces each {{...}} with an output of the blueprint when it deploys the chart.
+  environment_variables = [
     {
       key   = "DATABASE_HOST"
-      value = "${local.airbyte_db_variables}_HOST_INTERNAL"
+      value = "{{${local.airbyte_db_outputs}_DB_ADDRESS}}"
     },
     {
       key   = "DATABASE_PORT"
-      value = "${local.airbyte_db_variables}_PORT"
+      value = "{{${local.airbyte_db_outputs}_DB_PORT}}"
     },
     {
       key   = "DATABASE_NAME"
-      value = "${local.airbyte_db_variables}_DEFAULT_DATABASE_NAME"
+      value = "{{${local.airbyte_db_outputs}_DB_NAME}}"
     },
     {
       key   = "DATABASE_USER"
-      value = "${local.airbyte_db_variables}_LOGIN"
+      value = "{{${local.airbyte_db_outputs}_DB_USERNAME}}"
     }
   ]
 
-  secret_aliases = [
+  secrets = [
     {
       key   = "DATABASE_PASSWORD"
-      value = "${local.airbyte_db_variables}_PASSWORD"
+      value = "{{${local.airbyte_db_outputs}_DB_PASSWORD}}"
     }
   ]
 }
@@ -296,7 +292,7 @@ resource "qovery_deployment" "airbyte" {
   desired_state  = "RUNNING"
 
   depends_on = [
-    qovery_database.airbyte_db,
+    qovery_blueprint.airbyte_db,
     qovery_helm.airbyte,
     qovery_application.airbyte_webapp_proxy,
   ]
@@ -406,7 +402,7 @@ airbyte-bootloader:
     terraform apply
     ```
 
-    `terraform apply` waits for the deployment of the three stages.
+    `terraform apply` waits for the database to be created, then for the deployment of the environment.
   </Step>
 
   <Step title="Access Airbyte">
@@ -447,15 +443,15 @@ This example demonstrates several advanced Terraform patterns:
   </Accordion>
 
   <Accordion title="Deployment Stages" icon="layer-group">
-    Ensuring proper deployment order with `qovery_deployment_stage` resources and the `deployment_stage_id` of each service:
-    1. **DATABASE**: PostgreSQL deploys first
+    Ensuring proper deployment order with `qovery_deployment_stage` resources and the `deployment_stage_id` of each service. The Terraform service of the database blueprint stays in its default stage, which comes before the stages the configuration adds:
+    1. **TERRAFORM DEFAULT**: PostgreSQL deploys first
     2. **APP**: Airbyte Helm chart deploys after database
     3. **PROXY**: Authentication proxy deploys last
   </Accordion>
 
   <Accordion title="Dynamic Configuration" icon="sliders">
     Using Qovery's database connection details in Helm values:
-    - Aliases of the database's built-in variables on the Helm service
+    - Outputs of the database blueprint injected in variables of the Helm service with `{{...}}` interpolation
     - Variables referenced as `qovery.env.<NAME>` in `airbyte-values.yaml`
     - The internal host of the Helm release injected in the proxy with `{{...}}` interpolation
   </Accordion>
@@ -469,8 +465,8 @@ This example demonstrates several advanced Terraform patterns:
 
   <Accordion title="Security" icon="lock">
     - Basic authentication on the public endpoint of the proxy
-    - Private database accessibility
-    - Database password passed as a secret alias, never written in the configuration
+    - Private database: the blueprint does not make the instance publicly accessible by default
+    - Database password passed as a secret that Qovery builds from the blueprint output, never written in the configuration
   </Accordion>
 
   <Accordion title="Health Checks" icon="heart-pulse">
@@ -483,7 +479,7 @@ This example demonstrates several advanced Terraform patterns:
   <Accordion title="Resource Management" icon="gauge">
     Setting CPU and memory for each service:
     - Minimal resources for proxy (100 mCPU, 128 MB)
-    - Managed database with an instance type and defined storage
+    - Managed database with an instance class (`db.t3.small`) and the default storage of the blueprint
     - Cluster-wide resource permissions for Airbyte
   </Accordion>
 </AccordionGroup>
@@ -516,7 +512,7 @@ This example demonstrates several advanced Terraform patterns:
   <Accordion title="Database Connection Issues" icon="database">
     If Airbyte can't connect to the database:
     - Verify database is in RUNNING state
-    - Check the aliases of the Helm service point to the variables of the database
+    - Check the variables of the Helm service reference the outputs of the database blueprint
     - Review `airbyte-values.yaml` configuration
     - Check Airbyte logs for connection errors
   </Accordion>

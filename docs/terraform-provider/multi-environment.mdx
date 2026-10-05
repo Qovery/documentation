@@ -3,7 +3,7 @@ title: "Multi-Environment Setup"
 description: "Deploy the same stack to development, staging and production environments"
 ---
 
-This example deploys the same application and PostgreSQL database to three environments of one project. A `locals` map holds what differs between the environments, and `for_each` creates one copy of each resource per entry.
+This example deploys the same application and PostgreSQL database to three environments of one project. A `locals` map holds what differs between the environments, and `for_each` creates one copy of each resource per entry. Production uses a managed database from a blueprint, which needs an AWS cluster.
 
 ## Configuration
 
@@ -34,30 +34,27 @@ provider "qovery" {}
 locals {
   environments = {
     development = {
-      mode                   = "DEVELOPMENT"
-      branch                 = "develop"
-      instances              = 1
-      database_mode          = "CONTAINER"
-      database_instance_type = null
-      database_storage       = 10
+      mode             = "DEVELOPMENT"
+      branch           = "develop"
+      instances        = 1
+      managed_database = false
     }
     staging = {
-      mode                   = "STAGING"
-      branch                 = "staging"
-      instances              = 1
-      database_mode          = "CONTAINER"
-      database_instance_type = null
-      database_storage       = 10
+      mode             = "STAGING"
+      branch           = "staging"
+      instances        = 1
+      managed_database = false
     }
     production = {
-      mode                   = "PRODUCTION"
-      branch                 = "main"
-      instances              = 3
-      database_mode          = "MANAGED"
-      database_instance_type = "db.t3.medium"
-      database_storage       = 50
+      mode             = "PRODUCTION"
+      branch           = "main"
+      instances        = 3
+      managed_database = true
     }
   }
+
+  container_databases = { for name, env in local.environments : name => env if !env.managed_database }
+  managed_databases   = { for name, env in local.environments : name => env if env.managed_database }
 }
 
 resource "qovery_project" "shop" {
@@ -74,17 +71,49 @@ resource "qovery_environment" "env" {
   mode       = each.value.mode
 }
 
+# PostgreSQL in a container on the cluster, for development and staging
 resource "qovery_database" "postgres" {
-  for_each = local.environments
+  for_each = local.container_databases
 
   environment_id = qovery_environment.env[each.key].id
   name           = "postgres"
   type           = "POSTGRESQL"
   version        = "16"
-  mode           = each.value.database_mode
-  instance_type  = each.value.database_instance_type
+  mode           = "CONTAINER"
   accessibility  = "PRIVATE"
-  storage        = each.value.database_storage
+  storage        = 10
+}
+
+# Amazon RDS for PostgreSQL from the service catalog, for production. Requires an AWS cluster.
+resource "qovery_blueprint" "postgres" {
+  for_each = local.managed_databases
+
+  environment_id = qovery_environment.env[each.key].id
+  name           = "postgres"
+  blueprint      = "AWS/postgres/17"
+
+  variables = {
+    db_name           = "shop"
+    instance_class    = "db.t3.medium"
+    allocated_storage = "50"
+  }
+}
+
+locals {
+  # DATABASE_URL of the container databases: an alias of their built-in secret
+  database_url_aliases = {
+    for name, db in qovery_database.postgres : name => "QOVERY_POSTGRESQL_Z${upper(split("-", db.id)[0])}_DATABASE_URL_INTERNAL"
+  }
+
+  # Prefix of the output variables of each blueprint, for example QOVERY_OUTPUT_TERRAFORM_ZA1B2C3D4
+  blueprint_outputs = {
+    for name, bp in qovery_blueprint.postgres : name => "QOVERY_OUTPUT_TERRAFORM_Z${upper(split("-", bp.service_id)[0])}"
+  }
+
+  # DATABASE_URL of the managed databases: Qovery replaces each {{...}} with an output of the blueprint
+  database_url_secrets = {
+    for name, p in local.blueprint_outputs : name => "postgresql://{{${p}_DB_USERNAME}}:{{${p}_DB_PASSWORD}}@{{${p}_DB_ADDRESS}}:{{${p}_DB_PORT}}/{{${p}_DB_NAME}}"
+  }
 }
 
 resource "qovery_application" "api" {
@@ -134,11 +163,12 @@ resource "qovery_application" "api" {
     }
   }
 
+  # Each environment gets DATABASE_URL from one of the two maps above.
   secret_aliases = [
-    {
-      key   = "DATABASE_URL"
-      value = "QOVERY_POSTGRESQL_Z${upper(split("-", qovery_database.postgres[each.key].id)[0])}_DATABASE_URL_INTERNAL"
-    }
+    for name, target in local.database_url_aliases : { key = "DATABASE_URL", value = target } if name == each.key
+  ]
+  secrets = [
+    for name, url in local.database_url_secrets : { key = "DATABASE_URL", value = url } if name == each.key
   ]
 }
 
@@ -150,6 +180,7 @@ resource "qovery_deployment" "env" {
 
   depends_on = [
     qovery_database.postgres,
+    qovery_blueprint.postgres,
     qovery_application.api,
   ]
 }
@@ -163,10 +194,10 @@ What differs between the environments:
 
 - **Git branch**: each environment builds its own branch.
 - **Instances**: production runs three instances of the application.
-- **Database**: development and staging run PostgreSQL in a container on the cluster. Production uses your cloud provider's managed database service, which requires `instance_type`. `db.t3.medium` is an AWS RDS instance type: use one that your cloud provider offers. The database `mode` cannot change after creation.
+- **Database**: development and staging run PostgreSQL in a container on the cluster. Production runs Amazon RDS for PostgreSQL, created from a blueprint of the [service catalog](/configuration/blueprints) with [`qovery_blueprint`](https://registry.terraform.io/providers/qovery/qovery/latest/docs/resources/blueprint). This blueprint needs an AWS cluster. `instance_class` and `allocated_storage` are variables of the blueprint.
 - **Auto-deploy**: new commits redeploy development and staging. Production is deployed by `qovery_deployment` or from the Console.
 
-The application reads the database connection string from `DATABASE_URL`, as explained in [Application with Database](/terraform-provider/application-with-database#how-services-connect).
+The application reads the database connection string from `DATABASE_URL`. For a container database, it is an alias of a built-in secret. For the managed database, it is a secret that Qovery builds from the outputs of the blueprint when it deploys the application. [Application with Database](/terraform-provider/application-with-database) explains both.
 
 ## Deploy
 

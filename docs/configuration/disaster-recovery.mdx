@@ -172,11 +172,11 @@ Use **logical replication** for cross-AZ and cross-region DR when you need low R
 
 ### Managed Databases vs. Custom Terraform Modules
 
-Qovery offers managed database provisioning (`qovery_database` resource) on supported cloud providers, primarily AWS (RDS). For other providers or cross-cloud scenarios, custom Terraform modules provide maximum flexibility.
+Qovery provisions managed databases from the [Blueprints catalog](/configuration/blueprints) (`qovery_blueprint` resource), for example Amazon RDS on AWS clusters. For other providers or cross-cloud scenarios, custom Terraform modules provide maximum flexibility.
 
 | Scenario | Recommended Approach | Details |
 | --- | --- | --- |
-| **AWS to AWS** | `qovery_database` in MANAGED mode | Simplest option. Qovery provisions and manages RDS. Use for both production and DR clusters on AWS. |
+| **AWS to AWS** | `qovery_blueprint` with an Amazon RDS blueprint | Simplest option. Qovery provisions and manages RDS. Use for both production and DR clusters on AWS. |
 | **Scaleway / GCP** | Custom Terraform modules via Qovery Terraform integration | Provision cloud-native managed databases (e.g., Scaleway Managed PostgreSQL) using your own Terraform modules deployed through Qovery. |
 | **Cross-Cloud** | Custom Terraform modules | Maximum control. Terraform module deployment from any Qovery cluster can provision resources on any cloud, as long as credentials are configured. |
 

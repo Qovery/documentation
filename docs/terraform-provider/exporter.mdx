@@ -1,100 +1,115 @@
 ---
 title: "Terraform Exporter"
-description: "Export your Qovery environment configuration as Terraform code"
+description: "Generate the Terraform configuration of an existing environment"
 ---
 
-## Overview
+The Terraform exporter generates the Terraform configuration of an environment set up from the Console. After you import the exported resources into a Terraform state, Terraform manages the environment.
 
-The Terraform Exporter converts your Qovery environment configuration into Terraform manifests, enabling you to transition from UI-based setup to infrastructure-as-code management without manually writing configurations.
+## What gets exported
 
-<Info>
-Build your infrastructure in the Qovery Console, then export everything as Terraform code for version control and automation.
-</Info>
+The export contains a `resource` block for each of these:
 
-## What Gets Exported
+- The organization (`qovery_organization`), and all of its container registries, Helm repositories, labels groups and annotations groups.
+- The cluster of the environment (`qovery_cluster`) and its cloud credentials (`qovery_aws_credentials`, `qovery_gcp_credentials`, `qovery_scaleway_credentials` or `qovery_eks_anywhere_vsphere_credentials`). The provider has no resource for Azure credentials: an AKS cluster references its credentials through a `qovery_azure_credentials` data source.
+- The git tokens that the applications, jobs and Terraform services of the environment use (`qovery_git_token`).
+- The project, the environment and its deployment stages.
+- The services of the environment: applications, containers, jobs, Helm charts, Terraform services and databases, with their variables and secrets.
+- The services created from the [service catalog](/configuration/blueprints), exported as the `qovery_blueprint` that manages them rather than as a Helm chart or a Terraform service. Each one comes with its own `import` block.
 
-The exporter generates a complete Terraform configuration including:
+The export does not contain a `qovery_deployment` resource. Build settings are exported as `build.*` keys in `advanced_settings_json`, not as a `build_settings` block.
 
-- **Environment**: Name, mode, cluster assignment, variables, deployment rules
-- **Services**: Applications, databases, jobs, and Helm charts with all their configurations
-- **Resources**: Organization, project, and cluster data sources
-- **Configuration**: Advanced settings, ports, resource limits, auto-deploy settings
-- **Secrets** (optional): Environment variables and secrets
-
-## How to Export
+## Export an environment
 
 <Steps>
-  <Step title="Navigate to Environment">
-    Go to the environment you want to export in the Qovery Console
+  <Step title="Open the export">
+    In the Console, open the environment, click the **Other actions** menu (three dots) and select **Export as Terraform**. Only organization admins can export an environment.
   </Step>
-
-  <Step title="Export">
-    Click on the environment settings (three dots menu) and select **Export as Terraform**
-  </Step>
-
-  <Step title="Choose Options">
-    Select whether to include secrets in the export
+  <Step title="Choose whether to include secrets">
+    Turn on **Export secrets** to include the secret values in the export.
 
     <Warning>
-    If you include secrets, they will be in plain text. Use environment variables or secret managers before committing to version control.
+    Exported secret values are written in plain text in `variables.tf`, and Terraform also stores them in its state. Do not commit either to version control, and keep the state in a protected backend.
     </Warning>
   </Step>
-
   <Step title="Download">
-    Download the generated Terraform configuration
+    Click **Export**. The download is a zip file with two files:
+
+    - `main.tf`: the provider configuration and the resources.
+    - `variables.tf`: the input variables. `qovery_access_token` holds the API token of the provider. The other variables hold the secrets of the project, the environment, the services and the blueprints, the cloud credentials, the registry and Helm repository credentials, and the git tokens. With **Export secrets** on, each of them defaults to its value. Otherwise they have no default, and you set them yourself.
   </Step>
 </Steps>
 
-## Using Exported Configuration
+## Import the exported resources
 
 <Steps>
-  <Step title="Import Existing Resources">
-    Import resources to avoid recreating them:
+  <Step title="Set the input variables">
+    The provider reads its token from the `qovery_access_token` variable:
 
     ```bash
-    terraform import qovery_environment.prod <environment-id>
-    terraform import qovery_application.api <application-id>
-    terraform import qovery_database.postgres <database-id>
+    export TF_VAR_qovery_access_token="<your-api-token>"
     ```
-  </Step>
 
-  <Step title="Initialize and Apply">
+    Set the variables that have no default the same way, or in a `terraform.tfvars` file that you keep out of version control.
+  </Step>
+  <Step title="Initialize">
     ```bash
     terraform init
-    export TF_VAR_qovery_api_token="your-api-token"
+    ```
+  </Step>
+  <Step title="Add an import block for every resource">
+    In a new file, such as `imports.tf`, add an `import` block for every resource of `main.tf`, except the blueprints: `main.tf` already imports them, and a second `import` block for the same resource is an error. `import` blocks need Terraform 1.5 or later. Each resource is named after its kind, followed by `z` and the first eight characters of its ID. For example, the environment `a1b2c3d4-…` is `qovery_environment.environment_za1b2c3d4`.
+
+    ```hcl imports.tf
+    import {
+      to = qovery_environment.environment_za1b2c3d4
+      id = "<environment_id>"
+    }
+
+    import {
+      to = qovery_cluster.cluster_z5e6f7a8b
+      id = "<organization_id>,<cluster_id>"
+    }
+    ```
+
+    The import ID is the resource ID for the organization, the project, the environment, the services, and the labels and annotations groups. It is `<organization_id>,<resource_id>` for the cloud credentials, the cluster, the container registries, the Helm repositories and the git tokens, and `<environment_id>,<stage_name>` for the deployment stages. The Registry page of each resource gives its format.
+  </Step>
+  <Step title="Review the plan">
+    ```bash
     terraform plan
+    ```
+
+    The plan lists every import. The Qovery API never returns secret values or the `spec_overrides` of blueprints, so the plan also sets them once from the configuration. For a blueprint that has secret variables or spec overrides, that apply redeploys its service. Apart from that, a complete import plans no change. Review any other change before you apply it: it is a difference between the exported configuration and Qovery.
+  </Step>
+  <Step title="Apply">
+    ```bash
     terraform apply
     ```
+
+    Terraform records the imported resources in its state. You can then remove the `import` blocks.
   </Step>
 </Steps>
 
-<Info>
-If you imported resources correctly, `terraform plan` should show no or minimal changes.
-</Info>
+## After the import
 
-## Best Practices
+Terraform now manages the exported resources: change them in the configuration, not in the Console. A change made from the Console shows up in the next `terraform plan`, and the next `terraform apply` reverts it. Secret values are the exception: the API never returns them, so a secret changed from the Console does not show up in the plan. See [How the provider tracks changes](/terraform-provider/overview#how-the-provider-tracks-changes).
 
-- **Never commit secrets** to version control - use environment variables or secret managers
-- **Import existing resources** before applying to avoid recreation
-- Use **remote state backend** (S3, Terraform Cloud) for team collaboration
-- Keep exported configurations in **separate directories** per environment
+The export only describes the resources. To deploy the environment on `terraform apply`, add a `qovery_deployment` resource, as in the [basic application example](/terraform-provider/basic-application). Destroying that resource, or removing it from the configuration, deletes the environment and its services.
 
-## Next Steps
+Store the state in a [remote backend](https://developer.hashicorp.com/terraform/language/backend) so that your team shares it.
+
+## Next steps
 
 <CardGroup cols={2}>
   <Card title="Terraform Provider" icon="code" href="/terraform-provider/overview">
-    Learn about the Qovery Terraform Provider
+    Set up the provider
   </Card>
-
-  <Card title="Terraform Examples" icon="file-code" href="/terraform-provider/basic-application">
-    Explore Terraform configuration examples
+  <Card title="Basic Application" icon="rocket" href="/terraform-provider/basic-application">
+    Deploy an environment with qovery_deployment
   </Card>
-
-  <Card title="Terraform Registry" icon="book-open" href="https://registry.terraform.io/providers/Qovery/qovery/latest/docs">
-    Complete provider documentation
+  <Card title="Terraform Registry" icon="book-open" href="https://registry.terraform.io/providers/qovery/qovery/latest/docs">
+    Reference of every resource and its import ID
   </Card>
-
   <Card title="Environment Variables" icon="sliders" href="/configuration/environment-variables">
-    Manage environment variables and secrets
+    Variables and secrets
   </Card>
 </CardGroup>

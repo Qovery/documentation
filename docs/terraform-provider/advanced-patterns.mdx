@@ -5,7 +5,7 @@ description: "Advanced Terraform techniques with Qovery"
 
 ## Overview
 
-This guide covers advanced Terraform patterns for managing Qovery infrastructure at scale, including modules, workspaces, and state management.
+This guide covers Terraform patterns for managing Qovery resources at scale: modules, workspaces, remote state, variable files, lists built from variables and conditional resources.
 
 ## Reusable Modules
 
@@ -35,9 +35,20 @@ terraform-qovery/
 
 ### Application Module
 
+This module declares its inputs, the application and its outputs in one file for brevity. A module that uses the Qovery provider declares it in its own `required_providers` block; otherwise Terraform looks for a `hashicorp/qovery` provider.
+
 **modules/application/main.tf**
 
 ```hcl
+terraform {
+  required_providers {
+    qovery = {
+      source  = "qovery/qovery"
+      version = "~> 1.0"
+    }
+  }
+}
+
 variable "environment_id" {
   description = "Environment ID"
   type        = string
@@ -100,10 +111,25 @@ resource "qovery_application" "app" {
 
   ports = [{
     internal_port       = var.port
-    external_port       = 443
+    external_port       = var.publicly_accessible ? 443 : null
     protocol            = "HTTP"
     publicly_accessible = var.publicly_accessible
   }]
+
+  healthchecks = {
+    readiness_probe = {
+      type = {
+        tcp = {
+          port = var.port
+        }
+      }
+      initial_delay_seconds = 30
+      period_seconds        = 10
+      timeout_seconds       = 5
+      success_threshold     = 1
+      failure_threshold     = 3
+    }
+  }
 
   auto_deploy = var.git_branch != "main"
 }
@@ -126,6 +152,8 @@ output "internal_host" {
 
 ### Using the Module
 
+The root configuration takes the IDs of an existing project and cluster as input variables. See [Find resource IDs](/terraform-provider/overview#find-resource-ids).
+
 **main.tf**
 
 ```hcl
@@ -133,32 +161,27 @@ terraform {
   required_providers {
     qovery = {
       source  = "qovery/qovery"
-      version = "~> 0.48.2"
+      version = "~> 1.0"
     }
   }
 }
 
-provider "qovery" {
-  token = var.qovery_api_token
+# Reads the API token from the QOVERY_API_TOKEN environment variable.
+provider "qovery" {}
+
+variable "project_id" {
+  description = "ID of an existing project"
+  type        = string
 }
 
-data "qovery_organization" "my_org" {
-  name = "My Organization"
-}
-
-data "qovery_project" "my_project" {
-  organization_id = data.qovery_organization.my_org.id
-  name            = "My Project"
-}
-
-data "qovery_cluster" "my_cluster" {
-  organization_id = data.qovery_organization.my_org.id
-  name            = "production"
+variable "cluster_id" {
+  description = "ID of the cluster that runs the environment"
+  type        = string
 }
 
 resource "qovery_environment" "prod" {
-  project_id = data.qovery_project.my_project.id
-  cluster_id = data.qovery_cluster.my_cluster.id
+  project_id = var.project_id
+  cluster_id = var.cluster_id
   name       = "production"
   mode       = "PRODUCTION"
 }
@@ -169,7 +192,7 @@ module "api" {
 
   environment_id = qovery_environment.prod.id
   name           = "api"
-  git_url        = "https://github.com/my-org/api"
+  git_url        = "https://github.com/my-org/api.git"
   git_branch     = "main"
   cpu            = 1000
   memory         = 1024
@@ -182,7 +205,7 @@ module "frontend" {
 
   environment_id = qovery_environment.prod.id
   name           = "frontend"
-  git_url        = "https://github.com/my-org/frontend"
+  git_url        = "https://github.com/my-org/frontend.git"
   git_branch     = "main"
   cpu            = 500
   memory         = 512
@@ -195,18 +218,28 @@ module "admin" {
 
   environment_id      = qovery_environment.prod.id
   name                = "admin"
-  git_url             = "https://github.com/my-org/admin"
+  git_url             = "https://github.com/my-org/admin.git"
   git_branch          = "main"
   cpu                 = 250
   memory              = 256
   port                = 8080
-  publicly_accessible = false  # Internal only
+  publicly_accessible = false # Internal only
+}
+
+# Creating the services does not deploy them: this resource deploys the environment.
+resource "qovery_deployment" "prod" {
+  environment_id = qovery_environment.prod.id
+  desired_state  = "RUNNING"
+
+  depends_on = [module.api, module.frontend, module.admin]
 }
 ```
 
 ## Terraform Workspaces
 
-Use workspaces to manage multiple environments with a single configuration.
+Use workspaces to manage multiple environments with a single configuration: each workspace has its own state. The configuration reads the workspace name from `terraform.workspace` and looks up the settings of that environment.
+
+The [multi-environment example](/terraform-provider/multi-environment) uses the same kind of settings map with `for_each` and shows the complete application. With workspaces, you index the map with the workspace name instead.
 
 ### Workspace Configuration
 
@@ -219,24 +252,15 @@ locals {
   config = {
     dev = {
       mode             = "DEVELOPMENT"
-      cpu              = 250
-      memory           = 256
-      replicas         = 1
-      database_storage = 10
+      managed_database = false
     }
     staging = {
       mode             = "STAGING"
-      cpu              = 500
-      memory           = 512
-      replicas         = 2
-      database_storage = 20
+      managed_database = false
     }
     production = {
       mode             = "PRODUCTION"
-      cpu              = 1000
-      memory           = 1024
-      replicas         = 3
-      database_storage = 50
+      managed_database = true
     }
   }
 
@@ -245,49 +269,47 @@ locals {
 }
 
 resource "qovery_environment" "env" {
-  project_id = data.qovery_project.my_project.id
-  cluster_id = data.qovery_cluster.my_cluster.id
+  project_id = var.project_id
+  cluster_id = var.cluster_id
   name       = local.environment
   mode       = local.current_config.mode
 }
 
-resource "qovery_application" "app" {
-  environment_id = qovery_environment.env.id
-  name           = "my-app"
-
-  git_repository = {
-    url    = "https://github.com/my-org/app"
-    branch = local.environment == "production" ? "main" : local.environment
-  }
-
-  build_mode = "DOCKER"
-
-  cpu    = local.current_config.cpu
-  memory = local.current_config.memory
-
-  min_running_instances = local.current_config.replicas
-  max_running_instances = local.current_config.replicas
-
-  ports = [{
-    internal_port       = 8080
-    external_port       = 443
-    protocol            = "HTTP"
-    publicly_accessible = true
-  }]
-}
-
+# PostgreSQL in a container on the cluster, outside production
 resource "qovery_database" "db" {
+  count = local.current_config.managed_database ? 0 : 1
+
   environment_id = qovery_environment.env.id
   name           = "database"
   type           = "POSTGRESQL"
-  version        = "15"
-  mode           = "MANAGED"
-  storage        = local.current_config.database_storage
+  version        = "16"
+  mode           = "CONTAINER"
   accessibility  = "PRIVATE"
+  storage        = 10
 }
+
+# Amazon RDS for PostgreSQL from the service catalog, in production. Requires an AWS cluster.
+resource "qovery_blueprint" "db" {
+  count = local.current_config.managed_database ? 1 : 0
+
+  environment_id = qovery_environment.env.id
+  name           = "database"
+  blueprint      = "AWS/postgres/17"
+
+  variables = {
+    # Also names the RDS instance: it must be unique in the AWS account and region.
+    db_name = "app_${local.environment}"
+  }
+}
+
+# Declare the services the same way, with values from local.current_config.
 ```
 
+Production uses a managed database, created from a blueprint of the [service catalog](/configuration/blueprints) with [`qovery_blueprint`](https://registry.terraform.io/providers/qovery/qovery/latest/docs/resources/blueprint). The Amazon RDS blueprint needs an AWS cluster. [Application with Database](/terraform-provider/application-with-database#use-a-managed-database) shows how an application connects to it.
+
 ### Using Workspaces
+
+The configuration only knows the `dev`, `staging` and `production` workspaces: create them before you apply, and do not apply in the `default` workspace.
 
 ```bash
 # Create workspaces
@@ -320,24 +342,28 @@ Store Terraform state remotely for team collaboration.
 
 ### S3 Backend
 
+`use_lockfile`, which locks the state in the bucket itself, needs Terraform 1.10 or later.
+
 ```hcl
 terraform {
   backend "s3" {
-    bucket         = "my-terraform-state"
-    key            = "qovery/terraform.tfstate"
-    region         = "us-east-1"
-    encrypt        = true
-    dynamodb_table = "terraform-locks"
+    bucket       = "my-terraform-state"
+    key          = "qovery/terraform.tfstate"
+    region       = "us-east-1"
+    encrypt      = true
+    use_lockfile = true
   }
 
   required_providers {
     qovery = {
       source  = "qovery/qovery"
-      version = "~> 0.48.2"
+      version = "~> 1.0"
     }
   }
 }
 ```
+
+`use_lockfile = true` locks the state with a lock file in the bucket, so you do not need a DynamoDB table. Enable versioning on the bucket to recover an earlier version of the state.
 
 ### Terraform Cloud
 
@@ -354,7 +380,7 @@ terraform {
   required_providers {
     qovery = {
       source  = "qovery/qovery"
-      version = "~> 0.48.2"
+      version = "~> 1.0"
     }
   }
 }
@@ -390,12 +416,6 @@ terraform/
 ### variables.tf
 
 ```hcl
-variable "qovery_api_token" {
-  description = "Qovery API token"
-  type        = string
-  sensitive   = true
-}
-
 variable "environment_name" {
   description = "Environment name"
   type        = string
@@ -442,6 +462,8 @@ memory           = 256
 replicas         = 1
 ```
 
+Keep the API token out of these files: the provider reads it from the `QOVERY_API_TOKEN` environment variable.
+
 ### Deploy with Variable Files
 
 ```bash
@@ -452,9 +474,11 @@ terraform apply -var-file="environments/dev.tfvars"
 terraform apply -var-file="environments/production.tfvars"
 ```
 
-## Dynamic Blocks
+Both commands use the same state unless each environment has its own backend configuration or workspace.
 
-Use dynamic blocks for flexible configurations.
+## Lists from Variables
+
+`ports`, `environment_variables` and the other list attributes of the Qovery resources are nested attributes, not blocks, so `dynamic` blocks do not apply to them. Assign a list directly, or build one with a `for` expression.
 
 ```hcl
 variable "ports" {
@@ -475,25 +499,49 @@ variable "ports" {
   ]
 }
 
+variable "environment_variables" {
+  description = "Environment variables of the application"
+  type        = map(string)
+  default = {
+    LOG_LEVEL = "info"
+  }
+}
+
 resource "qovery_application" "app" {
   environment_id = qovery_environment.prod.id
   name           = "my-app"
 
   git_repository = {
-    url    = "https://github.com/my-org/app"
+    url    = "https://github.com/my-org/app.git"
     branch = "main"
   }
 
-  build_mode = "DOCKER"
+  build_mode      = "DOCKER"
+  dockerfile_path = "Dockerfile"
 
-  # Dynamic ports
-  dynamic "ports" {
-    for_each = var.ports
-    content {
-      internal_port       = ports.value.internal_port
-      external_port       = ports.value.external_port
-      protocol            = ports.value.protocol
-      publicly_accessible = ports.value.publicly_accessible
+  # A list from a variable
+  ports = var.ports
+
+  # A list built from a map with a for expression
+  environment_variables = [
+    for key, value in var.environment_variables : {
+      key   = key
+      value = value
+    }
+  ]
+
+  healthchecks = {
+    readiness_probe = {
+      type = {
+        tcp = {
+          port = var.ports[0].internal_port
+        }
+      }
+      initial_delay_seconds = 30
+      period_seconds        = 10
+      timeout_seconds       = 5
+      success_threshold     = 1
+      failure_threshold     = 3
     }
   }
 }
@@ -516,43 +564,50 @@ variable "enable_redis" {
   default     = false
 }
 
-resource "qovery_database" "postgres" {
+# Amazon RDS for PostgreSQL from the service catalog
+resource "qovery_blueprint" "postgres" {
   count = var.enable_database ? 1 : 0
 
   environment_id = qovery_environment.prod.id
   name           = "postgres"
-  type           = "POSTGRESQL"
-  version        = "15"
-  mode           = "MANAGED"
-  storage        = 20
+  blueprint      = "AWS/postgres/17"
+
+  variables = {
+    # Also names the RDS instance: it must be unique in the AWS account and region.
+    db_name = "app"
+  }
 }
 
-resource "qovery_database" "redis" {
+# Amazon ElastiCache for Redis from the service catalog
+resource "qovery_blueprint" "redis" {
   count = var.enable_redis ? 1 : 0
 
   environment_id = qovery_environment.prod.id
   name           = "redis"
-  type           = "REDIS"
-  version        = "7"
-  mode           = "MANAGED"
-  storage        = 10
+  blueprint      = "AWS/redis/7"
+
+  variables = {
+    # Also names the ElastiCache cluster: it must be unique in the AWS account and region.
+    redis_name = "my-app-redis"
+  }
 }
 ```
+
+These managed databases are blueprints of the [service catalog](/configuration/blueprints), created with [`qovery_blueprint`](https://registry.terraform.io/providers/qovery/qovery/latest/docs/resources/blueprint). Both blueprints need an AWS cluster. `db_name` and `redis_name` are the only variables they require; the others use their catalog defaults.
 
 ## Best Practices
 
 <AccordionGroup>
   <Accordion title="Use Version Constraints" icon="lock">
-    Pin provider versions to avoid breaking changes:
+    Pin the provider major version, so that a new major release cannot introduce breaking changes without an explicit upgrade. The provider is tested against Terraform 1.15; earlier versions are expected to work but are not tested.
     ```hcl
     terraform {
       required_providers {
         qovery = {
           source  = "qovery/qovery"
-          version = "~> 0.48.0"  # Allow patch updates only
+          version = "~> 1.0" # Allows 1.x updates, not 2.0
         }
       }
-      required_version = ">= 1.5.0"
     }
     ```
   </Accordion>
@@ -565,11 +620,14 @@ resource "qovery_database" "redis" {
   </Accordion>
 
   <Accordion title="Use Data Sources" icon="database">
-    Look up existing resources instead of hardcoding IDs:
+    Read an existing resource by its ID instead of copying its attributes into the configuration. Data sources look up resources by `id`, not by name:
     ```hcl
     data "qovery_project" "existing" {
-      organization_id = var.org_id
-      name            = "My Project"
+      id = var.project_id
+    }
+
+    output "project_name" {
+      value = data.qovery_project.existing.name
     }
     ```
   </Accordion>
@@ -577,7 +635,7 @@ resource "qovery_database" "redis" {
   <Accordion title="Protect Production" icon="shield">
     Add lifecycle rules to prevent accidental deletion:
     ```hcl
-    resource "qovery_database" "prod" {
+    resource "qovery_blueprint" "prod_database" {
       # ... configuration ...
 
       lifecycle {
@@ -587,16 +645,29 @@ resource "qovery_database" "redis" {
     ```
   </Accordion>
 
-  <Accordion title="Use Locals for DRY" icon="code">
-    Reduce repetition with local values:
+  <Accordion title="Share Labels with a Labels Group" icon="tags">
+    Declare common Kubernetes labels once in a labels group, then attach the group to each service with `labels_group_ids`:
     ```hcl
-    locals {
-      common_tags = {
-        project     = "my-project"
-        managed_by  = "terraform"
-        environment = var.environment
-      }
+    resource "qovery_labels_group" "common" {
+      organization_id = var.organization_id
+      name            = "my-project"
+
+      labels = [
+        {
+          key                         = "project"
+          value                       = "my-project"
+          propagate_to_cloud_provider = false
+        },
+        {
+          key                         = "managed-by"
+          value                       = "terraform"
+          propagate_to_cloud_provider = false
+        }
+      ]
     }
+
+    # On each service:
+    #   labels_group_ids = [qovery_labels_group.common.id]
     ```
   </Accordion>
 </AccordionGroup>
@@ -612,11 +683,11 @@ resource "qovery_database" "redis" {
     Deploy to multiple environments
   </Card>
 
-  <Card title="Provider Documentation" icon="book" href="https://registry.terraform.io/providers/Qovery/qovery/latest/docs">
+  <Card title="Provider Documentation" icon="book" href="https://registry.terraform.io/providers/qovery/qovery/latest/docs">
     Complete provider reference
   </Card>
 
-  <Card title="Terraform Documentation" icon="book" href="https://www.terraform.io/docs">
+  <Card title="Terraform Documentation" icon="book" href="https://developer.hashicorp.com/terraform/docs">
     Official Terraform documentation
   </Card>
 </CardGroup>

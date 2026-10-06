@@ -5,31 +5,26 @@ description: "Complete example deploying Airbyte with Helm, database, and proxy"
 
 ## Overview
 
-This example shows how to deploy [Airbyte](https://airbyte.com) on Qovery using Terraform. Airbyte is deployed using Helm with a PostgreSQL database and proxy for authentication. This is a complete, production-ready example.
+This example shows how to deploy [Airbyte](https://airbyte.com) on Qovery using Terraform. Airbyte is deployed from its official Helm chart, with a PostgreSQL database and a proxy that protects the Airbyte web app with basic authentication.
 
 <Info>
-This is based on the [qovery-airbyte](https://github.com/evoxmusic/qovery-airbyte) repository - a real-world example of deploying a complex application stack with Qovery.
+This page is based on [qovery-airbyte](https://github.com/evoxmusic/qovery-airbyte), an external example repository. The proxy application of this page builds from that repository.
 </Info>
 
 ## What You'll Deploy
 
-- **PostgreSQL Database**: Managed database for Airbyte metadata
-- **Airbyte (Helm)**: Complete Airbyte deployment from official Helm chart
-- **Proxy Application**: Authentication proxy for Airbyte web UI
+- **PostgreSQL Database**: Amazon RDS for PostgreSQL for Airbyte metadata, created from a blueprint of the [service catalog](/configuration/blueprints)
+- **Airbyte (Helm)**: Airbyte deployed from the official Helm chart
+- **Proxy Application**: Reverse proxy with basic authentication in front of the Airbyte web app
 - **Deployment Stages**: Ordered deployment (Database → App → Proxy)
 
 ## Prerequisites
 
-Before deploying, gather these IDs from Qovery Console:
+Before deploying, gather these values:
 
-```bash
-# Required variables
-export TF_VAR_qovery_access_token="your-api-token"
-export TF_VAR_qovery_organization_id="your-org-id"
-export TF_VAR_qovery_project_id="your-project-id"
-export TF_VAR_qovery_cluster_id="your-cluster-id"
-export TF_VAR_qovery_github_token_id="your-github-token-id"
-```
+- A Qovery API token and the IDs of your organization, project and cluster. See [Find resource IDs](/terraform-provider/overview#find-resource-ids).
+- A cluster on AWS: the Amazon RDS for PostgreSQL blueprint is available on AWS clusters only.
+- Basic authentication credentials for the proxy: one htpasswd entry with a SHA-1 password, `username:{SHA}...`. The Gateway API expects this format, and NGINX accepts it too, so the credentials work whichever of the two routes the traffic.
 
 ## File Structure
 
@@ -42,7 +37,7 @@ qovery-airbyte/
 
 ## variables.tf
 
-```hcl
+```hcl variables.tf
 variable "qovery_access_token" {
   description = "Qovery API token"
   type        = string
@@ -64,11 +59,6 @@ variable "qovery_cluster_id" {
   type        = string
 }
 
-variable "qovery_github_token_id" {
-  description = "GitHub token for Qovery"
-  type        = string
-}
-
 variable "airbyte_helm_version" {
   description = "Airbyte Helm chart version"
   type        = string
@@ -82,20 +72,20 @@ variable "airbyte_service_name" {
 }
 
 variable "qovery_airbyte_web_app_proxy_basic_auth" {
-  description = "Basic Auth for Airbyte web app proxy (htpasswd format)"
+  description = "Basic Auth for Airbyte web app proxy: one htpasswd entry, username:{SHA}..."
   type        = string
-  default     = ""
+  sensitive   = true
 }
 ```
 
 ## main.tf
 
-```hcl
+```hcl main.tf
 terraform {
   required_providers {
     qovery = {
       source  = "qovery/qovery"
-      version = "~> 0.48.2"
+      version = "~> 1.0"
     }
   }
 }
@@ -104,118 +94,127 @@ provider "qovery" {
   token = var.qovery_access_token
 }
 
-# Read Airbyte Helm values from file
-data "local_file" "airbyte_values" {
-  filename = "${path.module}/airbyte-values.yaml"
-}
-
 # Create environment for Airbyte
 resource "qovery_environment" "airbyte" {
   project_id = var.qovery_project_id
   cluster_id = var.qovery_cluster_id
   name       = "airbyte"
   mode       = "PRODUCTION"
-
-  deployment_stage_order = [
-    "DATABASE",
-    "APP",
-    "PROXY"
-  ]
 }
 
-# Create PostgreSQL database for Airbyte
-resource "qovery_database" "airbyte_db" {
+# Deployment stages: Airbyte, then the proxy. Qovery adds a new stage after the existing ones,
+# so both come after the default stages, including the one of the database blueprint.
+resource "qovery_deployment_stage" "app" {
+  environment_id = qovery_environment.airbyte.id
+  name           = "APP"
+}
+
+resource "qovery_deployment_stage" "proxy" {
+  environment_id = qovery_environment.airbyte.id
+  name           = "PROXY"
+  is_after       = qovery_deployment_stage.app.id
+}
+
+# Create PostgreSQL database for Airbyte: Amazon RDS for PostgreSQL from the service catalog.
+# Terraform waits for its deployment, so its outputs exist before the Helm chart is created.
+resource "qovery_blueprint" "airbyte_db" {
   environment_id = qovery_environment.airbyte.id
   name           = "airbyte-db"
-  type           = "POSTGRESQL"
-  version        = "17"
-  mode           = "MANAGED"
-  storage        = 20
-  accessibility  = "PRIVATE"
+  blueprint      = "AWS/postgres/17"
 
-  deployment_stage_id = qovery_environment.airbyte.deployment_stage_ids["DATABASE"]
+  variables = {
+    # Also names the RDS instance: it must be unique in the AWS account and region.
+    db_name        = "airbyte"
+    instance_class = "db.t3.small"
+  }
+}
+
+locals {
+  # Prefix of the output variables of the blueprint, for example QOVERY_OUTPUT_TERRAFORM_ZA1B2C3D4
+  airbyte_db_outputs = "QOVERY_OUTPUT_TERRAFORM_Z${upper(split("-", qovery_blueprint.airbyte_db.service_id)[0])}"
 }
 
 # Add Airbyte Helm repository
 resource "qovery_helm_repository" "airbyte" {
-  organization_id = var.qovery_organization_id
-  name            = "airbyte"
-  kind            = "OCI_DOCKER_HUB"
-  url             = "https://airbytehq.github.io/helm-charts"
+  organization_id       = var.qovery_organization_id
+  name                  = "airbyte"
+  kind                  = "HTTPS"
+  url                   = "https://airbytehq.github.io/helm-charts"
+  skip_tls_verification = false
 }
 
 # Deploy Airbyte using Helm
 resource "qovery_helm" "airbyte" {
-  environment_id = qovery_environment.airbyte.id
-  name           = var.airbyte_service_name
+  environment_id      = qovery_environment.airbyte.id
+  deployment_stage_id = qovery_deployment_stage.app.id
+  name                = var.airbyte_service_name
+  description         = "Airbyte deployed from its official Helm chart"
 
   source = {
     helm_repository = {
-      repository_id = qovery_helm_repository.airbyte.id
-      chart_name    = "airbyte"
-      chart_version = var.airbyte_helm_version
+      helm_repository_id = qovery_helm_repository.airbyte.id
+      chart_name         = "airbyte"
+      chart_version      = var.airbyte_helm_version
     }
   }
 
   # Allow Airbyte to create cluster-wide resources
   allow_cluster_wide_resources = true
 
-  # Override default values
+  # Override default values with airbyte-values.yaml, keyed by file name
   values_override = {
     file = {
-      raw = data.local_file.airbyte_values.content
+      raw = {
+        "airbyte-values.yaml" = {
+          content = file("${path.module}/airbyte-values.yaml")
+        }
+      }
     }
   }
 
-  # Configure database connection using Qovery environment variables
+  # Database connection details, referenced as qovery.env.<NAME> in airbyte-values.yaml.
+  # Qovery replaces each {{...}} with an output of the blueprint when it deploys the chart.
   environment_variables = [
     {
       key   = "DATABASE_HOST"
-      value = qovery_database.airbyte_db.internal_host
+      value = "{{${local.airbyte_db_outputs}_DB_ADDRESS}}"
     },
     {
       key   = "DATABASE_PORT"
-      value = tostring(qovery_database.airbyte_db.port)
+      value = "{{${local.airbyte_db_outputs}_DB_PORT}}"
     },
     {
-      key   = "DATABASE_DB"
-      value = "airbyte"
+      key   = "DATABASE_NAME"
+      value = "{{${local.airbyte_db_outputs}_DB_NAME}}"
     },
     {
       key   = "DATABASE_USER"
-      value = qovery_database.airbyte_db.login
+      value = "{{${local.airbyte_db_outputs}_DB_USERNAME}}"
     }
   ]
 
   secrets = [
     {
       key   = "DATABASE_PASSWORD"
-      value = qovery_database.airbyte_db.password
+      value = "{{${local.airbyte_db_outputs}_DB_PASSWORD}}"
     }
-  ]
-
-  deployment_stage_id = qovery_environment.airbyte.deployment_stage_ids["APP"]
-
-  depends_on = [
-    qovery_database.airbyte_db,
-    qovery_helm_repository.airbyte
   ]
 }
 
 # Deploy proxy application for Airbyte web app
 resource "qovery_application" "airbyte_webapp_proxy" {
-  environment_id = qovery_environment.airbyte.id
-  name           = "airbyte-webapp-proxy"
+  environment_id      = qovery_environment.airbyte.id
+  deployment_stage_id = qovery_deployment_stage.proxy.id
+  name                = "airbyte-webapp-proxy"
 
+  # Caddy reverse proxy from the external example repository
   git_repository = {
-    url           = "https://github.com/Qovery/simple-example-with-htt-auth"
-    branch        = "main"
-    root_path     = "/"
-    git_token_id  = var.qovery_github_token_id
+    url    = "https://github.com/evoxmusic/qovery-airbyte.git"
+    branch = "main"
   }
 
   build_mode      = "DOCKER"
-  dockerfile_path = "Dockerfile"
+  dockerfile_path = "Dockerfile.webappproxy"
 
   cpu    = 100
   memory = 128
@@ -233,21 +232,34 @@ resource "qovery_application" "airbyte_webapp_proxy" {
 
   environment_variables = [
     {
-      key   = "TARGET"
-      value = "http://airbyte-airbyte-webapp-svc.${qovery_environment.airbyte.id}:80"
+      # Qovery replaces {{...}} with the internal host name of the Airbyte Helm release.
+      key   = "AIRBYTE_WEBAPP_INTERNAL_HOST"
+      value = "{{QOVERY_HELM_Z${upper(split("-", qovery_helm.airbyte.id)[0])}_HOST_INTERNAL}}-airbyte-webapp-svc"
     },
     {
-      key   = "HTPASSWD"
+      key   = "AIRBYTE_WEBAPP_INTERNAL_PORT"
+      value = "80"
+    },
+    {
+      key   = "AIRBYTE_WEBAPP_BASIC_AUTH"
       value = var.qovery_airbyte_web_app_proxy_basic_auth
     }
   ]
+
+  # Protect the public endpoint with the credentials of AIRBYTE_WEBAPP_BASIC_AUTH,
+  # whether NGINX (ingress) or the Gateway API routes the traffic.
+  advanced_settings_json = jsonencode({
+    "network.ingress.basic_auth_env_var"     = "AIRBYTE_WEBAPP_BASIC_AUTH"
+    "network.gateway_api.basic_auth_env_var" = "AIRBYTE_WEBAPP_BASIC_AUTH"
+  })
 
   healthchecks = {
     readiness_probe = {
       type = {
         http = {
-          path = "/"
-          port = 80
+          path   = "/"
+          port   = 80
+          scheme = "HTTP"
         }
       }
       initial_delay_seconds = 30
@@ -260,8 +272,9 @@ resource "qovery_application" "airbyte_webapp_proxy" {
     liveness_probe = {
       type = {
         http = {
-          path = "/"
-          port = 80
+          path   = "/"
+          port   = 80
+          scheme = "HTTP"
         }
       }
       initial_delay_seconds = 30
@@ -271,16 +284,29 @@ resource "qovery_application" "airbyte_webapp_proxy" {
       failure_threshold     = 3
     }
   }
+}
 
-  deployment_stage_id = qovery_environment.airbyte.deployment_stage_ids["PROXY"]
+# Creating the services does not deploy them: this resource deploys the environment,
+# stage by stage.
+resource "qovery_deployment" "airbyte" {
+  environment_id = qovery_environment.airbyte.id
+  desired_state  = "RUNNING"
 
-  depends_on = [qovery_helm.airbyte]
+  depends_on = [
+    qovery_blueprint.airbyte_db,
+    qovery_helm.airbyte,
+    qovery_application.airbyte_webapp_proxy,
+  ]
+}
+
+output "airbyte_url" {
+  value = "https://${qovery_application.airbyte_webapp_proxy.external_host}"
 }
 ```
 
 ## airbyte-values.yaml
 
-Create a `airbyte-values.yaml` file to customize Airbyte configuration:
+Create a `airbyte-values.yaml` file to customize Airbyte configuration. Qovery replaces each `qovery.env.<NAME>` with the value of the `<NAME>` variable of the Helm service when it deploys the chart, as described in [Environment Variables in Values](/configuration/helm#environment-variables-in-values).
 
 ```yaml
 global:
@@ -289,11 +315,27 @@ global:
 
   database:
     type: external
-    host: ${DATABASE_HOST}
-    port: ${DATABASE_PORT}
-    database: ${DATABASE_DB}
-    user: ${DATABASE_USER}
-    password: ${DATABASE_PASSWORD}
+    host: qovery.env.DATABASE_HOST
+    port: qovery.env.DATABASE_PORT
+    database: qovery.env.DATABASE_NAME
+    user: qovery.env.DATABASE_USER
+    password: qovery.env.DATABASE_PASSWORD
+
+# Use the Qovery database instead of the PostgreSQL of the chart
+postgresql:
+  enabled: false
+
+# The managed database requires TLS connections
+temporal:
+  extraEnv:
+    - name: POSTGRES_TLS_ENABLED
+      value: "true"
+    - name: POSTGRES_TLS_DISABLE_HOST_VERIFICATION
+      value: "true"
+    - name: SQL_TLS_ENABLED
+      value: "true"
+    - name: SQL_TLS_DISABLE_HOST_VERIFICATION
+      value: "true"
 
 webapp:
   enabled: true
@@ -319,13 +361,15 @@ airbyte-bootloader:
 <Steps>
   <Step title="Clone or Create Files">
     ```bash
-    # Option 1: Clone the repository
+    # Option 1: Clone the external example repository
     git clone https://github.com/evoxmusic/qovery-airbyte
     cd qovery-airbyte
 
     # Option 2: Create the files manually
     # Create main.tf, variables.tf, and airbyte-values.yaml
     ```
+
+    The files of the repository can differ from the ones on this page.
   </Step>
 
   <Step title="Set Environment Variables">
@@ -334,14 +378,13 @@ airbyte-bootloader:
     export TF_VAR_qovery_organization_id="your-org-id"
     export TF_VAR_qovery_project_id="your-project-id"
     export TF_VAR_qovery_cluster_id="your-cluster-id"
-    export TF_VAR_qovery_github_token_id="your-github-token-id"
     ```
   </Step>
 
-  <Step title="Optional: Set Basic Authentication">
+  <Step title="Set Basic Authentication">
     ```bash
-    # Generate basic auth credentials
-    export TF_VAR_qovery_airbyte_web_app_proxy_basic_auth=$(htpasswd -nb admin yourpassword)
+    # Generate an htpasswd entry with a SHA-1 password (username:{SHA}...)
+    export TF_VAR_qovery_airbyte_web_app_proxy_basic_auth=$(printf '%s\n' 'yourpassword' | htpasswd -ni -s admin)
     ```
   </Step>
 
@@ -356,23 +399,29 @@ airbyte-bootloader:
     # Review changes
     terraform plan
 
-    # Deploy
+    # Create the resources and deploy the environment
     terraform apply
     ```
+
+    `terraform apply` waits for the database to be created, then for the deployment of the environment.
   </Step>
 
   <Step title="Access Airbyte">
-    After ~5 minutes, access Airbyte:
+    Open the URL of the proxy and log in with your basic authentication credentials:
 
     ```bash
-    # Option 1: Get URL from Qovery Console
-    # Navigate to the airbyte-webapp-proxy application
+    terraform output airbyte_url
+    ```
 
-    # Option 2: Use port-forward
-    qovery port-forward --application airbyte-webapp-proxy --port 8080:443
+    You can also forward a local port to the proxy. When prompted, select the `airbyte-webapp-proxy` service:
+
+    ```bash
+    qovery port-forward --port 8080:80
 
     # Open http://localhost:8080
     ```
+
+    Port forwarding connects to the proxy directly, without the basic authentication of the public endpoint.
   </Step>
 </Steps>
 
@@ -395,16 +444,17 @@ This example demonstrates several advanced Terraform patterns:
   </Accordion>
 
   <Accordion title="Deployment Stages" icon="layer-group">
-    Ensuring proper deployment order:
-    1. **DATABASE**: PostgreSQL deploys first
+    Ensuring proper deployment order with `qovery_deployment_stage` resources and the `deployment_stage_id` of each service. The Terraform service of the database blueprint stays in its default stage, which comes before the stages the configuration adds:
+    1. **TERRAFORM DEFAULT**: PostgreSQL deploys first
     2. **APP**: Airbyte Helm chart deploys after database
     3. **PROXY**: Authentication proxy deploys last
   </Accordion>
 
   <Accordion title="Dynamic Configuration" icon="sliders">
     Using Qovery's database connection details in Helm values:
-    - Database host, port, credentials injected as environment variables
-    - Variables referenced in `airbyte-values.yaml`
+    - Outputs of the database blueprint injected in variables of the Helm service with `{{...}}` interpolation
+    - Variables referenced as `qovery.env.<NAME>` in `airbyte-values.yaml`
+    - The internal host of the Helm release injected in the proxy with `{{...}}` interpolation
   </Accordion>
 
   <Accordion title="External Helm Charts" icon="/images/logos/helm-icon.svg" iconType="custom">
@@ -415,22 +465,22 @@ This example demonstrates several advanced Terraform patterns:
   </Accordion>
 
   <Accordion title="Security" icon="lock">
-    - Optional basic authentication for web access
-    - Private database accessibility
-    - Secrets stored securely
+    - Basic authentication on the public endpoint of the proxy
+    - Private database: the blueprint does not make the instance publicly accessible by default
+    - Database password passed as a secret that Qovery builds from the blueprint output, never written in the configuration
   </Accordion>
 
   <Accordion title="Health Checks" icon="heart-pulse">
-    Proper liveness and readiness probes:
+    Liveness and readiness probes on the proxy:
     - Initial delay to allow services to start
     - Regular health checks
     - Automatic restarts on failure
   </Accordion>
 
   <Accordion title="Resource Management" icon="gauge">
-    Setting appropriate CPU/memory limits:
-    - Minimal resources for proxy (100 CPU, 128 MB)
-    - Managed database with defined storage
+    Setting CPU and memory for each service:
+    - Minimal resources for proxy (100 mCPU, 128 MB)
+    - Managed database with an instance class (`db.t3.small`) and the default storage of the blueprint
     - Cluster-wide resource permissions for Airbyte
   </Accordion>
 </AccordionGroup>
@@ -439,14 +489,16 @@ This example demonstrates several advanced Terraform patterns:
 
 <AccordionGroup>
   <Accordion title="Deployment Takes Too Long" icon="clock">
-    Airbyte deployment typically takes 5-10 minutes:
-    - Database must be ready first
+    Airbyte deployment typically takes several minutes:
+    - Database must be ready first, and a managed database takes several minutes to create
     - Helm chart pulls multiple images
     - Airbyte bootloader initializes the database
 
+    If the Helm deployment times out, increase `timeout_sec` on `qovery_helm` (600 seconds by default).
+
     Check deployment status:
     ```bash
-    qovery status --watch
+    qovery status
     ```
   </Accordion>
 
@@ -461,7 +513,7 @@ This example demonstrates several advanced Terraform patterns:
   <Accordion title="Database Connection Issues" icon="database">
     If Airbyte can't connect to the database:
     - Verify database is in RUNNING state
-    - Check environment variables are set correctly
+    - Check the variables of the Helm service reference the outputs of the database blueprint
     - Review `airbyte-values.yaml` configuration
     - Check Airbyte logs for connection errors
   </Accordion>
@@ -470,8 +522,8 @@ This example demonstrates several advanced Terraform patterns:
 ## Next Steps
 
 <CardGroup cols={2}>
-  <Card title="GitHub Repository" icon="/images/logos/github-icon.svg" href="https://github.com/evoxmusic/qovery-airbyte">
-    Complete source code and additional documentation
+  <Card title="Example Repository" icon="/images/logos/github-icon.svg" href="https://github.com/evoxmusic/qovery-airbyte">
+    External example repository this page is based on
   </Card>
 
   <Card title="Airbyte Documentation" icon="book" href="https://docs.airbyte.com">

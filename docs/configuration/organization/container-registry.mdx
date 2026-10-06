@@ -57,8 +57,9 @@ Qovery supports the following container registry providers:
     **Example for AWS ECR:**
     - **Registry URL**: `https://<aws_account_id>.dkr.ecr.<region>.amazonaws.com`
     - **Region**: AWS region where your ECR is located (e.g., `us-east-1`, `eu-west-1`)
-    - **Access Key ID**: AWS IAM access key with ECR permissions
-    - **Secret Access Key**: AWS IAM secret access key
+    - **Authentication type**:
+      - **Assume role via STS** (recommended): the **Role ARN** of an IAM role Qovery can assume. See [AWS ECR with STS assume role](#aws-ecr-with-sts-assume-role).
+      - **Static credentials**: an AWS IAM **Access Key ID** and **Secret Access Key** with ECR permissions
 
     <Info>
     Each registry type requires different configuration fields. The form will adapt based on your selection.
@@ -77,6 +78,68 @@ Qovery supports the following container registry providers:
 <Info>
 Once added, the container registry will be available for all projects and environments in your organization.
 </Info>
+
+## AWS ECR with STS Assume Role
+
+With **Assume role via STS**, Qovery calls `sts:AssumeRole` on the role you provide and gets temporary credentials. It uses them to list your images and tags in the Console and to pull images at deployment time. No long-lived AWS keys are stored on the Qovery side.
+
+### Trust Policy
+
+The role must trust the same Qovery principal as the role used for [AWS cluster credentials](/getting-started/installation/aws). You have two options:
+
+- **Reuse your cluster role**: if you created the `qovery-role-creation` CloudFormation stack for your cluster, the role it creates already includes `ecr:*`. Use its ARN for the registry.
+- **Create a dedicated role**: copy the `AssumeRolePolicyDocument` from the [Qovery CloudFormation template](https://cloudformation-qovery-role-creation.s3.amazonaws.com/template.json) into your role's trust policy, then attach the permissions policy below.
+
+Qovery sends an external ID on every `sts:AssumeRole` call:
+
+| When | External ID |
+|------|-------------|
+| Deploying on a cluster | The cluster ID |
+| Listing images and tags in the Console | `00000000-0000-0000-0000-000000000000` |
+
+If you add an `sts:ExternalId` condition to the trust policy, allow both values, otherwise image listing or deployments fail:
+
+```json
+"Condition": {
+  "StringEquals": {
+    "sts:ExternalId": [
+      "<your-cluster-id>",
+      "00000000-0000-0000-0000-000000000000"
+    ]
+  }
+}
+```
+
+### Permissions Policy
+
+A dedicated role needs these ECR permissions:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "ecr:GetAuthorizationToken",
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ecr:BatchCheckLayerAvailability",
+        "ecr:BatchGetImage",
+        "ecr:DescribeImages",
+        "ecr:DescribeRepositories",
+        "ecr:GetDownloadUrlForLayer",
+        "ecr:ListImages"
+      ],
+      "Resource": "arn:aws:ecr:<region>:<aws_account_id>:repository/*"
+    }
+  ]
+}
+```
+
+Once the role exists, select **Assume role via STS** in the registry form and paste the role ARN.
 
 ## Modify an Existing Registry
 

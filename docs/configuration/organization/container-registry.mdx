@@ -87,7 +87,7 @@ With **Assume role via STS**, Qovery calls `sts:AssumeRole` on the role you prov
 
 The role must trust the same Qovery principal as the role used for [AWS cluster credentials](/getting-started/installation/aws). You can either:
 
-- **Reuse your cluster role**: if you created the `qovery-role-creation` CloudFormation stack for your cluster, the role it creates already includes `ecr:*`. Use its ARN for the registry.
+- **Reuse your cluster role**: if you created the `qovery-role-creation` CloudFormation stack for your cluster, the role it creates already includes `ecr:*`. Use its ARN for the registry. That role also has broad cluster management permissions (`iam:*`, `ec2:*`, `eks:*`, `kms:*`, ...), so the registry connection gets them too. For least privilege, create a dedicated role.
 - **Create a dedicated role**: copy the `AssumeRolePolicyDocument` from the [Qovery CloudFormation template](https://cloudformation-qovery-role-creation.s3.amazonaws.com/template.json) into your role's trust policy, then attach the permissions policy below.
 
 Qovery sends an external ID on every `sts:AssumeRole` call:
@@ -97,13 +97,14 @@ Qovery sends an external ID on every `sts:AssumeRole` call:
 | Deploying on a cluster | The cluster ID |
 | Listing images and tags in the Console | `00000000-0000-0000-0000-000000000000` |
 
-If you add an `sts:ExternalId` condition to the trust policy, allow both values. Without the cluster ID, deployments fail. Without the all-zeros value, the Console can't list your images.
+If you add an `sts:ExternalId` condition to the trust policy, allow the all-zeros value and the ID of every cluster that deploys images from this registry. Deployments fail on any cluster missing from the list, and without the all-zeros value the Console can't list your images.
 
 ```json title="Trust policy condition"
 "Condition": {
   "StringEquals": {
     "sts:ExternalId": [
-      "<your-cluster-id>",
+      "<cluster-id-1>",
+      "<cluster-id-2>",
       "00000000-0000-0000-0000-000000000000"
     ]
   }
@@ -120,7 +121,10 @@ A dedicated role needs these ECR permissions:
   "Statement": [
     {
       "Effect": "Allow",
-      "Action": "ecr:GetAuthorizationToken",
+      "Action": [
+        "ecr:GetAuthorizationToken",
+        "ecr:DescribeRepositories"
+      ],
       "Resource": "*"
     },
     {
@@ -129,7 +133,6 @@ A dedicated role needs these ECR permissions:
         "ecr:BatchCheckLayerAvailability",
         "ecr:BatchGetImage",
         "ecr:DescribeImages",
-        "ecr:DescribeRepositories",
         "ecr:GetDownloadUrlForLayer",
         "ecr:ListImages"
       ],
@@ -138,6 +141,10 @@ A dedicated role needs these ECR permissions:
   ]
 }
 ```
+
+`ecr:DescribeRepositories` needs `"Resource": "*"` because the Console's image search lists every repository in the registry.
+
+If the repositories live in a different AWS account than the role, this policy isn't enough. Each repository's policy must also allow the role ARN for the same actions.
 
 Once the role exists, select **Assume role via STS** in the registry form and paste the role ARN.
 

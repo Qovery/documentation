@@ -85,7 +85,7 @@ With **Assume role via STS**, Qovery calls `sts:AssumeRole` on the role you prov
 
 ### Trust Policy
 
-The role must trust the same Qovery principal as the role used for [AWS cluster credentials](/getting-started/installation/aws). You have two options:
+The role must trust the same Qovery principal as the role used for [AWS cluster credentials](/getting-started/installation/aws). You can either:
 
 - **Reuse your cluster role**: if you created the `qovery-role-creation` CloudFormation stack for your cluster, the role it creates already includes `ecr:*`. Use its ARN for the registry.
 - **Create a dedicated role**: copy the `AssumeRolePolicyDocument` from the [Qovery CloudFormation template](https://cloudformation-qovery-role-creation.s3.amazonaws.com/template.json) into your role's trust policy, then attach the permissions policy below.
@@ -97,9 +97,9 @@ Qovery sends an external ID on every `sts:AssumeRole` call:
 | Deploying on a cluster | The cluster ID |
 | Listing images and tags in the Console | `00000000-0000-0000-0000-000000000000` |
 
-If you add an `sts:ExternalId` condition to the trust policy, allow both values, otherwise image listing or deployments fail:
+If you add an `sts:ExternalId` condition to the trust policy, allow both values. Without the cluster ID, deployments fail. Without the all-zeros value, the Console can't list your images.
 
-```json
+```json title="Trust policy condition"
 "Condition": {
   "StringEquals": {
     "sts:ExternalId": [

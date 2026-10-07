@@ -93,16 +93,17 @@ KEDA scales your applications based on external event sources like:
 - You want scale-to-zero capability
 
 <Warning>
-**Beta Feature** - KEDA autoscaling is currently in beta and available to select customers only. Contact your Qovery account manager if you're interested in early access.
-</Warning>
-
-<Warning>
 **AWS and GCP clusters only** - KEDA event-driven autoscaling is currently available for applications deployed on AWS and GCP clusters.
 </Warning>
 
-<Card title="KEDA Configuration Guide" icon="book" href="/configuration/application#keda-event-driven">
-  Learn how to configure event-driven autoscaling with detailed examples and authentication patterns
-</Card>
+<CardGroup cols={2}>
+  <Card title="KEDA Configuration Guide" icon="book" href="/configuration/application#keda-event-driven">
+    Learn how to configure event-driven autoscaling with detailed examples and authentication patterns
+  </Card>
+  <Card title="HPA vs KEDA" icon="scale-balanced" href="/getting-started/guides/advanced-tutorials/hpa-vs-keda-autoscaling">
+    Choose between CPU-based and event-driven autoscaling, and migrate from one to the other
+  </Card>
+</CardGroup>
 
 ## Spot Instances
 

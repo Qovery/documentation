@@ -148,6 +148,7 @@
                       "getting-started/guides/advanced-tutorials/certificate-management-multi-tenant",
                       "getting-started/guides/advanced-tutorials/cloudwatch-integration",
                       "getting-started/guides/advanced-tutorials/deploy-daemonset-karpenter",
+                      "getting-started/guides/advanced-tutorials/hpa-vs-keda-autoscaling",
                       "getting-started/guides/advanced-tutorials/upgrading-rds-instance"
                     ]
                   },

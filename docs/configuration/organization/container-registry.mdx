@@ -97,7 +97,7 @@ Qovery sends an external ID on every `sts:AssumeRole` call:
 | Deploying a service that uses this registry | The container registry's Qovery ID |
 | Listing images and tags in the Console | `00000000-0000-0000-0000-000000000000` |
 
-If you add an `sts:ExternalId` condition to the trust policy, allow both values. Without the registry ID, every deployment that pulls from this registry fails. Without the all-zeros value, the Console can't validate the registry or list your images.
+If you add an `sts:ExternalId` condition to the trust policy, allow the all-zeros value and the Qovery ID of every registry that uses the role. Without a registry's ID, every deployment that pulls from that registry fails. Without the all-zeros value, the Console can't validate the registry or list your images.
 
 The registry ID only exists once the registry is created, so set it up in this order:
 
@@ -110,7 +110,8 @@ The registry ID only exists once the registry is created, so set it up in this o
 "Condition": {
   "StringEquals": {
     "sts:ExternalId": [
-      "<container-registry-qovery-id>",
+      "<registry-1-qovery-id>",
+      "<registry-2-qovery-id>",
       "00000000-0000-0000-0000-000000000000"
     ]
   }

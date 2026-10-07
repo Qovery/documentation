@@ -37,7 +37,7 @@ HPA scales on CPU alone or on CPU and memory together. Memory-only scaling is no
 
 ## Choose KEDA when
 
-- The service consumes a queue or a stream (SQS, RabbitMQ, Kafka, Kinesis, Redis lists) and the backlog, not CPU, tells you whether it keeps up.
+- The service consumes a queue or a stream (SQS, RabbitMQ, Kafka, Kinesis, Redis lists) and the backlog tells you whether it keeps up.
 - The workload is sporadic and you want it to cost nothing while idle. KEDA is the only mode that accepts **0** minimum instances.
 - You already expose a business metric in Prometheus (pending jobs, active sessions) that predicts load better than CPU.
 - Load follows a known schedule and you want to scale up before it arrives, with the cron scaler.
@@ -79,7 +79,7 @@ The API scales with incoming traffic. The worker follows the queue and drops to 
       <img src="/images/getting-started/guides/hpa-vs-keda/hpa-settings.png" alt="HPA settings with min and max instances, autoscaling metric and CPU threshold" />
     </Frame>
 
-    The thresholds are also available in the application advanced settings as `hpa.cpu.average_utilization_percent` and `hpa.memory.average_utilization_percent`.
+    The thresholds are also available as the advanced settings [`hpa.cpu.average_utilization_percent`](/configuration/service-advanced-settings#hpa-cpu-average-utilization-percent) and [`hpa.memory.average_utilization_percent`](/configuration/service-advanced-settings#hpa-memory-average-utilization-percent).
   </Step>
 
   <Step title="Save and redeploy">

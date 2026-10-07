@@ -124,19 +124,21 @@ HPA computes usage as a percentage of the CPU and memory **requests** you set on
   </Step>
 
   <Step title="Add a scaler">
-    Click **Add scaler**, enter the scaler type and paste its configuration YAML. Parameters go under `metadata`. Example for a Redis list, with one instance per 5 waiting items:
+    Click **Add scaler**, enter the scaler type and paste its configuration YAML. Parameters go under `metadata`. Example for a Redis list, with one instance per 2 waiting items:
 
     ```yaml
     metadata:
-      address: redis-queue.my-namespace.svc.cluster.local:6379
-      listName: myqueue
-      listLength: "5"
+      address: <redis-service>.<namespace>.svc.cluster.local:6379
+      passwordFromEnv: REDIS_PASSWORD
+      listName: optimizer
+      listLength: "2"
       databaseIndex: "0"
     ```
 
+    `passwordFromEnv` reads the `REDIS_PASSWORD` environment variable from your application container. Use the full in-cluster address, as explained in [Pitfalls](#pitfalls).
+
     Each scaler type has its own parameters. See the [KEDA scalers reference](https://keda.sh/docs/latest/scalers/).
 
-    {/* TODO screenshot: "Scalers" section with a redis scaler and its YAML filled in */}
     <Frame>
       <img src="/images/getting-started/guides/hpa-vs-keda/keda-scaler-redis.png" alt="KEDA Redis scaler configuration" />
     </Frame>

@@ -63,7 +63,6 @@ The API scales with incoming traffic. The worker follows the queue and drops to 
   <Step title="Open the application resources">
     In the Qovery Console, open your application and go to **Settings** → **Resources**. Scroll to **Instances & Autoscaling**.
 
-    {/* TODO screenshot: Settings > Resources, "Instances & Autoscaling" section with the "Autoscaling mode" dropdown open */}
     <Frame>
       <img src="/images/getting-started/guides/hpa-vs-keda/autoscaling-mode-dropdown.png" alt="Autoscaling mode dropdown in application resources" />
     </Frame>
@@ -76,9 +75,8 @@ The API scales with incoming traffic. The worker follows the queue and drops to 
   <Step title="Set instances and thresholds">
     Set the minimum and maximum number of instances. The CPU threshold defaults to 60%. If you selected **CPU + Memory**, set the memory threshold too.
 
-    {/* TODO screenshot: HPA mode selected, min/max instances and CPU + memory thresholds filled in */}
     <Frame>
-      <img src="/images/getting-started/guides/hpa-vs-keda/hpa-settings.png" alt="HPA settings with min and max instances and thresholds" />
+      <img src="/images/getting-started/guides/hpa-vs-keda/hpa-settings.png" alt="HPA settings with min and max instances, autoscaling metric and CPU threshold" />
     </Frame>
 
     The thresholds are also available in the application advanced settings as `hpa.cpu.average_utilization_percent` and `hpa.memory.average_utilization_percent`.
@@ -107,9 +105,9 @@ HPA computes usage as a percentage of the CPU and memory **requests** you set on
   </Step>
 
   <Step title="Select KEDA on the application">
-    Open your application, go to **Settings** → **Resources** → **Instances & Autoscaling** and select **KEDA** in **Autoscaling mode**.
+    Open your application, go to **Settings** → **Resources** → **Instances & Autoscaling** and select **Event-driven autoscaling (KEDA)** in **Autoscaling mode**.
 
-    If the application currently uses HPA, the Console blocks the switch. Follow [Migrate from HPA to KEDA](#migrate-from-hpa-to-keda) first.
+    If the saved configuration of the application uses HPA, the Console shows a **KEDA migration restriction** message and disables the KEDA settings. Follow [Migrate from HPA to KEDA](#migrate-from-hpa-to-keda) first.
   </Step>
 
   <Step title="Set instances, polling interval and cooldown">
@@ -120,28 +118,27 @@ HPA computes usage as a percentage of the CPU and memory **requests** you set on
 
     Both timers only apply to scaling between 0 and 1 instance. Between 1 and the maximum, KEDA feeds its metrics to a Kubernetes HPA, which applies its own timing. See [`pollingInterval`](https://keda.sh/docs/latest/reference/scaledobject-spec/#pollinginterval) and [`cooldownPeriod`](https://keda.sh/docs/latest/reference/scaledobject-spec/#cooldownperiod) in the KEDA reference.
 
-    {/* TODO screenshot: KEDA mode selected, min/max instances, polling interval and cooldown fields */}
     <Frame>
       <img src="/images/getting-started/guides/hpa-vs-keda/keda-general-settings.png" alt="KEDA general settings" />
     </Frame>
   </Step>
 
   <Step title="Add a scaler">
-    Click **Add scaler**, pick the scaler type and paste its configuration YAML. Parameters go under `metadata`. Example for an SQS queue, with one instance per 5 waiting messages:
+    Click **Add scaler**, enter the scaler type and paste its configuration YAML. Parameters go under `metadata`. Example for a Redis list, with one instance per 5 waiting items:
 
     ```yaml
     metadata:
-      queueURL: "https://sqs.us-east-1.amazonaws.com/123456789012/my-queue"
-      awsRegion: "us-east-1"
-      queueLength: "5"
-      activationQueueLength: "1"
+      address: redis-queue.my-namespace.svc.cluster.local:6379
+      listName: myqueue
+      listLength: "5"
+      databaseIndex: "0"
     ```
 
     Each scaler type has its own parameters. See the [KEDA scalers reference](https://keda.sh/docs/latest/scalers/).
 
-    {/* TODO screenshot: "Scalers" section with an aws-sqs-queue scaler and its YAML filled in */}
+    {/* TODO screenshot: "Scalers" section with a redis scaler and its YAML filled in */}
     <Frame>
-      <img src="/images/getting-started/guides/hpa-vs-keda/keda-scaler-sqs.png" alt="KEDA SQS scaler configuration" />
+      <img src="/images/getting-started/guides/hpa-vs-keda/keda-scaler-redis.png" alt="KEDA Redis scaler configuration" />
     </Frame>
   </Step>
 
@@ -188,7 +185,7 @@ HPA and KEDA's `ScaledObject` both control the replica count of the same Deploym
     The deployment removes the HPA from the cluster.
   </Step>
   <Step title="Switch to KEDA">
-    Set **Autoscaling mode** to **KEDA** and configure your scalers.
+    Set **Autoscaling mode** to **Event-driven autoscaling (KEDA)** and configure your scalers.
   </Step>
   <Step title="Redeploy again">
     The deployment creates the KEDA `ScaledObject`.
@@ -211,7 +208,7 @@ HPA and KEDA's `ScaledObject` both control the replica count of the same Deploym
 
 ## Check that scaling works
 
-1. Start with a low maximum (3 or 5 instances) and a low target, such as `queueLength: "1"`.
+1. Start with a low maximum (3 or 5 instances) and a low target, such as `listLength: "1"` for Redis or `queueLength: "1"` for SQS.
 2. Push a batch of messages to the queue, or generate traffic for HPA.
 3. Watch the instance count on the application overview in the Console.
 4. If nothing moves, read the application logs and the KEDA operator logs (`keda-operator` in `kube-system`). Authentication and address errors show up there.

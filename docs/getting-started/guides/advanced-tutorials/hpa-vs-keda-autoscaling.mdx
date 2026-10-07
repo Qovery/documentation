@@ -192,10 +192,11 @@ HPA and KEDA's `ScaledObject` both control the replica count of the same Deploym
   </Step>
 </Steps>
 
-{/* TODO screenshot: "KEDA migration restriction" message shown when switching from HPA to KEDA directly */}
 <Frame>
   <img src="/images/getting-started/guides/hpa-vs-keda/keda-migration-restriction.png" alt="KEDA migration restriction message" />
 </Frame>
+
+The restriction only applies in this direction. To go from KEDA back to HPA, select **HPA (Horizontal Pod Autoscaler)** directly, save and redeploy.
 
 ## Pitfalls
 

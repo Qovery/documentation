@@ -216,9 +216,10 @@ The restriction only applies in this direction. To go from KEDA back to HPA, sel
 3. Watch the instance count on the application overview in the Console.
 4. If nothing moves, read the application logs and the KEDA operator logs (`keda-operator` in `kube-system`). Authentication and address errors show up there.
 
-{/* TODO screenshot: application overview showing the instance count going up during the test */}
-<Frame>
-  <img src="/images/getting-started/guides/hpa-vs-keda/scaling-test-instances.png" alt="Instance count increasing during a scaling test" />
+The demo below runs the Redis scaler from this guide (`listLength: "2"`, 0 to 20 instances). About 120 jobs land in the queue at once, and KEDA adds workers until it reaches the 20-instance maximum, while the queue drains.
+
+<Frame caption="Demo application dashboard: Redis queue depth and worker pods during a load test">
+  <img src="/images/getting-started/guides/hpa-vs-keda/scaling-test-instances.png" alt="Redis queue depth falling while the number of KEDA-scaled worker pods rises to 20" />
 </Frame>
 
 Once scaling behaves as expected, raise the maximum to its production value.

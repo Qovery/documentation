@@ -21,8 +21,8 @@ The difference matters most for background workers. A worker waiting on I/O (an 
 |---|---|---|---|
 | Scales on | Nothing | CPU, or CPU + memory | Queue depth, stream lag, metrics, schedules |
 | Minimum instances | Fixed | 1 or more | 0 or more (scale-to-zero) |
-| Scale-up delay | n/a | 15 seconds above threshold | Polling interval (default 30 seconds) |
-| Scale-down delay | n/a | 5 minutes below threshold | Cooldown period (default 300 seconds) |
+| Scale-up delay | n/a | 15 seconds above threshold | From 0: polling interval (default 30 seconds). Above 1: Kubernetes HPA |
+| Scale-down delay | n/a | 5 minutes below threshold | To 0: cooldown period (default 300 seconds). Above 1: Kubernetes HPA |
 | Cloud providers | All | All | AWS and GCP |
 | Cluster prerequisite | None | None | KEDA add-on enabled on the cluster |
 | Setup effort | None | Two numbers and a threshold | Scaler YAML, often IAM or credentials |
@@ -115,8 +115,10 @@ HPA computes usage as a percentage of the CPU and memory **requests** you set on
   <Step title="Set instances, polling interval and cooldown">
     - **Minimum instances**: 0 to scale to zero, or 1 or more to keep warm instances.
     - **Maximum instances**: the upper limit. Keep it low for your first test.
-    - **Polling interval**: how often KEDA reads the event source. Default 30 seconds.
-    - **Cooldown period**: how long KEDA waits after the last event before scaling down. Default 300 seconds.
+    - **Polling interval**: how often KEDA reads the event source while the application runs 0 instances. Default 30 seconds.
+    - **Cooldown period**: how long KEDA waits after the last event before scaling back to 0. Default 300 seconds.
+
+    Both timers only apply to scaling between 0 and 1 instance. Between 1 and the maximum, KEDA feeds its metrics to a Kubernetes HPA, which applies its own timing. See [`pollingInterval`](https://keda.sh/docs/latest/reference/scaledobject-spec/#pollinginterval) and [`cooldownPeriod`](https://keda.sh/docs/latest/reference/scaledobject-spec/#cooldownperiod) in the KEDA reference.
 
     {/* TODO screenshot: KEDA mode selected, min/max instances, polling interval and cooldown fields */}
     <Frame>

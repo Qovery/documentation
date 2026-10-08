@@ -244,8 +244,10 @@ For high availability:
     - **Maximum instances**: Upper scaling limit
 
     **Optional Settings**:
-    - **Polling interval**: How often KEDA checks the event source (default: 30 seconds)
-    - **Cooldown period**: Wait time before scaling down after scale-up (default: 300 seconds)
+    - **Polling interval**: How often KEDA checks the event source while the application runs 0 instances (default: 30 seconds)
+    - **Cooldown period**: Wait time after the last event before scaling back to 0 (default: 300 seconds)
+
+    Both settings only apply to scaling between 0 and 1 instance. Between 1 and the maximum, KEDA feeds its metrics to a Kubernetes HPA, which applies its own timing. See [`pollingInterval`](https://keda.sh/docs/latest/reference/scaledobject-spec/#pollinginterval) and [`cooldownPeriod`](https://keda.sh/docs/latest/reference/scaledobject-spec/#cooldownperiod) in the KEDA reference.
 
     <Note>
     **Scale-to-Zero**: KEDA supports setting minimum instances to **0**, allowing your application to scale down completely when there are no events. When events are detected, KEDA automatically scales up from 0 to handle the workload. This is ideal for cost optimization on sporadic workloads.

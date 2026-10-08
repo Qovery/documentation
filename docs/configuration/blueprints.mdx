@@ -195,6 +195,33 @@ The engine block defines how the resource is provisioned. Which settings you can
 For Helm blueprints, engine version, credentials, and state backend do not apply — the chart and its version are defined by the blueprint, and the resources block is ignored because the chart declares its own.
 </Info>
 
+## Using External Secrets
+
+A blueprint variable can take its value from your secret manager (AWS Secrets Manager, AWS Parameter Store, or GCP Secret Manager) through an [external secret](/configuration/integrations/secret-managers/secret-manager-access), so the value is never stored in Qovery.
+
+<Steps>
+  <Step title="Create the external secret">
+    Create the external secret at the **environment**, **project**, or **organization** level, for example with the key `RABBITMQ_ADMIN_PASSWORD`. A service-level external secret can't be used here: the blueprint service does not exist yet when you create the blueprint.
+  </Step>
+  <Step title="Reference it from the variable">
+    Set the blueprint variable to the external secret key wrapped in double curly braces, for example `{{ RABBITMQ_ADMIN_PASSWORD }}`.
+  </Step>
+</Steps>
+
+The blueprint configuration stores only the reference. At deployment, the value is fetched in your cluster by the External Secrets Operator and passed to the provisioning job. Resource attributes derived from the secret, such as a database password, can still be stored in the Terraform state, so protect the state backend.
+
+<Info>
+  * The value must be exactly `{{ KEY }}`, where `KEY` is an external secret at the environment, project, or organization level. The variable's validation rules (pattern, length, type, allowed values) are then skipped, because the real value is only known at deployment. Any other value, including a reference mixed with text, is validated as a literal string.
+  * External secrets are fetched only at deployment: after rotating the secret in your secret manager, redeploy the service to apply the new value.
+  * Terraform prints variable values in its plan and apply output unless the blueprint's module declares the variable as sensitive.
+</Info>
+
+### Previewing changes that use external secrets
+
+An [update preview](#updating-a-blueprint) plans with the value synced by the service's last deployment, and masks it in the diff.
+
+If the external secret has not been synced for this service yet, for example when you just switched a variable to a reference, the preview plans with a placeholder instead. The diff starts with a line naming the secrets that are not synced yet, and shows the placeholder as `<external secret KEY, value known at deploy>`. The plan still shows what kind of change the deployment makes, such as an in-place update or a replacement, without the real value. A variable whose validation checks the secret's format (for example a JSON key or a PEM private key) rejects the placeholder, and the preview reports that validation error.
+
 ## Editing a Blueprint Service
 
 After a blueprint service is created, you can change the inputs it was provisioned with from its **Blueprint configuration** settings page. Open the blueprint service, go to its **Settings**, and select **Blueprint configuration** to review and edit the variables and any overridable engine settings the blueprint exposes (see [Variables & Engine Reference](#variables--engine-reference)). Secret values are handled without exposing the stored secret, and the **Overrides** section is collapsed by default.
@@ -220,7 +247,7 @@ Upgrading is a two-step, safe workflow:
 
 <Steps>
   <Step title="Preview">
-    Run a **preview** — a dry run that produces a `terraform plan`-style diff of the actual infrastructure and streams it into the Console. Preview makes no changes.
+    Run a **preview** — a dry run that produces a `terraform plan`-style diff of the actual infrastructure and streams it into the Console. Preview makes no changes. Variables that reference external secrets are previewed as described in [Previewing changes that use external secrets](#previewing-changes-that-use-external-secrets).
 
     <Frame>
       <img src="/images/configuration/blueprints/update_preview.png" alt="Blueprint update preview diff" />

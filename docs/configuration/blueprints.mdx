@@ -222,14 +222,6 @@ An [update preview](#updating-a-blueprint) plans with the value synced by the se
 
 If the external secret has not been synced for this service yet, for example when you just switched a variable to a reference, the preview plans with a placeholder instead. The diff starts with a line naming the secrets that are not synced yet, and shows the placeholder as `<external secret KEY, value known at deploy>`. The plan still shows what kind of change the deployment makes, such as an in-place update or a replacement, without the real value. A variable whose validation checks the secret's format (for example a JSON key or a PEM private key) rejects the placeholder, and the preview reports that validation error.
 
-## Referencing Other Variables
-
-A blueprint variable can also reference any [environment variable](/configuration/environment-variables) defined at the environment, project, or organization level, with the same `{{ VARIABLE_KEY }}` syntax. For example, set `port` to `{{ DB_PORT }}` to reuse a value already defined for the environment.
-
-* When the value is exactly `{{ VARIABLE_KEY }}`, the blueprint's validation rules are checked against the referenced variable's value. A reference inside a longer value, for example `postgres://{{ DB_HOST }}:5432`, is checked as written.
-* A variable the blueprint marks as secret must still be set as secret when it references another variable.
-* The update preview plans with the referenced value. Built-in variables whose value is computed at deployment, and file variables, are shown as `{{ VARIABLE_KEY }}` in the preview and resolved at deployment.
-
 ## Editing a Blueprint Service
 
 After a blueprint service is created, you can change the inputs it was provisioned with from its **Blueprint configuration** settings page. Open the blueprint service, go to its **Settings**, and select **Blueprint configuration** to review and edit the variables and any overridable engine settings the blueprint exposes (see [Variables & Engine Reference](#variables--engine-reference)). Secret values are handled without exposing the stored secret, and the **Overrides** section is collapsed by default.

@@ -208,7 +208,7 @@ A blueprint variable can take its value from your secret manager (AWS Secrets Ma
   </Step>
 </Steps>
 
-Qovery stores only the reference. At deployment, the value is fetched in your cluster by the External Secrets Operator and passed to the provisioning job.
+The blueprint configuration stores only the reference. At deployment, the value is fetched in your cluster by the External Secrets Operator and passed to the provisioning job. Resource attributes derived from the secret, such as a database password, can still be stored in the Terraform state, so protect the state backend.
 
 <Info>
   * The value must be exactly `{{ KEY }}`, where `KEY` is an external secret at the environment, project, or organization level. The variable's validation rules (pattern, length, type, allowed values) are then skipped, because the real value is only known at deployment. Any other value, including a reference mixed with text, is validated as a literal string.

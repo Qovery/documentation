@@ -262,7 +262,7 @@ Watch this interactive demo to see how to deploy S3 infrastructure using Terrafo
 
     <Warning>
       Only the `{{ VARIABLE_NAME }}` form is interpolated. Other forms such as `${VAR}`, `${{VAR}}`, or a bare identifier `VAR` are treated as literals and passed to Terraform unchanged.
-      Qovery variables of type **File** or **External Secret** cannot be inlined as a Terraform variable value and are left as literals if referenced — those variable types only materialize inside the cluster and have no scalar form that Terraform can consume.
+      Qovery variables of type **File** or **File External Secret** cannot be inlined as a Terraform variable value and are left as literals if referenced. A reference to an **External Secret** is resolved inside your cluster when the Terraform job starts: see [Using external secrets with Terraform services](/configuration/integrations/secret-managers/secret-manager-access#using-external-secrets-with-terraform-services).
       If a referenced Qovery variable does not exist, the literal `{{ NAME }}` is passed through unchanged. Define the variable in your environment to have it substituted.
     </Warning>
 

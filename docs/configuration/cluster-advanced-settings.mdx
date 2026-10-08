@@ -2123,6 +2123,34 @@ Memory overcommit is riskier than CPU overcommit. Unlike CPU (which is throttled
 
 **Default Value:** `""`
 
+<a id="aws-eks-node-iam-policy-arns"></a>
+
+### aws.eks.node_iam_policy_arns
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `array of strings`
+
+**Description:** Attach existing customer-managed IAM policies to the Qovery-managed EKS worker and Karpenter node roles. Qovery manages the attachments across cluster updates and redeployments; you create and manage the policies in your AWS account.
+
+Each value must be a unique IAM policy ARN in the cluster's AWS account and partition, for example:
+
+```json
+{
+  "aws.eks.node_iam_policy_arns": [
+    "arn:aws:iam::123456789012:policy/EcrPullThroughCacheNodes"
+  ]
+}
+```
+
+Set the value to `[]` and redeploy the cluster to detach all policies added through this setting. This setting does not create ECR pull through cache rules, VPC endpoints, or image rewrite rules.
+
+<Warning>
+The attached permissions are available to nodes using either role. Scope each policy to the resources and actions those nodes need, and review changes to the policy in AWS because they change node permissions without changing this setting.
+</Warning>
+
+**Default Value:** `[]`
+
 <a id="aws-eks-encrypt-secrets-kms-key-arn"></a>
 
 ### aws.eks.encrypt_secrets_kms_key_arn

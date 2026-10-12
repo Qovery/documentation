@@ -68,6 +68,32 @@ export QOVERY_CLI_WATCH_TIMEOUT="2h"
 qovery environment deploy --watch
 ```
 
+## Blueprint Databases
+
+Databases created from a database blueprint are Terraform services, and the CLI supports them like native databases.
+
+### List Blueprint Databases
+
+`qovery database list` lists the blueprint databases of the current environment together with the native databases. Blueprint databases appear with the type `Blueprint database`, and the output shows their status, host, and port:
+
+```bash
+qovery database list
+```
+
+Add `--show-credentials` to display the login and password, as for native databases. If the credentials are not available (the database is not deployed yet, or you are not allowed to read them), only the host and port are shown.
+
+With `--json`, blueprint databases are included in the output with the same fields as native databases. The `login` and `password` fields are only filled when `--show-credentials` is set.
+
+### Port-Forward to a Blueprint Database
+
+`qovery port-forward` accepts the Console URL of a Terraform service, such as a blueprint database. Pass the URL of the service followed by the ports to forward, in the `local_port:remote_port` format:
+
+```bash
+qovery port-forward "<service-console-url>" --port 5432:5432
+```
+
+If the service ID in the URL does not exist in the environment, the command fails with a `not found in environment` error.
+
 ## Key Features
 
 <CardGroup cols={2}>

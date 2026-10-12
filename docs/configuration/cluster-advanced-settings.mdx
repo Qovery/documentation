@@ -146,6 +146,20 @@ Only list the settings you override. Removing a key from `advanced_settings_json
 
 ## Logs
 
+<a id="aws-cloudwatch-eks-logs-types"></a>
+
+### aws.cloudwatch.eks_logs_types
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `array of strings`
+
+**Description:** EKS control plane log types exported to CloudWatch. Select any subset of the valid values, or use an empty list (`[]`) to disable exports. Redeploy the cluster for changes to take effect.
+
+**Valid values:** `api`, `audit`, `authenticator`, `controllerManager`, `scheduler`
+
+**Default Value:** `["api", "audit", "authenticator", "controllerManager", "scheduler"]`
+
 <a id="aws-cloudwatch-eks-logs-retention-days"></a>
 
 ### aws.cloudwatch.eks_logs_retention_days

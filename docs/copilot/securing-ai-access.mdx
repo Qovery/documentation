@@ -15,7 +15,7 @@ This page describes the recommended ways to give an agent a safe, read-only foot
 
 1. **[MCP Server in read-only mode](#option-1-mcp-server-read-only)** - the native, recommended option. No allowlist to maintain.
 2. **[A CLI permission allowlist](#option-2-cli-permission-allowlist)** - for agents driving the `qovery` CLI directly (e.g. Claude Code with the Qovery Agent Skill).
-3. **[An API Policy Token](#option-3-api-policy-token-beta)** - enforced by Qovery rather than by the agent's own configuration.
+3. **[An API Policy Token](#option-3-api-policy-token)** - enforced by Qovery rather than by the agent's own configuration.
 
 <Tip>
 These approaches complement each other. The MCP Server is the simplest guardrail; the CLI allowlist is for workflows where the agent runs `qovery` commands in a shell; an API Policy Token constrains the credential itself, so it holds no matter which client the agent uses.
@@ -181,7 +181,7 @@ The `Bash(...:*)` syntax is Claude Code's current permission format. Other agent
 
 ---
 
-## Option 3 - API Policy Token (Beta)
+## Option 3 - API Policy Token
 
 The two options above are enforced on the agent's side: they depend on the agent using the MCP Server, or on its permission file being respected. An [**API Policy Token**](/configuration/organization/api-policy-token) is enforced by Qovery instead. The token carries no role - it carries an Open Policy Agent (rego) policy that Qovery evaluates on every API request made with it, whatever client sends it.
 
@@ -203,7 +203,7 @@ allow if {
 A policy token is only as narrow as its policy: it authenticates as organization-admin and the policy is the sole constraint, so a policy that allows everything grants everything. Only an organization owner or admin can create one.
 </Warning>
 
-See [API Policy Token](/configuration/organization/api-policy-token) for the full input contract, more policy recipes, and the Beta limitations.
+See [API Policy Token](/configuration/organization/api-policy-token) for the full input contract, more policy recipes, and the current limitations.
 
 ---
 
@@ -291,7 +291,7 @@ Secret **values** are never returned by standard `env list` commands or service 
   <Card title="Qovery Agent Skill" icon="robot" href="/getting-started/quickstart/agent-skills">
     Deploy and manage from your AI coding tool.
   </Card>
-  <Card title="API Policy Token (Beta)" icon="scroll" href="/configuration/organization/api-policy-token">
+  <Card title="API Policy Token" icon="scroll" href="/configuration/organization/api-policy-token">
     Constrain a token with a policy evaluated on every API request.
   </Card>
 </CardGroup>

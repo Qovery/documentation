@@ -1,12 +1,12 @@
 ---
-title: "API Policy Token"
+title: "API Policy Token (Preview)"
 description: "Give an autonomous agent programmatic access to your organization, constrained by a policy evaluated on every request"
 ---
 
 An **API Policy Token** is a second kind of organization token, intended for autonomous agents and narrowly scoped automation. Unlike a regular [API Token](/configuration/organization/api-token), it carries **no role**. Instead you attach an [Open Policy Agent](https://www.openpolicyagent.org/) policy, written in [rego](https://www.openpolicyagent.org/docs/policy-language), and Qovery evaluates that policy against every API request the token makes. The policy is the token's entire authorization.
 
 <Info>
-  This feature and the policy input contract described below are still
+  **Preview**: this feature and the policy input contract described below are still
   evolving and are likely to change. Expect to revisit your policies as the
   feature matures.
 </Info>

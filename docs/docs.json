@@ -397,6 +397,7 @@
               "configuration/integrations/secret-managers/doppler",
               {
                 "group": "Secret Manager Integration",
+                "tag": "NEW",
                 "pages": [
                   "configuration/integrations/secret-managers/secret-manager-access",
                   "configuration/integrations/secret-managers/aws-secrets-manager",

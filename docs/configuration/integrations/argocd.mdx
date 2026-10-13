@@ -4,7 +4,7 @@ description: "Monitor and access ArgoCD-managed applications directly from Qover
 ---
 
 <Warning>
-  This feature is currently in **beta**. Behavior and configuration options may change in future releases.
+  Behavior and configuration options may change in future releases.
 </Warning>
 
 ## Overview
@@ -17,7 +17,7 @@ Qovery's ArgoCD integration bridges GitOps-driven deployments with Qovery's plat
 - **Log streaming** — Access real-time logs for ArgoCD-managed workloads.
 - **Sync status** — Qovery reflects the current ArgoCD sync and health status of each application.
 
-ArgoCD-managed services are largely **read-only** in Qovery — configuration and manifests stay in Git. Convenience [Sync and Rollback actions](#actions) on the ArgoCD application are planned (coming soon during beta).
+ArgoCD-managed services are largely **read-only** in Qovery — configuration and manifests stay in Git. Convenience [Sync and Rollback actions](#actions) on the ArgoCD application are planned (coming soon).
 
 ## Prerequisites
 
@@ -201,7 +201,7 @@ ArgoCD remains the source of truth for what gets deployed. To save round-trips t
 | **Rollback** | Reverts the application to a previous synced revision via the ArgoCD rollback API. |
 
 <Warning>
-  Sync and Rollback actions are **coming soon** as part of the beta. Today, Qovery is read-only for ArgoCD-managed services — all operations must go through ArgoCD or your GitOps pipeline.
+  Sync and Rollback actions are **coming soon**. Today, Qovery is read-only for ArgoCD-managed services — all operations must go through ArgoCD or your GitOps pipeline.
 </Warning>
 
 All other changes — application configuration, manifests, target revision, destination — still flow through Git and ArgoCD.

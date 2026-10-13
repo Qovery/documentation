@@ -1,18 +1,18 @@
 ---
-title: "API Policy Token (Beta)"
+title: "API Policy Token (Preview)"
 description: "Give an autonomous agent programmatic access to your organization, constrained by a policy evaluated on every request"
 ---
 
 An **API Policy Token** is a second kind of organization token, intended for autonomous agents and narrowly scoped automation. Unlike a regular [API Token](/configuration/organization/api-token), it carries **no role**. Instead you attach an [Open Policy Agent](https://www.openpolicyagent.org/) policy, written in [rego](https://www.openpolicyagent.org/docs/policy-language), and Qovery evaluates that policy against every API request the token makes. The policy is the token's entire authorization.
 
 <Info>
-  **Beta**: this feature and the policy input contract described below are still
+  **Preview**: this feature and the policy input contract described below are still
   evolving and are likely to change. Expect to revisit your policies as the
   feature matures.
 </Info>
 
 <Note>
-  In the Qovery Console, this feature is labelled **Policy API Token (Beta)**,
+  In the Qovery Console, this feature is labelled **Policy API Token**,
   in the **Token API** section of your organization settings.
 </Note>
 
@@ -320,7 +320,7 @@ allow_deployment if {
   <Step title="Open the Token API section">
     Go to your organization settings and open the **Token API** section, the same
     page as the [API tokens](/configuration/organization/api-token). The
-    **Policy API Token (Beta)** section sits below the API token list.
+    **Policy API Token** section sits below the API token list.
   </Step>
 
   <Step title="Click Add new">
@@ -450,13 +450,13 @@ A denied request tells you only that it was denied, so it is worth evaluating a 
   the request at another environment, and confirm the answer is `false`.
 </Tip>
 
-## Beta limitations
+## Current limitations
 
 <Warning>
   - **A denied request returns `401` with no explanation.** Which rule failed is not surfaced to you today, so test policies locally before attaching them.
   - **Policies cannot be edited.** Delete the token and create a new one.
   - **Expiration is API-only.** The Console form does not expose `expires_at`.
-  - **The input contract may change.** Fields are added rather than renamed or removed, but the feature as a whole is Beta.
+  - **The input contract may change.** Fields are added rather than renamed or removed, and policies may need to be updated.
 </Warning>
 
 ## Related

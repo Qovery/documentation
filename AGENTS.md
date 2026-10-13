@@ -149,3 +149,7 @@ If the information cannot be found in one of these sources, do not write it. Ask
 1. Edit `.mdx` files and/or `docs.json`.
 2. Check the render with `mintlify dev`.
 3. Open a Pull Request targeting the `main` branch.
+
+## Feature maturity wording
+
+When writing or reviewing feature labels and availability notices, apply [.agents/skills/qovery-feature-wording/SKILL.md](.agents/skills/qovery-feature-wording/SKILL.md). Use **New** for new stable features and **Preview** for incomplete experiences, without customer-facing **Beta** labels.

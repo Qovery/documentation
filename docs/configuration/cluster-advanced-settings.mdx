@@ -2249,6 +2249,28 @@ Custom AMIs without a family prefix are assumed to be AL2023-based. Use a prefix
 
 **Default Value:** `AmazonLinux2023`
 
+<a id="aws-eks-karpenter-private-pool-cpu-manager-policy-static"></a>
+
+### aws.eks.karpenter.private_pool.cpu_manager_policy_static
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `boolean`
+
+**Description:** Run the kubelet with the `static` [CPU manager policy](https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/) on the private node pool (Karpenter only). Pods in the Guaranteed QoS class with an integer CPU request get dedicated cores instead of a CPU quota, so they only see the cores they asked for. Build pods are in this class.
+
+**Use Case:** Build tools that size their worker count from the number of visible CPUs (`nproc`, Go, Rust, Python, Java, Node `os.availableParallelism()`) see the whole host on a large node and can run out of memory. With this setting, a build with 4 CPUs sees 4 CPUs whatever the node size.
+
+<Note>
+This setting only has an effect on clusters where Qovery has enabled the private node pool, and on AL2023 or Bottlerocket nodes (see [`aws.eks.ec2.ami`](#aws-eks-ec2-ami)). It is ignored otherwise. CPU requests that are not a whole number of cores (for example `2500m`) keep using the shared CPU pool. Node's `os.cpus()` reads every host core regardless of this setting.
+</Note>
+
+<Warning>
+Changing this setting replaces every node of the private node pool on the next cluster deployment. Running pods are rescheduled within the pool's disruption budget.
+</Warning>
+
+**Default Value:** `false`
+
 <a id="aws-metrics-server-replicas"></a>
 
 ### aws.metrics_server.replicas

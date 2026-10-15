@@ -262,6 +262,25 @@ Upgrading is a two-step, safe workflow:
 Applying an update changes live infrastructure. Always review the preview diff before applying — some changes (for example a storage or instance-class change on a managed database) can be disruptive.
 </Warning>
 
+### Moving to a newer major version
+
+A database blueprint can move to a newer major version of its engine, for example PostgreSQL 14 to 18. What happens depends on the version the database actually runs:
+
+- **The database runs an older major:** Qovery upgrades it in place. The preview shows the engine version change before you apply it. The upgrade causes downtime and runs immediately, or in the next maintenance window when `apply_changes_now` is `false`.
+- **The database already runs that major:** for example after an [AWS Blue/Green deployment](/getting-started/guides/advanced-tutorials/upgrading-rds-instance). Qovery only updates its own records so the Console shows the right version; the database is not touched.
+
+Some moves are refused:
+
+- a major lower than the one the database runs (RDS cannot downgrade)
+- a database Qovery has not deployed yet, since its running version is unknown
+- MySQL, whose supported versions (8.0 and 8.4) are both covered by the same blueprint major.
+
+To move a database, use the CLI: run [`qovery database upgrade`](/cli/overview#move-a-blueprint-database-to-a-newer-major) without `--major` to see the available majors, then with `--major <N>` to switch.
+
+<Note>
+An RDS instance that uses a custom parameter group needs a parameter group of the new engine family before a major upgrade: RDS refuses the upgrade otherwise. Instances on the default parameter group switch automatically.
+</Note>
+
 ## Migrating a Managed Database to a Blueprint
 
 An existing Qovery **managed database** can be migrated to blueprint-backed provisioning. Terraform adopts the *running* instance — no re-provisioning, no data movement, no change of endpoint or password — and the Qovery database is converted rather than deleted, so applications keep the connection environment variables they already use. Afterwards the resource is an ordinary blueprint service: versioned template, preview-then-apply update path, and access to every variable the template exposes.

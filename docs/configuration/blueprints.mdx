@@ -275,7 +275,7 @@ Some moves are refused:
 - a database Qovery has not deployed yet, since its running version is unknown
 - MySQL, whose supported versions (8.0 and 8.4) are both covered by the same blueprint major.
 
-To move a database, use the CLI: run [`qovery database upgrade`](/cli/overview#move-a-blueprint-database-to-a-newer-major) without `--major` to see the available majors, then with `--major <N>` to switch.
+To move a database, use the CLI: run [`qovery blueprint upgrade-major`](/cli/overview#point-a-blueprint-at-a-newer-major-version) without `--major` to see the available majors, then with `--major <N>` to switch.
 
 <Note>
 An RDS instance that uses a custom parameter group needs a parameter group of the new engine family before a major upgrade: RDS refuses the upgrade otherwise. Instances on the default parameter group switch automatically.

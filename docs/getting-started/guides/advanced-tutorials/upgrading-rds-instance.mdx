@@ -111,13 +111,13 @@ If the database was created from a [database blueprint](/configuration/blueprint
 2. List the majors the blueprint can move to, and what moving to each one would do:
 
 ```bash
-qovery database upgrade -n <database>
+qovery blueprint upgrade-major -n <service name>
 ```
 
 3. Move the blueprint to the new major, here `15`:
 
 ```bash
-qovery database upgrade -n <database> --major 15
+qovery blueprint upgrade-major -n <service name> --major 15
 ```
 
 Since the database already runs that version, the command only updates Qovery's records so the console shows the right version. The database itself is not touched.

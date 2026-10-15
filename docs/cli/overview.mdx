@@ -94,25 +94,27 @@ qovery port-forward "<service-console-url>" --port 5432:5432
 
 If the service ID in the URL does not exist in the environment, the command fails with a `not found in environment` error.
 
-### Move a Blueprint Database to a Newer Major
+## Blueprints
 
-`qovery database upgrade` moves a blueprint database to a newer major version of its engine, for example PostgreSQL 14 to 18. Run it without `--major` to list the newer majors and what moving to each one would do:
+### Point a Blueprint at a Newer Major Version
+
+`qovery blueprint upgrade-major` points a blueprint service at the latest tag of a newer major version, for example PostgreSQL 14 to 18. It works for any blueprint service, Terraform or Helm. Run it without `--major` to list the newer majors and what moving to each one would do:
 
 ```bash
-qovery database upgrade -n <database>
+qovery blueprint upgrade-major -n <service name>
 ```
 
 Then pick a major:
 
 ```bash
-qovery database upgrade -n <database> --major 18
+qovery blueprint upgrade-major -n <service name> --major 18
 ```
 
 The command shows what will happen and asks for confirmation (`--yes` skips it), then updates the blueprint and deploys it. Add `--watch` to follow the deployment.
 
-- **Upgrade:** the database runs an older major. The deployment upgrades it in place, which causes downtime.
-- **Relabel:** the database already runs that major, for example after an AWS Blue/Green deployment. Only Qovery's records change; the database is not touched.
-- **Not supported:** the command explains why, for example a lower major than the one running.
+- **Relabel:** the service already runs that major, for example a database upgraded with an AWS Blue/Green deployment. Only Qovery's records change; the service is not touched.
+- **Upgrade:** the service runs an older major. The next deployment upgrades it in place, which causes downtime for a database.
+- **Not supported:** the move is refused and the command explains why, for example a lower major than the one running.
 
 See [Moving to a newer major version](/configuration/blueprints#moving-to-a-newer-major-version) for details.
 

@@ -113,7 +113,7 @@ qovery blueprint upgrade-major -n <service name> --major 18
 The command shows what will happen and asks for confirmation (`--yes` or `-y` skips it), then updates the blueprint and deploys it. Add `--watch` (`-w`) to follow the deployment.
 
 - **Relabel:** the service already runs that major, for example a database upgraded with an AWS Blue/Green deployment. Only Qovery's records change; the service is not touched. Qovery detects this for AWS RDS databases only.
-- **Upgrade:** the service runs an older major. The next deployment upgrades it in place, which causes downtime for a database. Blueprints other than AWS RDS databases always take this path.
+- **Upgrade:** the service runs an older major. For an AWS RDS PostgreSQL database, the deployment upgrades it in place, which causes downtime. Blueprints other than AWS RDS databases always take this path, and what happens then depends on their template's own upgrade behavior.
 - **Not supported:** the move is refused and the command explains why, for example a lower major than the one running. If the command reports an unknown switch mode, update the Qovery CLI.
 
 See [Moving to a newer major version](/configuration/blueprints#moving-to-a-newer-major-version) for details.

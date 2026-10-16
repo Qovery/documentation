@@ -266,7 +266,7 @@ Applying an update changes live infrastructure. Always review the preview diff b
 
 An AWS RDS database blueprint can move to a newer major version of its engine, for example PostgreSQL 14 to 18. What happens depends on the version the database actually runs:
 
-- **The database runs an older major:** Qovery upgrades it in place. The preview shows the engine version change before you apply it. The upgrade causes downtime and runs immediately, or in the next maintenance window when `apply_changes_now` is `false`.
+- **The database runs an older major:** Qovery upgrades it in place, which causes downtime. It runs immediately, or in the next maintenance window when `apply_changes_now` is `false`. The CLI command asks for confirmation, then saves and deploys the change directly: it does not show a preview first.
 - **The database already runs that major:** for example after an [AWS Blue/Green deployment](/getting-started/guides/advanced-tutorials/upgrading-rds-instance). Qovery only updates its own records so the Console shows the right version; the database is not touched.
 
 Some moves are refused:
@@ -295,7 +295,7 @@ An existing Qovery **managed database** can be migrated to blueprint-backed prov
 |-------------|-----------------|
 | Cloud provider | AWS only |
 | Database engine | PostgreSQL only. MySQL, Redis, and MongoDB are not wired yet. |
-| PostgreSQL major version | 14, 15, 16, 17 |
+| PostgreSQL major version | 14, 15, 16, 17, 18 |
 | Database mode | `MANAGED` (a container database has nothing to adopt) |
 
 ### How a migration runs

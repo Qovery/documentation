@@ -277,6 +277,10 @@ Some moves are refused:
 
 To move a database, use the CLI: run [`qovery blueprint upgrade-major`](/cli/overview#point-a-blueprint-at-a-newer-major-version) without `--major` to see the available majors, then with `--major <N>` to switch.
 
+<Warning>
+An in-place major upgrade takes the database offline while AWS upgrades it. Use it for non-production databases. For a production database, upgrade with an [AWS Blue/Green deployment](/getting-started/guides/advanced-tutorials/upgrading-rds-instance) instead to keep downtime to a minimum, then run the command to move the blueprint to the new major (only Qovery's records change).
+</Warning>
+
 <Note>
 An RDS instance that uses a custom parameter group needs a parameter group of the new engine family before a major upgrade: RDS refuses the upgrade otherwise. Instances on the default parameter group switch automatically.
 </Note>

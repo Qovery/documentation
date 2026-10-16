@@ -262,6 +262,29 @@ Upgrading is a two-step, safe workflow:
 Applying an update changes live infrastructure. Always review the preview diff before applying — some changes (for example a storage or instance-class change on a managed database) can be disruptive.
 </Warning>
 
+### Moving to a newer major version
+
+An AWS RDS database blueprint can move to a newer major version of its engine, for example PostgreSQL 14 to 18. What happens depends on the version the database actually runs:
+
+- **The database runs an older major:** Qovery upgrades it in place, which causes downtime. It runs immediately, or in the next maintenance window when `apply_changes_now` is `false`. The CLI command asks for confirmation, then saves and deploys the change directly: it does not show a preview first.
+- **The database already runs that major:** for example after an [AWS Blue/Green deployment](/getting-started/guides/advanced-tutorials/upgrading-rds-instance). Qovery only updates its own records so the Console shows the right version; the database is not touched.
+
+Some moves are refused:
+
+- a major lower than the one the database runs (RDS cannot downgrade)
+- a database Qovery has not deployed yet, since its running version is unknown
+- MySQL, whose supported versions (8.0 and 8.4) are both covered by the same blueprint major.
+
+To move a database, use the CLI: run [`qovery blueprint upgrade-major`](/cli/overview#point-a-blueprint-at-a-newer-major-version) without `--major` to see the available majors, then with `--major <N>` to switch.
+
+<Warning>
+An in-place major upgrade takes the database offline while AWS upgrades it. Use it for non-production databases. For a production database, upgrade with an [AWS Blue/Green deployment](/getting-started/guides/advanced-tutorials/upgrading-rds-instance) instead to keep downtime to a minimum, then run the command to move the blueprint to the new major (only Qovery's records change).
+</Warning>
+
+<Note>
+An RDS instance that uses a custom parameter group needs a parameter group of the new engine family before a major upgrade: RDS refuses the upgrade otherwise. Instances on the default parameter group switch automatically.
+</Note>
+
 ## Migrating a Managed Database to a Blueprint
 
 An existing Qovery **managed database** can be migrated to blueprint-backed provisioning. Terraform adopts the *running* instance — no re-provisioning, no data movement, no change of endpoint or password — and the Qovery database is converted rather than deleted, so applications keep the connection environment variables they already use. Afterwards the resource is an ordinary blueprint service: versioned template, preview-then-apply update path, and access to every variable the template exposes.
@@ -276,7 +299,7 @@ An existing Qovery **managed database** can be migrated to blueprint-backed prov
 |-------------|-----------------|
 | Cloud provider | AWS only |
 | Database engine | PostgreSQL only. MySQL, Redis, and MongoDB are not wired yet. |
-| PostgreSQL major version | 14, 15, 16, 17 |
+| PostgreSQL major version | 14, 15, 16, 17, 18 |
 | Database mode | `MANAGED` (a container database has nothing to adopt) |
 
 ### How a migration runs

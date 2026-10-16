@@ -94,6 +94,33 @@ qovery port-forward "<service-console-url>" --port 5432:5432
 
 If the service ID in the URL does not exist in the environment, the command fails with a `not found in environment` error.
 
+## Blueprints
+
+### Point a Blueprint at a Newer Major Version
+
+`qovery blueprint upgrade-major` points a blueprint service at the latest tag of a newer major version, for example PostgreSQL 14 to 18. It is built for AWS RDS PostgreSQL databases: Qovery checks the version the database runs and handles the upgrade end to end. Other blueprint services are accepted, but Qovery does not check that their new major can be applied safely, so review that template's upgrade notes first. Run it without `--major` to list the newer majors and what moving to each one would do:
+
+```bash
+qovery blueprint upgrade-major -n <service name>
+```
+
+Then pick a major:
+
+```bash
+qovery blueprint upgrade-major -n <service name> --major 18
+```
+
+The command shows what will happen and asks for confirmation (`--yes` or `-y` skips it), then updates the blueprint and deploys it. Add `--watch` (`-w`) to follow the deployment.
+
+- **Relabel:** the service already runs that major, for example a database upgraded with an AWS Blue/Green deployment. Only Qovery's records change; the service is not touched. Qovery detects this for AWS RDS databases only.
+- **Upgrade:** the service runs an older major.
+  - For an AWS RDS PostgreSQL database, the deployment upgrades it in place and takes it offline while AWS upgrades it. Use this for non-production databases.
+  - For a production database, upgrade with an [AWS Blue/Green deployment](/getting-started/guides/advanced-tutorials/upgrading-rds-instance) first, then run the command: it only relabels the blueprint.
+  - Other blueprints always take this path; what happens then depends on their template's own upgrade behavior.
+- **Not supported:** the move is refused and the command explains why, for example a lower major than the one running. If the command reports an unknown switch mode, update the Qovery CLI.
+
+See [Moving to a newer major version](/configuration/blueprints#moving-to-a-newer-major-version) for details.
+
 ## Key Features
 
 <CardGroup cols={2}>

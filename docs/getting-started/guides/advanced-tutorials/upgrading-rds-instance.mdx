@@ -83,11 +83,11 @@ AWS Documentation [here](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/
 
 <Warning>
 
-Do not update the version in the Qovery console until the `old` instance has actually been deleted on AWS. Qovery manages your DB parameter group through Terraform, and switching the version triggers Terraform to replace the old parameter group (targeting the previous engine family, e.g. `postgres14`/`mysql8.0`) with a new one (e.g. `postgres15`/`mysql8.4`). AWS refuses to delete a parameter group that still has an instance attached to it — and the `old` instance is still attached to it. If you re-deploy from Qovery while the `old` instance still exists, the deployment will fail with a `TERRAFORM_UNKNOWN_ERROR` and no RDS event will be emitted, since the failure happens at the Terraform plan/apply stage before any AWS API call is made against the instance. If this happens, delete the `old` instance first, then re-deploy from Qovery again.
+For [legacy managed databases](/configuration/database#legacy-managed-databases), do not update the version in the Qovery console until the `old` instance has actually been deleted on AWS. Qovery manages your DB parameter group through Terraform, and switching the version triggers Terraform to replace the old parameter group (targeting the previous engine family, e.g. `postgres14`/`mysql8.0`) with a new one (e.g. `postgres15`/`mysql8.4`). AWS refuses to delete a parameter group that still has an instance attached to it — and the `old` instance is still attached to it. If you re-deploy from Qovery while the `old` instance still exists, the deployment will fail with a `TERRAFORM_UNKNOWN_ERROR` and no RDS event will be emitted, since the failure happens at the Terraform plan/apply stage before any AWS API call is made against the instance. If this happens, delete the `old` instance first, then re-deploy from Qovery again.
 
 </Warning>
 
-## Align the configuration on Qovery
+## Align the configuration on Qovery (legacy managed databases)
 
 1. Go on the Qovery console and align the database configuration by setting the version to `15`
 
@@ -102,3 +102,30 @@ Do not update the version in the Qovery console until the `old` instance has act
 After the deployment completes, check the parameter group's apply status on AWS (`ParameterApplyStatus`). It can be reported as `pending-reboot`, meaning the new parameter group is attached, but the engine is still running with the previous group's values until the instance is rebooted. This is a silent failure mode: nothing breaks immediately, but any custom parameter you rely on (e.g. `log_bin_trust_function_creators` on MySQL) is not actually active yet, and the failure only surfaces later, for example `CREATE FUNCTION`/`CREATE TRIGGER` failing with `ERROR 1419` the next time a routine or trigger is created, possibly weeks after the migration. If the status is `pending-reboot`, reboot the instance from the AWS console to apply the new parameter values immediately.
 
 </Warning>
+
+## Align the configuration on Qovery (blueprint databases)
+
+If the database was created from a [database blueprint](/configuration/blueprints), align it with the [Qovery CLI](/cli/overview) instead of the console.
+
+1. Wait until the `old` instance has been deleted on AWS.
+2. List the majors the blueprint can move to, and what moving to each one would do:
+
+```bash
+qovery blueprint upgrade-major -n <service name>
+```
+
+3. Move the blueprint to the new major, here `15`:
+
+```bash
+qovery blueprint upgrade-major -n <service name> --major 15
+```
+
+Since the database already runs that version, the command only updates Qovery's records so the console shows the right version. The database itself is not touched.
+
+<Info>
+
+PostgreSQL blueprints do not manage the DB parameter group: they keep the one attached to the instance, including the custom group created for logical replication. The parameter group warning above only applies to legacy managed databases.
+
+MySQL blueprints cover both 8.0 and 8.4 with the same blueprint major, so there is nothing to align after a MySQL upgrade done on AWS.
+
+</Info>

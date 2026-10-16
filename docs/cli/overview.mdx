@@ -98,7 +98,7 @@ If the service ID in the URL does not exist in the environment, the command fail
 
 ### Point a Blueprint at a Newer Major Version
 
-`qovery blueprint upgrade-major` points a blueprint service at the latest tag of a newer major version, for example PostgreSQL 14 to 18. It works for any blueprint service, Terraform or Helm. Run it without `--major` to list the newer majors and what moving to each one would do:
+`qovery blueprint upgrade-major` points a blueprint service at the latest tag of a newer major version, for example PostgreSQL 14 to 18. It is built for AWS RDS PostgreSQL databases: Qovery checks the version the database runs and handles the upgrade end to end. Other blueprint services are accepted, but Qovery does not check that their new major can be applied safely, so review that template's upgrade notes first. Run it without `--major` to list the newer majors and what moving to each one would do:
 
 ```bash
 qovery blueprint upgrade-major -n <service name>

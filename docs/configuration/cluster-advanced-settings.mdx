@@ -2257,7 +2257,7 @@ Custom AMIs without a family prefix are assumed to be AL2023-based. Use a prefix
 
 **Type:** `boolean`
 
-**Description:** Run the kubelet with the `static` [CPU manager policy](https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/) on the private node pool (Karpenter only). Pods in the Guaranteed QoS class with an integer CPU request get dedicated cores instead of a CPU quota, so they only see the cores they asked for. Build pods are in this class.
+**Description:** Run the kubelet with the `static` [CPU manager policy](https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/) on the private node pool (Karpenter only). In pods of the Guaranteed QoS class, each container with an integer CPU request gets dedicated cores instead of a CPU quota, so it only sees the cores it asked for. Build pods are in this class.
 
 **Use Case:** Build tools that size their worker count from the number of visible CPUs (`nproc`, Go, Rust, Python, Java, Node `os.availableParallelism()`) see the whole host on a large node and can run out of memory. With this setting, a build with 4 CPUs sees 4 CPUs whatever the node size.
 

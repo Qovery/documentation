@@ -363,7 +363,7 @@ If the policy does not allow the request, the API answers `401 Unauthorized`.
 
 ## Inspect and revoke
 
-In the Policy API Token list, each token offers:
+In the Policy API Token list, each token shows its creator and creation date, and **Last used**, the time elapsed since the token was last used. Hover over it to see the exact date and time in UTC. **Last used** is not displayed when no usage has been recorded for the token. Each token also offers:
 
 - **Inspect policy** (scroll icon): shows the policy attached to the token, read-only. A policy can always be reviewed after creation - only the token value is write-once.
 - **Delete** (trash icon): revokes the token. Confirm the deletion, and the token stops working immediately.

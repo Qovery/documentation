@@ -94,13 +94,23 @@ The "Deploy Other Version" action allows you to deploy a different version of yo
 
 This action opens a panel where you can select the version you want to deploy.
 
-## Deploy Latest Version
+## Deploy by Version
 
-The "Deploy Latest Version" action allows you to deploy the latest version of your services within an environment. This is an environment-level action only, available regardless of the current status.
+The **Deploy by version** action, in the environment actions menu, deploys a specific version of several services of an environment in a single operation. This is an environment-level action only, available regardless of the current status.
 
-![Deploy Latest Version](/images/deployment/deploy_latest_version.png)
+The action opens a modal that lists the services of the environment in two groups, **outdated services** and **up to date services**. For each service, the modal shows the version currently deployed, then a version selector:
 
-This action only applies to services deployed from a Git repository (not container images).
+- Outdated services are preselected, with the latest available version chosen. Use **Select all** or **Unselect all** to change the selection of the outdated services.
+- Changing the version of a service selects it. You can also select an up to date service to deploy another version of it.
+- The button at the bottom of the modal shows the number of selected services, for example **Update 3 services**. Click it to deploy the selected services at the versions you chose.
+
+The version is a git commit for services deployed from a Git repository, an image tag for container images, and a chart version for Helm charts deployed from a Helm repository. A container image tagged `latest` cannot be selected, to ensure consistent deployments.
+
+Some services cannot be selected:
+
+- [Skipped services](#skipped-services) appear with reduced opacity and cannot be deployed from the modal.
+- Services whose versions cannot be loaded, or that have no available version, are disabled. A tooltip gives the reason.
+- Blueprint, database, Argo CD, and agentic workflow services are not included.
 
 ## Queueing and Merging
 

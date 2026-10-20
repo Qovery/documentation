@@ -81,6 +81,7 @@ Read-only access to all organization resources, clusters, and projects.
 | Create project | yes | yes | yes | no | no |
 | Read any project & environment | yes | yes | yes | no | yes |
 | Deploy, manage, and configure any environment | yes | yes | yes | no | no |
+| Open a shell and port-forward on any service | yes | yes | yes | no | no |
 | Read cluster info | yes | yes | yes | yes | yes |
 
 ## Custom Roles
@@ -119,9 +120,29 @@ Set per project, independently for each environment type (Development, Preview, 
 | --- | --- |
 | **No Access** | No visibility or interaction with this environment type. |
 | **Read-Only** | View environments, services, logs, and variables. No write access. |
-| **Deploy** | Everything in Read-Only, plus trigger deployments, stop services, and connect via shell. Cannot modify service configuration or environment variables. |
+| **Deploy** | Everything in Read-Only, plus trigger deployments and stop services. Cannot modify service configuration or environment variables. |
 | **Manage** | Everything in Deploy, plus edit service configuration, manage environment variables and secrets, and create or delete services. |
 | **Full Access** | Everything in Manage, plus delete environments and manage project-level settings. |
+
+### Shell and Port-forward Permissions
+
+Remote access to the running services is granted separately from the level, with two permissions set per project and per environment type:
+
+| Permission | What it allows |
+| --- | --- |
+| **Shell** | Open a shell on the services of this environment type, with [`qovery shell`](/cli/commands/shell) or from the **Cloud Shell** tab of a service in the console. |
+| **Port-forward** | Forward a local port to the services of this environment type, with [`qovery port-forward`](/cli/commands/port-forward). |
+
+- Both can be granted from **Read-Only** up, for example to let a user port-forward to a database without being able to deploy.
+- Neither can be granted with **No Access**.
+- **Full Access** on a project always includes both.
+- They are independent: a role can deploy to Production without being able to open a shell there.
+
+<Info>
+  Custom roles created before these permissions existed have both enabled on every environment type where their level is Deploy or above, so their access did not change.
+</Info>
+
+When a permission is missing, the connection is refused.
 
 ### Custom roles vs built-in DevOps role
 
@@ -160,6 +181,16 @@ An engineer who needs to trigger deployments and read logs across all projects i
 | --- | --- |
 | All clusters | Read-Only |
 | All projects - all environment types | Deploy |
+
+**Deployer without shell access in production**
+
+A developer who deploys to every environment type and can debug Production through port-forward, but cannot open a shell there:
+
+| Scope | Level | Shell | Port-forward |
+| --- | --- | :---: | :---: |
+| Cluster | Read-Only | | |
+| Target project - Development, Preview, Staging | Deploy | yes | yes |
+| Target project - Production | Deploy | no | yes |
 
 **Security auditor - read-only across everything**
 

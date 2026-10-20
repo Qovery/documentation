@@ -148,6 +148,10 @@ Each blueprint ships with a README describing the resource it provisions and its
   </Step>
 </Steps>
 
+### Connection URI of a blueprint database
+
+When a blueprint service provisions a database, its service header shows a **Connection URI** button. It copies the connection URI of the database, built from the database engine and its master credentials, to your clipboard. The button appears once the deployment has reported the database endpoint and credentials, and only if you are allowed to read them.
+
 ## Variables & Engine Reference
 
 ### Variables
@@ -205,6 +209,8 @@ A blueprint variable can take its value from your secret manager (AWS Secrets Ma
   </Step>
   <Step title="Reference it from the variable">
     Set the blueprint variable to the external secret key wrapped in double curly braces, for example `{{ RABBITMQ_ADMIN_PASSWORD }}`.
+
+    On a secret variable, you can also click the wand button next to the field and pick the variable: the field is then set to the reference, for example `{{RABBITMQ_ADMIN_PASSWORD}}`, replacing its current value. The picker is available when you create the blueprint service, when you review an update, and in the **Blueprint configuration** settings. Use the eye icon of the field to reveal the reference.
   </Step>
 </Steps>
 

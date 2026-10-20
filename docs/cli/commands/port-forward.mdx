@@ -159,7 +159,7 @@ qovery port-forward --pod "my-app-7d8f9c5b6-xyz12" --port 8081:8080
 
 ### Connection Rejected
 
-If each connection is rejected with `Port-forward connection rejected: check your permissions or run 'qovery auth'`, your role does not have the **Port-forward** permission on this environment type. Ask an organization admin to grant it. See [Shell and Port-forward permissions](/configuration/organization/members-rbac#shell-and-port-forward-permissions).
+If each connection is rejected with `Port-forward connection rejected: check your permissions or run 'qovery auth'`, run `qovery auth` first, as an expired session gives the same error. If the rejection persists, your role does not have the **Port-forward** permission on this environment type. Ask an organization admin to grant it. See [Shell and Port-forward permissions](/configuration/organization/members-rbac#shell-and-port-forward-permissions).
 
 ### Connection Drops
 

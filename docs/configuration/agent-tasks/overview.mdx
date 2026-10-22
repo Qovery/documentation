@@ -29,7 +29,7 @@ Agent Tasks are one-time or scheduled jobs delegated to AI agents, running on yo
     For **Anthropic-compatible**, point the agent at your own Anthropic-compatible API, such as a gateway like OpenRouter. The token requires a **Base URL**, the root of that API (for OpenRouter, `https://openrouter.ai/api`), and a token, which Qovery sends to the gateway as a bearer token.
 
     <Warning>
-      Anthropic-compatible is only guaranteed to work with the Anthropic first-party provider. Other models are not guaranteed to work.
+      Anthropic-compatible is only guaranteed to work with the Anthropic first-party provider. Some other models have been tested and work successfully, but they are not guaranteed to work.
     </Warning>
 
     Once a token is selected, pick the **Model** the agent runs on from the list of models available to that token. The first available model is selected by default. For AWS Bedrock, the models offered depend on the token's AWS region. For Anthropic-compatible, the models are listed from your gateway using the token's Base URL and token. A model that appears in the list is not guaranteed to run the agent. If the models can't be loaded, check the token's API key (Claude), its AWS credentials and region (AWS Bedrock), or its Base URL and token (Anthropic-compatible). Use **Edit token** next to the token selector to update the selected token. You can change the model later from the agent task's **Settings > AI configuration**.

@@ -28,7 +28,7 @@ Agent Tasks are one-time or scheduled jobs delegated to AI agents, running on yo
 
     Choose **Claude** (Anthropic) to use Claude directly through Anthropic with an Anthropic API key.
 
-    For **other providers**, select **Anthropic-compatible** in the console. Use this option for a gateway or custom endpoint, such as OpenRouter or LiteLLM, that supports the Anthropic Messages API. This lets you try alternative models or compare pricing through your gateway, subject to the compatibility limits below.
++    For a gateway or custom endpoint, select **Anthropic-compatible** in the console. Use this option for an endpoint, such as OpenRouter, that supports the Anthropic Messages API. This lets you try alternative models through your gateway, subject to the compatibility limits below.
 
     Enter the gateway's **Base URL** and token, which Qovery sends as a bearer token. The gateway must expose `/v1/messages` under that Base URL. For OpenRouter, enter `https://openrouter.ai/api`; its full Messages endpoint is `https://openrouter.ai/api/v1/messages`.
 

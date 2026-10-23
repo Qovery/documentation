@@ -125,7 +125,7 @@ Click **Update** to save your changes.
 
 The **Agent** section manages what's shared with every [Agent Task](/configuration/agent-tasks/overview) in the organization: AI provider tokens under **Agent > Token**, and MCP servers under **Agent > MCP**.
 
-**Token**: create and manage the AI provider tokens used by agent tasks. Qovery currently supports [Claude](https://www.anthropic.com/) (Anthropic) and [AWS Bedrock](https://aws.amazon.com/bedrock/) as providers. A token created here, or created on the fly from an agent task's **Choose a Provider** step, is saved to this list and can be reused by any other agent task in the organization instead of re-entering credentials each time.
+**Token**: create and manage the AI provider tokens used by agent tasks. Qovery currently supports [Claude](https://www.anthropic.com/) (Anthropic), [AWS Bedrock](https://aws.amazon.com/bedrock/), and Anthropic-compatible gateways as providers. See [Choose a Provider and Model](/configuration/agent-tasks/overview#creating-an-agent) for the Anthropic-compatible Base URL and limits. A token created here, or created on the fly from an agent task's **Choose a Provider** step, is saved to this list and can be reused by any other agent task in the organization instead of re-entering credentials each time.
 
 **MCP**: connect any remote HTTPS MCP server here (name, URL, and headers) to make it available when configuring an individual agent.
 

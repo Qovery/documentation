@@ -21,16 +21,27 @@ curl -fsSL https://skill.qovery.com/install.sh | bash
 ## Available Skills
 
 <div className="skills-selector">
+  <input type="radio" name="qovery-skill" id="sk-qovery" className="skill-radio" />
+  <input type="radio" name="qovery-skill" id="sk-signup" className="skill-radio" />
   <input type="radio" name="qovery-skill" id="sk-onboard" defaultChecked className="skill-radio" />
   <input type="radio" name="qovery-skill" id="sk-deploy" className="skill-radio" />
   <input type="radio" name="qovery-skill" id="sk-troubleshoot" className="skill-radio" />
   <input type="radio" name="qovery-skill" id="sk-optimize" className="skill-radio" />
   <input type="radio" name="qovery-skill" id="sk-speedup" className="skill-radio" />
   <input type="radio" name="qovery-skill" id="sk-preview" className="skill-radio" />
-  <input type="radio" name="qovery-skill" id="sk-builder-env" className="skill-radio" />
-  <input type="radio" name="qovery-skill" id="sk-builder-portal" className="skill-radio" />
+  <input type="radio" name="qovery-skill" id="sk-terraform" className="skill-radio" />
+  <input type="radio" name="qovery-skill" id="sk-policy-token" className="skill-radio" />
+  <input type="radio" name="qovery-skill" id="sk-assess" className="skill-radio" />
 
   <div className="skills-grid">
+    <label htmlFor="sk-qovery" className="skill-card">
+      <span className="skill-card-name">qovery</span>
+      <span className="skill-card-desc">Router and quick ops</span>
+    </label>
+    <label htmlFor="sk-signup" className="skill-card">
+      <span className="skill-card-name">qovery-signup</span>
+      <span className="skill-card-desc">Headless account setup</span>
+    </label>
     <label htmlFor="sk-onboard" className="skill-card">
       <span className="skill-card-name">qovery-onboard</span>
       <span className="skill-card-desc">Guided setup</span>
@@ -55,25 +66,32 @@ curl -fsSL https://skill.qovery.com/install.sh | bash
       <span className="skill-card-name">qovery-preview</span>
       <span className="skill-card-desc">Per-PR environments</span>
     </label>
-    <label htmlFor="sk-builder-env" className="skill-card">
-      <span className="skill-card-name">qovery-builder-env</span>
-      <span className="skill-card-desc">Team self-service</span>
+    <label htmlFor="sk-terraform" className="skill-card">
+      <span className="skill-card-name">qovery-terraform</span>
+      <span className="skill-card-desc">Export to Terraform</span>
     </label>
-    <label htmlFor="sk-builder-portal" className="skill-card">
-      <span className="skill-card-name">qovery-builder-portal</span>
-      <span className="skill-card-desc">Web portal</span>
+    <label htmlFor="sk-policy-token" className="skill-card">
+      <span className="skill-card-name">qovery-policy-token</span>
+      <span className="skill-card-desc">Scoped agent tokens</span>
+    </label>
+    <label htmlFor="sk-assess" className="skill-card">
+      <span className="skill-card-name">qovery-assess</span>
+      <span className="skill-card-desc">Read-only audit</span>
     </label>
   </div>
 
   <div className="skills-desc-wrap">
-    <span className="sk-desc sk-desc-onboard">Guided setup — evaluates your stack, recommends the right cluster config, and walks you through onboarding step by step.</span>
-    <span className="sk-desc sk-desc-deploy">From source code to running app — Dockerfile, database, env vars, deployment, and auto-fix on failure.</span>
-    <span className="sk-desc sk-desc-troubleshoot">8-layer diagnostic against 20+ error patterns. Outputs a structured report with fixes.</span>
-    <span className="sk-desc sk-desc-optimize">Analyzes costs across 7 dimensions. Recommends right-sizing, spot instances, and sleep mode. CSV export.</span>
-    <span className="sk-desc sk-desc-speedup">Measures full pipeline timing, finds bottlenecks, fixes Dockerfile layers and build cache.</span>
-    <span className="sk-desc sk-desc-preview">Full-stack preview environment per PR — app, database, unique URL. Auto-deleted on merge.</span>
-    <span className="sk-desc sk-desc-builder-env">Self-service environments for non-technical teams — with RBAC so they can't touch production.</span>
-    <span className="sk-desc sk-desc-builder-portal">Generates and deploys a web portal — SSO login, one-click environments, no CLI needed.</span>
+    <span className="sk-desc sk-desc-qovery">Entry point. Routes your request to the right skill and handles quick operations: list, status, stop, restart, logs, clone, scale, custom domains, deployment history.</span>
+    <span className="sk-desc sk-desc-signup">Creates a Qovery account from your terminal: installs the Qovery CLI if needed, authenticates with <code>qovery auth --headless</code> (the first login creates the account), creates your first organization, then hands off to qovery-onboard. Never handles raw tokens.</span>
+    <span className="sk-desc sk-desc-onboard">Guided setup. Understands your role, experience, and constraints, then recommends and sets up the Qovery configuration: cloud provider, cluster, environments, RBAC, security, and cost defaults. Handles BYOK and platform migrations.</span>
+    <span className="sk-desc sk-desc-deploy">From source code to a running app: analyzes the codebase, creates a Dockerfile if missing, provisions databases, and deploys with the CLI and API or with Terraform.</span>
+    <span className="sk-desc sk-desc-troubleshoot">Diagnoses and fixes deployment failures, crashes, connectivity and performance issues: 8-layer diagnosis, 20+ error patterns, MCP Server integration, and runbook generation.</span>
+    <span className="sk-desc sk-desc-optimize">Optimizes costs and right-sizes resources from historical consumption, estimates cloud costs, and generates reports with CSV export.</span>
+    <span className="sk-desc sk-desc-speedup">Measures the deployment pipeline timeline, finds bottlenecks (build, startup, health check, scheduling), and proposes Dockerfile and configuration fixes.</span>
+    <span className="sk-desc sk-desc-preview">Creates a preview environment per pull request: detects or creates a blueprint environment, clones it for each PR, switches the branch, configures auto-shutdown (stop, delete, or recycle), and cleans up.</span>
+    <span className="sk-desc sk-desc-terraform">Generates Terraform manifests (qovery/qovery provider) from an existing Qovery setup, imports resources into state, and validates them in a test clone. Never applies to the original without confirmation.</span>
+    <span className="sk-desc sk-desc-policy-token">Creates a scoped, least-privilege API Policy Token: turns your intent into an OPA/Rego policy, tests it locally and against the API, creates the token, and verifies it allows exactly what you want and denies everything else.</span>
+    <span className="sk-desc sk-desc-assess">Read-only assessment of a whole organization: inventories clusters, environments and services, runs 147 best-practice checks across reliability, security, performance, delivery, cost and disaster recovery, and writes a shareable gap analysis. Modifies nothing.</span>
   </div>
 
   <div className="terminal-window skills-terminal">
@@ -89,14 +107,17 @@ curl -fsSL https://skill.qovery.com/install.sh | bash
           className="terminal-open-cursor"
           onClick={() => {
             const prompts = {
+              'sk-qovery': 'List my Qovery environments',
+              'sk-signup': 'Create a Qovery account and log me in',
               'sk-onboard': "I'm new to Qovery, help me get started",
               'sk-deploy': 'Deploy my application with Qovery',
               'sk-troubleshoot': 'My deployment is failing',
               'sk-optimize': 'Optimize my Qovery costs',
               'sk-speedup': 'My deployments are slow',
               'sk-preview': 'Set up preview environments for my project',
-              'sk-builder-env': 'Set up builder environments for non-tech teams',
-              'sk-builder-portal': 'Generate a builder portal for my team',
+              'sk-terraform': 'Convert my environment to Terraform',
+              'sk-policy-token': 'I need a scoped token for an AI agent limited to the staging environment',
+              'sk-assess': 'Is my setup production-ready?',
             };
             const checked = document.querySelector('input[name="qovery-skill"]:checked');
             const text = checked ? prompts[checked.id] : '';
@@ -113,14 +134,17 @@ curl -fsSL https://skill.qovery.com/install.sh | bash
           title="Copy"
           onClick={(e) => {
             const prompts = {
+              'sk-qovery': 'List my Qovery environments',
+              'sk-signup': 'Create a Qovery account and log me in',
               'sk-onboard': "I'm new to Qovery, help me get started",
               'sk-deploy': 'Deploy my application with Qovery',
               'sk-troubleshoot': 'My deployment is failing',
               'sk-optimize': 'Optimize my Qovery costs',
               'sk-speedup': 'My deployments are slow',
               'sk-preview': 'Set up preview environments for my project',
-              'sk-builder-env': 'Set up builder environments for non-tech teams',
-              'sk-builder-portal': 'Generate a builder portal for my team',
+              'sk-terraform': 'Convert my environment to Terraform',
+              'sk-policy-token': 'I need a scoped token for an AI agent limited to the staging environment',
+              'sk-assess': 'Is my setup production-ready?',
             };
             const checked = document.querySelector('input[name="qovery-skill"]:checked');
             const text = checked ? prompts[checked.id] : '';
@@ -138,17 +162,42 @@ curl -fsSL https://skill.qovery.com/install.sh | bash
       </div>
     </div>
     <div className="terminal-body">
+      <span className="terminal-prompt sk-prompt sk-prompt-qovery">List my Qovery environments<span className="terminal-cursor"></span></span>
+      <span className="terminal-prompt sk-prompt sk-prompt-signup">Create a Qovery account and log me in<span className="terminal-cursor"></span></span>
       <span className="terminal-prompt sk-prompt sk-prompt-onboard">I'm new to Qovery, help me get started<span className="terminal-cursor"></span></span>
       <span className="terminal-prompt sk-prompt sk-prompt-deploy">Deploy my application with Qovery<span className="terminal-cursor"></span></span>
       <span className="terminal-prompt sk-prompt sk-prompt-troubleshoot">My deployment is failing<span className="terminal-cursor"></span></span>
       <span className="terminal-prompt sk-prompt sk-prompt-optimize">Optimize my Qovery costs<span className="terminal-cursor"></span></span>
       <span className="terminal-prompt sk-prompt sk-prompt-speedup">My deployments are slow<span className="terminal-cursor"></span></span>
       <span className="terminal-prompt sk-prompt sk-prompt-preview">Set up preview environments for my project<span className="terminal-cursor"></span></span>
-      <span className="terminal-prompt sk-prompt sk-prompt-builder-env">Set up builder environments for non-tech teams<span className="terminal-cursor"></span></span>
-      <span className="terminal-prompt sk-prompt sk-prompt-builder-portal">Generate a builder portal for my team<span className="terminal-cursor"></span></span>
+      <span className="terminal-prompt sk-prompt sk-prompt-terraform">Convert my environment to Terraform<span className="terminal-cursor"></span></span>
+      <span className="terminal-prompt sk-prompt sk-prompt-policy-token">I need a scoped token for an AI agent limited to the staging environment<span className="terminal-cursor"></span></span>
+      <span className="terminal-prompt sk-prompt sk-prompt-assess">Is my setup production-ready?<span className="terminal-cursor"></span></span>
     </div>
   </div>
 </div>
+
+---
+
+## Skill reference
+
+The install command installs all eleven skills. Your agent picks the skill from your prompt, or you can call it with its slash command (for example `/qovery-signup`).
+
+| Skill | What it does | Example prompt |
+|-------|--------------|----------------|
+| `qovery` | Entry point. Routes your request to the right skill and handles quick operations: list, status, stop, restart, logs, clone, scale, custom domains, deployment history. | "List my Qovery environments" |
+| `qovery-signup` | Creates a Qovery account from your terminal: installs the Qovery CLI if needed, authenticates with `qovery auth --headless` (the first login creates the account), creates your first organization, then hands off to qovery-onboard. Never handles raw tokens. | "Create a Qovery account and log me in" |
+| `qovery-onboard` | Guided setup. Understands your role, experience, and constraints, then recommends and sets up the Qovery configuration: cloud provider, cluster, environments, RBAC, security, and cost defaults. Handles BYOK and platform migrations. | "I'm new to Qovery, help me get started" |
+| `qovery-deploy` | From source code to a running app: analyzes the codebase, creates a Dockerfile if missing, provisions databases, and deploys with the CLI and API or with Terraform. | "Deploy my application with Qovery" |
+| `qovery-troubleshoot` | Diagnoses and fixes deployment failures, crashes, connectivity and performance issues: 8-layer diagnosis, 20+ error patterns, MCP Server integration, and runbook generation. | "My deployment is failing" |
+| `qovery-optimize` | Optimizes costs and right-sizes resources from historical consumption, estimates cloud costs, and generates reports with CSV export. | "Optimize my Qovery costs" |
+| `qovery-speedup` | Measures the deployment pipeline timeline, finds bottlenecks (build, startup, health check, scheduling), and proposes Dockerfile and configuration fixes. | "My deployments are slow" |
+| `qovery-preview` | Creates a preview environment per pull request: detects or creates a blueprint environment, clones it for each PR, switches the branch, configures auto-shutdown (stop, delete, or recycle), and cleans up. | "Set up preview environments for my project" |
+| `qovery-terraform` | Generates Terraform manifests (qovery/qovery provider) from an existing Qovery setup, imports resources into state, and validates them in a test clone. Never applies to the original without confirmation. | "Convert my environment to Terraform" |
+| `qovery-policy-token` | Creates a scoped, least-privilege API Policy Token: turns your intent into an OPA/Rego policy, tests it locally and against the API, creates the token, and verifies it allows exactly what you want and denies everything else. | "I need a scoped token for an AI agent limited to the staging environment" |
+| `qovery-assess` | Read-only assessment of a whole organization: inventories clusters, environments and services, runs 147 best-practice checks across reliability, security, performance, delivery, cost and disaster recovery, and writes a shareable gap analysis. Modifies nothing. | "Is my setup production-ready?" |
+
+Source: [github.com/Qovery/qovery-skills](https://github.com/Qovery/qovery-skills).
 
 ---
 
@@ -162,7 +211,7 @@ curl -fsSL https://skill.qovery.com/install.sh | bash
     Every agent action logged — what changed, when, by which agent.
   </Card>
   <Card title="RBAC for agents" icon="shield-check">
-    Agents respect your permission model. Builders deploy, can't touch cluster config.
+    Agents respect your permission model. Scope an agent's credential with an [API Policy Token](/configuration/organization/api-policy-token).
   </Card>
   <Card title="Ephemeral by design" icon="clock">
     Environments up and down in minutes. Sleep mode and TTL handle cleanup.

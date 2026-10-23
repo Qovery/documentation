@@ -7,6 +7,90 @@ This troubleshooting guide helps you resolve common issues you may encounter whi
 
 ---
 
+## Diagnose a Failed Build or Deployment
+
+When a deployment fails, read the deployment logs before changing anything: the first error line in the build or deploy phase is the cause. A coding agent can fetch these logs itself with the Qovery CLI, so you do not need to copy them from the Console.
+
+**Prerequisites:**
+
+- The [Qovery CLI](/cli/overview) is installed.
+- The CLI is authenticated: `qovery auth`, or `qovery auth --headless` on a machine without a browser (it prints a URL to open elsewhere). In CI, set `QOVERY_CLI_ACCESS_TOKEN` instead. For an AI agent, use a token scoped to what it needs, such as an [API Policy Token](/configuration/organization/api-policy-token) or a read-only API token.
+- You know the organization, project, environment, and service names (`qovery project list`, `qovery environment list`, `qovery application list`).
+
+<Tabs>
+  <Tab title="With a coding agent">
+    Install the Qovery Agent Skills once:
+
+    ```bash
+    curl -fsSL https://skill.qovery.com/install.sh | bash
+    ```
+
+    Then ask your agent:
+
+    ```
+    My Qovery deployment is failing, can you help?
+    ```
+
+    The `qovery-troubleshoot` skill reads the deployment status and build logs, matches the error against known patterns, fixes the Qovery configuration (ports, health checks, resources, environment variables), asks before changing your code, redeploys, and verifies the result. It uses the [MCP Server](/copilot/mcp-server) when it is configured and falls back to the CLI and API otherwise. See [Agent Skills](/getting-started/quickstart/agent-skills).
+  </Tab>
+
+  <Tab title="With the CLI">
+    <Steps>
+      <Step title="Find the failed deployment">
+        ```bash
+        qovery environment deployment list \
+          --organization "My Org" --project "My Project" --environment "production"
+        ```
+      </Step>
+
+      <Step title="See which stage, service, and step failed">
+        ```bash
+        qovery environment deployment explain \
+          --organization "My Org" --project "My Project" --environment "production"
+        ```
+
+        Without `--id`, this explains the latest deployment. Pass `--id <deployment-id>` from the previous command for an older one.
+      </Step>
+
+      <Step title="Read the error lines for the failing service">
+        ```bash
+        # Error lines only
+        qovery environment deployment logs \
+          --organization "My Org" --project "My Project" --environment "production" \
+          --service "my-api" --errors-only
+
+        # Full deployment log for that service (build, deploy, health checks)
+        qovery environment deployment logs \
+          --organization "My Org" --project "My Project" --environment "production" \
+          --service "my-api"
+        ```
+
+        These are the deployment (engine) logs. For the runtime output of a running service, use [`qovery log`](/cli/commands/log).
+      </Step>
+
+      <Step title="Fix the cause and deploy again">
+        For a build failure, check the Dockerfile and the service build settings (**Root application path**, **Dockerfile path**), then see [Docker Build Timeout](#service-deployment-issues), [Git Submodule Errors](#service-deployment-issues), and [How to write a Dockerfile](/getting-started/guides/advanced-tutorials/write-dockerfile).
+
+        ```bash
+        # After pushing a code or Dockerfile fix: deploy the newest commit of the branch
+        qovery application deploy \
+          --organization "My Org" --project "My Project" --environment "production" \
+          --application "my-api" --commit-id latest --watch
+
+        # After a configuration-only fix: redeploy the same commit
+        qovery application redeploy \
+          --organization "My Org" --project "My Project" --environment "production" \
+          --application "my-api" --watch
+        ```
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+**Success:** with `--watch`, the deploy command exits with code `0` once the service reaches the `DEPLOYED` state, and with code `1` if the deployment fails, is canceled, or times out (set `QOVERY_CLI_WATCH_TIMEOUT` to wait longer). On failure, go back to the deployment logs step.
+
+---
+
 ## Service Deployment Issues
 
 Find solutions for the most common deployment errors and issues you may encounter when deploying services on Qovery.

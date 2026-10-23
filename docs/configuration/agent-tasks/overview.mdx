@@ -26,7 +26,11 @@ Agent Tasks are one-time or scheduled jobs delegated to AI agents, running on yo
   <Step title="Choose a Provider and Model">
     Pick **Claude** (Anthropic), **AWS Bedrock**, or **Anthropic-compatible**, then select an existing token or create a new one on the fly. A token created here is saved and can be reused by any other agent task in the organization, no need to re-enter credentials each time. Tokens can also be managed centrally from **Organization Settings > Agent > Token**. When you create an AWS Bedrock token, also select its **AWS region** (`eu-west-1` by default).
 
-    For **Anthropic-compatible**, point the agent at your own Anthropic-compatible API, such as a gateway like OpenRouter. The token requires a **Base URL**, the root of that API (for OpenRouter, `https://openrouter.ai/api`), and a token, which Qovery sends to the gateway as a bearer token.
+    Choose **Claude** (Anthropic) to use Claude directly through Anthropic with an Anthropic API key.
+
+    For **other providers**, select **Anthropic-compatible** in the console. Use this option for a gateway or custom endpoint, such as OpenRouter or LiteLLM, that supports the Anthropic Messages API. This lets you try alternative models or compare pricing through your gateway, subject to the compatibility limits below.
+
+    Enter the gateway's **Base URL** and token, which Qovery sends as a bearer token. The gateway must expose `/v1/messages` under that Base URL. For OpenRouter, enter `https://openrouter.ai/api`; its full Messages endpoint is `https://openrouter.ai/api/v1/messages`.
 
     <Warning>
       Anthropic-compatible is only guaranteed to work with the Anthropic first-party provider. Some other models have been tested and work successfully, but they are not guaranteed to work.

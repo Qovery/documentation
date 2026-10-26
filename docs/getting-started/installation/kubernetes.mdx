@@ -21,7 +21,7 @@ The Qovery Operator installation is in Preview: see its [prerequisites and curre
 ## Prerequisites
 
 <Check>A Qovery organization on a plan that includes self-managed clusters (Professional, Business or Enterprise)</Check>
-<Check>A running Kubernetes cluster on AWS (EKS), GCP (GKE) or Scaleway (Kapsule)</Check>
+<Check>A running Kubernetes cluster on AWS (EKS), GCP (GKE) or Scaleway (Kapsule), with at least one node that has 4 vCPU and 8 GiB of memory free for builds, for example an 8 vCPU node</Check>
 <Check>`kubectl` access to the cluster with `cluster-admin` rights and `helm`, only to install the Operator once</Check>
 <Check>A cloud credential for the provider of the cluster, with the [required permissions](/configuration/integrations/kubernetes/byok#credential-permissions)</Check>
 <Check>Active Qovery account - [Sign up here](https://start.qovery.com)</Check>

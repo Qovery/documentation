@@ -26,6 +26,7 @@ The Qovery Operator installation is in Preview: see [Current limitations](#curre
 <Check>A Qovery organization on a plan that includes self-managed clusters (Professional, Business or Enterprise)</Check>
 <Check>A running Kubernetes cluster on AWS (EKS), GCP (GKE) or Scaleway (Kapsule)</Check>
 <Check>`kubectl` access to the cluster with `cluster-admin` rights and `helm` on your machine, only to install the Operator once. Later Operator updates go through Qovery.</Check>
+<Check>At least one node with 4 vCPU and 8 GiB of memory free, for example an 8 vCPU node: each build runs in a builder pod that requests the CPU and RAM of the service [build settings](/configuration/service-advanced-settings#build-settings), 4000m and 8 GiB by default. A 4 vCPU node cannot host it.</Check>
 <Check>A cluster that does not already run cert-manager, ExternalDNS or Envoy Gateway</Check>
 <Check>A default StorageClass (`kubectl get storageclass`), unless Loki stores logs in object storage. Recent EKS versions do not create one.</Check>
 <Check>A working cluster DNS (CoreDNS) that resolves public names</Check>
@@ -279,6 +280,10 @@ Need a component, a DNS provider or a cloud provider that is not covered yet? Co
 
   <Accordion title="Loki stays Pending">
     The Loki volume cannot be created without a default StorageClass. Check `kubectl get storageclass`, mark one as default, then deploy the cluster again.
+  </Accordion>
+
+  <Accordion title="A build stays on Provisioning builder">
+    No node has enough free CPU and memory for the builder pod: `kubectl -n qovery get pods` shows a `build-…` pod in `Pending`, and `kubectl -n qovery describe pod <pod>` reports `Insufficient cpu` or `Insufficient memory`. Add a node with at least 4 vCPU and 8 GiB free, or lower **CPU** and **RAM** in the [build settings](/configuration/service-advanced-settings#build-settings) of the service.
   </Accordion>
 
   <Accordion title="The credential is refused when the cluster is created">

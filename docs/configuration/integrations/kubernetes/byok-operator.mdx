@@ -30,28 +30,10 @@ This installation is in **Preview**. Its capabilities are still incomplete and m
 <Check>A running Kubernetes cluster on AWS (EKS), GCP (GKE) or Scaleway (Kapsule)</Check>
 <Check>`kubectl` access to the cluster and `helm` installed on your machine</Check>
 <Check>A cluster that does not already run cert-manager, ExternalDNS or Envoy Gateway</Check>
-<Check>A default StorageClass: Loki stores logs on a persistent volume by default</Check>
+<Check>A default StorageClass (`kubectl get storageclass`), unless Loki stores logs in object storage. Recent EKS versions do not create one.</Check>
 <Check>A working cluster DNS (CoreDNS) that resolves public names</Check>
 <Check>Outbound internet access from the cluster to Qovery and to public container registries</Check>
 <Check>A Qovery cloud credential for the provider of the cluster. You can create it during the installation.</Check>
-
-### Check the default StorageClass
-
-```bash
-kubectl get storageclass
-```
-
-One StorageClass must be marked `(default)`. Recent EKS versions do not create one: create a default StorageClass before you start.
-
-### Check the cluster DNS
-
-The Operator resolves the Qovery endpoint through the cluster DNS before it can connect. Run this check from a temporary Pod:
-
-```bash
-kubectl -n default run qovery-dns-preflight --rm -i --restart=Never --image=busybox:1.36 -- nslookup engine.qovery.com
-```
-
-The lookup must return an address. A timeout or `no servers could be reached` means the cluster DNS must be fixed first.
 
 ### Credential permissions
 
@@ -191,7 +173,13 @@ Once the deployment succeeds, you can deploy your applications on the cluster.
   <Accordion title="The Operator does not connect">
     - Check that the Operator pod is running: `kubectl -n qovery get pods`.
     - Read its logs: `kubectl -n qovery logs deployment/qovery-operator --tail=100`.
-    - A `gateway communication error` or `transport error` at startup is often a cluster DNS issue: run the [DNS check](#check-the-cluster-dns) again.
+    - A `gateway communication error` or `transport error` at startup is often a cluster DNS issue. Check that a Pod resolves the Qovery endpoint:
+
+      ```bash
+      kubectl -n default run qovery-dns-preflight --rm -i --restart=Never --image=busybox:1.36 -- nslookup engine.qovery.com
+      ```
+
+      The lookup must return an address. A timeout or `no servers could be reached` means the cluster DNS must be fixed first.
     - Check that the cluster can reach the internet.
   </Accordion>
 

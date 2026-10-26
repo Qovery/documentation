@@ -1,6 +1,7 @@
 ---
 title: "BYOK (Bring Your Own Kubernetes)"
 description: "Connect your own AWS, GCP or Scaleway Kubernetes cluster to Qovery"
+tag: "PREVIEW"
 ---
 
 Connect a Kubernetes cluster you already run to Qovery by installing the Qovery Operator. Qovery then installs and updates the Qovery stack on the cluster.
@@ -19,8 +20,9 @@ The Qovery Operator installation is in Preview: see its [prerequisites and curre
 
 ## Prerequisites
 
+<Check>A Qovery organization on a plan that includes self-managed clusters (Professional, Business or Enterprise)</Check>
 <Check>A running Kubernetes cluster on AWS (EKS), GCP (GKE) or Scaleway (Kapsule)</Check>
-<Check>`kubectl` access to the cluster and `helm`, only to install the Operator once</Check>
+<Check>`kubectl` access to the cluster with `cluster-admin` rights and `helm`, only to install the Operator once</Check>
 <Check>A cloud credential for the provider of the cluster, with the [required permissions](/configuration/integrations/kubernetes/byok#credential-permissions)</Check>
 <Check>Active Qovery account - [Sign up here](https://start.qovery.com)</Check>
 
@@ -36,7 +38,7 @@ The Qovery Operator installation is in Preview: see its [prerequisites and curre
   </Step>
 
   <Step title="Deploy the platform profile">
-    Review the profile settings and click **Save and deploy**. Qovery installs the Qovery stack on the cluster.
+    Review the profile settings. Click **Save and deploy** if you changed one, or **Deploy** in the **Manage deployment** menu of the cluster to keep the defaults. Qovery installs the Qovery stack on the cluster.
   </Step>
 </Steps>
 

@@ -13,9 +13,9 @@ The Qovery Operator installation is in Preview: see [Current limitations](#curre
 ## How it works
 
 - Qovery never stores the kubeconfig of your cluster. You install the Operator yourself, with your own `kubectl` and `helm` access.
-- The Operator runs in the `qovery` namespace. It opens an outbound connection to Qovery and runs the Qovery deployments as Kubernetes Jobs inside your cluster.
-- The platform profile of the cluster lists the components Qovery installs and their settings. The list can grow as Qovery adds components; the profile page of the cluster always shows the current one. Today, Qovery installs in this order:
-  - **Qovery stack**: the Qovery agent and shell agent.
+- The Operator runs in the `qovery` namespace. It opens an outbound connection to Qovery and runs the Qovery deployments as Kubernetes Jobs inside your cluster. These Jobs run with `cluster-admin` rights.
+- The platform profile of the cluster lists the components Qovery installs and their settings. The list can grow as Qovery adds components; the profile page of the cluster always shows the current one. Today, the profile holds:
+  - **Qovery stack**: the Qovery agent, the shell agent and the Qovery priority classes.
   - **Log infra**: Loki and Alloy, for application logs.
   - **Gateway API**: Envoy Gateway, which exposes your applications.
   - **DNS and certificates**: cert-manager and ExternalDNS, for the Qovery-provided domain and its TLS certificates.
@@ -23,8 +23,9 @@ The Qovery Operator installation is in Preview: see [Current limitations](#curre
 
 ## Prerequisites
 
+<Check>A Qovery organization on a plan that includes self-managed clusters (Professional, Business or Enterprise)</Check>
 <Check>A running Kubernetes cluster on AWS (EKS), GCP (GKE) or Scaleway (Kapsule)</Check>
-<Check>`kubectl` access to the cluster and `helm` on your machine, only to install the Operator once. Later Operator updates go through Qovery.</Check>
+<Check>`kubectl` access to the cluster with `cluster-admin` rights and `helm` on your machine, only to install the Operator once. Later Operator updates go through Qovery.</Check>
 <Check>A cluster that does not already run cert-manager, ExternalDNS or Envoy Gateway</Check>
 <Check>A default StorageClass (`kubectl get storageclass`), unless Loki stores logs in object storage. Recent EKS versions do not create one.</Check>
 <Check>A working cluster DNS (CoreDNS) that resolves public names</Check>
@@ -81,6 +82,7 @@ The cloud credential lets Qovery create the cluster registry, push the images it
     }
     ```
 
+    - With a role, its trust policy must trust the same Qovery principal as the [AWS cluster credentials](/getting-started/installation/aws): copy the `AssumeRolePolicyDocument` of the [Qovery CloudFormation template](https://cloudformation-qovery-role-creation.s3.amazonaws.com/template.json). Qovery sends the external ID `<organization id>:<cluster id>`, and `<organization id>:00000000-0000-0000-0000-000000000000` when it checks the credential: a `StringLike` condition on `sts:ExternalId` with `<organization id>:*` accepts both.
     - Keep the `us-east-1` statement even if the cluster runs in another region: Qovery checks the credential there.
     - The EKS node role must be able to pull from ECR in the same account, for example with the `AmazonEC2ContainerRegistryPullOnly` managed policy.
     - Managed databases and Terraform services that use the cluster credentials need their own permissions.
@@ -91,6 +93,7 @@ The cloud credential lets Qovery create the cluster registry, push the images it
 
     - Grant the service account the **Artifact Registry Administrator** role (`roles/artifactregistry.admin`) on the project.
     - With a JSON key, Qovery checks the key by listing the Cloud Storage buckets of the project: the service account also needs the `storage.buckets.list` permission. A Workload Identity Federation credential is checked without it.
+    - Qovery creates no image pull secret for Artifact Registry. The GKE node service account must be able to pull from Artifact Registry in the project of the credential, for example with the `roles/artifactregistry.reader` role.
   </Tab>
 
   <Tab title="Scaleway">
@@ -107,7 +110,7 @@ Optional: only when Loki stores logs in object storage instead of a persistent v
 
 <AccordionGroup>
   <Accordion title="AWS: S3 bucket and IAM role">
-    Loki reaches the bucket through IRSA: your EKS cluster needs an IAM OIDC provider. Create an IAM role with this permissions policy:
+    Create the bucket in the region of the cluster: Loki uses that region. Loki reaches the bucket through IRSA: your EKS cluster needs an IAM OIDC provider. Create an IAM role with this permissions policy:
 
     ```json
     {
@@ -152,11 +155,28 @@ Optional: only when Loki stores logs in object storage instead of a persistent v
   </Accordion>
 
   <Accordion title="GCP: GCS bucket and service account">
-    On the profile, fill in the GCS bucket and the email of a GCP service account that Loki uses through GKE Workload Identity.
+    Loki reaches the bucket through GKE Workload Identity: enable it on the cluster and its node pools.
+
+    1. Create the bucket and a GCP service account, and grant the service account the `roles/storage.objectAdmin` role on the bucket.
+    2. Let the `loki` service account of the `qovery` namespace act as it:
+
+       ```bash
+       gcloud iam service-accounts add-iam-policy-binding <SERVICE_ACCOUNT_EMAIL> --role roles/iam.workloadIdentityUser --member "serviceAccount:<PROJECT_ID>.svc.id.goog[qovery/loki]"
+       ```
+
+    3. On the profile, fill in **GCS bucket name** and **GCP service account email**.
   </Accordion>
 
   <Accordion title="Scaleway: S3-compatible bucket">
-    On the profile, fill in the bucket, the endpoint, the region and the name of a Kubernetes Secret, created beforehand in the `qovery` namespace, that holds the credentials.
+    1. Create the bucket and an API key that can read and write it.
+    2. Create the credentials Secret in the `qovery` namespace, with the keys `S3_ACCESS_KEY_ID` and `S3_SECRET_ACCESS_KEY`. The credentials stay in your cluster and never reach Qovery:
+
+       ```bash
+       kubectl -n qovery create secret generic loki-s3-credentials --from-literal=S3_ACCESS_KEY_ID=<ACCESS_KEY> --from-literal=S3_SECRET_ACCESS_KEY=<SECRET_KEY>
+       ```
+
+       Create the namespace first if the Operator is not installed yet: `kubectl create namespace qovery`.
+    3. On the profile, fill in **S3-compatible bucket name**, **S3-compatible endpoint** (an `https://` URL, for example `https://s3.fr-par.scw.cloud`), **S3-compatible region** (for example `fr-par`) and **S3-compatible credentials Secret** (`loki-s3-credentials`).
   </Accordion>
 </AccordionGroup>
 
@@ -194,7 +214,9 @@ Optional: only when Loki stores logs in object storage instead of a persistent v
     | GKE | `cloud.google.com/gke-nodepool` |
     | Scaleway Kapsule | `k8s.scaleway.com/pool-name` |
 
-    Click **Continue**: Qovery creates the cluster and its registry.
+    If those nodes are tainted, add their taints under **Node group taints to tolerate**. These settings place only the Operator and its Jobs, not the platform components. `kubernetes.io/arch` cannot be used as a key: Qovery sets the architecture of each build itself.
+
+    Click **Continue**: Qovery creates the cluster. Its registry repositories are created in your cloud account at the first deployment that needs them.
 
     <Frame>
       <img src="/images/byok-operator/configure-operator.png" alt="Configure Qovery Operator step" />
@@ -213,7 +235,7 @@ Optional: only when Loki stores logs in object storage instead of a persistent v
   </Step>
 
   <Step title="Configure and deploy the platform profile">
-    On the profile page, review the settings of each component, then click **Save and deploy**. Qovery installs the components of the profile through the Operator. Follow the progress in the cluster logs.
+    On the profile page, review the settings of each component. If you change a setting, click **Save and deploy**. To keep the defaults, open the **Manage deployment** menu of the cluster and click **Deploy**. Qovery installs the components of the profile through the Operator. Follow the progress in the cluster logs.
 
     <Tip>
     Choose the Loki storage before the first deployment: `pvc` (the default, needs a default StorageClass), or the object storage of your provider: `s3` on AWS, `gcs` on GCP, `s3Compatible` on Scaleway. Object storage needs a bucket and an identity you create, see [Loki object storage](#loki-object-storage), and is required for high availability. Changing the storage later does not move the logs already stored.
@@ -232,7 +254,10 @@ Once the deployment succeeds, you can deploy your applications on the cluster.
 - **DNS**: applications are exposed on the domain provided by Qovery. The DNS provider of the cluster cannot be changed.
 - **Metrics**: Qovery installs no metrics stack on these clusters.
 - **Existing installations**: Qovery does not adopt an existing cert-manager, ExternalDNS or Envoy Gateway installation. Use a cluster without them.
-- **Removal**: deleting the cluster in Qovery does not uninstall the Operator or the platform components. Remove them yourself with `helm uninstall` in the `qovery` namespace.
+- **Removal**: delete the environments of the cluster first. Deleting the cluster in Qovery then removes only its Qovery configuration. Remove the rest yourself:
+  - the Helm releases of the `qovery` namespace (`helm -n qovery list`, then `helm -n qovery uninstall <release>`), then the namespace;
+  - the CRDs that the platform installed (Gateway API, Envoy Gateway and cert-manager), if nothing else uses them;
+  - the registry repositories Qovery created in your cloud account (ECR repositories, Artifact Registry repositories or Scaleway Container Registry namespaces).
 
 Need a component, a DNS provider or a cloud provider that is not covered yet? Contact Qovery Support through your usual channel (in-app chat, Slack or email).
 

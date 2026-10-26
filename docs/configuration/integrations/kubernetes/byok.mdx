@@ -126,7 +126,16 @@ The cloud credential lets Qovery create the cluster registry, push the images it
   </Step>
 
   <Step title="Configure the Qovery Operator">
-    Leave the settings as they are, unless you want the Operator and its Jobs pinned to a specific node group. Click **Continue**: Qovery creates the cluster and its registry.
+    Leave the settings as they are, unless you want the Operator and its Jobs pinned to specific nodes. To pin them, set the node label key and value of your node group or node pool. The default key is the EKS one; use the key of your cluster:
+
+    | Cluster | Node label key |
+    | --- | --- |
+    | EKS managed node group | `eks.amazonaws.com/nodegroup` |
+    | EKS with Karpenter | `karpenter.sh/nodepool` |
+    | GKE | `cloud.google.com/gke-nodepool` |
+    | Scaleway Kapsule | `k8s.scaleway.com/pool-name` |
+
+    Click **Continue**: Qovery creates the cluster and its registry.
 
     <Frame>
       <img src="/images/byok-operator/configure-operator.png" alt="Configure Qovery Operator step" />

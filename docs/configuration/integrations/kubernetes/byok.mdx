@@ -24,7 +24,7 @@ The Qovery Operator installation is in Preview: see [Current limitations](#curre
 ## Prerequisites
 
 <Check>A running Kubernetes cluster on AWS (EKS), GCP (GKE) or Scaleway (Kapsule)</Check>
-<Check>`kubectl` access to the cluster and `helm` installed on your machine</Check>
+<Check>`kubectl` access to the cluster and `helm` on your machine, only to install the Operator once. Later Operator updates go through Qovery.</Check>
 <Check>A cluster that does not already run cert-manager, ExternalDNS or Envoy Gateway</Check>
 <Check>A default StorageClass (`kubectl get storageclass`), unless Loki stores logs in object storage. Recent EKS versions do not create one.</Check>
 <Check>A working cluster DNS (CoreDNS) that resolves public names</Check>

@@ -53,55 +53,75 @@ kubectl -n default run qovery-dns-preflight --rm -i --restart=Never --image=busy
 
 The lookup must return an address. A timeout or `no servers could be reached` means the cluster DNS must be fixed first.
 
-### AWS credential permissions
+### Credential permissions
 
-On AWS, the cloud credential only needs Amazon ECR. Use access keys limited to this policy, or a role with the same policy:
+The cloud credential lets Qovery create the cluster registry, push the images it builds and clean them up. It does not need access to the Kubernetes cluster itself.
 
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
+<Tabs>
+  <Tab title="AWS">
+    The credential only needs Amazon ECR. Use access keys limited to this policy, or a role with the same policy:
+
+    ```json
     {
-      "Sid": "EcrLogin",
-      "Effect": "Allow",
-      "Action": "ecr:GetAuthorizationToken",
-      "Resource": "*"
-    },
-    {
-      "Sid": "CredentialCheck",
-      "Effect": "Allow",
-      "Action": "ecr:DescribeRepositories",
-      "Resource": "arn:aws:ecr:us-east-1:<ACCOUNT_ID>:repository/*"
-    },
-    {
-      "Sid": "ClusterRegistry",
-      "Effect": "Allow",
-      "Action": [
-        "ecr:DescribeRepositories",
-        "ecr:CreateRepository",
-        "ecr:PutLifecyclePolicy",
-        "ecr:TagResource",
-        "ecr:ListTagsForResource",
-        "ecr:DescribeImages",
-        "ecr:BatchDeleteImage",
-        "ecr:DeleteRepository",
-        "ecr:BatchCheckLayerAvailability",
-        "ecr:InitiateLayerUpload",
-        "ecr:UploadLayerPart",
-        "ecr:CompleteLayerUpload",
-        "ecr:PutImage",
-        "ecr:BatchGetImage",
-        "ecr:GetDownloadUrlForLayer"
-      ],
-      "Resource": "arn:aws:ecr:<CLUSTER_REGION>:<ACCOUNT_ID>:repository/*"
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Sid": "EcrLogin",
+          "Effect": "Allow",
+          "Action": "ecr:GetAuthorizationToken",
+          "Resource": "*"
+        },
+        {
+          "Sid": "CredentialCheck",
+          "Effect": "Allow",
+          "Action": "ecr:DescribeRepositories",
+          "Resource": "arn:aws:ecr:us-east-1:<ACCOUNT_ID>:repository/*"
+        },
+        {
+          "Sid": "ClusterRegistry",
+          "Effect": "Allow",
+          "Action": [
+            "ecr:DescribeRepositories",
+            "ecr:CreateRepository",
+            "ecr:PutLifecyclePolicy",
+            "ecr:TagResource",
+            "ecr:ListTagsForResource",
+            "ecr:DescribeImages",
+            "ecr:BatchDeleteImage",
+            "ecr:DeleteRepository",
+            "ecr:BatchCheckLayerAvailability",
+            "ecr:InitiateLayerUpload",
+            "ecr:UploadLayerPart",
+            "ecr:CompleteLayerUpload",
+            "ecr:PutImage",
+            "ecr:BatchGetImage",
+            "ecr:GetDownloadUrlForLayer"
+          ],
+          "Resource": "arn:aws:ecr:<CLUSTER_REGION>:<ACCOUNT_ID>:repository/*"
+        }
+      ]
     }
-  ]
-}
-```
+    ```
 
-- Keep the `us-east-1` statement even if the cluster runs in another region: Qovery checks the credential there.
-- The EKS node role must be able to pull from ECR in the same account, for example with the `AmazonEC2ContainerRegistryPullOnly` managed policy.
-- Managed databases and Terraform services that use the cluster credentials need their own permissions.
+    - Keep the `us-east-1` statement even if the cluster runs in another region: Qovery checks the credential there.
+    - The EKS node role must be able to pull from ECR in the same account, for example with the `AmazonEC2ContainerRegistryPullOnly` managed policy.
+    - Managed databases and Terraform services that use the cluster credentials need their own permissions.
+  </Tab>
+
+  <Tab title="GCP">
+    Qovery creates, reads and deletes Artifact Registry repositories and images in the project of the credential, in the cluster region.
+
+    - Grant the service account the **Artifact Registry Administrator** role (`roles/artifactregistry.admin`) on the project.
+    - With a JSON key, Qovery checks the key by listing the Cloud Storage buckets of the project: the service account also needs the `storage.buckets.list` permission. A Workload Identity Federation credential is checked without it.
+  </Tab>
+
+  <Tab title="Scaleway">
+    Qovery creates, reads and deletes Container Registry namespaces and images in the project of the API key, in the cluster region.
+
+    - Give the API key the **ContainerRegistryFullAccess** permission set on the project.
+    - Qovery checks the key by listing the Container Registry namespaces of the `fr-par` region, whatever the cluster region.
+  </Tab>
+</Tabs>
 
 ## Create the cluster
 
@@ -190,6 +210,6 @@ The Operator status is also shown at the bottom of the profile sidebar in the Co
   </Accordion>
 
   <Accordion title="The credential is refused when the cluster is created">
-    Qovery checks that the credential can use the registry of the provider in the cluster region before it creates anything. On AWS, compare the credential policy with [AWS credential permissions](#aws-credential-permissions).
+    Qovery checks that the credential can use the registry of the provider in the cluster region before it creates anything. Compare the credential with [Credential permissions](#credential-permissions).
   </Accordion>
 </AccordionGroup>

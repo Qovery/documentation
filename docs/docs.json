@@ -259,7 +259,6 @@
               {
                 "group": "Other Kubernetes",
                 "pages": [
-                  "configuration/integrations/kubernetes/byok-operator",
                   "configuration/integrations/kubernetes/byok",
                   "configuration/integrations/kubernetes/docker"
                 ]

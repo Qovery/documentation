@@ -101,6 +101,65 @@ The cloud credential lets Qovery create the cluster registry, push the images it
   </Tab>
 </Tabs>
 
+### Loki object storage
+
+Optional: only when Loki stores logs in object storage instead of a persistent volume. Create the bucket and the identity before you deploy the profile, then fill in their fields on the Loki page of the profile.
+
+<AccordionGroup>
+  <Accordion title="AWS: S3 bucket and IAM role">
+    Loki reaches the bucket through IRSA: your EKS cluster needs an IAM OIDC provider. Create an IAM role with this permissions policy:
+
+    ```json
+    {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Effect": "Allow",
+          "Action": ["s3:ListBucket"],
+          "Resource": "arn:aws:s3:::<BUCKET_NAME>"
+        },
+        {
+          "Effect": "Allow",
+          "Action": ["s3:GetObject", "s3:PutObject", "s3:DeleteObject"],
+          "Resource": "arn:aws:s3:::<BUCKET_NAME>/*"
+        }
+      ]
+    }
+    ```
+
+    And this trust policy, for the `loki` service account of the `qovery` namespace:
+
+    ```json
+    {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Effect": "Allow",
+          "Principal": { "Federated": "arn:aws:iam::<ACCOUNT_ID>:oidc-provider/<OIDC_PROVIDER>" },
+          "Action": "sts:AssumeRoleWithWebIdentity",
+          "Condition": {
+            "StringEquals": {
+              "<OIDC_PROVIDER>:sub": "system:serviceaccount:qovery:loki",
+              "<OIDC_PROVIDER>:aud": "sts.amazonaws.com"
+            }
+          }
+        }
+      ]
+    }
+    ```
+
+    `<OIDC_PROVIDER>` is the OIDC issuer of the cluster without `https://`, for example `oidc.eks.eu-west-3.amazonaws.com/id/EXAMPLE`. On the profile, fill in **S3 bucket name** and **Loki IAM role ARN**.
+  </Accordion>
+
+  <Accordion title="GCP: GCS bucket and service account">
+    On the profile, fill in the GCS bucket and the email of a GCP service account that Loki uses through GKE Workload Identity.
+  </Accordion>
+
+  <Accordion title="Scaleway: S3-compatible bucket">
+    On the profile, fill in the bucket, the endpoint, the region and the name of a Kubernetes Secret, created beforehand in the `qovery` namespace, that holds the credentials.
+  </Accordion>
+</AccordionGroup>
+
 ## Create the cluster
 
 <Steps>
@@ -155,6 +214,10 @@ The cloud credential lets Qovery create the cluster registry, push the images it
 
   <Step title="Configure and deploy the platform profile">
     On the profile page, review the settings of each component, then click **Save and deploy**. Qovery installs the components of the profile through the Operator. Follow the progress in the cluster logs.
+
+    <Tip>
+    Choose the Loki storage before the first deployment: `pvc` (the default, needs a default StorageClass), or the object storage of your provider: `s3` on AWS, `gcs` on GCP, `s3Compatible` on Scaleway. Object storage needs a bucket and an identity you create, see [Loki object storage](#loki-object-storage), and is required for high availability. Changing the storage later does not move the logs already stored.
+    </Tip>
 
     <Frame>
       <img src="/images/byok-operator/cluster-profile.png" alt="Profile page of a cluster connected with the Qovery Operator" />

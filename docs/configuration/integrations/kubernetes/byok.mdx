@@ -14,7 +14,7 @@ The Qovery Operator installation is in Preview: see [Current limitations](#curre
 
 - Qovery never stores the kubeconfig of your cluster. You install the Operator yourself, with your own `kubectl` and `helm` access.
 - The Operator runs in the `qovery` namespace. It opens an outbound connection to Qovery and runs the Qovery deployments as Kubernetes Jobs inside your cluster.
-- The platform profile of the cluster lists the components Qovery installs and their settings. Qovery installs them in this order:
+- The platform profile of the cluster lists the components Qovery installs and their settings. The list can grow as Qovery adds components; the profile page of the cluster always shows the current one. Today, Qovery installs in this order:
   - **Qovery stack**: the Qovery agent and shell agent.
   - **Log infra**: Loki and Alloy, for application logs.
   - **Gateway API**: Envoy Gateway, which exposes your applications.

@@ -159,7 +159,7 @@ The cloud credential lets Qovery create the cluster registry, push the images it
     1. Download the Helm values file `values.yaml`. It contains the credential of the cluster: keep it private and delete it once the Operator is installed.
     2. From the folder of the values file, with a kubeconfig pointing to your cluster, run the Helm command shown in the Console.
 
-    Keep the page open. Once the Operator connects to Qovery, the Console opens the profile of the cluster.
+    Keep the page open. Once the Operator connects to Qovery, the Console opens the profile of the cluster. The Operator status is then shown at the bottom of the profile sidebar.
 
     <Frame>
       <img src="/images/byok-operator/install-operator.png" alt="Install Qovery Operator step with the Helm values file and command" />
@@ -176,16 +176,6 @@ The cloud credential lets Qovery create the cluster registry, push the images it
 </Steps>
 
 Once the deployment succeeds, you can deploy your applications on the cluster.
-
-## Verify the installation
-
-```bash
-kubectl -n qovery get deployment qovery-operator
-kubectl -n qovery get pods
-kubectl -n qovery logs deployment/qovery-operator --tail=100
-```
-
-The Operator status is also shown at the bottom of the profile sidebar in the Console.
 
 ## Current limitations
 

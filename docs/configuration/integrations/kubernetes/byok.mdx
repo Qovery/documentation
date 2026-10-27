@@ -41,81 +41,95 @@ The cloud credential lets Qovery create the cluster registry, push the images it
 
 <Tabs>
   <Tab title="AWS">
-    The credential only needs Amazon ECR. Use an IAM role that Qovery assumes through STS (recommended), or access keys limited to the same policy. Do not use the Qovery CloudFormation stack offered in the credential form: it grants the permissions of a cluster managed by Qovery.
+    The credential only needs Amazon ECR. Do not use the Qovery CloudFormation stack offered in the credential form: it grants the permissions of a cluster managed by Qovery.
 
-    Permissions policy, for the role or for the access keys:
+    **Recommended: an IAM role that Qovery assumes through STS**
 
-    ```json
-    {
-      "Version": "2012-10-17",
-      "Statement": [
-        {
-          "Sid": "EcrLogin",
-          "Effect": "Allow",
-          "Action": "ecr:GetAuthorizationToken",
-          "Resource": "*"
-        },
-        {
-          "Sid": "CredentialCheck",
-          "Effect": "Allow",
-          "Action": "ecr:DescribeRepositories",
-          "Resource": "arn:aws:ecr:us-east-1:<ACCOUNT_ID>:repository/*"
-        },
-        {
-          "Sid": "ClusterRegistry",
-          "Effect": "Allow",
-          "Action": [
-            "ecr:DescribeRepositories",
-            "ecr:CreateRepository",
-            "ecr:PutLifecyclePolicy",
-            "ecr:TagResource",
-            "ecr:ListTagsForResource",
-            "ecr:DescribeImages",
-            "ecr:BatchDeleteImage",
-            "ecr:DeleteRepository",
-            "ecr:BatchCheckLayerAvailability",
-            "ecr:InitiateLayerUpload",
-            "ecr:UploadLayerPart",
-            "ecr:CompleteLayerUpload",
-            "ecr:PutImage",
-            "ecr:BatchGetImage",
-            "ecr:GetDownloadUrlForLayer"
-          ],
-          "Resource": "arn:aws:ecr:<CLUSTER_REGION>:<ACCOUNT_ID>:repository/*"
-        }
-      ]
-    }
-    ```
+    1. Create an IAM role with this trust policy, where `<ORGANIZATION_ID>` is the ID of your Qovery organization:
 
-    With a role, use this trust policy, where `<ORGANIZATION_ID>` is the ID of your Qovery organization:
+       ```json
+       {
+         "Version": "2012-10-17",
+         "Statement": [
+           {
+             "Effect": "Allow",
+             "Principal": {
+               "AWS": [
+                 "arn:aws:iam::283389881690:role/qovery-deployer",
+                 "arn:aws:iam::283389881690:user/qovery-deployer"
+               ]
+             },
+             "Action": "sts:AssumeRole",
+             "Condition": {
+               "StringLike": {
+                 "sts:ExternalId": "<ORGANIZATION_ID>:*"
+               }
+             }
+           }
+         ]
+       }
+       ```
 
-    ```json
-    {
-      "Version": "2012-10-17",
-      "Statement": [
-        {
-          "Effect": "Allow",
-          "Principal": {
-            "AWS": [
-              "arn:aws:iam::283389881690:role/qovery-deployer",
-              "arn:aws:iam::283389881690:user/qovery-deployer"
-            ]
-          },
-          "Action": "sts:AssumeRole",
-          "Condition": {
-            "StringLike": {
-              "sts:ExternalId": "<ORGANIZATION_ID>:*"
-            }
-          }
-        }
-      ]
-    }
-    ```
+       Qovery sends the external ID `<organization id>:<cluster id>`, and `<organization id>:00000000-0000-0000-0000-000000000000` when it checks the credential: the `<ORGANIZATION_ID>:*` condition accepts both.
 
-    - Set the **maximum session duration** of the role to at least 4 hours, for example 8 hours (`aws iam update-role --role-name <ROLE_NAME> --max-session-duration 28800`): Qovery requests 4 hour sessions, and the default of 1 hour makes the credential check fail with `DurationSeconds exceeds the MaxSessionDuration`.
-    - Qovery sends the external ID `<organization id>:<cluster id>`, and `<organization id>:00000000-0000-0000-0000-000000000000` when it checks the credential: the `<ORGANIZATION_ID>:*` condition accepts both.
-    - In the credential form, select **Assume role via STS** and paste the role ARN.
-    - Keep the `us-east-1` statement of the permissions policy even if the cluster runs in another region: Qovery checks the credential there.
+    2. Attach this permissions policy to the role. Keep the `us-east-1` statement even if the cluster runs in another region: Qovery checks the credential there.
+
+       ```json
+       {
+         "Version": "2012-10-17",
+         "Statement": [
+           {
+             "Sid": "EcrLogin",
+             "Effect": "Allow",
+             "Action": "ecr:GetAuthorizationToken",
+             "Resource": "*"
+           },
+           {
+             "Sid": "CredentialCheck",
+             "Effect": "Allow",
+             "Action": "ecr:DescribeRepositories",
+             "Resource": "arn:aws:ecr:us-east-1:<ACCOUNT_ID>:repository/*"
+           },
+           {
+             "Sid": "ClusterRegistry",
+             "Effect": "Allow",
+             "Action": [
+               "ecr:DescribeRepositories",
+               "ecr:CreateRepository",
+               "ecr:PutLifecyclePolicy",
+               "ecr:TagResource",
+               "ecr:ListTagsForResource",
+               "ecr:DescribeImages",
+               "ecr:BatchDeleteImage",
+               "ecr:DeleteRepository",
+               "ecr:BatchCheckLayerAvailability",
+               "ecr:InitiateLayerUpload",
+               "ecr:UploadLayerPart",
+               "ecr:CompleteLayerUpload",
+               "ecr:PutImage",
+               "ecr:BatchGetImage",
+               "ecr:GetDownloadUrlForLayer"
+             ],
+             "Resource": "arn:aws:ecr:<CLUSTER_REGION>:<ACCOUNT_ID>:repository/*"
+           }
+         ]
+       }
+       ```
+
+    3. Set the maximum session duration of the role to at least 4 hours, for example 8 hours: Qovery requests 4 hour sessions, and the default of 1 hour makes the credential check fail with `DurationSeconds exceeds the MaxSessionDuration`.
+
+       ```bash
+       aws iam update-role --role-name <ROLE_NAME> --max-session-duration 28800
+       ```
+
+    4. In the credential form, select **Assume role via STS** and paste the role ARN.
+
+    **Alternative: access keys**
+
+    Create an IAM user with the same permissions policy, then select **Static credentials** in the credential form and paste its access key and secret key.
+
+    **For both**
+
     - The EKS node role must be able to pull from ECR in the same account, for example with the `AmazonEC2ContainerRegistryPullOnly` managed policy.
     - Managed databases and Terraform services that use the cluster credentials need their own permissions.
   </Tab>

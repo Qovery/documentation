@@ -111,13 +111,13 @@ Connect your existing Kubernetes cluster to Qovery - perfect for organizations w
 
 - ✅ Application deployments and orchestration
 - ✅ Developer experience and workflows
-- ✅ Application logs, and monitoring graphs except on clusters connected with the Qovery Operator
+- ✅ Application logs and monitoring graphs (graphs not available yet on clusters connected with the Qovery Operator)
 - ✅ On AWS, GCP and Scaleway: the Qovery stack on the cluster (gateway, DNS and certificates, logs), through the Qovery Operator
 
 **What You Manage**:
 
 - ❌ Kubernetes cluster lifecycle
-- ❌ Storage (a default StorageClass)
+- ❌ Storage drivers (CSI) and, when Loki stores logs on a volume, a default StorageClass
 - ❌ Cluster upgrades and maintenance
 
 **Best For**: Organizations with Kubernetes expertise and existing clusters on AWS, GCP or Scaleway. Other providers and on-premise clusters use the [installation with the Qovery CLI](/configuration/integrations/kubernetes/byok-legacy).

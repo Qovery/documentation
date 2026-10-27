@@ -231,7 +231,10 @@ Create the bucket and its identity **before you deploy the profile**, then fill 
     2. Create the credentials Secret in the `qovery` namespace, with the keys `S3_ACCESS_KEY_ID` and `S3_SECRET_ACCESS_KEY`. The credentials stay in your cluster and never reach Qovery:
 
        ```bash
-       kubectl -n qovery create secret generic loki-s3-credentials --from-literal=S3_ACCESS_KEY_ID=<ACCESS_KEY> --from-literal=S3_SECRET_ACCESS_KEY=<SECRET_KEY>
+       read -r -p "Access key: " S3_ACCESS_KEY_ID
+       read -r -s -p "Secret key: " S3_SECRET_ACCESS_KEY; echo
+       kubectl -n qovery create secret generic loki-s3-credentials --from-literal=S3_ACCESS_KEY_ID="$S3_ACCESS_KEY_ID" --from-literal=S3_SECRET_ACCESS_KEY="$S3_SECRET_ACCESS_KEY"
+       unset S3_ACCESS_KEY_ID S3_SECRET_ACCESS_KEY
        ```
 
        Create the namespace first if the Operator is not installed yet: `kubectl create namespace qovery`.
@@ -337,7 +340,7 @@ Need a component, a DNS provider or a cloud provider that is not covered yet? Co
   </Accordion>
 
   <Accordion title="Loki stays Pending">
-    The Loki volume needs a default StorageClass and, on EKS, the EBS CSI driver. Check `kubectl get storageclass` and, on EKS, `kubectl -n kube-system get pods -l app.kubernetes.io/name=aws-ebs-csi-driver`. To mark a class as default, run `kubectl annotate storageclass <NAME> storageclass.kubernetes.io/is-default-class=true`, then deploy the cluster again.
+    With the `pvc` storage, the Loki volume needs a default StorageClass and, on EKS, the EBS CSI driver. Check `kubectl get storageclass` and, on EKS, `kubectl -n kube-system get pods -l app.kubernetes.io/name=aws-ebs-csi-driver`. To mark a class as default, run `kubectl annotate storageclass <NAME> storageclass.kubernetes.io/is-default-class=true`, then deploy the cluster again. With object storage, Loki has no volume: check the bucket and identity fields of the Loki page against [Loki object storage](#loki-object-storage).
   </Accordion>
 
   <Accordion title="A build stays on Provisioning builder">

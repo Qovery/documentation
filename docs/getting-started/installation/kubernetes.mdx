@@ -7,15 +7,11 @@ tag: "PREVIEW"
 Connect a Kubernetes cluster you already run to Qovery by installing the Qovery Operator. Qovery then installs and updates the Qovery stack on the cluster.
 
 <Note>
-Another provider, an on-premise cluster or the local demo? Follow the [installation with the Qovery CLI](/configuration/integrations/kubernetes/byok-legacy).
+Another provider or an on-premise cluster? Follow the [installation with the Qovery CLI](/configuration/integrations/kubernetes/byok-legacy). For the local demo, see [Test & Learn Locally](/getting-started/quickstart/docker).
 </Note>
 
 <Info>
 Want Qovery to provision and manage the cluster for you instead? See [Create Your Cluster](/getting-started/quickstart/cloud) for the managed path (AWS, GCP, Azure, Scaleway).
-</Info>
-
-<Info>
-The Qovery Operator installation is in Preview: see its [prerequisites and current limitations](/configuration/integrations/kubernetes/byok#current-limitations).
 </Info>
 
 ## Prerequisites
@@ -26,11 +22,15 @@ The Qovery Operator installation is in Preview: see its [prerequisites and curre
 <Check>A cloud credential for the provider of the cluster, with the [required permissions](/configuration/integrations/kubernetes/byok#credential-permissions)</Check>
 <Check>Active Qovery account - [Sign up here](https://start.qovery.com)</Check>
 
+<Warning>
+The Qovery Operator installation is in Preview. Check the [full prerequisites](/configuration/integrations/kubernetes/byok#prerequisites) before you start (default StorageClass, EBS CSI driver on EKS, load balancer, no existing cert-manager, ExternalDNS or Envoy Gateway): a missing one blocks the deployment. See also the [current limitations](/configuration/integrations/kubernetes/byok#current-limitations).
+</Warning>
+
 ## Installation
 
 <Steps>
   <Step title="Create the cluster in the Console">
-    Go to **Clusters**, add a cluster and, under **Connect existing cluster (BYOK)**, select **AWS**, **GCP** or **Scaleway**. Fill in the cluster name, the credential and the region.
+    Go to **Clusters**, add a cluster and, under **Connect existing cluster (BYOK)**, select **AWS**, **GCP** or **Scaleway**. Fill in the cluster name, the credential and the region. On **Configure Qovery Operator**, keep the defaults and click **Continue**: Qovery creates the cluster.
   </Step>
 
   <Step title="Install the Qovery Operator">
@@ -42,7 +42,7 @@ The Qovery Operator installation is in Preview: see its [prerequisites and curre
   </Step>
 </Steps>
 
-See [Bring Your Own Kubernetes (BYOK)](/configuration/integrations/kubernetes/byok) for each step in detail.
+See [Bring Your Own Kubernetes (BYOK)](/configuration/integrations/kubernetes/byok) for each step in detail, and its [troubleshooting](/configuration/integrations/kubernetes/byok#troubleshooting) if the Operator does not connect or the deployment fails.
 
 ## Next Steps
 

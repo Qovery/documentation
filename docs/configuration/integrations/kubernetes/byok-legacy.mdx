@@ -11,7 +11,7 @@ import InstallQoveryCLI from '/snippets/install-qovery-cli.mdx';
 Bring Your Own Kubernetes (BYOK) allows you to connect any Kubernetes cluster to Qovery. You maintain control over your cluster infrastructure while Qovery manages application deployments.
 
 <Warning>
-This installation is kept for providers that the Qovery Operator does not support yet, on-premise clusters and the local demo. For an AWS, GCP or Scaleway cluster, use [Bring Your Own Kubernetes (BYOK)](/configuration/integrations/kubernetes/byok).
+This installation is kept for providers that the Qovery Operator does not support yet and on-premise clusters. For an AWS, GCP or Scaleway cluster, use [Bring Your Own Kubernetes (BYOK)](/configuration/integrations/kubernetes/byok).
 </Warning>
 
 ## Supported Kubernetes
@@ -47,8 +47,6 @@ This installation is kept for providers that the Qovery Operator does not suppor
 <Check>kubectl access with cluster-admin permissions</Check>
 <Check>LoadBalancer support (cloud or MetalLB for on-premise)</Check>
 <Check>Storage class for persistent volumes</Check>
-<Check>Ingress controller (Nginx or similar)</Check>
-<Check>Metrics server installed</Check>
 
 ## Quick Start
 

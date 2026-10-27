@@ -7,7 +7,7 @@ tag: "PREVIEW"
 The Qovery Operator connects a Kubernetes cluster you already run to Qovery. You create the cluster in the Qovery Console, install the Operator once with Helm, and Qovery then installs and updates the Qovery stack on the cluster from a platform profile.
 
 <Info>
-The Qovery Operator installation is in Preview: see [Current limitations](#current-limitations) for what it does not cover yet.
+The Qovery Operator installation is in Preview: see [Current limitations](#current-limitations) for what it does not cover yet. Other providers and on-premise clusters use the [installation with the Qovery CLI](/configuration/integrations/kubernetes/byok-legacy).
 </Info>
 
 ## How it works
@@ -28,8 +28,9 @@ The Qovery Operator installation is in Preview: see [Current limitations](#curre
 <Check>`kubectl` access to the cluster with `cluster-admin` rights and `helm` on your machine, only to install the Operator once. Later Operator updates go through Qovery.</Check>
 <Check>At least one node with 4 vCPU and 8 GiB of memory free, for example an 8 vCPU node: each build runs in a builder pod that requests the CPU and RAM of the service [build settings](/configuration/service-advanced-settings#build-settings), 4000m and 8 GiB by default. A 4 vCPU node cannot host it.</Check>
 <Check>A cluster that does not already run cert-manager, ExternalDNS or Envoy Gateway</Check>
-<Check>A default StorageClass (`kubectl get storageclass`), unless Loki stores logs in object storage. EKS creates `gp2` without marking it as the default.</Check>
-<Check>On EKS, the Amazon EBS CSI driver add-on with its IAM role, for container databases and service storage. GKE and Kapsule include their CSI driver.</Check>
+<Check>A default StorageClass (`kubectl get storageclass`), unless Loki stores logs in object storage. Since EKS 1.30, EKS creates `gp2` without marking it as the default.</Check>
+<Check>On EKS, the Amazon EBS CSI driver add-on with its IAM role: the Loki `pvc` storage, container databases and service storage all use it. GKE and Kapsule include their CSI driver.</Check>
+<Check>The cluster can create a public load balancer for a Service of type `LoadBalancer`: Envoy Gateway exposes your applications through one. On EKS, the public subnets must carry the `kubernetes.io/role/elb=1` tag.</Check>
 <Check>For services with autoscaling, metrics-server (`kubectl get apiservice v1beta1.metrics.k8s.io`). GKE and Kapsule include it; on EKS, add the `metrics-server` add-on.</Check>
 <Check>A working cluster DNS (CoreDNS) that resolves public names</Check>
 <Check>Outbound internet access from the cluster to Qovery and to public container registries</Check>
@@ -45,7 +46,7 @@ The cloud credential lets Qovery create the cluster registry, push the images it
 
     **Recommended: an IAM role that Qovery assumes through STS**
 
-    1. Create an IAM role with this trust policy, where `<ORGANIZATION_ID>` is the ID of your Qovery organization:
+    1. Create an IAM role with this trust policy, where `<ORGANIZATION_ID>` is the ID of your Qovery organization, shown in the Console URL (`console.qovery.com/organization/<ORGANIZATION_ID>/…`):
 
        ```json
        {
@@ -72,7 +73,7 @@ The cloud credential lets Qovery create the cluster registry, push the images it
 
        Qovery sends the external ID `<organization id>:<cluster id>`, and `<organization id>:00000000-0000-0000-0000-000000000000` when it checks the credential: the `<ORGANIZATION_ID>:*` condition accepts both.
 
-    2. Attach this permissions policy to the role. Keep the `us-east-1` statement even if the cluster runs in another region: Qovery checks the credential there.
+    2. Attach this permissions policy to the role, where `<ACCOUNT_ID>` is your AWS account ID and `<CLUSTER_REGION>` the region of the cluster. Keep the `us-east-1` statement even if the cluster runs in another region: Qovery checks the credential there.
 
        ```json
        {
@@ -122,24 +123,31 @@ The cloud credential lets Qovery create the cluster registry, push the images it
        aws iam update-role --role-name <ROLE_NAME> --max-session-duration 28800
        ```
 
-    4. In the credential form, select **Assume role via STS** and paste the role ARN.
+    4. In the credential form, set **Authentication type** to **Assume role via STS**, skip the CloudFormation step, then fill in **Name** and **Role ARN**.
 
     **Alternative: access keys**
 
-    Create an IAM user with the same permissions policy, then select **Static credentials** in the credential form and paste its access key and secret key.
+    Create an IAM user with the same permissions policy, then set **Authentication type** to **Static credentials** in the credential form and paste its access key and secret key.
 
     **For both**
 
     - The EKS node role must be able to pull from ECR in the same account, for example with the `AmazonEC2ContainerRegistryPullOnly` managed policy.
-    - Managed databases and Terraform services that use the cluster credentials need their own permissions.
+    - The policy above covers only ECR. If Terraform services use the cluster credentials, add the permissions they need to the same role or user.
   </Tab>
 
   <Tab title="GCP">
-    Qovery creates, reads and deletes Artifact Registry repositories and images in the project of the credential, in the cluster region.
+    Qovery creates, reads and deletes Artifact Registry repositories and images in the project of the credential, in the cluster region. The setup commands shown in the credential form grant the permissions of a cluster managed by Qovery: for BYOK, keep only the roles below.
 
     - Grant the service account the **Artifact Registry Administrator** role (`roles/artifactregistry.admin`) on the project.
-    - With a JSON key, Qovery checks the key by listing the Cloud Storage buckets of the project: the service account also needs the `storage.buckets.list` permission. A Workload Identity Federation credential is checked without it.
-    - With Workload Identity Federation, set it up as for the [GCP cluster credentials](/getting-started/installation/gcp), but bind only the Artifact Registry role above instead of the Qovery custom role. The organization policy `constraints/iam.allowServiceAccountCredentialLifetimeExtension` must still allow the service account: Qovery requests 4 hour tokens.
+    - With a JSON key, Qovery checks the key by listing the Cloud Storage buckets of the project: also grant a role with the `storage.buckets.list` permission, for example **Storage Bucket Viewer** (`roles/storage.bucketViewer`). A Workload Identity Federation credential is checked without it.
+    - With Workload Identity Federation, run the setup command of the credential form (see the [GCP cluster credentials](/getting-started/installation/gcp)), then replace the Qovery custom role it binds by the Artifact Registry role:
+
+      ```bash
+      gcloud projects remove-iam-policy-binding <PROJECT_ID> --member serviceAccount:<SERVICE_ACCOUNT_EMAIL> --role projects/<PROJECT_ID>/roles/qovery_role
+      gcloud projects add-iam-policy-binding <PROJECT_ID> --member serviceAccount:<SERVICE_ACCOUNT_EMAIL> --role roles/artifactregistry.admin
+      ```
+
+      The organization policy `constraints/iam.allowServiceAccountCredentialLifetimeExtension` must still allow the service account, as the setup command configures it: Qovery requests 4 hour tokens.
     - Qovery creates no image pull secret for Artifact Registry. The GKE node service account must be able to pull from Artifact Registry in the project of the credential, for example with the `roles/artifactregistry.reader` role.
   </Tab>
 
@@ -246,7 +254,7 @@ Create the bucket and its identity **before you deploy the profile**, then fill 
     - **Cluster name**: the name of the cluster in Qovery.
     - **Production cluster**: off by default. Turn it on for a production cluster.
     - **Credentials**: select a cloud credential of the provider, or create one.
-    - **Region**: the region of your cluster. On Scaleway, select the zone of the cluster, for example `fr-par-1`.
+    - **Region**: the region of your cluster. On Scaleway, the list shows zones: select a zone of the cluster region, for example `fr-par-1` for a cluster in `fr-par`.
 
     Click **Continue**.
 
@@ -256,7 +264,7 @@ Create the bucket and its identity **before you deploy the profile**, then fill 
   </Step>
 
   <Step title="Configure the Qovery Operator">
-    Leave the settings as they are, unless you want the Operator and its Jobs pinned to specific nodes. To pin them, set the node label key and value of your node group or node pool. The default key is the EKS one; use the key of your cluster:
+    Leave the settings as they are, unless you want the Operator and its Jobs pinned to specific nodes. To pin them, fill in **Node group label key** and **Node group label value** with the label of your node group or node pool. The default key is the EKS one; use the key of your cluster:
 
     | Cluster | Node label key |
     | --- | --- |
@@ -329,7 +337,7 @@ Need a component, a DNS provider or a cloud provider that is not covered yet? Co
   </Accordion>
 
   <Accordion title="Loki stays Pending">
-    The Loki volume cannot be created without a default StorageClass. Check `kubectl get storageclass`, mark one as default, then deploy the cluster again.
+    The Loki volume needs a default StorageClass and, on EKS, the EBS CSI driver. Check `kubectl get storageclass` and, on EKS, `kubectl -n kube-system get pods -l app.kubernetes.io/name=aws-ebs-csi-driver`. To mark a class as default, run `kubectl annotate storageclass <NAME> storageclass.kubernetes.io/is-default-class=true`, then deploy the cluster again.
   </Accordion>
 
   <Accordion title="A build stays on Provisioning builder">
@@ -340,5 +348,3 @@ Need a component, a DNS provider or a cloud provider that is not covered yet? Co
     Qovery checks that the credential can use the registry of the provider in the cluster region before it creates anything. Compare the credential with [Credential permissions](#credential-permissions).
   </Accordion>
 </AccordionGroup>
-
-Other providers and on-premise clusters are not supported by the Qovery Operator yet: they use the [installation with the Qovery CLI](/configuration/integrations/kubernetes/byok-legacy).

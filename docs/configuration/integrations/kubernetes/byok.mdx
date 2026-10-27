@@ -322,13 +322,13 @@ Before each deployment of the cluster, Qovery checks your configuration and the 
 
 The checks cover:
 
-- the Operator connection, the platform profile and its required inputs, and the cloud credential;
+- the Operator connection, the platform profile and its required inputs, and the DNS provider configuration;
 - access to the Kubernetes API, the Kubernetes permissions of the deployment Jobs, and target namespaces still being deleted;
 - the cluster DNS, and access from the cluster to Qovery, to the Helm chart registries and to the container registries;
 - Helm releases, CRDs or a cert-manager installation that conflict with the profile;
 - a default StorageClass, when a component of the profile needs one.
 
-A blocking check that fails stops the deployment before Qovery changes anything in the cluster. The other checks only add a warning to the logs, and the deployment continues.
+A blocking check that fails stops the deployment before Qovery changes anything in the cluster. The other checks only add a warning to the logs, and the deployment continues. Today, the checks on the Operator connection, the platform profile, its inputs and the DNS provider block, and so do Kubernetes API access and target namespaces still being deleted. The other in-cluster checks only warn.
 
 ## Current limitations
 
@@ -342,7 +342,7 @@ Need a component, a DNS provider or a cloud provider that is not covered yet? Co
 ## Remove the cluster
 
 <Warning>
-Deleting the cluster in Qovery removes only its Qovery configuration. The Operator and the platform keep running in your cluster, and the Envoy load balancer keeps its public IP, and its cost, until you uninstall it.
+Deleting the cluster in Qovery removes only its Qovery configuration. The Operator and the platform keep running in your cluster, and the Envoy load balancer keeps its public IP, and its cost, until you uninstall the gateway releases (step 2).
 </Warning>
 
 1. In Qovery, delete the environments of the cluster, then delete the cluster.

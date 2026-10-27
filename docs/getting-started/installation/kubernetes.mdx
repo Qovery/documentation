@@ -17,7 +17,7 @@ Want Qovery to provision and manage the cluster for you instead? See [Create You
 ## Prerequisites
 
 <Check>A Qovery organization on the Enterprise plan, or on a legacy Professional or Business plan</Check>
-<Check>A running Kubernetes cluster on AWS (EKS), GCP (GKE) or Scaleway (Kapsule), with at least one node that can host a build: 4 vCPU and 8 GiB of memory free, so an 8 vCPU node. A 4 vCPU node is not enough.</Check>
+<Check>A running Kubernetes cluster on AWS (EKS), GCP (GKE) or Scaleway (Kapsule), with at least one node that can host a build, with 4 vCPU and 8 GiB of memory free, for example an 8 vCPU node. A 4 vCPU node is not enough.</Check>
 <Check>`kubectl` access to the cluster with `cluster-admin` rights and `helm`, only to install the Operator once</Check>
 <Check>A cloud credential for the provider of the cluster, with the [required permissions](/configuration/integrations/kubernetes/byok#credential-permissions)</Check>
 <Check>Active Qovery account - [Sign up here](https://start.qovery.com)</Check>
@@ -30,11 +30,11 @@ The Qovery Operator installation is in Preview and is enabled organization by or
 
 <Steps>
   <Step title="Create the cluster in the Console">
-    Go to **Clusters**, add a cluster and, under **Connect existing cluster (BYOK)**, select **AWS**, **GCP** or **Scaleway**. Fill in the cluster name, the credential and the region. On **Configure Qovery Operator**, keep the defaults and click **Continue**: Qovery adds the cluster to your organization.
+    Go to **Clusters**, add a cluster and, under **Connect existing cluster (BYOK)**, select **AWS**, **GCP** or **Scaleway**. Fill in the cluster name, the credential and the region. On **Configure Qovery Operator**, keep the defaults and click **Continue**. Qovery adds the cluster to your organization.
   </Step>
 
   <Step title="Install the Qovery Operator">
-    Download the Helm values file and run the Helm command shown in the Console, with a kubeconfig pointing to your cluster. The values file contains the cluster credential: keep it private and delete it once the Operator is installed. Keep the page open: the Console opens the cluster profile once the Operator connects.
+    Download the Helm values file and run the Helm command shown in the Console, with a kubeconfig pointing to your cluster. The values file contains the cluster credential, so keep it private and delete it once the Operator is installed. Keep the page open, and the Console opens the cluster profile once the Operator connects.
   </Step>
 
   <Step title="Deploy the platform profile">

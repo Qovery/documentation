@@ -1,78 +1,48 @@
 ---
 title: "BYOK (Bring Your Own Kubernetes)"
-description: "Install Qovery on your own Kubernetes cluster"
+description: "Connect your own AWS, GCP or Scaleway Kubernetes cluster to Qovery"
+tag: "PREVIEW"
 ---
 
-import InstallQoveryCLI from '/snippets/install-qovery-cli.mdx';
-import QoveryCliAuth from '/snippets/qovery-cli-auth.mdx';
+Connect a Kubernetes cluster you already run to Qovery by installing the Qovery Operator. Qovery then installs and updates the Qovery stack on the cluster.
 
-Qovery Self-Managed (BYOK) is a self-hosted version of Qovery. It allows you to install Qovery on your own Kubernetes cluster.
+<Note>
+Another provider or an on-premise cluster? Follow the [installation with the Qovery CLI](/configuration/integrations/kubernetes/byok-legacy). For the local demo, see [Test & Learn Locally](/getting-started/quickstart/docker).
+</Note>
 
 <Info>
 Want Qovery to provision and manage the cluster for you instead? See [Create Your Cluster](/getting-started/quickstart/cloud) for the managed path (AWS, GCP, Azure, Scaleway).
 </Info>
 
-<Warning>
-  **For Kubernetes Experts Only**: Qovery BYOK is for Kubernetes experts who
-  want to manage their own Kubernetes cluster.
-</Warning>
-
-<Note>
-Qovery automatically updates ONLY the Qovery applications (agent, shell-agent, etc.) via the Qovery Helm chart. With the self-managed offer, it will be up to you to manage any dependency components (ingress, DNS, logging), making sure they run with the right version over time.
-
-The dependencies provided with the Qovery Helm chart are here to help you with the bootstrap, and are not maintained by Qovery.
-</Note>
-
 ## Prerequisites
 
-Before you begin, ensure you have:
-
-<Check>An operational Kubernetes cluster (any distribution)</Check>
-<Check>Minimum 4 CPUs and 8GB RAM available in your cluster</Check>
-<Check>`kubectl` installed and configured for cluster access</Check>
-<Check>`helm` package manager installed</Check>
+<Check>A Qovery organization on a plan that includes self-managed clusters (Professional, Business or Enterprise)</Check>
+<Check>A running Kubernetes cluster on AWS (EKS), GCP (GKE) or Scaleway (Kapsule), with at least one node that can host a build: 4 vCPU and 8 GiB of memory free, so an 8 vCPU node. A 4 vCPU node is not enough.</Check>
+<Check>`kubectl` access to the cluster with `cluster-admin` rights and `helm`, only to install the Operator once</Check>
+<Check>A cloud credential for the provider of the cluster, with the [required permissions](/configuration/integrations/kubernetes/byok#credential-permissions)</Check>
 <Check>Active Qovery account - [Sign up here](https://start.qovery.com)</Check>
+
+<Warning>
+The Qovery Operator installation is in Preview. Check the [full prerequisites](/configuration/integrations/kubernetes/byok#prerequisites) before you start (default StorageClass when Loki uses a volume, EBS CSI driver on EKS, load balancer, no existing cert-manager, ExternalDNS or Envoy Gateway): a missing one blocks the deployment. See also the [current limitations](/configuration/integrations/kubernetes/byok#current-limitations).
+</Warning>
 
 ## Installation
 
-### Step 1: Install Qovery CLI
+<Steps>
+  <Step title="Create the cluster in the Console">
+    Go to **Clusters**, add a cluster and, under **Connect existing cluster (BYOK)**, select **AWS**, **GCP** or **Scaleway**. Fill in the cluster name, the credential and the region. On **Configure Qovery Operator**, keep the defaults and click **Continue**: Qovery adds the cluster to your organization.
+  </Step>
 
-Install the Qovery CLI on your local machine:
+  <Step title="Install the Qovery Operator">
+    Download the Helm values file and run the Helm command shown in the Console, with a kubeconfig pointing to your cluster. The values file contains the cluster credential: keep it private and delete it once the Operator is installed. Keep the page open: the Console opens the cluster profile once the Operator connects.
+  </Step>
 
-<InstallQoveryCLI />
+  <Step title="Deploy the platform profile">
+    Review the profile settings. Click **Save and deploy** if you changed one, or **Deploy** in the **Manage deployment** menu of the cluster to keep the defaults. Qovery installs the Qovery stack on the cluster.
+  </Step>
+</Steps>
 
-### Step 2: Authenticate
-
-<QoveryCliAuth />
-
-### Step 3: Deploy to Kubernetes
-
-Run the installation command and follow the interactive prompts:
-
-```bash
-qovery cluster install
-```
-
-The installation typically takes 5-10 minutes.
-
-## Post-Installation
-
-After successful deployment:
-
-1. **Validate Installation**: Check that all Qovery components are running:
-
-   ```bash
-   kubectl get pods -n qovery
-   ```
-
-2. **Verify in Console**: Log in to [Qovery Console](https://console.qovery.com) to confirm your cluster appears with a **Connected** status.
-
-3. **Deploy Applications**: You can now start deploying your applications through the Qovery Console.
-
-<Tip>
-  For comprehensive validation steps and troubleshooting, see the [BYOK
-  Integration Guide](/configuration/integrations/kubernetes/byok).
-</Tip>
+See [Bring Your Own Kubernetes (BYOK)](/configuration/integrations/kubernetes/byok) for each step in detail, and its [troubleshooting](/configuration/integrations/kubernetes/byok#troubleshooting) if the Operator does not connect or the deployment fails.
 
 ## Next Steps
 
@@ -85,18 +55,11 @@ After successful deployment:
     Follow our quickstart guide
   </Card>
   <Card
-    title="BYOK Advanced Configuration"
+    title="BYOK in detail"
     icon="sliders"
     href="/configuration/integrations/kubernetes/byok"
   >
-    Detailed setup and configuration options
-  </Card>
-  <Card
-    title="Qovery Helm Chart"
-    icon="/images/logos/helm-icon.svg"
-    href="https://github.com/Qovery/qovery-chart"
-  >
-    View on GitHub
+    Prerequisites, permissions, limitations and troubleshooting
   </Card>
   <Card title="Get Help" icon="headset" href="/getting-started/useful-resources/help-and-support">
     Contact support

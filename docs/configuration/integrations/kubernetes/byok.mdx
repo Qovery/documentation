@@ -319,10 +319,11 @@ Once the deployment succeeds, you can deploy your applications on the cluster.
 - **DNS**: applications are exposed on the domain provided by Qovery. The DNS provider of the cluster cannot be changed.
 - **Metrics**: Qovery installs no metrics stack on these clusters. The Monitoring graphs of the cluster and of its services are not available yet.
 - **Existing installations**: Qovery does not adopt an existing cert-manager, ExternalDNS or Envoy Gateway installation. Use a cluster without them.
-- **Removal**: delete the environments of the cluster first. Deleting the cluster in Qovery then removes only its Qovery configuration. Remove the rest yourself:
-  - the Helm releases of the `qovery` namespace (`helm -n qovery list`, then `helm -n qovery uninstall <release>`), then the namespace;
+- **Removal**: delete the environments of the cluster first. Deleting the cluster in Qovery then removes only its Qovery configuration: the Operator and the platform keep running in the cluster, and the Envoy load balancer keeps its public IP and its cost. Remove the rest yourself:
+  - the Helm releases of the `qovery` namespace (`helm -n qovery list`, then `helm -n qovery uninstall <release>`): `qovery-cluster-gateway` and `qovery-gateway-class` first, while `envoy-gateway` still runs, then the others, `qovery-operator` last, then the namespace. If `envoy-gateway` is already gone, the GatewayClass keeps its finalizer: remove it with `kubectl patch gatewayclass qovery-public-gateway --type=merge -p '{"metadata":{"finalizers":null}}'`;
   - the CRDs that the platform installed (Gateway API, Envoy Gateway and cert-manager), if nothing else uses them;
-  - the registry repositories Qovery created in your cloud account (ECR repositories, Artifact Registry repositories or Scaleway Container Registry namespaces).
+  - the registry repositories Qovery created in your cloud account: `<cluster short id>-…` and `qovery-mirror-…` ECR repositories, Artifact Registry repositories or Scaleway Container Registry namespaces. Mirror repositories of deleted services can remain;
+  - the Loki bucket and its identity, if Loki used object storage.
 
 Need a component, a DNS provider or a cloud provider that is not covered yet? Contact Qovery Support through your usual channel (in-app chat, Slack or email).
 

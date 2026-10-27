@@ -236,12 +236,16 @@ For Helm services, Qovery does not inject affinity or tolerations, so you declar
 
 **Type:** `string`
 
-**Description:** Allows you to define pod anti-affinity to control how pods are distributed across nodes. Options are `Preferred` or `Required`.
+**Description:** Allows you to define pod anti-affinity to control how pods are distributed across nodes. Options are `Preferred`, `Required` or `None`.
 
-**Use Case:** Use `Required` to guarantee that no two replicas of the same service land on the same node — critical for high-availability setups where a single node failure must not take down the entire service. Use `Preferred` (default) when you want Kubernetes to spread pods across nodes on a best-effort basis without blocking scheduling if not enough nodes are available.
+**Use Case:** Use `Required` to guarantee that no two replicas of the same service land on the same node — critical for high-availability setups where a single node failure must not take down the entire service. Use `Preferred` (default) when you want Kubernetes to spread pods across nodes on a best-effort basis without blocking scheduling if not enough nodes are available. Use `None` for workloads that don't need to be spread, such as queue workers, so replicas can be packed on the same node.
 
 <Info>
 With `Required`, you need **at least as many nodes as replicas**. If your cluster doesn't have enough nodes, excess pods will stay `Pending`.
+</Info>
+
+<Info>
+On clusters using Karpenter, `Preferred` is also respected when new nodes are provisioned: several replicas pending at the same time get one node each. If this creates more nodes than needed during scale up or deployments, use `None`.
 </Info>
 
 **Default Value:** `Preferred`

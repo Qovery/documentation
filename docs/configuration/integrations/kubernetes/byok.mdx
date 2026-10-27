@@ -15,7 +15,7 @@ The Qovery Operator installation is in Preview: see [Current limitations](#curre
 - Qovery never stores the kubeconfig of your cluster. You install the Operator yourself, with your own `kubectl` and `helm` access.
 - The Operator runs in the `qovery` namespace. It opens an outbound connection to Qovery and runs the Qovery deployments as Kubernetes Jobs inside your cluster. These Jobs run with `cluster-admin` rights.
 - The platform profile of the cluster lists the components Qovery installs and their settings. The list can grow as Qovery adds components; the profile page of the cluster always shows the current one. Today, the profile holds:
-  - **Qovery stack**: the Qovery agent, the shell agent and the Qovery priority classes.
+  - **Qovery stack**: the Qovery agent, the shell agent, the Qovery priority classes and the Qovery StorageClasses used by container databases and service storage (for example `aws-ebs-gp3-0`, `gcp-pd-ssd`, `scw-sbv-ssd-0`). A StorageClass that already exists with the same name is kept as it is, and Qovery does not change the default StorageClass of the cluster.
   - **Log infra**: Loki and Alloy, for application logs.
   - **Gateway API**: Envoy Gateway, which exposes your applications.
   - **DNS and certificates**: cert-manager and ExternalDNS, for the Qovery-provided domain and its TLS certificates.
@@ -28,7 +28,9 @@ The Qovery Operator installation is in Preview: see [Current limitations](#curre
 <Check>`kubectl` access to the cluster with `cluster-admin` rights and `helm` on your machine, only to install the Operator once. Later Operator updates go through Qovery.</Check>
 <Check>At least one node with 4 vCPU and 8 GiB of memory free, for example an 8 vCPU node: each build runs in a builder pod that requests the CPU and RAM of the service [build settings](/configuration/service-advanced-settings#build-settings), 4000m and 8 GiB by default. A 4 vCPU node cannot host it.</Check>
 <Check>A cluster that does not already run cert-manager, ExternalDNS or Envoy Gateway</Check>
-<Check>A default StorageClass (`kubectl get storageclass`), unless Loki stores logs in object storage. Recent EKS versions do not create one.</Check>
+<Check>A default StorageClass (`kubectl get storageclass`), unless Loki stores logs in object storage. EKS creates `gp2` without marking it as the default.</Check>
+<Check>On EKS, the Amazon EBS CSI driver add-on with its IAM role, for container databases and service storage. GKE and Kapsule include their CSI driver.</Check>
+<Check>For services with autoscaling, metrics-server (`kubectl get apiservice v1beta1.metrics.k8s.io`). GKE and Kapsule include it; on EKS, add the `metrics-server` add-on.</Check>
 <Check>A working cluster DNS (CoreDNS) that resolves public names</Check>
 <Check>Outbound internet access from the cluster to Qovery and to public container registries</Check>
 <Check>A Qovery cloud credential for the provider of the cluster. You can create it during the installation.</Check>
@@ -94,6 +96,7 @@ The cloud credential lets Qovery create the cluster registry, push the images it
 
     - Grant the service account the **Artifact Registry Administrator** role (`roles/artifactregistry.admin`) on the project.
     - With a JSON key, Qovery checks the key by listing the Cloud Storage buckets of the project: the service account also needs the `storage.buckets.list` permission. A Workload Identity Federation credential is checked without it.
+    - With Workload Identity Federation, set it up as for the [GCP cluster credentials](/getting-started/installation/gcp), but bind only the Artifact Registry role above instead of the Qovery custom role. The organization policy `constraints/iam.allowServiceAccountCredentialLifetimeExtension` must still allow the service account: Qovery requests 4 hour tokens.
     - Qovery creates no image pull secret for Artifact Registry. The GKE node service account must be able to pull from Artifact Registry in the project of the credential, for example with the `roles/artifactregistry.reader` role.
   </Tab>
 
@@ -253,7 +256,7 @@ Once the deployment succeeds, you can deploy your applications on the cluster.
 ## Current limitations
 
 - **DNS**: applications are exposed on the domain provided by Qovery. The DNS provider of the cluster cannot be changed.
-- **Metrics**: Qovery installs no metrics stack on these clusters.
+- **Metrics**: Qovery installs no metrics stack on these clusters. The Monitoring graphs of the cluster and of its services are not available yet.
 - **Existing installations**: Qovery does not adopt an existing cert-manager, ExternalDNS or Envoy Gateway installation. Use a cluster without them.
 - **Removal**: delete the environments of the cluster first. Deleting the cluster in Qovery then removes only its Qovery configuration. Remove the rest yourself:
   - the Helm releases of the `qovery` namespace (`helm -n qovery list`, then `helm -n qovery uninstall <release>`), then the namespace;

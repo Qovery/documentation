@@ -73,7 +73,7 @@ The cloud credential lets Qovery create the cluster registry, push the images it
 
        Qovery sends the external ID `<organization id>:<cluster id>`, and `<organization id>:00000000-0000-0000-0000-000000000000` when it checks the credential: the `<ORGANIZATION_ID>:*` condition accepts both.
 
-    2. Attach this permissions policy to the role, where `<ACCOUNT_ID>` is your AWS account ID and `<CLUSTER_REGION>` the region of the cluster. Keep the `us-east-1` statement even if the cluster runs in another region: Qovery checks the credential there. The `ClusterRegistry` statement is limited to the repositories Qovery creates, named after the cluster (`z<cluster short id>-…`) or `qovery-mirror-…`: Qovery deletes them with the services that use them, and cannot touch your other repositories.
+    2. Attach this permissions policy to the role, where `<ACCOUNT_ID>` is your AWS account ID and `<CLUSTER_REGION>` the region of the cluster. Keep the `us-east-1` statement even if the cluster runs in another region: Qovery checks the credential there. The `ClusterRegistry` statement is limited to the repositories Qovery creates, named after the cluster (`z<first 8 characters of the cluster ID>-…`) or `qovery-mirror-…`: Qovery deletes them with the services that use them, and cannot touch your other repositories.
 
        ```json
        {
@@ -322,7 +322,7 @@ Once the deployment succeeds, you can deploy your applications on the cluster.
 - **Removal**: delete the environments of the cluster first. Deleting the cluster in Qovery then removes only its Qovery configuration: the Operator and the platform keep running in the cluster, and the Envoy load balancer keeps its public IP and its cost. Remove the rest yourself:
   - the Helm releases of the `qovery` namespace (`helm -n qovery list`, then `helm -n qovery uninstall <release>`): `qovery-cluster-gateway` and `qovery-gateway-class` first, while `envoy-gateway` still runs, then the others, `qovery-operator` last, then the namespace. If `envoy-gateway` is already gone, the GatewayClass keeps its finalizer: remove it with `kubectl patch gatewayclass qovery-public-gateway --type=merge -p '{"metadata":{"finalizers":null}}'`;
   - the CRDs that the platform installed (Gateway API, Envoy Gateway and cert-manager), if nothing else uses them;
-  - the registry repositories Qovery created in your cloud account: `<cluster short id>-…` and `qovery-mirror-…` ECR repositories, Artifact Registry repositories or Scaleway Container Registry namespaces. Mirror repositories of deleted services can remain;
+  - the registry repositories Qovery created in your cloud account: `z<first 8 characters of the cluster ID>-…` and `qovery-mirror-…` ECR repositories, Artifact Registry repositories or Scaleway Container Registry namespaces. Mirror repositories of deleted services can remain;
   - the Loki bucket and its identity, if Loki used object storage.
 
 Need a component, a DNS provider or a cloud provider that is not covered yet? Contact Qovery Support through your usual channel (in-app chat, Slack or email).

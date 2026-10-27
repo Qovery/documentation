@@ -153,7 +153,11 @@ The cloud credential lets Qovery create the cluster registry, push the images it
 
 ### Loki object storage
 
-Optional: only when Loki stores logs in object storage instead of a persistent volume. Create the bucket and the identity before you deploy the profile, then fill in their fields on the Loki page of the profile.
+Optional: only when Loki stores logs in object storage instead of a persistent volume.
+
+<Warning>
+Create the bucket and its identity **before you deploy the profile**, then fill in their fields on the Loki page of the profile. Choose the storage before the first deployment: changing it later does not move the logs already stored.
+</Warning>
 
 <AccordionGroup>
   <Accordion title="AWS: S3 bucket and IAM role">

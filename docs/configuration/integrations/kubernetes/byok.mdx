@@ -73,7 +73,7 @@ The cloud credential lets Qovery create the cluster registry, push the images it
 
        Qovery sends the external ID `<organization id>:<cluster id>`, and `<organization id>:00000000-0000-0000-0000-000000000000` when it checks the credential: the `<ORGANIZATION_ID>:*` condition accepts both.
 
-    2. Attach this permissions policy to the role, where `<ACCOUNT_ID>` is your AWS account ID and `<CLUSTER_REGION>` the region of the cluster. Keep the `us-east-1` statement even if the cluster runs in another region: Qovery checks the credential there.
+    2. Attach this permissions policy to the role, where `<ACCOUNT_ID>` is your AWS account ID and `<CLUSTER_REGION>` the region of the cluster. Keep the `us-east-1` statement even if the cluster runs in another region: Qovery checks the credential there. The `ClusterRegistry` statement is limited to the repositories Qovery creates, named after the cluster (`z<cluster short id>-…`) or `qovery-mirror-…`: Qovery deletes them with the services that use them, and cannot touch your other repositories.
 
        ```json
        {
@@ -111,7 +111,10 @@ The cloud credential lets Qovery create the cluster registry, push the images it
                "ecr:BatchGetImage",
                "ecr:GetDownloadUrlForLayer"
              ],
-             "Resource": "arn:aws:ecr:<CLUSTER_REGION>:<ACCOUNT_ID>:repository/*"
+             "Resource": [
+               "arn:aws:ecr:<CLUSTER_REGION>:<ACCOUNT_ID>:repository/z*",
+               "arn:aws:ecr:<CLUSTER_REGION>:<ACCOUNT_ID>:repository/qovery-mirror-*"
+             ]
            }
          ]
        }

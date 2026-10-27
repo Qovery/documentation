@@ -23,7 +23,7 @@ The Qovery Operator installation is in Preview and is enabled organization by or
 
 ## Prerequisites
 
-<Check>A Qovery organization on the Enterprise plan, or on a legacy Professional or Business plan</Check>
+<Check>A Qovery organization on the Enterprise plan</Check>
 <Check>A running Kubernetes cluster on AWS (EKS), GCP (GKE) or Scaleway (Kapsule)</Check>
 <Check>`kubectl` access to the cluster with `cluster-admin` rights and `helm` on your machine, only to install the Operator once. Later Operator updates go through Qovery.</Check>
 <Check>At least one node with 4 vCPU and 8 GiB of memory free, for example an 8 vCPU node. Each build runs in a builder pod that requests the CPU and RAM of the service [build settings](/configuration/service-advanced-settings#build-settings), 4000m and 8 GiB by default, so a 4 vCPU node cannot host it.</Check>

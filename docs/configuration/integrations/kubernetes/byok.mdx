@@ -342,7 +342,7 @@ Need a component, a DNS provider or a cloud provider that is not covered yet? Co
 ## Remove the cluster
 
 <Warning>
-Deleting the cluster in Qovery removes only its Qovery configuration. The Operator and the platform keep running in your cluster, and the Envoy load balancer keeps its public IP, and its cost, until you uninstall the gateway releases (step 2).
+Deleting the cluster in Qovery removes only its Qovery configuration. The Operator and the platform keep running in your cluster, and the Envoy load balancer keeps its public IP and keeps incurring cloud costs until you uninstall the gateway releases (step 2).
 </Warning>
 
 1. In Qovery, delete the environments of the cluster, then delete the cluster.
@@ -358,7 +358,7 @@ Deleting the cluster in Qovery removes only its Qovery configuration. The Operat
    kubectl patch gatewayclass qovery-public-gateway --type=merge -p '{"metadata":{"finalizers":null}}'
    ```
 
-3. Uninstall the other releases of the `qovery` namespace (`helm -n qovery list`), `qovery-operator` last, then delete the namespace with `kubectl delete namespace qovery`.
+3. List the other releases of the `qovery` namespace with `helm -n qovery list` and uninstall each one with `helm -n qovery uninstall <release>`, `qovery-operator` last. Then delete the namespace with `kubectl delete namespace qovery`.
 4. Delete the CRDs that the platform installed (Gateway API, Envoy Gateway and cert-manager), if nothing else uses them.
 5. Delete the registry repositories Qovery created in your cloud account: the `z<first 8 characters of the cluster ID>-…` and `qovery-mirror-…` ECR repositories, the Artifact Registry repositories or the Scaleway Container Registry namespaces. Mirror repositories of deleted services can remain, so check for them too.
 6. If Loki used object storage, delete the bucket and its identity.

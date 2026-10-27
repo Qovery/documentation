@@ -16,14 +16,14 @@ Want Qovery to provision and manage the cluster for you instead? See [Create You
 
 ## Prerequisites
 
-<Check>A Qovery organization on a plan that includes self-managed clusters (Professional, Business or Enterprise)</Check>
+<Check>A Qovery organization on the Enterprise plan, or on a legacy Professional or Business plan</Check>
 <Check>A running Kubernetes cluster on AWS (EKS), GCP (GKE) or Scaleway (Kapsule), with at least one node that can host a build: 4 vCPU and 8 GiB of memory free, so an 8 vCPU node. A 4 vCPU node is not enough.</Check>
 <Check>`kubectl` access to the cluster with `cluster-admin` rights and `helm`, only to install the Operator once</Check>
 <Check>A cloud credential for the provider of the cluster, with the [required permissions](/configuration/integrations/kubernetes/byok#credential-permissions)</Check>
 <Check>Active Qovery account - [Sign up here](https://start.qovery.com)</Check>
 
 <Warning>
-The Qovery Operator installation is in Preview. Check the [full prerequisites](/configuration/integrations/kubernetes/byok#prerequisites) before you start (default StorageClass when Loki uses a volume, EBS CSI driver on EKS, load balancer, no existing cert-manager, ExternalDNS or Envoy Gateway): a missing one blocks the deployment. See also the [current limitations](/configuration/integrations/kubernetes/byok#current-limitations).
+The Qovery Operator installation is in Preview and is enabled organization by organization. Contact Qovery Support to enable it on yours. Check the [full prerequisites](/configuration/integrations/kubernetes/byok#prerequisites) before you start (default StorageClass when Loki uses a volume, EBS CSI driver on EKS, load balancer, no existing cert-manager, ExternalDNS or Envoy Gateway), because a missing one blocks the deployment. See also the [current limitations](/configuration/integrations/kubernetes/byok#current-limitations).
 </Warning>
 
 ## Installation

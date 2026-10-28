@@ -245,7 +245,7 @@ With `Required`, you need **at least as many nodes as replicas**. If your cluste
 </Info>
 
 <Info>
-On clusters using Karpenter, `Preferred` is also respected when new nodes are provisioned: several replicas pending at the same time get one node each. If this creates more nodes than needed during scale up or deployments, use `None`.
+On clusters using Karpenter, `Preferred` is also respected when new nodes are provisioned: several replicas pending at the same time can result in one node each. If this creates more nodes than needed during scale up or deployments, use `None`.
 </Info>
 
 **Default Value:** `Preferred`

@@ -184,6 +184,8 @@ In `qovery_deployment`, replace `qovery_database.postgres` with `qovery_blueprin
 
 A blueprint publishes its outputs as variables of the environment, named `QOVERY_OUTPUT_TERRAFORM_Z<ID>_<OUTPUT>`, where `<ID>` is the first eight characters of `service_id`, in uppercase. `service_id` is the ID of the Terraform service that runs the blueprint. Terraform creates the blueprint and waits for its deployment before it creates the application, so the outputs exist when the application deploys. Reference them through `{{...}}` interpolation, not with aliases: an alias must be a secret exactly when its target is one, and the blueprint decides which outputs are secrets.
 
+Qovery also creates environment aliases on these outputs, such as `POSTGRES_DB_ADDRESS` for this blueprint. Leave them out of `qovery_environment`: version 1.3.1 and later of the provider keep them out of its state, so `terraform apply` does not delete them. See [Aliases Qovery creates for outputs](/configuration/environment-variables#aliases-qovery-creates-for-outputs).
+
 ## Next steps
 
 <CardGroup cols={2}>

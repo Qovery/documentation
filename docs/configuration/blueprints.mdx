@@ -177,7 +177,7 @@ Context variables are **read-only** and resolved automatically from the target e
 
 Outputs are the values the deployed service publishes back to Qovery — endpoints, ports, bucket names, generated credentials. Other services in the same environment consume them by variable interpolation, so an application can point at a blueprint-provisioned database without anyone copying a hostname by hand. Sensitive outputs are encrypted and masked in the Console.
 
-Qovery also creates an environment alias on each output, named after the blueprint: the output `DB_ADDRESS` of the blueprint `main-db` is also available as `MAIN_DB_DB_ADDRESS`. See [Aliases Qovery creates for outputs](/configuration/environment-variables#aliases-qovery-creates-for-outputs) for the naming rules.
+Qovery also creates an environment alias on each output, named after the blueprint: the output `DB_ADDRESS` of the blueprint `main-db` is also available as `MAIN_DB_DB_ADDRESS`. See [Aliases Qovery creates for outputs](/configuration/environment-variables#aliases-qovery-creates-for-outputs) for the naming rules and the cases where no alias is created.
 
 ### Engine & advanced settings
 

@@ -18499,11 +18499,13 @@ components:
           type: string
           enum:
             - Preferred
-            - Requirred
+            - Required
+            - None
           description: |
             Define how you want pods affinity to behave:
             * `Preferred` allows, but does not require, pods of a given service are not co-located (or co-hosted) on a single node
-            * `Requirred` ensures that the pods of a given service are not co-located (or co-hosted) on a single node (safer in term of availability but can be expensive depending on the number of replicas)
+            * `Required` ensures that the pods of a given service are not co-located (or co-hosted) on a single node (safer in term of availability but can be expensive depending on the number of replicas)
+            * `None` sets no anti-affinity, so pods of a given service can be packed on the same node
         deployment.topology_spread.zone:
           type: string
           enum:
@@ -18705,6 +18707,8 @@ components:
               $ref: '#/components/schemas/ReferenceObject'
             git_repository:
               $ref: '#/components/schemas/ApplicationGitRepository'
+            build_settings:
+              $ref: '#/components/schemas/BuildSettings'
             maximum_cpu:
               type: integer
               description: Maximum cpu that can be allocated to the application based on organization cluster configuration. unit is millicores (m). 1000m = 1 cpu
@@ -20904,6 +20908,9 @@ components:
           type: string
           format: uuid
           nullable: true
+        slack_webhook_url:
+          type: string
+          nullable: true
     ClusterResponseList:
       type: object
       properties:
@@ -21827,11 +21834,13 @@ components:
           type: string
           enum:
             - Preferred
-            - Requirred
+            - Required
+            - None
           description: |
             Define how you want pods affinity to behave:
             * `Preferred` allows, but does not require, pods of a given service are not co-located (or co-hosted) on a single node
-            * `Requirred` ensures that the pods of a given service are not co-located (or co-hosted) on a single node (safer in term of availability but can be expensive depending on the number of replicas)
+            * `Required` ensures that the pods of a given service are not co-located (or co-hosted) on a single node (safer in term of availability but can be expensive depending on the number of replicas)
+            * `None` sets no anti-affinity, so pods of a given service can be packed on the same node
         deployment.topology_spread.zone:
           type: string
           enum:
@@ -24413,6 +24422,10 @@ components:
             owned_by:
               type: string
               description: 'Entity that created/own the variable (i.e: Qovery, Doppler)'
+            is_created_by_qovery:
+              type: boolean
+              readOnly: true
+              description: True when Qovery created the variable on its own, such as the alias it adds for each output of a job, Terraform service or blueprint. False for variables a user created and for built-in variables, which `variable_type` already identifies. `owned_by` does not tell these apart. It stays true after a user edits the variable. Clients that sync variables, such as the Terraform provider, can leave these variables out.
     EnvironmentVariableAlias:
       type: object
       required:
@@ -27749,6 +27762,10 @@ components:
             owned_by:
               type: string
               description: 'Entity that created/own the variable (i.e: Qovery, Doppler)'
+            is_created_by_qovery:
+              type: boolean
+              readOnly: true
+              description: True when Qovery created the variable on its own, such as the alias it adds for each output of a job, Terraform service or blueprint. False for variables a user created and for built-in variables, which `variable_type` already identifies. `owned_by` does not tell these apart. It stays true after a user edits the variable. Clients that sync variables, such as the Terraform provider, can leave these variables out.
             description:
               type: string
               x-stoplight:
@@ -28431,6 +28448,10 @@ components:
             owned_by:
               type: string
               description: 'Entity that created/own the variable (i.e: Qovery, Doppler)'
+            is_created_by_qovery:
+              type: boolean
+              readOnly: true
+              description: True when Qovery created the variable on its own, such as the alias it adds for each output of a job, Terraform service or blueprint. False for variables a user created and for built-in variables, which `variable_type` already identifies. `owned_by` does not tell these apart. It stays true after a user edits the variable. Clients that sync variables, such as the Terraform provider, can leave these variables out.
             is_secret:
               type: boolean
             description:
@@ -28836,6 +28857,8 @@ components:
           properties:
             environment:
               $ref: '#/components/schemas/ReferenceObject'
+            build_settings:
+              $ref: '#/components/schemas/BuildSettings'
             maximum_cpu:
               type: integer
               description: Maximum cpu that can be allocated to the job based on organization cluster configuration. unit is millicores (m). 1000m = 1 cpu
@@ -30902,6 +30925,8 @@ components:
               type: boolean
             build_settings_editable:
               type: boolean
+            build_settings:
+              $ref: '#/components/schemas/BuildSettings'
             auto_deploy_config:
               $ref: "#/components/schemas/TerraformAutoDeployConfig"
             terraform_files_source:
@@ -32956,6 +32981,9 @@ components:
         require_wide_access_to_deploy:
           type: boolean
           default: false
+        slack_webhook_url:
+          type: string
+          nullable: true
 
     ClusterEnvironmentResponseList:
       type: object

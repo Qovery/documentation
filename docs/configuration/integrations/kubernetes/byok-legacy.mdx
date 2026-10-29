@@ -1,0 +1,224 @@
+---
+title: "BYOK with the Qovery CLI"
+description: "Install Qovery with the Qovery CLI on a Kubernetes cluster that the Qovery Operator does not support yet"
+noindex: true
+---
+
+import InstallQoveryCLI from '/snippets/install-qovery-cli.mdx';
+
+## Overview
+
+Bring Your Own Kubernetes (BYOK) allows you to connect any Kubernetes cluster to Qovery. You maintain control over your cluster infrastructure while Qovery manages application deployments.
+
+<Warning>
+This installation is kept for providers that the Qovery Operator does not support yet and on-premise clusters. For an AWS, GCP or Scaleway cluster, use [Bring Your Own Kubernetes (BYOK)](/configuration/integrations/kubernetes/byok).
+</Warning>
+
+## Supported Kubernetes
+
+<CardGroup cols={3}>
+  <Card title="Cloud Managed" icon="cloud">
+    - AWS EKS
+    - Google GKE
+    - Azure AKS
+    - Scaleway Kapsule
+    - DigitalOcean DOKS
+  </Card>
+
+  <Card title="Self-Managed" icon="server">
+    - Vanilla Kubernetes
+    - Rancher
+    - OpenShift
+    - k3s/k3d
+    - Tanzu
+  </Card>
+
+  <Card title="On-Premise" icon="building">
+    - EKS Anywhere
+    - Bare metal Kubernetes
+    - VMware vSphere
+    - Private cloud
+  </Card>
+</CardGroup>
+
+## Requirements
+
+<Check>Kubernetes 1.24 or higher</Check>
+<Check>kubectl access with cluster-admin permissions</Check>
+<Check>LoadBalancer support (cloud or MetalLB for on-premise)</Check>
+<Check>Storage class for persistent volumes</Check>
+
+## Quick Start
+
+<Steps>
+  <Step title="Install Qovery CLI">
+    Download and install the Qovery CLI (or update to the latest version):
+
+    <InstallQoveryCLI />
+  </Step>
+
+  <Step title="Install Qovery on your cluster">
+    Run the following command from your terminal and follow the instructions:
+    ```bash
+    qovery auth
+    qovery context set
+    qovery cluster install
+    ```
+
+    This interactive command will guide you through the installation process and configure the Qovery agent on your cluster.
+  </Step>
+
+  <Step title="Verify Qovery Pods">
+    Check that all Qovery pods are running in your cluster:
+    ```bash
+    kubectl get pods -n qovery
+    ```
+  </Step>
+
+  <Step title="Verify in Qovery Console">
+    Your cluster should now show as "Running" in the Qovery Console.
+  </Step>
+</Steps>
+
+## What Qovery Installs
+
+**Core Components**:
+- Qovery Agent (deployment manager)
+- Qovery Shell Agent (for terminal access)
+
+**Optional Components** (if not present):
+- Nginx Ingress Controller
+- Cert-Manager (SSL certificates)
+- External-DNS (domain management)
+- Metrics Server
+
+## Networking Requirements
+
+### Inbound
+
+- **Port 443**: HTTPS traffic to applications
+- **Port 80**: HTTP traffic (redirects to 443)
+
+### Outbound
+
+- **Qovery API**: `https://api.qovery.com`
+- **Container Registries**: ECR, Docker Hub, GCR, etc.
+- **Git Providers**: GitHub, GitLab, Bitbucket
+
+### Load Balancer
+
+<Tabs>
+  <Tab title="Cloud Load Balancer">
+    Automatically provisioned by cloud provider:
+    - AWS: ALB/NLB
+    - GCP: Google Cloud Load Balancer
+    - Azure: Azure Load Balancer
+  </Tab>
+
+  <Tab title="MetalLB (On-Premise)">
+    Install MetalLB for bare metal:
+    ```bash
+    kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.13.12/config/manifests/metallb-native.yaml
+
+    # Configure IP pool
+    cat <<EOF | kubectl apply -f -
+    apiVersion: metallb.io/v1beta1
+    kind: IPAddressPool
+    metadata:
+      name: first-pool
+      namespace: metallb-system
+    spec:
+      addresses:
+      - 192.168.1.240-192.168.1.250
+    ---
+    apiVersion: metallb.io/v1beta1
+    kind: L2Advertisement
+    metadata:
+      name: first-pool
+      namespace: metallb-system
+    spec:
+      ipAddressPools:
+      - first-pool
+    EOF
+    ```
+  </Tab>
+</Tabs>
+
+## Storage Configuration
+
+Ensure default storage class exists:
+
+```yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: standard
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "true"
+provisioner: kubernetes.io/gce-pd  # Change based on your provider
+parameters:
+  type: pd-standard
+```
+
+For on-premise, consider:
+- **NFS**: Network File System
+- **Ceph**: Distributed storage
+- **Local Path**: Local storage (not recommended for production)
+
+## Best Practices
+
+<CardGroup cols={2}>
+  <Card title="Dedicated Namespace" icon="folder-tree">
+    Use dedicated `qovery` namespace for Qovery components
+  </Card>
+
+  <Card title="Resource Quotas" icon="gauge">
+    Set resource quotas per namespace to prevent resource exhaustion
+  </Card>
+
+  <Card title="Network Policies" icon="shield">
+    Implement network policies for namespace isolation
+  </Card>
+
+  <Card title="Regular Updates" icon="arrow-up">
+    Keep Kubernetes and Qovery agent updated regularly
+  </Card>
+</CardGroup>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Agent Not Connecting">
+    **Check**:
+    - Agent pods running: `kubectl get pods -n qovery`
+    - Agent logs: `kubectl logs -n qovery -l app=qovery-agent`
+    - Outbound internet access from cluster
+    - API token is correct
+  </Accordion>
+
+  <Accordion title="Load Balancer Pending">
+    **For Cloud**: Check cloud provider quotas and permissions
+    
+    **For On-Premise**: Install MetalLB and configure IP pool
+  </Accordion>
+
+  <Accordion title="Storage Issues">
+    **Check**:
+    - Storage class exists: `kubectl get sc`
+    - Default storage class set
+    - Provisioner is working
+    - Sufficient storage capacity
+  </Accordion>
+</AccordionGroup>
+
+## Platform-Specific Guides
+
+<CardGroup cols={2}>
+  <Card title="EKS Anywhere" icon="building" href="/configuration/integrations/kubernetes/eks/eks-anywhere">
+    Deploy on EKS Anywhere with Qovery
+  </Card>
+
+  <Card title="AWS, GCP and Scaleway" icon="dharmachakra" href="/configuration/integrations/kubernetes/byok">
+    Connect a cluster with the Qovery Operator
+  </Card>
+</CardGroup>

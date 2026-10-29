@@ -82,6 +82,8 @@ Choose the authentication method that best fits your security requirements:
 
     You can edit the permissions attached to the created role to restrict access to your parameters as you wish (see below):
     <AwsIamPermissionsPs />
+
+    To read parameters kept in another AWS account, set the optional **Role ARN to assume** and **External ID** fields. The External Secrets Operator signs in with the role above, then assumes this second role through `sts:AssumeRole`. The second role's trust policy must allow the role above, and require the external ID if one is set.
   </Tab>
   <Tab title="AWS Static Credentials">
     The following information is required:

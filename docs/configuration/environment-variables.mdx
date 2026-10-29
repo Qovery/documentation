@@ -388,6 +388,28 @@ Built-in variable names embed the service identifier, so copy the exact name fro
 Pick the variable your application can actually reach. `..._DATABASE_URL` and `..._HOST` are the external endpoints and only resolve when the database visibility is set to `PUBLIC`. For a service running inside the cluster, target `..._DATABASE_URL_INTERNAL` or `..._HOST_INTERNAL`, as in the examples above.
 </Info>
 
+### Aliases Qovery creates for outputs
+
+When a lifecycle job, a Terraform service, or a blueprint deploys, Qovery creates an environment alias on each of its outputs. Your services can then read an output under a short name instead of its `QOVERY_OUTPUT_...` name.
+
+| Service | Alias name | Example |
+|---------|------------|---------|
+| Lifecycle job | The output name | `API_KEY -> QOVERY_OUTPUT_JOB_ZA1B2C3D4_API_KEY` |
+| Terraform service | The output name | `DB_ADDRESS -> QOVERY_OUTPUT_TERRAFORM_Z1234ABCD_DB_ADDRESS` |
+| Blueprint | `<PREFIX>_<OUTPUT>`, where `<PREFIX>` is the blueprint name in uppercase, with each run of characters other than `A`-`Z` and `0`-`9` replaced by `_`, leading and trailing `_` removed, and a `_` added before a leading digit | `MAIN_DB_DB_ADDRESS -> QOVERY_OUTPUT_TERRAFORM_Z1234ABCD_DB_ADDRESS`, for the blueprint `main-db` |
+
+- **A name already in use.** Names are checked against every variable of the environment, including the variables of its services. A lifecycle job or Terraform service output gets no alias, and the deployment logs a warning. A blueprint output gets the first free name among `<PREFIX>_<OUTPUT>_1`, `<PREFIX>_<OUTPUT>_2`, and so on, so two blueprints with the same outputs never collide.
+- **One alias per blueprint output.** A blueprint output that already has an alias whose name ends in `_<OUTPUT>` gets no new one. A blueprint renamed after its first deployment therefore keeps the aliases named after its former name.
+- **Secret outputs get secret aliases**, following the [alias rules](#alias-rules).
+- **No alias** is created for a blueprint whose name has no letter or digit, or whose prefix would start with `QOVERY_`, nor under a name longer than 253 characters. The deployment logs a warning. A blueprint that took over a [migrated managed database](/configuration/blueprints#migrating-a-managed-database-to-a-blueprint) creates no alias either: the database's built-in variables already carry its connection details.
+- **You can edit or delete them.** An edited alias stays marked as created by Qovery. A deleted alias is created again on the next deployment of its service. To read an output under another name, create your own alias on the output variable rather than renaming or re-pointing one of these: the next deployment may otherwise create a new alias for the output, next to the edited one.
+
+The API returns `is_created_by_qovery: true` on these aliases, and `false` on every other variable, including the variables you create and the built-in and output variables. Aliases Qovery created before this flag existed get it on the next deployment of their service, as long as they keep the name and target Qovery gave them.
+
+<Info>
+Version 1.3.1 and later of the Terraform provider leave these aliases out of the `qovery_environment` state, unless your configuration declares them, so `terraform apply` does not delete them. Earlier versions delete them on every apply, and the next deployment recreates them. After the upgrade, an alias that an earlier version already saved in the state is deleted by one last apply. The next deployment recreates it, and later applies leave it alone.
+</Info>
+
 ### Alias rules
 
 - **The alias inherits the target's type.** An alias on a secret is a secret; an alias on a plain variable is a plain variable. You do not choose this, and it cannot be changed afterwards. Re-pointing a secret alias to a plain variable (or the reverse) is rejected with `400 Variable tries to alias between secret and env`.

@@ -61,6 +61,8 @@ I assume you already have a working environment, so to create a blueprint enviro
 
 <Info>
 We recommend using a different cluster than your production for your Preview Environments.
+
+Preview Environments are deployed on the blueprint's cluster. To send them to another cluster, add a project [deployment rule](/configuration/deployment-rule) matching their name, for example `[PR]*`.
 </Info>
 
 ### Enable Preview Environment

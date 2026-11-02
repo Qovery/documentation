@@ -164,6 +164,8 @@ Variables are the editable inputs a blueprint exposes. Each is described in the 
 | **Allowed values** | When set, the field is a dropdown limited to these values. |
 | **Validation** | Optional constraints: regex `pattern`, `minLength`/`maxLength` (strings), `min`/`max` (numbers). |
 
+A variable whose manifest marks it with the `json` format (for example a PostgreSQL blueprint's `db_parameters`) renders as a multi-line code editor with JSON syntax highlighting, in the creation flow, the **Blueprint configuration** settings page, and the update review. Invalid JSON is flagged before you submit. A secret variable in `json` format still renders as a masked password field.
+
 ### Context variables
 
 Context variables are **read-only** and resolved automatically from the target environment's cluster. You cannot edit them.

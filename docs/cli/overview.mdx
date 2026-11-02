@@ -121,6 +121,16 @@ The command shows what will happen and asks for confirmation (`--yes` or `-y` sk
 
 See [Moving to a newer major version](/configuration/blueprints#moving-to-a-newer-major-version) for details.
 
+## Environment Variables
+
+### Override a Variable That Already Exists at a Higher Scope
+
+The `env create` commands (`application`, `container`, `cronjob`, `environment`, `helm`, `lifecycle`) accept an `--override-if-exists` flag. By default, creating a variable whose key already exists at a higher scope fails with a conflict. With the flag set, Qovery creates an override of that variable at the target scope instead:
+
+```bash
+qovery application env create --key DATABASE_URL --value "postgres://..." --override-if-exists
+```
+
 ## Key Features
 
 <CardGroup cols={2}>

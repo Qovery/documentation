@@ -430,6 +430,7 @@
                 "group": "Networking",
                 "pages": [
                   "configuration/integrations/aws/vpc-peering",
+                  "configuration/integrations/aws/ecr-pull-through-cache-existing-vpc",
                   "configuration/integrations/api-gateway-nginx"
                 ]
               },

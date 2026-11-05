@@ -552,11 +552,23 @@ When enabled, Qovery:
 - Configures an Amazon ECR pull through cache rule for `public.ecr.aws` under the `qovery-ecr-public` repository prefix.
 - Rewrites public ECR image references in Qovery-managed infrastructure Helm charts to use the private regional ECR registry.
 - Grants EKS worker and Karpenter node roles the permissions required to populate the cache on the first pull.
-- Creates the `ecr.api` and `ecr.dkr` interface VPC endpoints. Image layers use the S3 gateway endpoint.
+- On a VPC managed by Qovery, creates the `ecr.api` and `ecr.dkr` interface VPC endpoints. Image layers use the S3 gateway endpoint.
+- On your existing VPC, checks at each cluster deployment that the VPC endpoints you created are in place (see below).
 
 <Warning>
-This setting is available only for Qovery-managed EKS clusters that use Karpenter and a Qovery-managed VPC with NAT Gateways. It is not supported for clusters without NAT Gateways or clusters using a user-provided network.
+This setting is available only for Qovery-managed EKS clusters that use Karpenter. On a VPC managed by Qovery, the cluster must use NAT Gateways: the setting is not supported for clusters without NAT Gateways.
 </Warning>
+
+#### Clusters deployed on your existing VPC
+
+When the cluster uses your existing VPC, you own its network, so Qovery does not create the VPC endpoints. Without them, the cache still works but image pulls keep going through your NAT Gateway, so they cost as much as before. Create the following in the cluster VPC:
+
+- `ecr.api` and `ecr.dkr` interface endpoints with private DNS enabled, whose security groups accept TCP 443 from the node subnets.
+- An S3 gateway endpoint attached to the route tables of the node subnets. Image layers are served from Amazon S3.
+
+The node subnets are the EKS subnets of the cluster, plus its private subnets when nodes are created in private subnets. Follow [Use the ECR Pull Through Cache on Your Existing VPC](/configuration/integrations/aws/ecr-pull-through-cache-existing-vpc) for the step-by-step setup.
+
+These prerequisites can only be checked when the cluster is deployed, not when the setting is saved. Qovery checks them at each cluster deployment. If one is missing, the deployment goes through every step and then ends in error, listing what is missing. Qovery components still use the cache, but their traffic goes through the NAT Gateway until the endpoints are in place.
 
 <Info>
 Cached images expire 90 days after they are imported into the private ECR registry. If an expired image is requested again, Amazon ECR imports it again from the public registry. Enabling this setting adds private ECR storage and VPC interface endpoint charges to the AWS account, while reducing NAT Gateway processing charges for public ECR pulls.

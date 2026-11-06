@@ -124,8 +124,9 @@ Open a [shell](/cli/commands/shell) on a service of environment A, then call a s
 # internal hostname: <host>.<namespace>.svc.cluster.local
 # <host> is the QOVERY_<TYPE>_Z<ID>_HOST_INTERNAL variable of the target service
 # <namespace> is the QOVERY_KUBERNETES_NAMESPACE_NAME variable of its environment
-curl -s -m 3 -o /dev/null -w '%{http_code}\n' http://<host-a>.<namespace-a>.svc.cluster.local
-curl -s -m 3 -o /dev/null -w '%{http_code}\n' http://<host-b>.<namespace-b>.svc.cluster.local
+# <port> is the internal port of the target service
+curl -s -m 3 -o /dev/null -w '%{http_code}\n' http://<host-a>.<namespace-a>.svc.cluster.local:<port-a>
+curl -s -m 3 -o /dev/null -w '%{http_code}\n' http://<host-b>.<namespace-b>.svc.cluster.local:<port-b>
 ```
 
 The first call returns a status code; the second one times out (`000`). Public URLs of both environments keep responding.
@@ -179,6 +180,8 @@ The policy above controls incoming traffic. Each environment blocks the others, 
     ```
 
     On EKS, egress rules are evaluated against the Service IP, not the IP of the pod behind it. Excluding the VPC CIDR alone lets traffic to other environments' Services through: keep the Service CIDRs in `except`.
+
+    Qovery doesn't set a custom Service CIDR, so EKS uses one of the two defaults above. To check yours, look at the cluster IP of the `kubernetes` Service in the `default` namespace (`kubectl get svc kubernetes -n default`): it belongs to the Service CIDR.
 
     Qovery creates the cluster VPC with `10.0.0.0/16` unless you set a **Custom VPC Subnet** on the cluster. If you did, or if the cluster uses an existing VPC, replace `10.0.0.0/16` with the VPC CIDR shown in the AWS console.
   </Tab>

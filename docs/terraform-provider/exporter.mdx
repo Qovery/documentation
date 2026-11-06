@@ -24,20 +24,22 @@ The export does not contain a `qovery_deployment` resource. Build settings are e
   <Step title="Open the export">
     In the Console, open the environment, click the **Other actions** menu (three dots) and select **Export as Terraform**. Only organization admins can export an environment.
   </Step>
-  <Step title="Choose whether to include secrets">
-    Turn on **Export secrets** to include the secret values in the export.
-
-    <Warning>
-    Exported secret values are written in plain text in `variables.tf`, and Terraform also stores them in its state. Do not commit either to version control, and keep the state in a protected backend.
-    </Warning>
+  <Step title="Confirm the export">
+    The confirmation dialog explains that secret values will not be exposed. There is no option to include them, including when exporting through the API.
   </Step>
   <Step title="Download">
     Click **Export**. The download is a zip file with two files:
 
     - `main.tf`: the provider configuration and the resources.
-    - `variables.tf`: the input variables. `qovery_access_token` holds the API token of the provider. The other variables hold the secrets of the project, the environment, the services and the blueprints, the cloud credentials, the registry and Helm repository credentials, and the git tokens. With **Export secrets** on, each of them defaults to its value. Otherwise they have no default, and you set them yourself.
+    - `variables.tf`: the input variables. `qovery_access_token` accepts the API token of the provider. The other variables accept the secrets of the project, the environment, the services and the blueprints, the cloud credentials, the registry and Helm repository credentials, and the git tokens. Service secret variables have an empty default marked `# Redacted`. Credential variables have no default. Supply their values before applying the configuration.
   </Step>
 </Steps>
+
+Secret aliases and external secret references are preserved. Their referenced secret values are not included.
+
+<Warning>
+Set all redacted secret values and required credentials before applying. Empty service secret values can overwrite existing secrets.
+</Warning>
 
 ## Import the exported resources
 
@@ -49,7 +51,9 @@ The export does not contain a `qovery_deployment` resource. Build settings are e
     export TF_VAR_qovery_access_token="<your-api-token>"
     ```
 
-    Set the variables that have no default the same way, or in a `terraform.tfvars` file that you keep out of version control.
+    Set the variables that have no default and override the empty defaults of redacted secrets the same way, or in a `terraform.tfvars` file that you keep out of version control.
+
+    Terraform stores the supplied secret values in its state. Keep the state in a protected backend and out of version control.
   </Step>
   <Step title="Initialize">
     ```bash

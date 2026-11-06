@@ -136,7 +136,7 @@ Check the Squid container logs in Qovery to see all outbound requests and their 
 
 ## Step 4 (optional): Enforce with a NetworkPolicy
 
-A NetworkPolicy prevents your application from bypassing the proxy and talking directly to the internet. Qovery-managed clusters run AWS VPC CNI with network policy support enabled, so this works out of the box.
+A NetworkPolicy prevents your application from bypassing the proxy and talking directly to the internet. Qovery-managed clusters enforce NetworkPolicies out of the box. To deploy the policy, use a Helm service as described in [Isolate Environments with Kubernetes NetworkPolicies](/getting-started/guides/advanced-tutorials/isolate-environments-network-policies#step-2-create-the-policy-service).
 
 ```yaml
 apiVersion: networking.k8s.io/v1

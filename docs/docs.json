@@ -122,6 +122,7 @@
             "pages": [
               "getting-started/guides/use-cases/production-environment-management",
               "getting-started/guides/use-cases/cloud-migration-and-scaling",
+              "getting-started/guides/use-cases/coding-agent-deploy-access",
               {
                 "group": "Ephemeral Environments",
                 "pages": [

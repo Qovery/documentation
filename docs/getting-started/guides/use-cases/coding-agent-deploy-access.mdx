@@ -1,0 +1,127 @@
+---
+title: "Let a Coding Agent Deploy Without Cloud Admin Credentials"
+description: "Give Claude Code, Codex, Cursor, or another coding agent the ability to deploy, check logs, and create preview environments on your own AWS, GCP, Azure, or Kubernetes, with a scoped token instead of cloud admin access."
+---
+
+Use Qovery when you want a coding agent to deploy and operate apps on your own cloud account or Kubernetes cluster, but you do not want to hand it cloud admin credentials. Your cloud account is connected to Qovery once, by a human. The agent only receives a Qovery token, and that token can be limited to exactly what the agent needs, for example "deploy the staging environment, never delete anything". If your team already maintains narrowly scoped IAM roles for each agent and works with a single cloud provider, using that provider's own CLI or MCP server with a restricted role is fine.
+
+## What the agent gets
+
+| Need | What to give the agent |
+|------|------------------------|
+| Deploy apps, create preview environments, scale, roll back | [Qovery Agent Skills](/getting-started/quickstart/agent-skills) and the [Qovery CLI](/cli/overview) |
+| Read status and logs, investigate failures | The [Qovery MCP Server](/copilot/mcp-server) (read-only by default) |
+| A credential with limited permissions | An [API Policy Token](/configuration/organization/api-policy-token) (Preview), or an API token with a read-only role |
+
+The agent never needs AWS, GCP, or Azure credentials.
+
+## Prerequisites
+
+<Check>A Qovery organization with a cluster on your cloud account. To create one, see [Install Qovery on your cloud](/getting-started/quickstart/cloud). The agent can also create the account itself with the `qovery-signup` skill, which authenticates with `qovery auth --headless` (the first login creates the account).</Check>
+<Check>An organization **Owner** or **Admin** to create the API Policy Token. Custom roles cannot create one.</Check>
+<Check>A coding agent that supports [Agent Skills](https://agentskills.io): Claude Code, Codex, Cursor, OpenCode, Gemini CLI, and others. See [Compatible tools](/getting-started/quickstart/ai-agent#compatible-tools).</Check>
+
+## Steps
+
+<Steps>
+  <Step title="Install the Qovery Agent Skills and CLI">
+    ```bash
+    # Agent Skills, available to every project on this machine
+    curl -fsSL https://skill.qovery.com/install.sh | bash
+
+    # Qovery CLI (Linux and macOS; see the CLI page for other methods)
+    curl -s https://get.qovery.com | bash
+    ```
+
+    To install the skills for the current repository only, run `curl -fsSL https://skill.qovery.com/install.sh | bash -s -- --project`.
+  </Step>
+
+  <Step title="Create a scoped token for the agent">
+    <Tabs>
+      <Tab title="With the coding agent">
+        In a session authenticated as an organization Owner or Admin (`qovery auth`, or `qovery auth --headless` without a browser), ask the agent:
+
+        ```
+        /qovery-policy-token read-only on staging, can deploy the api service
+        ```
+
+        The `qovery-policy-token` skill turns this intent into an OPA/Rego policy, tests it locally and against the API, creates the token, and checks that it allows what you asked and denies everything else.
+      </Tab>
+
+      <Tab title="In the Console">
+        1. Open your organization settings, then the **Token API** section.
+        2. In **Policy API Token**, click **Add new**.
+        3. Enter a name, a description, and the policy. The form is prefilled with a [starter policy](/configuration/organization/api-policy-token#starter-policy) that grants read access to one environment, write access to one service without deletion, and deployment of that environment.
+        4. Copy the token (`sk-qov-01-...`). It is displayed once.
+      </Tab>
+    </Tabs>
+
+    <Warning>
+    An API Policy Token authenticates as organization admin, and its policy is the only constraint: a policy that allows everything grants everything. Only allow the requests the agent needs. API Policy Tokens are in Preview; see [Current limitations](/configuration/organization/api-policy-token#current-limitations).
+    </Warning>
+  </Step>
+
+  <Step title="Give the token to the agent session">
+    Set the token in the environment of the agent session. Do not paste it into the prompt.
+
+    ```bash
+    export QOVERY_CLI_ACCESS_TOKEN="sk-qov-01-..."
+    ```
+
+    The Qovery CLI, which the skills drive, reads `QOVERY_CLI_ACCESS_TOKEN` and sends it as `Authorization: Token ...`. The policy also applies to the lookups the CLI makes to resolve organization, project, and environment names, so the policy must allow those reads.
+
+    For read-only investigation from the same session, add the MCP Server. It is read-only unless you add `read_write=true`:
+
+    ```bash
+    claude mcp add --transport http qovery https://mcp.qovery.com/mcp --callback-port 4242
+    ```
+  </Step>
+
+  <Step title="Restrict the commands the agent can run (optional)">
+    The token is the guardrail that Qovery enforces. You can also restrict which `qovery` commands the agent runs without asking, with a permission file committed to the repository. See the Claude Code allowlist in [Securing AI Agent Access](/copilot/securing-ai-access#option-2-cli-permission-allowlist).
+  </Step>
+
+  <Step title="Ask the agent to deploy">
+    ```
+    Deploy my application with Qovery
+    ```
+
+    ```
+    Create a preview environment for the current branch
+    ```
+
+    ```
+    My Qovery deployment is failing, can you help?
+    ```
+
+    The agent picks `qovery-deploy`, `qovery-preview`, or `qovery-troubleshoot` from the prompt.
+  </Step>
+</Steps>
+
+## Check the result
+
+- The deployment reaches the `DEPLOYED` state. With the CLI, `--watch` exits with code `0` on success and `1` on failure:
+
+  ```bash
+  qovery environment deploy --environment "staging" --watch
+  ```
+
+- A request outside the policy is refused with `401 Unauthorized`. A denied request does not tell you which rule failed, so test the policy before you rely on it (the `qovery-policy-token` skill does this for you).
+- Changes the agent makes appear in the [audit logs](/getting-started/security-and-compliance/audit-logs) under the token name.
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Qovery Agent Skills" icon="wand-magic-sparkles" href="/getting-started/quickstart/agent-skills">
+    All eleven skills and the prompts that trigger them.
+  </Card>
+  <Card title="API Policy Token (Preview)" icon="scroll" href="/configuration/organization/api-policy-token">
+    Policy input contract, recipes, and limitations.
+  </Card>
+  <Card title="Securing AI Agent Access" icon="shield-check" href="/copilot/securing-ai-access">
+    Read-only MCP, CLI allowlist, and policy tokens compared.
+  </Card>
+  <Card title="Preview Environments" icon="code-branch" href="/getting-started/guides/use-cases/preview-environments">
+    One environment per pull request, deleted when the PR closes.
+  </Card>
+</CardGroup>

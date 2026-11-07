@@ -24,7 +24,7 @@ Most failed installations come from a component that already exists on the clust
 
 ## Check your cluster before you install
 
-The preflight reads your cluster with your current kubeconfig context and reports each check as `PASS`, `WARN`, `FAIL` or `SKIP`, with the fix for each problem. It needs no Qovery account.
+The preflight reads your cluster with your current kubeconfig context and reports each check as `PASS`, `WARN`, `FAIL` or `SKIP`, with the fix for each problem. It needs no Qovery account and is available from Qovery CLI 1.180.0.
 
 <Steps>
   <Step title="Install the Qovery CLI">
@@ -73,6 +73,12 @@ The preflight only sends read requests and one permission review to the Kubernet
 | Cluster DNS | The `kube-dns` Service has no ready endpoint | The `kube-dns` Service does not exist, so DNS could not be verified |
 | LoadBalancer Services | | A LoadBalancer Service has no address |
 | metrics-server | | The `metrics.k8s.io` API is not available |
+
+The table describes the checks for the Qovery Operator installation. When the preflight picks the installation with the Qovery CLI (any cluster other than EKS, GKE or Kapsule, or `--install-path cli`):
+
+- An existing cert-manager, ExternalDNS or Envoy Gateway is a warning, not a failure. `qovery cluster install` installs these components too: turn off the Qovery copy in the Helm values file it generates, or remove the existing one.
+- An existing Helm release `qovery` is your CLI installation, so it passes.
+- The cloud provider result tells you which installation to use and never fails.
 
 The preflight also reports the provider of your nodes and the installation to use. This result is informational and never fails the preflight: on EKS, GKE or Kapsule it confirms the Qovery Operator installation, and on any other cluster it recommends the [installation with the Qovery CLI](/configuration/integrations/kubernetes/byok-legacy).
 

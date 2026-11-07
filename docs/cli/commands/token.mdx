@@ -183,13 +183,15 @@ jobs:
 
 export QOVERY_CLI_ACCESS_TOKEN="${QOVERY_MONITORING_TOKEN}"
 
-qovery auth
+# No `qovery auth` needed: the CLI uses QOVERY_CLI_ACCESS_TOKEN directly
 
-# Get status of all services
-qovery status --format json > status.json
+# Get the status of every service in the environment
+qovery environment statuses \
+  --organization "My Organization" --project "My Project" --environment "production" \
+  --json > status.json
 
 # Check for errors
-if jq -e '.services[] | select(.status == "ERROR")' status.json > /dev/null; then
+if jq -e '[.applications[]?, .containers[]?, .databases[]?, .jobs[]?, .helms[]?] | map(select(.state | test("ERROR"))) | length > 0' status.json > /dev/null; then
   echo "ERROR: Services with errors detected"
   # Send alert
 fi

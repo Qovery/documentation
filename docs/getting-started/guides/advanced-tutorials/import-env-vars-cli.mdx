@@ -148,11 +148,8 @@ Secrets are encrypted and cannot be viewed in plain text after import. They can 
 ### Via CLI
 
 ```bash
-# List environment variables
-qovery env list
-
-# List secrets (values will be hidden)
-qovery secret list
+# List environment variables and secrets of an application (secret values are hidden)
+qovery application env list --application "my-app"
 ```
 
 ---
@@ -171,10 +168,10 @@ qovery env import .env.production
 
 ### Override Existing Variables
 
-Use the `--force` flag to override existing variables:
+`qovery env import` asks whether to overwrite variables that already exist; answer **Yes** to override them (there is no `--force` flag):
 
 ```bash
-qovery env import .env.development --force
+qovery env import .env.development
 ```
 
 ### Import Specific Variables

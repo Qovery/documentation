@@ -58,6 +58,23 @@ Install Qovery on your cluster:
 qovery cluster install
 ```
 
+### Check a Cluster Before Installing
+
+Check that the cluster of your current kubeconfig context can run Qovery before you install the Qovery Operator. The command only reads from the cluster and needs no Qovery account. It exits with status `1` when a check fails.
+
+```bash
+qovery cluster preflight
+```
+
+| Flag | Description |
+|------|-------------|
+| `--context` | Kubeconfig context to check (default: the current context) |
+| `--kubeconfig` | Path to the kubeconfig file (default: `$KUBECONFIG` or `~/.kube/config`) |
+| `--loki-object-storage` | Loki will store logs in object storage, so no default StorageClass is needed |
+| `--json` | JSON output |
+
+See [Supported cluster setups](/configuration/integrations/kubernetes/byok-supported-setups) for the list of checks.
+
 ### Upgrade Cluster
 
 Upgrade a cluster to the next Kubernetes version:
@@ -163,11 +180,8 @@ This opens a debug shell inside your cluster with kubectl access, perfect for tr
 ### List All Clusters
 
 ```bash
-# Set organization context
-qovery context set --organization "My Org"
-
-# List clusters
-qovery cluster list
+# List clusters of an organization
+qovery cluster list --organization "My Org"
 
 # List clusters with JSON output
 qovery cluster list --json
@@ -254,4 +268,4 @@ Use `qovery cluster lock` during planned maintenance to prevent accidental chang
 
 ## Related Documentation
 
-- [Connect to EKS with kubectl](/integrations/kubernetes/eks/kubectl-access) - Comprehensive guide for kubectl access
+- [Connect to EKS with kubectl](/configuration/connect-to-cluster) - Comprehensive guide for kubectl access

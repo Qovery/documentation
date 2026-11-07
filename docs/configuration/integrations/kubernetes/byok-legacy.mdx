@@ -1,7 +1,6 @@
 ---
 title: "BYOK with the Qovery CLI"
-description: "Install Qovery with the Qovery CLI on a Kubernetes cluster that the Qovery Operator does not support yet"
-noindex: true
+description: "Install Qovery with the Qovery CLI on any Kubernetes cluster other than EKS, GKE and Scaleway Kapsule, such as AKS, k3s or an on-premise cluster"
 ---
 
 import InstallQoveryCLI from '/snippets/install-qovery-cli.mdx';
@@ -10,19 +9,19 @@ import InstallQoveryCLI from '/snippets/install-qovery-cli.mdx';
 
 Bring Your Own Kubernetes (BYOK) allows you to connect any Kubernetes cluster to Qovery. You maintain control over your cluster infrastructure while Qovery manages application deployments.
 
-<Warning>
-This installation is kept for providers that the Qovery Operator does not support yet and on-premise clusters. For an AWS, GCP or Scaleway cluster, use [Bring Your Own Kubernetes (BYOK)](/configuration/integrations/kubernetes/byok).
-</Warning>
+<Info>
+Use this installation for any cluster other than Amazon EKS, Google GKE and Scaleway Kapsule, for example Azure AKS, k3s or an on-premise cluster. For an EKS, GKE or Kapsule cluster, use the [Qovery Operator installation](/configuration/integrations/kubernetes/byok). See [Which installation to use](/configuration/integrations/kubernetes/byok-supported-setups#which-installation-to-use).
 
-## Supported Kubernetes
+This installation is available on every Qovery plan, including Free.
+</Info>
+
+## Clusters this installation covers
 
 <CardGroup cols={3}>
   <Card title="Cloud Managed" icon="cloud">
-    - AWS EKS
-    - Google GKE
     - Azure AKS
-    - Scaleway Kapsule
     - DigitalOcean DOKS
+    - Other managed Kubernetes services
   </Card>
 
   <Card title="Self-Managed" icon="server">
@@ -43,7 +42,7 @@ This installation is kept for providers that the Qovery Operator does not suppor
 
 ## Requirements
 
-<Check>Kubernetes 1.24 or higher</Check>
+<Check>Kubernetes 1.31 or later</Check>
 <Check>kubectl access with cluster-admin permissions</Check>
 <Check>LoadBalancer support (cloud or MetalLB for on-premise)</Check>
 <Check>Storage class for persistent volumes</Check>

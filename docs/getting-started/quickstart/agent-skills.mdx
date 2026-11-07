@@ -27,8 +27,8 @@ curl -fsSL https://skill.qovery.com/install.sh | bash
   <input type="radio" name="qovery-skill" id="sk-optimize" className="skill-radio" />
   <input type="radio" name="qovery-skill" id="sk-speedup" className="skill-radio" />
   <input type="radio" name="qovery-skill" id="sk-preview" className="skill-radio" />
-  <input type="radio" name="qovery-skill" id="sk-builder-env" className="skill-radio" />
-  <input type="radio" name="qovery-skill" id="sk-builder-portal" className="skill-radio" />
+  <input type="radio" name="qovery-skill" id="sk-signup" className="skill-radio" />
+  <input type="radio" name="qovery-skill" id="sk-terraform" className="skill-radio" />
 
   <div className="skills-grid">
     <label htmlFor="sk-onboard" className="skill-card">
@@ -55,13 +55,13 @@ curl -fsSL https://skill.qovery.com/install.sh | bash
       <span className="skill-card-name">qovery-preview</span>
       <span className="skill-card-desc">Per-PR environments</span>
     </label>
-    <label htmlFor="sk-builder-env" className="skill-card">
-      <span className="skill-card-name">qovery-builder-env</span>
-      <span className="skill-card-desc">Team self-service</span>
+    <label htmlFor="sk-signup" className="skill-card">
+      <span className="skill-card-name">qovery-signup</span>
+      <span className="skill-card-desc">Account + organization</span>
     </label>
-    <label htmlFor="sk-builder-portal" className="skill-card">
-      <span className="skill-card-name">qovery-builder-portal</span>
-      <span className="skill-card-desc">Web portal</span>
+    <label htmlFor="sk-terraform" className="skill-card">
+      <span className="skill-card-name">qovery-terraform</span>
+      <span className="skill-card-desc">Setup to Terraform</span>
     </label>
   </div>
 
@@ -72,8 +72,8 @@ curl -fsSL https://skill.qovery.com/install.sh | bash
     <span className="sk-desc sk-desc-optimize">Analyzes costs across 7 dimensions. Recommends right-sizing, spot instances, and sleep mode. CSV export.</span>
     <span className="sk-desc sk-desc-speedup">Measures full pipeline timing, finds bottlenecks, fixes Dockerfile layers and build cache.</span>
     <span className="sk-desc sk-desc-preview">Full-stack preview environment per PR — app, database, unique URL. Auto-deleted on merge.</span>
-    <span className="sk-desc sk-desc-builder-env">Self-service environments for non-technical teams — with RBAC so they can't touch production.</span>
-    <span className="sk-desc sk-desc-builder-portal">Generates and deploys a web portal — SSO login, one-click environments, no CLI needed.</span>
+    <span className="sk-desc sk-desc-signup">From nothing to a working account: installs the CLI, signs you in with qovery auth --headless (the first login creates the account) and creates your organization.</span>
+    <span className="sk-desc sk-desc-terraform">Turns an existing Console setup into Terraform: generates the Qovery provider configuration, imports the resources and validates it in a test clone.</span>
   </div>
 
   <div className="terminal-window skills-terminal">
@@ -95,8 +95,8 @@ curl -fsSL https://skill.qovery.com/install.sh | bash
               'sk-optimize': 'Optimize my Qovery costs',
               'sk-speedup': 'My deployments are slow',
               'sk-preview': 'Set up preview environments for my project',
-              'sk-builder-env': 'Set up builder environments for non-tech teams',
-              'sk-builder-portal': 'Generate a builder portal for my team',
+              'sk-signup': 'Sign me up for Qovery and create my organization',
+              'sk-terraform': 'Convert my Qovery setup to Terraform',
             };
             const checked = document.querySelector('input[name="qovery-skill"]:checked');
             const text = checked ? prompts[checked.id] : '';
@@ -119,8 +119,8 @@ curl -fsSL https://skill.qovery.com/install.sh | bash
               'sk-optimize': 'Optimize my Qovery costs',
               'sk-speedup': 'My deployments are slow',
               'sk-preview': 'Set up preview environments for my project',
-              'sk-builder-env': 'Set up builder environments for non-tech teams',
-              'sk-builder-portal': 'Generate a builder portal for my team',
+              'sk-signup': 'Sign me up for Qovery and create my organization',
+              'sk-terraform': 'Convert my Qovery setup to Terraform',
             };
             const checked = document.querySelector('input[name="qovery-skill"]:checked');
             const text = checked ? prompts[checked.id] : '';
@@ -144,8 +144,8 @@ curl -fsSL https://skill.qovery.com/install.sh | bash
       <span className="terminal-prompt sk-prompt sk-prompt-optimize">Optimize my Qovery costs<span className="terminal-cursor"></span></span>
       <span className="terminal-prompt sk-prompt sk-prompt-speedup">My deployments are slow<span className="terminal-cursor"></span></span>
       <span className="terminal-prompt sk-prompt sk-prompt-preview">Set up preview environments for my project<span className="terminal-cursor"></span></span>
-      <span className="terminal-prompt sk-prompt sk-prompt-builder-env">Set up builder environments for non-tech teams<span className="terminal-cursor"></span></span>
-      <span className="terminal-prompt sk-prompt sk-prompt-builder-portal">Generate a builder portal for my team<span className="terminal-cursor"></span></span>
+      <span className="terminal-prompt sk-prompt sk-prompt-signup">Sign me up for Qovery and create my organization<span className="terminal-cursor"></span></span>
+      <span className="terminal-prompt sk-prompt sk-prompt-terraform">Convert my Qovery setup to Terraform<span className="terminal-cursor"></span></span>
     </div>
   </div>
 </div>
@@ -162,7 +162,7 @@ curl -fsSL https://skill.qovery.com/install.sh | bash
     Every agent action logged — what changed, when, by which agent.
   </Card>
   <Card title="RBAC for agents" icon="shield-check">
-    Agents respect your permission model. Builders deploy, can't touch cluster config.
+    Agents respect your permission model. Scope them with API Policy Tokens so they can deploy without touching cluster config.
   </Card>
   <Card title="Ephemeral by design" icon="clock">
     Environments up and down in minutes. Sleep mode and TTL handle cleanup.

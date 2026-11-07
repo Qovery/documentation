@@ -799,8 +799,8 @@ html[data-theme="dark"] .skill-card-desc {
 #sk-optimize:checked ~ .skills-grid label[for="sk-optimize"],
 #sk-speedup:checked ~ .skills-grid label[for="sk-speedup"],
 #sk-preview:checked ~ .skills-grid label[for="sk-preview"],
-#sk-builder-env:checked ~ .skills-grid label[for="sk-builder-env"],
-#sk-builder-portal:checked ~ .skills-grid label[for="sk-builder-portal"] {
+#sk-signup:checked ~ .skills-grid label[for="sk-signup"],
+#sk-terraform:checked ~ .skills-grid label[for="sk-terraform"] {
   border-color: #642DFF;
   background: rgba(100, 45, 255, 0.1);
 }
@@ -832,8 +832,8 @@ html[data-theme="dark"] .skills-desc-wrap {
 #sk-optimize:checked ~ .skills-desc-wrap .sk-desc-optimize { display: block; }
 #sk-speedup:checked ~ .skills-desc-wrap .sk-desc-speedup { display: block; }
 #sk-preview:checked ~ .skills-desc-wrap .sk-desc-preview { display: block; }
-#sk-builder-env:checked ~ .skills-desc-wrap .sk-desc-builder-env { display: block; }
-#sk-builder-portal:checked ~ .skills-desc-wrap .sk-desc-builder-portal { display: block; }
+#sk-signup:checked ~ .skills-desc-wrap .sk-desc-signup { display: block; }
+#sk-terraform:checked ~ .skills-desc-wrap .sk-desc-terraform { display: block; }
 
 /* All skill prompts hidden by default */
 .sk-prompt { display: none; }
@@ -845,8 +845,8 @@ html[data-theme="dark"] .skills-desc-wrap {
 #sk-optimize:checked ~ .skills-terminal .sk-prompt-optimize { display: block; }
 #sk-speedup:checked ~ .skills-terminal .sk-prompt-speedup { display: block; }
 #sk-preview:checked ~ .skills-terminal .sk-prompt-preview { display: block; }
-#sk-builder-env:checked ~ .skills-terminal .sk-prompt-builder-env { display: block; }
-#sk-builder-portal:checked ~ .skills-terminal .sk-prompt-builder-portal { display: block; }
+#sk-signup:checked ~ .skills-terminal .sk-prompt-signup { display: block; }
+#sk-terraform:checked ~ .skills-terminal .sk-prompt-terraform { display: block; }
 
 /* Terminal action buttons (right side of bar) */
 .terminal-actions {

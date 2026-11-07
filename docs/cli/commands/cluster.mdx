@@ -163,11 +163,8 @@ This opens a debug shell inside your cluster with kubectl access, perfect for tr
 ### List All Clusters
 
 ```bash
-# Set organization context
-qovery context set --organization "My Org"
-
-# List clusters
-qovery cluster list
+# List clusters of an organization
+qovery cluster list --organization "My Org"
 
 # List clusters with JSON output
 qovery cluster list --json

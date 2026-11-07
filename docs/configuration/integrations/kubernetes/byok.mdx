@@ -7,8 +7,12 @@ tag: "PREVIEW"
 The Qovery Operator connects a Kubernetes cluster you already run to Qovery. You create the cluster in the Qovery Console, install the Operator once with Helm, and Qovery then installs and updates the Qovery stack on the cluster from a platform profile.
 
 <Info>
-The Qovery Operator installation is in Preview and available to every organization on the Enterprise plan. [Current limitations](#current-limitations) lists what the Preview does not cover yet. It supports EKS, GKE and Scaleway Kapsule. Every other cluster, such as Azure AKS, k3s or an on-premise cluster, uses the [installation with the Qovery CLI](/configuration/integrations/kubernetes/byok-legacy). See [Which installation to use](/configuration/integrations/kubernetes/byok-supported-setups#which-installation-to-use).
+The Qovery Operator installation is in Preview and available on every Qovery plan, including Free. [Current limitations](#current-limitations) lists what the Preview does not cover yet. It supports EKS, GKE and Scaleway Kapsule. Every other cluster, such as Azure AKS, k3s or an on-premise cluster, uses the [installation with the Qovery CLI](/configuration/integrations/kubernetes/byok-legacy). See [Which installation to use](/configuration/integrations/kubernetes/byok-supported-setups#which-installation-to-use).
 </Info>
+
+<Tip>
+Want to try Qovery before you connect a real cluster? Run `qovery demo up`. It creates a local k3s cluster with Docker and installs Qovery on it in a few minutes. See [Local cluster for development](/configuration/integrations/kubernetes/docker).
+</Tip>
 
 ## How it works
 
@@ -23,7 +27,7 @@ The Qovery Operator installation is in Preview and available to every organizati
 
 ## Prerequisites
 
-<Check>A Qovery organization on the Enterprise plan</Check>
+<Check>A Qovery organization, on any plan including Free</Check>
 <Check>A running Kubernetes cluster on AWS (EKS), GCP (GKE) or Scaleway (Kapsule), with Kubernetes 1.31 or later</Check>
 <Check>`kubectl` access to the cluster with `cluster-admin` rights and `helm` on your machine, only to install the Operator once. Later Operator updates go through Qovery.</Check>
 <Check>At least one node with 4 vCPU and 8 GiB of memory free, for example an 8 vCPU node. Each build runs in a builder pod that requests the CPU and RAM of the service [build settings](/configuration/service-advanced-settings#build-settings), 4000m and 8 GiB by default, so a 4 vCPU node cannot host it.</Check>

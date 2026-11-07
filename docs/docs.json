@@ -2356,6 +2356,14 @@
       "destination": "/cli/overview"
     },
     {
+      "source": "/rde",
+      "destination": "/getting-started/quickstart/ai-agent"
+    },
+    {
+      "source": "/rde/:slug*",
+      "destination": "/getting-started/quickstart/ai-agent"
+    },
+    {
       "source": "/docs/:slug*",
       "destination": "/:slug*"
     }

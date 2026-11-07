@@ -78,7 +78,7 @@ Qovery integrates with Amazon Elastic Kubernetes Service (EKS) to provide manage
 
   <Tab title="BYOK">
     **Requirements**:
-    - EKS cluster (Kubernetes 1.24+)
+    - EKS cluster (Kubernetes 1.31 or later)
     - kubectl admin access
     - AWS credentials with appropriate permissions
     - Load Balancer support
@@ -86,10 +86,13 @@ Qovery integrates with Amazon Elastic Kubernetes Service (EKS) to provide manage
     - Metrics server
 
     **What Qovery Installs**:
-    - Qovery agent (manages deployments)
-    - Nginx Ingress Controller (if not present)
-    - Cert-manager (for SSL certificates)
-    - External-DNS (for domain management)
+    - Qovery Operator, Qovery agent and shell agent (manage deployments)
+    - Envoy Gateway (exposes your applications)
+    - cert-manager (for TLS certificates)
+    - ExternalDNS (for the domain provided by Qovery)
+    - Loki and Alloy (for application logs)
+
+    The cluster must not already run cert-manager, ExternalDNS or Envoy Gateway. See [Bring Your Own Kubernetes (BYOK)](/configuration/integrations/kubernetes/byok).
 
     **Networking**:
     - Your VPC and subnets

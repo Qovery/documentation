@@ -1,0 +1,137 @@
+---
+title: "Supported cluster setups for your own cluster"
+description: "Which installation to use for your Kubernetes cluster, the minimum Kubernetes version, prerequisites and incompatible components, and how to check your cluster before you install"
+---
+
+import InstallQoveryCLI from '/snippets/install-qovery-cli.mdx';
+
+Qovery runs on any Kubernetes cluster. There are two ways to install it on a cluster you already run, and the provider of your cluster decides which one to use.
+
+## Which installation to use
+
+| Your cluster | Installation | How it works |
+| --- | --- | --- |
+| Amazon EKS (AWS), Google GKE (GCP) or Scaleway Kapsule | [Qovery Operator installation](/configuration/integrations/kubernetes/byok) (Preview) | You create the cluster in the Qovery Console and install the Operator once with Helm. Qovery then installs and updates its stack on the cluster. |
+| Any other cluster: Azure AKS, k3s, OpenShift, Rancher, on-premise or another provider | [Installation with the Qovery CLI](/configuration/integrations/kubernetes/byok-legacy) | You run `qovery cluster install` with your kubeconfig pointing to the cluster. |
+
+Both installations need **Kubernetes 1.31 or later**.
+
+The rest of this page covers the Qovery Operator installation: the checks to run before you install, its prerequisites and the components that must not already run on the cluster.
+
+Most failed installations come from a component that already exists on the cluster, such as cert-manager, or from a missing default StorageClass. Run the preflight first: it takes a few seconds and changes nothing on the cluster.
+
+## Check your cluster before you install
+
+The preflight reads your cluster with your current kubeconfig context and reports each check as `PASS`, `WARN`, `FAIL` or `SKIP`, with the fix for each problem. It needs no Qovery account.
+
+<Steps>
+  <Step title="Install the Qovery CLI">
+    <InstallQoveryCLI />
+  </Step>
+
+  <Step title="Point kubectl to your cluster">
+    ```bash
+    kubectl config current-context
+    ```
+
+    The preflight checks this context. To check another one, pass `--context <name>` and, if needed, `--kubeconfig <path>`.
+  </Step>
+
+  <Step title="Run the preflight">
+    ```bash
+    qovery cluster preflight
+    ```
+
+    If Loki will store logs in object storage (`s3`, `gcs` or `s3Compatible`) instead of the default `pvc` storage, add `--loki-object-storage`. Add `--json` for a machine-readable report.
+  </Step>
+
+  <Step title="Fix the failed checks">
+    The command exits with status `1` when at least one check fails. A failed check would make the installation or the first deployment of the cluster fail, so fix it and run the preflight again. A warning does not block the installation but can break a feature, for example autoscaling without metrics-server.
+  </Step>
+</Steps>
+
+The preflight only sends read requests and one permission review to the Kubernetes API. It creates, changes and deletes nothing, and it reads no Secret content.
+
+### What the preflight checks
+
+| Check | Fails when | Warns when |
+| --- | --- | --- |
+| Kubernetes API and version | The API is unreachable, or Kubernetes is older than 1.30 | Kubernetes is 1.30, or newer than 1.36 |
+| cluster-admin permissions | Your kubeconfig user is not cluster-admin | |
+| Node OS and architecture | No Ready Linux node with an `amd64` or `arm64` CPU | Some nodes cannot run Qovery, for example Windows nodes |
+| Node size for builds | | No schedulable node has 4 vCPU and 8 GiB allocatable |
+| Namespace `qovery` | The namespace is being deleted | |
+| Legacy Qovery installation | The Helm release `qovery` of a legacy installation exists | |
+| Existing cert-manager | cert-manager or its CRDs exist outside the Qovery installation | |
+| Existing ExternalDNS | ExternalDNS runs outside the Qovery installation | |
+| Existing Envoy Gateway | Envoy Gateway or its CRDs exist outside the Qovery installation | |
+| Existing Gateway API CRDs | | The Gateway API CRDs were installed by another tool |
+| Default StorageClass | No default StorageClass and Loki uses `pvc` storage | Several StorageClasses are marked as default |
+| Amazon EBS CSI driver (AWS only) | The driver is missing and Loki uses `pvc` storage | The driver is missing and Loki uses object storage |
+| Cluster DNS | The `kube-dns` Service has no ready endpoint | The `kube-dns` Service does not exist, so DNS could not be verified |
+| LoadBalancer Services | | A LoadBalancer Service has no address |
+| metrics-server | | The `metrics.k8s.io` API is not available |
+
+The preflight also reports the provider of your nodes and the installation to use. This result is informational and never fails the preflight: on EKS, GKE or Kapsule it confirms the Qovery Operator installation, and on any other cluster it recommends the [installation with the Qovery CLI](/configuration/integrations/kubernetes/byok-legacy).
+
+### What the preflight does not check
+
+Some prerequisites cannot be verified without creating a resource on the cluster. Check them yourself:
+
+- **Outbound access and public DNS from a Pod.** The lookup must return an address:
+
+  ```bash
+  kubectl -n default run qovery-dns-preflight --rm -i --restart=Never --image=busybox:1.36 -- nslookup engine.qovery.com
+  ```
+
+  This command creates a temporary Pod and deletes it when it ends.
+- **Public load balancers.** The preflight only looks at LoadBalancer Services that already exist. If there are none, it reports `SKIP`. The Qovery gateway needs the cluster to create a public load balancer.
+- **Free capacity.** The preflight compares the allocatable CPU and memory of each node with what a build needs. It does not know what your workloads already use.
+
+Once the Operator is installed, Qovery runs more checks before each deployment of the cluster. See [Preflight checks](/configuration/integrations/kubernetes/byok#preflight-checks).
+
+## Operator installation: providers and versions
+
+| | Supported |
+| --- | --- |
+| Providers | Amazon EKS (AWS), Google GKE (GCP), Scaleway Kapsule |
+| Kubernetes versions | 1.31 or later |
+| Node operating system | Linux |
+| Node CPU architectures | `amd64` and `arm64` |
+| Node autoscaling | Managed node groups, node pools and Karpenter. See the node label keys in [Create the cluster](/configuration/integrations/kubernetes/byok#create-the-cluster). |
+
+Kubernetes 1.30 can reject part of the Gateway API CRDs that Qovery installs, and older versions lack an API they use. The preflight fails below 1.30 and warns on 1.30.
+
+For any other cluster, such as Azure AKS, k3s or an on-premise cluster, use the [installation with the Qovery CLI](/configuration/integrations/kubernetes/byok-legacy).
+
+## Operator installation: prerequisites
+
+The full list, with the cloud credential permissions, is in [Prerequisites](/configuration/integrations/kubernetes/byok#prerequisites). In short, the cluster needs:
+
+- `kubectl` access with `cluster-admin` rights and `helm` on your machine, only to install the Operator once.
+- At least one Linux node with 4 vCPU and 8 GiB of memory free, for the builder pods.
+- A default StorageClass, unless Loki stores logs in object storage. On EKS, the Amazon EBS CSI driver add-on with its IAM role.
+- The ability to create a public load balancer for a Service of type `LoadBalancer`. On EKS, the public subnets must carry the `kubernetes.io/role/elb=1` tag.
+- A working cluster DNS (CoreDNS) that resolves public names.
+- Outbound internet access to Qovery and to public container registries.
+- metrics-server, for services with autoscaling.
+
+## Components that must not already run on the cluster
+
+Qovery installs these components in the `qovery` namespace and manages them. It does not take over an installation that already exists.
+
+| Component | What Qovery installs | If it already runs on the cluster |
+| --- | --- | --- |
+| cert-manager | cert-manager v1.20, Helm release `cert-manager` | Use a cluster without cert-manager, or uninstall it and its CRDs if nothing else uses it. |
+| ExternalDNS | ExternalDNS for the domain provided by Qovery, Helm release `external-dns` | Use a cluster without ExternalDNS, or uninstall it if nothing else uses it. |
+| Envoy Gateway | Envoy Gateway v1.9, Helm releases `envoy-gateway-crd` and `envoy-gateway` | Use a cluster without Envoy Gateway, or uninstall it and its CRDs if nothing else uses it. |
+| Gateway API CRDs | The experimental channel of the Gateway API CRDs, bundle v1.6.1, from release `envoy-gateway-crd` | CRDs installed and kept up to date by another tool, such as the GKE Gateway API, a service mesh or a load balancer controller, can conflict with Qovery. On GKE, disable the Gateway API of the cluster if nothing uses it. Otherwise, contact Qovery Support before you install. |
+| Legacy Qovery installation | | A cluster installed with `qovery cluster install` holds the Helm release `qovery`. The Qovery Operator does not take it over. Uninstall it with `helm -n qovery uninstall qovery` and remove its cert-manager, ExternalDNS and Gateway resources, or use another cluster. |
+
+<Warning>
+Uninstalling cert-manager, ExternalDNS or Envoy Gateway removes the certificates, DNS records or routes they manage. Check what depends on them before you remove them, or use a dedicated cluster for Qovery.
+</Warning>
+
+## Get help
+
+If the preflight reports a problem you cannot fix, or you are not sure which installation fits your cluster, contact Qovery Support through your usual channel: in-app chat, shared Slack or Microsoft Teams channel, or email. Include the output of `qovery cluster preflight --json`. It contains no credential.

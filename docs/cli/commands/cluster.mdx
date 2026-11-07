@@ -58,6 +58,23 @@ Install Qovery on your cluster:
 qovery cluster install
 ```
 
+### Check a Cluster Before Installing
+
+Check that the cluster of your current kubeconfig context can run Qovery before you install the Qovery Operator. The command only reads from the cluster and needs no Qovery account. It exits with status `1` when a check fails.
+
+```bash
+qovery cluster preflight
+```
+
+| Flag | Description |
+|------|-------------|
+| `--context` | Kubeconfig context to check (default: the current context) |
+| `--kubeconfig` | Path to the kubeconfig file (default: `$KUBECONFIG` or `~/.kube/config`) |
+| `--loki-object-storage` | Loki will store logs in object storage, so no default StorageClass is needed |
+| `--json` | JSON output |
+
+See [Supported cluster setups](/configuration/integrations/kubernetes/byok-supported-setups) for the list of checks.
+
 ### Upgrade Cluster
 
 Upgrade a cluster to the next Kubernetes version:

@@ -7,7 +7,7 @@ tag: "PREVIEW"
 The Qovery Operator connects a Kubernetes cluster you already run to Qovery. You create the cluster in the Qovery Console, install the Operator once with Helm, and Qovery then installs and updates the Qovery stack on the cluster from a platform profile.
 
 <Info>
-The Qovery Operator installation is in Preview and available to every organization on the Enterprise plan. [Current limitations](#current-limitations) lists what the Preview does not cover yet. Other providers and on-premise clusters use the [installation with the Qovery CLI](/configuration/integrations/kubernetes/byok-legacy).
+The Qovery Operator installation is in Preview and available to every organization on the Enterprise plan. [Current limitations](#current-limitations) lists what the Preview does not cover yet. It supports EKS, GKE and Scaleway Kapsule. Every other cluster, such as Azure AKS, k3s or an on-premise cluster, uses the [installation with the Qovery CLI](/configuration/integrations/kubernetes/byok-legacy). See [Which installation to use](/configuration/integrations/kubernetes/byok-supported-setups#which-installation-to-use).
 </Info>
 
 ## How it works
@@ -24,7 +24,7 @@ The Qovery Operator installation is in Preview and available to every organizati
 ## Prerequisites
 
 <Check>A Qovery organization on the Enterprise plan</Check>
-<Check>A running Kubernetes cluster on AWS (EKS), GCP (GKE) or Scaleway (Kapsule)</Check>
+<Check>A running Kubernetes cluster on AWS (EKS), GCP (GKE) or Scaleway (Kapsule), with Kubernetes 1.31 or later</Check>
 <Check>`kubectl` access to the cluster with `cluster-admin` rights and `helm` on your machine, only to install the Operator once. Later Operator updates go through Qovery.</Check>
 <Check>At least one node with 4 vCPU and 8 GiB of memory free, for example an 8 vCPU node. Each build runs in a builder pod that requests the CPU and RAM of the service [build settings](/configuration/service-advanced-settings#build-settings), 4000m and 8 GiB by default, so a 4 vCPU node cannot host it.</Check>
 <Check>A cluster that does not already run cert-manager, ExternalDNS or Envoy Gateway</Check>
@@ -36,7 +36,9 @@ The Qovery Operator installation is in Preview and available to every organizati
 <Check>Outbound internet access from the cluster to Qovery and to public container registries</Check>
 <Check>A Qovery cloud credential for the provider of the cluster. You can create it during the installation.</Check>
 
-The [preflight checks](#preflight-checks) verify several of these prerequisites at each deployment of the cluster.
+Before you install, run `qovery cluster preflight` with your kubeconfig pointing to the cluster. It checks most of these prerequisites and the components that must not already run on the cluster, changes nothing, and tells you how to fix each problem. See [Supported cluster setups](/configuration/integrations/kubernetes/byok-supported-setups).
+
+The [preflight checks](#preflight-checks) verify several of these prerequisites again at each deployment of the cluster.
 
 ### Credential permissions
 
@@ -291,8 +293,9 @@ Create the bucket and its identity **before you deploy the profile**, then fill 
   </Step>
 
   <Step title="Install the Qovery Operator">
-    1. Download the Helm values file `values.yaml`. It contains the credential of the cluster, so keep it private and delete it once the Operator is installed.
-    2. From the folder of the values file, with a kubeconfig pointing to your cluster, run the Helm command shown in the Console.
+    1. With a kubeconfig pointing to your cluster, run `qovery cluster preflight` and fix the failed checks. See [Check your cluster before you install](/configuration/integrations/kubernetes/byok-supported-setups#check-your-cluster-before-you-install).
+    2. Download the Helm values file `values.yaml`. It contains the credential of the cluster, so keep it private and delete it once the Operator is installed.
+    3. From the folder of the values file, with a kubeconfig pointing to your cluster, run the Helm command shown in the Console.
 
     Keep the page open. Once the Operator connects to Qovery, the Console opens the profile of the cluster and shows the Operator status at the bottom of the profile sidebar.
 
@@ -318,6 +321,8 @@ Once the deployment succeeds, you can deploy your applications on the cluster.
 
 ## Preflight checks
 
+To check the cluster before the Operator is installed, use `qovery cluster preflight`, described in [Supported cluster setups](/configuration/integrations/kubernetes/byok-supported-setups).
+
 Before each deployment of the cluster, Qovery checks your configuration and the cluster itself. The results appear in the cluster deployment logs, under **Control-plane preflight** and **In-cluster preflight checks**, with a recommended action for each check that fails.
 
 The checks cover:
@@ -334,7 +339,7 @@ A blocking check that fails stops the deployment before Qovery changes anything 
 
 - **DNS**: applications are exposed on the domain provided by Qovery. The DNS provider of the cluster cannot be changed.
 - **Observe and metrics**: Observe and the Monitoring graphs of the cluster and its services are not available on BYOK clusters yet, and Qovery installs no metrics stack on them. If you need them, tell us, since we prioritize BYOK features from customer requests.
-- **Existing installations**: Qovery does not adopt an existing cert-manager, ExternalDNS or Envoy Gateway installation. Use a cluster without them.
+- **Existing installations**: Qovery does not adopt an existing cert-manager, ExternalDNS or Envoy Gateway installation. Use a cluster without them. See [Components that must not already run on the cluster](/configuration/integrations/kubernetes/byok-supported-setups#components-that-must-not-already-run-on-the-cluster).
 - **Removal**: deleting the cluster in Qovery does not uninstall anything from the cluster. See [Remove the cluster](#remove-the-cluster).
 
 Need a component, a DNS provider or a cloud provider that is not covered yet? Contact Qovery Support through your usual channel: in-app chat, shared Slack or Microsoft Teams channel, or email.

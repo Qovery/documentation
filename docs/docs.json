@@ -261,6 +261,8 @@
                 "group": "Other Kubernetes",
                 "pages": [
                   "configuration/integrations/kubernetes/byok",
+                  "configuration/integrations/kubernetes/byok-supported-setups",
+                  "configuration/integrations/kubernetes/byok-legacy",
                   "configuration/integrations/kubernetes/docker"
                 ]
               }

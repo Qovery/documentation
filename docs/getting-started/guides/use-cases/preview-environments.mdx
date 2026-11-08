@@ -131,10 +131,25 @@ Even if not required, we recommend creating an [environment](/configuration/envi
 
 I assume you already have a working environment, so to create a blueprint environment you need to:
 
+<Tabs>
+  <Tab title="Console">
 1. Go to your working environment
 2. Click on "Actions" > "Clone"
 3. Name your environment "blueprint"
 4. Click on "Create"
+  </Tab>
+
+  <Tab title="CLI">
+    ```bash
+    qovery environment clone \
+      --project "My Project" \
+      --environment "production" \
+      --new-environment-name "blueprint"
+    ```
+
+    Add `--cluster` to put the blueprint on another cluster than production.
+  </Tab>
+</Tabs>
 
 <div className="video-container">
   <iframe src="https://www.loom.com/embed/a282d6b832794671a3582550aa45f9ae" width="100%" height="400px" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
@@ -150,9 +165,21 @@ Preview Environments are deployed on the blueprint's cluster. To send them to an
 
 Now, you can go to turn on Preview Environments by:
 
+<Tabs>
+  <Tab title="Console">
 1. Click on your `Blueprint` environment "Settings".
 2. Click on the `Preview environments` tab
 3. Turn on Preview Environment feature for all your applications by clicking on `Activate preview environment for all apps`.
+  </Tab>
+
+  <Tab title="CLI and API">
+    Set `auto_preview` to `true` in the deployment rule of the blueprint environment, as shown in the **With the CLI** tab of the [Quick Path](#quick-path-preview-environments-on-your-existing-cluster).
+  </Tab>
+
+  <Tab title="Terraform">
+    Set `auto_preview = true` on each `qovery_application` of the blueprint environment, then run `terraform apply`.
+  </Tab>
+</Tabs>
 
 <div className="video-container">
   <iframe src="https://www.loom.com/embed/55b9d99a59524e1cb7875f7db7691fbe" width="100%" height="400px" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
@@ -162,6 +189,13 @@ Now, you can go to turn on Preview Environments by:
 ### Change your base branch
 
 Now that you have turned on the Preview Environment feature, you need to change the base branch from your applications inside your Blueprint Environment. Let's say, every new feature branch you create are coming from `staging`. Then you will need to change all your applications to target the `staging` branch.
+
+From the CLI, run this for each application of the blueprint:
+
+```bash
+qovery application update --project "My Project" --environment "blueprint" \
+  --application "my-api" --branch "staging"
+```
 
 <div className="video-container">
   <iframe src="https://www.loom.com/embed/67df458d340d484fa1e675cc20e36caf" width="100%" height="400px" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
@@ -188,8 +222,23 @@ Before creating a Preview Environment, validate that your Blueprint environment 
 
 Once done, you need to:
 
+<Tabs>
+  <Tab title="Console">
 1. Stop your Blueprint environment by clicking on "Actions" > "Stop".
 2. Turn off "auto-deploy" by clicking on "Settings" > "Deployment" > "Auto-deploy off" > "Save".
+  </Tab>
+
+  <Tab title="CLI">
+    ```bash
+    qovery environment stop --project "My Project" --environment "blueprint" --watch
+
+    qovery application update --project "My Project" --environment "blueprint" \
+      --application "my-api" --auto-deploy=false
+    ```
+
+    Run `qovery application update` for each application of the blueprint.
+  </Tab>
+</Tabs>
 
 <div className="video-container">
   <iframe src="https://www.loom.com/embed/36b0bb48346f40f6ac8569a7b8dbc5b3" width="100%" height="400px" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
@@ -215,9 +264,19 @@ Qovery take care of cloning all your services and the configuration as well (Env
 
 You must see a new environment appearing in your environment list on Qovery. Wait until it is fully deployed, then you will be able to connect to it. This environment is fully isolated from your base environment.
 
+### Check it worked
+
+```bash
+qovery environment list --project "My Project"
+```
+
+The list shows a new environment of type `PREVIEW`. Its status becomes `DEPLOYED` once the deployment ends. To see the status of each of its services, run `qovery environment statuses --project "My Project" --environment "<previewEnvironmentName>"`.
+
 ## Delete a Preview Environment
 
 To delete you need to merge `test_qovery_preview_environment` into `staging`. You also have the ability to delete it manually on Qovery.
+
+To delete it from the CLI, run `qovery environment delete --project "My Project" --environment "<previewEnvironmentName>"`.
 
 <Warning>
 By merging into `staging`, Qovery will auto-redeploy the new version in your `staging` environment. Turn off `auto-deploy` from the `staging` environment settings if you want to manually deploy new version in staging.

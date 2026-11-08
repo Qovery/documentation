@@ -14,6 +14,8 @@ Agent Tasks are one-time or scheduled jobs delegated to AI agents, running on yo
 
 ## Creating an Agent
 
+<Tabs>
+  <Tab title="Console">
 <Steps>
   <Step title="Create an Agent Task">
     In your environment, open the **Automations** tab and click **Create agent task**. Choose **Create from template** to pick a ready-made template (see [Ready-Made Templates](#ready-made-templates) below), or **Create from scratch** to configure every part yourself.
@@ -28,7 +30,7 @@ Agent Tasks are one-time or scheduled jobs delegated to AI agents, running on yo
 
     Choose **Claude** (Anthropic) to use Claude directly through Anthropic with an Anthropic API key.
 
-+    For a gateway or custom endpoint, select **Anthropic-compatible** in the console. Use this option for an endpoint, such as OpenRouter, that supports the Anthropic Messages API. This lets you try alternative models through your gateway, subject to the compatibility limits below.
+    For a gateway or custom endpoint, select **Anthropic-compatible** in the console. Use this option for an endpoint, such as OpenRouter, that supports the Anthropic Messages API. This lets you try alternative models through your gateway, subject to the compatibility limits below.
 
     Enter the gateway's **Base URL** and token, which Qovery sends as a bearer token. The gateway must expose `/v1/messages` under that Base URL. For OpenRouter, enter `https://openrouter.ai/api`; its full Messages endpoint is `https://openrouter.ai/api/v1/messages`.
 
@@ -62,6 +64,47 @@ Agent Tasks are one-time or scheduled jobs delegated to AI agents, running on yo
     Send the agent's result somewhere when it's done. See [Outputs](#outputs) below.
   </Step>
 </Steps>
+  </Tab>
+
+  <Tab title="CLI and API">
+    You need the [Qovery CLI](/cli/overview), signed in with `qovery auth`, and `jq` to read the IDs that the API returns. The `qovery api` command sends authenticated requests to the [Qovery API](/api-reference/introduction).
+
+    Agent tasks are called agentic workflows in the API. Get the ID of a saved model provider token with `GET /organization/{organizationId}/llmProvider`, then create the agent task with `POST /environment/{environmentId}/agenticWorkflow`. Only `name` is required:
+
+    ```bash
+    ENVIRONMENT_ID="REPLACE_WITH_ENVIRONMENT_ID"  # from qovery environment list --json
+
+    AGENTIC_WORKFLOW_ID=$(qovery api "environment/$ENVIRONMENT_ID/agenticWorkflow" --input - <<'JSON' | jq -r .id
+    {
+      "name": "nightly-optimizer",
+      "agent_prompt": "Review the last deployments and propose faster build settings.",
+      "model": { "type": "CLAUDE", "llm_provider_id": "REPLACE_WITH_LLM_PROVIDER_ID" },
+      "resources": { "cpu_milli": 1000, "ram_mib": 2048, "gpu": 0, "storage_gib": 10 },
+      "governance": { "host_allowlist": ["github.com"] },
+      "execution_mode": "IN_PLACE",
+      "schedule": { "cron_expression": "0 8 * * 1-5", "timezone": "Europe/Paris" }
+    }
+    JSON
+    )
+    echo "$AGENTIC_WORKFLOW_ID"
+    ```
+
+    `model.type` is `CLAUDE` or `BEDROCK`. A token of type Anthropic-compatible is used with `CLAUDE`. `execution_mode` is `IN_PLACE` or `CLONE_ENVIRONMENT`. Omit `schedule` for an agent task triggered by its webhook only. To attach MCP servers or Qovery services as context, set `mcp_server_ids` and `context_service_ids`. See the [API reference](/api-reference/introduction) for the full schema.
+
+    The command stores the agent task ID in `AGENTIC_WORKFLOW_ID`. Run `qovery api "agenticWorkflow/$AGENTIC_WORKFLOW_ID"` to read its `webhook` URL.
+  </Tab>
+</Tabs>
+
+### Check it worked
+
+Trigger a run on demand, then read the run history:
+
+```bash
+qovery api "agenticWorkflow/$AGENTIC_WORKFLOW_ID/deploy" --method POST
+qovery api "agenticWorkflow/$AGENTIC_WORKFLOW_ID/runHistory"
+```
+
+The newest run comes first, with `trigger` set to `MANUAL`. Its `status` moves from `QUEUED` to `RUNNING`, then ends as `COMPLETED`, `FAILED` or `CANCELLED`. The same runs appear in the **Runs** tab of the agent task.
 
 <Frame>
   <img src="/images/configuration/agent-tasks/agent-task-creation-flow.png" alt="New agent task form with Context, Provider, MCP, Automations, and Instructions on the left, and Resources, Governance, Environment variables, and Advanced settings on the right" />

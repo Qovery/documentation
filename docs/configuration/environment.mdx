@@ -33,6 +33,8 @@ Production environments should not be stopped or deleted by anyone without caref
 
 ## Create an Environment
 
+<Tabs>
+  <Tab title="Console">
 <Steps>
   <Step title="Access Project">
     Navigate to the project where you want to create the environment
@@ -61,6 +63,61 @@ Production environments should not be stopped or deleted by anyone without caref
     Click **Create** to finalize the environment setup
   </Step>
 </Steps>
+  </Tab>
+
+  <Tab title="CLI and API">
+    You need the [Qovery CLI](/cli/overview), signed in with `qovery auth`, and `jq` to read the IDs that the API returns. The `qovery api` command sends authenticated requests to the [Qovery API](/api-reference/introduction).
+
+    CLI commands use the organization and project of your CLI context (`qovery context set`). You can also pass `--organization` and `--project`.
+
+    Get the ID of the cluster that will run the environment:
+
+    ```bash
+    qovery cluster list
+    ```
+
+    Create the environment with `POST /project/{projectId}/environment`. Only `name` is required. `mode` accepts `DEVELOPMENT`, `STAGING` or `PRODUCTION`, and `cluster` takes the cluster ID:
+
+    ```bash
+    PROJECT_ID="REPLACE_WITH_PROJECT_ID"  # from qovery project list
+    CLUSTER_ID="REPLACE_WITH_CLUSTER_ID"  # from qovery cluster list
+
+    ENVIRONMENT_ID=$(qovery api "project/$PROJECT_ID/environment" \
+      --field name=staging \
+      --field mode=STAGING \
+      --field cluster="$CLUSTER_ID" | jq -r .id)
+    echo "$ENVIRONMENT_ID"
+    ```
+
+    The command stores the new environment ID in `ENVIRONMENT_ID`.
+  </Tab>
+
+  <Tab title="Terraform">
+    Use the [`qovery_environment`](https://registry.terraform.io/providers/Qovery/qovery/latest/docs/resources/environment) resource. `name`, `project_id` and `cluster_id` are required, and `mode` defaults to `DEVELOPMENT`:
+
+    ```hcl
+    resource "qovery_environment" "staging" {
+      project_id = "<projectId>"
+      cluster_id = "<clusterId>"
+      name       = "staging"
+      mode       = "STAGING"
+    }
+    ```
+
+    Run `terraform apply` to create the environment.
+  </Tab>
+</Tabs>
+
+### Check it worked
+
+List the environments of the project:
+
+```bash
+PROJECT_NAME="REPLACE_WITH_PROJECT_NAME"
+qovery environment list --project "$PROJECT_NAME"
+```
+
+The new environment is listed with its cluster and its type (mode). With the API, `GET /environment/{environmentId}` returns the environment with its `mode` and `cluster_id`.
 
 ### Adding Services
 
@@ -386,6 +443,8 @@ Duplicate an existing environment to quickly create a copy across projects or cl
 
 ![Clone Environment](/images/configuration/environment/clone_environment.png)
 
+<Tabs>
+  <Tab title="Console">
 <Steps>
   <Step title="Select Environment">
     Go to the environment you want to clone
@@ -409,6 +468,40 @@ Duplicate an existing environment to quickly create a copy across projects or cl
     Click **Clone Environment** to create the copy
   </Step>
 </Steps>
+  </Tab>
+
+  <Tab title="CLI and API">
+    With the CLI, pass the names of the source and the new environment. `--cluster`, `--target-project` and `--environment-type` (`DEVELOPMENT`, `STAGING` or `PRODUCTION`) are optional:
+
+    ```bash
+    PROJECT_NAME="REPLACE_WITH_PROJECT_NAME"
+    ENVIRONMENT_NAME="REPLACE_WITH_ENVIRONMENT_NAME"
+    NEW_ENVIRONMENT_NAME="REPLACE_WITH_NEW_ENVIRONMENT_NAME"
+    CLUSTER_NAME="REPLACE_WITH_CLUSTER_NAME"
+
+    qovery environment clone \
+      --project "$PROJECT_NAME" \
+      --environment "$ENVIRONMENT_NAME" \
+      --new-environment-name "$NEW_ENVIRONMENT_NAME" \
+      --cluster "$CLUSTER_NAME"
+    ```
+
+    With the API, call `POST /environment/{environmentId}/clone`. Only `name` is required. `cluster_id`, `project_id` and `mode` are optional:
+
+    ```bash
+    ENVIRONMENT_ID="REPLACE_WITH_ENVIRONMENT_ID"  # from qovery environment list --json
+    CLUSTER_ID="REPLACE_WITH_CLUSTER_ID"  # from qovery cluster list
+
+    qovery api "environment/$ENVIRONMENT_ID/clone" \
+      --field name="$NEW_ENVIRONMENT_NAME" \
+      --field cluster_id="$CLUSTER_ID"
+    ```
+
+    The API does not copy database data.
+
+    Run `qovery environment list --project "<projectName>"` to see the new environment.
+  </Tab>
+</Tabs>
 
 <Info>
 Cloning excludes:
@@ -426,6 +519,15 @@ Cloning preserves:
 
 Deploy all services in an environment through the Qovery Console or CLI. See [deployment management](/configuration/deployment/overview) for details.
 
+```bash
+PROJECT_NAME="REPLACE_WITH_PROJECT_NAME"
+ENVIRONMENT_NAME="REPLACE_WITH_ENVIRONMENT_NAME"
+
+qovery environment deploy --project "$PROJECT_NAME" --environment "$ENVIRONMENT_NAME" --watch
+```
+
+Then run `qovery environment statuses --project "<projectName>" --environment "<environmentName>"` to see the status of each service.
+
 ### Deleting an Environment
 
 <Warning>
@@ -436,6 +538,8 @@ Before deleting:
 1. Backup important data
 2. Stop all services
 3. Verify you're deleting the correct environment
+
+To delete it from the CLI, run `qovery environment delete --project "<projectName>" --environment "<environmentName>"`. With the API, call `DELETE /environment/{environmentId}`.
 
 ## Related Topics
 

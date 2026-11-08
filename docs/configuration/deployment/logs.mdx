@@ -14,6 +14,8 @@ Qovery provides you with two types of logs:
 
 ## How to Access Logs
 
+<Tabs>
+  <Tab title="Console">
 You can access logs from three different entry points in the Qovery Console:
 
 ![Access Logs](/images/deployment/access_logs.png)
@@ -21,6 +23,41 @@ You can access logs from three different entry points in the Qovery Console:
 1. **Scroll icon** next to the service: Access the service logs (runtime logs from your application)
 2. **Last Deployment section**: Access the deployment pipeline view showing all stages of the deployment
 3. **Deployment status label**: Access the deployment logs for a specific deployment
+  </Tab>
+
+  <Tab title="CLI and API">
+    You need the [Qovery CLI](/cli/overview), signed in with `qovery auth`. The `qovery api` command sends authenticated requests to the [Qovery API](/api-reference/introduction). The `qovery log` and `qovery environment deployment` commands use the organization, project and environment of your CLI context (`qovery context set`), or the `--organization`, `--project` and `--environment` flags. `qovery api` takes IDs in the endpoint path instead.
+
+    **Service logs.** Print the runtime logs of a service. Use `-a` for an application, `-n` for a container, `-d` for a database, `-j` for a job, or `-s` for any service by name:
+
+    ```bash
+    qovery log -a my-app
+    ```
+
+    Add `--raw` to get the logs in JSON.
+
+    **Deployment logs.** Print the logs of the latest deployment of the environment:
+
+    ```bash
+    ENVIRONMENT_NAME="REPLACE_WITH_ENVIRONMENT_NAME"
+
+    qovery environment deployment logs --environment "$ENVIRONMENT_NAME"
+    ```
+
+    Useful flags:
+    - `--execution-id <executionId>`: logs of a past deployment, as listed by `qovery environment deployment list`
+    - `--service <serviceName>`: the lines of one service, plus the environment-level lines kept for context (a few stage-level lines from other stages may also appear)
+    - `--errors-only`: only the lines that carry an error
+    - `--pre-check`: only the pre-check lines
+    - `--json`: JSON output
+
+    The API returns the last 1000 deployment log lines of an environment with `GET /environment/{environmentId}/logs`.
+  </Tab>
+</Tabs>
+
+### Check it worked
+
+Run `qovery environment deployment list --environment "<environmentName>"` and note the execution ID and status of your last deployment. Then run `qovery environment deployment logs --environment "<environmentName>" --execution-id "<executionId>"`: it prints the build and deploy lines of that execution. If the status ends with `ERROR`, add `--errors-only` to see only the lines that explain the failure.
 
 ## Pipeline View
 
@@ -60,6 +97,8 @@ Rejects repositories exceeding **5 GB**.
 1. Open the **Last Deployment** section or go to the **Deployment History** tab
 2. Click on a deployment to open the pipeline view
 3. Click the **pre-check stage** — the logs stream the full output including error messages and hints
+
+From the CLI, run `qovery environment deployment logs --environment "<environmentName>" --pre-check`.
 
 ### When Pre-Checks Fail
 

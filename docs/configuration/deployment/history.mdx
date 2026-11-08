@@ -3,9 +3,40 @@ title: "Deployment History"
 description: "See past deployments of an environment or service with their trigger, author, duration and status, and cancel a deployment or open its logs."
 ---
 
+<Tabs>
+  <Tab title="Console">
 You can access the deployment history from the **Deployments** tab on any environment or service page.
 
 ![Deployment History](/images/deployment/deployment_history.png)
+  </Tab>
+
+  <Tab title="CLI and API">
+    You need the [Qovery CLI](/cli/overview), signed in with `qovery auth`. The `qovery api` command sends authenticated requests to the [Qovery API](/api-reference/introduction).
+
+    List the deployments of an environment:
+
+    ```bash
+    PROJECT_NAME="REPLACE_WITH_PROJECT_NAME"
+    ENVIRONMENT_NAME="REPLACE_WITH_ENVIRONMENT_NAME"
+
+    qovery environment deployment list --project "$PROJECT_NAME" --environment "$ENVIRONMENT_NAME"
+    ```
+
+    Each row shows the execution ID, the date, the status and the duration. Add `--json` for JSON output. To see what happened in one execution, stage by stage and service by service:
+
+    ```bash
+    EXECUTION_ID="REPLACE_WITH_EXECUTION_ID"  # from the Id column above
+
+    qovery environment deployment explain --project "$PROJECT_NAME" --environment "$ENVIRONMENT_NAME" --id "$EXECUTION_ID"
+    ```
+
+    With the API, call `GET /environment/{environmentId}/deploymentHistoryV2`. It returns the last 20 deployments by default and is paginated.
+  </Tab>
+</Tabs>
+
+### Check it worked
+
+After a deployment, `qovery environment deployment list` shows a new row with its execution ID and a final status. Use that ID with `qovery environment deployment logs --environment "<environmentName>" --execution-id "<executionId>"` to read its logs.
 
 ## Information Available
 
@@ -52,6 +83,8 @@ The current or final status of the deployment. See [Deployment Statuses](/config
 
 Deployments in **Queued** or **In Progress** status can be cancelled. Click the cancel icon next to the deployment entry in the history table. Cancelling a running deployment stops the ongoing operation and leaves the environment in the state it was in before the deployment started.
 
+From the CLI, run `qovery environment cancel --environment "<environmentName>"`. With the API, call `POST /environment/{environmentId}/cancelDeployment`.
+
 <Warning>
 Cancelling a deployment mid-execution may leave some services partially updated. Redeploy once the cancellation completes to restore a consistent state.
 </Warning>
@@ -63,6 +96,8 @@ Click **Pipeline view** on any deployment entry to see a stage-by-stage breakdow
 ### View Logs
 
 Click **View logs** on any deployment entry to open the logs for that specific execution. This is useful for debugging failed deployments or reviewing what happened during a past run. See [Deployment Logs](/configuration/deployment/logs) for more details.
+
+From the CLI, run `qovery environment deployment logs --environment "<environmentName>" --execution-id "<executionId>"`. Without `--execution-id`, it prints the logs of the latest deployment.
 
 ## Next Steps
 

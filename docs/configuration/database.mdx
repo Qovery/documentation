@@ -31,6 +31,8 @@ The **Databases & Caches** category of the catalog includes, among others, Amazo
 
 ### Create a managed database
 
+<Tabs>
+  <Tab title="Console">
 <Steps>
   <Step title="Pick a database blueprint">
     In the [Console](https://console.qovery.com), open the environment where you want the database and click the `New service` button. In the **Databases & Caches** category, select the blueprint you need (for example **Amazon RDS for PostgreSQL**). Cloud provider blueprints are filtered to the provider of the target cluster.
@@ -48,6 +50,71 @@ The **Databases & Caches** category of the catalog includes, among others, Amazo
     Create the service, and deploy it immediately or later.
   </Step>
 </Steps>
+  </Tab>
+
+  <Tab title="CLI and API">
+    You need the [Qovery CLI](/cli/overview), signed in with `qovery auth`, and `jq` to read the IDs that the API returns. The `qovery api` command sends authenticated requests to the [Qovery API](/api-reference/introduction).
+
+    List the blueprint catalog. Each entry has an `icon` and, for each major version, a `latestTag`:
+
+    ```bash
+    ORGANIZATION_ID="REPLACE_WITH_ORGANIZATION_ID"  # from qovery organization list --json
+
+    qovery api "organization/$ORGANIZATION_ID/blueprint/catalog"
+    ```
+
+    Create the blueprint service with `POST /environment/{environmentId}/blueprint`. `name`, `tag` and `icon` are required. `variables` overrides the blueprint inputs, and `deploy=true` deploys it right after creation:
+
+    ```bash
+    ENVIRONMENT_ID="REPLACE_WITH_ENVIRONMENT_ID"  # from qovery environment list --json
+
+    BLUEPRINT_ID=$(qovery api "environment/$ENVIRONMENT_ID/blueprint?deploy=true" --input - <<'JSON' | jq -r .id
+    {
+      "name": "my-postgres",
+      "tag": "REPLACE_WITH_LATEST_TAG",
+      "icon": "REPLACE_WITH_ICON_URL",
+      "variables": [
+        { "name": "REPLACE_WITH_VARIABLE_NAME", "value": "REPLACE_WITH_VALUE" }
+      ]
+    }
+    JSON
+    )
+    echo "$BLUEPRINT_ID"
+    ```
+
+    Read the blueprint README to know which variables are required.
+  </Tab>
+
+  <Tab title="Terraform">
+    Use the [`qovery_blueprint`](https://registry.terraform.io/providers/Qovery/qovery/latest/docs/resources/blueprint) resource. `blueprint` takes the catalog entry as `<provider>/<service_family>/<service_version>`:
+
+    ```hcl
+    resource "qovery_blueprint" "my_postgres" {
+      environment_id = "<environmentId>"
+      name           = "my-postgres"
+      blueprint      = "AWS/postgres/17"
+
+      variables = {
+        variable_name = "value" # replace with the inputs the blueprint README lists
+      }
+    }
+    ```
+
+    Run `terraform apply`. The service is deployed on creation unless you set `deploy = false`.
+  </Tab>
+</Tabs>
+
+#### Check it worked
+
+Get the blueprint service with `GET /blueprint/{blueprintId}`:
+
+```bash
+qovery api "blueprint/$BLUEPRINT_ID"
+```
+
+The response shows `latest_deployment` with the status of the last run and, if it failed, the error message. `service_id` is set once the Terraform or Helm service backing the database exists.
+
+`qovery database list` also lists blueprint databases, with the type `Blueprint database`, their status, host and port.
 
 ### Connect your application
 
@@ -65,6 +132,8 @@ The database runs as a container with attached persistent storage directly on yo
 Check out [this guide](/getting-started/guides/getting-started/connect-database) to create and deploy your first database.
 </Info>
 
+<Tabs>
+  <Tab title="Console">
 <Steps>
   <Step title="Navigate to Console">
     Navigate to [Console](https://console.qovery.com)
@@ -98,6 +167,66 @@ Check out [this guide](/getting-started/guides/getting-started/connect-database)
     At the end a recap will allow you to just create the database or create and deploy it
   </Step>
 </Steps>
+  </Tab>
+
+  <Tab title="CLI and API">
+    You need the [Qovery CLI](/cli/overview), signed in with `qovery auth`. The `qovery api` command sends authenticated requests to the [Qovery API](/api-reference/introduction).
+
+    Create the database with `POST /environment/{environmentId}/database`. `name`, `type`, `version` and `mode` are required. `type` is `POSTGRESQL`, `MYSQL`, `MONGODB` or `REDIS`:
+
+    ```bash
+    ENVIRONMENT_ID="REPLACE_WITH_ENVIRONMENT_ID"  # from qovery environment list --json
+
+    DATABASE_ID=$(qovery api "environment/$ENVIRONMENT_ID/database" \
+      --field name=my-db \
+      --field type=POSTGRESQL \
+      --field version=17 \
+      --field mode=CONTAINER \
+      --field accessibility=PRIVATE \
+      --field cpu=500 \
+      --field memory=512 \
+      --field storage=10 | jq -r .id)
+    echo "$DATABASE_ID"
+    ```
+
+    `cpu` is in millicores, `memory` in MB and `storage` in GB. To see the versions available in the environment, call `GET /environment/{environmentId}/databaseConfiguration`.
+
+    Then deploy it. Service commands use the organization, project and environment of your CLI context (`qovery context set`). You can also pass `--organization`, `--project` and `--environment`.
+
+    ```bash
+    qovery database deploy -n my-db --watch
+    ```
+  </Tab>
+
+  <Tab title="Terraform">
+    Use the [`qovery_database`](https://registry.terraform.io/providers/Qovery/qovery/latest/docs/resources/database) resource with `mode = "CONTAINER"`:
+
+    ```hcl
+    resource "qovery_database" "my_db" {
+      environment_id = "<environmentId>"
+      name           = "my-db"
+      type           = "POSTGRESQL"
+      version        = "17"
+      mode           = "CONTAINER"
+      accessibility  = "PRIVATE"
+      storage        = 10
+    }
+    ```
+
+    Deploy the environment with a [`qovery_deployment`](https://registry.terraform.io/providers/Qovery/qovery/latest/docs/resources/deployment) resource, then run `terraform apply`.
+  </Tab>
+</Tabs>
+
+#### Check it worked
+
+List the databases of the environment:
+
+```bash
+ENVIRONMENT_NAME="REPLACE_WITH_ENVIRONMENT_NAME"
+qovery database list --environment "$ENVIRONMENT_NAME"
+```
+
+Your database shows the status `DEPLOYED`, with its host and port. With the API, `GET /database/{databaseId}/status` returns the same value in `state`.
 
 ### Configuration
 
@@ -157,6 +286,17 @@ Not every configuration parameter will be copied within the new service for cons
 
 Please check the configuration of the new service before deploying it.
 
+With the API, clone a database with `POST /database/{databaseId}/clone`. `name` and `environment_id` (the target environment) are required:
+
+```bash
+DATABASE_ID="REPLACE_WITH_DATABASE_ID"  # from qovery database list
+TARGET_ENVIRONMENT_ID="REPLACE_WITH_TARGET_ENVIRONMENT_ID"
+
+qovery api "database/$DATABASE_ID/clone" \
+  --field name=my-db-copy \
+  --field environment_id="$TARGET_ENVIRONMENT_ID"
+```
+
 <Info>
 Note that only the instance configuration will be copied, not the data contained within the database.
 </Info>
@@ -167,6 +307,8 @@ Note that only the instance configuration will be copied, not the data contained
 Delete action drops the service and its data!
 </Warning>
 
+<Tabs>
+  <Tab title="Console">
 <Steps>
   <Step title="Navigate to Console">
     Navigate to [Console](https://console.qovery.com)
@@ -180,6 +322,20 @@ Delete action drops the service and its data!
     In database overview, click on `Action` remove button
   </Step>
 </Steps>
+  </Tab>
+
+  <Tab title="CLI and API">
+    ```bash
+    qovery database delete -n my-db --watch
+    ```
+
+    With the API, call `DELETE /database/{databaseId}`. Run `qovery database list` afterwards: the database is no longer listed.
+  </Tab>
+
+  <Tab title="Terraform">
+    Remove the `qovery_database` resource from your configuration and run `terraform apply`.
+  </Tab>
+</Tabs>
 
 ## Legacy managed databases
 

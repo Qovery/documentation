@@ -263,6 +263,8 @@ Built-in variables are read-only and automatically managed by Qovery. Variable n
 
 ## Creating Variables
 
+<Tabs>
+  <Tab title="Console">
 <Steps>
   <Step title="Navigate to Service">
     Select your application, job, or container from the environment
@@ -289,6 +291,75 @@ Built-in variables are read-only and automatically managed by Qovery. Variable n
     Save the variable and redeploy services to apply changes
   </Step>
 </Steps>
+  </Tab>
+
+  <Tab title="CLI and API">
+    You need the [Qovery CLI](/cli/overview), signed in with `qovery auth`. The `qovery api` command sends authenticated requests to the [Qovery API](/api-reference/introduction). Service commands use the organization, project and environment of your CLI context (`qovery context set`). You can also pass `--organization`, `--project` and `--environment`.
+
+    Create a variable on a service with `env create`. Add `--secret` for a secret. `--scope` sets the level: `PROJECT`, `ENVIRONMENT` or the service itself (the default):
+
+    ```bash
+    API_KEY_VALUE="REPLACE_WITH_API_KEY_VALUE"
+
+    qovery application env create -n my-app -k LOG_LEVEL -v info
+    qovery application env create -n my-app -k API_KEY -v "$API_KEY_VALUE" --secret
+    ```
+
+    The same subcommand exists for `container`, `cronjob`, `lifecycle` and `helm`. To set a variable directly on an environment or a project, use `qovery environment env create` or `qovery project env create`.
+
+    With the API, call `POST /variable`. `key`, `value`, `is_secret`, `variable_scope` and `variable_parent_id` (the ID of the service, environment or project) are required:
+
+    ```bash
+    APPLICATION_ID="REPLACE_WITH_APPLICATION_ID"  # from qovery application list --json
+
+    qovery api variable \
+      --field key=LOG_LEVEL \
+      --field value=info \
+      --field is_secret=false \
+      --field variable_scope=APPLICATION \
+      --field variable_parent_id="$APPLICATION_ID"
+    ```
+
+    Redeploy the service to apply the change, for example with `qovery application redeploy -n my-app`.
+  </Tab>
+
+  <Tab title="Terraform">
+    Set the `environment_variables` and `secrets` attributes on the resource that owns the variables: `qovery_project`, `qovery_environment`, or a service such as `qovery_application`:
+
+    ```hcl
+    resource "qovery_application" "my_app" {
+      # ...
+      environment_variables = [
+        {
+          key   = "LOG_LEVEL"
+          value = "info"
+        }
+      ]
+
+      secrets = [
+        {
+          key   = "API_KEY"
+          value = var.api_key
+        }
+      ]
+    }
+    ```
+
+    Run `terraform apply`, then redeploy the service.
+
+    A secret `value` is stored in the Terraform state. Use an encrypted remote state with restricted access, and keep state files out of version control. With Terraform 1.11 and later, set `value_wo` and `value_wo_version` instead of `value` to keep the secret out of the plan and the state.
+  </Tab>
+</Tabs>
+
+### Check it worked
+
+List the variables of the service:
+
+```bash
+qovery application env list -n my-app
+```
+
+The new key appears in the list. Add `--show-values` to print the values. Secret values are never shown. With the API, `GET /variable?parent_id=<applicationId>&scope=APPLICATION` returns the variable in `results`, with the variables inherited from higher scopes.
 
 ### Variable Naming Rules
 
@@ -313,6 +384,8 @@ Built-in variables are read-only and automatically managed by Qovery. Variable n
 3. Update value or settings
 4. Save and redeploy
 
+From the CLI, run `qovery application env update -n my-app -k LOG_LEVEL -v debug`. With the API, call `PUT /variable/{variableId}`.
+
 ![Variable Edit](/images/configuration/environment-variable/var_edit.png)
 
 <Info>
@@ -324,6 +397,8 @@ For secrets, you cannot view the current value. You can only set a new value for
 1. Select variable to remove
 2. Click delete icon and confirm
 3. Redeploy services
+
+From the CLI, run `qovery application env delete -n my-app -k LOG_LEVEL`. With the API, call `DELETE /variable/{variableId}`.
 
 ![Variable Delete](/images/configuration/environment-variable/var_delete.png)
 
@@ -533,6 +608,8 @@ Import and export variables in bulk using `.env` file format.
 
 ### Importing
 
+<Tabs>
+  <Tab title="Console">
 <Steps>
   <Step title="Prepare .env File">
     Create a `.env` file with key-value pairs:
@@ -558,6 +635,35 @@ Import and export variables in bulk using `.env` file format.
     Review and confirm the import
   </Step>
 </Steps>
+  </Tab>
+
+  <Tab title="CLI and API">
+    From the CLI, select the application or container with `qovery context set`, then run:
+
+    ```bash
+    qovery env import .env
+    ```
+
+    The command asks whether to import the values as variables or secrets. It supports applications and containers only.
+
+    With the API, call `POST /variable/import` with the `service_id` and `service_type` query parameters. `overwrite` and `vars` are required:
+
+    ```bash
+    APPLICATION_ID="REPLACE_WITH_APPLICATION_ID"  # from qovery application list --json
+
+    qovery api "variable/import?service_id=$APPLICATION_ID&service_type=APPLICATION" --input - <<'JSON'
+    {
+      "overwrite": false,
+      "vars": [
+        { "name": "NEW_VAR_1", "value": "value1", "scope": "APPLICATION", "is_secret": false }
+      ]
+    }
+    JSON
+    ```
+
+    Run `qovery application env list -n my-app` to see the imported keys.
+  </Tab>
+</Tabs>
 
 **Import Restrictions**:
 - Cannot import built-in variables (starting with `QOVERY_`)

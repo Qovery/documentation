@@ -36,6 +36,8 @@ Managed databases are supported through [Blueprints](/configuration/blueprints).
 
 ## Creating a Database
 
+<Tabs>
+  <Tab title="Console">
 <Steps>
   <Step title="Navigate to Your Environment">
     In the Qovery Console, go to your project and select the [environment](/configuration/environment) where you want to add the database.
@@ -67,6 +69,61 @@ Managed databases are supported through [Blueprints](/configuration/blueprints).
     Review your settings and click **Create**. You can choose to create the database alone or create and deploy it immediately.
   </Step>
 </Steps>
+  </Tab>
+
+  <Tab title="CLI and API">
+    You need the [Qovery CLI](/cli/overview), signed in with `qovery auth`. The `qovery api` command sends authenticated requests to the [Qovery API](/api-reference/introduction).
+
+    Create the database with `POST /environment/{environmentId}/database`. `name`, `type`, `version` and `mode` are required:
+
+    ```bash
+    ENVIRONMENT_ID="REPLACE_WITH_ENVIRONMENT_ID"  # from qovery environment list --json
+
+    qovery api "environment/$ENVIRONMENT_ID/database" \
+      --field name=my-db \
+      --field type=POSTGRESQL \
+      --field version=17 \
+      --field mode=CONTAINER \
+      --field accessibility=PRIVATE \
+      --field storage=10
+    ```
+
+    Then deploy it:
+
+    ```bash
+    ENVIRONMENT_NAME="REPLACE_WITH_ENVIRONMENT_NAME"
+
+    qovery database deploy --environment "$ENVIRONMENT_NAME" -n my-db --watch
+    ```
+
+    See [Databases](/configuration/database#create-a-container-database) for all the fields.
+  </Tab>
+
+  <Tab title="Terraform">
+    ```hcl
+    resource "qovery_database" "my_db" {
+      environment_id = "<environmentId>"
+      name           = "my-db"
+      type           = "POSTGRESQL"
+      version        = "17"
+      mode           = "CONTAINER"
+      accessibility  = "PRIVATE"
+      storage        = 10
+    }
+    ```
+
+    Deploy the environment with a [`qovery_deployment`](https://registry.terraform.io/providers/Qovery/qovery/latest/docs/resources/deployment) resource, then run `terraform apply`.
+  </Tab>
+</Tabs>
+
+### Check it worked
+
+```bash
+ENVIRONMENT_NAME="REPLACE_WITH_ENVIRONMENT_NAME"
+qovery database list --environment "$ENVIRONMENT_NAME"
+```
+
+Your database shows the status `DEPLOYED`, with its host and port. Add `--show-credentials` to print the login and password.
 
 ## Connecting Your Application
 
@@ -101,6 +158,19 @@ Replace `POSTGRESQL` with your actual database type (`MYSQL`, `MONGODB`, `REDIS`
 <Note>
 The exact variable names are always visible in the **Variables** tab of any service that has the database attached. You can copy them directly from there.
 </Note>
+
+From the CLI, list them with `qovery application env list -n my-app`. To expose one under the name your code expects, create an alias on it:
+
+```bash
+# Copy the exact name from qovery application env list
+DB_URL_VARIABLE="REPLACE_WITH_QOVERY_POSTGRESQL_DBID_DATABASE_URL_INTERNAL"
+
+qovery application env alias create -n my-app \
+  -k "$DB_URL_VARIABLE" \
+  --alias DATABASE_URL
+```
+
+Redeploy the application to apply it. See [Aliases](/configuration/environment-variables#aliases).
 
 ## Database Management
 

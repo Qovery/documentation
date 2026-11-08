@@ -302,6 +302,8 @@ Create alerts based on these monitoring categories:
 
 ### Creating an Alert
 
+<Tabs>
+  <Tab title="Console">
 <Steps>
   <Step title="Select Alert Category">
     From your service's **Monitoring > Alerts** tab, click **New alert**. Select one or more categories, such as **CPU**, **Memory**, or **Certificate renewal failed**, then click **Configure alerts**.
@@ -325,6 +327,31 @@ Create alerts based on these monitoring categories:
     If you selected multiple categories, click **Include** to configure the next alert. Click **Create** on the last category to create the alerts.
   </Step>
 </Steps>
+  </Tab>
+
+  <Tab title="CLI and API">
+    You need the [Qovery CLI](/cli/overview), signed in with `qovery auth`. The `qovery api` command sends authenticated requests to the [Qovery API](/api-reference/introduction).
+
+    Alert rules and notification channels are also available through the API:
+
+    - `GET /organization/{organizationId}/alert-receivers` lists the notification channels. `POST /alert-receivers` creates a Slack or email channel.
+    - `POST /alert-rules` creates an alert rule. Its body sets the target service (`target`), a PromQL expression with an optional function, operator and threshold (`condition`), the duration (`for_duration`, in ISO-8601 format, for example `PT5M`), the `severity` (`LOW`, `MEDIUM`, `HIGH` or `CRITICAL`), and the `alert_receiver_ids` to notify. See the [API reference](/api-reference/introduction) for the full schema.
+
+    The Console builds the PromQL query for you. With the API, you write it yourself.
+  </Tab>
+</Tabs>
+
+#### Check it worked
+
+List the alert rules of the organization:
+
+```bash
+ORGANIZATION_ID="REPLACE_WITH_ORGANIZATION_ID"  # from qovery organization list --json
+
+qovery api "organization/$ORGANIZATION_ID/alert-rules"
+```
+
+Your rule appears with its `severity` and `alert_receiver_ids`. `state` shows where the rule stands, for example `OK`, `TRIGGERED` or `NOTIFIED`, and `is_up_to_date` is `true` once the rule is synced with the alerting system.
 
 <img src="/images/observability/create-alert.png" alt="Alert category selection, including Certificate renewal failed" />
 

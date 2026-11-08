@@ -71,6 +71,8 @@ This guide covers Git Repository and Container Registry deployments. For Helm ch
 
 [Projects](/configuration/project) organize your applications and environments.
 
+<Tabs>
+  <Tab title="Console">
 1. Go to [Qovery Console](https://console.qovery.com) and open your organization overview
 2. Click the **New Project** button
 3. Enter a project name (e.g., "My First Project")
@@ -79,11 +81,37 @@ This guide covers Git Repository and Container Registry deployments. For Helm ch
 <Frame>
   <img src="/images/configuration/project/project_creation.png" alt="Create a new project in Qovery" />
 </Frame>
+  </Tab>
+
+  <Tab title="CLI and API">
+    ```bash
+    ORGANIZATION_ID="REPLACE_WITH_ORGANIZATION_ID"  # from qovery organization list --json
+
+    PROJECT_ID=$(qovery api "organization/$ORGANIZATION_ID/project" --field name="My First Project" | jq -r .id)
+    echo "$PROJECT_ID"
+    ```
+
+    The command stores the project ID in `PROJECT_ID`, which the next step uses. It needs `jq`. Get your organization ID with `qovery organization list --json`. See [Project](/configuration/project#create-a-new-project) for details.
+  </Tab>
+
+  <Tab title="Terraform">
+    ```hcl
+    resource "qovery_project" "my_project" {
+      organization_id = "<organizationId>"
+      name            = "My First Project"
+    }
+    ```
+
+    Run `terraform apply`. See [Project](/configuration/project#create-a-new-project) for details.
+  </Tab>
+</Tabs>
 
 ## Step 2: Create an Environment
 
 [Environments](/configuration/environment) represent deployment stages (production, staging, development).
 
+<Tabs>
+  <Tab title="Console">
 1. Open your project
 2. Click **Create Environment**
 3. Enter an environment name (e.g., "production")
@@ -94,6 +122,37 @@ This guide covers Git Repository and Container Registry deployments. For Helm ch
 <Frame>
   <img src="/images/configuration/environment/create_environment_1.png" alt="Create a new environment" />
 </Frame>
+  </Tab>
+
+  <Tab title="CLI and API">
+    Get the cluster ID with `qovery cluster list`, then create the environment:
+
+    ```bash
+    CLUSTER_ID="REPLACE_WITH_CLUSTER_ID"  # from qovery cluster list
+
+    ENVIRONMENT_ID=$(qovery api "project/$PROJECT_ID/environment" \
+      --field name=production \
+      --field mode=PRODUCTION \
+      --field cluster="$CLUSTER_ID" | jq -r .id)
+    echo "$ENVIRONMENT_ID"
+    ```
+
+    See [Environment](/configuration/environment#create-an-environment) for details.
+  </Tab>
+
+  <Tab title="Terraform">
+    ```hcl
+    resource "qovery_environment" "production" {
+      project_id = "<projectId>"
+      cluster_id = "<clusterId>"
+      name       = "production"
+      mode       = "PRODUCTION"
+    }
+    ```
+
+    Run `terraform apply`. See [Environment](/configuration/environment#create-an-environment) for details.
+  </Tab>
+</Tabs>
 
 ## Step 3: Choose Your Deployment Source
 
@@ -282,6 +341,22 @@ Qovery supports multiple deployment sources. Choose the one that fits your workf
   </Tab>
 </Tabs>
 
+### Without the Console
+
+From a pre-built image, create and deploy the service with the CLI. Get the registry ID with `qovery container registry list`:
+
+```bash
+REGISTRY_ID="REPLACE_WITH_REGISTRY_ID"  # from qovery container registry list
+
+qovery container create --project "My First Project" --environment production \
+  -n my-api --registry "$REGISTRY_ID" --image-name myapp/api --tag v1.0.0 --port 8080
+
+qovery container deploy --project "My First Project" --environment production \
+  -n my-api --watch
+```
+
+`--port` exposes the port publicly, and `qovery container create` prints the public link. To build from a Git repository, create the application with the API or Terraform: see [Application](/configuration/application#creating-an-application).
+
 <Note>
 **Using Helm?** Qovery also supports deploying Helm charts for packaged applications. See the [Helm Configuration Guide](/configuration/helm) for detailed instructions.
 </Note>
@@ -290,6 +365,8 @@ Qovery supports multiple deployment sources. Choose the one that fits your workf
 
 Watch your application come to life:
 
+<Tabs>
+  <Tab title="Console">
 <Steps>
   <Step title="View Deployment Progress">
     Click on your application to see:
@@ -318,6 +395,40 @@ Watch your application come to life:
     The URL format: `https://your-app-xxx.qovery.io`
   </Step>
 </Steps>
+  </Tab>
+
+  <Tab title="CLI and API">
+    Follow the deployment logs of the environment:
+
+    ```bash
+    qovery environment deployment logs --project "My First Project" --environment production
+    ```
+
+    Check the status of the service. Use `qovery application list` for a service built from Git:
+
+    ```bash
+    qovery container list --project "My First Project" --environment production
+    ```
+
+    Get the URL of the service with `GET /application/{applicationId}/link`, or `GET /container/{containerId}/link` for a container. It lists the Qovery domain and any custom domain:
+
+    ```bash
+    APPLICATION_ID="REPLACE_WITH_APPLICATION_ID"  # from qovery application list --json
+
+    qovery api "application/$APPLICATION_ID/link"
+
+    # For a container
+    CONTAINER_ID="REPLACE_WITH_CONTAINER_ID"  # from qovery container list --json
+    qovery api "container/$CONTAINER_ID/link"
+    ```
+
+    Print the output of your app with `qovery log -a my-api`, or `qovery log -n my-api` for a container.
+  </Tab>
+</Tabs>
+
+### Check it worked
+
+`qovery application list` (or `qovery container list`) shows your service with the status `DEPLOYED`. Open the URL returned by the `link` call: your app answers. If the status ends with `ERROR`, run `qovery environment deployment logs --errors-only` and see [Troubleshooting](#troubleshooting).
 
 ## What Happened Behind the Scenes
 

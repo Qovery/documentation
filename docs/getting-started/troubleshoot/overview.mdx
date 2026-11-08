@@ -9,12 +9,12 @@ This troubleshooting guide helps you resolve common issues you may encounter whi
 
 ## Diagnose a Failed Build or Deployment
 
-When a deployment fails, read the deployment logs before changing anything: the first error line in the build or deploy phase is the cause. A coding agent can fetch these logs itself with the Qovery CLI, so you do not need to copy them from the Console.
+When a deployment fails, read the deployment logs before changing anything: the first error line in the build or deploy phase is usually the best starting point. Read the lines around it, since later errors are often consequences of the first one. A coding agent can fetch these logs itself with the Qovery CLI, so you do not need to copy them from the Console.
 
 **Prerequisites:**
 
 - The [Qovery CLI](/cli/overview) is installed.
-- The CLI is authenticated: `qovery auth`, or `qovery auth --headless` on a machine without a browser (it prints a URL to open elsewhere). In CI, set `QOVERY_CLI_ACCESS_TOKEN` instead. For an AI agent, use a token scoped to what it needs, such as an [API Policy Token](/configuration/organization/api-policy-token) or a read-only API token.
+- The CLI is authenticated: `qovery auth`, or `qovery auth --headless` on a machine without a browser (it prints a URL to open elsewhere). In CI, set `QOVERY_CLI_ACCESS_TOKEN` instead. For an AI agent, use a token scoped to what it needs: a read-only API token is enough to diagnose, and an [API Policy Token](/configuration/organization/api-policy-token) that allows the needed writes lets it also fix and redeploy.
 - You know the organization, project, environment, and service names (`qovery project list`, `qovery environment list`, `qovery application list`).
 
 <Tabs>
@@ -49,7 +49,7 @@ When a deployment fails, read the deployment logs before changing anything: the 
           --organization "My Org" --project "My Project" --environment "production"
         ```
 
-        Without `--id`, this explains the latest deployment. Pass `--id <deployment-id>` from the previous command for an older one.
+        Without `--id`, this explains the latest deployment. Pass `--id <deployment-id>` from the previous command for an older one, and pass the same `--id` to the log commands below.
       </Step>
 
       <Step title="Read the error lines for the failing service">

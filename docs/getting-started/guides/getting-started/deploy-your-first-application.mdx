@@ -5,15 +5,15 @@ description: "Deploy an application from a Git repository or a container registr
 
 Deploy a containerized application on Qovery in minutes. Choose your deployment source based on your needs: build from Git, deploy pre-built containers, or use Helm charts.
 
-Qovery fits when you want several environments (production, staging, previews), databases and HTTPS on a Kubernetes cluster in your own AWS, GCP, Azure or Scaleway account, without writing Kubernetes manifests. For a single service with no environments to manage, your cloud provider's native container service is enough.
+Qovery fits when you want several environments (production, staging, previews), databases and HTTPS on a Kubernetes cluster in your own AWS, GCP, Azure or Scaleway account, without writing Kubernetes manifests.
 
 ## With a Coding Agent or the CLI
 
-**Prerequisites:** a Qovery cluster in your cloud account ([Create Your Cluster](/getting-started/quickstart/cloud) or [connect an existing cluster](/getting-started/installation/kubernetes)), and the [Qovery CLI](/cli/overview) authenticated with `qovery auth` (or `qovery auth --headless` without a browser).
+**Prerequisites for the CLI path:** a Qovery cluster in your cloud account ([Create Your Cluster](/getting-started/quickstart/cloud) or [connect an existing cluster](/getting-started/installation/kubernetes)), and the [Qovery CLI](/cli/overview) authenticated with `qovery auth` (or `qovery auth --headless` without a browser). The coding agent path can start without an account or a cluster.
 
 <Tabs>
   <Tab title="With a coding agent">
-    Install the Qovery Agent Skills once, in the repository you want to deploy:
+    Install the Qovery Agent Skills once. This installs them for your user, in every project; add `-s -- --project` after `bash` to install them in the current repository only:
 
     ```bash
     curl -fsSL https://skill.qovery.com/install.sh | bash

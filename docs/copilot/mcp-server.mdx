@@ -48,7 +48,7 @@ The Qovery MCP Server is accessible at `https://mcp.qovery.com/mcp`. You can fin
     If your MCP client doesn't support OAuth, generate a Qovery API token and send it in the `Authorization` header. Never put a token in the MCP URL: URLs end up in client configuration files, shell history, and proxy logs.
 
     <Tip>
-    Give an agent the least-privileged token that does the job: an API token with a read-only role, or, when read-only is not granular enough, an [API Policy Token](/configuration/organization/api-policy-token) (Preview), whose policy Qovery evaluates on every API request the token makes. The `qovery-policy-token` [Agent Skill](/getting-started/quickstart/agent-skills) writes and tests that policy for you. Avoid giving an agent a long-lived admin token.
+    Give an agent the least-privileged token that does the job, such as an API token with a read-only role. Avoid giving an agent a long-lived admin token. For agents that act through the CLI or the API, an [API Policy Token](/configuration/organization/api-policy-token) (Preview) scopes access request by request.
     </Tip>
 
     **Step 1 - Generate a token:**
@@ -93,6 +93,8 @@ The Qovery MCP Server is accessible at `https://mcp.qovery.com/mcp`. You can fin
         # Read/write
         claude mcp add --transport http qovery "https://mcp.qovery.com/mcp?read_write=true" --header "Authorization: Token $QOVERY_TOKEN"
         ```
+
+        Claude Code stores the header, token included, in its configuration (`~/.claude.json`, or `.mcp.json` with `--scope project`). Do not commit that file with a token in it.
 
       </Tab>
     </Tabs>

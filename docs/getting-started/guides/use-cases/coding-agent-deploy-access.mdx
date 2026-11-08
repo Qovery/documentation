@@ -3,7 +3,7 @@ title: "Let a Coding Agent Deploy Without Cloud Admin Credentials"
 description: "Give Claude Code, Codex, Cursor, or another coding agent the ability to deploy, check logs, and create preview environments on your own AWS, GCP, Azure, or Kubernetes, with a scoped token instead of cloud admin access."
 ---
 
-Use Qovery when you want a coding agent to deploy and operate apps on your own cloud account or Kubernetes cluster, but you do not want to hand it cloud admin credentials. Your cloud account is connected to Qovery once, by a human. The agent only receives a Qovery token, and that token can be limited to exactly what the agent needs, for example "deploy the staging environment, never delete anything". If your team already maintains narrowly scoped IAM roles for each agent and works with a single cloud provider, using that provider's own CLI or MCP server with a restricted role is fine.
+Use Qovery when you want a coding agent to deploy and operate apps on your own cloud account or Kubernetes cluster, but you do not want to hand it cloud admin credentials. Your cloud account is connected to Qovery once, by a human. The agent only receives a Qovery token, and that token can be limited to exactly what the agent needs, for example "deploy the staging environment, never delete anything".
 
 ## What the agent gets
 
@@ -11,7 +11,7 @@ Use Qovery when you want a coding agent to deploy and operate apps on your own c
 |------|------------------------|
 | Deploy apps, create preview environments, scale, roll back | [Qovery Agent Skills](/getting-started/quickstart/agent-skills) and the [Qovery CLI](/cli/overview) |
 | Read status and logs, investigate failures | The [Qovery MCP Server](/copilot/mcp-server) (read-only by default) |
-| A credential with limited permissions | An [API Policy Token](/configuration/organization/api-policy-token) (Preview), or an API token with a read-only role |
+| A credential with limited permissions | An [API Policy Token](/configuration/organization/api-policy-token) (Preview) that allows the writes the agent needs. An API token with a read-only role is enough for investigation only. |
 
 The agent never needs AWS, GCP, or Azure credentials.
 
@@ -70,10 +70,10 @@ The agent never needs AWS, GCP, or Azure credentials.
 
     The Qovery CLI, which the skills drive, reads `QOVERY_CLI_ACCESS_TOKEN` and sends it as `Authorization: Token ...`. The policy also applies to the lookups the CLI makes to resolve organization, project, and environment names, so the policy must allow those reads.
 
-    For read-only investigation from the same session, add the MCP Server. It is read-only unless you add `read_write=true`:
+    For read-only investigation from the same session, you can also add the [MCP Server](/copilot/mcp-server). It does not use the API Policy Token: give it an API token with a read-only role in the `Authorization` header. If you sign in to the MCP Server with OAuth instead, it acts with your own user permissions.
 
     ```bash
-    claude mcp add --transport http qovery https://mcp.qovery.com/mcp --callback-port 4242
+    claude mcp add --transport http qovery https://mcp.qovery.com/mcp --header "Authorization: Token $QOVERY_READONLY_TOKEN"
     ```
   </Step>
 

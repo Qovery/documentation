@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 324" width="540" height="324" role="img" aria-label="Every Kubernetes cluster has an install path" font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+<rect width="540" height="324" rx="12" fill="#FFFFFF"/>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#642DFF"/></marker></defs>
+<text x="16" y="32" font-size="17" font-weight="600" fill="#151B2B">Every Kubernetes cluster has an install path</text>
+<text x="16" y="54" font-size="13.5" font-weight="400" fill="#5B6170">Open on every plan, including Free</text>
+<text x="16" y="84" font-size="11.5" font-weight="600" fill="#5B6170">YOUR CLUSTER</text>
+<text x="296" y="84" font-size="11.5" font-weight="600" fill="#5B6170">HOW TO INSTALL QOVERY</text>
+<rect x="16" y="96" width="236" height="60" rx="8" fill="#FFFFFF" stroke="#C9CDD6" stroke-width="1.25"/>
+<text x="32" y="122" font-size="15" font-weight="600" fill="#151B2B">Managed Kubernetes</text>
+<text x="32" y="142" font-size="13" font-weight="400" fill="#5B6170">EKS, GKE or Scaleway Kapsule</text>
+<path d="M256 126H290" stroke="#642DFF" stroke-width="1.5" fill="none" marker-end="url(#a)"/>
+<rect x="296" y="96" width="228" height="60" rx="8" fill="#F1ECFF" stroke="#642DFF" stroke-width="2"/>
+<text x="312" y="122" font-size="15" font-weight="600" fill="#151B2B">Qovery Operator</text>
+<text x="312" y="142" font-size="13" font-weight="400" fill="#5B6170">Helm install, in Preview</text>
+<rect x="16" y="172" width="236" height="60" rx="8" fill="#FFFFFF" stroke="#C9CDD6" stroke-width="1.25"/>
+<text x="32" y="198" font-size="15" font-weight="600" fill="#151B2B">Any other cluster</text>
+<text x="32" y="218" font-size="13" font-weight="400" fill="#5B6170">AKS, k3s, on-premise, others</text>
+<path d="M256 202H290" stroke="#642DFF" stroke-width="1.5" fill="none" marker-end="url(#a)"/>
+<rect x="296" y="172" width="228" height="60" rx="8" fill="#F1ECFF" stroke="#642DFF" stroke-width="2"/>
+<text x="312" y="198" font-size="14.5" font-weight="600" fill="#151B2B" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">qovery cluster install</text>
+<text x="312" y="218" font-size="13" font-weight="400" fill="#5B6170">With the Qovery CLI</text>
+<rect x="16" y="248" width="236" height="60" rx="8" fill="#FFFFFF" stroke="#C9CDD6" stroke-width="1.25"/>
+<text x="32" y="274" font-size="15" font-weight="600" fill="#151B2B">No cluster yet</text>
+<text x="32" y="294" font-size="13" font-weight="400" fill="#5B6170">Or just trying Qovery</text>
+<path d="M256 278H290" stroke="#642DFF" stroke-width="1.5" fill="none" marker-end="url(#a)"/>
+<rect x="296" y="248" width="228" height="60" rx="8" fill="#F1ECFF" stroke="#642DFF" stroke-width="2"/>
+<text x="312" y="274" font-size="14.5" font-weight="600" fill="#151B2B" font-family="ui-monospace, SFMono-Regular, Menlo, monospace">qovery demo up</text>
+<text x="312" y="294" font-size="13" font-weight="400" fill="#5B6170">Local k3s cluster on Docker</text>
+</svg>

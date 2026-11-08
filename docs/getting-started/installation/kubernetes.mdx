@@ -6,6 +6,10 @@ tag: "PREVIEW"
 
 Connect a Kubernetes cluster you already run to Qovery by installing the Qovery Operator. Qovery then installs and updates the Qovery stack on the cluster.
 
+<Frame caption="Pick the install path that matches your cluster. To let Qovery create and manage the cluster instead, see Create Your Cluster.">
+  <img src="/images/diagrams/own-cluster-install-paths.svg" alt="Install paths: EKS, GKE and Scaleway Kapsule use the Qovery Operator; AKS, k3s, on-premise and other clusters use qovery cluster install; with no cluster, qovery demo up runs a local k3s cluster" />
+</Frame>
+
 <Note>
 This page covers EKS, GKE and Scaleway Kapsule. For any other cluster, such as Azure AKS, k3s or an on-premise cluster, follow the [installation with the Qovery CLI](/configuration/integrations/kubernetes/byok-legacy). See [Which installation to use](/configuration/integrations/kubernetes/byok-supported-setups#which-installation-to-use).
 

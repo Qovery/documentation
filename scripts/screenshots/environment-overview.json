@@ -1,0 +1,83 @@
+{
+ "canvas": "docs",
+ "framing": "full",
+ "zoom": 1.0,
+ "screen": {
+  "type": "environment-overview",
+  "organization": "Acme",
+  "project": "storefront",
+  "environment": "production",
+  "mode": "PRODUCTION",
+  "data": {
+   "cluster": "eu-west-3-prod",
+   "provider": "aws",
+   "clusterStatus": "running",
+   "highlight": "api",
+   "services": [
+    {
+     "name": "api",
+     "type": "application",
+     "status": "RUNNING",
+     "action": "DEPLOY",
+     "ago": "4 minutes",
+     "repo": "acme/storefront",
+     "branch": "main",
+     "commit": "9f3c2a1",
+     "gitProvider": "GITHUB",
+     "autoDeploy": true
+    },
+    {
+     "name": "web",
+     "type": "application",
+     "status": "RUNNING",
+     "action": "DEPLOY",
+     "ago": "4 minutes",
+     "repo": "acme/storefront",
+     "branch": "main",
+     "commit": "9f3c2a1",
+     "gitProvider": "GITHUB",
+     "autoDeploy": true
+    },
+    {
+     "name": "migrations",
+     "type": "lifecycle",
+     "status": "COMPLETED",
+     "action": "DEPLOY",
+     "ago": "5 minutes",
+     "repo": "acme/storefront",
+     "branch": "main",
+     "commit": "9f3c2a1",
+     "gitProvider": "GITHUB"
+    },
+    {
+     "name": "nightly-report",
+     "type": "cron",
+     "status": "COMPLETED",
+     "action": "DEPLOY",
+     "ago": "9 hours",
+     "repo": "acme/storefront",
+     "branch": "main",
+     "commit": "77ab01e",
+     "gitProvider": "GITHUB"
+    },
+    {
+     "name": "postgres",
+     "type": "postgresql",
+     "status": "RUNNING",
+     "action": "DEPLOY",
+     "ago": "12 days",
+     "version": "17"
+    },
+    {
+     "name": "redis",
+     "type": "redis",
+     "status": "RUNNING",
+     "action": "DEPLOY",
+     "ago": "12 days",
+     "version": "7"
+    }
+   ]
+  }
+ },
+ "url": "console.qovery.com/organization/\u2026/environment/\u2026/overview"
+}

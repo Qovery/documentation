@@ -1,0 +1,14 @@
+{
+ "canvas": "docs",
+ "screen": {
+  "type": "cluster-workloads",
+  "cluster": "eu-west-3-prod",
+  "provider": "aws",
+  "data": {
+   "highlight": "production"
+  },
+  "organization": "Acme"
+ },
+ "framing": "full",
+ "zoom": 1.0
+}

@@ -88,16 +88,18 @@ Qovery pulls a pre-built container image from your configured registry and deplo
   </Tab>
 
   <Tab title="CLI and API">
-    You need the [Qovery CLI](/cli/overview), signed in with `qovery auth`. The `qovery api` command sends authenticated requests to the [Qovery API](/api-reference/introduction). Service commands use the organization, project and environment of your CLI context (`qovery context set`). You can also pass `--organization`, `--project` and `--environment`.
+    You need the [Qovery CLI](/cli/overview), signed in with `qovery auth`, and `jq` to read the IDs that the API returns. The `qovery api` command sends authenticated requests to the [Qovery API](/api-reference/introduction). Service commands use the organization, project and environment of your CLI context (`qovery context set`). You can also pass `--organization`, `--project` and `--environment`.
 
     **From a Git repository**, create the application with `POST /environment/{environmentId}/application`. `name`, `git_repository` (with `url` and `provider`) and `healthchecks` are required. Send `"healthchecks": {}` to create it without probes:
 
     ```bash
-    qovery api environment/<environmentId>/application --input - <<'JSON'
+    ENVIRONMENT_ID="REPLACE_WITH_ENVIRONMENT_ID"  # from qovery environment list --json
+
+    APPLICATION_ID=$(qovery api "environment/$ENVIRONMENT_ID/application" --input - <<'JSON' | jq -r .id
     {
       "name": "my-app",
       "git_repository": {
-        "url": "https://github.com/<owner>/<repo>.git",
+        "url": "https://github.com/REPLACE_WITH_OWNER/REPLACE_WITH_REPO.git",
         "branch": "main",
         "provider": "GITHUB"
       },
@@ -113,6 +115,8 @@ Qovery pulls a pre-built container image from your configured registry and deplo
       "healthchecks": {}
     }
     JSON
+    )
+    echo "$APPLICATION_ID"
     ```
 
     `provider` is `GITHUB`, `GITLAB` or `BITBUCKET`. For a private repository, add `git_token_id` to `git_repository` (see [Git Repository Access](/configuration/organization/git-repository-access)).
@@ -126,11 +130,15 @@ Qovery pulls a pre-built container image from your configured registry and deplo
     **From a container registry**, use `qovery container create`. Get the registry ID with `qovery container registry list`. `--port` exposes the port publicly:
 
     ```bash
+    REGISTRY_ID="REPLACE_WITH_REGISTRY_ID"  # from qovery container registry list
+    IMAGE_NAME="REPLACE_WITH_IMAGE_NAME"
+    IMAGE_TAG="REPLACE_WITH_IMAGE_TAG"
+
     qovery container create \
       -n my-app \
-      --registry <registryId> \
-      --image-name <imageName> \
-      --tag <tag> \
+      --registry "$REGISTRY_ID" \
+      --image-name "$IMAGE_NAME" \
+      --tag "$IMAGE_TAG" \
       --port 8080
 
     qovery container deploy -n my-app --watch
@@ -178,7 +186,8 @@ Qovery pulls a pre-built container image from your configured registry and deplo
 List the applications of the environment:
 
 ```bash
-qovery application list --environment <environmentName>
+ENVIRONMENT_NAME="REPLACE_WITH_ENVIRONMENT_NAME"
+qovery application list --environment "$ENVIRONMENT_NAME"
 ```
 
 Your application shows the status `DEPLOYED` once the deployment ends. A status that ends with `ERROR`, such as `BUILD_ERROR` or `DEPLOYMENT_ERROR`, means the deployment failed: see [Deployment Logs](/configuration/deployment/logs). For a container image, use `qovery container list`.
@@ -931,7 +940,9 @@ Add your own custom domain to your application:
     With the API, call `POST /application/{applicationId}/customDomain`. `domain` and `generate_certificate` are required:
 
     ```bash
-    qovery api application/<applicationId>/customDomain \
+    APPLICATION_ID="REPLACE_WITH_APPLICATION_ID"  # from qovery application list --json
+
+    qovery api "application/$APPLICATION_ID/customDomain" \
       --field domain=app.example.com \
       --field generate_certificate=true
     ```
@@ -992,7 +1003,7 @@ Duplicate an application configuration to the same or different environment. Clo
   prevent conflicts.
 </Note>
 
-To clone from the CLI, run `qovery application clone -n my-app --target-environment <environmentName>`. You can also pass `--target-project` and `--target-application-name`.
+To clone from the CLI, run `qovery application clone -n my-app --target-environment "<environmentName>"`. You can also pass `--target-project` and `--target-application-name`.
 
 ### Build Settings
 

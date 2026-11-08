@@ -238,20 +238,25 @@ To perform an action:
     You need the [Qovery CLI](/cli/overview), signed in with `qovery auth`.
 
     ```bash
+    CLUSTER_NAME="REPLACE_WITH_CLUSTER_NAME"
+
     # Update: redeploy the cluster after configuration changes
-    qovery cluster deploy -n <clusterName> --watch
+    qovery cluster deploy -n "$CLUSTER_NAME" --watch
 
     # Stop the cluster
-    qovery cluster stop -n <clusterName> --watch
+    qovery cluster stop -n "$CLUSTER_NAME" --watch
 
     # Upgrade to the next Kubernetes version available for the cluster
-    qovery cluster upgrade -n <clusterName> --watch
+    qovery cluster upgrade -n "$CLUSTER_NAME" --watch
     ```
 
     To delete a cluster, call `DELETE /organization/{organizationId}/cluster/{clusterId}`. The `deleteMode` query parameter selects the deletion option described below: `DEFAULT`, `DELETE_CLUSTER_AND_QOVERY_CONFIG` or `DELETE_QOVERY_CONFIG`:
 
     ```bash
-    qovery api "organization/<organizationId>/cluster/<clusterId>?deleteMode=DEFAULT" --method DELETE
+    ORGANIZATION_ID="REPLACE_WITH_ORGANIZATION_ID"  # from qovery organization list --json
+    CLUSTER_ID="REPLACE_WITH_CLUSTER_ID"  # from qovery cluster list
+
+    qovery api "organization/$ORGANIZATION_ID/cluster/$CLUSTER_ID?deleteMode=DEFAULT" --method DELETE
     ```
 
     Run `qovery cluster list` to follow the status of the cluster.
@@ -322,7 +327,7 @@ Permanently removes your cluster. You have three deletion options:
 - Enable direct kubectl access
 - Use for advanced debugging and management
 
-From the CLI, run `qovery cluster kubeconfig --cluster-id <clusterId>`. Add `--read-only` for a read-only kubeconfig.
+From the CLI, run `qovery cluster kubeconfig --cluster-id "<clusterId>"`. Add `--read-only` for a read-only kubeconfig.
 
 <Warning>
   **Security Best Practice**: Kubeconfig provides cluster-admin access. Store

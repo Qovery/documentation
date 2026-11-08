@@ -299,8 +299,10 @@ Built-in variables are read-only and automatically managed by Qovery. Variable n
     Create a variable on a service with `env create`. Add `--secret` for a secret. `--scope` sets the level: `PROJECT`, `ENVIRONMENT` or the service itself (the default):
 
     ```bash
+    API_KEY_VALUE="REPLACE_WITH_API_KEY_VALUE"
+
     qovery application env create -n my-app -k LOG_LEVEL -v info
-    qovery application env create -n my-app -k API_KEY -v <value> --secret
+    qovery application env create -n my-app -k API_KEY -v "$API_KEY_VALUE" --secret
     ```
 
     The same subcommand exists for `container`, `cronjob`, `lifecycle` and `helm`. To set a variable directly on an environment or a project, use `qovery environment env create` or `qovery project env create`.
@@ -308,12 +310,14 @@ Built-in variables are read-only and automatically managed by Qovery. Variable n
     With the API, call `POST /variable`. `key`, `value`, `is_secret`, `variable_scope` and `variable_parent_id` (the ID of the service, environment or project) are required:
 
     ```bash
+    APPLICATION_ID="REPLACE_WITH_APPLICATION_ID"  # from qovery application list --json
+
     qovery api variable \
       --field key=LOG_LEVEL \
       --field value=info \
       --field is_secret=false \
       --field variable_scope=APPLICATION \
-      --field variable_parent_id=<applicationId>
+      --field variable_parent_id="$APPLICATION_ID"
     ```
 
     Redeploy the service to apply the change, for example with `qovery application redeploy -n my-app`.
@@ -643,7 +647,9 @@ Import and export variables in bulk using `.env` file format.
     With the API, call `POST /variable/import` with the `service_id` and `service_type` query parameters. `overwrite` and `vars` are required:
 
     ```bash
-    qovery api "variable/import?service_id=<applicationId>&service_type=APPLICATION" --input - <<'JSON'
+    APPLICATION_ID="REPLACE_WITH_APPLICATION_ID"  # from qovery application list --json
+
+    qovery api "variable/import?service_id=$APPLICATION_ID&service_type=APPLICATION" --input - <<'JSON'
     {
       "overwrite": false,
       "vars": [

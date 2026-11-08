@@ -53,27 +53,33 @@ The **Databases & Caches** category of the catalog includes, among others, Amazo
   </Tab>
 
   <Tab title="CLI and API">
-    You need the [Qovery CLI](/cli/overview), signed in with `qovery auth`. The `qovery api` command sends authenticated requests to the [Qovery API](/api-reference/introduction).
+    You need the [Qovery CLI](/cli/overview), signed in with `qovery auth`, and `jq` to read the IDs that the API returns. The `qovery api` command sends authenticated requests to the [Qovery API](/api-reference/introduction).
 
     List the blueprint catalog. Each entry has an `icon` and, for each major version, a `latestTag`:
 
     ```bash
-    qovery api organization/<organizationId>/blueprint/catalog
+    ORGANIZATION_ID="REPLACE_WITH_ORGANIZATION_ID"  # from qovery organization list --json
+
+    qovery api "organization/$ORGANIZATION_ID/blueprint/catalog"
     ```
 
     Create the blueprint service with `POST /environment/{environmentId}/blueprint`. `name`, `tag` and `icon` are required. `variables` overrides the blueprint inputs, and `deploy=true` deploys it right after creation:
 
     ```bash
-    qovery api "environment/<environmentId>/blueprint?deploy=true" --input - <<'JSON'
+    ENVIRONMENT_ID="REPLACE_WITH_ENVIRONMENT_ID"  # from qovery environment list --json
+
+    BLUEPRINT_ID=$(qovery api "environment/$ENVIRONMENT_ID/blueprint?deploy=true" --input - <<'JSON' | jq -r .id
     {
       "name": "my-postgres",
-      "tag": "<latestTag>",
-      "icon": "<icon>",
+      "tag": "REPLACE_WITH_LATEST_TAG",
+      "icon": "REPLACE_WITH_ICON_URL",
       "variables": [
-        { "name": "<variableName>", "value": "<value>" }
+        { "name": "REPLACE_WITH_VARIABLE_NAME", "value": "REPLACE_WITH_VALUE" }
       ]
     }
     JSON
+    )
+    echo "$BLUEPRINT_ID"
     ```
 
     Read the blueprint README to know which variables are required.
@@ -103,7 +109,7 @@ The **Databases & Caches** category of the catalog includes, among others, Amazo
 Get the blueprint service with `GET /blueprint/{blueprintId}`:
 
 ```bash
-qovery api blueprint/<blueprintId>
+qovery api "blueprint/$BLUEPRINT_ID"
 ```
 
 The response shows `latest_deployment` with the status of the last run and, if it failed, the error message. `service_id` is set once the Terraform or Helm service backing the database exists.
@@ -169,7 +175,9 @@ Check out [this guide](/getting-started/guides/getting-started/connect-database)
     Create the database with `POST /environment/{environmentId}/database`. `name`, `type`, `version` and `mode` are required. `type` is `POSTGRESQL`, `MYSQL`, `MONGODB` or `REDIS`:
 
     ```bash
-    qovery api environment/<environmentId>/database \
+    ENVIRONMENT_ID="REPLACE_WITH_ENVIRONMENT_ID"  # from qovery environment list --json
+
+    DATABASE_ID=$(qovery api "environment/$ENVIRONMENT_ID/database" \
       --field name=my-db \
       --field type=POSTGRESQL \
       --field version=17 \
@@ -177,7 +185,8 @@ Check out [this guide](/getting-started/guides/getting-started/connect-database)
       --field accessibility=PRIVATE \
       --field cpu=500 \
       --field memory=512 \
-      --field storage=10
+      --field storage=10 | jq -r .id)
+    echo "$DATABASE_ID"
     ```
 
     `cpu` is in millicores, `memory` in MB and `storage` in GB. To see the versions available in the environment, call `GET /environment/{environmentId}/databaseConfiguration`.
@@ -213,7 +222,8 @@ Check out [this guide](/getting-started/guides/getting-started/connect-database)
 List the databases of the environment:
 
 ```bash
-qovery database list --environment <environmentName>
+ENVIRONMENT_NAME="REPLACE_WITH_ENVIRONMENT_NAME"
+qovery database list --environment "$ENVIRONMENT_NAME"
 ```
 
 Your database shows the status `DEPLOYED`, with its host and port. With the API, `GET /database/{databaseId}/status` returns the same value in `state`.
@@ -279,9 +289,12 @@ Please check the configuration of the new service before deploying it.
 With the API, clone a database with `POST /database/{databaseId}/clone`. `name` and `environment_id` (the target environment) are required:
 
 ```bash
-qovery api database/<databaseId>/clone \
+DATABASE_ID="REPLACE_WITH_DATABASE_ID"  # from qovery database list
+TARGET_ENVIRONMENT_ID="REPLACE_WITH_TARGET_ENVIRONMENT_ID"
+
+qovery api "database/$DATABASE_ID/clone" \
   --field name=my-db-copy \
-  --field environment_id=<targetEnvironmentId>
+  --field environment_id="$TARGET_ENVIRONMENT_ID"
 ```
 
 <Info>

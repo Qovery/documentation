@@ -39,7 +39,9 @@ You can access logs from three different entry points in the Qovery Console:
     **Deployment logs.** Print the logs of the latest deployment of the environment:
 
     ```bash
-    qovery environment deployment logs --environment <environmentName>
+    ENVIRONMENT_NAME="REPLACE_WITH_ENVIRONMENT_NAME"
+
+    qovery environment deployment logs --environment "$ENVIRONMENT_NAME"
     ```
 
     Useful flags:
@@ -55,7 +57,7 @@ You can access logs from three different entry points in the Qovery Console:
 
 ### Check it worked
 
-Run `qovery environment deployment list --environment <environmentName>` and note the execution ID and status of your last deployment. Then run `qovery environment deployment logs --environment <environmentName> --execution-id <executionId>`: it prints the build and deploy lines of that execution. If the status ends with `ERROR`, add `--errors-only` to see only the lines that explain the failure.
+Run `qovery environment deployment list --environment "<environmentName>"` and note the execution ID and status of your last deployment. Then run `qovery environment deployment logs --environment "<environmentName>" --execution-id "<executionId>"`: it prints the build and deploy lines of that execution. If the status ends with `ERROR`, add `--errors-only` to see only the lines that explain the failure.
 
 ## Pipeline View
 
@@ -96,7 +98,7 @@ Rejects repositories exceeding **5 GB**.
 2. Click on a deployment to open the pipeline view
 3. Click the **pre-check stage** — the logs stream the full output including error messages and hints
 
-From the CLI, run `qovery environment deployment logs --environment <environmentName> --pre-check`.
+From the CLI, run `qovery environment deployment logs --environment "<environmentName>" --pre-check`.
 
 ### When Pre-Checks Fail
 

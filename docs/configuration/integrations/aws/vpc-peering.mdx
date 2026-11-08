@@ -133,13 +133,16 @@ Add a route in the Qovery VPC through the Qovery Console.
     `PUT /organization/{organizationId}/cluster/{clusterId}/routingTable` replaces the whole table, so read the current routes first and send them back with the new one. Each route needs `destination`, `target` and `description`:
 
     ```bash
-    qovery api organization/<organizationId>/cluster/<clusterId>/routingTable \
+    ORGANIZATION_ID="REPLACE_WITH_ORGANIZATION_ID"  # from qovery organization list --json
+    CLUSTER_ID="REPLACE_WITH_CLUSTER_ID"  # from qovery cluster list
+
+    qovery api "organization/$ORGANIZATION_ID/cluster/$CLUSTER_ID/routingTable" \
       | jq '{routes: (.results + [{
           destination: "10.0.0.0/16",
           target: "pcx-0abc123def456789",
           description: "Peering to existing VPC"
         }])}' \
-      | qovery api organization/<organizationId>/cluster/<clusterId>/routingTable --method PUT --input -
+      | qovery api "organization/$ORGANIZATION_ID/cluster/$CLUSTER_ID/routingTable" --method PUT --input -
     ```
 
     Get the cluster ID with `qovery cluster list`.
@@ -166,7 +169,7 @@ Add a route in the Qovery VPC through the Qovery Console.
 ### Check it worked
 
 ```bash
-qovery api organization/<organizationId>/cluster/<clusterId>/routingTable
+qovery api "organization/$ORGANIZATION_ID/cluster/$CLUSTER_ID/routingTable"
 ```
 
 The response lists your route in `results`, with the destination CIDR and the peering connection ID, next to the routes that were already there.

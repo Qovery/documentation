@@ -85,10 +85,13 @@ This guide covers Git Repository and Container Registry deployments. For Helm ch
 
   <Tab title="CLI and API">
     ```bash
-    qovery api organization/<organizationId>/project --field name="My First Project"
+    ORGANIZATION_ID="REPLACE_WITH_ORGANIZATION_ID"  # from qovery organization list --json
+
+    PROJECT_ID=$(qovery api "organization/$ORGANIZATION_ID/project" --field name="My First Project" | jq -r .id)
+    echo "$PROJECT_ID"
     ```
 
-    The response contains the project `id`. Get your organization ID with `qovery organization list`. See [Project](/configuration/project#create-a-new-project) for details.
+    The command stores the project ID in `PROJECT_ID`, which the next step uses. It needs `jq`. Get your organization ID with `qovery organization list --json`. See [Project](/configuration/project#create-a-new-project) for details.
   </Tab>
 
   <Tab title="Terraform">
@@ -125,10 +128,13 @@ This guide covers Git Repository and Container Registry deployments. For Helm ch
     Get the cluster ID with `qovery cluster list`, then create the environment:
 
     ```bash
-    qovery api project/<projectId>/environment \
+    CLUSTER_ID="REPLACE_WITH_CLUSTER_ID"  # from qovery cluster list
+
+    ENVIRONMENT_ID=$(qovery api "project/$PROJECT_ID/environment" \
       --field name=production \
       --field mode=PRODUCTION \
-      --field cluster=<clusterId>
+      --field cluster="$CLUSTER_ID" | jq -r .id)
+    echo "$ENVIRONMENT_ID"
     ```
 
     See [Environment](/configuration/environment#create-an-environment) for details.
@@ -340,8 +346,10 @@ Qovery supports multiple deployment sources. Choose the one that fits your workf
 From a pre-built image, create and deploy the service with the CLI. Get the registry ID with `qovery container registry list`:
 
 ```bash
+REGISTRY_ID="REPLACE_WITH_REGISTRY_ID"  # from qovery container registry list
+
 qovery container create --project "My First Project" --environment production \
-  -n my-api --registry <registryId> --image-name myapp/api --tag v1.0.0 --port 8080
+  -n my-api --registry "$REGISTRY_ID" --image-name myapp/api --tag v1.0.0 --port 8080
 
 qovery container deploy --project "My First Project" --environment production \
   -n my-api --watch
@@ -405,7 +413,9 @@ Watch your application come to life:
     Get the URL of the service with `GET /application/{applicationId}/link`, or `GET /container/{containerId}/link` for a container. It lists the Qovery domain and any custom domain:
 
     ```bash
-    qovery api application/<applicationId>/link
+    APPLICATION_ID="REPLACE_WITH_APPLICATION_ID"  # from qovery application list --json
+
+    qovery api "application/$APPLICATION_ID/link"
     ```
 
     Print the output of your app with `qovery log -a my-api`, or `qovery log -n my-api` for a container.

@@ -77,7 +77,9 @@ Managed databases are supported through [Blueprints](/configuration/blueprints).
     Create the database with `POST /environment/{environmentId}/database`. `name`, `type`, `version` and `mode` are required:
 
     ```bash
-    qovery api environment/<environmentId>/database \
+    ENVIRONMENT_ID="REPLACE_WITH_ENVIRONMENT_ID"  # from qovery environment list --json
+
+    qovery api "environment/$ENVIRONMENT_ID/database" \
       --field name=my-db \
       --field type=POSTGRESQL \
       --field version=17 \
@@ -89,7 +91,9 @@ Managed databases are supported through [Blueprints](/configuration/blueprints).
     Then deploy it:
 
     ```bash
-    qovery database deploy --environment <environmentName> -n my-db --watch
+    ENVIRONMENT_NAME="REPLACE_WITH_ENVIRONMENT_NAME"
+
+    qovery database deploy --environment "$ENVIRONMENT_NAME" -n my-db --watch
     ```
 
     See [Databases](/configuration/database#create-a-container-database) for all the fields.
@@ -115,7 +119,8 @@ Managed databases are supported through [Blueprints](/configuration/blueprints).
 ### Check it worked
 
 ```bash
-qovery database list --environment <environmentName>
+ENVIRONMENT_NAME="REPLACE_WITH_ENVIRONMENT_NAME"
+qovery database list --environment "$ENVIRONMENT_NAME"
 ```
 
 Your database shows the status `DEPLOYED`, with its host and port. Add `--show-credentials` to print the login and password.
@@ -157,8 +162,11 @@ The exact variable names are always visible in the **Variables** tab of any serv
 From the CLI, list them with `qovery application env list -n my-app`. To expose one under the name your code expects, create an alias on it:
 
 ```bash
+# Copy the exact name from qovery application env list
+DB_URL_VARIABLE="REPLACE_WITH_QOVERY_POSTGRESQL_DBID_DATABASE_URL_INTERNAL"
+
 qovery application env alias create -n my-app \
-  -k QOVERY_POSTGRESQL_<DBID>_DATABASE_URL_INTERNAL \
+  -k "$DB_URL_VARIABLE" \
   --alias DATABASE_URL
 ```
 

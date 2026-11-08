@@ -71,12 +71,16 @@ You can manage API tokens attached to your organization directly from the Qovery
     With the API, get the role ID from `GET /organization/{organizationId}/availableRole`, then call `POST /organization/{organizationId}/apiToken`. `name` and `role_id` are required:
 
     ```bash
-    qovery api organization/<organizationId>/availableRole
+    ORGANIZATION_ID="REPLACE_WITH_ORGANIZATION_ID"  # from qovery organization list --json
 
-    qovery api organization/<organizationId>/apiToken \
+    qovery api "organization/$ORGANIZATION_ID/availableRole"
+
+    ROLE_ID="REPLACE_WITH_ROLE_ID"  # id of the role from the list above
+
+    qovery api "organization/$ORGANIZATION_ID/apiToken" \
       --field name=ci-deployer \
       --field description="GitHub Actions" \
-      --field role_id=<roleId>
+      --field role_id="$ROLE_ID"
     ```
 
     The response contains the token value. It is returned only once.
@@ -103,7 +107,9 @@ You can manage API tokens attached to your organization directly from the Qovery
 List the tokens of the organization:
 
 ```bash
-qovery api organization/<organizationId>/apiToken
+ORGANIZATION_ID="REPLACE_WITH_ORGANIZATION_ID"  # from qovery organization list --json
+
+qovery api "organization/$ORGANIZATION_ID/apiToken"
 ```
 
 The new token appears with its `name` and `role_name`. To confirm the token itself works, call the API with it:

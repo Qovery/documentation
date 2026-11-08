@@ -246,18 +246,21 @@ Once you've created a token in your Git provider, manage it in Qovery:
   </Tab>
 
   <Tab title="CLI and API">
-    You need the [Qovery CLI](/cli/overview), signed in with `qovery auth`. The `qovery api` command sends authenticated requests to the [Qovery API](/api-reference/introduction).
+    You need the [Qovery CLI](/cli/overview), signed in with `qovery auth`, and `jq` to read the IDs that the API returns. The `qovery api` command sends authenticated requests to the [Qovery API](/api-reference/introduction).
 
     Create the token with `POST /organization/{organizationId}/gitToken`. `name`, `type` (`GITHUB`, `GITLAB` or `BITBUCKET`) and `token` are required. Add `workspace` for Bitbucket and `git_api_url` for a self-hosted Git server. Read the token from an environment variable so it does not end up in your shell history:
 
     ```bash
-    qovery api organization/<organizationId>/gitToken \
+    ORGANIZATION_ID="REPLACE_WITH_ORGANIZATION_ID"  # from qovery organization list --json
+
+    GIT_TOKEN_ID=$(qovery api "organization/$ORGANIZATION_ID/gitToken" \
       --field name="GitHub Main Org" \
       --field type=GITHUB \
-      --field token="$GIT_PROVIDER_TOKEN"
+      --field token="$GIT_PROVIDER_TOKEN" | jq -r .id)
+    echo "$GIT_TOKEN_ID"
     ```
 
-    The response contains the token `id`. Use it as `git_token_id` in the `git_repository` object when you create a service with the API.
+    The command stores the token `id` in `GIT_TOKEN_ID`. Use it as `git_token_id` in the `git_repository` object when you create a service with the API.
   </Tab>
 
   <Tab title="Terraform">
@@ -281,7 +284,9 @@ Once you've created a token in your Git provider, manage it in Qovery:
 List the Git tokens of the organization:
 
 ```bash
-qovery api organization/<organizationId>/gitToken
+ORGANIZATION_ID="REPLACE_WITH_ORGANIZATION_ID"  # from qovery organization list --json
+
+qovery api "organization/$ORGANIZATION_ID/gitToken"
 ```
 
 Your token appears in `results` with its `type`, its `expired_at` date, and `associated_services_count`, the number of services that use it.
@@ -333,7 +338,10 @@ When creating a service:
     Call `PUT /organization/{organizationId}/gitToken/{gitTokenId}`. The body takes the same fields as the creation, and `name`, `type` and `token` are required:
 
     ```bash
-    qovery api organization/<organizationId>/gitToken/<gitTokenId> --method PUT \
+    ORGANIZATION_ID="REPLACE_WITH_ORGANIZATION_ID"  # from qovery organization list --json
+    GIT_TOKEN_ID="REPLACE_WITH_GIT_TOKEN_ID"  # from the list of Git tokens
+
+    qovery api "organization/$ORGANIZATION_ID/gitToken/$GIT_TOKEN_ID" --method PUT \
       --field name="GitHub Main Org" \
       --field type=GITHUB \
       --field token="$GIT_PROVIDER_TOKEN"

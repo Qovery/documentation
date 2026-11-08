@@ -53,11 +53,13 @@ Rules can be established at two hierarchical levels:
 To create a project rule without the Console, use the [Qovery CLI](/cli/overview) signed in with `qovery auth`, and call `POST /project/{projectId}/deploymentRule`. `name`, `mode`, `cluster_id`, `timezone`, `start_time`, `stop_time`, `weekdays` and `wildcard` are required. `start_time` and `stop_time` use the date-time format of the API example below:
 
 ```bash
-qovery api project/<projectId>/deploymentRule --input - <<'JSON'
+PROJECT_ID="REPLACE_WITH_PROJECT_ID"  # from qovery project list
+
+qovery api "project/$PROJECT_ID/deploymentRule" --input - <<'JSON'
 {
   "name": "dev-office-hours",
   "mode": "DEVELOPMENT",
-  "cluster_id": "<clusterId>",
+  "cluster_id": "REPLACE_WITH_CLUSTER_ID",
   "wildcard": "dev-*",
   "auto_stop": true,
   "timezone": "Europe/Paris",
@@ -75,7 +77,7 @@ The Terraform provider has no deployment rule resource.
 List the rules of the project:
 
 ```bash
-qovery api project/<projectId>/deploymentRule
+qovery api "project/$PROJECT_ID/deploymentRule"
 ```
 
 The response lists your rule with its `wildcard`, `cluster_id` and schedule. New environments whose name matches the wildcard get these settings.
@@ -86,10 +88,13 @@ The response lists your rule with its `wildcard`, `cluster_id` and schedule. New
 - Gives fine-grained control for exceptions (e.g., keep staging running 24/7)
 - Takes precedence over project-level rules
 
-To change the rule of one environment from the API, get its ID with `GET /environment/{environmentId}/deploymentRule`, then call `PUT /environment/{environmentId}/deploymentRule/{deploymentRuleId}`. `timezone`, `start_time`, `stop_time` and `weekdays` are required, and `auto_stop` turns the schedule on or off:
+To change the rule of one environment from the API, get its ID with `GET /environment/{environmentId}/deploymentRule`, then call `PUT /environment/{environmentId}/deploymentRule/{deploymentRuleId}`. `timezone`, `start_time`, `stop_time` and `weekdays` are required, and `auto_stop` turns the schedule on or off. The example uses `jq` to read the rule ID:
 
 ```bash
-qovery api environment/<environmentId>/deploymentRule/<deploymentRuleId> --method PUT --input - <<'JSON'
+ENVIRONMENT_ID="REPLACE_WITH_ENVIRONMENT_ID"  # from qovery environment list --json
+DEPLOYMENT_RULE_ID=$(qovery api "environment/$ENVIRONMENT_ID/deploymentRule" | jq -r .id)
+
+qovery api "environment/$ENVIRONMENT_ID/deploymentRule/$DEPLOYMENT_RULE_ID" --method PUT --input - <<'JSON'
 {
   "auto_stop": false,
   "timezone": "Europe/Paris",

@@ -47,15 +47,19 @@ The invited member will receive an email with instructions to join the organizat
     Get the ID of the role to give, built-in or custom:
 
     ```bash
-    qovery api organization/<organizationId>/availableRole
+    ORGANIZATION_ID="REPLACE_WITH_ORGANIZATION_ID"  # from qovery organization list --json
+
+    qovery api "organization/$ORGANIZATION_ID/availableRole"
     ```
 
     Send the invitation with `POST /organization/{organizationId}/inviteMember`. `email` is required, and `role_id` sets the role:
 
     ```bash
-    qovery api organization/<organizationId>/inviteMember \
+    ROLE_ID="REPLACE_WITH_ROLE_ID"  # id of the role from the list above
+
+    qovery api "organization/$ORGANIZATION_ID/inviteMember" \
       --field email=dev@example.com \
-      --field role_id=<roleId>
+      --field role_id="$ROLE_ID"
     ```
   </Tab>
 
@@ -79,7 +83,9 @@ The invited member will receive an email with instructions to join the organizat
 List the pending invitations:
 
 ```bash
-qovery api organization/<organizationId>/inviteMember
+ORGANIZATION_ID="REPLACE_WITH_ORGANIZATION_ID"  # from qovery organization list --json
+
+qovery api "organization/$ORGANIZATION_ID/inviteMember"
 ```
 
 The invitation appears with `invitation_status` set to `PENDING` and its `role_name`. Once the person accepts it, they appear in `GET /organization/{organizationId}/member` instead.

@@ -84,12 +84,14 @@ Qovery pulls a pre-built container image from your configured registry and deplo
   </Tab>
 
   <Tab title="CLI and API">
-    You need the [Qovery CLI](/cli/overview), signed in with `qovery auth`. The `qovery api` command sends authenticated requests to the [Qovery API](/api-reference/introduction). Service commands use the organization, project and environment of your CLI context (`qovery context set`). You can also pass `--organization`, `--project` and `--environment`.
+    You need the [Qovery CLI](/cli/overview), signed in with `qovery auth`, and `jq` to read the IDs that the API returns. The `qovery api` command sends authenticated requests to the [Qovery API](/api-reference/introduction). Service commands use the organization, project and environment of your CLI context (`qovery context set`). You can also pass `--organization`, `--project` and `--environment`.
 
     Create the job with `POST /environment/{environmentId}/job`. `name` and `healthchecks` are required. A lifecycle job needs at least one of `schedule.on_start` (Deploy), `schedule.on_stop` (Stop) or `schedule.on_delete` (Delete). This example builds from a Git repository and runs on Deploy:
 
     ```bash
-    qovery api environment/<environmentId>/job --input - <<'JSON'
+    ENVIRONMENT_ID="REPLACE_WITH_ENVIRONMENT_ID"  # from qovery environment list --json
+
+    JOB_ID=$(qovery api "environment/$ENVIRONMENT_ID/job" --input - <<'JSON' | jq -r .id
     {
       "name": "db-migration",
       "cpu": 500,
@@ -98,7 +100,7 @@ Qovery pulls a pre-built container image from your configured registry and deplo
       "source": {
         "docker": {
           "git_repository": {
-            "url": "https://github.com/<owner>/<repo>.git",
+            "url": "https://github.com/REPLACE_WITH_OWNER/REPLACE_WITH_REPO.git",
             "branch": "main",
             "provider": "GITHUB"
           },
@@ -114,6 +116,8 @@ Qovery pulls a pre-built container image from your configured registry and deplo
       "healthchecks": {}
     }
     JSON
+    )
+    echo "$JOB_ID"
     ```
 
     To use a container image, replace `source.docker` with `source.image`, which takes `registry_id`, `image_name` and `tag`.
@@ -163,7 +167,8 @@ Qovery pulls a pre-built container image from your configured registry and deplo
 List the lifecycle jobs of the environment:
 
 ```bash
-qovery lifecycle list --environment <environmentName>
+ENVIRONMENT_NAME="REPLACE_WITH_ENVIRONMENT_NAME"
+qovery lifecycle list --environment "$ENVIRONMENT_NAME"
 ```
 
 Your job is listed with its status. A status that ends with `ERROR` means the run failed: see [Deployment Logs](/configuration/deployment/logs). With the API, `GET /job/{jobId}/status` returns the same value in `state`.
@@ -306,7 +311,9 @@ Manually trigger a Lifecycle Job with a specific event type:
     Call `POST /job/{jobId}/deploy` with the `forceEvent` query parameter set to `START` (Deploy), `STOP` or `DELETE`:
 
     ```bash
-    echo '{}' | qovery api "job/<jobId>/deploy?forceEvent=START" --input -
+    JOB_ID="REPLACE_WITH_JOB_ID"  # from qovery lifecycle list
+
+    echo '{}' | qovery api "job/$JOB_ID/deploy?forceEvent=START" --input -
     ```
 
     Then follow the run in the logs:
@@ -347,7 +354,7 @@ The target environment can be the same as the current environment or a different
 Cloning excludes custom domains and some built-in environment variables to prevent conflicts.
 </Note>
 
-To clone from the CLI, run `qovery lifecycle clone -n db-migration --target-environment <environmentName>`. You can also pass `--target-project` and `--target-lifecycle-name`.
+To clone from the CLI, run `qovery lifecycle clone -n db-migration --target-environment "<environmentName>"`. You can also pass `--target-project` and `--target-lifecycle-name`.
 
 ## Delete Lifecycle Job
 

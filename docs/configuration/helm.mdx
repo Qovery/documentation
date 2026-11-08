@@ -69,13 +69,17 @@ Helm repositories must be configured at the organization level by administrators
     Get the ID of your Helm repository:
 
     ```bash
-    qovery api organization/<organizationId>/helmRepository
+    ORGANIZATION_ID="REPLACE_WITH_ORGANIZATION_ID"  # from qovery organization list --json
+
+    qovery api "organization/$ORGANIZATION_ID/helmRepository"
     ```
 
     Create the Helm service with `POST /environment/{environmentId}/helm`. `name`, `auto_deploy`, `source`, `arguments` and `values_override` are required. `set`, `set_string` and `set_json` take a list of `[key, value]` pairs:
 
     ```bash
-    qovery api environment/<environmentId>/helm --input - <<'JSON'
+    ENVIRONMENT_ID="REPLACE_WITH_ENVIRONMENT_ID"  # from qovery environment list --json
+
+    qovery api "environment/$ENVIRONMENT_ID/helm" --input - <<'JSON'
     {
       "name": "podinfo",
       "auto_deploy": false,
@@ -83,9 +87,9 @@ Helm repositories must be configured at the organization level by administrators
       "arguments": [],
       "source": {
         "helm_repository": {
-          "repository": "<helmRepositoryId>",
+          "repository": "REPLACE_WITH_HELM_REPOSITORY_ID",
           "chart_name": "podinfo",
-          "chart_version": "<chartVersion>"
+          "chart_version": "REPLACE_WITH_CHART_VERSION"
         }
       },
       "values_override": {
@@ -137,7 +141,8 @@ Helm repositories must be configured at the organization level by administrators
 List the Helm services of the environment:
 
 ```bash
-qovery helm list --environment <environmentName>
+ENVIRONMENT_NAME="REPLACE_WITH_ENVIRONMENT_NAME"
+qovery helm list --environment "$ENVIRONMENT_NAME"
 ```
 
 Your Helm service shows the status `DEPLOYED` once the deployment ends. A status that ends with `ERROR` means the deployment failed: see [Deployment Logs](/configuration/deployment/logs). With the API, `GET /helm/{helmId}/status` returns the same value in `state`.
@@ -295,7 +300,7 @@ Duplicate a Helm service with its configuration:
 Cloning excludes custom domains and certain environment variables to prevent conflicts.
 </Note>
 
-To clone from the CLI, run `qovery helm clone -n podinfo --target-environment <environmentName>`. You can also pass `--target-project` and `--target-helm-name`.
+To clone from the CLI, run `qovery helm clone -n podinfo --target-environment "<environmentName>"`. You can also pass `--target-project` and `--target-helm-name`.
 
 ## Advanced Settings
 

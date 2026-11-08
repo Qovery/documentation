@@ -39,17 +39,20 @@ A project allows you to group together a set of environments with the objective 
   </Tab>
 
   <Tab title="CLI and API">
-    You need the [Qovery CLI](/cli/overview), signed in with `qovery auth`. The `qovery api` command sends authenticated requests to the [Qovery API](/api-reference/introduction).
+    You need the [Qovery CLI](/cli/overview), signed in with `qovery auth`, and `jq` to read the IDs that the API returns. The `qovery api` command sends authenticated requests to the [Qovery API](/api-reference/introduction).
 
     Create the project with `POST /organization/{organizationId}/project`. Only `name` is required:
 
     ```bash
-    qovery api organization/<organizationId>/project \
+    ORGANIZATION_ID="REPLACE_WITH_ORGANIZATION_ID"  # from qovery organization list --json
+
+    PROJECT_ID=$(qovery api "organization/$ORGANIZATION_ID/project" \
       --field name=my-project \
-      --field description="Backend services"
+      --field description="Backend services" | jq -r .id)
+    echo "$PROJECT_ID"
     ```
 
-    The response contains the new project, including its `id`.
+    The command stores the new project ID in `PROJECT_ID`.
   </Tab>
 
   <Tab title="Terraform">
@@ -108,7 +111,9 @@ To update project details:
     Send the new values with `PUT /project/{projectId}`. `name` is required, even if you only change the description. You need the admin permission on the project.
 
     ```bash
-    qovery api project/<projectId> --method PUT \
+    PROJECT_ID="REPLACE_WITH_PROJECT_ID"  # from qovery project list
+
+    qovery api "project/$PROJECT_ID" --method PUT \
       --field name=my-project \
       --field description="New description"
     ```
@@ -163,7 +168,9 @@ To delete a project:
     Delete the project with `DELETE /project/{projectId}`. You need the admin permission on the project.
 
     ```bash
-    qovery api project/<projectId> --method DELETE
+    PROJECT_ID="REPLACE_WITH_PROJECT_ID"  # from qovery project list
+
+    qovery api "project/$PROJECT_ID" --method DELETE
     ```
 
     Run `qovery project list` afterwards: the project is no longer listed.

@@ -270,13 +270,13 @@ You must see a new environment appearing in your environment list on Qovery. Wai
 qovery environment list --project "My Project"
 ```
 
-The list shows a new environment of type `PREVIEW`. Its status becomes `DEPLOYED` once the deployment ends. To see the status of each of its services, run `qovery environment statuses --project "My Project" --environment <previewEnvironmentName>`.
+The list shows a new environment of type `PREVIEW`. Its status becomes `DEPLOYED` once the deployment ends. To see the status of each of its services, run `qovery environment statuses --project "My Project" --environment "<previewEnvironmentName>"`.
 
 ## Delete a Preview Environment
 
 To delete you need to merge `test_qovery_preview_environment` into `staging`. You also have the ability to delete it manually on Qovery.
 
-To delete it from the CLI, run `qovery environment delete --project "My Project" --environment <previewEnvironmentName>`.
+To delete it from the CLI, run `qovery environment delete --project "My Project" --environment "<previewEnvironmentName>"`.
 
 <Warning>
 By merging into `staging`, Qovery will auto-redeploy the new version in your `staging` environment. Turn off `auto-deploy` from the `staging` environment settings if you want to manually deploy new version in staging.

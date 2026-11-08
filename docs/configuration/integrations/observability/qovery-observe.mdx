@@ -346,7 +346,9 @@ Create alerts based on these monitoring categories:
 List the alert rules of the organization:
 
 ```bash
-qovery api organization/<organizationId>/alert-rules
+ORGANIZATION_ID="REPLACE_WITH_ORGANIZATION_ID"  # from qovery organization list --json
+
+qovery api "organization/$ORGANIZATION_ID/alert-rules"
 ```
 
 Your rule appears with its `severity` and `alert_receiver_ids`. `state` shows where the rule stands, for example `OK`, `TRIGGERED` or `NOTIFIED`, and `is_up_to_date` is `true` once the rule is synced with the alerting system.

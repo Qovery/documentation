@@ -215,6 +215,8 @@ Once you've created a token in your Git provider, manage it in Qovery:
 
 #### Create the Token
 
+<Tabs>
+  <Tab title="Console">
 <Steps>
   <Step title="Access Organization Settings">
     Click on your organization name in the top left, then go to the **Settings** tab.
@@ -241,6 +243,48 @@ Once you've created a token in your Git provider, manage it in Qovery:
     Qovery will validate the token and verify access. Click **Save** to complete.
   </Step>
 </Steps>
+  </Tab>
+
+  <Tab title="CLI and API">
+    You need the [Qovery CLI](/cli/overview), signed in with `qovery auth`. The `qovery api` command sends authenticated requests to the [Qovery API](/api-reference/introduction).
+
+    Create the token with `POST /organization/{organizationId}/gitToken`. `name`, `type` (`GITHUB`, `GITLAB` or `BITBUCKET`) and `token` are required. Add `workspace` for Bitbucket and `git_api_url` for a self-hosted Git server. Read the token from an environment variable so it does not end up in your shell history:
+
+    ```bash
+    qovery api organization/<organizationId>/gitToken \
+      --field name="GitHub Main Org" \
+      --field type=GITHUB \
+      --field token="$GIT_PROVIDER_TOKEN"
+    ```
+
+    The response contains the token `id`. Use it as `git_token_id` in the `git_repository` object when you create a service with the API.
+  </Tab>
+
+  <Tab title="Terraform">
+    Use the [`qovery_git_token`](https://registry.terraform.io/providers/Qovery/qovery/latest/docs/resources/git_token) resource. `organization_id`, `name`, `type` and `token` are required, and `bitbucket_workspace` is required for Bitbucket:
+
+    ```hcl
+    resource "qovery_git_token" "github" {
+      organization_id = "<organizationId>"
+      name            = "GitHub Main Org"
+      type            = "GITHUB"
+      token           = var.github_token
+    }
+    ```
+
+    Reference it from a service with `git_token_id = qovery_git_token.github.id` in its `git_repository` block.
+  </Tab>
+</Tabs>
+
+##### Check it worked
+
+List the Git tokens of the organization:
+
+```bash
+qovery api organization/<organizationId>/gitToken
+```
+
+Your token appears in `results` with its `type`, its `expired_at` date, and `associated_services_count`, the number of services that use it.
 
 <Info>
 Only users with **Owner**, **Admin**, or **DevOps** roles can manage Git tokens.
@@ -264,6 +308,8 @@ When creating a service:
 
 #### Update the Token
 
+<Tabs>
+  <Tab title="Console">
 <Steps>
   <Step title="Locate Token">
     Find the token in the Git Repository Access list
@@ -281,6 +327,23 @@ When creating a service:
     Click **Save** to apply changes
   </Step>
 </Steps>
+  </Tab>
+
+  <Tab title="CLI and API">
+    Call `PUT /organization/{organizationId}/gitToken/{gitTokenId}`. The body takes the same fields as the creation, and `name`, `type` and `token` are required:
+
+    ```bash
+    qovery api organization/<organizationId>/gitToken/<gitTokenId> --method PUT \
+      --field name="GitHub Main Org" \
+      --field type=GITHUB \
+      --field token="$GIT_PROVIDER_TOKEN"
+    ```
+  </Tab>
+
+  <Tab title="Terraform">
+    Change `token` or `name` in your `qovery_git_token` resource and run `terraform apply`.
+  </Tab>
+</Tabs>
 
 <Info>
 Updating a token affects all applications using repositories from this Git provider connection.
@@ -293,6 +356,8 @@ To remove a Git token:
 1. Locate the token in the Git Repository Access list
 2. Click the **Delete** button (trash icon)
 3. Confirm deletion
+
+With the API, call `DELETE /organization/{organizationId}/gitToken/{gitTokenId}`. To see which services use the token first, call `GET /organization/{organizationId}/gitToken/{gitTokenId}/associatedServices`.
 
 <Warning>
 Applications currently using repositories accessed through this token may fail to build or deploy. Configure alternative access before deletion.

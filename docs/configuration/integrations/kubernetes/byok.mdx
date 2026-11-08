@@ -7,11 +7,11 @@ tag: "PREVIEW"
 The Qovery Operator connects a Kubernetes cluster you already run to Qovery. You create the cluster in the Qovery Console, install the Operator once with Helm, and Qovery then installs and updates the Qovery stack on the cluster from a platform profile.
 
 <Info>
-The Qovery Operator installation is in Preview and available on every Qovery plan, including Free. [Current limitations](#current-limitations) lists what the Preview does not cover yet. It supports EKS, GKE and Scaleway Kapsule. Every other cluster, such as Azure AKS, k3s or an on-premise cluster, uses the [installation with the Qovery CLI](/configuration/integrations/kubernetes/byok-legacy). See [Which installation to use](/configuration/integrations/kubernetes/byok-supported-setups#which-installation-to-use).
+The Qovery Operator installation is in Preview and available on every Qovery plan, including Free. [Current limitations](#current-limitations) lists what the Preview does not cover yet. It supports EKS, GKE and Scaleway Kapsule. Every other cluster you run, such as Azure AKS, k3s or an on-premise cluster, uses the [installation with the Qovery CLI](/configuration/integrations/kubernetes/byok-legacy). See [Which installation to use](/configuration/integrations/kubernetes/byok-supported-setups#which-installation-to-use).
 </Info>
 
 <Tip>
-Want to try Qovery before you connect a real cluster? Run `qovery demo up`. It creates a local k3s cluster with Docker and installs Qovery on it in a few minutes. See [Local cluster for development](/configuration/integrations/kubernetes/docker).
+Want to try Qovery before you connect a real cluster? Run `qovery demo up`. It creates a local k3s cluster with Docker and installs the Qovery Operator on it in a few minutes. This local demo is the only k3s setup that uses the Operator. See [Local cluster for development](/configuration/integrations/kubernetes/docker).
 </Tip>
 
 ## How it works
@@ -40,7 +40,7 @@ Want to try Qovery before you connect a real cluster? Run `qovery demo up`. It c
 <Check>Outbound internet access from the cluster to Qovery and to public container registries</Check>
 <Check>A Qovery cloud credential for the provider of the cluster. You can create it during the installation.</Check>
 
-Before you install, run `qovery cluster preflight` with your kubeconfig pointing to the cluster. It checks most of these prerequisites and the components that must not already run on the cluster, changes nothing, and tells you how to fix each problem. See [Supported cluster setups](/configuration/integrations/kubernetes/byok-supported-setups).
+Before you install, run `qovery cluster preflight` with your kubeconfig pointing to the cluster. It checks most of these prerequisites and the components that must not already run on the cluster, changes nothing, and tells you how to fix each problem. If Loki will store logs in object storage (`s3`, `gcs` or `s3Compatible`), add `--loki-object-storage`, since the default check expects a default StorageClass for the `pvc` storage. See [Supported cluster setups](/configuration/integrations/kubernetes/byok-supported-setups).
 
 The [preflight checks](#preflight-checks) verify several of these prerequisites again at each deployment of the cluster.
 

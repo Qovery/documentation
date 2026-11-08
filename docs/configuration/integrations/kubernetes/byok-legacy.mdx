@@ -81,15 +81,20 @@ This installation is available on every Qovery plan, including Free.
 
 ## What Qovery Installs
 
-**Core Components**:
-- Qovery Agent (deployment manager)
-- Qovery Shell Agent (for terminal access)
+`qovery cluster install` generates a Helm values file and the Helm commands that install the `qovery` chart. The values file enables:
 
-**Optional Components** (if not present):
-- Nginx Ingress Controller
-- Cert-Manager (SSL certificates)
-- External-DNS (domain management)
-- Metrics Server
+**Qovery components**:
+- Qovery engine and cluster agent (run and track deployments)
+- Qovery shell agent (terminal access to your services)
+
+**Platform components**:
+- Envoy Gateway, with the Gateway API CRDs and the Qovery GatewayClass and Gateway (exposes your applications)
+- cert-manager (TLS certificates)
+- ExternalDNS (domain management)
+- metrics-server (autoscaling)
+- Loki and Alloy (application logs)
+
+To keep a component you already run, such as cert-manager, turn off the Qovery copy in the values file before you run the Helm commands.
 
 ## Networking Requirements
 

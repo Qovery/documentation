@@ -86,7 +86,8 @@ Qovery integrates with Amazon Elastic Kubernetes Service (EKS) to provide manage
     - Metrics server
 
     **What Qovery Installs**:
-    - Qovery Operator, Qovery agent and shell agent (manage deployments)
+    - Qovery Operator and Qovery agent (run and track deployments)
+    - Shell agent (terminal access to your services)
     - Envoy Gateway (exposes your applications)
     - cert-manager (for TLS certificates)
     - ExternalDNS (for the domain provided by Qovery)
@@ -171,15 +172,8 @@ Qovery integrates with Amazon Elastic Kubernetes Service (EKS) to provide manage
 
 ### Kubernetes Versions
 
-| Version | Status | Support End |
-|---------|--------|-------------|
-| **1.29** | ✅ Recommended | Jan 2025 |
-| **1.28** | ✅ Supported | Nov 2024 |
-| **1.27** | ✅ Supported | Jul 2024 |
-| **1.26** | ⚠️ End of life soon | May 2024 |
-| **1.25** | ❌ End of life | Feb 2024 |
-
-**Note**: Qovery automatically upgrades clusters to supported versions
+- **Qovery-managed EKS**: Qovery picks the Kubernetes version when it creates the cluster and upgrades the cluster to keep it on a version AWS supports. The Console shows the version of each cluster.
+- **BYOK**: Kubernetes 1.31 or later. Run `qovery cluster preflight` to check your cluster before you install. See [Supported cluster setups](/configuration/integrations/kubernetes/byok-supported-setups).
 
 ### Regions
 

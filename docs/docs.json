@@ -995,7 +995,7 @@
     },
     {
       "source": "/guides/engineering/basic-network-isolation-in-kubernetes",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/guides/advanced-tutorials/isolate-environments-network-policies"
     },
     {
       "source": "/guides/engineering/best-practices-and-tips-for-writing-a-dockerfile",
@@ -1007,7 +1007,7 @@
     },
     {
       "source": "/guides/engineering/helm-freeze-manage-helm-charts-with-ease",
-      "destination": "/getting-started/introduction"
+      "destination": "/configuration/helm"
     },
     {
       "source": "/guides/engineering/how_we_extended_helm_lifecycle_with_rust",

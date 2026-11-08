@@ -7,7 +7,7 @@ import InstallQoveryCLI from '/snippets/install-qovery-cli.mdx';
 
 Qovery runs on any Kubernetes cluster. There are two ways to install it on a cluster you already run, and the provider of your cluster decides which one to use. Both are available on every Qovery plan, including Free.
 
-To try Qovery before you connect a real cluster, run `qovery demo up`. It creates a local k3s cluster with Docker and installs Qovery on it. See [Local cluster for development](/configuration/integrations/kubernetes/docker).
+To try Qovery before you connect a real cluster, run `qovery demo up`. It creates a local k3s cluster with Docker and installs the Qovery Operator on it. The table below applies to clusters you run yourself: the local demo is the only k3s setup that uses the Operator. See [Local cluster for development](/configuration/integrations/kubernetes/docker).
 
 ## Which installation to use
 
@@ -132,7 +132,7 @@ Qovery installs these components in the `qovery` namespace and manages them. It 
 | --- | --- | --- |
 | cert-manager | cert-manager v1.20, Helm release `cert-manager` | Use a cluster without cert-manager, or uninstall it and its CRDs if nothing else uses it. |
 | ExternalDNS | ExternalDNS for the domain provided by Qovery, Helm release `external-dns` | Use a cluster without ExternalDNS, or uninstall it if nothing else uses it. |
-| Envoy Gateway | Envoy Gateway v1.9, Helm releases `envoy-gateway-crd` and `envoy-gateway` | Use a cluster without Envoy Gateway, or uninstall it and its CRDs if nothing else uses it. |
+| Envoy Gateway | Envoy Gateway v1.9, Helm releases `envoy-gateway-crd` and `envoy-gateway`, plus the Qovery GatewayClass and Gateway in the releases `qovery-gateway-class` and `qovery-cluster-gateway` | Use a cluster without Envoy Gateway, or uninstall it and its CRDs if nothing else uses it. |
 | Gateway API CRDs | The experimental channel of the Gateway API CRDs, bundle v1.6.1, from release `envoy-gateway-crd` | CRDs installed and kept up to date by another tool, such as the GKE Gateway API, a service mesh or a load balancer controller, can conflict with Qovery. On GKE, disable the Gateway API of the cluster if nothing uses it. Otherwise, contact Qovery Support before you install. |
 | Legacy Qovery installation | | A cluster installed with `qovery cluster install` holds the Helm release `qovery`. The Qovery Operator does not take it over. Uninstall it with `helm -n qovery uninstall qovery` and remove its cert-manager, ExternalDNS and Gateway resources, or use another cluster. |
 

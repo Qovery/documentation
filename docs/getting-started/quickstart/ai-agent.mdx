@@ -136,7 +136,7 @@ Any tool discovering skills from `.claude/skills/`, `.config/opencode/skills/`, 
 </Accordion>
 
 <Note>
-**There is no repository manifest.** Qovery does not read a `qovery.yaml`, `qovery.yml` or `.qovery.yml` file (a `.qovery.yml` existed in Qovery v1 and was removed in 2021), so agents should not look for one or create one. The only files the skill may add to your repo are a `Dockerfile` and, if you pick the Terraform path, `.tf` files for the [Qovery Terraform provider](/terraform-provider/overview). Everything else is created in Qovery through the CLI (`qovery api` for REST calls) or the Console.
+**There is no repository manifest.** Qovery does not read a `qovery.yaml`, `qovery.yml` or `.qovery.yml` file (a `.qovery.yml` existed in Qovery v1 and was removed in 2021), so agents should not look for one or create one. Apart from the skill files themselves when you install with `--project`, the only files the skills may add to your repo are a `Dockerfile` and, if you pick the Terraform path, `.tf` files for the [Qovery Terraform provider](/terraform-provider/overview). Everything else is created in Qovery through the CLI (`qovery api` for REST calls) or the Console.
 </Note>
 
 ---

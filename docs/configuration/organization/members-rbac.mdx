@@ -142,6 +142,10 @@ Custom roles let you grant access scoped to specific projects and clusters, inst
 
 To manage custom roles as code, use the [`qovery_custom_role`](https://registry.terraform.io/providers/Qovery/qovery/latest/docs/resources/custom_role) Terraform resource, or the `/organization/{organizationId}/customRole` API endpoints.
 
+<Tip>
+Giving an AI agent or a script access? A custom role applies to whole projects and environment types. To limit a token to exactly what it needs, for example deploying the staging environment and nothing else, use an [API Policy Token](/configuration/organization/api-policy-token).
+</Tip>
+
 ### Scope and limitations
 
 Custom roles are configured through **cluster-level** and **project-level** permissions only. They always inherit the ability to read organization data (registries, clusters, label groups).

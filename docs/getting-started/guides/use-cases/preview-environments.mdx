@@ -2,12 +2,15 @@
 title: "Set Up Preview Environments for Every Pull Request"
 description: "Create a full-stack preview environment (services, databases, configuration) for every pull request on your own Kubernetes cluster, such as EKS, and delete it when the pull request is merged or closed."
 ---
+import NoRepositoryManifest from "/snippets/no-repository-manifest.mdx";
 
 It is critical to have testing and staging environments accurately reflect production, but achieving this can be a major operational hassle. Most engineering teams use a single staging environment which makes it hard for developers to test their changes in isolation; the alternative is for DevOps teams to spin up new testing or staging environments manually and tear them down after testing is done.
 
 Qovery's Preview Environments solve this problem by automatically creating a clone of your production environment (including applications, databases and configuration) on every pull request, so you can test your changes with confidence without affecting your production.
 
 Use Qovery when each pull request needs the whole stack (backend, database, configuration), not only the frontend, running on a cluster in your own cloud account.
+
+<NoRepositoryManifest />
 
 ## Quick Path: Preview Environments on Your Existing Cluster
 

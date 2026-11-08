@@ -13,6 +13,8 @@ description: "Manage your Kubernetes clusters with Qovery"
 
 ### Creating a Cluster
 
+<Tabs>
+  <Tab title="Console">
 To create a new cluster:
 
 1. Open the [Qovery Console](https://console.qovery.com)
@@ -59,6 +61,40 @@ To create a new cluster:
     Create managed Kapsule cluster
   </Card>
 </CardGroup>
+  </Tab>
+
+  <Tab title="Terraform">
+    Declare the cloud credentials and the cluster with the [`qovery_aws_credentials`](https://registry.terraform.io/providers/Qovery/qovery/latest/docs/resources/aws_credentials) and [`qovery_cluster`](https://registry.terraform.io/providers/Qovery/qovery/latest/docs/resources/cluster) resources. `organization_id`, `credentials_id`, `name`, `cloud_provider` and `region` are required. This example uses an IAM role that Qovery assumes:
+
+    ```hcl
+    resource "qovery_aws_credentials" "my_aws_credentials" {
+      organization_id = "<organizationId>"
+      name            = "my-aws-credentials"
+      role_arn        = "<roleArn>"
+    }
+
+    resource "qovery_cluster" "my_cluster" {
+      organization_id = "<organizationId>"
+      credentials_id  = qovery_aws_credentials.my_aws_credentials.id
+      name            = "my-cluster"
+      cloud_provider  = "AWS"
+      region          = "us-east-2"
+    }
+    ```
+
+    Run `terraform apply`. The provider also has credentials resources for GCP and Scaleway. Follow the provider-specific guides above to prepare the IAM role or service account first.
+  </Tab>
+</Tabs>
+
+#### Check it worked
+
+List the clusters of your organization:
+
+```bash
+qovery cluster list
+```
+
+Your cluster shows the status `DEPLOYED` once the installation ends. A status that ends with `ERROR`, or `INVALID_CREDENTIALS`, means it failed: see [Logs](#logs). With the API, `GET /organization/{organizationId}/cluster/{clusterId}/status` returns the same value in `status`.
 
 ### Managed Cluster by Qovery vs Self-Managed
 
@@ -188,12 +224,43 @@ Available cluster operations and their cloud provider compatibility:
 | **Restart** | ✅  | ✅    | ✅  | ✅       | Resume a stopped cluster                                     |
 | **Delete**  | ✅  | ✅    | ✅  | ✅       | Permanently remove cluster                                   |
 
+<Tabs>
+  <Tab title="Console">
 To perform an action:
 
 1. Navigate to your cluster page
 2. Click the action dropdown menu
 3. Select the desired action
 4. Track progress through cluster logs
+  </Tab>
+
+  <Tab title="CLI and API">
+    You need the [Qovery CLI](/cli/overview), signed in with `qovery auth`.
+
+    ```bash
+    # Update: redeploy the cluster after configuration changes
+    qovery cluster deploy -n <clusterName> --watch
+
+    # Stop the cluster
+    qovery cluster stop -n <clusterName> --watch
+
+    # Upgrade to the next Kubernetes version available for the cluster
+    qovery cluster upgrade -n <clusterName> --watch
+    ```
+
+    To delete a cluster, call `DELETE /organization/{organizationId}/cluster/{clusterId}`. The `deleteMode` query parameter selects the deletion option described below: `DEFAULT`, `DELETE_CLUSTER_AND_QOVERY_CONFIG` or `DELETE_QOVERY_CONFIG`:
+
+    ```bash
+    qovery api "organization/<organizationId>/cluster/<clusterId>?deleteMode=DEFAULT" --method DELETE
+    ```
+
+    Run `qovery cluster list` to follow the status of the cluster.
+  </Tab>
+
+  <Tab title="Terraform">
+    Set the `state` attribute of `qovery_cluster`: `DEPLOYED` deploys it, `STOPPED` stops it, and `READY` does not deploy it. Run `terraform apply`. Remove the resource and apply to delete the cluster.
+  </Tab>
+</Tabs>
 
 #### Updating a Cluster
 
@@ -254,6 +321,8 @@ Permanently removes your cluster. You have three deletion options:
 - Download Kubernetes configuration file
 - Enable direct kubectl access
 - Use for advanced debugging and management
+
+From the CLI, run `qovery cluster kubeconfig --cluster-id <clusterId>`. Add `--read-only` for a read-only kubeconfig.
 
 <Warning>
   **Security Best Practice**: Kubeconfig provides cluster-admin access. Store

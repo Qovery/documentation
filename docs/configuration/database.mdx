@@ -108,6 +108,8 @@ qovery api blueprint/<blueprintId>
 
 The response shows `latest_deployment` with the status of the last run and, if it failed, the error message. `service_id` is set once the Terraform or Helm service backing the database exists.
 
+`qovery database list` also lists blueprint databases, with the type `Blueprint database`, their status, host and port.
+
 ### Connect your application
 
 Once deployed, the blueprint service publishes its outputs (endpoint, port, credentials). Other services in the same environment consume them through variable interpolation. See [Outputs](/configuration/blueprints#outputs).

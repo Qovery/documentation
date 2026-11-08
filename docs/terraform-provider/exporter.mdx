@@ -1,9 +1,14 @@
 ---
 title: "Terraform Exporter"
-description: "Generate the Terraform configuration of an existing environment"
+description: "Generate the Terraform configuration of an existing Qovery environment, from the Console or with the qovery-terraform agent skill"
 ---
 
 The Terraform exporter generates the Terraform configuration of an environment set up from the Console. After you import the exported resources into a Terraform state, Terraform manages the environment.
+
+There are two ways to export:
+
+- **From the Console**: one environment at a time, as a zip file. You add the `import` blocks yourself. The rest of this page covers this path.
+- **With a coding agent**: the [`qovery-terraform` skill](#export-with-a-coding-agent) reads one or more environments from the API, writes the configuration, imports the resources and checks that the plan shows no change.
 
 ## What gets exported
 
@@ -89,6 +94,40 @@ The export does not contain a `qovery_deployment` resource. Build settings are e
   </Step>
 </Steps>
 
+## Export with a coding agent
+
+The `qovery-terraform` [agent skill](/getting-started/quickstart/agent-skills) does the export and the import for you, from Claude Code, Cursor, Codex or any other agent that supports Agent Skills.
+
+<Steps>
+  <Step title="Install the skills">
+    ```bash
+    curl -fsSL https://skill.qovery.com/install.sh | bash
+    ```
+  </Step>
+  <Step title="Ask your agent">
+    Ask in plain language, for example "Convert my production environment to Terraform", or run the command with the Console URL of the environment:
+
+    ```text
+    /qovery-terraform https://console.qovery.com/organization/<organization_id>/project/<project_id>/environment/<environment_id>
+    ```
+
+    To manage several environments in one configuration, name all of them.
+  </Step>
+  <Step title="Review the result">
+    The skill:
+
+    1. Reads the configuration of the environments from the Qovery API.
+    2. Writes `provider.tf`, `variables.tf` and one `.tf` file per environment. Secret values go into `TF_VAR_` variables or a git-ignored `.tfvars` file, never into the `.tf` files.
+    3. Runs `terraform init`, imports every resource and runs `terraform plan`, which must show no change.
+    4. Offers to apply the configuration to a clone of the environment in a test project first, then deletes the clone.
+    5. Saves the files with an import script you can run again.
+
+    It never runs `terraform apply` on the original environment without your confirmation, and it flags every managed database, because recreating one deletes its data.
+  </Step>
+</Steps>
+
+The skill exports services, databases, jobs, Helm charts, Terraform services, deployment stages and variables. Organization-level resources, such as container registries and Helm repositories, come only with the Console export.
+
 ## After the import
 
 Terraform now manages the exported resources: change them in the configuration, not in the Console. A change made from the Console shows up in the next `terraform plan`, and the next `terraform apply` reverts it. Secret values are the exception: the API never returns them, so a secret changed from the Console does not show up in the plan. See [How the provider tracks changes](/terraform-provider/overview#how-the-provider-tracks-changes).
@@ -111,5 +150,11 @@ Store the state in a [remote backend](https://developer.hashicorp.com/terraform/
   </Card>
   <Card title="Environment Variables" icon="sliders" href="/configuration/environment-variables">
     Variables and secrets
+  </Card>
+  <Card title="Agent Skills" icon="robot" href="/getting-started/quickstart/agent-skills">
+    Install qovery-terraform and the other Qovery skills
+  </Card>
+  <Card title="Start a New Project" icon="flag-checkered" href="/terraform-provider/from-scratch">
+    Write the configuration from an empty cloud account instead
   </Card>
 </CardGroup>

@@ -1,27 +1,16 @@
 ---
 title: "qovery completion"
-description: "Generate autocompletion scripts for your shell"
+description: "Turn on tab completion for Qovery CLI commands and flags in bash, zsh, fish or PowerShell"
 ---
 
 ## Overview
 
-Generate the autocompletion script for the specified shell to enable command and flag completion.
+Use `qovery completion` to generate the autocompletion script for your shell, so that Tab completes Qovery commands, subcommands and flags. Add `--no-descriptions` to leave the descriptions out of the suggestions.
 
-## Supported Shells
+## Setup
 
 ### bash
 
-Generate the autocompletion script for bash.
-
-**Usage:**
-```bash
-qovery completion bash [flags]
-```
-
-**Flags:**
-- `--no-descriptions` (bool) - Disable completion descriptions (default: false)
-
-**Setup:**
 ```bash
 # Load completions in current session
 source <(qovery completion bash)
@@ -32,17 +21,6 @@ qovery completion bash > /etc/bash_completion.d/qovery
 
 ### zsh
 
-Generate the autocompletion script for zsh.
-
-**Usage:**
-```bash
-qovery completion zsh [flags]
-```
-
-**Flags:**
-- `--no-descriptions` (bool) - Disable completion descriptions (default: false)
-
-**Setup:**
 ```bash
 # Load completions in current session
 source <(qovery completion zsh)
@@ -53,17 +31,6 @@ qovery completion zsh > ~/.oh-my-zsh/completions/_qovery
 
 ### fish
 
-Generate the autocompletion script for fish.
-
-**Usage:**
-```bash
-qovery completion fish [flags]
-```
-
-**Flags:**
-- `--no-descriptions` (bool) - Disable completion descriptions (default: false)
-
-**Setup:**
 ```bash
 # Load completions in current session
 qovery completion fish | source
@@ -72,19 +39,8 @@ qovery completion fish | source
 qovery completion fish > ~/.config/fish/completions/qovery.fish
 ```
 
-### powershell
+### PowerShell
 
-Generate the autocompletion script for powershell.
-
-**Usage:**
-```bash
-qovery completion powershell [flags]
-```
-
-**Flags:**
-- `--no-descriptions` (bool) - Disable completion descriptions (default: false)
-
-**Setup:**
 ```powershell
 # Load completions in current session
 qovery completion powershell | Out-String | Invoke-Expression
@@ -92,3 +48,80 @@ qovery completion powershell | Out-String | Invoke-Expression
 # Add to PowerShell profile for every new session
 qovery completion powershell >> $PROFILE
 ```
+
+### Without descriptions
+
+```bash
+qovery completion zsh --no-descriptions > ~/.oh-my-zsh/completions/_qovery
+```
+
+{/* BEGIN GENERATED: qovery completion --help, CLI v1.180.0 */}
+## Command reference
+
+Generated from `qovery completion --help` (CLI v1.180.0). Every command also accepts `-h, --help` and the [global flags](/cli/commands/overview#global-flags).
+
+### `qovery completion`
+
+Generate the autocompletion script for the specified shell
+
+```bash
+qovery completion [command]
+```
+
+| Subcommand | Description |
+|------------|-------------|
+| `qovery completion bash` | Generate the autocompletion script for bash |
+| `qovery completion fish` | Generate the autocompletion script for fish |
+| `qovery completion powershell` | Generate the autocompletion script for powershell |
+| `qovery completion zsh` | Generate the autocompletion script for zsh |
+
+No flags other than `--help`.
+
+### `qovery completion bash`
+
+Generate the autocompletion script for bash
+
+```bash
+qovery completion bash
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--no-descriptions` |  | bool |  | disable completion descriptions |
+
+### `qovery completion fish`
+
+Generate the autocompletion script for fish
+
+```bash
+qovery completion fish [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--no-descriptions` |  | bool |  | disable completion descriptions |
+
+### `qovery completion powershell`
+
+Generate the autocompletion script for powershell
+
+```bash
+qovery completion powershell [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--no-descriptions` |  | bool |  | disable completion descriptions |
+
+### `qovery completion zsh`
+
+Generate the autocompletion script for zsh
+
+```bash
+qovery completion zsh [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--no-descriptions` |  | bool |  | disable completion descriptions |
+{/* END GENERATED */}

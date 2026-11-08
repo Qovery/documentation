@@ -1,6 +1,6 @@
 ---
 title: "qovery token"
-description: "Generate API token"
+description: "Generate an API token for CI/CD pipelines, scripts and other non-interactive use of the CLI"
 ---
 
 ## Overview
@@ -21,7 +21,7 @@ This command generates a new API token that can be used for authentication inste
 qovery token
 ```
 
-The command is fully interactive — it prompts you to select an organization, token name, description, and role. There are no flags to pass.
+The command is fully interactive: it prompts you to select an organization, token name, description, and role. There are no flags to pass.
 
 ## Examples
 
@@ -61,8 +61,7 @@ environment:
 # Set token as environment variable
 export QOVERY_CLI_ACCESS_TOKEN="qov_abc123def456..."
 
-# Authenticate
-qovery auth
+# No `qovery auth` needed: the CLI uses QOVERY_CLI_ACCESS_TOKEN directly
 
 # Run commands
 qovery application deploy --application "my-app"
@@ -170,9 +169,7 @@ jobs:
       - name: Deploy Application
         env:
           QOVERY_CLI_ACCESS_TOKEN: ${{ secrets.QOVERY_TOKEN }}
-        run: |
-          qovery auth
-          qovery application deploy --application "my-app"
+        run: qovery application deploy --application "my-app"
 ```
 
 ### Automated Monitoring Script
@@ -206,6 +203,22 @@ Generate separate tokens for different environments (production, staging, develo
 <Tip>
 Use descriptive names when generating tokens to easily identify their purpose later.
 </Tip>
+
+{/* BEGIN GENERATED: qovery token --help, CLI v1.180.0 */}
+## Command reference
+
+Generated from `qovery token --help` (CLI v1.180.0). Every command also accepts `-h, --help` and the [global flags](/cli/commands/overview#global-flags).
+
+### `qovery token`
+
+Generate an API token
+
+```bash
+qovery token [flags]
+```
+
+No flags other than `--help`.
+{/* END GENERATED */}
 
 ## Related Commands
 

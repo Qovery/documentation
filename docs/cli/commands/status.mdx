@@ -1,63 +1,53 @@
 ---
 title: "qovery status"
-description: "Check service and environment status"
+description: "Print the deployment status of the application or container selected in your CLI context"
 ---
 
 ## Overview
 
-Check the status of your services, environments, and deployments.
+Use `qovery status` to check the state of one service: the application or container selected in your [context](/cli/commands/context). If no service is selected, the command asks you to pick the organization, project, environment and service first.
 
-## Commands
-
-### Check Status
-
-Print the status of your application:
-
-```bash
-qovery status
-```
-
-The command will interactively prompt you to select the service if no context is set.
-
-## Options
-
-| Flag | Description |
-|------|-------------|
-| `--help` | Show help |
+The command takes no flags. To check another service, change the context with `qovery context set`. For other service types, or to see all services of an environment, use [`qovery service list`](/cli/commands/service).
 
 ## Examples
 
-### Check Service Status
+Check the status of the service in the current context:
 
 ```bash
-# Check the status of the current service
 qovery status
-
-# Example output:
-# SERVICE          TYPE         STATUS    LAST UPDATE
-# my-api           Application  Running   2 minutes ago
-# postgres-main    Database     Running   1 hour ago
-# redis-cache      Container    Running   30 minutes ago
 ```
 
-## Status Values
+Output:
 
-| Status | Description |
-|--------|-------------|
-| `BUILDING` | Service is being built |
-| `DEPLOYING` | Service is being deployed |
-| `RUNNING` | Service is running normally |
-| `READY` | Service is ready and healthy |
-| `WARNING` | Service has warnings |
-| `ERROR` | Service has errors |
-| `STOPPED` | Service is stopped |
-| `DELETING` | Service is being deleted |
+```
+Application | Status
+my-api      | DEPLOYED
+```
 
-## Tips
+Check another service:
 
-<Tip>
-Run `qovery status` after deploying to quickly verify the state of your service.
-</Tip>
+```bash
+qovery context set
+qovery status
+```
+
+The status is the service state from the Qovery API, for example `DEPLOYED`, `DEPLOYING`, `BUILDING`, `STOPPED` or `DEPLOYMENT_ERROR`.
+
+{/* BEGIN GENERATED: qovery status --help, CLI v1.180.0 */}
+## Command reference
+
+Generated from `qovery status --help` (CLI v1.180.0). Every command also accepts `-h, --help` and the [global flags](/cli/commands/overview#global-flags).
+
+### `qovery status`
+
+Print the status of your application
+
+```bash
+qovery status [flags]
+```
+
+No flags other than `--help`.
+{/* END GENERATED */}
 
 ## Related Commands
 

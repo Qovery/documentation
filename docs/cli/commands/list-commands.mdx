@@ -1,24 +1,52 @@
 ---
 title: "qovery list-commands"
-description: "List all available commands with descriptions, aliases, args, and flags"
+description: "Print every Qovery CLI command and subcommand with its flags, types and defaults in one list"
 ---
 
 ## Overview
 
-List all available Qovery CLI commands with their descriptions, aliases, arguments, and flags.
+Use `qovery list-commands` to print the whole command tree in one go: every command and subcommand with its description, aliases, usage when it takes arguments, and each flag with its type and default value. It is handy to search for a flag, or to give a script or an AI agent the full list of commands.
 
-## Usage
+## Examples
+
+Print all commands:
+
+```bash
+qovery list-commands
+```
+
+Find the flags of one subcommand:
+
+```bash
+qovery list-commands | grep -A 8 "application deploy:"
+```
+
+Part of the output:
+
+```
+Available commands:
+  api: Make an authenticated request to the Qovery API
+    Usage: qovery api <endpoint> [flags]
+    Flag: -f, --field (stringArray), default: []
+    Flag: -H, --header (stringArray), default: []
+```
+
+{/* BEGIN GENERATED: qovery list-commands --help, CLI v1.180.0 */}
+## Command reference
+
+Generated from `qovery list-commands --help` (CLI v1.180.0). Every command also accepts `-h, --help` and the [global flags](/cli/commands/overview#global-flags).
+
+### `qovery list-commands`
+
+List all available commands with descriptions, aliases, args, and flags
 
 ```bash
 qovery list-commands [flags]
 ```
 
-## Flags
+No flags other than `--help`.
+{/* END GENERATED */}
 
-- `-h, --help` (bool) - Help for list-commands (default: false)
+## Related Commands
 
-## Example
-
-```bash
-qovery list-commands
-```
+- [`qovery help`](/cli/commands/help) - Show help for one command

@@ -1,84 +1,170 @@
 ---
 title: "qovery enterprise-connection"
-description: "Manage enterprise connections"
+description: "View and update SSO enterprise connections and map identity provider groups to Qovery roles"
 ---
 
 ## Overview
 
-Manage enterprise connections and group mappings for SSO integration.
+Use `qovery enterprise-connection` to view and update the [SSO](/configuration/organization/sso) enterprise connection of an organization, and to map identity provider (IdP) groups to Qovery roles.
 
-## Commands
+- `get` and `update` read and change the connection: its default role for new users and whether group synchronization is enforced.
+- `group-mappings` lists, adds or changes, and deletes the mappings between IdP groups and Qovery roles.
 
-### get
+`--qovery-role` and `--default-role` take the name of a [role](/configuration/organization/members-rbac), built-in or custom. The name is not case-sensitive.
 
-Get enterprise connection information.
+## Examples
 
-**Usage:**
+Show an enterprise connection:
+
+```bash
+qovery enterprise-connection get \
+  --organization "Acme Corp" \
+  --connection "<connection-name>"
+```
+
+Set the default role for new users and enforce group synchronization:
+
+```bash
+qovery enterprise-connection update \
+  --organization "Acme Corp" \
+  --connection "<connection-name>" \
+  --default-role "viewer" \
+  --enforce-group-sync
+```
+
+List the group mappings:
+
+```bash
+qovery enterprise-connection group-mappings get \
+  --organization "Acme Corp" \
+  --connection "<connection-name>"
+```
+
+Map two IdP groups to a Qovery role:
+
+```bash
+qovery enterprise-connection group-mappings add \
+  --organization "Acme Corp" \
+  --connection "<connection-name>" \
+  --qovery-role "admin" \
+  --idp-group-names "platform-team,sre"
+```
+
+Remove the mapping of a role:
+
+```bash
+qovery enterprise-connection group-mappings delete \
+  --organization "Acme Corp" \
+  --connection "<connection-name>" \
+  --qovery-role "admin"
+```
+
+{/* BEGIN GENERATED: qovery enterprise-connection --help, CLI v1.180.0 */}
+## Command reference
+
+Generated from `qovery enterprise-connection --help` (CLI v1.180.0). Every command also accepts `-h, --help` and the [global flags](/cli/commands/overview#global-flags).
+
+### `qovery enterprise-connection`
+
+Manage enterprise connections
+
+```bash
+qovery enterprise-connection [flags]
+qovery enterprise-connection [command]
+```
+
+| Subcommand | Description |
+|------------|-------------|
+| `qovery enterprise-connection get` | Get enterprise connection information |
+| `qovery enterprise-connection group-mappings` | Manage enterprise connection group mappings |
+| `qovery enterprise-connection update` | Update enterprise connection information |
+
+No flags other than `--help`.
+
+### `qovery enterprise-connection get`
+
+Get enterprise connection information
+
 ```bash
 qovery enterprise-connection get [flags]
 ```
 
-**Flags:**
-- `-c, --connection` (string) - Enterprise connection name or ID
-- `-o, --organization` (string) - Organization ID or name
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--connection` | `-c` | string |  | Connection Name |
+| `--organization` | `-o` | string |  | Organization Name |
 
-### update
+### `qovery enterprise-connection group-mappings`
 
-Update enterprise connection information.
+Manage enterprise connection group mappings
 
-**Usage:**
 ```bash
-qovery enterprise-connection update [flags]
+qovery enterprise-connection group-mappings [flags]
+qovery enterprise-connection group-mappings [command]
 ```
 
-**Flags:**
-- `-c, --connection` (string) - Enterprise connection name or ID
-- `-r, --default-role` (string) - Default role for new users
-- `-e, --enforce-group-sync` (bool) - Enforce group synchronization (default: false)
-- `-o, --organization` (string) - Organization ID or name
+| Subcommand | Description |
+|------------|-------------|
+| `qovery enterprise-connection group-mappings add` | Add or modify an enterprise connection group mapping |
+| `qovery enterprise-connection group-mappings delete` | Delete enterprise connection group mapping |
+| `qovery enterprise-connection group-mappings get` | Get enterprise connection group mappings |
 
-## Group Mappings
+No flags other than `--help`.
 
-Manage mappings between IdP groups and Qovery roles.
+### `qovery enterprise-connection group-mappings add`
 
-### group-mappings get
+Add or modify an enterprise connection group mapping
 
-Get enterprise connection group mappings.
-
-**Usage:**
-```bash
-qovery enterprise-connection group-mappings get [flags]
-```
-
-**Flags:**
-- `-c, --connection` (string) - Enterprise connection name or ID
-- `-o, --organization` (string) - Organization ID or name
-
-### group-mappings add
-
-Add or modify an enterprise connection group mapping.
-
-**Usage:**
 ```bash
 qovery enterprise-connection group-mappings add [flags]
 ```
 
-**Flags:**
-- `-c, --connection` (string) - Enterprise connection name or ID
-- `-i, --idp-group-names` (string) - IdP group names (comma-separated)
-- `-o, --organization` (string) - Organization ID or name
-- `-q, --qovery-role` (string) - Qovery role to map to
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--connection` | `-c` | string |  | Connection Name |
+| `--idp-group-names` | `-i` | string |  | Your IDP group names (comma separated) |
+| `--organization` | `-o` | string |  | Organization Name |
+| `--qovery-role` | `-q` | string |  | Qovery role name to target |
 
-### group-mappings delete
+### `qovery enterprise-connection group-mappings delete`
 
-Delete enterprise connection group mapping.
+Delete enterprise connection group mapping
 
-**Usage:**
 ```bash
 qovery enterprise-connection group-mappings delete [flags]
 ```
 
-**Flags:**
-- `-c, --connection` (string) - Enterprise connection name or ID
-- `-o, --organization` (string) - Organization ID or name
-- `-q, --qovery-role` (string) - Qovery role to remove mapping for
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--connection` | `-c` | string |  | Connection Name |
+| `--organization` | `-o` | string |  | Organization Name |
+| `--qovery-role` | `-q` | string |  | Qovery role to target |
+
+### `qovery enterprise-connection group-mappings get`
+
+Get enterprise connection group mappings
+
+```bash
+qovery enterprise-connection group-mappings get [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--connection` | `-c` | string |  | Connection Name |
+| `--organization` | `-o` | string |  | Organization Name |
+
+### `qovery enterprise-connection update`
+
+Update enterprise connection information
+
+```bash
+qovery enterprise-connection update [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--connection` | `-c` | string |  | Connection Name |
+| `--default-role` | `-r` | string |  | Default Role |
+| `--enforce-group-sync` | `-e` | bool |  |  |
+| `--organization` | `-o` | string |  | Organization Name |
+{/* END GENERATED */}

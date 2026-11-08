@@ -1,6 +1,6 @@
 ---
 title: "qovery container"
-description: "Container management commands"
+description: "Create, deploy, restart, stop or clone container services, and manage their domains, registries, variables and secrets"
 ---
 
 ## Overview
@@ -17,15 +17,6 @@ List all containers in current environment:
 qovery container list
 ```
 
-**Flags:**
-
-| Flag | Description |
-|------|-------------|
-| `--organization` | Organization Name |
-| `--project` | Project Name |
-| `--environment` | Environment Name |
-| `--json` | JSON output |
-
 ### Create Container
 
 Create a new container service:
@@ -37,24 +28,6 @@ qovery container create \
   --image-name "nginx" \
   --tag "latest"
 ```
-
-**Flags:**
-
-| Flag | Short | Description |
-|------|-------|-------------|
-| `--container` | `-n` | Container Name (required) |
-| `--registry` | | Container Registry ID (required) |
-| `--image-name` | | Container Image Name (required) |
-| `--tag` | `-t` | Container Image Tag (required) |
-| `--port` | `-p` | Container Port (0 = no port exposed) |
-| `--cpu` | | CPU in millicores (default: 500) |
-| `--memory` | | Memory in MB (default: 512) |
-| `--min-instances` | | Minimum number of running instances (default: 1) |
-| `--max-instances` | | Maximum number of running instances (default: 1) |
-| `--organization` | | Organization Name |
-| `--project` | | Project Name |
-| `--environment` | | Environment Name |
-| `--json` | | JSON output |
 
 ### Deploy Container
 
@@ -79,18 +52,6 @@ qovery container deploy \
   --containers "container1,container2"
 ```
 
-**Flags:**
-
-| Flag | Short | Description |
-|------|-------|-------------|
-| `--container` | `-n` | Container Name |
-| `--containers` | | Container Names (comma separated) |
-| `--tag` | `-t` | Container Tag |
-| `--watch` | `-w` | Watch container status until it's ready or an error occurs |
-| `--organization` | | Organization Name |
-| `--project` | | Project Name |
-| `--environment` | | Environment Name |
-
 ### Redeploy Container
 
 Redeploy with same image:
@@ -98,16 +59,6 @@ Redeploy with same image:
 ```bash
 qovery container redeploy --container "my-container"
 ```
-
-**Flags:**
-
-| Flag | Short | Description |
-|------|-------|-------------|
-| `--container` | `-n` | Container Name (required) |
-| `--watch` | `-w` | Watch container status until it's ready or an error occurs |
-| `--organization` | | Organization Name |
-| `--project` | | Project Name |
-| `--environment` | | Environment Name |
 
 ### Restart Container
 
@@ -122,17 +73,6 @@ Restart multiple containers at once:
 ```bash
 qovery container restart --containers "container1,container2"
 ```
-
-**Flags:**
-
-| Flag | Short | Description |
-|------|-------|-------------|
-| `--container` | `-n` | Container Name |
-| `--containers` | | Container Names (comma separated) |
-| `--watch` | `-w` | Watch container status until it's ready or an error occurs |
-| `--organization` | | Organization Name |
-| `--project` | | Project Name |
-| `--environment` | | Environment Name |
 
 <Note>
 With `--watch`, the command follows only the selected containers and exits with code 1 if one of them fails, is canceled, or no longer exists.
@@ -152,17 +92,6 @@ Stop multiple containers at once:
 qovery container stop --containers "container1,container2"
 ```
 
-**Flags:**
-
-| Flag | Short | Description |
-|------|-------|-------------|
-| `--container` | `-n` | Container Name |
-| `--containers` | | Container Names (comma separated) |
-| `--watch` | `-w` | Watch container status until it's ready or an error occurs |
-| `--organization` | | Organization Name |
-| `--project` | | Project Name |
-| `--environment` | | Environment Name |
-
 ### Cancel Deployment
 
 Cancel a container deployment:
@@ -170,16 +99,6 @@ Cancel a container deployment:
 ```bash
 qovery container cancel --container "my-container"
 ```
-
-**Flags:**
-
-| Flag | Short | Description |
-|------|-------|-------------|
-| `--container` | `-n` | Container Name (required) |
-| `--watch` | `-w` | Watch cancel until it's done or an error occurs |
-| `--organization` | | Organization Name |
-| `--project` | | Project Name |
-| `--environment` | | Environment Name |
 
 ### Update Container
 
@@ -191,17 +110,6 @@ qovery container update \
   --tag "v2.0.0"
 ```
 
-**Flags:**
-
-| Flag | Description |
-|------|-------------|
-| `--container` | Container Name (required) |
-| `--image-name` | Container Image Name |
-| `--tag` | Container Tag |
-| `--organization` | Organization Name |
-| `--project` | Project Name |
-| `--environment` | Environment Name |
-
 ### Clone Container
 
 Clone a container to another environment or project:
@@ -209,18 +117,6 @@ Clone a container to another environment or project:
 ```bash
 qovery container clone --container "my-container"
 ```
-
-**Flags:**
-
-| Flag | Short | Description |
-|------|-------|-------------|
-| `--container` | `-n` | Container Name (required) |
-| `--target-project` | | Target Project Name |
-| `--target-environment` | | Target Environment Name |
-| `--target-container-name` | | Target Container Name |
-| `--organization` | | Organization Name |
-| `--project` | | Project Name |
-| `--environment` | | Environment Name |
 
 ### Delete Container
 
@@ -235,17 +131,6 @@ Delete multiple containers at once:
 ```bash
 qovery container delete --containers "container1,container2"
 ```
-
-**Flags:**
-
-| Flag | Short | Description |
-|------|-------|-------------|
-| `--container` | `-n` | Container Name |
-| `--containers` | | Container Names (comma separated) |
-| `--watch` | `-w` | Watch container status until it's ready or an error occurs |
-| `--organization` | | Organization Name |
-| `--project` | | Project Name |
-| `--environment` | | Environment Name |
 
 ## Examples
 
@@ -276,6 +161,558 @@ qovery container deploy \
 ```bash
 qovery container list --json
 ```
+
+{/* BEGIN GENERATED: qovery container --help, CLI v1.180.0 */}
+## Command reference
+
+Generated from `qovery container --help` (CLI v1.180.0). Every command also accepts `-h, --help` and the [global flags](/cli/commands/overview#global-flags).
+
+### `qovery container`
+
+Manage containers
+
+```bash
+qovery container [flags]
+qovery container [command]
+```
+
+| Subcommand | Description |
+|------------|-------------|
+| `qovery container cancel` | Cancel a container deployment |
+| `qovery container clone` | Clone a container |
+| `qovery container create` | Create a container service |
+| `qovery container delete` | Delete a container |
+| `qovery container deploy` | Deploy a container |
+| `qovery container domain` | Manage container domains |
+| `qovery container env` | Manage container environment variables and secrets |
+| `qovery container external-secret` | Manage container external secrets |
+| `qovery container list` | List containers |
+| `qovery container redeploy` | Redeploy a container |
+| `qovery container registry` | Manage container registries |
+| `qovery container restart` | Restart a container without redeploying it |
+| `qovery container stop` | Stop a container |
+| `qovery container update` | Update a container |
+
+No flags other than `--help`.
+
+### `qovery container cancel`
+
+Cancel a container deployment
+
+```bash
+qovery container cancel [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--container` | `-n` | string |  | Container Name |
+| `--environment` |  | string |  | Environment Name |
+| `--organization` |  | string |  | Organization Name |
+| `--project` |  | string |  | Project Name |
+| `--watch` | `-w` | bool |  | Watch cancel until it's done or an error occurs |
+
+### `qovery container clone`
+
+Clone a container
+
+```bash
+qovery container clone [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--container` | `-n` | string |  | Container Name |
+| `--environment` |  | string |  | Environment Name |
+| `--organization` |  | string |  | Organization Name |
+| `--project` |  | string |  | Project Name |
+| `--target-container-name` |  | string |  | Target Container Name |
+| `--target-environment` |  | string |  | Target Environment Name |
+| `--target-project` |  | string |  | Target Project Name |
+
+### `qovery container create`
+
+Create a container service
+
+```bash
+qovery container create [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--container` | `-n` | string |  | Container Name |
+| `--cpu` |  | int32 | `500` | CPU in millicores (e.g. 500 = 0.5 vCPU) |
+| `--environment` |  | string |  | Environment Name |
+| `--image-name` |  | string |  | Container Image Name |
+| `--json` |  | bool |  | JSON output |
+| `--max-instances` |  | int32 | `1` | Maximum number of running instances |
+| `--memory` |  | int32 | `512` | Memory in MB |
+| `--min-instances` |  | int32 | `1` | Minimum number of running instances |
+| `--organization` |  | string |  | Organization Name |
+| `--port` | `-p` | int32 |  | Container Port (0 = no port exposed) |
+| `--project` |  | string |  | Project Name |
+| `--registry` |  | string |  | Container Registry ID |
+| `--tag` | `-t` | string |  | Container Image Tag |
+
+### `qovery container delete`
+
+Delete a container
+
+```bash
+qovery container delete [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--container` | `-n` | string |  | Container Name |
+| `--containers` |  | string |  | Container Names (comma separated) (ex: --containers "container1,container2") |
+| `--environment` |  | string |  | Environment Name |
+| `--organization` |  | string |  | Organization Name |
+| `--project` |  | string |  | Project Name |
+| `--watch` | `-w` | bool |  | Watch container status until it's ready or an error occurs |
+
+### `qovery container deploy`
+
+Deploy a container
+
+```bash
+qovery container deploy [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--container` | `-n` | string |  | Container Name |
+| `--containers` |  | string |  | Container Names (comma separated) (ex: --containers "container1,container2") |
+| `--environment` |  | string |  | Environment Name |
+| `--organization` |  | string |  | Organization Name |
+| `--project` |  | string |  | Project Name |
+| `--tag` | `-t` | string |  | Container Tag |
+| `--watch` | `-w` | bool |  | Watch container status until it's ready or an error occurs |
+
+### `qovery container domain`
+
+Manage container domains
+
+```bash
+qovery container domain [flags]
+qovery container domain [command]
+```
+
+| Subcommand | Description |
+|------------|-------------|
+| `qovery container domain create` | Create container custom domain |
+| `qovery container domain delete` | Delete container custom domain |
+| `qovery container domain edit` | Edit container custom domain |
+| `qovery container domain list` | List container domains |
+
+No flags other than `--help`.
+
+### `qovery container domain create`
+
+Create container custom domain
+
+```bash
+qovery container domain create [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--container` | `-n` | string |  | Container Name |
+| `--do-not-generate-certificate` |  | bool |  | Do Not Generate Certificate |
+| `--domain` |  | string |  | Custom Domain &lt;subdomain.domain.tld&gt; |
+| `--environment` |  | string |  | Environment Name |
+| `--is-behind-a-cdn` |  | bool |  | Custom Domain is behind a CDN |
+| `--organization` |  | string |  | Organization Name |
+| `--project` |  | string |  | Project Name |
+
+### `qovery container domain delete`
+
+Delete container custom domain
+
+```bash
+qovery container domain delete [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--container` | `-n` | string |  | Container Name |
+| `--domain` |  | string |  | Custom Domain &lt;subdomain.domain.tld&gt; |
+| `--environment` |  | string |  | Environment Name |
+| `--organization` |  | string |  | Organization Name |
+| `--project` |  | string |  | Project Name |
+
+### `qovery container domain edit`
+
+Edit container custom domain
+
+```bash
+qovery container domain edit [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--container` | `-n` | string |  | Container Name |
+| `--do-not-generate-certificate` |  | bool |  | Do Not Generate Certificate |
+| `--domain` |  | string |  | Custom Domain &lt;subdomain.domain.tld&gt; |
+| `--environment` |  | string |  | Environment Name |
+| `--is-behind-a-cdn` |  | bool |  | Custom Domain is behind a CDN |
+| `--organization` |  | string |  | Organization Name |
+| `--project` |  | string |  | Project Name |
+
+### `qovery container domain list`
+
+List container domains
+
+```bash
+qovery container domain list [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--container` | `-n` | string |  | Container Name |
+| `--environment` |  | string |  | Environment Name |
+| `--json` |  | bool |  | JSON output |
+| `--organization` |  | string |  | Organization Name |
+| `--project` |  | string |  | Project Name |
+
+### `qovery container env`
+
+Manage container environment variables and secrets
+
+```bash
+qovery container env [flags]
+qovery container env [command]
+```
+
+| Subcommand | Description |
+|------------|-------------|
+| `qovery container env alias` | Manage container environment variable and secret aliases |
+| `qovery container env create` | Create container environment variable or secret |
+| `qovery container env delete` | Delete container environment variable or secret |
+| `qovery container env list` | List container environment variables |
+| `qovery container env override` | Manage container environment variable and secret overrides |
+| `qovery container env update` | Update container environment variable or secret |
+
+No flags other than `--help`.
+
+### `qovery container env alias`
+
+Manage container environment variable and secret aliases
+
+```bash
+qovery container env alias [flags]
+qovery container env alias [command]
+```
+
+| Subcommand | Description |
+|------------|-------------|
+| `qovery container env alias create` | Create container environment variable or secret alias |
+
+No flags other than `--help`.
+
+### `qovery container env alias create`
+
+Create container environment variable or secret alias
+
+```bash
+qovery container env alias create [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--alias` |  | string |  | Environment variable or secret alias |
+| `--container` | `-n` | string |  | Container Name |
+| `--environment` |  | string |  | Environment Name |
+| `--key` | `-k` | string |  | Environment variable or secret key |
+| `--organization` |  | string |  | Organization Name |
+| `--project` |  | string |  | Project Name |
+| `--scope` |  | string | `"CONTAINER"` | Scope of this alias &lt;PROJECT\|ENVIRONMENT\|CONTAINER&gt; |
+
+### `qovery container env create`
+
+Create container environment variable or secret
+
+```bash
+qovery container env create [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--container` | `-n` | string |  | Container Name |
+| `--environment` |  | string |  | Environment Name |
+| `--key` | `-k` | string |  | Environment variable or secret key |
+| `--organization` |  | string |  | Organization Name |
+| `--override-if-exists` |  | bool |  | If the key already exists at a higher scope, create an override of it instead of failing |
+| `--project` |  | string |  | Project Name |
+| `--scope` |  | string | `"CONTAINER"` | Scope of this env var &lt;PROJECT\|ENVIRONMENT\|CONTAINER&gt; |
+| `--secret` |  | bool |  | This environment variable is a secret |
+| `--value` | `-v` | string |  | Environment variable or secret value |
+
+### `qovery container env delete`
+
+Delete container environment variable or secret
+
+```bash
+qovery container env delete [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--container` | `-n` | string |  | Container Name |
+| `--environment` |  | string |  | Environment Name |
+| `--key` | `-k` | string |  | Environment variable or secret key |
+| `--organization` |  | string |  | Organization Name |
+| `--project` |  | string |  | Project Name |
+
+### `qovery container env list`
+
+List container environment variables
+
+```bash
+qovery container env list [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--container` | `-n` | string |  | Container Name |
+| `--environment` |  | string |  | Environment Name |
+| `--json` |  | bool |  | JSON output |
+| `--organization` |  | string |  | Organization Name |
+| `--pretty-print` |  | bool |  | Pretty print output |
+| `--project` |  | string |  | Project Name |
+| `--show-values` |  | bool |  | Show env var values |
+| `--sort` |  | bool |  | Sort environment variables by key |
+
+### `qovery container env override`
+
+Manage container environment variable and secret overrides
+
+```bash
+qovery container env override [flags]
+qovery container env override [command]
+```
+
+| Subcommand | Description |
+|------------|-------------|
+| `qovery container env override create` | Override container environment variable or secret |
+
+No flags other than `--help`.
+
+### `qovery container env override create`
+
+Override container environment variable or secret
+
+```bash
+qovery container env override create [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--container` | `-n` | string |  | Container Name |
+| `--environment` |  | string |  | Environment Name |
+| `--key` | `-k` | string |  | Environment variable or secret key |
+| `--organization` |  | string |  | Organization Name |
+| `--project` |  | string |  | Project Name |
+| `--scope` |  | string | `"CONTAINER"` | Scope of this alias &lt;PROJECT\|ENVIRONMENT\|CONTAINER&gt; |
+| `--value` |  | string |  | Environment variable or secret value |
+
+### `qovery container env update`
+
+Update container environment variable or secret
+
+```bash
+qovery container env update [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--container` | `-n` | string |  | Container Name |
+| `--environment` |  | string |  | Environment Name |
+| `--key` | `-k` | string |  | Environment variable or secret key |
+| `--organization` |  | string |  | Organization Name |
+| `--project` |  | string |  | Project Name |
+| `--value` | `-v` | string |  | Environment variable or secret value |
+
+### `qovery container external-secret`
+
+Manage container external secrets
+
+```bash
+qovery container external-secret [flags]
+qovery container external-secret [command]
+```
+
+| Subcommand | Description |
+|------------|-------------|
+| `qovery container external-secret create` | Create container external secret |
+| `qovery container external-secret delete` | Delete container external secret |
+| `qovery container external-secret update` | Update container external secret |
+
+No flags other than `--help`.
+
+### `qovery container external-secret create`
+
+Create container external secret
+
+```bash
+qovery container external-secret create [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--container` | `-n` | string |  | Container Name |
+| `--environment` |  | string |  | Environment Name |
+| `--key` | `-k` | string |  | External secret key |
+| `--mount-path` |  | string |  | Path where the secret will be mounted as a file |
+| `--organization` |  | string |  | Organization Name |
+| `--project` |  | string |  | Project Name |
+| `--reference` | `-r` | string |  | Reference to the secret in the secrets provider |
+| `--scope` |  | string | `"CONTAINER"` | Scope of this external secret &lt;PROJECT\|ENVIRONMENT\|CONTAINER&gt; |
+| `--secret-manager-access-name` |  | string |  | Secret manager access name |
+
+### `qovery container external-secret delete`
+
+Delete container external secret
+
+```bash
+qovery container external-secret delete [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--container` | `-n` | string |  | Container Name |
+| `--environment` |  | string |  | Environment Name |
+| `--key` | `-k` | string |  | External secret key |
+| `--organization` |  | string |  | Organization Name |
+| `--project` |  | string |  | Project Name |
+
+### `qovery container external-secret update`
+
+Update container external secret
+
+```bash
+qovery container external-secret update [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--container` | `-n` | string |  | Container Name |
+| `--environment` |  | string |  | Environment Name |
+| `--key` | `-k` | string |  | External secret key |
+| `--organization` |  | string |  | Organization Name |
+| `--project` |  | string |  | Project Name |
+| `--reference` | `-r` | string |  | New reference to the secret in the secrets provider |
+| `--secret-manager-access-name` |  | string |  | New secret manager access name |
+
+### `qovery container list`
+
+List containers
+
+```bash
+qovery container list [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--environment` |  | string |  | Environment Name |
+| `--json` |  | bool |  | JSON output |
+| `--organization` |  | string |  | Organization Name |
+| `--project` |  | string |  | Project Name |
+
+### `qovery container redeploy`
+
+Redeploy a container
+
+```bash
+qovery container redeploy [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--container` | `-n` | string |  | Container Name |
+| `--environment` |  | string |  | Environment Name |
+| `--organization` |  | string |  | Organization Name |
+| `--project` |  | string |  | Project Name |
+| `--watch` | `-w` | bool |  | Watch container status until it's ready or an error occurs |
+
+### `qovery container registry`
+
+Manage container registries
+
+```bash
+qovery container registry [flags]
+qovery container registry [command]
+```
+
+| Subcommand | Description |
+|------------|-------------|
+| `qovery container registry list` | List container registries |
+
+No flags other than `--help`.
+
+### `qovery container registry list`
+
+List container registries
+
+```bash
+qovery container registry list [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--json` |  | bool |  | JSON output |
+| `--organization` |  | string |  | Organization Name |
+
+### `qovery container restart`
+
+Restart a container without redeploying it
+
+```bash
+qovery container restart [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--container` | `-n` | string |  | Container Name |
+| `--containers` |  | string |  | Container Names (comma separated) Example: --containers "container1,container2" |
+| `--environment` |  | string |  | Environment Name |
+| `--organization` |  | string |  | Organization Name |
+| `--project` |  | string |  | Project Name |
+| `--watch` | `-w` | bool |  | Watch container status until it's ready or an error occurs |
+
+### `qovery container stop`
+
+Stop a container
+
+```bash
+qovery container stop [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--container` | `-n` | string |  | Container Name |
+| `--containers` |  | string |  | Container Names (comma separated) (ex: --containers "container1,container2") |
+| `--environment` |  | string |  | Environment Name |
+| `--organization` |  | string |  | Organization Name |
+| `--project` |  | string |  | Project Name |
+| `--watch` | `-w` | bool |  | Watch container status until it's ready or an error occurs |
+
+### `qovery container update`
+
+Update a container
+
+```bash
+qovery container update [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--container` | `-n` | string |  | Container Name |
+| `--environment` |  | string |  | Environment Name |
+| `--image-name` |  | string |  | Container Image Name |
+| `--organization` |  | string |  | Organization Name |
+| `--project` |  | string |  | Project Name |
+| `--tag` |  | string |  | Container Tag |
+{/* END GENERATED */}
 
 ## Related Commands
 

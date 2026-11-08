@@ -1,6 +1,6 @@
 ---
 title: "qovery api"
-description: "Make authenticated HTTP requests to the Qovery API"
+description: "Call any Qovery API endpoint from the terminal with your CLI login, and print the OpenAPI specification"
 ---
 
 ## Overview
@@ -16,17 +16,6 @@ qovery api <endpoint> [flags]
 ```
 
 The `<endpoint>` is the API path relative to the Qovery API base URL (e.g., `organization`, `organization/<id>/project`).
-
-## Options
-
-| Flag | Description |
-|------|-------------|
-| `-f, --field` | Add a key=value pair to the JSON body (repeatable, smart type coercion) |
-| `-H, --header` | Additional request headers in `Key: Value` format (repeatable) |
-| `-i, --include` | Print HTTP response status and headers before body |
-| `--input` | Body: `-` for stdin (pipe JSON to command) |
-| `-X, --method` | HTTP method (`GET`, `POST`, `PUT`, `PATCH`, `DELETE`) |
-| `--help` | Show help |
 
 ## Examples
 
@@ -94,8 +83,47 @@ qovery api organization -H "X-Request-Id: abc123"
 QOVERY_API_URL=https://staging.api.qovery.com qovery api organization
 ```
 
+{/* BEGIN GENERATED: qovery api --help, CLI v1.180.0 */}
+## Command reference
+
+Generated from `qovery api --help` (CLI v1.180.0). Every command also accepts `-h, --help` and the [global flags](/cli/commands/overview#global-flags).
+
+### `qovery api`
+
+Make an authenticated request to the Qovery API
+
+```bash
+qovery api <endpoint> [flags]
+qovery api [command]
+```
+
+| Subcommand | Description |
+|------------|-------------|
+| `qovery api spec` | Print the Qovery API's OpenAPI specification |
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--field` | `-f` | stringArray |  | Add a key=value pair to the JSON body (repeatable, smart type coercion) |
+| `--header` | `-H` | stringArray |  | Additional request headers in 'Key: Value' format (repeatable) |
+| `--include` | `-i` | bool |  | Print HTTP response status and headers before body |
+| `--input` |  | string |  | Body: '-' for stdin (pipe JSON to command) |
+| `--method` | `-X` | string |  | HTTP method (GET, POST, PUT, PATCH, DELETE) |
+
+### `qovery api spec`
+
+Print the Qovery API's OpenAPI specification
+
+```bash
+qovery api spec [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--output` | `-o` | string |  | Write the spec to a file instead of stdout |
+{/* END GENERATED */}
+
 ## Related Commands
 
-- [`qovery auth`](/cli/commands/auth) - Log in and out of Qovery
+- [`qovery auth`](/cli/commands/auth) - Log in to Qovery
 - [`qovery auth token`](/cli/commands/auth) - Output the current valid access token
 - [`qovery context`](/cli/commands/context) - Set the active organization, project, and environment

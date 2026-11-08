@@ -1,0 +1,59 @@
+---
+title: "qovery organization"
+description: "List the organizations your login or API token can access, with their ID, name and plan"
+---
+
+## Overview
+
+Use `qovery organization` to see which organizations the current login or API token can access. The table shows the ID, name and plan of each organization.
+
+## Examples
+
+List organizations:
+
+```bash
+qovery organization list
+```
+
+Get the list as JSON, for example to read organization IDs in a script:
+
+```bash
+qovery organization list --json
+```
+
+{/* BEGIN GENERATED: qovery organization --help, CLI v1.180.0 */}
+## Command reference
+
+Generated from `qovery organization --help` (CLI v1.180.0). Every command also accepts `-h, --help` and the [global flags](/cli/commands/overview#global-flags).
+
+### `qovery organization`
+
+Manage Organization
+
+```bash
+qovery organization [command]
+```
+
+| Subcommand | Description |
+|------------|-------------|
+| `qovery organization list` | List organizations the authenticated token has access to |
+
+No flags other than `--help`.
+
+### `qovery organization list`
+
+List organizations the authenticated token has access to
+
+```bash
+qovery organization list [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--json` |  | bool |  | JSON output |
+{/* END GENERATED */}
+
+## Related Commands
+
+- [`qovery context`](/cli/commands/context) - Choose the organization the CLI targets
+- [`qovery project`](/cli/commands/project) - Manage projects

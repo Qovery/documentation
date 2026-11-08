@@ -1,6 +1,6 @@
 ---
 title: "Qovery CLI"
-description: "Manage your Qovery infrastructure from the command line"
+description: "Install the Qovery CLI, log in, set a default context and run your first commands from the terminal"
 ---
 
 
@@ -32,11 +32,11 @@ This will open a browser window for authentication. Once completed, you'll be re
 
 ### API Token Authentication
 
-You can also authenticate using an API token:
+You can also authenticate using an API token. Every command then uses the token directly, so you do not need to run `qovery auth`:
 
 ```bash
 export QOVERY_CLI_ACCESS_TOKEN="your-api-token"
-qovery auth
+qovery auth status
 ```
 
 Generate an API token from the [Qovery Console](https://console.qovery.com/platform/organization/api-tokens).
@@ -59,7 +59,7 @@ qovery context
 
 ## Watching Operations
 
-Most deployment commands accept the `--watch` (`-w`) flag to wait until the targeted services finish and report their final status. The command exits with a non-zero status if a watched service fails, is canceled, ends in an unexpected state, or no longer exists — useful in CI/CD pipelines.
+Most deployment commands accept the `--watch` (`-w`) flag to wait until the targeted services finish and report their final status. The command exits with a non-zero status if a watched service fails, is canceled, ends in an unexpected state, or no longer exists, which is useful in CI/CD pipelines.
 
 By default, a watch stops after **1 hour** and exits with an error if the services have not finished. To wait longer (for example for long builds or Terraform runs), set the `QOVERY_CLI_WATCH_TIMEOUT` environment variable to a [Go duration](https://pkg.go.dev/time#ParseDuration) such as `2h`:
 

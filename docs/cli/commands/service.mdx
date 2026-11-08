@@ -1,6 +1,6 @@
 ---
 title: "qovery service"
-description: "Service management commands"
+description: "List all services of an environment, and deploy one or several services by name whatever their type"
 ---
 
 ## Overview
@@ -18,17 +18,6 @@ qovery service list
 ```
 
 This displays all services regardless of type (applications, containers, databases, cronjobs, lifecycle jobs, Helm charts).
-
-**Flags:**
-
-| Flag | Description |
-|------|-------------|
-| `--organization` | Organization Name |
-| `--project` | Project Name |
-| `--environment` | Environment Name |
-| `--json` | JSON output |
-| `--markdown` | Markdown output |
-| `--jira` | Atlassian Jira output |
 
 ### Deploy Service
 
@@ -54,19 +43,6 @@ The `--version` parameter accepts:
 - Git commit IDs (for applications, git-based jobs, git-based helms)
 - Container image tags (for containers, image-based jobs)
 - Helm chart versions (for helm repository charts)
-
-**Flags:**
-
-| Flag | Short | Description |
-|------|-------|-------------|
-| `--service` | `-n` | Service Name |
-| `--services` | | Service Names (comma separated) |
-| `--version` | `-v` | Version (git commit ID, image tag, or chart version) |
-| `--values-override-version` | | Helm values override version (git commit ID) |
-| `--watch` | `-w` | Watch service status until it's ready or an error occurs |
-| `--organization` | | Organization Name |
-| `--project` | | Project Name |
-| `--environment` | | Environment Name |
 
 ## Examples
 
@@ -127,6 +103,76 @@ The `service list` command displays all the following service types:
 - **Lifecycle** - Lifecycle jobs (run on specific events)
 - **Helm** - Helm charts
 
+{/* BEGIN GENERATED: qovery service --help, CLI v1.180.0 */}
+## Command reference
+
+Generated from `qovery service --help` (CLI v1.180.0). Every command also accepts `-h, --help` and the [global flags](/cli/commands/overview#global-flags).
+
+### `qovery service`
+
+Manage services
+
+```bash
+qovery service [flags]
+qovery service [command]
+```
+
+| Subcommand | Description |
+|------------|-------------|
+| `qovery service deploy` | Deploy a service (application, container, database, job, or helm) |
+| `qovery service list` | List services |
+
+No flags other than `--help`.
+
+### `qovery service deploy`
+
+Deploy a service (application, container, database, job, or helm)
+
+```bash
+qovery service deploy [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--environment` |  | string |  | Environment Name |
+| `--organization` |  | string |  | Organization Name |
+| `--project` |  | string |  | Project Name |
+| `--service` | `-n` | string |  | Service Name |
+| `--services` |  | string |  | Service Names (comma separated) Example: --services "svc1,svc2,svc3" |
+| `--values-override-version` |  | string |  | Helm values override version (git commit ID) |
+| `--version` | `-v` | string |  | Version (git commit ID, image tag, or chart version) |
+| `--watch` | `-w` | bool |  | Watch service status until it's ready or an error occurs |
+
+Examples from the CLI help:
+
+```bash
+qovery service deploy -n my-app --version abc123
+qovery service deploy -n my-container --version v1.2.3
+qovery service deploy -n my-database
+qovery service deploy -n my-helm-repo --version 1.2.3
+qovery service deploy -n my-helm-git --version abc123
+qovery service deploy -n my-helm --version 1.2.3 --values-override-version def456
+qovery service deploy --services "service1,service2,service3"
+```
+
+### `qovery service list`
+
+List services
+
+```bash
+qovery service list [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--environment` |  | string |  | Environment Name |
+| `--jira` |  | bool |  | Atlassian Jira output |
+| `--json` |  | bool |  | JSON output |
+| `--markdown` |  | bool |  | Markdown output |
+| `--organization` |  | string |  | Organization Name |
+| `--project` |  | string |  | Project Name |
+{/* END GENERATED */}
+
 ## Related Commands
 
 - [`qovery application`](/cli/commands/application) - Manage applications specifically
@@ -135,4 +181,4 @@ The `service list` command displays all the following service types:
 - [`qovery cronjob`](/cli/commands/cronjob) - Manage cronjobs specifically
 - [`qovery lifecycle`](/cli/commands/lifecycle) - Manage lifecycle jobs specifically
 - [`qovery helm`](/cli/commands/helm) - Manage Helm charts specifically
-- [`qovery status`](/cli/commands/status) - Check service statuses
+- [`qovery status`](/cli/commands/status) - Check the status of the application or container in your context

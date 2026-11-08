@@ -1,17 +1,17 @@
 ---
 title: "qovery upgrade"
-description: "Upgrade Qovery CLI to latest version"
+description: "Replace the installed Qovery CLI binary with the latest release in one command"
 ---
 
 ## Overview
 
-Upgrade the Qovery CLI to the latest available version.
+Use `qovery upgrade` to update the CLI to the latest release. The command checks for a newer version, downloads it from the [Qovery CLI releases](https://github.com/Qovery/qovery-cli/releases) on GitHub and replaces the current binary. If you already run the latest version, it says so and changes nothing.
 
-## Usage
+The command needs write permission on the CLI binary file. If it does not have it, the upgrade is cancelled and the error shows the path of the binary.
 
-```bash
-qovery upgrade
-```
+<Note>
+`qovery upgrade` is not included in the Windows build of the CLI. On Windows, install the new version the same way you installed the CLI.
+</Note>
 
 ## Example
 
@@ -19,4 +19,28 @@ qovery upgrade
 qovery upgrade
 ```
 
-This command will check for the latest version and upgrade your CLI installation automatically.
+Check the result:
+
+```bash
+qovery version
+```
+
+{/* BEGIN GENERATED: qovery upgrade --help, CLI v1.180.0 */}
+## Command reference
+
+Generated from `qovery upgrade --help` (CLI v1.180.0). Every command also accepts `-h, --help` and the [global flags](/cli/commands/overview#global-flags).
+
+### `qovery upgrade`
+
+Upgrade Qovery CLI to latest version
+
+```bash
+qovery upgrade [flags]
+```
+
+No flags other than `--help`.
+{/* END GENERATED */}
+
+## Related Commands
+
+- [`qovery version`](/cli/commands/version) - Print the installed version

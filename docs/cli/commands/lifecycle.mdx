@@ -1,6 +1,6 @@
 ---
 title: "qovery lifecycle"
-description: "Lifecycle job management commands"
+description: "Deploy, redeploy, stop, clone or delete lifecycle jobs, and manage their variables and secrets"
 ---
 
 ## Overview
@@ -38,19 +38,6 @@ qovery lifecycle deploy --lifecycle "my-lifecycle" --commit-id "abc123"
 qovery lifecycle deploy --lifecycle "my-lifecycle" --commit-id latest
 qovery lifecycle deploy --lifecycle "my-lifecycle" --tag "v1.2.0"
 ```
-
-**Flags:**
-
-| Flag | Short | Description |
-|------|-------|-------------|
-| `--lifecycle` | `-n` | Lifecycle Job Name |
-| `--lifecycles` | | Lifecycle Job Names (comma separated) |
-| `--commit-id` | `-c` | Lifecycle Commit ID, or `latest` for the newest commit of the branch |
-| `--tag` | `-t` | Lifecycle Tag |
-| `--watch` | `-w` | Watch lifecycle status until it's ready or an error occurs |
-| `--organization` | | Organization Name |
-| `--project` | | Project Name |
-| `--environment` | | Environment Name |
 
 ### Redeploy Lifecycle Job
 
@@ -99,18 +86,6 @@ qovery lifecycle update --lifecycle "my-lifecycle" --tag "v2.0.0"
 qovery lifecycle update --lifecycle "my-lifecycle" --image-name "my-registry/my-image"
 ```
 
-**Flags:**
-
-| Flag | Short | Description |
-|------|-------|-------------|
-| `--lifecycle` | `-n` | Lifecycle Name (required) |
-| `--branch` | `-b` | Lifecycle Branch (for Dockerfile-based lifecycle jobs) |
-| `--tag` | `-t` | Lifecycle Tag (for image-based lifecycle jobs) |
-| `--image-name` | | Lifecycle Image Name (for image-based lifecycle jobs) |
-| `--organization` | | Organization Name |
-| `--project` | | Project Name |
-| `--environment` | | Environment Name |
-
 ### Clone Lifecycle Job
 
 Clone a lifecycle job to another environment or project:
@@ -118,18 +93,6 @@ Clone a lifecycle job to another environment or project:
 ```bash
 qovery lifecycle clone --lifecycle "my-lifecycle"
 ```
-
-**Flags:**
-
-| Flag | Short | Description |
-|------|-------|-------------|
-| `--lifecycle` | `-n` | Lifecycle Name (required) |
-| `--target-project` | | Target Project Name |
-| `--target-environment` | | Target Environment Name |
-| `--target-lifecycle-name` | | Target Lifecycle Name |
-| `--organization` | | Organization Name |
-| `--project` | | Project Name |
-| `--environment` | | Environment Name |
 
 ## Examples
 
@@ -171,8 +134,403 @@ qovery lifecycle deploy --lifecycle "post-deploy-script" --tag "v1.5.0"
 | **DELETE** | Runs before environment deletion |
 | **DEPLOY** | Runs during deployment |
 
+{/* BEGIN GENERATED: qovery lifecycle --help, CLI v1.180.0 */}
+## Command reference
+
+Generated from `qovery lifecycle --help` (CLI v1.180.0). Every command also accepts `-h, --help` and the [global flags](/cli/commands/overview#global-flags).
+
+### `qovery lifecycle`
+
+Manage lifecycle jobs
+
+```bash
+qovery lifecycle [flags]
+qovery lifecycle [command]
+```
+
+| Subcommand | Description |
+|------------|-------------|
+| `qovery lifecycle cancel` | Cancel a lifecycle deployment |
+| `qovery lifecycle clone` | Clone a lifecycle job |
+| `qovery lifecycle delete` | Delete a lifecycle job |
+| `qovery lifecycle deploy` | Deploy a lifecycle job |
+| `qovery lifecycle env` | Manage lifecycle environment variables and secrets |
+| `qovery lifecycle external-secret` | Manage lifecycle external secrets |
+| `qovery lifecycle list` | List lifecycle jobs |
+| `qovery lifecycle redeploy` | Redeploy a lifecycle job |
+| `qovery lifecycle stop` | Stop a lifecycle job |
+| `qovery lifecycle update` | Update a lifecycle |
+
+No flags other than `--help`.
+
+### `qovery lifecycle cancel`
+
+Cancel a lifecycle deployment
+
+```bash
+qovery lifecycle cancel [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--environment` |  | string |  | Environment Name |
+| `--lifecycle` | `-n` | string |  | Lifecycle Name |
+| `--organization` |  | string |  | Organization Name |
+| `--project` |  | string |  | Project Name |
+| `--watch` | `-w` | bool |  | Watch cancel until it's done or an error occurs |
+
+### `qovery lifecycle clone`
+
+Clone a lifecycle job
+
+```bash
+qovery lifecycle clone [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--environment` |  | string |  | Environment Name |
+| `--lifecycle` | `-n` | string |  | Lifecycle Name |
+| `--organization` |  | string |  | Organization Name |
+| `--project` |  | string |  | Project Name |
+| `--target-environment` |  | string |  | Target Environment Name |
+| `--target-lifecycle-name` |  | string |  | Target Lifecycle Name |
+| `--target-project` |  | string |  | Target Project Name |
+
+### `qovery lifecycle delete`
+
+Delete a lifecycle job
+
+```bash
+qovery lifecycle delete [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--environment` |  | string |  | Environment Name |
+| `--lifecycle` | `-n` | string |  | Lifecycle Job Name |
+| `--lifecycles` |  | string |  | Lifecycle Job Names (comma separated) (ex: --lifecycles "lifecycle1,lifecycle2") |
+| `--organization` |  | string |  | Organization Name |
+| `--project` |  | string |  | Project Name |
+| `--watch` | `-w` | bool |  | Watch lifecycle job status until it's ready or an error occurs |
+
+### `qovery lifecycle deploy`
+
+Deploy a lifecycle job
+
+```bash
+qovery lifecycle deploy [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--commit-id` | `-c` | string |  | Lifecycle Commit ID, or 'latest' for the newest commit of the branch |
+| `--environment` |  | string |  | Environment Name |
+| `--lifecycle` | `-n` | string |  | Lifecycle Job Name |
+| `--lifecycles` |  | string |  | Lifecycle Job Names |
+| `--organization` |  | string |  | Organization Name |
+| `--project` |  | string |  | Project Name |
+| `--tag` | `-t` | string |  | Lifecycle Tag |
+| `--watch` | `-w` | bool |  | Watch lifecycle status until it's ready or an error occurs |
+
+### `qovery lifecycle env`
+
+Manage lifecycle environment variables and secrets
+
+```bash
+qovery lifecycle env [flags]
+qovery lifecycle env [command]
+```
+
+| Subcommand | Description |
+|------------|-------------|
+| `qovery lifecycle env alias` | Manage lifecycle environment variable and secret aliases |
+| `qovery lifecycle env create` | Create lifecycle environment variable or secret |
+| `qovery lifecycle env delete` | Delete lifecycle environment variable or secret |
+| `qovery lifecycle env list` | List lifecycle environment variables |
+| `qovery lifecycle env override` | Manage lifecycle environment variable and secret overrides |
+| `qovery lifecycle env update` | Update lifecycle environment variable or secret |
+
+No flags other than `--help`.
+
+### `qovery lifecycle env alias`
+
+Manage lifecycle environment variable and secret aliases
+
+```bash
+qovery lifecycle env alias [flags]
+qovery lifecycle env alias [command]
+```
+
+| Subcommand | Description |
+|------------|-------------|
+| `qovery lifecycle env alias create` | Create lifecycle environment variable or secret alias |
+
+No flags other than `--help`.
+
+### `qovery lifecycle env alias create`
+
+Create lifecycle environment variable or secret alias
+
+```bash
+qovery lifecycle env alias create [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--alias` |  | string |  | Environment variable or secret alias |
+| `--environment` |  | string |  | Environment Name |
+| `--key` | `-k` | string |  | Environment variable or secret key |
+| `--lifecycle` | `-n` | string |  | Lifecycle Name |
+| `--organization` |  | string |  | Organization Name |
+| `--project` |  | string |  | Project Name |
+| `--scope` |  | string | `"JOB"` | Scope of this alias &lt;PROJECT\|ENVIRONMENT\|JOB&gt; |
+
+### `qovery lifecycle env create`
+
+Create lifecycle environment variable or secret
+
+```bash
+qovery lifecycle env create [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--environment` |  | string |  | Environment Name |
+| `--key` | `-k` | string |  | Environment variable or secret key |
+| `--lifecycle` | `-n` | string |  | Lifecycle Name |
+| `--organization` |  | string |  | Organization Name |
+| `--override-if-exists` |  | bool |  | If the key already exists at a higher scope, create an override of it instead of failing |
+| `--project` |  | string |  | Project Name |
+| `--scope` |  | string | `"JOB"` | Scope of this env var &lt;PROJECT\|ENVIRONMENT\|JOB&gt; |
+| `--secret` |  | bool |  | This environment variable is a secret |
+| `--value` | `-v` | string |  | Environment variable or secret value |
+
+### `qovery lifecycle env delete`
+
+Delete lifecycle environment variable or secret
+
+```bash
+qovery lifecycle env delete [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--environment` |  | string |  | Environment Name |
+| `--key` | `-k` | string |  | Environment variable or secret key |
+| `--lifecycle` | `-n` | string |  | Lifecycle Name |
+| `--organization` |  | string |  | Organization Name |
+| `--project` |  | string |  | Project Name |
+
+### `qovery lifecycle env list`
+
+List lifecycle environment variables
+
+```bash
+qovery lifecycle env list [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--environment` |  | string |  | Environment Name |
+| `--json` |  | bool |  | JSON output |
+| `--lifecycle` | `-n` | string |  | Lifecycle Name |
+| `--organization` |  | string |  | Organization Name |
+| `--pretty-print` |  | bool |  | Pretty print output |
+| `--project` |  | string |  | Project Name |
+| `--show-values` |  | bool |  | Show env var values |
+| `--sort` |  | bool |  | Sort environment variables by key |
+
+### `qovery lifecycle env override`
+
+Manage lifecycle environment variable and secret overrides
+
+```bash
+qovery lifecycle env override [flags]
+qovery lifecycle env override [command]
+```
+
+| Subcommand | Description |
+|------------|-------------|
+| `qovery lifecycle env override create` | Override lifecycle environment variable or secret |
+
+No flags other than `--help`.
+
+### `qovery lifecycle env override create`
+
+Override lifecycle environment variable or secret
+
+```bash
+qovery lifecycle env override create [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--environment` |  | string |  | Environment Name |
+| `--key` | `-k` | string |  | Environment variable or secret key |
+| `--lifecycle` | `-n` | string |  | Lifecycle Name |
+| `--organization` |  | string |  | Organization Name |
+| `--project` |  | string |  | Project Name |
+| `--scope` |  | string | `"JOB"` | Scope of this alias &lt;PROJECT\|ENVIRONMENT\|JOB&gt; |
+| `--value` |  | string |  | Environment variable or secret value |
+
+### `qovery lifecycle env update`
+
+Update lifecycle environment variable or secret
+
+```bash
+qovery lifecycle env update [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--environment` |  | string |  | Environment Name |
+| `--key` | `-k` | string |  | Environment variable or secret key |
+| `--lifecycle` | `-n` | string |  | Lifecycle Name |
+| `--organization` |  | string |  | Organization Name |
+| `--project` |  | string |  | Project Name |
+| `--value` | `-v` | string |  | Environment variable or secret value |
+
+### `qovery lifecycle external-secret`
+
+Manage lifecycle external secrets
+
+```bash
+qovery lifecycle external-secret [flags]
+qovery lifecycle external-secret [command]
+```
+
+| Subcommand | Description |
+|------------|-------------|
+| `qovery lifecycle external-secret create` | Create lifecycle external secret |
+| `qovery lifecycle external-secret delete` | Delete lifecycle external secret |
+| `qovery lifecycle external-secret update` | Update lifecycle external secret |
+
+No flags other than `--help`.
+
+### `qovery lifecycle external-secret create`
+
+Create lifecycle external secret
+
+```bash
+qovery lifecycle external-secret create [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--environment` |  | string |  | Environment Name |
+| `--key` | `-k` | string |  | External secret key |
+| `--lifecycle` | `-n` | string |  | Lifecycle Name |
+| `--mount-path` |  | string |  | Path where the secret will be mounted as a file |
+| `--organization` |  | string |  | Organization Name |
+| `--project` |  | string |  | Project Name |
+| `--reference` | `-r` | string |  | Reference to the secret in the secrets provider |
+| `--scope` |  | string | `"JOB"` | Scope of this external secret &lt;PROJECT\|ENVIRONMENT\|JOB&gt; |
+| `--secret-manager-access-name` |  | string |  | Secret manager access name |
+
+### `qovery lifecycle external-secret delete`
+
+Delete lifecycle external secret
+
+```bash
+qovery lifecycle external-secret delete [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--environment` |  | string |  | Environment Name |
+| `--key` | `-k` | string |  | External secret key |
+| `--lifecycle` | `-n` | string |  | Lifecycle Name |
+| `--organization` |  | string |  | Organization Name |
+| `--project` |  | string |  | Project Name |
+
+### `qovery lifecycle external-secret update`
+
+Update lifecycle external secret
+
+```bash
+qovery lifecycle external-secret update [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--environment` |  | string |  | Environment Name |
+| `--key` | `-k` | string |  | External secret key |
+| `--lifecycle` | `-n` | string |  | Lifecycle Name |
+| `--organization` |  | string |  | Organization Name |
+| `--project` |  | string |  | Project Name |
+| `--reference` | `-r` | string |  | New reference to the secret in the secrets provider |
+| `--secret-manager-access-name` |  | string |  | New secret manager access name |
+
+### `qovery lifecycle list`
+
+List lifecycle jobs
+
+```bash
+qovery lifecycle list [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--environment` |  | string |  | Environment Name |
+| `--json` |  | bool |  | JSON output |
+| `--organization` |  | string |  | Organization Name |
+| `--project` |  | string |  | Project Name |
+
+### `qovery lifecycle redeploy`
+
+Redeploy a lifecycle job
+
+```bash
+qovery lifecycle redeploy [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--environment` |  | string |  | Environment Name |
+| `--lifecycle` | `-n` | string |  | Lifecycle Name |
+| `--organization` |  | string |  | Organization Name |
+| `--project` |  | string |  | Project Name |
+| `--watch` | `-w` | bool |  | Watch lifecycle status until it's ready or an error occurs |
+
+### `qovery lifecycle stop`
+
+Stop a lifecycle job
+
+```bash
+qovery lifecycle stop [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--environment` |  | string |  | Environment Name |
+| `--lifecycle` | `-n` | string |  | Lifecycle Name |
+| `--lifecycles` |  | string |  | Lifecycle Job Names (comma separated) (ex: --lifecycles "lifecycle1,lifecycle2") |
+| `--organization` |  | string |  | Organization Name |
+| `--project` |  | string |  | Project Name |
+| `--watch` | `-w` | bool |  | Watch lifecycle status until it's ready or an error occurs |
+
+### `qovery lifecycle update`
+
+Update a lifecycle
+
+```bash
+qovery lifecycle update [flags]
+```
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--branch` | `-b` | string |  | Lifecycle Branch |
+| `--environment` |  | string |  | Environment Name |
+| `--image-name` |  | string |  | Lifecycle Image Name |
+| `--lifecycle` | `-n` | string |  | Lifecycle Name |
+| `--organization` |  | string |  | Organization Name |
+| `--project` |  | string |  | Project Name |
+| `--tag` | `-t` | string |  | Lifecycle Tag |
+{/* END GENERATED */}
+
 ## Related Commands
 
 - [`qovery cronjob`](/cli/commands/cronjob) - Manage scheduled cronjobs
 - [`qovery log`](/cli/commands/log) - View lifecycle job logs
-- [`qovery status`](/cli/commands/status) - Check lifecycle job status
+- [`qovery service`](/cli/commands/service) - List services with their status

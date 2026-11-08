@@ -1,31 +1,54 @@
 ---
 title: "qovery help"
-description: "Help about any command"
+description: "Show the usage, subcommands and flags of any Qovery CLI command in the terminal"
 ---
 
 ## Overview
 
-Get help information about any Qovery CLI command.
-
-## Usage
-
-```bash
-qovery help [command]
-```
+Use `qovery help` to print the usage, subcommands and flags of any command. `qovery help <command>` shows the same text as `qovery <command> --help`.
 
 ## Examples
 
-**Get general help:**
+Show the list of all commands:
+
 ```bash
 qovery help
 ```
 
-**Get help for a specific command:**
+Show help for a command:
+
 ```bash
 qovery help application
 ```
 
-**Get help for a subcommand:**
+Show help for a subcommand:
+
 ```bash
 qovery help application deploy
 ```
+
+The same, with the `--help` flag:
+
+```bash
+qovery application deploy --help
+```
+
+{/* BEGIN GENERATED: qovery help --help, CLI v1.180.0 */}
+## Command reference
+
+Generated from `qovery help --help` (CLI v1.180.0). Every command also accepts `-h, --help` and the [global flags](/cli/commands/overview#global-flags).
+
+### `qovery help`
+
+Help about any command
+
+```bash
+qovery help [command] [flags]
+```
+
+No flags other than `--help`.
+{/* END GENERATED */}
+
+## Related Commands
+
+- [`qovery list-commands`](/cli/commands/list-commands) - Print every command and flag at once

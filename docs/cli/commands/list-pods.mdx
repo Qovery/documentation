@@ -1,14 +1,53 @@
 ---
 title: "qovery list-pods"
-description: "List the pods of a service with their pods"
+description: "List the running pods of a service and the ports each pod exposes"
 ---
 
 ## Overview
 
-List the pods of a service with their pods.
+Use `qovery list-pods` to see which pods a service runs and which ports each pod exposes, for example to pick a pod for [`qovery port-forward`](/cli/commands/port-forward) or [`qovery shell`](/cli/commands/shell).
 
-## Usage
+Without an argument, the command shows the current [context](/cli/commands/context) and asks whether to use it. If you answer no, or no service is selected, it asks you to pick the organization, project, environment and service. You can also pass the Console URL of the service instead.
+
+## Examples
+
+List the pods of the service in the current context:
 
 ```bash
 qovery list-pods
 ```
+
+List the pods of a service from its Console URL:
+
+```bash
+qovery list-pods "https://console.qovery.com/organization/<org-id>/project/<project-id>/environment/<env-id>/application/<app-id>"
+```
+
+The output is a table with the pod name and its ports:
+
+```
+Pod Name                          Ports
+my-api-6d4f9c7b8-x2k9p            8080
+```
+
+{/* BEGIN GENERATED: qovery list-pods --help, CLI v1.180.0 */}
+## Command reference
+
+Generated from `qovery list-pods --help` (CLI v1.180.0). Every command also accepts `-h, --help` and the [global flags](/cli/commands/overview#global-flags).
+
+### `qovery list-pods`
+
+List the pods of a service with their pods
+
+```bash
+qovery list-pods [flags]
+```
+
+No flags other than `--help`.
+{/* END GENERATED */}
+
+## Related Commands
+
+- [`qovery port-forward`](/cli/commands/port-forward) - Forward a local port to a pod
+- [`qovery shell`](/cli/commands/shell) - Open a shell in a pod
+- [`qovery context`](/cli/commands/context) - Set the service the CLI targets

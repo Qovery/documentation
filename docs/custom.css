@@ -793,14 +793,17 @@ html[data-theme="dark"] .skill-card-desc {
 }
 
 /* Selected card highlight */
+#sk-qovery:checked ~ .skills-grid label[for="sk-qovery"],
+#sk-signup:checked ~ .skills-grid label[for="sk-signup"],
 #sk-onboard:checked ~ .skills-grid label[for="sk-onboard"],
 #sk-deploy:checked ~ .skills-grid label[for="sk-deploy"],
 #sk-troubleshoot:checked ~ .skills-grid label[for="sk-troubleshoot"],
 #sk-optimize:checked ~ .skills-grid label[for="sk-optimize"],
 #sk-speedup:checked ~ .skills-grid label[for="sk-speedup"],
 #sk-preview:checked ~ .skills-grid label[for="sk-preview"],
-#sk-builder-env:checked ~ .skills-grid label[for="sk-builder-env"],
-#sk-builder-portal:checked ~ .skills-grid label[for="sk-builder-portal"] {
+#sk-terraform:checked ~ .skills-grid label[for="sk-terraform"],
+#sk-policy-token:checked ~ .skills-grid label[for="sk-policy-token"],
+#sk-assess:checked ~ .skills-grid label[for="sk-assess"] {
   border-color: #642DFF;
   background: rgba(100, 45, 255, 0.1);
 }
@@ -826,27 +829,33 @@ html[data-theme="dark"] .skills-desc-wrap {
 
 .sk-desc { display: none; }
 
+#sk-qovery:checked ~ .skills-desc-wrap .sk-desc-qovery { display: block; }
+#sk-signup:checked ~ .skills-desc-wrap .sk-desc-signup { display: block; }
 #sk-onboard:checked ~ .skills-desc-wrap .sk-desc-onboard { display: block; }
 #sk-deploy:checked ~ .skills-desc-wrap .sk-desc-deploy { display: block; }
 #sk-troubleshoot:checked ~ .skills-desc-wrap .sk-desc-troubleshoot { display: block; }
 #sk-optimize:checked ~ .skills-desc-wrap .sk-desc-optimize { display: block; }
 #sk-speedup:checked ~ .skills-desc-wrap .sk-desc-speedup { display: block; }
 #sk-preview:checked ~ .skills-desc-wrap .sk-desc-preview { display: block; }
-#sk-builder-env:checked ~ .skills-desc-wrap .sk-desc-builder-env { display: block; }
-#sk-builder-portal:checked ~ .skills-desc-wrap .sk-desc-builder-portal { display: block; }
+#sk-terraform:checked ~ .skills-desc-wrap .sk-desc-terraform { display: block; }
+#sk-policy-token:checked ~ .skills-desc-wrap .sk-desc-policy-token { display: block; }
+#sk-assess:checked ~ .skills-desc-wrap .sk-desc-assess { display: block; }
 
 /* All skill prompts hidden by default */
 .sk-prompt { display: none; }
 
 /* Show only the selected prompt */
+#sk-qovery:checked ~ .skills-terminal .sk-prompt-qovery { display: block; }
+#sk-signup:checked ~ .skills-terminal .sk-prompt-signup { display: block; }
 #sk-onboard:checked ~ .skills-terminal .sk-prompt-onboard { display: block; }
 #sk-deploy:checked ~ .skills-terminal .sk-prompt-deploy { display: block; }
 #sk-troubleshoot:checked ~ .skills-terminal .sk-prompt-troubleshoot { display: block; }
 #sk-optimize:checked ~ .skills-terminal .sk-prompt-optimize { display: block; }
 #sk-speedup:checked ~ .skills-terminal .sk-prompt-speedup { display: block; }
 #sk-preview:checked ~ .skills-terminal .sk-prompt-preview { display: block; }
-#sk-builder-env:checked ~ .skills-terminal .sk-prompt-builder-env { display: block; }
-#sk-builder-portal:checked ~ .skills-terminal .sk-prompt-builder-portal { display: block; }
+#sk-terraform:checked ~ .skills-terminal .sk-prompt-terraform { display: block; }
+#sk-policy-token:checked ~ .skills-terminal .sk-prompt-policy-token { display: block; }
+#sk-assess:checked ~ .skills-terminal .sk-prompt-assess { display: block; }
 
 /* Terminal action buttons (right side of bar) */
 .terminal-actions {

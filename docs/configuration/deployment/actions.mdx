@@ -37,6 +37,18 @@ The deploy action follows this sequence of statuses:
 
 **DEPLOYMENT OK**: All pods have been created and your service is running correctly.
 
+<Tip>
+On "BUILD ERROR" or "DEPLOYMENT ERROR", read the error lines of the failing service with the [Qovery CLI](/cli/overview) instead of copying them from the Console. A coding agent can run this itself:
+
+```bash
+qovery environment deployment logs \
+  --organization "My Org" --project "My Project" --environment "production" \
+  --service "my-api" --errors-only
+```
+
+For the full procedure (find the failed step, fix, deploy again and check the result), see [Diagnose a Failed Build or Deployment](/getting-started/troubleshoot/overview#diagnose-a-failed-build-or-deployment).
+</Tip>
+
 ### Environment Deployment Statuses
 
 When deploying at the environment level, the status is derived from the status of all services:

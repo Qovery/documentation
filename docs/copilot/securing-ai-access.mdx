@@ -96,14 +96,6 @@ The policy follows three tiers:
 
       "Bash(qovery log:*)",
 
-      "Bash(qovery rde list:*)",
-      "Bash(qovery rde info:*)",
-      "Bash(qovery rde status:*)",
-      "Bash(qovery rde logs:*)",
-      "Bash(qovery rde urls:*)",
-      "Bash(qovery rde blueprint list:*)",
-      "Bash(qovery rde blueprint status:*)",
-
       "Bash(qovery version:*)",
       "Bash(qovery list-commands:*)",
       "Bash(qovery console:*)"
@@ -149,14 +141,6 @@ The policy follows three tiers:
       "Bash(qovery terraform delete:*)",
       "Bash(qovery terraform force-unlock:*)",
       "Bash(qovery terraform migrate-state:*)",
-
-      "Bash(qovery rde create:*)",
-      "Bash(qovery rde delete:*)",
-      "Bash(qovery rde delete-all:*)",
-      "Bash(qovery rde stop:*)",
-      "Bash(qovery rde stop-all:*)",
-      "Bash(qovery rde upgrade:*)",
-      "Bash(qovery rde blueprint deploy:*)",
 
       "Bash(qovery api * --method POST:*)",
       "Bash(qovery api * --method PUT:*)",
@@ -220,7 +204,6 @@ These only read and display data. They never return secret values - environment-
 | Variables (names only) | `<service> env list` |
 | Domains / stages / registries | `<service> domain list`, `environment stage list`, `container registry list` |
 | Logs | `log` |
-| RDE | `rde list`, `rde info`, `rde status`, `rde logs`, `rde urls`, `rde blueprint list`, `rde blueprint status` |
 | Meta | `version`, `list-commands`, `console` |
 
 ### Confirm before running
@@ -242,7 +225,6 @@ These only read and display data. They never return secret values - environment-
 | `cluster install` / `upgrade` / `lock` / `unlock` | Mutate cluster state |
 | `<service> env create` / `update` / `delete` / `alias` / `override` | Mutate variables and secrets |
 | `terraform plan-and-apply` / `delete` / `force-unlock` / `migrate-state` | Mutate infrastructure and Terraform state |
-| `rde create` / `delete` / `stop` / `upgrade`, `rde blueprint deploy` | Mutate RDE state |
 
 ### API endpoints that return secrets
 

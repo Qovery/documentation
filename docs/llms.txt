@@ -27,10 +27,10 @@
 #### Get Started
 
 - [Introduction](https://www.qovery.com/docs/getting-started/introduction.md): The Kubernetes control plane for humans and AI agents, on your own infrastructure, cloud or on-premise.
-- [Get Started with Qovery](https://www.qovery.com/docs/getting-started/quickstart.md)
+- [Get Started with Qovery](https://www.qovery.com/docs/getting-started/quickstart.md): Choose how to start with Qovery: deploy with an AI agent, migrate an app, set up preview environments, try it locally or connect your own cluster.
 - [Deploy with AI Agent](https://www.qovery.com/docs/getting-started/quickstart/ai-agent.md): Tell your AI coding agent to deploy. It handles everything, from your code to a live Kubernetes deployment.
 - [Deploy from a Repository with the CLI and API](https://www.qovery.com/docs/getting-started/quickstart/cli-and-api.md): Go from a Git repository to a running app on your cluster using only the Qovery CLI and API, with no Console step. Written for scripts and coding agents.
-- [How Qovery Works](https://www.qovery.com/docs/getting-started/how-it-works.md): Understand the architecture behind Qovery: the Kubernetes control plane for humans and AI agents
+- [How Qovery Works](https://www.qovery.com/docs/getting-started/how-it-works.md): The architecture behind Qovery, an Agentic DevOps platform for humans and AI agents that runs in your own cloud account or on your own Kubernetes cluster.
 - [Core Concepts](https://www.qovery.com/docs/getting-started/basic-concepts.md): Essential Qovery terminology - Organizations, Clusters, Projects, Environments, Services, and Deployments
 
 ##### Installation
@@ -44,22 +44,22 @@
 - [Install Qovery on GCP](https://www.qovery.com/docs/getting-started/installation/gcp.md): Complete guide to installing Qovery on Google Cloud Platform with GKE Autopilot
 - [Install Qovery on Azure](https://www.qovery.com/docs/getting-started/installation/azure.md): Complete guide to installing Qovery on Microsoft Azure with AKS
 - [Install Qovery on Scaleway](https://www.qovery.com/docs/getting-started/installation/scaleway.md): Complete guide to installing Qovery on Scaleway with Kapsule Kubernetes
-- [BYOK (Bring Your Own Kubernetes)](https://www.qovery.com/docs/getting-started/installation/kubernetes.md): Connect your own AWS, GCP or Scaleway Kubernetes cluster to Qovery
+- [BYOK (Bring Your Own Kubernetes)](https://www.qovery.com/docs/getting-started/installation/kubernetes.md): Connect a Kubernetes cluster you already run: EKS, GKE and Scaleway Kapsule with the Qovery Operator, and any other cluster with the Qovery CLI.
 
 #### Platform Capabilities
 
 ##### Core Products
 
-- [Provision](https://www.qovery.com/docs/getting-started/guides/qovery-101/provision.md): Learn how to provision cloud infrastructure with Qovery
-- [Deploy](https://www.qovery.com/docs/getting-started/guides/qovery-101/deploy.md): Learn how to deploy applications with Qovery
+- [Provision](https://www.qovery.com/docs/getting-started/guides/qovery-101/provision.md): Provision Kubernetes clusters with networking, IAM and storage on AWS, GCP, Azure or Scaleway, or connect a Kubernetes cluster you already run.
+- [Deploy](https://www.qovery.com/docs/getting-started/guides/qovery-101/deploy.md): Deploy applications, containers and Helm charts to Kubernetes with Qovery, with auto-deploy from Git, rolling updates, health checks and rollbacks.
 - [Observe](https://www.qovery.com/docs/getting-started/guides/qovery-101/observe.md): Monitor your applications with built-in observability
 - [Optimize](https://www.qovery.com/docs/getting-started/guides/qovery-101/optimize.md): Optimize resources and reduce costs with Qovery
-- [Secure](https://www.qovery.com/docs/getting-started/guides/qovery-101/secure.md): Learn how to secure your infrastructure and applications with Qovery
+- [Secure](https://www.qovery.com/docs/getting-started/guides/qovery-101/secure.md): Control access with roles, store secrets as environment variables, sync secrets from Doppler, and track every change in your organization with audit logs.
 - [Agent Tasks](https://www.qovery.com/docs/getting-started/agent-tasks.md): Deploy AI agents directly on your own infrastructure
 
 ##### Security & Compliance
 
-- [Security Overview](https://www.qovery.com/docs/getting-started/security-and-compliance/overview.md): How Qovery keeps your data secure
+- [Security Overview](https://www.qovery.com/docs/getting-started/security-and-compliance/overview.md): How Qovery keeps your application data in your own cloud account, with encryption, backups, access control, audit logs and incident response.
 
 ###### IAM Permissions Reference
 
@@ -68,15 +68,15 @@
 - [Azure IAM Permissions Reference](https://www.qovery.com/docs/getting-started/security-and-compliance/azure-iam-permissions.md): Detailed breakdown of every Azure permission required by Qovery and why it's needed
 - [Scaleway IAM Permissions Reference](https://www.qovery.com/docs/getting-started/security-and-compliance/scaleway-iam-permissions.md): Detailed breakdown of every Scaleway IAM permission required by Qovery and why it's needed
 - [Audit Logs](https://www.qovery.com/docs/getting-started/security-and-compliance/audit-logs.md): Track all actions and changes in your Qovery organization
-- [SOC2](https://www.qovery.com/docs/getting-started/security-and-compliance/soc2.md): Systems and Organizations Controls 2
-- [GDPR](https://www.qovery.com/docs/getting-started/security-and-compliance/gdpr.md): GDPR compliance at Qovery
+- [SOC2](https://www.qovery.com/docs/getting-started/security-and-compliance/soc2.md): Cluster advanced settings to apply for SOC 2, such as CloudWatch log retention, VPC flow logs, database and Kubernetes API access, and image retention.
+- [GDPR](https://www.qovery.com/docs/getting-started/security-and-compliance/gdpr.md): How Qovery handles personal data under GDPR: data protection by design, the Data Protection Officer, consent, individual rights and data retention.
 - [DORA Compliance](https://www.qovery.com/docs/getting-started/security-and-compliance/dora.md): Digital Operational Resilience Act (DORA) readiness with Qovery
 - [HIPAA Compliance](https://www.qovery.com/docs/getting-started/security-and-compliance/hipaa.md): HIPAA eligibility and protected health information (PHI) handling with Qovery
 - [Maintenance](https://www.qovery.com/docs/getting-started/configuration/maintenance.md): Understand how Qovery handles platform maintenance and updates
 
 #### How-to Guides
 
-- [Production Environment Management](https://www.qovery.com/docs/getting-started/guides/use-cases/production-environment-management.md): Manage production environments with Qovery
+- [Production Environment Management](https://www.qovery.com/docs/getting-started/guides/use-cases/production-environment-management.md): Set up a production environment on a production cluster: application and database settings, secrets, access control, monitoring and a final checklist.
 - [Migrate to Kubernetes](https://www.qovery.com/docs/getting-started/guides/use-cases/cloud-migration-and-scaling.md): Leave the PaaS, keep the workflow. Migrate from Heroku, Render, or Railway to Kubernetes on your own cloud, fully automated by AI
 - [Let a Coding Agent Deploy Without Cloud Admin Credentials](https://www.qovery.com/docs/getting-started/guides/use-cases/coding-agent-deploy-access.md): Give Claude Code, Codex, Cursor, or another coding agent the ability to deploy, check logs, and create preview environments on your own AWS, GCP, Azure, or Kubernetes, with a scoped token instead of cloud admin access.
 
@@ -89,8 +89,8 @@
 #### Tutorials
 
 - [Deploy Your First Application](https://www.qovery.com/docs/getting-started/guides/getting-started/deploy-your-first-application.md): Deploy an application from a Git repository or a container registry to a Kubernetes cluster in your own cloud account, with production and staging environments, from a coding agent, the CLI or the Console.
-- [Create a Database](https://www.qovery.com/docs/getting-started/guides/getting-started/connect-database.md): Learn how to create and connect databases to your applications
-- [Database Seeding with Lifecycle Jobs](https://www.qovery.com/docs/getting-started/guides/others/database-seeding-lifecycle-job.md): How to seed your PostgreSQL database with SQL scripts using Qovery Lifecycle Jobs
+- [Create a Database](https://www.qovery.com/docs/getting-started/guides/getting-started/connect-database.md): Add a database to your environment and connect your application to it with the connection URI and the environment variables Qovery creates.
+- [Database Seeding with Lifecycle Jobs](https://www.qovery.com/docs/getting-started/guides/others/database-seeding-lifecycle-job.md): Seed a PostgreSQL database from SQL scripts with a Qovery Lifecycle Job, including idempotent, conditional and per-environment seeding.
 
 ##### Advanced Tutorials
 
@@ -99,23 +99,23 @@
 - [Use AWS IAM Roles with Qovery](https://www.qovery.com/docs/getting-started/guides/advanced-tutorials/aws-iam-roles.md): Grant AWS IAM permissions to applications without managing credentials
 - [Certificate Management for Multi-Tenant Applications](https://www.qovery.com/docs/getting-started/guides/advanced-tutorials/certificate-management-multi-tenant.md): Implement robust SSL/TLS certificate management for multi-tenant SaaS applications
 - [Integrate Application Logs to CloudWatch](https://www.qovery.com/docs/getting-started/guides/advanced-tutorials/cloudwatch-integration.md): Stream Kubernetes pod logs to AWS CloudWatch for full-text search
-- [Deploy a DaemonSet in a Karpenter Context](https://www.qovery.com/docs/getting-started/guides/advanced-tutorials/deploy-daemonset-karpenter.md): How to ensure your DaemonSet is well deployed when you are using Karpenter
+- [Deploy a DaemonSet in a Karpenter Context](https://www.qovery.com/docs/getting-started/guides/advanced-tutorials/deploy-daemonset-karpenter.md): Schedule a DaemonSet on all Qovery Karpenter node pools: use the Qovery PriorityClass, tolerate the stable and cronjob taints, and skip Fargate nodes.
 - [HPA vs KEDA: Choosing an Autoscaling Mode](https://www.qovery.com/docs/getting-started/guides/advanced-tutorials/hpa-vs-keda-autoscaling.md): When to scale on CPU and memory with HPA, when to scale on events with KEDA, and how to configure each on Qovery
-- [Minimize downtime while upgrading RDS instances](https://www.qovery.com/docs/getting-started/guides/advanced-tutorials/upgrading-rds-instance.md): Learn how to upgrade your RDS instance (PostgreSQL, MySql) minimizing your downtime with Qovery and Blue Green deployments
+- [Minimize downtime while upgrading RDS instances](https://www.qovery.com/docs/getting-started/guides/advanced-tutorials/upgrading-rds-instance.md): Upgrade an RDS PostgreSQL or MySQL instance with AWS Blue/Green deployments to reduce downtime, then align the database configuration in Qovery.
 
 ###### Networking & Access Control
 
 - [Setting Up Cloudflare and Custom Domain on Qovery](https://www.qovery.com/docs/getting-started/guides/advanced-tutorials/cloudflare-custom-domain.md): Configure Cloudflare as a domain provider for your Qovery applications
 - [How to Setup Rate Limit on Services](https://www.qovery.com/docs/getting-started/guides/advanced-tutorials/rate-limiting.md): Configure rate limiting for services using NGINX
-- [How to Setup IP and Header-Based Authorization](https://www.qovery.com/docs/getting-started/guides/advanced-tutorials/ip-header-authorization.md): Configure IP and HTTP header-based authorization on Qovery
+- [How to Setup IP and Header-Based Authorization](https://www.qovery.com/docs/getting-started/guides/advanced-tutorials/ip-header-authorization.md): Restrict access to a service by combining client IP ranges and an HTTP header, using NGINX snippets on a Qovery-managed cluster.
 - [Filter Outbound Traffic with an Egress Proxy](https://www.qovery.com/docs/getting-started/guides/advanced-tutorials/egress-filtering-squid-proxy.md): Restrict outbound HTTP(S) traffic for a single application using a Squid forward proxy and Kubernetes NetworkPolicy
 - [Isolate Environments with Kubernetes NetworkPolicies](https://www.qovery.com/docs/getting-started/guides/advanced-tutorials/isolate-environments-network-policies.md): Block traffic between environments that share a cluster by deploying a NetworkPolicy as a Qovery Helm service
-- [Customizing Preview URL with Qovery CLI](https://www.qovery.com/docs/getting-started/guides/advanced-tutorials/customizing-preview-url-with-qovery-cli.md): How to automatically customize your preview URL when a new environment is created using the Qovery CLI
+- [Customizing Preview URL with Qovery CLI](https://www.qovery.com/docs/getting-started/guides/advanced-tutorials/customizing-preview-url-with-qovery-cli.md): Create a custom domain for a service with the Qovery CLI when a new environment is created, get its validation domain, add a CNAME record and redeploy.
 - [Expose a Qovery Service on Your Tailnet with Tailscale](https://www.qovery.com/docs/getting-started/guides/advanced-tutorials/tailscale-expose-service.md): A step-by-step guide to running the Tailscale Kubernetes Operator as a Qovery Helm service on EKS, and choosing what your tailnet can reach.
 
 ###### Development & Deployment
 
-- [How to Write a Dockerfile](https://www.qovery.com/docs/getting-started/guides/advanced-tutorials/write-dockerfile.md): Learn how to write your first Dockerfile to deploy applications with Qovery
+- [How to Write a Dockerfile](https://www.qovery.com/docs/getting-started/guides/advanced-tutorials/write-dockerfile.md): Write a Dockerfile and a .dockerignore file for your application, with complete examples for Python Flask, Node.js Express and a multi-stage Go build.
 - [Import Environment Variables with the Qovery CLI](https://www.qovery.com/docs/getting-started/guides/advanced-tutorials/import-env-vars-cli.md): Bulk import environment variables and secrets from a .env file
 - [Deploy JupyterHub using Helm](https://www.qovery.com/docs/getting-started/guides/advanced-tutorials/deploy-jupyterhub.md): Deploy JupyterHub on Qovery using the official Helm chart
 - [Create a Blazingly Fast REST API in Rust (Part 1/2)](https://www.qovery.com/docs/getting-started/guides/advanced-tutorials/rust-api-part-1.md): Build a performant Twitter clone API with Rust and deploy on Qovery
@@ -123,12 +123,12 @@
 
 #### Troubleshooting
 
-- [Troubleshooting](https://www.qovery.com/docs/getting-started/troubleshoot/overview.md): Find solutions to common issues with Qovery
+- [Troubleshooting](https://www.qovery.com/docs/getting-started/troubleshoot/overview.md): Diagnose a failed build or deployment from its logs, then fix common service deployment, runtime and cluster issues on Qovery.
 
 #### Useful Resources
 
-- [FAQ](https://www.qovery.com/docs/getting-started/useful-resources/faq.md): Frequently Asked Questions
-- [Help and Support](https://www.qovery.com/docs/getting-started/useful-resources/help-and-support.md): Get help and support for Qovery
+- [FAQ](https://www.qovery.com/docs/getting-started/useful-resources/faq.md): Answers to common questions about projects and environments, databases, Git providers, cluster access, Kubernetes upgrades and how Qovery works.
+- [Help and Support](https://www.qovery.com/docs/getting-started/useful-resources/help-and-support.md): Get help from the AI Copilot, contact Qovery support through Pylon in the Console or your Slack channel, and read the shared responsibility model.
 
 ### Configuration
 
@@ -139,7 +139,7 @@
 #### Account & Organization
 
 - [User Account](https://www.qovery.com/docs/configuration/user-account.md): Manage your personal account settings and preferences
-- [Organization](https://www.qovery.com/docs/configuration/organization.md): Configure and manage your Qovery organization
+- [Organization](https://www.qovery.com/docs/configuration/organization.md): Create, switch and delete Qovery organizations, and manage billing and organization settings. Only the organization owner can delete it.
 
 ##### Access & Security
 
@@ -150,39 +150,39 @@
 
 #### Clusters & Cloud
 
-- [Clusters](https://www.qovery.com/docs/configuration/clusters.md): Manage your Kubernetes clusters with Qovery
+- [Clusters](https://www.qovery.com/docs/configuration/clusters.md): Create, update, stop, restart and delete Kubernetes clusters in Qovery, read their statuses and logs, and set up a custom domain with wildcard TLS.
 - [Cluster Advanced Settings](https://www.qovery.com/docs/configuration/cluster-advanced-settings.md): Fine-tune your Kubernetes cluster infrastructure with advanced configuration options
-- [Connect to Your Cluster](https://www.qovery.com/docs/configuration/connect-to-cluster.md): Learn how to connect to your Kubernetes cluster using kubectl with Qovery CLI or AWS CLI
+- [Connect to Your Cluster](https://www.qovery.com/docs/configuration/connect-to-cluster.md): Run kubectl against your Qovery cluster from the Console shell, the Qovery CLI or the AWS CLI to inspect pods, read logs and debug services.
 - [Cloud Credentials](https://www.qovery.com/docs/configuration/organization/cloud-credentials.md): Manage cloud provider credentials for your organization
 - [Cloud Provider Resource Tags](https://www.qovery.com/docs/configuration/cloud-provider-resource-tags.md): Default tags Qovery applies to the cloud resources it provisions on AWS, GCP, Azure, and Scaleway
 
 ##### AWS EKS
 
 - [AWS EKS Integration](https://www.qovery.com/docs/configuration/integrations/kubernetes/eks/overview.md): Deploy on Amazon Elastic Kubernetes Service with Qovery
-- [AWS EKS](https://www.qovery.com/docs/configuration/integrations/kubernetes/eks/managed.md): Learn how to configure your AWS Kubernetes clusters on Qovery
+- [AWS EKS](https://www.qovery.com/docs/configuration/integrations/kubernetes/eks/managed.md): Connect your AWS account and create an EKS cluster managed by Qovery with Karpenter, then tune node pools, check network options and place services.
 - [AWS Cluster Preflight Checks](https://www.qovery.com/docs/configuration/integrations/kubernetes/eks/preflight-checks.md): Understand the automatic prerequisite validation checks that run before AWS EKS cluster creation
 - [AWS EKS Anywhere](https://www.qovery.com/docs/configuration/integrations/kubernetes/eks/eks-anywhere.md): Deploy EKS on your own infrastructure with Qovery
 
 ##### Google GKE
 
 - [Google GKE Integration](https://www.qovery.com/docs/configuration/integrations/kubernetes/gke/overview.md): Deploy on Google Kubernetes Engine with Qovery
-- [Qovery-Managed GKE](https://www.qovery.com/docs/configuration/integrations/kubernetes/gke/managed.md): Learn how to configure your GCP Kubernetes clusters on Qovery
+- [Qovery-Managed GKE](https://www.qovery.com/docs/configuration/integrations/kubernetes/gke/managed.md): Connect your GCP account and create a GKE cluster managed by Qovery, optionally encrypted with your own KMS key, then edit settings and check its network.
 
 ##### Azure AKS
 
 - [Azure AKS Integration](https://www.qovery.com/docs/configuration/integrations/kubernetes/aks/overview.md): Deploy on Azure Kubernetes Service with Qovery
-- [Qovery-Managed AKS](https://www.qovery.com/docs/configuration/integrations/kubernetes/aks/managed.md): Learn how to configure your AKS Kubernetes clusters on Qovery
+- [Qovery-Managed AKS](https://www.qovery.com/docs/configuration/integrations/kubernetes/aks/managed.md): Connect your Azure account and create an AKS cluster managed by Qovery, then edit its general settings, credentials and mirroring registry.
 
 ##### Scaleway Kapsule
 
 - [Scaleway Kapsule Integration](https://www.qovery.com/docs/configuration/integrations/kubernetes/scaleway/overview.md): Deploy on Scaleway Kubernetes Kapsule with Qovery
-- [Qovery-Managed Scaleway Kapsule](https://www.qovery.com/docs/configuration/integrations/kubernetes/scaleway/managed.md): Learn how to configure your Scaleway Kubernetes clusters on Qovery
+- [Qovery-Managed Scaleway Kapsule](https://www.qovery.com/docs/configuration/integrations/kubernetes/scaleway/managed.md): Connect your Scaleway account and create a Kapsule cluster managed by Qovery, then edit its settings, network and static IP for egress traffic.
 
 ##### Other Kubernetes
 
-- [Bring Your Own Kubernetes (BYOK)](https://www.qovery.com/docs/configuration/integrations/kubernetes/byok.md): Connect an existing AWS, GCP or Scaleway Kubernetes cluster to Qovery with the Qovery Operator
-- [Supported cluster setups for your own cluster](https://www.qovery.com/docs/configuration/integrations/kubernetes/byok-supported-setups.md): Which installation to use for your Kubernetes cluster, the minimum Kubernetes version, prerequisites and incompatible components, and how to check your cluster before you install
-- [BYOK with the Qovery CLI](https://www.qovery.com/docs/configuration/integrations/kubernetes/byok-legacy.md): Install Qovery with the Qovery CLI on any Kubernetes cluster other than EKS, GKE and Scaleway Kapsule, such as AKS, k3s or an on-premise cluster
+- [Bring Your Own Kubernetes (BYOK)](https://www.qovery.com/docs/configuration/integrations/kubernetes/byok.md): Connect an EKS, GKE or Kapsule cluster with the Qovery Operator, or try it on local k3s with qovery demo up. Other clusters you run use the Qovery CLI.
+- [Supported cluster setups for your own cluster](https://www.qovery.com/docs/configuration/integrations/kubernetes/byok-supported-setups.md): Qovery runs on any Kubernetes cluster: the Qovery Operator for EKS, GKE and Kapsule, the Qovery CLI for others. Check version, prerequisites and conflicts.
+- [Install Qovery on other Kubernetes clusters with the CLI](https://www.qovery.com/docs/configuration/integrations/kubernetes/byok-legacy.md): Install Qovery with qovery cluster install on any Kubernetes cluster other than EKS, GKE and Kapsule, such as AKS, k3s, OpenShift or an on-premise cluster.
 - [Local Cluster for Development](https://www.qovery.com/docs/configuration/integrations/kubernetes/docker.md): Use a local k3s cluster with Docker for development and testing
 
 #### Source Control
@@ -192,7 +192,7 @@
 ##### Container Registries
 
 - [Container Registry](https://www.qovery.com/docs/configuration/organization/container-registry.md): Manage container registries for your organization
-- [Docker Hub](https://www.qovery.com/docs/configuration/integrations/container-registries/docker-hub.md): Connect Docker Hub with Qovery
+- [Docker Hub](https://www.qovery.com/docs/configuration/integrations/container-registries/docker-hub.md): Connect Docker Hub to Qovery with an access token to deploy public or private images, and plan for Docker Hub pull rate limits.
 
 ###### Cloud Registries
 
@@ -213,19 +213,19 @@
 
 #### Projects & Environments
 
-- [Project](https://www.qovery.com/docs/configuration/project.md): Configure and manage projects to group environments
-- [Environment](https://www.qovery.com/docs/configuration/environment.md): Configure and manage environments for your applications
+- [Project](https://www.qovery.com/docs/configuration/project.md): Create, edit and delete projects, which group the environments that run the same application and control who can access them.
+- [Environment](https://www.qovery.com/docs/configuration/environment.md): Create production, staging, development and preview environments, add services to them, and set deployment rules and preview environments per pull request.
 
 #### Services
 
 ##### Workloads
 
-- [Application](https://www.qovery.com/docs/configuration/application.md): Configure and deploy applications on Qovery
-- [Helm Charts](https://www.qovery.com/docs/configuration/helm.md): Deploy and manage Helm charts on Qovery
+- [Application](https://www.qovery.com/docs/configuration/application.md): Create an application from a Git repository or a container registry, then set its resources, autoscaling, ports, domains, health checks and build settings.
+- [Helm Charts](https://www.qovery.com/docs/configuration/helm.md): Deploy a Helm chart from a Git repository or a Helm repository as a Qovery service, override its values, add domains, and auto-deploy charts from Git.
 
 ##### Jobs
 
-- [Cron Jobs](https://www.qovery.com/docs/configuration/cronjob.md): Schedule and manage periodic workloads on Qovery
+- [Cron Jobs](https://www.qovery.com/docs/configuration/cronjob.md): Run a container on a schedule with a cron job built from Git or a container registry, set its schedule, restart policy and max duration, or force a run.
 - [Lifecycle Jobs](https://www.qovery.com/docs/configuration/lifecycle-job.md): Execute jobs during environment lifecycle events
 
 ##### Agent Tasks
@@ -242,7 +242,7 @@
 
 ##### Data & Infrastructure
 
-- [Databases](https://www.qovery.com/docs/configuration/database.md): Learn how to configure Databases on Qovery
+- [Databases](https://www.qovery.com/docs/configuration/database.md): Deploy a managed database from a Blueprint for production, or a container database on your cluster for development, and connect it to your services.
 - [Object Storage](https://www.qovery.com/docs/configuration/object-storage.md): Use cloud object storage for persistent data in your applications
 - [Terraform](https://www.qovery.com/docs/configuration/terraform.md): Deploy and manage Terraform modules natively on Qovery
 - [Blueprints](https://www.qovery.com/docs/configuration/blueprints.md): Provision managed cloud infrastructure, Kubernetes add-ons, and third-party SaaS resources from Qovery's catalog, no Terraform or Helm required
@@ -251,35 +251,35 @@
 
 #### Deployment & CI/CD
 
-- [Deployment](https://www.qovery.com/docs/configuration/deployment/overview.md): Understand how Qovery deploys your applications
-- [Deployment Pipeline](https://www.qovery.com/docs/configuration/deployment/pipeline.md): Orchestrate service deployments with deployment stages
-- [Auto-Deploy](https://www.qovery.com/docs/configuration/deployment/auto-deploy.md): Automatically deploy on Git commits
+- [Deployment](https://www.qovery.com/docs/configuration/deployment/overview.md): Follow how Qovery deploys your services to your cluster, the three ways to trigger a deployment, and where to monitor its progress.
+- [Deployment Pipeline](https://www.qovery.com/docs/configuration/deployment/pipeline.md): Order service deployments with deployment stages, skip services, and speed up builds and deployments with parallelism and Dockerfile caching.
+- [Auto-Deploy](https://www.qovery.com/docs/configuration/deployment/auto-deploy.md): Turn on auto-deploy so each Git commit redeploys your service, filter which commits trigger it, and call the Qovery API to deploy new container image tags.
 
 ##### Deployment Configuration
 
-- [Deployment Actions](https://www.qovery.com/docs/configuration/deployment/actions.md): Manage the lifecycle of your services and environments
-- [Deployment Strategies](https://www.qovery.com/docs/configuration/deployment/strategies.md): Choose between rolling updates and recreate strategies
-- [Image Mirroring](https://www.qovery.com/docs/configuration/deployment/image-mirroring.md): Optimize deployments with local image caching
+- [Deployment Actions](https://www.qovery.com/docs/configuration/deployment/actions.md): Deploy, redeploy, stop or restart services and environments, cancel a running deployment, deploy a specific version, and see how actions are queued.
+- [Deployment Strategies](https://www.qovery.com/docs/configuration/deployment/strategies.md): Choose between RollingUpdate, which replaces pods without downtime and rolls back on failure, and Recreate, which stops old pods before starting new ones.
+- [Image Mirroring](https://www.qovery.com/docs/configuration/deployment/image-mirroring.md): Qovery copies container images to a registry in your cloud to speed up deployments and scale-ups. See its two modes and how to turn it off on Kapsule.
 - [Deployment Rules](https://www.qovery.com/docs/configuration/deployment-rule.md): Automate environment lifecycle management to optimize costs and save time
 
 ##### Monitoring Deployments
 
-- [Running and Deployment Statuses](https://www.qovery.com/docs/configuration/deployment/statuses.md): Monitor your services and deployments
-- [Logs](https://www.qovery.com/docs/configuration/deployment/logs.md): Access deployment and service logs
-- [Deployment History](https://www.qovery.com/docs/configuration/deployment/history.md): View past deployment executions
+- [Running and Deployment Statuses](https://www.qovery.com/docs/configuration/deployment/statuses.md): Read the running and deployment statuses of environments, services and pods in the Qovery Console, and see how a deployment moves between them.
+- [Logs](https://www.qovery.com/docs/configuration/deployment/logs.md): Read pre-check, deployment and live service logs in the Qovery Console, filter them by deployment ID, and check how long logs are kept.
+- [Deployment History](https://www.qovery.com/docs/configuration/deployment/history.md): See past deployments of an environment or service with their trigger, author, duration and status, and cancel a deployment or open its logs.
 
 ##### CI/CD Integrations
 
-- [GitHub Actions](https://www.qovery.com/docs/configuration/integrations/ci-cd/github-actions.md): Deploy with GitHub Actions and Qovery CLI
-- [GitLab CI](https://www.qovery.com/docs/configuration/integrations/ci-cd/gitlab-ci.md): Deploy with GitLab CI and Qovery CLI
-- [CircleCI](https://www.qovery.com/docs/configuration/integrations/ci-cd/circleci.md): Deploy with CircleCI and Qovery CLI
-- [Jenkins](https://www.qovery.com/docs/configuration/integrations/ci-cd/jenkins.md): Deploy with Jenkins and Qovery CLI
+- [GitHub Actions](https://www.qovery.com/docs/configuration/integrations/ci-cd/github-actions.md): Deploy applications and containers from GitHub Actions with the Qovery CLI, including monorepos, and create, deploy and delete preview environments.
+- [GitLab CI](https://www.qovery.com/docs/configuration/integrations/ci-cd/gitlab-ci.md): Deploy applications and containers from a GitLab CI pipeline with the Qovery CLI, including monorepos, and create, deploy and delete preview environments.
+- [CircleCI](https://www.qovery.com/docs/configuration/integrations/ci-cd/circleci.md): Deploy one or more applications from a CircleCI pipeline with the Qovery CLI, including monorepos, and create, deploy and delete preview environments.
+- [Jenkins](https://www.qovery.com/docs/configuration/integrations/ci-cd/jenkins.md): Deploy one or more applications from a Jenkins pipeline with the Qovery CLI, including monorepos, and create, deploy and delete preview environments.
 - [ArgoCD Integration](https://www.qovery.com/docs/configuration/integrations/argocd.md): Monitor and access ArgoCD-managed applications directly from Qovery
 
 #### Environment Variables & Secrets
 
 - [Environment Variables](https://www.qovery.com/docs/configuration/environment-variables.md): Manage environment variables and secrets for your services
-- [Doppler](https://www.qovery.com/docs/configuration/integrations/secret-managers/doppler.md): Integrate Doppler secrets with Qovery
+- [Doppler](https://www.qovery.com/docs/configuration/integrations/secret-managers/doppler.md): Sync secrets from Doppler to your Qovery applications, containers and jobs using a Qovery API token and the Qovery integration in Doppler.
 
 ##### Secret Manager Integration
 
@@ -304,9 +304,9 @@
 
 ##### Networking
 
-- [VPC Peering](https://www.qovery.com/docs/configuration/integrations/aws/vpc-peering.md): How to peer a Qovery VPC with an existing VPC on AWS
+- [VPC Peering](https://www.qovery.com/docs/configuration/integrations/aws/vpc-peering.md): Peer the VPC of your Qovery cluster with an existing AWS VPC so your applications can reach resources there, such as an RDS database.
 - [Use the ECR Pull Through Cache on Your Existing VPC](https://www.qovery.com/docs/configuration/integrations/aws/ecr-pull-through-cache-existing-vpc.md): Create the VPC endpoints that keep the image pulls of the ECR pull through cache inside a VPC you manage
-- [API Gateway with NGINX](https://www.qovery.com/docs/configuration/integrations/api-gateway-nginx.md): How to connect an API gateway in front of multiple services using NGINX
+- [API Gateway with NGINX](https://www.qovery.com/docs/configuration/integrations/api-gateway-nginx.md): Put an NGINX API gateway in front of several Qovery applications, route requests to each one by path, and expose the gateway on a custom domain.
 
 ##### Advanced Configuration
 
@@ -316,8 +316,8 @@
 ##### Infrastructure as Code
 
 - [Infrastructure as Code](https://www.qovery.com/docs/configuration/integrations/iac/overview.md): Manage infrastructure through popular IaC frameworks
-- [Terraform](https://www.qovery.com/docs/configuration/integrations/iac/terraform.md): Deploy Terraform manifests with Qovery
-- [CloudFormation](https://www.qovery.com/docs/configuration/integrations/iac/cloudformation.md): Deploy CloudFormation templates with Qovery
+- [Terraform](https://www.qovery.com/docs/configuration/integrations/iac/terraform.md): Run Terraform manifests from your Git repository with a Qovery Lifecycle Job, and pass the Terraform outputs to other services as environment variables.
+- [CloudFormation](https://www.qovery.com/docs/configuration/integrations/iac/cloudformation.md): Deploy a CloudFormation template with a Qovery Lifecycle Job to create AWS resources such as databases, Lambda functions or message brokers.
 
 ### AI
 
@@ -363,51 +363,54 @@
 - [Linking Services Together](https://www.qovery.com/docs/terraform-provider/linking-services.md): Use environment variable aliases to connect services using Qovery's built-in variables in Terraform
 - [Multi-Environment Setup](https://www.qovery.com/docs/terraform-provider/multi-environment.md): Deploy the same stack to development, staging and production environments
 - [Airbyte Deployment](https://www.qovery.com/docs/terraform-provider/airbyte-deployment.md): Complete example deploying Airbyte with Helm, database, and proxy
-- [Advanced Patterns](https://www.qovery.com/docs/terraform-provider/advanced-patterns.md): Advanced Terraform techniques with Qovery
+- [Advanced Patterns](https://www.qovery.com/docs/terraform-provider/advanced-patterns.md): Manage Qovery at scale with Terraform modules, one workspace per environment, remote state, variable files and conditional resources.
 
 ### CLI
 
 #### Getting Started
 
-- [Qovery CLI](https://www.qovery.com/docs/cli/overview.md): Manage your Qovery infrastructure from the command line
+- [Qovery CLI](https://www.qovery.com/docs/cli/overview.md): Install the Qovery CLI, log in, set a default context and run your first commands from the terminal
 
 #### Commands
 
-- [Commands Overview](https://www.qovery.com/docs/cli/commands/overview.md): Complete reference for all Qovery CLI commands
-- [qovery api](https://www.qovery.com/docs/cli/commands/api.md): Make authenticated HTTP requests to the Qovery API
-- [qovery application](https://www.qovery.com/docs/cli/commands/application.md): Application management commands
-- [qovery audit-log](https://www.qovery.com/docs/cli/commands/audit-log.md): Interact with audit logs
-- [qovery auth](https://www.qovery.com/docs/cli/commands/auth.md): Authentication commands for Qovery CLI
-- [qovery cluster](https://www.qovery.com/docs/cli/commands/cluster.md): Cluster management commands
-- [qovery completion](https://www.qovery.com/docs/cli/commands/completion.md): Generate autocompletion scripts for your shell
-- [qovery console](https://www.qovery.com/docs/cli/commands/console.md): Open service in Qovery Console
-- [qovery container](https://www.qovery.com/docs/cli/commands/container.md): Container management commands
-- [qovery context](https://www.qovery.com/docs/cli/commands/context.md): Context management commands for Qovery CLI
-- [qovery cronjob](https://www.qovery.com/docs/cli/commands/cronjob.md): Cronjob management commands
-- [qovery database](https://www.qovery.com/docs/cli/commands/database.md): Database management commands
-- [qovery demo](https://www.qovery.com/docs/cli/commands/demo.md): Try Qovery on your local machine
-- [qovery enterprise-connection](https://www.qovery.com/docs/cli/commands/enterprise-connection.md): Manage enterprise connections
-- [qovery env](https://www.qovery.com/docs/cli/commands/env.md): Environment variable and secret management commands
-- [qovery environment](https://www.qovery.com/docs/cli/commands/environment.md): Environment management commands
-- [qovery helm](https://www.qovery.com/docs/cli/commands/helm.md): Helm chart management commands
-- [qovery help](https://www.qovery.com/docs/cli/commands/help.md): Help about any command
-- [qovery lifecycle](https://www.qovery.com/docs/cli/commands/lifecycle.md): Lifecycle job management commands
-- [qovery list-commands](https://www.qovery.com/docs/cli/commands/list-commands.md): List all available commands with descriptions, aliases, args, and flags
-- [qovery list-pods](https://www.qovery.com/docs/cli/commands/list-pods.md): List the pods of a service with their pods
-- [qovery log](https://www.qovery.com/docs/cli/commands/log.md): Log viewing commands
-- [qovery port-forward](https://www.qovery.com/docs/cli/commands/port-forward.md): Port forwarding command
-- [qovery project](https://www.qovery.com/docs/cli/commands/project.md): Project management commands
-- [qovery service](https://www.qovery.com/docs/cli/commands/service.md): Service management commands
-- [qovery shell](https://www.qovery.com/docs/cli/commands/shell.md): Shell access and command execution
-- [qovery status](https://www.qovery.com/docs/cli/commands/status.md): Check service and environment status
-- [qovery terraform](https://www.qovery.com/docs/cli/commands/terraform.md): Manage terraform services
-- [qovery token](https://www.qovery.com/docs/cli/commands/token.md): Generate API token
-- [qovery upgrade](https://www.qovery.com/docs/cli/commands/upgrade.md): Upgrade Qovery CLI to latest version
-- [qovery version](https://www.qovery.com/docs/cli/commands/version.md): Print installed version of the Qovery CLI
+- [Commands Overview](https://www.qovery.com/docs/cli/commands/overview.md): Find the right Qovery CLI command for a task, with the global flags and the full list of commands
+- [qovery api](https://www.qovery.com/docs/cli/commands/api.md): Call any Qovery API endpoint from the terminal with your CLI login, and print the OpenAPI specification
+- [qovery application](https://www.qovery.com/docs/cli/commands/application.md): Deploy, redeploy, restart, stop, clone or delete applications, and manage their domains, variables and secrets
+- [qovery audit-log](https://www.qovery.com/docs/cli/commands/audit-log.md): Export your organization's audit logs for a date range to a CSV file
+- [qovery auth](https://www.qovery.com/docs/cli/commands/auth.md): Log in to Qovery from a browser or a headless session, check your login status and print the access token
+- [qovery blueprint](https://www.qovery.com/docs/cli/commands/blueprint.md): Move a blueprint service, such as an RDS database, to a newer major version from the terminal
+- [qovery cluster](https://www.qovery.com/docs/cli/commands/cluster.md): List, install, deploy, upgrade, stop and lock clusters, download a kubeconfig and open a debug pod
+- [qovery completion](https://www.qovery.com/docs/cli/commands/completion.md): Turn on tab completion for Qovery CLI commands and flags in bash, zsh, fish or PowerShell
+- [qovery console](https://www.qovery.com/docs/cli/commands/console.md): Open the service selected in your CLI context in the Qovery Console in your browser
+- [qovery container](https://www.qovery.com/docs/cli/commands/container.md): Create, deploy, restart, stop or clone container services, and manage their domains, registries, variables and secrets
+- [qovery context](https://www.qovery.com/docs/cli/commands/context.md): Show or set the organization, project, environment and service the CLI targets by default
+- [qovery cronjob](https://www.qovery.com/docs/cli/commands/cronjob.md): Deploy, redeploy, stop, clone or delete cron jobs, and manage their variables and secrets
+- [qovery database](https://www.qovery.com/docs/cli/commands/database.md): List, deploy, redeploy, restart, stop or delete databases, and show their connection credentials
+- [qovery demo](https://www.qovery.com/docs/cli/commands/demo.md): Create a local Kubernetes cluster with Qovery installed to try the platform, then destroy it
+- [qovery enterprise-connection](https://www.qovery.com/docs/cli/commands/enterprise-connection.md): View and update SSO enterprise connections and map identity provider groups to Qovery roles
+- [qovery env](https://www.qovery.com/docs/cli/commands/env.md): Import variables and secrets from a .env file into a service, or turn a Heroku config into a .env file
+- [qovery environment](https://www.qovery.com/docs/cli/commands/environment.md): Deploy, redeploy, stop, cancel, clone or delete environments, print deployment logs, and manage variables, stages and statuses
+- [qovery helm](https://www.qovery.com/docs/cli/commands/helm.md): Deploy, redeploy, stop, clone or delete Helm chart services, and manage their domains, variables and secrets
+- [qovery help](https://www.qovery.com/docs/cli/commands/help.md): Show the usage, subcommands and flags of any Qovery CLI command in the terminal
+- [qovery lifecycle](https://www.qovery.com/docs/cli/commands/lifecycle.md): Deploy, redeploy, stop, clone or delete lifecycle jobs, and manage their variables and secrets
+- [qovery list-commands](https://www.qovery.com/docs/cli/commands/list-commands.md): Print every Qovery CLI command and subcommand with its flags, types and defaults in one list
+- [qovery list-pods](https://www.qovery.com/docs/cli/commands/list-pods.md): List the running pods of a service and the ports each pod exposes
+- [qovery log](https://www.qovery.com/docs/cli/commands/log.md): Stream the logs of an application, container, database or job to your terminal
+- [qovery organization](https://www.qovery.com/docs/cli/commands/organization.md): List the organizations your login or API token can access, with their ID, name and plan
+- [qovery port-forward](https://www.qovery.com/docs/cli/commands/port-forward.md): Forward a local port to a service running on Qovery, such as a database or a private API
+- [qovery project](https://www.qovery.com/docs/cli/commands/project.md): List projects and create, update or delete project-level variables and secrets from the terminal
+- [qovery service](https://www.qovery.com/docs/cli/commands/service.md): List all services of an environment, and deploy one or several services by name whatever their type
+- [qovery shell](https://www.qovery.com/docs/cli/commands/shell.md): Open a shell or run a command in a service container, or in an ephemeral clone pod or debug container
+- [qovery status](https://www.qovery.com/docs/cli/commands/status.md): Print the deployment status of the application or container selected in your CLI context
+- [qovery terraform](https://www.qovery.com/docs/cli/commands/terraform.md): List, plan, apply and delete Terraform services, and manage their state and external secrets
+- [qovery token](https://www.qovery.com/docs/cli/commands/token.md): Generate an API token for CI/CD pipelines, scripts and other non-interactive use of the CLI
+- [qovery upgrade](https://www.qovery.com/docs/cli/commands/upgrade.md): Replace the installed Qovery CLI binary with the latest release in one command
+- [qovery version](https://www.qovery.com/docs/cli/commands/version.md): Print the version of the Qovery CLI installed on your machine
+- [qovery webhook](https://www.qovery.com/docs/cli/commands/webhook.md): List an organization's webhooks and inspect the events each one sent, with response codes
 
 #### Troubleshooting
 
-- [Troubleshooting](https://www.qovery.com/docs/cli/troubleshoot/overview.md): Find solutions to common issues with Qovery CLI
+- [Troubleshooting](https://www.qovery.com/docs/cli/troubleshoot/overview.md): Fix common Qovery CLI errors, such as a broken authentication context or an outdated CLI version
 
 ## API reference
 

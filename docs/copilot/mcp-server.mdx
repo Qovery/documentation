@@ -45,9 +45,13 @@ The Qovery MCP Server is accessible at `https://mcp.qovery.com/mcp`. You can fin
 
   <Tab title="API Token">
 
-    If your MCP client doesn't support OAuth, generate a Qovery API token and send it in the `Authorization` header. A token also lets you limit what the AI can do: create a read-only [API Policy Token](/configuration/organization/api-policy-token) and no destructive action can be taken.
+    If your MCP client doesn't support OAuth, generate a Qovery API token and send it in the `Authorization` header. Never put a token in the MCP URL: URLs end up in client configuration files, shell history, and proxy logs.
 
-    **Step 1: Generate a token**
+    <Tip>
+    Give an agent the least-privileged token that does the job, such as an API token with a read-only role. Avoid giving an agent a long-lived admin token. For agents that act through the CLI or the API, an [API Policy Token](/configuration/organization/api-policy-token) (Preview) scopes access request by request.
+    </Tip>
+
+    **Step 1 - Generate a token:**
 
     <Steps>
       <Step title="Open Qovery Console">
@@ -71,7 +75,7 @@ The Qovery MCP Server is accessible at `https://mcp.qovery.com/mcp`. You can fin
       </Step>
     </Steps>
 
-    **Step 2: Configure your MCP client**
+    **Step 2 - Configure your MCP client:**
 
     Point the client at `https://mcp.qovery.com/mcp` and add this HTTP header:
 
@@ -79,19 +83,21 @@ The Qovery MCP Server is accessible at `https://mcp.qovery.com/mcp`. You can fin
     Authorization: Token your_qovery_token
     ```
 
-    **Example with Claude Code:**
+    <Tabs>
+      <Tab title="Claude Code">
 
-    ```bash
-    # Read-only (default)
-    claude mcp add --transport http qovery https://mcp.qovery.com/mcp --header 'Authorization: Token qov_xxxx'
+        ```bash
+        # Read-only (default)
+        claude mcp add --transport http qovery https://mcp.qovery.com/mcp --header "Authorization: Token $QOVERY_TOKEN"
 
-    # Read/write
-    claude mcp add --transport http qovery "https://mcp.qovery.com/mcp?read_write=true" --header 'Authorization: Token qov_xxxx'
-    ```
+        # Read/write
+        claude mcp add --transport http qovery "https://mcp.qovery.com/mcp?read_write=true" --header "Authorization: Token $QOVERY_TOKEN"
+        ```
 
-    <Warning>
-    Only if your client cannot send custom headers, pass the token in the URL instead: `https://mcp.qovery.com/mcp?token=your_qovery_token` (add `&read_write=true` for write access). URLs end up in logs and shell history, so prefer the header.
-    </Warning>
+        Claude Code stores the header, token included, in its configuration (`~/.claude.json`, or `.mcp.json` with `--scope project`). Do not commit that file with a token in it.
+
+      </Tab>
+    </Tabs>
 
   </Tab>
 </Tabs>

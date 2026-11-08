@@ -3,6 +3,7 @@ title: "Agent Tasks"
 description: "Deploy AI agents directly on your own infrastructure"
 tag: "NEW"
 ---
+import TryDemo from "/snippets/try-demo-console.mdx";
 
 import AgentTasksEvolutionNote from '/snippets/agent-tasks-evolution-note.mdx';
 
@@ -11,6 +12,12 @@ import AgentTasksEvolutionNote from '/snippets/agent-tasks-evolution-note.mdx';
 ## Overview
 
 Agent Tasks let you delegate a job, investigating an incident, optimizing a build, or anything else you describe, to an AI agent running on your own Qovery-managed infrastructure. For how an agent is configured and what settings are available, see the [Configuration Reference](/configuration/agent-tasks/overview).
+
+<Frame caption="Every run of an agent task, with its trigger, status, payload, duration and cost, under the Runs tab.">
+  <img src="/images/console/agent-task-runs.png" alt="The Runs tab of an agent task, listing runs started by a webhook, by hand and by a schedule, with status, payload, duration and cost" />
+</Frame>
+
+<TryDemo tour="automations" label="A 2-minute guided tour of an agent task that analyzes incidents." />
 
 ## Why Run Agent Tasks in Qovery?
 

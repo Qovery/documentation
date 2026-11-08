@@ -2,10 +2,16 @@
 title: "Deploy"
 description: "Deploy applications, containers and Helm charts to Kubernetes with Qovery, with auto-deploy from Git, rolling updates, health checks and rollbacks."
 ---
+import TryDemo from "/snippets/try-demo-console.mdx";
+import PracticeTraining from "/snippets/practice-in-training.mdx";
+
 
 ## Overview
 
 Qovery Deploy automates application deployment to Kubernetes with zero-downtime releases, automatic rollbacks, and integrated CI/CD. Deploy from Git repositories, container registries, or Helm charts with a few clicks or API calls.
+
+
+<TryDemo tour="deploy" label="A 3-minute guided tour: create an app, deploy it and follow its logs." />
 
 ## What Qovery Deploy Does
 
@@ -83,6 +89,10 @@ graph LR
 
 ## Quick Start
 
+<Frame caption="Deploy every service of an environment at once from its overview page, or one service at a time from its row.">
+  <img src="/images/console/environment-deploy-button.png" alt="The Deploy button at the top right of an environment overview page" />
+</Frame>
+
 <CardGroup cols={2}>
   <Card title="Deploy Your First App" icon="rocket" href="/getting-started/guides/getting-started/deploy-your-first-application">
     Step-by-step tutorial to deploy your first application on Qovery
@@ -152,6 +162,8 @@ graph LR
 </CardGroup>
 
 ---
+
+<PracticeTraining track="basics" label="Seven lessons: what Qovery is, how it is organized, and your first deployment." />
 
 ## Next Steps
 

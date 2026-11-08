@@ -137,7 +137,7 @@ Each blueprint ships with a README describing the resource it provisions and its
     For an **External** blueprint, the vendor credentials are part of this form — for example the Snowflake account identifier, user, and PEM-encoded private key, or the Cloudflare API token. Create the vendor-side service account first; the blueprint does not create it for you.
   </Step>
   <Step title="Review advanced settings (optional)">
-    Some blueprints let you override engine-level settings the template author marked as overridable — for example the Terraform/OpenTofu version, credentials mode, state backend, or compute resources. See [Variables & Engine Reference](#variables--engine-reference). If a setting is not overridable, the blueprint's default applies.
+    Some blueprints let you override engine-level settings the template author marked as overridable — for example the Terraform/OpenTofu version, credentials mode, state backend, or compute resources. See [Variables & Engine Reference](#variables-%26-engine-reference). If a setting is not overridable, the blueprint's default applies.
   </Step>
   <Step title="Create, and optionally deploy">
     Create the blueprint service. You can create it and deploy immediately, or create it first and deploy later from the service like any other Qovery service.
@@ -226,7 +226,7 @@ If the external secret has not been synced for this service yet, for example whe
 
 ## Editing a Blueprint Service
 
-After a blueprint service is created, you can change the inputs it was provisioned with from its **Blueprint configuration** settings page. Open the blueprint service, go to its **Settings**, and select **Blueprint configuration** to review and edit the variables and any overridable engine settings the blueprint exposes (see [Variables & Engine Reference](#variables--engine-reference)). Secret values are handled without exposing the stored secret, and the **Overrides** section is collapsed by default.
+After a blueprint service is created, you can change the inputs it was provisioned with from its **Blueprint configuration** settings page. Open the blueprint service, go to its **Settings**, and select **Blueprint configuration** to review and edit the variables and any overridable engine settings the blueprint exposes (see [Variables & Engine Reference](#variables-%26-engine-reference)). Secret values are handled without exposing the stored secret, and the **Overrides** section is collapsed by default.
 
 Save your changes, then redeploy the service to apply them.
 

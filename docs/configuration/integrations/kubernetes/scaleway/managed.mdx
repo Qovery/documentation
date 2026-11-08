@@ -23,7 +23,7 @@ import ScalewayCredentials from "/snippets/scaleway-credentials.mdx";
     * **Description**: enter a description to identify better your cluster.
     * **Production cluster**: select this option if your cluster will be used for production.
     * **Region**: select the geographical area in which you want your cluster to be hosted.
-    * **Credentials**: select one of the existing cloud provider credentials or [create new credentials](/getting-started/installation/scaleway#connect-your-scaleway-account).
+    * **Credentials**: select one of the existing cloud provider credentials or [create new credentials](/getting-started/installation/scaleway#step-1-create-scaleway-credentials).
 
     To confirm, click `Next`.
   </Step>
@@ -40,7 +40,7 @@ import ScalewayCredentials from "/snippets/scaleway-credentials.mdx";
 
     Please be aware that changing the instance type or disk size might cause a downtime for your service.
 
-    For more information on the instance types provided by each cloud provider and their associated pricing, see [What are the different instance types available when creating a cluster?](/configuration/clusters#what-are-the-different-instance-types-available-when-creating-a-cluster)
+    For an overview of the instance types each cloud provider offers, see **What instance types are available?** in the [Clusters FAQ](/configuration/clusters#faq).
 
     Also, before downsizing, you need to ensure that your applications will still have enough resources to run correctly.
     </Warning>
@@ -136,7 +136,7 @@ In the **Network** tab, you can configure advanced networking options for your S
 By default, Scaleway clusters use random public IPs for outbound traffic. Enable the **Static IP for egress traffic** option if your applications need to connect to external services that require IP allowlisting.
 
 <Warning>
-  This feature requires the **VPCGatewayFullAccess** IAM permission set in addition to the standard Qovery permissions. Make sure it is added to your Qovery IAM policy before enabling this option. See the [Scaleway IAM Permissions Reference](/getting-started/security-and-compliance/scaleway-iam-permissions#vpcgatewayfullaccess--static-ip-for-egress-traffic) for details.
+  This feature requires the **VPCGatewayFullAccess** IAM permission set in addition to the standard Qovery permissions. Make sure it is added to your Qovery IAM policy before enabling this option. See the [Scaleway IAM Permissions Reference](/getting-started/security-and-compliance/scaleway-iam-permissions#vpcgatewayfullaccess-%E2%80%94-static-ip-for-egress-traffic) for details.
 </Warning>
 
 **When to use:**

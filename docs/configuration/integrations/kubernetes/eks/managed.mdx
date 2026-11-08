@@ -56,7 +56,7 @@ You can read our [blog post](https://www.qovery.com/blog/save-up-to-60-on-aws-co
 
     Please be aware that changing the instance type or disk size might cause a downtime for your service.
 
-    For more information on the instance types provided by each cloud provider and their associated pricing, see [What are the different instance types available when creating a cluster?](/configuration/clusters#what-are-the-different-instance-types-available-when-creating-a-cluster)
+    For an overview of the instance types each cloud provider offers, see **What instance types are available?** in the [Clusters FAQ](/configuration/clusters#faq).
 
     Also, before downsizing, you need to ensure that your applications will still have enough resources to run correctly.
     </Warning>
@@ -156,7 +156,7 @@ You can read our [blog post](https://www.qovery.com/blog/save-up-to-60-on-aws-co
   </Step>
 
   <Step title="Enable Instance Metadata Service Version 2">
-    Your cluster should use the [Instance Metadata Service Version 2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html): make sure to set the `aws.eks.ec2.metadata_imds` cluster advanced settings to `required` if not already set (more details [here](/configuration/cluster-advanced-settings#awseksec2metadata_imds)).
+    Your cluster should use the [Instance Metadata Service Version 2](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-service.html): make sure to set the `aws.eks.ec2.metadata_imds` cluster advanced settings to `required` if not already set (more details [here](/configuration/cluster-advanced-settings#aws-eks-ec2-metadata-imds)).
     Redeploy your cluster before enabling Karpenter to apply the advanced setting change.
 
     <Warning>
@@ -239,7 +239,7 @@ Additional optional node pools can be enabled:
 <Warning>
 Instance type selection from your Qovery Console has direct consequences on your cloud provider's bill. While Qovery allows you to switch to a different instance type whenever you want, it is your sole responsibility to keep an eye on your infrastructure costs, especially when you want to upsize.
 
-For more information on the instance types provided by each cloud provider and their associated pricing, see [What are the different instance types available when creating a cluster?](/configuration/clusters#what-are-the-different-instance-types-available-when-creating-a-cluster)
+For an overview of the instance types each cloud provider offers, see **What instance types are available?** in the [Clusters FAQ](/configuration/clusters#faq).
 
 </Warning>
 

@@ -168,7 +168,7 @@ The fastest path. The AI agent handles the entire migration end-to-end.
 
     1. Check your application status in the [Qovery Console](https://console.qovery.com)
     2. Test your endpoints using the auto-generated Qovery URL
-    3. [Configure your custom domain](/configuration/application#domains) when ready
+    3. [Configure your custom domain](/configuration/application#custom-domains) when ready
     4. Update your DNS records to point to Qovery
   </Step>
 </Steps>
@@ -245,7 +245,7 @@ For teams that prefer full control over every step.
 | PostgreSQL, MySQL | [Managed Database](/configuration/database) (AWS RDS, GCP Cloud SQL, etc.) | Yes |
 | Redis, MongoDB | [Container Database](/configuration/database) or Managed | Yes |
 | Environment variables | [Environment Variables & Secrets](/configuration/environment-variables) | Yes |
-| Custom domains | [Custom Domains](/configuration/application#domains) | Manual DNS update required |
+| Custom domains | [Custom Domains](/configuration/application#custom-domains) | Manual DNS update required |
 | Add-ons (Memcached, Elasticsearch, etc.) | [Helm Charts](/configuration/helm) or container services | Partially |
 | Scheduled tasks | [Lifecycle Jobs](/configuration/lifecycle-job) | Yes |
 
@@ -269,7 +269,7 @@ For teams that prefer full control over every step.
   </Accordion>
 
   <Accordion title="How to create a custom domain?">
-    Check the [custom domain configuration documentation](/configuration/application#domains) for setup instructions.
+    Check the [custom domain configuration documentation](/configuration/application#custom-domains) for setup instructions.
   </Accordion>
 
   <Accordion title="How to monitor my apps?">
@@ -281,11 +281,11 @@ For teams that prefer full control over every step.
   </Accordion>
 
   <Accordion title="How to rollback?">
-    App rollback is available through the [deployment actions](/configuration/deployment/overview#rollback). You can roll back to any previous deployment in one click.
+    App rollback is available through the [deployment actions](/configuration/deployment/actions#deploy-other-version). You can roll back to any previous deployment in one click.
   </Accordion>
 
   <Accordion title="How does auto-scaling work?">
-    Auto-scaling is configured in the [application settings](/configuration/application#auto-scaling). Qovery supports horizontal pod autoscaling based on CPU/memory usage.
+    Auto-scaling is configured in the [application settings](/configuration/application#instances-%26-autoscaling). Qovery supports horizontal pod autoscaling based on CPU/memory usage.
   </Accordion>
 
   <Accordion title="Can I use Terraform?">
@@ -297,7 +297,7 @@ For teams that prefer full control over every step.
   </Accordion>
 
   <Accordion title="How to connect to external services (MongoDB Atlas, AWS services)?">
-    Use [VPC peering](/configuration/clusters#vpc-peering) for secure, private connectivity to external services in your cloud account.
+    Use [VPC peering](/configuration/integrations/aws/vpc-peering) for secure, private connectivity to external services in your cloud account.
   </Accordion>
 </AccordionGroup>
 

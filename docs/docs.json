@@ -695,7 +695,7 @@
     },
     {
       "source": "/getting-started/features",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/how-it-works"
     },
     {
       "source": "/getting-started/how-qovery-works",
@@ -827,7 +827,7 @@
     },
     {
       "source": "/getting-started/qovery-vs-other/argocd",
-      "destination": "/getting-started/introduction"
+      "destination": "/configuration/integrations/argocd"
     },
     {
       "source": "/getting-started/qovery-vs-other/harness",
@@ -835,7 +835,7 @@
     },
     {
       "source": "/getting-started/qovery-vs-other/heroku",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/guides/use-cases/cloud-migration-and-scaling"
     },
     {
       "source": "/getting-started/qovery-vs-other/netlify",
@@ -867,7 +867,7 @@
     },
     {
       "source": "/guides/advanced/adding-multi-region-backup-rds",
-      "destination": "/getting-started/introduction"
+      "destination": "/configuration/disaster-recovery"
     },
     {
       "source": "/guides/advanced/build-on-top",
@@ -887,7 +887,7 @@
     },
     {
       "source": "/guides/advanced/deploy-aws-services",
-      "destination": "/getting-started/introduction"
+      "destination": "/configuration/blueprints"
     },
     {
       "source": "/guides/advanced/deploy-backend-and-frontend-apps",
@@ -1027,7 +1027,7 @@
     },
     {
       "source": "/guides/getting-started",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
     },
     {
       "source": "/guides/getting-started/create-a-database",
@@ -1051,7 +1051,7 @@
     },
     {
       "source": "/guides/installation-guide",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/quickstart/cloud"
     },
     {
       "source": "/guides/installation-guide/guide-amazon-web-services",
@@ -1079,11 +1079,11 @@
     },
     {
       "source": "/guides/tags/cloud-provider-aws",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/installation/aws"
     },
     {
       "source": "/guides/tags/cloud-provider-azure",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/installation/azure"
     },
     {
       "source": "/guides/tags/cloud-provider-digital-ocean",
@@ -1091,131 +1091,131 @@
     },
     {
       "source": "/guides/tags/cloud-provider-gcp",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/installation/gcp"
     },
     {
       "source": "/guides/tags/cloud-provider-scaleway",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/installation/scaleway"
     },
     {
       "source": "/guides/tags/database-mongodb",
-      "destination": "/getting-started/introduction"
+      "destination": "/configuration/database"
     },
     {
       "source": "/guides/tags/database-mysql",
-      "destination": "/getting-started/introduction"
+      "destination": "/configuration/database"
     },
     {
       "source": "/guides/tags/database-postgresql",
-      "destination": "/getting-started/introduction"
+      "destination": "/configuration/database"
     },
     {
       "source": "/guides/tags/framework-deno",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
     },
     {
       "source": "/guides/tags/framework-discordpy",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
     },
     {
       "source": "/guides/tags/framework-django",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
     },
     {
       "source": "/guides/tags/framework-gin",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
     },
     {
       "source": "/guides/tags/framework-hasura",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
     },
     {
       "source": "/guides/tags/framework-jhipster",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
     },
     {
       "source": "/guides/tags/framework-laravel",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
     },
     {
       "source": "/guides/tags/framework-meilisearch",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
     },
     {
       "source": "/guides/tags/framework-nodejs",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
     },
     {
       "source": "/guides/tags/framework-nuxtjs",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
     },
     {
       "source": "/guides/tags/framework-rails",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
     },
     {
       "source": "/guides/tags/framework-sinatra",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
     },
     {
       "source": "/guides/tags/framework-springboot",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
     },
     {
       "source": "/guides/tags/framework-strapi",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
     },
     {
       "source": "/guides/tags/installation-guide-aws",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/installation/aws"
     },
     {
       "source": "/guides/tags/installation-guide-kubernetes",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/installation/kubernetes"
     },
     {
       "source": "/guides/tags/installation-guide-scaleway",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/installation/scaleway"
     },
     {
       "source": "/guides/tags/language-go",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
     },
     {
       "source": "/guides/tags/language-java",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
     },
     {
       "source": "/guides/tags/language-javascript",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
     },
     {
       "source": "/guides/tags/language-kotlin",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
     },
     {
       "source": "/guides/tags/language-php",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
     },
     {
       "source": "/guides/tags/language-python",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
     },
     {
       "source": "/guides/tags/language-ruby",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
     },
     {
       "source": "/guides/tags/language-rust",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/guides/advanced-tutorials/rust-api-part-1"
     },
     {
       "source": "/guides/tags/language-scala",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
     },
     {
       "source": "/guides/tags/technology-docker",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/guides/advanced-tutorials/write-dockerfile"
     },
     {
       "source": "/guides/tags/technology-github",
@@ -1223,11 +1223,11 @@
     },
     {
       "source": "/guides/tags/technology-helm",
-      "destination": "/getting-started/introduction"
+      "destination": "/configuration/helm"
     },
     {
       "source": "/guides/tags/technology-kotlin",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
     },
     {
       "source": "/guides/tags/technology-kubernetes",
@@ -1243,7 +1243,7 @@
     },
     {
       "source": "/guides/tags/technology-terraform",
-      "destination": "/getting-started/introduction"
+      "destination": "/terraform-provider/overview"
     },
     {
       "source": "/guides/tags/type-engineering",
@@ -1295,7 +1295,7 @@
     },
     {
       "source": "/guides/tutorial/create-and-deploy-python-discord-bot",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
     },
     {
       "source": "/guides/tutorial/create-your-staging-environment-from-your-production-environment-on-aws",
@@ -1303,7 +1303,7 @@
     },
     {
       "source": "/guides/tutorial/customize_nginx_error_pages",
-      "destination": "/getting-started/introduction"
+      "destination": "/configuration/service-advanced-settings"
     },
     {
       "source": "/guides/tutorial/customizing-preview-url-with-qovery-cli",
@@ -1383,7 +1383,7 @@
     },
     {
       "source": "/guides/tutorial/graphql-api-with-hasura",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
     },
     {
       "source": "/guides/tutorial/how-to-activate-sso-to-connect-to-your-eks-cluster",
@@ -1403,7 +1403,7 @@
     },
     {
       "source": "/guides/tutorial/how-to-connect-to-a-managed-mongodb-instance-on-aws",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/guides/getting-started/connect-database"
     },
     {
       "source": "/guides/tutorial/how-to-connect-to-your-eks-cluster-with-kubectl",
@@ -1411,7 +1411,7 @@
     },
     {
       "source": "/guides/tutorial/how-to-create-an-rds-instance-through-aws-console",
-      "destination": "/getting-started/introduction"
+      "destination": "/configuration/database"
     },
     {
       "source": "/guides/tutorial/how-to-deploy-a-docker-container",
@@ -1419,7 +1419,7 @@
     },
     {
       "source": "/guides/tutorial/how-to-deploy-a-rust-rest-api-application-on-aws-with-ease",
-      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+      "destination": "/getting-started/guides/advanced-tutorials/rust-api-part-1"
     },
     {
       "source": "/guides/tutorial/how-to-deploy-helm-charts",
@@ -1479,7 +1479,7 @@
     },
     {
       "source": "/guides/tutorial/managing-env-variables-in-create-react-app",
-      "destination": "/getting-started/introduction"
+      "destination": "/configuration/environment-variables"
     },
     {
       "source": "/guides/tutorial/migrate-webapp-from-heroku-to-qovery",
@@ -1543,7 +1543,7 @@
     },
     {
       "source": "/guides/tutorial/url-shortener-api-with-kotlin",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
     },
     {
       "source": "/guides/tutorial/use-an-api-gateway-in-front-of-multiple-services",
@@ -1555,7 +1555,7 @@
     },
     {
       "source": "/guides/tutorial/working-with-git-submodules",
-      "destination": "/getting-started/introduction"
+      "destination": "/getting-started/troubleshoot/overview"
     },
     {
       "source": "/main-concepts",
@@ -1651,7 +1651,7 @@
     },
     {
       "source": "/using-qovery",
-      "destination": "/getting-started/introduction"
+      "destination": "/configuration/overview"
     },
     {
       "source": "/using-qovery/addon",

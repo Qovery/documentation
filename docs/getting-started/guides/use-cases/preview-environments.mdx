@@ -1,11 +1,92 @@
 ---
-title: "Getting Started with Preview Environments"
-description: "Step-by-step guide to get started with the preview environment on AWS"
+title: "Set Up Preview Environments for Every Pull Request"
+description: "Create a full-stack preview environment (services, databases, configuration) for every pull request on your own Kubernetes cluster, such as EKS, and delete it when the pull request is merged or closed."
 ---
 
 It is critical to have testing and staging environments accurately reflect production, but achieving this can be a major operational hassle. Most engineering teams use a single staging environment which makes it hard for developers to test their changes in isolation; the alternative is for DevOps teams to spin up new testing or staging environments manually and tear them down after testing is done.
 
 Qovery's Preview Environments solve this problem by automatically creating a clone of your production environment (including applications, databases and configuration) on every pull request, so you can test your changes with confidence without affecting your production.
+
+Use Qovery when each pull request needs the whole stack (backend, database, configuration), not only the frontend, running on a cluster in your own cloud account. If you only need a preview of a static frontend, the preview deployments of your frontend host are enough.
+
+## Quick Path: Preview Environments on Your Existing Cluster
+
+**Prerequisites:**
+
+- Your cluster is connected to Qovery. For an existing EKS, GKE or Scaleway Kapsule cluster, see [BYOK (Bring Your Own Kubernetes)](/getting-started/installation/kubernetes). For other clusters, see the [installation with the Qovery CLI](/configuration/integrations/kubernetes/byok-legacy). To let Qovery create the cluster, see [Create Your Cluster](/getting-started/quickstart/cloud).
+- The repository is deployed in a Qovery environment on that cluster and the deployment succeeds. This environment becomes the blueprint that each preview environment clones.
+- The [Qovery CLI](/cli/overview) is installed and authenticated: `qovery auth`, or `qovery auth --headless` on a machine without a browser. For an AI agent, use a scoped token such as an [API Policy Token](/configuration/organization/api-policy-token) (the `qovery-policy-token` skill creates one) instead of an admin token.
+
+<Tabs>
+  <Tab title="With a coding agent">
+    Install the Qovery Agent Skills once:
+
+    ```bash
+    curl -fsSL https://skill.qovery.com/install.sh | bash
+    ```
+
+    Then ask your agent:
+
+    ```
+    Set up preview environments for my project
+    ```
+
+    Or run `/qovery-preview`, or `/qovery-preview PR-123` for one pull request. The `qovery-preview` skill finds or creates the blueprint environment, sets the base branches and `auto_preview`, validates the blueprint, clones it for the pull request, configures auto-shutdown (stop, delete or recycle), shows the plan and asks for confirmation before it deploys. See [Agent Skills](/getting-started/quickstart/agent-skills).
+  </Tab>
+
+  <Tab title="With the CLI">
+    <Steps>
+      <Step title="Create the blueprint environment">
+        Clone the working environment. Add `--cluster` to run the previews on another cluster than production.
+
+        ```bash
+        qovery environment clone \
+          --organization "My Org" --project "My Project" \
+          --environment "production" \
+          --new-environment-name "blueprint"
+        ```
+
+        Then set each application of `blueprint` to the base branch that pull requests target:
+
+        ```bash
+        qovery application update \
+          --organization "My Org" --project "My Project" --environment "blueprint" \
+          --application "my-api" --branch "main"
+        ```
+      </Step>
+
+      <Step title="Turn on preview environments for the blueprint">
+        The `auto_preview` setting is part of the environment deployment rule. Read the rule, then write it back with `auto_preview` set to `true`:
+
+        ```bash
+        ENV_ID=$(qovery environment list --organization "My Org" --project "My Project" --json \
+          | jq -r '.[] | select(.name == "blueprint") | .id')
+
+        RULE=$(qovery api "environment/$ENV_ID/deploymentRule")
+        RULE_ID=$(echo "$RULE" | jq -r '.id')
+
+        echo "$RULE" \
+          | jq '{auto_preview: true, on_demand_preview, auto_stop, timezone, start_time, stop_time, weekdays}' \
+          | qovery api "environment/$ENV_ID/deploymentRule/$RULE_ID" --method PUT --input -
+        ```
+
+        Each service takes the environment value unless its own `auto_preview` is set. In the Console, **Settings** > **Preview environments** > **Activate preview environment for all apps** turns it on for every service. To create a preview only when someone comments `/qovery preview` on the pull request, see [Preview Environment Workflows](/configuration/environment#preview-environment-workflows).
+      </Step>
+
+      <Step title="Open a pull request against the base branch">
+        Qovery clones `blueprint` into a new environment for the pull request, deploys it, and deletes it when the pull request is merged or closed.
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+**Success:** after the pull request is opened, `qovery environment list --organization "My Org" --project "My Project"` shows a new environment of type `PREVIEW` on the blueprint's cluster, and its status becomes `DEPLOYED`. If it fails, see [Diagnose a Failed Build or Deployment](/getting-started/troubleshoot/overview#diagnose-a-failed-build-or-deployment).
+
+<Tip>
+To stop a staging or blueprint environment at night, use the same deployment rule: set `auto_stop` to `true` with `start_time`, `stop_time`, `timezone` and `weekdays`, for example `{"auto_stop": true, "timezone": "UTC", "start_time": "1970-01-01T08:00:00.000Z", "stop_time": "1970-01-01T19:00:00.000Z", "weekdays": ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY"]}`. See [Deployment Rules](/configuration/deployment-rule).
+</Tip>
+
+The rest of this guide shows the same setup in the Console.
 
 <Frame>
   <img src="/images/preview-environment/preview_env_flow_schema.jpg" alt="Flow on how Qovery Preview Environment works" />
@@ -31,7 +112,7 @@ For any questions, existing customers can reach out via Pylon directly in the Qo
 ## Prerequisites
 
 <Check>You have [sign in on Qovery](https://start.qovery.com)</Check>
-<Check>You have [installed Qovery on your AWS account](/getting-started/quickstart/cloud)</Check>
+<Check>You have [installed Qovery on your AWS account](/getting-started/quickstart/cloud) or [connected your existing cluster](/getting-started/installation/kubernetes)</Check>
 <Check>You have at least already **deployed successfully** a first application</Check>
 
 ## Steps

@@ -1,9 +1,55 @@
 ---
 title: "Deploy Your First Application"
-description: "Quick guide to deploying your first application on Qovery"
+description: "Deploy an application from a Git repository or a container registry to a Kubernetes cluster in your own cloud account, with production and staging environments, from a coding agent, the CLI or the Console."
 ---
 
 Deploy a containerized application on Qovery in minutes. Choose your deployment source based on your needs: build from Git, deploy pre-built containers, or use Helm charts.
+
+Qovery fits when you want several environments (production, staging, previews), databases and HTTPS on a Kubernetes cluster in your own AWS, GCP, Azure or Scaleway account, without writing Kubernetes manifests. For a single service with no environments to manage, your cloud provider's native container service is enough.
+
+## With a Coding Agent or the CLI
+
+**Prerequisites:** a Qovery cluster in your cloud account ([Create Your Cluster](/getting-started/quickstart/cloud) or [connect an existing cluster](/getting-started/installation/kubernetes)), and the [Qovery CLI](/cli/overview) authenticated with `qovery auth` (or `qovery auth --headless` without a browser).
+
+<Tabs>
+  <Tab title="With a coding agent">
+    Install the Qovery Agent Skills once, in the repository you want to deploy:
+
+    ```bash
+    curl -fsSL https://skill.qovery.com/install.sh | bash
+    ```
+
+    Then ask your agent:
+
+    ```
+    Deploy this to Kubernetes with Qovery
+    ```
+
+    The `qovery-deploy` skill analyzes the codebase, creates a Dockerfile when there is none, provisions the databases, and deploys through the CLI and API or through Terraform. With no Qovery account or cluster yet, ask `I'm new to Qovery, help me get started` first: `qovery-signup` and `qovery-onboard` create the account and set up the cluster. See [Agent Skills](/getting-started/quickstart/agent-skills).
+  </Tab>
+
+  <Tab title="Add staging with the CLI">
+    Once the `production` environment is deployed (by the agent or with the Console steps below), clone it into a staging environment and deploy it:
+
+    ```bash
+    qovery environment clone \
+      --organization "My Org" --project "My Project" \
+      --environment "production" \
+      --new-environment-name "staging" \
+      --environment-type STAGING
+
+    qovery environment deploy \
+      --organization "My Org" --project "My Project" \
+      --environment "staging" --watch
+    ```
+
+    Add `--cluster "<cluster name>"` to the clone command to run staging on another cluster. To point staging at another branch, run `qovery application update --environment "staging" --application "<name>" --branch "<branch>"` before deploying.
+  </Tab>
+</Tabs>
+
+**Success:** `qovery environment list --organization "My Org" --project "My Project"` shows `production` and `staging` with the status `DEPLOYED`. If a deployment fails, see [Diagnose a Failed Build or Deployment](/getting-started/troubleshoot/overview#diagnose-a-failed-build-or-deployment).
+
+The rest of this guide shows the same deployment in the Console.
 
 ## Prerequisites
 
@@ -319,7 +365,7 @@ Watch your application come to life:
     - Insufficient build resources
 
     **Solutions**:
-    - Check build logs for specific errors
+    - Read the build error lines: `qovery environment deployment logs --environment "<env>" --service "<app>" --errors-only` (see [Diagnose a Failed Build or Deployment](/getting-started/troubleshoot/overview#diagnose-a-failed-build-or-deployment))
     - Verify Dockerfile builds locally: `docker build .`
     - Ensure all dependencies are in package files
     - Contact Qovery support to increase build resources if needed

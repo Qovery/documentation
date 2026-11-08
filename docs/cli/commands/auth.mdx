@@ -115,7 +115,7 @@ Generated from `qovery auth --help` (CLI v1.180.0). Every command also accepts `
 
 Log in to Qovery
 
-```bash
+```text Usage
 qovery auth [flags]
 qovery auth [command]
 ```
@@ -125,40 +125,72 @@ qovery auth [command]
 | `qovery auth status` | Show authentication status without exposing the access token |
 | `qovery auth token` | Output the current valid access token |
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--headless` |  | bool |  | Headless auth |
-| `--skipVersionCheck` |  | bool |  | Skip CLI version check during authentication |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--headless` |  | bool |  |  | Headless auth |
+| `--skipVersionCheck` |  | bool |  |  | Skip CLI version check during authentication |
 
 ### `qovery auth status`
 
 Show authentication status without exposing the access token
 
-```bash
+```text Description from qovery auth status --help
+Show whether the CLI is currently authenticated, as whom, which organization
+is selected, and when the session expires.
+
+This command never prints the access token or any other secret value, regardless
+of flags. Use it as the safe way to check authentication from scripts, CI, and
+automation, instead of parsing the output of 'qovery auth token':
+
+  qovery auth status >/dev/null 2>&1 && echo authenticated || echo "not authenticated"
+
+Unlike most other commands, this always makes a live call to the Qovery API to
+confirm the token is currently accepted — a token that is present and well-formed
+but has been revoked or expired server-side is reported as not authenticated,
+whether it came from a browser login or from QOVERY_CLI_ACCESS_TOKEN / Q_CLI_ACCESS_TOKEN.
+
+Exit code is 0 when authenticated, 1 otherwise.
+```
+
+```text Usage
 qovery auth status [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--json` |  | bool |  | JSON output |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--json` |  | bool |  |  | JSON output |
 
 ### `qovery auth token`
 
 Output the current valid access token
 
-```bash
+```text Description from qovery auth token --help
+Output the current valid access token (refreshing it if expired).
+
+This command provides a valid access token that can be used to make direct API calls 
+to the Qovery API. The token is automatically refreshed if it has expired.
+
+For security reasons, the token is not printed by default. You must explicitly
+use --print or --json to output the token value.
+
+If you only need to check whether the CLI is authenticated (e.g. from a script
+or an automated agent), use 'qovery auth status' instead — it never prints the
+token, even with --json.
+```
+
+```text Usage
 qovery auth token [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--authorization-header` |  | bool |  | Output the full Authorization header value (e.g. 'Bearer eyJ...') |
-| `--json` |  | bool |  | Output as JSON with token, type, expiration, and API URL |
-| `--print` |  | bool |  | Print the raw access token value to stdout |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--authorization-header` |  | bool |  |  | Output the full Authorization header value (e.g. 'Bearer eyJ...') |
+| `--json` |  | bool |  |  | Output as JSON with token, type, expiration, and API URL |
+| `--print` |  | bool |  |  | Print the raw access token value to stdout |
 
-Examples from the CLI help:
+Examples printed by `qovery auth token --help`, verbatim.
 
-```bash
+```text qovery auth token --help
 # Print the raw token value
 qovery auth token --print
 

@@ -25,11 +25,13 @@ written in the markers when the binary is a development build.
 """
 
 import argparse
+import getpass
 import json
 import os
 import re
 import shlex
 import subprocess
+import textwrap
 import sys
 
 BEGIN_RE = re.compile(r"\{/\* BEGIN GENERATED: qovery [^*]*\*/\}")
@@ -51,7 +53,26 @@ def run_help(qovery, path):
         env={**os.environ, "NO_COLOR": "1"},
         timeout=60,
     )
+    if out.returncode:
+        raise RuntimeError(f"{qovery} {' '.join(path)} --help failed: {out.stderr.strip()}")
     return out.stdout + out.stderr
+
+
+def required_flags(qovery, path):
+    """Return the long names of the required flags of a leaf command.
+
+    Cobra's help does not mark required flags. Its hidden `__complete`
+    command does: with an empty word to complete, it suggests only the
+    required flags that are not set yet. Nothing is executed.
+    """
+    out = subprocess.run(
+        [qovery, "__complete", *path, ""],
+        capture_output=True,
+        text=True,
+        env={**os.environ, "NO_COLOR": "1"},
+        timeout=60,
+    )
+    return sorted({l.split("\t")[0][2:] for l in out.stdout.splitlines() if l.startswith("--")})
 
 
 def split_sections(text):
@@ -153,6 +174,10 @@ def walk(qovery, path, short=""):
     if path and not any(u == full or u.startswith(full + " ") for u in info["usage"]):
         return None
     node = {"path": path, "name": full, "short": short, **info, "children": []}
+    if not info["commands"]:
+        req = set(required_flags(qovery, path))
+        for f in node["flags"]:
+            f["required"] = f["long"] in req
     for c in info["commands"]:
         child = walk(qovery, [*path, c["name"]], c["short"])
         if child:
@@ -173,21 +198,29 @@ def code(text):
     return "`" + text.replace("|", "\\|") + "`"
 
 
+def anonymize(value):
+    """Defaults that embed the user running the generator, such as
+    `local-demo-<user>`, are shown with a `<username>` placeholder."""
+    user = getpass.getuser()
+    return value.replace(user, "<username>") if user and len(user) > 2 else value
+
+
 def flags_table(flags):
     rows = [f for f in flags if f["long"] != "help"]
     if not rows:
-        return ["No flags other than `--help`."]
+        return ["No command-specific flags."]
     out = [
-        "| Flag | Short | Type | Default | Description |",
-        "|------|-------|------|---------|-------------|",
+        "| Flag | Short | Type | Default | Required | Description |",
+        "|------|-------|------|---------|----------|-------------|",
     ]
     for f in rows:
         out.append(
-            "| {} | {} | {} | {} | {} |".format(
+            "| {} | {} | {} | {} | {} | {} |".format(
                 code("--" + f["long"]),
                 code("-" + f["short"]) if f["short"] else "",
                 f["type"],
-                code(f["default"]) if f["default"] else "",
+                code(anonymize(f["default"])) if f["default"] else "",
+                "Yes" if f.get("required") else "",
                 esc(f["desc"]),
             )
         )
@@ -200,7 +233,15 @@ def render_node(node, lines, heading="###"):
     if node["short"]:
         lines.append(esc(node["short"]))
         lines.append("")
-    lines.append("```bash")
+    long_text = textwrap.dedent(node["description"]).strip()
+    if long_text and long_text.rstrip(".") != node["short"].rstrip("."):
+        lines.append(f"```text Description from {node['name']} --help")
+        lines.extend(long_text.splitlines())
+        lines.append("```")
+        lines.append("")
+    # Usage synopses keep Cobra's <arg> and [flags] notation, so they are
+    # shown as plain text, not as runnable shell.
+    lines.append("```text Usage")
     lines.extend(node["usage"])
     lines.append("```")
     lines.append("")
@@ -217,10 +258,15 @@ def render_node(node, lines, heading="###"):
     lines.extend(flags_table(node["flags"]))
     lines.append("")
     if node["examples"].strip():
-        lines.append("Examples from the CLI help:")
+        # Copied verbatim from the CLI. Placeholders such as <name> are the
+        # CLI's own notation: replace them before running the command.
+        intro = f"Examples printed by `{node['name']} --help`, verbatim."
+        if re.search(r"<[^>]+>", node["examples"]):
+            intro += " Replace the `<...>` placeholders with your own values before running them."
+        lines.append(intro)
         lines.append("")
-        lines.append("```bash")
-        lines.extend(l.strip() for l in node["examples"].strip("\n").splitlines())
+        lines.append(f"```text {node['name']} --help")
+        lines.extend(textwrap.dedent(node["examples"].strip("\n")).splitlines())
         lines.append("```")
         lines.append("")
     for c in node["children"]:
@@ -322,11 +368,21 @@ def iter_commands(content):
         flags=re.S,
     )
     in_fence = False
+    pending, start = "", 0
     for no, line in enumerate(content.splitlines(), 1):
         if line.lstrip().startswith("```"):
             in_fence = not in_fence
+            pending = ""
             continue
         if in_fence:
+            # Join lines continued with a trailing backslash into one command.
+            if line.rstrip().endswith("\\"):
+                if not pending:
+                    start = no
+                pending += line.rstrip()[:-1] + " "
+                continue
+            if pending:
+                line, no, pending = pending + line, start, ""
             text = line.strip()
             if text.startswith("$ "):
                 text = text[2:]
@@ -341,6 +397,10 @@ def iter_commands(content):
 def check_command(idx, cmd):
     """Return a list of problems with one `qovery ...` invocation."""
     cmd = re.sub(r"\s+#.*$", "", cmd).rstrip("\\ ").strip()
+    unquoted = re.sub(r'"[^"]*"|\'[^\']*\'', "", cmd)
+    if re.search(r"(?<!<)<[A-Za-z_][^>]*>", unquoted):
+        # bash reads an unquoted <name> as a redirection.
+        return ["unquoted <placeholder>: use a quoted \"$VARIABLE\" or a sample value"]
     try:
         tokens = shlex.split(cmd)
     except ValueError:
@@ -378,6 +438,9 @@ def check_command(idx, cmd):
             continue
         if re.match(r"^-[A-Za-z]{2,}$", name) and all("-" + ch in known for ch in name[1:]):
             continue
+        if re.match(r"^-[A-Za-z].", name) and name[:2] in known:
+            # Attached value, e.g. -ofoo or -n5.
+            continue
         problems.append(f"unknown flag '{name}' for '{where}'")
     return problems
 
@@ -387,7 +450,7 @@ def check_pages(idx, folder):
     for fname in sorted(os.listdir(folder)):
         if not fname.endswith(".mdx"):
             continue
-        with open(os.path.join(folder, fname)) as fh:
+        with open(os.path.join(folder, fname), encoding="utf-8") as fh:
             content = fh.read()
         for no, cmd in iter_commands(content):
             for problem in check_command(idx, cmd):
@@ -421,7 +484,7 @@ def main():
     args = p.parse_args()
 
     if args.from_json:
-        with open(args.from_json) as fh:
+        with open(args.from_json, encoding="utf-8") as fh:
             root = json.load(fh)
         version = args.version or root.get("version", "unknown")
     else:
@@ -434,7 +497,7 @@ def main():
         children = [c for c in children if c["path"][0] in args.only]
 
     if args.json:
-        with open(args.json, "w") as fh:
+        with open(args.json, "w", encoding="utf-8") as fh:
             json.dump(root, fh, indent=2)
 
     blocks = {c["path"][0]: render_command(c, version) for c in children}
@@ -443,7 +506,7 @@ def main():
     if args.out:
         os.makedirs(args.out, exist_ok=True)
         for name, block in blocks.items():
-            with open(os.path.join(args.out, name + ".mdx"), "w") as fh:
+            with open(os.path.join(args.out, name + ".mdx"), "w", encoding="utf-8") as fh:
                 fh.write(block)
 
     if args.apply:
@@ -453,15 +516,30 @@ def main():
             if not os.path.exists(path):
                 missing.append(name)
                 continue
-            with open(path) as fh:
+            with open(path, encoding="utf-8") as fh:
                 content = fh.read()
             new = replace_block(content, block)
             if new != content:
-                with open(path, "w") as fh:
+                with open(path, "w", encoding="utf-8") as fh:
                     fh.write(new)
                 print("updated", path)
         if missing:
             print("no page for:", ", ".join(missing), file=sys.stderr)
+        # Pages with a generated block for a command that no longer exists.
+        stale = []
+        for fname in sorted(os.listdir(args.apply)):
+            if not fname.endswith(".mdx") or fname[:-4] in blocks:
+                continue
+            with open(os.path.join(args.apply, fname), encoding="utf-8") as fh:
+                if BEGIN_RE.search(fh.read()):
+                    stale.append(fname)
+        if stale:
+            print(
+                "stale generated block (command not in the CLI any more), update or remove the page:",
+                ", ".join(stale),
+                file=sys.stderr,
+            )
+            sys.exit(1)
 
     if args.check:
         problems = check_pages(index_tree(root), args.check)

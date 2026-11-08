@@ -20,7 +20,7 @@ The command requires at least one `--port` flag specifying the port mapping in `
 Without an argument, the command targets the service in your [context](/cli/commands/context) and asks you to confirm it, or to pick a service. You can also pass the Console URL of the service as the first argument. To find a pod name for `--pod`, run [`qovery list-pods`](/cli/commands/list-pods).
 
 ```bash
-qovery port-forward "https://console.qovery.com/organization/<org-id>/project/<project-id>/environment/<env-id>/application/<app-id>" --port 8080:80
+qovery port-forward "https://console.qovery.com/organization/$ORG_ID/project/$PROJECT_ID/environment/$ENV_ID/application/$APP_ID" --port 8080:80
 ```
 
 ## Usage
@@ -177,14 +177,14 @@ Generated from `qovery port-forward --help` (CLI v1.180.0). Every command also a
 
 Port forward a port to an application container
 
-```bash
+```text Usage
 qovery port-forward [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--pod` |  | string |  | pod name where to forward traffic |
-| `--port` | `-p` | strings |  | port that will be forwarded. Can be specified multiple time. Format "local\_port:remote\_port" i.e: 8080:80 |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--pod` |  | string |  |  | pod name where to forward traffic |
+| `--port` | `-p` | strings |  | Yes | port that will be forwarded. Can be specified multiple time. Format "local\_port:remote\_port" i.e: 8080:80 |
 {/* END GENERATED */}
 
 ## Related Commands

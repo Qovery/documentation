@@ -37,7 +37,7 @@ Generated from `qovery audit-log --help` (CLI v1.180.0). Every command also acce
 
 Interact with audit logs
 
-```bash
+```text Usage
 qovery audit-log [flags]
 qovery audit-log [command]
 ```
@@ -46,21 +46,39 @@ qovery audit-log [command]
 |------------|-------------|
 | `qovery audit-log export` | Export audit logs |
 
-No flags other than `--help`.
+No command-specific flags.
 
 ### `qovery audit-log export`
 
 Export audit logs
 
-```bash
+```text Description from qovery audit-log export --help
+> Description
+-------------
+This command provides an easy way to download audit logs.
+Date parameters must follow the ISO-8601 format, i.e:
+* 2025-10-02T01:04:45+12:00 is valid
+* 2025-10-02T01:04:45Z is valid
+* 2025-10-02 01:04:45Z is invalid (missing T separator)
+
+> Examples 
+----------
+* Search from a specific date to now:
+qovery audit-log export --from-date 2025-09-01T01:04:45+02:00
+
+* Search between a range of dates
+qovery audit-log export --from-date 2025-09-01T01:04:45Z --to-date 2025-09-02T02:00:00Z
+```
+
+```text Usage
 qovery audit-log export [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--from-date` | `-f` | string |  | Start date for the search following ISO-8601 format |
-| `--organization` | `-o` | string |  | Organization Name |
-| `--to-date` | `-t` | string |  | End date for the search following ISO-8601 format (defaulted to 'now') |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--from-date` | `-f` | string |  | Yes | Start date for the search following ISO-8601 format |
+| `--organization` | `-o` | string |  |  | Organization Name |
+| `--to-date` | `-t` | string |  |  | End date for the search following ISO-8601 format (defaulted to 'now') |
 {/* END GENERATED */}
 
 ## Related Commands

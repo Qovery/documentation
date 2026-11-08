@@ -20,14 +20,14 @@ qovery list-pods
 List the pods of a service from its Console URL:
 
 ```bash
-qovery list-pods "https://console.qovery.com/organization/<org-id>/project/<project-id>/environment/<env-id>/application/<app-id>"
+qovery list-pods "https://console.qovery.com/organization/$ORG_ID/project/$PROJECT_ID/environment/$ENV_ID/application/$APP_ID"
 ```
 
-The output is a table with the pod name and its ports:
+The output is a table with a `Pod Name` column and a `Ports` column, one row per pod. A pod that exposes several ports lists them separated by commas:
 
-```
-Pod Name                          Ports
-my-api-6d4f9c7b8-x2k9p            8080
+```text
+Pod Name               | Ports
+my-api-6d4f9c7b8-x2k9p | 8080
 ```
 
 {/* BEGIN GENERATED: qovery list-pods --help, CLI v1.180.0 */}
@@ -39,11 +39,11 @@ Generated from `qovery list-pods --help` (CLI v1.180.0). Every command also acce
 
 List the pods of a service with their pods
 
-```bash
+```text Usage
 qovery list-pods [flags]
 ```
 
-No flags other than `--help`.
+No command-specific flags.
 {/* END GENERATED */}
 
 ## Related Commands

@@ -17,6 +17,10 @@ List the newer majors and what moving to each one would do:
 qovery blueprint upgrade-major --name "my-postgres"
 ```
 
+<Warning>
+An in-place major upgrade takes the database offline while AWS upgrades it. For a production database, upgrade with an [AWS Blue/Green deployment](/getting-started/guides/advanced-tutorials/upgrading-rds-instance) first, then run the command: it only relabels the blueprint.
+</Warning>
+
 Move to major 18, skip the confirmation prompt and follow the deployment:
 
 ```bash
@@ -27,10 +31,6 @@ qovery blueprint upgrade-major \
   --watch
 ```
 
-<Warning>
-An in-place major upgrade takes the database offline while AWS upgrades it. For a production database, upgrade with an [AWS Blue/Green deployment](/getting-started/guides/advanced-tutorials/upgrading-rds-instance) first, then run the command: it only relabels the blueprint.
-</Warning>
-
 {/* BEGIN GENERATED: qovery blueprint --help, CLI v1.180.0 */}
 ## Command reference
 
@@ -40,7 +40,7 @@ Generated from `qovery blueprint --help` (CLI v1.180.0). Every command also acce
 
 Manage blueprint services
 
-```bash
+```text Usage
 qovery blueprint [flags]
 qovery blueprint [command]
 ```
@@ -49,25 +49,34 @@ qovery blueprint [command]
 |------------|-------------|
 | `qovery blueprint upgrade-major` | Point a blueprint at the latest tag of a newer major version |
 
-No flags other than `--help`.
+No command-specific flags.
 
 ### `qovery blueprint upgrade-major`
 
 Point a blueprint at the latest tag of a newer major version
 
-```bash
+```text Description from qovery blueprint upgrade-major --help
+Point a blueprint service at the latest tag of a newer major version (e.g. PostgreSQL 14 to 18).
+
+Without --major, lists the newer majors and what moving to each one does:
+  RELABEL      the service already runs that major (e.g. upgraded on AWS): only Qovery's records change
+  UPGRADE      the service runs an older major: the next deploy upgrades it in place (downtime for databases)
+  UNSUPPORTED  the move is refused, with the reason
+```
+
+```text Usage
 qovery blueprint upgrade-major [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--major` |  | string |  | Major version to move to (e.g. 18). Without it, lists the available majors |
-| `--name` | `-n` | string |  | Blueprint service name |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--watch` | `-w` | bool |  | Watch the service status until it's ready or an error occurs |
-| `--yes` | `-y` | bool |  | Skip the confirmation prompt |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--major` |  | string |  |  | Major version to move to (e.g. 18). Without it, lists the available majors |
+| `--name` | `-n` | string |  | Yes | Blueprint service name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--watch` | `-w` | bool |  |  | Watch the service status until it's ready or an error occurs |
+| `--yes` | `-y` | bool |  |  | Skip the confirmation prompt |
 {/* END GENERATED */}
 
 ## Related Commands

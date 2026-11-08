@@ -89,7 +89,7 @@ With `--json`, blueprint databases are included in the output with the same fiel
 `qovery port-forward` accepts the Console URL of a Terraform service, such as a blueprint database. Pass the URL of the service followed by the ports to forward, in the `local_port:remote_port` format:
 
 ```bash
-qovery port-forward "<service-console-url>" --port 5432:5432
+qovery port-forward "$SERVICE_CONSOLE_URL" --port 5432:5432
 ```
 
 If the service ID in the URL does not exist in the environment, the command fails with a `not found in environment` error.
@@ -101,13 +101,13 @@ If the service ID in the URL does not exist in the environment, the command fail
 `qovery blueprint upgrade-major` points a blueprint service at the latest tag of a newer major version, for example PostgreSQL 14 to 18. It is built for AWS RDS PostgreSQL databases: Qovery checks the version the database runs and handles the upgrade end to end. Other blueprint services are accepted, but Qovery does not check that their new major can be applied safely, so review that template's upgrade notes first. Run it without `--major` to list the newer majors and what moving to each one would do:
 
 ```bash
-qovery blueprint upgrade-major -n <service name>
+qovery blueprint upgrade-major -n "$SERVICE_NAME"
 ```
 
 Then pick a major:
 
 ```bash
-qovery blueprint upgrade-major -n <service name> --major 18
+qovery blueprint upgrade-major -n "$SERVICE_NAME" --major 18
 ```
 
 The command shows what will happen and asks for confirmation (`--yes` or `-y` skips it), then updates the blueprint and deploys it. Add `--watch` (`-w`) to follow the deployment.

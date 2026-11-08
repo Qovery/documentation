@@ -112,7 +112,7 @@ Generated from `qovery service --help` (CLI v1.180.0). Every command also accept
 
 Manage services
 
-```bash
+```text Usage
 qovery service [flags]
 qovery service [command]
 ```
@@ -122,30 +122,43 @@ qovery service [command]
 | `qovery service deploy` | Deploy a service (application, container, database, job, or helm) |
 | `qovery service list` | List services |
 
-No flags other than `--help`.
+No command-specific flags.
 
 ### `qovery service deploy`
 
 Deploy a service (application, container, database, job, or helm)
 
-```bash
+```text Description from qovery service deploy --help
+Deploy a service by automatically detecting its type.
+This command works with applications, containers, databases, jobs (cronjobs and lifecycle), and helm charts.
+
+The --version parameter accepts:
+  - Git commit IDs (for applications, git-based jobs, git-based helms)
+  - Container image tags (for containers, image-based jobs)
+  - Helm chart versions (for helm repository charts)
+
+For helm charts, you can also specify:
+  - --values-override-version: Git commit ID for helm values override
+```
+
+```text Usage
 qovery service deploy [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--service` | `-n` | string |  | Service Name |
-| `--services` |  | string |  | Service Names (comma separated) Example: --services "svc1,svc2,svc3" |
-| `--values-override-version` |  | string |  | Helm values override version (git commit ID) |
-| `--version` | `-v` | string |  | Version (git commit ID, image tag, or chart version) |
-| `--watch` | `-w` | bool |  | Watch service status until it's ready or an error occurs |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--service` | `-n` | string |  |  | Service Name |
+| `--services` |  | string |  |  | Service Names (comma separated) Example: --services "svc1,svc2,svc3" |
+| `--values-override-version` |  | string |  |  | Helm values override version (git commit ID) |
+| `--version` | `-v` | string |  |  | Version (git commit ID, image tag, or chart version) |
+| `--watch` | `-w` | bool |  |  | Watch service status until it's ready or an error occurs |
 
-Examples from the CLI help:
+Examples printed by `qovery service deploy --help`, verbatim.
 
-```bash
+```text qovery service deploy --help
 qovery service deploy -n my-app --version abc123
 qovery service deploy -n my-container --version v1.2.3
 qovery service deploy -n my-database
@@ -159,18 +172,18 @@ qovery service deploy --services "service1,service2,service3"
 
 List services
 
-```bash
+```text Usage
 qovery service list [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--jira` |  | bool |  | Atlassian Jira output |
-| `--json` |  | bool |  | JSON output |
-| `--markdown` |  | bool |  | Markdown output |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--jira` |  | bool |  |  | Atlassian Jira output |
+| `--json` |  | bool |  |  | JSON output |
+| `--markdown` |  | bool |  |  | Markdown output |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
 {/* END GENERATED */}
 
 ## Related Commands

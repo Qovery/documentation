@@ -1,6 +1,6 @@
 ---
 title: "qovery environment"
-description: "Deploy, redeploy, stop, clone or delete environments, follow deployment logs and manage variables and stages"
+description: "Deploy, redeploy, stop, cancel, clone or delete environments, print deployment logs, and manage variables, stages and statuses"
 ---
 
 ## Overview
@@ -47,7 +47,7 @@ Without `--execution-id`, the logs of the latest deployment are printed (the API
 ```bash
 qovery environment deployment logs \
   --environment "env-name" \
-  --execution-id "<execution-id>"
+  --execution-id "$EXECUTION_ID"
 ```
 
 Scope the output to a single service with `--service` (by name) or `--service-id` (by UUID); the two are mutually exclusive. Environment-level lines are kept for context:
@@ -180,7 +180,7 @@ Generated from `qovery environment --help` (CLI v1.180.0). Every command also ac
 
 Manage environments
 
-```bash
+```text Usage
 qovery environment [flags]
 qovery environment [command]
 ```
@@ -201,85 +201,85 @@ qovery environment [command]
 | `qovery environment stop` | Stop an environment |
 | `qovery environment update` | Update an environment |
 
-No flags other than `--help`.
+No command-specific flags.
 
 ### `qovery environment cancel`
 
 Cancel an environment deployment
 
-```bash
+```text Usage
 qovery environment cancel [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--force` | `-f` | bool |  | Force cancel |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--watch` | `-w` | bool |  | Watch environment status until it's ready or an error occurs |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--force` | `-f` | bool |  |  | Force cancel |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--watch` | `-w` | bool |  |  | Watch environment status until it's ready or an error occurs |
 
 ### `qovery environment clone`
 
 Clone an environment
 
-```bash
+```text Usage
 qovery environment clone [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--apply-deployment-rule` |  | bool |  | Enable applying deployment rules on the new environment instead of having a pristine clone. Default: false |
-| `--cluster` | `-c` | string |  | Cluster Name where to clone the environment |
-| `--environment` | `-e` | string |  | Environment Name to clone |
-| `--environment-type` | `-t` | string |  | Environment type for the new environment (DEVELOPMENT\|STAGING\|PRODUCTION) |
-| `--new-environment-name` | `-n` | string |  | New Environment Name |
-| `--organization` | `-o` | string |  | Organization Name |
-| `--project` | `-p` | string |  | Project Name |
-| `--target-project` |  | string |  | Target Project Name |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--apply-deployment-rule` |  | bool |  |  | Enable applying deployment rules on the new environment instead of having a pristine clone. Default: false |
+| `--cluster` | `-c` | string |  |  | Cluster Name where to clone the environment |
+| `--environment` | `-e` | string |  |  | Environment Name to clone |
+| `--environment-type` | `-t` | string |  |  | Environment type for the new environment (DEVELOPMENT\|STAGING\|PRODUCTION) |
+| `--new-environment-name` | `-n` | string |  | Yes | New Environment Name |
+| `--organization` | `-o` | string |  |  | Organization Name |
+| `--project` | `-p` | string |  |  | Project Name |
+| `--target-project` |  | string |  |  | Target Project Name |
 
 ### `qovery environment delete`
 
 Delete an environment
 
-```bash
+```text Usage
 qovery environment delete [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--watch` | `-w` | bool |  | Watch environment status until it's ready or an error occurs |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--watch` | `-w` | bool |  |  | Watch environment status until it's ready or an error occurs |
 
 ### `qovery environment deploy`
 
 Deploy an environment
 
-```bash
+```text Usage
 qovery environment deploy [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--applications` |  | string |  | Applications to deploy E.g. --applications app1:commit\_id,app2:latest). If you omit the commit id, the same commit will be used. 'latest' deploys the newest commit of the branch |
-| `--containers` |  | string |  | Containers to deploy E.g. --containers container1:image\_tag,container2:image\_tag). If you omit the image tag, the same image tag will be used |
-| `--cronjobs` |  | string |  | Cronjobs to deploy E.g. --cronjobs cronjob1:git\_commit\_id,cronjob2:latest). If you omit the git commit id, the same version will be used. 'latest' deploys the newest commit of the branch for a git-sourced cronjob |
-| `--environment` |  | string |  | Environment Name |
-| `--helms` |  | string |  | Helms to deploy E.g. --helms helm1:chart\_version\|git\_commit\_id,helm2:chart\_version\|git\_commit\_id). If you omit the chart version or git commit id, the same version will be used. 'latest' deploys the newest commit of the branch for a git-sourced chart |
-| `--lifecycles` |  | string |  | Lifecycle to deploy E.g. --lifecycles job1:image\_tag\|git\_commit\_id,job2:image\_tag\|git\_commit\_id). If you omit the git commit id or image tag, the same version will be used. 'latest' deploys the newest commit of the branch for a git-sourced job |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--services` |  | string |  | Services to deploy (JSON Format: https://api-doc.qovery.com/#tag/Environment-Actions/operation/deployAllServices) |
-| `--skip-paused-services` |  | bool |  | Skip paused services: paused services won't be started / deployed |
-| `--watch` | `-w` | bool |  | Watch environment status until it's ready or an error occurs |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--applications` |  | string |  |  | Applications to deploy E.g. --applications app1:commit\_id,app2:latest). If you omit the commit id, the same commit will be used. 'latest' deploys the newest commit of the branch |
+| `--containers` |  | string |  |  | Containers to deploy E.g. --containers container1:image\_tag,container2:image\_tag). If you omit the image tag, the same image tag will be used |
+| `--cronjobs` |  | string |  |  | Cronjobs to deploy E.g. --cronjobs cronjob1:git\_commit\_id,cronjob2:latest). If you omit the git commit id, the same version will be used. 'latest' deploys the newest commit of the branch for a git-sourced cronjob |
+| `--environment` |  | string |  |  | Environment Name |
+| `--helms` |  | string |  |  | Helms to deploy E.g. --helms helm1:chart\_version\|git\_commit\_id,helm2:chart\_version\|git\_commit\_id). If you omit the chart version or git commit id, the same version will be used. 'latest' deploys the newest commit of the branch for a git-sourced chart |
+| `--lifecycles` |  | string |  |  | Lifecycle to deploy E.g. --lifecycles job1:image\_tag\|git\_commit\_id,job2:image\_tag\|git\_commit\_id). If you omit the git commit id or image tag, the same version will be used. 'latest' deploys the newest commit of the branch for a git-sourced job |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--services` |  | string |  |  | Services to deploy (JSON Format: https://api-doc.qovery.com/#tag/Environment-Actions/operation/deployAllServices) |
+| `--skip-paused-services` |  | bool |  |  | Skip paused services: paused services won't be started / deployed |
+| `--watch` | `-w` | bool |  |  | Watch environment status until it's ready or an error occurs |
 
 ### `qovery environment deployment`
 
 Manage environment deployments
 
-```bash
+```text Usage
 qovery environment deployment [flags]
 qovery environment deployment [command]
 ```
@@ -290,64 +290,82 @@ qovery environment deployment [command]
 | `qovery environment deployment list` | List environment deployments |
 | `qovery environment deployment logs` | Print the deployment logs of an environment |
 
-No flags other than `--help`.
+No command-specific flags.
 
 ### `qovery environment deployment explain`
 
 Explain environment deployment -- give details about what happened during the deployment
 
-```bash
+```text Usage
 qovery environment deployment explain [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--id` |  | string |  | Deployment Id |
-| `--level` |  | string | `"all"` | Show only: &lt;all\|stage\|service\|step\|message&gt; (default: all) |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--id` |  | string |  |  | Deployment Id |
+| `--level` |  | string | `"all"` |  | Show only: &lt;all\|stage\|service\|step\|message&gt; (default: all) |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
 
 ### `qovery environment deployment list`
 
 List environment deployments
 
-```bash
+```text Usage
 qovery environment deployment list [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--json` |  | bool |  | JSON output |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--json` |  | bool |  |  | JSON output |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
 
 ### `qovery environment deployment logs`
 
 Print the deployment logs of an environment
 
-```bash
+```text Description from qovery environment deployment logs --help
+Print the deployment logs of an environment -- the engine output shown in the "Deployment logs" tab of the console.
+
+These are the logs of a deployment itself (build, deploy, health checks), not the runtime output of a
+running service: for that, use "qovery log".
+
+Without --execution-id, the logs of the latest deployment are printed. The API returns at most the
+last 1000 lines.
+
+--service matches the service name carried by each log line, so it works for every service type
+(including Terraform services). Use --service-id to match on the service uuid instead; the two are mutually exclusive. Either way,
+the environment-level lines are kept for context.
+
+Note: the console additionally scopes lines to the deployment stage the service belongs to, which
+the CLI cannot resolve without an extra lookup, so a few stage-level lines from other stages may
+appear in a service-scoped view.
+```
+
+```text Usage
 qovery environment deployment logs [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--errors-only` |  | bool |  | Only print the log lines carrying an error |
-| `--execution-id` |  | string |  | Execution Id of a past deployment, as listed by 'qovery environment deployment list' (default: latest deployment). Also accepted as --id, matching 'deployment explain' |
-| `--json` |  | bool |  | Print the logs as JSON |
-| `--organization` |  | string |  | Organization Name |
-| `--pre-check` |  | bool |  | Only print the pre-check log lines |
-| `--project` |  | string |  | Project Name |
-| `--service` | `-s` | string |  | Service Name -- only print the log lines related to that service's deployment |
-| `--service-id` |  | string |  | Service Id -- same as --service, skipping the name lookup |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--errors-only` |  | bool |  |  | Only print the log lines carrying an error |
+| `--execution-id` |  | string |  |  | Execution Id of a past deployment, as listed by 'qovery environment deployment list' (default: latest deployment). Also accepted as --id, matching 'deployment explain' |
+| `--json` |  | bool |  |  | Print the logs as JSON |
+| `--organization` |  | string |  |  | Organization Name |
+| `--pre-check` |  | bool |  |  | Only print the pre-check log lines |
+| `--project` |  | string |  |  | Project Name |
+| `--service` | `-s` | string |  |  | Service Name -- only print the log lines related to that service's deployment |
+| `--service-id` |  | string |  |  | Service Id -- same as --service, skipping the name lookup |
 
 ### `qovery environment env`
 
 Manage environment variables and secrets
 
-```bash
+```text Usage
 qovery environment env [flags]
 qovery environment env [command]
 ```
@@ -361,13 +379,13 @@ qovery environment env [command]
 | `qovery environment env override` | Manage environment variable and secret overrides |
 | `qovery environment env update` | Update environment variable or secret |
 
-No flags other than `--help`.
+No command-specific flags.
 
 ### `qovery environment env alias`
 
 Manage environment variable and secret aliases
 
-```bash
+```text Usage
 qovery environment env alias [flags]
 qovery environment env alias [command]
 ```
@@ -376,82 +394,82 @@ qovery environment env alias [command]
 |------------|-------------|
 | `qovery environment env alias create` | Create environment variable or secret alias |
 
-No flags other than `--help`.
+No command-specific flags.
 
 ### `qovery environment env alias create`
 
 Create environment variable or secret alias
 
-```bash
+```text Usage
 qovery environment env alias create [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--alias` |  | string |  | Environment variable or secret alias |
-| `--environment` |  | string |  | Environment Name |
-| `--key` | `-k` | string |  | Environment variable or secret key |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--scope` |  | string | `"ENVIRONMENT"` | Scope of this alias &lt;PROJECT\|ENVIRONMENT&gt; |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--alias` |  | string |  | Yes | Environment variable or secret alias |
+| `--environment` |  | string |  | Yes | Environment Name |
+| `--key` | `-k` | string |  | Yes | Environment variable or secret key |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  | Yes | Project Name |
+| `--scope` |  | string | `"ENVIRONMENT"` |  | Scope of this alias &lt;PROJECT\|ENVIRONMENT&gt; |
 
 ### `qovery environment env create`
 
 Create environment variable or secret
 
-```bash
+```text Usage
 qovery environment env create [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--key` | `-k` | string |  | Environment variable or secret key |
-| `--organization` |  | string |  | Organization Name |
-| `--override-if-exists` |  | bool |  | If the key already exists at a higher scope, create an override of it instead of failing |
-| `--project` |  | string |  | Project Name |
-| `--scope` |  | string | `"ENVIRONMENT"` | Scope of this env var &lt;PROJECT\|ENVIRONMENT&gt; |
-| `--secret` |  | bool |  | This environment variable is a secret |
-| `--value` | `-v` | string |  | Environment variable or secret value |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  | Yes | Environment Name |
+| `--key` | `-k` | string |  | Yes | Environment variable or secret key |
+| `--organization` |  | string |  |  | Organization Name |
+| `--override-if-exists` |  | bool |  |  | If the key already exists at a higher scope, create an override of it instead of failing |
+| `--project` |  | string |  | Yes | Project Name |
+| `--scope` |  | string | `"ENVIRONMENT"` |  | Scope of this env var &lt;PROJECT\|ENVIRONMENT&gt; |
+| `--secret` |  | bool |  |  | This environment variable is a secret |
+| `--value` | `-v` | string |  | Yes | Environment variable or secret value |
 
 ### `qovery environment env delete`
 
 Delete environment variable or secret
 
-```bash
+```text Usage
 qovery environment env delete [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--key` | `-k` | string |  | Environment variable or secret key |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  | Yes | Environment Name |
+| `--key` | `-k` | string |  | Yes | Environment variable or secret key |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  | Yes | Project Name |
 
 ### `qovery environment env list`
 
 List environment variables
 
-```bash
+```text Usage
 qovery environment env list [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--json` |  | bool |  | JSON output |
-| `--organization` |  | string |  | Organization Name |
-| `--pretty-print` |  | bool |  | Pretty print output |
-| `--project` |  | string |  | Project Name |
-| `--show-values` |  | bool |  | Show env var values |
-| `--sort` |  | bool |  | Sort environment variables by key |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  | Yes | Environment Name |
+| `--json` |  | bool |  |  | JSON output |
+| `--organization` |  | string |  |  | Organization Name |
+| `--pretty-print` |  | bool |  |  | Pretty print output |
+| `--project` |  | string |  | Yes | Project Name |
+| `--show-values` |  | bool |  |  | Show env var values |
+| `--sort` |  | bool |  |  | Sort environment variables by key |
 
 ### `qovery environment env override`
 
 Manage environment variable and secret overrides
 
-```bash
+```text Usage
 qovery environment env override [flags]
 qovery environment env override [command]
 ```
@@ -460,46 +478,46 @@ qovery environment env override [command]
 |------------|-------------|
 | `qovery environment env override create` | Override environment variable or secret |
 
-No flags other than `--help`.
+No command-specific flags.
 
 ### `qovery environment env override create`
 
 Override environment variable or secret
 
-```bash
+```text Usage
 qovery environment env override create [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--key` | `-k` | string |  | Environment variable or secret key |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--scope` |  | string | `"ENVIRONMENT"` | Scope of this alias &lt;PROJECT\|ENVIRONMENT&gt; |
-| `--value` |  | string |  | Environment variable or secret value |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  | Yes | Environment Name |
+| `--key` | `-k` | string |  | Yes | Environment variable or secret key |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  | Yes | Project Name |
+| `--scope` |  | string | `"ENVIRONMENT"` |  | Scope of this alias &lt;PROJECT\|ENVIRONMENT&gt; |
+| `--value` |  | string |  | Yes | Environment variable or secret value |
 
 ### `qovery environment env update`
 
 Update environment variable or secret
 
-```bash
+```text Usage
 qovery environment env update [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--key` | `-k` | string |  | Environment variable or secret key |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--value` | `-v` | string |  | Environment variable or secret value |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  | Yes | Environment Name |
+| `--key` | `-k` | string |  | Yes | Environment variable or secret key |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  | Yes | Project Name |
+| `--value` | `-v` | string |  | Yes | Environment variable or secret value |
 
 ### `qovery environment external-secret`
 
 Manage environment external secrets
 
-```bash
+```text Usage
 qovery environment external-secret [flags]
 qovery environment external-secret [command]
 ```
@@ -510,93 +528,93 @@ qovery environment external-secret [command]
 | `qovery environment external-secret delete` | Delete environment external secret |
 | `qovery environment external-secret update` | Update environment external secret |
 
-No flags other than `--help`.
+No command-specific flags.
 
 ### `qovery environment external-secret create`
 
 Create environment external secret
 
-```bash
+```text Usage
 qovery environment external-secret create [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--key` | `-k` | string |  | External secret key |
-| `--mount-path` |  | string |  | Path where the secret will be mounted as a file |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--reference` | `-r` | string |  | Reference to the secret in the secrets provider |
-| `--scope` |  | string | `"ENVIRONMENT"` | Scope of this external secret &lt;PROJECT\|ENVIRONMENT&gt; |
-| `--secret-manager-access-name` |  | string |  | Secret manager access name |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  | Yes | Environment Name |
+| `--key` | `-k` | string |  | Yes | External secret key |
+| `--mount-path` |  | string |  |  | Path where the secret will be mounted as a file |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  | Yes | Project Name |
+| `--reference` | `-r` | string |  | Yes | Reference to the secret in the secrets provider |
+| `--scope` |  | string | `"ENVIRONMENT"` |  | Scope of this external secret &lt;PROJECT\|ENVIRONMENT&gt; |
+| `--secret-manager-access-name` |  | string |  | Yes | Secret manager access name |
 
 ### `qovery environment external-secret delete`
 
 Delete environment external secret
 
-```bash
+```text Usage
 qovery environment external-secret delete [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--key` | `-k` | string |  | External secret key |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  | Yes | Environment Name |
+| `--key` | `-k` | string |  | Yes | External secret key |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  | Yes | Project Name |
 
 ### `qovery environment external-secret update`
 
 Update environment external secret
 
-```bash
+```text Usage
 qovery environment external-secret update [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--key` | `-k` | string |  | External secret key |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--reference` | `-r` | string |  | New reference to the secret in the secrets provider |
-| `--secret-manager-access-name` |  | string |  | New secret manager access name |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  | Yes | Environment Name |
+| `--key` | `-k` | string |  | Yes | External secret key |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  | Yes | Project Name |
+| `--reference` | `-r` | string |  |  | New reference to the secret in the secrets provider |
+| `--secret-manager-access-name` |  | string |  |  | New secret manager access name |
 
 ### `qovery environment list`
 
 List environments
 
-```bash
+```text Usage
 qovery environment list [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--json` |  | bool |  | JSON output |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--json` |  | bool |  |  | JSON output |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
 
 ### `qovery environment redeploy`
 
 Redeploy an environment
 
-```bash
+```text Usage
 qovery environment redeploy [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--watch` | `-w` | bool |  | Watch environment status until it's ready or an error occurs |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--watch` | `-w` | bool |  |  | Watch environment status until it's ready or an error occurs |
 
 ### `qovery environment stage`
 
 Manage deployment stages
 
-```bash
+```text Usage
 qovery environment stage [flags]
 qovery environment stage [command]
 ```
@@ -611,162 +629,170 @@ qovery environment stage [command]
 | `qovery environment stage skip` | Skip service from environment-level deployments |
 | `qovery environment stage unskip` | Unskip service from environment-level deployments |
 
-No flags other than `--help`.
+No command-specific flags.
 
 ### `qovery environment stage create`
 
 Create deployment stage
 
-```bash
+```text Usage
 qovery environment stage create [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--description` | `-d` | string |  | StageLevel Description |
-| `--environment` |  | string |  | Environment Name |
-| `--name` | `-n` | string |  | StageLevel Name |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--description` | `-d` | string |  |  | StageLevel Description |
+| `--environment` |  | string |  |  | Environment Name |
+| `--name` | `-n` | string |  | Yes | StageLevel Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
 
 ### `qovery environment stage delete`
 
 Delete deployment stage
 
-```bash
+```text Usage
 qovery environment stage delete [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--name` | `-n` | string |  | StageLevel Name |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--name` | `-n` | string |  | Yes | StageLevel Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
 
 ### `qovery environment stage edit`
 
 Edit deployment stage
 
-```bash
+```text Usage
 qovery environment stage edit [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--name` | `-n` | string |  | StageLevel Name |
-| `--new-description` |  | string |  | New StageLevel Description |
-| `--new-name` |  | string |  | New StageLevel Name |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--name` | `-n` | string |  | Yes | StageLevel Name |
+| `--new-description` |  | string |  |  | New StageLevel Description |
+| `--new-name` |  | string |  | Yes | New StageLevel Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
 
 ### `qovery environment stage list`
 
 List deployment stages
 
-```bash
+```text Usage
 qovery environment stage list [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--json` |  | bool |  | JSON output |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--json` |  | bool |  |  | JSON output |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
 
 ### `qovery environment stage move`
 
 Move service into deployment stage
 
-```bash
+```text Usage
 qovery environment stage move [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--name` | `-n` | string |  | ServiceLevel Name |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--stage` | `-s` | string |  | Target StageLevel Name |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--name` | `-n` | string |  | Yes | ServiceLevel Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--stage` | `-s` | string |  | Yes | Target StageLevel Name |
 
 ### `qovery environment stage skip`
 
 Skip service from environment-level deployments
 
-```bash
+```text Description from qovery environment stage skip --help
+Mark a service as skipped so it is excluded from environment-level bulk deployments while staying in its current stage. To reverse this, use 'environment stage unskip' or move the service to a different deployment stage, which automatically clears the skipped status.
+```
+
+```text Usage
 qovery environment stage skip [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--name` | `-n` | string |  | Service Name |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--name` | `-n` | string |  | Yes | Service Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
 
 ### `qovery environment stage unskip`
 
 Unskip service from environment-level deployments
 
-```bash
+```text Description from qovery environment stage unskip --help
+Remove the skipped flag from a service so it is included again in environment-level bulk deployments.
+```
+
+```text Usage
 qovery environment stage unskip [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--name` | `-n` | string |  | Service Name |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--name` | `-n` | string |  | Yes | Service Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
 
 ### `qovery environment statuses`
 
 Get environment services statuses
 
-```bash
+```text Usage
 qovery environment statuses [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--json` |  | bool |  | JSON output |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--json` |  | bool |  |  | JSON output |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
 
 ### `qovery environment stop`
 
 Stop an environment
 
-```bash
+```text Usage
 qovery environment stop [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--watch` | `-w` | bool |  | Watch environment status until it's ready or an error occurs |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--watch` | `-w` | bool |  |  | Watch environment status until it's ready or an error occurs |
 
 ### `qovery environment update`
 
 Update an environment
 
-```bash
+```text Usage
 qovery environment update [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` | `-e` | string |  | Environment Name |
-| `--name` |  | string |  | New Environment Name |
-| `--organization` | `-o` | string |  | Organization Name |
-| `--project` | `-p` | string |  | Project Name |
-| `--type` |  | string |  | Change Environment Type (DEVELOPMENT\|STAGING\|PRODUCTION) |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` | `-e` | string |  |  | Environment Name |
+| `--name` |  | string |  |  | New Environment Name |
+| `--organization` | `-o` | string |  |  | Organization Name |
+| `--project` | `-p` | string |  |  | Project Name |
+| `--type` |  | string |  |  | Change Environment Type (DEVELOPMENT\|STAGING\|PRODUCTION) |
 {/* END GENERATED */}
 
 ## Related Commands

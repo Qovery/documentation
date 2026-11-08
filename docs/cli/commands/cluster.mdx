@@ -35,11 +35,13 @@ qovery cluster stop --cluster "cluster-name"
 
 ### Install Cluster
 
-Install Qovery on your cluster:
+Install Qovery on the cluster of your current kubeconfig context. Use it for clusters other than EKS, GKE and Kapsule, which use the Qovery Operator installation instead:
 
 ```bash
 qovery cluster install
 ```
+
+Besides the Qovery engine and agents, the generated Helm values install Envoy Gateway with the Gateway API CRDs, cert-manager, ExternalDNS, metrics-server, Loki and Alloy. If the cluster already runs cert-manager, ExternalDNS or Envoy Gateway, turn off the Qovery copy in the values file or remove the existing one. Run `qovery cluster preflight` first to spot these components. See [Installation with the Qovery CLI](/configuration/integrations/kubernetes/byok-legacy) and [Supported cluster setups](/configuration/integrations/kubernetes/byok-supported-setups).
 
 ### Check a Cluster Before Installing
 
@@ -215,7 +217,7 @@ Generated from `qovery cluster --help` (CLI v1.180.0). Every command also accept
 
 Manage clusters
 
-```bash
+```text Usage
 qovery cluster [flags]
 qovery cluster [command]
 ```
@@ -238,13 +240,13 @@ qovery cluster [command]
 | `qovery cluster unlock` | Unlock a cluster |
 | `qovery cluster upgrade` | Upgrade a cluster to next kubernetes version available for the cluster |
 
-No flags other than `--help`.
+No command-specific flags.
 
 ### `qovery cluster analysis`
 
 Run and inspect read-only cluster analyses (e.g. cost recommendations)
 
-```bash
+```text Usage
 qovery cluster analysis [flags]
 qovery cluster analysis [command]
 ```
@@ -256,213 +258,213 @@ qovery cluster analysis [command]
 | `qovery cluster analysis list` | List previous analyses for a cluster |
 | `qovery cluster analysis logs` | Print the report/logs of a past cluster analysis |
 
-No flags other than `--help`.
+No command-specific flags.
 
 ### `qovery cluster analysis cost-recommendation`
 
 Start a cluster cost recommendation analysis, optionally wait for completion, then print its report
 
-```bash
+```text Usage
 qovery cluster analysis cost-recommendation [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--cluster-id` | `-c` | string |  | Cluster ID |
-| `--cmd-arg` |  | stringArray |  | Optional allowlisted command argument. Repeat for each argument, e.g. --cmd-arg=--history\_duration --cmd-arg=336 |
-| `--no-logs` |  | bool |  | Do not print the report logs when finished |
-| `--output` |  | string | `"json"` | Report output: table, json, csv |
-| `--prometheus-url` |  | string |  | Optional Prometheus URL |
-| `--watch` |  | bool | `true` | Wait for the analysis to finish and print its report |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--cluster-id` | `-c` | string |  | Yes | Cluster ID |
+| `--cmd-arg` |  | stringArray |  |  | Optional allowlisted command argument. Repeat for each argument, e.g. --cmd-arg=--history\_duration --cmd-arg=336 |
+| `--no-logs` |  | bool |  |  | Do not print the report logs when finished |
+| `--output` |  | string | `"json"` |  | Report output: table, json, csv |
+| `--prometheus-url` |  | string |  |  | Optional Prometheus URL |
+| `--watch` |  | bool | `true` |  | Wait for the analysis to finish and print its report |
 
-Examples from the CLI help:
+Examples printed by `qovery cluster analysis cost-recommendation --help`, verbatim. Replace the `<...>` placeholders with your own values before running them.
 
-```bash
+```text qovery cluster analysis cost-recommendation --help
 qovery cluster analysis cost-recommendation \
--c <cluster_id> \
---output json \
---cmd-arg=--history_duration \
---cmd-arg=336 \
---cmd-arg=--timeframe_duration \
---cmd-arg=2.5 \
---cmd-arg=--cpu-request \
---cmd-arg=99 \
---cmd-arg=--cpu-limit \
---cmd-arg=99 \
---cmd-arg=--memory-buffer-percentage \
---cmd-arg=15 \
---cmd-arg=--use-oomkill-data \
---cmd-arg=--oom-memory-buffer-percentage \
---cmd-arg=25 \
---cmd-arg=--allow-hpa
+  -c <cluster_id> \
+  --output json \
+  --cmd-arg=--history_duration \
+  --cmd-arg=336 \
+  --cmd-arg=--timeframe_duration \
+  --cmd-arg=2.5 \
+  --cmd-arg=--cpu-request \
+  --cmd-arg=99 \
+  --cmd-arg=--cpu-limit \
+  --cmd-arg=99 \
+  --cmd-arg=--memory-buffer-percentage \
+  --cmd-arg=15 \
+  --cmd-arg=--use-oomkill-data \
+  --cmd-arg=--oom-memory-buffer-percentage \
+  --cmd-arg=25 \
+  --cmd-arg=--allow-hpa
 ```
 
 ### `qovery cluster analysis deprecated-api`
 
 Start a deprecated Kubernetes API analysis, optionally wait for completion, then print its report
 
-```bash
+```text Usage
 qovery cluster analysis deprecated-api [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--cluster-id` | `-c` | string |  | Cluster ID |
-| `--no-logs` |  | bool |  | Do not print the report logs when finished |
-| `--output` |  | string | `"json"` | Report output: table, json, csv |
-| `--target-kubernetes-version` |  | string |  | Optional target Kubernetes version |
-| `--watch` |  | bool | `true` | Wait for the analysis to finish and print its report |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--cluster-id` | `-c` | string |  | Yes | Cluster ID |
+| `--no-logs` |  | bool |  |  | Do not print the report logs when finished |
+| `--output` |  | string | `"json"` |  | Report output: table, json, csv |
+| `--target-kubernetes-version` |  | string |  |  | Optional target Kubernetes version |
+| `--watch` |  | bool | `true` |  | Wait for the analysis to finish and print its report |
 
 ### `qovery cluster analysis list`
 
 List previous analyses for a cluster
 
-```bash
+```text Usage
 qovery cluster analysis list [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--cluster-id` | `-c` | string |  | Cluster ID |
-| `--json` |  | bool |  | JSON output |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--cluster-id` | `-c` | string |  | Yes | Cluster ID |
+| `--json` |  | bool |  |  | JSON output |
 
 ### `qovery cluster analysis logs`
 
 Print the report/logs of a past cluster analysis
 
-```bash
+```text Usage
 qovery cluster analysis logs [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--analysis-id` | `-a` | string |  | Analysis ID |
-| `--cluster-id` | `-c` | string |  | Cluster ID |
-| `--json` |  | bool |  | JSON output |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--analysis-id` | `-a` | string |  | Yes | Analysis ID |
+| `--cluster-id` | `-c` | string |  | Yes | Cluster ID |
+| `--json` |  | bool |  |  | JSON output |
 
 ### `qovery cluster debug-pod`
 
 Launch a debug pod and attach to it
 
-```bash
+```text Usage
 qovery cluster debug-pod [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--cluster-id` | `-c` | string |  | Cluster ID |
-| `--full-privilege` | `-p` | bool |  | Start a full privileged debug pod which has access to host machine. |
-| `--node-selector` | `-n` | string |  | Specify a node selector for the debug pod to be started on |
-| `--organization-id` | `-o` | string |  | Organization ID |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--cluster-id` | `-c` | string |  | Yes | Cluster ID |
+| `--full-privilege` | `-p` | bool |  |  | Start a full privileged debug pod which has access to host machine. |
+| `--node-selector` | `-n` | string |  |  | Specify a node selector for the debug pod to be started on |
+| `--organization-id` | `-o` | string |  |  | Organization ID |
 
 ### `qovery cluster deploy`
 
 Deploy a cluster
 
-```bash
+```text Usage
 qovery cluster deploy [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--cluster` | `-n` | string |  | Cluster Name |
-| `--organization` |  | string |  | Organization Name |
-| `--watch` | `-w` | bool |  | Watch cluster status until it's ready or an error occurs |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--cluster` | `-n` | string |  | Yes | Cluster Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--watch` | `-w` | bool |  |  | Watch cluster status until it's ready or an error occurs |
 
 ### `qovery cluster get-token`
 
 Get token for a cluster ID
 
-```bash
+```text Usage
 qovery cluster get-token [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--cluster-id` | `-c` | string |  | Cluster ID |
-| `--read-only` | `-r` | bool |  | Get a read-only service account token instead of an admin token |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--cluster-id` | `-c` | string |  |  | Cluster ID |
+| `--read-only` | `-r` | bool |  |  | Get a read-only service account token instead of an admin token |
 
 ### `qovery cluster install`
 
 Install Qovery on your cluster.
 
-```bash
+```text Usage
 qovery cluster install [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--base-values-file` |  | string |  | Local Helm values base file to use instead of downloading values-demo-&lt;provider&gt;.yaml from qovery-chart |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--base-values-file` |  | string |  |  | Local Helm values base file to use instead of downloading values-demo-&lt;provider&gt;.yaml from qovery-chart |
 
 ### `qovery cluster kubeconfig`
 
 Retrieve kubeconfig with a cluster ID
 
-```bash
+```text Usage
 qovery cluster kubeconfig [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--cluster-id` | `-c` | string |  | Cluster ID |
-| `--read-only` | `-r` | bool |  | Download a read-only kubeconfig backed by a Kubernetes service account with the view ClusterRole |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--cluster-id` | `-c` | string |  |  | Cluster ID |
+| `--read-only` | `-r` | bool |  |  | Download a read-only kubeconfig backed by a Kubernetes service account with the view ClusterRole |
 
 ### `qovery cluster list`
 
 List clusters
 
-```bash
+```text Usage
 qovery cluster list [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--json` |  | bool |  | JSON output |
-| `--organization` |  | string |  | Organization Name |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--json` |  | bool |  |  | JSON output |
+| `--organization` |  | string |  |  | Organization Name |
 
 ### `qovery cluster list-nodes`
 
 List cluster nodes
 
-```bash
+```text Usage
 qovery cluster list-nodes [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--cluster-id` | `-c` | string |  | Cluster ID |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--cluster-id` | `-c` | string |  |  | Cluster ID |
 
 ### `qovery cluster lock`
 
 Lock a cluster
 
-```bash
+```text Usage
 qovery cluster lock [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--cluster-id` | `-c` | string |  | Cluster ID |
-| `--reason` | `-r` | string |  | Reason |
-| `--ttl-in-days` | `-d` | int32 | `-1` | Time-to-live (TTL) for the lock in days (1 to 5 days) |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--cluster-id` | `-c` | string |  | Yes | Cluster ID |
+| `--reason` | `-r` | string |  | Yes | Reason |
+| `--ttl-in-days` | `-d` | int32 | `-1` |  | Time-to-live (TTL) for the lock in days (1 to 5 days) |
 
 ### `qovery cluster locked`
 
 List locked clusters
 
-```bash
+```text Usage
 qovery cluster locked [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--organization-id` | `-o` | string |  | Organization ID |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--organization-id` | `-o` | string |  | Yes | Organization ID |
 
 ### `qovery cluster operator`
 
 Manage the Qovery Operator on a cluster
 
-```bash
+```text Usage
 qovery cluster operator [flags]
 qovery cluster operator [command]
 ```
@@ -471,78 +473,105 @@ qovery cluster operator [command]
 |------------|-------------|
 | `qovery cluster operator status` | Show the Qovery Operator connection and version status |
 
-No flags other than `--help`.
+No command-specific flags.
 
 ### `qovery cluster operator status`
 
 Show the Qovery Operator connection and version status
 
-```bash
+```text Usage
 qovery cluster operator status [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--cluster` |  | string |  | Cluster name |
-| `--json` |  | bool |  | JSON output |
-| `--organization` |  | string |  | Organization name |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--cluster` |  | string |  | Yes | Cluster name |
+| `--json` |  | bool |  |  | JSON output |
+| `--organization` |  | string |  |  | Organization name |
 
 ### `qovery cluster preflight`
 
 Check that your Kubernetes cluster is ready before you install Qovery on it
 
-```bash
+```text Description from qovery cluster preflight --help
+Check that your Kubernetes cluster is ready before you install Qovery on it.
+
+Qovery runs on any Kubernetes cluster, with one of two installations:
+  - EKS (AWS), GKE (GCP) and Scaleway Kapsule: the Qovery Operator installation, the Helm
+    command shown in the Qovery Console.
+  - Every other cluster (AKS, k3s, RKE2, OpenShift, on-premise, ...): the installation with
+    the Qovery CLI, qovery cluster install.
+    https://www.qovery.com/docs/configuration/integrations/kubernetes/byok-legacy
+
+The preflight detects the provider of your nodes, tells you which installation to use and
+runs the checks of that installation. Use --install-path to force one. The checks for an
+existing cert-manager, ExternalDNS, Envoy Gateway or Gateway API CRDs fail on the Operator
+installation, which does not share them. Both installations install these components, so on
+the CLI installation they warn: turn off the Qovery copy in the Helm values file that
+qovery cluster install generates, or remove the existing one. An existing qovery Helm release
+fails only on the Operator installation; on the CLI installation it is Qovery itself.
+
+The preflight runs against the current context of your kubeconfig, or the one given with
+--kubeconfig and --context. It only reads from the cluster: it creates, changes or deletes
+nothing, and it reads no Secret data. It needs no Qovery account.
+
+It exits with status 1 when at least one check fails. A failed check would make the
+installation or the first deployment of the cluster fail; fix it before installing.
+Warnings do not block the installation but can break a feature.
+```
+
+```text Usage
 qovery cluster preflight [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--context` |  | string |  | Kubeconfig context to check (default: the current context) |
-| `--install-path` |  | string | `"auto"` | Installation to check for: operator (EKS, GKE, Scaleway Kapsule), cli (qovery cluster install, any other cluster) or auto (picked from the provider of the nodes) |
-| `--json` |  | bool |  | JSON output |
-| `--kubeconfig` |  | string |  | Path to the kubeconfig file (default: $KUBECONFIG or ~/.kube/config) |
-| `--loki-object-storage` |  | bool |  | Loki will store logs in object storage (s3, gcs or s3Compatible), so no default StorageClass is needed |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--context` |  | string |  |  | Kubeconfig context to check (default: the current context) |
+| `--install-path` |  | string | `"auto"` |  | Installation to check for: operator (EKS, GKE, Scaleway Kapsule), cli (qovery cluster install, any other cluster) or auto (picked from the provider of the nodes) |
+| `--json` |  | bool |  |  | JSON output |
+| `--kubeconfig` |  | string |  |  | Path to the kubeconfig file (default: $KUBECONFIG or ~/.kube/config) |
+| `--loki-object-storage` |  | bool |  |  | Loki will store logs in object storage (s3, gcs or s3Compatible), so no default StorageClass is needed |
 
 ### `qovery cluster stop`
 
 Stop a cluster
 
-```bash
+```text Usage
 qovery cluster stop [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--cluster` | `-n` | string |  | Cluster Name |
-| `--organization` |  | string |  | Organization Name |
-| `--watch` | `-w` | bool |  | Watch cluster status until it's ready or an error occurs |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--cluster` | `-n` | string |  | Yes | Cluster Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--watch` | `-w` | bool |  |  | Watch cluster status until it's ready or an error occurs |
 
 ### `qovery cluster unlock`
 
 Unlock a cluster
 
-```bash
+```text Usage
 qovery cluster unlock [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--cluster-id` | `-c` | string |  | Cluster ID |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--cluster-id` | `-c` | string |  |  | Cluster ID |
 
 ### `qovery cluster upgrade`
 
 Upgrade a cluster to next kubernetes version available for the cluster
 
-```bash
+```text Usage
 qovery cluster upgrade [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--cluster` | `-n` | string |  | Cluster Name |
-| `--organization` |  | string |  | Organization Name |
-| `--skip-confirmation` | `-y` | bool |  | Skip prompt confirmation if passed |
-| `--watch` | `-w` | bool |  | Watch cluster status until it's ready or an error occurs |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--cluster` | `-n` | string |  | Yes | Cluster Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--skip-confirmation` | `-y` | bool |  |  | Skip prompt confirmation if passed |
+| `--watch` | `-w` | bool |  |  | Watch cluster status until it's ready or an error occurs |
 {/* END GENERATED */}
 
 ## Related Commands

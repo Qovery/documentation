@@ -86,7 +86,7 @@ qovery database cancel
 ```
 
 <Note>
-`qovery database cancel` does not cancel the deployment itself: it only tells you to use [`qovery environment cancel`](/cli/commands/environment), which cancels the deployment of the environment the database belongs to.
+Despite its help text ("Cancel a database deployment"), `qovery database cancel` does not cancel the deployment itself: it only tells you to use [`qovery environment cancel`](/cli/commands/environment), which cancels the deployment of the environment the database belongs to.
 </Note>
 
 ### Delete Database
@@ -158,7 +158,7 @@ Generated from `qovery database --help` (CLI v1.180.0). Every command also accep
 
 Manage databases
 
-```bash
+```text Usage
 qovery database [flags]
 qovery database [command]
 ```
@@ -173,117 +173,117 @@ qovery database [command]
 | `qovery database restart` | Restart a database without redeploying it |
 | `qovery database stop` | Stop a database |
 
-No flags other than `--help`.
+No command-specific flags.
 
 ### `qovery database cancel`
 
 Cancel a database deployment
 
-```bash
+```text Usage
 qovery database cancel [flags]
 ```
 
-No flags other than `--help`.
+No command-specific flags.
 
 ### `qovery database delete`
 
 Delete a database
 
-```bash
+```text Usage
 qovery database delete [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--database` | `-n` | string |  | Database Name |
-| `--databases` |  | string |  | Database Names (comma separated) Example: --databases "db1,db2" |
-| `--environment` |  | string |  | Environment Name |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--watch` | `-w` | bool |  | Watch database status until it's ready or an error occurs |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--database` | `-n` | string |  |  | Database Name |
+| `--databases` |  | string |  |  | Database Names (comma separated) Example: --databases "db1,db2" |
+| `--environment` |  | string |  |  | Environment Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--watch` | `-w` | bool |  |  | Watch database status until it's ready or an error occurs |
 
 ### `qovery database deploy`
 
 Deploy a database
 
-```bash
+```text Usage
 qovery database deploy [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--database` | `-n` | string |  | Database Name |
-| `--databases` |  | string |  | Database Names (comma separated) (ex: --databases "database1,database2") |
-| `--environment` |  | string |  | Environment Name |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--watch` | `-w` | bool |  | Watch database status until it's ready or an error occurs |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--database` | `-n` | string |  |  | Database Name |
+| `--databases` |  | string |  |  | Database Names (comma separated) (ex: --databases "database1,database2") |
+| `--environment` |  | string |  |  | Environment Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--watch` | `-w` | bool |  |  | Watch database status until it's ready or an error occurs |
 
 ### `qovery database list`
 
 List databases
 
-```bash
+```text Usage
 qovery database list [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--json` |  | bool |  | JSON output |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--show-credentials` |  | bool |  | Show Credentials |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--json` |  | bool |  |  | JSON output |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--show-credentials` |  | bool |  |  | Show Credentials |
 
 ### `qovery database redeploy`
 
 Redeploy a database
 
-```bash
+```text Usage
 qovery database redeploy [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--database` | `-n` | string |  | Database Name |
-| `--environment` |  | string |  | Environment Name |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--watch` | `-w` | bool |  | Watch database status until it's ready or an error occurs |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--database` | `-n` | string |  | Yes | Database Name |
+| `--environment` |  | string |  |  | Environment Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--watch` | `-w` | bool |  |  | Watch database status until it's ready or an error occurs |
 
 ### `qovery database restart`
 
 Restart a database without redeploying it
 
-```bash
+```text Usage
 qovery database restart [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--database` | `-n` | string |  | Database Name |
-| `--databases` |  | string |  | Database Names (comma separated) Example: --databases "db1,db2" |
-| `--environment` |  | string |  | Environment Name |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--watch` | `-w` | bool |  | Watch database status until it's ready or an error occurs |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--database` | `-n` | string |  |  | Database Name |
+| `--databases` |  | string |  |  | Database Names (comma separated) Example: --databases "db1,db2" |
+| `--environment` |  | string |  |  | Environment Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--watch` | `-w` | bool |  |  | Watch database status until it's ready or an error occurs |
 
 ### `qovery database stop`
 
 Stop a database
 
-```bash
+```text Usage
 qovery database stop [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--database` | `-n` | string |  | Database Name |
-| `--databases` |  | string |  | Database Names (comma separated) Example: --databases "db1,db2" |
-| `--environment` |  | string |  | Environment Name |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--watch` | `-w` | bool |  | Watch database status until it's ready or an error occurs |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--database` | `-n` | string |  |  | Database Name |
+| `--databases` |  | string |  |  | Database Names (comma separated) Example: --databases "db1,db2" |
+| `--environment` |  | string |  |  | Environment Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--watch` | `-w` | bool |  |  | Watch database status until it's ready or an error occurs |
 {/* END GENERATED */}
 
 ## Related Commands

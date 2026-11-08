@@ -41,12 +41,12 @@ qovery terraform plan-and-apply --terraforms "network,database"
 
 ### Access the Terraform state
 
-`setup-backend` generates a `backend.tf` file that points Terraform at the state Qovery stores for a Terraform service. The command asks before it writes the file in the current directory.
+`setup-backend` generates a `backend.tf` file that points Terraform at the state Qovery stores for a Terraform service. The command asks before it writes the file in the current directory. The state can contain secret values, so keep `backend.tf` and any local copy of the state out of version control.
 
 `--terraform` (`-t`) takes the **ID** (UUID) of the Terraform service, not its name. Without it, the command uses the service in the current [context](/cli/commands/context).
 
 ```bash
-qovery terraform setup-backend --terraform "<terraform-service-id>"
+qovery terraform setup-backend --terraform "$TERRAFORM_SERVICE_ID"
 ```
 
 {/* BEGIN GENERATED: qovery terraform --help, CLI v1.180.0 */}
@@ -58,7 +58,7 @@ Generated from `qovery terraform --help` (CLI v1.180.0). Every command also acce
 
 Manage terraform services
 
-```bash
+```text Usage
 qovery terraform [flags]
 qovery terraform [command]
 ```
@@ -74,32 +74,47 @@ qovery terraform [command]
 | `qovery terraform plan-and-apply` | Deploy terraform (plan and apply) |
 | `qovery terraform setup-backend` | Generate a Terraform backend configuration file that can be used to access your tf-state |
 
-No flags other than `--help`.
+No command-specific flags.
 
 ### `qovery terraform delete`
 
 Delete terraform resources
 
-```bash
+```text Description from qovery terraform delete --help
+Delete terraform resources and remove from Qovery.
+
+By default, this will execute 'terraform destroy' to delete all resources
+managed by this terraform service, then remove the service from Qovery.
+
+Use --skip-destroy to keep the infrastructure resources but remove the
+Qovery configuration. This is useful when you want to manage the resources
+outside of Qovery or import them into another system.
+
+Use --resources-only to delete the infrastructure resources but keep the
+Qovery configuration. This is useful when you want to clean up resources
+while keeping the terraform service definition in Qovery.
+```
+
+```text Usage
 qovery terraform delete [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--resources-only` |  | bool |  | Delete resources only (keep Qovery configuration) |
-| `--skip-destroy` |  | bool |  | Skip terraform destroy (keep resources, only remove from Qovery) |
-| `--terraform` | `-n` | string |  | Terraform Name |
-| `--terraforms` |  | string |  | Terraform Names (comma separated) Example: --terraforms "tf1,tf2,tf3" |
-| `--watch` | `-w` | bool |  | Watch terraform status until it's ready or an error occurs |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--resources-only` |  | bool |  |  | Delete resources only (keep Qovery configuration) |
+| `--skip-destroy` |  | bool |  |  | Skip terraform destroy (keep resources, only remove from Qovery) |
+| `--terraform` | `-n` | string |  |  | Terraform Name |
+| `--terraforms` |  | string |  |  | Terraform Names (comma separated) Example: --terraforms "tf1,tf2,tf3" |
+| `--watch` | `-w` | bool |  |  | Watch terraform status until it's ready or an error occurs |
 
 ### `qovery terraform external-secret`
 
 Manage terraform external secrets
 
-```bash
+```text Usage
 qovery terraform external-secret [flags]
 qovery terraform external-secret [command]
 ```
@@ -110,160 +125,179 @@ qovery terraform external-secret [command]
 | `qovery terraform external-secret delete` | Delete terraform external secret |
 | `qovery terraform external-secret update` | Update terraform external secret |
 
-No flags other than `--help`.
+No command-specific flags.
 
 ### `qovery terraform external-secret create`
 
 Create terraform external secret
 
-```bash
+```text Usage
 qovery terraform external-secret create [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--key` | `-k` | string |  | External secret key |
-| `--mount-path` |  | string |  | Path where the secret will be mounted as a file |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--reference` | `-r` | string |  | Reference to the secret in the secrets provider |
-| `--scope` |  | string | `"TERRAFORM"` | Scope of this external secret &lt;PROJECT\|ENVIRONMENT\|TERRAFORM&gt; |
-| `--secret-manager-access-name` |  | string |  | Secret manager access name |
-| `--terraform` | `-n` | string |  | Terraform Name |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--key` | `-k` | string |  | Yes | External secret key |
+| `--mount-path` |  | string |  |  | Path where the secret will be mounted as a file |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--reference` | `-r` | string |  | Yes | Reference to the secret in the secrets provider |
+| `--scope` |  | string | `"TERRAFORM"` |  | Scope of this external secret &lt;PROJECT\|ENVIRONMENT\|TERRAFORM&gt; |
+| `--secret-manager-access-name` |  | string |  | Yes | Secret manager access name |
+| `--terraform` | `-n` | string |  | Yes | Terraform Name |
 
 ### `qovery terraform external-secret delete`
 
 Delete terraform external secret
 
-```bash
+```text Usage
 qovery terraform external-secret delete [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--key` | `-k` | string |  | External secret key |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--terraform` | `-n` | string |  | Terraform Name |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--key` | `-k` | string |  | Yes | External secret key |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--terraform` | `-n` | string |  | Yes | Terraform Name |
 
 ### `qovery terraform external-secret update`
 
 Update terraform external secret
 
-```bash
+```text Usage
 qovery terraform external-secret update [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--key` | `-k` | string |  | External secret key |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--reference` | `-r` | string |  | New reference to the secret in the secrets provider |
-| `--secret-manager-access-name` |  | string |  | New secret manager access name |
-| `--terraform` | `-n` | string |  | Terraform Name |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--key` | `-k` | string |  | Yes | External secret key |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--reference` | `-r` | string |  |  | New reference to the secret in the secrets provider |
+| `--secret-manager-access-name` |  | string |  |  | New secret manager access name |
+| `--terraform` | `-n` | string |  | Yes | Terraform Name |
 
 ### `qovery terraform force-unlock`
 
 Force unlock terraform state file
 
-```bash
+```text Description from qovery terraform force-unlock --help
+Force unlock terraform state file when it's stuck.
+
+This command will execute 'terraform force-unlock' on the specified terraform service(s).
+Use this when a state lock is preventing operations and you're certain no other
+operations are running.
+```
+
+```text Usage
 qovery terraform force-unlock [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--commit-id` | `-c` | string |  | Git Commit ID, or 'latest' for the newest commit of the branch (optional, defaults to deployed commit) |
-| `--environment` |  | string |  | Environment Name |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--terraform` | `-n` | string |  | Terraform Name |
-| `--terraforms` |  | string |  | Terraform Names (comma separated) Example: --terraforms "tf1,tf2,tf3" |
-| `--watch` | `-w` | bool |  | Watch terraform status until it's ready or an error occurs |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--commit-id` | `-c` | string |  |  | Git Commit ID, or 'latest' for the newest commit of the branch (optional, defaults to deployed commit) |
+| `--environment` |  | string |  |  | Environment Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--terraform` | `-n` | string |  |  | Terraform Name |
+| `--terraforms` |  | string |  |  | Terraform Names (comma separated) Example: --terraforms "tf1,tf2,tf3" |
+| `--watch` | `-w` | bool |  |  | Watch terraform status until it's ready or an error occurs |
 
 ### `qovery terraform list`
 
 List terraform services
 
-```bash
+```text Usage
 qovery terraform list [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--json` |  | bool |  | JSON output |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--json` |  | bool |  |  | JSON output |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
 
 ### `qovery terraform migrate-state`
 
 Migrate terraform state to new backend
 
-```bash
+```text Description from qovery terraform migrate-state --help
+Migrate terraform state to a new backend configuration.
+
+This command will execute 'terraform init -migrate-state' on the specified
+terraform service(s). Use this when changing backend configuration (e.g.,
+moving from local state to S3, or changing S3 bucket).
+
+Make sure to update your terraform backend configuration before running
+this command.
+```
+
+```text Usage
 qovery terraform migrate-state [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--commit-id` | `-c` | string |  | Git Commit ID, or 'latest' for the newest commit of the branch (optional, defaults to deployed commit) |
-| `--environment` |  | string |  | Environment Name |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--terraform` | `-n` | string |  | Terraform Name |
-| `--terraforms` |  | string |  | Terraform Names (comma separated) Example: --terraforms "tf1,tf2,tf3" |
-| `--watch` | `-w` | bool |  | Watch terraform status until it's ready or an error occurs |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--commit-id` | `-c` | string |  |  | Git Commit ID, or 'latest' for the newest commit of the branch (optional, defaults to deployed commit) |
+| `--environment` |  | string |  |  | Environment Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--terraform` | `-n` | string |  |  | Terraform Name |
+| `--terraforms` |  | string |  |  | Terraform Names (comma separated) Example: --terraforms "tf1,tf2,tf3" |
+| `--watch` | `-w` | bool |  |  | Watch terraform status until it's ready or an error occurs |
 
 ### `qovery terraform plan`
 
 Run terraform plan (dry-run)
 
-```bash
+```text Usage
 qovery terraform plan [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--commit-id` | `-c` | string |  | Git Commit ID, or 'latest' for the newest commit of the branch (optional, defaults to deployed commit) |
-| `--environment` |  | string |  | Environment Name |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--terraform` | `-n` | string |  | Terraform Name |
-| `--terraforms` |  | string |  | Terraform Names (comma separated) Example: --terraforms "tf1,tf2,tf3" |
-| `--watch` | `-w` | bool |  | Watch terraform status until it's ready or an error occurs |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--commit-id` | `-c` | string |  |  | Git Commit ID, or 'latest' for the newest commit of the branch (optional, defaults to deployed commit) |
+| `--environment` |  | string |  |  | Environment Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--terraform` | `-n` | string |  |  | Terraform Name |
+| `--terraforms` |  | string |  |  | Terraform Names (comma separated) Example: --terraforms "tf1,tf2,tf3" |
+| `--watch` | `-w` | bool |  |  | Watch terraform status until it's ready or an error occurs |
 
 ### `qovery terraform plan-and-apply`
 
 Deploy terraform (plan and apply)
 
-```bash
+```text Usage
 qovery terraform plan-and-apply [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--commit-id` | `-c` | string |  | Git Commit ID, or 'latest' for the newest commit of the branch (optional, defaults to deployed commit) |
-| `--environment` |  | string |  | Environment Name |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--terraform` | `-n` | string |  | Terraform Name |
-| `--terraforms` |  | string |  | Terraform Names (comma separated) Example: --terraforms "tf1,tf2,tf3" |
-| `--watch` | `-w` | bool |  | Watch terraform status until it's ready or an error occurs |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--commit-id` | `-c` | string |  |  | Git Commit ID, or 'latest' for the newest commit of the branch (optional, defaults to deployed commit) |
+| `--environment` |  | string |  |  | Environment Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--terraform` | `-n` | string |  |  | Terraform Name |
+| `--terraforms` |  | string |  |  | Terraform Names (comma separated) Example: --terraforms "tf1,tf2,tf3" |
+| `--watch` | `-w` | bool |  |  | Watch terraform status until it's ready or an error occurs |
 
 ### `qovery terraform setup-backend`
 
 Generate a Terraform backend configuration file that can be used to access your tf-state
 
-```bash
+```text Usage
 qovery terraform setup-backend [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--terraform` | `-t` | string |  | Terraform UUID. If not provided, the CLI will use the service context |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--terraform` | `-t` | string |  |  | Terraform UUID. If not provided, the CLI will use the service context |
 {/* END GENERATED */}
 
 ## Related Commands

@@ -30,7 +30,7 @@ project, an environment and a service. It takes no flags to select them.
 **Scripts, CI and AI agents** cannot answer the interactive picker. Skip the context and pass names
 explicitly instead: commands accept `--organization`, `--project` and `--environment` (for example
 `qovery environment list --organization "Acme Corp" --project "Backend Services"`), and
-`qovery api` takes IDs in the path (`qovery api organization/<org-id>/project`).
+`qovery api` takes IDs in the path (`qovery api "organization/$ORGANIZATION_ID/project"`).
 </Note>
 
 ## Examples
@@ -59,7 +59,7 @@ Generated from `qovery context --help` (CLI v1.180.0). Every command also accept
 
 Manage CLI context
 
-```bash
+```text Usage
 qovery context [flags]
 qovery context [command]
 ```
@@ -68,17 +68,17 @@ qovery context [command]
 |------------|-------------|
 | `qovery context set` | Set Qovery CLI context |
 
-No flags other than `--help`.
+No command-specific flags.
 
 ### `qovery context set`
 
 Set Qovery CLI context
 
-```bash
+```text Usage
 qovery context set [flags]
 ```
 
-No flags other than `--help`.
+No command-specific flags.
 {/* END GENERATED */}
 
 ## Related Commands

@@ -11,11 +11,11 @@ Context variables `{organizationId}`, `{projectId}`, and `{environmentId}` are a
 
 ## Usage
 
-```bash
+```text
 qovery api <endpoint> [flags]
 ```
 
-The `<endpoint>` is the API path relative to the Qovery API base URL (e.g., `organization`, `organization/<id>/project`).
+The `<endpoint>` is the API path relative to the Qovery API base URL (e.g., `organization`, `organization/$ORGANIZATION_ID/project`).
 
 ## Examples
 
@@ -26,7 +26,7 @@ The `<endpoint>` is the API path relative to the Qovery API base URL (e.g., `org
 qovery api organization
 
 # Get a specific organization
-qovery api organization/<id>
+qovery api "organization/$ORGANIZATION_ID"
 ```
 
 ### Use Context Variables
@@ -56,13 +56,13 @@ qovery api organization --field name=my-org --field plan=FREE
 echo '{"name":"my-org","plan":"FREE"}' | qovery api organization --input -
 
 # Send a JSON file as body
-qovery api organization/<id>/project --input - < body.json
+qovery api "organization/$ORGANIZATION_ID/project" --input - < body.json
 ```
 
 ### Delete a Resource
 
 ```bash
-qovery api organization/<id> --method DELETE
+qovery api "organization/$ORGANIZATION_ID" --method DELETE
 ```
 
 ### Show Response Headers
@@ -92,7 +92,46 @@ Generated from `qovery api --help` (CLI v1.180.0). Every command also accepts `-
 
 Make an authenticated request to the Qovery API
 
-```bash
+```text Description from qovery api --help
+Make an authenticated HTTP request to the Qovery API.
+
+EXAMPLES
+
+  # List organizations
+  $ qovery api organization
+
+  # Get a specific organization
+  $ qovery api organization/<id>
+
+  # List projects in current organization (from context)
+  $ qovery api organization/{organizationId}/project
+
+  # Get current environment's services (fully from context)
+  $ qovery api organization/{organizationId}/project/{projectId}/environment/{environmentId}/service
+
+  # Create an organization using --field
+  $ qovery api organization --field name=my-org --field plan=FREE
+
+  # Pipe body from stdin
+  $ echo '{"name":"my-org","plan":"FREE"}' | qovery api organization --input -
+
+  # Send a JSON file as body
+  $ qovery api organization/<id>/project --input - < body.json
+
+  # Delete a resource
+  $ qovery api organization/<id> --method DELETE
+
+  # Show response headers
+  $ qovery api organization --include
+
+  # Add a custom header
+  $ qovery api organization -H "X-Request-Id: abc123"
+
+  # Use a staging environment
+  $ QOVERY_API_URL=https://staging.api.qovery.com qovery api organization
+```
+
+```text Usage
 qovery api <endpoint> [flags]
 qovery api [command]
 ```
@@ -101,25 +140,45 @@ qovery api [command]
 |------------|-------------|
 | `qovery api spec` | Print the Qovery API's OpenAPI specification |
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--field` | `-f` | stringArray |  | Add a key=value pair to the JSON body (repeatable, smart type coercion) |
-| `--header` | `-H` | stringArray |  | Additional request headers in 'Key: Value' format (repeatable) |
-| `--include` | `-i` | bool |  | Print HTTP response status and headers before body |
-| `--input` |  | string |  | Body: '-' for stdin (pipe JSON to command) |
-| `--method` | `-X` | string |  | HTTP method (GET, POST, PUT, PATCH, DELETE) |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--field` | `-f` | stringArray |  |  | Add a key=value pair to the JSON body (repeatable, smart type coercion) |
+| `--header` | `-H` | stringArray |  |  | Additional request headers in 'Key: Value' format (repeatable) |
+| `--include` | `-i` | bool |  |  | Print HTTP response status and headers before body |
+| `--input` |  | string |  |  | Body: '-' for stdin (pipe JSON to command) |
+| `--method` | `-X` | string |  |  | HTTP method (GET, POST, PUT, PATCH, DELETE) |
 
 ### `qovery api spec`
 
 Print the Qovery API's OpenAPI specification
 
-```bash
+```text Description from qovery api spec --help
+Fetch and print the Qovery API's OpenAPI specification (YAML), sourced from
+https://github.com/Qovery/qovery-openapi-spec.
+
+Use it to discover valid endpoints, methods, and request/response shapes before
+calling 'qovery api <endpoint>' — instead of guessing or relying on a copy that
+may be out of date. This command does not require authentication.
+
+EXAMPLES
+
+  # Print the spec to stdout
+  $ qovery api spec
+
+  # Save it to a file
+  $ qovery api spec -o openapi.yaml
+
+  # Look up one path with a YAML query tool
+  $ qovery api spec | yq '.paths["/organization"]'
+```
+
+```text Usage
 qovery api spec [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--output` | `-o` | string |  | Write the spec to a file instead of stdout |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--output` | `-o` | string |  |  | Write the spec to a file instead of stdout |
 {/* END GENERATED */}
 
 ## Related Commands

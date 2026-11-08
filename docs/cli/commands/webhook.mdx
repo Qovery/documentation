@@ -20,13 +20,13 @@ List the events sent by one webhook. `--webhook-id` is required; take the ID fro
 ```bash
 qovery webhook list-event \
   --organization "Acme Corp" \
-  --webhook-id "<webhook-id>"
+  --webhook-id "$WEBHOOK_ID"
 ```
 
 Get the events as JSON, including the payload sent:
 
 ```bash
-qovery webhook list-event --webhook-id "<webhook-id>" --json
+qovery webhook list-event --organization "Acme Corp" --webhook-id "$WEBHOOK_ID" --json
 ```
 
 {/* BEGIN GENERATED: qovery webhook --help, CLI v1.180.0 */}
@@ -38,7 +38,7 @@ Generated from `qovery webhook --help` (CLI v1.180.0). Every command also accept
 
 Manage webhooks
 
-```bash
+```text Usage
 qovery webhook [flags]
 qovery webhook [command]
 ```
@@ -48,34 +48,34 @@ qovery webhook [command]
 | `qovery webhook list` | List webhooks |
 | `qovery webhook list-event` | List webhook events |
 
-No flags other than `--help`.
+No command-specific flags.
 
 ### `qovery webhook list`
 
 List webhooks
 
-```bash
+```text Usage
 qovery webhook list [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--json` |  | bool |  | JSON output |
-| `--organization` |  | string |  | Organization Name |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--json` |  | bool |  |  | JSON output |
+| `--organization` |  | string |  |  | Organization Name |
 
 ### `qovery webhook list-event`
 
 List webhook events
 
-```bash
+```text Usage
 qovery webhook list-event [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--json` |  | bool |  | JSON output |
-| `--organization` |  | string |  | Organization Name |
-| `--webhook-id` |  | string |  | Webhook ID (UUID) |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--json` |  | bool |  |  | JSON output |
+| `--organization` |  | string |  |  | Organization Name |
+| `--webhook-id` |  | string |  | Yes | Webhook ID (UUID) |
 {/* END GENERATED */}
 
 ## Related Commands

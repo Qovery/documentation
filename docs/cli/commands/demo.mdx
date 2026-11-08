@@ -93,7 +93,14 @@ Generated from `qovery demo --help` (CLI v1.180.0). Every command also accepts `
 
 Try Qovery on your local machine
 
-```bash
+```text Description from qovery demo --help
+Try Qovery on your local machine.
+
+qovery demo up creates a local k3d cluster, installs the Qovery Operator on it and lets Qovery
+deploy the self-managed platform catalog with Engine v2.
+```
+
+```text Usage
 qovery demo [flags]
 qovery demo [command]
 ```
@@ -103,33 +110,33 @@ qovery demo [command]
 | `qovery demo destroy` | Remove the local demo cluster |
 | `qovery demo up` | Create a local k3d cluster running the Qovery Operator and Engine v2 |
 
-No flags other than `--help`.
+No command-specific flags.
 
 ### `qovery demo destroy`
 
 Remove the local demo cluster
 
-```bash
+```text Usage
 qovery demo destroy [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--cluster-name` | `-c` | string | `"local-demo-rophilogene"` | The name of the local demo cluster |
-| `--delete-qovery-config` | `-d` | bool |  | Also delete the Qovery cluster, its environments, and its Operator association |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--cluster-name` | `-c` | string | `"local-demo-<username>"` |  | The name of the local demo cluster |
+| `--delete-qovery-config` | `-d` | bool |  |  | Also delete the Qovery cluster, its environments, and its Operator association |
 
 ### `qovery demo up`
 
 Create a local k3d cluster running the Qovery Operator and Engine v2
 
-```bash
+```text Usage
 qovery demo up [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--cluster-name` | `-c` | string | `"local-demo-rophilogene"` | The name of the local demo cluster |
-| `--debug` |  | bool |  | Enable debug mode |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--cluster-name` | `-c` | string | `"local-demo-<username>"` |  | The name of the local demo cluster |
+| `--debug` |  | bool |  |  | Enable debug mode |
 {/* END GENERATED */}
 
 ## Related Commands

@@ -140,7 +140,7 @@ Generated from `qovery cronjob --help` (CLI v1.180.0). Every command also accept
 
 Manage cronjobs
 
-```bash
+```text Usage
 qovery cronjob [flags]
 qovery cronjob [command]
 ```
@@ -158,83 +158,83 @@ qovery cronjob [command]
 | `qovery cronjob stop` | Stop a cronjob |
 | `qovery cronjob update` | Update a cronjob |
 
-No flags other than `--help`.
+No command-specific flags.
 
 ### `qovery cronjob cancel`
 
 Cancel a cronjob deployment
 
-```bash
+```text Usage
 qovery cronjob cancel [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--cronjob` | `-n` | string |  | Cronjob Name |
-| `--environment` |  | string |  | Environment Name |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--watch` | `-w` | bool |  | Watch cancel until it's done or an error occurs |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--cronjob` | `-n` | string |  | Yes | Cronjob Name |
+| `--environment` |  | string |  |  | Environment Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--watch` | `-w` | bool |  |  | Watch cancel until it's done or an error occurs |
 
 ### `qovery cronjob clone`
 
 Clone a cronjob
 
-```bash
+```text Usage
 qovery cronjob clone [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--cronjob` | `-n` | string |  | Cronjob Name |
-| `--environment` |  | string |  | Environment Name |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--target-cronjob-name` |  | string |  | Target Cronjob Name |
-| `--target-environment` |  | string |  | Target Environment Name |
-| `--target-project` |  | string |  | Target Project Name |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--cronjob` | `-n` | string |  | Yes | Cronjob Name |
+| `--environment` |  | string |  |  | Environment Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--target-cronjob-name` |  | string |  |  | Target Cronjob Name |
+| `--target-environment` |  | string |  |  | Target Environment Name |
+| `--target-project` |  | string |  |  | Target Project Name |
 
 ### `qovery cronjob delete`
 
 Delete a cronjob
 
-```bash
+```text Usage
 qovery cronjob delete [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--cronjob` | `-n` | string |  | Cronjob Name |
-| `--cronjobs` |  | string |  | Cronjob Names (comma separated) (ex: --cronjobs "cron1,cron2") |
-| `--environment` |  | string |  | Environment Name |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--watch` | `-w` | bool |  | Watch cronjob status until it's ready or an error occurs |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--cronjob` | `-n` | string |  |  | Cronjob Name |
+| `--cronjobs` |  | string |  |  | Cronjob Names (comma separated) (ex: --cronjobs "cron1,cron2") |
+| `--environment` |  | string |  |  | Environment Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--watch` | `-w` | bool |  |  | Watch cronjob status until it's ready or an error occurs |
 
 ### `qovery cronjob deploy`
 
 Deploy a cronjob
 
-```bash
+```text Usage
 qovery cronjob deploy [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--commit-id` | `-c` | string |  | Cronjob Commit ID, or 'latest' for the newest commit of the branch |
-| `--cronjob` | `-n` | string |  | Cronjob Name |
-| `--cronjobs` |  | string |  | Cronjob Names (comma separated) (ex: --cronjobs "cron1,cron2") |
-| `--environment` |  | string |  | Environment Name |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--tag` | `-t` | string |  | Cronjob Tag |
-| `--watch` | `-w` | bool |  | Watch cronjob status until it's ready or an error occurs |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--commit-id` | `-c` | string |  |  | Cronjob Commit ID, or 'latest' for the newest commit of the branch |
+| `--cronjob` | `-n` | string |  |  | Cronjob Name |
+| `--cronjobs` |  | string |  |  | Cronjob Names (comma separated) (ex: --cronjobs "cron1,cron2") |
+| `--environment` |  | string |  |  | Environment Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--tag` | `-t` | string |  |  | Cronjob Tag |
+| `--watch` | `-w` | bool |  |  | Watch cronjob status until it's ready or an error occurs |
 
 ### `qovery cronjob env`
 
 Manage cronjob environment variables and secrets
 
-```bash
+```text Usage
 qovery cronjob env [flags]
 qovery cronjob env [command]
 ```
@@ -248,13 +248,13 @@ qovery cronjob env [command]
 | `qovery cronjob env override` | Manage cronjob environment variable and secret overrides |
 | `qovery cronjob env update` | Update cronjob environment variable or secret |
 
-No flags other than `--help`.
+No command-specific flags.
 
 ### `qovery cronjob env alias`
 
 Manage cronjob environment variable and secret aliases
 
-```bash
+```text Usage
 qovery cronjob env alias [flags]
 qovery cronjob env alias [command]
 ```
@@ -263,86 +263,86 @@ qovery cronjob env alias [command]
 |------------|-------------|
 | `qovery cronjob env alias create` | Create cronjob environment variable or secret alias |
 
-No flags other than `--help`.
+No command-specific flags.
 
 ### `qovery cronjob env alias create`
 
 Create cronjob environment variable or secret alias
 
-```bash
+```text Usage
 qovery cronjob env alias create [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--alias` |  | string |  | Environment variable or secret alias |
-| `--cronjob` | `-n` | string |  | Cronjob Name |
-| `--environment` |  | string |  | Environment Name |
-| `--key` | `-k` | string |  | Environment variable or secret key |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--scope` |  | string | `"JOB"` | Scope of this alias &lt;PROJECT\|ENVIRONMENT\|JOB&gt; |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--alias` |  | string |  | Yes | Environment variable or secret alias |
+| `--cronjob` | `-n` | string |  | Yes | Cronjob Name |
+| `--environment` |  | string |  |  | Environment Name |
+| `--key` | `-k` | string |  | Yes | Environment variable or secret key |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--scope` |  | string | `"JOB"` |  | Scope of this alias &lt;PROJECT\|ENVIRONMENT\|JOB&gt; |
 
 ### `qovery cronjob env create`
 
 Create cronjob environment variable or secret
 
-```bash
+```text Usage
 qovery cronjob env create [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--cronjob` | `-n` | string |  | Cronjob Name |
-| `--environment` |  | string |  | Environment Name |
-| `--key` | `-k` | string |  | Environment variable or secret key |
-| `--organization` |  | string |  | Organization Name |
-| `--override-if-exists` |  | bool |  | If the key already exists at a higher scope, create an override of it instead of failing |
-| `--project` |  | string |  | Project Name |
-| `--scope` |  | string | `"JOB"` | Scope of this env var &lt;PROJECT\|ENVIRONMENT\|JOB&gt; |
-| `--secret` |  | bool |  | This environment variable is a secret |
-| `--value` | `-v` | string |  | Environment variable or secret value |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--cronjob` | `-n` | string |  | Yes | Cronjob Name |
+| `--environment` |  | string |  |  | Environment Name |
+| `--key` | `-k` | string |  | Yes | Environment variable or secret key |
+| `--organization` |  | string |  |  | Organization Name |
+| `--override-if-exists` |  | bool |  |  | If the key already exists at a higher scope, create an override of it instead of failing |
+| `--project` |  | string |  |  | Project Name |
+| `--scope` |  | string | `"JOB"` |  | Scope of this env var &lt;PROJECT\|ENVIRONMENT\|JOB&gt; |
+| `--secret` |  | bool |  |  | This environment variable is a secret |
+| `--value` | `-v` | string |  | Yes | Environment variable or secret value |
 
 ### `qovery cronjob env delete`
 
 Delete cronjob environment variable or secret
 
-```bash
+```text Usage
 qovery cronjob env delete [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--cronjob` | `-n` | string |  | Cronjob Name |
-| `--environment` |  | string |  | Environment Name |
-| `--key` | `-k` | string |  | Environment variable or secret key |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--cronjob` | `-n` | string |  | Yes | Cronjob Name |
+| `--environment` |  | string |  |  | Environment Name |
+| `--key` | `-k` | string |  | Yes | Environment variable or secret key |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
 
 ### `qovery cronjob env list`
 
 List cronjob environment variables
 
-```bash
+```text Usage
 qovery cronjob env list [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--cronjob` | `-n` | string |  | Cronjob Name |
-| `--environment` |  | string |  | Environment Name |
-| `--json` |  | bool |  | JSON output |
-| `--organization` |  | string |  | Organization Name |
-| `--pretty-print` |  | bool |  | Pretty print output |
-| `--project` |  | string |  | Project Name |
-| `--show-values` |  | bool |  | Show env var values |
-| `--sort` |  | bool |  | Sort environment variables by key |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--cronjob` | `-n` | string |  | Yes | Cronjob Name |
+| `--environment` |  | string |  |  | Environment Name |
+| `--json` |  | bool |  |  | JSON output |
+| `--organization` |  | string |  |  | Organization Name |
+| `--pretty-print` |  | bool |  |  | Pretty print output |
+| `--project` |  | string |  |  | Project Name |
+| `--show-values` |  | bool |  |  | Show env var values |
+| `--sort` |  | bool |  |  | Sort environment variables by key |
 
 ### `qovery cronjob env override`
 
 Manage cronjob environment variable and secret overrides
 
-```bash
+```text Usage
 qovery cronjob env override [flags]
 qovery cronjob env override [command]
 ```
@@ -351,48 +351,48 @@ qovery cronjob env override [command]
 |------------|-------------|
 | `qovery cronjob env override create` | Override cronjob environment variable or secret |
 
-No flags other than `--help`.
+No command-specific flags.
 
 ### `qovery cronjob env override create`
 
 Override cronjob environment variable or secret
 
-```bash
+```text Usage
 qovery cronjob env override create [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--cronjob` | `-n` | string |  | Cronjob Name |
-| `--environment` |  | string |  | Environment Name |
-| `--key` | `-k` | string |  | Environment variable or secret key |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--scope` |  | string | `"JOB"` | Scope of this alias &lt;PROJECT\|ENVIRONMENT\|JOB&gt; |
-| `--value` |  | string |  | Environment variable or secret value |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--cronjob` | `-n` | string |  | Yes | Cronjob Name |
+| `--environment` |  | string |  |  | Environment Name |
+| `--key` | `-k` | string |  | Yes | Environment variable or secret key |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--scope` |  | string | `"JOB"` |  | Scope of this alias &lt;PROJECT\|ENVIRONMENT\|JOB&gt; |
+| `--value` |  | string |  | Yes | Environment variable or secret value |
 
 ### `qovery cronjob env update`
 
 Update cronjob environment variable or secret
 
-```bash
+```text Usage
 qovery cronjob env update [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--cronjob` | `-n` | string |  | Cronjob Name |
-| `--environment` |  | string |  | Environment Name |
-| `--key` | `-k` | string |  | Environment variable or secret key |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--value` | `-v` | string |  | Environment variable or secret value |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--cronjob` | `-n` | string |  | Yes | Cronjob Name |
+| `--environment` |  | string |  |  | Environment Name |
+| `--key` | `-k` | string |  | Yes | Environment variable or secret key |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--value` | `-v` | string |  | Yes | Environment variable or secret value |
 
 ### `qovery cronjob external-secret`
 
 Manage cronjob external secrets
 
-```bash
+```text Usage
 qovery cronjob external-secret [flags]
 qovery cronjob external-secret [command]
 ```
@@ -403,127 +403,127 @@ qovery cronjob external-secret [command]
 | `qovery cronjob external-secret delete` | Delete cronjob external secret |
 | `qovery cronjob external-secret update` | Update cronjob external secret |
 
-No flags other than `--help`.
+No command-specific flags.
 
 ### `qovery cronjob external-secret create`
 
 Create cronjob external secret
 
-```bash
+```text Usage
 qovery cronjob external-secret create [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--cronjob` | `-n` | string |  | Cronjob Name |
-| `--environment` |  | string |  | Environment Name |
-| `--key` | `-k` | string |  | External secret key |
-| `--mount-path` |  | string |  | Path where the secret will be mounted as a file |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--reference` | `-r` | string |  | Reference to the secret in the secrets provider |
-| `--scope` |  | string | `"JOB"` | Scope of this external secret &lt;PROJECT\|ENVIRONMENT\|JOB&gt; |
-| `--secret-manager-access-name` |  | string |  | Secret manager access name |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--cronjob` | `-n` | string |  | Yes | Cronjob Name |
+| `--environment` |  | string |  |  | Environment Name |
+| `--key` | `-k` | string |  | Yes | External secret key |
+| `--mount-path` |  | string |  |  | Path where the secret will be mounted as a file |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--reference` | `-r` | string |  | Yes | Reference to the secret in the secrets provider |
+| `--scope` |  | string | `"JOB"` |  | Scope of this external secret &lt;PROJECT\|ENVIRONMENT\|JOB&gt; |
+| `--secret-manager-access-name` |  | string |  | Yes | Secret manager access name |
 
 ### `qovery cronjob external-secret delete`
 
 Delete cronjob external secret
 
-```bash
+```text Usage
 qovery cronjob external-secret delete [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--cronjob` | `-n` | string |  | Cronjob Name |
-| `--environment` |  | string |  | Environment Name |
-| `--key` | `-k` | string |  | External secret key |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--cronjob` | `-n` | string |  | Yes | Cronjob Name |
+| `--environment` |  | string |  |  | Environment Name |
+| `--key` | `-k` | string |  | Yes | External secret key |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
 
 ### `qovery cronjob external-secret update`
 
 Update cronjob external secret
 
-```bash
+```text Usage
 qovery cronjob external-secret update [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--cronjob` | `-n` | string |  | Cronjob Name |
-| `--environment` |  | string |  | Environment Name |
-| `--key` | `-k` | string |  | External secret key |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--reference` | `-r` | string |  | New reference to the secret in the secrets provider |
-| `--secret-manager-access-name` |  | string |  | New secret manager access name |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--cronjob` | `-n` | string |  | Yes | Cronjob Name |
+| `--environment` |  | string |  |  | Environment Name |
+| `--key` | `-k` | string |  | Yes | External secret key |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--reference` | `-r` | string |  |  | New reference to the secret in the secrets provider |
+| `--secret-manager-access-name` |  | string |  |  | New secret manager access name |
 
 ### `qovery cronjob list`
 
 List cronjobs
 
-```bash
+```text Usage
 qovery cronjob list [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--json` |  | bool |  | JSON output |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--json` |  | bool |  |  | JSON output |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
 
 ### `qovery cronjob redeploy`
 
 Redeploy a cronjob
 
-```bash
+```text Usage
 qovery cronjob redeploy [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--cronjob` | `-n` | string |  | Cronjob Name |
-| `--environment` |  | string |  | Environment Name |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--watch` | `-w` | bool |  | Watch cronjob status until it's ready or an error occurs |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--cronjob` | `-n` | string |  | Yes | Cronjob Name |
+| `--environment` |  | string |  |  | Environment Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--watch` | `-w` | bool |  |  | Watch cronjob status until it's ready or an error occurs |
 
 ### `qovery cronjob stop`
 
 Stop a cronjob
 
-```bash
+```text Usage
 qovery cronjob stop [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--cronjob` | `-n` | string |  | Cronjob Name |
-| `--cronjobs` |  | string |  | Cronjob Names (comma separated) (ex: --cronjobs "cron1,cron2") |
-| `--environment` |  | string |  | Environment Name |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--watch` | `-w` | bool |  | Watch cronjob status until it's ready or an error occurs |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--cronjob` | `-n` | string |  |  | Cronjob Name |
+| `--cronjobs` |  | string |  |  | Cronjob Names (comma separated) (ex: --cronjobs "cron1,cron2") |
+| `--environment` |  | string |  |  | Environment Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--watch` | `-w` | bool |  |  | Watch cronjob status until it's ready or an error occurs |
 
 ### `qovery cronjob update`
 
 Update a cronjob
 
-```bash
+```text Usage
 qovery cronjob update [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--branch` | `-b` | string |  | Cronjob Branch |
-| `--cronjob` | `-n` | string |  | Cronjob Name |
-| `--environment` |  | string |  | Environment Name |
-| `--image-name` |  | string |  | Cronjob Image Name |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--tag` | `-t` | string |  | Cronjob Tag |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--branch` | `-b` | string |  |  | Cronjob Branch |
+| `--cronjob` | `-n` | string |  |  | Cronjob Name |
+| `--environment` |  | string |  |  | Environment Name |
+| `--image-name` |  | string |  |  | Cronjob Image Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--tag` | `-t` | string |  |  | Cronjob Tag |
 {/* END GENERATED */}
 
 ## Related Commands

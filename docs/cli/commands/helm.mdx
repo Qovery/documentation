@@ -75,7 +75,7 @@ qovery helm cancel --helm "my-helm"
 
 ### Update Helm Chart
 
-Update a Helm chart's source configuration:
+Update a Helm chart's source configuration. In the CLI help of v1.180.0, `--chart_git_commit_branch` and `--values_override_git_commit_branch` are described as "helm chart version": they set the git branch of the chart and of the values override.
 
 ```bash
 qovery helm update --helm "my-helm" --chart_version "2.0.0"
@@ -136,7 +136,7 @@ Generated from `qovery helm --help` (CLI v1.180.0). Every command also accepts `
 
 Manage helms
 
-```bash
+```text Usage
 qovery helm [flags]
 qovery helm [command]
 ```
@@ -155,84 +155,84 @@ qovery helm [command]
 | `qovery helm stop` | Stop a helm |
 | `qovery helm update` | Update a helm |
 
-No flags other than `--help`.
+No command-specific flags.
 
 ### `qovery helm cancel`
 
 Cancel a helm deployment
 
-```bash
+```text Usage
 qovery helm cancel [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--helm` | `-n` | string |  | Helm Name |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--watch` | `-w` | bool |  | Watch cancel until it's done or an error occurs |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--helm` | `-n` | string |  | Yes | Helm Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--watch` | `-w` | bool |  |  | Watch cancel until it's done or an error occurs |
 
 ### `qovery helm clone`
 
 Clone a helm
 
-```bash
+```text Usage
 qovery helm clone [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--helm` | `-n` | string |  | Helm Name |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--target-environment` |  | string |  | Target Environment Name |
-| `--target-helm-name` |  | string |  | Target Helm Name |
-| `--target-project` |  | string |  | Target Project Name |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--helm` | `-n` | string |  | Yes | Helm Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--target-environment` |  | string |  |  | Target Environment Name |
+| `--target-helm-name` |  | string |  |  | Target Helm Name |
+| `--target-project` |  | string |  |  | Target Project Name |
 
 ### `qovery helm delete`
 
 Delete a helm
 
-```bash
+```text Usage
 qovery helm delete [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--helm` | `-n` | string |  | Helm Name |
-| `--helms` |  | string |  | Helm Names (comma separated) (ex: --helms "helm1,helm2") |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--watch` | `-w` | bool |  | Watch helm status until it's ready or an error occurs |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--helm` | `-n` | string |  |  | Helm Name |
+| `--helms` |  | string |  |  | Helm Names (comma separated) (ex: --helms "helm1,helm2") |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--watch` | `-w` | bool |  |  | Watch helm status until it's ready or an error occurs |
 
 ### `qovery helm deploy`
 
 Deploy a helm
 
-```bash
+```text Usage
 qovery helm deploy [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--chart_git_commit_id` |  | string |  | helm chart git commit id, or 'latest' for the newest commit of the branch |
-| `--chart_version` |  | string |  | helm chart version |
-| `--environment` |  | string |  | Environment Name |
-| `--helm` | `-n` | string |  | helm Name |
-| `--helms` |  | string |  | helm Names (comma separated) (ex: --helms "helm1,helm2") |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--values_override_git_commit_id` |  | string |  | helm values override git commit id |
-| `--watch` | `-w` | bool |  | Watch helm status until it's ready or an error occurs |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--chart_git_commit_id` |  | string |  |  | helm chart git commit id, or 'latest' for the newest commit of the branch |
+| `--chart_version` |  | string |  |  | helm chart version |
+| `--environment` |  | string |  |  | Environment Name |
+| `--helm` | `-n` | string |  |  | helm Name |
+| `--helms` |  | string |  |  | helm Names (comma separated) (ex: --helms "helm1,helm2") |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--values_override_git_commit_id` |  | string |  |  | helm values override git commit id |
+| `--watch` | `-w` | bool |  |  | Watch helm status until it's ready or an error occurs |
 
 ### `qovery helm domain`
 
 Manage helm domains
 
-```bash
+```text Usage
 qovery helm domain [flags]
 qovery helm domain [command]
 ```
@@ -244,81 +244,81 @@ qovery helm domain [command]
 | `qovery helm domain edit` | Edit helm custom domain |
 | `qovery helm domain list` | List helm domains |
 
-No flags other than `--help`.
+No command-specific flags.
 
 ### `qovery helm domain create`
 
 Create helm custom domain
 
-```bash
+```text Usage
 qovery helm domain create [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--do-not-generate-certificate` |  | bool |  | Do Not Generate Certificate |
-| `--domain` |  | string |  | Custom Domain &lt;subdomain.domain.tld&gt; |
-| `--environment` |  | string |  | Environment Name |
-| `--helm` | `-n` | string |  | helm Name |
-| `--is-behind-a-cdn` |  | bool |  | Custom Domain is behind a CDN |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--do-not-generate-certificate` |  | bool |  |  | Do Not Generate Certificate |
+| `--domain` |  | string |  | Yes | Custom Domain &lt;subdomain.domain.tld&gt; |
+| `--environment` |  | string |  |  | Environment Name |
+| `--helm` | `-n` | string |  | Yes | helm Name |
+| `--is-behind-a-cdn` |  | bool |  |  | Custom Domain is behind a CDN |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
 
 ### `qovery helm domain delete`
 
 Delete helm custom domain
 
-```bash
+```text Usage
 qovery helm domain delete [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--domain` |  | string |  | Custom Domain &lt;subdomain.domain.tld&gt; |
-| `--environment` |  | string |  | Environment Name |
-| `--helm` | `-n` | string |  | helm Name |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--domain` |  | string |  | Yes | Custom Domain &lt;subdomain.domain.tld&gt; |
+| `--environment` |  | string |  |  | Environment Name |
+| `--helm` | `-n` | string |  | Yes | helm Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
 
 ### `qovery helm domain edit`
 
 Edit helm custom domain
 
-```bash
+```text Usage
 qovery helm domain edit [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--do-not-generate-certificate` |  | bool |  | Do Not Generate Certificate |
-| `--domain` |  | string |  | Custom Domain &lt;subdomain.domain.tld&gt; |
-| `--environment` |  | string |  | Environment Name |
-| `--helm` | `-n` | string |  | helm Name |
-| `--is-behind-a-cdn` |  | bool |  | Custom Domain is behind a CDN |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--do-not-generate-certificate` |  | bool |  |  | Do Not Generate Certificate |
+| `--domain` |  | string |  | Yes | Custom Domain &lt;subdomain.domain.tld&gt; |
+| `--environment` |  | string |  |  | Environment Name |
+| `--helm` | `-n` | string |  | Yes | helm Name |
+| `--is-behind-a-cdn` |  | bool |  |  | Custom Domain is behind a CDN |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
 
 ### `qovery helm domain list`
 
 List helm domains
 
-```bash
+```text Usage
 qovery helm domain list [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--helm` | `-n` | string |  | helm Name |
-| `--json` |  | bool |  | JSON output |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--helm` | `-n` | string |  | Yes | helm Name |
+| `--json` |  | bool |  |  | JSON output |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
 
 ### `qovery helm env`
 
 Manage helm environment variables and secrets
 
-```bash
+```text Usage
 qovery helm env [flags]
 qovery helm env [command]
 ```
@@ -332,13 +332,13 @@ qovery helm env [command]
 | `qovery helm env override` | Manage helm environment variable and secret overrides |
 | `qovery helm env update` | Update helm environment variable or secret |
 
-No flags other than `--help`.
+No command-specific flags.
 
 ### `qovery helm env alias`
 
 Manage helm environment variable and secret aliases
 
-```bash
+```text Usage
 qovery helm env alias [flags]
 qovery helm env alias [command]
 ```
@@ -347,86 +347,86 @@ qovery helm env alias [command]
 |------------|-------------|
 | `qovery helm env alias create` | Create helm environment variable or secret alias |
 
-No flags other than `--help`.
+No command-specific flags.
 
 ### `qovery helm env alias create`
 
 Create helm environment variable or secret alias
 
-```bash
+```text Usage
 qovery helm env alias create [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--alias` |  | string |  | Environment variable or secret alias |
-| `--environment` |  | string |  | Environment Name |
-| `--helm` | `-n` | string |  | helm Name |
-| `--key` | `-k` | string |  | Environment variable or secret key |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--scope` |  | string | `"HELM"` | Scope of this alias &lt;PROJECT\|ENVIRONMENT\|HELM&gt; |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--alias` |  | string |  | Yes | Environment variable or secret alias |
+| `--environment` |  | string |  |  | Environment Name |
+| `--helm` | `-n` | string |  | Yes | helm Name |
+| `--key` | `-k` | string |  | Yes | Environment variable or secret key |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--scope` |  | string | `"HELM"` |  | Scope of this alias &lt;PROJECT\|ENVIRONMENT\|HELM&gt; |
 
 ### `qovery helm env create`
 
 Create helm environment variable or secret
 
-```bash
+```text Usage
 qovery helm env create [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--helm` | `-n` | string |  | helm Name |
-| `--key` | `-k` | string |  | Environment variable or secret key |
-| `--organization` |  | string |  | Organization Name |
-| `--override-if-exists` |  | bool |  | If the key already exists at a higher scope, create an override of it instead of failing |
-| `--project` |  | string |  | Project Name |
-| `--scope` |  | string | `"HELM"` | Scope of this env var &lt;PROJECT\|ENVIRONMENT\|HELM&gt; |
-| `--secret` |  | bool |  | This environment variable is a secret |
-| `--value` | `-v` | string |  | Environment variable or secret value |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--helm` | `-n` | string |  | Yes | helm Name |
+| `--key` | `-k` | string |  | Yes | Environment variable or secret key |
+| `--organization` |  | string |  |  | Organization Name |
+| `--override-if-exists` |  | bool |  |  | If the key already exists at a higher scope, create an override of it instead of failing |
+| `--project` |  | string |  |  | Project Name |
+| `--scope` |  | string | `"HELM"` |  | Scope of this env var &lt;PROJECT\|ENVIRONMENT\|HELM&gt; |
+| `--secret` |  | bool |  |  | This environment variable is a secret |
+| `--value` | `-v` | string |  | Yes | Environment variable or secret value |
 
 ### `qovery helm env delete`
 
 Delete helm environment variable or secret
 
-```bash
+```text Usage
 qovery helm env delete [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--helm` | `-n` | string |  | helm Name |
-| `--key` | `-k` | string |  | Environment variable or secret key |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--helm` | `-n` | string |  | Yes | helm Name |
+| `--key` | `-k` | string |  | Yes | Environment variable or secret key |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
 
 ### `qovery helm env list`
 
 List helm environment variables
 
-```bash
+```text Usage
 qovery helm env list [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--helm` | `-n` | string |  | helm Name |
-| `--json` |  | bool |  | JSON output |
-| `--organization` |  | string |  | Organization Name |
-| `--pretty-print` |  | bool |  | Pretty print output |
-| `--project` |  | string |  | Project Name |
-| `--show-values` |  | bool |  | Show env var values |
-| `--sort` |  | bool |  | Sort environment variables by key |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--helm` | `-n` | string |  | Yes | helm Name |
+| `--json` |  | bool |  |  | JSON output |
+| `--organization` |  | string |  |  | Organization Name |
+| `--pretty-print` |  | bool |  |  | Pretty print output |
+| `--project` |  | string |  |  | Project Name |
+| `--show-values` |  | bool |  |  | Show env var values |
+| `--sort` |  | bool |  |  | Sort environment variables by key |
 
 ### `qovery helm env override`
 
 Manage helm environment variable and secret overrides
 
-```bash
+```text Usage
 qovery helm env override [flags]
 qovery helm env override [command]
 ```
@@ -435,48 +435,48 @@ qovery helm env override [command]
 |------------|-------------|
 | `qovery helm env override create` | Override helm environment variable or secret |
 
-No flags other than `--help`.
+No command-specific flags.
 
 ### `qovery helm env override create`
 
 Override helm environment variable or secret
 
-```bash
+```text Usage
 qovery helm env override create [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--helm` | `-n` | string |  | helm Name |
-| `--key` | `-k` | string |  | Environment variable or secret key |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--scope` |  | string | `"HELM"` | Scope of this alias &lt;PROJECT\|ENVIRONMENT\|HELM&gt; |
-| `--value` |  | string |  | Environment variable or secret value |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--helm` | `-n` | string |  | Yes | helm Name |
+| `--key` | `-k` | string |  | Yes | Environment variable or secret key |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--scope` |  | string | `"HELM"` |  | Scope of this alias &lt;PROJECT\|ENVIRONMENT\|HELM&gt; |
+| `--value` |  | string |  |  | Environment variable or secret value |
 
 ### `qovery helm env update`
 
 Update helm environment variable or secret
 
-```bash
+```text Usage
 qovery helm env update [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--helm` | `-n` | string |  | helm Name |
-| `--key` | `-k` | string |  | Environment variable or secret key |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--value` | `-v` | string |  | Environment variable or secret value |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--helm` | `-n` | string |  | Yes | helm Name |
+| `--key` | `-k` | string |  | Yes | Environment variable or secret key |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--value` | `-v` | string |  | Yes | Environment variable or secret value |
 
 ### `qovery helm external-secret`
 
 Manage helm external secrets
 
-```bash
+```text Usage
 qovery helm external-secret [flags]
 qovery helm external-secret [command]
 ```
@@ -487,128 +487,128 @@ qovery helm external-secret [command]
 | `qovery helm external-secret delete` | Delete helm external secret |
 | `qovery helm external-secret update` | Update helm external secret |
 
-No flags other than `--help`.
+No command-specific flags.
 
 ### `qovery helm external-secret create`
 
 Create helm external secret
 
-```bash
+```text Usage
 qovery helm external-secret create [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--helm` | `-n` | string |  | Helm Name |
-| `--key` | `-k` | string |  | External secret key |
-| `--mount-path` |  | string |  | Path where the secret will be mounted as a file |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--reference` | `-r` | string |  | Reference to the secret in the secrets provider |
-| `--scope` |  | string | `"HELM"` | Scope of this external secret &lt;PROJECT\|ENVIRONMENT\|HELM&gt; |
-| `--secret-manager-access-name` |  | string |  | Secret manager access name |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--helm` | `-n` | string |  | Yes | Helm Name |
+| `--key` | `-k` | string |  | Yes | External secret key |
+| `--mount-path` |  | string |  |  | Path where the secret will be mounted as a file |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--reference` | `-r` | string |  | Yes | Reference to the secret in the secrets provider |
+| `--scope` |  | string | `"HELM"` |  | Scope of this external secret &lt;PROJECT\|ENVIRONMENT\|HELM&gt; |
+| `--secret-manager-access-name` |  | string |  | Yes | Secret manager access name |
 
 ### `qovery helm external-secret delete`
 
 Delete helm external secret
 
-```bash
+```text Usage
 qovery helm external-secret delete [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--helm` | `-n` | string |  | Helm Name |
-| `--key` | `-k` | string |  | External secret key |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--helm` | `-n` | string |  | Yes | Helm Name |
+| `--key` | `-k` | string |  | Yes | External secret key |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
 
 ### `qovery helm external-secret update`
 
 Update helm external secret
 
-```bash
+```text Usage
 qovery helm external-secret update [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--helm` | `-n` | string |  | Helm Name |
-| `--key` | `-k` | string |  | External secret key |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--reference` | `-r` | string |  | New reference to the secret in the secrets provider |
-| `--secret-manager-access-name` |  | string |  | New secret manager access name |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--helm` | `-n` | string |  | Yes | Helm Name |
+| `--key` | `-k` | string |  | Yes | External secret key |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--reference` | `-r` | string |  |  | New reference to the secret in the secrets provider |
+| `--secret-manager-access-name` |  | string |  |  | New secret manager access name |
 
 ### `qovery helm list`
 
 List helms
 
-```bash
+```text Usage
 qovery helm list [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--json` |  | bool |  | JSON output |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--json` |  | bool |  |  | JSON output |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
 
 ### `qovery helm redeploy`
 
 Redeploy a helm
 
-```bash
+```text Usage
 qovery helm redeploy [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--helm` | `-n` | string |  | Helm Name |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--watch` | `-w` | bool |  | Watch helm status until it's ready or an error occurs |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--helm` | `-n` | string |  | Yes | Helm Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--watch` | `-w` | bool |  |  | Watch helm status until it's ready or an error occurs |
 
 ### `qovery helm stop`
 
 Stop a helm
 
-```bash
+```text Usage
 qovery helm stop [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--environment` |  | string |  | Environment Name |
-| `--helm` | `-n` | string |  | Helm Name |
-| `--helms` |  | string |  | Helm Names (comma separated) (ex: --helms "helm1,helm2") |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--watch` | `-w` | bool |  | Watch helm status until it's ready or an error occurs |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--helm` | `-n` | string |  |  | Helm Name |
+| `--helms` |  | string |  |  | Helm Names (comma separated) (ex: --helms "helm1,helm2") |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--watch` | `-w` | bool |  |  | Watch helm status until it's ready or an error occurs |
 
 ### `qovery helm update`
 
 Update a helm
 
-```bash
+```text Usage
 qovery helm update [flags]
 ```
 
-| Flag | Short | Type | Default | Description |
-|------|-------|------|---------|-------------|
-| `--chart_git_commit_branch` |  | string |  | helm chart version |
-| `--chart_name` |  | string |  | helm chart name |
-| `--chart_version` |  | string |  | helm chart version |
-| `--environment` |  | string |  | Environment Name |
-| `--helm` | `-n` | string |  | helm Name |
-| `--organization` |  | string |  | Organization Name |
-| `--project` |  | string |  | Project Name |
-| `--values_override_git_commit_branch` |  | string |  | helm chart version |
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--chart_git_commit_branch` |  | string |  |  | helm chart version |
+| `--chart_name` |  | string |  |  | helm chart name |
+| `--chart_version` |  | string |  |  | helm chart version |
+| `--environment` |  | string |  |  | Environment Name |
+| `--helm` | `-n` | string |  | Yes | helm Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--values_override_git_commit_branch` |  | string |  |  | helm chart version |
 {/* END GENERATED */}
 
 ## Related Commands

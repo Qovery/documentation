@@ -5,6 +5,8 @@ description: "Manage Qovery resources as code with the Qovery Terraform provider
 
 The Qovery Terraform provider manages Qovery resources from Terraform: organization settings, cloud credentials, clusters, projects, environments, services (applications, containers, jobs, Helm charts, Terraform services and databases) and their variables. You describe the resources in HCL, review the changes with `terraform plan`, and apply them with `terraform apply`.
 
+Starting a new project? [Start a new project with Terraform or OpenTofu](/terraform-provider/from-scratch) goes from an empty cloud account to an app and a database running in staging and production.
+
 This page covers the setup. The reference of every resource and data source is on the [Terraform Registry](https://registry.terraform.io/providers/qovery/qovery/latest/docs).
 
 <Info>
@@ -14,6 +16,7 @@ Upgrading from an earlier version? Read the [upgrade guide](https://registry.ter
 ## Requirements
 
 - Terraform. The provider is tested against Terraform 1.15. Earlier versions are expected to work but are not tested.
+- Or OpenTofu. The provider is also published on the [OpenTofu Registry](https://search.opentofu.org/provider/qovery/qovery/latest) under the same address, `qovery/qovery`: the configuration is the same, run `tofu` instead of `terraform`.
 - A Qovery API token.
 
 ## Install the provider
@@ -114,6 +117,9 @@ Destroying a `qovery_deployment`, or removing it from the configuration, deletes
 ## Next steps
 
 <CardGroup cols={3}>
+  <Card title="Start a New Project" icon="flag-checkered" href="/terraform-provider/from-scratch">
+    From an empty AWS account to an app and a database in staging and production
+  </Card>
   <Card title="Basic Application" icon="rocket" href="/terraform-provider/basic-application">
     Deploy an application from a git repository
   </Card>

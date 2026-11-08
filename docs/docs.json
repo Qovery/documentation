@@ -504,6 +504,7 @@
             "group": "Getting Started",
             "pages": [
               "terraform-provider/overview",
+              "terraform-provider/from-scratch",
               "terraform-provider/exporter"
             ]
           },

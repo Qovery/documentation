@@ -35,6 +35,8 @@ Qovery pulls a pre-built container image from your configured registry and deplo
 
 ## Creating an Application
 
+<Tabs>
+  <Tab title="Console">
 <Steps>
   <Step title="Select Source">
     Choose **Git Repository** or **Container Registry** as your deployment source
@@ -83,6 +85,105 @@ Qovery pulls a pre-built container image from your configured registry and deplo
     - **Create and Deploy**: Save and immediately deploy
   </Step>
 </Steps>
+  </Tab>
+
+  <Tab title="CLI and API">
+    You need the [Qovery CLI](/cli/overview), signed in with `qovery auth`. The `qovery api` command sends authenticated requests to the [Qovery API](/api-reference/introduction). Service commands use the organization, project and environment of your CLI context (`qovery context set`). You can also pass `--organization`, `--project` and `--environment`.
+
+    **From a Git repository**, create the application with `POST /environment/{environmentId}/application`. `name`, `git_repository` (with `url` and `provider`) and `healthchecks` are required. Send `"healthchecks": {}` to create it without probes:
+
+    ```bash
+    qovery api environment/<environmentId>/application --input - <<'JSON'
+    {
+      "name": "my-app",
+      "git_repository": {
+        "url": "https://github.com/<owner>/<repo>.git",
+        "branch": "main",
+        "provider": "GITHUB"
+      },
+      "build_mode": "DOCKER",
+      "dockerfile_path": "Dockerfile",
+      "cpu": 500,
+      "memory": 512,
+      "min_running_instances": 1,
+      "max_running_instances": 1,
+      "ports": [
+        { "internal_port": 8080, "publicly_accessible": true, "protocol": "HTTP" }
+      ],
+      "healthchecks": {}
+    }
+    JSON
+    ```
+
+    `provider` is `GITHUB`, `GITLAB` or `BITBUCKET`. For a private repository, add `git_token_id` to `git_repository` (see [Git Repository Access](/configuration/organization/git-repository-access)).
+
+    Then deploy it:
+
+    ```bash
+    qovery application deploy -n my-app --watch
+    ```
+
+    **From a container registry**, use `qovery container create`. Get the registry ID with `qovery container registry list`. `--port` exposes the port publicly:
+
+    ```bash
+    qovery container create \
+      -n my-app \
+      --registry <registryId> \
+      --image-name <imageName> \
+      --tag <tag> \
+      --port 8080
+
+    qovery container deploy -n my-app --watch
+    ```
+  </Tab>
+
+  <Tab title="Terraform">
+    Use the [`qovery_application`](https://registry.terraform.io/providers/Qovery/qovery/latest/docs/resources/application) resource for a Git repository, or [`qovery_container`](https://registry.terraform.io/providers/Qovery/qovery/latest/docs/resources/container) for a container registry image. Deploy the environment with [`qovery_deployment`](https://registry.terraform.io/providers/Qovery/qovery/latest/docs/resources/deployment):
+
+    ```hcl
+    resource "qovery_application" "my_app" {
+      environment_id = "<environmentId>"
+      name           = "my-app"
+
+      git_repository = {
+        url    = "https://github.com/<owner>/<repo>.git"
+        branch = "main"
+      }
+      dockerfile_path = "Dockerfile"
+
+      ports = [
+        {
+          internal_port       = 8080
+          external_port       = 443
+          publicly_accessible = true
+        }
+      ]
+
+      healthchecks = {}
+    }
+
+    resource "qovery_deployment" "my_deployment" {
+      environment_id = "<environmentId>"
+      desired_state  = "RUNNING"
+      depends_on     = [qovery_application.my_app]
+    }
+    ```
+
+    Run `terraform apply`. See [Terraform examples](/terraform-provider/basic-application) for a complete setup.
+  </Tab>
+</Tabs>
+
+### Check it worked
+
+List the applications of the environment:
+
+```bash
+qovery application list --environment <environmentName>
+```
+
+Your application shows the status `DEPLOYED` once the deployment ends. A status that ends with `ERROR`, such as `BUILD_ERROR` or `DEPLOYMENT_ERROR`, means the deployment failed: see [Deployment Logs](/configuration/deployment/logs). For a container image, use `qovery container list`.
+
+With the API, `GET /application/{applicationId}/status` returns the same value in `state`.
 
 ## Configuration
 
@@ -800,6 +901,8 @@ Every publicly accessible application receives an automatic domain with TLS cert
 
 Add your own custom domain to your application:
 
+<Tabs>
+  <Tab title="Console">
 <Steps>
   <Step title="Add Domain">
     Navigate to application settings → Domains → Add Domain
@@ -816,6 +919,39 @@ Add your own custom domain to your application:
     Qovery automatically validates DNS configuration and provisions SSL/TLS certificate
   </Step>
 </Steps>
+  </Tab>
+
+  <Tab title="CLI and API">
+    Add the domain with the CLI. Qovery generates a certificate unless you pass `--do-not-generate-certificate`. Pass `--is-behind-a-cdn` if the domain is behind a CDN:
+
+    ```bash
+    qovery application domain create -n my-app --domain app.example.com
+    ```
+
+    With the API, call `POST /application/{applicationId}/customDomain`. `domain` and `generate_certificate` are required:
+
+    ```bash
+    qovery api application/<applicationId>/customDomain \
+      --field domain=app.example.com \
+      --field generate_certificate=true
+    ```
+
+    Run `qovery application domain list -n my-app` to see the domain and its validation domain.
+  </Tab>
+
+  <Tab title="Terraform">
+    Add the domain to the `custom_domains` attribute of your `qovery_application` resource:
+
+    ```hcl
+    custom_domains = [
+      {
+        domain               = "app.example.com"
+        generate_certificate = true
+      }
+    ]
+    ```
+  </Tab>
+</Tabs>
 
 ### CDN Proxy Mode
 
@@ -856,6 +992,8 @@ Duplicate an application configuration to the same or different environment. Clo
   prevent conflicts.
 </Note>
 
+To clone from the CLI, run `qovery application clone -n my-app --target-environment <environmentName>`. You can also pass `--target-project` and `--target-application-name`.
+
 ### Build Settings
 
 Configure how your application is built from **Settings** > **Build settings**:
@@ -885,6 +1023,8 @@ To delete an application:
 1. Navigate to application settings
 2. Click **Delete Application**
 3. Confirm deletion
+
+From the CLI, run `qovery application delete -n my-app`. With the API, call `DELETE /application/{applicationId}`.
 
 <Warning>
   Deleting an application is permanent and cannot be undone. All associated data

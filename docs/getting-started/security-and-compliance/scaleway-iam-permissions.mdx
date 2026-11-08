@@ -15,7 +15,7 @@ The Scaleway credential setup involves:
 
 1. **Creating an IAM Application** — A dedicated identity for Qovery (`qovery-manager`)
 2. **Generating an API Key** — Scoped to your project for authentication
-3. **Creating a Policy** — Five permission sets granting access to the required services
+3. **Creating a Policy** — Five permission sets granting access to the required services, plus read-only access to IAM
 4. **Attaching the Policy** — Binding permissions to the application
 
 You can review the full setup process in the [Scaleway installation guide](/getting-started/installation/scaleway).
@@ -24,7 +24,7 @@ You can review the full setup process in the [Scaleway installation guide](/gett
 
 ## Required Permission Sets
 
-Qovery requires **five core IAM permission sets**, each granting full access to a specific Scaleway product. Some optional features require additional permissions — see [Optional Permissions](#optional-permissions) below. Below is a detailed explanation of what Qovery does with each.
+Qovery requires **five core IAM permission sets**, each granting full access to a specific Scaleway product, and the **IAMReadOnly** permission set, which grants read-only access to IAM. Some optional features require additional permissions — see [Optional Permissions](#optional-permissions) below. Below is a detailed explanation of what Qovery does with each.
 
 ---
 
@@ -159,6 +159,22 @@ This permission set provides additional VPC-level controls beyond what Network S
 
 ---
 
+### IAM — Read Only (IAMReadOnly)
+
+This permission set gives read-only access to Scaleway **Identity and Access Management**. Qovery uses it to check the permissions of its own API key before deploying a cluster.
+
+| What Qovery does | Why |
+|---|---|
+| Reads the policies attached to its API key | Checks, before deploying a cluster, that the policies grant the permission sets required by the features enabled on the cluster (for example, **VPCGatewayFullAccess** when [Static IP for egress traffic](#vpcgatewayfullaccess--static-ip-for-egress-traffic) is enabled). A missing permission is reported when the deployment starts, instead of failing midway through the infrastructure provisioning |
+
+`IAMReadOnly` gives list and read access to the users, groups, applications, policies, and API keys of your Organization. It does not allow Qovery to create, modify, or delete any of them.
+
+<Info>
+  `IAMReadOnly` is an **Organization-level** permission set, while the other permission sets are scoped to your project. When creating the policy, add it in a separate rule and select it under **Organization management** instead of **Resource management**.
+</Info>
+
+---
+
 ## Optional Permissions
 
 ### VPCGatewayFullAccess — Static IP for Egress Traffic
@@ -226,7 +242,7 @@ Here's a summary of all resources Qovery provisions per cluster:
   </Accordion>
 
   <Accordion title="Is the API key scoped to a single project?">
-    Yes. When generating the API key, you select an **Object Storage preferred Project**. The API key and its associated policy operate within the scope of your Scaleway project and organization, not across all projects.
+    Yes. When generating the API key, you select an **Object Storage preferred Project**. The API key and its associated policy operate within the scope of your Scaleway project and organization, not across all projects. The only exception is **IAMReadOnly**: IAM is an Organization-level feature, so this read-only permission set applies to the whole Organization.
   </Accordion>
 
   <Accordion title="How can I audit what Qovery does with these permissions?">

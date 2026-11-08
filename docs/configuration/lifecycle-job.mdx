@@ -175,12 +175,14 @@ QOVERY_OUTPUT_JOB_<JOB_ID>_<VARIABLE_NAME>
 
 Example: If your job outputs `API_KEY`, it will be available as:
 ```
-QOVERY_OUTPUT_JOB_a1b2c3d4_API_KEY
+QOVERY_OUTPUT_JOB_ZA1B2C3D4_API_KEY
 ```
 
 ### Using Output Variables
 
 After the Lifecycle Job completes, output variables are automatically available to all services in the environment via environment variables.
+
+Qovery also creates an environment alias on each output, under the output name: `API_KEY` points to `QOVERY_OUTPUT_JOB_ZA1B2C3D4_API_KEY`. When a variable named `API_KEY` already exists in the environment or in one of its services, the output gets no alias. See [Aliases Qovery creates for outputs](/configuration/environment-variables#aliases-qovery-creates-for-outputs).
 
 ## Force Run
 

@@ -23,6 +23,7 @@ tags:
   - name: Agentic Workflows
   - name: Application
   - name: Application Actions
+  - name: Application Build Analysis
   - name: Application Configuration
   - name: Application Database
   - name: Application Deployment Restriction
@@ -49,6 +50,7 @@ tags:
   - name: Deployment Stage Main Calls
   - name: Job
   - name: Job Actions
+  - name: Job Build Analysis
   - name: Job Configuration
   - name: Job Database
   - name: Job Deployment Restriction
@@ -197,6 +199,7 @@ x-tagGroups:
       - Application Logs
       - Application Deployment Restriction
       - Application Deployment History
+      - Application Build Analysis
       - Application Environment Variable
       - Application Secret
       - Application Annotations Group
@@ -231,6 +234,7 @@ x-tagGroups:
       - Job Custom Domain
       - Job Deployment Restriction
       - Job Deployment History
+      - Job Build Analysis
       - Job Environment Variable
       - Job Secret
       - Job Annotations Group
@@ -414,6 +418,35 @@ paths:
       responses:
         '204':
           $ref: '#/components/responses/204-deletion'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+  '/organization/{organizationId}/aiFeatures':
+    put:
+      summary: Edit the organization's AI features opt-in
+      description: To edit the AI features opt-in you must have the admin permission.
+      operationId: editOrganizationAiFeatures
+      parameters:
+        - $ref: '#/components/parameters/organizationId'
+      tags:
+        - Organization Main Calls
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrganizationAiFeaturesRequest'
+      responses:
+        '200':
+          description: Edit the organization's AI features opt-in
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Organization'
+        '400':
+          $ref: '#/components/responses/400'
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -1622,22 +1655,22 @@ paths:
     post:
       summary: Create a self-managed cluster run by the Qovery Operator
       description: >-
-        Creates a self-managed cluster on an existing AWS cloud credential of the organization. The
-        organization's plan must include self-managed clusters, otherwise the call answers 403. The
-        credential only needs ECR permissions for the cluster itself, including
-        `ecr:DescribeRepositories` in `us-east-1`, which Qovery calls to check the credential
-        whatever the cluster region; features that call other AWS services with the credential,
-        such as managed databases or Terraform services using the cluster credentials, need more.
+        Creates a self-managed cluster on an existing AWS, GCP or Scaleway cloud credential of the
+        organization. The organization's plan must include self-managed clusters, otherwise the call
+        answers 403. On AWS the credential only needs ECR permissions for the cluster itself,
+        including `ecr:DescribeRepositories` in `us-east-1`, which Qovery calls to check the
+        credential whatever the cluster region; features that call other AWS services with the
+        credential, such as managed databases or Terraform services using the cluster credentials,
+        need more.
         Without `platform.templateKey` and `platform.templateVersion`, Qovery selects its
         self-managed platform template release and the response returns it: `"platform": {}` gives
         that release with its default configuration. Without `clusterInputs`, the cluster has no
-        cluster inputs. The credential,
-        including its ECR access in the cluster region, and the platform
-        configuration are checked before anything is created. One transaction then writes the
-        cluster, its Qovery DNS and build providers, its default ECR registry derived from the
-        credential, its initial deployment status, its platform configuration and its Qovery
-        Operator enrollment. Only the AWS provider is supported. Install the Operator next with the
-        cluster's Operator bootstrap.
+        cluster inputs. The credential, including its registry access in the cluster region, and
+        the platform configuration are checked before anything is created. One transaction then
+        writes the cluster, its Qovery DNS and build providers, its default registry derived from
+        the credential (ECR on AWS, Artifact Registry on GCP, Scaleway Container Registry on
+        Scaleway), its initial deployment status, its platform configuration and its Qovery
+        Operator enrollment. Install the Operator next with the cluster's Operator bootstrap.
       operationId: createSelfManagedCluster
       parameters:
         - $ref: '#/components/parameters/organizationId'
@@ -1659,9 +1692,9 @@ paths:
         '400':
           description: >-
             Invalid body, including only one of `platform.templateKey` and
-            `platform.templateVersion`, provider other than AWS, unknown region, invalid name, cloud
-            credential of another provider, ECR refusing the credential, or invalid platform
-            configuration
+            `platform.templateVersion`, provider other than AWS, GCP or SCW, unknown region,
+            invalid name, cloud credential of another provider, the registry refusing the
+            credential, or invalid platform configuration
         '401':
           $ref: '#/components/responses/401'
         '403':
@@ -5400,8 +5433,12 @@ paths:
       summary: List the models of an LLM provider
       description: >-
         List the models the provider's stored credential can reach, fetched live from the provider.
-        CLAUDE lists Anthropic models; BEDROCK lists Anthropic inference profiles in us-east-1. The
-        credential is never returned. A USER provider can only be listed by its owner.
+        CLAUDE lists Anthropic models; BEDROCK lists Anthropic inference profiles in us-east-1;
+        ANTHROPIC_COMPATIBLE lists the models of its custom gateway, whose ids can be any string,
+        including namespaced ones such as `anthropic/claude-sonnet-4`. A model without a display
+        name is listed under its id, and one without a creation date has a null `created_at`.
+        Models are listed for a saved provider only, by its id. The credential is never returned. A
+        USER provider can only be listed by its owner.
       operationId: listLlmProviderModels
       parameters:
         - $ref: '#/components/parameters/llmProviderId'
@@ -5455,7 +5492,7 @@ paths:
       summary: Edit an LLM provider
       description: >-
         Replace an LLM provider. Sending a blank credential keeps the stored one; sending a nonblank
-        credential rotates it.
+        credential rotates it. An ANTHROPIC_COMPATIBLE provider must resend its `base_url`.
       operationId: editLlmProvider
       parameters:
         - $ref: '#/components/parameters/llmProviderId'
@@ -7928,16 +7965,13 @@ paths:
   '/environment/{environmentId}/terraformExport':
     get:
       summary: Export full environment and its resources into Terraform manifests
+      description: >-
+        Secret values are never included in the export. Service secrets are preserved as
+        empty input variables marked Redacted. Cloud, Git, registry and cluster credentials
+        must be supplied through input variables without defaults.
       operationId: exportEnvironmentConfigurationIntoTerraform
       parameters:
         - $ref: '#/components/parameters/environmentId'
-        - name: exportSecrets
-          in: query
-          description: export Secrets from configuration and include them into Terraform export
-          required: false
-          schema:
-            type: boolean
-            default: false
       tags:
         - Environment Export
       responses:
@@ -8434,6 +8468,66 @@ paths:
           $ref: '#/components/responses/403'
         '404':
           $ref: '#/components/responses/404'
+  '/application/{applicationId}/buildAnalysis':
+    get:
+      summary: Get the build analysis of an application
+      description: Returns the latest build of the service that can be analysed and its latest analysis, if any. Only one analysis is kept per service.
+      operationId: getApplicationBuildAnalysis
+      parameters:
+        - $ref: '#/components/parameters/applicationId'
+      tags:
+        - Application Build Analysis
+      responses:
+        '200':
+          description: Latest analysable build and latest analysis
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BuildAnalysisState'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+    post:
+      summary: Analyse the latest build of an application
+      description: |-
+        Starts an AI analysis of the latest build of the service. It runs in the background and reports its progress on the websocket route `/build/analysis`.
+        The result gives a confidence, the estimated time saved, what was reviewed, a summary, the improvements to make, a prompt for the customer's own AI agent, and a reworked Dockerfile when an improvement is a Dockerfile change.
+        Starting an analysis replaces the previous one. It never changes the build or the image.
+      operationId: startApplicationBuildAnalysis
+      parameters:
+        - $ref: '#/components/parameters/applicationId'
+      tags:
+        - Application Build Analysis
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BuildAnalysisStartRequest'
+      responses:
+        '202':
+          description: Build analysis started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BuildAnalysisResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/BuildAnalysisForbidden'
+        '404':
+          $ref: '#/components/responses/404'
+        '409':
+          $ref: '#/components/responses/BuildAnalysisConflict'
+        '422':
+          $ref: '#/components/responses/BuildAnalysisDockerfileUnavailable'
+        '503':
+          $ref: '#/components/responses/BuildAnalysisNotConfigured'
   '/application/{applicationId}/deploymentHistoryV2':
     get:
       summary: List application deploys
@@ -11976,6 +12070,66 @@ paths:
           $ref: '#/components/responses/403'
         '404':
           $ref: '#/components/responses/404'
+  '/job/{jobId}/buildAnalysis':
+    get:
+      summary: Get the build analysis of a job
+      description: Returns the latest build of the service that can be analysed and its latest analysis, if any. Only one analysis is kept per service.
+      operationId: getJobBuildAnalysis
+      parameters:
+        - $ref: '#/components/parameters/jobId'
+      tags:
+        - Job Build Analysis
+      responses:
+        '200':
+          description: Latest analysable build and latest analysis
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BuildAnalysisState'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/403'
+        '404':
+          $ref: '#/components/responses/404'
+    post:
+      summary: Analyse the latest build of a job
+      description: |-
+        Starts an AI analysis of the latest build of the service. It runs in the background and reports its progress on the websocket route `/build/analysis`.
+        The result gives a confidence, the estimated time saved, what was reviewed, a summary, the improvements to make, a prompt for the customer's own AI agent, and a reworked Dockerfile when an improvement is a Dockerfile change.
+        Starting an analysis replaces the previous one. It never changes the build or the image.
+      operationId: startJobBuildAnalysis
+      parameters:
+        - $ref: '#/components/parameters/jobId'
+      tags:
+        - Job Build Analysis
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BuildAnalysisStartRequest'
+      responses:
+        '202':
+          description: Build analysis started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BuildAnalysisResponse'
+        '400':
+          $ref: '#/components/responses/400'
+        '401':
+          $ref: '#/components/responses/401'
+        '403':
+          $ref: '#/components/responses/BuildAnalysisForbidden'
+        '404':
+          $ref: '#/components/responses/404'
+        '409':
+          $ref: '#/components/responses/BuildAnalysisConflict'
+        '422':
+          $ref: '#/components/responses/BuildAnalysisDockerfileUnavailable'
+        '503':
+          $ref: '#/components/responses/BuildAnalysisNotConfigured'
   '/job/{jobId}/deploymentHistoryV2':
     get:
       summary: List job deployments
@@ -12672,6 +12826,7 @@ paths:
       summary: Create a variable
       description: |
         - Create a variable with the scope defined in the request body.
+        - If a variable with the same key already exists, the call fails with 409. When that variable is at a higher scope (project or environment), set `override_if_exists` to true to create an override of it instead.
       operationId: createVariable
       tags:
         - Variable Main Calls
@@ -12695,6 +12850,12 @@ paths:
           $ref: '#/components/responses/403'
         '404':
           $ref: '#/components/responses/404'
+        '409':
+          description: A variable with the same key already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VariableConflictResponse'
   '/variable/{variableId}/alias':
     post:
       summary: Create a variable alias
@@ -16954,10 +17115,16 @@ components:
           default: false
         provider:
           type: string
+          description: >-
+            Cloud provider of the cluster. The cluster kind is EKS_SELF_MANAGED on AWS,
+            GKE_SELF_MANAGED on GCP and SCW_SELF_MANAGED on SCW.
           enum:
             - AWS
+            - GCP
+            - SCW
         region:
           type: string
+          description: Region of the provider known to Qovery; a zone such as `fr-par-1` on Scaleway.
           example: eu-west-3
         credentials:
           $ref: '#/components/schemas/SelfManagedClusterCredentials'
@@ -16991,15 +17158,15 @@ components:
     SelfManagedClusterCredentials:
       type: object
       description: >-
-        AWS cloud credential of the organization that the cluster runs on. This operation only takes
-        and returns its id.
+        Cloud credential of the organization that the cluster runs on, of the same provider as the
+        cluster. This operation only takes and returns its id.
       required:
         - id
       properties:
         id:
           type: string
           format: uuid
-          description: Id of an existing AWS cloud credential of the organization
+          description: Id of an existing cloud credential of the organization
     SelfManagedClusterResponse:
       type: object
       required:
@@ -17047,7 +17214,9 @@ components:
             $ref: '#/components/schemas/ClusterPlatformBindingLayerResponse'
     SelfManagedClusterRegistryResponse:
       type: object
-      description: Default ECR registry of the cluster, derived from its cloud credential and region.
+      description: >-
+        Default registry of the cluster, derived from its cloud credential and region: ECR on AWS,
+        Artifact Registry on GCP, Scaleway Container Registry on Scaleway.
       required:
         - id
         - kind
@@ -17867,6 +18036,14 @@ components:
           format: int64
           nullable: true
           description: 'Maximum length, only present for string fields'
+        format:
+          type: string
+          description: >-
+            Optional editor format, only present for string fields that declare one.
+            json selects a JSON editor; the value is still sent and stored as a string, and the API
+            rejects text that is not one valid JSON document. Unknown formats should fall back to
+            the ordinary string editor.
+          example: json
         min:
           type: integer
           format: int64
@@ -18487,11 +18664,13 @@ components:
           type: string
           enum:
             - Preferred
-            - Requirred
+            - Required
+            - None
           description: |
             Define how you want pods affinity to behave:
             * `Preferred` allows, but does not require, pods of a given service are not co-located (or co-hosted) on a single node
-            * `Requirred` ensures that the pods of a given service are not co-located (or co-hosted) on a single node (safer in term of availability but can be expensive depending on the number of replicas)
+            * `Required` ensures that the pods of a given service are not co-located (or co-hosted) on a single node (safer in term of availability but can be expensive depending on the number of replicas)
+            * `None` sets no anti-affinity, so pods of a given service can be packed on the same node
         deployment.topology_spread.zone:
           type: string
           enum:
@@ -18693,6 +18872,8 @@ components:
               $ref: '#/components/schemas/ReferenceObject'
             git_repository:
               $ref: '#/components/schemas/ApplicationGitRepository'
+            build_settings:
+              $ref: '#/components/schemas/BuildSettings'
             maximum_cpu:
               type: integer
               description: Maximum cpu that can be allocated to the application based on organization cluster configuration. unit is millicores (m). 1000m = 1 cpu
@@ -19638,6 +19819,178 @@ components:
         currency_code:
           type: string
           example: USD
+    BuildAnalysisStartRequest:
+      type: object
+      required:
+        - execution_id
+      properties:
+        execution_id:
+          type: string
+          description: Execution id of the build to analyse. It must be the latest build of the service, `latest_build_execution_id` in `BuildAnalysisState`.
+          example: 6e5c1d3a-6b6f-4c35-9a2f-8f1d2c3b4a5e-42
+    BuildAnalysisStatus:
+      type: string
+      description: PENDING is queued, COLLECTING reads the build logs and the cache history, ANALYSING waits for the model, then DONE or FAILED. The Dockerfile is resolved before the start answers 202.
+      enum:
+        - PENDING
+        - COLLECTING
+        - ANALYSING
+        - DONE
+        - FAILED
+    BuildAnalysisDockerfileSource:
+      type: string
+      description: Where the analysed Dockerfile came from. GIT is the repository at the build commit, INLINE the Dockerfile stored on the job.
+      enum:
+        - GIT
+        - INLINE
+    BuildAnalysisFailureCode:
+      type: string
+      description: MODEL_ERROR when the model call failed or returned an invalid result, TIMEOUT when the analysis took too long, INTERNAL_ERROR otherwise.
+      enum:
+        - MODEL_ERROR
+        - TIMEOUT
+        - INTERNAL_ERROR
+    BuildAnalysisConfidence:
+      type: string
+      description: How sure the analysis is that applying the improvements saves `estimated_time_saved`. HIGH when the build logs, the cache history or the build metrics show both the cause and the time it costs, MEDIUM when one of the two is inferred, LOW when only the Dockerfile suggests it or there is no time estimate. With no improvement, how sure the analysis is that the build has nothing left to gain.
+      enum:
+        - HIGH
+        - MEDIUM
+        - LOW
+    BuildAnalysisTimeSaved:
+      type: object
+      description: Seconds saved on each build, as a range from min_seconds to max_seconds. When nothing is saved, the field holding it is null instead.
+      required:
+        - min_seconds
+        - max_seconds
+      properties:
+        min_seconds:
+          type: integer
+          minimum: 0
+          example: 50
+        max_seconds:
+          type: integer
+          minimum: 0
+          example: 90
+    BuildAnalysisAsset:
+      type: string
+      description: What the analysis read. DOCKERFILE and BUILD_SETTINGS (build configuration and build argument names) are always read, DOCKERIGNORE when Qovery could check the repository for it, BUILD_LOGS when the build or earlier builds sharing its cache have logs.
+      enum:
+        - DOCKERFILE
+        - DOCKERIGNORE
+        - BUILD_LOGS
+        - BUILD_SETTINGS
+    BuildAnalysisResult:
+      type: object
+      required:
+        - confidence
+        - assets_reviewed
+        - summary
+        - improvements
+        - agent_prompt
+        - estimated_time_saved
+        - dockerfile
+        - dockerfile_rationale
+      properties:
+        confidence:
+          $ref: '#/components/schemas/BuildAnalysisConfidence'
+        estimated_time_saved:
+          type: object
+          allOf:
+            - $ref: '#/components/schemas/BuildAnalysisTimeSaved'
+          nullable: true
+          description: Build time saved on each build once every improvement is applied. Null when there is nothing to save or no timing to base it on. `confidence` applies to this range.
+        assets_reviewed:
+          type: array
+          items:
+            $ref: '#/components/schemas/BuildAnalysisAsset'
+        summary:
+          type: string
+          description: What slows the build and why, with the evidence from the build.
+        improvements:
+          type: array
+          description: Changes to make, one sentence each, ordered by impact on build time, highest first. Empty when the build is already efficient.
+          items:
+            type: string
+          example:
+            - Copy package.json and package-lock.json before the rest of the code, so the install stays cached until dependencies change
+        dockerfile:
+          type: string
+          nullable: true
+          description: Reworked Dockerfile to copy. Null when no improvement is a Dockerfile change, for example a variable value. Values hidden from the analysis appear as `<redacted>` and must be put back before use.
+        dockerfile_rationale:
+          type: string
+          nullable: true
+          description: Why the reworked Dockerfile is faster.
+        agent_prompt:
+          type: string
+          description: Prompt the customer pastes into their own AI agent to apply the improvements in their repository.
+    BuildAnalysisResponse:
+      type: object
+      required:
+        - service_id
+        - execution_id
+        - status
+        - stale
+        - dockerfile_source
+        - failure_code
+        - failure_reason
+        - result
+        - created_at
+        - updated_at
+      properties:
+        service_id:
+          type: string
+          format: uuid
+        execution_id:
+          type: string
+          description: Execution id of the analysed build.
+          example: 6e5c1d3a-6b6f-4c35-9a2f-8f1d2c3b4a5e-42
+        status:
+          $ref: '#/components/schemas/BuildAnalysisStatus'
+        stale:
+          type: boolean
+          description: True when the latest build of the service is not the analysed one. The analysis stays readable, but only the latest build can be analysed.
+        dockerfile_source:
+          $ref: '#/components/schemas/BuildAnalysisDockerfileSource'
+        failure_code:
+          type: string
+          allOf:
+            - $ref: '#/components/schemas/BuildAnalysisFailureCode'
+          nullable: true
+          description: Why the analysis failed, when `status` is FAILED.
+        failure_reason:
+          type: string
+          nullable: true
+          description: Human-readable detail of the failure, when `status` is FAILED.
+        result:
+          type: object
+          allOf:
+            - $ref: '#/components/schemas/BuildAnalysisResult'
+          nullable: true
+          description: Set when `status` is DONE.
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    BuildAnalysisState:
+      type: object
+      required:
+        - latest_build_execution_id
+        - analysis
+      properties:
+        latest_build_execution_id:
+          type: string
+          nullable: true
+          description: Execution id of the latest build of the service, the only build that can be analysed. Null when no deployment in the kept history ran a build.
+        analysis:
+          type: object
+          allOf:
+            - $ref: '#/components/schemas/BuildAnalysisResponse'
+          nullable: true
+          description: The latest analysis of the service. Null when none was run.
     BuildModeEnum:
       type: string
       enum:
@@ -19820,6 +20173,10 @@ components:
             is_demo:
               type: boolean
               description: specific flag to indicate that this cluster is a demo one
+            is_catalog_managed:
+              type: boolean
+              readOnly: true
+              description: True when the cluster's infrastructure is managed by the platform catalog, i.e. a self-managed (BYOK) cluster attached to the Qovery Operator and bound to a platform catalog profile. False otherwise.
             production:
               type: boolean
               description: specific flag to indicate that this cluster is a production one
@@ -20888,6 +21245,9 @@ components:
           type: string
           format: uuid
           nullable: true
+        slack_webhook_url:
+          type: string
+          nullable: true
     ClusterResponseList:
       type: object
       properties:
@@ -21811,11 +22171,13 @@ components:
           type: string
           enum:
             - Preferred
-            - Requirred
+            - Required
+            - None
           description: |
             Define how you want pods affinity to behave:
             * `Preferred` allows, but does not require, pods of a given service are not co-located (or co-hosted) on a single node
-            * `Requirred` ensures that the pods of a given service are not co-located (or co-hosted) on a single node (safer in term of availability but can be expensive depending on the number of replicas)
+            * `Required` ensures that the pods of a given service are not co-located (or co-hosted) on a single node (safer in term of availability but can be expensive depending on the number of replicas)
+            * `None` sets no anti-affinity, so pods of a given service can be packed on the same node
         deployment.topology_spread.zone:
           type: string
           enum:
@@ -22231,9 +22593,12 @@ components:
       enum:
         - CLAUDE
         - BEDROCK
+        - ANTHROPIC_COMPATIBLE
       description: >-
-        The LLM vendor this provider authenticates against. Matches the type an agentic workflow's
-        inline model already uses.
+        The LLM vendor this provider authenticates against. CLAUDE and BEDROCK match the type an
+        agentic workflow's inline model already uses. ANTHROPIC_COMPATIBLE is a custom
+        Anthropic-compatible API, such as a gateway, reached at its `base_url`; a workflow that uses
+        it runs as a CLAUDE model.
     LlmProviderScope:
       type: string
       enum:
@@ -22264,7 +22629,8 @@ components:
           description: >-
             The provider credential. Encrypted at rest and never returned by the API. Blank means
             unchanged: on create no credential is stored, on edit the stored one is kept. Sending a
-            nonblank value rotates it.
+            nonblank value rotates it. CLAUDE sends it to Anthropic as an API key. ANTHROPIC_COMPATIBLE
+            sends it to its gateway as a bearer token only, never as an API key.
         scope:
           allOf:
             - $ref: '#/components/schemas/LlmProviderScope'
@@ -22284,6 +22650,16 @@ components:
             calls, for example us-east-1 or eu-west-1; model availability differs by region. Only
             allowed for a BEDROCK provider. Any sent string, blank included, must match the pattern.
             Null keeps the engine default region.
+        base_url:
+          type: string
+          nullable: true
+          example: https://llm-gateway.example.com/anthropic
+          description: >-
+            Root of the custom Anthropic-compatible API. Required for an ANTHROPIC_COMPATIBLE
+            provider and refused with 400 for CLAUDE and BEDROCK. It is an absolute HTTP or HTTPS
+            URL with a host and an optional path prefix, and no user info, query or fragment. A
+            port, when given, must be between 1 and 65535. Like region, an edit replaces it: omitting
+            it or sending null is refused for ANTHROPIC_COMPATIBLE, so an edit must resend it.
     LlmProviderResponse:
       allOf:
         - $ref: '#/components/schemas/Base'
@@ -22319,6 +22695,12 @@ components:
               type: string
               nullable: true
               description: AWS region of a BEDROCK provider. Null when unset or for CLAUDE.
+            base_url:
+              type: string
+              nullable: true
+              description: >-
+                Root of the custom Anthropic-compatible API of an ANTHROPIC_COMPATIBLE provider.
+                Null for CLAUDE and BEDROCK.
     LlmProviderModelResponse:
       type: object
       required:
@@ -22327,7 +22709,9 @@ components:
       properties:
         id:
           type: string
-          description: Anthropic model id, or Bedrock inference profile id
+          description: >-
+            Anthropic model id, Bedrock inference profile id, or the model id of a custom
+            Anthropic-compatible gateway, which can be any string
           example: us.anthropic.claude-sonnet-4-20250514-v1:0
         display_name:
           type: string
@@ -24091,12 +24475,18 @@ components:
               type: string
               nullable: true
               description: |
-                Step of the deployment this line belongs to: REGISTRY_CREATE_REPOSITORY, GIT_CLONE,
-                PROVISION_BUILDER, BUILD, IMAGE_PUSH, CACHE_EXPORT, MIRROR_IMAGE, DEPLOYMENT,
-                ROUTER_DEPLOYMENT or EXECUTING. It matches a step's `step_name`, or the `name` of a
-                BUILD sub-step, in the deployment statuses. The phase (build or deploy) is `stage.step`.
-                Absent on older deployments and on pause, delete and restart. Clients must accept
-                values not listed here.
+                Step of the deployment this line belongs to:
+                - pre-check: CLOUD_CREDENTIALS_CHECK, GIT_CHECK (the `name` of a `pre_check_stage` step);
+                - stage queueing: QUEUEING;
+                - build and deploy: REGISTRY_CREATE_REPOSITORY, GIT_CLONE, PROVISION_BUILDER, BUILD,
+                  IMAGE_PUSH, CACHE_EXPORT, MIRROR_IMAGE, DEPLOYMENT, ROUTER_DEPLOYMENT or EXECUTING
+                  (a step's `step_name`, or the `name` of a BUILD sub-step, in the deployment statuses);
+                A line that belongs to no specific step (deployment start and end, environment-level
+                messages) carries the step of the line before it from the same source (the environment, or
+                the service), so lines grouped by step stay in time order. The phase (build or deploy) is
+                `stage.step`. Absent on older deployments, on infrastructure (cluster) and blueprint logs,
+                and on a line with no earlier step to follow: group those by `stage.step`. Clients must
+                accept values not listed here.
         error:
           type: object
           nullable: true
@@ -24294,6 +24684,40 @@ components:
               type: integer
               x-stoplight:
                 id: t6u28t17lth1l
+            steps:
+              description: |
+                One entry per check the pre-check ran, in order. Their time is already part of
+                `total_duration_sec`: never add it to a total.
+              type: array
+              items:
+                $ref: '#/components/schemas/PreCheckStepMetric'
+    PreCheckStepMetric:
+      type: object
+      required:
+        - name
+        - status
+        - duration_sec
+      properties:
+        name:
+          description: |
+            CLOUD_CREDENTIALS_CHECK (once per deployment) or GIT_CHECK (once per service built or
+            fetched from Git). A string, not an enum, so a new check never breaks a client: accept
+            values not listed here. Log lines of the check carry the same value in `step_name`.
+          type: string
+        status:
+          $ref: '#/components/schemas/StepMetricStatusEnum'
+        duration_sec:
+          description: The duration of the check in seconds, rounded down (0 means under a second).
+          type: integer
+        started_at:
+          description: The time at which the check started.
+          type: string
+          format: date-time
+          nullable: true
+        service_id:
+          description: The service whose Git configuration was checked. Only set on GIT_CHECK.
+          type: string
+          format: uuid
     EnvironmentStatusList:
       type: object
       properties:
@@ -24335,6 +24759,10 @@ components:
             owned_by:
               type: string
               description: 'Entity that created/own the variable (i.e: Qovery, Doppler)'
+            is_created_by_qovery:
+              type: boolean
+              readOnly: true
+              description: True when Qovery created the variable on its own, such as the alias it adds for each output of a job, Terraform service or blueprint. False for variables a user created and for built-in variables, which `variable_type` already identifies. `owned_by` does not tell these apart. It stays true after a user edits the variable. Clients that sync variables, such as the Terraform provider, can leave these variables out.
     EnvironmentVariableAlias:
       type: object
       required:
@@ -24751,6 +25179,15 @@ components:
           $ref: '#/components/schemas/Probe'
         liveness_probe:
           $ref: '#/components/schemas/Probe'
+        startup_probe:
+          allOf:
+            - $ref: '#/components/schemas/Probe'
+          nullable: true
+          description: >-
+            Optional probe checking that the container has started. Kubernetes runs the
+            readiness and liveness probes only once it succeeds, so a slow start does not
+            trip the liveness probe. Omitted or null means no startup probe. Like the other
+            probes, an edit that leaves it out removes it.
     InviteMember:
       allOf:
         - $ref: '#/components/schemas/Base'
@@ -26160,6 +26597,12 @@ components:
             has_enterprise_connection:
               type: boolean
               description: Indicates if the organization uses SAML or OIDC
+            ai_features_enabled_by_default:
+              type: boolean
+              description: Initial value of `ai_features_enabled`, fixed at creation.
+            ai_features_enabled:
+              type: boolean
+              description: Whether the organization opted in to AI features (DevOps Copilot, build analysis). Starts at `ai_features_enabled_by_default`.
         - type: object
           properties:
             organization_plan:
@@ -26560,6 +27003,14 @@ components:
         - ENV_CREATOR
         - ADMIN
       example: VIEWER
+    OrganizationAiFeaturesRequest:
+      type: object
+      required:
+        - enabled
+      properties:
+        enabled:
+          type: boolean
+          description: Whether the organization opts in to AI features
     OrganizationEditRequest:
       type: object
       required:
@@ -27671,6 +28122,10 @@ components:
             owned_by:
               type: string
               description: 'Entity that created/own the variable (i.e: Qovery, Doppler)'
+            is_created_by_qovery:
+              type: boolean
+              readOnly: true
+              description: True when Qovery created the variable on its own, such as the alias it adds for each output of a job, Terraform service or blueprint. False for variables a user created and for built-in variables, which `variable_type` already identifies. `owned_by` does not tell these apart. It stays true after a user edits the variable. Clients that sync variables, such as the Terraform provider, can leave these variables out.
             description:
               type: string
               x-stoplight:
@@ -28288,6 +28743,85 @@ components:
           type: string
           format: uuid
           nullable: true
+        override_if_exists:
+          type: boolean
+          nullable: true
+          default: false
+          description: 'If true and a variable with the same key already exists at a higher scope (project or environment), an override of that variable is created instead of failing with 409. The override follows the usual rules: same secret kind, target must be a value or file variable, strictly lower scope. Defaults to false.'
+        json_target_key:
+          type: string
+          nullable: true
+          minLength: 1
+          maxLength: 256
+          example: accounts.0.password
+          description: >-
+            Optional JSON member/index path, only supported for `EXTERNAL_SECRET` variables (not external
+            secret files). Use dots for nested members and numeric indexes for arrays, for example
+            `accounts.0.password`. Escape literal dots with `\.` and backslashes with `\\`; other query
+            characters are treated literally. Members must be non-empty, with no leading or trailing
+            whitespace, control characters, or unescaped trailing backslash. Omit or set to null to read the
+            whole secret.
+    VariableConflictResponse:
+      type: object
+      description: Problem details returned when a variable with the same key already exists
+      required:
+        - status
+        - detail
+      properties:
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type: integer
+        detail:
+          type: string
+          description: Says which scope holds the existing variable
+        instance:
+          type: string
+        existing_variable:
+          $ref: '#/components/schemas/ExistingVariableResponse'
+    ExistingVariableResponse:
+      type: object
+      description: The variable that blocks the creation. Its value is never returned.
+      nullable: true
+      required:
+        - id
+        - key
+        - scope
+        - variable_type
+        - is_secret
+      properties:
+        id:
+          type: string
+          format: uuid
+        key:
+          type: string
+        scope:
+          $ref: '#/components/schemas/APIVariableScopeEnum'
+        organization_id:
+          type: string
+          format: uuid
+          nullable: true
+        project_id:
+          type: string
+          format: uuid
+          nullable: true
+        environment_id:
+          type: string
+          format: uuid
+          nullable: true
+        service_id:
+          type: string
+          format: uuid
+          nullable: true
+        variable_type:
+          $ref: '#/components/schemas/APIVariableTypeEnum'
+        is_secret:
+          type: boolean
+        mount_path:
+          type: string
+          nullable: true
     VariableEditRequest:
       type: object
       required:
@@ -28314,6 +28848,19 @@ components:
           type: string
           format: uuid
           nullable: true
+        json_target_key:
+          type: string
+          nullable: true
+          minLength: 1
+          maxLength: 256
+          example: accounts.0.password
+          description: >-
+            Optional JSON member/index path, only supported for `EXTERNAL_SECRET` variables (not external
+            secret files). Use dots for nested members and numeric indexes for arrays, for example
+            `accounts.0.password`. Escape literal dots with `\.` and backslashes with `\\`; other query
+            characters are treated literally. Members must be non-empty, with no leading or trailing
+            whitespace, control characters, or unescaped trailing backslash. Omit or set to null to clear JSON
+            selection and read the whole secret. Send the current selector on unrelated edits to preserve it.
     VariableResponse:
       allOf:
         - $ref: '#/components/schemas/Base'
@@ -28353,6 +28900,10 @@ components:
             owned_by:
               type: string
               description: 'Entity that created/own the variable (i.e: Qovery, Doppler)'
+            is_created_by_qovery:
+              type: boolean
+              readOnly: true
+              description: True when Qovery created the variable on its own, such as the alias it adds for each output of a job, Terraform service or blueprint. False for variables a user created and for built-in variables, which `variable_type` already identifies. `owned_by` does not tell these apart. It stays true after a user edits the variable. Clients that sync variables, such as the Terraform provider, can leave these variables out.
             is_secret:
               type: boolean
             description:
@@ -28367,6 +28918,19 @@ components:
               type: string
               format: uuid
               nullable: true
+            json_target_key:
+              type: string
+              nullable: true
+              minLength: 1
+              maxLength: 256
+              example: accounts.0.password
+              description: >-
+                Optional JSON member/index path, only supported for `EXTERNAL_SECRET` variables (not external
+                secret files). Use dots for nested members and numeric indexes for arrays, for example
+                `accounts.0.password`. Escape literal dots with `\.` and backslashes with `\\`; other query
+                characters are treated literally. Members must be non-empty, with no leading or trailing
+                whitespace, control characters, or unescaped trailing backslash. Null or absent means that no
+                JSON selection is configured.
     VariableResponseList:
       type: object
       properties:
@@ -28758,6 +29322,8 @@ components:
           properties:
             environment:
               $ref: '#/components/schemas/ReferenceObject'
+            build_settings:
+              $ref: '#/components/schemas/BuildSettings'
             maximum_cpu:
               type: integer
               description: Maximum cpu that can be allocated to the job based on organization cluster configuration. unit is millicores (m). 1000m = 1 cpu
@@ -30824,6 +31390,8 @@ components:
               type: boolean
             build_settings_editable:
               type: boolean
+            build_settings:
+              $ref: '#/components/schemas/BuildSettings'
             auto_deploy_config:
               $ref: "#/components/schemas/TerraformAutoDeployConfig"
             terraform_files_source:
@@ -32878,6 +33446,9 @@ components:
         require_wide_access_to_deploy:
           type: boolean
           default: false
+        slack_webhook_url:
+          type: string
+          nullable: true
 
     ClusterEnvironmentResponseList:
       type: object
@@ -33405,7 +33976,8 @@ components:
           description: >-
             An existing LLM provider to take the credential from, instead of `api_key`. The two are
             mutually exclusive: a request setting both is rejected. The provider must belong to the
-            workflow's organization, be one the caller may use, and match `type`.
+            workflow's organization, be one the caller may use, and match `type`. A provider of type
+            ANTHROPIC_COMPATIBLE matches a workflow `type` of CLAUDE.
     AgenticWorkflowModelResponse:
       type: object
       required:
@@ -33550,6 +34122,14 @@ components:
       description: Resource not found
     204-deletion:
       description: The resource was deleted successfully
+    BuildAnalysisConflict:
+      description: The execution is not the latest build of the service, the service has no build, or an analysis is already in progress. Read the build analysis again to get the current `latest_build_execution_id` and the running analysis.
+    BuildAnalysisDockerfileUnavailable:
+      description: Qovery cannot read the Dockerfile of this build, for example a git fetch failure or a path that does not exist at the build commit.
+    BuildAnalysisForbidden:
+      description: Access forbidden, or AI features are disabled for the organization (`ai_features_enabled`).
+    BuildAnalysisNotConfigured:
+      description: Build analysis is not available on this Qovery instance because no AI model is configured. Checked before the organization's AI features. Retrying does not help until the instance is configured.
   securitySchemes:
     bearerAuth:
       type: http

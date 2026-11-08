@@ -133,7 +133,7 @@ Preview Environments solve the challenge of maintaining testing environments tha
 
 #### Blueprint Environment
 
-A Blueprint Environment serves as the template for all your Preview Environments. It's a fully-configured, working environment that Qovery clones whenever a new pull request is created. The deployment pipeline configuration, including [skipped services](/configuration/deployment/pipeline#skipped-services), is inherited by each Preview Environment created from the Blueprint.
+A Blueprint Environment serves as the template for all your Preview Environments. It's a fully-configured, working environment that Qovery clones whenever a new pull request is created. The deployment pipeline configuration, including [skipped services](/configuration/deployment/pipeline#skipped-services), is inherited by each Preview Environment created from the Blueprint. Preview Environments run on the Blueprint's cluster, unless a project [deployment rule](/configuration/deployment-rule) matching their name targets another cluster.
 
 **Blueprint Best Practices**:
 - Use a separate cluster from production for Preview Environments

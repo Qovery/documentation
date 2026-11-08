@@ -160,6 +160,7 @@
                       "getting-started/guides/advanced-tutorials/rate-limiting",
                       "getting-started/guides/advanced-tutorials/ip-header-authorization",
                       "getting-started/guides/advanced-tutorials/egress-filtering-squid-proxy",
+                      "getting-started/guides/advanced-tutorials/isolate-environments-network-policies",
                       "getting-started/guides/advanced-tutorials/customizing-preview-url-with-qovery-cli",
                       "getting-started/guides/advanced-tutorials/tailscale-expose-service"
                     ]
@@ -431,6 +432,7 @@
                 "group": "Networking",
                 "pages": [
                   "configuration/integrations/aws/vpc-peering",
+                  "configuration/integrations/aws/ecr-pull-through-cache-existing-vpc",
                   "configuration/integrations/api-gateway-nginx"
                 ]
               },

@@ -1074,3 +1074,8 @@ footer,
     justify-content: center;
   }
 }
+
+/* Hide the "Powered by Mintlify" badge (footer and mobile sidebar) */
+a[href*="mintlify.com"][href*="poweredBy"] {
+  display: none !important;
+}

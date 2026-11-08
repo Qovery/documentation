@@ -1,0 +1,25 @@
+name: llms.txt is up to date
+
+on:
+  pull_request:
+    paths:
+      - "docs/docs.json"
+      - "docs/**/*.mdx"
+      - "docs/llms.txt"
+      - "scripts/llms/**"
+      - "docs/api-reference/openapi.yaml"
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python3 scripts/llms/generate.py --check

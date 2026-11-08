@@ -1,0 +1,204 @@
+---
+title: "Deploy from a Repository with the CLI and API"
+sidebarTitle: "Deploy with the CLI and API"
+description: "Go from a Git repository to a running app on your cluster using only the Qovery CLI and API, with no Console step. Written for scripts and coding agents."
+---
+
+This page takes an application from a Git repository to a running service, using only the terminal. Every step is a command you can copy, so a script or a coding agent can follow it from start to end. The [agent skills](/getting-started/quickstart/ai-agent) do the same work for you; this page shows what they run.
+
+Qovery has no repository manifest: there is no `qovery.yml` to write. Everything below is created in Qovery through the API, and `qovery api` handles authentication for you.
+
+## Before you start
+
+<Check>A Qovery account. The first `qovery auth` creates one, and the [Free plan](https://www.qovery.com/pricing) needs no credit card.</Check>
+<Check>A cluster in your organization: your own Kubernetes cluster ([install it](/getting-started/installation/kubernetes)), a cluster managed by Qovery, or a local one from `qovery demo up` ([local demo](/getting-started/quickstart/docker)).</Check>
+<Check>A repository on GitHub, GitLab or Bitbucket with a `Dockerfile`, and the port your app listens on.</Check>
+<Check>[jq](https://jqlang.org) to read IDs from the JSON responses.</Check>
+
+Some steps need a person, once per organization:
+
+| Step | Why | Done by |
+| --- | --- | --- |
+| Sign in with `qovery auth --headless` | Opens a browser link to approve | The person who owns the account |
+| Create the cluster | Needs cloud credentials or a local Docker | Platform owner, or `qovery demo up` |
+| Create the token on your Git provider | Only you can create a token on your GitHub, GitLab or Bitbucket account | Repository owner |
+
+Everything else on this page can run unattended.
+
+## 1. Install the CLI and sign in
+
+```bash
+curl -s https://get.qovery.com | bash
+qovery auth --headless
+qovery auth status
+```
+
+`qovery auth --headless` prints a link to open in a browser. `qovery auth status` shows whether you are signed in, without printing the token. Other install methods (Homebrew, Windows, pinned releases) are on the [CLI page](/cli/overview).
+
+<Note>
+`qovery context set` is interactive. In scripts and agents, pass IDs in the API paths and names with `--organization`, `--project` and `--environment` instead.
+</Note>
+
+## 2. Find your organization and cluster
+
+```bash
+qovery api organization | jq '.results[] | {id, name}'
+ORG_ID="..."        # the id of your organization
+ORG_NAME="..."      # its name, used by the deploy commands
+
+qovery api "organization/$ORG_ID/cluster" | jq '.results[] | {id, name}'
+CLUSTER_ID="..."    # the cluster to deploy on
+```
+
+The examples use [jq](https://jqlang.org) to read the JSON responses, and shell variables for the IDs, so every command can be pasted as is.
+
+## 3. Give Qovery read access to the repository
+
+Skip this step if your organization already has Git access set up (a Git token or the Git provider connected in the Console).
+
+Create a token on your Git provider with read access to the repository (see [Git repository access](/configuration/organization/git-repository-access) for the permissions per provider), put it in an environment variable, then register it in Qovery:
+
+```bash
+cat <<EOF | qovery api "organization/$ORG_ID/gitToken" --method POST --input - | jq '{id, name}'
+{
+  "name": "deploy-token",
+  "type": "GITHUB",
+  "token": "$GIT_PROVIDER_TOKEN"
+}
+EOF
+```
+
+`type` is `GITHUB`, `GITLAB` or `BITBUCKET`. Bitbucket also needs a `workspace` field. Keep the `id` from the response in `GIT_TOKEN_ID`: it is the `git_token_id` used in step 5.
+
+## 4. Create a project and an environment
+
+```bash
+PROJECT_ID=$(qovery api "organization/$ORG_ID/project" --method POST --field name=storefront | jq -r .id)
+
+ENV_ID=$(qovery api "project/$PROJECT_ID/environment" --method POST \
+  --field name=production \
+  --field mode=PRODUCTION \
+  --field cluster="$CLUSTER_ID" | jq -r .id)
+```
+
+`mode` is `DEVELOPMENT`, `STAGING` or `PRODUCTION`.
+
+## 5. Create the application
+
+Save this as `application.json` and change the values to match your repository:
+
+```json
+{
+  "name": "api",
+  "git_repository": {
+    "url": "https://github.com/acme/storefront.git",
+    "owner": "acme",
+    "name": "storefront",
+    "branch": "main",
+    "root_path": "/",
+    "provider": "GITHUB",
+    "git_token_id": "REPLACE_WITH_GIT_TOKEN_ID"
+  },
+  "build_mode": "DOCKER",
+  "dockerfile_path": "Dockerfile",
+  "cpu": 500,
+  "memory": 512,
+  "min_running_instances": 1,
+  "max_running_instances": 1,
+  "ports": [
+    {
+      "name": "http",
+      "internal_port": 8080,
+      "external_port": 443,
+      "protocol": "HTTP",
+      "publicly_accessible": true
+    }
+  ],
+  "healthchecks": {
+    "liveness_probe": {
+      "type": { "tcp": { "port": 8080 } },
+      "initial_delay_seconds": 30,
+      "period_seconds": 10,
+      "timeout_seconds": 5,
+      "success_threshold": 1,
+      "failure_threshold": 3
+    }
+  },
+  "auto_deploy": true
+}
+```
+
+```bash
+APP_ID=$(qovery api "environment/$ENV_ID/application" --method POST --input - < application.json | jq -r .id)
+```
+
+- `git_repository.url` must end in `.git`. `owner` and `name` are the repository owner and name from that URL.
+- `root_path` is the folder that holds the `Dockerfile`, for example `/backend` in a monorepo.
+- `internal_port` is the port your app listens on. Use an `http` probe instead of `tcp` if the app has a health endpoint.
+- Set `git_token_id` to the id from step 3, or remove the line if your organization uses the Git provider connected in the Console.
+- `cpu` is in millicores and `memory` in MiB.
+
+The full schema, with every optional field, is in the [API reference](/api-reference/introduction). `qovery api spec` prints the same OpenAPI file in the terminal.
+
+## 6. Deploy
+
+```bash
+qovery application deploy \
+  --organization "$ORG_NAME" \
+  --project storefront \
+  --environment production \
+  --application api \
+  --commit-id latest \
+  --watch
+```
+
+`--commit-id latest` deploys the newest commit of the branch. `--watch` follows the deployment until it succeeds or fails.
+
+To deploy several services of the environment at once, use `qovery environment deploy` with `--applications`, `--containers` or `--services`. See the [environment commands](/cli/commands/environment).
+
+## 7. Check it worked
+
+```bash
+qovery application list --organization "$ORG_NAME" --project storefront --environment production --json
+qovery api "application/$APP_ID/link"
+```
+
+The list shows the application and its status. The `link` call returns the public URL of each exposed port. Open it to reach your app.
+
+If the deployment failed, read the logs:
+
+```bash
+qovery log --organization "$ORG_NAME" --project storefront --environment production --application api
+```
+
+Build and runtime errors and their fixes are in [Troubleshooting](/getting-started/troubleshoot/overview).
+
+## Commands and files that do not exist
+
+Agents often guess these. None of them exist:
+
+| Do not use | Use instead |
+| --- | --- |
+| `qovery init`, `qovery.yml`, `.qovery.yml`, `.qovery.toml` | Nothing to create in the repository. Configuration lives in Qovery: API, CLI, Console or [Terraform](/terraform-provider/overview) |
+| `qovery deploy` | `qovery application deploy` or `qovery environment deploy` |
+| `qovery application create`, `qovery database create`, `qovery project create`, `qovery environment create` | `qovery api PATH --method POST`, as on this page. Only container services have a create command: `qovery container create` |
+| `qovery token create` | `qovery token` (interactive), the Console, or the `/qovery-policy-token` skill for a [scoped token](/configuration/organization/api-policy-token) |
+| `qovery context set --organization ...` | `context set` takes no flags. Pass `--organization`, `--project`, `--environment` to each command |
+| An IAM user with `AdministratorAccess` for Qovery | The IAM role created by the CloudFormation stack in [Install on AWS](/getting-started/installation/aws) |
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Give an agent a scoped token" icon="key" href="/getting-started/guides/use-cases/coding-agent-deploy-access">
+    Let a coding agent deploy to staging and nothing else.
+  </Card>
+  <Card title="Add a database" icon="database" href="/configuration/database">
+    Create a database or a Blueprint and connect it to your app.
+  </Card>
+  <Card title="Manage it with Terraform" icon="code" href="/terraform-provider/overview">
+    Keep the same setup as code.
+  </Card>
+  <Card title="Preview environments" icon="code-branch" href="/getting-started/guides/use-cases/preview-environments">
+    One environment per pull request.
+  </Card>
+</CardGroup>

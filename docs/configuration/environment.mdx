@@ -33,6 +33,8 @@ Production environments should not be stopped or deleted by anyone without caref
 
 ## Create an Environment
 
+<Tabs>
+  <Tab title="Console">
 <Steps>
   <Step title="Access Project">
     Navigate to the project where you want to create the environment
@@ -61,6 +63,54 @@ Production environments should not be stopped or deleted by anyone without caref
     Click **Create** to finalize the environment setup
   </Step>
 </Steps>
+  </Tab>
+
+  <Tab title="CLI and API">
+    You need the [Qovery CLI](/cli/overview), signed in with `qovery auth`. The `qovery api` command sends authenticated requests to the [Qovery API](/api-reference/introduction).
+
+    Get the ID of the cluster that will run the environment:
+
+    ```bash
+    qovery cluster list
+    ```
+
+    Create the environment with `POST /project/{projectId}/environment`. Only `name` is required. `mode` accepts `DEVELOPMENT`, `STAGING` or `PRODUCTION`, and `cluster` takes the cluster ID:
+
+    ```bash
+    qovery api project/<projectId>/environment \
+      --field name=staging \
+      --field mode=STAGING \
+      --field cluster=<clusterId>
+    ```
+
+    The response contains the new environment, including its `id`.
+  </Tab>
+
+  <Tab title="Terraform">
+    Use the [`qovery_environment`](https://registry.terraform.io/providers/Qovery/qovery/latest/docs/resources/environment) resource. `name`, `project_id` and `cluster_id` are required, and `mode` defaults to `DEVELOPMENT`:
+
+    ```hcl
+    resource "qovery_environment" "staging" {
+      project_id = "<projectId>"
+      cluster_id = "<clusterId>"
+      name       = "staging"
+      mode       = "STAGING"
+    }
+    ```
+
+    Run `terraform apply` to create the environment.
+  </Tab>
+</Tabs>
+
+### Check it worked
+
+List the environments of the project:
+
+```bash
+qovery environment list --project <projectName>
+```
+
+The new environment is listed with its cluster and its type (mode). With the API, `GET /environment/{environmentId}` returns the environment with its `mode` and `cluster_id`.
 
 ### Adding Services
 
@@ -386,6 +436,8 @@ Duplicate an existing environment to quickly create a copy across projects or cl
 
 ![Clone Environment](/images/configuration/environment/clone_environment.png)
 
+<Tabs>
+  <Tab title="Console">
 <Steps>
   <Step title="Select Environment">
     Go to the environment you want to clone
@@ -409,6 +461,32 @@ Duplicate an existing environment to quickly create a copy across projects or cl
     Click **Clone Environment** to create the copy
   </Step>
 </Steps>
+  </Tab>
+
+  <Tab title="CLI and API">
+    With the CLI, pass the names of the source and the new environment. `--cluster`, `--target-project` and `--environment-type` (`DEVELOPMENT`, `STAGING` or `PRODUCTION`) are optional:
+
+    ```bash
+    qovery environment clone \
+      --project <projectName> \
+      --environment <environmentName> \
+      --new-environment-name <newEnvironmentName> \
+      --cluster <clusterName>
+    ```
+
+    With the API, call `POST /environment/{environmentId}/clone`. Only `name` is required. `cluster_id`, `project_id` and `mode` are optional:
+
+    ```bash
+    qovery api environment/<environmentId>/clone \
+      --field name=<newEnvironmentName> \
+      --field cluster_id=<clusterId>
+    ```
+
+    The API does not copy database data.
+
+    Run `qovery environment list --project <projectName>` to see the new environment.
+  </Tab>
+</Tabs>
 
 <Info>
 Cloning excludes:
@@ -426,6 +504,12 @@ Cloning preserves:
 
 Deploy all services in an environment through the Qovery Console or CLI. See [deployment management](/configuration/deployment/overview) for details.
 
+```bash
+qovery environment deploy --project <projectName> --environment <environmentName> --watch
+```
+
+Then run `qovery environment statuses --project <projectName> --environment <environmentName>` to see the status of each service.
+
 ### Deleting an Environment
 
 <Warning>
@@ -436,6 +520,8 @@ Before deleting:
 1. Backup important data
 2. Stop all services
 3. Verify you're deleting the correct environment
+
+To delete it from the CLI, run `qovery environment delete --project <projectName> --environment <environmentName>`. With the API, call `DELETE /environment/{environmentId}`.
 
 ## Related Topics
 

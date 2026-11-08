@@ -40,6 +40,8 @@ You can manage API tokens attached to your organization directly from the Qovery
 
 ## Create a New Token
 
+<Tabs>
+  <Tab title="Console">
 <Steps>
   <Step title="Click Add new Button">
     Press the **Add new** button to create a new API token
@@ -55,6 +57,62 @@ You can manage API tokens attached to your organization directly from the Qovery
     After creation, the token will be displayed once
   </Step>
 </Steps>
+  </Tab>
+
+  <Tab title="CLI and API">
+    You need the [Qovery CLI](/cli/overview), signed in with `qovery auth`.
+
+    Run `qovery token`. It asks for the organization, a name, a description and a role, then prints the token once:
+
+    ```bash
+    qovery token
+    ```
+
+    With the API, get the role ID from `GET /organization/{organizationId}/availableRole`, then call `POST /organization/{organizationId}/apiToken`. `name` and `role_id` are required:
+
+    ```bash
+    qovery api organization/<organizationId>/availableRole
+
+    qovery api organization/<organizationId>/apiToken \
+      --field name=ci-deployer \
+      --field description="GitHub Actions" \
+      --field role_id=<roleId>
+    ```
+
+    The response contains the token value. It is returned only once.
+  </Tab>
+
+  <Tab title="Terraform">
+    Use the [`qovery_api_token`](https://registry.terraform.io/providers/Qovery/qovery/latest/docs/resources/api_token) resource. `organization_id`, `name` and `role_id` are required:
+
+    ```hcl
+    resource "qovery_api_token" "ci" {
+      organization_id = "<organizationId>"
+      name            = "ci-deployer"
+      description     = "GitHub Actions"
+      role_id         = "<roleId>"
+    }
+    ```
+
+    The token value is in the sensitive `token` attribute. It is only known at creation and is stored in the Terraform state, so use an encrypted remote state with restricted access. Any attribute change replaces the token.
+  </Tab>
+</Tabs>
+
+### Check it worked
+
+List the tokens of the organization:
+
+```bash
+qovery api organization/<organizationId>/apiToken
+```
+
+The new token appears with its `name` and `role_name`. To confirm the token itself works, call the API with it:
+
+```bash
+curl -H "Authorization: Token $QOVERY_API_TOKEN" https://api.qovery.com/organization
+```
+
+The response lists the organizations the token can access.
 
 <Warning>
   **Important**: Make sure you safely store the token returned by the UI. You
@@ -72,6 +130,8 @@ To remove an API token:
 1. Locate the token in the Token API list
 2. Click the **delete icon** (trash icon) next to the token
 3. Confirm the deletion
+
+With the API, call `DELETE /organization/{organizationId}/apiToken/{apiTokenId}`. Token IDs come from `GET /organization/{organizationId}/apiToken`.
 
 ## Edit a Token
 

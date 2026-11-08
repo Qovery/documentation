@@ -7,11 +7,48 @@ Qovery can automatically update your applications to the latest version of your 
 
 ## Activation
 
+<Tabs>
+  <Tab title="Console">
 You can activate the auto-deploy flag either within the application settings or during the service creation flow.
 
 ![Auto-Deploy Settings](/images/deployment/auto-deploy-settings.png)
 
 ![Auto-Deploy Creation Flow](/images/deployment/auto-deploy-creation-flow.png)
+  </Tab>
+
+  <Tab title="CLI and API">
+    You need the [Qovery CLI](/cli/overview), signed in with `qovery auth`. The `qovery api` command sends authenticated requests to the [Qovery API](/api-reference/introduction).
+
+    Turn on auto-deploy for an application:
+
+    ```bash
+    qovery application update -n my-app --auto-deploy
+    ```
+
+    Pass `--auto-deploy=false` to turn it off. The command uses the organization, project and environment of your CLI context (`qovery context set`), or the `--organization`, `--project` and `--environment` flags.
+  </Tab>
+
+  <Tab title="Terraform">
+    Set `auto_deploy` on your `qovery_application` resource and run `terraform apply`:
+
+    ```hcl
+    resource "qovery_application" "my_app" {
+      # ...
+      auto_deploy = true
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### Check it worked
+
+Read the application with `GET /application/{applicationId}`:
+
+```bash
+qovery api application/<applicationId>
+```
+
+The response contains `"auto_deploy": true`. Push a commit to the application branch, then run `qovery environment deployment list --environment <environmentName>`: a new deployment for that commit appears in the list.
 
 Once activated, each commit on the application branch will automatically trigger the deployment of the new version of your application.
 
@@ -44,6 +81,17 @@ Important notes:
 - You can use path prefixes for partial matching (e.g., `docs/` will match any file within the docs folder)
 </Warning>
 
+To add a restriction without the Console, call `POST /application/{applicationId}/deploymentRestriction`. `mode`, `type` (only `PATH`) and `value` are required:
+
+```bash
+qovery api application/<applicationId>/deploymentRestriction \
+  --field mode=EXCLUDE \
+  --field type=PATH \
+  --field value=docs/
+```
+
+`GET /application/{applicationId}/deploymentRestriction` lists the restrictions of the application. With Terraform, use the `deployment_restrictions` attribute of `qovery_application`, with the same `mode`, `type` and `value` fields.
+
 ## Container Image Auto-Deploy
 
 For container images (not Git repositories), you need to configure your CI/CD pipeline to notify Qovery when a new image tag is available. This can be done through:
@@ -52,6 +100,14 @@ For container images (not Git repositories), you need to configure your CI/CD pi
 - The Qovery API using the `autoDeployJobEnvironments` endpoint for lifecycle jobs and cronjobs
 
 See the [API documentation](https://api-doc.qovery.com/) for more details.
+
+For example, after your CI pushes a new tag, deploy it to every environment with auto-deploy turned on that runs a container with the same image name:
+
+```bash
+qovery api organization/<organizationId>/container/deploy \
+  --field image_name=<imageName> \
+  --field tag=<newTag>
+```
 
 ## FAQ
 

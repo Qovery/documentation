@@ -27,6 +27,8 @@ Helm repositories must be configured at the organization level by administrators
 
 ## Creating a Helm Service
 
+<Tabs>
+  <Tab title="Console">
 <Steps>
   <Step title="General data">
     Choose **Git Repository** or **Helm Repository** as your deployment source and configure it:
@@ -59,6 +61,86 @@ Helm repositories must be configured at the organization level by administrators
     Review configuration and click **Create** to deploy
   </Step>
 </Steps>
+  </Tab>
+
+  <Tab title="CLI and API">
+    You need the [Qovery CLI](/cli/overview), signed in with `qovery auth`. The `qovery api` command sends authenticated requests to the [Qovery API](/api-reference/introduction). Service commands use the organization, project and environment of your CLI context (`qovery context set`). You can also pass `--organization`, `--project` and `--environment`.
+
+    Get the ID of your Helm repository:
+
+    ```bash
+    qovery api organization/<organizationId>/helmRepository
+    ```
+
+    Create the Helm service with `POST /environment/{environmentId}/helm`. `name`, `auto_deploy`, `source`, `arguments` and `values_override` are required. `set`, `set_string` and `set_json` take a list of `[key, value]` pairs:
+
+    ```bash
+    qovery api environment/<environmentId>/helm --input - <<'JSON'
+    {
+      "name": "podinfo",
+      "auto_deploy": false,
+      "timeout_sec": 600,
+      "arguments": [],
+      "source": {
+        "helm_repository": {
+          "repository": "<helmRepositoryId>",
+          "chart_name": "podinfo",
+          "chart_version": "<chartVersion>"
+        }
+      },
+      "values_override": {
+        "set": [["replicaCount", "2"]]
+      }
+    }
+    JSON
+    ```
+
+    Then deploy it:
+
+    ```bash
+    qovery helm deploy -n podinfo --watch
+    ```
+  </Tab>
+
+  <Tab title="Terraform">
+    Use the [`qovery_helm`](https://registry.terraform.io/providers/Qovery/qovery/latest/docs/resources/helm) resource. `name`, `description`, `environment_id`, `source`, `values_override` and `allow_cluster_wide_resources` are required:
+
+    ```hcl
+    resource "qovery_helm" "podinfo" {
+      environment_id               = "<environmentId>"
+      name                         = "podinfo"
+      description                  = ""
+      allow_cluster_wide_resources = false
+
+      source = {
+        helm_repository = {
+          helm_repository_id = "<helmRepositoryId>"
+          chart_name         = "podinfo"
+          chart_version      = "<chartVersion>"
+        }
+      }
+
+      values_override = {
+        set = {
+          "replicaCount" = "2"
+        }
+      }
+    }
+    ```
+
+    Run `terraform apply`. Deploy the environment with a [`qovery_deployment`](https://registry.terraform.io/providers/Qovery/qovery/latest/docs/resources/deployment) resource.
+  </Tab>
+</Tabs>
+
+### Check it worked
+
+List the Helm services of the environment:
+
+```bash
+qovery helm list --environment <environmentName>
+```
+
+Your Helm service shows the status `DEPLOYED` once the deployment ends. A status that ends with `ERROR` means the deployment failed: see [Deployment Logs](/configuration/deployment/logs). With the API, `GET /helm/{helmId}/status` returns the same value in `state`.
 
 ## Configuration
 
@@ -141,6 +223,8 @@ Example: `p80-zdf72de72-z709e1a88-gtw.za8ad0657.bool.sh`
 **Custom Domains**:
 Add your own domain to your Helm service:
 
+<Tabs>
+  <Tab title="Console">
 <Steps>
   <Step title="Add Custom Domain">
     Navigate to Helm service → Settings → Domains → Add Domain
@@ -166,6 +250,20 @@ Add your own domain to your Helm service:
     - Redeploy to activate custom domain
   </Step>
 </Steps>
+  </Tab>
+
+  <Tab title="CLI and API">
+    Add the domain with the CLI. Qovery generates a certificate unless you pass `--do-not-generate-certificate`:
+
+    ```bash
+    qovery helm domain create -n podinfo --domain app.example.com
+    ```
+
+    With the API, call `POST /helm/{helmId}/customDomain`. `domain` and `generate_certificate` are required.
+
+    Run `qovery helm domain list -n podinfo` to check the domain, then redeploy the service.
+  </Tab>
+</Tabs>
 
 ## Auto-Deploy
 
@@ -196,6 +294,8 @@ Duplicate a Helm service with its configuration:
 <Note>
 Cloning excludes custom domains and certain environment variables to prevent conflicts.
 </Note>
+
+To clone from the CLI, run `qovery helm clone -n podinfo --target-environment <environmentName>`. You can also pass `--target-project` and `--target-helm-name`.
 
 ## Advanced Settings
 
@@ -228,6 +328,8 @@ Access logs for your Helm service:
 
 To delete a Helm service:
 
+<Tabs>
+  <Tab title="Console">
 <Steps>
   <Step title="Stop Service">
     Click the three-dot menu → **Stop**
@@ -241,6 +343,21 @@ To delete a Helm service:
     Review what will be deleted and confirm
   </Step>
 </Steps>
+  </Tab>
+
+  <Tab title="CLI and API">
+    ```bash
+    qovery helm stop -n podinfo --watch
+    qovery helm delete -n podinfo --watch
+    ```
+
+    With the API, call `DELETE /helm/{helmId}`. Run `qovery helm list` afterwards: the service is no longer listed.
+  </Tab>
+
+  <Tab title="Terraform">
+    Remove the `qovery_helm` resource from your configuration and run `terraform apply`.
+  </Tab>
+</Tabs>
 
 <Warning>
 Deleting a Helm service removes all Kubernetes resources created by the chart. This action cannot be undone.

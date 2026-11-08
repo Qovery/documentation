@@ -115,6 +115,7 @@ qovery api "organization/$ORGANIZATION_ID/apiToken"
 The new token appears with its `name` and `role_name`. To confirm the token itself works, call the API with it:
 
 ```bash
+QOVERY_API_TOKEN="REPLACE_WITH_THE_NEW_TOKEN"
 curl -H "Authorization: Token $QOVERY_API_TOKEN" https://api.qovery.com/organization
 ```
 

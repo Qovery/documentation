@@ -130,7 +130,7 @@ The tag `latest` is not supported. Please use a specific tag for container image
     echo "$JOB_ID"
     ```
 
-    To build from a Git repository, replace `source.image` with `source.docker`, which takes `git_repository` (`url`, `branch`, `provider`) and `dockerfile_path`.
+    To build from a Git repository, replace `source.image` with `source.docker`, which takes `git_repository` (`url`, `branch`, `provider`, `owner`, `name`) and `dockerfile_path`.
 
     Then deploy it:
 

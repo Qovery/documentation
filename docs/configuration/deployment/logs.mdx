@@ -26,7 +26,7 @@ You can access logs from three different entry points in the Qovery Console:
   </Tab>
 
   <Tab title="CLI and API">
-    You need the [Qovery CLI](/cli/overview), signed in with `qovery auth`. The `qovery api` command sends authenticated requests to the [Qovery API](/api-reference/introduction). Commands use the organization, project and environment of your CLI context (`qovery context set`), or the `--organization`, `--project` and `--environment` flags.
+    You need the [Qovery CLI](/cli/overview), signed in with `qovery auth`. The `qovery api` command sends authenticated requests to the [Qovery API](/api-reference/introduction). The `qovery log` and `qovery environment deployment` commands use the organization, project and environment of your CLI context (`qovery context set`), or the `--organization`, `--project` and `--environment` flags. `qovery api` takes IDs in the endpoint path instead.
 
     **Service logs.** Print the runtime logs of a service. Use `-a` for an application, `-n` for a container, `-d` for a database, `-j` for a job, or `-s` for any service by name:
 
@@ -46,7 +46,7 @@ You can access logs from three different entry points in the Qovery Console:
 
     Useful flags:
     - `--execution-id <executionId>`: logs of a past deployment, as listed by `qovery environment deployment list`
-    - `--service <serviceName>`: only the lines of one service
+    - `--service <serviceName>`: the lines of one service, plus the environment-level lines kept for context (a few stage-level lines from other stages may also appear)
     - `--errors-only`: only the lines that carry an error
     - `--pre-check`: only the pre-check lines
     - `--json`: JSON output

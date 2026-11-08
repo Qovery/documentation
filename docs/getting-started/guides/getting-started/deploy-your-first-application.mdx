@@ -102,7 +102,7 @@ This guide covers Git Repository and Container Registry deployments. For Helm ch
     }
     ```
 
-    See [Project](/configuration/project#create-a-new-project) for details.
+    Run `terraform apply`. See [Project](/configuration/project#create-a-new-project) for details.
   </Tab>
 </Tabs>
 
@@ -150,7 +150,7 @@ This guide covers Git Repository and Container Registry deployments. For Helm ch
     }
     ```
 
-    See [Environment](/configuration/environment#create-an-environment) for details.
+    Run `terraform apply`. See [Environment](/configuration/environment#create-an-environment) for details.
   </Tab>
 </Tabs>
 
@@ -416,6 +416,10 @@ Watch your application come to life:
     APPLICATION_ID="REPLACE_WITH_APPLICATION_ID"  # from qovery application list --json
 
     qovery api "application/$APPLICATION_ID/link"
+
+    # For a container
+    CONTAINER_ID="REPLACE_WITH_CONTAINER_ID"  # from qovery container list --json
+    qovery api "container/$CONTAINER_ID/link"
     ```
 
     Print the output of your app with `qovery log -a my-api`, or `qovery log -n my-api` for a container.

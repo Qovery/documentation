@@ -88,7 +88,7 @@ The response lists your rule with its `wildcard`, `cluster_id` and schedule. New
 - Gives fine-grained control for exceptions (e.g., keep staging running 24/7)
 - Takes precedence over project-level rules
 
-To change the rule of one environment from the API, get its ID with `GET /environment/{environmentId}/deploymentRule`, then call `PUT /environment/{environmentId}/deploymentRule/{deploymentRuleId}`. `timezone`, `start_time`, `stop_time` and `weekdays` are required, and `auto_stop` turns the schedule on or off. The example uses `jq` to read the rule ID:
+To change the rule of one environment from the API, get its ID with `GET /environment/{environmentId}/deploymentRule`, then call `PUT /environment/{environmentId}/deploymentRule/{deploymentRuleId}`. `timezone`, `start_time`, `stop_time` and `weekdays` are required, and `auto_stop` turns the schedule on or off. The example uses `jq` to read the rule ID. `auto_preview` and `on_demand_preview` default to `false` when omitted, so copy their current values from the `GET` response to keep the preview settings:
 
 ```bash
 ENVIRONMENT_ID="REPLACE_WITH_ENVIRONMENT_ID"  # from qovery environment list --json
@@ -96,6 +96,8 @@ DEPLOYMENT_RULE_ID=$(qovery api "environment/$ENVIRONMENT_ID/deploymentRule" | j
 
 qovery api "environment/$ENVIRONMENT_ID/deploymentRule/$DEPLOYMENT_RULE_ID" --method PUT --input - <<'JSON'
 {
+  "auto_preview": false,
+  "on_demand_preview": false,
   "auto_stop": false,
   "timezone": "Europe/Paris",
   "start_time": "1970-01-01T08:00:00.000Z",

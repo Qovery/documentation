@@ -95,7 +95,7 @@ The **Databases & Caches** category of the catalog includes, among others, Amazo
       blueprint      = "AWS/postgres/17"
 
       variables = {
-        <variableName> = "<value>"
+        variable_name = "value" # replace with the inputs the blueprint README lists
       }
     }
     ```
@@ -191,7 +191,7 @@ Check out [this guide](/getting-started/guides/getting-started/connect-database)
 
     `cpu` is in millicores, `memory` in MB and `storage` in GB. To see the versions available in the environment, call `GET /environment/{environmentId}/databaseConfiguration`.
 
-    Then deploy it:
+    Then deploy it. Service commands use the organization, project and environment of your CLI context (`qovery context set`). You can also pass `--organization`, `--project` and `--environment`.
 
     ```bash
     qovery database deploy -n my-db --watch

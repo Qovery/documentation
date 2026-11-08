@@ -68,6 +68,8 @@ Production environments should not be stopped or deleted by anyone without caref
   <Tab title="CLI and API">
     You need the [Qovery CLI](/cli/overview), signed in with `qovery auth`, and `jq` to read the IDs that the API returns. The `qovery api` command sends authenticated requests to the [Qovery API](/api-reference/introduction).
 
+    CLI commands use the organization and project of your CLI context (`qovery context set`). You can also pass `--organization` and `--project`.
+
     Get the ID of the cluster that will run the environment:
 
     ```bash

@@ -155,6 +155,7 @@ Add a route in the Qovery VPC through the Qovery Console.
     resource "qovery_cluster" "my_cluster" {
       # ...
       routing_table = [
+        # Copy every route that already exists here first: this list replaces the whole table.
         {
           destination = "10.0.0.0/16"
           target      = "pcx-0abc123def456789"

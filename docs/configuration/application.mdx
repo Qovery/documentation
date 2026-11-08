@@ -90,7 +90,7 @@ Qovery pulls a pre-built container image from your configured registry and deplo
   <Tab title="CLI and API">
     You need the [Qovery CLI](/cli/overview), signed in with `qovery auth`, and `jq` to read the IDs that the API returns. The `qovery api` command sends authenticated requests to the [Qovery API](/api-reference/introduction). Service commands use the organization, project and environment of your CLI context (`qovery context set`). You can also pass `--organization`, `--project` and `--environment`.
 
-    **From a Git repository**, create the application with `POST /environment/{environmentId}/application`. `name`, `git_repository` (with `url` and `provider`) and `healthchecks` are required. Send `"healthchecks": {}` to create it without probes:
+    **From a Git repository**, create the application with `POST /environment/{environmentId}/application`. `name`, `git_repository` (with `url`, `provider`, `owner` and `name`) and `healthchecks` are required. Send `"healthchecks": {}` to create it without probes:
 
     ```bash
     ENVIRONMENT_ID="REPLACE_WITH_ENVIRONMENT_ID"  # from qovery environment list --json
@@ -100,6 +100,8 @@ Qovery pulls a pre-built container image from your configured registry and deplo
       "name": "my-app",
       "git_repository": {
         "url": "https://github.com/REPLACE_WITH_OWNER/REPLACE_WITH_REPO.git",
+        "owner": "REPLACE_WITH_OWNER",
+        "name": "REPLACE_WITH_REPO",
         "branch": "main",
         "provider": "GITHUB"
       },

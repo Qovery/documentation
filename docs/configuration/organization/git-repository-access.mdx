@@ -276,6 +276,8 @@ Once you've created a token in your Git provider, manage it in Qovery:
     ```
 
     Reference it from a service with `git_token_id = qovery_git_token.github.id` in its `git_repository` block.
+
+    The token value is stored in the Terraform state. Use an encrypted remote state with restricted access, and keep state files out of version control.
   </Tab>
 </Tabs>
 
@@ -365,7 +367,7 @@ To remove a Git token:
 2. Click the **Delete** button (trash icon)
 3. Confirm deletion
 
-With the API, call `DELETE /organization/{organizationId}/gitToken/{gitTokenId}`. To see which services use the token first, call `GET /organization/{organizationId}/gitToken/{gitTokenId}/associatedServices`.
+With the API, call `DELETE /organization/{organizationId}/gitToken/{gitTokenId}`. With Terraform, remove the `qovery_git_token` resource and run `terraform apply`. To see which services use the token first, call `GET /organization/{organizationId}/gitToken/{gitTokenId}/associatedServices`.
 
 <Warning>
 Applications currently using repositories accessed through this token may fail to build or deploy. Configure alternative access before deletion.

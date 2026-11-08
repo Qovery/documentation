@@ -346,6 +346,8 @@ Built-in variables are read-only and automatically managed by Qovery. Variable n
     ```
 
     Run `terraform apply`, then redeploy the service.
+
+    A secret `value` is stored in the Terraform state. Use an encrypted remote state with restricted access, and keep state files out of version control. With Terraform 1.11 and later, set `value_wo` and `value_wo_version` instead of `value` to keep the secret out of the plan and the state.
   </Tab>
 </Tabs>
 

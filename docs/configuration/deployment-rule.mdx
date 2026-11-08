@@ -50,11 +50,55 @@ Rules can be established at two hierarchical levels:
   <img src="/images/configuration/deployment-rule/deployment_rules_project.png" alt="Deployment rules at project level" />
 </Frame>
 
+To create a project rule without the Console, use the [Qovery CLI](/cli/overview) signed in with `qovery auth`, and call `POST /project/{projectId}/deploymentRule`. `name`, `mode`, `cluster_id`, `timezone`, `start_time`, `stop_time`, `weekdays` and `wildcard` are required. `start_time` and `stop_time` use the date-time format of the API example below:
+
+```bash
+qovery api project/<projectId>/deploymentRule --input - <<'JSON'
+{
+  "name": "dev-office-hours",
+  "mode": "DEVELOPMENT",
+  "cluster_id": "<clusterId>",
+  "wildcard": "dev-*",
+  "auto_stop": true,
+  "timezone": "Europe/Paris",
+  "start_time": "1970-01-01T08:00:00.000Z",
+  "stop_time": "1970-01-01T19:00:00.000Z",
+  "weekdays": ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY"]
+}
+JSON
+```
+
+The Terraform provider has no deployment rule resource.
+
+#### Check it worked
+
+List the rules of the project:
+
+```bash
+qovery api project/<projectId>/deploymentRule
+```
+
+The response lists your rule with its `wildcard`, `cluster_id` and schedule. New environments whose name matches the wildcard get these settings.
+
 ### Environment Level
 
 - Allows overriding project-level rules for specific environments
 - Gives fine-grained control for exceptions (e.g., keep staging running 24/7)
 - Takes precedence over project-level rules
+
+To change the rule of one environment from the API, get its ID with `GET /environment/{environmentId}/deploymentRule`, then call `PUT /environment/{environmentId}/deploymentRule/{deploymentRuleId}`. `timezone`, `start_time`, `stop_time` and `weekdays` are required, and `auto_stop` turns the schedule on or off:
+
+```bash
+qovery api environment/<environmentId>/deploymentRule/<deploymentRuleId> --method PUT --input - <<'JSON'
+{
+  "auto_stop": false,
+  "timezone": "Europe/Paris",
+  "start_time": "1970-01-01T08:00:00.000Z",
+  "stop_time": "1970-01-01T19:00:00.000Z",
+  "weekdays": ["MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY"]
+}
+JSON
+```
 
 ## Wildcard Patterns
 

@@ -2,7 +2,9 @@
 
 The PNG files in `docs/images/console/` are rendered from these configs, not captured from a live account. The renderer uses the real Console component library, so labels and spacing match production, and every name and number is sample data (Acme, storefront, eu-west-3-prod). No customer data appears.
 
-To update an image after a Console change, re-render its config with the Qovery image generator (`shoot.py <config>.json -o <image>.png`, docs canvas, 2x) and replace the PNG. Keep one config per image, with the same name.
+To update an image after a Console change, re-render its config with the Qovery image generator and replace the PNG. The generator is an internal Qovery tool, not part of this repository: ask the marketing team to run it, or capture the same screen on console-demo.qovery.com, which also shows sample data. Keep one config per image, with the same name.
+
+All configs use a 1440 px wide canvas exported at 2x. `environment-deploy-button.json` is cropped to 520 px high and zoomed to 1.25 on purpose, because it shows one button rather than a whole page.
 
 | Config | Image | Used on |
 | --- | --- | --- |

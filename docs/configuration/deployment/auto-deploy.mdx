@@ -45,10 +45,12 @@ You can activate the auto-deploy flag either within the application settings or 
 Read the application with `GET /application/{applicationId}`:
 
 ```bash
-qovery api application/<applicationId>
+APPLICATION_ID="REPLACE_WITH_APPLICATION_ID"  # from qovery application list --json
+
+qovery api "application/$APPLICATION_ID"
 ```
 
-The response contains `"auto_deploy": true`. Push a commit to the application branch, then run `qovery environment deployment list --environment <environmentName>`: a new deployment for that commit appears in the list.
+The response contains `"auto_deploy": true`. Push a commit to the application branch, then run `qovery environment deployment list --environment "<environmentName>"`: a new deployment for that commit appears in the list.
 
 Once activated, each commit on the application branch will automatically trigger the deployment of the new version of your application.
 
@@ -84,7 +86,9 @@ Important notes:
 To add a restriction without the Console, call `POST /application/{applicationId}/deploymentRestriction`. `mode`, `type` (only `PATH`) and `value` are required:
 
 ```bash
-qovery api application/<applicationId>/deploymentRestriction \
+APPLICATION_ID="REPLACE_WITH_APPLICATION_ID"  # from qovery application list --json
+
+qovery api "application/$APPLICATION_ID/deploymentRestriction" \
   --field mode=EXCLUDE \
   --field type=PATH \
   --field value=docs/
@@ -104,9 +108,13 @@ See the [API documentation](https://api-doc.qovery.com/) for more details.
 For example, after your CI pushes a new tag, deploy it to every environment with auto-deploy turned on that runs a container with the same image name:
 
 ```bash
-qovery api organization/<organizationId>/container/deploy \
-  --field image_name=<imageName> \
-  --field tag=<newTag>
+ORGANIZATION_ID="REPLACE_WITH_ORGANIZATION_ID"  # from qovery organization list --json
+IMAGE_NAME="REPLACE_WITH_IMAGE_NAME"
+NEW_TAG="REPLACE_WITH_NEW_TAG"
+
+qovery api "organization/$ORGANIZATION_ID/container/deploy" \
+  --field image_name="$IMAGE_NAME" \
+  --field tag="$NEW_TAG"
 ```
 
 ## FAQ
@@ -127,7 +135,7 @@ qovery api organization/<organizationId>/container/deploy \
   <Accordion title="Does Qovery automatically check the container registry for new image tags?">
     No, Qovery does not automatically monitor container registries. You must notify Qovery when a new image tag is available through:
     - The Qovery Console
-    - The Qovery CLI using `qovery deploy --tag <tag-name>`
+    - The Qovery CLI using `qovery container deploy -n "<container-name>" --tag "<tag-name>"` (or `qovery cronjob deploy` and `qovery lifecycle deploy` with `--tag` for jobs)
     - The Qovery API endpoints (`autoDeployContainerEnvironments` or `autoDeployJobEnvironments`)
   </Accordion>
 </AccordionGroup>

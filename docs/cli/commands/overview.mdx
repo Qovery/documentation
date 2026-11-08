@@ -1,18 +1,18 @@
 ---
 title: "Commands Overview"
-description: "Complete reference for all Qovery CLI commands"
+description: "Find the right Qovery CLI command for a task, with the global flags and the full list of commands"
 ---
 
 ## Authentication & Configuration
 
-Commands to authenticate and configure the CLI — start here before anything else.
+Commands to authenticate and configure the CLI. Start here.
 
 <CardGroup cols={2}>
   <Card title="qovery api" icon="code" href="/cli/commands/api">
     Make authenticated HTTP requests to the Qovery API
   </Card>
   <Card title="qovery auth" icon="lock" href="/cli/commands/auth">
-    Log in and out of Qovery
+    Log in to Qovery and check the authentication status
   </Card>
   <Card title="qovery context" icon="location-dot" href="/cli/commands/context">
     Set and switch the active organization, project, and environment
@@ -33,6 +33,9 @@ Commands to authenticate and configure the CLI — start here before anything el
 Commands to navigate and manage your Qovery organizational structure.
 
 <CardGroup cols={2}>
+  <Card title="qovery organization" icon="sitemap" href="/cli/commands/organization">
+    List the organizations you can access
+  </Card>
   <Card title="qovery project" icon="folder" href="/cli/commands/project">
     List and manage projects
   </Card>
@@ -70,6 +73,9 @@ Commands to manage your Qovery services across environments.
   <Card title="qovery service" icon="cubes" href="/cli/commands/service">
     Generic service management commands
   </Card>
+  <Card title="qovery blueprint" icon="cubes-stacked" href="/cli/commands/blueprint">
+    Move a blueprint service to a newer major version
+  </Card>
 </CardGroup>
 
 ## Debugging & Observability
@@ -94,6 +100,12 @@ Commands to inspect, debug, and monitor running services.
   </Card>
   <Card title="qovery console" icon="display" href="/cli/commands/console">
     Open a service directly in the Qovery Console
+  </Card>
+  <Card title="qovery audit-log" icon="clipboard-list" href="/cli/commands/audit-log">
+    Export the audit logs of an organization
+  </Card>
+  <Card title="qovery webhook" icon="bolt" href="/cli/commands/webhook">
+    List webhooks and the events they sent
   </Card>
 </CardGroup>
 
@@ -122,3 +134,52 @@ Commands to inspect, debug, and monitor running services.
     Get help for any command
   </Card>
 </CardGroup>
+
+{/* BEGIN GENERATED: qovery --help, CLI v1.180.0 */}
+## Global flags
+
+Generated from `qovery --help` (CLI v1.180.0). These flags work with every command.
+
+| Flag | Short | Type | Default | Description |
+|------|-------|------|---------|-------------|
+| `--help` | `-h` | bool |  | help for qovery |
+| `--verbose` |  | bool |  | Verbose output |
+
+## All commands
+
+| Command | Description |
+|---------|-------------|
+| [`qovery api`](/cli/commands/api) | Make an authenticated request to the Qovery API |
+| [`qovery application`](/cli/commands/application) | Manage applications |
+| [`qovery audit-log`](/cli/commands/audit-log) | Interact with audit logs |
+| [`qovery auth`](/cli/commands/auth) | Log in to Qovery |
+| [`qovery blueprint`](/cli/commands/blueprint) | Manage blueprint services |
+| [`qovery cluster`](/cli/commands/cluster) | Manage clusters |
+| [`qovery completion`](/cli/commands/completion) | Generate the autocompletion script for the specified shell |
+| [`qovery console`](/cli/commands/console) | Opens the application in Qovery Console in your browser |
+| [`qovery container`](/cli/commands/container) | Manage containers |
+| [`qovery context`](/cli/commands/context) | Manage CLI context |
+| [`qovery cronjob`](/cli/commands/cronjob) | Manage cronjobs |
+| [`qovery database`](/cli/commands/database) | Manage databases |
+| [`qovery demo`](/cli/commands/demo) | Try Qovery on your local machine |
+| [`qovery enterprise-connection`](/cli/commands/enterprise-connection) | Manage enterprise connections |
+| [`qovery env`](/cli/commands/env) | Manage Environment Variables and Secrets |
+| [`qovery environment`](/cli/commands/environment) | Manage environments |
+| [`qovery helm`](/cli/commands/helm) | Manage helms |
+| [`qovery help`](/cli/commands/help) | Help about any command |
+| [`qovery lifecycle`](/cli/commands/lifecycle) | Manage lifecycle jobs |
+| [`qovery list-commands`](/cli/commands/list-commands) | List all available commands with descriptions, aliases, args, and flags |
+| [`qovery list-pods`](/cli/commands/list-pods) | List the pods of a service with their pods |
+| [`qovery log`](/cli/commands/log) | Print your application logs |
+| [`qovery organization`](/cli/commands/organization) | Manage Organization |
+| [`qovery port-forward`](/cli/commands/port-forward) | Port forward a port to an application container |
+| [`qovery project`](/cli/commands/project) | Manage Project |
+| [`qovery service`](/cli/commands/service) | Manage services |
+| [`qovery shell`](/cli/commands/shell) | Connect to an application container |
+| [`qovery status`](/cli/commands/status) | Print the status of your application |
+| [`qovery terraform`](/cli/commands/terraform) | Manage terraform services |
+| [`qovery token`](/cli/commands/token) | Generate an API token |
+| [`qovery upgrade`](/cli/commands/upgrade) | Upgrade Qovery CLI to latest version |
+| [`qovery version`](/cli/commands/version) | Print installed version of the Qovery CLI |
+| [`qovery webhook`](/cli/commands/webhook) | Manage webhooks |
+{/* END GENERATED */}

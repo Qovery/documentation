@@ -1,0 +1,84 @@
+---
+title: "qovery webhook"
+description: "List an organization's webhooks and inspect the events each one sent, with response codes"
+---
+
+## Overview
+
+Use `qovery webhook` to list the [webhooks](/configuration/integrations/webhooks) of an organization and check the events each webhook sent, with the target URL, response status code and response body.
+
+## Examples
+
+List the webhooks of an organization:
+
+```bash
+qovery webhook list --organization "Acme Corp"
+```
+
+List the events sent by one webhook. `--webhook-id` is required; take the ID from `qovery webhook list`:
+
+```bash
+qovery webhook list-event \
+  --organization "Acme Corp" \
+  --webhook-id "$WEBHOOK_ID"
+```
+
+Get the events as JSON, including the payload sent:
+
+```bash
+qovery webhook list-event --organization "Acme Corp" --webhook-id "$WEBHOOK_ID" --json
+```
+
+{/* BEGIN GENERATED: qovery webhook --help, CLI v1.180.0 */}
+## Command reference
+
+Generated from `qovery webhook --help` (CLI v1.180.0). Every command also accepts `-h, --help` and the [global flags](/cli/commands/overview#global-flags).
+
+### `qovery webhook`
+
+Manage webhooks
+
+```text Usage
+qovery webhook [flags]
+qovery webhook [command]
+```
+
+| Subcommand | Description |
+|------------|-------------|
+| `qovery webhook list` | List webhooks |
+| `qovery webhook list-event` | List webhook events |
+
+No command-specific flags.
+
+### `qovery webhook list`
+
+List webhooks
+
+```text Usage
+qovery webhook list [flags]
+```
+
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--json` |  | bool |  |  | JSON output |
+| `--organization` |  | string |  |  | Organization Name |
+
+### `qovery webhook list-event`
+
+List webhook events
+
+```text Usage
+qovery webhook list-event [flags]
+```
+
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--json` |  | bool |  |  | JSON output |
+| `--organization` |  | string |  |  | Organization Name |
+| `--webhook-id` |  | string |  | Yes | Webhook ID (UUID) |
+{/* END GENERATED */}
+
+## Related Commands
+
+- [`qovery organization`](/cli/commands/organization) - List organizations
+- [`qovery audit-log`](/cli/commands/audit-log) - Export audit logs

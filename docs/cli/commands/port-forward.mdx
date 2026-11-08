@@ -1,6 +1,6 @@
 ---
 title: "qovery port-forward"
-description: "Port forwarding command"
+description: "Forward a local port to a service running on Qovery, such as a database or a private API"
 ---
 
 ## Overview
@@ -15,21 +15,19 @@ Port-forwarding requires the **Port-forward** permission on the service's enviro
 qovery port-forward
 ```
 
-The command requires at least one `--port` flag specifying the port mapping in `local_port:remote_port` format.
+The command requires at least one `--port` flag specifying the port mapping in `local_port:remote_port` format. A single number, such as `--port 5432`, uses the same port on both sides.
+
+Without an argument, the command targets the service in your [context](/cli/commands/context) and asks you to confirm it, or to pick a service. You can also pass the Console URL of the service as the first argument. To find a pod name for `--pod`, run [`qovery list-pods`](/cli/commands/list-pods).
+
+```bash
+qovery port-forward "https://console.qovery.com/organization/$ORG_ID/project/$PROJECT_ID/environment/$ENV_ID/application/$APP_ID" --port 8080:80
+```
 
 ## Usage
 
 ```bash
 qovery port-forward [flags]
 ```
-
-## Options
-
-| Flag | Short | Required | Description |
-|------|-------|----------|-------------|
-| `--port` | `-p` | Yes | Port to forward. Format: `local_port:remote_port` (e.g. `8080:80`). Can be specified multiple times. |
-| `--pod` | | No | Pod name where to forward traffic |
-| `--help` | | | Show help |
 
 ## Examples
 
@@ -169,6 +167,25 @@ If the connection drops frequently:
 # Use a specific pod instead of letting Kubernetes choose
 qovery port-forward --pod "my-app-pod-name" --port 8080:8080
 ```
+
+{/* BEGIN GENERATED: qovery port-forward --help, CLI v1.180.0 */}
+## Command reference
+
+Generated from `qovery port-forward --help` (CLI v1.180.0). Every command also accepts `-h, --help` and the [global flags](/cli/commands/overview#global-flags).
+
+### `qovery port-forward`
+
+Port forward a port to an application container
+
+```text Usage
+qovery port-forward [flags]
+```
+
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--pod` |  | string |  |  | pod name where to forward traffic |
+| `--port` | `-p` | strings |  | Yes | port that will be forwarded. Can be specified multiple time. Format "local\_port:remote\_port" i.e: 8080:80 |
+{/* END GENERATED */}
 
 ## Related Commands
 

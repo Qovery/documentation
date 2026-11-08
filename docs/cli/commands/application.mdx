@@ -1,27 +1,11 @@
 ---
 title: "qovery application"
-description: "Application management commands"
+description: "Deploy, redeploy, restart, stop, clone or delete applications, and manage their domains, variables and secrets"
 ---
 
 ## Overview
 
 Deploy and manage applications within your Qovery environment.
-
-## Subcommands
-
-| Subcommand | Description |
-|------------|-------------|
-| `list` | List applications in the current environment |
-| `deploy` | Deploy an application |
-| `redeploy` | Redeploy an application |
-| `restart` | Restart an application without redeploying it |
-| `stop` | Stop a running application |
-| `cancel` | Cancel an application deployment |
-| `delete` | Delete an application |
-| `update` | Update an application |
-| `clone` | Clone an application |
-| `domain` | Manage application custom domains |
-| `env` | Manage application environment variables |
 
 ## Commands
 
@@ -161,69 +145,6 @@ qovery application update \
   --auto-deploy
 ```
 
-## Options
-
-### Common flags (available on most subcommands)
-
-| Flag | Shorthand | Description |
-|------|-----------|-------------|
-| `--organization` | | Organization Name |
-| `--project` | | Project Name |
-| `--environment` | | Environment Name |
-| `--application` | `-n` | Application Name |
-| `--applications` | | Application Names (comma-separated), e.g. `--applications "app1,app2,app3"` |
-
-### `deploy` flags
-
-| Flag | Shorthand | Description |
-|------|-----------|-------------|
-| `--commit-id` | `-c` | Git commit ID to deploy, or `latest` for the newest commit of the branch |
-| `--watch` | `-w` | Watch application status until ready or error |
-
-### `redeploy` flags
-
-| Flag | Shorthand | Description |
-|------|-----------|-------------|
-| `--commit-id` | `-c` | Git commit ID to redeploy, or `latest` for the newest commit of the branch. Omit it to reuse the currently deployed commit |
-| `--watch` | `-w` | Watch application status until ready or error |
-
-### `restart` flags
-
-| Flag | Shorthand | Description |
-|------|-----------|-------------|
-| `--watch` | `-w` | Watch application status until it's ready or an error occurs |
-
-### `stop` flags
-
-| Flag | Shorthand | Description |
-|------|-----------|-------------|
-| `--watch` | `-w` | Watch application status until ready or error |
-
-### `cancel` flags
-
-| Flag | Shorthand | Description |
-|------|-----------|-------------|
-| `--watch` | `-w` | Watch cancel until done or an error occurs |
-
-### `delete` flags
-
-| Flag | Shorthand | Description |
-|------|-----------|-------------|
-| `--watch` | `-w` | Watch application status until ready or error |
-
-### `update` flags
-
-| Flag | Shorthand | Description |
-|------|-----------|-------------|
-| `--branch` | | Application Git Branch |
-| `--auto-deploy` | | Enable auto-deploy for the application |
-
-### `list` flags
-
-| Flag | Shorthand | Description |
-|------|-----------|-------------|
-| `--json` | | JSON output |
-
 ## Examples
 
 ### Deploy Application
@@ -274,9 +195,510 @@ qovery application update \
 
 The `application` command also has the following subcommand groups for more advanced management:
 
-- **`qovery application clone`** — Clone an application to another environment
-- **`qovery application domain`** — Manage custom domains (`list`, `create`, `delete`, `edit`)
-- **`qovery application env`** — Manage environment variables (`list`, `create`, `update`, `delete`, `alias`, `override`)
+- **`qovery application clone`**: clone an application to another environment
+- **`qovery application domain`**: manage custom domains (`list`, `create`, `delete`, `edit`)
+- **`qovery application env`**: manage environment variables and secrets (`list`, `create`, `update`, `delete`, `alias`, `override`)
+- **`qovery application external-secret`**: manage external secrets (`create`, `update`, `delete`)
+
+{/* BEGIN GENERATED: qovery application --help, CLI v1.180.0 */}
+## Command reference
+
+Generated from `qovery application --help` (CLI v1.180.0). Every command also accepts `-h, --help` and the [global flags](/cli/commands/overview#global-flags).
+
+### `qovery application`
+
+Manage applications
+
+```text Usage
+qovery application [flags]
+qovery application [command]
+```
+
+| Subcommand | Description |
+|------------|-------------|
+| `qovery application cancel` | Cancel an application deployment |
+| `qovery application clone` | Clone an application |
+| `qovery application delete` | Delete an application |
+| `qovery application deploy` | Deploy an application |
+| `qovery application domain` | Manage application domains |
+| `qovery application env` | Manage application environment variables and secrets |
+| `qovery application external-secret` | Manage application external secrets |
+| `qovery application list` | List applications |
+| `qovery application redeploy` | Redeploy an application |
+| `qovery application restart` | Restart an application without redeploying it |
+| `qovery application stop` | Stop an application |
+| `qovery application update` | Update an application |
+
+No command-specific flags.
+
+### `qovery application cancel`
+
+Cancel an application deployment
+
+```text Usage
+qovery application cancel [flags]
+```
+
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--application` | `-n` | string |  | Yes | Application Name |
+| `--environment` |  | string |  |  | Environment Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--watch` | `-w` | bool |  |  | Watch cancel until it's done or an error occurs |
+
+### `qovery application clone`
+
+Clone an application
+
+```text Usage
+qovery application clone [flags]
+```
+
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--application` | `-n` | string |  | Yes | Application Name |
+| `--environment` |  | string |  |  | Environment Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--target-application-name` |  | string |  |  | Target Application Name |
+| `--target-environment` |  | string |  |  | Target Environment Name |
+| `--target-project` |  | string |  |  | Target Project Name |
+
+### `qovery application delete`
+
+Delete an application
+
+```text Usage
+qovery application delete [flags]
+```
+
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--application` | `-n` | string |  |  | Application Name |
+| `--applications` |  | string |  |  | Application Names (comma separated) Example: --applications "app1,app2,app3" |
+| `--environment` |  | string |  |  | Environment Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--watch` | `-w` | bool |  |  | Watch application status until it's ready or an error occurs |
+
+### `qovery application deploy`
+
+Deploy an application
+
+```text Usage
+qovery application deploy [flags]
+```
+
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--application` | `-n` | string |  |  | Application Name |
+| `--applications` |  | string |  |  | Application Names (comma separated) Example: --applications "app1,app2,app3" |
+| `--commit-id` | `-c` | string |  |  | Application Commit ID, or 'latest' for the newest commit of the branch |
+| `--environment` |  | string |  |  | Environment Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--watch` | `-w` | bool |  |  | Watch application status until it's ready or an error occurs |
+
+### `qovery application domain`
+
+Manage application domains
+
+```text Usage
+qovery application domain [flags]
+qovery application domain [command]
+```
+
+| Subcommand | Description |
+|------------|-------------|
+| `qovery application domain create` | Create application custom domain |
+| `qovery application domain delete` | Delete application custom domain |
+| `qovery application domain edit` | Edit application custom domain |
+| `qovery application domain list` | List application domains |
+
+No command-specific flags.
+
+### `qovery application domain create`
+
+Create application custom domain
+
+```text Usage
+qovery application domain create [flags]
+```
+
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--application` | `-n` | string |  | Yes | Application Name |
+| `--do-not-generate-certificate` |  | bool |  |  | Do Not Generate Certificate |
+| `--domain` |  | string |  | Yes | Custom Domain &lt;subdomain.domain.tld&gt; |
+| `--environment` |  | string |  |  | Environment Name |
+| `--is-behind-a-cdn` |  | bool |  |  | Custom Domain is behind a CDN |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+
+### `qovery application domain delete`
+
+Delete application custom domain
+
+```text Usage
+qovery application domain delete [flags]
+```
+
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--application` | `-n` | string |  | Yes | Application Name |
+| `--domain` |  | string |  | Yes | Custom Domain &lt;subdomain.domain.tld&gt; |
+| `--environment` |  | string |  |  | Environment Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+
+### `qovery application domain edit`
+
+Edit application custom domain
+
+```text Usage
+qovery application domain edit [flags]
+```
+
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--application` | `-n` | string |  | Yes | Application Name |
+| `--do-not-generate-certificate` |  | bool |  |  | Do Not Generate Certificate |
+| `--domain` |  | string |  | Yes | Custom Domain &lt;subdomain.domain.tld&gt; |
+| `--environment` |  | string |  |  | Environment Name |
+| `--is-behind-a-cdn` |  | bool |  |  | Custom Domain is behind a CDN |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+
+### `qovery application domain list`
+
+List application domains
+
+```text Usage
+qovery application domain list [flags]
+```
+
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--application` | `-n` | string |  | Yes | Application Name |
+| `--environment` |  | string |  |  | Environment Name |
+| `--json` |  | bool |  |  | JSON output |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+
+### `qovery application env`
+
+Manage application environment variables and secrets
+
+```text Usage
+qovery application env [flags]
+qovery application env [command]
+```
+
+| Subcommand | Description |
+|------------|-------------|
+| `qovery application env alias` | Manage application environment variable and secret aliases |
+| `qovery application env create` | Create application environment variable or secret |
+| `qovery application env delete` | Delete application environment variable or secret |
+| `qovery application env list` | List application environment variables |
+| `qovery application env override` | Manage application environment variable and secret overrides |
+| `qovery application env update` | Update application environment variable or secret |
+
+No command-specific flags.
+
+### `qovery application env alias`
+
+Manage application environment variable and secret aliases
+
+```text Usage
+qovery application env alias [flags]
+qovery application env alias [command]
+```
+
+| Subcommand | Description |
+|------------|-------------|
+| `qovery application env alias create` | Create application environment variable or secret alias |
+
+No command-specific flags.
+
+### `qovery application env alias create`
+
+Create application environment variable or secret alias
+
+```text Usage
+qovery application env alias create [flags]
+```
+
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--alias` |  | string |  | Yes | Environment variable or secret alias |
+| `--application` | `-n` | string |  | Yes | Application Name |
+| `--environment` |  | string |  |  | Environment Name |
+| `--key` | `-k` | string |  | Yes | Environment variable or secret key |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--scope` |  | string | `"APPLICATION"` |  | Scope of this alias &lt;PROJECT\|ENVIRONMENT\|APPLICATION&gt; |
+
+### `qovery application env create`
+
+Create application environment variable or secret
+
+```text Usage
+qovery application env create [flags]
+```
+
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--application` | `-n` | string |  | Yes | Application Name |
+| `--environment` |  | string |  |  | Environment Name |
+| `--key` | `-k` | string |  | Yes | Environment variable or secret key |
+| `--organization` |  | string |  |  | Organization Name |
+| `--override-if-exists` |  | bool |  |  | If the key already exists at a higher scope, create an override of it instead of failing |
+| `--project` |  | string |  |  | Project Name |
+| `--scope` |  | string | `"APPLICATION"` |  | Scope of this env var &lt;PROJECT\|ENVIRONMENT\|APPLICATION&gt; |
+| `--secret` |  | bool |  |  | This environment variable is a secret |
+| `--value` | `-v` | string |  | Yes | Environment variable or secret value |
+
+### `qovery application env delete`
+
+Delete application environment variable or secret
+
+```text Usage
+qovery application env delete [flags]
+```
+
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--application` | `-n` | string |  | Yes | Application Name |
+| `--environment` |  | string |  |  | Environment Name |
+| `--key` | `-k` | string |  | Yes | Environment variable or secret key |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+
+### `qovery application env list`
+
+List application environment variables
+
+```text Usage
+qovery application env list [flags]
+```
+
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--application` | `-n` | string |  | Yes | Application Name |
+| `--environment` |  | string |  |  | Environment Name |
+| `--json` |  | bool |  |  | JSON output |
+| `--organization` |  | string |  |  | Organization Name |
+| `--pretty-print` |  | bool |  |  | Pretty print output |
+| `--project` |  | string |  |  | Project Name |
+| `--show-values` |  | bool |  |  | Show env var values |
+| `--sort` |  | bool |  |  | Sort environment variables by key |
+
+### `qovery application env override`
+
+Manage application environment variable and secret overrides
+
+```text Usage
+qovery application env override [flags]
+qovery application env override [command]
+```
+
+| Subcommand | Description |
+|------------|-------------|
+| `qovery application env override create` | Override application environment variable or secret |
+
+No command-specific flags.
+
+### `qovery application env override create`
+
+Override application environment variable or secret
+
+```text Usage
+qovery application env override create [flags]
+```
+
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--application` | `-n` | string |  | Yes | Application Name |
+| `--environment` |  | string |  |  | Environment Name |
+| `--key` | `-k` | string |  | Yes | Environment variable or secret key |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--scope` |  | string | `"APPLICATION"` |  | Scope of this alias &lt;PROJECT\|ENVIRONMENT\|APPLICATION&gt; |
+| `--value` |  | string |  | Yes | Environment variable or secret value |
+
+### `qovery application env update`
+
+Update application environment variable or secret
+
+```text Usage
+qovery application env update [flags]
+```
+
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--application` | `-n` | string |  | Yes | Application Name |
+| `--environment` |  | string |  |  | Environment Name |
+| `--key` | `-k` | string |  | Yes | Environment variable or secret key |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--value` | `-v` | string |  | Yes | Environment variable or secret value |
+
+### `qovery application external-secret`
+
+Manage application external secrets
+
+```text Usage
+qovery application external-secret [flags]
+qovery application external-secret [command]
+```
+
+| Subcommand | Description |
+|------------|-------------|
+| `qovery application external-secret create` | Create application external secret |
+| `qovery application external-secret delete` | Delete application external secret |
+| `qovery application external-secret update` | Update application external secret |
+
+No command-specific flags.
+
+### `qovery application external-secret create`
+
+Create application external secret
+
+```text Usage
+qovery application external-secret create [flags]
+```
+
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--application` | `-n` | string |  | Yes | Application Name |
+| `--environment` |  | string |  |  | Environment Name |
+| `--key` | `-k` | string |  | Yes | External secret key |
+| `--mount-path` |  | string |  |  | Path where the secret will be mounted as a file |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--reference` | `-r` | string |  | Yes | Reference to the secret in the secrets provider |
+| `--scope` |  | string | `"APPLICATION"` |  | Scope of this external secret &lt;PROJECT\|ENVIRONMENT\|APPLICATION&gt; |
+| `--secret-manager-access-name` |  | string |  | Yes | Secret manager access name |
+
+### `qovery application external-secret delete`
+
+Delete application external secret
+
+```text Usage
+qovery application external-secret delete [flags]
+```
+
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--application` | `-n` | string |  | Yes | Application Name |
+| `--environment` |  | string |  |  | Environment Name |
+| `--key` | `-k` | string |  | Yes | External secret key |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+
+### `qovery application external-secret update`
+
+Update application external secret
+
+```text Usage
+qovery application external-secret update [flags]
+```
+
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--application` | `-n` | string |  | Yes | Application Name |
+| `--environment` |  | string |  |  | Environment Name |
+| `--key` | `-k` | string |  | Yes | External secret key |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--reference` | `-r` | string |  |  | New reference to the secret in the secrets provider |
+| `--secret-manager-access-name` |  | string |  |  | New secret manager access name |
+
+### `qovery application list`
+
+List applications
+
+```text Usage
+qovery application list [flags]
+```
+
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--json` |  | bool |  |  | JSON output |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+
+### `qovery application redeploy`
+
+Redeploy an application
+
+```text Usage
+qovery application redeploy [flags]
+```
+
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--application` | `-n` | string |  | Yes | Application Name |
+| `--commit-id` | `-c` | string |  |  | Application Commit ID, or 'latest' for the newest commit of the branch |
+| `--environment` |  | string |  |  | Environment Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--watch` | `-w` | bool |  |  | Watch application status until it's ready or an error occurs |
+
+### `qovery application restart`
+
+Restart an application without redeploying it
+
+```text Usage
+qovery application restart [flags]
+```
+
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--application` | `-n` | string |  |  | Application Name |
+| `--applications` |  | string |  |  | Application Names (comma separated) Example: --applications "app1,app2" |
+| `--environment` |  | string |  |  | Environment Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--watch` | `-w` | bool |  |  | Watch application status until it's ready or an error occurs |
+
+### `qovery application stop`
+
+Stop an application
+
+```text Usage
+qovery application stop [flags]
+```
+
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--application` | `-n` | string |  |  | Application Name |
+| `--applications` |  | string |  |  | Application Names (comma separated) Example: --applications "app1,app2,app3" |
+| `--commit-id` | `-c` | string |  |  | Application Commit ID |
+| `--environment` |  | string |  |  | Environment Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--watch` | `-w` | bool |  |  | Watch application status until it's ready or an error occurs |
+
+### `qovery application update`
+
+Update an application
+
+```text Usage
+qovery application update [flags]
+```
+
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--application` | `-n` | string |  | Yes | Application Name |
+| `--auto-deploy` |  | bool |  |  | Application Auto Deploy |
+| `--branch` |  | string |  |  | Application Git Branch |
+| `--environment` |  | string |  |  | Environment Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+{/* END GENERATED */}
 
 ## Related Commands
 

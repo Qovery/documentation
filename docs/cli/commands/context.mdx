@@ -1,11 +1,11 @@
 ---
 title: "qovery context"
-description: "Context management commands for Qovery CLI"
+description: "Show or set the organization, project, environment and service the CLI targets by default"
 ---
 
 ## Overview
 
-The `context` command manages your current working context (organization, project, environment). This allows you to run commands without specifying these parameters every time.
+Use `qovery context` to see or change the organization, project, environment and service the CLI targets by default, so you do not have to pass them to every command.
 
 ## Commands
 
@@ -30,7 +30,7 @@ project, an environment and a service. It takes no flags to select them.
 **Scripts, CI and AI agents** cannot answer the interactive picker. Skip the context and pass names
 explicitly instead: commands accept `--organization`, `--project` and `--environment` (for example
 `qovery environment list --organization "Acme Corp" --project "Backend Services"`), and
-`qovery api` takes IDs in the path (`qovery api organization/<org-id>/project`).
+`qovery api` takes IDs in the path (`qovery api "organization/$ORGANIZATION_ID/project"`).
 </Note>
 
 ## Examples
@@ -50,11 +50,36 @@ qovery context
 qovery project list --organization "Acme Corp"
 ```
 
-## Options
+{/* BEGIN GENERATED: qovery context --help, CLI v1.180.0 */}
+## Command reference
 
-| Flag | Description |
-|------|-------------|
-| `--help` | Show help for the context command |
+Generated from `qovery context --help` (CLI v1.180.0). Every command also accepts `-h, --help` and the [global flags](/cli/commands/overview#global-flags).
+
+### `qovery context`
+
+Manage CLI context
+
+```text Usage
+qovery context [flags]
+qovery context [command]
+```
+
+| Subcommand | Description |
+|------------|-------------|
+| `qovery context set` | Set Qovery CLI context |
+
+No command-specific flags.
+
+### `qovery context set`
+
+Set Qovery CLI context
+
+```text Usage
+qovery context set [flags]
+```
+
+No command-specific flags.
+{/* END GENERATED */}
 
 ## Related Commands
 

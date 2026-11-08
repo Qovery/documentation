@@ -1,27 +1,16 @@
 ---
 title: "qovery completion"
-description: "Generate autocompletion scripts for your shell"
+description: "Turn on tab completion for Qovery CLI commands and flags in bash, zsh, fish or PowerShell"
 ---
 
 ## Overview
 
-Generate the autocompletion script for the specified shell to enable command and flag completion.
+Use `qovery completion` to generate the autocompletion script for your shell, so that Tab completes Qovery commands, subcommands and flags. Add `--no-descriptions` to leave the descriptions out of the suggestions.
 
-## Supported Shells
+## Setup
 
 ### bash
 
-Generate the autocompletion script for bash.
-
-**Usage:**
-```bash
-qovery completion bash [flags]
-```
-
-**Flags:**
-- `--no-descriptions` (bool) - Disable completion descriptions (default: false)
-
-**Setup:**
 ```bash
 # Load completions in current session
 source <(qovery completion bash)
@@ -32,17 +21,6 @@ qovery completion bash > /etc/bash_completion.d/qovery
 
 ### zsh
 
-Generate the autocompletion script for zsh.
-
-**Usage:**
-```bash
-qovery completion zsh [flags]
-```
-
-**Flags:**
-- `--no-descriptions` (bool) - Disable completion descriptions (default: false)
-
-**Setup:**
 ```bash
 # Load completions in current session
 source <(qovery completion zsh)
@@ -53,17 +31,6 @@ qovery completion zsh > ~/.oh-my-zsh/completions/_qovery
 
 ### fish
 
-Generate the autocompletion script for fish.
-
-**Usage:**
-```bash
-qovery completion fish [flags]
-```
-
-**Flags:**
-- `--no-descriptions` (bool) - Disable completion descriptions (default: false)
-
-**Setup:**
 ```bash
 # Load completions in current session
 qovery completion fish | source
@@ -72,19 +39,8 @@ qovery completion fish | source
 qovery completion fish > ~/.config/fish/completions/qovery.fish
 ```
 
-### powershell
+### PowerShell
 
-Generate the autocompletion script for powershell.
-
-**Usage:**
-```bash
-qovery completion powershell [flags]
-```
-
-**Flags:**
-- `--no-descriptions` (bool) - Disable completion descriptions (default: false)
-
-**Setup:**
 ```powershell
 # Load completions in current session
 qovery completion powershell | Out-String | Invoke-Expression
@@ -92,3 +48,158 @@ qovery completion powershell | Out-String | Invoke-Expression
 # Add to PowerShell profile for every new session
 qovery completion powershell >> $PROFILE
 ```
+
+### Without descriptions
+
+```bash
+qovery completion zsh --no-descriptions > ~/.oh-my-zsh/completions/_qovery
+```
+
+{/* BEGIN GENERATED: qovery completion --help, CLI v1.180.0 */}
+## Command reference
+
+Generated from `qovery completion --help` (CLI v1.180.0). Every command also accepts `-h, --help` and the [global flags](/cli/commands/overview#global-flags).
+
+### `qovery completion`
+
+Generate the autocompletion script for the specified shell
+
+```text Description from qovery completion --help
+Generate the autocompletion script for qovery for the specified shell.
+See each sub-command's help for details on how to use the generated script.
+```
+
+```text Usage
+qovery completion [command]
+```
+
+| Subcommand | Description |
+|------------|-------------|
+| `qovery completion bash` | Generate the autocompletion script for bash |
+| `qovery completion fish` | Generate the autocompletion script for fish |
+| `qovery completion powershell` | Generate the autocompletion script for powershell |
+| `qovery completion zsh` | Generate the autocompletion script for zsh |
+
+No command-specific flags.
+
+### `qovery completion bash`
+
+Generate the autocompletion script for bash
+
+```text Description from qovery completion bash --help
+Generate the autocompletion script for the bash shell.
+
+This script depends on the 'bash-completion' package.
+If it is not installed already, you can install it via your OS's package manager.
+
+To load completions in your current shell session:
+
+	source <(qovery completion bash)
+
+To load completions for every new session, execute once:
+
+#### Linux:
+
+	qovery completion bash > /etc/bash_completion.d/qovery
+
+#### macOS:
+
+	qovery completion bash > $(brew --prefix)/etc/bash_completion.d/qovery
+
+You will need to start a new shell for this setup to take effect.
+```
+
+```text Usage
+qovery completion bash
+```
+
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--no-descriptions` |  | bool |  |  | disable completion descriptions |
+
+### `qovery completion fish`
+
+Generate the autocompletion script for fish
+
+```text Description from qovery completion fish --help
+Generate the autocompletion script for the fish shell.
+
+To load completions in your current shell session:
+
+	qovery completion fish | source
+
+To load completions for every new session, execute once:
+
+	qovery completion fish > ~/.config/fish/completions/qovery.fish
+
+You will need to start a new shell for this setup to take effect.
+```
+
+```text Usage
+qovery completion fish [flags]
+```
+
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--no-descriptions` |  | bool |  |  | disable completion descriptions |
+
+### `qovery completion powershell`
+
+Generate the autocompletion script for powershell
+
+```text Description from qovery completion powershell --help
+Generate the autocompletion script for powershell.
+
+To load completions in your current shell session:
+
+	qovery completion powershell | Out-String | Invoke-Expression
+
+To load completions for every new session, add the output of the above command
+to your powershell profile.
+```
+
+```text Usage
+qovery completion powershell [flags]
+```
+
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--no-descriptions` |  | bool |  |  | disable completion descriptions |
+
+### `qovery completion zsh`
+
+Generate the autocompletion script for zsh
+
+```text Description from qovery completion zsh --help
+Generate the autocompletion script for the zsh shell.
+
+If shell completion is not already enabled in your environment you will need
+to enable it.  You can execute the following once:
+
+	echo "autoload -U compinit; compinit" >> ~/.zshrc
+
+To load completions in your current shell session:
+
+	source <(qovery completion zsh)
+
+To load completions for every new session, execute once:
+
+#### Linux:
+
+	qovery completion zsh > "${fpath[1]}/_qovery"
+
+#### macOS:
+
+	qovery completion zsh > $(brew --prefix)/share/zsh/site-functions/_qovery
+
+You will need to start a new shell for this setup to take effect.
+```
+
+```text Usage
+qovery completion zsh [flags]
+```
+
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--no-descriptions` |  | bool |  |  | disable completion descriptions |
+{/* END GENERATED */}

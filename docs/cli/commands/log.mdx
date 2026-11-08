@@ -1,11 +1,11 @@
 ---
 title: "qovery log"
-description: "Log viewing commands"
+description: "Stream the logs of an application, container, database or job to your terminal"
 ---
 
 ## Overview
 
-View and stream logs from any service — application, container, database, or job — running on Qovery.
+View and stream logs from any service running on Qovery: application, container, database or job.
 
 ## Commands
 
@@ -35,28 +35,12 @@ Stream logs in raw JSON format:
 qovery log --service "httpbin" --raw
 ```
 
-## Options
-
-| Flag | Short | Description |
-| ---- | ----- | ----------- |
-| `--organization` | | Organization Name |
-| `--project` | | Project Name |
-| `--environment` | | Environment Name |
-| `--service` | `-s` | Service name — tries application, container, database, and job APIs until a match is found |
-| `--service-id` | | Service UUID — directly stream logs by ID, skips name lookup (use with IDs from console URLs) |
-| `--application` | `-a` | Application Name |
-| `--container` | `-n` | Container Name |
-| `--database` | `-d` | Database Name |
-| `--job` | `-j` | Job Name |
-| `--raw` | `-r` | Display logs in raw format (json) |
-| `--help` | | Show help |
-
 ## Examples
 
 ### Stream Logs by Service Name
 
 ```bash
-# Stream logs — works for any service type
+# Stream logs, works for any service type
 qovery log --service "httpbin"
 
 # Stream logs for a specific application
@@ -116,6 +100,33 @@ qovery log \
   Use `--raw` / `-r` to get logs in JSON format, which is useful for piping
   output to tools like `jq` for further processing.
 </Tip>
+
+{/* BEGIN GENERATED: qovery log --help, CLI v1.180.0 */}
+## Command reference
+
+Generated from `qovery log --help` (CLI v1.180.0). Every command also accepts `-h, --help` and the [global flags](/cli/commands/overview#global-flags).
+
+### `qovery log`
+
+Print your application logs
+
+```text Usage
+qovery log [flags]
+```
+
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--application` | `-a` | string |  |  | Application Name |
+| `--container` | `-n` | string |  |  | Container Name |
+| `--database` | `-d` | string |  |  | Database Name |
+| `--environment` |  | string |  |  | Environment Name |
+| `--job` | `-j` | string |  |  | Job Name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--raw` | `-r` | bool |  |  | display logs in raw format (json) |
+| `--service` | `-s` | string |  |  | Service Name |
+| `--service-id` |  | string |  |  | Service ID (UUID) - skips name lookup, use when you already have the ID from a console URL |
+{/* END GENERATED */}
 
 ## Related Commands
 

@@ -1,0 +1,85 @@
+---
+title: "qovery blueprint"
+description: "Move a blueprint service, such as an RDS database, to a newer major version from the terminal"
+---
+
+## Overview
+
+Use `qovery blueprint` to move a [blueprint](/configuration/blueprints) service to the latest tag of a newer major version, for example PostgreSQL 14 to 18.
+
+The command is built for AWS RDS PostgreSQL databases. Other blueprint services are accepted, but Qovery does not check that their new major can be applied safely, so review that template's upgrade notes first. See [Point a Blueprint at a Newer Major Version](/cli/overview#point-a-blueprint-at-a-newer-major-version) for what each kind of move does.
+
+## Examples
+
+List the newer majors and what moving to each one would do:
+
+```bash
+qovery blueprint upgrade-major --name "my-postgres"
+```
+
+<Warning>
+An in-place major upgrade takes the database offline while AWS upgrades it. For a production database, upgrade with an [AWS Blue/Green deployment](/getting-started/guides/advanced-tutorials/upgrading-rds-instance) first, then run the command: it only relabels the blueprint.
+</Warning>
+
+Move to major 18, skip the confirmation prompt and follow the deployment:
+
+```bash
+qovery blueprint upgrade-major \
+  --name "my-postgres" \
+  --major 18 \
+  --yes \
+  --watch
+```
+
+{/* BEGIN GENERATED: qovery blueprint --help, CLI v1.180.0 */}
+## Command reference
+
+Generated from `qovery blueprint --help` (CLI v1.180.0). Every command also accepts `-h, --help` and the [global flags](/cli/commands/overview#global-flags).
+
+### `qovery blueprint`
+
+Manage blueprint services
+
+```text Usage
+qovery blueprint [flags]
+qovery blueprint [command]
+```
+
+| Subcommand | Description |
+|------------|-------------|
+| `qovery blueprint upgrade-major` | Point a blueprint at the latest tag of a newer major version |
+
+No command-specific flags.
+
+### `qovery blueprint upgrade-major`
+
+Point a blueprint at the latest tag of a newer major version
+
+```text Description from qovery blueprint upgrade-major --help
+Point a blueprint service at the latest tag of a newer major version (e.g. PostgreSQL 14 to 18).
+
+Without --major, lists the newer majors and what moving to each one does:
+  RELABEL      the service already runs that major (e.g. upgraded on AWS): only Qovery's records change
+  UPGRADE      the service runs an older major: the next deploy upgrades it in place (downtime for databases)
+  UNSUPPORTED  the move is refused, with the reason
+```
+
+```text Usage
+qovery blueprint upgrade-major [flags]
+```
+
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--environment` |  | string |  |  | Environment Name |
+| `--major` |  | string |  |  | Major version to move to (e.g. 18). Without it, lists the available majors |
+| `--name` | `-n` | string |  | Yes | Blueprint service name |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  |  | Project Name |
+| `--watch` | `-w` | bool |  |  | Watch the service status until it's ready or an error occurs |
+| `--yes` | `-y` | bool |  |  | Skip the confirmation prompt |
+{/* END GENERATED */}
+
+## Related Commands
+
+- [`qovery database`](/cli/commands/database) - Manage databases
+- [`qovery terraform`](/cli/commands/terraform) - Manage Terraform services

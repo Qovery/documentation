@@ -1,32 +1,86 @@
 ---
 title: "qovery audit-log"
-description: "Interact with audit logs"
+description: "Export your organization's audit logs for a date range to a CSV file"
 ---
 
 ## Overview
 
-Interact with audit logs from your Qovery organization.
+Use `qovery audit-log export` to download the audit logs of an organization to a CSV file named `audit_logs_<date>_<time>.csv` in the current directory. The command first prints how many days of history your organization plan keeps.
 
-## Commands
+`--from-date` is required. Dates must use the ISO-8601 format with a `T` between the date and the time, and a time zone, for example `2026-10-01T00:00:00Z` or `2026-10-01T02:00:00+02:00`. Without `--to-date`, the export runs until now.
 
-### export
+## Examples
 
-Export audit logs for a specified date range.
+Export from a date until now:
 
-**Usage:**
 ```bash
+qovery audit-log export \
+  --organization "Acme Corp" \
+  --from-date "2026-10-01T00:00:00Z"
+```
+
+Export a date range:
+
+```bash
+qovery audit-log export \
+  --organization "Acme Corp" \
+  --from-date "2026-10-01T00:00:00Z" \
+  --to-date "2026-10-31T23:59:59Z"
+```
+
+{/* BEGIN GENERATED: qovery audit-log --help, CLI v1.180.0 */}
+## Command reference
+
+Generated from `qovery audit-log --help` (CLI v1.180.0). Every command also accepts `-h, --help` and the [global flags](/cli/commands/overview#global-flags).
+
+### `qovery audit-log`
+
+Interact with audit logs
+
+```text Usage
+qovery audit-log [flags]
+qovery audit-log [command]
+```
+
+| Subcommand | Description |
+|------------|-------------|
+| `qovery audit-log export` | Export audit logs |
+
+No command-specific flags.
+
+### `qovery audit-log export`
+
+Export audit logs
+
+```text Description from qovery audit-log export --help
+> Description
+-------------
+This command provides an easy way to download audit logs.
+Date parameters must follow the ISO-8601 format, i.e:
+* 2025-10-02T01:04:45+12:00 is valid
+* 2025-10-02T01:04:45Z is valid
+* 2025-10-02 01:04:45Z is invalid (missing T separator)
+
+> Examples 
+----------
+* Search from a specific date to now:
+qovery audit-log export --from-date 2025-09-01T01:04:45+02:00
+
+* Search between a range of dates
+qovery audit-log export --from-date 2025-09-01T01:04:45Z --to-date 2025-09-02T02:00:00Z
+```
+
+```text Usage
 qovery audit-log export [flags]
 ```
 
-**Flags:**
-- `-f, --from-date` (string) - Start date for audit log export
-- `-o, --organization` (string) - Organization ID or name
-- `-t, --to-date` (string) - End date for audit log export
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--from-date` | `-f` | string |  | Yes | Start date for the search following ISO-8601 format |
+| `--organization` | `-o` | string |  |  | Organization Name |
+| `--to-date` | `-t` | string |  |  | End date for the search following ISO-8601 format (defaulted to 'now') |
+{/* END GENERATED */}
 
-**Example:**
-```bash
-qovery audit-log export \
-  --organization "my-org" \
-  --from-date "2024-01-01" \
-  --to-date "2024-01-31"
-```
+## Related Commands
+
+- [`qovery webhook`](/cli/commands/webhook) - List webhooks and the events they sent

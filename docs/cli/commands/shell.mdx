@@ -1,6 +1,6 @@
 ---
 title: "qovery shell"
-description: "Shell access and command execution"
+description: "Open a shell or run a command in a service container, or in an ephemeral clone pod or debug container"
 ---
 
 ## Overview
@@ -11,7 +11,7 @@ Opening a shell requires the **Shell** permission on the service's environment t
 
 ## Usage
 
-```bash
+```text
 qovery shell [flags]
 qovery shell <qovery_console_service_url>
 ```
@@ -68,7 +68,7 @@ The `--command` flag is a comma-separated string slice and can be repeated to pa
 Pass the Qovery Console URL directly:
 
 ```bash
-qovery shell "https://console.qovery.com/organization/<org-id>/project/<project-id>/environment/<env-id>/application/<app-id>"
+qovery shell "https://console.qovery.com/organization/$ORG_ID/project/$PROJECT_ID/environment/$ENV_ID/application/$APP_ID"
 ```
 
 ### Ephemeral Shell
@@ -129,23 +129,6 @@ Kubernetes cannot remove a debug container from a pod. The container stays in th
 #### Permissions
 
 Clone mode requires the same permissions as `qovery shell`. Debug mode requires admin access to the cluster. Both are recorded in the audit logs.
-
-## Options
-
-| Flag | Shorthand | Description |
-|------|-----------|-------------|
-| `--organization` | | Organization Name |
-| `--project` | | Project Name |
-| `--environment` | | Environment Name |
-| `--service` | | Service Name |
-| `--pod` | `-p` | Pod name to exec into |
-| `--container` | | Container name inside the pod |
-| `--command` | `-c` | Command to launch inside the pod (string slice, default: `sh`; can be repeated) |
-| `--ephemeral` | | Open the shell in an ephemeral pod or container instead of an existing pod |
-| `--mode` | | Ephemeral mode, used with `--ephemeral`: `clone` (default) or `debug` |
-| `--cpu` | | CPU request and limit of the clone pod, e.g. `500m` or `2` (`--mode clone` only) |
-| `--memory` | | Memory request and limit of the clone pod, e.g. `512Mi` or `2Gi` (`--mode clone` only) |
-| `--help` | | Show help |
 
 ## Examples
 
@@ -223,6 +206,45 @@ You can pass the Qovery Console URL as an argument to `qovery shell` to quickly 
 <Warning>
 Be careful when executing commands in production environments. Changes are not persistent across pod restarts.
 </Warning>
+
+{/* BEGIN GENERATED: qovery shell --help, CLI v1.180.0 */}
+## Command reference
+
+Generated from `qovery shell --help` (CLI v1.180.0). Every command also accepts `-h, --help` and the [global flags](/cli/commands/overview#global-flags).
+
+### `qovery shell`
+
+Connect to an application container
+
+```text Usage
+qovery shell [flags]
+```
+
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--command` | `-c` | strings | `[sh]` |  | command to launch inside the pod |
+| `--container` |  | string |  |  | container name inside the pod |
+| `--cpu` |  | string |  |  | override CPU request+limit for the ephemeral pod (e.g. '500m', '2') |
+| `--environment` |  | string |  |  | Environment Name |
+| `--ephemeral` |  | bool |  |  | spawn an ephemeral shell instead of connecting to an existing pod |
+| `--memory` |  | string |  |  | override memory request+limit for the ephemeral pod (e.g. '512Mi', '2Gi') |
+| `--mode` |  | string | `"clone"` |  | ephemeral mode: 'clone' (new isolated pod, Heroku-style) or 'debug' (ephemeral container injected into existing pod, kubectl-debug style) |
+| `--organization` |  | string |  |  | Organization Name |
+| `--pod` | `-p` | string |  |  | pod name where to exec into |
+| `--project` |  | string |  |  | Project Name |
+| `--service` |  | string |  |  | Service Name |
+
+Examples printed by `qovery shell --help`, verbatim. Replace the `<...>` placeholders with your own values before running them.
+
+```text qovery shell --help
+qovery shell
+qovery shell <qovery_console_service_url>
+qovery shell --organization <organization_name> --project <project_name> --environment <environment_name> --service <service_name>
+qovery shell --ephemeral --mode clone --organization <organization_name> --project <project_name> --environment <environment_name> --service <service_name>
+qovery shell --ephemeral --mode clone --memory 2Gi --organization <organization_name> --project <project_name> --environment <environment_name> --service <service_name>
+qovery shell --ephemeral --mode debug --organization <organization_name> --project <project_name> --environment <environment_name> --service <service_name>
+```
+{/* END GENERATED */}
 
 ## Related Commands
 

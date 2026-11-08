@@ -541,6 +541,7 @@
               "cli/commands/application",
               "cli/commands/audit-log",
               "cli/commands/auth",
+              "cli/commands/blueprint",
               "cli/commands/cluster",
               "cli/commands/completion",
               "cli/commands/console",
@@ -558,6 +559,7 @@
               "cli/commands/list-commands",
               "cli/commands/list-pods",
               "cli/commands/log",
+              "cli/commands/organization",
               "cli/commands/port-forward",
               "cli/commands/project",
               "cli/commands/service",
@@ -566,7 +568,8 @@
               "cli/commands/terraform",
               "cli/commands/token",
               "cli/commands/upgrade",
-              "cli/commands/version"
+              "cli/commands/version",
+              "cli/commands/webhook"
             ]
           },
           {

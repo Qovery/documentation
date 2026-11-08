@@ -109,7 +109,7 @@ If you want to use my `TODO app` as an example, you need to properly configure t
 | `POSTGRES_PORT`                | Yes for `QOVERY_POSTGRESQL_Z..._PORT`                  | Service | N/A                                                                        | Database port                                |
 | `POSTGRES_DATASOURCE_USERNAME` | Yes for `QOVERY_POSTGRESQL_Z..._LOGIN`                 | Service | N/A                                                                        | Database login                               |
 | `POSTGRES_DATASOURCE_PASSWORD` | Yes for `QOVERY_POSTGRESQL_Z..._PASSWORD`              | Service | N/A                                                                        | Database password                            |
-| `QUARKUS_DATASOURCE_JDBC_URL`  | No                                                     | Service | jdbc:postgresql://{{POSTGRES_HOST}}:{{POSTGRES_PORT}}/{{POSTGRES_DB_NAME}} | Connection string to the PostgreSQL database |
+| `QUARKUS_DATASOURCE_JDBC_URL`  | No                                                     | Service | `jdbc:postgresql://{{POSTGRES_HOST}}:{{POSTGRES_PORT}}/{{POSTGRES_DB_NAME}}` | Connection string to the PostgreSQL database |
 
 </details>
 
@@ -345,7 +345,7 @@ The `qovery container domain list` command returns ANSI color codes. We use the 
 
 In this step, we will display the result of our E2E tests in the Pull Request. We will use the [GitHub Actions output variables](https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions#setting-an-output-parameter) to do that. Here is the content of the file:
 
-```yaml
+````yaml
       - name: Display E2E Report
         uses: mshick/add-pr-comment@v2
         with:
@@ -358,7 +358,7 @@ In this step, we will display the result of our E2E tests in the Pull Request. W
             ```
             ${'{{ steps.run-e2e.outputs.E2E_REPORT }}'}
             ```
-```
+````
 
 > The complete file is available [here](https://github.com/evoxmusic/todo-demo-app/blob/master/.github/workflows/pull-request-run-e2e-tests.yml#L109C1-L120C16)
 

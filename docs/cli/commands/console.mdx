@@ -1,69 +1,28 @@
 ---
 title: "qovery console"
-description: "Open service in Qovery Console"
+description: "Open the service selected in your CLI context in the Qovery Console in your browser"
 ---
 
 ## Overview
 
-Opens the selected service in Qovery Console in your browser. This is a quick way to jump from CLI to the web interface for a specific service.
+Use `qovery console` to jump from the terminal to the Qovery Console page of a service. The command opens the service selected in your [context](/cli/commands/context) in your default browser and prints the URL it opens.
 
-## Command
-
-```bash
-qovery console
-```
-
-The command will interactively prompt you to select the organization, project, environment, and service, then open it in your default browser.
-
-## Usage
-
-```bash
-qovery console [service_url]
-```
-
-You can also provide a Qovery Console service URL directly:
-
-```bash
-qovery console https://console.qovery.com/...
-```
-
-## Options
-
-| Flag | Description |
-|------|-------------|
-| `--help` | Show help |
+If no organization, project, environment or service is selected yet, the command asks you to pick them first. The command takes no flags and no arguments: to open another service, change the context with `qovery context set`.
 
 ## Examples
 
-### Open Service Interactively
+Open the service in the current context:
 
 ```bash
-# Opens interactive selection
 qovery console
-
-# Select:
-# 1. Organization
-# 2. Project
-# 3. Environment
-# 4. Service
-
-# Opens service in browser
 ```
 
-### Open from Console URL
+Open another service:
 
 ```bash
-# Copy URL from browser and open it
-qovery console https://console.qovery.com/organization/abc/project/def/environment/ghi/application/jkl
+qovery context set
+qovery console
 ```
-
-## Use Cases
-
-- Quickly switch from CLI to web interface
-- View service metrics and logs in Console
-- Access service settings and configuration
-- Review deployment history
-- Manage environment variables via UI
 
 ## Tips
 
@@ -71,9 +30,21 @@ qovery console https://console.qovery.com/organization/abc/project/def/environme
 Use `qovery console` when you need to perform actions that are easier in the web interface, like viewing metrics or managing complex configurations.
 </Tip>
 
-<Tip>
-You can bookmark frequently used services in your browser after opening them with `qovery console`.
-</Tip>
+{/* BEGIN GENERATED: qovery console --help, CLI v1.180.0 */}
+## Command reference
+
+Generated from `qovery console --help` (CLI v1.180.0). Every command also accepts `-h, --help` and the [global flags](/cli/commands/overview#global-flags).
+
+### `qovery console`
+
+Opens the application in Qovery Console in your browser
+
+```text Usage
+qovery console [flags]
+```
+
+No command-specific flags.
+{/* END GENERATED */}
 
 ## Related Commands
 

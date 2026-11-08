@@ -1,11 +1,11 @@
 ---
 title: "qovery project"
-description: "Project management commands"
+description: "List projects and create, update or delete project-level variables and secrets from the terminal"
 ---
 
 ## Overview
 
-Manage projects within your Qovery organization.
+Use `qovery project` to list the projects of an organization and to manage project-level environment variables and secrets, which every environment of the project inherits.
 
 ## Commands
 
@@ -17,13 +17,6 @@ List all projects in current organization:
 qovery project list
 ```
 
-**Flags:**
-
-| Flag | Description |
-|------|-------------|
-| `--organization` | Organization Name |
-| `--json` | JSON output |
-
 ### Manage Project Variables
 
 The `project env` subgroup provides commands to manage project-level environment variables and secrets.
@@ -31,17 +24,6 @@ The `project env` subgroup provides commands to manage project-level environment
 ```bash
 qovery project env list --project "my-project"
 ```
-
-**`project env list` flags:**
-
-| Flag | Description |
-|------|-------------|
-| `--organization` | Organization Name |
-| `--project` | Project Name (required) |
-| `--show-values` | Show env var values |
-| `--pretty-print` | Pretty print output |
-| `--sort` | Sort environment variables by key |
-| `--json` | JSON output |
 
 ## Examples
 
@@ -66,6 +48,161 @@ qovery project env list --project "my-project"
 # Show values
 qovery project env list --project "my-project" --show-values
 ```
+
+### Create a Project Secret
+
+```bash
+qovery project env create \
+  --project "my-project" \
+  --key "API_KEY" \
+  --value "$API_KEY" \
+  --secret
+```
+
+{/* BEGIN GENERATED: qovery project --help, CLI v1.180.0 */}
+## Command reference
+
+Generated from `qovery project --help` (CLI v1.180.0). Every command also accepts `-h, --help` and the [global flags](/cli/commands/overview#global-flags).
+
+### `qovery project`
+
+Manage Project
+
+```text Usage
+qovery project [command]
+```
+
+| Subcommand | Description |
+|------------|-------------|
+| `qovery project env` | Manage project variables and secrets |
+| `qovery project list` | List projects |
+
+No command-specific flags.
+
+### `qovery project env`
+
+Manage project variables and secrets
+
+```text Usage
+qovery project env [flags]
+qovery project env [command]
+```
+
+| Subcommand | Description |
+|------------|-------------|
+| `qovery project env alias` | Manage project variable and secret aliases |
+| `qovery project env create` | Create project variable or secret |
+| `qovery project env delete` | Delete project variable or secret |
+| `qovery project env list` | List project variables |
+| `qovery project env update` | Update project variable or secret |
+
+No command-specific flags.
+
+### `qovery project env alias`
+
+Manage project variable and secret aliases
+
+```text Usage
+qovery project env alias [flags]
+qovery project env alias [command]
+```
+
+| Subcommand | Description |
+|------------|-------------|
+| `qovery project env alias create` | Create project variable or secret alias |
+
+No command-specific flags.
+
+### `qovery project env alias create`
+
+Create project variable or secret alias
+
+```text Usage
+qovery project env alias create [flags]
+```
+
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--alias` |  | string |  | Yes | Project variable or secret alias |
+| `--key` | `-k` | string |  | Yes | Project variable or secret key |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  | Yes | Project Name |
+
+### `qovery project env create`
+
+Create project variable or secret
+
+```text Usage
+qovery project env create [flags]
+```
+
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--key` | `-k` | string |  | Yes | Project variable or secret key |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  | Yes | Project Name |
+| `--secret` |  | bool |  |  | This Project variable is a secret |
+| `--value` | `-v` | string |  | Yes | Project variable or secret value |
+
+### `qovery project env delete`
+
+Delete project variable or secret
+
+```text Usage
+qovery project env delete [flags]
+```
+
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--key` | `-k` | string |  | Yes | Project variable or secret key |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  | Yes | Project Name |
+
+### `qovery project env list`
+
+List project variables
+
+```text Usage
+qovery project env list [flags]
+```
+
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--json` |  | bool |  |  | JSON output |
+| `--organization` |  | string |  |  | Organization Name |
+| `--pretty-print` |  | bool |  |  | Pretty print output |
+| `--project` |  | string |  | Yes | Project Name |
+| `--show-values` |  | bool |  |  | Show env var values |
+| `--sort` |  | bool |  |  | Sort environment variables by key |
+
+### `qovery project env update`
+
+Update project variable or secret
+
+```text Usage
+qovery project env update [flags]
+```
+
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--key` | `-k` | string |  | Yes | Project variable or secret key |
+| `--organization` |  | string |  |  | Organization Name |
+| `--project` |  | string |  | Yes | Project Name |
+| `--value` | `-v` | string |  | Yes | Project variable or secret value |
+
+### `qovery project list`
+
+List projects
+
+```text Usage
+qovery project list [flags]
+```
+
+| Flag | Short | Type | Default | Required | Description |
+|------|-------|------|---------|----------|-------------|
+| `--json` |  | bool |  |  | JSON output |
+| `--organization` |  | string |  |  | Organization Name |
+{/* END GENERATED */}
 
 ## Related Commands
 

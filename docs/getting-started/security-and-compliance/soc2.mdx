@@ -14,7 +14,7 @@ This documentation outlines configuration settings for achieving SOC2 compliance
 
 ## Cluster advanced settings
 
-In the [Cluster Advanced Settings](/configuration/clusters#advanced-settings), you will find several configurable options to enhance compliance with SOC2. Here are the key settings:
+In the [Cluster Advanced Settings](/configuration/cluster-advanced-settings), you will find several configurable options to enhance compliance with SOC2. Here are the key settings:
 
 ### AWS CloudWatch
 
@@ -46,7 +46,7 @@ On GCP:
 
 **Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/gcp-icon.svg" alt="GCP" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/scaleway-icon.svg" alt="Scaleway" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
 
-Qovery allows databases to be publicly accessible for convenience; however, to comply with SOC2, it's recommended to [restrict this access](/configuration/clusters#advanced-settings) to secure your databases by changing the value of those settings:
+Qovery allows databases to be publicly accessible for convenience; however, to comply with SOC2, it's recommended to [restrict this access](/configuration/cluster-advanced-settings) to secure your databases by changing the value of those settings:
 
 * `database.<database type>.deny_public_access`: set the CIDR ranges permitted to access the database.
 * `database.<database type>.allowed_cidrs`: limit access to only your VPC CIDR or other specified IP ranges.
@@ -62,7 +62,7 @@ SOC2 compliance, however, mandates restricted access to the Kubernetes API. To a
 * `k8s.api.allowed_public_access_cidrs`: optional, define any additional CIDRs that require access to the Kubernetes API, thus limiting external access further.
 
 <Info>
-Please refer to the [dedicated documentation section](/configuration/clusters#advanced-settings), you have to create a Dockerhub account and link it to Qovery to avoid rate limit.
+Please refer to the [dedicated documentation section](/configuration/cluster-advanced-settings), you have to create a Dockerhub account and link it to Qovery to avoid rate limit.
 </Info>
 
 ### Container images retention time

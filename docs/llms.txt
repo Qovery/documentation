@@ -7,8 +7,8 @@
 1. Install the agent skills, which plan and run deployments for you: `curl -fsSL https://skill.qovery.com/install.sh | bash`. See [Deploy with AI Agent](https://www.qovery.com/docs/getting-started/quickstart/ai-agent.md).
 2. Without the skills, follow [Deploy from a Repository with the CLI and API](https://www.qovery.com/docs/getting-started/quickstart/cli-and-api.md). It covers the whole path as commands:
    - `curl -s https://get.qovery.com | bash` then `qovery auth --headless` (a person approves the sign-in link once)
-   - create the project, environment and application with `qovery api <path> --method POST`
-   - `qovery application deploy --application <name> --commit-id latest --watch`
+   - create the project, environment and application with `qovery api "PATH" --method POST`
+   - `qovery application deploy --organization "$ORG_NAME" --project PROJECT --environment ENVIRONMENT --application APP --commit-id latest --watch`
 3. To read status and logs from an agent, connect the [MCP server](https://www.qovery.com/docs/copilot/mcp-server.md) at `https://mcp.qovery.com/mcp`.
 4. To limit what an agent can do, use an [API Policy Token](https://www.qovery.com/docs/configuration/organization/api-policy-token.md). See [Let a Coding Agent Deploy Without Cloud Admin Credentials](https://www.qovery.com/docs/getting-started/guides/use-cases/coding-agent-deploy-access.md).
 5. API schema: [OpenAPI file](https://www.qovery.com/docs/api-reference/openapi.yaml), also printed by `qovery api spec`.
@@ -413,7 +413,6 @@
 
 - [API Reference (573 pages)](https://www.qovery.com/docs/_llms/api-reference.txt): Documentation for API Reference.
 > The links below point to documentation indexes. Follow each `/_llms/` index recursively until you reach documentation pages.
-- [API Reference (573 pages)](https://www.qovery.com/docs/_llms/api-reference.txt): Documentation for API Reference.
 - [API Reference / Organization Main Calls (22 pages)](https://www.qovery.com/docs/_llms/api-reference/organization-main-calls.txt): Documentation for API Reference / Organization Main Calls.
 - [API Reference / Platform Configuration (8 pages)](https://www.qovery.com/docs/_llms/api-reference/platform-configuration.txt): Documentation for API Reference / Platform Configuration.
 - [API Reference / Clusters (38 pages)](https://www.qovery.com/docs/_llms/api-reference/clusters.txt): Documentation for API Reference / Clusters.

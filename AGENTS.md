@@ -1,6 +1,6 @@
 # Qovery Documentation — Agent & Contributor Guide
 
-Qovery is a Kubernetes control plane for developers and DevOps teams. It abstracts cluster management, deployments, environments, and cost optimization — running on the customer's own cloud infrastructure (AWS, GCP, Azure, Scaleway) or on-premise.
+Qovery is an Agentic DevOps platform: a Kubernetes control plane for developers, DevOps teams and AI agents. It abstracts cluster management, deployments, environments, and cost optimization, and runs in the customer's own cloud account (AWS, GCP, Azure, Scaleway) or on their own Kubernetes cluster, including on-premise.
 
 **Primary audience for this documentation:** backend and fullstack developers deploying applications, DevOps and platform engineers managing clusters and configuration, CTOs evaluating the platform, and AI agents interacting via MCP.
 
@@ -13,7 +13,7 @@ docs/
   docs.json              # Mintlify config: navigation, theme, colors
   getting-started/       # Getting Started tab
   configuration/         # Configuration tab
-  copilot/               # AI tab (Copilot, Early Access)
+  copilot/               # AI tab (Copilot, MCP server, agent skills)
   cli/                   # CLI tab
   terraform-provider/    # Terraform Provider tab
   api-reference/         # API Reference tab (auto-generated, do not edit)

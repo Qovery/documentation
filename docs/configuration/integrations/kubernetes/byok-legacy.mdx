@@ -1,13 +1,13 @@
 ---
-title: "BYOK with the Qovery CLI"
-description: "Install Qovery with the Qovery CLI on any Kubernetes cluster other than EKS, GKE and Scaleway Kapsule, such as AKS, k3s or an on-premise cluster"
+title: "Install on any Kubernetes cluster with the CLI"
+description: "Install Qovery with qovery cluster install on any Kubernetes cluster other than EKS, GKE and Kapsule, such as AKS, k3s, OpenShift or an on-premise cluster."
 ---
 
 import InstallQoveryCLI from '/snippets/install-qovery-cli.mdx';
 
 ## Overview
 
-Bring Your Own Kubernetes (BYOK) allows you to connect any Kubernetes cluster to Qovery. You maintain control over your cluster infrastructure while Qovery manages application deployments.
+Qovery runs on any Kubernetes cluster. The `qovery cluster install` command of the Qovery CLI installs Qovery on a cluster you already run, such as Azure AKS, k3s, OpenShift or an on-premise cluster. You keep control of your cluster infrastructure, and Qovery manages application deployments on it.
 
 <Info>
 Use this installation for any cluster other than Amazon EKS, Google GKE and Scaleway Kapsule, for example Azure AKS, k3s or an on-premise cluster. For an EKS, GKE or Kapsule cluster, use the [Qovery Operator installation](/configuration/integrations/kubernetes/byok). See [Which installation to use](/configuration/integrations/kubernetes/byok-supported-setups#which-installation-to-use).

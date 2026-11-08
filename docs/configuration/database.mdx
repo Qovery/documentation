@@ -1,6 +1,6 @@
 ---
 title: "Databases"
-description: "Learn how to configure Databases on Qovery"
+description: "Deploy a managed database from a Blueprint for production, or a container database on your cluster for development, and connect it to your services."
 ---
 
 <Info>
@@ -25,7 +25,7 @@ Looking for **Managed mode**? Databases created in Managed mode before Blueprint
 
 ## Managed database (Blueprint)
 
-A managed database is provisioned through a [Blueprint](/configuration/blueprints). With a cloud provider blueprint (AWS, GCP, Scaleway), the database runs as a managed service in the cloud account backing your cluster. Backup and maintenance behavior depends on the provider and the Blueprint configuration. Helm blueprints run on the cluster itself, and External blueprints provision a third-party SaaS resource (for example MongoDB Atlas).
+A managed database is provisioned through a [Blueprint](/configuration/blueprints). With a cloud provider blueprint (the catalog has them for AWS, GCP and Scaleway), the database runs as a managed service in the cloud account backing your cluster. Backup and maintenance behavior depends on the provider and the Blueprint configuration. Helm blueprints run on the cluster itself, and External blueprints provision a third-party SaaS resource (for example MongoDB Atlas).
 
 The **Databases & Caches** category of the catalog includes, among others, Amazon RDS for PostgreSQL and MySQL, Amazon ElastiCache for Redis and Valkey, Google Cloud Memorystore for Redis, Scaleway Managed PostgreSQL, and Scaleway MySQL. See the [Blueprints catalog](/configuration/blueprints) for the full list and supported versions.
 

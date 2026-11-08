@@ -1207,7 +1207,7 @@
     },
     {
       "source": "/guides/tags/language-rust",
-      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+      "destination": "/getting-started/guides/advanced-tutorials/rust-api-part-1"
     },
     {
       "source": "/guides/tags/language-scala",

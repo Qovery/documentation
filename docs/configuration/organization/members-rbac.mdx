@@ -31,12 +31,58 @@ You can invite someone to join your organization by email. Once they accept the 
 
 ### Inviting Members
 
+<Tabs>
+  <Tab title="Console">
 1. Click the **Invite Member** button
 2. Enter the member's email address
 3. Select a role (see Default Roles below)
 4. Click **Send Invitation**
 
 The invited member will receive an email with instructions to join the organization.
+  </Tab>
+
+  <Tab title="CLI and API">
+    You need the [Qovery CLI](/cli/overview), signed in with `qovery auth`. The `qovery api` command sends authenticated requests to the [Qovery API](/api-reference/introduction).
+
+    Get the ID of the role to give, built-in or custom:
+
+    ```bash
+    qovery api organization/<organizationId>/availableRole
+    ```
+
+    Send the invitation with `POST /organization/{organizationId}/inviteMember`. `email` is required, and `role_id` sets the role:
+
+    ```bash
+    qovery api organization/<organizationId>/inviteMember \
+      --field email=dev@example.com \
+      --field role_id=<roleId>
+    ```
+  </Tab>
+
+  <Tab title="Terraform">
+    Use the [`qovery_organization_member`](https://registry.terraform.io/providers/Qovery/qovery/latest/docs/resources/organization_member) resource. Terraform sends the invitation, and the invitee becomes a member once they accept it with the invited email address:
+
+    ```hcl
+    resource "qovery_organization_member" "dev" {
+      organization_id = "<organizationId>"
+      email           = "dev@example.com"
+      role_id         = "<roleId>"
+    }
+    ```
+
+    The read-only `invitation_status` attribute is `PENDING`, `EXPIRED` or `ACCEPTED`.
+  </Tab>
+</Tabs>
+
+#### Check it worked
+
+List the pending invitations:
+
+```bash
+qovery api organization/<organizationId>/inviteMember
+```
+
+The invitation appears with `invitation_status` set to `PENDING` and its `role_name`. Once the person accepts it, they appear in `GET /organization/{organizationId}/member` instead.
 
 <Info>
   Each user can only hold **one** role at a time. Changing the role of a member requires the user to logout/login to make the changes effective or wait a few minutes (max 1 hour).
@@ -87,6 +133,8 @@ Read-only access to all organization resources, clusters, and projects.
 ## Custom Roles
 
 Custom roles let you grant access scoped to specific projects and clusters, instead of applying permissions across the entire organization. This is useful when you want to give a user access to only certain projects or restrict what they can do within a project.
+
+To manage custom roles as code, use the [`qovery_custom_role`](https://registry.terraform.io/providers/Qovery/qovery/latest/docs/resources/custom_role) Terraform resource, or the `/organization/{organizationId}/customRole` API endpoints.
 
 ### Scope and limitations
 
@@ -219,6 +267,8 @@ You can transfer ownership of the organization to another member. To do so:
 2. Click on the member you want to transfer ownership to
 3. Select **Transfer Ownership** from the menu
 4. Confirm the transfer
+
+With the API, call `POST /organization/{organizationId}/transferOwnership` with the `user_id` of the new owner: the `id` of the member in `GET /organization/{organizationId}/member`.
 
 <Warning>
   Once ownership is transferred, you will no longer be the owner of the

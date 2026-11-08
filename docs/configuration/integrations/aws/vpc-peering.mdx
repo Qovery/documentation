@@ -108,6 +108,8 @@ Do not edit or remove existing routes to avoid service interruption.
 
 Add a route in the Qovery VPC through the Qovery Console.
 
+<Tabs>
+  <Tab title="Console">
 1. Navigate to [Qovery Console](https://console.qovery.com)
 2. Select your **Organization**
 3. Go to **Clusters**
@@ -123,6 +125,51 @@ Add a route in the Qovery VPC through the Qovery Console.
 ![AWS VPC Qovery Route Table add route](/images/aws-vpc-peering-with-qovery/qovery-rt.png)
 
 ![AWS VPC Qovery Route Table add route](/images/aws-vpc-peering-with-qovery/qovery-rt-added.png)
+  </Tab>
+
+  <Tab title="CLI and API">
+    You need the [Qovery CLI](/cli/overview), signed in with `qovery auth`. The `qovery api` command sends authenticated requests to the [Qovery API](/api-reference/introduction). This example also uses `jq`.
+
+    `PUT /organization/{organizationId}/cluster/{clusterId}/routingTable` replaces the whole table, so read the current routes first and send them back with the new one. Each route needs `destination`, `target` and `description`:
+
+    ```bash
+    qovery api organization/<organizationId>/cluster/<clusterId>/routingTable \
+      | jq '{routes: (.results + [{
+          destination: "10.0.0.0/16",
+          target: "pcx-0abc123def456789",
+          description: "Peering to existing VPC"
+        }])}' \
+      | qovery api organization/<organizationId>/cluster/<clusterId>/routingTable --method PUT --input -
+    ```
+
+    Get the cluster ID with `qovery cluster list`.
+  </Tab>
+
+  <Tab title="Terraform">
+    Add the route to the `routing_table` attribute of your `qovery_cluster` resource. Keep the existing routes in the list: omitting `routing_table` removes every route.
+
+    ```hcl
+    resource "qovery_cluster" "my_cluster" {
+      # ...
+      routing_table = [
+        {
+          destination = "10.0.0.0/16"
+          target      = "pcx-0abc123def456789"
+          description = "Peering to existing VPC"
+        }
+      ]
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### Check it worked
+
+```bash
+qovery api organization/<organizationId>/cluster/<clusterId>/routingTable
+```
+
+The response lists your route in `results`, with the destination CIDR and the peering connection ID, next to the routes that were already there.
 
 <Warning>
 Do not alter existing routes.

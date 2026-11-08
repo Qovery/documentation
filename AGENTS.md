@@ -13,7 +13,7 @@ docs/
   docs.json              # Mintlify config: navigation, theme, colors
   getting-started/       # Getting Started tab
   configuration/         # Configuration tab
-  copilot/               # AI tab (Copilot, MCP server, agent skills)
+  copilot/               # AI tab (Copilot, MCP server). Its agent skills page is getting-started/quickstart/agent-skills.mdx
   cli/                   # CLI tab
   terraform-provider/    # Terraform Provider tab
   api-reference/         # API Reference tab (auto-generated, do not edit)

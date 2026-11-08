@@ -1,6 +1,6 @@
 ---
 title: "Deploy a DaemonSet in a Karpenter Context"
-description: "Make a DaemonSet run on every node of a Karpenter cluster by using the Qovery PriorityClass and tolerating the default node pool taints."
+description: "Schedule a DaemonSet on all Qovery Karpenter node pools: use the Qovery PriorityClass, tolerate the stable and cronjob taints, and skip Fargate nodes."
 ---
 
 Karpenter is a great way to cut your AWS bill. However, there is some specificity when deploying DaemonSets.

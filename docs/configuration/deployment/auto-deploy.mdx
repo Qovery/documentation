@@ -1,6 +1,6 @@
 ---
 title: "Auto-Deploy"
-description: "Turn on auto-deploy so each Git commit or new container image tag redeploys your service, and filter which commits trigger a deployment."
+description: "Turn on auto-deploy so each Git commit redeploys your service, filter which commits trigger it, and call the Qovery API to deploy new container image tags."
 ---
 
 Qovery can automatically update your applications to the latest version of your Git branch. Each time a commit is done on your Git repository, Qovery will receive a webhook call with the commit information and will determine which applications should be automatically re-deployed.

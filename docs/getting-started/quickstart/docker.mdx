@@ -21,13 +21,10 @@ Before starting, ensure you have:
 **System Requirements:**
 - **Operating System**: Linux, macOS, or Windows (WSL only)
 - **CPU & Memory**: Minimum 4 CPU cores and 8GB RAM for Docker
-- **Software**:
-  - Docker (must be running)
-  - Git
-  - Common utilities: `jq`, `curl`, `sed`, `grep` (usually pre-installed)
+- **Software**: Docker (running), `k3d`, `helm` and `kubectl`. `qovery demo up` checks that they are installed before it starts.
 
 **Account:**
-- A Qovery account (free) - you'll create one during setup
+- A Qovery account. The Free plan is enough, with no credit card. You create the account during setup.
 
 ## Installation Steps
 
@@ -57,14 +54,14 @@ Before starting, ensure you have:
     qovery demo up
     ```
 
-    This command will:
-    - Install k3s (lightweight Kubernetes)
-    - Install Qovery agent and all required components
-    - Configure networking and ingress
-    - Take approximately 5-10 minutes to complete
+    This command:
+    - Creates a local k3s cluster with k3d (lightweight Kubernetes in Docker)
+    - Installs the Qovery Operator on it and connects the cluster to your organization
+    - Lets Qovery deploy its stack on the cluster, including networking and ingress
+    - Takes approximately 5-10 minutes to complete
 
     <Warning>
-    **macOS and Windows Users**: You may be prompted for your admin password. This is necessary to properly route traffic from your host to your k3s applications.
+    You may be prompted for your password (`sudo`). It adds a local network address so that traffic from your machine reaches the applications on the cluster.
     </Warning>
   </Step>
 

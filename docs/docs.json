@@ -262,6 +262,8 @@
                 "group": "Other Kubernetes",
                 "pages": [
                   "configuration/integrations/kubernetes/byok",
+                  "configuration/integrations/kubernetes/byok-supported-setups",
+                  "configuration/integrations/kubernetes/byok-legacy",
                   "configuration/integrations/kubernetes/docker"
                 ]
               }
@@ -602,6 +604,1770 @@
     {
       "source": "/getting-started/quickstart/docker-desktop",
       "destination": "/getting-started/quickstart/docker"
+    },
+    {
+      "source": "/community/become-an-ambassador",
+      "destination": "/getting-started/useful-resources/help-and-support"
+    },
+    {
+      "source": "/community/reward",
+      "destination": "/getting-started/useful-resources/help-and-support"
+    },
+    {
+      "source": "/community/reward/bug-bounty",
+      "destination": "/getting-started/useful-resources/help-and-support"
+    },
+    {
+      "source": "/community/reward/feedback",
+      "destination": "/getting-started/useful-resources/help-and-support"
+    },
+    {
+      "source": "/community/reward/follow-qovery",
+      "destination": "/getting-started/useful-resources/help-and-support"
+    },
+    {
+      "source": "/community/reward/friend-sponsorship",
+      "destination": "/getting-started/useful-resources/help-and-support"
+    },
+    {
+      "source": "/community/reward/video-record",
+      "destination": "/getting-started/useful-resources/help-and-support"
+    },
+    {
+      "source": "/community/reward/write-content",
+      "destination": "/getting-started/useful-resources/help-and-support"
+    },
+    {
+      "source": "/devops/infrastructure-as-code",
+      "destination": "/configuration/integrations/iac/overview"
+    },
+    {
+      "source": "/devops/infrastructure-as-code/rest-api",
+      "destination": "/cli/commands/api"
+    },
+    {
+      "source": "/devops/infrastructure-as-code/terraform",
+      "destination": "/terraform-provider/overview"
+    },
+    {
+      "source": "/devops/infrastructure-config",
+      "destination": "/configuration/overview"
+    },
+    {
+      "source": "/devops/infrastructure-config/custom-domain",
+      "destination": "/getting-started/guides/advanced-tutorials/cloudflare-custom-domain"
+    },
+    {
+      "source": "/devops/infrastructure-config/kubernetes",
+      "destination": "/configuration/clusters"
+    },
+    {
+      "source": "/devops/infrastructure-config/load-balancer",
+      "destination": "/configuration/cluster-advanced-settings"
+    },
+    {
+      "source": "/devops/infrastructure-config/observability",
+      "destination": "/configuration/integrations/observability/qovery-observe"
+    },
+    {
+      "source": "/devops/infrastructure-config/qovery-agent",
+      "destination": "/getting-started/how-it-works"
+    },
+    {
+      "source": "/devops/infrastructure-config/qovery-engine",
+      "destination": "/getting-started/how-it-works"
+    },
+    {
+      "source": "/devops/qovery-for-devops-introduction",
+      "destination": "/configuration/overview"
+    },
+    {
+      "source": "/extending-qovery/cli",
+      "destination": "/cli/overview"
+    },
+    {
+      "source": "/getting-started",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/getting-started/deploy-my-app",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/getting-started/features",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/getting-started/how-qovery-works",
+      "destination": "/getting-started/how-it-works"
+    },
+    {
+      "source": "/getting-started/install-qovery",
+      "destination": "/getting-started/quickstart"
+    },
+    {
+      "source": "/getting-started/install-qovery/aws",
+      "destination": "/getting-started/installation/aws"
+    },
+    {
+      "source": "/getting-started/install-qovery/aws/cluster-managed-by-qovery",
+      "destination": "/getting-started/installation/aws"
+    },
+    {
+      "source": "/getting-started/install-qovery/aws/cluster-managed-by-qovery/create-credentials",
+      "destination": "/configuration/integrations/kubernetes/eks/managed"
+    },
+    {
+      "source": "/getting-started/install-qovery/aws/cluster-managed-by-qovery/faq",
+      "destination": "/getting-started/installation/aws"
+    },
+    {
+      "source": "/getting-started/install-qovery/aws/cluster-managed-by-qovery/infrastructure",
+      "destination": "/getting-started/installation/aws"
+    },
+    {
+      "source": "/getting-started/install-qovery/aws/cluster-managed-by-qovery/quickstart",
+      "destination": "/getting-started/installation/aws"
+    },
+    {
+      "source": "/getting-started/install-qovery/aws/self-managed-cluster",
+      "destination": "/configuration/integrations/kubernetes/byok"
+    },
+    {
+      "source": "/getting-started/install-qovery/azure",
+      "destination": "/getting-started/installation/azure"
+    },
+    {
+      "source": "/getting-started/install-qovery/azure/cluster-managed-by-qovery",
+      "destination": "/getting-started/installation/azure"
+    },
+    {
+      "source": "/getting-started/install-qovery/azure/cluster-managed-by-qovery/create-credentials",
+      "destination": "/configuration/integrations/kubernetes/aks/managed"
+    },
+    {
+      "source": "/getting-started/install-qovery/azure/cluster-managed-by-qovery/quickstart",
+      "destination": "/getting-started/installation/azure"
+    },
+    {
+      "source": "/getting-started/install-qovery/azure/self-managed-cluster",
+      "destination": "/configuration/integrations/kubernetes/byok"
+    },
+    {
+      "source": "/getting-started/install-qovery/gcp",
+      "destination": "/getting-started/installation/gcp"
+    },
+    {
+      "source": "/getting-started/install-qovery/gcp/cluster-managed-by-qovery",
+      "destination": "/getting-started/installation/gcp"
+    },
+    {
+      "source": "/getting-started/install-qovery/gcp/cluster-managed-by-qovery/create-credentials",
+      "destination": "/configuration/integrations/kubernetes/gke/managed"
+    },
+    {
+      "source": "/getting-started/install-qovery/gcp/cluster-managed-by-qovery/quickstart",
+      "destination": "/getting-started/installation/gcp"
+    },
+    {
+      "source": "/getting-started/install-qovery/gcp/self-managed-cluster",
+      "destination": "/configuration/integrations/kubernetes/byok"
+    },
+    {
+      "source": "/getting-started/install-qovery/kubernetes",
+      "destination": "/getting-started/installation/kubernetes"
+    },
+    {
+      "source": "/getting-started/install-qovery/kubernetes/byok-config",
+      "destination": "/getting-started/installation/kubernetes"
+    },
+    {
+      "source": "/getting-started/install-qovery/kubernetes/faq",
+      "destination": "/getting-started/installation/kubernetes"
+    },
+    {
+      "source": "/getting-started/install-qovery/kubernetes/quickstart",
+      "destination": "/getting-started/installation/kubernetes"
+    },
+    {
+      "source": "/getting-started/install-qovery/kubernetes/validate-installation",
+      "destination": "/getting-started/installation/kubernetes"
+    },
+    {
+      "source": "/getting-started/install-qovery/local",
+      "destination": "/getting-started/quickstart/docker"
+    },
+    {
+      "source": "/getting-started/install-qovery/scaleway",
+      "destination": "/getting-started/installation/scaleway"
+    },
+    {
+      "source": "/getting-started/install-qovery/scaleway/cluster-managed-by-qovery",
+      "destination": "/getting-started/installation/scaleway"
+    },
+    {
+      "source": "/getting-started/install-qovery/scaleway/cluster-managed-by-qovery/create-credentials",
+      "destination": "/configuration/integrations/kubernetes/scaleway/managed"
+    },
+    {
+      "source": "/getting-started/install-qovery/scaleway/cluster-managed-by-qovery/faq",
+      "destination": "/getting-started/installation/scaleway"
+    },
+    {
+      "source": "/getting-started/install-qovery/scaleway/cluster-managed-by-qovery/quickstart",
+      "destination": "/getting-started/installation/scaleway"
+    },
+    {
+      "source": "/getting-started/install-qovery/scaleway/self-managed-cluster",
+      "destination": "/configuration/integrations/kubernetes/byok"
+    },
+    {
+      "source": "/getting-started/qovery-vs-other",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/getting-started/qovery-vs-other/argocd",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/getting-started/qovery-vs-other/harness",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/getting-started/qovery-vs-other/heroku",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/getting-started/qovery-vs-other/netlify",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/getting-started/qovery-vs-other/spinnaker",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/getting-started/qovery-vs-other/terraform",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/getting-started/what-is-qovery",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/getting-started/whats-next",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/advanced",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/advanced/adding-multi-region-backup-rds",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/advanced/build-on-top",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/advanced/continuous-integration",
+      "destination": "/configuration/integrations/ci-cd/github-actions"
+    },
+    {
+      "source": "/guides/advanced/costs-control",
+      "destination": "/configuration/integrations/observability/kubecost"
+    },
+    {
+      "source": "/guides/advanced/deploy-api-gateway",
+      "destination": "/configuration/integrations/api-gateway-nginx"
+    },
+    {
+      "source": "/guides/advanced/deploy-aws-services",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/advanced/deploy-backend-and-frontend-apps",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/advanced/deploy-daemonset-with-karpenter",
+      "destination": "/getting-started/guides/advanced-tutorials/deploy-daemonset-karpenter"
+    },
+    {
+      "source": "/guides/advanced/deploy-external-services",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/advanced/deploy-frontend",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/advanced/guide-amazon-web-services",
+      "destination": "/getting-started/installation/aws"
+    },
+    {
+      "source": "/guides/advanced/guide-digital-ocean",
+      "destination": "/getting-started/installation/kubernetes"
+    },
+    {
+      "source": "/guides/advanced/guide-google-cloud-platform",
+      "destination": "/getting-started/installation/gcp"
+    },
+    {
+      "source": "/guides/advanced/guide-microsoft-azure",
+      "destination": "/getting-started/installation/azure"
+    },
+    {
+      "source": "/guides/advanced/guide-scaleway",
+      "destination": "/getting-started/installation/scaleway"
+    },
+    {
+      "source": "/guides/advanced/helm-chart",
+      "destination": "/configuration/helm"
+    },
+    {
+      "source": "/guides/advanced/microservices",
+      "destination": "/getting-started/guides/advanced-tutorials/microservices-monorepo"
+    },
+    {
+      "source": "/guides/advanced/migration",
+      "destination": "/getting-started/guides/use-cases/cloud-migration-and-scaling"
+    },
+    {
+      "source": "/guides/advanced/monitoring",
+      "destination": "/configuration/integrations/observability/qovery-observe"
+    },
+    {
+      "source": "/guides/advanced/monorepository",
+      "destination": "/getting-started/guides/advanced-tutorials/microservices-monorepo"
+    },
+    {
+      "source": "/guides/advanced/production",
+      "destination": "/getting-started/guides/use-cases/production-environment-management"
+    },
+    {
+      "source": "/guides/advanced/seed-database",
+      "destination": "/getting-started/guides/others/database-seeding-lifecycle-job"
+    },
+    {
+      "source": "/guides/advanced/staging-environment",
+      "destination": "/getting-started/guides/use-cases/production-environment-management"
+    },
+    {
+      "source": "/guides/advanced/sub-account-sso",
+      "destination": "/getting-started/guides/advanced-tutorials/aws-iam-roles"
+    },
+    {
+      "source": "/guides/advanced/terraform",
+      "destination": "/terraform-provider/overview"
+    },
+    {
+      "source": "/guides/advanced/upgrading-rds-instance",
+      "destination": "/getting-started/guides/advanced-tutorials/upgrading-rds-instance"
+    },
+    {
+      "source": "/guides/advanced/use-preview-environments",
+      "destination": "/getting-started/guides/use-cases/preview-environments"
+    },
+    {
+      "source": "/guides/cloud-provider/guide-amazon-web-services",
+      "destination": "/getting-started/installation/aws"
+    },
+    {
+      "source": "/guides/cloud-provider/guide-google-cloud-platform",
+      "destination": "/getting-started/installation/gcp"
+    },
+    {
+      "source": "/guides/cloud-provider/guide-microsoft-azure",
+      "destination": "/getting-started/installation/azure"
+    },
+    {
+      "source": "/guides/cloud-provider/guide-scaleway",
+      "destination": "/getting-started/installation/scaleway"
+    },
+    {
+      "source": "/guides/engineering",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/engineering/basic-network-isolation-in-kubernetes",
+      "destination": "/getting-started/guides/advanced-tutorials/isolate-environments-network-policies"
+    },
+    {
+      "source": "/guides/engineering/best-practices-and-tips-for-writing-a-dockerfile",
+      "destination": "/getting-started/guides/advanced-tutorials/write-dockerfile"
+    },
+    {
+      "source": "/guides/engineering/feedback-kotlin-on-the-server-side",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/engineering/helm-freeze-manage-helm-charts-with-ease",
+      "destination": "/configuration/helm"
+    },
+    {
+      "source": "/guides/engineering/how_we_extended_helm_lifecycle_with_rust",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/engineering/how-to-migrate-posthog-self-hosted-to-posthog-cloud",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/engineering/terraform-not-the-golden-hammer",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/engineering/the-complete-guide-to-aws-load-balancers",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/getting-started",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/getting-started/create-a-database",
+      "destination": "/getting-started/guides/getting-started/connect-database"
+    },
+    {
+      "source": "/guides/getting-started/debugging",
+      "destination": "/getting-started/troubleshoot/overview"
+    },
+    {
+      "source": "/guides/getting-started/deploy-your-first-application",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/guides/getting-started/managing-environment-variables",
+      "destination": "/configuration/environment-variables"
+    },
+    {
+      "source": "/guides/getting-started/setting-custom-domain",
+      "destination": "/getting-started/guides/advanced-tutorials/cloudflare-custom-domain"
+    },
+    {
+      "source": "/guides/installation-guide",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/installation-guide/guide-amazon-web-services",
+      "destination": "/getting-started/installation/aws"
+    },
+    {
+      "source": "/guides/installation-guide/guide-google-cloud-platform",
+      "destination": "/getting-started/installation/gcp"
+    },
+    {
+      "source": "/guides/installation-guide/guide-kubernetes",
+      "destination": "/getting-started/installation/kubernetes"
+    },
+    {
+      "source": "/guides/installation-guide/guide-microsoft-azure",
+      "destination": "/getting-started/installation/azure"
+    },
+    {
+      "source": "/guides/installation-guide/guide-scaleway",
+      "destination": "/getting-started/installation/scaleway"
+    },
+    {
+      "source": "/guides/tags",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/cloud-provider-aws",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/cloud-provider-azure",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/cloud-provider-digital-ocean",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/cloud-provider-gcp",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/cloud-provider-scaleway",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/database-mongodb",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/database-mysql",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/database-postgresql",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/framework-deno",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/framework-discordpy",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/framework-django",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/framework-gin",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/framework-hasura",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/framework-jhipster",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/framework-laravel",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/framework-meilisearch",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/framework-nodejs",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/framework-nuxtjs",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/framework-rails",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/framework-sinatra",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/framework-springboot",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/framework-strapi",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/installation-guide-aws",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/installation-guide-kubernetes",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/installation-guide-scaleway",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/language-go",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/language-java",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/language-javascript",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/language-kotlin",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/language-php",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/language-python",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/language-ruby",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/language-rust",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/language-scala",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/technology-docker",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/technology-github",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/technology-helm",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/technology-kotlin",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/technology-kubernetes",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/technology-posthog",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/technology-qovery",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/technology-terraform",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/type-engineering",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/type-guide",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tags/type-tutorial",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tutorial",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tutorial/aws-sqs-lambda-with-qovery",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tutorial/aws-vpc-peering-with-qovery",
+      "destination": "/configuration/integrations/aws/vpc-peering"
+    },
+    {
+      "source": "/guides/tutorial/blazingly-fast-preview-environments-for-nextjs-nodejs-and-mongodb-on-aws",
+      "destination": "/getting-started/guides/use-cases/preview-environments"
+    },
+    {
+      "source": "/guides/tutorial/build-e2e-testing-ephemeral-environments",
+      "destination": "/getting-started/guides/use-cases/e2e-testing"
+    },
+    {
+      "source": "/guides/tutorial/certificate_management_for_multi_tenant_infrastructure",
+      "destination": "/getting-started/guides/advanced-tutorials/certificate-management-multi-tenant"
+    },
+    {
+      "source": "/guides/tutorial/cloudwatch-integration",
+      "destination": "/getting-started/guides/advanced-tutorials/cloudwatch-integration"
+    },
+    {
+      "source": "/guides/tutorial/create-a-blazingly-fast-api-in-rust-part-1",
+      "destination": "/getting-started/guides/advanced-tutorials/rust-api-part-1"
+    },
+    {
+      "source": "/guides/tutorial/create-a-playground-environment-on-aws",
+      "destination": "/getting-started/guides/use-cases/ephemeral-environment"
+    },
+    {
+      "source": "/guides/tutorial/create-and-deploy-python-discord-bot",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tutorial/create-your-staging-environment-from-your-production-environment-on-aws",
+      "destination": "/getting-started/guides/use-cases/production-environment-management"
+    },
+    {
+      "source": "/guides/tutorial/customize_nginx_error_pages",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tutorial/customizing-preview-url-with-qovery-cli",
+      "destination": "/getting-started/guides/advanced-tutorials/customizing-preview-url-with-qovery-cli"
+    },
+    {
+      "source": "/guides/tutorial/data-seeding-in-postgres",
+      "destination": "/getting-started/guides/others/database-seeding-lifecycle-job"
+    },
+    {
+      "source": "/guides/tutorial/deploy-django-with-postgresql",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/guides/tutorial/deploy-fullstack-application-composed-of-hasura-postgresql-angular",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/guides/tutorial/deploy-gin-with-postgresql",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/guides/tutorial/deploy-jhipster-with-postgresql",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/guides/tutorial/deploy-jupyterhub-qovery",
+      "destination": "/getting-started/guides/advanced-tutorials/deploy-jupyterhub"
+    },
+    {
+      "source": "/guides/tutorial/deploy-laravel-with-mysql",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/guides/tutorial/deploy-node-js-with-postgresql",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/guides/tutorial/deploy-rails-with-postgresql",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/guides/tutorial/deploy-rails-with-postgresql-and-sidekiq",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/guides/tutorial/deploy-spring-boot-with-postgresql",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/guides/tutorial/deploy-temporal-on-kubernetes",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/guides/tutorial/generate-qovery-api-client",
+      "destination": "/cli/commands/api"
+    },
+    {
+      "source": "/guides/tutorial/getting-started-with-preview-environments-on-aws-for-advanced-users",
+      "destination": "/getting-started/guides/use-cases/preview-environments"
+    },
+    {
+      "source": "/guides/tutorial/getting-started-with-preview-environments-on-aws-for-beginners",
+      "destination": "/getting-started/guides/use-cases/preview-environments"
+    },
+    {
+      "source": "/guides/tutorial/github-organization-repository-access",
+      "destination": "/configuration/organization/git-repository-access"
+    },
+    {
+      "source": "/guides/tutorial/gitops-with-qovery",
+      "destination": "/terraform-provider/overview"
+    },
+    {
+      "source": "/guides/tutorial/grafana-install",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tutorial/graphql-api-with-hasura",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tutorial/how-to-activate-sso-to-connect-to-your-eks-cluster",
+      "destination": "/configuration/connect-to-cluster"
+    },
+    {
+      "source": "/guides/tutorial/how-to-build-a-cloud-version-of-your-open-source-software-part-1",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tutorial/how-to-build-a-cloud-version-of-your-open-source-software-part-2",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tutorial/how-to-build-a-cloud-version-of-your-open-source-software-part-3",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tutorial/how-to-connect-to-a-managed-mongodb-instance-on-aws",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tutorial/how-to-connect-to-your-eks-cluster-with-kubectl",
+      "destination": "/configuration/connect-to-cluster"
+    },
+    {
+      "source": "/guides/tutorial/how-to-create-an-rds-instance-through-aws-console",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tutorial/how-to-deploy-a-docker-container",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/guides/tutorial/how-to-deploy-a-rust-rest-api-application-on-aws-with-ease",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/guides/tutorial/how-to-deploy-helm-charts",
+      "destination": "/configuration/helm"
+    },
+    {
+      "source": "/guides/tutorial/how-to-deploy-nuxtjs",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/guides/tutorial/how-to-deploy-strapi-with-postgresql",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/guides/tutorial/how-to-deploy-your-application-on-aws-in-30-minutes",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/guides/tutorial/how-to-integrate-qovery-with-github-actions",
+      "destination": "/configuration/integrations/ci-cd/github-actions"
+    },
+    {
+      "source": "/guides/tutorial/how-to-run-commands-at-application-startup",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tutorial/how-to-setup-ip-and-header-based-authorization",
+      "destination": "/getting-started/guides/advanced-tutorials/ip-header-authorization"
+    },
+    {
+      "source": "/guides/tutorial/how-to-setup-rate-limit-on-services",
+      "destination": "/getting-started/guides/advanced-tutorials/rate-limiting"
+    },
+    {
+      "source": "/guides/tutorial/how-to-use-cloudfront-with-react-frontend-application-on-qovery",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tutorial/how-to-use-lifecycle-job-to-deploy-any-kind-of-resources",
+      "destination": "/configuration/lifecycle-job"
+    },
+    {
+      "source": "/guides/tutorial/how-to-use-the-qovery-api",
+      "destination": "/cli/commands/api"
+    },
+    {
+      "source": "/guides/tutorial/how-to-write-a-dockerfile",
+      "destination": "/getting-started/guides/advanced-tutorials/write-dockerfile"
+    },
+    {
+      "source": "/guides/tutorial/import-your-environment-variables-with-the-qovery-cli",
+      "destination": "/getting-started/guides/advanced-tutorials/import-env-vars-cli"
+    },
+    {
+      "source": "/guides/tutorial/kubernetes-observability-and-monitoring-with-datadog",
+      "destination": "/configuration/integrations/observability/datadog"
+    },
+    {
+      "source": "/guides/tutorial/managing-env-variables-in-create-react-app",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tutorial/migrate-webapp-from-heroku-to-qovery",
+      "destination": "/getting-started/guides/use-cases/cloud-migration-and-scaling"
+    },
+    {
+      "source": "/guides/tutorial/migrate-your-application-from-heroku-to-aws",
+      "destination": "/getting-started/guides/use-cases/cloud-migration-and-scaling"
+    },
+    {
+      "source": "/guides/tutorial/monitor-and-reduce-kubernetes-spend-with-kubecost",
+      "destination": "/configuration/integrations/observability/kubecost"
+    },
+    {
+      "source": "/guides/tutorial/quickstart-django",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/guides/tutorial/quickstart-go",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/guides/tutorial/quickstart-laravel",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/guides/tutorial/quickstart-meilisearch",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/guides/tutorial/quickstart-node",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/guides/tutorial/quickstart-rails",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/guides/tutorial/quickstart-rust-rocket",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/guides/tutorial/quickstart-scala",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/guides/tutorial/quickstart-sinatra",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/guides/tutorial/quickstart-springboot",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/guides/tutorial/setting-up-cloudflare-and-custom-domain-on-qovery",
+      "destination": "/getting-started/guides/advanced-tutorials/cloudflare-custom-domain"
+    },
+    {
+      "source": "/guides/tutorial/simplest-way-to-deploy-deno-with-database",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/guides/tutorial/url-shortener-api-with-kotlin",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/guides/tutorial/use-an-api-gateway-in-front-of-multiple-services",
+      "destination": "/configuration/integrations/api-gateway-nginx"
+    },
+    {
+      "source": "/guides/tutorial/use-aws-iam-roles-with-qovery",
+      "destination": "/getting-started/guides/advanced-tutorials/aws-iam-roles"
+    },
+    {
+      "source": "/guides/tutorial/working-with-git-submodules",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/main-concepts",
+      "destination": "/getting-started/basic-concepts"
+    },
+    {
+      "source": "/main-concepts/application",
+      "destination": "/configuration/application"
+    },
+    {
+      "source": "/main-concepts/business",
+      "destination": "/getting-started/basic-concepts"
+    },
+    {
+      "source": "/main-concepts/business/build-platform",
+      "destination": "/getting-started/basic-concepts"
+    },
+    {
+      "source": "/main-concepts/business/cloud-account",
+      "destination": "/configuration/organization/cloud-credentials"
+    },
+    {
+      "source": "/main-concepts/business/container-registry",
+      "destination": "/configuration/organization/container-registry"
+    },
+    {
+      "source": "/main-concepts/business/external-service",
+      "destination": "/getting-started/basic-concepts"
+    },
+    {
+      "source": "/main-concepts/business/monitoring",
+      "destination": "/configuration/integrations/observability/datadog"
+    },
+    {
+      "source": "/main-concepts/business/organization",
+      "destination": "/configuration/organization"
+    },
+    {
+      "source": "/main-concepts/business/policy",
+      "destination": "/getting-started/basic-concepts"
+    },
+    {
+      "source": "/main-concepts/environment",
+      "destination": "/configuration/environment"
+    },
+    {
+      "source": "/main-concepts/project",
+      "destination": "/configuration/project"
+    },
+    {
+      "source": "/security-and-compliance",
+      "destination": "/getting-started/security-and-compliance/overview"
+    },
+    {
+      "source": "/security-and-compliance/backup-and-restore",
+      "destination": "/configuration/disaster-recovery"
+    },
+    {
+      "source": "/security-and-compliance/community-fair-use-policy",
+      "destination": "/getting-started/security-and-compliance/overview"
+    },
+    {
+      "source": "/security-and-compliance/encryption",
+      "destination": "/getting-started/security-and-compliance/overview"
+    },
+    {
+      "source": "/security-and-compliance/gdpr",
+      "destination": "/getting-started/security-and-compliance/gdpr"
+    },
+    {
+      "source": "/security-and-compliance/soc2",
+      "destination": "/getting-started/security-and-compliance/soc2"
+    },
+    {
+      "source": "/security-and-compliance/sso-saml-oidc",
+      "destination": "/configuration/organization/sso"
+    },
+    {
+      "source": "/useful-links/faq",
+      "destination": "/getting-started/useful-resources/faq"
+    },
+    {
+      "source": "/useful-links/help-and-support",
+      "destination": "/getting-started/useful-resources/help-and-support"
+    },
+    {
+      "source": "/useful-resources/faq",
+      "destination": "/getting-started/useful-resources/faq"
+    },
+    {
+      "source": "/useful-resources/help-and-support",
+      "destination": "/getting-started/useful-resources/help-and-support"
+    },
+    {
+      "source": "/using-qovery",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/using-qovery/addon",
+      "destination": "/configuration/overview"
+    },
+    {
+      "source": "/using-qovery/addon/continuous-integration",
+      "destination": "/configuration/deployment/overview"
+    },
+    {
+      "source": "/using-qovery/addon/continuous-integration/circle-ci",
+      "destination": "/configuration/integrations/ci-cd/circleci"
+    },
+    {
+      "source": "/using-qovery/addon/continuous-integration/github-actions",
+      "destination": "/configuration/integrations/ci-cd/github-actions"
+    },
+    {
+      "source": "/using-qovery/addon/continuous-integration/gitlab-ci",
+      "destination": "/configuration/integrations/ci-cd/gitlab-ci"
+    },
+    {
+      "source": "/using-qovery/addon/continuous-integration/qovery-ci",
+      "destination": "/configuration/deployment/overview"
+    },
+    {
+      "source": "/using-qovery/addon/monitoring",
+      "destination": "/configuration/integrations/observability/qovery-observe"
+    },
+    {
+      "source": "/using-qovery/addon/monitoring/datadog",
+      "destination": "/configuration/integrations/observability/datadog"
+    },
+    {
+      "source": "/using-qovery/addon/monitoring/new-relic",
+      "destination": "/configuration/integrations/observability/qovery-observe"
+    },
+    {
+      "source": "/using-qovery/audit-logs",
+      "destination": "/getting-started/security-and-compliance/audit-logs"
+    },
+    {
+      "source": "/using-qovery/configuration",
+      "destination": "/configuration/overview"
+    },
+    {
+      "source": "/using-qovery/configuration/advanced-settings",
+      "destination": "/configuration/service-advanced-settings"
+    },
+    {
+      "source": "/using-qovery/configuration/application",
+      "destination": "/configuration/application"
+    },
+    {
+      "source": "/using-qovery/configuration/application-health-checks",
+      "destination": "/configuration/service-health-checks"
+    },
+    {
+      "source": "/using-qovery/configuration/applications",
+      "destination": "/configuration/application"
+    },
+    {
+      "source": "/using-qovery/configuration/brokers",
+      "destination": "/configuration/overview"
+    },
+    {
+      "source": "/using-qovery/configuration/business",
+      "destination": "/configuration/overview"
+    },
+    {
+      "source": "/using-qovery/configuration/business/build-platform",
+      "destination": "/configuration/deployment/overview"
+    },
+    {
+      "source": "/using-qovery/configuration/business/build-platform/circle-ci",
+      "destination": "/configuration/integrations/ci-cd/circleci"
+    },
+    {
+      "source": "/using-qovery/configuration/business/build-platform/github-actions",
+      "destination": "/configuration/integrations/ci-cd/github-actions"
+    },
+    {
+      "source": "/using-qovery/configuration/business/build-platform/gitlab-ci",
+      "destination": "/configuration/integrations/ci-cd/gitlab-ci"
+    },
+    {
+      "source": "/using-qovery/configuration/business/build-platform/qovery-ci",
+      "destination": "/configuration/deployment/overview"
+    },
+    {
+      "source": "/using-qovery/configuration/business/cloud-account",
+      "destination": "/configuration/organization/cloud-credentials"
+    },
+    {
+      "source": "/using-qovery/configuration/business/cloud-account/amazon-web-services",
+      "destination": "/getting-started/installation/aws"
+    },
+    {
+      "source": "/using-qovery/configuration/business/cloud-account/azure",
+      "destination": "/getting-started/installation/azure"
+    },
+    {
+      "source": "/using-qovery/configuration/business/cloud-account/digital-ocean",
+      "destination": "/configuration/organization/cloud-credentials"
+    },
+    {
+      "source": "/using-qovery/configuration/business/cloud-account/google-cloud-platform",
+      "destination": "/getting-started/installation/gcp"
+    },
+    {
+      "source": "/using-qovery/configuration/business/cloud-account/scaleway",
+      "destination": "/getting-started/installation/scaleway"
+    },
+    {
+      "source": "/using-qovery/configuration/business/container-registry",
+      "destination": "/configuration/organization/container-registry"
+    },
+    {
+      "source": "/using-qovery/configuration/business/container-registry/azure-container-registry",
+      "destination": "/configuration/integrations/container-registries/azure-acr"
+    },
+    {
+      "source": "/using-qovery/configuration/business/container-registry/digital-ocean-container-registry",
+      "destination": "/configuration/integrations/container-registries/generic"
+    },
+    {
+      "source": "/using-qovery/configuration/business/container-registry/docker-hub",
+      "destination": "/configuration/integrations/container-registries/docker-hub"
+    },
+    {
+      "source": "/using-qovery/configuration/business/container-registry/elastic-container-registry",
+      "destination": "/configuration/integrations/container-registries/aws-ecr"
+    },
+    {
+      "source": "/using-qovery/configuration/business/container-registry/scaleway-container-registry",
+      "destination": "/configuration/integrations/container-registries/scaleway-cr"
+    },
+    {
+      "source": "/using-qovery/configuration/business/external-service",
+      "destination": "/configuration/overview"
+    },
+    {
+      "source": "/using-qovery/configuration/business/get-started",
+      "destination": "/configuration/overview"
+    },
+    {
+      "source": "/using-qovery/configuration/business/monitoring",
+      "destination": "/configuration/integrations/observability/qovery-observe"
+    },
+    {
+      "source": "/using-qovery/configuration/business/monitoring/datadog",
+      "destination": "/configuration/integrations/observability/datadog"
+    },
+    {
+      "source": "/using-qovery/configuration/business/monitoring/new-relic",
+      "destination": "/configuration/integrations/observability/qovery-observe"
+    },
+    {
+      "source": "/using-qovery/configuration/business/organization",
+      "destination": "/configuration/organization"
+    },
+    {
+      "source": "/using-qovery/configuration/business/policy",
+      "destination": "/configuration/overview"
+    },
+    {
+      "source": "/using-qovery/configuration/cloud-service-provider",
+      "destination": "/configuration/organization/cloud-credentials"
+    },
+    {
+      "source": "/using-qovery/configuration/cloud-service-provider/amazon-web-services",
+      "destination": "/getting-started/installation/aws"
+    },
+    {
+      "source": "/using-qovery/configuration/cloud-service-provider/azure",
+      "destination": "/getting-started/installation/azure"
+    },
+    {
+      "source": "/using-qovery/configuration/cloud-service-provider/digital-ocean",
+      "destination": "/configuration/organization/cloud-credentials"
+    },
+    {
+      "source": "/using-qovery/configuration/cloud-service-provider/google-cloud-platform",
+      "destination": "/getting-started/installation/gcp"
+    },
+    {
+      "source": "/using-qovery/configuration/cloud-service-provider/microsoft-azure",
+      "destination": "/getting-started/installation/azure"
+    },
+    {
+      "source": "/using-qovery/configuration/cloud-service-provider/scaleway",
+      "destination": "/getting-started/installation/scaleway"
+    },
+    {
+      "source": "/using-qovery/configuration/cluster-advanced-settings",
+      "destination": "/configuration/cluster-advanced-settings"
+    },
+    {
+      "source": "/using-qovery/configuration/clusters",
+      "destination": "/configuration/clusters"
+    },
+    {
+      "source": "/using-qovery/configuration/clusters/aws",
+      "destination": "/configuration/integrations/kubernetes/eks/managed"
+    },
+    {
+      "source": "/using-qovery/configuration/clusters/aws-with-karpenter",
+      "destination": "/configuration/integrations/kubernetes/eks/managed"
+    },
+    {
+      "source": "/using-qovery/configuration/clusters/azure",
+      "destination": "/configuration/integrations/kubernetes/aks/managed"
+    },
+    {
+      "source": "/using-qovery/configuration/clusters/gcp",
+      "destination": "/configuration/integrations/kubernetes/gke/managed"
+    },
+    {
+      "source": "/using-qovery/configuration/clusters/scaleway",
+      "destination": "/configuration/integrations/kubernetes/scaleway/managed"
+    },
+    {
+      "source": "/using-qovery/configuration/cronjob",
+      "destination": "/configuration/cronjob"
+    },
+    {
+      "source": "/using-qovery/configuration/database",
+      "destination": "/configuration/database"
+    },
+    {
+      "source": "/using-qovery/configuration/database/mongodb",
+      "destination": "/configuration/database"
+    },
+    {
+      "source": "/using-qovery/configuration/database/mysql",
+      "destination": "/configuration/database"
+    },
+    {
+      "source": "/using-qovery/configuration/database/postgresql",
+      "destination": "/configuration/database"
+    },
+    {
+      "source": "/using-qovery/configuration/database/redis",
+      "destination": "/configuration/database"
+    },
+    {
+      "source": "/using-qovery/configuration/databases",
+      "destination": "/configuration/database"
+    },
+    {
+      "source": "/using-qovery/configuration/databases/mongodb",
+      "destination": "/configuration/database"
+    },
+    {
+      "source": "/using-qovery/configuration/databases/mysql",
+      "destination": "/configuration/database"
+    },
+    {
+      "source": "/using-qovery/configuration/databases/postgresql",
+      "destination": "/configuration/database"
+    },
+    {
+      "source": "/using-qovery/configuration/databases/redis",
+      "destination": "/configuration/database"
+    },
+    {
+      "source": "/using-qovery/configuration/deployment-rule",
+      "destination": "/configuration/deployment-rule"
+    },
+    {
+      "source": "/using-qovery/configuration/domains",
+      "destination": "/configuration/application"
+    },
+    {
+      "source": "/using-qovery/configuration/environment",
+      "destination": "/configuration/environment"
+    },
+    {
+      "source": "/using-qovery/configuration/environment-variable",
+      "destination": "/configuration/environment-variables"
+    },
+    {
+      "source": "/using-qovery/configuration/environment-variables",
+      "destination": "/configuration/environment-variables"
+    },
+    {
+      "source": "/using-qovery/configuration/helm",
+      "destination": "/configuration/helm"
+    },
+    {
+      "source": "/using-qovery/configuration/lifecycle-job",
+      "destination": "/configuration/lifecycle-job"
+    },
+    {
+      "source": "/using-qovery/configuration/object-storage",
+      "destination": "/configuration/object-storage"
+    },
+    {
+      "source": "/using-qovery/configuration/organization",
+      "destination": "/configuration/organization"
+    },
+    {
+      "source": "/using-qovery/configuration/organization/api-token",
+      "destination": "/configuration/organization/api-token"
+    },
+    {
+      "source": "/using-qovery/configuration/organization/cloud-credentials",
+      "destination": "/configuration/organization/cloud-credentials"
+    },
+    {
+      "source": "/using-qovery/configuration/organization/container-registry",
+      "destination": "/configuration/organization/container-registry"
+    },
+    {
+      "source": "/using-qovery/configuration/organization/git-repository-access",
+      "destination": "/configuration/organization/git-repository-access"
+    },
+    {
+      "source": "/using-qovery/configuration/organization/helm-repository",
+      "destination": "/configuration/organization/helm-repository"
+    },
+    {
+      "source": "/using-qovery/configuration/organization/labels-annotations",
+      "destination": "/configuration/organization/labels-annotations"
+    },
+    {
+      "source": "/using-qovery/configuration/organization/members-rbac",
+      "destination": "/configuration/organization/members-rbac"
+    },
+    {
+      "source": "/using-qovery/configuration/organization/roles",
+      "destination": "/configuration/organization/members-rbac"
+    },
+    {
+      "source": "/using-qovery/configuration/project",
+      "destination": "/configuration/project"
+    },
+    {
+      "source": "/using-qovery/configuration/projects",
+      "destination": "/configuration/project"
+    },
+    {
+      "source": "/using-qovery/configuration/provider",
+      "destination": "/configuration/organization/cloud-credentials"
+    },
+    {
+      "source": "/using-qovery/configuration/routing",
+      "destination": "/configuration/application"
+    },
+    {
+      "source": "/using-qovery/configuration/secret",
+      "destination": "/configuration/environment-variables"
+    },
+    {
+      "source": "/using-qovery/configuration/secrets",
+      "destination": "/configuration/environment-variables"
+    },
+    {
+      "source": "/using-qovery/configuration/service-health-checks",
+      "destination": "/configuration/service-health-checks"
+    },
+    {
+      "source": "/using-qovery/configuration/storage",
+      "destination": "/configuration/application"
+    },
+    {
+      "source": "/using-qovery/configuration/user-account",
+      "destination": "/configuration/user-account"
+    },
+    {
+      "source": "/using-qovery/deployment",
+      "destination": "/configuration/deployment/overview"
+    },
+    {
+      "source": "/using-qovery/deployment/deploying-with-auto-deploy",
+      "destination": "/configuration/deployment/auto-deploy"
+    },
+    {
+      "source": "/using-qovery/deployment/deploying-with-ci-cd",
+      "destination": "/configuration/integrations/ci-cd/github-actions"
+    },
+    {
+      "source": "/using-qovery/deployment/deployment-actions",
+      "destination": "/configuration/deployment/actions"
+    },
+    {
+      "source": "/using-qovery/deployment/deployment-history",
+      "destination": "/configuration/deployment/history"
+    },
+    {
+      "source": "/using-qovery/deployment/deployment-management",
+      "destination": "/configuration/deployment/overview"
+    },
+    {
+      "source": "/using-qovery/deployment/deployment-pipeline",
+      "destination": "/configuration/deployment/pipeline"
+    },
+    {
+      "source": "/using-qovery/deployment/deployment-strategies",
+      "destination": "/configuration/deployment/strategies"
+    },
+    {
+      "source": "/using-qovery/deployment/image-mirroring",
+      "destination": "/configuration/deployment/image-mirroring"
+    },
+    {
+      "source": "/using-qovery/deployment/logs",
+      "destination": "/configuration/deployment/logs"
+    },
+    {
+      "source": "/using-qovery/deployment/running-and-deployment-statuses",
+      "destination": "/configuration/deployment/statuses"
+    },
+    {
+      "source": "/using-qovery/integration",
+      "destination": "/configuration/overview"
+    },
+    {
+      "source": "/using-qovery/integration/api-integration",
+      "destination": "/cli/commands/api"
+    },
+    {
+      "source": "/using-qovery/integration/container-registry",
+      "destination": "/configuration/organization/container-registry"
+    },
+    {
+      "source": "/using-qovery/integration/continuous-integration",
+      "destination": "/configuration/deployment/overview"
+    },
+    {
+      "source": "/using-qovery/integration/continuous-integration/circle-ci",
+      "destination": "/configuration/integrations/ci-cd/circleci"
+    },
+    {
+      "source": "/using-qovery/integration/continuous-integration/github-actions",
+      "destination": "/configuration/integrations/ci-cd/github-actions"
+    },
+    {
+      "source": "/using-qovery/integration/continuous-integration/gitlab-ci",
+      "destination": "/configuration/integrations/ci-cd/gitlab-ci"
+    },
+    {
+      "source": "/using-qovery/integration/continuous-integration/jenkins",
+      "destination": "/configuration/integrations/ci-cd/jenkins"
+    },
+    {
+      "source": "/using-qovery/integration/continuous-integration/qovery-ci",
+      "destination": "/configuration/deployment/overview"
+    },
+    {
+      "source": "/using-qovery/integration/git-repository",
+      "destination": "/configuration/organization/git-repository-access"
+    },
+    {
+      "source": "/using-qovery/integration/github-preview",
+      "destination": "/getting-started/guides/use-cases/preview-environments"
+    },
+    {
+      "source": "/using-qovery/integration/helm-repository",
+      "destination": "/configuration/organization/helm-repository"
+    },
+    {
+      "source": "/using-qovery/integration/iac",
+      "destination": "/configuration/integrations/iac/overview"
+    },
+    {
+      "source": "/using-qovery/integration/iac/cloudformation",
+      "destination": "/configuration/integrations/iac/cloudformation"
+    },
+    {
+      "source": "/using-qovery/integration/iac/other",
+      "destination": "/configuration/integrations/iac/overview"
+    },
+    {
+      "source": "/using-qovery/integration/iac/terraform",
+      "destination": "/configuration/integrations/iac/terraform"
+    },
+    {
+      "source": "/using-qovery/integration/ide-plugins",
+      "destination": "/configuration/overview"
+    },
+    {
+      "source": "/using-qovery/integration/monitoring",
+      "destination": "/configuration/integrations/observability/qovery-observe"
+    },
+    {
+      "source": "/using-qovery/integration/monitoring/datadog",
+      "destination": "/configuration/integrations/observability/datadog"
+    },
+    {
+      "source": "/using-qovery/integration/monitoring/new-relic",
+      "destination": "/configuration/integrations/observability/qovery-observe"
+    },
+    {
+      "source": "/using-qovery/integration/project-templates",
+      "destination": "/configuration/overview"
+    },
+    {
+      "source": "/using-qovery/integration/secret-manager",
+      "destination": "/configuration/integrations/secret-managers/secret-manager-access"
+    },
+    {
+      "source": "/using-qovery/integration/secret-manager/aws-secrets-manager",
+      "destination": "/configuration/integrations/secret-managers/aws-secrets-manager"
+    },
+    {
+      "source": "/using-qovery/integration/secret-manager/doppler",
+      "destination": "/configuration/integrations/secret-managers/doppler"
+    },
+    {
+      "source": "/using-qovery/integration/slack",
+      "destination": "/configuration/integrations/slack"
+    },
+    {
+      "source": "/using-qovery/integration/terraform",
+      "destination": "/terraform-provider/overview"
+    },
+    {
+      "source": "/using-qovery/integration/terraform-integration",
+      "destination": "/terraform-provider/overview"
+    },
+    {
+      "source": "/using-qovery/integration/terraform-provider",
+      "destination": "/terraform-provider/overview"
+    },
+    {
+      "source": "/using-qovery/integration/webhook",
+      "destination": "/configuration/integrations/webhooks"
+    },
+    {
+      "source": "/using-qovery/interface",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/using-qovery/interface/cli",
+      "destination": "/cli/overview"
+    },
+    {
+      "source": "/using-qovery/interface/rest-api",
+      "destination": "/cli/commands/api"
+    },
+    {
+      "source": "/using-qovery/interface/terraform-interface",
+      "destination": "/terraform-provider/overview"
+    },
+    {
+      "source": "/using-qovery/interface/web-interface",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/using-qovery/languages",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/using-qovery/languages/go",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/using-qovery/languages/java",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/using-qovery/languages/nodejs",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/using-qovery/languages/php",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/using-qovery/languages/python",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/using-qovery/languages/ruby",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/using-qovery/maintenance",
+      "destination": "/getting-started/configuration/maintenance"
+    },
+    {
+      "source": "/using-qovery/observability",
+      "destination": "/configuration/integrations/observability/qovery-observe"
+    },
+    {
+      "source": "/using-qovery/observability/architecture",
+      "destination": "/configuration/integrations/observability/qovery-observe"
+    },
+    {
+      "source": "/using-qovery/observability/logs",
+      "destination": "/configuration/integrations/observability/qovery-observe"
+    },
+    {
+      "source": "/using-qovery/observability/monitoring",
+      "destination": "/configuration/integrations/observability/qovery-observe"
+    },
+    {
+      "source": "/using-qovery/quickstart",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/using-qovery/quickstart/django",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/using-qovery/quickstart/hasura",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/using-qovery/quickstart/meilisearch",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/using-qovery/quickstart/nodejs",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/using-qovery/quickstart/rails",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/using-qovery/quickstart/rust",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/using-qovery/quickstart/spring",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/using-qovery/quickstart/strapi",
+      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+    },
+    {
+      "source": "/using-qovery/running-and-deployment-statuses",
+      "destination": "/configuration/deployment/statuses"
+    },
+    {
+      "source": "/using-qovery/troubleshoot",
+      "destination": "/getting-started/troubleshoot/overview"
+    },
+    {
+      "source": "/using-qovery/troubleshoot/application-troubleshoot",
+      "destination": "/getting-started/troubleshoot/overview"
+    },
+    {
+      "source": "/using-qovery/troubleshoot/cluster-troubleshoot",
+      "destination": "/getting-started/troubleshoot/overview"
+    },
+    {
+      "source": "/using-qovery/troubleshoot/database-troubleshoot",
+      "destination": "/getting-started/troubleshoot/overview"
+    },
+    {
+      "source": "/using-qovery/troubleshoot/lifecycle-troubleshoot",
+      "destination": "/getting-started/troubleshoot/overview"
+    },
+    {
+      "source": "/using-qovery/troubleshoot/service-deployment-troubleshoot",
+      "destination": "/getting-started/troubleshoot/overview"
+    },
+    {
+      "source": "/using-qovery/troubleshoot/service-run-troubleshoot",
+      "destination": "/getting-started/troubleshoot/overview"
+    },
+    {
+      "source": "/using-qovery/:slug*",
+      "destination": "/configuration/overview"
+    },
+    {
+      "source": "/devops/:slug*",
+      "destination": "/configuration/overview"
+    },
+    {
+      "source": "/main-concepts/:slug*",
+      "destination": "/getting-started/basic-concepts"
+    },
+    {
+      "source": "/getting-started/install-qovery/:slug*",
+      "destination": "/getting-started/quickstart"
+    },
+    {
+      "source": "/security-and-compliance/:slug*",
+      "destination": "/getting-started/security-and-compliance/overview"
+    },
+    {
+      "source": "/useful-resources/:slug*",
+      "destination": "/getting-started/useful-resources/help-and-support"
+    },
+    {
+      "source": "/useful-links/:slug*",
+      "destination": "/getting-started/useful-resources/help-and-support"
+    },
+    {
+      "source": "/community/:slug*",
+      "destination": "/getting-started/useful-resources/help-and-support"
+    },
+    {
+      "source": "/guides/:slug*",
+      "destination": "/getting-started/introduction"
+    },
+    {
+      "source": "/extending-qovery/:slug*",
+      "destination": "/cli/overview"
+    },
+    {
+      "source": "/rde",
+      "destination": "/getting-started/quickstart/ai-agent"
+    },
+    {
+      "source": "/rde/:slug*",
+      "destination": "/getting-started/quickstart/ai-agent"
+    },
+    {
+      "source": "/docs/:slug*",
+      "destination": "/:slug*"
     }
   ],
   "footerSocials": {

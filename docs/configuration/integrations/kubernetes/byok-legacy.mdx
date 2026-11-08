@@ -1,7 +1,6 @@
 ---
 title: "BYOK with the Qovery CLI"
-description: "Install Qovery with the Qovery CLI on a Kubernetes cluster that the Qovery Operator does not support yet"
-noindex: true
+description: "Install Qovery with the Qovery CLI on any Kubernetes cluster other than EKS, GKE and Scaleway Kapsule, such as AKS, k3s or an on-premise cluster"
 ---
 
 import InstallQoveryCLI from '/snippets/install-qovery-cli.mdx';
@@ -10,19 +9,19 @@ import InstallQoveryCLI from '/snippets/install-qovery-cli.mdx';
 
 Bring Your Own Kubernetes (BYOK) allows you to connect any Kubernetes cluster to Qovery. You maintain control over your cluster infrastructure while Qovery manages application deployments.
 
-<Warning>
-This installation is kept for providers that the Qovery Operator does not support yet and on-premise clusters. For an AWS, GCP or Scaleway cluster, use [Bring Your Own Kubernetes (BYOK)](/configuration/integrations/kubernetes/byok).
-</Warning>
+<Info>
+Use this installation for any cluster other than Amazon EKS, Google GKE and Scaleway Kapsule, for example Azure AKS, k3s or an on-premise cluster. For an EKS, GKE or Kapsule cluster, use the [Qovery Operator installation](/configuration/integrations/kubernetes/byok). See [Which installation to use](/configuration/integrations/kubernetes/byok-supported-setups#which-installation-to-use).
 
-## Supported Kubernetes
+This installation is available on every Qovery plan, including Free.
+</Info>
+
+## Clusters this installation covers
 
 <CardGroup cols={3}>
   <Card title="Cloud Managed" icon="cloud">
-    - AWS EKS
-    - Google GKE
     - Azure AKS
-    - Scaleway Kapsule
     - DigitalOcean DOKS
+    - Other managed Kubernetes services
   </Card>
 
   <Card title="Self-Managed" icon="server">
@@ -43,7 +42,7 @@ This installation is kept for providers that the Qovery Operator does not suppor
 
 ## Requirements
 
-<Check>Kubernetes 1.24 or higher</Check>
+<Check>Kubernetes 1.31 or later</Check>
 <Check>kubectl access with cluster-admin permissions</Check>
 <Check>LoadBalancer support (cloud or MetalLB for on-premise)</Check>
 <Check>Storage class for persistent volumes</Check>
@@ -82,15 +81,26 @@ This installation is kept for providers that the Qovery Operator does not suppor
 
 ## What Qovery Installs
 
-**Core Components**:
-- Qovery Agent (deployment manager)
-- Qovery Shell Agent (for terminal access)
+`qovery cluster install` generates a Helm values file and the Helm commands that install the `qovery` chart.
 
-**Optional Components** (if not present):
-- Nginx Ingress Controller
-- Cert-Manager (SSL certificates)
-- External-DNS (domain management)
-- Metrics Server
+<Warning>
+The values file holds the credential your cluster uses to connect to Qovery. Do not commit it to version control or share it, and delete it once the installation is done.
+</Warning>
+
+The values file enables:
+
+**Qovery components**:
+- Qovery engine and cluster agent (run and track deployments)
+- Qovery shell agent (terminal access to your services)
+
+**Platform components**:
+- Envoy Gateway, with the Gateway API CRDs and the Qovery GatewayClass and Gateway (exposes your applications)
+- cert-manager (TLS certificates)
+- ExternalDNS (domain management)
+- metrics-server (autoscaling)
+- Loki and Alloy (application logs)
+
+To keep a component you already run, such as cert-manager, turn off the Qovery copy in the values file before you run the Helm commands.
 
 ## Networking Requirements
 

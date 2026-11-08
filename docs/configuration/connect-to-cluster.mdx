@@ -562,7 +562,7 @@ kubectl get events --namespace <namespace> --sort-by='.lastTimestamp'
     **Symptoms**: `Unable to connect to the server` error
 
     **Solutions**:
-    - Verify cluster is running: `qovery cluster status --cluster <cluster-id>`
+    - Verify cluster is running: `qovery cluster list --organization "<org-name>"` (check the cluster status column)
     - Check your kubeconfig path: `echo $KUBECONFIG`
     - Ensure AWS credentials are valid: `aws sts get-caller-identity`
     - Regenerate kubeconfig: `qovery cluster kubeconfig --cluster-id <cluster-id>`

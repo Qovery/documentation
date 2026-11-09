@@ -69,11 +69,12 @@ Qovery creates it in your account with a third-party provider, using credentials
     EOF
     BLUEPRINT_ID=$(qovery api "environment/$ENV_ID/blueprint" --method POST --input - < blueprint.json | jq -r .id)
     rm blueprint.json   # it can hold secret values
-    qovery api "blueprint/$BLUEPRINT_ID/deploy" --method POST
     qovery api "blueprint/$BLUEPRINT_ID"   # status of the latest deployment
     ```
 
     Replace each `REPLACE_WITH_` value. Add optional variables to `variables` the same way.
+
+    Creating the service starts its first deployment. To deploy it again later, run `qovery api "blueprint/$BLUEPRINT_ID/deploy" --method POST`.
   </Tab>
   <Tab title="Coding agent">
     Paste this into Claude Code, Cursor, Codex or another coding agent with the [Qovery agent skills](/getting-started/quickstart/agent-skills) installed (`curl -fsSL https://skill.qovery.com/install.sh | bash`).

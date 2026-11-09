@@ -53,6 +53,7 @@ Qovery creates it as a Helm release on the environment's own cluster, as a [Blue
     }
     EOF
     BLUEPRINT_ID=$(qovery api "environment/$ENV_ID/blueprint" --method POST --input - < blueprint.json | jq -r .id)
+    rm blueprint.json   # it can hold secret values
     qovery api "blueprint/$BLUEPRINT_ID/deploy" --method POST
     qovery api "blueprint/$BLUEPRINT_ID"   # status of the latest deployment
     ```
@@ -94,7 +95,7 @@ Generated from `qbm.yml` at `HELM/signoz/0/1.0.1`, the manifest the Console form
 | `usage_reporting` | string |  | `false` |  | Send anonymous usage statistics to the SigNoz team |
 | `prometheus_federation` | string |  | `true` |  | Copy cluster Prometheus metrics into SigNoz for PromQL panels and alerts, from install onwards |
 | `prometheus_address` | string |  | `prometheus-operated.prometheus.svc.cluster.local:9090` |  | Leave the default on AWS and Scaleway. On GKE and AKS use prometheus-operated.qovery.svc.cluster.local:9090 (host:port, no scheme). |
-| `federation_match` | string |  | `\{job=~"kubelet\|kube-state-metrics\|node-exporter"\}` |  | Prometheus series selector of what to copy. The default covers container, pod and node metrics; widen it with care, every series is stored again in ClickHouse. |
+| `federation_match` | string |  | `{job=~"kubelet\|kube-state-metrics\|node-exporter"}` |  | Prometheus series selector of what to copy. The default covers container, pod and node metrics; widen it with care, every series is stored again in ClickHouse. |
 | `federation_interval` | string |  | `60s` |  | How often metrics are copied from Prometheus. Go duration, at least 15s (e.g. 30s, 1m). |
 | `clickhouse_storage_size` | string |  | `50Gi` |  | Kubernetes quantity (e.g. 50Gi) holding every trace, log and metric. Can only grow, on a storage class that allows expansion. |
 | `storage_class` | string |  |  |  | Unset = the cluster's default, for every SigNoz volume. Set at creation: a volume cannot change class, so a later change fails the deploy. |
@@ -105,7 +106,7 @@ Generated from `qbm.yml` at `HELM/signoz/0/1.0.1`, the manifest the Console form
 
 </Accordion>
 
-Outputs become environment variables other services in the environment can use, with an alias named after the Blueprint. See [Outputs](/configuration/blueprints#outputs).
+Outputs become environment variables that other services in the environment can use. By default Qovery also creates an alias for each output, prefixed with the Blueprint's name; see [Aliases Qovery creates for outputs](/configuration/environment-variables#aliases-qovery-creates-for-outputs) for the naming rules and the cases where no alias is created.
 
 <Accordion title="All 2 outputs">
 

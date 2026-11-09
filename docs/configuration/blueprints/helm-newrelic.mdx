@@ -53,6 +53,7 @@ Qovery creates it as a Helm release on the environment's own cluster, as a [Blue
     }
     EOF
     BLUEPRINT_ID=$(qovery api "environment/$ENV_ID/blueprint" --method POST --input - < blueprint.json | jq -r .id)
+    rm blueprint.json   # it can hold secret values
     qovery api "blueprint/$BLUEPRINT_ID/deploy" --method POST
     qovery api "blueprint/$BLUEPRINT_ID"   # status of the latest deployment
     ```

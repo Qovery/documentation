@@ -55,6 +55,7 @@ Qovery creates it in the AWS account of the environment's cluster, as a [Bluepri
     }
     EOF
     BLUEPRINT_ID=$(qovery api "environment/$ENV_ID/blueprint" --method POST --input - < blueprint.json | jq -r .id)
+    rm blueprint.json   # it can hold secret values
     qovery api "blueprint/$BLUEPRINT_ID/deploy" --method POST
     qovery api "blueprint/$BLUEPRINT_ID"   # status of the latest deployment
     ```
@@ -109,7 +110,7 @@ Generated from `qbm.yml` at `AWS/redis/7/1.1.2`, the manifest the Console form i
 
 </Accordion>
 
-Outputs become environment variables other services in the environment can use, with an alias named after the Blueprint. See [Outputs](/configuration/blueprints#outputs).
+Outputs become environment variables that other services in the environment can use. By default Qovery also creates an alias for each output, prefixed with the Blueprint's name; see [Aliases Qovery creates for outputs](/configuration/environment-variables#aliases-qovery-creates-for-outputs) for the naming rules and the cases where no alias is created.
 
 <Accordion title="All 18 outputs">
 
@@ -135,6 +136,10 @@ Outputs become environment variables other services in the environment can use, 
 | `db_name` |  | Redis logical database applications use — always 0 |
 
 </Accordion>
+
+<Warning>
+Secret variables and outputs are encrypted and masked in Qovery, but Terraform can also keep their values, and values derived from them, in its state. With the Qovery-managed state backend (the default), Qovery stores the state. If you use your own backend, protect it and keep state files out of version control.
+</Warning>
 
 ## Reference
 

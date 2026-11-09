@@ -15,6 +15,7 @@ Pages are overwritten: edit the catalog README, not the generated page.
 import json
 import re
 import sys
+import urllib.error
 import urllib.request
 from pathlib import Path
 
@@ -160,6 +161,7 @@ def page(bp, tag, manifest, readme):
     lines += [
         "    EOF",
         '    BLUEPRINT_ID=$(qovery api "environment/$ENV_ID/blueprint" --method POST --input - < blueprint.json | jq -r .id)',
+        "    rm blueprint.json   # it can hold secret values",
         '    qovery api "blueprint/$BLUEPRINT_ID/deploy" --method POST',
         '    qovery api "blueprint/$BLUEPRINT_ID"   # status of the latest deployment',
         "    ```",
@@ -207,18 +209,21 @@ def page(bp, tag, manifest, readme):
             default = v.get("default")
             lines.append(
                 f"| `{v['name']}` | {v.get('type', '')} | {'Yes' if v.get('required') else ''} | "
-                f"{('`' + cell(default) + '`') if default not in (None, '') else ''} | {'Yes' if v.get('sensitive') else ''} | {cell(v.get('description'))} |"
+                f"{('`' + str(default).replace('|', '\\|') + '`') if default not in (None, '') else ''} | {'Yes' if v.get('sensitive') else ''} | {cell(v.get('description'))} |"
             )
         lines += ["", "</Accordion>", ""]
     if outputs:
         if not variables:
             lines += ["## Variables and outputs", ""]
-        lines += ["Outputs become environment variables other services in the environment can use, with an alias named after the Blueprint. See [Outputs](/configuration/blueprints#outputs).", "",
+        lines += ["Outputs become environment variables that other services in the environment can use. By default Qovery also creates an alias for each output, prefixed with the Blueprint's name; see [Aliases Qovery creates for outputs](/configuration/environment-variables#aliases-qovery-creates-for-outputs) for the naming rules and the cases where no alias is created.", "",
                   f'<Accordion title="All {len(outputs)} outputs">', "",
                   "| Name | Secret | Description |", "| --- | --- | --- |"]
         for o in outputs:
             lines.append(f"| `{o['name']}` | {'Yes' if o.get('sensitive') else ''} | {cell(o.get('description'))} |")
         lines += ["", "</Accordion>", ""]
+    has_secret = any(v.get("sensitive") for v in variables) or any(o.get("sensitive") for o in outputs)
+    if engine in ("terraform", "opentofu") and has_secret:
+        lines += ["<Warning>", "Secret variables and outputs are encrypted and masked in Qovery, but Terraform can also keep their values, and values derived from them, in its state. With the Qovery-managed state backend (the default), Qovery stores the state. If you use your own backend, protect it and keep state files out of version control.", "</Warning>", ""]
     if readme.strip():
         lines += ["## Reference", "", f"From the Blueprint's [README]({BLOB}/{tag}/{path}/README.md).", "", readme_body(readme, tag, path), ""]
     return "\n".join(lines).rstrip() + "\n"
@@ -284,7 +289,9 @@ def main():
         manifest = yaml.safe_load(fetch(f"{RAW}/refs/tags/{tag}/{path}/qbm.yml"))
         try:
             readme = fetch(f"{RAW}/refs/tags/{tag}/{path}/README.md")
-        except Exception:
+        except urllib.error.HTTPError as e:
+            if e.code != 404:
+                raise
             readme = ""
         (OUT / f"{bp['name']}.mdx").write_text(page(bp, tag, manifest, readme))
         cat = bp.get("primaryCategory", "Other")

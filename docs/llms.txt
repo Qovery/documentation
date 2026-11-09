@@ -44,6 +44,9 @@
 - [Install Qovery on GCP](https://www.qovery.com/docs/getting-started/installation/gcp.md): Complete guide to installing Qovery on Google Cloud Platform with GKE Autopilot
 - [Install Qovery on Azure](https://www.qovery.com/docs/getting-started/installation/azure.md): Complete guide to installing Qovery on Microsoft Azure with AKS
 - [Install Qovery on Scaleway](https://www.qovery.com/docs/getting-started/installation/scaleway.md): Complete guide to installing Qovery on Scaleway with Kapsule Kubernetes
+
+##### Installation (continued)
+
 - [BYOK (Bring Your Own Kubernetes)](https://www.qovery.com/docs/getting-started/installation/kubernetes.md): Connect a Kubernetes cluster you already run: EKS, GKE and Scaleway Kapsule with the Qovery Operator, and any other cluster with the Qovery CLI.
 
 #### Platform Capabilities
@@ -67,11 +70,17 @@
 - [GCP IAM Permissions Reference](https://www.qovery.com/docs/getting-started/security-and-compliance/gcp-iam-permissions.md): Detailed breakdown of every GCP IAM permission required by Qovery and why it's needed
 - [Azure IAM Permissions Reference](https://www.qovery.com/docs/getting-started/security-and-compliance/azure-iam-permissions.md): Detailed breakdown of every Azure permission required by Qovery and why it's needed
 - [Scaleway IAM Permissions Reference](https://www.qovery.com/docs/getting-started/security-and-compliance/scaleway-iam-permissions.md): Detailed breakdown of every Scaleway IAM permission required by Qovery and why it's needed
+
+##### Security & Compliance (continued)
+
 - [Audit Logs](https://www.qovery.com/docs/getting-started/security-and-compliance/audit-logs.md): Track all actions and changes in your Qovery organization
 - [SOC2](https://www.qovery.com/docs/getting-started/security-and-compliance/soc2.md): Cluster advanced settings to apply for SOC 2, such as CloudWatch log retention, VPC flow logs, database and Kubernetes API access, and image retention.
 - [GDPR](https://www.qovery.com/docs/getting-started/security-and-compliance/gdpr.md): How Qovery handles personal data under GDPR: data protection by design, the Data Protection Officer, consent, individual rights and data retention.
 - [DORA Compliance](https://www.qovery.com/docs/getting-started/security-and-compliance/dora.md): Digital Operational Resilience Act (DORA) readiness with Qovery
 - [HIPAA Compliance](https://www.qovery.com/docs/getting-started/security-and-compliance/hipaa.md): HIPAA eligibility and protected health information (PHI) handling with Qovery
+
+#### Platform Capabilities (continued)
+
 - [Maintenance](https://www.qovery.com/docs/getting-started/configuration/maintenance.md): Understand how Qovery handles platform maintenance and updates
 
 #### How-to Guides
@@ -205,6 +214,9 @@
 
 - [GitHub Container Registry](https://www.qovery.com/docs/configuration/integrations/container-registries/github-cr.md): Connect GitHub Container Registry (GHCR) with Qovery
 - [GitLab Container Registry](https://www.qovery.com/docs/configuration/integrations/container-registries/gitlab-cr.md): Connect GitLab Container Registry with Qovery
+
+##### Container Registries (continued)
+
 - [Generic Container Registry](https://www.qovery.com/docs/configuration/integrations/container-registries/generic.md): Connect any Docker-compatible container registry with Qovery
 
 ##### Helm Repositories
@@ -301,6 +313,9 @@
 - [Grafana](https://www.qovery.com/docs/configuration/blueprints/helm-grafana.md): Grafana wired to the cluster's Qovery-managed Prometheus (Thanos), Loki and Alertmanager, with Kubernetes dashboards preloaded
 - [New Relic](https://www.qovery.com/docs/configuration/blueprints/helm-newrelic.md): New Relic Kubernetes monitoring (infrastructure agent, kube-state-metrics, events, optional logs) via the official nri-bundle Helm chart
 - [SigNoz](https://www.qovery.com/docs/configuration/blueprints/helm-signoz.md): SigNoz APM (traces, metrics, logs over OpenTelemetry) with the cluster's Qovery-managed Prometheus metrics federated in
+
+#### Services (continued)
+
 - [Service Health Checks](https://www.qovery.com/docs/configuration/service-health-checks.md): Configure liveness and readiness probes to monitor your application health
 - [Service Advanced Settings](https://www.qovery.com/docs/configuration/service-advanced-settings.md): Fine-tune your Qovery services with advanced configuration options
 

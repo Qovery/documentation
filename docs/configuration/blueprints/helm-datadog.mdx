@@ -53,6 +53,7 @@ Qovery creates it as a Helm release on the environment's own cluster, as a [Blue
     }
     EOF
     BLUEPRINT_ID=$(qovery api "environment/$ENV_ID/blueprint" --method POST --input - < blueprint.json | jq -r .id)
+    rm blueprint.json   # it can hold secret values
     qovery api "blueprint/$BLUEPRINT_ID/deploy" --method POST
     qovery api "blueprint/$BLUEPRINT_ID"   # status of the latest deployment
     ```
@@ -97,7 +98,7 @@ Generated from `qbm.yml` at `HELM/datadog/7/3.0.4`, the manifest the Console for
 
 </Accordion>
 
-Outputs become environment variables other services in the environment can use, with an alias named after the Blueprint. See [Outputs](/configuration/blueprints#outputs).
+Outputs become environment variables that other services in the environment can use. By default Qovery also creates an alias for each output, prefixed with the Blueprint's name; see [Aliases Qovery creates for outputs](/configuration/environment-variables#aliases-qovery-creates-for-outputs) for the naming rules and the cases where no alias is created.
 
 <Accordion title="All 1 outputs">
 

@@ -60,6 +60,7 @@ Qovery creates it in your account with a third-party provider, using credentials
     }
     EOF
     BLUEPRINT_ID=$(qovery api "environment/$ENV_ID/blueprint" --method POST --input - < blueprint.json | jq -r .id)
+    rm blueprint.json   # it can hold secret values
     qovery api "blueprint/$BLUEPRINT_ID/deploy" --method POST
     qovery api "blueprint/$BLUEPRINT_ID"   # status of the latest deployment
     ```
@@ -97,7 +98,7 @@ Generated from `qbm.yml` at `EXTERNAL/cloudflare-workers/default/1.0.8`, the man
 | `cloudflare_api_token` | string | Yes |  | Yes | Needs Workers Scripts edit, plus Workers Routes edit when using a route |
 | `account_id` | string | Yes |  |  | Cloudflare account ID that owns the Worker |
 | `script_name` | string | Yes |  |  | Lowercase letters, digits, hyphens, underscores |
-| `script_content` | string |  | `addEventListener('fetch', (event) =&gt; \{ event.respondWith(new Response('Hello from a Qovery-managed Cloudflare Worker')); \});` |  | Worker script source. Defaults to a hello-world service-worker script. |
+| `script_content` | string |  | `addEventListener('fetch', (event) => { event.respondWith(new Response('Hello from a Qovery-managed Cloudflare Worker')); });` |  | Worker script source. Defaults to a hello-world service-worker script. |
 | `main_module` | string |  |  |  | Entrypoint module name for ES-module Workers (e.g. worker.js). Empty = service-worker syntax. |
 | `compatibility_date` | string |  | `2024-09-23` |  | Workers runtime compatibility date, YYYY-MM-DD |
 | `route_zone_id` | string |  |  |  | Zone ID to attach a route on. Empty = no route. |
@@ -105,7 +106,7 @@ Generated from `qbm.yml` at `EXTERNAL/cloudflare-workers/default/1.0.8`, the man
 
 </Accordion>
 
-Outputs become environment variables other services in the environment can use, with an alias named after the Blueprint. See [Outputs](/configuration/blueprints#outputs).
+Outputs become environment variables that other services in the environment can use. By default Qovery also creates an alias for each output, prefixed with the Blueprint's name; see [Aliases Qovery creates for outputs](/configuration/environment-variables#aliases-qovery-creates-for-outputs) for the naming rules and the cases where no alias is created.
 
 <Accordion title="All 4 outputs">
 
@@ -117,6 +118,10 @@ Outputs become environment variables other services in the environment can use, 
 | `route_pattern` |  | URL pattern the Worker responds on (empty when no route is configured) |
 
 </Accordion>
+
+<Warning>
+Secret variables and outputs are encrypted and masked in Qovery, but Terraform can also keep their values, and values derived from them, in its state. With the Qovery-managed state backend (the default), Qovery stores the state. If you use your own backend, protect it and keep state files out of version control.
+</Warning>
 
 ## Reference
 

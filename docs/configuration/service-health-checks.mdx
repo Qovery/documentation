@@ -7,10 +7,11 @@ Health checks are automated procedures that monitor application status, determin
 
 ## Kubernetes Probe Types
 
-Qovery utilizes two primary probe mechanisms:
+Qovery utilizes three probe mechanisms:
 
 - **Liveness probe**: Verifies container vitality. Failed checks trigger container restarts, addressing issues like deadlocks where applications run but cannot progress.
 - **Readiness probe**: Confirms container readiness for incoming requests. Traffic routes only to ready pods; unready containers are removed from load balancers.
+- **Startup probe**: Holds the liveness and readiness probes until it succeeds, so a service with a long boot time doesn't need a long liveness **Initial Delay** to avoid being restarted before it has started. Available for applications and containers.
 
 <Frame>
   <img src="/images/configuration/health-checks/workflow.png" alt="Kubernetes Probes Workflow" />
@@ -83,9 +84,11 @@ Applications with extended boot operations may fail deployment if probes cannot 
 Increase **Initial Delay** settings to match your application boot duration to prevent premature probe failures.
 </Tip>
 
-<Warning>
-Startup probes are not yet available in Qovery.
-</Warning>
+<Tip>
+A startup probe is an alternative to a long **Initial Delay** on the liveness probe: enable it instead, and leave the liveness probe's own delay short.
+</Tip>
+
+Startup probes are opt-in and disabled (type **NONE**) by default. When enabled, Qovery applies default timings that give the service about five minutes to start: 10s initial delay, 10s period, 5s timeout, success threshold 1, failure threshold 30.
 
 ## Applicable Services
 

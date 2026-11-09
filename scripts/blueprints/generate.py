@@ -97,6 +97,25 @@ def cell(v):
     return mdx_escape(s)
 
 
+def newcomer(provider, title):
+    """Short note for readers who have never run this kind of service themselves."""
+    if provider == "HELM":
+        what = f"Qovery installs {title} on your cluster, configures it and runs it for you"
+        skill = "Kubernetes or Helm"
+    elif provider == "EXTERNAL":
+        what = f"Qovery creates {title} in your provider account and connects it to your services"
+        skill = "Terraform or Kubernetes"
+    else:
+        what = f"Qovery creates {title} in your cloud account and connects it to your services"
+        skill = "Kubernetes or Terraform"
+    return (
+        f"**New to this?** You don't need to know {skill}. {what}: you fill in a short form, "
+        "or paste the prompt below into your coding agent. Its connection details reach your other services as environment variables, "
+        "and Qovery tells you when a newer version of the Blueprint is available. "
+        "Try it first in a development environment, then create it the same way in staging and production."
+    )
+
+
 def page(bp, tag, manifest, readme):
     meta, spec = manifest.get("metadata", {}), manifest.get("spec", {})
     name, title = bp["name"], bp["displayName"]
@@ -136,6 +155,10 @@ def page(bp, tag, manifest, readme):
         f"| Engine | {engine} |",
         f"| Major versions (latest release) | {versions} |",
         f"| Source | [{path}]({TREE}/{tag}/{path}) |",
+        "",
+        "<Tip>",
+        newcomer(provider, title),
+        "</Tip>",
         "",
         "## Create it",
         "",

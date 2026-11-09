@@ -72,19 +72,11 @@ Qovery creates it in your account with a third-party provider, using credentials
     Replace each `REPLACE_WITH_` value. Add optional variables to `variables` the same way.
   </Tab>
   <Tab title="Coding agent">
-    Paste this prompt into Claude Code, Cursor, Codex or another coding agent. It works best with the [Qovery agent skills](/getting-started/quickstart/agent-skills) installed (`curl -fsSL https://skill.qovery.com/install.sh | bash`); without them, the agent uses the Qovery CLI.
+    Paste this into Claude Code, Cursor, Codex or another coding agent with the [Qovery agent skills](/getting-started/quickstart/agent-skills) installed (`curl -fsSL https://skill.qovery.com/install.sh | bash`).
 
     ```text Prompt wrap
-    Set up the Qovery Blueprint "Cloudflare Workers" (catalog name cloudflare-workers, tag EXTERNAL/cloudflare-workers/default/1.0.8) in my Qovery organization.
-
-    1. Make sure the Qovery CLI is installed and signed in (`qovery auth status`). If not, install it with `curl -s https://get.qovery.com | bash` and run `qovery auth --headless`, then wait for me to open the link.
-    2. Ask me which organization, project and environment to use. Find their IDs with `qovery api organization`, `qovery api "organization/<org id>/project"` and `qovery api "project/<project id>/environment"`.
-    3. Ask me for the required variables: cloudflare_api_token, account_id, script_name. Do not invent values for secrets. Use the defaults for the other variables unless I ask otherwise.
-    4. Show me the request body, then create the service with `qovery api "environment/<environment id>/blueprint" --method POST`, using the body format from https://www.qovery.com/docs/configuration/blueprints/cloudflare-workers.md
-    5. Deploy it with `qovery api "blueprint/<blueprint id>/deploy" --method POST` and check `qovery api "blueprint/<blueprint id>"` until the deployment finishes.
-    6. Tell me the outputs the service publishes and how my other services can use them.
-
-    Do not create a qovery.yml or any other Qovery file in the repository, because Qovery does not read one. Ask me before deploying to a production environment.
+    Add the Qovery Blueprint Cloudflare Workers (cloudflare-workers) to one of my Qovery environments and deploy it. Ask me for cloudflare_api_token, account_id and script_name.
+    Docs: https://www.qovery.com/docs/configuration/blueprints/cloudflare-workers.md
     ```
   </Tab>
 </Tabs>

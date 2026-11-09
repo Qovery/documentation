@@ -49,8 +49,15 @@ def walk(node, depth, out):
         out.append("#" * min(depth, 6) + " " + name)
         out.append("")
     for key in ("tabs", "groups", "pages"):
+        after_group = False
         for child in node.get(key, []):
+            if isinstance(child, str) and after_group and name:
+                # pages that follow a nested group belong to this group, not the nested one
+                out += ["", "#" * min(depth, 6) + " " + name + " (continued)", ""]
+                after_group = False
             walk(child, depth + 1, out)
+            if isinstance(child, dict):
+                after_group = True
 
 
 def build():

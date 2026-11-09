@@ -1,0 +1,310 @@
+#!/usr/bin/env python3
+"""Build one docs page per Blueprint in Qovery's service catalog.
+
+Reads catalog.json from github.com/Qovery/service-catalog, then the qbm.yml
+manifest and README.md of each Blueprint at its latest released tag, and
+writes docs/configuration/blueprints/<name>.mdx. It also rebuilds the
+"Blueprints" group in docs/docs.json.
+
+    uv run --with pyyaml python scripts/blueprints/generate.py
+    (or: pip install pyyaml && python3 scripts/blueprints/generate.py)
+
+Run it after each catalog release, then run scripts/llms/generate.py.
+Pages are overwritten: edit the catalog README, not the generated page.
+"""
+import json
+import re
+import sys
+import urllib.error
+import urllib.request
+from pathlib import Path
+
+import yaml
+
+ROOT = Path(__file__).resolve().parents[2]
+DOCS = ROOT / "docs"
+OUT = DOCS / "configuration" / "blueprints"
+REPO = "Qovery/service-catalog"
+RAW = "https://raw.githubusercontent.com/" + REPO
+BLOB = "https://github.com/" + REPO + "/blob"
+TREE = "https://github.com/" + REPO + "/tree"
+
+CATEGORY_ORDER = [
+    "Databases & Caches", "Messaging & Streaming", "Storage", "Networking & Edge",
+    "Compute & Runtime", "AI & Analytics", "Observability",
+]
+# The Console shows AI and Analytics together; keep the docs the same.
+CATEGORY_MERGE = {"AI": "AI & Analytics", "Analytics": "AI & Analytics"}
+SOURCE = {"AWS": "AWS", "GCP": "GCP", "AZURE": "Azure", "SCW": "Scaleway", "HELM": "Helm", "EXTERNAL": "External"}
+WHERE = {
+    "AWS": "in the AWS account of the environment's cluster",
+    "GCP": "in the GCP project of the environment's cluster",
+    "AZURE": "in the Azure subscription of the environment's cluster",
+    "SCW": "in the Scaleway project of the environment's cluster",
+    "EXTERNAL": "in your account with a third-party provider, using credentials you enter in the form",
+    "HELM": "as a Helm release on the environment's own cluster",
+}
+
+
+def fetch(url):
+    with urllib.request.urlopen(url, timeout=60) as r:
+        return r.read().decode("utf-8")
+
+
+def mdx_escape(text):
+    """Escape characters MDX would read as JSX, outside code blocks and inline code."""
+    out, fence = [], False
+    for line in text.splitlines():
+        if line.lstrip().startswith(("```", "~~~")):
+            fence = not fence
+            out.append(line)
+            continue
+        if fence:
+            out.append(line)
+            continue
+        parts = re.split(r"(`[^`]*`)", line)
+        for i, p in enumerate(parts):
+            if i % 2 == 0:
+                p = re.sub(r"<(https?://[^>\s]+)>", r"[\1](\1)", p)
+                p = p.replace("{", "\\{").replace("}", "\\}").replace("<", "&lt;").replace(">", "&gt;")
+                p = re.sub(r"^(\s*)&gt;", r"\1>", p)  # keep blockquotes
+            parts[i] = p
+        out.append("".join(parts))
+    return "\n".join(out)
+
+
+def readme_body(readme, tag, path):
+    lines = readme.splitlines()
+    if lines and lines[0].startswith("# "):
+        lines = lines[1:]
+    text = "\n".join(lines).strip()
+    # demote headings one level so the page keeps a single h2 outline
+    text = re.sub(r"^(#{2,5}) ", lambda m: "#" + m.group(1) + " ", text, flags=re.M)
+
+    def rel(m):
+        label, target = m.group(1), m.group(2)
+        if re.match(r"^(https?:|#|mailto:)", target):
+            return m.group(0)
+        return f"[{label}]({BLOB}/{tag}/{path}/{target})"
+    text = re.sub(r"(?<!!)\[([^\]]+)\]\(([^)\s]+)\)", rel, text)
+    text = re.sub(r"!\[[^\]]*\]\([^)]*\)", "", text)  # images are not copied
+    return mdx_escape(text)
+
+
+def cell(v):
+    s = "" if v is None else str(v)
+    s = s.replace("\n", " ").replace("|", "\\|").strip()
+    return mdx_escape(s)
+
+
+def page(bp, tag, manifest, readme):
+    meta, spec = manifest.get("metadata", {}), manifest.get("spec", {})
+    name, title = bp["name"], bp["displayName"]
+    provider, engine = bp["provider"], (spec.get("engine") or {}).get("type", "")
+    path = tag.rsplit("/", 1)[0]
+    majors = bp.get("majorVersions", [])
+    variables = spec.get("variables") or []
+    outputs = spec.get("outputs") or []
+    required = [v for v in variables if v.get("required")]
+    desc = meta.get("description") or bp.get("description", "")
+
+    versions = ", ".join(f"`{m['serviceVersion']}` ({m['latestTag'].rsplit('/', 1)[1]})" for m in majors)
+    body_vars = []
+    for v in required:
+        example = "REPLACE_WITH_" + v["name"].upper()
+        body_vars.append({"name": v["name"], "value": example} | ({"is_secret": True} if v.get("sensitive") else {}))
+    request = {"name": name.replace("_", "-"), "tag": tag, "icon": bp.get("icon", ""), "variables": body_vars}
+    if engine in ("terraform", "opentofu"):
+        tf = (spec.get("engine") or {}).get(engine) or {}
+        request["spec_overrides"] = {"engine_version": tf.get("version", "")}
+
+    lines = [
+        "---",
+        f'title: "{title}"',
+        f'description: "{desc.replace(chr(34), chr(39))[:300]}"',
+        "---",
+        "",
+        f"{{/* Generated by scripts/blueprints/generate.py from {REPO} tag {tag}. Edit the Blueprint's README, not this page. */}}",
+        "",
+        f"Qovery creates it {WHERE.get(provider, 'from the catalog')}, as a [Blueprint](/configuration/blueprints) service in one of your environments.",
+        "",
+        "| | |",
+        "| --- | --- |",
+        f"| Catalog name | `{name}` |",
+        f"| Category | {bp.get('primaryCategory', '')} |",
+        f"| Provider | {provider} |",
+        f"| Engine | {engine} |",
+        f"| Major versions (latest release) | {versions} |",
+        f"| Source | [{path}]({TREE}/{tag}/{path}) |",
+        "",
+        "## Create it",
+        "",
+        "<Tabs>",
+        '  <Tab title="Console">',
+        "    1. Open the environment, then **New service** › **Blueprint**.",
+        f"    2. Find **{title}** in the catalog and pick the major version.",
+        "    3. Fill in the variables. Required ones are marked; the others use their defaults.",
+        "    4. Create the service, and deploy it now or later.",
+        "  </Tab>",
+        '  <Tab title="CLI and API">',
+        "    List the catalog to get the latest tag, then create the service from it. `qovery api` signs the requests with your CLI session.",
+        "",
+        "    ```bash",
+        '    ORG_ID="REPLACE_WITH_ORGANIZATION_ID"',
+        '    ENV_ID="REPLACE_WITH_ENVIRONMENT_ID"',
+        "",
+        f'    qovery api "organization/$ORG_ID/blueprint/catalog" | jq \'.. | objects | select(.name? == "{name}")\'',
+        "",
+        "    cat > blueprint.json <<'EOF'",
+    ]
+    lines += ["    " + l for l in json.dumps(request, indent=2).splitlines()]
+    lines += [
+        "    EOF",
+        '    BLUEPRINT_ID=$(qovery api "environment/$ENV_ID/blueprint" --method POST --input - < blueprint.json | jq -r .id)',
+        "    rm blueprint.json   # it can hold secret values",
+        '    qovery api "blueprint/$BLUEPRINT_ID/deploy" --method POST',
+        '    qovery api "blueprint/$BLUEPRINT_ID"   # status of the latest deployment',
+        "    ```",
+        "",
+        "    Replace each `REPLACE_WITH_` value. Add optional variables to `variables` the same way.",
+        "  </Tab>",
+        '  <Tab title="Coding agent">',
+        "    Paste this prompt into Claude Code, Cursor, Codex or another coding agent. It works best with the [Qovery agent skills](/getting-started/quickstart/agent-skills) installed (`curl -fsSL https://skill.qovery.com/install.sh | bash`); without them, the agent uses the Qovery CLI.",
+        "",
+        "    ```text Prompt wrap",
+    ]
+    prompt = [
+        f"Set up the Qovery Blueprint \"{title}\" (catalog name {name}, tag {tag}) in my Qovery organization.",
+        "",
+        "1. Make sure the Qovery CLI is installed and signed in (`qovery auth status`). If not, install it with `curl -s https://get.qovery.com | bash` and run `qovery auth --headless`, then wait for me to open the link.",
+        "2. Ask me which organization, project and environment to use. Find their IDs with `qovery api organization`, `qovery api \"organization/<org id>/project\"` and `qovery api \"project/<project id>/environment\"`.",
+    ]
+    if required:
+        prompt.append("3. Ask me for the required variables: " + ", ".join(v["name"] for v in required) + ". Do not invent values for secrets. Use the defaults for the other variables unless I ask otherwise.")
+    else:
+        prompt.append("3. This Blueprint has no required variables. Use the defaults unless I ask otherwise.")
+    prompt += [
+        f"4. Show me the request body, then create the service with `qovery api \"environment/<environment id>/blueprint\" --method POST`, using the body format from https://www.qovery.com/docs/configuration/blueprints/{name}.md",
+        "5. Deploy it with `qovery api \"blueprint/<blueprint id>/deploy\" --method POST` and check `qovery api \"blueprint/<blueprint id>\"` until the deployment finishes.",
+        "6. Tell me the outputs the service publishes and how my other services can use them.",
+        "",
+        "Do not create a qovery.yml or any other Qovery file in the repository, because Qovery does not read one. Ask me before deploying to a production environment.",
+    ]
+    lines += ["    " + l if l else "" for l in prompt]
+    lines += [
+        "    ```",
+        "  </Tab>",
+        "</Tabs>",
+        "",
+        "You don't add any file to your repository. Qovery creates the Blueprint from the Console or the API.",
+        "",
+    ]
+    if variables:
+        lines += ["## Variables and outputs", "",
+                  f"Generated from `qbm.yml` at `{tag}`, the manifest the Console form is built from.", "",
+                  f'<Accordion title="All {len(variables)} variables">', "",
+                  "| Name | Type | Required | Default | Secret | Description |",
+                  "| --- | --- | --- | --- | --- | --- |"]
+        for v in variables:
+            default = v.get("default")
+            lines.append(
+                f"| `{v['name']}` | {v.get('type', '')} | {'Yes' if v.get('required') else ''} | "
+                f"{('`' + str(default).replace('|', '\\|') + '`') if default not in (None, '') else ''} | {'Yes' if v.get('sensitive') else ''} | {cell(v.get('description'))} |"
+            )
+        lines += ["", "</Accordion>", ""]
+    if outputs:
+        if not variables:
+            lines += ["## Variables and outputs", ""]
+        lines += ["Outputs become environment variables that other services in the environment can use. By default Qovery also creates an alias for each output, prefixed with the Blueprint's name; see [Aliases Qovery creates for outputs](/configuration/environment-variables#aliases-qovery-creates-for-outputs) for the naming rules and the cases where no alias is created.", "",
+                  f'<Accordion title="All {len(outputs)} outputs">', "",
+                  "| Name | Secret | Description |", "| --- | --- | --- |"]
+        for o in outputs:
+            lines.append(f"| `{o['name']}` | {'Yes' if o.get('sensitive') else ''} | {cell(o.get('description'))} |")
+        lines += ["", "</Accordion>", ""]
+    has_secret = any(v.get("sensitive") for v in variables) or any(o.get("sensitive") for o in outputs)
+    if engine in ("terraform", "opentofu") and has_secret:
+        lines += ["<Warning>", "Secret variables and outputs are encrypted and masked in Qovery, but Terraform can also keep their values, and values derived from them, in its state. With the Qovery-managed state backend (the default), Qovery stores the state. If you use your own backend, protect it and keep state files out of version control.", "</Warning>", ""]
+    if readme.strip():
+        lines += ["## Reference", "", f"From the Blueprint's [README]({BLOB}/{tag}/{path}/README.md).", "", readme_body(readme, tag, path), ""]
+    return "\n".join(lines).rstrip() + "\n"
+
+
+def update_nav(groups):
+    p = DOCS / "docs.json"
+    data = json.loads(p.read_text())
+
+    def visit(node):
+        if isinstance(node, dict):
+            for key in ("tabs", "groups", "pages"):
+                if key in node:
+                    items = node[key]
+                    for i, child in enumerate(items):
+                        if child == "configuration/blueprints" or (isinstance(child, dict) and child.get("group") == "Blueprints"):
+                            items[i] = {"group": "Blueprints", "pages": ["configuration/blueprints"] + groups}
+                            return True
+                        if visit(child):
+                            return True
+        elif isinstance(node, list):
+            return any(visit(c) for c in node)
+        return False
+
+    if not visit(data["navigation"]):
+        sys.exit("configuration/blueprints not found in docs.json")
+    p.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n")
+
+
+def update_overview(by_cat, groups):
+    """Rewrite the catalog tables on configuration/blueprints.mdx between markers."""
+    p = DOCS / "configuration" / "blueprints.mdx"
+    text = p.read_text()
+    begin, end = "{/* BEGIN GENERATED: catalog tables, scripts/blueprints/generate.py */}", "{/* END GENERATED */}"
+    out = [begin, ""]
+    for g in groups:
+        out += [f"#### {g['group']}", "", "| Blueprint | Source | Versions |", "|-----------|--------|----------|"]
+        for page_path in g["pages"]:
+            bp = next(b for b in by_cat[g["group"]] if page_path.endswith("/" + b["name"]))
+            majors = [m["serviceVersion"] for m in bp.get("majorVersions", []) if m["serviceVersion"] != "default"]
+            versions = ", ".join(majors) if majors else "-"
+            out.append(f"| [**{bp['displayName']}**](/{page_path}) | {SOURCE.get(bp['provider'], bp['provider'])} | {versions} |")
+        out.append("")
+    out.append(end)
+    block = "\n".join(out)
+    if begin in text:
+        a, b = text.index(begin), text.index(end) + len(end)
+        text = text[:a] + block + text[b:]
+    else:
+        start = text.index("#### ", text.index("### What's in the catalog"))
+        stop = text.index("## How Blueprints Work")
+        text = text[:start] + block + "\n\n" + text[stop:]
+    p.write_text(text)
+
+
+def main():
+    catalog = json.loads(fetch(f"{RAW}/main/catalog.json"))
+    OUT.mkdir(parents=True, exist_ok=True)
+    by_cat = {}
+    for bp in catalog["blueprints"]:
+        tag = bp["majorVersions"][-1]["latestTag"]
+        path = tag.rsplit("/", 1)[0]
+        manifest = yaml.safe_load(fetch(f"{RAW}/refs/tags/{tag}/{path}/qbm.yml"))
+        try:
+            readme = fetch(f"{RAW}/refs/tags/{tag}/{path}/README.md")
+        except urllib.error.HTTPError as e:
+            if e.code != 404:
+                raise
+            readme = ""
+        (OUT / f"{bp['name']}.mdx").write_text(page(bp, tag, manifest, readme))
+        cat = bp.get("primaryCategory", "Other")
+        by_cat.setdefault(CATEGORY_MERGE.get(cat, cat), []).append(bp)
+        print("wrote", bp["name"], tag)
+    groups = []
+    for cat in sorted(by_cat, key=lambda c: (CATEGORY_ORDER.index(c) if c in CATEGORY_ORDER else 99, c)):
+        pages = [f"configuration/blueprints/{b['name']}" for b in sorted(by_cat[cat], key=lambda b: b["displayName"].lower())]
+        groups.append({"group": cat, "pages": pages})
+    update_nav(groups)
+    update_overview(by_cat, groups)
+    print(f"{len(catalog['blueprints'])} pages, {len(groups)} groups")
+
+
+if __name__ == "__main__":
+    main()

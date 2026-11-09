@@ -355,7 +355,78 @@
                   "configuration/terraform"
                 ]
               },
-              "configuration/blueprints",
+              {
+                "group": "Blueprints",
+                "pages": [
+                  "configuration/blueprints",
+                  {
+                    "group": "Databases & Caches",
+                    "pages": [
+                      "configuration/blueprints/aws-elasticache-redis",
+                      "configuration/blueprints/aws-elasticache-redis-node",
+                      "configuration/blueprints/aws-elasticache-valkey",
+                      "configuration/blueprints/aws-rds-mysql",
+                      "configuration/blueprints/aws-rds-postgresql",
+                      "configuration/blueprints/gcp-memorystore-redis",
+                      "configuration/blueprints/mongodb-atlas-cluster",
+                      "configuration/blueprints/planetscale-database",
+                      "configuration/blueprints/helm-redis",
+                      "configuration/blueprints/scaleway-managed-postgresql",
+                      "configuration/blueprints/scaleway-mysql",
+                      "configuration/blueprints/timescale-cloud-service"
+                    ]
+                  },
+                  {
+                    "group": "Messaging & Streaming",
+                    "pages": [
+                      "configuration/blueprints/aiven-kafka",
+                      "configuration/blueprints/aws-amazon-mq-rabbitmq",
+                      "configuration/blueprints/aws-msk",
+                      "configuration/blueprints/confluent-kafka",
+                      "configuration/blueprints/helm-rabbitmq",
+                      "configuration/blueprints/redpanda-kafka"
+                    ]
+                  },
+                  {
+                    "group": "Storage",
+                    "pages": [
+                      "configuration/blueprints/aws-s3",
+                      "configuration/blueprints/scaleway-object-storage"
+                    ]
+                  },
+                  {
+                    "group": "Networking & Edge",
+                    "pages": [
+                      "configuration/blueprints/aws-cloudfront",
+                      "configuration/blueprints/cloudflare-dns-zone"
+                    ]
+                  },
+                  {
+                    "group": "Compute & Runtime",
+                    "pages": [
+                      "configuration/blueprints/cloudflare-workers",
+                      "configuration/blueprints/temporal-cloud-namespace"
+                    ]
+                  },
+                  {
+                    "group": "AI & Analytics",
+                    "pages": [
+                      "configuration/blueprints/aws-bedrock-access",
+                      "configuration/blueprints/bigquery-dataset",
+                      "configuration/blueprints/snowflake-database"
+                    ]
+                  },
+                  {
+                    "group": "Observability",
+                    "pages": [
+                      "configuration/blueprints/helm-datadog",
+                      "configuration/blueprints/helm-grafana",
+                      "configuration/blueprints/helm-newrelic",
+                      "configuration/blueprints/helm-signoz"
+                    ]
+                  }
+                ]
+              },
               "configuration/service-health-checks",
               "configuration/service-advanced-settings"
             ]

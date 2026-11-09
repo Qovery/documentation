@@ -1,4 +1,5 @@
 ---
+sidebarTitle: "Overview"
 title: "Blueprints"
 description: "Provision managed cloud infrastructure, Kubernetes add-ons, and third-party SaaS resources from Qovery's catalog, no Terraform or Helm required"
 ---
@@ -32,67 +33,75 @@ Blueprints come from three kinds of source — cloud provider, Helm, and Externa
 
 The catalog is expanding — [`catalog.json`](https://github.com/Qovery/service-catalog/blob/main/catalog.json) in the repository is the source of truth, and the Console groups blueprints by the categories below.
 
+{/* BEGIN GENERATED: catalog tables, scripts/blueprints/generate.py */}
+
 #### Databases & Caches
 
 | Blueprint | Source | Versions |
 |-----------|--------|----------|
-| **Amazon RDS for PostgreSQL** | AWS | 14–17 |
-| **Amazon RDS for MySQL** | AWS | 8 |
-| **Amazon ElastiCache for Redis** | AWS | 7 |
-| **Amazon ElastiCache for Valkey** | AWS | 9 |
-| **Google Cloud Memorystore for Redis** | GCP | 7 |
-| **Scaleway Managed PostgreSQL** | Scaleway | 16 |
-| **Scaleway MySQL** | Scaleway | 8 |
-| **Redis** | Helm | 8 |
-| **MongoDB Atlas Cluster** | External | — |
-| **PlanetScale Database** | External | — |
-| **Timescale Cloud Service** | External | — |
+| [**Amazon ElastiCache for Redis**](/configuration/blueprints/aws-elasticache-redis) | AWS | 6, 7 |
+| [**Amazon ElastiCache for Redis (legacy single node)**](/configuration/blueprints/aws-elasticache-redis-node) | AWS | 5, 6, 7 |
+| [**Amazon ElastiCache for Valkey**](/configuration/blueprints/aws-elasticache-valkey) | AWS | 9 |
+| [**Amazon RDS for MySQL**](/configuration/blueprints/aws-rds-mysql) | AWS | 8 |
+| [**Amazon RDS for PostgreSQL**](/configuration/blueprints/aws-rds-postgresql) | AWS | 14, 15, 16, 17, 18 |
+| [**Google Cloud Memorystore for Redis**](/configuration/blueprints/gcp-memorystore-redis) | GCP | 7 |
+| [**MongoDB Atlas Cluster**](/configuration/blueprints/mongodb-atlas-cluster) | External | - |
+| [**PlanetScale Database**](/configuration/blueprints/planetscale-database) | External | - |
+| [**Redis**](/configuration/blueprints/helm-redis) | Helm | 8 |
+| [**Scaleway Managed PostgreSQL**](/configuration/blueprints/scaleway-managed-postgresql) | Scaleway | 16 |
+| [**Scaleway MySQL**](/configuration/blueprints/scaleway-mysql) | Scaleway | 8 |
+| [**Timescale Cloud Service**](/configuration/blueprints/timescale-cloud-service) | External | - |
 
 #### Messaging & Streaming
 
 | Blueprint | Source | Versions |
 |-----------|--------|----------|
-| **Amazon MSK** (Kafka, serverless) | AWS | — |
-| **RabbitMQ** | Helm | 4 |
-| **Aiven for Apache Kafka** | External | — |
-| **Confluent Cloud for Apache Kafka** | External | — |
-| **Redpanda Cloud** | External | — |
+| [**Aiven for Apache Kafka**](/configuration/blueprints/aiven-kafka) | External | - |
+| [**Amazon MQ for RabbitMQ**](/configuration/blueprints/aws-amazon-mq-rabbitmq) | AWS | 4 |
+| [**Amazon MSK**](/configuration/blueprints/aws-msk) | AWS | - |
+| [**Confluent Cloud for Apache Kafka**](/configuration/blueprints/confluent-kafka) | External | - |
+| [**RabbitMQ**](/configuration/blueprints/helm-rabbitmq) | Helm | 4 |
+| [**Redpanda Cloud**](/configuration/blueprints/redpanda-kafka) | External | - |
 
 #### Storage
 
 | Blueprint | Source | Versions |
 |-----------|--------|----------|
-| **Amazon S3** | AWS | — |
-| **Scaleway Object Storage** | Scaleway | — |
+| [**Amazon S3**](/configuration/blueprints/aws-s3) | AWS | - |
+| [**Scaleway Object Storage**](/configuration/blueprints/scaleway-object-storage) | Scaleway | - |
 
 #### Networking & Edge
 
 | Blueprint | Source | Versions |
 |-----------|--------|----------|
-| **AWS CloudFront** | AWS | — |
-| **Cloudflare DNS Zone** | External | — |
+| [**AWS CloudFront**](/configuration/blueprints/aws-cloudfront) | AWS | - |
+| [**Cloudflare DNS Zone**](/configuration/blueprints/cloudflare-dns-zone) | External | - |
 
 #### Compute & Runtime
 
 | Blueprint | Source | Versions |
 |-----------|--------|----------|
-| **Cloudflare Workers** | External | — |
-| **Temporal Cloud Namespace** | External | — |
+| [**Cloudflare Workers**](/configuration/blueprints/cloudflare-workers) | External | - |
+| [**Temporal Cloud Namespace**](/configuration/blueprints/temporal-cloud-namespace) | External | - |
 
 #### AI & Analytics
 
 | Blueprint | Source | Versions |
 |-----------|--------|----------|
-| **AWS Bedrock Access** (scoped IAM policy, optional user and keys) | External | — |
-| **Google BigQuery Dataset** | External | — |
-| **Snowflake Database** | External | — |
+| [**AWS Bedrock Access**](/configuration/blueprints/aws-bedrock-access) | External | - |
+| [**Google BigQuery Dataset**](/configuration/blueprints/bigquery-dataset) | External | - |
+| [**Snowflake Database**](/configuration/blueprints/snowflake-database) | External | - |
 
 #### Observability
 
 | Blueprint | Source | Versions |
 |-----------|--------|----------|
-| **Datadog** (agent, metrics, logs, optional APM) | Helm | 7 |
-| **New Relic** (`nri-bundle`) | Helm | — |
+| [**Datadog**](/configuration/blueprints/helm-datadog) | Helm | 7 |
+| [**Grafana**](/configuration/blueprints/helm-grafana) | Helm | 13 |
+| [**New Relic**](/configuration/blueprints/helm-newrelic) | Helm | - |
+| [**SigNoz**](/configuration/blueprints/helm-signoz) | Helm | 0 |
+
+{/* END GENERATED */}
 
 ## How Blueprints Work
 

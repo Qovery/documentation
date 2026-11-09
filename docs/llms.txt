@@ -245,7 +245,62 @@
 - [Databases](https://www.qovery.com/docs/configuration/database.md): Deploy a managed database from a Blueprint for production, or a container database on your cluster for development, and connect it to your services.
 - [Object Storage](https://www.qovery.com/docs/configuration/object-storage.md): Use cloud object storage for persistent data in your applications
 - [Terraform](https://www.qovery.com/docs/configuration/terraform.md): Deploy and manage Terraform modules natively on Qovery
+
+##### Blueprints
+
 - [Blueprints](https://www.qovery.com/docs/configuration/blueprints.md): Provision managed cloud infrastructure, Kubernetes add-ons, and third-party SaaS resources from Qovery's catalog, no Terraform or Helm required
+
+###### Databases & Caches
+
+- [Amazon ElastiCache for Redis](https://www.qovery.com/docs/configuration/blueprints/aws-elasticache-redis.md): AWS ElastiCache for Redis 7 replication group with TLS and auth token, attached to the Qovery cluster network, with configurable size, topology, backups and maintenance
+- [Amazon ElastiCache for Redis (legacy single node)](https://www.qovery.com/docs/configuration/blueprints/aws-elasticache-redis-node.md): Adopts an existing single-node AWS ElastiCache for Redis cluster created by Qovery native managed Redis. Import only: it cannot create a new cluster. This shape has no auth token and no TLS.
+- [Amazon ElastiCache for Valkey](https://www.qovery.com/docs/configuration/blueprints/aws-elasticache-valkey.md): AWS ElastiCache for Valkey replication group with TLS and auth token, attached to the Qovery cluster network, with configurable size, topology, backups and maintenance
+- [Amazon RDS for MySQL](https://www.qovery.com/docs/configuration/blueprints/aws-rds-mysql.md): AWS RDS MySQL 8.4 instance with configurable size, storage, backups, maintenance, monitoring, and network
+- [Amazon RDS for PostgreSQL](https://www.qovery.com/docs/configuration/blueprints/aws-rds-postgresql.md): AWS RDS PostgreSQL 18 instance with configurable size, storage, backups, maintenance, monitoring, network, and optional read replicas
+- [Google Cloud Memorystore for Redis](https://www.qovery.com/docs/configuration/blueprints/gcp-memorystore-redis.md): GCP Memorystore for Redis 7 instance with configurable tier, memory size, auth, TLS, persistence, maintenance window, and optional read replicas
+- [MongoDB Atlas Cluster](https://www.qovery.com/docs/configuration/blueprints/mongodb-atlas-cluster.md): Provision a MongoDB Atlas dedicated cluster (advanced_cluster) with a database user and IP access list, via the MongoDB Atlas Terraform provider
+- [PlanetScale Database](https://www.qovery.com/docs/configuration/blueprints/planetscale-database.md): Provision a PlanetScale (Vitess/MySQL) database with a production branch and an application password, via the official PlanetScale Terraform provider
+- [Redis](https://www.qovery.com/docs/configuration/blueprints/helm-redis.md): Redis cache via the community groundhog2k Helm chart (official docker.io/redis image)
+- [Scaleway Managed PostgreSQL](https://www.qovery.com/docs/configuration/blueprints/scaleway-managed-postgresql.md): Scaleway Managed Database PostgreSQL instance with configurable node type, storage, backups, and network ACL
+- [Scaleway MySQL](https://www.qovery.com/docs/configuration/blueprints/scaleway-mysql.md): Scaleway Managed Database MySQL instance with configurable node type, storage, backups, and network ACL
+- [Timescale Cloud Service](https://www.qovery.com/docs/configuration/blueprints/timescale-cloud-service.md): Provision a Timescale Cloud (TimescaleDB/Postgres) service with configurable CPU, memory, and HA replicas, via the Timescale Terraform provider
+
+###### Messaging & Streaming
+
+- [Aiven for Apache Kafka](https://www.qovery.com/docs/configuration/blueprints/aiven-kafka.md): Managed Apache Kafka on Aiven (single aiven_kafka service with SASL credentials) via the Aiven Terraform provider
+- [Amazon MQ for RabbitMQ](https://www.qovery.com/docs/configuration/blueprints/aws-amazon-mq-rabbitmq.md): Amazon MQ for RabbitMQ 4 broker over AMQPS, attached to the Qovery cluster network, single node or three-node cluster. Requires mq:* on the deploying IAM role (see README).
+- [Amazon MSK](https://www.qovery.com/docs/configuration/blueprints/aws-msk.md): Amazon MSK Serverless (managed Kafka) with SASL/IAM auth, attached to the Qovery cluster network
+- [Confluent Cloud for Apache Kafka](https://www.qovery.com/docs/configuration/blueprints/confluent-kafka.md): Confluent Cloud Kafka cluster (Basic) with an environment, service account, and client API key, via the Confluent Terraform provider
+- [RabbitMQ](https://www.qovery.com/docs/configuration/blueprints/helm-rabbitmq.md): RabbitMQ message broker via the community groundhog2k Helm chart (official docker.io/rabbitmq image)
+- [Redpanda Cloud](https://www.qovery.com/docs/configuration/blueprints/redpanda-kafka.md): Redpanda Cloud serverless Kafka-compatible cluster via the official Redpanda Terraform provider
+
+###### Storage
+
+- [Amazon S3](https://www.qovery.com/docs/configuration/blueprints/aws-s3.md): S3 bucket with encryption, versioning, and public-access blocking
+- [Scaleway Object Storage](https://www.qovery.com/docs/configuration/blueprints/scaleway-object-storage.md): Scaleway Object Storage bucket
+
+###### Networking & Edge
+
+- [AWS CloudFront](https://www.qovery.com/docs/configuration/blueprints/aws-cloudfront.md): AWS CloudFront CDN distribution in front of an HTTP/S origin (ALB, app host, or S3 website), with configurable caching, price class, custom domains, and geo restrictions
+- [Cloudflare DNS Zone](https://www.qovery.com/docs/configuration/blueprints/cloudflare-dns-zone.md): Manage a Cloudflare DNS zone for a domain you already own (with an optional DNS record) via the Cloudflare Terraform provider
+
+###### Compute & Runtime
+
+- [Cloudflare Workers](https://www.qovery.com/docs/configuration/blueprints/cloudflare-workers.md): Deploy a Cloudflare Worker script (with an optional route) via the Cloudflare Terraform provider
+- [Temporal Cloud Namespace](https://www.qovery.com/docs/configuration/blueprints/temporal-cloud-namespace.md): Provision a Temporal Cloud namespace (regions, retention, client auth) via the Temporal Cloud Terraform provider
+
+###### AI & Analytics
+
+- [AWS Bedrock Access](https://www.qovery.com/docs/configuration/blueprints/aws-bedrock-access.md): Provision scoped AWS Bedrock access — an IAM policy limited to the models you name, plus an optional IAM user with keys — so an application on any cloud (AWS, Azure, Scaleway or GCP) can call Bedrock models
+- [Google BigQuery Dataset](https://www.qovery.com/docs/configuration/blueprints/bigquery-dataset.md): Provision a Google BigQuery dataset with an optional dedicated service account and key, so an application on any cloud — AWS, Azure, Scaleway or GCP — can query it
+- [Snowflake Database](https://www.qovery.com/docs/configuration/blueprints/snowflake-database.md): Provision a Snowflake database, schema, warehouse and application role, with an optional SERVICE user and generated key pair so an application on any cloud — AWS, Azure, Scaleway or GCP — can connect
+
+###### Observability
+
+- [Datadog](https://www.qovery.com/docs/configuration/blueprints/helm-datadog.md): Datadog Agent (metrics, logs, optional APM) on Kubernetes via the official Datadog Helm chart
+- [Grafana](https://www.qovery.com/docs/configuration/blueprints/helm-grafana.md): Grafana wired to the cluster's Qovery-managed Prometheus (Thanos), Loki and Alertmanager, with Kubernetes dashboards preloaded
+- [New Relic](https://www.qovery.com/docs/configuration/blueprints/helm-newrelic.md): New Relic Kubernetes monitoring (infrastructure agent, kube-state-metrics, events, optional logs) via the official nri-bundle Helm chart
+- [SigNoz](https://www.qovery.com/docs/configuration/blueprints/helm-signoz.md): SigNoz APM (traces, metrics, logs over OpenTelemetry) with the cluster's Qovery-managed Prometheus metrics federated in
 - [Service Health Checks](https://www.qovery.com/docs/configuration/service-health-checks.md): Configure liveness and readiness probes to monitor your application health
 - [Service Advanced Settings](https://www.qovery.com/docs/configuration/service-advanced-settings.md): Fine-tune your Qovery services with advanced configuration options
 

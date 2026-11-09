@@ -97,6 +97,27 @@ def cell(v):
     return mdx_escape(s)
 
 
+def newcomer(provider, title, has_outputs, has_readme):
+    """Short note for readers who have never run this kind of service themselves."""
+    if provider == "HELM":
+        what = f"Qovery installs {title} on your cluster with Helm and runs it for you"
+        skill = "Kubernetes or Helm"
+    elif provider == "EXTERNAL":
+        what = f"Qovery sets up {title} in your account with the provider"
+        skill = "Terraform or Kubernetes"
+    else:
+        what = f"Qovery sets up {title} in your cloud account and manages it for you"
+        skill = "Kubernetes or Terraform"
+    parts = [
+        f"**New to this?** You don't need to know {skill}. {what}: you fill in a form, or paste the prompt below into your coding agent.",
+    ]
+    if has_outputs:
+        parts.append("The values it publishes, listed under Outputs, reach your other services as environment variables.")
+    parts.append("Qovery tells you when a newer version of the Blueprint is available.")
+    parts.append("Check the requirements in the Reference section before you start, and try it first in a development environment." if has_readme else "Try it first in a development environment.")
+    return " ".join(parts)
+
+
 def page(bp, tag, manifest, readme):
     meta, spec = manifest.get("metadata", {}), manifest.get("spec", {})
     name, title = bp["name"], bp["displayName"]
@@ -137,6 +158,10 @@ def page(bp, tag, manifest, readme):
         f"| Major versions (latest release) | {versions} |",
         f"| Source | [{path}]({TREE}/{tag}/{path}) |",
         "",
+        "<Tip>",
+        newcomer(provider, title, bool(outputs), bool(readme.strip())),
+        "</Tip>",
+        "",
         "## Create it",
         "",
         "<Tabs>",
@@ -169,28 +194,18 @@ def page(bp, tag, manifest, readme):
         "    Replace each `REPLACE_WITH_` value. Add optional variables to `variables` the same way.",
         "  </Tab>",
         '  <Tab title="Coding agent">',
-        "    Paste this prompt into Claude Code, Cursor, Codex or another coding agent. It works best with the [Qovery agent skills](/getting-started/quickstart/agent-skills) installed (`curl -fsSL https://skill.qovery.com/install.sh | bash`); without them, the agent uses the Qovery CLI.",
+        "    Paste this into Claude Code, Cursor, Codex or another coding agent with the [Qovery agent skills](/getting-started/quickstart/agent-skills) installed (`curl -fsSL https://skill.qovery.com/install.sh | bash`).",
         "",
         "    ```text Prompt wrap",
     ]
+    names = [v["name"] for v in required]
+    ask = (" Ask me for " + (", ".join(names[:-1]) + " and " + names[-1] if len(names) > 1 else names[0]) + ".") if names else ""
     prompt = [
-        f"Set up the Qovery Blueprint \"{title}\" (catalog name {name}, tag {tag}) in my Qovery organization.",
-        "",
-        "1. Make sure the Qovery CLI is installed and signed in (`qovery auth status`). If not, install it with `curl -s https://get.qovery.com | bash` and run `qovery auth --headless`, then wait for me to open the link.",
-        "2. Ask me which organization, project and environment to use. Find their IDs with `qovery api organization`, `qovery api \"organization/<org id>/project\"` and `qovery api \"project/<project id>/environment\"`.",
+        f"Add the Qovery Blueprint {title} ({name}) to one of my Qovery environments and deploy it.{ask}",
+        "Ask me before deploying to a production environment.",
+        f"Docs: https://www.qovery.com/docs/configuration/blueprints/{name}.md",
     ]
-    if required:
-        prompt.append("3. Ask me for the required variables: " + ", ".join(v["name"] for v in required) + ". Do not invent values for secrets. Use the defaults for the other variables unless I ask otherwise.")
-    else:
-        prompt.append("3. This Blueprint has no required variables. Use the defaults unless I ask otherwise.")
-    prompt += [
-        f"4. Show me the request body, then create the service with `qovery api \"environment/<environment id>/blueprint\" --method POST`, using the body format from https://www.qovery.com/docs/configuration/blueprints/{name}.md",
-        "5. Deploy it with `qovery api \"blueprint/<blueprint id>/deploy\" --method POST` and check `qovery api \"blueprint/<blueprint id>\"` until the deployment finishes.",
-        "6. Tell me the outputs the service publishes and how my other services can use them.",
-        "",
-        "Do not create a qovery.yml or any other Qovery file in the repository, because Qovery does not read one. Ask me before deploying to a production environment.",
-    ]
-    lines += ["    " + l if l else "" for l in prompt]
+    lines += ["    " + l for l in prompt]
     lines += [
         "    ```",
         "  </Tab>",

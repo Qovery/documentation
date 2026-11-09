@@ -17,7 +17,7 @@ Qovery creates it in the AWS account of the environment's cluster, as a [Bluepri
 | Source | [AWS/valkey/9](https://github.com/Qovery/service-catalog/tree/AWS/valkey/9/1.0.2/AWS/valkey/9) |
 
 <Tip>
-**New to this?** You don't need to know Kubernetes or Terraform. Qovery creates Amazon ElastiCache for Valkey in your cloud account and connects it to your services: you fill in a short form, or paste the prompt below into your coding agent. Its connection details reach your other services as environment variables, and Qovery tells you when a newer version of the Blueprint is available. Try it first in a development environment, then create it the same way in staging and production.
+**New to this?** You don't need to know Kubernetes or Terraform. Qovery sets up Amazon ElastiCache for Valkey in your cloud account and manages it for you: you fill in a form, or paste the prompt below into your coding agent. The values it publishes, listed under Outputs, reach your other services as environment variables. Qovery tells you when a newer version of the Blueprint is available. Check the requirements in the Reference section before you start, and try it first in a development environment.
 </Tip>
 
 ## Create it
@@ -71,6 +71,7 @@ Qovery creates it in the AWS account of the environment's cluster, as a [Bluepri
 
     ```text Prompt wrap
     Add the Qovery Blueprint Amazon ElastiCache for Valkey (aws-elasticache-valkey) to one of my Qovery environments and deploy it. Ask me for valkey_name and instance_class.
+    Ask me before deploying to a production environment.
     Docs: https://www.qovery.com/docs/configuration/blueprints/aws-elasticache-valkey.md
     ```
   </Tab>

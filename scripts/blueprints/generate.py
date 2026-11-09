@@ -97,23 +97,25 @@ def cell(v):
     return mdx_escape(s)
 
 
-def newcomer(provider, title):
+def newcomer(provider, title, has_outputs, has_readme):
     """Short note for readers who have never run this kind of service themselves."""
     if provider == "HELM":
-        what = f"Qovery installs {title} on your cluster, configures it and runs it for you"
+        what = f"Qovery installs {title} on your cluster with Helm and runs it for you"
         skill = "Kubernetes or Helm"
     elif provider == "EXTERNAL":
-        what = f"Qovery creates {title} in your provider account and connects it to your services"
+        what = f"Qovery sets up {title} in your account with the provider"
         skill = "Terraform or Kubernetes"
     else:
-        what = f"Qovery creates {title} in your cloud account and connects it to your services"
+        what = f"Qovery sets up {title} in your cloud account and manages it for you"
         skill = "Kubernetes or Terraform"
-    return (
-        f"**New to this?** You don't need to know {skill}. {what}: you fill in a short form, "
-        "or paste the prompt below into your coding agent. Its connection details reach your other services as environment variables, "
-        "and Qovery tells you when a newer version of the Blueprint is available. "
-        "Try it first in a development environment, then create it the same way in staging and production."
-    )
+    parts = [
+        f"**New to this?** You don't need to know {skill}. {what}: you fill in a form, or paste the prompt below into your coding agent.",
+    ]
+    if has_outputs:
+        parts.append("The values it publishes, listed under Outputs, reach your other services as environment variables.")
+    parts.append("Qovery tells you when a newer version of the Blueprint is available.")
+    parts.append("Check the requirements in the Reference section before you start, and try it first in a development environment." if has_readme else "Try it first in a development environment.")
+    return " ".join(parts)
 
 
 def page(bp, tag, manifest, readme):
@@ -157,7 +159,7 @@ def page(bp, tag, manifest, readme):
         f"| Source | [{path}]({TREE}/{tag}/{path}) |",
         "",
         "<Tip>",
-        newcomer(provider, title),
+        newcomer(provider, title, bool(outputs), bool(readme.strip())),
         "</Tip>",
         "",
         "## Create it",
@@ -200,6 +202,7 @@ def page(bp, tag, manifest, readme):
     ask = (" Ask me for " + (", ".join(names[:-1]) + " and " + names[-1] if len(names) > 1 else names[0]) + ".") if names else ""
     prompt = [
         f"Add the Qovery Blueprint {title} ({name}) to one of my Qovery environments and deploy it.{ask}",
+        "Ask me before deploying to a production environment.",
         f"Docs: https://www.qovery.com/docs/configuration/blueprints/{name}.md",
     ]
     lines += ["    " + l for l in prompt]

@@ -17,7 +17,7 @@ Qovery creates it in your account with a third-party provider, using credentials
 | Source | [EXTERNAL/mongodb-atlas/default](https://github.com/Qovery/service-catalog/tree/EXTERNAL/mongodb-atlas/default/1.1.3/EXTERNAL/mongodb-atlas/default) |
 
 <Tip>
-**New to this?** You don't need to know Terraform or Kubernetes. Qovery creates MongoDB Atlas Cluster in your provider account and connects it to your services: you fill in a short form, or paste the prompt below into your coding agent. Its connection details reach your other services as environment variables, and Qovery tells you when a newer version of the Blueprint is available. Try it first in a development environment, then create it the same way in staging and production.
+**New to this?** You don't need to know Terraform or Kubernetes. Qovery sets up MongoDB Atlas Cluster in your account with the provider: you fill in a form, or paste the prompt below into your coding agent. The values it publishes, listed under Outputs, reach your other services as environment variables. Qovery tells you when a newer version of the Blueprint is available. Check the requirements in the Reference section before you start, and try it first in a development environment.
 </Tip>
 
 ## Create it
@@ -80,6 +80,7 @@ Qovery creates it in your account with a third-party provider, using credentials
 
     ```text Prompt wrap
     Add the Qovery Blueprint MongoDB Atlas Cluster (mongodb-atlas-cluster) to one of my Qovery environments and deploy it. Ask me for atlas_public_key, atlas_private_key, project_id and cluster_name.
+    Ask me before deploying to a production environment.
     Docs: https://www.qovery.com/docs/configuration/blueprints/mongodb-atlas-cluster.md
     ```
   </Tab>

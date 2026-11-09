@@ -17,7 +17,7 @@ Qovery creates it in the Scaleway project of the environment's cluster, as a [Bl
 | Source | [SCW/postgres/16](https://github.com/Qovery/service-catalog/tree/SCW/postgres/16/1.5.2/SCW/postgres/16) |
 
 <Tip>
-**New to this?** You don't need to know Kubernetes or Terraform. Qovery creates Scaleway Managed PostgreSQL in your cloud account and connects it to your services: you fill in a short form, or paste the prompt below into your coding agent. Its connection details reach your other services as environment variables, and Qovery tells you when a newer version of the Blueprint is available. Try it first in a development environment, then create it the same way in staging and production.
+**New to this?** You don't need to know Kubernetes or Terraform. Qovery sets up Scaleway Managed PostgreSQL in your cloud account and manages it for you: you fill in a form, or paste the prompt below into your coding agent. The values it publishes, listed under Outputs, reach your other services as environment variables. Qovery tells you when a newer version of the Blueprint is available. Check the requirements in the Reference section before you start, and try it first in a development environment.
 </Tip>
 
 ## Create it
@@ -79,6 +79,7 @@ Qovery creates it in the Scaleway project of the environment's cluster, as a [Bl
 
     ```text Prompt wrap
     Add the Qovery Blueprint Scaleway Managed PostgreSQL (scaleway-managed-postgresql) to one of my Qovery environments and deploy it. Ask me for instance_name, db_name, node_type and volume_size_gb.
+    Ask me before deploying to a production environment.
     Docs: https://www.qovery.com/docs/configuration/blueprints/scaleway-managed-postgresql.md
     ```
   </Tab>

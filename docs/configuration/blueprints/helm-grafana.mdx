@@ -17,7 +17,7 @@ Qovery creates it as a Helm release on the environment's own cluster, as a [Blue
 | Source | [HELM/grafana/13](https://github.com/Qovery/service-catalog/tree/HELM/grafana/13/1.1.1/HELM/grafana/13) |
 
 <Tip>
-**New to this?** You don't need to know Kubernetes or Helm. Qovery installs Grafana on your cluster, configures it and runs it for you: you fill in a short form, or paste the prompt below into your coding agent. Its connection details reach your other services as environment variables, and Qovery tells you when a newer version of the Blueprint is available. Try it first in a development environment, then create it the same way in staging and production.
+**New to this?** You don't need to know Kubernetes or Helm. Qovery installs Grafana on your cluster with Helm and runs it for you: you fill in a form, or paste the prompt below into your coding agent. The values it publishes, listed under Outputs, reach your other services as environment variables. Qovery tells you when a newer version of the Blueprint is available. Check the requirements in the Reference section before you start, and try it first in a development environment.
 </Tip>
 
 ## Create it
@@ -65,6 +65,7 @@ Qovery creates it as a Helm release on the environment's own cluster, as a [Blue
 
     ```text Prompt wrap
     Add the Qovery Blueprint Grafana (helm-grafana) to one of my Qovery environments and deploy it. Ask me for admin_password.
+    Ask me before deploying to a production environment.
     Docs: https://www.qovery.com/docs/configuration/blueprints/helm-grafana.md
     ```
   </Tab>

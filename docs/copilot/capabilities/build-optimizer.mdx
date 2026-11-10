@@ -45,15 +45,15 @@ Where the Console entry point is available for your organization:
   <Step title="Start the analysis">
     On the **Build** step, click **Optimize**. The button shows **Analyzing** while the analysis runs; hover it to see the current step.
 
+    <Frame>
+      <img src="/images/build-optimizer/deployment-logs-optimize.png" alt="Build step of the deployment logs, with the Optimize button next to the step name" />
+    </Frame>
+
     **Optimize** is disabled, with the reason on hover, when the build did not succeed, when the deployment is not the service's latest build, or when the build analysis is unavailable. If the previous analysis failed, hovering **Optimize** shows why, and clicking it starts a new one.
   </Step>
 
   <Step title="Read the result">
     The result opens by itself when the analysis you started is done. If it fails, an error message shows the reason. Later, the button reads **Open analysis** and opens the same result.
-
-    <Frame>
-      <img src="/images/build-optimizer/deployment-logs-build-step.png" alt="Build step of the deployment logs, with the Open analysis button next to the step name" />
-    </Frame>
 
     The result shows the review confidence, the estimated time saved (when there is one), the assets reviewed, the summary and the **Improvements target**. Below them, **Prompt for AI agents** and **Reworked Dockerfile** (when the analysis returns one) are collapsed, each with a **Copy** button. Values hidden from the analysis appear as `<redacted>` in the reworked Dockerfile: put them back before using it.
 

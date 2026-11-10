@@ -1,0 +1,141 @@
+---
+title: "Try Qovery on Your Laptop with a Coding Agent"
+sidebarTitle: "Try It on Your Laptop"
+description: "Install the Qovery skills, then ask your coding agent to deploy a GitHub repository. With no cluster, the agent creates a free local Kubernetes cluster in Docker and deploys to it. No cloud account, no credit card."
+mode: "wide"
+---
+
+Ask your coding agent to deploy a project from GitHub. If your Qovery organization has no cluster yet, the agent creates one on your laptop with Docker, builds the project and deploys it, and gives you a URL. You need no cloud account, no credit card and no Kubernetes knowledge.
+
+When you are ready for production, you create a cluster in your own cloud account and deploy the same project to it.
+
+<Warning>
+The local cluster runs on your machine only. It is for trying Qovery and testing, not for production.
+</Warning>
+
+## What you need
+
+- **Docker**, running, with at least 4 CPUs and 8 GB of memory.
+- **macOS, Linux, or Windows with WSL.**
+- **`k3d`, `helm` and `kubectl`**. On macOS: `brew install k3d helm kubectl`. The agent checks for them and tells you what is missing.
+- **The Qovery CLI**, version 1.180.1 or later. See [Install the CLI](/cli/overview).
+- **A Qovery account.** The Free plan is enough, with no credit card. Sign up at [console.qovery.com](https://console.qovery.com). The local cluster counts as a cluster on your plan, and the Free plan includes one.
+- **A coding agent** that supports Agent Skills: Claude Code, Cursor, OpenCode, Gemini CLI and [others](/getting-started/quickstart/ai-agent#compatible-tools).
+
+## 1. Install the Qovery skills
+
+```bash
+curl -fsSL https://skill.qovery.com/install.sh | bash
+```
+
+The skills teach your agent the Qovery CLI and API, including how to create the local cluster. See [Agent Skills](/getting-started/quickstart/agent-skills) for what each one does.
+
+## 2. Ask your agent
+
+Open your agent and paste:
+
+<div className="terminal-window">
+  <div className="terminal-bar">
+    <div className="terminal-dots">
+      <div className="terminal-dot terminal-dot-red"></div>
+      <div className="terminal-dot terminal-dot-yellow"></div>
+      <div className="terminal-dot terminal-dot-green"></div>
+    </div>
+    <div className="terminal-title-bar">claude</div>
+    <button
+      className="terminal-copy"
+      title="Copy"
+      onClick={(e) => {
+        navigator.clipboard.writeText('Deploy https://github.com/traefik/whoami with Qovery on a local cluster on this machine.');
+        const btn = e.currentTarget;
+        btn.classList.add('terminal-copy-success');
+        setTimeout(() => btn.classList.remove('terminal-copy-success'), 1500);
+      }}
+    >
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+        <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25Z"/>
+        <path d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"/>
+      </svg>
+    </button>
+  </div>
+  <div className="terminal-body">
+    <span className="terminal-prompt">{"Deploy https://github.com/traefik/whoami with Qovery on a local cluster on this machine."}<span className="terminal-cursor"></span></span>
+  </div>
+</div>
+
+`traefik/whoami` is a small public web server, good for a first run. Replace the URL with any repository that has a Dockerfile, or with the folder you are working in.
+
+## 3. Answer the agent's questions
+
+The agent does the work, but a few steps need you, because they open a browser or ask for your password:
+
+| Step | Why the agent asks you |
+|---|---|
+| Sign in with `qovery auth` | It opens a browser to sign in to your Qovery account |
+| Pick your organization with `qovery context set` | It is an interactive picker |
+| macOS only: run one `sudo ifconfig` command | It adds a local network address so your browser reaches the apps on the cluster, and needs your password |
+| WSL only: run `qovery demo up` yourself | The setup needs `sudo` and a Windows administrator prompt |
+
+In Claude Code, type `!` before a command to run it in the session, for example `! qovery auth`.
+
+Then the agent:
+
+1. Checks Docker, `k3d`, `helm`, `kubectl` and the CLI version.
+2. Runs [`qovery demo up`](/cli/commands/demo), which creates a k3s cluster with k3d, installs the Qovery Operator on it and connects it to your organization.
+3. Creates a project and an environment, adds the repository as an application, builds it on the cluster and deploys it.
+4. Gives you the application URL.
+
+## How long it takes
+
+One run on an Apple M3 Ultra with Claude Code, in November 2026:
+
+| Step | Time |
+|---|---|
+| `qovery demo up` creates the local cluster | 4 min 43 s |
+| The agent builds `traefik/whoami` from GitHub and deploys it | 2 min 40 s for the whole agent run, about 1 min 30 s of it from build start to running |
+
+Your times depend on your machine, your network and the project you deploy.
+
+## What to try next
+
+<CardGroup cols={2}>
+  <Card title="Your own project" icon="code" href="/getting-started/quickstart/ai-agent">
+    Open your agent in your repository and say "Deploy my application with Qovery". The agent writes a Dockerfile if the project has none.
+  </Card>
+  <Card title="An open-source project" icon="github">
+    Deploy any open-source project that ships a Dockerfile, the same way as `traefik/whoami`. Give the agent the repository URL and the environment variables it needs.
+  </Card>
+  <Card title="Watch it in the Console" icon="browser" href="https://console.qovery.com">
+    Your local cluster, the environment and the deployment logs show up in the Console like any other cluster.
+  </Card>
+  <Card title="Prefer to do it by hand?" icon="flask" href="/getting-started/quickstart/docker">
+    Test & Learn Locally walks through the same setup with the CLI, without an agent.
+  </Card>
+</CardGroup>
+
+## Go to production
+
+The local cluster is for testing. For production, create a cluster in your own cloud account and deploy the same project to it. On the Free plan, which includes one cluster, [remove the local cluster](#remove-the-local-cluster) with `--delete-qovery-config` first, or move to a paid plan to keep both. Ask your agent "Deploy this to production on AWS with Qovery", or follow a guide:
+
+<CardGroup cols={2}>
+  <Card title="Create a cluster in your cloud" icon="cloud" href="/getting-started/quickstart/cloud">
+    AWS, GCP, Azure or Scaleway. Qovery creates and manages the Kubernetes cluster in your account.
+  </Card>
+  <Card title="Bring your own cluster" icon="building" href="/getting-started/installation/kubernetes">
+    Connect a Kubernetes cluster you already run: EKS, GKE, AKS, Kapsule or on-premise.
+  </Card>
+</CardGroup>
+
+## Remove the local cluster
+
+Ask your agent to remove it, or run:
+
+```bash
+qovery demo destroy
+```
+
+This deletes the local cluster and keeps its record in Qovery. To also delete the record and the environments deployed on it, run `qovery demo destroy --delete-qovery-config`. If the cluster was created with `--cluster-name`, pass the same name.
+
+## If something goes wrong
+
+`qovery demo up` ends with an error code, such as `DOCKER_NOT_RUNNING` or `MISSING_DEPENDENCY`, and the agent knows what to do with each one. If it still fails, see [Local Cluster for Development](/configuration/integrations/kubernetes/docker) or ask in the [Qovery community](https://discuss.qovery.com).

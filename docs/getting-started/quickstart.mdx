@@ -7,7 +7,7 @@ import NoRepositoryManifest from "/snippets/no-repository-manifest.mdx";
 
 Qovery is an Agentic DevOps platform that runs in your own cloud account (AWS, GCP, Azure, or Scaleway) or on any Kubernetes cluster you already run. Tell your AI agent to deploy, or use the console, CLI, and Terraform. Everything drives the same Kubernetes control plane.
 
-Choose your deployment path. To try Qovery first, sign in with `qovery auth`, pick your organization with `qovery context set`, then run `qovery demo up`: it installs the Qovery Operator on a local k3s cluster with Docker. See [Test & Learn Locally](/getting-started/quickstart/docker).
+Choose your deployment path. To try Qovery first, [ask your coding agent to deploy on a local cluster](/getting-started/quickstart/try-with-an-agent), or do it yourself: sign in with `qovery auth`, pick your organization with `qovery context set`, then run `qovery demo up`. It installs the Qovery Operator on a local k3s cluster with Docker. See [Test & Learn Locally](/getting-started/quickstart/docker).
 
 <NoRepositoryManifest />
 
@@ -25,6 +25,11 @@ Choose your deployment path. To try Qovery first, sign in with `qovery auth`, pi
     Tell your agent to deploy. It handles Dockerfile, database, env vars, and Kubernetes automatically.
 
     **~10 min** · Claude Code, Cursor, OpenCode, 30+ tools
+  </Card>
+  <Card title="Try It on Your Laptop" icon="laptop" href="/getting-started/quickstart/try-with-an-agent">
+    No cluster and no cloud account? Your agent creates a free local cluster in Docker and deploys a GitHub repository to it.
+
+    **~10 min** · Free, Docker required
   </Card>
 </CardGroup>
 

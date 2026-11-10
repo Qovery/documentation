@@ -298,7 +298,7 @@ An RDS instance that uses a custom parameter group needs a parameter group of th
 
 ## Restoring a Database to a Point in Time
 
-An Amazon RDS for PostgreSQL blueprint keeps automated backups for `backup_retention_period` days (default 14), so AWS can restore the database as it was at any point of that window. The blueprint has no restore setting: AWS restores to a new instance, next to yours. To recover deleted or overwritten data, follow [Restore an RDS PostgreSQL blueprint to a point in time](/getting-started/guides/advanced-tutorials/restoring-rds-point-in-time). It restores a temporary copy and copies back the data you need, or replaces the database with a new blueprint service, without changing the existing service.
+An Amazon RDS for PostgreSQL blueprint keeps automated backups for `backup_retention_period` days (default 14), so AWS can restore the database as it was at any point of that window. The blueprint has no restore setting: AWS restores to a new instance, next to yours. To recover deleted or overwritten data, follow [Restore an RDS PostgreSQL blueprint to a point in time](/getting-started/guides/advanced-tutorials/restoring-rds-point-in-time). The guide restores a temporary copy and copies back the data you need, without changing the existing service. If the whole database must be replaced, it explains how to create a new blueprint service and move your applications to it.
 
 ## Migrating a Managed Database to a Blueprint
 

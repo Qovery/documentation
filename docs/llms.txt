@@ -112,7 +112,7 @@
 - [Deploy a DaemonSet in a Karpenter Context](https://www.qovery.com/docs/getting-started/guides/advanced-tutorials/deploy-daemonset-karpenter.md): Schedule a DaemonSet on all Qovery Karpenter node pools: use the Qovery PriorityClass, tolerate the stable and cronjob taints, and skip Fargate nodes.
 - [HPA vs KEDA: Choosing an Autoscaling Mode](https://www.qovery.com/docs/getting-started/guides/advanced-tutorials/hpa-vs-keda-autoscaling.md): When to scale on CPU and memory with HPA, when to scale on events with KEDA, and how to configure each on Qovery
 - [Minimize downtime while upgrading RDS instances](https://www.qovery.com/docs/getting-started/guides/advanced-tutorials/upgrading-rds-instance.md): Upgrade an RDS PostgreSQL or MySQL instance with AWS Blue/Green deployments to reduce downtime, then align the database configuration in Qovery.
-- [Restore an RDS PostgreSQL blueprint to a point in time](https://www.qovery.com/docs/getting-started/guides/advanced-tutorials/restoring-rds-point-in-time.md): Recover deleted or damaged data from an Amazon RDS for PostgreSQL blueprint with an AWS point-in-time restore, without changing the Qovery service.
+- [Restore an RDS PostgreSQL blueprint to a point in time](https://www.qovery.com/docs/getting-started/guides/advanced-tutorials/restoring-rds-point-in-time.md): Recover deleted or damaged data from an Amazon RDS for PostgreSQL blueprint with an AWS point-in-time restore, then copy it back or move to a new blueprint service.
 
 ###### Networking & Access Control
 

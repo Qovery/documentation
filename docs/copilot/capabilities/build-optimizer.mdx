@@ -26,14 +26,44 @@ For a scheduled agent that reviews build **and** deployment times and opens pull
 |-------------|---------|
 | AI features enabled | The organization must have AI features enabled (`ai_features_enabled` on the organization). Otherwise starting an analysis returns `403`. An organization admin can change it with [Edit the organization's AI features opt-in](/api-reference/organization-main-calls/edit-the-organizations-ai-features-opt-in). |
 | Supported services | Applications built from a git repository with a Dockerfile, and cron or lifecycle jobs built from a Dockerfile, either stored in the git repository or written inline on the job. Services deployed from a container image have no build to analyze. |
-| A build to analyze | Only the **latest build** of the service can be analyzed: its most recent deployment that ran a build, successful or failed. A deployment that reused an existing image did not build anything and does not count. `latest_build_execution_id` is `null` when no deployment in the kept history ran a build. |
+| A build to analyze | Only the **latest build** of the service can be analyzed: its most recent deployment that ran a build, successful or failed (a failed build only through the API). A deployment that reused an existing image did not build anything and does not count. `latest_build_execution_id` is `null` when no deployment in the kept history ran a build. |
 | A readable Dockerfile | Qovery reads the Dockerfile from the repository at the commit of that build, or the job's inline Dockerfile. It must not be empty and must be at most about 100 KB (102,400 characters). Otherwise starting an analysis returns `422`. |
 | Permissions | Starting an analysis needs the **Deploy** permission or higher on the service's environment. Reading the result needs **Read-Only**. See [Members & RBAC](/configuration/organization/members-rbac#project-level-permissions). |
 | One at a time | A service runs one analysis at a time. Starting another while one is running returns `409`. |
 
 ## Run an Analysis
 
-When the Console entry point is available for your organization, you start the analysis from the deployment logs of the service's latest build. The rest of this section uses the API.
+### From the Console
+
+Where the Console entry point is available for your organization:
+
+<Steps>
+  <Step title="Open the logs of the latest build">
+    Open the service, go to **Deployments**, and open the logs of its latest deployment that ran a build. In the Console, the build must have succeeded; to analyze a failed build, use the API.
+  </Step>
+
+  <Step title="Start the analysis">
+    On the **Build** step, click **Optimize**. The button shows **Analyzing** while the analysis runs; hover it to see the current step.
+
+    **Optimize** is disabled, with the reason on hover, when the build did not succeed, when the deployment is not the service's latest build, or when the build analysis is unavailable. If the previous analysis failed, hovering **Optimize** shows why, and clicking it starts a new one.
+  </Step>
+
+  <Step title="Read the result">
+    The result opens by itself when the analysis you started is done. If it fails, an error message shows the reason. Later, the button reads **Open analysis** and opens the same result.
+
+    <Frame>
+      <img src="/images/build-optimizer/deployment-logs-build-step.png" alt="Build step of the deployment logs, with the Open analysis button next to the step name" />
+    </Frame>
+
+    The result shows the review confidence, the estimated time saved (when there is one), the assets reviewed, the summary and the **Improvements target**. Below them, **Prompt for AI agents** and **Reworked Dockerfile** (when the analysis returns one) are collapsed, each with a **Copy** button. Values hidden from the analysis appear as `<redacted>` in the reworked Dockerfile: put them back before using it.
+
+    <Frame>
+      <img src="/images/build-optimizer/analysis-modal.png" alt="Build optimization analysis with High review confidence, an estimated time saved of 1min 30s – 1min 50s, the assets reviewed and the summary" />
+    </Frame>
+  </Step>
+</Steps>
+
+### From the API
 
 The examples use an application. For a cron or lifecycle job, replace `/application/$APPLICATION_ID` with `/job/$JOB_ID`.
 

@@ -1,13 +1,13 @@
 ---
 title: "Build Optimizer"
 tag: "PREVIEW"
-description: "Analyze the latest build of a service with AI to find why it is slow, mostly Docker layer cache misses, and get a fixed Dockerfile and a prompt for your coding agent."
+description: "Analyze the latest build of a service with AI to find why it is slow, mostly Docker layer cache misses, and get fixes, a reworked Dockerfile when one applies, and a prompt for your coding agent."
 ---
 
 ## Overview
 
 <Note>
-The Build Optimizer is in preview. The API below works for every organization with AI features enabled; the Console entry point is not available to every organization yet. The result format and the analysis itself may still change.
+The Build Optimizer is in preview. The API below works for every organization with AI features enabled, as long as build analysis is available on its Qovery instance (otherwise starting an analysis returns `503`, see [Start Errors](#start-errors)); the Console entry point is not available to every organization yet. The result format and the analysis itself may still change.
 </Note>
 
 The Build Optimizer analyzes the latest Docker build of an application or job and explains how to make it faster. It reads the Dockerfile, the build logs and the cache history of earlier builds, finds the steps that re-ran instead of being cached, and tells you what invalidated their cache.
@@ -65,7 +65,7 @@ Where the Console entry point is available for your organization:
 
 ### From the API
 
-The examples use an application. For a cron or lifecycle job, replace `/application/$APPLICATION_ID` with `/job/$JOB_ID`.
+The examples use an application. For a cron or lifecycle job, set `URL` to `https://api.qovery.com/job/$JOB_ID/buildAnalysis`.
 
 <Steps>
   <Step title="Get the latest build">
@@ -74,12 +74,11 @@ The examples use an application. For a cron or lifecycle job, replace `/applicat
     ```bash
     QOVERY_API_TOKEN="REPLACE_WITH_YOUR_API_TOKEN"
     APPLICATION_ID="REPLACE_WITH_APPLICATION_ID"
+    URL="https://api.qovery.com/application/$APPLICATION_ID/buildAnalysis"
 
-    curl -s "https://api.qovery.com/application/$APPLICATION_ID/buildAnalysis" \
-      -H "Authorization: Token $QOVERY_API_TOKEN"
-
-    EXECUTION_ID=$(curl -s "https://api.qovery.com/application/$APPLICATION_ID/buildAnalysis" \
-      -H "Authorization: Token $QOVERY_API_TOKEN" | jq -r '.latest_build_execution_id')
+    RESPONSE=$(curl -sS --fail-with-body "$URL" -H "Authorization: Token $QOVERY_API_TOKEN")
+    echo "$RESPONSE"
+    EXECUTION_ID=$(echo "$RESPONSE" | jq -r '.latest_build_execution_id')
     ```
 
     ```json
@@ -94,7 +93,7 @@ The examples use an application. For a cron or lifecycle job, replace `/applicat
     Send that execution ID. The API answers `202` with the new analysis in `PENDING`, and the analysis continues in the background. Any other status means the analysis did not start: see [Start Errors](#start-errors), and do not wait for a result.
 
     ```bash
-    curl -sSf -X POST "https://api.qovery.com/application/$APPLICATION_ID/buildAnalysis" \
+    curl -sS --fail-with-body -X POST "$URL" \
       -H "Authorization: Token $QOVERY_API_TOKEN" \
       -H "Content-Type: application/json" \
       -d "{\"execution_id\": \"$EXECUTION_ID\"}"
@@ -104,12 +103,15 @@ The examples use an application. For a cron or lifecycle job, replace `/applicat
   </Step>
 
   <Step title="Wait for the result">
-    Read the build analysis again until `analysis.status` is `DONE` or `FAILED`.
+    Read the build analysis again until `analysis.status` is `DONE` or `FAILED`. The loop prints each status. It also stops, and prints the error, when a request fails (for example an invalid token), and it stops on `null` when the service has no analysis.
 
     ```bash
-    until curl -s "https://api.qovery.com/application/$APPLICATION_ID/buildAnalysis" \
-      -H "Authorization: Token $QOVERY_API_TOKEN" \
-      | jq -e '.analysis.status | IN("DONE", "FAILED")' > /dev/null; do
+    while :; do
+      RESPONSE=$(curl -sS --fail-with-body "$URL" \
+        -H "Authorization: Token $QOVERY_API_TOKEN") || { echo "$RESPONSE"; break; }
+      STATUS=$(echo "$RESPONSE" | jq -r '.analysis.status')
+      echo "$STATUS"
+      case "$STATUS" in DONE|FAILED|null) break ;; esac
       sleep 10
     done
     ```
@@ -117,8 +119,7 @@ The examples use an application. For a cron or lifecycle job, replace `/applicat
 
   <Step title="Read the result">
     ```bash
-    curl -s "https://api.qovery.com/application/$APPLICATION_ID/buildAnalysis" \
-      -H "Authorization: Token $QOVERY_API_TOKEN" | jq '.analysis'
+    curl -sS --fail-with-body "$URL" -H "Authorization: Token $QOVERY_API_TOKEN" | jq '.analysis'
     ```
 
     See [What You Get Back](#what-you-get-back) for the fields.
@@ -197,8 +198,8 @@ For each build argument, the analysis learns whether its value differs from the 
 | `confidence` | `HIGH`, `MEDIUM` or `LOW`. See the table below. |
 | `estimated_time_saved` | Seconds saved on each build once every improvement is applied, as `min_seconds` and `max_seconds`. `null` when there is nothing to save or no timing to base it on. |
 | `improvements` | The changes to make, one sentence each, highest impact first. Empty when the build is already efficient. An improvement can also be a Qovery setting, for example moving a variable from a build argument to a runtime variable. |
-| `dockerfile` | The fixed Dockerfile, made of targeted edits to your original file, never a full rewrite. `null` when no improvement is a Dockerfile change, or when the edits cannot be applied cleanly to your file. |
-| `dockerfile_rationale` | Why the fixed Dockerfile builds faster. |
+| `dockerfile` | The reworked Dockerfile, made of targeted edits to your original file, never a full rewrite. `null` when no improvement is a Dockerfile change, or when the edits cannot be applied cleanly to your file. |
+| `dockerfile_rationale` | Why the reworked Dockerfile builds faster. `null` when there is no reworked Dockerfile. |
 | `agent_prompt` | A ready-to-paste prompt for your AI coding agent (Claude Code, Cursor, Copilot) to apply the changes in your repository. |
 | `assets_reviewed` | What the analysis read. See [What the Analysis Reviews](#what-the-analysis-reviews). |
 
@@ -224,9 +225,9 @@ When there is no improvement, the confidence says how sure the analysis is that 
   </Step>
 
   <Step title="Apply the changes">
-    Either way works:
+    Use either:
 
-    - **Copy the fixed Dockerfile** from `dockerfile`. Values hidden from the analysis appear as `<redacted>`: put back the values of your original file before you commit.
+    - **Copy the reworked Dockerfile** from `dockerfile`, when the analysis returns one. Values hidden from the analysis appear as `<redacted>`: put back the values of your original file before you commit.
     - **Paste `agent_prompt` into your coding agent.** It names the files and the exact changes, asks the agent to keep the image behavior identical, to put back any `<redacted>` value, to build twice locally and check the second build hits the cache, and to stop for your review before committing or deploying.
 
     Improvements that are Qovery settings, such as [build-time variables](/configuration/environment-variables#build-time-variables), are changed in the Console or the API.

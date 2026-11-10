@@ -1,0 +1,275 @@
+---
+title: "Build Optimizer"
+tag: "PREVIEW"
+description: "Analyze the latest build of a service with AI to find why it is slow, mostly Docker layer cache misses, and get a fixed Dockerfile and a prompt for your coding agent."
+---
+
+## Overview
+
+<Note>
+The Build Optimizer is in preview. The API below works for every organization with AI features enabled; the Console entry point is not available to every organization yet. The result format and the analysis itself may still change.
+</Note>
+
+The Build Optimizer analyzes the latest Docker build of an application or job and explains how to make it faster. It reads the Dockerfile, the build logs and the cache history of earlier builds, finds the steps that re-ran instead of being cached, and tells you what invalidated their cache.
+
+Use it when a build takes longer than it should, for example when a dependency install (`npm ci`, `pip install`, `go mod download`) runs on every deployment although your dependencies did not change. Typical causes are `COPY . .` placed before the dependency install, or a build argument declared before the install whose value changes between builds.
+
+The analysis runs on demand, on one build, from the API or the Console. It is not a Copilot chat command. It never changes your Dockerfile, your build settings or your image: it returns suggestions for you to review and apply.
+
+<Tip>
+For a scheduled agent that reviews build **and** deployment times and opens pull requests with the changes, see the [Build & Deployment Optimizer](/configuration/agent-tasks/build-deployment-optimizer) Agent Task.
+</Tip>
+
+## Requirements
+
+| Requirement | Details |
+|-------------|---------|
+| AI features enabled | The organization must have AI features enabled (`ai_features_enabled` on the organization). Otherwise starting an analysis returns `403`. An organization admin can change it with [Edit the organization's AI features opt-in](/api-reference/organization-main-calls/edit-the-organizations-ai-features-opt-in). |
+| Supported services | Applications built from a git repository with a Dockerfile, and cron or lifecycle jobs built from a Dockerfile, either stored in the git repository or written inline on the job. Services deployed from a container image have no build to analyze. |
+| A build to analyze | Only the **latest build** of the service can be analyzed: its most recent deployment that ran a build, successful or failed. A deployment that reused an existing image did not build anything and does not count. `latest_build_execution_id` is `null` when no deployment in the kept history ran a build. |
+| A readable Dockerfile | Qovery reads the Dockerfile from the repository at the commit of that build, or the job's inline Dockerfile. It must not be empty and must be at most about 100 KB (102,400 characters). Otherwise starting an analysis returns `422`. |
+| Permissions | Starting an analysis needs the **Deploy** permission or higher on the service's environment. Reading the result needs **Read-Only**. See [Members & RBAC](/configuration/organization/members-rbac#project-level-permissions). |
+| One at a time | A service runs one analysis at a time. Starting another while one is running returns `409`. |
+
+## Run an Analysis
+
+When the Console entry point is available for your organization, you start the analysis from the deployment logs of the service's latest build. The rest of this section uses the API.
+
+The examples use an application. For a cron or lifecycle job, replace `/application/$APPLICATION_ID` with `/job/$JOB_ID`.
+
+<Steps>
+  <Step title="Get the latest build">
+    Read the build analysis of the service. `latest_build_execution_id` is the only build you can analyze, and `analysis` holds the previous analysis, if any.
+
+    ```bash
+    QOVERY_API_TOKEN="REPLACE_WITH_YOUR_API_TOKEN"
+    APPLICATION_ID="REPLACE_WITH_APPLICATION_ID"
+
+    curl -s "https://api.qovery.com/application/$APPLICATION_ID/buildAnalysis" \
+      -H "Authorization: Token $QOVERY_API_TOKEN"
+
+    EXECUTION_ID=$(curl -s "https://api.qovery.com/application/$APPLICATION_ID/buildAnalysis" \
+      -H "Authorization: Token $QOVERY_API_TOKEN" | jq -r '.latest_build_execution_id')
+    ```
+
+    ```json
+    {
+      "latest_build_execution_id": "6e5c1d3a-6b6f-4c35-9a2f-8f1d2c3b4a5e-42",
+      "analysis": null
+    }
+    ```
+  </Step>
+
+  <Step title="Start the analysis">
+    Send that execution ID. The API answers `202` with the new analysis in `PENDING`, and the analysis continues in the background. Any other status means the analysis did not start: see [Start Errors](#start-errors), and do not wait for a result.
+
+    ```bash
+    curl -sSf -X POST "https://api.qovery.com/application/$APPLICATION_ID/buildAnalysis" \
+      -H "Authorization: Token $QOVERY_API_TOKEN" \
+      -H "Content-Type: application/json" \
+      -d "{\"execution_id\": \"$EXECUTION_ID\"}"
+    ```
+
+    Starting an analysis replaces the previous one of the service.
+  </Step>
+
+  <Step title="Wait for the result">
+    Read the build analysis again until `analysis.status` is `DONE` or `FAILED`.
+
+    ```bash
+    until curl -s "https://api.qovery.com/application/$APPLICATION_ID/buildAnalysis" \
+      -H "Authorization: Token $QOVERY_API_TOKEN" \
+      | jq -e '.analysis.status | IN("DONE", "FAILED")' > /dev/null; do
+      sleep 10
+    done
+    ```
+  </Step>
+
+  <Step title="Read the result">
+    ```bash
+    curl -s "https://api.qovery.com/application/$APPLICATION_ID/buildAnalysis" \
+      -H "Authorization: Token $QOVERY_API_TOKEN" | jq '.analysis'
+    ```
+
+    See [What You Get Back](#what-you-get-back) for the fields.
+  </Step>
+</Steps>
+
+API reference: [Get the build analysis of an application](/api-reference/application-build-analysis/get-the-build-analysis-of-an-application), [Analyse the latest build of an application](/api-reference/application-build-analysis/analyse-the-latest-build-of-an-application), and the same calls [for a job](/api-reference/job-build-analysis/analyse-the-latest-build-of-a-job).
+
+### Start Errors
+
+| Code | Meaning |
+|------|---------|
+| `400` | `execution_id` is missing or blank. |
+| `403` | You lack the Deploy permission, or AI features are disabled for the organization. |
+| `404` | The service does not exist. |
+| `409` | The execution is not the latest build, the service has no build, or an analysis is already running. Read the build analysis again to get the current `latest_build_execution_id`. |
+| `422` | Qovery cannot read the Dockerfile of this build, for example a path that does not exist at the build commit. |
+| `500` | Qovery could not load the build or the service's secret values, which it needs to keep them out of the analysis. Retry later. |
+| `503` | Build analysis is not available on this Qovery instance. Retrying does not help. |
+
+### Progress
+
+| Status | Step | What happens |
+|--------|------|--------------|
+| `PENDING` | Starting | The analysis is accepted. The Dockerfile was already read when the API answered `202`. |
+| `COLLECTING` | Reading build logs and cache history | Qovery gathers what the analysis reviews (see below). |
+| `ANALYSING` | Analysing with AI | The AI model works on the build. |
+| `DONE` | Done | `analysis.result` holds the result. |
+| `FAILED` | Failed, or Timed out | `failure_code` and `failure_reason` say why. |
+
+| Failure code | Meaning |
+|--------------|---------|
+| `MODEL_ERROR` | The AI model failed or returned an unusable result. |
+| `TIMEOUT` | The analysis took too long, for example the AI model did not answer within 4 minutes. |
+| `INTERNAL_ERROR` | Any other error. |
+
+If Qovery restarts cleanly during an analysis, the analysis fails with `INTERNAL_ERROR` and `failure_reason` says so: start it again. If the Qovery process stops without warning, the analysis keeps its last status (`COLLECTING` or `ANALYSING`) for up to 11 minutes, then reads as `FAILED` with `TIMEOUT`. During those 11 minutes, starting a new analysis returns `409`.
+
+<Accordion title="Follow progress live with the websocket route">
+  Progress is also streamed on the websocket route `/build/analysis` of `wss://ws.qovery.com`, with the query parameters `organization`, `cluster`, `project`, `environment` and `service` (all IDs). It needs the same access as the service logs.
+
+  Each frame is one progress event:
+
+  ```json
+  {
+    "status": "COLLECTING",
+    "step": "Reading build logs and cache history",
+    "message": null,
+    "terminal": false
+  }
+  ```
+
+  Past events are replayed first, then new ones as they come. `message` explains a failure. The connection closes with code `1000` after the event with `"terminal": true` (`DONE` or `FAILED`). Without that event, it closes with `1011` when the progress is unavailable, or `1001` after 15 minutes. Read the build analysis to get the result.
+</Accordion>
+
+## What the Analysis Reviews
+
+| Asset | What Qovery reads |
+|-------|-------------------|
+| `DOCKERFILE` | The Dockerfile of the build: from the repository at the build commit (`dockerfile_source: GIT`), or the job's inline Dockerfile (`INLINE`). |
+| `DOCKERIGNORE` | Whether a `.dockerignore` file exists in the root path of the repository at the build commit. Only for a Dockerfile from git. |
+| `BUILD_SETTINGS` | The root path, the Dockerfile path, the target build stage, and the names of the build arguments. |
+| `BUILD_LOGS` | For each BuildKit step: its instruction, its duration, and whether it was cached or re-ran. Also the base image digests, the build context size, and, when reported, the CPU and memory used by the builder and any out-of-memory kill. |
+
+The analysis also reads the **cache history**: up to 10 earlier builds that can have written the cache this build started from. The layer cache is shared by every build of the same repository, root path, Dockerfile and target stage on the same cluster, whatever the branch or environment. The history only includes builds of your own organization. So the history includes earlier builds of the service and builds of other services built from the same repository, for example the same application in another environment. When those builds alternate, each one can start from a cache the other overwrote.
+
+For each build argument, the analysis learns whether its value differs from the build that last wrote the cache, and how many distinct values it has across the services sharing the cache. Qovery compares the values itself and sends only the result.
+
+`assets_reviewed` in the result lists what was available for this analysis.
+
+## What You Get Back
+
+| Field | Description |
+|-------|-------------|
+| `summary` | Two to four sentences on what slows the build and why, with the evidence: the step, its seconds, what invalidated its cache. Says so when the build is already efficient. |
+| `confidence` | `HIGH`, `MEDIUM` or `LOW`. See the table below. |
+| `estimated_time_saved` | Seconds saved on each build once every improvement is applied, as `min_seconds` and `max_seconds`. `null` when there is nothing to save or no timing to base it on. |
+| `improvements` | The changes to make, one sentence each, highest impact first. Empty when the build is already efficient. An improvement can also be a Qovery setting, for example moving a variable from a build argument to a runtime variable. |
+| `dockerfile` | The fixed Dockerfile, made of targeted edits to your original file, never a full rewrite. `null` when no improvement is a Dockerfile change, or when the edits cannot be applied cleanly to your file. |
+| `dockerfile_rationale` | Why the fixed Dockerfile builds faster. |
+| `agent_prompt` | A ready-to-paste prompt for your AI coding agent (Claude Code, Cursor, Copilot) to apply the changes in your repository. |
+| `assets_reviewed` | What the analysis read. See [What the Analysis Reviews](#what-the-analysis-reviews). |
+
+The analysis itself also carries `execution_id` (the analyzed build) and `stale`, which is `true` once the service has a newer build than the analyzed one.
+
+### Confidence
+
+The confidence says how sure the analysis is that applying the improvements saves the estimated time.
+
+| Confidence | When |
+|------------|------|
+| `HIGH` | The build logs, the cache history or the builder metrics show both the cause (for example a build argument value that changed, or an out-of-memory kill) and the seconds it costs. |
+| `MEDIUM` | One of the two, the cause or the time, is inferred. |
+| `LOW` | Only the Dockerfile suggests the issue, or there are improvements but no time range. |
+
+When there is no improvement, the confidence says how sure the analysis is that the build has nothing left to gain.
+
+## Apply the Result
+
+<Steps>
+  <Step title="Review the analysis">
+    Read the summary and the improvements. The analysis is a suggestion: check that each change keeps your image behaving the same way.
+  </Step>
+
+  <Step title="Apply the changes">
+    Either way works:
+
+    - **Copy the fixed Dockerfile** from `dockerfile`. Values hidden from the analysis appear as `<redacted>`: put back the values of your original file before you commit.
+    - **Paste `agent_prompt` into your coding agent.** It names the files and the exact changes, asks the agent to keep the image behavior identical, to put back any `<redacted>` value, to build twice locally and check the second build hits the cache, and to stop for your review before committing or deploying.
+
+    Improvements that are Qovery settings, such as [build-time variables](/configuration/environment-variables#build-time-variables), are changed in the Console or the API.
+  </Step>
+
+  <Step title="Deploy and compare">
+    Commit, then deploy. The first build after a Dockerfile change re-runs the changed steps, so compare the build time on the builds after it. You can run a new analysis on the latest build to check what is left.
+  </Step>
+</Steps>
+
+## Common Causes It Finds
+
+| Cause | Fix |
+|-------|-----|
+| Code copied before the dependency install (`COPY . .` before `npm ci`, `pip install`, `bundle install`, `go mod download`) | Copy the lockfiles first, install, then copy the code. |
+| A build argument with a different value per environment or branch, declared before the dependency install | Declare it right before the step that uses it, after the install. If the install needs it, keep the same value everywhere or use a [build secret](/configuration/environment-variables#mounting-a-value-as-a-build-secret). |
+| A build argument whose value changes on every deployment, such as a date or a random ID | It changes the image tag, so the image is rebuilt every time. Remove the `ARG` or pass the value as a runtime variable. |
+| No `.dockerignore`, or a large build context | Exclude `.git`, `node_modules`, build outputs and data files from the context. |
+| No cache mount for the package manager | Add `RUN --mount=type=cache,target=...` for npm, pip, bundler, go, Maven or Gradle. |
+| A secret passed as a build argument | Use a [build secret](/configuration/environment-variables#mounting-a-value-as-a-build-secret) instead. |
+| The builder at its CPU or memory limit, or killed out of memory | Raise the [build resources](/configuration/service-advanced-settings#build-settings). |
+
+It also points out missing multi-stage builds, dev dependencies left in the final image, large base images, downloads during the build and redundant `RUN` layers.
+
+The most common fix, copying the lockfile before the code:
+
+<CodeGroup>
+
+```dockerfile Before
+FROM node:22-alpine
+WORKDIR /app
+COPY . .
+RUN npm ci
+RUN npm run build
+CMD ["node", "dist/server.js"]
+```
+
+```dockerfile After
+FROM node:22-alpine
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
+CMD ["node", "dist/server.js"]
+```
+
+</CodeGroup>
+
+In the first version, any code change invalidates the cache of `COPY . .`, so `npm ci` re-runs on every build. In the second, `npm ci` stays cached until `package.json` or `package-lock.json` changes.
+
+## Limits and Data Handling
+
+- **Suggestions only.** Qovery never changes your Dockerfile, your build settings or your image. Starting an analysis never triggers a build.
+- **Latest build only.** Only the latest build of a service can be analyzed. Qovery keeps one analysis per service: a new analysis replaces the previous one, and the kept one is marked `stale` once a newer build exists.
+- **AI model.** The analysis runs on an Anthropic Claude model through Amazon Bedrock, called by Qovery.
+- **Dockerfile values are hidden.** Before the Dockerfile is sent, every literal `ARG` and `ENV` value is replaced with `<redacted>` (references such as `$NODE_ENV` are kept). So are credential-like strings: AWS access key IDs, GitHub, GitLab and Slack tokens, npm auth tokens, private keys, credentials in URLs and `Authorization` header values.
+- **Secret values are masked.** The values of the service's secret variables are masked in the Dockerfile and the build logs before they are sent, and in the stored result. Values shorter than 6 characters are not masked.
+- **Build arguments are compared, not sent.** The analysis receives their names and whether their values changed between builds. Non-secret values can still appear in the build log lines that are sent, where BuildKit prints them.
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Build-Time Variables" icon="key" href="/configuration/environment-variables#build-time-variables">
+    Pass variables as build arguments or build secrets.
+  </Card>
+  <Card title="Build Settings" icon="hammer" href="/configuration/service-advanced-settings#build-settings">
+    Build timeout, resources and BuildKit cache.
+  </Card>
+  <Card title="Deployment Logs" icon="file-lines" href="/configuration/deployment/logs">
+    Read the build logs of a deployment.
+  </Card>
+  <Card title="Build & Deployment Optimizer" icon="gauge-high" href="/configuration/agent-tasks/build-deployment-optimizer">
+    Agent Task that reviews build and deployment times and opens pull requests.
+  </Card>
+</CardGroup>

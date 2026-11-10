@@ -29,19 +29,19 @@
 - [Introduction](https://www.qovery.com/docs/getting-started/introduction.md): The Kubernetes control plane for humans and AI agents, on your own infrastructure, cloud or on-premise.
 - [Get Started with Qovery](https://www.qovery.com/docs/getting-started/quickstart.md): Choose how to start with Qovery: deploy with an AI agent, migrate an app, set up preview environments, try it locally or connect your own cluster.
 - [Deploy with AI Agent](https://www.qovery.com/docs/getting-started/quickstart/ai-agent.md): Tell your AI coding agent to deploy. It handles everything, from your code to a live Kubernetes deployment.
-- [Try Qovery on Your Laptop with a Coding Agent](https://www.qovery.com/docs/getting-started/quickstart/try-with-an-agent.md): Install the Qovery skills, then ask your coding agent to deploy a GitHub repository. With no cluster, the agent creates a free local Kubernetes cluster in Docker and deploys to it. No cloud account, no credit card.
+- [Try Qovery on Your Laptop with a Coding Agent](https://www.qovery.com/docs/getting-started/quickstart/try-with-an-agent.md): Install the Qovery skills and ask your coding agent to deploy a GitHub project. With no cluster, it creates a local Kubernetes cluster in Docker on your laptop.
 - [Deploy from a Repository with the CLI and API](https://www.qovery.com/docs/getting-started/quickstart/cli-and-api.md): Go from a Git repository to a running app on your cluster using only the Qovery CLI and API, with no Console step. Written for scripts and coding agents.
 - [How Qovery Works](https://www.qovery.com/docs/getting-started/how-it-works.md): The architecture behind Qovery, an Agentic DevOps platform for humans and AI agents that runs in your own cloud account or on your own Kubernetes cluster.
 - [Core Concepts](https://www.qovery.com/docs/getting-started/basic-concepts.md): Essential Qovery terminology - Organizations, Clusters, Projects, Environments, Services, and Deployments
 
 ##### Installation
 
-- [Test & Learn Locally](https://www.qovery.com/docs/getting-started/quickstart/docker.md): Install Qovery locally for demonstration and testing purposes
+- [Test & Learn Locally](https://www.qovery.com/docs/getting-started/quickstart/docker.md): Install Qovery on your local machine with a k3s Kubernetes cluster in about 15 minutes to learn and test for free, then clean it up. Not for production use.
 
 ###### Managed Cluster
 
 - [Create Your Cluster](https://www.qovery.com/docs/getting-started/quickstart/cloud.md): Set up a managed Kubernetes cluster as the foundation for your Qovery deployment
-- [Install Qovery on AWS](https://www.qovery.com/docs/getting-started/installation/aws.md): Create your first Kubernetes cluster on AWS in under 30 minutes
+- [Install Qovery on AWS](https://www.qovery.com/docs/getting-started/installation/aws.md): Connect your AWS account to Qovery and create a production-ready EKS cluster with Karpenter, then check what gets created and deploy your first application.
 - [Install Qovery on GCP](https://www.qovery.com/docs/getting-started/installation/gcp.md): Complete guide to installing Qovery on Google Cloud Platform with GKE Autopilot
 - [Install Qovery on Azure](https://www.qovery.com/docs/getting-started/installation/azure.md): Complete guide to installing Qovery on Microsoft Azure with AKS
 - [Install Qovery on Scaleway](https://www.qovery.com/docs/getting-started/installation/scaleway.md): Complete guide to installing Qovery on Scaleway with Kapsule Kubernetes
@@ -56,10 +56,10 @@
 
 - [Provision](https://www.qovery.com/docs/getting-started/guides/qovery-101/provision.md): Provision Kubernetes clusters with networking, IAM and storage on AWS, GCP, Azure or Scaleway, or connect a Kubernetes cluster you already run.
 - [Deploy](https://www.qovery.com/docs/getting-started/guides/qovery-101/deploy.md): Deploy applications, containers and Helm charts to Kubernetes with Qovery, with auto-deploy from Git, rolling updates, health checks and rollbacks.
-- [Observe](https://www.qovery.com/docs/getting-started/guides/qovery-101/observe.md): Monitor your applications with built-in observability
-- [Optimize](https://www.qovery.com/docs/getting-started/guides/qovery-101/optimize.md): Optimize resources and reduce costs with Qovery
+- [Observe](https://www.qovery.com/docs/getting-started/guides/qovery-101/observe.md): Get built-in observability in the Qovery Console for applications, containers, and managed databases, with metrics and logs kept in your infrastructure.
+- [Optimize](https://www.qovery.com/docs/getting-started/guides/qovery-101/optimize.md): Cut infrastructure costs on Qovery with Karpenter node auto-scaling, HPA and KEDA pod auto-scaling, spot instances, environment start-stop, and build caching.
 - [Secure](https://www.qovery.com/docs/getting-started/guides/qovery-101/secure.md): Control access with roles, store secrets as environment variables, sync secrets from Doppler, and track every change in your organization with audit logs.
-- [Agent Tasks](https://www.qovery.com/docs/getting-started/agent-tasks.md): Deploy AI agents directly on your own infrastructure
+- [Agent Tasks](https://www.qovery.com/docs/getting-started/agent-tasks.md): Delegate jobs such as investigating an incident or optimizing a build to an AI agent that runs as an Agent Task on your own Qovery-managed infrastructure.
 
 ##### Security & Compliance
 
@@ -74,10 +74,10 @@
 
 ##### Security & Compliance (continued)
 
-- [Audit Logs](https://www.qovery.com/docs/getting-started/security-and-compliance/audit-logs.md): Track all actions and changes in your Qovery organization
+- [Audit Logs](https://www.qovery.com/docs/getting-started/security-and-compliance/audit-logs.md): Track who did what, where, and when in your Qovery organization with audit logs: open them in the Console, filter events, and check event retention.
 - [SOC2](https://www.qovery.com/docs/getting-started/security-and-compliance/soc2.md): Cluster advanced settings to apply for SOC 2, such as CloudWatch log retention, VPC flow logs, database and Kubernetes API access, and image retention.
 - [GDPR](https://www.qovery.com/docs/getting-started/security-and-compliance/gdpr.md): How Qovery handles personal data under GDPR: data protection by design, the Data Protection Officer, consent, individual rights and data retention.
-- [DORA Compliance](https://www.qovery.com/docs/getting-started/security-and-compliance/dora.md): Digital Operational Resilience Act (DORA) readiness with Qovery
+- [DORA Compliance](https://www.qovery.com/docs/getting-started/security-and-compliance/dora.md): See how Qovery helps financial entities meet EU DORA requirements for ICT risk management, incident reporting, resilience testing, and third-party risk.
 - [HIPAA Compliance](https://www.qovery.com/docs/getting-started/security-and-compliance/hipaa.md): HIPAA eligibility and protected health information (PHI) handling with Qovery
 
 #### Platform Capabilities (continued)
@@ -88,17 +88,17 @@
 
 - [Production Environment Management](https://www.qovery.com/docs/getting-started/guides/use-cases/production-environment-management.md): Set up a production environment on a production cluster: application and database settings, secrets, access control, monitoring and a final checklist.
 - [Migrate to Kubernetes](https://www.qovery.com/docs/getting-started/guides/use-cases/cloud-migration-and-scaling.md): Leave the PaaS, keep the workflow. Migrate from Heroku, Render, or Railway to Kubernetes on your own cloud, fully automated by AI
-- [Let a Coding Agent Deploy Without Cloud Admin Credentials](https://www.qovery.com/docs/getting-started/guides/use-cases/coding-agent-deploy-access.md): Give Claude Code, Codex, Cursor, or another coding agent the ability to deploy, check logs, and create preview environments on your own AWS, GCP, Azure, or Kubernetes, with a scoped token instead of cloud admin access.
+- [Let a Coding Agent Deploy Without Cloud Admin Credentials](https://www.qovery.com/docs/getting-started/guides/use-cases/coding-agent-deploy-access.md): Let Claude Code, Codex, or Cursor deploy, read logs, and create preview environments on your own cloud with a scoped Qovery token, not cloud admin access.
 
 ##### Ephemeral Environments
 
 - [Ephemeral Environments](https://www.qovery.com/docs/getting-started/guides/use-cases/ephemeral-environment.md): Create on-demand temporary environments for development, testing, and E2E testing with automated CI/CD workflows
 - [Set Up Preview Environments for Every Pull Request](https://www.qovery.com/docs/getting-started/guides/use-cases/preview-environments.md): Create a full-stack preview environment (services, databases, configuration) for every pull request on your own Kubernetes cluster, such as EKS, and delete it when the pull request is merged or closed.
-- [Build E2E Testing Ephemeral Environments with GitHub Actions and Qovery](https://www.qovery.com/docs/getting-started/guides/use-cases/e2e-testing.md): Step-by-step guide to build e2e testing ephemeral environments with GitHub Actions and Qovery
+- [Build E2E Testing Environments with GitHub Actions](https://www.qovery.com/docs/getting-started/guides/use-cases/e2e-testing.md): Create an ephemeral environment per pull request with GitHub Actions and Qovery, run E2E tests with K6, report results on the pull request, and clean up.
 
 #### Tutorials
 
-- [Deploy Your First Application](https://www.qovery.com/docs/getting-started/guides/getting-started/deploy-your-first-application.md): Deploy an application from a Git repository or a container registry to a Kubernetes cluster in your own cloud account, with production and staging environments, from a coding agent, the CLI or the Console.
+- [Deploy Your First Application](https://www.qovery.com/docs/getting-started/guides/getting-started/deploy-your-first-application.md): Deploy an application from Git, a container registry, or a Helm chart to your own Kubernetes cluster with a coding agent, the Qovery CLI, or the Console.
 - [Create a Database](https://www.qovery.com/docs/getting-started/guides/getting-started/connect-database.md): Add a database to your environment and connect your application to it with the connection URI and the environment variables Qovery creates.
 - [Database Seeding with Lifecycle Jobs](https://www.qovery.com/docs/getting-started/guides/others/database-seeding-lifecycle-job.md): Seed a PostgreSQL database from SQL scripts with a Qovery Lifecycle Job, including idempotent, conditional and per-environment seeding.
 
@@ -126,7 +126,7 @@
 ###### Development & Deployment
 
 - [How to Write a Dockerfile](https://www.qovery.com/docs/getting-started/guides/advanced-tutorials/write-dockerfile.md): Write a Dockerfile and a .dockerignore file for your application, with complete examples for Python Flask, Node.js Express and a multi-stage Go build.
-- [Import Environment Variables with the Qovery CLI](https://www.qovery.com/docs/getting-started/guides/advanced-tutorials/import-env-vars-cli.md): Bulk import environment variables and secrets from a .env file
+- [Import Environment Variables with the Qovery CLI](https://www.qovery.com/docs/getting-started/guides/advanced-tutorials/import-env-vars-cli.md): Bulk import environment variables and secrets from a .env file into a Qovery application with the Qovery CLI instead of adding them one by one.
 - [Deploy JupyterHub using Helm](https://www.qovery.com/docs/getting-started/guides/advanced-tutorials/deploy-jupyterhub.md): Deploy JupyterHub on Qovery using the official Helm chart
 - [Create a Blazingly Fast REST API in Rust (Part 1/2)](https://www.qovery.com/docs/getting-started/guides/advanced-tutorials/rust-api-part-1.md): Build a performant Twitter clone API with Rust and deploy on Qovery
 - [Run a Microservices Monorepo Without Rebuilding Everything](https://www.qovery.com/docs/getting-started/guides/advanced-tutorials/microservices-monorepo.md): A practical architecture and rollout playbook for keeping twenty services in one repository while preserving independent builds, deployments, and ownership.
@@ -154,8 +154,8 @@
 ##### Access & Security
 
 - [Members & RBAC](https://www.qovery.com/docs/configuration/organization/members-rbac.md): Manage organization members and role-based access control
-- [SSO (SAML/OIDC)](https://www.qovery.com/docs/configuration/organization/sso.md): Configure Single Sign-On with your Identity Provider
-- [API Token](https://www.qovery.com/docs/configuration/organization/api-token.md): Manage API tokens for programmatic access to your organization
+- [SSO (SAML/OIDC)](https://www.qovery.com/docs/configuration/organization/sso.md): Set up SAML or OIDC Single Sign-On between your Identity Provider and Qovery, configure the default role and group synchronization, and provision users.
+- [API Token](https://www.qovery.com/docs/configuration/organization/api-token.md): Create, review, edit, and delete organization API tokens in Qovery to give CI/CD pipelines, Terraform, and scripts role-based access to the Qovery API.
 - [API Policy Token (Preview)](https://www.qovery.com/docs/configuration/organization/api-policy-token.md): Give an autonomous agent programmatic access to your organization, constrained by a policy evaluated on every request
 
 #### Clusters & Cloud
@@ -168,7 +168,7 @@
 
 ##### AWS EKS
 
-- [AWS EKS Integration](https://www.qovery.com/docs/configuration/integrations/kubernetes/eks/overview.md): Deploy on Amazon Elastic Kubernetes Service with Qovery
+- [AWS EKS Integration](https://www.qovery.com/docs/configuration/integrations/kubernetes/eks/overview.md): Run workloads on Amazon EKS with Qovery, on a Qovery-managed EKS cluster or your existing cluster with BYOK: features, supported configurations, and costs.
 - [AWS EKS](https://www.qovery.com/docs/configuration/integrations/kubernetes/eks/managed.md): Connect your AWS account and create an EKS cluster managed by Qovery with Karpenter, then tune node pools, check network options and place services.
 - [AWS Cluster Preflight Checks](https://www.qovery.com/docs/configuration/integrations/kubernetes/eks/preflight-checks.md): Understand the automatic prerequisite validation checks that run before AWS EKS cluster creation
 - [AWS EKS Anywhere](https://www.qovery.com/docs/configuration/integrations/kubernetes/eks/eks-anywhere.md): Deploy EKS on your own infrastructure with Qovery
@@ -193,11 +193,11 @@
 - [Bring Your Own Kubernetes (BYOK)](https://www.qovery.com/docs/configuration/integrations/kubernetes/byok.md): Connect an EKS, GKE or Kapsule cluster with the Qovery Operator, or try it on local k3s with qovery demo up. Other clusters you run use the Qovery CLI.
 - [Supported cluster setups for your own cluster](https://www.qovery.com/docs/configuration/integrations/kubernetes/byok-supported-setups.md): Qovery runs on any Kubernetes cluster: the Qovery Operator for EKS, GKE and Kapsule, the Qovery CLI for others. Check version, prerequisites and conflicts.
 - [Install Qovery on other Kubernetes clusters with the CLI](https://www.qovery.com/docs/configuration/integrations/kubernetes/byok-legacy.md): Install Qovery with qovery cluster install on any Kubernetes cluster other than EKS, GKE and Kapsule, such as AKS, k3s, OpenShift or an on-premise cluster.
-- [Local Cluster for Development](https://www.qovery.com/docs/configuration/integrations/kubernetes/docker.md): Use a local k3s cluster with Docker for development and testing
+- [Local Cluster for Development](https://www.qovery.com/docs/configuration/integrations/kubernetes/docker.md): Run Qovery on your machine with Docker and a local k3s cluster for development and testing: prerequisites, installation, usage, limitations, and cleanup.
 
 #### Source Control
 
-- [Git Repository Access](https://www.qovery.com/docs/configuration/organization/git-repository-access.md): Configure Git repository access for your organization
+- [Git Repository Access](https://www.qovery.com/docs/configuration/organization/git-repository-access.md): Connect Qovery to GitHub, GitLab, or Bitbucket with Git tokens, manage them in the Qovery Console, and migrate away from the deprecated Qovery GitHub App.
 
 ##### Container Registries
 
@@ -355,15 +355,15 @@
 ##### Secret Manager Integration
 
 - [Overview](https://www.qovery.com/docs/configuration/integrations/secret-managers/secret-manager-access.md): Configure external secrets providers within your Qovery cluster
-- [AWS Secrets Manager](https://www.qovery.com/docs/configuration/integrations/secret-managers/aws-secrets-manager.md): Connect your Qovery cluster to AWS Secrets Manager using ESO
-- [AWS Parameter Store](https://www.qovery.com/docs/configuration/integrations/secret-managers/aws-parameter-store.md): Connect your Qovery cluster to AWS Parameter Store using ESO
-- [GCP Secret Manager](https://www.qovery.com/docs/configuration/integrations/secret-managers/gcp-secret-manager.md): Connect your Qovery cluster to GCP Secret Manager using ESO
+- [AWS Secrets Manager](https://www.qovery.com/docs/configuration/integrations/secret-managers/aws-secrets-manager.md): Access AWS Secrets Manager from an AWS cluster with automatic, role ARN, or static credentials, or from a GCP cluster with static credentials.
+- [AWS Parameter Store](https://www.qovery.com/docs/configuration/integrations/secret-managers/aws-parameter-store.md): Access AWS Parameter Store from an AWS cluster with automatic, role ARN, or static credentials, or from a GCP cluster with static credentials.
+- [GCP Secret Manager](https://www.qovery.com/docs/configuration/integrations/secret-managers/gcp-secret-manager.md): Access GCP Secret Manager from a GCP cluster with automatic or static credentials, or from an AWS cluster with static credentials.
 
 #### Observability
 
-- [Qovery Observe](https://www.qovery.com/docs/configuration/integrations/observability/qovery-observe.md): Built-in observability for monitoring applications and infrastructure
+- [Qovery Observe](https://www.qovery.com/docs/configuration/integrations/observability/qovery-observe.md): Monitor service health, resources, network metrics, managed databases, and logs in the Qovery Console with Qovery Observe, running in your infrastructure.
 - [Datadog Integration](https://www.qovery.com/docs/configuration/integrations/observability/datadog.md): Deploying Datadog on Qovery: The Complete Guide
-- [Kubecost](https://www.qovery.com/docs/configuration/integrations/observability/kubecost.md): Monitor and reduce Kubernetes spend with Kubecost
+- [Kubecost](https://www.qovery.com/docs/configuration/integrations/observability/kubecost.md): Deploy Kubecost on your Qovery cluster as a Helm service to get real-time visibility into Kubernetes costs, then open its dashboard with a port forward.
 
 #### Notifications
 
@@ -401,9 +401,9 @@
 #### Getting Started
 
 - [Getting Started with Qovery AI Copilot](https://www.qovery.com/docs/copilot/getting-started.md): Start automating your infrastructure with agentic AI
-- [Qovery Console AI Copilot](https://www.qovery.com/docs/copilot/console.md): Use AI Copilot directly in the Qovery Console
+- [Qovery Console AI Copilot](https://www.qovery.com/docs/copilot/console.md): Use the AI Copilot built into the Qovery Console for contextual help, troubleshooting, and service management, in read-only or read-write mode.
 - [Qovery Slack Bot](https://www.qovery.com/docs/copilot/slack-bot.md): Use AI Copilot directly in Slack to manage your infrastructure
-- [MCP Server](https://www.qovery.com/docs/copilot/mcp-server.md): Connect any MCP-compatible client to your Qovery infrastructure
+- [MCP Server](https://www.qovery.com/docs/copilot/mcp-server.md): Set up the Qovery MCP Server so Claude, ChatGPT, or another MCP-compatible client can manage your existing Qovery infrastructure in natural language.
 - [Securing AI Agent Access](https://www.qovery.com/docs/copilot/securing-ai-access.md): Grant AI agents safe, read-only access to your Qovery infrastructure for troubleshooting and investigation
 - [Qovery Agent Skills](https://www.qovery.com/docs/getting-started/quickstart/agent-skills.md): Skills that give your AI agent the ability to deploy, troubleshoot, optimize, and manage Kubernetes infrastructure.
 
@@ -412,6 +412,7 @@
 - [Infrastructure Management](https://www.qovery.com/docs/copilot/capabilities/infrastructure-management.md): Manage environments, projects, and clusters with Qovery AI Copilot
 - [Deployment Automation](https://www.qovery.com/docs/copilot/capabilities/deployment-automation.md): Deploy, manage, and scale applications with Qovery AI Copilot
 - [Optimization](https://www.qovery.com/docs/copilot/capabilities/optimization.md): Optimize costs, resources, and configurations with Qovery AI Copilot
+- [Build Optimizer](https://www.qovery.com/docs/copilot/capabilities/build-optimizer.md): Analyze the latest build of a service with AI to find why it is slow, mostly Docker layer cache misses, and get a fixed Dockerfile and a prompt for your coding agent.
 - [Troubleshooting](https://www.qovery.com/docs/copilot/capabilities/troubleshooting.md): Debug and resolve infrastructure issues with Qovery AI Copilot
 
 #### Examples
@@ -423,7 +424,7 @@
 
 #### Getting Started
 
-- [Terraform Provider](https://www.qovery.com/docs/terraform-provider/overview.md): Manage Qovery resources as code with the Qovery Terraform provider
+- [Terraform Provider](https://www.qovery.com/docs/terraform-provider/overview.md): Install and authenticate the Qovery Terraform provider, find resource IDs, and deploy environments, services, and variables from Terraform as code.
 - [Start a New Project with Terraform or OpenTofu](https://www.qovery.com/docs/terraform-provider/from-scratch.md): From an empty AWS account to an EKS cluster, Postgres and an application in staging and production, all in Terraform or OpenTofu
 - [Terraform Exporter](https://www.qovery.com/docs/terraform-provider/exporter.md): Generate the Terraform configuration of an existing Qovery environment, from the Console or with the qovery-terraform agent skill
 

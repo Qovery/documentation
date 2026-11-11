@@ -1,0 +1,199 @@
+---
+title: "Restore an RDS PostgreSQL blueprint to a point in time"
+description: "Recover deleted or damaged data from an Amazon RDS for PostgreSQL blueprint with an AWS point-in-time restore, then copy it back or move to a new blueprint service."
+---
+
+The [Amazon RDS for PostgreSQL](/configuration/blueprints/aws-rds-postgresql) blueprint keeps automated backups, so AWS can restore the database as it was at any second of the retention window. The blueprint has no restore setting, and AWS always restores to a **new** instance. This guide restores a temporary copy next to your database with the AWS CLI, then copies back the data you need. Copying back changes nothing on your blueprint service, its Terraform state or its outputs.
+
+You can run this guide on your own. Contact us first in the cases listed under [When to contact us](#when-to-contact-us).
+
+## Before you start
+
+- **Point-in-time recovery is on.** `backup_retention_period` is above `0` (default `14`). The restore window goes back that many days. The latest restorable time trails real time by about 5 to 7 minutes.
+- **AWS CLI access** to the account and region of the environment's cluster, with permission to describe RDS instances and their automated backups, to restore an instance to a point in time, and to modify, reboot and delete the temporary copy and its automated backups.
+- **A PostgreSQL client inside the cluster network.** The restored copy is private, so use [`qovery shell`](/cli/commands/shell) on a running container that has a PostgreSQL client, or create a temporary container from the `postgres:<major>` image with its command set to `sleep infinity`, then delete it afterwards. Use a client of the database's major version or newer.
+- **The database details**, from the blueprint's outputs. Each output is a variable `QOVERY_OUTPUT_TERRAFORM_Z<id>_<OUTPUT>`, and Qovery also gives it a short alias named after the blueprint service, `<PREFIX>_<OUTPUT>` (see [Aliases Qovery creates for outputs](/configuration/environment-variables#aliases-qovery-creates-for-outputs)). This guide uses the aliases: `<PREFIX>_DB_IDENTIFIER` (the RDS identifier, called `<primary>` below), `<PREFIX>_DB_ADDRESS`, `<PREFIX>_DB_PORT`, `<PREFIX>_DB_NAME`, `<PREFIX>_DB_USERNAME` and `<PREFIX>_DB_PASSWORD`. Check the actual names in your environment's variables: they carry a `_1`, `_2`... suffix when the name was already taken, keep the former name of a blueprint service renamed after its first deployment, and a database [migrated from a Qovery managed database](/configuration/blueprints#migrating-a-managed-database-to-a-blueprint) gets no alias, so use the `QOVERY_OUTPUT_TERRAFORM_...` variables or its [built-in database variables](/configuration/environment-variables#database-connection-variables) instead. The password is a secret: read it from the environment of a container in the same environment.
+
+## Choose the approach
+
+| | Copy back (recommended) | Replace with a new service |
+| --- | --- | --- |
+| **When** | Rows deleted or overwritten, the database is otherwise healthy | The database is unusable, or you want to roll back the whole database |
+| **What changes for your applications** | Nothing | New endpoint and password, every application redeployed |
+| **Data written since the restore time** | Kept | Lost |
+
+Both start with the same two steps. Copy back is described in steps 3 and 4; replacing in [Replace the database with a new service](#replace-the-database-with-a-new-service).
+
+## Step 1: Check the restore time
+
+Convert the time you want to restore to UTC, then check it falls inside the window and read the settings the copy needs:
+
+```bash
+aws rds describe-db-instance-automated-backups --region <region> \
+  --db-instance-identifier <primary> \
+  --query "DBInstanceAutomatedBackups[?Status=='active'].RestoreWindow"
+aws rds describe-db-instances --region <region> --db-instance-identifier <primary> \
+  --query 'DBInstances[0].{latest:LatestRestorableTime,engine:EngineVersion,class:DBInstanceClass,subnet:DBSubnetGroup.DBSubnetGroupName,sgs:VpcSecurityGroups[].VpcSecurityGroupId}'
+```
+
+If the time is a few minutes old and after `latest`, wait a few minutes and run it again.
+
+## Step 2: Restore a temporary copy
+
+```bash
+aws rds restore-db-instance-to-point-in-time --region <region> \
+  --source-db-instance-identifier <primary> \
+  --target-db-instance-identifier <primary>-pitr-<YYYYMMDDHHMM> \
+  --restore-time <restore time, e.g. 2026-11-09T14:00:00Z> \
+  --db-subnet-group-name <subnet> \
+  --vpc-security-group-ids <sgs, space separated> \
+  --db-parameter-group-name default.postgres<major> \
+  --no-publicly-accessible --no-multi-az --no-deletion-protection
+aws rds wait db-instance-available --region <region> \
+  --db-instance-identifier <primary>-pitr-<YYYYMMDDHHMM>
+aws rds describe-db-instances --region <region> \
+  --db-instance-identifier <primary>-pitr-<YYYYMMDDHHMM> \
+  --query 'DBInstances[0].[DBInstanceStatus,Endpoint.Address,DBParameterGroups[0].DBParameterGroupName,DBParameterGroups[0].ParameterApplyStatus]' --output text
+```
+
+`<major>` is the major of `engine` from step 1, for example `default.postgres17` for `17.9`. The last command must show `default.postgres<major>`. While the copy is being created, AWS can still list your database's parameter group: it switches at the end of the restore. The last column should read `in-sync`. If it still shows `<primary>-params-...` once the copy is available, run `aws rds modify-db-instance --region <region> --db-instance-identifier <primary>-pitr-<YYYYMMDDHHMM> --db-parameter-group-name default.postgres<major> --apply-immediately`, then, once the copy is available again, reboot it with `aws rds reboot-db-instance` (the copy only, never your database): the status reads `pending-reboot` until then. The restore took 12 to 19 minutes for a small database in our tests and takes longer for larger ones. The copy is billed like an instance of its class until you delete it.
+
+<Warning>
+These rules keep the copy invisible to the blueprint. Breaking one makes a later deployment of your blueprint service fail.
+
+- **Keep `--db-parameter-group-name default.postgres<major>`.** Without it, AWS gives the copy your database's own parameter group, `<primary>-params-...`, when `db_parameters` is set. That group belongs to the blueprint, and a deployment that replaces or deletes it (a major upgrade, clearing `db_parameters`) fails while the copy still uses it.
+- **Name the copy differently from your database.** Never use `<primary>` or `<primary>-replica-<N>`: the blueprint looks up instances by those names. The identifier is limited to 63 characters.
+- **Do not swap the copy in place of your database** by renaming instances. The blueprint keeps tracking the original instance, and the next deployment tries to rename it back and fails. To move to the restored data, copy it back, or [replace the database with a new service](#replace-the-database-with-a-new-service).
+</Warning>
+
+## Step 3: Copy the data back
+
+Connect from inside the cluster network. `SIDE` is the copy and `PRIMARY` your database:
+
+```bash
+SIDE="host=<copy endpoint> port=<port> dbname=<database> user=<username> sslmode=require"
+PRIMARY="host=$<PREFIX>_DB_ADDRESS port=<port> dbname=<database> user=<username> sslmode=require"
+export PGPASSWORD="$<PREFIX>_DB_PASSWORD"
+```
+
+The port, database and username are the values of `<PREFIX>_DB_PORT`, `<PREFIX>_DB_NAME` and `<PREFIX>_DB_USERNAME`; the copy uses the same ones. It accepts the password that was valid at the restore time.
+
+Before writing anything, query the copy to confirm it predates the incident: overwritten values must be absent there, and deleted rows must still be present. If not, the restore time is wrong.
+
+### Deleted rows: put them back
+
+Rows that still exist are skipped, so rows written since the incident stay as they are. This needs a primary key or a unique constraint on the table.
+
+First check whether the delete also changed other tables, through foreign keys with `ON DELETE CASCADE`, `SET NULL` or `SET DEFAULT`. Run this again for every table it returns:
+
+```bash
+psql "$PRIMARY" -c "select conrelid::regclass as child_table, confdeltype from pg_constraint where contype = 'f' and confdeltype in ('c', 'n', 'd') and confrelid = 'public.<table>'::regclass"
+```
+
+Tables with `c` need the same re-insert, after their parent. Tables with `n` or `d` need their reference column repaired as below. Then re-insert:
+
+```bash
+pg_dump "$SIDE" --data-only --table='public.<table>' --column-inserts --on-conflict-do-nothing \
+    -f restore-<table>.raw.sql \
+  && grep -v '^SELECT pg_catalog.setval' restore-<table>.raw.sql > restore-<table>.sql \
+  && grep -c '^INSERT INTO' restore-<table>.sql \
+  && { psql "$PRIMARY" --single-transaction -v ON_ERROR_STOP=1 -f restore-<table>.sql \
+         > restore-<table>.log 2>&1; echo "exit=$?"; }
+grep -c '^INSERT 0 1' restore-<table>.log
+```
+
+- Each command runs only if the previous one succeeded, so a failed dump never reaches your database, and a count of `0` (no rows in the copy) stops it too. The first count is the rows in the copy, the second the rows re-inserted. An `exit` other than `0` means nothing was applied: the end of `restore-<table>.log` says why.
+- The `grep -v` drops the sequence reset, which would move your id sequence back in time and make the next inserts collide.
+- This brings back **every** row the table had at the restore time and no longer has, including rows your application deleted on purpose since then. To bring back only some rows, use the staging approach below.
+- Restore parent tables before the tables that reference them. Triggers on the table fire for every re-inserted row.
+- Rows created between the restore time and the incident, then deleted by it, are not in the copy. With a numeric key, list the ids still missing above the copy's highest id and check them against your application logs. A second copy at a later time is possible while that time is still in the window.
+
+### Overwritten rows: stage, compare, repair
+
+Copy the table into a separate `pitr_restore` schema of your database, then merge what you need with SQL:
+
+```bash
+psql "$SIDE" -v ON_ERROR_STOP=1 \
+  -c 'CREATE SCHEMA pitr_restore' -c 'ALTER TABLE public.<table> SET SCHEMA pitr_restore'
+pg_dump "$SIDE" --schema=pitr_restore --no-owner --no-privileges -Fc -f pitr_restore.dump
+pg_restore --section=pre-data --section=data --no-owner --no-privileges -d "$PRIMARY" pitr_restore.dump
+```
+
+Moving the table on the copy is harmless, since the copy is deleted afterwards. If `ALTER TABLE` fails with `must be owner of table`, run `GRANT <owner role> TO <username>` on the copy first.
+
+Then, in an interactive `psql "$PRIMARY"` session, repair only the rows that still hold the bad value, so changes made since the restore time are kept:
+
+```sql
+-- preview
+SELECT t.id, t.<column> AS now, r.<column> AS at_restore_time
+FROM public.<table> t JOIN pitr_restore.<table> r ON r.id = t.id
+WHERE <condition that matches only the damaged rows> LIMIT 20;
+
+BEGIN;
+UPDATE public.<table> t SET <column> = r.<column>
+FROM pitr_restore.<table> r
+WHERE r.id = t.id AND <condition that matches only the damaged rows>;
+-- check the UPDATE count, then COMMIT; or ROLLBACK;
+```
+
+When done, run `DROP SCHEMA pitr_restore CASCADE;`, then delete the dump files (`restore-<table>.raw.sql`, `restore-<table>.sql`, `restore-<table>.log`, `pitr_restore.dump`): they contain your data.
+
+## Step 4: Delete the temporary copy
+
+```bash
+aws rds delete-db-instance --region <region> \
+  --db-instance-identifier <primary>-pitr-<YYYYMMDDHHMM> \
+  --skip-final-snapshot --delete-automated-backups
+```
+
+The copy takes its own automated backups while it runs. `--delete-automated-backups` removes them, and billing stops once the instance is gone. A last automated snapshot can stay listed for a few minutes after the delete.
+
+## Replace the database with a new service
+
+Use this when the database cannot be repaired in place. Everything written after the restore time is lost.
+
+<Steps>
+  <Step title="Restore a temporary copy">
+    Follow steps 1 and 2 above.
+  </Step>
+  <Step title="Create a new blueprint service">
+    [Create](/configuration/blueprints#creating-a-blueprint-service) an Amazon RDS for PostgreSQL service in the same environment, with the same major, a new service name, a new `db_name` and the other values of the current service, but leave `db_password` empty so Qovery generates a new password. For a database [migrated from a Qovery managed database](/configuration/blueprints#migrating-a-managed-database-to-a-blueprint), stop here and [contact us](#when-to-contact-us). The RDS identifier is derived from `db_name`, so reusing it collides with the current instance. The new service gets its own aliases, `<NEW_PREFIX>_*`.
+  </Step>
+  <Step title="Copy the whole database">
+    Redeploy a container that has a PostgreSQL client, so it receives the new service's variables, and build `NEW` from them. Recreate first the roles your applications use, other than the master user: list them with `pg_dumpall --dbname="$SIDE" --roles-only --no-role-passwords` and create them on the new instance with their memberships. Then:
+
+    ```bash
+    PGPASSWORD="$<PREFIX>_DB_PASSWORD" pg_dump "$SIDE" -Fc --no-owner -f full.dump
+    PGPASSWORD="$<NEW_PREFIX>_DB_PASSWORD" pg_restore --no-owner -j 4 -d "$NEW" full.dump
+    ```
+
+    The two databases have different passwords, so each command sets its own.
+
+    Compare row counts on both sides. If `pg_restore` ends with `errors ignored on restore: N`, read the messages before it. Delete `full.dump` afterwards.
+  </Step>
+  <Step title="Point the aliases at the new service">
+    For each alias of the current service, `<PREFIX>_<OUTPUT>`, change its target from the current service's output to the new service's output of the same name, with the API call in [Changing the target of an alias](/configuration/environment-variables#changing-the-target-of-an-alias). Your applications keep reading the same variable names.
+  </Step>
+  <Step title="Redeploy your applications">
+    Redeploy every service that uses the database. Until then it keeps the old values, even though the Console shows it up to date.
+  </Step>
+  <Step title="Clean up">
+    Delete the temporary copy (step 4). Once everything runs on the new service, delete the old blueprint service. Deleting it removes its outputs and any alias still pointing at them, so only delete it after the aliases point at the new service. Its final snapshot and automated backups are kept or deleted according to its `skip_final_snapshot` and `delete_automated_backups` values.
+  </Step>
+</Steps>
+
+## When to contact us
+
+Contact Qovery Support through your usual channel (in-app chat, shared Slack channel, or email) before acting when:
+
+- **The database instance was deleted.** Do not deploy the blueprint service: it would create a new, empty instance under the same name. Automated backups survive the instance only when `delete_automated_backups` was `false`.
+- **The database was migrated from a Qovery managed database** and you need to replace it. Its applications read the managed database's variables, which a new blueprint service does not take over. Copying data back works as described above.
+- **The restore time is outside the window**, or `backup_retention_period` is `0`.
+- **You would rather be guided.**
+
+Include the organization, environment and service, the restore time with its time zone, the tables affected and their primary keys, and whether your application itself deletes or overwrites those rows.
+
+## After the restore
+
+- Raise `backup_retention_period` if the window was short. It goes up to 35 days.
+- Test this procedure regularly, as part of your [disaster recovery plan](/configuration/disaster-recovery#testing-your-dr-plan).

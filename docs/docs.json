@@ -2395,6 +2395,18 @@
       "destination": "/getting-started/troubleshoot/overview"
     },
     {
+      "source": "/basic-concepts",
+      "destination": "/getting-started/basic-concepts"
+    },
+    {
+      "source": "/integrations/ci-cd/gitlab-ci",
+      "destination": "/configuration/integrations/ci-cd/gitlab-ci"
+    },
+    {
+      "source": "/integrations/secret-managers/doppler",
+      "destination": "/configuration/integrations/secret-managers/doppler"
+    },
+    {
       "source": "/using-qovery/:slug*",
       "destination": "/configuration/overview"
     },

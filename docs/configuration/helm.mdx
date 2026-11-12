@@ -317,7 +317,7 @@ Pass additional arguments to Helm commands:
 - `--wait-for-jobs` - Wait for jobs to complete
 - `--create-namespace` - Create namespace if missing
 - `--skip-crds` - Skip CRD installation
-- `--debug` - Print the computed values and the rendered manifests in the deployment logs, to debug a chart. They include Kubernetes Secrets in clear text, visible to anyone who can read the deployment logs: add it only while debugging, then remove it.
+- `--debug` - Print the computed values and the rendered manifests in the deployment logs, to debug a chart. This output can contain sensitive values and Kubernetes Secret data (base64 is not encryption), readable by anyone with access to the deployment logs. Add it only while debugging and remove it afterwards. Logs already written keep this output, so rotate any secret you consider exposed.
 
 **CRD and ClusterRole Deployment**:
 Some Helm charts require cluster-wide permissions to deploy Custom Resource Definitions (CRDs) or ClusterRoles. Ensure your service account has appropriate permissions.

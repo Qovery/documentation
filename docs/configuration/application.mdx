@@ -966,6 +966,14 @@ Add your own custom domain to your application:
   </Tab>
 </Tabs>
 
+<Warning>
+Qovery cannot generate a certificate for a wildcard domain such as `*.app.example.com` hosted in your own DNS provider. Let's Encrypt only issues wildcard certificates through a DNS-01 challenge, and Qovery only answers DNS-01 challenges on the DNS zones it manages. The certificate stays pending, the service shows an error, and the domain serves the cluster's default certificate.
+
+For a wildcard domain, disable certificate generation, enable CDN proxy mode and let your CDN terminate TLS. See [Setting Up Cloudflare and Custom Domain](/getting-started/guides/advanced-tutorials/cloudflare-custom-domain).
+
+Certificate generation works for single hostnames such as `app.example.com`, including on Cloudflare in DNS-only mode.
+</Warning>
+
 ### CDN Proxy Mode
 
 Enable CDN proxy mode for custom domains to route traffic through your CDN provider.

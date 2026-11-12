@@ -1,6 +1,6 @@
 ---
 title: "Restore an RDS PostgreSQL blueprint to a point in time"
-description: "Recover deleted or damaged data from an Amazon RDS for PostgreSQL blueprint with an AWS point-in-time restore, then copy it back or move to a new blueprint service."
+description: "Recover deleted or overwritten data from an Amazon RDS for PostgreSQL blueprint with a point-in-time restore, then copy it back or replace the database."
 ---
 
 The [Amazon RDS for PostgreSQL](/configuration/blueprints/aws-rds-postgresql) blueprint keeps automated backups, so AWS can restore the database as it was at any second of the retention window. The blueprint has no restore setting, and AWS always restores to a **new** instance. This guide restores a temporary copy next to your database with the AWS CLI, then copies back the data you need. Copying back changes nothing on your blueprint service, its Terraform state or its outputs.

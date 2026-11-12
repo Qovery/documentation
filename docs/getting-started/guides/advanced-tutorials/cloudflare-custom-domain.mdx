@@ -22,6 +22,14 @@ This tutorial guides you through configuring Cloudflare as a domain provider for
 Enabling "Domain behind a CDN" automatically disables certificate generation since Cloudflare handles SSL/TLS management.
 </Info>
 
+<Note>
+If you keep the Cloudflare record in **DNS only** mode instead, leave "Domain behind a CDN" disabled and enable "Generate certificate": Qovery then issues a Let's Encrypt certificate for the hostname. This only works for single hostnames such as `app.example.com`. For a wildcard domain such as `*.app.example.com`, Let's Encrypt requires a DNS-01 challenge that Qovery cannot answer on your Cloudflare zone (unless the zone is connected to the cluster through the [Cloudflare DNS integration](/configuration/clusters#cloudflare-setup)), so the certificate is never issued. Use the proxied setup described in this guide for wildcard domains.
+</Note>
+
+<Warning>
+Cloudflare's free Universal SSL certificate covers your apex domain and one level of subdomains (`*.example.com`). A deeper wildcard such as `*.app.example.com` needs an Advanced Certificate (Advanced Certificate Manager) or a custom certificate uploaded to Cloudflare.
+</Warning>
+
 <Frame>
   <img src="/images/cloudflare/1.png" alt="Add custom domain" />
 </Frame>
@@ -132,6 +140,11 @@ You can leverage Cloudflare's additional features:
     - Confirm "Full" encryption mode is selected
     - Wait for SSL certificate provisioning (5-10 minutes)
     - Check that "Domain behind a CDN" toggle is enabled in Qovery
+  </Accordion>
+
+  <Accordion title="Wildcard domain shows an error and serves the wrong certificate">
+    - "Generate certificate" is enabled on a wildcard domain (`*.app.example.com`). Qovery cannot issue wildcard certificates on a Cloudflare zone, so the certificate stays pending and the service shows an error.
+    - Disable "Generate certificate", enable "Domain behind a CDN", redeploy the service and switch the Cloudflare record to Proxied.
   </Accordion>
 
   <Accordion title="502 Bad Gateway errors">

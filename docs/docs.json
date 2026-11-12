@@ -560,6 +560,7 @@
               "copilot/capabilities/infrastructure-management",
               "copilot/capabilities/deployment-automation",
               "copilot/capabilities/optimization",
+              "copilot/capabilities/build-optimizer",
               "copilot/capabilities/troubleshooting"
             ]
           },

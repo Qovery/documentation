@@ -413,6 +413,7 @@
 - [Infrastructure Management](https://www.qovery.com/docs/copilot/capabilities/infrastructure-management.md): Manage environments, projects, and clusters with Qovery AI Copilot
 - [Deployment Automation](https://www.qovery.com/docs/copilot/capabilities/deployment-automation.md): Deploy, manage, and scale applications with Qovery AI Copilot
 - [Optimization](https://www.qovery.com/docs/copilot/capabilities/optimization.md): Optimize costs, resources, and configurations with Qovery AI Copilot
+- [Build Optimizer](https://www.qovery.com/docs/copilot/capabilities/build-optimizer.md): Analyze the latest build of a service with AI to find why it is slow, mostly Docker layer cache misses, and get fixes, a reworked Dockerfile when one applies, and a prompt for your coding agent.
 - [Troubleshooting](https://www.qovery.com/docs/copilot/capabilities/troubleshooting.md): Debug and resolve infrastructure issues with Qovery AI Copilot
 
 #### Examples

@@ -507,7 +507,7 @@ Apply these steps only once your cluster uses Restricted Credentials: the dedica
 
 <Steps>
   <Step title="Create a dedicated IAM role">
-    In your AWS account, create an IAM role with the IAM and KMS permissions your Terraform code needs. Set its trust relationship so that the [restricted IAM role](#create-the-iam-roles) (`qovery-restricted-user-role` by default) can assume it:
+    In your AWS account, create an IAM role with the IAM and KMS permissions your Terraform code needs. Set its trust relationship so that the [restricted IAM role](#create-the-iam-roles) can assume it. Replace `<restricted-role-arn>` with the **RoleARN** output of the restricted role stack:
 
     ```json
     {
@@ -515,7 +515,7 @@ Apply these steps only once your cluster uses Restricted Credentials: the dedica
       "Statement": [
         {
           "Effect": "Allow",
-          "Principal": { "AWS": "arn:aws:iam::<account-id>:role/qovery-restricted-user-role" },
+          "Principal": { "AWS": "<restricted-role-arn>" },
           "Action": "sts:AssumeRole"
         }
       ]

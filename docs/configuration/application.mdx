@@ -340,7 +340,7 @@ For high availability:
 
     #### Migrating from HPA to KEDA
 
-    Switch to **KEDA (Event-Driven)** mode, configure your scalers, save and redeploy. HPA and KEDA's `ScaledObject` both control the replica count of the same Deployment, so the deployment removes the HPA before it creates the `ScaledObject`. The application keeps its current number of instances, then KEDA scales it.
+    Switch to **KEDA (Event-Driven)** mode, configure your scalers, save and redeploy. HPA and KEDA's `ScaledObject` both control the replica count of the same Deployment, so the deployment removes the HPA before it creates the `ScaledObject`. The application keeps its current number of instances, brought within the KEDA minimum and maximum, then KEDA scales it from its scalers.
 
     #### General Configuration
 

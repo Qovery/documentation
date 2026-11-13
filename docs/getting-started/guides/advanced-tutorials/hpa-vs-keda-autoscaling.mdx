@@ -106,8 +106,6 @@ HPA computes usage as a percentage of the CPU and memory **requests** you set on
 
   <Step title="Select KEDA on the application">
     Open your application, go to **Settings** → **Resources** → **Instances & Autoscaling** and select **Event-driven autoscaling (KEDA)** in **Autoscaling mode**.
-
-    If the saved configuration of the application uses HPA, the Console shows a **KEDA migration restriction** message and disables the KEDA settings. Follow [Migrate from HPA to KEDA](#migrate-from-hpa-to-keda) first.
   </Step>
 
   <Step title="Set instances, polling interval and cooldown">
@@ -177,28 +175,9 @@ You can add several scalers to one application. KEDA computes a target number of
 
 ## Migrate from HPA to KEDA
 
-HPA and KEDA's `ScaledObject` both control the replica count of the same Deployment. If both exist at the same time, they fight over it. Qovery blocks the direct switch, so go through **No autoscaling**:
+Select **Event-driven autoscaling (KEDA)** in **Autoscaling mode**, configure your scalers, save and redeploy. HPA and KEDA's `ScaledObject` both control the replica count of the same Deployment, so the deployment removes the HPA before it creates the `ScaledObject`. The application keeps its current number of instances, then KEDA scales it.
 
-<Steps>
-  <Step title="Switch to fixed instances">
-    Set **Autoscaling mode** to **No autoscaling (fixed instances)** and save.
-  </Step>
-  <Step title="Redeploy">
-    The deployment removes the HPA from the cluster.
-  </Step>
-  <Step title="Switch to KEDA">
-    Set **Autoscaling mode** to **Event-driven autoscaling (KEDA)** and configure your scalers.
-  </Step>
-  <Step title="Redeploy again">
-    The deployment creates the KEDA `ScaledObject`.
-  </Step>
-</Steps>
-
-<Frame>
-  <img src="/images/getting-started/guides/hpa-vs-keda/keda-migration-restriction.png" alt="KEDA migration restriction message" />
-</Frame>
-
-The restriction only applies in this direction. To go from KEDA back to HPA, select **HPA (Horizontal Pod Autoscaler)** directly, save and redeploy.
+To go from KEDA back to HPA, select **HPA (Horizontal Pod Autoscaler)**, save and redeploy.
 
 ## Pitfalls
 

@@ -24,6 +24,10 @@ You can read our [blog post](https://www.qovery.com/blog/save-up-to-60-on-aws-co
 
 <AwsCredentials />
 
+<Info>
+**Restricted Credentials**: by default, the credentials above are used for every operation on your cluster. You can instead attach two credentials to your cluster: extended credentials, used only when extended permissions are required (cluster creation and deletion, changes to the IAM roles and policies of the cluster), and restricted credentials, used for day-to-day operations such as weekly cluster updates and service deployments. This feature is available on request through [Qovery Support](/getting-started/useful-resources/help-and-support). See [Restricted Credentials](#restricted-credentials).
+</Info>
+
 ### Create the Cluster
 
 <Steps>
@@ -36,7 +40,7 @@ You can read our [blog post](https://www.qovery.com/blog/save-up-to-60-on-aws-co
     * **Description**: enter a description to identify better your cluster.
     * **Production cluster**: select this option if your cluster will be used for production.
     * **Region**: select the geographical area in which you want your cluster to be hosted.
-    * **Credentials**: select one of the existing cloud provider credentials or create new credentials using the section above.
+    * **Credentials**: select one of the existing cloud provider credentials or create new credentials using the section above. If Restricted Credentials is enabled for your organization, the **Use restrictive permissions** option is also displayed here: see [Enable Restricted Credentials on a cluster](#enable-restricted-credentials-on-a-cluster).
 
     To confirm, click `Next`.
 
@@ -218,6 +222,8 @@ If you need to change the credentials:
 
 Once created and associated, you need to [update your cluster](/configuration/clusters#updating-a-cluster) to apply the change.
 
+To use separate extended and restricted credentials on your cluster, see [Enable Restricted Credentials on a cluster](#enable-restricted-credentials-on-a-cluster).
+
 ### Resources
 
 Qovery deploys two node pools by default:
@@ -313,3 +319,231 @@ tolerations:
     key: nodepool/stable
     operator: Exists
 ```
+
+## Restricted Credentials
+
+<Info>
+Restricted Credentials is not enabled by default: Qovery Support enables it per organization. Until then, the **Use restrictive permissions** option is not displayed in the Console. To use it, contact [Qovery Support](/getting-started/useful-resources/help-and-support) through your usual channel (in-app chat, Slack, or email) to request access.
+</Info>
+
+By default, a cluster uses a single set of credentials for every operation, so the IAM role behind it keeps the unrestricted IAM and KMS permissions (`iam:*`, `kms:*`) listed in [Connect Your AWS Account](#connect-your-aws-account) at all times. Restricted Credentials replace it with two IAM roles in your AWS account, each created by its own CloudFormation template (see [Create the IAM roles](#create-the-iam-roles)). The role allowed to change the IAM roles, policies and KMS keys of the cluster is then only used when it is actually needed.
+
+Each of the two credentials uses the [STS Assume Role](#connect-your-aws-account) method and targets its own IAM role:
+
+**Extended credentials**: used only for operations that need the extended permissions:
+
+- Creating the cluster
+- Deleting the cluster
+- Any change to the IAM roles and policies of the cluster, for example when enabling [Secret Manager Access with AWS Automatic Authentication](/configuration/integrations/secret-managers/aws-secrets-manager), metrics, or [KEDA](/configuration/application#event-driven-autoscaling-with-keda)
+- Any other operation for which Qovery explicitly requests them
+
+**Restricted credentials**: used for day-to-day operations:
+
+- Regular weekly cluster updates
+- Service deployments, including the blueprints
+
+<Warning>
+Once Restricted Credentials is enabled, [Terraform services](/configuration/terraform) that use the cluster credentials (the default behavior) are always deployed with the restricted credentials.
+
+Review your Terraform services before requesting the feature: only Terraform services managing resources that rely on `iam:*` or `kms:*` are concerned. Once your cluster uses Restricted Credentials, [update these Terraform services](#update-your-terraform-services) before their next deployment.
+</Warning>
+
+### Create the IAM roles
+
+Each role is created by its own CloudFormation template. Create both stacks in the AWS account of your cluster:
+
+| Role | Default name | CloudFormation |
+| --- | --- | --- |
+| Extended | `qovery-extended-user-role` | [Launch stack](https://console.aws.amazon.com/cloudformation/home?#/stacks/quickcreate?templateURL=https%3A%2F%2Fqovery-extended-user-role.s3.amazonaws.com%2Ftemplate.json&stackName=qovery-extended-user-role) · [View template](https://qovery-extended-user-role.s3.amazonaws.com/template.json) |
+| Restricted | `qovery-restricted-user-role` | [Launch stack](https://console.aws.amazon.com/cloudformation/home?#/stacks/quickcreate?templateURL=https%3A%2F%2Fqovery-restricted-user-role.s3.amazonaws.com%2Ftemplate.json&stackName=qovery-restricted-user-role) · [View template](https://qovery-restricted-user-role.s3.amazonaws.com/template.json) |
+
+The IAM and KMS permissions of both roles are scoped to the resources Qovery creates for the cluster: IAM identities named after Qovery conventions (`qovery-*`, `Karpenter*`, ...) and KMS keys tagged `QoveryProduct=EKS`. The `Metadata` of the role resource in each template explains why each permission is needed.
+
+For each role:
+
+<Steps>
+  <Step title="Launch the stack">
+    Click the **Launch stack** link of the role. It opens AWS CloudFormation with the template pre-filled (log in to AWS if needed).
+  </Step>
+
+  <Step title="Fill in the parameters">
+    - **OrganizationId** (required): restricts the role to your Qovery organization. Your organization ID is the UUID after `/organization/` in the Qovery Console URL.
+    - **RoleName**: keep the default name or set your own.
+  </Step>
+
+  <Step title="Create the stack">
+    Check **I acknowledge that AWS CloudFormation might create IAM resources** and click **Create stack**. Wait for the status to change from `CREATE_IN_PROGRESS` to `CREATE_COMPLETE`.
+  </Step>
+
+  <Step title="Get the Role ARN">
+    Open the **Outputs** tab and copy the value of the **RoleARN** key.
+  </Step>
+
+  <Step title="Create the credentials in Qovery">
+    In Qovery, create AWS credentials with the **STS Assume Role** method and paste the Role ARN, as described in [Connect Your AWS Account](#connect-your-aws-account).
+  </Step>
+</Steps>
+
+### Enable Restricted Credentials on a cluster
+
+Once Restricted Credentials is enabled for your organization, the **Use restrictive permissions** option is displayed with the cluster credentials, both when you create a cluster and in the settings of an existing one. You need the two credentials created in [Create the IAM roles](#create-the-iam-roles).
+
+<Tabs>
+  <Tab title="At cluster creation">
+    In the **General information** step of the [cluster creation](#create-the-cluster), under **Provider credentials**:
+
+    1. **Extended credentials**: select the credentials of the extended IAM role.
+    2. Turn on **Use restrictive permissions**.
+    3. **Restricted credentials**: select the credentials of the restricted IAM role.
+    4. **Slack webhook URL** (optional): see [Slack notifications](#slack-notifications).
+
+    <Frame>
+      <img src="/images/aws-credentials/extended-credentials-cluster-create.png" alt="Restricted Credentials fields in the cluster creation form" />
+    </Frame>
+
+    Then continue the cluster creation.
+  </Tab>
+
+  <Tab title="On an existing cluster">
+    1. Open the **Settings** of your cluster and select **Credentials**.
+    2. **Extended credentials**: select the credentials of the extended IAM role.
+    3. Turn on **Use restrictive permissions**.
+    4. **Restricted credentials**: select the credentials of the restricted IAM role.
+    5. **Slack webhook URL** (optional): see [Slack notifications](#slack-notifications).
+    6. Click **Save**. A confirmation modal informs you that changing the restricted credentials automatically redeploys the cluster. Confirm to save the credentials and launch the redeployment. If you cancel, the changes are not saved.
+
+    <Frame>
+      <img src="/images/aws-credentials/extended-credentials-cluster-edit.png" alt="Restricted Credentials fields in the cluster Credentials settings" />
+    </Frame>
+  </Tab>
+</Tabs>
+
+You can also configure Restricted Credentials with the [`qovery_cluster`](https://registry.terraform.io/providers/qovery/qovery/latest/docs/resources/cluster) resource of the Qovery Terraform provider.
+
+#### Turn off Restricted Credentials
+
+Open the **Settings** of your cluster and select **Credentials**. Turn off **Use restrictive permissions**, change the credentials if needed, then click **Save** and confirm the redeployment of the cluster.
+
+### Slack notifications
+
+You can optionally provide a **Slack webhook URL**. Qovery posts a message to this webhook whenever the extended credentials are required, either because a user enabled a feature that needs them or because Qovery requests them for an operation. See the [Slack documentation](https://api.slack.com/messaging/webhooks) to create an incoming webhook.
+
+### Disable the extended credentials IAM role
+
+As soon as Qovery no longer needs the extended credentials (for example, once the cluster is installed), you can disable them directly from your AWS account. To do so, replace the trust relationship of the extended IAM role with a policy that denies `sts:AssumeRole`:
+
+<Steps>
+  <Step title="Open the extended IAM role">
+    In the AWS Console, go to **IAM** > **Roles** and select the IAM role targeted by the extended credentials.
+  </Step>
+
+  <Step title="Edit the trust policy">
+    Open the **Trust relationships** tab, click **Edit trust policy** and replace its content with:
+
+    ```json
+    {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Effect": "Deny",
+          "Principal": { "AWS": "*" },
+          "Action": "sts:AssumeRole"
+        }
+      ]
+    }
+    ```
+
+    Click **Update policy** to save.
+  </Step>
+</Steps>
+
+Qovery can no longer assume the extended IAM role. The role and its permissions policy are kept in your AWS account, so you can re-enable the extended credentials at any time. The restricted credentials keep being used for weekly cluster updates and service deployments.
+
+<Info>
+Changing the trust policy only blocks new role assumptions. Temporary credentials that Qovery obtained before the change remain valid until they expire. To cut access immediately, open the **Revoke sessions** tab of the extended IAM role and click **Revoke active sessions** (see the [AWS documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_revoke-sessions.html)). This interrupts any operation Qovery is running with the extended credentials.
+</Info>
+
+<Warning>
+While the extended credentials are disabled, Qovery cannot perform operations that require them, such as deleting the cluster or enabling a feature that needs additional AWS permissions.
+</Warning>
+
+### Re-enable the extended credentials
+
+When the extended credentials are required, an **Extended credentials required** banner is displayed on the cluster page. If you configured a **Slack webhook URL**, you are also notified on Slack.
+
+<Frame>
+  <img src="/images/aws-credentials/extended-credentials-cluster-banner.png" alt="Extended credentials required banner on the cluster page" />
+</Frame>
+
+To re-enable the extended credentials:
+
+<Steps>
+  <Step title="Open the instructions">
+    Click **View instructions** in the banner. The **Allow Qovery access** modal displays the trust policy to add to the extended IAM role.
+
+    <Frame>
+      <img src="/images/aws-credentials/extended-credentials-cluster-banner-modal.png" alt="Allow Qovery access modal with the trust policy to restore" />
+    </Frame>
+  </Step>
+
+  <Step title="Copy the trust policy">
+    Click the copy button of the modal to copy the trust policy.
+  </Step>
+
+  <Step title="Restore it on the extended IAM role">
+    In the AWS Console, go to **IAM** > **Roles**, select the IAM role targeted by the extended credentials, open the **Trust relationships** tab and click **Edit trust policy**. Replace its content with the trust policy copied from the Qovery Console, then click **Update policy**.
+  </Step>
+</Steps>
+
+Qovery can then assume the extended IAM role again and perform the operation. Once it is done, you can [disable the extended credentials](#disable-the-extended-credentials-iam-role) again.
+
+### Update your Terraform services
+
+Once your cluster uses Restricted Credentials, make the Terraform services that manage resources relying on `iam:*` or `kms:*` assume a dedicated IAM role that has the permissions they need.
+
+<Info>
+Apply these steps only once your cluster uses Restricted Credentials: the dedicated IAM role only trusts the restricted IAM role, so a Terraform service running with other credentials cannot assume it.
+</Info>
+
+<Steps>
+  <Step title="Create a dedicated IAM role">
+    In your AWS account, create an IAM role with the IAM and KMS permissions your Terraform code needs. Set its trust relationship so that the [restricted IAM role](#create-the-iam-roles) can assume it. Replace `<restricted-role-arn>` with the **RoleARN** output of the restricted role stack:
+
+    ```json
+    {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Effect": "Allow",
+          "Principal": { "AWS": "<restricted-role-arn>" },
+          "Action": "sts:AssumeRole"
+        }
+      ]
+    }
+    ```
+  </Step>
+
+  <Step title="Assume the role in your Terraform code">
+    Add an `assume_role` block to the `provider "aws"` block of your Terraform code:
+
+    ```hcl
+    variable "aws_role_arn" {
+      type = string
+    }
+
+    provider "aws" {
+      # ...your existing provider configuration
+
+      assume_role {
+        role_arn = var.aws_role_arn
+      }
+    }
+    ```
+  </Step>
+
+  <Step title="Set the role ARN">
+    Qovery detects the `aws_role_arn` variable declared in `main.tf` or `variables.tf` and exposes it as `tf_var_aws_role_arn` (see [Terraform variables](/configuration/terraform)). Set it to the ARN of the dedicated IAM role, then redeploy the Terraform service.
+  </Step>
+</Steps>
+
+The Terraform service still starts with the restricted credentials, then uses the dedicated IAM role to manage your IAM and KMS resources.

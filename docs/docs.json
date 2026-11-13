@@ -218,7 +218,22 @@
                   "configuration/organization/members-rbac",
                   "configuration/organization/sso",
                   "configuration/organization/api-token",
-                  "configuration/organization/api-policy-token"
+                  "configuration/organization/api-policy-token",
+                  {
+                    "group": "Agent policy examples",
+                    "pages": [
+                      "configuration/organization/policy-examples/overview",
+                      "configuration/organization/policy-examples/investigate-production-incident",
+                      "configuration/organization/policy-examples/fix-in-preview-environment",
+                      "configuration/organization/policy-examples/stop-idle-environments",
+                      "configuration/organization/policy-examples/clean-up-preview-environments",
+                      "configuration/organization/policy-examples/right-size-applications",
+                      "configuration/organization/policy-examples/scale-before-traffic-peak",
+                      "configuration/organization/policy-examples/roll-back-bad-release",
+                      "configuration/organization/policy-examples/test-on-production-clone",
+                      "configuration/organization/policy-examples/patch-security-issue"
+                    ]
+                  }
                 ]
               }
             ]

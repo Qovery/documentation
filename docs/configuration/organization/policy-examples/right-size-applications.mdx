@@ -1,0 +1,176 @@
+---
+title: "Right-size applications"
+sidebarTitle: "Right-size applications"
+description: "An API Policy Token example for an agent that sets CPU and memory from real usage within bounds you choose, and cannot change instances, branch or anything else."
+---
+
+A cost agent that sets the CPU and memory of applications from their real usage over the last 30 days. It can change CPU and memory within bounds you choose, then redeploy. The number of instances and the Git branch must stay as they are.
+
+**Level:** Cost. See all the [agent policy examples](/configuration/organization/policy-examples/overview).
+
+## What the agent does
+
+1. Reads the usage of each listed application over the last 30 days.
+2. Proposes new CPU and memory values, with some headroom.
+3. Applies them, within the bounds of the policy.
+4. Redeploys the application and checks that it is healthy.
+
+## What the policy allows
+
+<CardGroup cols={2}>
+  <Card title="The agent can" icon="check">
+    - Find the organization, project and environment by name
+    - Read the staging environment, except environment variables
+    - Change CPU and memory of the listed applications, within the bounds
+    - Redeploy the listed applications
+  </Card>
+  <Card title="The agent cannot" icon="xmark">
+    - Set CPU or memory outside the bounds
+    - Change the minimum or maximum number of instances
+    - Change the Git branch
+    - Change or redeploy any application that is not listed
+    - Read or change production, delete anything
+  </Card>
+</CardGroup>
+
+Anything the policy does not allow is refused with `401 Unauthorized`.
+
+## The policy
+
+Copy it, then replace each `REPLACE_WITH_...` value with a real ID from your organization.
+
+```rego right-size-applications.rego
+default allow := false
+
+organization_id := "REPLACE_WITH_ORGANIZATION_ID"
+project_id := "REPLACE_WITH_PROJECT_ID"
+staging_environment_id := "REPLACE_WITH_STAGING_ENVIRONMENT_ID"
+
+# The applications the agent may resize. Instances and branch stay as they are today.
+applications := {
+	"REPLACE_WITH_API_APPLICATION_ID": {"min_instances": 1, "max_instances": 3, "branch": "main"},
+	"REPLACE_WITH_WORKER_APPLICATION_ID": {"min_instances": 1, "max_instances": 2, "branch": "main"},
+}
+
+# Bounds for CPU (millicores) and memory (MB).
+cpu_bounds := {"min": 100, "max": 2000}
+memory_bounds := {"min": 128, "max": 4096}
+
+allow if cli_lookup
+allow if read_staging
+allow if resize
+allow if redeploy
+
+# Let the Qovery CLI find the organization, project and environment by name.
+cli_lookup if {
+	input.request.method == "GET"
+	input.request.path in {
+		["api", "organization"],
+		["api", "organization", organization_id],
+		["api", "organization", organization_id, "project"],
+		["api", "project", project_id],
+		["api", "project", project_id, "environment"],
+	}
+}
+
+# Read staging: services, status, deployment history and logs.
+read_staging if {
+	input.request.method in {"GET", "HEAD"}
+	input.qovery_metadata.environment_id == staging_environment_id
+	not "environmentVariable" in input.request.path
+}
+
+# Change CPU and memory within the bounds. Instances and branch must not change.
+resize if {
+	input.request.method == "PUT"
+	input.request.path[1] == "application"
+	count(input.request.path) == 3
+	app := applications[input.request.path[2]]
+	body := input.request.body
+	body.cpu >= cpu_bounds.min
+	body.cpu <= cpu_bounds.max
+	body.memory >= memory_bounds.min
+	body.memory <= memory_bounds.max
+	body.min_running_instances == app.min_instances
+	body.max_running_instances == app.max_instances
+	body.git_repository.branch == app.branch
+}
+
+# Redeploy a resized application so the new values apply.
+redeploy if {
+	input.request.method == "POST"
+	input.request.path[1] == "application"
+	applications[input.request.path[2]]
+	input.request.path[3] == "redeploy"
+	count(input.request.path) == 4
+}
+```
+
+| Value | What to put |
+| --- | --- |
+| `organization_id` | your organization |
+| `project_id` | the project |
+| `staging_environment_id` | the environment the agent works on |
+| `applications` | each application the agent may resize, with its current minimum and maximum instances and Git branch |
+| `cpu_bounds, memory_bounds` | the lowest and highest CPU (millicores) and memory (MB) the agent may set |
+
+You can copy the IDs from the Console URL, or list them with `qovery project list`, `qovery environment list` and `qovery application list`.
+
+## Create the token
+
+<Tabs>
+  <Tab title="With the coding agent">
+    In a session signed in as an organization Owner or Admin, ask:
+
+    ```
+    /qovery-policy-token for a right-sizing agent on staging: read staging, and change only the CPU (100 to 2000 millicores) and memory (128 to 4096 MB) of the api and worker applications, then redeploy them. Instances and branch must not change. Nothing else.
+    ```
+
+    The `qovery-policy-token` skill finds the IDs, writes a policy like the one above, tests it locally and against the API, then creates the token.
+  </Tab>
+  <Tab title="In the Console">
+    1. Open your organization settings, then **Token API**.
+    2. In **Policy API Token**, click **Add new**.
+    3. Enter a name and a description, and paste the policy with your IDs.
+    4. Copy the token (`sk-qov-01-...`). It is shown once.
+  </Tab>
+</Tabs>
+
+## Prompt for the agent
+
+The agent runs with the [Qovery Agent Skills](/getting-started/quickstart/agent-skills) and the [Qovery CLI](/cli/overview), in Claude Code, Codex, Cursor or any agent that supports skills. Give it the token through the environment, never in the prompt:
+
+```bash
+export QOVERY_CLI_ACCESS_TOKEN="sk-qov-01-..."
+```
+
+Then give the agent its task:
+
+```
+/qovery-optimize Right-size the "api" and "worker" applications in the
+"staging" environment of the Qovery project "shop".
+
+Use the real CPU and memory usage of the last 30 days. Keep 30% headroom
+over the peak. Do not change the number of instances.
+Apply the new values, redeploy each application, and check it is healthy.
+Report the old and new values, and the expected saving.
+```
+
+Every call the agent makes appears in the [audit logs](/getting-started/security-and-compliance/audit-logs) as `policy:<token-id>:<token-name>`.
+
+## Good to know
+
+- Editing an application sends its full configuration. The policy checks CPU, memory, the number of instances and the Git branch. Other fields in the same request are not checked: add a rule for any other field you want to freeze.
+- Start on staging. Once you trust the results, copy the policy for production with tighter bounds.
+- The `qovery-optimize` skill uses Qovery observability data when it is enabled on the cluster. See [Agent Skills](/getting-started/quickstart/agent-skills).
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="All agent policy examples" icon="list" href="/configuration/organization/policy-examples/overview">
+    Every use case, from read only to production changes.
+  </Card>
+  <Card title="API Policy Token (Preview)" icon="scroll" href="/configuration/organization/api-policy-token">
+    How policies are evaluated, the input they see, and the limits.
+  </Card>
+</CardGroup>

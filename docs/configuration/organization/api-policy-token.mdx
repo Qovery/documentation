@@ -243,6 +243,10 @@ allow_deployment if {
 
 ## Policy recipes
 
+For complete use cases, with the full policy, the prompt for the agent, and what the agent can and cannot do, see the [agent policy examples](/configuration/organization/policy-examples/overview): incident investigation, preview environments, stopping idle environments, right-sizing, scaling, rollbacks, tests on a copy of production and security patches.
+
+The recipes below are smaller building blocks.
+
 <AccordionGroup>
   <Accordion title="Read-only access to one environment">
     Every `GET` and `HEAD` on the environment, its services and their sub-resources. Nothing else.
@@ -462,6 +466,9 @@ A denied request tells you only that it was denied, so it is worth evaluating a 
 ## Related
 
 <CardGroup cols={2}>
+  <Card title="Agent policy examples" icon="robot" href="/configuration/organization/policy-examples/overview">
+    Ready-to-use policies for autonomous agents, one use case per page.
+  </Card>
   <Card title="API Token" icon="key" href="/configuration/organization/api-token">
     Role-based tokens for CI/CD, Terraform and scripts.
   </Card>

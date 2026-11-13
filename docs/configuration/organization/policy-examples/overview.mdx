@@ -1,0 +1,104 @@
+---
+title: "Agent policy examples"
+sidebarTitle: "Overview"
+description: "Ready-to-use API Policy Tokens for autonomous infrastructure agents: each example gives the use case, the full policy, the prompt, and what the agent can and cannot do."
+---
+
+These examples show AI agents doing real DevOps work on their own, each with an [API Policy Token](/configuration/organization/api-policy-token) (Preview) that allows exactly that job and nothing else. Qovery checks the policy on every API request the agent makes, through the CLI or the API. So the agent does not need a human to approve each action, and anything outside the job is refused.
+
+Each page gives you:
+
+- the use case, and what the agent does step by step,
+- what the policy allows and what it blocks,
+- the full policy, ready to copy,
+- a prompt to create the token with the `qovery-policy-token` skill,
+- a prompt to give the agent its task.
+
+## Examples
+
+Start at the top. The first jobs only read or touch non-production environments. The last ones change production, in a narrow way.
+
+| Example | Level | What the agent does |
+| --- | --- | --- |
+| [Investigate a production incident](/configuration/organization/policy-examples/investigate-production-incident) | Read only | Reads production status, deployment history and logs, and reports the cause. Changes nothing. |
+| [Fix a bug and verify it in a preview environment](/configuration/organization/policy-examples/fix-in-preview-environment) | Previews | Reads production, then deploys and checks a fix in the pull request's preview environment. |
+| [Stop idle environments](/configuration/organization/policy-examples/stop-idle-environments) | Hygiene | Stops listed dev and QA environments when idle, and starts them again. |
+| [Clean up preview environments](/configuration/organization/policy-examples/clean-up-preview-environments) | Hygiene | Deletes previews whose pull request is merged, closed or idle. Never production or staging. |
+| [Right-size applications](/configuration/organization/policy-examples/right-size-applications) | Cost | Sets CPU and memory from real usage, within bounds, then redeploys. |
+| [Scale before a traffic peak](/configuration/organization/policy-examples/scale-before-traffic-peak) | Reliability | Adds instances before a known peak and removes them after, between a floor and a ceiling. |
+| [Roll back a bad release](/configuration/organization/policy-examples/roll-back-bad-release) | Reliability | Deploys the last healthy version when a release goes wrong. |
+| [Test on a copy of production](/configuration/organization/policy-examples/test-on-production-clone) | Change | Clones production into a sandbox, runs tests on the copy, and deletes it. |
+| [Patch a security issue](/configuration/organization/policy-examples/patch-security-issue) | Change | Tests a security fix on a copy of production, then deploys the patched commit. |
+
+## How to use an example
+
+<Steps>
+  <Step title="Copy the policy and replace the IDs">
+    Every value that starts with `REPLACE_WITH_` is an ID from your organization: organization, project, environment, application or cluster. Copy them from the Console URL or list them with the [Qovery CLI](/cli/overview).
+  </Step>
+  <Step title="Create the token">
+    In the Console, open your organization settings, then **Token API**, then **Add new** in **Policy API Token**, and paste the policy. Or ask a coding agent with the `qovery-policy-token` skill, using the prompt on the page. Only an organization Owner or Admin can create a policy token.
+  </Step>
+  <Step title="Give the token to the agent">
+    Set it in the agent's environment, never in the prompt:
+
+    ```bash
+    export QOVERY_CLI_ACCESS_TOKEN="sk-qov-01-..."
+    ```
+
+    The agent uses the [Qovery Agent Skills](/getting-started/quickstart/agent-skills) and the Qovery CLI.
+  </Step>
+  <Step title="Give the agent its task">
+    Use the prompt on the page, adapted to your project and environment names.
+  </Step>
+</Steps>
+
+## What every policy has in common
+
+- **Deny by default.** Each policy starts with `default allow := false`. A request is allowed only if one rule says so.
+- **A rule for CLI lookups.** The Qovery CLI turns names into IDs by listing the organization, its projects and the project's environments (and its clusters, for the examples that clone). The `cli_lookup` rule allows those reads and nothing more.
+- **No environment variable values.** The read rules leave out `environmentVariable` endpoints, because values can be sensitive. Remove that line if your agent needs them.
+- **One scope per job.** Each rule is tied to an environment, a project, or a list of services, so the agent cannot reach anything else.
+
+## Test a policy before you create the token
+
+A denied request returns `401` with no detail, and a policy cannot be edited after creation. Test it first with [OPA](https://www.openpolicyagent.org/docs#running-opa). Add a temporary `package` line, then evaluate it against a request:
+
+```bash
+(echo "package test"; cat policy.rego) > /tmp/policy.rego
+
+cat > /tmp/input.json <<'EOF'
+{
+  "request": { "method": "DELETE", "path": ["api", "environment", "REPLACE_WITH_PRODUCTION_ENVIRONMENT_ID"], "body": null },
+  "qovery_metadata": {
+    "organization_id": "REPLACE_WITH_ORGANIZATION_ID",
+    "service_id": null, "service_type": null,
+    "environment_id": "REPLACE_WITH_PRODUCTION_ENVIRONMENT_ID",
+    "project_id": "REPLACE_WITH_PROJECT_ID",
+    "cluster_id": null
+  },
+  "token": { "id": "test", "name": "test" }
+}
+EOF
+
+opa eval -d /tmp/policy.rego -i /tmp/input.json 'data.test.allow'
+```
+
+The result must be `false` for every action the agent must not do. Do not submit the `package` line: Qovery adds its own. The [Rego Playground](https://play.openpolicyagent.org/) works too. The `qovery-policy-token` skill runs these tests for you, then checks the token against the real API.
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="API Policy Token (Preview)" icon="scroll" href="/configuration/organization/api-policy-token">
+    How policies are evaluated, the input document, recipes and limits.
+  </Card>
+  <Card title="Let a coding agent deploy" icon="robot" href="/getting-started/guides/use-cases/coding-agent-deploy-access">
+    Set up a coding agent with a scoped Qovery token.
+  </Card>
+  <Card title="Securing AI agent access" icon="shield-halved" href="/copilot/securing-ai-access">
+    Read-only MCP, CLI allowlists and policy tokens compared.
+  </Card>
+  <Card title="Agent Skills" icon="wand-magic-sparkles" href="/getting-started/quickstart/agent-skills">
+    The skills the agent uses, including qovery-policy-token.
+  </Card>
+</CardGroup>

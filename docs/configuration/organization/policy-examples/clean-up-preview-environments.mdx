@@ -1,0 +1,151 @@
+---
+title: "Clean up preview environments"
+sidebarTitle: "Clean up previews"
+description: "An API Policy Token example for an agent that deletes preview environments after the pull request is merged or idle, and can never delete production or staging."
+---
+
+A cleanup agent that deletes preview environments once their pull request is merged or closed, or after 7 days without activity. It can delete whole environments of one project, except the long-lived ones you protect.
+
+**Level:** Hygiene. See all the [agent policy examples](/configuration/organization/policy-examples/overview).
+
+## What the agent does
+
+1. Lists the environments of the project and their last deployment.
+2. Checks the pull request behind each preview in your Git provider.
+3. Deletes the previews whose pull request is merged or closed, or that are idle for 7 days.
+4. Reports what it deleted.
+
+## What the policy allows
+
+<CardGroup cols={2}>
+  <Card title="The agent can" icon="check">
+    - Find the organization, project and environment by name
+    - Read the environments of the project, except environment variables
+    - Delete a whole environment of the project, unless it is protected
+  </Card>
+  <Card title="The agent cannot" icon="xmark">
+    - Delete production, staging or any protected environment
+    - Delete a single service, a database or the project
+    - Delete anything in another project
+    - Deploy, stop or change anything
+  </Card>
+</CardGroup>
+
+Anything the policy does not allow is refused with `401 Unauthorized`.
+
+## The policy
+
+Copy it, then replace each `REPLACE_WITH_...` value with a real ID from your organization.
+
+```rego clean-up-preview-environments.rego
+default allow := false
+
+organization_id := "REPLACE_WITH_ORGANIZATION_ID"
+project_id := "REPLACE_WITH_PROJECT_ID"
+
+# Long-lived environments in the project that the agent must never delete.
+protected_environment_ids := {
+	"REPLACE_WITH_PRODUCTION_ENVIRONMENT_ID",
+	"REPLACE_WITH_STAGING_ENVIRONMENT_ID",
+}
+
+allow if cli_lookup
+allow if read_project
+allow if delete_preview
+
+# Let the Qovery CLI find the organization, project and environment by name.
+cli_lookup if {
+	input.request.method == "GET"
+	input.request.path in {
+		["api", "organization"],
+		["api", "organization", organization_id],
+		["api", "organization", organization_id, "project"],
+		["api", "project", project_id],
+		["api", "project", project_id, "environment"],
+	}
+}
+
+# Read the environments of the project, to see which previews are idle.
+read_project if {
+	input.request.method in {"GET", "HEAD"}
+	input.qovery_metadata.project_id == project_id
+	not "environmentVariable" in input.request.path
+}
+
+# Delete a whole environment of the project, unless it is protected.
+delete_preview if {
+	input.request.method == "DELETE"
+	input.request.path[1] == "environment"
+	count(input.request.path) == 3
+	input.qovery_metadata.project_id == project_id
+	not input.qovery_metadata.environment_id in protected_environment_ids
+}
+```
+
+| Value | What to put |
+| --- | --- |
+| `organization_id` | your organization |
+| `project_id` | the project where previews are created |
+| `protected_environment_ids` | every long-lived environment of the project the agent must never delete |
+
+You can copy the IDs from the Console URL, or list them with `qovery project list`, `qovery environment list` and `qovery application list`.
+
+## Create the token
+
+<Tabs>
+  <Tab title="With the coding agent">
+    In a session signed in as an organization Owner or Admin, ask:
+
+    ```
+    /qovery-policy-token for a cleanup agent: read the environments of the project, and delete whole environments of the project except production and staging. No other writes.
+    ```
+
+    The `qovery-policy-token` skill finds the IDs, writes a policy like the one above, tests it locally and against the API, then creates the token.
+  </Tab>
+  <Tab title="In the Console">
+    1. Open your organization settings, then **Token API**.
+    2. In **Policy API Token**, click **Add new**.
+    3. Enter a name and a description, and paste the policy with your IDs.
+    4. Copy the token (`sk-qov-01-...`). It is shown once.
+  </Tab>
+</Tabs>
+
+## Prompt for the agent
+
+The agent runs with the [Qovery Agent Skills](/getting-started/quickstart/agent-skills) and the [Qovery CLI](/cli/overview), in Claude Code, Codex, Cursor or any agent that supports skills. Give it the token through the environment, never in the prompt:
+
+```bash
+export QOVERY_CLI_ACCESS_TOKEN="sk-qov-01-..."
+```
+
+Then give the agent its task:
+
+```
+Clean up preview environments in the Qovery project "shop".
+
+For each environment that is not production or staging:
+- find the pull request it was created for,
+- delete the environment if the pull request is merged or closed,
+  or if the environment had no deployment in the last 7 days.
+
+Do not delete anything else. Give me the list of deleted environments
+with the reason for each.
+```
+
+Every call the agent makes appears in the [audit logs](/getting-started/security-and-compliance/audit-logs) as `policy:<token-id>:<token-name>`.
+
+## Good to know
+
+- The policy cannot see whether an environment is a preview. It allows deleting any environment of the project except the ones in `protected_environment_ids`. Add every new long-lived environment to that list before you create the token.
+- Qovery can also delete a preview automatically when its pull request is closed. See [preview environments](/getting-started/guides/use-cases/preview-environments). The agent is useful for the previews that stay open but idle.
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="All agent policy examples" icon="list" href="/configuration/organization/policy-examples/overview">
+    Every use case, from read only to production changes.
+  </Card>
+  <Card title="API Policy Token (Preview)" icon="scroll" href="/configuration/organization/api-policy-token">
+    How policies are evaluated, the input they see, and the limits.
+  </Card>
+</CardGroup>

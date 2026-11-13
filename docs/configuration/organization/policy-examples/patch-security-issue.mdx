@@ -1,0 +1,186 @@
+---
+title: "Patch a security issue"
+sidebarTitle: "Patch a security issue"
+description: "An API Policy Token example for an agent that tests a security fix on a copy of production, then deploys the patched commit, and cannot change production configuration or secrets."
+---
+
+A security agent that fixes a vulnerable dependency or base image, tests the fix on a copy of production, and then deploys the patched commit to production. In production it can only deploy a named commit of the listed applications.
+
+**Level:** Change. See all the [agent policy examples](/configuration/organization/policy-examples/overview).
+
+## What the agent does
+
+1. Fixes the vulnerability in the code or the Dockerfile, on a branch (in your Git provider).
+2. Clones production into the sandbox project and deploys the patched branch on the copy.
+3. Runs the tests on the copy, then deletes it.
+4. Deploys the patched commit to production and checks the service is healthy.
+
+## What the policy allows
+
+<CardGroup cols={2}>
+  <Card title="The agent can" icon="check">
+    - Find the organization, projects, environments and clusters by name
+    - Read the production environment, except environment variables
+    - Clone production into the sandbox project, on the non-production cluster
+    - Deploy, change, test and delete anything inside the sandbox project
+    - Deploy a named commit of the listed production applications
+  </Card>
+  <Card title="The agent cannot" icon="xmark">
+    - Change production configuration or environment variables
+    - Redeploy, stop or delete anything in production
+    - Deploy an application that is not listed
+    - Clone or move anything from the sandbox into production
+  </Card>
+</CardGroup>
+
+Anything the policy does not allow is refused with `401 Unauthorized`.
+
+## The policy
+
+Copy it, then replace each `REPLACE_WITH_...` value with a real ID from your organization.
+
+```rego patch-security-issue.rego
+default allow := false
+
+organization_id := "REPLACE_WITH_ORGANIZATION_ID"
+project_id := "REPLACE_WITH_PROJECT_ID"
+production_environment_id := "REPLACE_WITH_PRODUCTION_ENVIRONMENT_ID"
+
+# A project and a cluster dedicated to test copies.
+sandbox_project_id := "REPLACE_WITH_SANDBOX_PROJECT_ID"
+sandbox_cluster_id := "REPLACE_WITH_NON_PRODUCTION_CLUSTER_ID"
+
+# The production applications the agent may patch.
+application_ids := {"REPLACE_WITH_API_APPLICATION_ID", "REPLACE_WITH_WEB_APPLICATION_ID"}
+
+allow if cli_lookup
+allow if read_production
+allow if clone_production
+allow if manage_sandbox
+allow if deploy_patched_version
+
+# Let the Qovery CLI find the organization, projects, environments and clusters by name.
+cli_lookup if {
+	input.request.method == "GET"
+	input.request.path in {
+		["api", "organization"],
+		["api", "organization", organization_id],
+		["api", "organization", organization_id, "project"],
+		["api", "organization", organization_id, "cluster"],
+		["api", "project", project_id],
+		["api", "project", project_id, "environment"],
+		["api", "project", sandbox_project_id],
+		["api", "project", sandbox_project_id, "environment"],
+	}
+}
+
+# Read production configuration and status, except environment variables.
+read_production if {
+	input.request.method in {"GET", "HEAD"}
+	input.qovery_metadata.environment_id == production_environment_id
+	not "environmentVariable" in input.request.path
+}
+
+# Clone production, only into the sandbox project, on the non-production cluster.
+clone_production if {
+	input.request.method == "POST"
+	input.request.path == ["api", "environment", production_environment_id, "clone"]
+	input.request.body.project_id == sandbox_project_id
+	input.request.body.cluster_id == sandbox_cluster_id
+	input.request.body.mode != "PRODUCTION"
+}
+
+# Do anything inside the sandbox project: deploy the patched copy, test it, delete it.
+# Cloning or moving out of the sandbox is excluded, so nothing can land in production.
+manage_sandbox if {
+	input.qovery_metadata.project_id == sandbox_project_id
+	input.qovery_metadata.environment_id != null
+	not "clone" in input.request.path
+	not "moveToProject" in input.request.path
+}
+
+# Deploy the patched commit of a production application. Nothing else in production.
+deploy_patched_version if {
+	input.request.method == "POST"
+	input.request.path[1] == "application"
+	input.request.path[2] in application_ids
+	input.request.path[3] == "deploy"
+	count(input.request.path) == 4
+	count(input.request.body.git_commit_id) > 0
+}
+```
+
+| Value | What to put |
+| --- | --- |
+| `organization_id` | your organization |
+| `project_id` | the project that holds production |
+| `production_environment_id` | the production environment |
+| `sandbox_project_id` | a project that holds only test copies |
+| `sandbox_cluster_id` | a cluster that does not run production |
+| `application_ids` | the production applications the agent may patch |
+
+You can copy the IDs from the Console URL, or list them with `qovery project list`, `qovery environment list` and `qovery application list`.
+
+## Create the token
+
+<Tabs>
+  <Tab title="With the coding agent">
+    In a session signed in as an organization Owner or Admin, ask:
+
+    ```
+    /qovery-policy-token for a security patch agent: read production except environment variables, clone production only into the sandbox project on the non-production cluster, do anything inside the sandbox project, and deploy a named commit of the api and web applications in production. No other change to production.
+    ```
+
+    The `qovery-policy-token` skill finds the IDs, writes a policy like the one above, tests it locally and against the API, then creates the token.
+  </Tab>
+  <Tab title="In the Console">
+    1. Open your organization settings, then **Token API**.
+    2. In **Policy API Token**, click **Add new**.
+    3. Enter a name and a description, and paste the policy with your IDs.
+    4. Copy the token (`sk-qov-01-...`). It is shown once.
+  </Tab>
+</Tabs>
+
+## Prompt for the agent
+
+The agent runs with the [Qovery Agent Skills](/getting-started/quickstart/agent-skills) and the [Qovery CLI](/cli/overview), in Claude Code, Codex, Cursor or any agent that supports skills. Give it the token through the environment, never in the prompt:
+
+```bash
+export QOVERY_CLI_ACCESS_TOKEN="sk-qov-01-..."
+```
+
+Then give the agent its task:
+
+```
+The base image of the "api" application has a critical vulnerability
+(CVE-2026-1234 in openssl). Fix it and ship it.
+
+1. Update the Dockerfile to a patched base image on a new branch, and push it.
+2. Clone the "production" environment of the Qovery project "shop" into the
+   project "sandbox", on the cluster "non-prod". Point the copy's "api"
+   application to your branch, deploy it, and run `npm test` and `npm run test:e2e`.
+3. If the tests pass, delete the copy, merge the branch, and deploy the merged
+   commit to the "api" application in production.
+4. Check that production is healthy and report the commit you deployed.
+
+Do not change any production setting or environment variable.
+```
+
+Every call the agent makes appears in the [audit logs](/getting-started/security-and-compliance/audit-logs) as `policy:<token-id>:<token-name>`.
+
+## Good to know
+
+- The policy allows deploying any named commit of the listed applications. Protect your main branch with code review if a human must approve the code itself.
+- A clone copies environment variables. Check that the copy does not point to a production database before the first run.
+- To release to a small part of production first, you need a canary setup in your application or your ingress. The policy does not change how a deploy is rolled out.
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="All agent policy examples" icon="list" href="/configuration/organization/policy-examples/overview">
+    Every use case, from read only to production changes.
+  </Card>
+  <Card title="API Policy Token (Preview)" icon="scroll" href="/configuration/organization/api-policy-token">
+    How policies are evaluated, the input they see, and the limits.
+  </Card>
+</CardGroup>

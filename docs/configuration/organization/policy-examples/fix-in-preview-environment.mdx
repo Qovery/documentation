@@ -1,0 +1,153 @@
+---
+title: "Fix a bug and verify it in a preview environment"
+sidebarTitle: "Verify a fix in a preview"
+description: "An API Policy Token example for an agent that reads production to find a bug, then deploys and checks its fix in preview environments, and cannot touch production or staging."
+---
+
+A triage agent that reads production to find a bug, pushes a fix on a branch, and checks it in the preview environment Qovery creates for the pull request. It can deploy, redeploy and stop previews. Production and staging are read only.
+
+**Level:** Previews. See all the [agent policy examples](/configuration/organization/policy-examples/overview).
+
+## What the agent does
+
+1. Reads production status, deployment history and logs to find the bug.
+2. Pushes a fix on a branch and opens a pull request (in your Git provider, outside Qovery).
+3. Deploys or redeploys the preview environment of that pull request and checks that it works.
+4. Stops the preview when the check is done.
+
+## What the policy allows
+
+<CardGroup cols={2}>
+  <Card title="The agent can" icon="check">
+    - Find the organization, project and environment by name
+    - Read every environment of the project, production included, except environment variables
+    - Deploy, redeploy, restart or stop a preview environment, or one of its services
+  </Card>
+  <Card title="The agent cannot" icon="xmark">
+    - Deploy, restart or stop production or staging
+    - Change configuration or environment variables, even in a preview
+    - Delete anything, or clone an environment
+    - Act on another project
+  </Card>
+</CardGroup>
+
+Anything the policy does not allow is refused with `401 Unauthorized`.
+
+## The policy
+
+Copy it, then replace each `REPLACE_WITH_...` value with a real ID from your organization.
+
+```rego fix-in-preview-environment.rego
+default allow := false
+
+organization_id := "REPLACE_WITH_ORGANIZATION_ID"
+project_id := "REPLACE_WITH_PROJECT_ID"
+production_environment_id := "REPLACE_WITH_PRODUCTION_ENVIRONMENT_ID"
+
+# Long-lived environments in the project that the agent must never change.
+protected_environment_ids := {
+	production_environment_id,
+	"REPLACE_WITH_STAGING_ENVIRONMENT_ID",
+}
+
+allow if cli_lookup
+allow if read_project
+allow if manage_preview
+
+# Let the Qovery CLI find the organization, project and environment by name.
+cli_lookup if {
+	input.request.method == "GET"
+	input.request.path in {
+		["api", "organization"],
+		["api", "organization", organization_id],
+		["api", "organization", organization_id, "project"],
+		["api", "project", project_id],
+		["api", "project", project_id, "environment"],
+	}
+}
+
+# Read every environment of the project, production included, except environment variables.
+read_project if {
+	input.request.method in {"GET", "HEAD"}
+	input.qovery_metadata.project_id == project_id
+	not "environmentVariable" in input.request.path
+}
+
+# Deploy, redeploy, restart or stop a preview environment, or one of its services.
+manage_preview if {
+	input.request.method == "POST"
+	input.qovery_metadata.project_id == project_id
+	not input.qovery_metadata.environment_id in protected_environment_ids
+	input.request.path[count(input.request.path) - 1] in {"deploy", "redeploy", "restart", "restart-service", "stop"}
+}
+```
+
+| Value | What to put |
+| --- | --- |
+| `organization_id` | your organization |
+| `project_id` | the project where previews are created |
+| `production_environment_id` | the production environment |
+| `protected_environment_ids` | every long-lived environment of the project: production, staging and any other one the agent must not touch |
+
+You can copy the IDs from the Console URL, or list them with `qovery project list`, `qovery environment list` and `qovery application list`.
+
+## Create the token
+
+<Tabs>
+  <Tab title="With the coding agent">
+    In a session signed in as an organization Owner or Admin, ask:
+
+    ```
+    /qovery-policy-token for a triage agent: read the whole project except environment variables, and deploy, redeploy, restart or stop any environment of the project except production and staging. No deletes, no config changes.
+    ```
+
+    The `qovery-policy-token` skill finds the IDs, writes a policy like the one above, tests it locally and against the API, then creates the token.
+  </Tab>
+  <Tab title="In the Console">
+    1. Open your organization settings, then **Token API**.
+    2. In **Policy API Token**, click **Add new**.
+    3. Enter a name and a description, and paste the policy with your IDs.
+    4. Copy the token (`sk-qov-01-...`). It is shown once.
+  </Tab>
+</Tabs>
+
+## Prompt for the agent
+
+The agent runs with the [Qovery Agent Skills](/getting-started/quickstart/agent-skills) and the [Qovery CLI](/cli/overview), in Claude Code, Codex, Cursor or any agent that supports skills. Give it the token through the environment, never in the prompt:
+
+```bash
+export QOVERY_CLI_ACCESS_TOKEN="sk-qov-01-..."
+```
+
+Then give the agent its task:
+
+```
+Users report that the discount code field rejects valid codes.
+The Qovery project is "shop".
+
+1. Read the production logs and deployment history to find the error.
+2. Fix the bug on a new branch and open a pull request.
+3. Wait for the preview environment of the pull request, deploy it if needed,
+   and check that a valid discount code is accepted.
+4. Stop the preview environment when you are done, and post the result on the pull request.
+
+You cannot deploy production. A human merges the pull request.
+```
+
+Every call the agent makes appears in the [audit logs](/getting-started/security-and-compliance/audit-logs) as `policy:<token-id>:<token-name>`.
+
+## Good to know
+
+- The policy cannot see whether an environment is a preview. It allows every environment of the project except the ones you list in `protected_environment_ids`. Add any new long-lived environment to that list.
+- To also let the agent delete previews, use the [preview cleanup](/configuration/organization/policy-examples/clean-up-preview-environments) policy, or add its delete rule to this one.
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="All agent policy examples" icon="list" href="/configuration/organization/policy-examples/overview">
+    Every use case, from read only to production changes.
+  </Card>
+  <Card title="API Policy Token (Preview)" icon="scroll" href="/configuration/organization/api-policy-token">
+    How policies are evaluated, the input they see, and the limits.
+  </Card>
+</CardGroup>

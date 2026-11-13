@@ -1,0 +1,170 @@
+---
+title: "Test on a copy of production"
+sidebarTitle: "Test on a copy of production"
+description: "An API Policy Token example for an agent that clones production into a sandbox project, runs tests on the copy and deletes it, and cannot change production."
+---
+
+A test agent that clones production into a sandbox project, runs end-to-end tests on the copy, and deletes it. It can do anything inside the sandbox project. Production is read only, and the copy can only land in the sandbox, on the non-production cluster.
+
+**Level:** Change. See all the [agent policy examples](/configuration/organization/policy-examples/overview).
+
+## What the agent does
+
+1. Clones the production environment into the sandbox project, on the non-production cluster.
+2. Deploys the copy and runs the end-to-end tests against it.
+3. Reports the results.
+4. Deletes the copy.
+
+## What the policy allows
+
+<CardGroup cols={2}>
+  <Card title="The agent can" icon="check">
+    - Find the organization, projects, environments and clusters by name
+    - Read the production environment, except environment variables
+    - Clone production into the sandbox project, on the non-production cluster, as a non-production environment
+    - Deploy, change, test and delete anything inside the sandbox project
+  </Card>
+  <Card title="The agent cannot" icon="xmark">
+    - Deploy, change or delete anything in production
+    - Clone production into another project, onto another cluster, or as a production environment
+    - Clone or move anything from the sandbox into production
+    - Read or change production environment variables
+    - Delete the sandbox project itself
+  </Card>
+</CardGroup>
+
+Anything the policy does not allow is refused with `401 Unauthorized`.
+
+## The policy
+
+Copy it, then replace each `REPLACE_WITH_...` value with a real ID from your organization.
+
+```rego test-on-production-clone.rego
+default allow := false
+
+organization_id := "REPLACE_WITH_ORGANIZATION_ID"
+project_id := "REPLACE_WITH_PROJECT_ID"
+production_environment_id := "REPLACE_WITH_PRODUCTION_ENVIRONMENT_ID"
+
+# A project and a cluster dedicated to test copies.
+sandbox_project_id := "REPLACE_WITH_SANDBOX_PROJECT_ID"
+sandbox_cluster_id := "REPLACE_WITH_NON_PRODUCTION_CLUSTER_ID"
+
+allow if cli_lookup
+allow if read_production
+allow if clone_production
+allow if manage_sandbox
+
+# Let the Qovery CLI find the organization, projects, environments and clusters by name.
+cli_lookup if {
+	input.request.method == "GET"
+	input.request.path in {
+		["api", "organization"],
+		["api", "organization", organization_id],
+		["api", "organization", organization_id, "project"],
+		["api", "organization", organization_id, "cluster"],
+		["api", "project", project_id],
+		["api", "project", project_id, "environment"],
+		["api", "project", sandbox_project_id],
+		["api", "project", sandbox_project_id, "environment"],
+	}
+}
+
+# Read production configuration and status, except environment variables.
+read_production if {
+	input.request.method in {"GET", "HEAD"}
+	input.qovery_metadata.environment_id == production_environment_id
+	not "environmentVariable" in input.request.path
+}
+
+# Clone production, only into the sandbox project, on the non-production cluster,
+# and never as a production environment.
+clone_production if {
+	input.request.method == "POST"
+	input.request.path == ["api", "environment", production_environment_id, "clone"]
+	input.request.body.project_id == sandbox_project_id
+	input.request.body.cluster_id == sandbox_cluster_id
+	input.request.body.mode != "PRODUCTION"
+}
+
+# Do anything inside the sandbox project: deploy the copy, run tests, change it, delete it.
+# Cloning or moving out of the sandbox is excluded, so nothing can land in production.
+manage_sandbox if {
+	input.qovery_metadata.project_id == sandbox_project_id
+	input.qovery_metadata.environment_id != null
+	not "clone" in input.request.path
+	not "moveToProject" in input.request.path
+}
+```
+
+| Value | What to put |
+| --- | --- |
+| `organization_id` | your organization |
+| `project_id` | the project that holds production |
+| `production_environment_id` | the production environment |
+| `sandbox_project_id` | a project that holds only test copies |
+| `sandbox_cluster_id` | a cluster that does not run production |
+
+You can copy the IDs from the Console URL, or list them with `qovery project list`, `qovery environment list` and `qovery application list`.
+
+## Create the token
+
+<Tabs>
+  <Tab title="With the coding agent">
+    In a session signed in as an organization Owner or Admin, ask:
+
+    ```
+    /qovery-policy-token for a test agent: read production except environment variables, clone production only into the sandbox project on the non-production cluster, and do anything inside the sandbox project. No change to production.
+    ```
+
+    The `qovery-policy-token` skill finds the IDs, writes a policy like the one above, tests it locally and against the API, then creates the token.
+  </Tab>
+  <Tab title="In the Console">
+    1. Open your organization settings, then **Token API**.
+    2. In **Policy API Token**, click **Add new**.
+    3. Enter a name and a description, and paste the policy with your IDs.
+    4. Copy the token (`sk-qov-01-...`). It is shown once.
+  </Tab>
+</Tabs>
+
+## Prompt for the agent
+
+The agent runs with the [Qovery Agent Skills](/getting-started/quickstart/agent-skills) and the [Qovery CLI](/cli/overview), in Claude Code, Codex, Cursor or any agent that supports skills. Give it the token through the environment, never in the prompt:
+
+```bash
+export QOVERY_CLI_ACCESS_TOKEN="sk-qov-01-..."
+```
+
+Then give the agent its task:
+
+```
+Run the end-to-end tests on a copy of production.
+
+1. Clone the "production" environment of the Qovery project "shop" into the
+   project "sandbox", on the cluster "non-prod", as a DEVELOPMENT environment.
+   Name it "e2e-<today's date>".
+2. Deploy the copy and wait until every service is running.
+3. Run `npm run test:e2e` with BASE_URL set to the copy's URL.
+4. Report the results, then delete the copy.
+
+Do not change anything in production.
+```
+
+Every call the agent makes appears in the [audit logs](/getting-started/security-and-compliance/audit-logs) as `policy:<token-id>:<token-name>`.
+
+## Good to know
+
+- A clone copies the configuration, not the data: Qovery-managed databases in the copy start empty. Seed them in the test if you need data.
+- A clone copies environment variables. Before the first run, check that no variable of the copy points to a production database or a production external service.
+- The same policy works for other jobs on a copy, for example testing a database version upgrade before a human runs it in production.
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="All agent policy examples" icon="list" href="/configuration/organization/policy-examples/overview">
+    Every use case, from read only to production changes.
+  </Card>
+  <Card title="API Policy Token (Preview)" icon="scroll" href="/configuration/organization/api-policy-token">
+    How policies are evaluated, the input they see, and the limits.
+  </Card>
+</CardGroup>

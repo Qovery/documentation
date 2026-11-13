@@ -1,0 +1,165 @@
+---
+title: "Roll back a bad release"
+sidebarTitle: "Roll back a bad release"
+description: "An API Policy Token example for an agent that reads errors after a deploy and rolls production services back to the last healthy version, and cannot change configuration or delete anything."
+---
+
+A reliability agent that watches production after a release. If error rates go up, it finds the last healthy version of the service and deploys it again. It can deploy a given version of the listed services, and nothing else.
+
+**Level:** Reliability. See all the [agent policy examples](/configuration/organization/policy-examples/overview).
+
+## What the agent does
+
+1. Reads the deployment history and the logs after a release.
+2. Decides whether the new version is the cause of the errors.
+3. Finds the last healthy commit or image tag in the deployment history.
+4. Deploys that version, checks the service is healthy, and reports.
+
+## What the policy allows
+
+<CardGroup cols={2}>
+  <Card title="The agent can" icon="check">
+    - Find the organization, project and environment by name
+    - Read the production environment, except environment variables
+    - Deploy a given commit of the listed applications
+    - Deploy a given image tag of the listed containers
+  </Card>
+  <Card title="The agent cannot" icon="xmark">
+    - Deploy without naming the version
+    - Deploy, stop or restart anything else
+    - Change configuration or environment variables
+    - Delete anything
+  </Card>
+</CardGroup>
+
+Anything the policy does not allow is refused with `401 Unauthorized`.
+
+## The policy
+
+Copy it, then replace each `REPLACE_WITH_...` value with a real ID from your organization.
+
+```rego roll-back-bad-release.rego
+default allow := false
+
+organization_id := "REPLACE_WITH_ORGANIZATION_ID"
+project_id := "REPLACE_WITH_PROJECT_ID"
+production_environment_id := "REPLACE_WITH_PRODUCTION_ENVIRONMENT_ID"
+
+# The production services the agent may roll back.
+application_ids := {"REPLACE_WITH_API_APPLICATION_ID", "REPLACE_WITH_WEB_APPLICATION_ID"}
+container_ids := {"REPLACE_WITH_WORKER_CONTAINER_ID"}
+
+allow if cli_lookup
+allow if read_production
+allow if deploy_application_version
+allow if deploy_container_version
+
+# Let the Qovery CLI find the organization, project and environment by name.
+cli_lookup if {
+	input.request.method == "GET"
+	input.request.path in {
+		["api", "organization"],
+		["api", "organization", organization_id],
+		["api", "organization", organization_id, "project"],
+		["api", "project", project_id],
+		["api", "project", project_id, "environment"],
+	}
+}
+
+# Read production: services, status, deployment history and logs.
+read_production if {
+	input.request.method in {"GET", "HEAD"}
+	input.qovery_metadata.environment_id == production_environment_id
+	not "environmentVariable" in input.request.path
+}
+
+# Deploy a given commit of an application. The commit must be named in the request.
+deploy_application_version if {
+	input.request.method == "POST"
+	input.request.path[1] == "application"
+	input.request.path[2] in application_ids
+	input.request.path[3] == "deploy"
+	count(input.request.path) == 4
+	count(input.request.body.git_commit_id) > 0
+}
+
+# Deploy a given image tag of a container. The tag must be named in the request.
+deploy_container_version if {
+	input.request.method == "POST"
+	input.request.path[1] == "container"
+	input.request.path[2] in container_ids
+	input.request.path[3] == "deploy"
+	count(input.request.path) == 4
+	count(input.request.body.image_tag) > 0
+}
+```
+
+| Value | What to put |
+| --- | --- |
+| `organization_id` | your organization |
+| `project_id` | the project |
+| `production_environment_id` | the production environment |
+| `application_ids` | the applications the agent may roll back |
+| `container_ids` | the containers the agent may roll back (leave the set empty if you have none) |
+
+You can copy the IDs from the Console URL, or list them with `qovery project list`, `qovery environment list` and `qovery application list`.
+
+## Create the token
+
+<Tabs>
+  <Tab title="With the coding agent">
+    In a session signed in as an organization Owner or Admin, ask:
+
+    ```
+    /qovery-policy-token for a rollback agent on production: read production except environment variables, and deploy a named commit of the api and web applications or a named image tag of the worker container. Nothing else.
+    ```
+
+    The `qovery-policy-token` skill finds the IDs, writes a policy like the one above, tests it locally and against the API, then creates the token.
+  </Tab>
+  <Tab title="In the Console">
+    1. Open your organization settings, then **Token API**.
+    2. In **Policy API Token**, click **Add new**.
+    3. Enter a name and a description, and paste the policy with your IDs.
+    4. Copy the token (`sk-qov-01-...`). It is shown once.
+  </Tab>
+</Tabs>
+
+## Prompt for the agent
+
+The agent runs with the [Qovery Agent Skills](/getting-started/quickstart/agent-skills) and the [Qovery CLI](/cli/overview), in Claude Code, Codex, Cursor or any agent that supports skills. Give it the token through the environment, never in the prompt:
+
+```bash
+export QOVERY_CLI_ACCESS_TOKEN="sk-qov-01-..."
+```
+
+Then give the agent its task:
+
+```
+We deployed a new version of the "api" application in the "production"
+environment of the Qovery project "shop" 10 minutes ago.
+
+Check the logs and the deployment status. If the error rate is clearly
+higher than before the deployment, roll back:
+find the last commit that was deployed and healthy in the deployment history,
+deploy that commit, and check that the service is healthy again.
+
+Report what you saw, what you rolled back to, and the commit that caused it.
+```
+
+Every call the agent makes appears in the [audit logs](/getting-started/security-and-compliance/audit-logs) as `policy:<token-id>:<token-name>`.
+
+## Good to know
+
+- The policy cannot know whether a commit is older than the current one. It allows deploying any named commit or tag of the listed services, so the agent could also deploy a newer version. Keep tests and code review on your main branch.
+- Qovery already rolls back automatically when new pods fail to start, with the [RollingUpdate strategy](/configuration/deployment/strategies). This agent handles the other case: the new version starts, but behaves badly.
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="All agent policy examples" icon="list" href="/configuration/organization/policy-examples/overview">
+    Every use case, from read only to production changes.
+  </Card>
+  <Card title="API Policy Token (Preview)" icon="scroll" href="/configuration/organization/api-policy-token">
+    How policies are evaluated, the input they see, and the limits.
+  </Card>
+</CardGroup>

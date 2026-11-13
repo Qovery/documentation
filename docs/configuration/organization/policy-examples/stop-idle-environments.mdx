@@ -1,0 +1,148 @@
+---
+title: "Stop idle environments"
+sidebarTitle: "Stop idle environments"
+description: "An API Policy Token example for an agent that stops development environments when nobody uses them and starts them again in the morning, and cannot touch anything else."
+---
+
+A cost agent that stops development and QA environments when nobody uses them, for example at night and on weekends, and starts them again when the team needs them. It can only stop and start the environments you list.
+
+**Level:** Hygiene. See all the [agent policy examples](/configuration/organization/policy-examples/overview).
+
+## What the agent does
+
+1. Reads the status and the deployment history of each listed environment.
+2. Decides which ones are idle, for example no deployment for 24 hours or outside working hours.
+3. Stops the idle environments.
+4. Starts them again at the time you choose, with a deploy.
+
+## What the policy allows
+
+<CardGroup cols={2}>
+  <Card title="The agent can" icon="check">
+    - Find the organization, project and environment by name
+    - Read the status and deployment history of the listed environments
+    - Stop a listed environment, or start it again with a deploy
+  </Card>
+  <Card title="The agent cannot" icon="xmark">
+    - Stop or deploy production, staging or any environment that is not listed
+    - Delete an environment or a service
+    - Change any configuration
+  </Card>
+</CardGroup>
+
+Anything the policy does not allow is refused with `401 Unauthorized`.
+
+## The policy
+
+Copy it, then replace each `REPLACE_WITH_...` value with a real ID from your organization.
+
+```rego stop-idle-environments.rego
+default allow := false
+
+organization_id := "REPLACE_WITH_ORGANIZATION_ID"
+project_id := "REPLACE_WITH_PROJECT_ID"
+
+# The non-production environments the agent may stop and start.
+idle_candidate_environment_ids := {
+	"REPLACE_WITH_DEV_ENVIRONMENT_ID",
+	"REPLACE_WITH_QA_ENVIRONMENT_ID",
+}
+
+allow if cli_lookup
+allow if read_candidates
+allow if stop_or_start
+
+# Let the Qovery CLI find the organization, project and environment by name.
+cli_lookup if {
+	input.request.method == "GET"
+	input.request.path in {
+		["api", "organization"],
+		["api", "organization", organization_id],
+		["api", "organization", organization_id, "project"],
+		["api", "project", project_id],
+		["api", "project", project_id, "environment"],
+	}
+}
+
+# Read the status and deployment history of those environments.
+read_candidates if {
+	input.request.method in {"GET", "HEAD"}
+	input.qovery_metadata.environment_id in idle_candidate_environment_ids
+	not "environmentVariable" in input.request.path
+}
+
+# Stop an environment, or start it again with a deploy. Nothing else.
+stop_or_start if {
+	input.request.method == "POST"
+	input.request.path[1] == "environment"
+	input.request.path[2] in idle_candidate_environment_ids
+	input.request.path[3] in {"stop", "deploy"}
+	count(input.request.path) == 4
+}
+```
+
+| Value | What to put |
+| --- | --- |
+| `organization_id` | your organization |
+| `project_id` | the project that holds the environments |
+| `idle_candidate_environment_ids` | the development and QA environments the agent may stop |
+
+You can copy the IDs from the Console URL, or list them with `qovery project list`, `qovery environment list` and `qovery application list`.
+
+## Create the token
+
+<Tabs>
+  <Tab title="With the coding agent">
+    In a session signed in as an organization Owner or Admin, ask:
+
+    ```
+    /qovery-policy-token for a cost agent: read status and deployment history of the dev and qa environments, and stop or deploy them. Nothing else, no other environment, no deletes, no config changes.
+    ```
+
+    The `qovery-policy-token` skill finds the IDs, writes a policy like the one above, tests it locally and against the API, then creates the token.
+  </Tab>
+  <Tab title="In the Console">
+    1. Open your organization settings, then **Token API**.
+    2. In **Policy API Token**, click **Add new**.
+    3. Enter a name and a description, and paste the policy with your IDs.
+    4. Copy the token (`sk-qov-01-...`). It is shown once.
+  </Tab>
+</Tabs>
+
+## Prompt for the agent
+
+The agent runs with the [Qovery Agent Skills](/getting-started/quickstart/agent-skills) and the [Qovery CLI](/cli/overview), in Claude Code, Codex, Cursor or any agent that supports skills. Give it the token through the environment, never in the prompt:
+
+```bash
+export QOVERY_CLI_ACCESS_TOKEN="sk-qov-01-..."
+```
+
+Then give the agent its task:
+
+```
+Check the "dev" and "qa" environments of the Qovery project "shop".
+
+If an environment has had no deployment in the last 24 hours, or if it is
+after 8 PM or a weekend in Paris time, stop it.
+On weekdays at 8 AM Paris time, start the stopped ones again.
+
+List what you stopped or started, and why.
+```
+
+Every call the agent makes appears in the [audit logs](/getting-started/security-and-compliance/audit-logs) as `policy:<token-id>:<token-name>`.
+
+## Good to know
+
+- If a fixed schedule is enough, use [deployment rules](/configuration/deployment-rule) instead: they start and stop environments on a schedule with no agent at all. Use an agent when the decision depends on activity.
+- Starting an environment is a deploy. The policy allows a deploy of the listed environments only.
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="All agent policy examples" icon="list" href="/configuration/organization/policy-examples/overview">
+    Every use case, from read only to production changes.
+  </Card>
+  <Card title="API Policy Token (Preview)" icon="scroll" href="/configuration/organization/api-policy-token">
+    How policies are evaluated, the input they see, and the limits.
+  </Card>
+</CardGroup>

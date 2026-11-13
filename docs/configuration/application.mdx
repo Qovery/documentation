@@ -431,6 +431,12 @@ For high availability:
 
     For complete authentication options, see [KEDA Authentication documentation](https://keda.sh/docs/latest/concepts/authentication/).
 
+    <Warning>
+    **Service account tokens**: the only supported way to authenticate with a Kubernetes service account token is HashiCorp Vault Kubernetes authentication (`hashiCorpVault` with `authentication: kubernetes`) without a `credential` block. KEDA then logs in to Vault with its own service account, `keda-operator` in namespace `kube-system` (AWS) or `qovery` (GCP), using a token issued for the audience `vault`. Your Vault role must bind that service account and namespace, and set `audience` to `vault`.
+
+    `boundServiceAccountToken`, and Vault Kubernetes authentication with `credential.serviceAccount` or `credential.serviceAccountName`, are not supported. Use `podIdentity` or `secretTargetRef` instead.
+    </Warning>
+
     ---
 
     #### Scaler Examples by Type

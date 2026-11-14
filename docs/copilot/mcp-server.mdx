@@ -84,7 +84,9 @@ The Qovery MCP Server is accessible at `https://mcp.qovery.com/mcp`. You can fin
     ```
 
     <Tabs>
-      <Tab title="Claude Code">
+      <Tab title="Claude Code (CI and headless runs)">
+
+        Claude Code supports OAuth, so on a workstation use the **OAuth** tab instead. Use a token only where the browser sign-in cannot run, such as CI or a remote container, and prefer a short-lived, least-privileged token.
 
         ```bash
         # Read-only (default)

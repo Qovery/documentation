@@ -15,6 +15,21 @@ Use Qovery when you want a coding agent to deploy and operate apps on your own c
 
 The agent never needs AWS, GCP, or Azure credentials.
 
+## Qovery MCP Server or the Amazon EKS MCP Server?
+
+Both let a coding agent work with Kubernetes on AWS. They differ in what the agent holds and what it changes. The Amazon EKS MCP Server works on raw EKS and Kubernetes resources with AWS credentials. Qovery works on applications and environments with a Qovery credential, on AWS and other clouds.
+
+| | Amazon EKS MCP Server | Qovery Agent Skills + MCP Server |
+|---|---|---|
+| Credential the agent uses | AWS credentials and IAM ([local server](https://awslabs.github.io/mcp/servers/eks-mcp-server)), or IAM with SigV4 ([fully managed server, preview](https://aws.amazon.com/about-aws/whats-new/2025/11/amazon-eks-ecs-fully-managed-mcp-servers-preview)) | A Qovery login (OAuth) or a Qovery token. No AWS, GCP or Azure credentials |
+| Where it works | Amazon EKS | Clusters on AWS, GCP, Azure, Scaleway, or any Kubernetes cluster you connect |
+| How changes are made | Applies Kubernetes YAML and manages CloudFormation stacks, once the server runs with `--allow-write` | Deploys applications, databases and preview environments through Qovery: builds, variables, rollbacks. The MCP Server is read-only unless you add `read_write=true` and enable write access in the Console (**Settings > MCP Server**) |
+| Limiting what the agent can do | IAM policies, plus read-only mode by default | An [API Policy Token](/configuration/organization/api-policy-token) that allows or denies each request, plus read-only MCP by default |
+| Audit trail | AWS CloudTrail for the fully managed server | Qovery audit log, with policy-token actions attributed as `policy:<token-id>:<token-name>` |
+| Best fit | Teams that run EKS themselves and want the agent to inspect and edit Kubernetes resources directly | Teams that want the agent to ship and operate apps without cloud admin access or Kubernetes YAML |
+
+You can use both: the EKS MCP Server for cluster-level investigation by the platform team, and Qovery for the agent that deploys application code.
+
 ## Prerequisites
 
 <Check>A Qovery organization with a cluster on your cloud account. To create one, see [Install Qovery on your cloud](/getting-started/quickstart/cloud). The agent can also create the account itself with the `qovery-signup` skill, which authenticates with `qovery auth --headless` (the first login creates the account).</Check>

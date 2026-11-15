@@ -11,6 +11,8 @@ The [Qovery agent skills](/getting-started/quickstart/agent-skills) are written 
   and the agent-side behaviour described here are likely to change.
 </Info>
 
+In the Console, skill presets live in **Agent Experience**, an organization tab next to **Audit Logs**. It also holds the commands to connect an agent, your policy tokens and agent activity. See [Agent Experience](/configuration/organization#agent-experience). The old **Organization settings** links to skill presets and agent activity redirect there.
+
 ## How it works
 
 1. An admin creates a preset and assigns it to the organization, a role, or a member.
@@ -96,7 +98,7 @@ Only organization **Owners** and **Admins** can create, edit, delete or view pre
   <Tab title="Console">
     <Steps>
       <Step title="Open the presets page">
-        In the Console, open **Organization settings → AI agent skills**.
+        In the Console, open the **Agent Experience** tab of your organization, then **Skill presets**. See [Agent Experience](/configuration/organization#agent-experience).
       </Step>
       <Step title="Start from a template or from scratch">
         Pick a template for a user profile, duplicate an existing preset, or start empty. Give the preset a name, an optional description, and pick a base.
@@ -227,8 +229,8 @@ Each finding says which gate raised it: `RULES` for the rule checks, `MODEL` for
   the organization, because the preset text is sent to the model review.
   Without it, a create or an edit answers `403`. Reading presets, members'
   skill loads and deleting presets keep working when AI features are off. Owners
-  and Admins can turn AI features on from the skill presets page in the
-  Console, which asks for confirmation first. They can also use the API,
+  and Admins can turn AI features on from **Agent Experience → Skill presets**
+  in the Console, which asks for confirmation first. They can also use the API,
   through `ai_features_enabled` on the organization. See [Edit the
   organization's AI features
   opt-in](/api-reference/organization-main-calls/edit-the-organizations-ai-features-opt-in).
@@ -362,6 +364,8 @@ qovery api "organization/$ORGANIZATION_ID/skillPreset/resolved/skill/qovery-depl
 ## Agent activity
 
 Skill presets **guide** what agents do. [API Policy Tokens](/configuration/organization/api-policy-token) **enforce** what they are allowed to do. Agent activity lets you **observe** what they actually did on Qovery, linked to the skills they loaded.
+
+In the Console, open **Agent Experience → Agent activity**.
 
 For a period of up to 90 days, 30 by default, by hour or by day, agent activity shows:
 

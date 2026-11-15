@@ -199,7 +199,9 @@ The member view never includes who else the preset is assigned to, or who wrote 
 
 <Note>
   Reading a skill through `skillPreset/resolved/skill/{skillName}` is recorded
-  in the audit log as a skill load, like a load by your agent.
+  in the audit log as a skill load, like a load by your agent. Add
+  `?purpose=VIEW` to record it as a read by a person instead, as the Console
+  does: it is then a `VIEW` event and is not counted in usage.
 </Note>
 
 ### When the API cannot be reached
@@ -335,12 +337,13 @@ Qovery stores every saved state of a preset as an immutable revision, written to
 - Every skill the agent loads goes through the API, including Qovery skills the preset leaves alone and loads with no preset at all.
 - Each load is an audit log entry with the event `LOAD`. Its user and timestamp say who and when. The entry gives the skill, the preset and revision that applied (or `QOVERY_DEFAULT` when none did), the mode, and the SHA-256 of the content and of the team context that were loaded.
 - A load the agent served from its cache (the API answered `304`) is still recorded, with `from_cache: true`.
+- When a person opens a skill to read it, for example in the Console, the read is recorded as a `VIEW` event with the same details, not as a `LOAD`.
 
 ### Usage
 
 Admins can see how skills are used over time and by whom: how many loads, of which skills, by which members, under which preset. Usage covers up to 90 days at a time, 30 by default, grouped by hour or by day, and can be filtered on one skill, one member or one preset. Usage data is kept for 90 days. See [Read skill usage](/copilot/skill-presets-api#read-skill-usage) for the API.
 
-- **A load** is one skill fetched by a member's agent, the same event as a `LOAD` audit entry. Loads served from the agent's cache count too, and are also reported separately as cached loads.
+- **A load** is one skill fetched by a member's agent, the same event as a `LOAD` audit entry. Loads served from the agent's cache count too, and are also reported separately as cached loads. Usage counts agent loads only: a person reading a skill in the Console is a `VIEW`, recorded in the audit log but not counted here.
 - **Members** is the number of distinct members who loaded at least one skill in the period.
 - **Loads with no preset** are grouped together: these are Qovery skills loaded by members with no preset.
 - **Approximate injected tokens** estimates the organization content the agent received: your skill content and the team context, at about 4 characters per token. It does not include the Qovery skills themselves, and cached loads add nothing because nothing was sent.

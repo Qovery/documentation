@@ -44,7 +44,7 @@ qovery api "organization/$ORGANIZATION_ID/aiFeatures" --method PUT --field enabl
 | `GET /organization/{organizationId}/skillPreset/revision` | Owner, Admin | List revisions, most recent first, deleted presets included. |
 | `GET /organization/{organizationId}/skillPreset/usage` | Owner, Admin | Skill loads over time, by skill, by member and by preset. |
 | `GET /organization/{organizationId}/skillPreset/resolved` | Any member | The caller's manifest: which preset applies and what it can inject, without content. Supports `If-None-Match`. |
-| `GET /organization/{organizationId}/skillPreset/resolved/skill/{skillName}` | Any member | What to load for one skill. Supports `If-None-Match`. Every call is audited as `LOAD`. |
+| `GET /organization/{organizationId}/skillPreset/resolved/skill/{skillName}` | Any member | What to load for one skill. Supports `If-None-Match` and `purpose`. Every call is audited, as `LOAD` or `VIEW`. |
 
 Owner and Admin are the roles that can manage organization settings. Custom roles cannot manage presets.
 
@@ -169,6 +169,7 @@ To use a template, read it, then create a new preset from its body with a new na
 | Status | When |
 | --- | --- |
 | `400` | The body is invalid: a limit is exceeded, a mode does not fit the base or the skill name, a required `description` or `content` is missing, a skill entry has a field its mode does not take (`content` on `DISABLE`, `description` on `DISABLE` or `OVERLAY`), a skill or target appears twice, a template has assignments, or the preset holds more than 200,000 characters of text in total. The message says which. |
+| `400` on a skill | `purpose` is not `LOAD` or `VIEW`. |
 | `400` on usage | The range is longer than 90 days, `to` is not after `from`, or `bucket` is not `DAY` or `HOUR`. |
 | `403` | The caller is not an Owner or Admin of the organization, or, on a create or an edit, AI features are turned off for the organization. The detail then reads: "Turn on AI features for this organization to use skill presets: every preset is reviewed by a model before it reaches members." |
 | `404` | The preset, the organization or a role in `role_ids` does not exist. A second `DELETE` of the same preset also answers `404`. |
@@ -327,7 +328,19 @@ qovery api "organization/$ORGANIZATION_ID/skillPreset/resolved/skill/qovery-depl
 
 `skill_preset` is `null` when no preset applies. Any Qovery skill name answers `200`, even when the preset does not mention it. The endpoint answers `404` only for a name that is neither a Qovery skill nor in the preset.
 
-Every call is recorded in the audit log as a `LOAD`, including calls answered with `304`.
+The optional `purpose` query parameter says why the skill is fetched:
+
+| `purpose` | Use | Audit event | Counted in usage |
+| --- | --- | --- | --- |
+| `LOAD` (default) | An agent loads the skill to follow it. | `LOAD` | Yes |
+| `VIEW` | A person reads the skill, as the Console does when someone opens it. | `VIEW` | No |
+
+Both return the same body and ETag. Any other value answers `400`. Every call is recorded in the audit log, including calls answered with `304`.
+
+```bash
+# Read a skill without counting it as an agent load
+qovery api "organization/$ORGANIZATION_ID/skillPreset/resolved/skill/qovery-deploy?purpose=VIEW"
+```
 
 ### Caching with ETag
 
@@ -347,7 +360,7 @@ HTTP/1.1 304 Not Modified
 ETag: "role-0193f1c2-6b1e-7c4a-9d2f-3e8a1b5c7d90-3"
 ```
 
-On the skill endpoint, a `304` is recorded as a `LOAD` with `from_cache: true`: the agent used its cached copy.
+On the skill endpoint, a `304` is recorded with `from_cache: true`: the caller used its cached copy.
 
 ## List revisions
 
@@ -394,7 +407,7 @@ qovery api "organization/$ORGANIZATION_ID/skillPreset/revision?skillPresetId=$SK
 
 ## Read skill usage
 
-`GET /organization/{organizationId}/skillPreset/usage` reports who loaded which skills, how often and when. It counts the same loads as the `LOAD` audit entries, cached loads included.
+`GET /organization/{organizationId}/skillPreset/usage` reports who loaded which skills, how often and when. It counts the same loads as the `LOAD` audit entries, cached loads included. It counts agent loads only: reads with `purpose=VIEW` are audited as `VIEW` and left out.
 
 | Query parameter | Description |
 | --- | --- |
@@ -452,7 +465,7 @@ Usage data is kept for 90 days: older loads are purged every day, so `from` cann
 
 ## Find edits and loads in the audit log
 
-Preset edits, refused saves and skill loads are organization events in the [audit log](/getting-started/security-and-compliance/audit-logs), with the sub-target type `SKILL_PRESET`:
+Preset edits, refused saves, skill loads and skill views are organization events in the [audit log](/getting-started/security-and-compliance/audit-logs), with the sub-target type `SKILL_PRESET`:
 
 | Event | The change holds | The original change holds |
 | --- | --- | --- |
@@ -461,6 +474,7 @@ Preset edits, refused saves and skill loads are organization events in the [audi
 | `DELETE` | The deleted state with full text. | Nothing |
 | `REJECTED` | A create or edit refused by the rule checks or the model review: `attempted_change` (`CREATE` or `UPDATE`), `skill_preset_id` (`null` on a create), `name`, `base`, `is_template`, `description_sha256`, `team_context_sha256`, `skills` (`skill_name`, `mode`, `description_sha256`, `content_sha256`), `assigned_to`, `findings`. Never the text. | Nothing |
 | `LOAD` | `skill_name`, `source`, `skill_preset_id`, `skill_preset_name`, `revision`, `mode`, `content_sha256`, `team_context_sha256`, `from_cache`. | Nothing |
+| `VIEW` | A person read a skill (`purpose=VIEW`). Same fields as `LOAD`. Not counted in usage. | Nothing |
 
 The `changes` summary of an update:
 

@@ -43,7 +43,7 @@ qovery api "organization/$ORGANIZATION_ID/aiFeatures" --method PUT --field enabl
 | `DELETE /skillPreset/{skillPresetId}` | Owner, Admin | Delete a preset. Answers `204`, or `404` if it was already deleted. Audited. |
 | `GET /organization/{organizationId}/skillPreset/revision` | Owner, Admin | List revisions, most recent first, deleted presets included. |
 | `GET /organization/{organizationId}/skillPreset/usage` | Owner, Admin | Skill loads over time, by skill, by member and by preset. |
-| `GET /organization/{organizationId}/agentActivity` | Owner, Admin | What agents did through Qovery, linked to the skills they loaded, for the whole organization. |
+| `GET /organization/{organizationId}/agentActivity` | Owner, Admin | What agents did through Qovery, linked to the skills they loaded, for the whole organization, members and policy tokens. |
 | `GET /organization/{organizationId}/agentActivity/me` | Any member | The same view, for the caller only. |
 | `GET /organization/{organizationId}/skillPreset/resolved` | Any member | The caller's manifest: which preset applies and what it can inject, without content. Supports `If-None-Match`. |
 | `GET /organization/{organizationId}/skillPreset/resolved/skill/{skillName}` | Any member | What to load for one skill. Supports `If-None-Match` and `purpose`. Every call is audited, as `LOAD` or `VIEW`. |
@@ -172,7 +172,7 @@ To use a template, read it, then create a new preset from its body with a new na
 | --- | --- |
 | `400` | The body is invalid: a limit is exceeded, a mode does not fit the base or the skill name, a required `description` or `content` is missing, a skill entry has a field its mode does not take (`content` on `DISABLE`, `description` on `DISABLE` or `OVERLAY`), a skill or target appears twice, a template has assignments, or the preset holds more than 200,000 characters of text in total. The message says which. |
 | `400` on a skill | `purpose` is not `LOAD` or `VIEW`. |
-| `400` on agent activity | The range is invalid or longer than 90 days, `bucket` is not `DAY` or `HOUR`, or `skillName` is not a valid skill name. |
+| `400` on agent activity | The range is invalid or longer than 90 days, `bucket` is not `DAY` or `HOUR`, `skillName` is not a valid skill name, an enum value or `policyTokenId` is malformed, or the filters do not combine: `policyTokenId` with `actorType=MEMBER`, or `userSub` with `policyTokenId` or `actorType=POLICY_TOKEN`. |
 | `400` on usage | The range is longer than 90 days, `to` is not after `from`, or `bucket` is not `DAY` or `HOUR`. |
 | `403` | The caller is not an Owner or Admin of the organization, or, on a create or an edit, AI features are turned off for the organization. The detail then reads: "Turn on AI features for this organization to use skill presets: every preset is reviewed by a model before it reaches members." |
 | `404` | The preset, the organization or a role in `role_ids` does not exist. A second `DELETE` of the same preset also answers `404`. |
@@ -468,12 +468,12 @@ Usage data is kept for 90 days: older loads are purged every day, so `from` cann
 
 ## Read agent activity
 
-Agent activity links skill loads to what agents did through Qovery. See [Agent activity](/copilot/skill-presets#agent-activity) for what it covers and its limits.
+Agent activity links skill loads to what agents did through Qovery, for members' agents and for policy tokens. In the Console it is the **Activity** page. See [Activity](/copilot/skill-presets#activity) for what it covers and its limits.
 
 | Endpoint | Who can call it | Query parameters |
 | --- | --- | --- |
-| `GET /organization/{organizationId}/agentActivity` | Owner, Admin | `from`, `to`, `bucket`, `userSub`, `skillName` |
-| `GET /organization/{organizationId}/agentActivity/me` | Any member, about themselves | `from`, `to`, `bucket`, `skillName` |
+| `GET /organization/{organizationId}/agentActivity` | Owner, Admin | `from`, `to`, `bucket`, `userSub`, `skillName`, `actorType`, `policyTokenId`, `outcome`, `source` |
+| `GET /organization/{organizationId}/agentActivity/me` | Any member, about themselves | `from`, `to`, `bucket`, `skillName`, `outcome`, `source` |
 
 | Query parameter | Description |
 | --- | --- |
@@ -481,10 +481,21 @@ Agent activity links skill loads to what agents did through Qovery. See [Agent a
 | `bucket` | `DAY` (default) or `HOUR`: the size of each `timeline` point. |
 | `userSub` | Admin endpoint only: one member, by member ID. The member is matched through their most recent skill load, so a member with no skill load in the last 90 days shows no actions. |
 | `skillName` | Only activity linked to this skill. |
+| `actorType` | Admin endpoint only. `MEMBER` for people only, `POLICY_TOKEN` for policy tokens only. |
+| `policyTokenId` | Admin endpoint only. One policy token, by ID, whatever it was called at the time. Implies `actorType=POLICY_TOKEN`. With `bucket=HOUR`, it is needed to fill the token's `timeline` in `by_policy_token`. |
+| `outcome` | `DENIED` for refusals only, skill loads left out. `ALLOWED` for everything else, skill loads included. |
+| `source` | One source from `coverage.sources`: `SKILL_LOAD`, `SKILL_API_ACTION`, `MCP_TOOL_CALL`, `POLICY_DENIAL` or `POLICY_TOKEN_API_ACTION`. |
+
+Every filter is optional, and they combine. `policyTokenId` cannot be used with `actorType=MEMBER`, and `userSub` cannot be used with `policyTokenId` or `actorType=POLICY_TOKEN`. A filter that matches nothing answers `200` with empty lists. The member endpoint ignores `actorType` and `policyTokenId`, and its `by_policy_token` is always empty: policy tokens belong to the organization, not to a member.
+
+Every call a policy token makes counts as agent activity, whatever client it comes from. A refusal counts as denied whether the token's policy refused it (`401`) or the token's role did (`403`).
 
 ```bash
 # The whole organization (Owner or Admin)
 qovery api "organization/$ORGANIZATION_ID/agentActivity?bucket=DAY"
+
+# One policy token's refused calls over the last 30 days (Owner or Admin)
+qovery api "organization/$ORGANIZATION_ID/agentActivity?policyTokenId=$POLICY_TOKEN_ID&outcome=DENIED"
 
 # Your own activity (any member)
 qovery api "organization/$ORGANIZATION_ID/agentActivity/me"
@@ -498,10 +509,10 @@ The response, shortened:
   "to": "2026-11-15T12:00:00Z",
   "bucket": "DAY",
   "coverage": {
-    "sources": ["SKILL_LOAD", "SKILL_API_ACTION", "MCP_TOOL_CALL", "POLICY_DENIAL"],
+    "sources": ["SKILL_LOAD", "SKILL_API_ACTION", "MCP_TOOL_CALL", "POLICY_DENIAL", "POLICY_TOKEN_API_ACTION"],
     "note": "Only actions taken through Qovery (its API, CLI, skills and MCP server) are visible. What an agent does elsewhere, such as in a shell, in git or in a cloud console, is not."
   },
-  "totals": { "skill_loads": 412, "actions": 96, "denials": 3, "members": 14 },
+  "totals": { "skill_loads": 412, "actions": 96, "denials": 3, "members": 14, "policy_tokens": 2 },
   "timeline": [
     { "start": "2026-11-14T00:00:00Z", "skill_loads": 37, "actions": 9, "denials": 1 }
   ],
@@ -509,11 +520,32 @@ The response, shortened:
     { "event": "TRIGGER_DEPLOY", "target_type": "ENVIRONMENT", "count": 41, "denied": 0 }
   ],
   "by_member": [
-    { "user_sub": "auth0|5f2a9c0e1b3d4a0012345678", "user_name": "jane@example.com", "skill_loads": 58, "actions": 12, "denials": 1, "top_skills": ["qovery-deploy"], "last_activity_at": "2026-11-15T11:42:08Z" }
+    { "user_sub": "auth0|5f2a9c0e1b3d4a0012345678", "user_name": "jane@example.com", "skill_loads": 58, "actions": 12, "denials": 1, "top_skills": ["qovery-deploy"], "last_activity_at": "2026-11-15T11:42:08Z", "actor_kind": "MEMBER", "policy_token_id": null },
+    { "user_sub": null, "user_name": "policy:0193f1c2-7a4e-7c1d-9b2a-5e8f0d6c3a11:ci-agent", "skill_loads": 0, "actions": 30, "denials": 2, "top_skills": [], "last_activity_at": "2026-11-15T10:05:51Z", "actor_kind": "POLICY_TOKEN", "policy_token_id": "0193f1c2-7a4e-7c1d-9b2a-5e8f0d6c3a11" }
   ],
   "by_skill": [
     { "skill_name": "qovery-deploy", "loads": 190, "actions": 60, "denials": 1, "members": 11 },
     { "skill_name": null, "loads": 0, "actions": 20, "denials": 2, "members": 3 }
+  ],
+  "by_policy_token": [
+    {
+      "policy_token_id": "0193f1c2-7a4e-7c1d-9b2a-5e8f0d6c3a11",
+      "token_name": "ci-agent",
+      "deleted": false,
+      "role_id": "8d1c2b4e-3f5a-4c6d-9e7f-0a1b2c3d4e5f",
+      "role_name": "DEVOPS",
+      "expires_at": "2027-01-01T00:00:00Z",
+      "skill_loads": 0,
+      "actions": 30,
+      "denials": 2,
+      "last_activity_at": "2026-11-15T10:05:51Z",
+      "top_actions": [
+        { "event": "TRIGGER_DEPLOY", "target_type": "ENVIRONMENT", "count": 28, "denied": 0 },
+        { "event": "POLICY_FAILED", "target_type": "ORGANIZATION", "count": 2, "denied": 2 }
+      ],
+      "top_skills": [],
+      "timeline": [ { "start": "2026-11-14T00:00:00Z", "actions": 4, "denials": 1 } ]
+    }
   ],
   "recent": [
     {
@@ -527,7 +559,9 @@ The response, shortened:
       "target_name": "staging",
       "project_name": "api",
       "environment_name": "staging",
-      "outcome": "ALLOWED"
+      "outcome": "ALLOWED",
+      "actor_kind": "MEMBER",
+      "policy_token_id": null
     }
   ]
 }
@@ -536,12 +570,13 @@ The response, shortened:
 | Field | Description |
 | --- | --- |
 | `coverage` | The sources the view reads, and a reminder of what it cannot see. |
-| `totals` | Skill loads, actions, denied calls and distinct members in the range. |
+| `totals` | Skill loads, actions, denied calls, distinct actors in `members` (policy tokens included, for older clients) and distinct policy tokens in `policy_tokens`. |
 | `timeline` | One point per hour or day. |
 | `actions_by_type` | Actions grouped by audit event and target type, with how many were denied. |
-| `by_member` | Per member, at most 500 rows: loads, actions, denials, most used skills and last activity. `user_sub` is `null` for an actor that loaded no skill in the range, such as an API Policy Token. |
+| `by_member` | Per member, at most 500 rows: loads, actions, denials, most used skills and last activity. `user_sub` is `null` for an actor that loaded no skill in the range, such as an API Policy Token. `actor_kind` is `MEMBER` or `POLICY_TOKEN`, and `policy_token_id` names the token. Policy tokens are still listed here by recorded name, so a renamed token appears once per name: use `by_policy_token` for a per-token view. |
+| `by_policy_token` | Per policy token, keyed by ID, at most 100 rows: `token_name`, `deleted`, the token's current `role_id`, `role_name` and `expires_at` (`null` once deleted), loads, actions, denials, last activity, its 3 most frequent actions and skills, and a `timeline` of the buckets where it acted. A deleted token keeps the last name its calls recorded, with `deleted: true`. Older refusals recorded without a token are grouped in one entry with `policy_token_id: null` and no name. The `timeline` is empty for an hourly view of every token: pass `policyTokenId` for an hourly view of one token. Always empty on the member endpoint. |
 | `by_skill` | Per skill, at most 100 rows. `skill_name: null` groups actions that name no skill, such as MCP tool calls and calls made directly with a policy token. |
-| `recent` | The 100 most recent actions, newest first. `origin` is `SKILL_API_ACTION`, `MCP_TOOL_CALL` or `POLICY_DENIAL`. `outcome` is `DENIED` for a `POLICY_DENIAL`, `ALLOWED` otherwise. |
+| `recent` | The 100 most recent actions, newest first. `origin` is `SKILL_API_ACTION`, `MCP_TOOL_CALL`, `POLICY_DENIAL` or `POLICY_TOKEN_API_ACTION` (a call made with a policy token from a client that is not a Qovery skill). `outcome` is `DENIED` for a `POLICY_DENIAL`, `ALLOWED` otherwise. `actor_kind` and `policy_token_id` say who acted. |
 
 The response holds what the audit log already shows: events, targets, names and times. It never includes prompts, code or request content. Skill attribution comes from the user agent the client sends, so treat it as indicative.
 

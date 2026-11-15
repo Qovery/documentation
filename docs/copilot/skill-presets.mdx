@@ -11,7 +11,7 @@ The [Qovery agent skills](/getting-started/quickstart/agent-skills) are written 
   and the agent-side behaviour described here are likely to change.
 </Info>
 
-In the Console, skill presets live in **Agent Experience**, an organization tab next to **Audit Logs**. It also holds the Copilot, the commands to connect an agent, your policy tokens and agent activity. See [Agent Experience](/configuration/organization#agent-experience). The old **Organization settings** links to the Copilot, skill presets and agent activity redirect there.
+In the Console, skill presets live in **Agent Experience**, an organization tab next to **Audit Logs**. It also holds the Copilot, the commands to connect an agent, your policy tokens and Activity. See [Agent Experience](/configuration/organization#agent-experience). The old **Organization settings** links to the Copilot, skill presets and agent activity redirect there.
 
 ## How it works
 
@@ -362,25 +362,29 @@ qovery api "organization/$ORGANIZATION_ID/skillPreset/resolved/skill/qovery-depl
   | jq -j .content | shasum -a 256
 ```
 
-## Agent activity
+## Activity
 
-Skill presets **guide** what agents do. [API Policy Tokens](/configuration/organization/api-policy-token) **enforce** what they are allowed to do. Agent activity lets you **observe** what they actually did on Qovery, linked to the skills they loaded.
+Skill presets **guide** what agents do. [API Policy Tokens](/configuration/organization/api-policy-token) **enforce** what they are allowed to do. Activity lets you **observe** what they actually did on Qovery, linked to the skills they loaded.
 
-In the Console, open **Agent Experience → Agent activity**.
+In the Console, open **Agent Experience → Activity**. The page was called Agent activity, and its address has not changed.
 
-For a period of up to 90 days, 30 by default, by hour or by day, agent activity shows:
+Activity covers both kinds of agent identity in one view: a member's agent acting with the member's own credentials, through the skills or the MCP server, and an agent acting with a policy token. For a period of up to 90 days, 30 by default, by hour or by day, it shows:
 
 - **Skills loaded** by agents. A person reading a skill in the Console is not counted.
-- **Actions agents took through Qovery**: API and CLI calls made by the Qovery skills, and tool calls through the [Qovery MCP server](/copilot/mcp-server). For each action you see the event, the target and its project and environment, the time and the outcome.
-- **Denied calls**: requests refused by a policy token's policy, or by role permissions for a call made by a skill.
+- **Actions agents took through Qovery**: API and CLI calls made by the Qovery skills, tool calls through the [Qovery MCP server](/copilot/mcp-server), and every call made with a policy token, from any client (a script, a CI job, Terraform, an agent's own HTTP client). For each action you see the event, the target and its project and environment, the time and the outcome.
+- **Denied calls**: requests refused by a policy token's policy (`401`), or by role permissions (`403`) for a call made by a skill or by a policy token. Both count as denied.
 
-The activity is broken down by member, by skill and by type of action, with a timeline and the most recent actions. Owners and Admins see the whole organization. Every member sees their own activity, with the same detail, and nothing about other members. See [Read agent activity](/copilot/skill-presets-api#read-agent-activity) for the API.
+Filter by period, actor (everyone, all members, all policy tokens, or one member or token), skill, source (**Skills**, **MCP**, **Policy token calls** or **Refused requests**) and outcome. The filters are kept in the page URL, so a filtered view can be shared or bookmarked. The breakdown switches between members, policy tokens and skills, and clicking a row filters the whole page. **What was blocked** lists the refused calls, and **Show only denied** narrows the page to them. A timeline and the most recent actions complete the view.
 
-### What agent activity does not show
+Policy tokens are grouped by token, not by name, so a renamed token stays one entry. A deleted token keeps the last name its calls recorded, with a **Deleted** badge. Older refusals recorded without a token name are grouped as **Unknown policy token (older records)**.
+
+Owners and Admins see the whole organization, members and policy tokens. Every member sees **Your activity**: their own activity, with the same detail, and nothing about other members or about policy tokens, which belong to the organization. See [Read agent activity](/copilot/skill-presets-api#read-agent-activity) for the API.
+
+### What activity does not show
 
 - **Only actions taken through Qovery are visible.** Commands an agent runs directly on a cluster, in a shell, in Git or in a cloud console are not.
-- **Attribution is indicative, not proof.** Actions are linked to a person by the username recorded with each call, and to a skill by the user agent the agent sends. Both come from the client, so an agent can claim a skill it does not run, or leave the skill out. Use agent activity to understand behaviour. To control what an agent can do, use [API Policy Tokens](/configuration/organization/api-policy-token): their refusals are recorded whatever the client claims.
-- **No content.** Agent activity never shows prompts, code or the content of requests.
+- **Attribution is indicative, not proof.** Actions are linked to a person by the username recorded with each call, and to a skill by the user agent the agent sends. Both come from the client, so an agent can claim a skill it does not run, or leave the skill out. Use Activity to understand behaviour. To control what an agent can do, use [API Policy Tokens](/configuration/organization/api-policy-token): their refusals are recorded whatever the client claims.
+- **No content.** Activity never shows prompts, code or the content of requests.
 
 ## Limits
 

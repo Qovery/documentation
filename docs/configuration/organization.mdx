@@ -107,8 +107,8 @@ Its side menu has seven pages, in this order:
 - **Copilot**: what the [Console AI Copilot](/copilot/console) does (answers questions about your services, deployments and clusters in the Console, troubleshoots a failed deployment from its logs and events, takes actions such as deploys and restarts only in read-write mode, and runs scheduled tasks), its status, and its settings: access source, access mode, scheduled tasks, and **Disable**. The old **Organization settings → AI settings → Copilot** page redirects here.
 - **Connect your agent**: the commands to install the [Qovery agent skills](/getting-started/quickstart/agent-skills), the [Qovery CLI](/cli/overview) and the [Qovery MCP server](/copilot/mcp-server), and what your organization's preset gives agents.
 - **Skill presets**: create, edit and assign [skill presets](/copilot/skill-presets) (Preview), see their history and usage, and which skills members' agents loaded.
-- **Policy tokens**: the organization's [API Policy Tokens](/configuration/organization/api-policy-token) with their role, last use and expiry, and a button to create one. Creating a token opens the form in **Organization settings**, where you also edit and delete tokens, in the **API token** section.
-- **Agent activity**: what agents loaded and did on Qovery, and which of their calls were denied. See [Agent activity](/copilot/skill-presets#agent-activity).
+- **Policy tokens**: the organization's [API Policy Tokens](/configuration/organization/api-policy-token) with their role, last use and expiry, and a button to create one. Each token shows a bar of its last 7 days, allowed and denied calls per day, and a **See activity** link that opens Activity filtered on that token. Deleted tokens that made calls in the last 30 days are listed below. Creating a token opens the form in **Organization settings**, where you also edit and delete tokens, in the **API token** section.
+- **Activity**: one view of what members' agents did (through the skills and the MCP server) and what policy tokens did, allowed and denied. Filter by period, actor (everyone, all members, all policy tokens, or one member or token), skill, source and outcome. The filters are kept in the URL, so you can share a filtered view. Break it down by member, by token or by skill, and click a row to filter the whole page. **What was blocked** lists the refused calls, with **Show only denied**. See [Activity](/copilot/skill-presets#activity).
 
 An agent counts as connected once the organization has at least one skill load, agent action or denied call in the last 30 days.
 
@@ -121,8 +121,8 @@ An agent counts as connected once the organization has at least one skill load, 
 | Copilot | Status and settings | Status only |
 | Connect your agent | Yes | Yes |
 | Skill presets | Create, edit and assign | Read-only view of what their agent receives |
-| Policy tokens | Yes | Not in the menu |
-| Agent activity | The whole organization | Their own activity only |
+| Policy tokens | Yes, with each token's last 7 days | Not in the menu |
+| Activity | The whole organization, members and policy tokens | **Your activity**: their own, with no actor filter and no token breakdown |
 
 ### Turn on AI
 
@@ -178,9 +178,9 @@ The **Agent** section manages what's shared with every [Agent Task](/configurati
 Qovery's own MCP server is added here automatically, organization-scoped and read-only, as soon as any agent task adds a Qovery service as Context, see [Add MCP Servers](/configuration/agent-tasks/overview#creating-an-agent). To add it yourself instead, for example with write access, use `https://mcp.qovery.com/mcp` and authenticate with an [API Policy Token](/configuration/organization/api-policy-token) (a regular API token works too).
 </Info>
 
-### Copilot, skill presets and agent activity
+### Copilot, skill presets and activity
 
-The Copilot, skill presets and agent activity have moved out of Organization settings to [Agent Experience](#agent-experience). The old settings links redirect there.
+The Copilot, skill presets and agent activity (now **Activity**) have moved out of Organization settings to [Agent Experience](#agent-experience). The old settings links redirect there.
 
 ### Other Settings
 

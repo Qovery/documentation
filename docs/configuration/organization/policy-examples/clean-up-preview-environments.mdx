@@ -8,6 +8,8 @@ A cleanup agent that deletes preview environments once their pull request is mer
 
 **Level:** Hygiene. See all the [agent policy examples](/configuration/organization/policy-examples/overview).
 
+**Suggested trigger:** Every hour, `0 * * * *`, or a webhook when a pull request is merged. See [Run it on its own](/configuration/organization/policy-examples/overview#run-it-on-its-own).
+
 ## What the agent does
 
 1. Lists the environments of the project and their last deployment.

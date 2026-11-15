@@ -8,6 +8,8 @@ A security agent that fixes a vulnerable dependency or base image, tests the fix
 
 **Level:** Change. See all the [agent policy examples](/configuration/organization/policy-examples/overview).
 
+**Suggested trigger:** A weekly scan, Mondays: `0 7 * * 1`. A new CVE is not a trigger Agent Tasks support natively. See [Run it on its own](/configuration/organization/policy-examples/overview#run-it-on-its-own).
+
 ## What the agent does
 
 1. Fixes the vulnerability in the code or the Dockerfile, on a branch (in your Git provider).

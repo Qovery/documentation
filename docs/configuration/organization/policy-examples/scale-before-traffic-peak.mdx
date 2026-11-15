@@ -8,6 +8,8 @@ A reliability agent that adds instances before a known traffic peak, such as a l
 
 **Level:** Reliability. See all the [agent policy examples](/configuration/organization/policy-examples/overview).
 
+**Suggested trigger:** Before a known peak, for example Fridays at 5 PM, `0 17 * * 5`, with a second schedule to scale back after it. See [Run it on its own](/configuration/organization/policy-examples/overview#run-it-on-its-own).
+
 ## What the agent does
 
 1. Reads the current instances and the status of each listed application.

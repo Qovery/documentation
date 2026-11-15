@@ -224,9 +224,10 @@ Each finding says which gate raised it: `RULES` for the rule checks, `MODEL` for
   Creating and editing presets requires **AI features** to be turned on for
   the organization, because the preset text is sent to the model review.
   Without it, a create or an edit answers `403`. Reading presets, members'
-  skill loads and deleting presets keep working when AI features are off. The
-  Console has no setting for this today: an Owner or Admin turns it on with
-  the API, through `ai_features_enabled` on the organization. See [Edit the
+  skill loads and deleting presets keep working when AI features are off. Owners
+  and Admins can turn AI features on from the skill presets page in the
+  Console, which asks for confirmation first. They can also use the API,
+  through `ai_features_enabled` on the organization. See [Edit the
   organization's AI features
   opt-in](/api-reference/organization-main-calls/edit-the-organizations-ai-features-opt-in).
 

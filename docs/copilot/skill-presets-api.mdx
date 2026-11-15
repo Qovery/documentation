@@ -26,6 +26,12 @@ curl -H "Authorization: Token $QOVERY_API_TOKEN" \
   "https://api.qovery.com/organization/$ORGANIZATION_ID/skillPreset"
 ```
 
+Creating and editing presets requires AI features to be turned on for the organization, because every save goes through a [model review](/copilot/skill-presets#how-a-save-is-checked). Reading, member endpoints and delete work either way. An Owner or Admin turns it on with [Edit the organization's AI features opt-in](/api-reference/organization-main-calls/edit-the-organizations-ai-features-opt-in):
+
+```bash
+qovery api "organization/$ORGANIZATION_ID/aiFeatures" --method PUT --field enabled=true
+```
+
 ## Endpoints
 
 | Method and path | Who can call it | What it does |
@@ -87,6 +93,7 @@ JSON
 | Field | Description |
 | --- | --- |
 | `name` | 1 to 100 characters, unique in the organization. |
+| All text fields | 200,000 characters in total: `description`, `team_context`, and every skill `description` and `content`. |
 | `description` | Optional, at most 1,024 characters. |
 | `base` | `QOVERY_FULL`, `QOVERY_LEAN` or `NONE`. |
 | `is_template` | `true` to save a template: a starting point to copy, never applied to a member. A template cannot have assignments. |
@@ -161,16 +168,19 @@ To use a template, read it, then create a new preset from its body with a new na
 
 | Status | When |
 | --- | --- |
-| `400` | The body is invalid: a limit is exceeded, a mode does not fit the base or the skill name, a required `description` or `content` is missing, a skill entry has a field its mode does not take (`content` on `DISABLE`, `description` on `DISABLE` or `OVERLAY`), a skill or target appears twice, or a template has assignments. The message says which. |
+| `400` | The body is invalid: a limit is exceeded, a mode does not fit the base or the skill name, a required `description` or `content` is missing, a skill entry has a field its mode does not take (`content` on `DISABLE`, `description` on `DISABLE` or `OVERLAY`), a skill or target appears twice, a template has assignments, or the preset holds more than 200,000 characters of text in total. The message says which. |
 | `400` on usage | The range is longer than 90 days, `to` is not after `from`, or `bucket` is not `DAY` or `HOUR`. |
-| `403` | The caller is not an Owner or Admin of the organization. |
+| `403` | The caller is not an Owner or Admin of the organization, or, on a create or an edit, AI features are turned off for the organization. The detail then reads: "Turn on AI features for this organization to use skill presets: every preset is reviewed by a model before it reaches members." |
 | `404` | The preset, the organization or a role in `role_ids` does not exist. A second `DELETE` of the same preset also answers `404`. |
-| `409` | Another preset has the same name, a target in `assigned_to` already receives another preset, or another admin saved the same preset at the same time. In that last case, read the preset again and reapply your change. |
-| `422` | The content was rejected for security. Nothing was saved. |
+| `409` | Another preset has the same name, a target in `assigned_to` already receives another preset, or the preset was changed by someone else at the same time, including while your save was being reviewed. In those last cases the detail reads "... was changed by someone else: reload it and try again": read the preset again and reapply your change. |
+| `422` | The content was rejected for security, by the rule checks or the model review. Nothing was saved. |
+| `503` | The security review is unavailable. Nothing was saved. Try again in a minute. |
 
 ### Security rejection (422)
 
-The response lists every finding, with the rule ID, the field (`location`), the line within that field, starting at 1, and a reason. The offending text is never included.
+The response lists every finding, with the rule ID or model category (`rule_id`), the field (`location`), the line within that field, starting at 1, a reason, and `source`: `RULES` for the rule checks, `MODEL` for the model review. The rules run first, so one response never mixes both sources. The offending text is never included.
+
+A rule check rejection:
 
 ```json
 {
@@ -183,15 +193,52 @@ The response lists every finding, with the rule ID, the field (`location`), the 
       "rule_id": "dump-secrets",
       "location": "team context",
       "line": 3,
-      "reason": "Asks the agent to print or collect secrets"
+      "reason": "Asks the agent to print or collect secrets",
+      "source": "RULES"
     },
     {
       "rule_id": "external-url",
       "location": "content of skill 'release-checklist'",
       "line": 1,
-      "reason": "Links to collector.example.net, which is not an allowed host"
+      "reason": "Links to collector.example.net, which is not an allowed host",
+      "source": "RULES"
     }
   ]
+}
+```
+
+A model review rejection has the same shape, with a category as `rule_id`:
+
+```json
+{
+  "type": "about:blank",
+  "title": "Skill preset rejected for security",
+  "status": 422,
+  "detail": "This preset was rejected to protect the members it applies to. team context, line 2: Sends every environment variable to a chat channel [data-exfiltration].",
+  "findings": [
+    {
+      "rule_id": "data-exfiltration",
+      "location": "team context",
+      "line": 2,
+      "reason": "Sends every environment variable to a chat channel",
+      "source": "MODEL"
+    }
+  ]
+}
+```
+
+Model categories are `prompt-injection`, `concealment`, `credential-access`, `data-exfiltration`, `unsafe-execution`, `approval-bypass`, `social-engineering` and `other`.
+
+### Security review unavailable (503)
+
+When the model review cannot give a verdict, nothing is saved:
+
+```json
+{
+  "type": "about:blank",
+  "title": "Skill preset security review unavailable",
+  "status": 503,
+  "detail": "The security review is unavailable. Nothing was saved. Try again in a minute."
 }
 ```
 
@@ -331,13 +378,19 @@ qovery api "organization/$ORGANIZATION_ID/skillPreset/revision?skillPresetId=$SK
         "organization_default": false,
         "role_ids": ["33333333-3333-3333-3333-333333333333"],
         "user_ids": []
+      },
+      "security_review": {
+        "verdict": "ALLOW",
+        "model": "<model id>",
+        "prompt_version": "skill-preset-review/v1",
+        "findings": []
       }
     }
   ]
 }
 ```
 
-`change_type` is `CREATE`, `UPDATE` or `DELETE`. Each revision carries `is_template`, the flag at that revision. A `DELETE` revision holds the state of the preset when it was deleted.
+`change_type` is `CREATE`, `UPDATE` or `DELETE`. Each revision carries `is_template`, the flag at that revision, and `security_review`, the result of the model review the state passed: `verdict`, `model`, the review `prompt_version`, and `findings` holding any notes the model raised without blocking. `security_review` is `null` on a `DELETE` revision. A `DELETE` revision holds the state of the preset when it was deleted.
 
 ## Read skill usage
 
@@ -399,13 +452,14 @@ Usage data is kept for 90 days: older loads are purged every day, so `from` cann
 
 ## Find edits and loads in the audit log
 
-Preset edits and skill loads are organization events in the [audit log](/getting-started/security-and-compliance/audit-logs), with the sub-target type `SKILL_PRESET`:
+Preset edits, refused saves and skill loads are organization events in the [audit log](/getting-started/security-and-compliance/audit-logs), with the sub-target type `SKILL_PRESET`:
 
 | Event | The change holds | The original change holds |
 | --- | --- | --- |
-| `CREATE` | The saved state with full text, `is_template`, and the revision. | Nothing |
-| `UPDATE` | The new state with full text, the revision, and a `changes` summary. | The previous state with full text. |
+| `CREATE` | The saved state with full text, `is_template`, the revision, and `security_review`. | Nothing |
+| `UPDATE` | The new state with full text, the revision, `security_review`, and a `changes` summary. | The previous state with full text. |
 | `DELETE` | The deleted state with full text. | Nothing |
+| `REJECTED` | A create or edit refused by the rule checks or the model review: `attempted_change` (`CREATE` or `UPDATE`), `skill_preset_id` (`null` on a create), `name`, `base`, `is_template`, `description_sha256`, `team_context_sha256`, `skills` (`skill_name`, `mode`, `description_sha256`, `content_sha256`), `assigned_to`, `findings`. Never the text. | Nothing |
 | `LOAD` | `skill_name`, `source`, `skill_preset_id`, `skill_preset_name`, `revision`, `mode`, `content_sha256`, `team_context_sha256`, `from_cache`. | Nothing |
 
 The `changes` summary of an update:
@@ -424,10 +478,13 @@ The `changes` summary of an update:
 
 Saved states include `team_context_sha256` and each skill's `content_sha256`. When a preset holds more than 65,536 characters of text, the entry keeps the hashes, leaves the text out and sets `content_omitted: true`. The [revision history](#list-revisions) always holds the full text.
 
-To list skill loads:
+A `400`, `403` or `503` on a save is not recorded: it says nothing about the content.
+
+To list skill loads, or refused saves:
 
 ```bash
 qovery api "organization/$ORGANIZATION_ID/events?eventType=LOAD"
+qovery api "organization/$ORGANIZATION_ID/events?eventType=REJECTED"
 ```
 
 ## Related

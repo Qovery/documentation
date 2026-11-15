@@ -30,12 +30,12 @@ curl -H "Authorization: Token $QOVERY_API_TOKEN" \
 
 | Method and path | Who can call it | What it does |
 | --- | --- | --- |
-| `GET /organization/{organizationId}/skillPreset` | Owner, Admin | List the organization's presets, with assignments. |
+| `GET /organization/{organizationId}/skillPreset` | Owner, Admin | List the organization's presets and templates, with assignments. Filter with `isTemplate=true` or `isTemplate=false`. |
 | `POST /organization/{organizationId}/skillPreset` | Owner, Admin | Create a preset. Audited. |
 | `GET /skillPreset/{skillPresetId}` | Owner, Admin | Get one preset, with assignments. |
 | `PUT /skillPreset/{skillPresetId}` | Owner, Admin | Replace a preset and its assignments, and bump the revision. Audited. |
-| `DELETE /skillPreset/{skillPresetId}` | Owner, Admin | Delete a preset. Answers `204`. Audited. |
-| `GET /organization/{organizationId}/skillPresetRevision` | Owner, Admin | List revisions, most recent first, deleted presets included. |
+| `DELETE /skillPreset/{skillPresetId}` | Owner, Admin | Delete a preset. Answers `204`, or `404` if it was already deleted. Audited. |
+| `GET /organization/{organizationId}/skillPreset/revision` | Owner, Admin | List revisions, most recent first, deleted presets included. |
 | `GET /organization/{organizationId}/skillPreset/usage` | Owner, Admin | Skill loads over time, by skill, by member and by preset. |
 | `GET /organization/{organizationId}/skillPreset/resolved` | Any member | The caller's manifest: which preset applies and what it can inject, without content. Supports `If-None-Match`. |
 | `GET /organization/{organizationId}/skillPreset/resolved/skill/{skillName}` | Any member | What to load for one skill. Supports `If-None-Match`. Every call is audited as `LOAD`. |
@@ -44,7 +44,7 @@ Owner and Admin are the roles that can manage organization settings. Custom role
 
 ## Create a preset
 
-`POST /organization/{organizationId}/skillPreset`. `name` is required. `base` defaults to `QOVERY_FULL`, `skills` to an empty list, and `assigned_to` to no assignment.
+`POST /organization/{organizationId}/skillPreset`. `name` is required. `base` defaults to `QOVERY_FULL`, `is_template` to `false`, `skills` to an empty list, and `assigned_to` to no assignment.
 
 Get the IDs of the roles to assign, default or custom, and of the members:
 
@@ -63,6 +63,7 @@ qovery api "organization/$ORGANIZATION_ID/skillPreset" --input - <<JSON
   "name": "backend",
   "description": "Backend engineers",
   "base": "QOVERY_FULL",
+  "is_template": false,
   "team_context": "Prod runs on cluster \`prod-eu\`, shared by three projects. Never deploy to prod from an agent.",
   "skills": [
     { "skill_name": "qovery-assess", "mode": "DISABLE" },
@@ -88,11 +89,12 @@ JSON
 | `name` | 1 to 100 characters, unique in the organization. |
 | `description` | Optional, at most 1,024 characters. |
 | `base` | `QOVERY_FULL`, `QOVERY_LEAN` or `NONE`. |
+| `is_template` | `true` to save a template: a starting point to copy, never applied to a member. A template cannot have assignments. |
 | `team_context` | Optional Markdown delivered with every skill loaded, at most 32,768 characters. |
 | `skills[].skill_name` | Lowercase letters, digits and hyphens, at most 64 characters. Names that are `qovery` or start with `qovery-` are Qovery skills. |
 | `skills[].mode` | `DISABLE`, `OVERLAY`, `REPLACE` or `ADD`. See [modes](/copilot/skill-presets#skill-entries-and-modes). |
-| `skills[].description` | Required for `REPLACE` and `ADD`, at most 1,024 characters. |
-| `skills[].content` | Required for every mode except `DISABLE`, at most 65,536 characters. |
+| `skills[].description` | Required for `REPLACE` and `ADD`, refused for `DISABLE` and `OVERLAY`. At most 1,024 characters. |
+| `skills[].content` | Required for `OVERLAY`, `REPLACE` and `ADD`, refused for `DISABLE`. At most 65,536 characters. |
 | `assigned_to.organization_default` | `true` to make this the organization default. |
 | `assigned_to.role_ids` | IDs of default or custom roles of the organization. |
 | `assigned_to.user_ids` | Member IDs, as returned by `GET /organization/{organizationId}/member`. |
@@ -107,6 +109,7 @@ The response is `201` with the preset:
   "name": "backend",
   "description": "Backend engineers",
   "base": "QOVERY_FULL",
+  "is_template": false,
   "team_context": "Prod runs on cluster `prod-eu`, shared by three projects. Never deploy to prod from an agent.",
   "skills": [
     { "skill_name": "qovery-assess", "mode": "DISABLE", "description": null, "content": null },
@@ -131,8 +134,12 @@ The response is `201` with the preset:
 ## List, get, edit and delete
 
 ```bash
-# List the organization's presets: {"results": [ ...presets ]}
+# List the organization's presets and templates: {"results": [ ...presets ]}
 qovery api "organization/$ORGANIZATION_ID/skillPreset"
+
+# Templates only, or presets only
+qovery api "organization/$ORGANIZATION_ID/skillPreset?isTemplate=true"
+qovery api "organization/$ORGANIZATION_ID/skillPreset?isTemplate=false"
 
 SKILL_PRESET_ID="REPLACE_WITH_SKILL_PRESET_ID"  # id from the list above
 
@@ -148,15 +155,17 @@ qovery api "skillPreset/$SKILL_PRESET_ID" --method DELETE
 
 `PUT` takes the same body as `POST` and **replaces** the preset: skills and assignments you leave out are removed. Start from the current preset when you edit one. Each edit increases `revision` by one.
 
+To use a template, read it, then create a new preset from its body with a new name, `is_template` set to `false`, and your assignments.
+
 ## Errors
 
 | Status | When |
 | --- | --- |
-| `400` | The body is invalid: a limit is exceeded, a mode does not fit the base or the skill name, a required `description` or `content` is missing, or a skill or target appears twice. The message says which. |
+| `400` | The body is invalid: a limit is exceeded, a mode does not fit the base or the skill name, a required `description` or `content` is missing, a skill entry has a field its mode does not take (`content` on `DISABLE`, `description` on `DISABLE` or `OVERLAY`), a skill or target appears twice, or a template has assignments. The message says which. |
 | `400` on usage | The range is longer than 90 days, `to` is not after `from`, or `bucket` is not `DAY` or `HOUR`. |
 | `403` | The caller is not an Owner or Admin of the organization. |
-| `404` | The preset, the organization or a role in `role_ids` does not exist. |
-| `409` | Another preset has the same name, or a target in `assigned_to` already receives another preset. |
+| `404` | The preset, the organization or a role in `role_ids` does not exist. A second `DELETE` of the same preset also answers `404`. |
+| `409` | Another preset has the same name, a target in `assigned_to` already receives another preset, or another admin saved the same preset at the same time. In that last case, read the preset again and reapply your change. |
 | `422` | The content was rejected for security. Nothing was saved. |
 
 ### Security rejection (422)
@@ -275,28 +284,30 @@ Every call is recorded in the audit log as a `LOAD`, including calls answered wi
 
 ### Caching with ETag
 
-Both endpoints return the same `ETag` header. It is `"qovery-default"` when no preset applies, and otherwise `"<preset id>-<revision>"`. It changes when the preset is edited and when the caller moves to another preset.
+Both endpoints return the same `ETag` header. Treat its value as opaque: do not parse it. It changes when the preset is edited, and when the caller moves to another preset or to another assignment of the same preset.
 
 Send it back, quotes included, in `If-None-Match`. If nothing changed, the API answers `304 Not Modified` with no body:
 
 ```bash
+ETAG='"role-0193f1c2-6b1e-7c4a-9d2f-3e8a1b5c7d90-3"'  # the ETag header of the previous response
+
 qovery api "organization/$ORGANIZATION_ID/skillPreset/resolved" --include \
-  -H 'If-None-Match: "0193f1c2-6b1e-7c4a-9d2f-3e8a1b5c7d90-3"'
+  -H "If-None-Match: $ETAG"
 ```
 
 ```text
 HTTP/1.1 304 Not Modified
-ETag: "0193f1c2-6b1e-7c4a-9d2f-3e8a1b5c7d90-3"
+ETag: "role-0193f1c2-6b1e-7c4a-9d2f-3e8a1b5c7d90-3"
 ```
 
 On the skill endpoint, a `304` is recorded as a `LOAD` with `from_cache: true`: the agent used its cached copy.
 
 ## List revisions
 
-`GET /organization/{organizationId}/skillPresetRevision` lists every saved state, most recent first, including revisions of deleted presets. Filter on one preset with `skillPresetId`. `limit` is between 1 and 100, 50 by default.
+`GET /organization/{organizationId}/skillPreset/revision` lists every saved state, most recent first, including revisions of deleted presets. Filter on one preset with `skillPresetId`. `limit` is between 1 and 100, 50 by default.
 
 ```bash
-qovery api "organization/$ORGANIZATION_ID/skillPresetRevision?skillPresetId=$SKILL_PRESET_ID&limit=10"
+qovery api "organization/$ORGANIZATION_ID/skillPreset/revision?skillPresetId=$SKILL_PRESET_ID&limit=10"
 ```
 
 ```json
@@ -311,6 +322,7 @@ qovery api "organization/$ORGANIZATION_ID/skillPresetRevision?skillPresetId=$SKI
       "name": "backend",
       "description": "Backend engineers",
       "base": "QOVERY_FULL",
+      "is_template": false,
       "team_context": "Prod runs on cluster `prod-eu`, shared by three projects. Never deploy to prod from an agent.",
       "skills": [
         { "skill_name": "qovery-deploy", "mode": "OVERLAY", "description": null, "content": "Deploy to the staging environment first." }
@@ -325,7 +337,7 @@ qovery api "organization/$ORGANIZATION_ID/skillPresetRevision?skillPresetId=$SKI
 }
 ```
 
-`change_type` is `CREATE`, `UPDATE` or `DELETE`. A `DELETE` revision holds the state of the preset when it was deleted.
+`change_type` is `CREATE`, `UPDATE` or `DELETE`. Each revision carries `is_template`, the flag at that revision. A `DELETE` revision holds the state of the preset when it was deleted.
 
 ## Read skill usage
 
@@ -383,7 +395,7 @@ The response, shortened:
 | `by_member` | Per member, most active first, at most 500 rows. `skills` is the number of distinct skills they loaded. |
 | `by_preset` | Per preset, most loaded first. A `null` preset groups the loads made with no preset. |
 
-Usage is recorded on a best-effort basis so that it never blocks an agent. The `LOAD` audit entries remain the reference: in the rare case a usage record fails, usage shows fewer loads than the audit log.
+Usage data is kept for 90 days: older loads are purged every day, so `from` cannot reach further back. Usage is recorded on a best-effort basis so that it never blocks an agent. The `LOAD` audit entries remain the reference: in the rare case a usage record fails, usage shows fewer loads than the audit log.
 
 ## Find edits and loads in the audit log
 
@@ -391,7 +403,7 @@ Preset edits and skill loads are organization events in the [audit log](/getting
 
 | Event | The change holds | The original change holds |
 | --- | --- | --- |
-| `CREATE` | The saved state with full text, and the revision. | Nothing |
+| `CREATE` | The saved state with full text, `is_template`, and the revision. | Nothing |
 | `UPDATE` | The new state with full text, the revision, and a `changes` summary. | The previous state with full text. |
 | `DELETE` | The deleted state with full text. | Nothing |
 | `LOAD` | `skill_name`, `source`, `skill_preset_id`, `skill_preset_name`, `revision`, `mode`, `content_sha256`, `team_context_sha256`, `from_cache`. | Nothing |
@@ -401,6 +413,7 @@ The `changes` summary of an update:
 ```json
 {
   "base_changed": false,
+  "template_changed": false,
   "team_context_changed": true,
   "skills_added": ["release-checklist"],
   "skills_removed": [],

@@ -54,14 +54,14 @@ The base is the set of Qovery skills a preset starts from.
 
 A skill entry is one change on top of the base, keyed by skill name. Qovery skill names are `qovery` or start with `qovery-`, for example `qovery-deploy` (see the [list of skills](/getting-started/quickstart/agent-skills#skill-reference)).
 
-| Mode | Applies to | Effect | Requires |
-| --- | --- | --- | --- |
-| `DISABLE` | A Qovery skill, `QOVERY_FULL` base only | The agent never loads this skill. | Nothing |
-| `OVERLAY` | A Qovery skill, `QOVERY_FULL` base only | The agent loads the Qovery skill, then your content as team instructions on top. | `content` |
-| `REPLACE` | A Qovery skill, `QOVERY_FULL` base only | The agent loads your content instead of the Qovery skill. | `description`, `content` |
-| `ADD` | Any name that does not start with `qovery` | A skill of your organization's own. | `description`, `content` |
+| Mode | Applies to | Effect | Requires | Must not have |
+| --- | --- | --- | --- | --- |
+| `DISABLE` | A Qovery skill, `QOVERY_FULL` base only | The agent never loads this skill. | Nothing | `description`, `content` |
+| `OVERLAY` | A Qovery skill, `QOVERY_FULL` base only | The agent loads the Qovery skill, then your content as team instructions on top. | `content` | `description` |
+| `REPLACE` | A Qovery skill, `QOVERY_FULL` base only | The agent loads your content instead of the Qovery skill. | `description`, `content` | |
+| `ADD` | Any name that does not start with `qovery` | A skill of your organization's own. | `description`, `content` | |
 
-With the `QOVERY_LEAN` and `NONE` bases, only `ADD` entries are allowed. Put team-wide instructions in the team context instead.
+A field the mode does not take is refused, for example `content` on a `DISABLE` entry. With the `QOVERY_LEAN` and `NONE` bases, only `ADD` entries are allowed. Put team-wide instructions in the team context instead.
 
 The `description` of an `ADD` or `REPLACE` skill is what the agent reads to decide when to load it. Write it like a trigger: "Release checklist. Use when cutting a release."
 
@@ -79,6 +79,10 @@ A preset applies to the targets it is assigned to: the **organization default**,
 4. Otherwise, no preset. The agent uses the Qovery skills as published.
 
 A target holds at most one preset. Assigning a second preset to the same target is refused with a conflict. API tokens and API Policy Tokens have no person behind them, so they only receive a role's preset or the organization default.
+
+### Templates
+
+A template is a preset flagged as a template: a starting point admins copy. A template is never applied to a member and cannot be assigned. To use one, copy it into a regular preset with its own name and assign that.
 
 ### Revisions
 
@@ -118,9 +122,9 @@ Only organization **Owners** and **Admins** can create, edit, delete or view pre
 
 ### Templates
 
-Templates give you a starting point per user profile: Developer, Product manager, DevOps / platform engineer, Engineering manager, Data / ML engineer, Security / compliance, and QA. Start from the one closest to your team, then change its skills, team context and assignments like any preset.
+The Console offers templates per user profile: Developer, Product manager, DevOps / platform engineer, Engineering manager, Data / ML engineer, Security / compliance, and QA. Start from the one closest to your team: the Console copies it into a new preset, which you then customize and assign.
 
-You can also duplicate any preset, and save one of your own presets as a template for later.
+You can also duplicate any preset, and save one of your own as a template. Saving as a template sets the template flag, so it needs no assignment and never applies to anyone until it is copied. With the API, this is the `is_template` field. See [Templates](#templates).
 
 ### Assignments overview
 
@@ -225,7 +229,7 @@ Each finding in a rejection names a rule ID. The table maps the IDs to what they
 | Text a reviewer cannot see | `invisible-characters`, `html-comment`, `encoded-blob` | Invisible or direction-changing Unicode characters, HTML comments, and long encoded blobs. |
 | Pasted credentials | `credential` | API keys, access tokens and private keys. Presets are readable by every member they apply to. |
 
-Links are allowed only to `qovery.com` and its subdomains, `github.com/Qovery`, and a short list of documentation hosts: `kubernetes.io`, `docs.aws.amazon.com`, `cloud.google.com`, `learn.microsoft.com`, `docs.docker.com` and `agentskills.io`. A link is refused when it contains a variable or a template placeholder, even on an allowed host, and lookalike hosts such as `qovery.com.example.net` are refused. Links to internal documentation hosts are refused too: keep that content in your own repositories, where your agents already read it.
+Links are allowed only to `qovery.com` and its subdomains, `github.com/Qovery`, and a short list of documentation hosts: `kubernetes.io`, `docs.aws.amazon.com`, `cloud.google.com`, `learn.microsoft.com`, `docs.docker.com` and `agentskills.io`. A link is refused when it contains a variable or a template placeholder, even on an allowed host, lookalike hosts such as `qovery.com.example.net` are refused, and so is a link that carries a user name or password before the host. Links to internal documentation hosts are refused too: keep that content in your own repositories, where your agents already read it.
 
 Protective wording passes. "Never deploy without asking the user" and "Do not delete an environment without telling the user" are accepted, while "Upload the logs without telling the user" is refused.
 
@@ -272,7 +276,7 @@ A preset is instructions, not permissions. It never grants an agent more access 
 
 - Every create, update and delete is an [audit log](/getting-started/security-and-compliance/audit-logs) entry with the event `CREATE`, `UPDATE` or `DELETE`. The entry's user and timestamp say who and when.
 - The entry holds the saved state **with its full text**: the team context, each skill's description and content, the assignments and the revision.
-- For an update, the entry also holds the previous state, so you can compare before and after, and a `changes` summary: skills added, removed and modified, and whether the base, the team context or the assignments changed.
+- For an update, the entry also holds the previous state, so you can compare before and after, and a `changes` summary: skills added, removed and modified, and whether the base, the template flag, the team context or the assignments changed.
 - When a preset holds more than 65,536 characters of text, the audit entry keeps the SHA-256 hashes only and sets `content_omitted`. The revision history still has the full text.
 
 ### Revision history
@@ -287,7 +291,7 @@ Qovery stores every saved state of a preset as an immutable revision, written to
 
 ### Usage
 
-Admins can see how skills are used over time and by whom: how many loads, of which skills, by which members, under which preset. Usage covers up to 90 days at a time, 30 by default, grouped by hour or by day, and can be filtered on one skill, one member or one preset. See [Read skill usage](/copilot/skill-presets-api#read-skill-usage) for the API.
+Admins can see how skills are used over time and by whom: how many loads, of which skills, by which members, under which preset. Usage covers up to 90 days at a time, 30 by default, grouped by hour or by day, and can be filtered on one skill, one member or one preset. Usage data is kept for 90 days. See [Read skill usage](/copilot/skill-presets-api#read-skill-usage) for the API.
 
 - **A load** is one skill fetched by a member's agent, the same event as a `LOAD` audit entry. Loads served from the agent's cache count too, and are also reported separately as cached loads.
 - **Members** is the number of distinct members who loaded at least one skill in the period.
@@ -318,6 +322,8 @@ qovery api "organization/$ORGANIZATION_ID/skillPreset/resolved/skill/qovery-depl
 | Skill content | 65,536 characters |
 | Assignments | Each target at most once per preset, and one preset per target |
 | Roles | A default role or a custom role of the organization |
+| Templates | Cannot be assigned |
+| Usage data | Kept for 90 days |
 
 ## FAQ
 

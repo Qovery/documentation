@@ -11,7 +11,7 @@ The [Qovery agent skills](/getting-started/quickstart/agent-skills) are written 
   and the agent-side behaviour described here are likely to change.
 </Info>
 
-In the Console, skill presets live in **Agent Experience**, an organization tab next to **Audit Logs**. It also holds the commands to connect an agent, your policy tokens and agent activity. See [Agent Experience](/configuration/organization#agent-experience). The old **Organization settings** links to skill presets and agent activity redirect there.
+In the Console, skill presets live in **Agent Experience**, an organization tab next to **Audit Logs**. It also holds the Copilot, the commands to connect an agent, your policy tokens and agent activity. See [Agent Experience](/configuration/organization#agent-experience). The old **Organization settings** links to the Copilot, skill presets and agent activity redirect there.
 
 ## How it works
 
@@ -229,8 +229,9 @@ Each finding says which gate raised it: `RULES` for the rule checks, `MODEL` for
   the organization, because the preset text is sent to the model review.
   Without it, a create or an edit answers `403`. Reading presets, members'
   skill loads and deleting presets keep working when AI features are off. Owners
-  and Admins can turn AI features on from **Agent Experience → Skill presets**
-  in the Console, which asks for confirmation first. They can also use the API,
+  and Admins turn them on with **Turn on AI** in **Agent Experience**: one
+  confirmation turns on AI features and the Copilot, in read-only mode. See
+  [Turn on AI](/configuration/organization#turn-on-ai). They can also use the API,
   through `ai_features_enabled` on the organization. See [Edit the
   organization's AI features
   opt-in](/api-reference/organization-main-calls/edit-the-organizations-ai-features-opt-in).

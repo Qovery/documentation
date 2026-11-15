@@ -12,32 +12,26 @@ Qovery AI Copilot is your intelligent assistant for managing infrastructure. It'
 To enable Qovery AI Copilot for your organization:
 
 <Steps>
-  <Step title="Access Organization Settings">
-    Log into [Qovery Console](https://console.qovery.com) as an **organization administrator** and navigate to your organization settings.
+  <Step title="Open Agent Experience">
+    Log into [Qovery Console](https://console.qovery.com) as an organization **Owner** or **Admin** and open the **Agent Experience** tab of your organization.
   </Step>
 
-  <Step title="Open AI Copilot Page">
-    Go to the **AI Copilot** section in the settings menu.
+  <Step title="Turn on AI">
+    Click **Turn on AI**, read the Copilot Terms & Conditions and confirm. You will receive a copy of the Terms & Conditions by email for your records.
+
+    This one confirmation turns on the organization's AI features and the Copilot, in **read-only mode**. AI features are also what the security review of [skill presets](/copilot/skill-presets) needs. If the Copilot cannot be turned on, AI features stay on and you can retry.
   </Step>
 
-  <Step title="Review and Accept Terms & Conditions">
-    Read the AI Copilot Terms & Conditions carefully and accept them to proceed.
-  </Step>
-
-  <Step title="Enable AI Copilot">
-    Click the **Enable AI Copilot** button. You will receive a copy of the Terms & Conditions via email for your records.
-  </Step>
-
-  <Step title="Access the Copilot Panel">
-    Once enabled, you'll have access to the AI Copilot management panel where you can:
-    - View and manage recurring tasks
-    - Disable the AI Copilot if needed
-    - Configure copilot settings
+  <Step title="Manage the Copilot">
+    Open **Agent Experience → Copilot** to see its status and settings, where you can:
+    - Choose the access source and the access mode (read-only or read-write)
+    - View and manage scheduled tasks
+    - Disable the Copilot if needed
   </Step>
 </Steps>
 
 <Note>
-Only **organization administrators** can enable or disable the AI Copilot for the organization.
+Only organization **Owners** and **Admins** can turn the Copilot on, change its settings or disable it. Other members see its status only. The old **Organization settings → AI settings → Copilot** page redirects to **Agent Experience → Copilot**. See [Agent Experience](/configuration/organization#agent-experience).
 </Note>
 
 <Warning>
@@ -46,7 +40,7 @@ Only **organization administrators** can enable or disable the AI Copilot for th
 
 ## Authentication Modes
 
-The Qovery AI Copilot supports two authentication modes, configurable by an organization administrator in the Copilot settings:
+The Qovery AI Copilot supports two authentication modes, configurable by an organization administrator on the **Agent Experience → Copilot** page (**Access source**):
 
 <Tabs>
   <Tab title="JWT Mode (Default)">

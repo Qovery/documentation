@@ -13,7 +13,7 @@ The Qovery Console includes a built-in AI Copilot that provides contextual assis
 </Info>
 
 <Info>
-**Settings**: You can manage AI Copilot credits and activation under **Settings > AI Copilot** in the Console.
+**Settings**: Turn on and manage the Copilot under **Agent Experience → Copilot** in the Console. The old **Settings > AI settings > Copilot** page redirects there.
 </Info>
 
 <TryDemo tour="copilot" label="A 1-minute guided tour: ask the Copilot why a deployment failed." />
@@ -67,15 +67,15 @@ The Qovery AI Copilot supports two operating modes:
 
 ## Enabling Read-Write Mode
 
-Read-write capabilities must first be enabled by an organization administrator in the Copilot settings panel.
+The Copilot is turned on in read-only mode. Read-write capabilities must first be enabled by an organization Owner or Admin on the Copilot page.
 
 <Steps>
-  <Step title="Open the Copilot Settings">
-    In the Qovery Console, open the AI Copilot panel and navigate to its **settings**.
+  <Step title="Open the Copilot page">
+    In the Qovery Console, open **Agent Experience → Copilot**.
   </Step>
 
   <Step title="Enable Read-Write Mode">
-    Toggle on the **Read-Write Mode** option. This unlocks write capabilities for all users in your organization who have the appropriate permissions.
+    Set the **Access Mode** to read-write. This unlocks write capabilities for all users in your organization who have the appropriate permissions.
   </Step>
 
   <Step title="Switch Mode Per Thread">
@@ -328,7 +328,7 @@ This helps you understand if issues you're experiencing are related to the Qover
 
 ## Authentication Modes
 
-The Copilot supports two authentication modes, configured by an organization administrator in the Copilot settings. See the [Getting Started guide](/copilot/getting-started#authentication-modes) for full details.
+The Copilot supports two authentication modes, configured by an organization administrator on the **Agent Experience → Copilot** page. See the [Getting Started guide](/copilot/getting-started#authentication-modes) for full details.
 
 <CardGroup cols={2}>
   <Card title="JWT Mode (Default)" icon="user">
@@ -377,7 +377,7 @@ The Copilot supports two authentication modes, configured by an organization adm
 
     **Mode:**
     - Read-only by default per thread
-    - Read-write available (requires admin activation in Copilot settings)
+    - Read-write available (an Owner or Admin enables it on **Agent Experience → Copilot**)
 
     **Advantages:**
     - No setup required

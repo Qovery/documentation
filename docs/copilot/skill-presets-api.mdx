@@ -26,7 +26,7 @@ curl -H "Authorization: Token $QOVERY_API_TOKEN" \
   "https://api.qovery.com/organization/$ORGANIZATION_ID/skillPreset"
 ```
 
-Creating and editing presets requires AI features to be turned on for the organization, because every save goes through a [model review](/copilot/skill-presets#how-a-save-is-checked). Reading, member endpoints and delete work either way. An Owner or Admin can turn it on from **Agent Experience → Skill presets** in the Console, or with [Edit the organization's AI features opt-in](/api-reference/organization-main-calls/edit-the-organizations-ai-features-opt-in):
+Creating and editing presets requires AI features to be turned on for the organization, because every save goes through a [model review](/copilot/skill-presets#how-a-save-is-checked). Reading, member endpoints and delete work either way. An Owner or Admin can turn it on with **Turn on AI** in **Agent Experience** in the Console, which also turns on the Copilot in read-only mode (see [Turn on AI](/configuration/organization#turn-on-ai)), or with [Edit the organization's AI features opt-in](/api-reference/organization-main-calls/edit-the-organizations-ai-features-opt-in):
 
 ```bash
 qovery api "organization/$ORGANIZATION_ID/aiFeatures" --method PUT --field enabled=true

@@ -98,9 +98,10 @@ For pricing details, visit the [pricing page](https://www.qovery.com/pricing).
 
 **Agent Experience** gathers in one place how your team's coding agents work with Qovery. Open it from the **Agent Experience** tab of your organization, next to **Audit Logs**. The organization overview also shows a card that leads there until you dismiss it.
 
-Its side menu has five pages:
+Its side menu has six pages:
 
-- **Overview**: until your setup is complete, a checklist of five steps, with the next one highlighted: connect an agent, choose how agents behave, limit what agents can do, turn on AI features, and watch what agents do. Once agents are connected and the organization has a preset and a policy token, the page shows this week's numbers (agent actions, denied actions, members using agents, skill loads), the active presets, the policy tokens in use, the latest denied actions, and suggestions.
+- **Overview**: on the first visit, an introduction, "Qovery is agent first", and a single **Turn on AI** button (see [Turn on AI](#turn-on-ai)). Until your setup is complete, a checklist of five steps, with the next one highlighted: turn on AI, connect an agent, create a preset, create a policy token, and watch what agents do. Once agents are connected and the organization has a preset and a policy token, the page shows this week's numbers (agent actions, denied actions, members using agents, skill loads), the active presets, the policy tokens in use, the latest denied actions, and suggestions.
+- **Copilot**: what the [Console AI Copilot](/copilot/console) does (answers questions about your services, deployments and clusters in the Console, troubleshoots a failed deployment from its logs and events, takes actions such as deploys and restarts only in read-write mode, and runs scheduled tasks), its status, and its settings: access source, access mode, scheduled tasks, and **Disable**. The old **Organization settings → AI settings → Copilot** page redirects here.
 - **Connect your agent**: the commands to install the [Qovery agent skills](/getting-started/quickstart/agent-skills), the [Qovery CLI](/cli/overview) and the [Qovery MCP server](/copilot/mcp-server), and what your organization's preset gives agents.
 - **Skill presets**: create, edit and assign [skill presets](/copilot/skill-presets) (Preview), see their history and usage, and which skills members' agents loaded.
 - **Policy tokens**: the organization's [API Policy Tokens](/configuration/organization/api-policy-token) with their role, last use and expiry, and a button to create one. Creating a token opens the form in **Organization settings**, where you also edit and delete tokens, in the **API token** section.
@@ -113,10 +114,22 @@ An agent counts as connected once the organization has at least one skill load, 
 | Page | Owners and Admins | Other members |
 |------|-------------------|---------------|
 | Overview | The setup checklist, or the organization's numbers once set up | **Your agent setup**: what their agent receives and their own activity, read-only |
+| Copilot | Status and settings | Status only |
 | Connect your agent | Yes | Yes |
 | Skill presets | Create, edit and assign | Read-only view of what their agent receives |
 | Policy tokens | Yes | Not in the menu |
 | Agent activity | The whole organization | Their own activity only |
+
+### Turn on AI
+
+AI features are the organization's opt-in to AI. The Copilot needs them, and so does the security review that checks every skill preset before it is saved. Owners and Admins turn everything on in one step:
+
+1. Open **Agent Experience**, then click **Turn on AI**.
+2. Read the Copilot terms and confirm.
+
+This one confirmation turns on the organization's AI features and the Copilot, in read-only mode. To allow actions such as deploys and restarts, change the access mode later on the **Copilot** page. If the Copilot cannot be turned on, AI features stay on and you can retry from the same page.
+
+Other members cannot turn on AI. They see the Copilot status only.
 
 ## Organization Admin Settings
 
@@ -161,9 +174,9 @@ The **Agent** section manages what's shared with every [Agent Task](/configurati
 Qovery's own MCP server is added here automatically, organization-scoped and read-only, as soon as any agent task adds a Qovery service as Context, see [Add MCP Servers](/configuration/agent-tasks/overview#creating-an-agent). To add it yourself instead, for example with write access, use `https://mcp.qovery.com/mcp` and authenticate with an [API Policy Token](/configuration/organization/api-policy-token) (a regular API token works too).
 </Info>
 
-### Skill presets and agent activity
+### Copilot, skill presets and agent activity
 
-Skill presets and agent activity have moved out of Organization settings to [Agent Experience](#agent-experience). The old settings links redirect there.
+The Copilot, skill presets and agent activity have moved out of Organization settings to [Agent Experience](#agent-experience). The old settings links redirect there.
 
 ### Other Settings
 

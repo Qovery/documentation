@@ -566,7 +566,9 @@
               "copilot/slack-bot",
               "copilot/mcp-server",
               "copilot/securing-ai-access",
-              "getting-started/quickstart/agent-skills"
+              "getting-started/quickstart/agent-skills",
+              "copilot/skill-presets",
+              "copilot/skill-presets-api"
             ]
           },
           {

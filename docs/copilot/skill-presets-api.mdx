@@ -1,0 +1,369 @@
+---
+title: "Manage Skill Presets with the API (Preview)"
+description: "Create, edit, assign and delete skill presets, read the manifest and skills a member's agent receives, and list revision history with the Qovery API."
+tag: "PREVIEW"
+---
+
+This page shows how to manage [skill presets](/copilot/skill-presets) with the Qovery API. Read that page first for the concepts: base, skill modes, team context, assignments and resolution order.
+
+<Info>
+  **Preview**: these endpoints are new and are likely to change. They are being
+  added to the [API reference](/api-reference/introduction).
+</Info>
+
+## Before you start
+
+You need the [Qovery CLI](/cli/overview), signed in with `qovery auth`, and `jq`. The `qovery api` command sends authenticated requests to the [Qovery API](/api-reference/introduction) with your CLI session.
+
+```bash
+ORGANIZATION_ID="REPLACE_WITH_ORGANIZATION_ID"  # from qovery organization list --json
+```
+
+To call the API from a script instead, use an [API token](/configuration/organization/api-token) in the `Authorization` header:
+
+```bash
+curl -H "Authorization: Token $QOVERY_API_TOKEN" \
+  "https://api.qovery.com/organization/$ORGANIZATION_ID/skillPreset"
+```
+
+## Endpoints
+
+| Method and path | Who can call it | What it does |
+| --- | --- | --- |
+| `GET /organization/{organizationId}/skillPreset` | Owner, Admin | List the organization's presets, with assignments. |
+| `POST /organization/{organizationId}/skillPreset` | Owner, Admin | Create a preset. Audited. |
+| `GET /skillPreset/{skillPresetId}` | Owner, Admin | Get one preset, with assignments. |
+| `PUT /skillPreset/{skillPresetId}` | Owner, Admin | Replace a preset and its assignments, and bump the revision. Audited. |
+| `DELETE /skillPreset/{skillPresetId}` | Owner, Admin | Delete a preset. Answers `204`. Audited. |
+| `GET /organization/{organizationId}/skillPresetRevision` | Owner, Admin | List revisions, most recent first, deleted presets included. |
+| `GET /organization/{organizationId}/skillPreset/resolved` | Any member | The caller's manifest: which preset applies and what it can inject, without content. Supports `If-None-Match`. |
+| `GET /organization/{organizationId}/skillPreset/resolved/skill/{skillName}` | Any member | What to load for one skill. Supports `If-None-Match`. Every call is audited as `LOAD`. |
+
+Owner and Admin are the roles that can manage organization settings. Custom roles cannot manage presets.
+
+## Create a preset
+
+`POST /organization/{organizationId}/skillPreset`. `name` is required. `base` defaults to `QOVERY_FULL`, `skills` to an empty list, and `assigned_to` to no assignment.
+
+Get the IDs of the roles to assign, default or custom, and of the members:
+
+```bash
+qovery api "organization/$ORGANIZATION_ID/availableRole"
+qovery api "organization/$ORGANIZATION_ID/member"
+```
+
+Then create the preset:
+
+```bash
+ROLE_ID="REPLACE_WITH_ROLE_ID"  # id of a role from the list above
+
+qovery api "organization/$ORGANIZATION_ID/skillPreset" --input - <<JSON
+{
+  "name": "backend",
+  "description": "Backend engineers",
+  "base": "QOVERY_FULL",
+  "team_context": "Prod runs on cluster \`prod-eu\`, shared by three projects. Never deploy to prod from an agent.",
+  "skills": [
+    { "skill_name": "qovery-assess", "mode": "DISABLE" },
+    { "skill_name": "qovery-deploy", "mode": "OVERLAY", "content": "Deploy to the staging environment first." },
+    {
+      "skill_name": "release-checklist",
+      "mode": "ADD",
+      "description": "Release checklist. Use when cutting a release.",
+      "content": "1. Tag.\n2. Deploy staging.\n3. Smoke test."
+    }
+  ],
+  "assigned_to": {
+    "organization_default": false,
+    "role_ids": ["$ROLE_ID"],
+    "user_ids": []
+  }
+}
+JSON
+```
+
+| Field | Description |
+| --- | --- |
+| `name` | 1 to 100 characters, unique in the organization. |
+| `description` | Optional, at most 1,024 characters. |
+| `base` | `QOVERY_FULL`, `QOVERY_LEAN` or `NONE`. |
+| `team_context` | Optional Markdown delivered with every skill loaded, at most 32,768 characters. |
+| `skills[].skill_name` | Lowercase letters, digits and hyphens, at most 64 characters. Names that are `qovery` or start with `qovery-` are Qovery skills. |
+| `skills[].mode` | `DISABLE`, `OVERLAY`, `REPLACE` or `ADD`. See [modes](/copilot/skill-presets#skill-entries-and-modes). |
+| `skills[].description` | Required for `REPLACE` and `ADD`, at most 1,024 characters. |
+| `skills[].content` | Required for every mode except `DISABLE`, at most 65,536 characters. |
+| `assigned_to.organization_default` | `true` to make this the organization default. |
+| `assigned_to.role_ids` | IDs of default or custom roles of the organization. |
+| `assigned_to.user_ids` | Member IDs, as returned by `GET /organization/{organizationId}/member`. |
+
+The response is `201` with the preset:
+
+```json
+{
+  "id": "0193f1c2-6b1e-7c4a-9d2f-3e8a1b5c7d90",
+  "created_at": "2026-11-15T12:00:00Z",
+  "updated_at": "2026-11-15T12:00:00Z",
+  "name": "backend",
+  "description": "Backend engineers",
+  "base": "QOVERY_FULL",
+  "team_context": "Prod runs on cluster `prod-eu`, shared by three projects. Never deploy to prod from an agent.",
+  "skills": [
+    { "skill_name": "qovery-assess", "mode": "DISABLE", "description": null, "content": null },
+    { "skill_name": "qovery-deploy", "mode": "OVERLAY", "description": null, "content": "Deploy to the staging environment first." },
+    {
+      "skill_name": "release-checklist",
+      "mode": "ADD",
+      "description": "Release checklist. Use when cutting a release.",
+      "content": "1. Tag.\n2. Deploy staging.\n3. Smoke test."
+    }
+  ],
+  "revision": 1,
+  "creator_name": "Jane Doe",
+  "assigned_to": {
+    "organization_default": false,
+    "role_ids": ["33333333-3333-3333-3333-333333333333"],
+    "user_ids": []
+  }
+}
+```
+
+## List, get, edit and delete
+
+```bash
+# List the organization's presets: {"results": [ ...presets ]}
+qovery api "organization/$ORGANIZATION_ID/skillPreset"
+
+SKILL_PRESET_ID="REPLACE_WITH_SKILL_PRESET_ID"  # id from the list above
+
+# Get one preset
+qovery api "skillPreset/$SKILL_PRESET_ID"
+
+# Edit: send the whole preset, assignments included
+qovery api "skillPreset/$SKILL_PRESET_ID" --method PUT --input - < preset.json
+
+# Delete: answers 204
+qovery api "skillPreset/$SKILL_PRESET_ID" --method DELETE
+```
+
+`PUT` takes the same body as `POST` and **replaces** the preset: skills and assignments you leave out are removed. Start from the current preset when you edit one. Each edit increases `revision` by one.
+
+## Errors
+
+| Status | When |
+| --- | --- |
+| `400` | The body is invalid: a limit is exceeded, a mode does not fit the base or the skill name, a required `description` or `content` is missing, or a skill or target appears twice. The message says which. |
+| `403` | The caller is not an Owner or Admin of the organization. |
+| `404` | The preset, the organization or a role in `role_ids` does not exist. |
+| `409` | Another preset has the same name, or a target in `assigned_to` already receives another preset. |
+| `422` | The content was rejected for security. Nothing was saved. |
+
+### Security rejection (422)
+
+The response lists every finding, with the rule ID, the field (`location`), the line within that field, starting at 1, and a reason. The offending text is never included.
+
+```json
+{
+  "type": "about:blank",
+  "title": "Skill preset rejected for security",
+  "status": 422,
+  "detail": "This preset was rejected to protect the members it applies to. team context, line 3: Asks the agent to print or collect secrets [dump-secrets]; content of skill 'release-checklist', line 1: Links to collector.example.net, which is not an allowed host [external-url].",
+  "findings": [
+    {
+      "rule_id": "dump-secrets",
+      "location": "team context",
+      "line": 3,
+      "reason": "Asks the agent to print or collect secrets"
+    },
+    {
+      "rule_id": "external-url",
+      "location": "content of skill 'release-checklist'",
+      "line": 1,
+      "reason": "Links to collector.example.net, which is not an allowed host"
+    }
+  ]
+}
+```
+
+`location` is `description`, `team context`, `description of skill '<name>'` or `content of skill '<name>'`. For the list of rules and how to fix a finding, see [Security](/copilot/skill-presets#security).
+
+## Read what a member receives
+
+Any member of the organization can call these endpoints. They answer for the caller: the preset assigned to them, to their role, or as the organization default, in that order.
+
+### Manifest
+
+`GET /organization/{organizationId}/skillPreset/resolved` returns names, descriptions, approximate sizes and hashes. It never returns content, and it does not include who the preset is assigned to.
+
+```bash
+qovery api "organization/$ORGANIZATION_ID/skillPreset/resolved" --include
+```
+
+```json
+{
+  "source": "ROLE",
+  "skill_preset": {
+    "id": "0193f1c2-6b1e-7c4a-9d2f-3e8a1b5c7d90",
+    "name": "backend",
+    "base": "QOVERY_FULL",
+    "revision": 3,
+    "updated_at": "2026-11-15T12:00:00Z",
+    "team_context": { "approx_tokens": 24, "sha256": "4f0c...e1a9" },
+    "skills": [
+      { "skill_name": "qovery-assess", "mode": "DISABLE", "description": null, "content": null },
+      { "skill_name": "qovery-deploy", "mode": "OVERLAY", "description": null, "content": { "approx_tokens": 10, "sha256": "1a2b...9f3c" } },
+      {
+        "skill_name": "release-checklist",
+        "mode": "ADD",
+        "description": "Release checklist. Use when cutting a release.",
+        "content": { "approx_tokens": 11, "sha256": "7d6e...04b2" }
+      }
+    ]
+  }
+}
+```
+
+| Field | Description |
+| --- | --- |
+| `source` | Why this preset applies: `USER`, `ROLE`, `ORGANIZATION`, or `QOVERY_DEFAULT` when no preset applies. |
+| `skill_preset` | `null` with `QOVERY_DEFAULT`: use the Qovery skills as published. |
+| `team_context` | `null` when the preset has none. The team context itself comes with each skill. |
+| `skills[].content` | `null` for `DISABLE`. Otherwise the size and hash of the content. |
+| `approx_tokens` | Characters divided by 4, rounded up. An estimate, not a bill. |
+| `sha256` | SHA-256 of the UTF-8 text, in lowercase hexadecimal. |
+
+With no preset, the response is `{"source": "QOVERY_DEFAULT", "skill_preset": null}`.
+
+### One skill
+
+`GET /organization/{organizationId}/skillPreset/resolved/skill/{skillName}` returns what to load for one skill: your organization's content if any, and the team context, with their hashes.
+
+```bash
+qovery api "organization/$ORGANIZATION_ID/skillPreset/resolved/skill/qovery-deploy"
+```
+
+```json
+{
+  "source": "ROLE",
+  "skill_name": "qovery-deploy",
+  "skill_preset": {
+    "id": "0193f1c2-6b1e-7c4a-9d2f-3e8a1b5c7d90",
+    "name": "backend",
+    "revision": 3
+  },
+  "mode": "OVERLAY",
+  "description": null,
+  "content": "Deploy to the staging environment first.",
+  "content_sha256": "1a2b...9f3c",
+  "team_context": "Prod runs on cluster `prod-eu`, shared by three projects. Never deploy to prod from an agent.",
+  "team_context_sha256": "4f0c...e1a9"
+}
+```
+
+| `mode` | What the agent does |
+| --- | --- |
+| `null` | The preset leaves this Qovery skill alone: load it as published, with the team context. |
+| `DISABLE` | Do not load it. |
+| `OVERLAY` | Load the Qovery skill, then `content` as team instructions. |
+| `REPLACE` | Load `content` instead of the Qovery skill. |
+| `ADD` | Load `content`, a skill of the organization's own. |
+
+`skill_preset` is `null` when no preset applies. Any Qovery skill name answers `200`, even when the preset does not mention it. The endpoint answers `404` only for a name that is neither a Qovery skill nor in the preset.
+
+Every call is recorded in the audit log as a `LOAD`, including calls answered with `304`.
+
+### Caching with ETag
+
+Both endpoints return the same `ETag` header. It is `"qovery-default"` when no preset applies, and otherwise `"<preset id>-<revision>"`. It changes when the preset is edited and when the caller moves to another preset.
+
+Send it back, quotes included, in `If-None-Match`. If nothing changed, the API answers `304 Not Modified` with no body:
+
+```bash
+qovery api "organization/$ORGANIZATION_ID/skillPreset/resolved" --include \
+  -H 'If-None-Match: "0193f1c2-6b1e-7c4a-9d2f-3e8a1b5c7d90-3"'
+```
+
+```text
+HTTP/1.1 304 Not Modified
+ETag: "0193f1c2-6b1e-7c4a-9d2f-3e8a1b5c7d90-3"
+```
+
+On the skill endpoint, a `304` is recorded as a `LOAD` with `from_cache: true`: the agent used its cached copy.
+
+## List revisions
+
+`GET /organization/{organizationId}/skillPresetRevision` lists every saved state, most recent first, including revisions of deleted presets. Filter on one preset with `skillPresetId`. `limit` is between 1 and 100, 50 by default.
+
+```bash
+qovery api "organization/$ORGANIZATION_ID/skillPresetRevision?skillPresetId=$SKILL_PRESET_ID&limit=10"
+```
+
+```json
+{
+  "results": [
+    {
+      "skill_preset_id": "0193f1c2-6b1e-7c4a-9d2f-3e8a1b5c7d90",
+      "revision": 4,
+      "change_type": "UPDATE",
+      "edited_by": "jane@example.com",
+      "edited_at": "2026-11-15T14:02:11Z",
+      "name": "backend",
+      "description": "Backend engineers",
+      "base": "QOVERY_FULL",
+      "team_context": "Prod runs on cluster `prod-eu`, shared by three projects. Never deploy to prod from an agent.",
+      "skills": [
+        { "skill_name": "qovery-deploy", "mode": "OVERLAY", "description": null, "content": "Deploy to the staging environment first." }
+      ],
+      "assigned_to": {
+        "organization_default": false,
+        "role_ids": ["33333333-3333-3333-3333-333333333333"],
+        "user_ids": []
+      }
+    }
+  ]
+}
+```
+
+`change_type` is `CREATE`, `UPDATE` or `DELETE`. A `DELETE` revision holds the state of the preset when it was deleted.
+
+## Find edits and loads in the audit log
+
+Preset edits and skill loads are organization events in the [audit log](/getting-started/security-and-compliance/audit-logs), with the sub-target type `SKILL_PRESET`:
+
+| Event | The change holds | The original change holds |
+| --- | --- | --- |
+| `CREATE` | The saved state with full text, and the revision. | Nothing |
+| `UPDATE` | The new state with full text, the revision, and a `changes` summary. | The previous state with full text. |
+| `DELETE` | The deleted state with full text. | Nothing |
+| `LOAD` | `skill_name`, `source`, `skill_preset_id`, `skill_preset_name`, `revision`, `mode`, `content_sha256`, `team_context_sha256`, `from_cache`. | Nothing |
+
+The `changes` summary of an update:
+
+```json
+{
+  "base_changed": false,
+  "team_context_changed": true,
+  "skills_added": ["release-checklist"],
+  "skills_removed": [],
+  "skills_modified": ["qovery-deploy"],
+  "assignments_changed": false
+}
+```
+
+Saved states include `team_context_sha256` and each skill's `content_sha256`. When a preset holds more than 65,536 characters of text, the entry keeps the hashes, leaves the text out and sets `content_omitted: true`. The [revision history](#list-revisions) always holds the full text.
+
+To list skill loads:
+
+```bash
+qovery api "organization/$ORGANIZATION_ID/events?eventType=LOAD"
+```
+
+## Related
+
+<CardGroup cols={2}>
+  <Card title="Skill Presets" icon="sliders" href="/copilot/skill-presets">
+    Concepts, security rules and the member experience.
+  </Card>
+  <Card title="API Token" icon="key" href="/configuration/organization/api-token">
+    Call the API from a script.
+  </Card>
+</CardGroup>

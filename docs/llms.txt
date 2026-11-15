@@ -112,7 +112,7 @@
 - [Deploy a DaemonSet in a Karpenter Context](https://www.qovery.com/docs/getting-started/guides/advanced-tutorials/deploy-daemonset-karpenter.md): Schedule a DaemonSet on all Qovery Karpenter node pools: use the Qovery PriorityClass, tolerate the stable and cronjob taints, and skip Fargate nodes.
 - [HPA vs KEDA: Choosing an Autoscaling Mode](https://www.qovery.com/docs/getting-started/guides/advanced-tutorials/hpa-vs-keda-autoscaling.md): When to scale on CPU and memory with HPA, when to scale on events with KEDA, and how to configure each on Qovery
 - [Minimize downtime while upgrading RDS instances](https://www.qovery.com/docs/getting-started/guides/advanced-tutorials/upgrading-rds-instance.md): Upgrade an RDS PostgreSQL or MySQL instance with AWS Blue/Green deployments to reduce downtime, then align the database configuration in Qovery.
-- [Restore an RDS PostgreSQL blueprint to a point in time](https://www.qovery.com/docs/getting-started/guides/advanced-tutorials/restoring-rds-point-in-time.md): Recover deleted or damaged data from an Amazon RDS for PostgreSQL blueprint with an AWS point-in-time restore, then copy it back or move to a new blueprint service.
+- [Restore an RDS PostgreSQL blueprint to a point in time](https://www.qovery.com/docs/getting-started/guides/advanced-tutorials/restoring-rds-point-in-time.md): Recover deleted or overwritten data from an Amazon RDS for PostgreSQL blueprint with a point-in-time restore, then copy it back or replace the database.
 
 ###### Networking & Access Control
 
@@ -158,6 +158,19 @@
 - [SSO (SAML/OIDC)](https://www.qovery.com/docs/configuration/organization/sso.md): Set up SAML or OIDC Single Sign-On between your Identity Provider and Qovery, configure the default role and group synchronization, and provision users.
 - [API Token](https://www.qovery.com/docs/configuration/organization/api-token.md): Create, review, edit, and delete organization API tokens in Qovery to give CI/CD pipelines, Terraform, and scripts role-based access to the Qovery API.
 - [API Policy Token (Preview)](https://www.qovery.com/docs/configuration/organization/api-policy-token.md): Give an autonomous agent programmatic access to your organization, constrained by a policy evaluated on every request
+
+###### Agent policy examples
+
+- [Agent policy examples](https://www.qovery.com/docs/configuration/organization/policy-examples/overview.md): Ready-to-use API Policy Tokens for autonomous infrastructure agents: each example gives the use case, the full policy, the prompt, and what the agent can and cannot do.
+- [Investigate a production incident](https://www.qovery.com/docs/configuration/organization/policy-examples/investigate-production-incident.md): An API Policy Token example for an agent that reads production status, deployment history and logs to find the cause of an incident, and cannot change anything.
+- [Fix a bug and verify it in a preview environment](https://www.qovery.com/docs/configuration/organization/policy-examples/fix-in-preview-environment.md): An API Policy Token example for an agent that reads production to find a bug, then deploys and checks its fix in preview environments, and cannot touch production or staging.
+- [Stop idle environments](https://www.qovery.com/docs/configuration/organization/policy-examples/stop-idle-environments.md): An API Policy Token example for an agent that stops development environments when nobody uses them and starts them again in the morning, and cannot touch anything else.
+- [Clean up preview environments](https://www.qovery.com/docs/configuration/organization/policy-examples/clean-up-preview-environments.md): An API Policy Token example for an agent that deletes preview environments after the pull request is merged or idle, and can never delete production or staging.
+- [Right-size applications](https://www.qovery.com/docs/configuration/organization/policy-examples/right-size-applications.md): An API Policy Token example for an agent that sets CPU and memory from real usage within bounds you choose, and cannot change instances, branch or anything else.
+- [Scale before a traffic peak](https://www.qovery.com/docs/configuration/organization/policy-examples/scale-before-traffic-peak.md): An API Policy Token example for an agent that adds instances before a known traffic peak and removes them after, within a floor and a ceiling, and cannot change anything else.
+- [Roll back a bad release](https://www.qovery.com/docs/configuration/organization/policy-examples/roll-back-bad-release.md): An API Policy Token example for an agent that reads errors after a deploy and rolls production services back to the last healthy version, and cannot change configuration or delete anything.
+- [Test on a copy of production](https://www.qovery.com/docs/configuration/organization/policy-examples/test-on-production-clone.md): An API Policy Token example for an agent that clones production into a sandbox project, runs tests on the copy and deletes it, and cannot change production.
+- [Patch a security issue](https://www.qovery.com/docs/configuration/organization/policy-examples/patch-security-issue.md): An API Policy Token example for an agent that tests a security fix on a copy of production, then deploys the patched commit, and cannot change production configuration or secrets.
 
 #### Clusters & Cloud
 
@@ -407,6 +420,8 @@
 - [MCP Server](https://www.qovery.com/docs/copilot/mcp-server.md): Set up the Qovery MCP Server so Claude, ChatGPT, or another MCP-compatible client can manage your existing Qovery infrastructure in natural language.
 - [Securing AI Agent Access](https://www.qovery.com/docs/copilot/securing-ai-access.md): Grant AI agents safe, read-only access to your Qovery infrastructure for troubleshooting and investigation
 - [Qovery Agent Skills](https://www.qovery.com/docs/getting-started/quickstart/agent-skills.md): Skills that give your AI agent the ability to deploy, troubleshoot, optimize, and manage Kubernetes infrastructure.
+- [Skill Presets (Preview)](https://www.qovery.com/docs/copilot/skill-presets.md): Control how your members' coding agents use Qovery: choose which Qovery skills apply, add team instructions and your own skills, and assign them by role or member. Content is inspected and every edit and load is audited.
+- [Manage Skill Presets with the API (Preview)](https://www.qovery.com/docs/copilot/skill-presets-api.md): Create, edit, assign and delete skill presets, read the manifest and skills a member's agent receives, and list revision history with the Qovery API.
 
 #### Capabilities
 

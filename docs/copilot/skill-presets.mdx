@@ -359,6 +359,24 @@ qovery api "organization/$ORGANIZATION_ID/skillPreset/resolved/skill/qovery-depl
   | jq -j .content | shasum -a 256
 ```
 
+## Agent activity
+
+Skill presets **guide** what agents do. [API Policy Tokens](/configuration/organization/api-policy-token) **enforce** what they are allowed to do. Agent activity lets you **observe** what they actually did on Qovery, linked to the skills they loaded.
+
+For a period of up to 90 days, 30 by default, by hour or by day, agent activity shows:
+
+- **Skills loaded** by agents. A person reading a skill in the Console is not counted.
+- **Actions agents took through Qovery**: API and CLI calls made by the Qovery skills, and tool calls through the [Qovery MCP server](/copilot/mcp-server). For each action you see the event, the target and its project and environment, the time and the outcome.
+- **Denied calls**: requests refused by a policy token's policy, or by role permissions for a call made by a skill.
+
+The activity is broken down by member, by skill and by type of action, with a timeline and the most recent actions. Owners and Admins see the whole organization. Every member sees their own activity, with the same detail, and nothing about other members. See [Read agent activity](/copilot/skill-presets-api#read-agent-activity) for the API.
+
+### What agent activity does not show
+
+- **Only actions taken through Qovery are visible.** Commands an agent runs directly on a cluster, in a shell, in Git or in a cloud console are not.
+- **Attribution is indicative, not proof.** Actions are linked to a person by the username recorded with each call, and to a skill by the user agent the agent sends. Both come from the client, so an agent can claim a skill it does not run, or leave the skill out. Use agent activity to understand behaviour. To control what an agent can do, use [API Policy Tokens](/configuration/organization/api-policy-token): their refusals are recorded whatever the client claims.
+- **No content.** Agent activity never shows prompts, code or the content of requests.
+
 ## Limits
 
 | Item | Limit |
@@ -375,6 +393,7 @@ qovery api "organization/$ORGANIZATION_ID/skillPreset/resolved/skill/qovery-depl
 | Roles | A default role or a custom role of the organization |
 | Templates | Cannot be assigned |
 | Usage data | Kept for 90 days |
+| Usage and agent activity range | 90 days per request, 30 by default |
 
 ## FAQ
 
@@ -413,6 +432,9 @@ qovery api "organization/$ORGANIZATION_ID/skillPreset/resolved/skill/qovery-depl
   </Card>
   <Card title="Audit Logs" icon="list-check" href="/getting-started/security-and-compliance/audit-logs">
     Find preset edits and skill loads.
+  </Card>
+  <Card title="API Policy Token" icon="key" href="/configuration/organization/api-policy-token">
+    Enforce what an agent can do.
   </Card>
   <Card title="Securing AI Agent Access" icon="shield-check" href="/copilot/securing-ai-access">
     Limit what an agent can do with its credentials.

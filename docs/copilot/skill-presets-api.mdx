@@ -1,6 +1,6 @@
 ---
 title: "Manage Skill Presets with the API (Preview)"
-description: "Create, edit, assign and delete skill presets, read the manifest and skills a member's agent receives, and read revision history and skill usage with the Qovery API."
+description: "Create, edit, assign and delete skill presets, read the manifest and skills a member's agent receives, and read revision history, skill usage and agent activity with the Qovery API."
 tag: "PREVIEW"
 ---
 
@@ -43,6 +43,8 @@ qovery api "organization/$ORGANIZATION_ID/aiFeatures" --method PUT --field enabl
 | `DELETE /skillPreset/{skillPresetId}` | Owner, Admin | Delete a preset. Answers `204`, or `404` if it was already deleted. Audited. |
 | `GET /organization/{organizationId}/skillPreset/revision` | Owner, Admin | List revisions, most recent first, deleted presets included. |
 | `GET /organization/{organizationId}/skillPreset/usage` | Owner, Admin | Skill loads over time, by skill, by member and by preset. |
+| `GET /organization/{organizationId}/agentActivity` | Owner, Admin | What agents did through Qovery, linked to the skills they loaded, for the whole organization. |
+| `GET /organization/{organizationId}/agentActivity/me` | Any member | The same view, for the caller only. |
 | `GET /organization/{organizationId}/skillPreset/resolved` | Any member | The caller's manifest: which preset applies and what it can inject, without content. Supports `If-None-Match`. |
 | `GET /organization/{organizationId}/skillPreset/resolved/skill/{skillName}` | Any member | What to load for one skill. Supports `If-None-Match` and `purpose`. Every call is audited, as `LOAD` or `VIEW`. |
 
@@ -170,6 +172,7 @@ To use a template, read it, then create a new preset from its body with a new na
 | --- | --- |
 | `400` | The body is invalid: a limit is exceeded, a mode does not fit the base or the skill name, a required `description` or `content` is missing, a skill entry has a field its mode does not take (`content` on `DISABLE`, `description` on `DISABLE` or `OVERLAY`), a skill or target appears twice, a template has assignments, or the preset holds more than 200,000 characters of text in total. The message says which. |
 | `400` on a skill | `purpose` is not `LOAD` or `VIEW`. |
+| `400` on agent activity | The range is invalid or longer than 90 days, `bucket` is not `DAY` or `HOUR`, or `skillName` is not a valid skill name. |
 | `400` on usage | The range is longer than 90 days, `to` is not after `from`, or `bucket` is not `DAY` or `HOUR`. |
 | `403` | The caller is not an Owner or Admin of the organization, or, on a create or an edit, AI features are turned off for the organization. The detail then reads: "Turn on AI features for this organization to use skill presets: every preset is reviewed by a model before it reaches members." |
 | `404` | The preset, the organization or a role in `role_ids` does not exist. A second `DELETE` of the same preset also answers `404`. |
@@ -462,6 +465,85 @@ The response, shortened:
 | `by_preset` | Per preset, most loaded first. A `null` preset groups the loads made with no preset. |
 
 Usage data is kept for 90 days: older loads are purged every day, so `from` cannot reach further back. Usage is recorded on a best-effort basis so that it never blocks an agent. The `LOAD` audit entries remain the reference: in the rare case a usage record fails, usage shows fewer loads than the audit log.
+
+## Read agent activity
+
+Agent activity links skill loads to what agents did through Qovery. See [Agent activity](/copilot/skill-presets#agent-activity) for what it covers and its limits.
+
+| Endpoint | Who can call it | Query parameters |
+| --- | --- | --- |
+| `GET /organization/{organizationId}/agentActivity` | Owner, Admin | `from`, `to`, `bucket`, `userSub`, `skillName` |
+| `GET /organization/{organizationId}/agentActivity/me` | Any member, about themselves | `from`, `to`, `bucket`, `skillName` |
+
+| Query parameter | Description |
+| --- | --- |
+| `from`, `to` | ISO 8601 timestamps. Default: the last 30 days. The range can be at most 90 days. |
+| `bucket` | `DAY` (default) or `HOUR`: the size of each `timeline` point. |
+| `userSub` | Admin endpoint only: one member, by member ID. The member is matched through their most recent skill load, so a member with no skill load in the last 90 days shows no actions. |
+| `skillName` | Only activity linked to this skill. |
+
+```bash
+# The whole organization (Owner or Admin)
+qovery api "organization/$ORGANIZATION_ID/agentActivity?bucket=DAY"
+
+# Your own activity (any member)
+qovery api "organization/$ORGANIZATION_ID/agentActivity/me"
+```
+
+The response, shortened:
+
+```json
+{
+  "from": "2026-10-16T12:00:00Z",
+  "to": "2026-11-15T12:00:00Z",
+  "bucket": "DAY",
+  "coverage": {
+    "sources": ["SKILL_LOAD", "SKILL_API_ACTION", "MCP_TOOL_CALL", "POLICY_DENIAL"],
+    "note": "Only actions taken through Qovery (its API, CLI, skills and MCP server) are visible. What an agent does elsewhere, such as in a shell, in git or in a cloud console, is not."
+  },
+  "totals": { "skill_loads": 412, "actions": 96, "denials": 3, "members": 14 },
+  "timeline": [
+    { "start": "2026-11-14T00:00:00Z", "skill_loads": 37, "actions": 9, "denials": 1 }
+  ],
+  "actions_by_type": [
+    { "event": "TRIGGER_DEPLOY", "target_type": "ENVIRONMENT", "count": 41, "denied": 0 }
+  ],
+  "by_member": [
+    { "user_sub": "auth0|5f2a9c0e1b3d4a0012345678", "user_name": "jane@example.com", "skill_loads": 58, "actions": 12, "denials": 1, "top_skills": ["qovery-deploy"], "last_activity_at": "2026-11-15T11:42:08Z" }
+  ],
+  "by_skill": [
+    { "skill_name": "qovery-deploy", "loads": 190, "actions": 60, "denials": 1, "members": 11 },
+    { "skill_name": null, "loads": 0, "actions": 20, "denials": 2, "members": 3 }
+  ],
+  "recent": [
+    {
+      "at": "2026-11-15T11:42:08Z",
+      "user_sub": "auth0|5f2a9c0e1b3d4a0012345678",
+      "user_name": "jane@example.com",
+      "origin": "SKILL_API_ACTION",
+      "skill_name": "qovery-deploy",
+      "event": "TRIGGER_DEPLOY",
+      "target_type": "ENVIRONMENT",
+      "target_name": "staging",
+      "project_name": "api",
+      "environment_name": "staging",
+      "outcome": "ALLOWED"
+    }
+  ]
+}
+```
+
+| Field | Description |
+| --- | --- |
+| `coverage` | The sources the view reads, and a reminder of what it cannot see. |
+| `totals` | Skill loads, actions, denied calls and distinct members in the range. |
+| `timeline` | One point per hour or day. |
+| `actions_by_type` | Actions grouped by audit event and target type, with how many were denied. |
+| `by_member` | Per member, at most 500 rows: loads, actions, denials, most used skills and last activity. `user_sub` is `null` for an actor that loaded no skill in the range, such as an API Policy Token. |
+| `by_skill` | Per skill, at most 100 rows. `skill_name: null` groups actions that name no skill, such as MCP tool calls and calls made directly with a policy token. |
+| `recent` | The 100 most recent actions, newest first. `origin` is `SKILL_API_ACTION`, `MCP_TOOL_CALL` or `POLICY_DENIAL`. `outcome` is `DENIED` for a `POLICY_DENIAL`, `ALLOWED` otherwise. |
+
+The response holds what the audit log already shows: events, targets, names and times. It never includes prompts, code or request content. Skill attribution comes from the user agent the client sends, so treat it as indicative.
 
 ## Find edits and loads in the audit log
 

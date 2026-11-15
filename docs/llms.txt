@@ -421,7 +421,7 @@
 - [Securing AI Agent Access](https://www.qovery.com/docs/copilot/securing-ai-access.md): Grant AI agents safe, read-only access to your Qovery infrastructure for troubleshooting and investigation
 - [Qovery Agent Skills](https://www.qovery.com/docs/getting-started/quickstart/agent-skills.md): Skills that give your AI agent the ability to deploy, troubleshoot, optimize, and manage Kubernetes infrastructure.
 - [Skill Presets (Preview)](https://www.qovery.com/docs/copilot/skill-presets.md): Control how your members' coding agents use Qovery: choose which Qovery skills apply, add team instructions and your own skills, and assign them by role or member. Content is inspected and every edit and load is audited.
-- [Manage Skill Presets with the API (Preview)](https://www.qovery.com/docs/copilot/skill-presets-api.md): Create, edit, assign and delete skill presets, read the manifest and skills a member's agent receives, and list revision history with the Qovery API.
+- [Manage Skill Presets with the API (Preview)](https://www.qovery.com/docs/copilot/skill-presets-api.md): Create, edit, assign and delete skill presets, read the manifest and skills a member's agent receives, and read revision history and skill usage with the Qovery API.
 
 #### Capabilities
 

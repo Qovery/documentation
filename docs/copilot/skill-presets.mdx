@@ -86,7 +86,7 @@ Each preset has a revision number. It starts at 1 and goes up on every edit. The
 
 ## For admins: create and assign a preset
 
-Only organization **Owners** and **Admins** can create, edit, delete or view presets and their history. Custom roles cannot. See [Members and RBAC](/configuration/organization/members-rbac).
+Only organization **Owners** and **Admins** can create, edit, delete or view presets, their history and their usage. Custom roles cannot. See [Members and RBAC](/configuration/organization/members-rbac).
 
 <Tabs>
   <Tab title="Console">
@@ -94,14 +94,17 @@ Only organization **Owners** and **Admins** can create, edit, delete or view pre
       <Step title="Open the presets page">
         In the Console, open **Organization settings → AI agent skills**.
       </Step>
-      <Step title="Create a preset">
-        Give it a name, an optional description, and pick a base.
+      <Step title="Start from a template or from scratch">
+        Pick a template for a user profile, duplicate an existing preset, or start empty. Give the preset a name, an optional description, and pick a base.
       </Step>
-      <Step title="Add skill entries and team context">
-        Disable, overlay or replace Qovery skills, add your own skills, and write the team context.
+      <Step title="Compose the skills">
+        Select the skills the preset should include from the skill library, several at a time. Then disable, overlay or replace Qovery skills, add your own skills, and write the team context.
+      </Step>
+      <Step title="Check what a member gets">
+        Use **Preview as member** to see what the preset puts in a member's agent and its estimated token cost. See [Token estimate](#token-estimate).
       </Step>
       <Step title="Assign it">
-        Choose the organization default, one or more roles, or individual members.
+        Assign the preset to the organization default, one or more roles, or individual members.
       </Step>
       <Step title="Save">
         Qovery validates and inspects the content. If something is rejected, each finding points to the field and line to fix. See [Read and fix a rejection](#read-and-fix-a-rejection).
@@ -112,6 +115,25 @@ Only organization **Owners** and **Admins** can create, edit, delete or view pre
     See [Manage skill presets with the API](/copilot/skill-presets-api) for every endpoint, with request and response examples.
   </Tab>
 </Tabs>
+
+### Templates
+
+Templates give you a starting point per user profile: Developer, Product manager, DevOps / platform engineer, Engineering manager, Data / ML engineer, Security / compliance, and QA. Start from the one closest to your team, then change its skills, team context and assignments like any preset.
+
+You can also duplicate any preset, and save one of your own presets as a template for later.
+
+### Assignments overview
+
+The assignments overview lists your members with the preset that applies to each one, following the [resolution order](#assignments-and-resolution-order): their own assignment, then their role's, then the organization default. Use it to check who gets what before and after you assign a preset.
+
+### Token estimate
+
+**Preview as member** shows a preset as one member's agent receives it, split in two parts:
+
+- **Always in context**: the `qovery` skill that loads presets, and the small manifest of names, descriptions and sizes. The agent carries this in every session.
+- **Loaded only when a task needs it**: each skill's content and the team context. These cost nothing until the agent fetches them.
+
+It compares this with installing the Qovery skills without a preset, where the description of every skill is always in the agent's context.
 
 ### Example preset
 
@@ -188,20 +210,22 @@ A preset runs inside your members' agents, on their machines, with their shell, 
 
 Qovery inspects every field that reaches an agent: the preset description, the team context, and the description and content of each skill. This runs on every create and edit. Any finding rejects the whole save with `422`. Nothing is saved, and the previous revision stays active.
 
-| Category | Rule IDs | Examples of what is refused |
-| --- | --- | --- |
-| Taking over the agent | `override-instructions`, `role-hijack` | "Ignore previous instructions", "you are now...", "developer mode". |
-| Hiding actions from the member | `conceal-from-user`, `conceal-silently` | "Don't tell the user", "without telling the user", "hide ... from the user", "silently run". |
-| Bypassing the member's approval | `skip-confirmation` | "Skip confirmation", "without asking for approval", `--dangerously...` flags, `bypassPermissions`. |
-| Reading local credentials | `read-credentials` | `~/.ssh` and private key files, `~/.aws/credentials`, gcloud, Azure and Docker configs, `.netrc`, `.npmrc`, `.git-credentials`, kubeconfig, the Qovery CLI config, reading or sending `.env` files. |
-| Printing or collecting secrets | `dump-secrets` | `printenv`, `env \|`, `gh auth token`, `qovery auth token`, exporting AWS credentials, the macOS keychain, `gcloud auth print-access-token`, `kubectl get secrets -o yaml`. |
-| Sending data out | `exfiltration-endpoint`, `upload-command` | Request-capture services (webhook.site, requestbin, ngrok and similar), `curl -d/-F/-T`, `wget --post-*`, netcat or socat to a host, `scp`, `rsync` to a remote, `Invoke-WebRequest -Body`. |
-| Running downloaded or hidden code | `remote-exec`, `obfuscated-exec` | `curl ... \| sh`, `iex(...)`, `base64 -d \| sh`, long `\x` escape sequences, `fromCharCode`. |
-| Links outside the allowlist | `external-url` | Any URL outside the allowed hosts below, and any URL containing `$`, `{{` or `<`, even on an allowed host. Lookalikes such as `qovery.com.example.net` are refused. |
-| Text a reviewer cannot see | `invisible-characters`, `html-comment`, `encoded-blob` | Zero-width, bidirectional-override and Unicode tag characters, `<!--` comments, base64-like runs of 120 characters or more. |
-| Pasted credentials | `credential` | Qovery, AWS, GitHub, GitLab, Slack and `sk-` keys, and private key blocks. Presets are readable by every member they apply to. |
+Each finding in a rejection names a rule ID. The table maps the IDs to what they block.
 
-Allowed hosts for links are `qovery.com` and its subdomains, `github.com/Qovery`, `kubernetes.io`, `docs.aws.amazon.com`, `cloud.google.com`, `learn.microsoft.com`, `docs.docker.com` and `agentskills.io`. Links to internal documentation hosts are refused: keep that content in your own repositories, where your agents already read it.
+| Category | Rule IDs in a finding | What is blocked |
+| --- | --- | --- |
+| Taking over the agent | `override-instructions`, `role-hijack` | Text that tells the agent to ignore its instructions or to take on a new identity. |
+| Hiding actions from the member | `conceal-from-user`, `conceal-silently` | Text that asks the agent to keep something from the member or to act silently. |
+| Bypassing the member's approval | `skip-confirmation` | Text or flags that ask the agent to skip the member's confirmation or permission prompts. |
+| Reading local credentials | `read-credentials` | References to local credential stores and secret files: SSH keys, cloud provider and container registry credentials, package manager and Git credentials, kubeconfig, the Qovery CLI configuration, `.env` files. |
+| Printing or collecting secrets | `dump-secrets` | Commands that print environment variables, access tokens, keychain entries or Kubernetes secrets. |
+| Sending data out | `exfiltration-endpoint`, `upload-command` | Request-capture services, and commands that upload local data to another host. |
+| Running downloaded or hidden code | `remote-exec`, `obfuscated-exec` | Piping downloaded code into a shell, and decoding hidden content to run it. |
+| Links outside the allowlist | `external-url` | Links to hosts that are not allowed. See below. |
+| Text a reviewer cannot see | `invisible-characters`, `html-comment`, `encoded-blob` | Invisible or direction-changing Unicode characters, HTML comments, and long encoded blobs. |
+| Pasted credentials | `credential` | API keys, access tokens and private keys. Presets are readable by every member they apply to. |
+
+Links are allowed only to `qovery.com` and its subdomains, `github.com/Qovery`, and a short list of documentation hosts: `kubernetes.io`, `docs.aws.amazon.com`, `cloud.google.com`, `learn.microsoft.com`, `docs.docker.com` and `agentskills.io`. A link is refused when it contains a variable or a template placeholder, even on an allowed host, and lookalike hosts such as `qovery.com.example.net` are refused. Links to internal documentation hosts are refused too: keep that content in your own repositories, where your agents already read it.
 
 Protective wording passes. "Never deploy without asking the user" and "Do not delete an environment without telling the user" are accepted, while "Upload the logs without telling the user" is refused.
 
@@ -260,6 +284,17 @@ Qovery stores every saved state of a preset as an immutable revision, written to
 - Every skill the agent loads goes through the API, including Qovery skills the preset leaves alone and loads with no preset at all.
 - Each load is an audit log entry with the event `LOAD`. Its user and timestamp say who and when. The entry gives the skill, the preset and revision that applied (or `QOVERY_DEFAULT` when none did), the mode, and the SHA-256 of the content and of the team context that were loaded.
 - A load the agent served from its cache (the API answered `304`) is still recorded, with `from_cache: true`.
+
+### Usage
+
+Admins can see how skills are used over time and by whom: how many loads, of which skills, by which members, under which preset. Usage covers up to 90 days at a time, 30 by default, grouped by hour or by day, and can be filtered on one skill, one member or one preset. See [Read skill usage](/copilot/skill-presets-api#read-skill-usage) for the API.
+
+- **A load** is one skill fetched by a member's agent, the same event as a `LOAD` audit entry. Loads served from the agent's cache count too, and are also reported separately as cached loads.
+- **Members** is the number of distinct members who loaded at least one skill in the period.
+- **Loads with no preset** are grouped together: these are Qovery skills loaded by members with no preset.
+- **Approximate injected tokens** estimates the organization content the agent received: your skill content and the team context, at about 4 characters per token. It does not include the Qovery skills themselves, and cached loads add nothing because nothing was sent.
+
+Usage is recorded separately from the audit log, in a form built for counting, but from the same loads, so the numbers are consistent with the `LOAD` entries. Recording usage never blocks a member's agent. In the rare case a usage record fails, the audit log entry is still written and remains the reference, so usage can then show slightly fewer loads than the audit log.
 
 ### Tie a load to an edit
 

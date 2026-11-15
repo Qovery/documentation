@@ -1,6 +1,6 @@
 ---
 title: "Manage Skill Presets with the API (Preview)"
-description: "Create, edit, assign and delete skill presets, read the manifest and skills a member's agent receives, and list revision history with the Qovery API."
+description: "Create, edit, assign and delete skill presets, read the manifest and skills a member's agent receives, and read revision history and skill usage with the Qovery API."
 tag: "PREVIEW"
 ---
 
@@ -36,6 +36,7 @@ curl -H "Authorization: Token $QOVERY_API_TOKEN" \
 | `PUT /skillPreset/{skillPresetId}` | Owner, Admin | Replace a preset and its assignments, and bump the revision. Audited. |
 | `DELETE /skillPreset/{skillPresetId}` | Owner, Admin | Delete a preset. Answers `204`. Audited. |
 | `GET /organization/{organizationId}/skillPresetRevision` | Owner, Admin | List revisions, most recent first, deleted presets included. |
+| `GET /organization/{organizationId}/skillPreset/usage` | Owner, Admin | Skill loads over time, by skill, by member and by preset. |
 | `GET /organization/{organizationId}/skillPreset/resolved` | Any member | The caller's manifest: which preset applies and what it can inject, without content. Supports `If-None-Match`. |
 | `GET /organization/{organizationId}/skillPreset/resolved/skill/{skillName}` | Any member | What to load for one skill. Supports `If-None-Match`. Every call is audited as `LOAD`. |
 
@@ -152,6 +153,7 @@ qovery api "skillPreset/$SKILL_PRESET_ID" --method DELETE
 | Status | When |
 | --- | --- |
 | `400` | The body is invalid: a limit is exceeded, a mode does not fit the base or the skill name, a required `description` or `content` is missing, or a skill or target appears twice. The message says which. |
+| `400` on usage | The range is longer than 90 days, `to` is not after `from`, or `bucket` is not `DAY` or `HOUR`. |
 | `403` | The caller is not an Owner or Admin of the organization. |
 | `404` | The preset, the organization or a role in `role_ids` does not exist. |
 | `409` | Another preset has the same name, or a target in `assigned_to` already receives another preset. |
@@ -324,6 +326,64 @@ qovery api "organization/$ORGANIZATION_ID/skillPresetRevision?skillPresetId=$SKI
 ```
 
 `change_type` is `CREATE`, `UPDATE` or `DELETE`. A `DELETE` revision holds the state of the preset when it was deleted.
+
+## Read skill usage
+
+`GET /organization/{organizationId}/skillPreset/usage` reports who loaded which skills, how often and when. It counts the same loads as the `LOAD` audit entries, cached loads included.
+
+| Query parameter | Description |
+| --- | --- |
+| `from`, `to` | ISO 8601 timestamps. `from` is included, `to` is not. Default: the last 30 days. The range can be at most 90 days, and `to` must be after `from`. |
+| `bucket` | `DAY` (default) or `HOUR`: the size of each `timeline` point. |
+| `skillName` | Only loads of this skill. |
+| `userSub` | Only loads by this member. Use the member ID from `GET /organization/{organizationId}/member`, or `user_sub` from a previous response. |
+| `skillPresetId` | Only loads under this preset. |
+
+```bash
+qovery api "organization/$ORGANIZATION_ID/skillPreset/usage?from=2026-10-16T12:00:00Z&to=2026-11-15T12:00:00Z&bucket=DAY"
+
+# One skill only
+qovery api "organization/$ORGANIZATION_ID/skillPreset/usage?skillName=qovery-deploy"
+```
+
+The response, shortened:
+
+```json
+{
+  "from": "2026-10-16T12:00:00Z",
+  "to": "2026-11-15T12:00:00Z",
+  "bucket": "DAY",
+  "totals": { "loads": 412, "cached_loads": 301, "members": 14, "approx_injected_tokens": 18950 },
+  "timeline": [
+    { "start": "2026-11-13T00:00:00Z", "loads": 41, "cached_loads": 30 },
+    { "start": "2026-11-14T00:00:00Z", "loads": 37, "cached_loads": 25 }
+  ],
+  "by_skill": [
+    { "skill_name": "qovery-deploy", "loads": 190, "cached_loads": 140, "members": 11, "last_loaded_at": "2026-11-15T11:42:08Z" },
+    { "skill_name": "release-checklist", "loads": 64, "cached_loads": 51, "members": 6, "last_loaded_at": "2026-11-14T17:03:55Z" }
+  ],
+  "by_member": [
+    { "user_sub": "auth0|5f2a9c0e1b3d4a0012345678", "user_name": "jane@example.com", "loads": 58, "skills": 4, "last_loaded_at": "2026-11-15T11:42:08Z" }
+  ],
+  "by_preset": [
+    { "skill_preset_id": "0193f1c2-6b1e-7c4a-9d2f-3e8a1b5c7d90", "skill_preset_name": "backend", "loads": 390 },
+    { "skill_preset_id": null, "skill_preset_name": null, "loads": 22 }
+  ]
+}
+```
+
+| Field | Description |
+| --- | --- |
+| `totals.loads` | Skill loads in the range, cached loads included. |
+| `totals.cached_loads` | Loads answered with `304`: the agent used its cached copy. |
+| `totals.members` | Distinct members who loaded at least one skill. |
+| `totals.approx_injected_tokens` | Estimated tokens of organization content sent to agents: skill content plus team context, characters divided by 4. Qovery skills themselves are not counted, and cached loads count 0. |
+| `timeline` | One point per hour or day that has loads, oldest first. Periods with no load are left out. |
+| `by_skill` | Per skill, most loaded first, at most 100 rows. `members` is the number of distinct members who loaded it. |
+| `by_member` | Per member, most active first, at most 500 rows. `skills` is the number of distinct skills they loaded. |
+| `by_preset` | Per preset, most loaded first. A `null` preset groups the loads made with no preset. |
+
+Usage is recorded on a best-effort basis so that it never blocks an agent. The `LOAD` audit entries remain the reference: in the rare case a usage record fails, usage shows fewer loads than the audit log.
 
 ## Find edits and loads in the audit log
 

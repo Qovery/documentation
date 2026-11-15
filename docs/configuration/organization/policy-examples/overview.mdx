@@ -61,7 +61,7 @@ Start at the top. The first jobs only read or touch non-production environments.
 
 ## Run it on its own
 
-Once the token exists, give the agent a trigger. [Agent Tasks](/configuration/agent-tasks/overview) support two natively: a schedule (a cron expression and a timezone) and a webhook.
+Once the token exists, give the agent a trigger: a schedule, or an event such as a webhook.
 
 <Steps>
   <Step title="Create its policy token">
@@ -70,14 +70,14 @@ Once the token exists, give the agent a trigger. [Agent Tasks](/configuration/ag
   <Step title="Schedule the agent">
     Pick one:
 
-    - **As an Agent Task on Qovery.** From the environment's **Automations** tab, create an agent task with the prompt and the trigger. Give it the Qovery MCP server, `https://mcp.qovery.com/mcp`, with the header `Authorization: Token <policy token>`, added under **Organization settings → Agent → MCP**. See [Add MCP Servers](/configuration/agent-tasks/overview#creating-an-agent).
-    - **From your own scheduler.** A CI cron job or a scheduled coding agent, with the token in `QOVERY_CLI_ACCESS_TOKEN`, never in the prompt.
+    - **From your coding agent (recommended).** Run the job from the coding agent you already use: Claude Code, Codex, Cursor, OpenCode, Gemini CLI, VS Code Copilot, or any agent with the [Qovery Agent Skills](/getting-started/quickstart/agent-skills). It works through the Qovery skills or the [Qovery MCP server](/copilot/mcp-server), signed in with the policy token, which you give outside the prompt: `QOVERY_CLI_ACCESS_TOKEN=<policy token>` for the skills and the CLI, or the MCP header `Authorization: Token <policy token>`. To make it recurring, use the coding agent's own scheduling if it has one, or start it from a CI cron job with the prompt. For a webhook trigger, start it when the event happens.
+    - **As an Agent Task on Qovery.** From the environment's **Automations** tab, create an [agent task](/configuration/agent-tasks/overview) with the prompt and the trigger. Agent Tasks support two triggers natively: a schedule (a cron expression and a timezone) and a webhook. Give it the Qovery MCP server, `https://mcp.qovery.com/mcp`, with the header `Authorization: Token <policy token>`, added under **Organization settings → Agent → MCP**. See [Add MCP Servers](/configuration/agent-tasks/overview#creating-an-agent).
   </Step>
 </Steps>
 
 ### Automate a job that has no example
 
-Describe the recurring job in plain English to a coding agent that has the [Qovery Agent Skills](/getting-started/quickstart/agent-skills), with `/qovery-policy-token <what the agent should do>`. In the Console, **Automate a new job** in **Agent Experience → Automate** builds that command for you. The skill confirms the resources with you, writes a deny-by-default policy, tests it locally, creates the token once you approve, and checks it live: calls outside the job are refused, safe reads work, and no destructive action is allowed unless you asked for it. Then schedule the agent as above.
+Describe the recurring job in plain English to a coding agent that has the [Qovery Agent Skills](/getting-started/quickstart/agent-skills), with `/qovery-policy-token <what the agent should do>`. In the Console, **Automate a new job** in **Agent Experience → Automate** builds that command for you. The skill confirms the resources with you, writes a deny-by-default policy, tests it locally, creates the token once you approve, and checks it live: calls outside the job are refused, safe reads work, and no destructive action is allowed unless you asked for it. Then schedule it: run it from your coding agent on a schedule, or as an Agent Task on Qovery, with that token.
 
 ## What every policy has in common
 

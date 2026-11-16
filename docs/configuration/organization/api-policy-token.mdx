@@ -12,7 +12,7 @@ An **API Policy Token** is a second kind of organization token, intended for aut
 </Info>
 
 <Note>
-  In the Qovery Console, policy tokens are managed in **Agents → Policy tokens**,
+  In the Qovery Console, policy tokens are managed in **Agents → Settings → Policy tokens**,
   by organization Owners and Admins. The old Organization settings page redirects there.
 </Note>
 
@@ -323,7 +323,8 @@ The recipes below are smaller building blocks.
 <Steps>
   <Step title="Open Policy tokens">
     In the Console, open the **Agents** tab of your organization, then
-    **Policy tokens**. Regular [API tokens](/configuration/organization/api-token)
+    **Settings → Policy tokens** (Owners and Admins). The setup step on the
+    Agents Overview and the links in Automate and Activity also lead there. Regular [API tokens](/configuration/organization/api-token)
     stay in Organization settings.
   </Step>
 
@@ -369,7 +370,7 @@ If the policy does not allow the request, the API answers `401 Unauthorized`.
 
 ## Inspect and revoke
 
-In **Agents → Policy tokens**, each token shows its role, a bar of its allowed and denied calls over the last 7 days, **Last used** and **Expires**. A token with no expiry date gets a **No expiry** warning badge. Each token's row menu offers:
+In **Agents → Settings → Policy tokens**, each token shows its role, a bar of its allowed and denied calls over the last 7 days, **Last used** and **Expires**. A token with no expiry date gets a **No expiry** warning badge. Each token's row menu offers:
 
 - **See activity**: opens **Agents → Activity** filtered on the token, with its allowed and refused calls. See [Activity](/copilot/skill-presets#activity).
 - **View policy**: shows the policy attached to the token, read-only. A policy can always be reviewed after creation. Only the token value is write-once.

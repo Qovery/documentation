@@ -369,6 +369,12 @@ For high availability:
     **Multiple scalers behavior**: If you configure multiple scalers, KEDA uses the scaler that calculates the highest target number of instances. For example, if Scaler A monitors a queue with 15 messages and calculates 15 target instances (1 message per instance), and Scaler B monitors a queue with 50 messages and calculates 5 target instances (10 messages per instance), KEDA scales to 15 instances (the higher target).
     </Info>
 
+    #### Advanced Scaling Settings
+
+    - **Initial Cooldown Period (seconds)**: Delay after creation before the application is allowed to scale to 0 (default: 0 seconds). The regular cooldown period only governs scaling from 1 to 0; scaling down from the maximum to 1 instance follows the Kubernetes HPA's own stabilization window.
+    - **Scale to 0 when idle**: When no scaler is active, scale down to 0 instances instead of the configured minimum (maps to KEDA's `idleReplicaCount`). Requires a minimum of at least 1 instance.
+    - **Advanced configuration**: Optional raw YAML for the KEDA `ScaledObject`'s `advanced` field, for example `horizontalPodAutoscalerConfig.behavior` to tune how fast instances scale down. Allowed keys: `horizontalPodAutoscalerConfig`, `restoreToOriginalReplicaCount`, and `scalingModifiers`. See the [KEDA advanced settings reference](https://keda.sh/docs/2.19/reference/scaledobject-spec/#advanced).
+
     #### Scaler Configuration
 
     Each scaler monitors a specific event source. You can add multiple scalers to respond to different metrics.

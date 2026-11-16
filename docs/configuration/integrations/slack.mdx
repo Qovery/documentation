@@ -5,7 +5,7 @@ description: "Get real-time deployment notifications in Slack"
 
 ## Overview
 
-The Qovery Slack integration sends real-time notifications to your Slack channels when deployments fail, enter failure loops, or recover. You can configure alert rules to filter by project, environment, and environment type, and customize the message template with variables.
+The Qovery Slack integration sends real-time notifications to your Slack channels when deployments fail, enter failure loops, or recover. You can configure notification rules to filter by project, environment, and environment type, and customize the message template with variables.
 
 Each notification includes actionable buttons to open the environment in the Qovery console, view deployment logs, mute notifications for 24 hours, or jump to notification settings.
 
@@ -119,7 +119,7 @@ If you use Qovery's observability alerting (CPU, memory, errors, latency), you c
   </Step>
 
   <Step title="Add a notification channel in Qovery">
-    1. Navigate to the **Alerting** section in the Qovery Console
+    1. Navigate to the **Alerts** section in the Qovery Console
     2. Click on **Notification channel**
     3. Click **Add channel**
     4. Enter a **Display name** (e.g., "Production Alerts") and paste the **Webhook URL**
@@ -127,7 +127,7 @@ If you use Qovery's observability alerting (CPU, memory, errors, latency), you c
   </Step>
 
   <Step title="Create alert rules">
-    Create alert rules with conditions (CPU, memory, etc.) and assign them to the notification channel you created. See the [Alert Conditions guide](/configuration/integrations/observability/qovery-observe#alerts) for details.
+    Create alert rules with conditions (CPU, memory, etc.) and assign them to the notification channel you created. See the [Alert Conditions guide](/configuration/integrations/observability/qovery-observe#alert-conditions-guide) for details.
   </Step>
 </Steps>
 

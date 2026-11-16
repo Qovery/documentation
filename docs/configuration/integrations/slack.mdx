@@ -1,12 +1,13 @@
 ---
 title: "Slack Integration"
-description: "Get real-time deployment alerts in Slack"
+description: "Get real-time deployment notifications in Slack"
 ---
 
 ## Overview
 
+The Qovery Slack integration sends real-time notifications to your Slack channels when deployments fail, enter failure loops, or recover. You can configure alert rules to filter by project, environment, and environment type, and customize the message template with variables.
 
-Each notification includes actionable buttons to open the environment in the Qovery console, view deployment logs, mute alerts for 24 hours, or jump to alert settings.
+Each notification includes actionable buttons to open the environment in the Qovery console, view deployment logs, mute notifications for 24 hours, or jump to notification settings.
 
 Follow-up failures and recovery messages are grouped as thread replies to keep your channels clean.
 
@@ -24,9 +25,9 @@ Follow-up failures and recovery messages are grouped as thread replies to keep y
     </Info>
   </Step>
 
-  <Step title="Create an alert rule">
-    1. Click **Add alert rule**
-    2. Choose which **Slack channel** receives the alerts
+  <Step title="Create a notification rule">
+    1. Click **Add notification rule**
+    2. Choose which **Slack channel** receives the notifications
     3. Filter by **project**, **environment**, and **environment type** (production, staging, development, preview)
     4. Optionally customize the **failure message template** using variables
     5. Save the rule
@@ -39,14 +40,14 @@ Follow-up failures and recovery messages are grouped as thread replies to keep y
     </Tip>
   </Step>
 
-  <Step title="Start receiving alerts">
+  <Step title="Start receiving notifications">
     The next time a deployment fails or recovers in a matching environment, you will receive a notification in the configured Slack channel.
   </Step>
 </Steps>
 
-## Alert types
+## Notification types
 
-| Alert | Description | Format |
+| Notification | Description | Format |
 |-------|-------------|--------|
 | **Deployment failure** | Sent when a deployment fails | New message in the channel |
 | **Failure loop** | Sent when consecutive failures occur on the same environment | Thread reply on the original failure message |
@@ -54,7 +55,7 @@ Follow-up failures and recovery messages are grouped as thread replies to keep y
 
 ## Message template variables
 
-When creating or editing an alert rule, you can customize the failure message using these variables:
+When creating or editing a notification rule, you can customize the failure message using these variables:
 
 | Variable | Description | Example |
 |----------|-------------|---------|
@@ -68,14 +69,14 @@ When creating or editing an alert rule, you can customize the failure message us
 | `{{error_message}}` | Error message from the deployment (truncated to 500 chars) | `Pod crashloopbackoff...` |
 | `{{console_url}}` | Direct link to the environment in the console | |
 | `{{logs_url}}` | Direct link to the deployment logs | |
-| `{{alert_settings_url}}` | Direct link to the alert settings page | |
+| `{{alert_settings_url}}` | Direct link to the notification settings page | |
 
 ### Default template
 
 If you don't customize the message, the default template is:
 
 ```
-🚨 Deployment failed on {{environment_name}} ({{environment_type}}) in {{project_name}}.
+Deployment failed on {{environment_name}} ({{environment_type}}) in {{project_name}}.
 Failed services: {{failed_services}}. Triggered by {{triggered_by}}.
 ```
 
@@ -85,12 +86,12 @@ Each deployment failure notification includes four buttons:
 
 - **Open in console** — Opens the environment overview in the Qovery console
 - **View logs** — Opens the deployment logs for the failed environment
-- **Mute 24h** — Silences all alerts for this environment on this channel for 24 hours
-- **Alert settings** — Opens the Slack notification settings page
+- **Mute 24h** — Silences all notifications for this environment on this channel for 24 hours
+- **Notification settings** — Opens the Slack notification settings page
 
 ## Mute
 
-Clicking **Mute 24h** on a notification silences all alerts for that environment on that channel for 24 hours. During this period, deployment failures and recovery events are still processed but no Slack messages are sent.
+Clicking **Mute 24h** on a notification silences all notifications for that environment on that channel for 24 hours. During this period, deployment failures and recovery events are still processed but no Slack messages are sent.
 
 The mute is automatically lifted after 24 hours, or when a successful deployment occurs.
 
@@ -102,14 +103,37 @@ To disconnect your Slack workspace:
 2. Click the trash icon next to the workspace name
 
 <Warning>
-Disconnecting a workspace automatically deletes all alert rules associated with it.
+Disconnecting a workspace automatically deletes all notification rules associated with it.
 </Warning>
 
-## Legacy webhook integration
+## Observability alerting via webhooks
 
-If you were using the previous webhook-based Slack integration, it will continue to work. The new Slack bot integration is an additional option that provides richer notifications with actionable buttons and thread grouping.
+If you use Qovery's observability alerting (CPU, memory, errors, latency), you can send those alerts to Slack using incoming webhooks. This is a separate flow from the Slack Bot deployment notifications above.
 
-For the legacy webhook setup, see the [Webhooks documentation](/configuration/integrations/webhooks).
+<Steps>
+  <Step title="Create a Slack App with Incoming Webhooks">
+    1. Navigate to the [Slack app creation page](https://api.slack.com/apps) and create a new app
+    2. Activate **Incoming Webhooks** in the app settings
+    3. Add a new webhook to your workspace and select the target channel
+    4. Copy the generated webhook URL
+  </Step>
+
+  <Step title="Add a notification channel in Qovery">
+    1. Navigate to the **Alerting** section in the Qovery Console
+    2. Click on **Notification channel**
+    3. Click **Add channel**
+    4. Enter a **Display name** (e.g., "Production Alerts") and paste the **Webhook URL**
+    5. Click **Confirm creation**
+  </Step>
+
+  <Step title="Create alert rules">
+    Create alert rules with conditions (CPU, memory, etc.) and assign them to the notification channel you created. See the [Alert Conditions guide](/configuration/integrations/observability/qovery-observe#alerts) for details.
+  </Step>
+</Steps>
+
+## Legacy deployment webhooks
+
+If you were using webhook-based deployment notifications (not the Slack Bot above), they will continue to work. See the [Webhooks documentation](/configuration/integrations/webhooks) for details.
 
 ## Support
 

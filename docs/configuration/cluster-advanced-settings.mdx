@@ -709,13 +709,22 @@ Enabling this feature will create a 10 min max downtime on your application's pu
 
 <a id="aws-eks-alb-controller-load-balancer-source-ranges"></a>
 
-### aws.eks.alb_controller.load-balancer-source-ranges
+### aws.eks.alb_controller.load_balancer_source_ranges
 
 **Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
 
 **Type:** `list of cidr string`
 
 **Description:** Specifies the CIDRs that are allowed to access the NLB. https://kubernetes-sigs.github.io/aws-load-balancer-controller/v3.2/guide/service/annotations/#lb-source-ranges
+
+Each range must be written in canonical form:
+
+- The address is the first address of the range, with no host bits set: `10.0.0.0/8`, not `10.0.0.1/8`.
+- IPv4 octets have no leading zeros: `10.0.0.0/8`, not `010.0.0.0/8`.
+- IPv4 ranges are written as IPv4: `10.0.0.0/8`, not `::ffff:10.0.0.0/104`.
+- IPv6 ranges are lowercase and compressed, without leading zeros in a group: `2001:db8::/32`, not `2001:DB8::/32` or `2001:0db8::/32`.
+
+Qovery rejects a new or changed range that is not in canonical form. When it can, the error message gives the canonical form to use.
 
 **Default Value:** `[]`
 
@@ -724,7 +733,7 @@ Enabling this feature will create a 10 min max downtime on your application's pu
 
 <a id="aws-eks-alb-controller-load-balancer-scheme"></a>
 
-### aws.eks.alb_controller.load-balancer-scheme
+### aws.eks.alb_controller.load_balancer_scheme
 
 **Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20"  style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
 

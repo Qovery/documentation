@@ -11,7 +11,7 @@ The [Qovery agent skills](/getting-started/quickstart/agent-skills) are written 
   and the agent-side behaviour described here are likely to change.
 </Info>
 
-In the Console, skill presets live in **Agents**, an organization tab next to **Audit Logs**. It also holds the Copilot, the commands to connect an agent, your policy tokens and Activity. See [Agents](/configuration/organization#agents). The old **Organization settings** links to the Copilot, skill presets and agent activity redirect there.
+In the Console, skill presets live in **Agents → Custom skill presets**, in an organization tab next to **Audit Logs**. **Custom skill presets** is their Console label. It also holds the Copilot, the commands to connect an agent, your policy tokens and Activity. See [Agents](/configuration/organization#agents). The old **Organization settings** links to the Copilot, skill presets and agent activity redirect there.
 
 ## How it works
 
@@ -98,7 +98,7 @@ Only organization **Owners** and **Admins** can create, edit, delete or view pre
   <Tab title="Console">
     <Steps>
       <Step title="Open the presets page">
-        In the Console, open the **Agents** tab of your organization, then **Skill presets**. See [Agents](/configuration/organization#agents).
+        In the Console, open the **Agents** tab of your organization, then **Custom skill presets**. See [Agents](/configuration/organization#agents).
       </Step>
       <Step title="Start from a template or from scratch">
         Pick a template for a user profile, duplicate an existing preset, or start empty. Give the preset a name, an optional description, and pick a base.
@@ -134,7 +134,7 @@ The assignments overview lists your members with the preset that applies to each
 
 ### Token estimate
 
-**Preview as member** shows a preset as one member's agent receives it. It is in the editor, and in the **Preview** tab of **Agents → Skill presets**, where you pick a member or a role. It is split in two parts:
+**Preview as member** shows a preset as one member's agent receives it. It is in the editor, and in the **Preview** tab of **Agents → Custom skill presets**, where you pick a member or a role. It is split in two parts:
 
 - **Always in context**: the `qovery` skill that loads presets, and the small manifest of names, descriptions and sizes. The agent carries this in every session.
 - **Loaded only when a task needs it**: each skill's content and the team context. These cost nothing until the agent fetches them.
@@ -229,8 +229,10 @@ Each finding says which gate raised it: `RULES` for the rule checks, `MODEL` for
   the organization, because the preset text is sent to the model review.
   Without it, a create or an edit answers `403`. Reading presets, members'
   skill loads and deleting presets keep working when AI features are off. Owners
-  and Admins turn them on with **Turn on AI** in **Agents**: one
-  confirmation turns on AI features and the Copilot, in read-only mode. See
+  and Admins turn them on with **Turn on AI**, in the notice the Agents
+  Overview shows when AI features are off: one confirmation turns on AI
+  features and the Copilot, in read-only mode. New organizations have AI
+  features on by default. See
   [Turn on AI](/configuration/organization#turn-on-ai). They can also use the API,
   through `ai_features_enabled` on the organization. See [Edit the
   organization's AI features

@@ -201,10 +201,10 @@ Some agents use a different, more direct pattern instead: storing a chat webhook
 
     **Webhook authentication** controls who can call the agent task's webhook URL. Set it under **Settings > Governance**:
 
-    - **None** (default): anyone who knows the URL can start the agent.
-    - **Secret header**: each call must send the secret in an HTTP header, `x-qovery-webhook-secret` unless you set another header name. A call without the right value is rejected with `401`. The secret must be 16 to 1024 printable ASCII characters, with no leading or trailing space. Qovery stores only its SHA-256 hash and never shows it again.
+    - **None** (default): no secret is checked. Only the webhook IP allowlist, if set through the API (`webhook_ip_allowlist`, a list of CIDR ranges), restricts who can call the URL.
+    - **Secret header**: each call must send the secret in an HTTP header, `x-qovery-webhook-secret` unless you set another header name. Headers that proxies rewrite or consume, such as `authorization`, `cookie`, `host`, `content-type`, or `x-forwarded-*`, are rejected. A call without the right value is rejected with `401`. The secret must be 16 to 1024 printable ASCII characters, with no leading or trailing space. Qovery stores only its SHA-256 hash and never shows it again.
 
-    Once **Secret header** is saved, the field is labeled **New secret** and is empty: leave it empty to keep the current secret, or enter a new value to rotate it. New agent tasks start with **None**; set the secret header right after creation. Through the API, use the `webhook_auth` field of the agent task.
+    Once **Secret header** is saved, the field is labeled **New secret** and is empty: leave it empty to keep the current secret, or enter a new value to rotate it. Agent tasks created from the Console start with **None**; set the secret header right after creation. The webhook IP allowlist applies on top of both modes. Through the API, use the `webhook_auth` field of the agent task.
   </Accordion>
   <Accordion title="Environment Variables" icon="key">
     Plain variables or encrypted secrets the agent's instructions can reference by name. Secret values can't be viewed again once set.

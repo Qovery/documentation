@@ -89,7 +89,7 @@ Agent Tasks are one-time or scheduled jobs delegated to AI agents, running on yo
     echo "$AGENTIC_WORKFLOW_ID"
     ```
 
-    `model.type` is `CLAUDE` or `BEDROCK`. A token of type Anthropic-compatible is used with `CLAUDE`. `execution_mode` is `IN_PLACE` or `CLONE_ENVIRONMENT`. Omit `schedule` for an agent task triggered by its webhook only. The API does not add the model provider's hosts to `host_allowlist` the way the Console does: list them yourself (see [Governance](#configuration)), or the agent can't reach its model. To require a secret on webhook calls, set `webhook_auth` to `{ "mode": "SECRET_HEADER", "secret": "..." }`. To attach MCP servers or Qovery services as context, set `mcp_server_ids` and `context_service_ids`. See the [API reference](/api-reference/introduction) for the full schema.
+    `model.type` is `CLAUDE` or `BEDROCK`. A token of type Anthropic-compatible is used with `CLAUDE`. `execution_mode` is `IN_PLACE` or `CLONE_ENVIRONMENT`. Omit `schedule` for an agent task triggered by its webhook only. The API does not add the model provider's hosts to `host_allowlist` the way the Console does: list them yourself (see [Governance](#configuration)), or the agent can't reach its model. A `*` allowlist already covers them. To require a secret on webhook calls, set `webhook_auth` to `{ "mode": "SECRET_HEADER", "secret": "..." }`. To attach MCP servers or Qovery services as context, set `mcp_server_ids` and `context_service_ids`. See the [API reference](/api-reference/introduction) for the full schema.
 
     The command stores the agent task ID in `AGENTIC_WORKFLOW_ID`. Run `qovery api "agenticWorkflow/$AGENTIC_WORKFLOW_ID"` to read its `webhook` URL.
   </Tab>
@@ -187,7 +187,7 @@ Some agents use a different, more direct pattern instead: storing a chat webhook
     CPU (mCPU), memory (MiB), and storage (GB) allocated to the agent, same as any other Qovery service. CPU and memory are required, with a minimum of 1000 mCPU and 2048 MiB. The ready-made templates start at these minimums.
   </Accordion>
   <Accordion title="Governance" icon="shield-check">
-    A domain allowlist controls which external hosts the agent task can reach: comma-separated hostnames, or `*` for all domains.
+    A domain allowlist controls which external hosts the agent task can reach: comma-separated hostnames, or `*` for all domains. An entry can be an IP address, and can use `*` as a wildcard anywhere in a hostname, for example `*.sentry.io` or `bedrock-runtime.*.amazonaws.com`.
 
     The agent also needs to reach its model. Each time you create the agent task or save its settings, the Console adds the hosts of the selected LLM provider to the allowlist, so you don't have to list them yourself:
 

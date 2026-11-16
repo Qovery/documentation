@@ -12,8 +12,8 @@ An **API Policy Token** is a second kind of organization token, intended for aut
 </Info>
 
 <Note>
-  In the Qovery Console, this feature is labelled **Policy API Token**,
-  in the **Token API** section of your organization settings.
+  In the Qovery Console, policy tokens are managed in **Agents → Policy tokens**,
+  by organization Owners and Admins. The old Organization settings page redirects there.
 </Note>
 
 ## Why use one
@@ -243,7 +243,7 @@ allow_deployment if {
 
 ## Policy recipes
 
-For complete use cases, with the full policy, the prompt for the agent, and what the agent can and cannot do, see the [agent policy examples](/configuration/organization/policy-examples/overview): incident investigation, preview environments, stopping idle environments, right-sizing, scaling, rollbacks, tests on a copy of production and security patches. In the Console, **Agent Experience → Automate** lists the same examples and can prefill the token form with any of them.
+For complete use cases, with the full policy, the prompt for the agent, and what the agent can and cannot do, see the [agent policy examples](/configuration/organization/policy-examples/overview): incident investigation, preview environments, stopping idle environments, right-sizing, scaling, rollbacks, tests on a copy of production and security patches. In the Console, **Agents → Automate** lists the same examples and can prefill the token form with any of them.
 
 The recipes below are smaller building blocks.
 
@@ -321,14 +321,16 @@ The recipes below are smaller building blocks.
 ## Create an API Policy Token
 
 <Steps>
-  <Step title="Open the Token API section">
-    Go to your organization settings and open the **Token API** section, the same
-    page as the [API tokens](/configuration/organization/api-token). The
-    **Policy API Token** section sits below the API token list.
+  <Step title="Open Policy tokens">
+    In the Console, open the **Agents** tab of your organization, then
+    **Policy tokens**. Regular [API tokens](/configuration/organization/api-token)
+    stay in Organization settings.
   </Step>
 
-  <Step title="Click Add new">
-    Press the **Add new** button of the Policy API Token section.
+  <Step title="Click Create policy token">
+    Press **Create policy token**. To start from a ready-made job instead, use
+    **Create policy token** on a job in **Agents → Automate**: the form opens
+    prefilled with its name, description and policy.
   </Step>
 
   <Step title="Configure the token">
@@ -367,14 +369,15 @@ If the policy does not allow the request, the API answers `401 Unauthorized`.
 
 ## Inspect and revoke
 
-In the Policy API Token list, each token shows its creator and creation date, and **Last used**, the time elapsed since the token was last used. Hover over it to see the exact date and time in UTC. **Last used** is not displayed when no usage has been recorded for the token. Each token also offers:
+In **Agents → Policy tokens**, each token shows its role, a bar of its allowed and denied calls over the last 7 days, **Last used** and **Expires**. A token with no expiry date gets a **No expiry** warning badge. Each token's row menu offers:
 
-- **Inspect policy** (scroll icon): shows the policy attached to the token, read-only. A policy can always be reviewed after creation - only the token value is write-once.
-- **Delete** (trash icon): revokes the token. Confirm the deletion, and the token stops working immediately.
+- **See activity**: opens **Agents → Activity** filtered on the token, with its allowed and refused calls. See [Activity](/copilot/skill-presets#activity).
+- **View policy**: shows the policy attached to the token, read-only. A policy can always be reviewed after creation. Only the token value is write-once.
+- **Delete token**: revokes the token. Type the token's name to confirm, and the token stops working immediately.
 
 Policies cannot be edited. To change one, delete the token and create a new one with the updated policy.
 
-To see what a token did, including its refused calls, open **Agent Experience → Activity** in the Console and filter on the token, or follow **See activity** from **Agent Experience → Policy tokens**. See [Activity](/copilot/skill-presets#activity).
+Deleted tokens that made calls in the last 30 days stay listed, greyed out, so you can still see what they did.
 
 ## Manage tokens via the API
 

@@ -150,7 +150,7 @@
 #### Account & Organization
 
 - [User Account](https://www.qovery.com/docs/configuration/user-account.md): Manage your personal account settings and preferences
-- [Organization](https://www.qovery.com/docs/configuration/organization.md): Create, switch and delete Qovery organizations, manage billing and organization settings, and set up how coding agents work with Qovery in Agent Experience. Only the organization owner can delete it.
+- [Organization](https://www.qovery.com/docs/configuration/organization.md): Create, switch and delete Qovery organizations, manage billing and organization settings, and set up how coding agents work with Qovery in the Agents tab. Only the organization owner can delete it.
 
 ##### Access & Security
 

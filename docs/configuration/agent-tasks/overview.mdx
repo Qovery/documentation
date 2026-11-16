@@ -12,7 +12,7 @@ import AgentTasksEvolutionNote from '/snippets/agent-tasks-evolution-note.mdx';
 
 Agent Tasks are one-time or scheduled jobs delegated to AI agents, running on your Qovery-managed infrastructure like any other service. Each agent runs with its own resources, environment variables, and a domain allowlist controlling exactly what it can reach.
 
-For ready-made jobs with their policies, see **Agent Experience → Automate** in the Console. An agent task is the recommended way to run them on their own: it runs next to your services on its own schedule or webhook, with no laptop or CI to keep running. Pair it with the Qovery MCP server authenticated by a policy token, so it is limited to exactly what it is allowed. You can also run them from your own coding agent. See [Run it on its own](/configuration/organization/policy-examples/overview#run-it-on-its-own).
+For ready-made jobs with their policies, see **Agents → Automate** in the Console. An agent task is the recommended way to run them on their own: it runs next to your services on its own schedule or webhook, with no laptop or CI to keep running. Pair it with the Qovery MCP server authenticated by a policy token, so it is limited to exactly what it is allowed. You can also run them from your own coding agent. See [Run it on its own](/configuration/organization/policy-examples/overview#run-it-on-its-own).
 
 ## Creating an Agent
 
@@ -28,7 +28,7 @@ For ready-made jobs with their policies, see **Agent Experience → Automate** i
     Connect a Qovery service, a Git repository, or both, for the agent to load as context. A Qovery service's linked Git repository is included automatically, no need to add it separately, connect a repository on its own only when it isn't tied to a Qovery service.
   </Step>
   <Step title="Choose a Provider and Model">
-    Pick **Claude** (Anthropic), **AWS Bedrock**, or **Anthropic-compatible**, then select an existing token or create a new one on the fly. A token created here is saved and can be reused by any other agent task in the organization, no need to re-enter credentials each time. Tokens can also be managed centrally from **Organization Settings > Agent > Token**. When you create an AWS Bedrock token, also select its **AWS region** (`eu-west-1` by default).
+    Pick **Claude** (Anthropic), **AWS Bedrock**, or **Anthropic-compatible**, then select an existing token or create a new one on the fly. A token created here is saved and can be reused by any other agent task in the organization, no need to re-enter credentials each time. Tokens can also be managed centrally from **Agents → Agent Tasks → Model tokens**. When you create an AWS Bedrock token, also select its **AWS region** (`eu-west-1` by default).
 
     Choose **Claude** (Anthropic) to use Claude directly through Anthropic with an Anthropic API key.
 
@@ -45,7 +45,7 @@ For ready-made jobs with their policies, see **Agent Experience → Automate** i
   <Step title="Add MCP Servers (Optional)">
     If you added a Qovery service as Context in the previous step, Qovery's own MCP server is created and selected automatically: organization-scoped, read-only, backed by a Viewer API token. No URL, header, or token to configure. This is also preconfigured for the Incident Analyzer (incident.io and Honeybadger) and Build & deployment optimizer templates.
 
-    For anything else, connect any remote HTTPS MCP server with its own name, URL, and headers. MCP servers added here are available to every agent task in the organization and can also be managed from **Organization Settings > Agent > MCP**.
+    For anything else, connect any remote HTTPS MCP server with its own name, URL, and headers. MCP servers added here are available to every agent task in the organization and can also be managed from **Agents → Agent Tasks → MCP servers**.
 
     To add Qovery's own MCP server manually, for example with write access instead of the automatic read-only setup, use an [API Policy Token](/configuration/organization/api-policy-token) (a regular API token works too):
 

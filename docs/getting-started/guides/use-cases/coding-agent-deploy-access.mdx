@@ -72,7 +72,7 @@ You can use both: the EKS MCP Server for cluster-level investigation by the plat
     </Tabs>
 
     <Warning>
-    An API Policy Token authenticates as organization admin, and its policy is the only constraint: a policy that allows everything grants everything. Only allow the requests the agent needs. API Policy Tokens are in Preview; see [Current limitations](/configuration/organization/api-policy-token#current-limitations).
+    An API Policy Token runs with organization-admin rights unless you pick a narrower role, and with that default its policy is the only constraint: a policy that allows everything grants everything. Only allow the requests the agent needs. API Policy Tokens are in Preview; see [Current limitations](/configuration/organization/api-policy-token#current-limitations).
     </Warning>
   </Step>
 

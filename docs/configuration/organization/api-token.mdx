@@ -11,11 +11,12 @@ You can manage API tokens attached to your organization directly from the Qovery
   Qovery offers a second kind of token. An **API Token** carries a
   [role](/configuration/organization/members-rbac) and is the right choice for
   CI/CD, Terraform and scripts. An
-  [**API Policy Token**](/configuration/organization/api-policy-token) carries no
-  role but a policy evaluated on every request, and is meant for autonomous
-  agents that need a narrower footprint than any role can express, for
-  example an agent that may only deploy the staging environment and never
-  delete anything.
+  [**API Policy Token**](/configuration/organization/api-policy-token) adds a
+  policy evaluated on every request on top of its role, and is meant for
+  autonomous agents that need a narrower footprint than any role can express,
+  for example an agent that may only deploy the staging environment and never
+  delete anything. Policy tokens are managed in **Agents → Settings → Policy
+  tokens**, not on this page.
 </Note>
 
 ## Accessing API Tokens
@@ -30,11 +31,11 @@ You can manage API tokens attached to your organization directly from the Qovery
 
   </Step>
 
-  <Step title="Navigate to Token API Section">
-    Open the **Token API** section within the organization settings
+  <Step title="Open the API token page">
+    Open **API token** in the organization settings menu
 
     <Frame>
-      <img src="/images/configuration/organization/token_api_access.png" alt="How to access your Token API section" />
+      <img src="/images/configuration/organization/token_api_access.png" alt="How to access the API token page" />
     </Frame>
 
   </Step>
@@ -130,13 +131,13 @@ The response lists the organizations the token can access.
 
 ## Review Token Usage
 
-Each token in the Token API list shows its role, its creation date, and **Last used**, the time elapsed since the token was last used, for example "Last used 3 days ago". Hover over it to see the exact date and time in UTC. Use it to identify tokens that are no longer in use before you delete them. The **Last used** label is not displayed when no usage has been recorded for the token.
+Each token in the API token list shows its role, its creation date, and **Last used**, the time elapsed since the token was last used, for example "Last used 3 days ago". Hover over it to see the exact date and time in UTC. Use it to identify tokens that are no longer in use before you delete them. The **Last used** label is not displayed when no usage has been recorded for the token.
 
 ## Delete a Token
 
 To remove an API token:
 
-1. Locate the token in the Token API list
+1. Locate the token in the API token list
 2. Click the **delete icon** (trash icon) next to the token
 3. Confirm the deletion
 

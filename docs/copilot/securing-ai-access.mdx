@@ -35,7 +35,7 @@ claude mcp add --transport http qovery https://mcp.qovery.com/mcp --callback-por
 claude mcp add --transport http qovery "https://mcp.qovery.com/mcp?read_write=true" --callback-port 4242
 ```
 
-For an extra layer, generate a **read-only API token** in the Console (**Settings > API Tokens**) and pass it to the MCP Server. Even if write mode were requested, the token's permissions would block any destructive action.
+For an extra layer, generate a **read-only API token** in the Console (**Organization settings → API token**) and pass it to the MCP Server. Even if write mode were requested, the token's permissions would block any destructive action.
 
 <Warning>
 Enable write mode only when needed. Prefer read-only mode to limit the blast radius of unintended AI actions.
@@ -166,7 +166,7 @@ The `Bash(...:*)` syntax is Claude Code's current permission format. Other agent
 
 ## Option 3 - API Policy Token (Preview)
 
-The two options above are enforced on the agent's side: they depend on the agent using the MCP Server, or on its permission file being respected. An [**API Policy Token**](/configuration/organization/api-policy-token) is enforced by Qovery instead. The token carries no role - it carries an Open Policy Agent (rego) policy that Qovery evaluates on every API request made with it, whatever client sends it.
+The two options above are enforced on the agent's side: they depend on the agent using the MCP Server, or on its permission file being respected. An [**API Policy Token**](/configuration/organization/api-policy-token) is enforced by Qovery instead. The token carries an Open Policy Agent (rego) policy that Qovery evaluates on every API request made with it, whatever client sends it, and a role that bounds what an allowed request can do.
 
 That makes it the right tool when the constraint has to hold regardless of the agent's own configuration, or when it is finer than "read-only":
 
@@ -183,7 +183,7 @@ allow if {
 ```
 
 <Warning>
-A policy token is only as narrow as its policy: it authenticates as organization-admin and the policy is the sole constraint, so a policy that allows everything grants everything. Only an organization owner or admin can create one.
+A policy token is only as narrow as its policy and its role. The role defaults to organization admin, so with the default role a policy that allows everything grants everything: pick a narrower role to cap it. In the Console, only organization Owners and Admins can create one, in **Agents → Settings → Policy tokens**.
 </Warning>
 
 See [API Policy Token](/configuration/organization/api-policy-token) for the full input contract, more policy recipes, and the current limitations.
@@ -247,7 +247,7 @@ Secret **values** are never returned by standard `env list` commands or service 
 
 <Steps>
   <Step title="Prefer read-only mode end to end">
-    Use the MCP Server in its default read-only mode, and/or back the agent with a read-only API token created in **Settings > API Tokens**. When read-only is not granular enough, or the guardrail must not depend on the agent's own configuration, use an [API Policy Token](/configuration/organization/api-policy-token).
+    Use the MCP Server in its default read-only mode, and/or back the agent with a read-only API token created in **Organization settings → API token**. When read-only is not granular enough, or the guardrail must not depend on the agent's own configuration, use an [API Policy Token](/configuration/organization/api-policy-token).
   </Step>
 
   <Step title="Commit the permission policy">

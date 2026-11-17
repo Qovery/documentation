@@ -85,6 +85,7 @@ Describe the recurring job in plain English to a coding agent that has the [Qove
 - **A rule for CLI lookups.** The Qovery CLI turns names into IDs by listing the organization, its projects and the project's environments (and its clusters, for the examples that clone). The `cli_lookup` rule allows those reads and nothing more.
 - **No environment variable values.** The read rules leave out `environmentVariable` endpoints, because values can be sensitive. Remove that line if your agent needs them.
 - **One scope per job.** Each rule is tied to an environment, a project, or a list of services, so the agent cannot reach anything else.
+- **A role as a ceiling.** The examples work with the default role, organization admin. A narrower role, chosen when you create the token, caps what it can do even if the policy has a mistake, as long as the role still allows the job: a call the role refuses answers `403`.
 
 ## Test a policy before you create the token
 

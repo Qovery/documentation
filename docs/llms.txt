@@ -382,7 +382,7 @@
 #### Notifications
 
 - [Webhooks](https://www.qovery.com/docs/configuration/integrations/webhooks.md): Get notified about deployment events via webhooks
-- [Slack Integration](https://www.qovery.com/docs/configuration/integrations/slack.md): Get real-time deployment notifications and alerts in Slack
+- [Slack Integration](https://www.qovery.com/docs/configuration/integrations/slack.md): Get real-time deployment notifications in Slack
 - [Email Integration](https://www.qovery.com/docs/configuration/integrations/email.md): Receive real-time alerts via email when your services trigger monitoring conditions
 
 #### Networking & Advanced

@@ -11,7 +11,7 @@ The [Qovery agent skills](/getting-started/quickstart/agent-skills) are written 
   and the agent-side behaviour described here are likely to change.
 </Info>
 
-In the Console, skill presets live in **Agents → Custom skill presets**, in an organization tab next to **Audit Logs**. **Custom skill presets** is their Console label. It also holds the Copilot, the commands to connect an agent, your policy tokens and Activity. See [Agents](/configuration/organization#agents). The old **Organization settings** links to the Copilot, skill presets and agent activity redirect there.
+In the Console, skill presets live in the **Skills Registry**: open **Agents → Skills Registry**, in an organization tab next to **Audit Logs**. The feature and the API keep the name skill presets. It also holds the Copilot, the commands to connect an agent, your policy tokens and Activity. See [Agents](/configuration/organization#agents). The old **Organization settings** links to the Copilot, skill presets and agent activity redirect there.
 
 ## How it works
 
@@ -98,7 +98,7 @@ Only organization **Owners** and **Admins** can create, edit, delete or view pre
   <Tab title="Console">
     <Steps>
       <Step title="Open the presets page">
-        In the Console, open the **Agents** tab of your organization, then **Custom skill presets**. See [Agents](/configuration/organization#agents).
+        In the Console, open the **Agents** tab of your organization, then **Skills Registry**. See [Agents](/configuration/organization#agents).
       </Step>
       <Step title="Start from a template or from scratch">
         Pick a template for a user profile, duplicate an existing preset, or start empty. Give the preset a name, an optional description, and pick a base.
@@ -134,7 +134,7 @@ The assignments overview lists your members with the preset that applies to each
 
 ### Token estimate
 
-**Preview as member** shows a preset as one member's agent receives it. It is in the editor, and in the **Preview** tab of **Agents → Custom skill presets**, where you pick a member or a role. It is split in two parts:
+**Preview as member** shows a preset as one member's agent receives it. It is in the editor, and in the **Preview** tab of **Agents → Skills Registry**, where you pick a member or a role. It is split in two parts:
 
 - **Always in context**: the `qovery` skill that loads presets, and the small manifest of names, descriptions and sizes. The agent carries this in every session.
 - **Loaded only when a task needs it**: each skill's content and the team context. These cost nothing until the agent fetches them.

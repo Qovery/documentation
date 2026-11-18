@@ -124,7 +124,7 @@ Only organization **Owners** and **Admins** can create, edit, delete or view pre
 
 ### Templates
 
-The Console offers templates per user profile: Developer, Product manager, DevOps / platform engineer, Engineering manager, Data / ML engineer, Security / compliance, and QA. Start from the one closest to your team: the Console copies it into a new preset, which you then customize and assign.
+The Console offers templates per user profile: Developer, Product manager, DevOps / platform engineer, Engineering manager / tech lead, Data / ML engineer, Security / compliance, QA / tester, and Support / on-call. Support / on-call is built around `qovery-support` and `qovery-troubleshoot`: known fixes and diagnosis first, and production changes only after an explicit approval. It turns off the skills an on-call engineer does not need, such as `qovery-terraform`, `qovery-policy-token` and `qovery-preview`. Start from the one closest to your team: the Console copies it into a new preset, which you then customize and assign.
 
 You can also duplicate any preset, and save one of your own as a template. Saving as a template sets the template flag, so it needs no assignment and never applies to anyone until it is copied. With the API, this is the `is_template` field. See [Templates](#templates).
 

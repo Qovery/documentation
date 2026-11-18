@@ -1,22 +1,25 @@
 ---
 title: "Service Health Checks"
-description: "Configure liveness and readiness probes to monitor your application health"
+description: "Configure liveness, readiness and startup probes to monitor your application health"
 ---
 
 Health checks are automated procedures that monitor application status, determining readiness for traffic or restart needs. Qovery leverages Kubernetes probes for continuous verification during deployment and runtime phases.
 
 ## Kubernetes Probe Types
 
-Qovery utilizes two primary probe mechanisms:
+Qovery utilizes three probe mechanisms:
 
 - **Liveness probe**: Verifies container vitality. Failed checks trigger container restarts, addressing issues like deadlocks where applications run but cannot progress.
 - **Readiness probe**: Confirms container readiness for incoming requests. Traffic routes only to ready pods; unready containers are removed from load balancers.
+- **Startup probe** (optional): Verifies that the container has started. Kubernetes runs the liveness and readiness probes only once it succeeds, so a slow start does not trigger a restart.
 
 <Frame>
   <img src="/images/configuration/health-checks/workflow.png" alt="Kubernetes Probes Workflow" />
 </Frame>
 
-During deployment, both probes must succeed for successful completion if configured.
+During deployment, the configured probes must succeed for the deployment to complete.
+
+In the Console, the health check settings show a **Startup** column next to **Liveness** and **Readiness**. It is off (type **NONE**) unless you set it. Through the API, it is `healthchecks.startup_probe`, available on applications, containers and jobs. Leaving it out, or setting it to `null`, means no startup probe, and an edit that leaves it out removes it.
 
 ## Probes Configuration Parameters
 
@@ -80,12 +83,8 @@ Applications with extended boot operations may fail deployment if probes cannot 
 ```
 
 <Tip>
-Increase **Initial Delay** settings to match your application boot duration to prevent premature probe failures.
+Add a **startup probe** for an application that takes long to boot. Its failure threshold times its period is the time the application gets to start (with the Console defaults, 30 failures every 10 seconds, about 5 minutes), and the liveness probe only starts once it succeeds. You can also increase **Initial Delay** to match your boot duration.
 </Tip>
-
-<Warning>
-Startup probes are not yet available in Qovery.
-</Warning>
 
 ## Applicable Services
 

@@ -331,7 +331,7 @@
 
 #### Services (continued)
 
-- [Service Health Checks](https://www.qovery.com/docs/configuration/service-health-checks.md): Configure liveness and readiness probes to monitor your application health
+- [Service Health Checks](https://www.qovery.com/docs/configuration/service-health-checks.md): Configure liveness, readiness and startup probes to monitor your application health
 - [Service Advanced Settings](https://www.qovery.com/docs/configuration/service-advanced-settings.md): Fine-tune your Qovery services with advanced configuration options
 
 #### Deployment & CI/CD

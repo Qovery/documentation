@@ -48,8 +48,8 @@ The base is the set of Qovery skills a preset starts from.
 
 | Base | What the agent gets |
 | --- | --- |
-| `QOVERY_FULL` | Every Qovery skill, as published. This is the default. |
-| `QOVERY_LEAN` | One short, CLI-first Qovery skill: use the `qovery` CLI, discover commands with `--help`, ask before destructive operations. For teams that already know Kubernetes and find the full skills too heavy. |
+| `FULL` | Every Qovery skill, as published. This is the default. |
+| `LEAN` | One short, CLI-first Qovery skill: use the `qovery` CLI, discover commands with `--help`, ask before destructive operations. For teams that already know Kubernetes and find the full skills too heavy. |
 | `NONE` | No Qovery skill. Only your organization's own skills and the team context. |
 
 ### Skill entries and modes
@@ -58,12 +58,12 @@ A skill entry is one change on top of the base, keyed by skill name. Qovery skil
 
 | Mode | Applies to | Effect | Requires | Must not have |
 | --- | --- | --- | --- | --- |
-| `DISABLE` | A Qovery skill, `QOVERY_FULL` base only | The agent never loads this skill. | Nothing | `description`, `content` |
-| `OVERLAY` | A Qovery skill, `QOVERY_FULL` base only | The agent loads the Qovery skill, then your content as team instructions on top. | `content` | `description` |
-| `REPLACE` | A Qovery skill, `QOVERY_FULL` base only | The agent loads your content instead of the Qovery skill. | `description`, `content` | |
+| `DISABLE` | A Qovery skill, `FULL` base only | The agent never loads this skill. | Nothing | `description`, `content` |
+| `OVERLAY` | A Qovery skill, `FULL` base only | The agent loads the Qovery skill, then your content as team instructions on top. | `content` | `description` |
+| `REPLACE` | A Qovery skill, `FULL` base only | The agent loads your content instead of the Qovery skill. | `description`, `content` | |
 | `ADD` | Any name that does not start with `qovery` | A skill of your organization's own. | `description`, `content` | |
 
-A field the mode does not take is refused, for example `content` on a `DISABLE` entry. With the `QOVERY_LEAN` and `NONE` bases, only `ADD` entries are allowed. Put team-wide instructions in the team context instead.
+A field the mode does not take is refused, for example `content` on a `DISABLE` entry. With the `LEAN` and `NONE` bases, only `ADD` entries are allowed. Put team-wide instructions in the team context instead.
 
 The `description` of an `ADD` or `REPLACE` skill is what the agent reads to decide when to load it. Write it like a trigger: "Release checklist. Use when cutting a release."
 
@@ -149,7 +149,7 @@ A backend team on a shared production cluster. They do not want agents to run or
 {
   "name": "backend",
   "description": "Backend engineers",
-  "base": "QOVERY_FULL",
+  "base": "FULL",
   "team_context": "Prod runs on cluster `prod-eu`, shared by three projects. Never deploy to prod from an agent.",
   "skills": [
     { "skill_name": "qovery-assess", "mode": "DISABLE" },
@@ -203,7 +203,7 @@ The member view never includes who else the preset is assigned to, or who wrote 
   Reading a skill through `skillPreset/resolved/skill/{skillName}` is recorded
   in the audit log as a skill load, like a load by your agent. Add
   `?purpose=VIEW` to record it as a read by a person instead, as the Console
-  does: it is then a `VIEW` event and is not counted in usage.
+  does: it is then a `SKILL_VIEW` event and is not counted in usage.
 </Note>
 
 ### When the API cannot be reached
@@ -216,7 +216,7 @@ A preset runs inside your members' agents, on their machines, with their shell, 
 
 ### How a save is checked
 
-Qovery checks every field that reaches an agent: the preset description, the team context, and the description and content of each skill. Every create and edit goes through three gates, in this order. The first one that refuses ends the save, nothing is saved, and the previous revision stays active.
+Qovery checks every field that reaches an agent: the preset name, the preset description, the team context, and the description and content of each skill. Every create and edit goes through three gates, in this order. The first one that refuses ends the save, nothing is saved, and the previous revision stays active.
 
 1. **Rule checks.** Instant checks for known attack patterns. A finding rejects the save with `422`, and the model is not called. See [Rule checks](#rule-checks).
 2. **Model review.** A model on AWS Bedrock reads the whole preset and judges its intent. It catches reworded or new attacks that the rules miss. The preset text is passed to it as untrusted data, never as instructions, so a preset cannot talk it into approving: an attempt to influence the review is itself a reason to block. A block rejects the save with `422`. See [Model review](#model-review).
@@ -260,7 +260,9 @@ Each rule finding names a rule ID. The table maps the IDs to what they block.
 | Text a reviewer cannot see | `invisible-characters`, `html-comment`, `encoded-blob` | Invisible or direction-changing Unicode characters, HTML comments, and long encoded blobs. |
 | Pasted credentials | `credential` | API keys, access tokens and private keys. Presets are readable by every member they apply to. |
 
-Links are allowed only to `qovery.com` and its subdomains, `github.com/Qovery`, and a short list of documentation hosts: `kubernetes.io`, `docs.aws.amazon.com`, `cloud.google.com`, `learn.microsoft.com`, `docs.docker.com` and `agentskills.io`. A link is refused when it contains a variable or a template placeholder, even on an allowed host, lookalike hosts such as `qovery.com.example.net` are refused, and so is a link that carries a user name or password before the host. Links to internal documentation hosts are refused too: keep that content in your own repositories, where your agents already read it.
+Links are allowed only to `qovery.com` and its subdomains, `github.com/Qovery`, and a short list of documentation hosts: `kubernetes.io`, `docs.aws.amazon.com`, `cloud.google.com`, `learn.microsoft.com`, `docs.docker.com` and `agentskills.io`. A link is refused when it contains a variable or a template placeholder, even on an allowed host, lookalike hosts such as `qovery.com.example.net` are refused, and so is a link that carries a user name or password before the host. A link with a `.` or `..` path segment, or with an encoded dot, slash or backslash, is refused too, so `github.com/Qovery/../another-org` does not pass. Links to internal documentation hosts are refused too: keep that content in your own repositories, where your agents already read it.
+
+Upload flags are matched as written, because command-line flags are case sensitive: `curl -d`, `-F` and `-T` send data and are refused, while `curl -f` and `curl -D` do not and pass.
 
 Protective wording passes. "Never deploy without asking the user" and "Do not delete an environment without telling the user" are accepted, while "Upload the logs without telling the user" is refused.
 
@@ -281,11 +283,13 @@ A model finding uses a category in place of a rule ID:
 | `social-engineering` | Misleading the member into an unsafe action. |
 | `other` | Anything else that would turn the agent against the member. |
 
-An approved preset can still carry notes the model raised without blocking. They are kept with the revision.
+An approved preset can still carry notes the model raised without blocking. They are kept with the revision. Qovery logs the outcome of every review: the verdict, the findings and how long it took, and the cause of any failure. The preset text is not in those logs.
+
+Qovery can turn the model review off on an installation, for example while setting it up. Saves then pass on the rule checks alone, the AI features requirement does not apply, and the revision records no review. Organizations cannot turn the review off themselves.
 
 ### Read and fix a rejection
 
-A rejection lists one finding per problem, each with the rule ID or model category, the field, the line number within that field, a reason, and the gate that raised it (`source`). The offending text is never echoed back, so the error is safe to log.
+A rejection lists one finding per problem, at most 50, each with the rule ID or model category, the field, the line number within that field, a reason, and the gate that raised it (`source`). The offending text is never echoed back, so the error is safe to log.
 
 ```json
 {
@@ -297,7 +301,7 @@ A rejection lists one finding per problem, each with the rule ID or model catego
 }
 ```
 
-`location` is one of `description`, `team context`, `description of skill '<name>'` or `content of skill '<name>'`. To fix it:
+`location` is one of `name`, `description`, `team context`, `description of skill '<name>'` or `content of skill '<name>'`. To fix it:
 
 1. Open the field named in `location` and go to `line` (lines start at 1).
 2. Remove or rewrite what the finding describes. Most rejections of honest content come from a link to an internal host, a pasted token, or a sentence that reads as an instruction to hide something or skip approval. Rewrite those as a rule the agent must follow, for example "Always ask the user before deleting an environment".
@@ -331,7 +335,7 @@ A preset is instructions, not permissions. It never grants an agent more access 
 
 ### Refused saves
 
-A save refused by the rule checks or the model review saves nothing and writes no revision, but it is recorded in the audit log as a `REJECTED` event: who tried, when, whether it was a create or an update, the preset name, base and assignments, the SHA-256 of every text field, and the findings. The text itself is never recorded. Admins can use these entries to spot repeated attempts. Saves refused for other reasons, such as an invalid body, AI features turned off, or the review being unavailable, are not recorded.
+A save refused by the rule checks or the model review saves nothing and writes no revision, but it is recorded in the audit log as a `SKILL_PRESET_REJECTED` event: who tried, when, whether it was a create or an update, the preset name, base and assignments, the SHA-256 of every text field, and the findings. The text itself is never recorded. Admins can use these entries to spot repeated attempts. Saves refused for other reasons, such as an invalid body, AI features turned off, or the review being unavailable, are not recorded.
 
 ### Revision history
 
@@ -340,24 +344,24 @@ Qovery stores every saved state of a preset as an immutable revision, written to
 ### Who loaded which skill, and when
 
 - Every skill the agent loads goes through the API, including Qovery skills the preset leaves alone and loads with no preset at all.
-- Each load is an audit log entry with the event `LOAD`. Its user and timestamp say who and when. The entry gives the skill, the preset and revision that applied (or `QOVERY_DEFAULT` when none did), the mode, and the SHA-256 of the content and of the team context that were loaded.
+- Each load is an audit log entry with the event `SKILL_LOAD`. Its user and timestamp say who and when. The entry gives the skill, the preset and revision that applied (or `QOVERY_DEFAULT` when none did), the mode, and the SHA-256 of the content and of the team context that were loaded.
 - A load the agent served from its cache (the API answered `304`) is still recorded, with `from_cache: true`.
-- When a person opens a skill to read it, for example in the Console, the read is recorded as a `VIEW` event with the same details, not as a `LOAD`.
+- When a person opens a skill to read it, for example in the Console, the read is recorded as a `SKILL_VIEW` event with the same details, not as a `SKILL_LOAD`.
 
 ### Usage
 
 Admins can see how skills are used over time and by whom: how many loads, of which skills, by which members, under which preset. Usage covers up to 90 days at a time, 30 by default, grouped by hour or by day, and can be filtered on one skill, one member or one preset. Usage data is kept for 90 days. See [Read skill usage](/copilot/skill-presets-api#read-skill-usage) for the API.
 
-- **A load** is one skill fetched by a member's agent, the same event as a `LOAD` audit entry. Loads served from the agent's cache count too, and are also reported separately as cached loads. Usage counts agent loads only: a person reading a skill in the Console is a `VIEW`, recorded in the audit log but not counted here.
+- **A load** is one skill fetched by a member's agent, the same event as a `SKILL_LOAD` audit entry. Loads served from the agent's cache count too, and are also reported separately as cached loads. Usage counts agent loads only: a person reading a skill in the Console is a `SKILL_VIEW`, recorded in the audit log but not counted here.
 - **Members** is the number of distinct members who loaded at least one skill in the period.
 - **Loads with no preset** are grouped together: these are Qovery skills loaded by members with no preset.
 - **Approximate injected tokens** estimates the organization content the agent received: your skill content and the team context, at about 4 characters per token. It does not include the Qovery skills themselves, and cached loads add nothing because nothing was sent.
 
-Usage is recorded separately from the audit log, in a form built for counting, but from the same loads, so the numbers are consistent with the `LOAD` entries. Recording usage never blocks a member's agent. In the rare case a usage record fails, the audit log entry is still written and remains the reference, so usage can then show slightly fewer loads than the audit log.
+Usage is recorded separately from the audit log, in a form built for counting, but from the same loads, so the numbers are consistent with the `SKILL_LOAD` entries. Recording usage never blocks a member's agent. In the rare case a usage record fails, the audit log entry is still written and remains the reference, so usage can then show slightly fewer loads than the audit log.
 
 ### Tie a load to an edit
 
-The SHA-256 hashes are the same everywhere: in what the agent shows the member, in the `LOAD` entry, in the edit entry and in the manifest. To find out who wrote the instructions an agent followed, take the `content_sha256` of the `LOAD` entry and find the edit entry, or the revision, whose content has that hash. Hashes are the SHA-256 of the UTF-8 text, in lowercase hexadecimal. To compute one from the API:
+The SHA-256 hashes are the same everywhere: in what the agent shows the member, in the `SKILL_LOAD` entry, in the edit entry and in the manifest. To find out who wrote the instructions an agent followed, take the `content_sha256` of the `SKILL_LOAD` entry and find the edit entry, or the revision, whose content has that hash. Hashes are the SHA-256 of the UTF-8 text, in lowercase hexadecimal. To compute one from the API:
 
 ```bash
 qovery api "organization/$ORGANIZATION_ID/skillPreset/resolved/skill/qovery-deploy" \
@@ -400,8 +404,9 @@ Owners and Admins see the whole organization, members and policy tokens. Every m
 | Skill name | Lowercase letters, digits and hyphens, at most 64 characters, starting and ending with a letter or digit |
 | Skill description | 1,024 characters |
 | Skill content | 65,536 characters |
-| Assignments | Each target at most once per preset, and one preset per target |
-| Roles | A default role or a custom role of the organization |
+| Assignments | At most 200 per preset, each target at most once per preset, and one preset per target |
+| Roles | A default role or a custom role of the organization, except Owner: the organization owner is resolved as an admin, so assign the Admin role |
+| Findings per rejection | 50 |
 | Templates | Cannot be assigned |
 | Usage data | Kept for 90 days |
 | Usage and agent activity range | 90 days per request, 30 by default |

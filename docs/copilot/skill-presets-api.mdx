@@ -44,15 +44,15 @@ qovery api "organization/$ORGANIZATION_ID/aiFeatures" --method PUT --field enabl
 | `GET /organization/{organizationId}/skillPreset/revision` | Owner, Admin | List revisions, most recent first, deleted presets included. |
 | `GET /organization/{organizationId}/skillPreset/usage` | Owner, Admin | Skill loads over time, by skill, by member and by preset. |
 | `GET /organization/{organizationId}/agentActivity` | Owner, Admin | What agents did through Qovery, linked to the skills they loaded, for the whole organization, members and policy tokens. |
-| `GET /organization/{organizationId}/agentActivity/me` | Any member | The same view, for the caller only. |
+| `GET /organization/{organizationId}/agentActivity/me` | Any member | The same view, for the caller only. API tokens and policy tokens are refused with `400`: no token has a view of its own. |
 | `GET /organization/{organizationId}/skillPreset/resolved` | Any member | The caller's manifest: which preset applies and what it can inject, without content. Supports `If-None-Match`. |
-| `GET /organization/{organizationId}/skillPreset/resolved/skill/{skillName}` | Any member | What to load for one skill. Supports `If-None-Match` and `purpose`. Every call is audited, as `LOAD` or `VIEW`. |
+| `GET /organization/{organizationId}/skillPreset/resolved/skill/{skillName}` | Any member | What to load for one skill. Supports `If-None-Match` and `purpose`. Every call is audited, as `SKILL_LOAD` or `SKILL_VIEW`. |
 
 Owner and Admin are the roles that can manage organization settings. Custom roles cannot manage presets.
 
 ## Create a preset
 
-`POST /organization/{organizationId}/skillPreset`. `name` is required. `base` defaults to `QOVERY_FULL`, `is_template` to `false`, `skills` to an empty list, and `assigned_to` to no assignment.
+`POST /organization/{organizationId}/skillPreset`. `name` is required. `base` defaults to `FULL`, `is_template` to `false`, `skills` to an empty list, and `assigned_to` to no assignment.
 
 Get the IDs of the roles to assign, default or custom, and of the members:
 
@@ -70,7 +70,7 @@ qovery api "organization/$ORGANIZATION_ID/skillPreset" --input - <<JSON
 {
   "name": "backend",
   "description": "Backend engineers",
-  "base": "QOVERY_FULL",
+  "base": "FULL",
   "is_template": false,
   "team_context": "Prod runs on cluster \`prod-eu\`, shared by three projects. Never deploy to prod from an agent.",
   "skills": [
@@ -97,7 +97,7 @@ JSON
 | `name` | 1 to 100 characters, unique in the organization. |
 | All text fields | 200,000 characters in total: `description`, `team_context`, and every skill `description` and `content`. |
 | `description` | Optional, at most 1,024 characters. |
-| `base` | `QOVERY_FULL`, `QOVERY_LEAN` or `NONE`. |
+| `base` | `FULL`, `LEAN` or `NONE`. |
 | `is_template` | `true` to save a template: a starting point to copy, never applied to a member. A template cannot have assignments. |
 | `team_context` | Optional Markdown delivered with every skill loaded, at most 32,768 characters. |
 | `skills[].skill_name` | Lowercase letters, digits and hyphens, at most 64 characters. Names that are `qovery` or start with `qovery-` are Qovery skills. |
@@ -117,7 +117,7 @@ The response is `201` with the preset:
   "updated_at": "2026-11-15T12:00:00Z",
   "name": "backend",
   "description": "Backend engineers",
-  "base": "QOVERY_FULL",
+  "base": "FULL",
   "is_template": false,
   "team_context": "Prod runs on cluster `prod-eu`, shared by three projects. Never deploy to prod from an agent.",
   "skills": [
@@ -170,15 +170,17 @@ To use a template, read it, then create a new preset from its body with a new na
 
 | Status | When |
 | --- | --- |
-| `400` | The body is invalid: a limit is exceeded, a mode does not fit the base or the skill name, a required `description` or `content` is missing, a skill entry has a field its mode does not take (`content` on `DISABLE`, `description` on `DISABLE` or `OVERLAY`), a skill or target appears twice, a template has assignments, or the preset holds more than 200,000 characters of text in total. The message says which. |
+| `400` | The body is invalid: a limit is exceeded, a mode does not fit the base or the skill name, a required `description` or `content` is missing, a skill entry has a field its mode does not take (`content` on `DISABLE`, `description` on `DISABLE` or `OVERLAY`), a skill or target appears twice, a template has assignments, the preset has more than 200 assignments, the Owner role is a target (assign the Admin role: the organization owner is resolved as an admin), or the preset holds more than 200,000 characters of text in total. The message says which. |
 | `400` on a skill | `purpose` is not `LOAD` or `VIEW`. |
-| `400` on agent activity | The range is invalid or longer than 90 days, `bucket` is not `DAY` or `HOUR`, `skillName` is not a valid skill name, an enum value or `policyTokenId` is malformed, or the filters do not combine: `policyTokenId` with `actorType=MEMBER`, or `userSub` with `policyTokenId` or `actorType=POLICY_TOKEN`. |
+| `400` on agent activity | The range is invalid or longer than 90 days, `bucket` is not `DAY` or `HOUR`, `skillName` is not a valid skill name, an enum value or `policyTokenId` is malformed, or the filters do not combine: `policyTokenId` with `actorKind=MEMBER`, or `userSub` with `policyTokenId` or `actorKind=POLICY_TOKEN`. |
+| `400` on `agentActivity/me` | The caller is an API token or a policy token. |
 | `400` on usage | The range is longer than 90 days, `to` is not after `from`, or `bucket` is not `DAY` or `HOUR`. |
 | `403` | The caller is not an Owner or Admin of the organization, or, on a create or an edit, AI features are turned off for the organization. The detail then reads: "Turn on AI features for this organization to use skill presets: every preset is reviewed by a model before it reaches members." |
-| `404` | The preset, the organization or a role in `role_ids` does not exist. A second `DELETE` of the same preset also answers `404`. |
+| `404` | The preset, the organization or a role in `role_ids` does not exist. A second `DELETE` of the same preset also answers `404`. On a skill fetch, the skill name is not a valid skill name (lowercase letters, digits and hyphens, at most 64 characters), or is neither a Qovery skill nor in the preset. |
 | `409` | Another preset has the same name, a target in `assigned_to` already receives another preset, or the preset was changed by someone else at the same time, including while your save was being reviewed. In those last cases the detail reads "... was changed by someone else: reload it and try again": read the preset again and reapply your change. |
 | `422` | The content was rejected for security, by the rule checks or the model review. Nothing was saved. |
-| `503` | The security review is unavailable. Nothing was saved. Try again in a minute. |
+| `503` | On a create or an edit, the security review is unavailable. Nothing was saved. Try again in a minute. |
+| `503` on agent activity | The query did not finish in time. Pick a shorter range, or add a filter such as a member, a token, a skill or a source. |
 
 ### Security rejection (422)
 
@@ -266,7 +268,7 @@ qovery api "organization/$ORGANIZATION_ID/skillPreset/resolved" --include
   "skill_preset": {
     "id": "0193f1c2-6b1e-7c4a-9d2f-3e8a1b5c7d90",
     "name": "backend",
-    "base": "QOVERY_FULL",
+    "base": "FULL",
     "revision": 3,
     "updated_at": "2026-11-15T12:00:00Z",
     "team_context": { "approx_tokens": 24, "sha256": "4f0c...e1a9" },
@@ -329,14 +331,14 @@ qovery api "organization/$ORGANIZATION_ID/skillPreset/resolved/skill/qovery-depl
 | `REPLACE` | Load `content` instead of the Qovery skill. |
 | `ADD` | Load `content`, a skill of the organization's own. |
 
-`skill_preset` is `null` when no preset applies. Any Qovery skill name answers `200`, even when the preset does not mention it. The endpoint answers `404` only for a name that is neither a Qovery skill nor in the preset.
+`skill_preset` is `null` when no preset applies. Any Qovery skill name answers `200`, even when the preset does not mention it. The endpoint answers `404` for a name that is not a valid skill name, checked before anything is read or recorded, and for a name that is neither a Qovery skill nor in the preset.
 
 The optional `purpose` query parameter says why the skill is fetched:
 
 | `purpose` | Use | Audit event | Counted in usage |
 | --- | --- | --- | --- |
-| `LOAD` (default) | An agent loads the skill to follow it. | `LOAD` | Yes |
-| `VIEW` | A person reads the skill, as the Console does when someone opens it. | `VIEW` | No |
+| `LOAD` (default) | An agent loads the skill to follow it. | `SKILL_LOAD` | Yes |
+| `VIEW` | A person reads the skill, as the Console does when someone opens it. | `SKILL_VIEW` | No |
 
 Both return the same body and ETag. Any other value answers `400`. Every call is recorded in the audit log, including calls answered with `304`.
 
@@ -384,7 +386,7 @@ qovery api "organization/$ORGANIZATION_ID/skillPreset/revision?skillPresetId=$SK
       "edited_at": "2026-11-15T14:02:11Z",
       "name": "backend",
       "description": "Backend engineers",
-      "base": "QOVERY_FULL",
+      "base": "FULL",
       "is_template": false,
       "team_context": "Prod runs on cluster `prod-eu`, shared by three projects. Never deploy to prod from an agent.",
       "skills": [
@@ -406,11 +408,11 @@ qovery api "organization/$ORGANIZATION_ID/skillPreset/revision?skillPresetId=$SK
 }
 ```
 
-`change_type` is `CREATE`, `UPDATE` or `DELETE`. Each revision carries `is_template`, the flag at that revision, and `security_review`, the result of the model review the state passed: `verdict`, `model`, the review `prompt_version`, and `findings` holding any notes the model raised without blocking. `security_review` is `null` on a `DELETE` revision. A `DELETE` revision holds the state of the preset when it was deleted.
+`change_type` is `CREATE`, `UPDATE` or `DELETE`. Each revision carries `is_template`, the flag at that revision, and `security_review`, the result of the model review the state passed: `verdict`, `model`, the review `prompt_version`, and `findings` holding any notes the model raised without blocking. `security_review` is `null` on a `DELETE` revision, and on a revision saved while Qovery had the model review turned off. A `DELETE` revision holds the state of the preset when it was deleted.
 
 ## Read skill usage
 
-`GET /organization/{organizationId}/skillPreset/usage` reports who loaded which skills, how often and when. It counts the same loads as the `LOAD` audit entries, cached loads included. It counts agent loads only: reads with `purpose=VIEW` are audited as `VIEW` and left out.
+`GET /organization/{organizationId}/skillPreset/usage` reports who loaded which skills, how often and when. It counts the same loads as the `SKILL_LOAD` audit entries, cached loads included. It counts agent loads only: reads with `purpose=VIEW` are audited as `SKILL_VIEW` and left out.
 
 | Query parameter | Description |
 | --- | --- |
@@ -464,7 +466,7 @@ The response, shortened:
 | `by_member` | Per member, most active first, at most 500 rows. `skills` is the number of distinct skills they loaded. |
 | `by_preset` | Per preset, most loaded first. A `null` preset groups the loads made with no preset. |
 
-Usage data is kept for 90 days: older loads are purged every day, so `from` cannot reach further back. Usage is recorded on a best-effort basis so that it never blocks an agent. The `LOAD` audit entries remain the reference: in the rare case a usage record fails, usage shows fewer loads than the audit log.
+Usage data is kept for 90 days: older loads are purged every day, so `from` cannot reach further back. Usage is recorded on a best-effort basis so that it never blocks an agent. The `SKILL_LOAD` audit entries remain the reference: in the rare case a usage record fails, usage shows fewer loads than the audit log.
 
 ## Read agent activity
 
@@ -472,7 +474,7 @@ Agent activity links skill loads to what agents did through Qovery, for members'
 
 | Endpoint | Who can call it | Query parameters |
 | --- | --- | --- |
-| `GET /organization/{organizationId}/agentActivity` | Owner, Admin | `from`, `to`, `bucket`, `userSub`, `skillName`, `actorType`, `policyTokenId`, `outcome`, `source` |
+| `GET /organization/{organizationId}/agentActivity` | Owner, Admin | `from`, `to`, `bucket`, `userSub`, `skillName`, `actorKind`, `policyTokenId`, `outcome`, `source` |
 | `GET /organization/{organizationId}/agentActivity/me` | Any member, about themselves | `from`, `to`, `bucket`, `skillName`, `outcome`, `source` |
 
 | Query parameter | Description |
@@ -481,12 +483,12 @@ Agent activity links skill loads to what agents did through Qovery, for members'
 | `bucket` | `DAY` (default) or `HOUR`: the size of each `timeline` point. |
 | `userSub` | Admin endpoint only: one member, by member ID. The member is matched through their most recent skill load, so a member with no skill load in the last 90 days shows no actions. |
 | `skillName` | Only activity linked to this skill. |
-| `actorType` | Admin endpoint only. `MEMBER` for people only, `POLICY_TOKEN` for policy tokens only. |
-| `policyTokenId` | Admin endpoint only. One policy token, by ID, whatever it was called at the time. Implies `actorType=POLICY_TOKEN`. With `bucket=HOUR`, it is needed to fill the token's `timeline` in `by_policy_token`. |
+| `actorKind` | Admin endpoint only. `MEMBER` for people only, `POLICY_TOKEN` for policy tokens only. |
+| `policyTokenId` | Admin endpoint only. One policy token, by ID, whatever it was called at the time. Implies `actorKind=POLICY_TOKEN`. With `bucket=HOUR`, it is needed to fill the token's `timeline` in `by_policy_token`. |
 | `outcome` | `DENIED` for refusals only, skill loads left out. `ALLOWED` for everything else, skill loads included. |
 | `source` | One source from `coverage.sources`: `SKILL_LOAD`, `SKILL_API_ACTION`, `MCP_TOOL_CALL`, `POLICY_DENIAL` or `POLICY_TOKEN_API_ACTION`. |
 
-Every filter is optional, and they combine. `policyTokenId` cannot be used with `actorType=MEMBER`, and `userSub` cannot be used with `policyTokenId` or `actorType=POLICY_TOKEN`. A filter that matches nothing answers `200` with empty lists. The member endpoint ignores `actorType` and `policyTokenId`, and its `by_policy_token` is always empty: policy tokens belong to the organization, not to a member.
+Every filter is optional, and they combine. `policyTokenId` cannot be used with `actorKind=MEMBER`, and `userSub` cannot be used with `policyTokenId` or `actorKind=POLICY_TOKEN`. A filter that matches nothing answers `200` with empty lists. The member endpoint ignores `actorKind` and `policyTokenId`, and its `by_policy_token` is always empty: policy tokens belong to the organization, not to a member.
 
 Every call a policy token makes counts as agent activity, whatever client it comes from. A refusal counts as denied whether the token's policy refused it (`401`) or the token's role did (`403`).
 
@@ -552,7 +554,7 @@ The response, shortened:
       "at": "2026-11-15T11:42:08Z",
       "user_sub": "auth0|5f2a9c0e1b3d4a0012345678",
       "user_name": "jane@example.com",
-      "origin": "SKILL_API_ACTION",
+      "source": "SKILL_API_ACTION",
       "skill_name": "qovery-deploy",
       "event": "TRIGGER_DEPLOY",
       "target_type": "ENVIRONMENT",
@@ -576,7 +578,7 @@ The response, shortened:
 | `by_member` | Per member, at most 500 rows: loads, actions, denials, most used skills and last activity. `user_sub` is `null` for an actor that loaded no skill in the range, such as an API Policy Token. `actor_kind` is `MEMBER` or `POLICY_TOKEN`, and `policy_token_id` names the token. Policy tokens are still listed here by recorded name, so a renamed token appears once per name: use `by_policy_token` for a per-token view. |
 | `by_policy_token` | Per policy token, keyed by ID, at most 100 rows: `token_name`, `deleted`, the token's current `role_id`, `role_name` and `expires_at` (`null` once deleted), loads, actions, denials, last activity, its 3 most frequent actions and skills, and a `timeline` of the buckets where it acted. A deleted token keeps the last name its calls recorded, with `deleted: true`. Older refusals recorded without a token are grouped in one entry with `policy_token_id: null` and no name. The `timeline` is empty for an hourly view of every token: pass `policyTokenId` for an hourly view of one token. Always empty on the member endpoint. |
 | `by_skill` | Per skill, at most 100 rows. `skill_name: null` groups actions that name no skill, such as MCP tool calls and calls made directly with a policy token. |
-| `recent` | The 100 most recent actions, newest first. `origin` is `SKILL_API_ACTION`, `MCP_TOOL_CALL`, `POLICY_DENIAL` or `POLICY_TOKEN_API_ACTION` (a call made with a policy token from a client that is not a Qovery skill). `outcome` is `DENIED` for a `POLICY_DENIAL`, `ALLOWED` otherwise. `actor_kind` and `policy_token_id` say who acted. |
+| `recent` | The 100 most recent actions, newest first. `source` is `SKILL_API_ACTION`, `MCP_TOOL_CALL`, `POLICY_DENIAL` or `POLICY_TOKEN_API_ACTION` (a call made with a policy token from a client that is not a Qovery skill). `outcome` is `DENIED` for a `POLICY_DENIAL`, `ALLOWED` otherwise. `actor_kind` and `policy_token_id` say who acted. |
 
 The response holds what the audit log already shows: events, targets, names and times. It never includes prompts, code or request content. Skill attribution comes from the user agent the client sends, so treat it as indicative.
 
@@ -589,9 +591,9 @@ Preset edits, refused saves, skill loads and skill views are organization events
 | `CREATE` | The saved state with full text, `is_template`, the revision, and `security_review`. | Nothing |
 | `UPDATE` | The new state with full text, the revision, `security_review`, and a `changes` summary. | The previous state with full text. |
 | `DELETE` | The deleted state with full text. | Nothing |
-| `REJECTED` | A create or edit refused by the rule checks or the model review: `attempted_change` (`CREATE` or `UPDATE`), `skill_preset_id` (`null` on a create), `name`, `base`, `is_template`, `description_sha256`, `team_context_sha256`, `skills` (`skill_name`, `mode`, `description_sha256`, `content_sha256`), `assigned_to`, `findings`. Never the text. | Nothing |
-| `LOAD` | `skill_name`, `source`, `skill_preset_id`, `skill_preset_name`, `revision`, `mode`, `content_sha256`, `team_context_sha256`, `from_cache`. | Nothing |
-| `VIEW` | A person read a skill (`purpose=VIEW`). Same fields as `LOAD`. Not counted in usage. | Nothing |
+| `SKILL_PRESET_REJECTED` | A create or edit refused by the rule checks or the model review: `attempted_change` (`CREATE` or `UPDATE`), `skill_preset_id` (`null` on a create), `name`, `base`, `is_template`, `description_sha256`, `team_context_sha256`, `skills` (`skill_name`, `mode`, `description_sha256`, `content_sha256`), `assigned_to`, `findings`. Never the text. | Nothing |
+| `SKILL_LOAD` | `skill_name`, `source`, `skill_preset_id`, `skill_preset_name`, `revision`, `mode`, `content_sha256`, `team_context_sha256`, `from_cache`. | Nothing |
+| `SKILL_VIEW` | A person read a skill (`purpose=VIEW`). Same fields as `SKILL_LOAD`. Not counted in usage. | Nothing |
 
 The `changes` summary of an update:
 
@@ -607,15 +609,15 @@ The `changes` summary of an update:
 }
 ```
 
-Saved states include `team_context_sha256` and each skill's `content_sha256`. When a preset holds more than 65,536 characters of text, the entry keeps the hashes, leaves the text out and sets `content_omitted: true`. The [revision history](#list-revisions) always holds the full text.
+Saved states include `team_context_sha256`, and each skill's `content_sha256` and `description_sha256`. When a preset holds more than 65,536 characters of text, the entry keeps the hashes, leaves the text out and sets `content_omitted: true`. The [revision history](#list-revisions) always holds the full text.
 
 A `400`, `403` or `503` on a save is not recorded: it says nothing about the content.
 
 To list skill loads, or refused saves:
 
 ```bash
-qovery api "organization/$ORGANIZATION_ID/events?eventType=LOAD"
-qovery api "organization/$ORGANIZATION_ID/events?eventType=REJECTED"
+qovery api "organization/$ORGANIZATION_ID/events?eventType=SKILL_LOAD"
+qovery api "organization/$ORGANIZATION_ID/events?eventType=SKILL_PRESET_REJECTED"
 ```
 
 ## Related

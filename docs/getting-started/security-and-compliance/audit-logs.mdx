@@ -49,11 +49,11 @@ You can click on any event to reveal the JSON response containing the post-event
 [Skill presets](/copilot/skill-presets) (Preview) add these events:
 
 - **Edits**: creating, updating or deleting a preset logs a `CREATE`, `UPDATE` or `DELETE` event holding the saved state with its full text. An update also holds the previous state and a summary of what changed.
-- **Refused saves**: a save refused by the security checks logs a `REJECTED` event with who tried, the SHA-256 of each text field and the findings, never the text.
-- **Loads**: each time a member's agent loads a skill, a `LOAD` event records the skill, the preset and revision that applied, and the SHA-256 of what was loaded, including loads served from the agent's cache.
-- **Views**: when a person opens a skill to read it, for example in the Console, a `VIEW` event records the same details. Views are not counted as agent loads.
+- **Refused saves**: a save refused by the security checks logs a `SKILL_PRESET_REJECTED` event with who tried, the SHA-256 of each text field and the findings, never the text.
+- **Loads**: each time a member's agent loads a skill, a `SKILL_LOAD` event records the skill, the preset and revision that applied, and the SHA-256 of what was loaded, including loads served from the agent's cache.
+- **Views**: when a person opens a skill to read it, for example in the Console, a `SKILL_VIEW` event records the same details. Views are not counted as agent loads.
 
-The hashes in a `LOAD` event match those in the edit events, so you can tie what an agent followed to the admin who wrote it. See [Audit and history](/copilot/skill-presets#audit-and-history).
+The hashes in a `SKILL_LOAD` event match those in the edit events, so you can tie what an agent followed to the admin who wrote it. See [Audit and history](/copilot/skill-presets#audit-and-history).
 
 For a view of what agents loaded and did, without reading raw events, including every call made with a policy token, open **Agents → Activity** in the Console, next to **Audit Logs**. See [Activity](/copilot/skill-presets#activity).
 

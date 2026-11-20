@@ -22,7 +22,7 @@ Fork the NGINX gateway repository:
 https://github.com/Qovery/nginx-gateway
 ```
 
-The only file you need to change is `routes.conf.template`.
+To set up your routes, the only file you need to change is `routes.conf.template`. Forks created before November 20, 2026 also need the updates described in [Keep NGINX Up to Date](#keep-nginx-up-to-date).
 
 ## Step 2: Edit routes.conf.template
 
@@ -116,7 +116,7 @@ Navigate to your API gateway application settings and configure your custom doma
 2. Push to your repository
 3. Deploy the application from the Qovery Console
 
-The application logs print the generated routes between `GENERATED ROUTES.CONF` markers. Each backend should resolve to `<service>.<namespace>.svc.cluster.local:<port>`.
+The application logs print the generated routes between `GENERATED ROUTES.CONF` markers. Each Qovery service backend should resolve to `<service>.<namespace>.svc.cluster.local:<port>`. A backend set to a host with a dot (such as `api.example.com`) stays as you configured it.
 
 ## Keep NGINX Up to Date
 

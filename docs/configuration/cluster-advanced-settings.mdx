@@ -216,6 +216,24 @@ Only list the settings you override. Removing a key from `advanced_settings_json
 Enabling this setting creates 3 additional Elastic IPs in your AWS account. Each EIP incurs standard AWS charges. This setting only takes effect when the cluster uses NAT Gateways. Before enabling, verify that your AWS account has sufficient EIP quota (default is 5 per region). You can check and request an increase in the AWS Service Quotas console.
 </Warning>
 
+<a id="cluster-zones-count"></a>
+
+### cluster.zones_count
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20" style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `integer` (`1`, `2` or `3`)
+
+**Description:** Number of availability zones the cluster nodes run in, starting with the first zone of the region. With `1` or `2`, Karpenter only starts nodes in those zones and the cluster gets one NAT Gateway (and one Elastic IP) per zone instead of three. The VPC keeps one subnet per zone of the region: the subnets of the other zones reach the internet through the NAT Gateway of the first zone, and managed databases keep their subnets in every zone, so a database can still run in a zone without nodes.
+
+Running in fewer zones lowers the NAT Gateway bill and the cross-zone traffic between nodes, at the cost of availability: with a single zone, a zone outage takes the applications down.
+
+**Default Value:** `3`
+
+<Warning>
+Set this setting before the first deployment of the cluster: it cannot be changed afterwards. To change the number of zones, create a new cluster and clone your environments into it. A value below `3` is only accepted on non-production AWS clusters with Karpenter.
+</Warning>
+
 <a id="loki-log-retention-in-week"></a>
 
 ### loki.log_retention_in_week

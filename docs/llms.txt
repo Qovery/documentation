@@ -150,7 +150,7 @@
 #### Account & Organization
 
 - [User Account](https://www.qovery.com/docs/configuration/user-account.md): Manage your personal account settings and preferences
-- [Organization](https://www.qovery.com/docs/configuration/organization.md): Create, switch and delete Qovery organizations, and manage billing and organization settings. Only the organization owner can delete it.
+- [Organization](https://www.qovery.com/docs/configuration/organization.md): Create, switch and delete Qovery organizations, manage billing and organization settings, and set up how coding agents work with Qovery in the Agents tab. Only the organization owner can delete it.
 
 ##### Access & Security
 
@@ -331,7 +331,7 @@
 
 #### Services (continued)
 
-- [Service Health Checks](https://www.qovery.com/docs/configuration/service-health-checks.md): Configure liveness and readiness probes to monitor your application health
+- [Service Health Checks](https://www.qovery.com/docs/configuration/service-health-checks.md): Configure liveness, readiness and startup probes to monitor your application health
 - [Service Advanced Settings](https://www.qovery.com/docs/configuration/service-advanced-settings.md): Fine-tune your Qovery services with advanced configuration options
 
 #### Deployment & CI/CD
@@ -420,6 +420,8 @@
 - [MCP Server](https://www.qovery.com/docs/copilot/mcp-server.md): Set up the Qovery MCP Server so Claude, ChatGPT, or another MCP-compatible client can manage your existing Qovery infrastructure in natural language.
 - [Securing AI Agent Access](https://www.qovery.com/docs/copilot/securing-ai-access.md): Grant AI agents safe, read-only access to your Qovery infrastructure for troubleshooting and investigation
 - [Qovery Agent Skills](https://www.qovery.com/docs/getting-started/quickstart/agent-skills.md): Skills that give your AI agent the ability to deploy, troubleshoot, optimize, and manage Kubernetes infrastructure.
+- [Skill Presets (Preview)](https://www.qovery.com/docs/copilot/skill-presets.md): Control how your members' coding agents use Qovery: choose which Qovery skills apply, add team instructions and your own skills, and assign them by role or member. Content is checked by rules and a model review, and every edit and load is audited.
+- [Manage Skill Presets with the API (Preview)](https://www.qovery.com/docs/copilot/skill-presets-api.md): Create, edit, assign and delete skill presets, read the manifest and skills a member's agent receives, and read revision history, skill usage and agent activity with the Qovery API.
 
 #### Capabilities
 

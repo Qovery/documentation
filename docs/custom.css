@@ -803,7 +803,8 @@ html[data-theme="dark"] .skill-card-desc {
 #sk-preview:checked ~ .skills-grid label[for="sk-preview"],
 #sk-terraform:checked ~ .skills-grid label[for="sk-terraform"],
 #sk-policy-token:checked ~ .skills-grid label[for="sk-policy-token"],
-#sk-assess:checked ~ .skills-grid label[for="sk-assess"] {
+#sk-assess:checked ~ .skills-grid label[for="sk-assess"],
+#sk-support:checked ~ .skills-grid label[for="sk-support"] {
   border-color: #642DFF;
   background: rgba(100, 45, 255, 0.1);
 }
@@ -840,6 +841,7 @@ html[data-theme="dark"] .skills-desc-wrap {
 #sk-terraform:checked ~ .skills-desc-wrap .sk-desc-terraform { display: block; }
 #sk-policy-token:checked ~ .skills-desc-wrap .sk-desc-policy-token { display: block; }
 #sk-assess:checked ~ .skills-desc-wrap .sk-desc-assess { display: block; }
+#sk-support:checked ~ .skills-desc-wrap .sk-desc-support { display: block; }
 
 /* All skill prompts hidden by default */
 .sk-prompt { display: none; }
@@ -856,6 +858,7 @@ html[data-theme="dark"] .skills-desc-wrap {
 #sk-terraform:checked ~ .skills-terminal .sk-prompt-terraform { display: block; }
 #sk-policy-token:checked ~ .skills-terminal .sk-prompt-policy-token { display: block; }
 #sk-assess:checked ~ .skills-terminal .sk-prompt-assess { display: block; }
+#sk-support:checked ~ .skills-terminal .sk-prompt-support { display: block; }
 
 /* Terminal action buttons (right side of bar) */
 .terminal-actions {

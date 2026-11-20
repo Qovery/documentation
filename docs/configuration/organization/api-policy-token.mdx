@@ -3,7 +3,7 @@ title: "API Policy Token (Preview)"
 description: "Give an autonomous agent programmatic access to your organization, constrained by a policy evaluated on every request"
 ---
 
-An **API Policy Token** is a second kind of organization token, intended for autonomous agents and narrowly scoped automation. Unlike a regular [API Token](/configuration/organization/api-token), it carries **no role**. Instead you attach an [Open Policy Agent](https://www.openpolicyagent.org/) policy, written in [rego](https://www.openpolicyagent.org/docs/policy-language), and Qovery evaluates that policy against every API request the token makes. The policy is the token's entire authorization.
+An **API Policy Token** is a second kind of organization token, intended for autonomous agents and narrowly scoped automation. You attach an [Open Policy Agent](https://www.openpolicyagent.org/) policy, written in [rego](https://www.openpolicyagent.org/docs/policy-language), and Qovery evaluates that policy against every API request the token makes. A request the policy allows then runs with the token's **role**, like a regular [API Token](/configuration/organization/api-token): organization admin unless you pick a narrower one. What the token can do is what both the policy and the role allow.
 
 <Info>
   **Preview**: this feature and the policy input contract described below are still
@@ -12,8 +12,8 @@ An **API Policy Token** is a second kind of organization token, intended for aut
 </Info>
 
 <Note>
-  In the Qovery Console, this feature is labelled **Policy API Token**,
-  in the **Token API** section of your organization settings.
+  The Console calls them **policy tokens**. They are managed in **Agents → Settings → Policy tokens**,
+  by organization Owners and Admins. The old Organization settings page redirects there.
 </Note>
 
 ## Why use one
@@ -22,10 +22,10 @@ A role answers "what kind of thing may this token do, across a scope". A policy 
 
 |                             | API Token                                              | API Policy Token                                                       |
 | --------------------------- | ------------------------------------------------------ | ---------------------------------------------------------------------- |
-| Authorization               | An [RBAC role](/configuration/organization/members-rbac) | A rego policy, evaluated on every request                              |
+| Authorization               | An [RBAC role](/configuration/organization/members-rbac) | A rego policy, evaluated on every request, then the token's role       |
 | Granularity                 | What the role allows                                   | Any condition over the HTTP request and the resource it targets        |
-| Who can create it           | Depends on your role                                   | Organization **Owner** or **Admin** only                               |
-| Editable after creation     | No                                                     | No                                                                     |
+| Who can create it           | Depends on your role                                   | In the Console, **Owner** or **Admin**. Through the API, also **DevOps**, for a DevOps, Viewer, Billing or custom role |
+| Editable after creation     | No                                                     | No: not the policy, the role or the expiry                              |
 | Typical use                 | CI/CD, Terraform, scripts                              | AI agents, tightly scoped automation                                   |
 
 ## How it works
@@ -67,6 +67,7 @@ sequenceDiagram
 5. **The policy is loaded.** The first time a pod handles a given token, it uploads that token's policy to its OPA sidecar as a module, under a package unique to the token. Per-token packages are what stop one token's rules from ever contributing to another token's decision, and they are the reason your policy must not declare a `package` of its own. The module is compiled once and reused for subsequent requests.
 6. **The policy is evaluated** against the input, and OPA returns the value of `allow`: `true`, `false`, or undefined when no rule produced a value.
 7. **The decision is applied.** `true` lets the request continue to the endpoint. Anything else - including undefined, a non-boolean value, or an OPA that could not be reached - answers `401 Unauthorized`.
+8. **The role applies.** An allowed request then runs with the token's role, checked like any other caller's permissions. If the role does not allow it, the answer is `403 Forbidden`.
 
 ### Rego, the policy language
 
@@ -128,16 +129,17 @@ Rego also ships a large standard library - `startswith`, `endswith`, `count`, `r
 
 ### What this means in practice
 
-- **The policy is the only thing constraining the token.** Internally a policy token is granted organization-admin access, and the policy is what narrows it. A policy whose `allow` is unconditionally `true` therefore grants **full organization-admin access**.
+- **The policy and the role constrain the token together.** The role defaults to organization admin, and the policy is what narrows it. With the default role, a policy whose `allow` is unconditionally `true` grants **full organization-admin access**. Pick a narrower role, such as Viewer or a custom role, to cap what the token can ever do, whatever its policy says. The Owner role cannot be given to a policy token.
 - **It fails closed.** Anything other than an explicit `true` denies the request: no matching rule, a non-boolean `allow`, a request path that Qovery cannot resolve, or a policy engine that cannot be reached.
-- **Only an organization Owner or Admin can create one.** Creating a policy token is equivalent to handing out organization-admin access, so it is restricted to roles that already hold it. Custom roles cannot create one.
+- **Who can create one.** In the Console, organization Owners and Admins. Through the API, Owners and Admins can create a token with any role but Owner, and DevOps members can create one with the DevOps, Viewer or Billing role, or a custom role. Other roles, custom roles included, cannot create one.
 - **Revocation is immediate.** The token is looked up on every request, with no caching.
 - **Actions are attributed in the audit log** as `policy:<token-id>:<token-name>`, so an agent's activity is distinguishable from a regular API token's.
 
 <Warning>
-  Treat creating an API Policy Token with the same care as granting
-  organization-admin. Start from a `default allow := false` policy and add only
-  the rules you need.
+  With the default role, treat creating an API Policy Token with the same care
+  as granting organization-admin. Start from a `default allow := false` policy,
+  add only the rules you need, and pick the narrowest role that still lets the
+  job run.
 </Warning>
 
 ## What the policy sees
@@ -243,7 +245,7 @@ allow_deployment if {
 
 ## Policy recipes
 
-For complete use cases, with the full policy, the prompt for the agent, and what the agent can and cannot do, see the [agent policy examples](/configuration/organization/policy-examples/overview): incident investigation, preview environments, stopping idle environments, right-sizing, scaling, rollbacks, tests on a copy of production and security patches.
+For complete use cases, with the full policy, the prompt for the agent, and what the agent can and cannot do, see the [agent policy examples](/configuration/organization/policy-examples/overview): incident investigation, preview environments, stopping idle environments, right-sizing, scaling, rollbacks, tests on a copy of production and security patches. In the Console, **Agents → Automate** lists the same examples and can prefill the token form with any of them.
 
 The recipes below are smaller building blocks.
 
@@ -321,14 +323,17 @@ The recipes below are smaller building blocks.
 ## Create an API Policy Token
 
 <Steps>
-  <Step title="Open the Token API section">
-    Go to your organization settings and open the **Token API** section, the same
-    page as the [API tokens](/configuration/organization/api-token). The
-    **Policy API Token** section sits below the API token list.
+  <Step title="Open Policy tokens">
+    In the Console, open the **Agents** tab of your organization, then
+    **Settings → Policy tokens** (Owners and Admins). The setup step on the
+    organization overview and the links in Automate and Activity also lead there. Regular [API tokens](/configuration/organization/api-token)
+    stay in Organization settings.
   </Step>
 
-  <Step title="Click Add new">
-    Press the **Add new** button of the Policy API Token section.
+  <Step title="Click Create policy token">
+    Press **Create policy token**. To start from a ready-made job instead, use
+    **Create policy token** on a job in **Agents → Automate**: the form opens
+    prefilled with its name, description and policy.
   </Step>
 
   <Step title="Configure the token">
@@ -336,6 +341,7 @@ The recipes below are smaller building blocks.
 
     - **Token name**: a descriptive name, unique within the organization
     - **Description**: what the token is for
+    - **Role**: the role an allowed request runs with, organization admin by default
     - **Policy (rego)**: your policy, prefilled with the starter policy above
 
   </Step>
@@ -367,12 +373,15 @@ If the policy does not allow the request, the API answers `401 Unauthorized`.
 
 ## Inspect and revoke
 
-In the Policy API Token list, each token shows its creator and creation date, and **Last used**, the time elapsed since the token was last used. Hover over it to see the exact date and time in UTC. **Last used** is not displayed when no usage has been recorded for the token. Each token also offers:
+In **Agents → Settings → Policy tokens**, each token shows its role, a bar of its allowed and denied calls over the last 7 days, **Last used** and **Expires**. A token with no expiry date gets a **No expiry** warning badge. Each token's row menu offers:
 
-- **Inspect policy** (scroll icon): shows the policy attached to the token, read-only. A policy can always be reviewed after creation - only the token value is write-once.
-- **Delete** (trash icon): revokes the token. Confirm the deletion, and the token stops working immediately.
+- **See activity**: opens **Agents → Activity** filtered on the token, with its allowed and refused calls. See [Activity](/copilot/skill-presets#activity).
+- **View policy**: shows the policy attached to the token, read-only. A policy can always be reviewed after creation. Only the token value is write-once.
+- **Delete token**: revokes the token. Type the token's name to confirm, and the token stops working immediately.
 
-Policies cannot be edited. To change one, delete the token and create a new one with the updated policy.
+Policies cannot be edited, and neither can the role or the expiry. To change one, delete the token and create a new one. Editing the custom role a token runs with changes what the token can do without rotating it, and deleting that role revokes the token.
+
+Deleted tokens that made calls in the last 30 days stay listed, greyed out, so you can still see what they did.
 
 ## Manage tokens via the API
 
@@ -397,14 +406,15 @@ curl -X POST "https://api.qovery.com/organization/${ORGANIZATION_ID}/policyApiTo
 
 The response contains the token value in its `token` field. This is the only response that ever carries it.
 
-The list endpoint returns each token with its `opa_policy`, never the token value. The create endpoint also accepts an optional `expires_at` (RFC 3339 date-time), after which the token stops authenticating; the Console form does not expose it yet, so set an expiration through the API if you need one.
+The list endpoint returns each token with its `opa_policy`, never the token value. The create endpoint also accepts an optional `role_id`, the role an allowed request runs with, as returned by [List organization custom roles](/api-reference/organization-custom-role/list-organization-custom-roles) (omit it for organization admin), and an optional `expires_at` (RFC 3339 date-time), after which the token stops authenticating. The Console form does not expose `expires_at` yet, so set an expiration through the API if you need one.
 
 Errors to expect when creating a token:
 
 | Status | Cause |
 | ------ | ----- |
 | `400` | The policy is empty, oversized, declares a `package`, or does not compile. The response carries the OPA diagnostics. |
-| `403` | The caller is not an organization owner or admin. |
+| `403` | The caller may not create policy tokens, or may not give the token that role (for example a DevOps member asking for Admin, or anyone asking for Owner). |
+| `404` | The organization or the role does not exist. |
 | `409` | A policy token with that name already exists in the organization. |
 
 ## Test a policy before attaching it
@@ -458,7 +468,7 @@ A denied request tells you only that it was denied, so it is worth evaluating a 
 
 <Warning>
   - **A denied request returns `401` with no explanation.** Which rule failed is not surfaced to you today, so test policies locally before attaching them.
-  - **Policies cannot be edited.** Delete the token and create a new one.
+  - **A token cannot be edited.** Its policy, role and expiry are fixed at creation: delete the token and create a new one. Editing the permissions of the custom role a token runs with does change what the token can do, for every token with that role, and deleting that role revokes them.
   - **Expiration is API-only.** The Console form does not expose `expires_at`.
   - **The input contract may change.** Fields are added rather than renamed or removed, and policies may need to be updated.
 </Warning>

@@ -1,6 +1,6 @@
 ---
 title: "Organization"
-description: "Create, switch and delete Qovery organizations, and manage billing and organization settings. Only the organization owner can delete it."
+description: "Create, switch and delete Qovery organizations, manage billing and organization settings, and set up how coding agents work with Qovery in the Agents tab. Only the organization owner can delete it."
 ---
 
 import AgentTasksEvolutionNote from '/snippets/agent-tasks-evolution-note.mdx';
@@ -94,6 +94,73 @@ When you create an organization or add a payment card, you must provide your bil
 
 For pricing details, visit the [pricing page](https://www.qovery.com/pricing).
 
+## Agents
+
+The **Agents** tab gathers in one place how your team's coding agents work with Qovery. Open it from your organization's tabs, next to **Audit Logs**: it opens on the **Skills registry**. Everything about agents lives here: the old Organization settings pages for the Copilot, skills, skill presets, agent activity, policy tokens and the Agent group redirect to it.
+
+The idea behind it: agents can do real infrastructure work on their own when every operation is checked at the API. Agents sets that up in three parts: **Guide** agents with the Qovery skills, tailored per team and per person with skill presets; **Control** them with policy tokens, so each agent gets exactly the permissions its job needs, checked on every API call and denied by default; and **Observe** what they did and what was blocked, in Activity and the audit logs.
+
+Its side menu has three entries, then a **Settings** group for Owners and Admins:
+
+- **Skills registry**: where your organization's [skill presets](/copilot/skill-presets) (Preview) live, its own version of the Qovery skills. One page holds the list of presets, which you can sort and filter, the editor, a preview side panel that shows what a member or a role receives, and each preset's history. New presets start from scratch or from a template per user profile. Members see a read-only **What your agent receives** view instead. Skill loads are in the [audit logs](/getting-started/security-and-compliance/audit-logs), and usage is in **Activity**.
+- **Automate**: agents that run on their own, on a schedule or on an event. Each one gets a policy token that allows exactly its job: anything else is refused at the API, and every call is logged. The jobs are the [agent policy examples](/configuration/organization/policy-examples/overview), in one grid with a level filter: All, Investigate, Hygiene, Cost, Reliability and Change. One-shot operations are not listed here. Each job has a suggested trigger, such as a webhook when an incident fires or `0 8,20 * * 1-5` to stop idle environments in the evening and start them in the morning. Its panel first says where the agent runs: as an Agent Task on your Qovery infrastructure, or from a coding agent on a laptop or in CI. It then shows the prompt for the agent, what the agent can and can never do, and the steps to run it on its own: create the policy token, prefilled with the example's name, description and policy (replace the `REPLACE_WITH_` IDs, and keep the token value, shown once), then schedule the agent, in one of two ways. The first is the coding agent you already use (Claude Code, Codex, Cursor, OpenCode, Gemini CLI, VS Code Copilot, or any agent with the Qovery skills), signed in with the token outside the prompt (in `QOVERY_CLI_ACCESS_TOKEN` or the MCP header) and started by the agent's own scheduling, a CI cron job or the event. The second, recommended, is an [Agent Task](/configuration/agent-tasks/overview) on Qovery, with the Qovery MCP server authenticated by that token: it runs next to your services on its own schedule or webhook, with no laptop or CI to keep running. The page creates nothing for this route: **Open Automations in an environment** takes you to where you add the agent task. The page lists the Agent Tasks templates under **Or run agents on Qovery**. **Automate a new job** turns a recurring job you describe into a `/qovery-policy-token` command for your coding agent, then you schedule it the same way. See [Run it on its own](/configuration/organization/policy-examples/overview#run-it-on-its-own).
+- **Activity**: one view of what members' agents did (through the skills and the MCP server) and what policy tokens did, allowed and denied. Its menu entry shows a badge with the number of denied calls in the last 7 days. One toolbar filters by period, actor (everyone, all members, all policy tokens, or one member or token), skill, source and outcome. The filters are kept in the URL, so you can share a filtered view. **Recent actions** sits right under the chart, 30 per page, with an **Action type** filter. Break the activity down by member, by token or by skill, and click a row to filter the whole page. **What was blocked** lists the refused calls, with **Show only denied**. See [Activity](/copilot/skill-presets#activity).
+- **Settings** (Owners and Admins):
+  - **Policy tokens**: the organization's [API Policy Tokens](/configuration/organization/api-policy-token), managed entirely here. The setup step on the organization overview, the **Create policy token** buttons in Automate and the token links in Activity also lead here. **Create policy token** opens the form. Each token shows its role, a bar of its last 7 days (allowed and denied calls per day), when it was last used and when it expires, with a **No expiry** warning badge for a token that never expires. Its row menu has **See activity** (Activity filtered on that token), **View policy** (read-only: a policy cannot change after creation) and **Delete token** (you confirm by typing the token's name). Deleted tokens that made calls in the last 30 days are listed greyed out.
+  - **Copilot settings** (Beta): what the [Console AI Copilot](/copilot/console) does, its status, and its settings: access source, access mode, scheduled tasks, and **Turn off Copilot**.
+  - **Model tokens** and **MCP servers**, where [Agent Tasks](/configuration/agent-tasks/overview) are available, shared with every agent task in the organization. See [Agent Tasks: model tokens and MCP servers](#agent-tasks-model-tokens-and-mcp-servers).
+
+**Connect an agent**, in the Skills registry header and in the setup on the organization overview, opens a window with three tabs: **Qovery skills** (the install command), **CLI** (install and sign in), and **MCP server**, with the setup for Claude Code, Codex, Cursor, Gemini CLI and VS Code.
+
+### Set up your coding agents
+
+The organization overview shows Owners and Admins a **Set up your coding agents** section with three steps, the next one highlighted:
+
+1. **Create a preset in the Skills registry**, from a template for your team's profile.
+2. **Limit what agents can do**: create a policy token.
+3. **Connect your agent**: install the Qovery skills where your team codes. This step counts as done once Qovery has seen agent activity in the organization in the last 30 days: a skill load, an agent action or a denied call.
+
+When AI features are off, the section says so and offers **Turn on AI**. You can dismiss the section, and it goes away once every step is done.
+
+**Who sees what**
+
+| Page | Owners and Admins | Other members |
+|------|-------------------|---------------|
+| Skills registry | Create, edit, assign, preview and see the history of presets | **What your agent receives**, read-only |
+| Automate | Yes, with **Create policy token** | Read-only: **Copy prompt** and links, and who can create the token |
+| Activity | The whole organization, members and policy tokens | **Your activity**: their own, with no actor filter and no token breakdown |
+| Settings | Policy tokens, Copilot settings, model tokens and MCP servers | Not in the menu |
+| Set up your coding agents, on the organization overview | Yes | Not shown |
+
+Old links keep working: the former Agents overview and the usage, skill loads and assignments pages redirect to the Skills registry or to Activity, and the former connect page opens the Skills registry with the **Connect an agent** window open.
+
+### Turn on AI
+
+AI features are the organization's opt-in to AI. The Copilot needs them, and so does the security review that checks every skill preset before it is saved. New organizations have AI features on by default.
+
+When AI features are off, Owners and Admins see **Turn on AI** in the setup on the organization overview, in the Skills registry and on **Copilot settings**. They turn everything on in one step:
+
+1. Click **Turn on AI**.
+2. Read the summary of the Copilot terms, open the full terms if you want, accept them and confirm.
+
+This one confirmation turns on the organization's AI features and the Copilot, in read-only mode. To allow actions such as deploys and restarts, change the access mode later in **Settings → Copilot settings**. If the Copilot cannot be turned on, AI features stay on and you can retry from the same page.
+
+Other members cannot turn on AI.
+
+### Agent Tasks: model tokens and MCP servers
+
+<AgentTasksEvolutionNote />
+
+Under **Agents → Settings**, Owners and Admins manage what's shared with every [Agent Task](/configuration/agent-tasks/overview) in the organization: AI provider tokens under **Model tokens**, and MCP servers under **MCP servers**.
+
+**Model tokens**: create and manage the AI provider tokens used by agent tasks. Qovery currently supports [Claude](https://www.anthropic.com/) (Anthropic), [AWS Bedrock](https://aws.amazon.com/bedrock/), and Anthropic-compatible gateways as providers. See [Choose a Provider and Model](/configuration/agent-tasks/overview#creating-an-agent) for the Anthropic-compatible Base URL and limits. A token created here, or created on the fly from an agent task's **Choose a Provider** step, is saved to this list and can be reused by any other agent task in the organization instead of re-entering credentials each time.
+
+**MCP servers**: connect any remote HTTPS MCP server here (name, URL, and headers) to make it available when configuring an individual agent.
+
+<Info>
+Qovery's own MCP server is added here automatically, organization-scoped and read-only, as soon as any agent task adds a Qovery service as Context, see [Add MCP Servers](/configuration/agent-tasks/overview#creating-an-agent). To add it yourself instead, for example with write access, use `https://mcp.qovery.com/mcp` and authenticate with an [API Policy Token](/configuration/organization/api-policy-token) (a regular API token works too).
+</Info>
+
 ## Organization Admin Settings
 
 ### Accessing Settings
@@ -123,19 +190,9 @@ Configure basic organization details:
 
 Click **Update** to save your changes.
 
-### Agent
+### Moved to Agents
 
-<AgentTasksEvolutionNote />
-
-The **Agent** section manages what's shared with every [Agent Task](/configuration/agent-tasks/overview) in the organization: AI provider tokens under **Agent > Token**, and MCP servers under **Agent > MCP**.
-
-**Token**: create and manage the AI provider tokens used by agent tasks. Qovery currently supports [Claude](https://www.anthropic.com/) (Anthropic), [AWS Bedrock](https://aws.amazon.com/bedrock/), and Anthropic-compatible gateways as providers. See [Choose a Provider and Model](/configuration/agent-tasks/overview#creating-an-agent) for the Anthropic-compatible Base URL and limits. A token created here, or created on the fly from an agent task's **Choose a Provider** step, is saved to this list and can be reused by any other agent task in the organization instead of re-entering credentials each time.
-
-**MCP**: connect any remote HTTPS MCP server here (name, URL, and headers) to make it available when configuring an individual agent.
-
-<Info>
-Qovery's own MCP server is added here automatically, organization-scoped and read-only, as soon as any agent task adds a Qovery service as Context, see [Add MCP Servers](/configuration/agent-tasks/overview#creating-an-agent). To add it yourself instead, for example with write access, use `https://mcp.qovery.com/mcp` and authenticate with an [API Policy Token](/configuration/organization/api-policy-token) (a regular API token works too).
-</Info>
+The Copilot, skills, skill presets, agent activity (now **Activity**), policy tokens and the **Agent** group (model tokens and MCP servers for Agent Tasks) are no longer in Organization settings. They are in the [Agents](#agents) tab, and the old settings links redirect there. Regular [API tokens](/configuration/organization/api-token) stay in Organization settings, under **API token**.
 
 ### Other Settings
 

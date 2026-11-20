@@ -11,7 +11,7 @@ The [Qovery agent skills](/getting-started/quickstart/agent-skills) are written 
   and the agent-side behaviour described here are likely to change.
 </Info>
 
-In the Console, skill presets live in the **Skills Registry**: open **Agents → Skills Registry**, in an organization tab next to **Audit Logs**. The feature and the API keep the name skill presets. It also holds the Copilot, the commands to connect an agent, your policy tokens and Activity. See [Agents](/configuration/organization#agents). The old **Organization settings** links to the Copilot, skill presets and agent activity redirect there.
+In the Console, skill presets live in the **Skills registry**: open the **Agents** tab of your organization, next to **Audit Logs**, which opens on it. The feature and the API keep the name skill presets. The Agents tab also holds Automate, Activity, your policy tokens and the Copilot settings, and **Connect an agent** in the Skills registry header gives the commands to connect an agent. See [Agents](/configuration/organization#agents). The old **Organization settings** links to the Copilot, skill presets and agent activity redirect there.
 
 ## How it works
 
@@ -98,7 +98,7 @@ Only organization **Owners** and **Admins** can create, edit, delete or view pre
   <Tab title="Console">
     <Steps>
       <Step title="Open the presets page">
-        In the Console, open the **Agents** tab of your organization, then **Skills Registry**. See [Agents](/configuration/organization#agents).
+        In the Console, open the **Agents** tab of your organization, which opens on the **Skills registry**. See [Agents](/configuration/organization#agents).
       </Step>
       <Step title="Start from a template or from scratch">
         Pick a template for a user profile, duplicate an existing preset, or start empty. Give the preset a name, an optional description, and pick a base.
@@ -107,7 +107,7 @@ Only organization **Owners** and **Admins** can create, edit, delete or view pre
         Select the skills the preset should include from the skill library, several at a time. Then disable, overlay or replace Qovery skills, add your own skills, and write the team context.
       </Step>
       <Step title="Check what a member gets">
-        Use **Preview as member** to see what the preset puts in a member's agent and its estimated token cost. See [Token estimate](#token-estimate).
+        Use **Preview as member** in the editor, or **Preview** in a preset's menu, to see what the preset puts in a member's agent and its estimated token cost. See [Token estimate](#token-estimate).
       </Step>
       <Step title="Assign it">
         Assign the preset to the organization default, one or more roles, or individual members.
@@ -124,17 +124,13 @@ Only organization **Owners** and **Admins** can create, edit, delete or view pre
 
 ### Templates
 
-The Console offers templates per user profile: Developer, Product manager, DevOps / platform engineer, Engineering manager / tech lead, Data / ML engineer, Security / compliance, QA / tester, and Support / on-call. Support / on-call is built around `qovery-support` and `qovery-troubleshoot`: known fixes and diagnosis first, and production changes only after an explicit approval. It turns off the skills an on-call engineer does not need, such as `qovery-terraform`, `qovery-policy-token` and `qovery-preview`. Start from the one closest to your team: the Console copies it into a new preset, which you then customize and assign.
+The Console offers templates per user profile: Developer, Product manager, DevOps / platform engineer, Engineering manager / tech lead, Data / ML engineer, Security / compliance, QA / tester, and Support / on-call. Support / on-call is built around `qovery-support` and `qovery-troubleshoot`: known fixes and diagnosis first, and production changes only after an explicit approval. It turns off the skills an on-call engineer does not need, such as `qovery-terraform`, `qovery-policy-token` and `qovery-preview`. Start from the one closest to your team: the Console copies it into a new preset, which you then customize and assign. You can also duplicate any preset.
 
-You can also duplicate any preset, and save one of your own as a template. Saving as a template sets the template flag, so it needs no assignment and never applies to anyone until it is copied. With the API, this is the `is_template` field. See [Templates](#templates).
-
-### Assignments overview
-
-The assignments overview lists your members with the preset that applies to each one, following the [resolution order](#assignments-and-resolution-order): their own assignment, then their role's, then the organization default. Use it to check who gets what before and after you assign a preset.
+The Console only offers these templates made by Qovery. To keep your own templates, use the API: the `is_template` field marks a preset as a template, so it needs no assignment and never applies to anyone until it is copied. See [Templates](#templates).
 
 ### Token estimate
 
-**Preview as member** shows a preset as one member's agent receives it. It is in the editor, and in the **Preview** tab of **Agents → Skills Registry**, where you pick a member or a role. It is split in two parts:
+**Preview as member** shows a preset as one member's agent receives it. It is in the editor, and in the preview side panel of the **Skills registry**, opened with **Preview** in a preset's menu, where you pick a member or a role. It is split in two parts:
 
 - **Always in context**: the `qovery` skill that loads presets, and the small manifest of names, descriptions and sizes. The agent carries this in every session.
 - **Loaded only when a task needs it**: each skill's content and the team context. These cost nothing until the agent fetches them.
@@ -229,8 +225,8 @@ Each finding says which gate raised it: `RULES` for the rule checks, `MODEL` for
   the organization, because the preset text is sent to the model review.
   Without it, a create or an edit answers `403`. Reading presets, members'
   skill loads and deleting presets keep working when AI features are off. Owners
-  and Admins turn them on with **Turn on AI**, in the notice the Agents
-  Overview shows when AI features are off: one confirmation turns on AI
+  and Admins turn them on with **Turn on AI**, shown in the Skills registry
+  and in the setup on the organization overview when AI features are off: one confirmation turns on AI
   features and the Copilot, in read-only mode. New organizations have AI
   features on by default. See
   [Turn on AI](/configuration/organization#turn-on-ai). They can also use the API,
@@ -350,7 +346,7 @@ Qovery stores every saved state of a preset as an immutable revision, written to
 
 ### Usage
 
-Admins can see how skills are used over time and by whom: how many loads, of which skills, by which members, under which preset. Usage covers up to 90 days at a time, 30 by default, grouped by hour or by day, and can be filtered on one skill, one member or one preset. Usage data is kept for 90 days. See [Read skill usage](/copilot/skill-presets-api#read-skill-usage) for the API.
+Admins can see how skills are used over time and by whom: how many loads, of which skills, by which members, under which preset. Usage covers up to 90 days at a time, 30 by default, grouped by hour or by day, and can be filtered on one skill, one member or one preset. Usage data is kept for 90 days. In the Console, usage is part of **Agents → Activity**. See [Read skill usage](/copilot/skill-presets-api#read-skill-usage) for the API.
 
 - **A load** is one skill fetched by a member's agent, the same event as a `SKILL_LOAD` audit entry. Loads served from the agent's cache count too, and are also reported separately as cached loads. Usage counts agent loads only: a person reading a skill in the Console is a `SKILL_VIEW`, recorded in the audit log but not counted here.
 - **Members** is the number of distinct members who loaded at least one skill in the period.

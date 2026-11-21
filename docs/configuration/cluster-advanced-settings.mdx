@@ -230,7 +230,7 @@ Enabling this setting creates 3 additional Elastic IPs in your AWS account. Each
 - **Azure**: the cluster gets its node subnets, NAT Gateways and node pools in the first zones of the region only.
 - **Scaleway**: the cluster gets node pools in that many zones, starting with its own zone, where the public gateway runs.
 
-Running in fewer zones lowers the NAT Gateway bill and the cross-zone traffic between nodes, at the cost of availability: with a single zone, a zone outage takes the applications down.
+Running in fewer zones cuts the cross-zone traffic between nodes and, on AWS and Azure, the number of NAT Gateways. Scaleway keeps its single Public Gateway whatever the value. The cost is availability: with a single zone, a zone outage takes the applications down.
 
 **Default Value:** `3`
 

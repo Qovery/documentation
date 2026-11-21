@@ -208,7 +208,7 @@ Only list the settings you override. Removing a key from `advanced_settings_json
 
 **Type:** `boolean`
 
-**Description:** Enable a secondary Elastic IP (EIP) per NAT Gateway. When enabled, each NAT Gateway in your VPC receives an additional EIP, doubling the number of outbound public IP addresses (from 3 to 6 with the default 3 NAT Gateways, fewer with [`cluster.zones_count`](#cluster-zones-count)). This is useful when your workloads interact with external services that have IP-based rate limits — more IPs means higher aggregate limits.
+**Description:** Enable a secondary Elastic IP (EIP) per NAT Gateway. When enabled, each NAT Gateway in your VPC receives an additional EIP, doubling the number of outbound public IP addresses (from 3 to 6 with the default 3 NAT Gateways; on a VPC managed by Qovery, [`cluster.zones_count`](#cluster-zones-count) can lower the number of NAT Gateways). This is useful when your workloads interact with external services that have IP-based rate limits — more IPs means higher aggregate limits.
 
 **Default Value:** `false`
 

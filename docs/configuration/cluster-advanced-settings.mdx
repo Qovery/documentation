@@ -224,14 +224,16 @@ Enabling this setting creates 3 additional Elastic IPs in your AWS account. Each
 
 **Type:** `integer` (`1`, `2` or `3`)
 
-**Description:** Number of availability zones the cluster nodes run in, starting with the first zone of the region. With `1` or `2`, Karpenter only starts nodes in those zones and the cluster gets one NAT Gateway (and one Elastic IP) per zone instead of three. The VPC keeps one subnet per zone of the region: the subnets of the other zones reach the internet through the NAT Gateway of the first zone, and managed databases keep their subnets in every zone, so a database can still run in a zone without nodes.
+**Description:** Number of availability zones the cluster nodes run in, starting with the first zone of the region. With `1` or `2`, Karpenter only starts nodes in those zones.
+
+On a VPC managed by Qovery that uses NAT Gateways, the cluster also gets one NAT Gateway per selected zone instead of three, each with its Elastic IP (two with [`aws.vpc.enable_nat_gateway_secondary_eip`](#aws-vpc-enable-nat-gateway-secondary-eip)). The VPC keeps one subnet per zone of the region: the subnets of the other zones reach the internet through the NAT Gateway of the first zone, and managed databases keep their subnets in every zone, so a database can still run in a zone without nodes. On an existing VPC, only the nodes move: the subnets and NAT Gateways stay as you manage them.
 
 Running in fewer zones lowers the NAT Gateway bill and the cross-zone traffic between nodes, at the cost of availability: with a single zone, a zone outage takes the applications down.
 
 **Default Value:** `3`
 
 <Warning>
-Set this setting before the first deployment of the cluster: it cannot be changed afterwards. To change the number of zones, create a new cluster and clone your environments into it. A value below `3` is only accepted on non-production AWS clusters with Karpenter.
+Set this setting before the first deployment of the cluster: it cannot be changed afterwards. To change the number of zones, create a new cluster and clone your environments into it. Only AWS clusters using Karpenter accept a value other than `3`, and only when they are not production clusters.
 </Warning>
 
 <a id="loki-log-retention-in-week"></a>

@@ -1,0 +1,34 @@
+The application and the migration job read the connection string from `DATABASE_URL`. Create PostgreSQL, then expose its connection string under that name at the environment scope, so every service of the environment gets it.
+
+<Tabs>
+  <Tab title="Qovery database (development)">
+    1. In the environment, click **New Service** and pick **PostgreSQL**. Keep the visibility private, then create and deploy it. See [Create a Database](/getting-started/guides/getting-started/connect-database).
+    2. Open the **Variables** section of the environment, find the built-in variable `QOVERY_POSTGRESQL_Z<ID>_DATABASE_URL_INTERNAL`, select **Create alias**, and name it `DATABASE_URL`.
+
+    From the CLI, once the application exists:
+
+    ```bash
+    # Copy the exact name of the ..._DATABASE_URL_INTERNAL variable
+    qovery application env list -n my-app
+
+    qovery application env alias create -n my-app \
+      -k "QOVERY_POSTGRESQL_Z1234ABCD_DATABASE_URL_INTERNAL" \
+      --alias DATABASE_URL --scope ENVIRONMENT
+    ```
+
+    This database runs as a container on your cluster, with no automated backups. Use it for development and testing.
+  </Tab>
+
+  <Tab title="Blueprint (production)">
+    1. In the environment, click **New Service** › **Blueprint** and pick a managed PostgreSQL, such as [Amazon RDS for PostgreSQL](/configuration/blueprints/aws-rds-postgresql) or [Scaleway Managed PostgreSQL](/configuration/blueprints/scaleway-managed-postgresql). Deploy it.
+    2. The Blueprint publishes its outputs as variables named `QOVERY_OUTPUT_TERRAFORM_Z<ID>_<OUTPUT>`. Copy the prefix from the **Variables** section, then create an environment secret `DATABASE_URL` that composes them with `{{...}}` interpolation:
+
+    ```text
+    postgresql://{{QOVERY_OUTPUT_TERRAFORM_Z1234ABCD_DB_USERNAME}}:{{QOVERY_OUTPUT_TERRAFORM_Z1234ABCD_DB_PASSWORD}}@{{QOVERY_OUTPUT_TERRAFORM_Z1234ABCD_DB_ADDRESS}}:{{QOVERY_OUTPUT_TERRAFORM_Z1234ABCD_DB_PORT}}/{{QOVERY_OUTPUT_TERRAFORM_Z1234ABCD_DB_NAME}}
+    ```
+
+    Make sure the Blueprint is deployed in a [deployment stage](/configuration/deployment/pipeline) that runs before the migration job.
+  </Tab>
+</Tabs>
+
+See [Aliases](/configuration/environment-variables#aliases) and [Variable Interpolation](/configuration/environment-variables#variable-interpolation) for the rules.

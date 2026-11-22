@@ -1,0 +1,26 @@
+<Steps>
+  <Step title="Create a project and an environment">
+    Follow steps 1 and 2 of [Deploy Your First Application](/getting-started/guides/getting-started/deploy-your-first-application#step-1-create-a-project). Pick the cluster the environment runs on.
+  </Step>
+  <Step title="Add PostgreSQL">
+    Create the database and the `DATABASE_URL` variable as described in [Connect PostgreSQL](#connect-postgresql).
+  </Step>
+  <Step title="Create the application">
+    In the environment, click **New Service** › **Create application**, select **Git Repository**, then your repository and branch. Leave **Root Application Path** empty unless the Dockerfile is in a subfolder.
+  </Step>
+  <Step title="Set the port">
+    Add port <code>{port}</code> with the protocol **HTTP**, and turn on **Publicly Accessible**. Qovery serves it over HTTPS on port 443.
+  </Step>
+  <Step title="Set the health checks">
+    Set the readiness and liveness probes to type **HTTP**, path <code>{healthPath}</code>, port <code>{port}</code>. See [Service Health Checks](/configuration/service-health-checks).
+  </Step>
+  <Step title="Add the variables">
+    Add the variables listed in [Set the variables](#set-the-variables). Mark keys and passwords as secrets. Then click **Create**, without deploying yet.
+  </Step>
+  <Step title="Create the migration job">
+    Click **New Service** › **Create lifecycle job**, select the same repository, branch and Dockerfile, and trigger it on the **Deploy** event (`START`) with the CMD arguments <code>{migrateArgs}</code>. Set the number of restarts to 0. See [Run the migrations](#run-the-migrations).
+  </Step>
+  <Step title="Deploy">
+    Deploy the environment. Qovery deploys the database, then the job, then the application, builds the image from your Dockerfile and gives the application a URL on `qovery.io`. Follow the progress in the **Deployment logs** tab.
+  </Step>
+</Steps>

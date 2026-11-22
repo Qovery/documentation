@@ -1,6 +1,6 @@
 # Qovery
 
-> Qovery is an Agentic DevOps platform. It deploys and runs applications, databases, jobs and Helm charts on Kubernetes clusters in your own cloud account (AWS, GCP, Azure, Scaleway) or on your own Kubernetes cluster. People use the Console; scripts and coding agents use the CLI, the REST API, the Terraform provider, the MCP server and the agent skills.
+> Qovery is an Agentic DevOps platform. Developers and AI coding agents deploy and run applications on Kubernetes in your own cloud account, with the guardrails, audit trail and cost control a platform team would otherwise build by hand. It runs applications, databases, jobs and Helm charts on clusters in AWS, GCP, Azure or Scaleway, or on your own Kubernetes cluster. People use the Console; scripts and coding agents use the CLI, the REST API, the Terraform provider, the MCP server and the agent skills.
 
 ## Start here (for coding agents)
 
@@ -26,7 +26,7 @@
 
 #### Get Started
 
-- [Introduction](https://www.qovery.com/docs/getting-started/introduction.md): The Kubernetes control plane for humans and AI agents, on your own infrastructure, cloud or on-premise.
+- [Introduction](https://www.qovery.com/docs/getting-started/introduction.md): Qovery is an Agentic DevOps platform for developers and AI coding agents, on Kubernetes in your own cloud account or on-premise.
 - [Get Started with Qovery](https://www.qovery.com/docs/getting-started/quickstart.md): Choose how to start with Qovery: deploy with an AI agent, migrate an app, set up preview environments, try it locally or connect your own cluster.
 - [Deploy with AI Agent](https://www.qovery.com/docs/getting-started/quickstart/ai-agent.md): Tell your AI coding agent to deploy. It handles everything, from your code to a live Kubernetes deployment.
 - [Try Qovery on Your Laptop with a Coding Agent](https://www.qovery.com/docs/getting-started/quickstart/try-with-an-agent.md): Install the Qovery skills and ask your coding agent to deploy a GitHub project. With no cluster, it creates a local Kubernetes cluster in Docker on your laptop.
@@ -36,7 +36,7 @@
 
 ##### Installation
 
-- [Test & Learn Locally](https://www.qovery.com/docs/getting-started/quickstart/docker.md): Install Qovery on your local machine with a k3s Kubernetes cluster in about 15 minutes to learn and test for free, then clean it up. Not for production use.
+- [Test & Learn Locally](https://www.qovery.com/docs/getting-started/quickstart/docker.md): Install Qovery on your local machine with a k3s Kubernetes cluster in about 10 minutes to learn and test for free, then clean it up. Not for production use.
 
 ###### Managed Cluster
 
@@ -101,6 +101,12 @@
 - [Deploy Your First Application](https://www.qovery.com/docs/getting-started/guides/getting-started/deploy-your-first-application.md): Deploy an application from Git, a container registry, or a Helm chart to your own Kubernetes cluster with a coding agent, the Qovery CLI, or the Console.
 - [Create a Database](https://www.qovery.com/docs/getting-started/guides/getting-started/connect-database.md): Add a database to your environment and connect your application to it with the connection URI and the environment variables Qovery creates.
 - [Database Seeding with Lifecycle Jobs](https://www.qovery.com/docs/getting-started/guides/others/database-seeding-lifecycle-job.md): Seed a PostgreSQL database from SQL scripts with a Qovery Lifecycle Job, including idempotent, conditional and per-environment seeding.
+
+##### Framework Guides
+
+- [Framework Guides](https://www.qovery.com/docs/getting-started/guides/frameworks/overview.md): Step-by-step guides to deploy Django, Ruby on Rails, Node.js with Express, Next.js and FastAPI applications with PostgreSQL on Kubernetes in your own cloud account with Qovery.
+- [Deploy a Django Application](https://www.qovery.com/docs/getting-started/guides/frameworks/django.md): Deploy a Django application with PostgreSQL on Kubernetes in your own cloud account with Qovery: production Dockerfile, Gunicorn, health check, migrations as a lifecycle job, static files with WhiteNoise.
+- [Deploy a Ruby on Rails Application](https://www.qovery.com/docs/getting-started/guides/frameworks/ruby-on-rails.md): Deploy a Ruby on Rails application with PostgreSQL on Kubernetes in your own cloud account with Qovery: production Dockerfile, Puma, the /up health check, migrations as a lifecycle job, precompiled assets.
 
 ##### Advanced Tutorials
 

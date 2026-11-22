@@ -1,0 +1,183 @@
+---
+title: "Deploy a Django Application"
+sidebarTitle: "Django"
+description: "Deploy a Django application with PostgreSQL on Kubernetes in your own cloud account with Qovery: production Dockerfile, Gunicorn, health check, migrations as a lifecycle job, static files with WhiteNoise."
+---
+
+import NoRepositoryManifest from "/snippets/no-repository-manifest.mdx";
+import Postgres from "/snippets/framework-guide-postgres.mdx";
+import ConsoleDeploy from "/snippets/framework-guide-console-deploy.mdx";
+import AgentPrompt from "/snippets/framework-guide-agent-prompt.mdx";
+
+This guide deploys a Django project served by Gunicorn, with a PostgreSQL database and migrations that run before each release. Qovery builds the image from your Dockerfile and runs it on a Kubernetes cluster in your own cloud account.
+
+<NoRepositoryManifest />
+
+## Prerequisites
+
+- A Django project in a GitHub, GitLab or Bitbucket repository, with a `requirements.txt`.
+- A Qovery account and a cluster: [create one in your cloud account](/getting-started/quickstart/cloud), [connect your own cluster](/getting-started/installation/kubernetes), or [try it on your laptop](/getting-started/quickstart/try-with-an-agent).
+- These packages in `requirements.txt`: `gunicorn`, `psycopg[binary]`, `dj-database-url` and `whitenoise`.
+
+## Prepare the settings
+
+Read the configuration from environment variables in `settings.py`:
+
+```python settings.py
+import os
+import dj_database_url
+
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
+DEBUG = os.environ.get("DJANGO_DEBUG", "False") == "True"
+ALLOWED_HOSTS = [h for h in os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(",") if h]
+CSRF_TRUSTED_ORIGINS = [f"https://{h}" for h in ALLOWED_HOSTS]
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+DATABASES = {"default": dj_database_url.config(conn_max_age=600)}
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STORAGES = {
+    "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
+    "staticfiles": {"BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage"},
+}
+```
+
+Add `"mysite.health.HealthCheckMiddleware"` first in `MIDDLEWARE`, and `"whitenoise.middleware.WhiteNoiseMiddleware"` right after `"django.middleware.security.SecurityMiddleware"`. Replace `mysite` with your project package.
+
+Kubernetes probes call the pod by its IP address, which is not in `ALLOWED_HOSTS`, so Django would answer them with `400 Bad Request`. This middleware answers `/healthz` before Django checks the host:
+
+```python mysite/health.py
+from django.http import HttpResponse
+
+
+class HealthCheckMiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        if request.path == "/healthz":
+            return HttpResponse("ok")
+        return self.get_response(request)
+```
+
+## Add a production Dockerfile
+
+Create a `Dockerfile` at the root of the repository:
+
+```dockerfile Dockerfile
+FROM python:3.13-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PORT=8000
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+RUN python manage.py collectstatic --noinput
+
+RUN useradd --create-home appuser
+USER appuser
+
+EXPOSE 8000
+CMD ["sh", "-c", "exec gunicorn mysite.wsgi:application --bind 0.0.0.0:${PORT} --workers 3"]
+```
+
+- `python:3.13-slim` is the official Python image without build tools. `psycopg[binary]` ships its own PostgreSQL client library, so no system package is needed.
+- `PYTHONUNBUFFERED=1` sends logs straight to stdout, where Qovery reads them.
+- Copying `requirements.txt` before the code keeps the dependency layer cached when only the code changes.
+- `collectstatic` runs at build time and writes the files to `STATIC_ROOT`. WhiteNoise serves them from there.
+- The container runs as a non-root user.
+- Gunicorn binds to `0.0.0.0`, not `127.0.0.1`, so Kubernetes can reach it. `exec` makes Gunicorn the main process, so it receives the stop signal and shuts down cleanly.
+
+Add a `.dockerignore` with at least `.git`, `.venv`, `__pycache__` and `staticfiles` to keep the image small.
+
+## Port and health check
+
+The application listens on port `8000` and answers `GET /healthz` with `200`. Use both values when you create the application in Qovery.
+
+## Connect PostgreSQL
+
+<Postgres />
+
+## Set the variables
+
+| Variable | Value | Secret |
+|---|---|---|
+| `DATABASE_URL` | The alias or secret from [Connect PostgreSQL](#connect-postgresql) | Yes |
+| `DJANGO_SECRET_KEY` | A long random string | Yes |
+| `DJANGO_ALLOWED_HOSTS` | The domain of the application, for example `my-app-z1234abcd.z5678efgh.qovery.io` | No |
+
+The `qovery.io` domain shows in the Console once the application is created. Add your custom domains to `DJANGO_ALLOWED_HOSTS`, separated by commas.
+
+## Run the migrations
+
+Run `migrate` in a [lifecycle job](/configuration/lifecycle-job) built from the same repository and Dockerfile, triggered on the **Deploy** event, with these CMD arguments:
+
+```json
+["python", "manage.py", "migrate", "--noinput"]
+```
+
+The job runs once per deployment. In the default [deployment pipeline](/configuration/deployment/pipeline), jobs run after the databases and before the applications, so the schema is up to date when the new code starts.
+
+Running `migrate` in the start command instead works for a single instance, but every instance then runs it at boot, and a failed migration leaves the application crashing in a loop.
+
+## Deploy
+
+<Tabs>
+  <Tab title="Console">
+    <ConsoleDeploy port="8000" healthPath="/healthz" migrateArgs='["python", "manage.py", "migrate", "--noinput"]' />
+  </Tab>
+  <Tab title="With a coding agent">
+    Install the Qovery skills once:
+
+    ```bash
+    curl -fsSL https://skill.qovery.com/install.sh | bash
+    ```
+
+    Open your agent in the repository and paste:
+
+    <AgentPrompt prompt="Deploy this Django project with Qovery, with a PostgreSQL database and a lifecycle job that runs the migrations." />
+
+    The agent writes the Dockerfile if there is none, creates the database, the variables, the job and the application, and gives you the URL. See [Agent Skills](/getting-started/quickstart/agent-skills).
+  </Tab>
+</Tabs>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Deployment fails on the health check">
+    Gunicorn listens on another port, or on `127.0.0.1`. Check that the port in Qovery is `8000`, that Gunicorn binds to `0.0.0.0:${PORT}`, and that `HealthCheckMiddleware` is first in `MIDDLEWARE`. Read the error lines with `qovery environment deployment logs --environment "<env>" --service "<app>" --errors-only`.
+  </Accordion>
+  <Accordion title="Bad Request (400) in the browser">
+    The domain is missing from `DJANGO_ALLOWED_HOSTS`. Add the `qovery.io` domain and your custom domains, then redeploy. A `403 CSRF verification failed` on forms has the same cause, because `CSRF_TRUSTED_ORIGINS` is built from the same list.
+  </Accordion>
+  <Accordion title="relation does not exist">
+    The migrations did not run against this database. Check that the job and the application read the same `DATABASE_URL` at the environment scope, and read the job output with `qovery log --job "<job name>"`.
+  </Accordion>
+  <Accordion title="Static files return 404">
+    `collectstatic` did not run at build time, or WhiteNoise is not in `MIDDLEWARE`. Check the build logs for the `collectstatic` step. With `DEBUG` off, Django itself serves no static files.
+  </Accordion>
+</AccordionGroup>
+
+For other errors, see [Diagnose a Failed Build or Deployment](/getting-started/troubleshoot/overview#diagnose-a-failed-build-or-deployment).
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Preview environments" icon="code-pull-request" href="/getting-started/guides/use-cases/preview-environments">
+    Get a full copy of the environment for each pull request
+  </Card>
+  <Card title="Custom domain" icon="globe" href="/configuration/application#custom-domains">
+    Serve the application on your own domain
+  </Card>
+  <Card title="Auto deploy" icon="rotate" href="/configuration/deployment/auto-deploy">
+    Deploy on every push to the branch
+  </Card>
+  <Card title="Other frameworks" icon="layer-group" href="/getting-started/guides/frameworks/overview">
+    All framework guides
+  </Card>
+</CardGroup>

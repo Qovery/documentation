@@ -1,0 +1,92 @@
+---
+title: "Datadog on Qovery: service tags, log annotations and uninstalling the agent"
+description: "Find Qovery services by name in Datadog, fix Datadog autodiscovery annotations that break a deployment, and remove the Datadog agent from a cluster."
+---
+import StillStuck from "/snippets/troubleshoot-still-stuck.mdx";
+
+This page covers three questions that come up once the Datadog agent runs on a Qovery cluster. To install the agent, follow [Datadog](/configuration/integrations/observability/datadog) first.
+
+## Services show up as app-z1234abcd in Datadog
+
+In Datadog, `kube_service`, `container_name` and similar tags carry the Kubernetes names Qovery generates, such as `app-z1a2b3c4d`, not the names you gave your services. Dashboards are hard to read, and filtering by team or environment is not possible.
+
+### Fix: add Unified Service Tagging labels
+
+Attach the Datadog standard labels to your services with [Labels & Annotations](/configuration/organization/labels-annotations):
+
+1. Go to **Organization Settings**, then **Labels & Annotations**, and add a label group with:
+
+   | Label | Example value |
+   |---|---|
+   | `tags.datadoghq.com/service` | `checkout-api` |
+   | `tags.datadoghq.com/env` | `production` |
+   | `tags.datadoghq.com/version` | `1.4.2` |
+
+   Add your own labels too, for example `team: payments`.
+2. Assign the label group to the service.
+3. Redeploy the service. Labels are applied at deployment.
+
+Datadog then sets the `service`, `env` and `version` tags on the metrics, logs and traces of the service. See [Unified Service Tagging](/configuration/integrations/observability/datadog#unified-service-tagging).
+
+Label groups apply to applications, cron jobs, lifecycle jobs and databases. For a Helm service, set the labels in the values of the chart.
+
+### Alternative: turn environment variables into tags
+
+The Datadog agent can also copy environment variables of a container into tags. This was the usual workaround before labels were available, and it still works. In the values of your Datadog Helm service:
+
+```yaml
+agents:
+  useConfigMap: true
+  customAgentConfig:
+    container_env_as_tags:
+      SERVICE_DISPLAY_NAME: "service_name"
+      TEAM: "team"
+```
+
+Create the `SERVICE_DISPLAY_NAME` and `TEAM` variables on your services, redeploy them, then redeploy the Datadog service. These tags are attached to containers, not to pods, so pod-level views in Datadog do not show them.
+
+## The deployment fails after adding a Datadog log annotation
+
+You added a Datadog autodiscovery annotation to a service, for example:
+
+```text
+ad.datadoghq.com/my-container.logs: [{"source": "nodejs", "service": "checkout-api"}]
+```
+
+and the service no longer deploys, while it deploys fine without the annotation.
+
+### Fix
+
+Check these points in the annotation group:
+
+- **The key names the container.** The part between `ad.datadoghq.com/` and `.logs` must be the name of the container in the pod, not the name of the service in Qovery. Get it with `kubectl get pod <pod-name> -n <namespace> -o jsonpath='{.spec.containers[*].name}'`.
+- **The value is valid JSON.** It must be a JSON array, with double quotes around every key and string. A trailing comma or single quotes make it invalid.
+- **The scope is right.** Datadog reads autodiscovery annotations on pods. Set the scope of the annotation group to pods.
+
+Then redeploy the service. If the deployment still fails, open the deployment logs and look for the line that mentions the annotation. See [Datadog Autodiscovery Annotations](/configuration/integrations/observability/datadog#datadog-autodiscovery-annotations).
+
+## Uninstall the Datadog agent
+
+How you remove the agent depends on how it was installed.
+
+**Installed as a Qovery Helm service** (the method in the [Datadog guide](/configuration/integrations/observability/datadog)): stop the Datadog Helm service, then delete it (three-dot menu, **Remove helm**). Deleting a Helm service removes all the Kubernetes resources created by the chart. From the CLI: `qovery helm stop -n <datadog-service> --watch`, then `qovery helm delete -n <datadog-service> --watch`. See [Delete a Helm service](/configuration/helm#delete-service).
+
+**Installed by hand with Helm or kubectl:** connect to the cluster (see [Connect to your cluster](/configuration/connect-to-cluster)) and remove it the same way:
+
+```bash
+# Find the release and its namespace
+helm list --all-namespaces | grep -i datadog
+
+# Uninstall it
+helm uninstall <release-name> -n <namespace>
+```
+
+If the release is gone but agent pods remain, and the namespace contains nothing else, delete the namespace:
+
+```bash
+kubectl delete namespace <datadog-namespace>
+```
+
+After removing the agent, remove the Datadog labels and annotations you no longer need, and the `DD_*` variables of your services, then redeploy them.
+
+<StillStuck />

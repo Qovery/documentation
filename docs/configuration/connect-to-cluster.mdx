@@ -572,11 +572,26 @@ kubectl get events --namespace <namespace> --sort-by='.lastTimestamp'
   <Accordion title="Authentication Failed">
     **Symptoms**: `error: You must be logged in to the server (Unauthorized)`
 
+    The same problem can show as `the server has asked for the client to provide credentials`.
+
     **Solutions**:
     - Re-authenticate with Qovery: `qovery auth`
     - Verify IAM permissions for AWS CLI method
     - Check if your IAM user is in the cluster admin group
     - Ensure SSO is enabled if using SSO authentication
+    - Check that `aws sts get-caller-identity` returns the IAM identity you expect. With several AWS profiles, set `AWS_PROFILE` to the profile that has access to the cluster.
+    - If access stopped working right after a cluster update, wait for the update to finish (the cluster status in the Console), then download the kubeconfig again: `qovery cluster kubeconfig --cluster-id <cluster-id>`
+
+  </Accordion>
+
+  <Accordion title="exec plugin: invalid apiVersion">
+    **Symptoms**: `exec plugin: invalid apiVersion "client.authentication.k8s.io/v1"` or `"client.authentication.k8s.io/v1alpha1"`
+
+    **Cause**: The kubeconfig asks the AWS CLI for a token in a format your local tools do not support. An old AWS CLI cannot produce `v1` tokens, and recent versions of kubectl no longer accept `v1alpha1`.
+
+    **Solutions**:
+    - Update the AWS CLI and kubectl to their latest versions
+    - Download the kubeconfig again: `qovery cluster kubeconfig --cluster-id <cluster-id>`, or `aws eks update-kubeconfig --region <region> --name <cluster-name>`
 
   </Accordion>
 

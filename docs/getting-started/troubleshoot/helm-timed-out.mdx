@@ -1,0 +1,73 @@
+---
+title: "Helm upgrade failed: context deadline exceeded"
+description: "A cluster update or a Helm service fails with Helm timed out, UPGRADE FAILED or context deadline exceeded. Find the resource that never became ready, then fix it or raise the timeout."
+---
+import StillStuck from "/snippets/troubleshoot-still-stuck.mdx";
+
+A cluster update or the deployment of a Helm service fails with an error like:
+
+```text
+Helm timed out for release vertical-pod-autoscaler during helm UPGRADE: Error: UPGRADE FAILED: an error occurred while rolling back the release. original upgrade error: context deadline exceeded
+```
+
+For your own charts, the release name is the one of your Helm service, and the error can also read `INSTALL FAILED` or `timed out waiting for the condition`.
+
+## What the error means
+
+Helm installed or upgraded the release, then waited for its pods and jobs to become ready. They did not become ready before the timeout, so Helm stopped and rolled the release back. The timeout is the symptom: the cause is a pod that could not be scheduled, could not start, or never passed its readiness check.
+
+## During a cluster update
+
+When the release is a Qovery component (for example `vertical-pod-autoscaler`, `ingress-nginx`, `cert-manager`), the cluster update could not start the new version of that component. The most common reason is a full cluster: the new pods cannot be scheduled because no node has room, and the cluster cannot add nodes.
+
+1. Open the cluster **Logs** and look, a few lines before the timeout, for a scheduling message such as `0/3 nodes are available: 3 Insufficient memory`.
+2. Give the cluster room: raise the maximum number of nodes, allow larger instance types, or raise the node pool limits. See [Insufficient cpu or memory](/getting-started/troubleshoot/insufficient-cpu).
+3. Update the cluster again.
+
+A cluster with a fixed number of nodes (same minimum and maximum) has no room for the extra pods an update needs. Allow at least one more node than you run day to day.
+
+## During the deployment of a Helm service
+
+<Steps>
+  <Step title="Find the resource that is not ready">
+    Connect to the cluster (see [Connect to your cluster](/configuration/connect-to-cluster)) and watch the namespace of the environment while you deploy:
+
+    ```bash
+    kubectl get pods -n <environment-namespace> --watch
+    kubectl get events -n <environment-namespace> --sort-by=.lastTimestamp
+    ```
+
+    A pod in `Pending` cannot be scheduled. A pod in `ImagePullBackOff` cannot pull its image. A pod in `CrashLoopBackOff` starts and crashes: read its logs with `kubectl logs <pod> -n <namespace> --previous`. A pod `Running` but not `Ready` fails its readiness probe.
+  </Step>
+
+  <Step title="Check the values">
+    Every `qovery.env.<NAME>` in your values override must match a variable available to the Helm service, with the same case. A value that is not replaced, or a chart key with a typo, often leaves a pod unable to connect to its database. See [Environment variables in values](/configuration/helm#environment-variables-in-values).
+  </Step>
+
+  <Step title="Raise the timeout if the chart is slow">
+    Some charts need more time on first install, for example to create CRDs or run database migrations. Raise the timeout of the Helm service in its general settings (default 300 seconds), or add a Helm argument such as `--timeout 15m0s` in the **Arguments** field. See [Helm](/configuration/helm).
+  </Step>
+</Steps>
+
+### Charts that wait for their own hooks (Apache Airflow)
+
+Some charts run a job as a Helm hook, for example database migrations, and start pods that wait for that job to finish. If Helm waits for those pods to be ready before it runs the hook, neither side can progress, and the release times out however long the timeout is.
+
+The Apache Airflow chart is the most common case: its pods wait in `wait-for-airflow-migrations` and the migration job never starts. Turn off Helm hooks for its jobs in your values override, so they run as normal jobs:
+
+```yaml
+createUserJob:
+  useHelmHooks: false
+  applyCustomEnv: false
+migrateDatabaseJob:
+  useHelmHooks: false
+  applyCustomEnv: false
+```
+
+Check the documentation of your chart for an equivalent option.
+
+### The chart deploys, but the Console shows it as not running
+
+Qovery finds the pods of a Helm service through its labels and annotations. If your chart does not set them, the deployment can succeed while the Console shows no pods and no logs. Add the `qovery.labels.service` and `qovery.annotations.service` macros to the templates of your chart. See [Helm service logging limitations](/getting-started/troubleshoot/overview#service-runtime-issues).
+
+<StillStuck />

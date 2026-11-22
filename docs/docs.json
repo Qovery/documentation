@@ -201,7 +201,13 @@
               "getting-started/troubleshoot/nginx-timeout",
               "getting-started/troubleshoot/default-backend-404",
               "getting-started/troubleshoot/image-pull-errors",
-              "getting-started/troubleshoot/job-backoff-limit-exceeded"
+              "getting-started/troubleshoot/job-backoff-limit-exceeded",
+              "getting-started/troubleshoot/insufficient-cpu",
+              "getting-started/troubleshoot/deployment-stuck-queued",
+              "getting-started/troubleshoot/helm-timed-out",
+              "getting-started/troubleshoot/vpc-limit-exceeded",
+              "getting-started/troubleshoot/frontend-env-vars-undefined",
+              "getting-started/troubleshoot/datadog"
             ]
           },
           {

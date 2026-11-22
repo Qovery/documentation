@@ -1,0 +1,69 @@
+---
+title: "0/1 nodes are available: 1 Insufficient cpu. No preemption victims found"
+description: "Pods stay Pending with Insufficient cpu or Insufficient memory on Qovery. Learn how Kubernetes places pods on nodes, then size your services and node pools to fit."
+---
+import StillStuck from "/snippets/troubleshoot-still-stuck.mdx";
+
+A deployment fails or hangs, and the deployment logs show a scheduling error like this one, sometimes repeated many times (`x44`):
+
+```text
+0/1 nodes are available: 1 Insufficient cpu. preemption: 0/1 nodes are available: 1 No preemption victims found for incoming pod.
+```
+
+The same message exists with `Insufficient memory`, and with more nodes (`0/3 nodes are available: 3 Insufficient memory`).
+
+## What the error means
+
+Kubernetes could not find a node with enough free CPU (or memory) for the new pod, and it found no lower-priority pod it could evict to make room. The pod stays `Pending` until room appears. If none appears before the deployment times out, the deployment fails.
+
+To fix it, you need to know how Kubernetes counts resources.
+
+## How CPU and memory are allocated
+
+- **Requests, not usage.** Each pod reserves the vCPU and memory set in the **Resources** settings of its service. Kubernetes places pods by adding up these reservations, not by looking at real usage. A node at 10% CPU usage can still be full.
+- **A pod must fit on one node.** Resources are not pooled across nodes. A cluster of three nodes with 2 vCPU each cannot run a pod that asks for 3 vCPU.
+- **Part of each node is reserved.** The operating system, the kubelet and the system pods (ingress, logging, metrics, DNS) take some CPU and memory on every node. What remains for your pods, the allocatable capacity, is lower than the instance size. On a small instance with 2 vCPU and 4 GiB, plan for about 1.5 to 1.9 vCPU and around 3 GiB for your own services.
+- **Every instance counts.** A service with 3 instances of 1 vCPU reserves 3 vCPU, on one or more nodes. During a rolling deployment, new pods start before old ones stop, so the service needs room for extra pods for a while.
+- **Instance size matters per dimension.** Changing to an instance with more memory but the same number of vCPU does not help with `Insufficient cpu`. For example, `t3a.medium` and `t3a.large` both have 2 vCPU.
+
+<Info>
+An environment is not a node. All the services of an environment run in one Kubernetes namespace of the cluster, and their pods are spread over the nodes of the cluster.
+</Info>
+
+## See what is reserved
+
+- In the Console, open the cluster and go to the **Workloads** tab. It shows the CPU and memory requested per environment and per service, against the capacity of the cluster. See [Workloads](/configuration/clusters#workloads).
+- With kubectl (see [Connect to your cluster](/configuration/connect-to-cluster)), check the allocatable capacity and the requests of a node:
+
+  ```bash
+  kubectl describe node <node-name>
+  ```
+
+  The `Allocatable` section gives what pods can use, and `Allocated resources` gives what is already reserved.
+
+## Fix
+
+Pick the option that matches what you found.
+
+### Lower the requests of your services
+
+Services often ask for more than they use. Open the service **Settings**, then **Resources**, and reduce **vCPU** or **Memory** to what the service needs, with some headroom, then redeploy. Compare with real usage in the monitoring of the service first.
+
+### Give the cluster more room
+
+On AWS clusters with Karpenter, Karpenter adds nodes when pods are pending. If it does not:
+
+- The pod may be larger than the biggest instance type allowed. Check the **Instance types** of the node pools in the cluster settings, and allow larger sizes. See [Settings for node pools](/configuration/integrations/kubernetes/eks/managed#resources).
+- The node pool may have reached its **Node pool limits** for CPU or memory. Raise them.
+
+On clusters with a fixed node range (GKE, AKS, Scaleway Kapsule, or AWS without Karpenter), raise the maximum number of nodes in the cluster settings, or pick an instance type with more vCPU or memory, then update the cluster.
+
+### Run more, smaller instances
+
+A service that needs 2 vCPU in one pod needs a node with more than 2 vCPU free. Two instances of 1 vCPU fit in more places. With autoscaling, set a minimum and a maximum number of instances so the service grows with the load instead of reserving its peak all the time. See [Instances and autoscaling](/configuration/application#instances-%26-autoscaling).
+
+## Cluster updates fail for the same reason
+
+A cluster update also needs free room: Qovery components are upgraded one by one, and their new pods must be scheduled while the old ones still run. On a cluster that is full and cannot add nodes, the update can fail with a Helm timeout, for example `Helm timed out for release vertical-pod-autoscaler`. Allow more nodes, then update the cluster again. See [Helm upgrade failed: context deadline exceeded](/getting-started/troubleshoot/helm-timed-out).
+
+<StillStuck />

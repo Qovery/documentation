@@ -1,6 +1,6 @@
 ---
 title: "Test & Learn Locally"
-description: "Install Qovery on your local machine with a k3s Kubernetes cluster in about 15 minutes to learn and test for free, then clean it up. Not for production use."
+description: "Install Qovery on your local machine with a k3s Kubernetes cluster in about 10 minutes to learn and test for free, then clean it up. Not for production use."
 ---
 import TryDemo from "/snippets/try-demo-console.mdx";
 
@@ -11,7 +11,7 @@ import QoveryCliAuth from '/snippets/qovery-cli-auth.mdx';
 **Demo Environment Only**: This local installation is designed for demonstration and testing purposes only. It is **not intended for production use**.
 </Warning>
 
-**Time:** ~15 minutes | **Cost:** Free
+**Time:** ~10 minutes | **Cost:** Free
 
 Install Qovery on your local machine using a k3s Kubernetes cluster. Perfect for learning, testing, and development.
 
@@ -63,13 +63,16 @@ Before starting, ensure you have:
 
     This command:
     - Creates a local k3s cluster with k3d (lightweight Kubernetes in Docker)
-    - Installs the Qovery Operator on it and connects the cluster to your organization
+    - Installs the Qovery Operator and Engine v2 on it and connects the cluster to your organization
     - Lets Qovery deploy its stack on the cluster, including networking and ingress
-    - Takes approximately 5-10 minutes to complete
+    - Checks that the Operator and the engine are running before it finishes
+    - Takes approximately 5-10 minutes to complete, and shows each step with its duration
 
     <Warning>
-    You may be prompted for your password (`sudo`). It adds a local network address so that traffic from your machine reaches the applications on the cluster.
+    On macOS and WSL, you may be prompted for your password (`sudo`). It adds the local address `172.42.0.3` so that traffic from your machine reaches the applications on the cluster. If the address is already set, the prompt is skipped.
     </Warning>
+
+    If the command fails, it prints an error code and a diagnostic ID. See [Troubleshooting](/cli/commands/demo#troubleshooting).
   </Step>
 
   <Step title="Step 5: Access the Console">

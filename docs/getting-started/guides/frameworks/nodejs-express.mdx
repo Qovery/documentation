@@ -1,0 +1,162 @@
+---
+title: "Deploy a Node.js Express Application"
+sidebarTitle: "Node.js (Express)"
+description: "Deploy a Node.js Express API with PostgreSQL on Kubernetes in your own cloud account with Qovery: production Dockerfile, port and health check, migrations as a lifecycle job, static files."
+---
+
+import NoRepositoryManifest from "/snippets/no-repository-manifest.mdx";
+import Postgres from "/snippets/framework-guide-postgres.mdx";
+import ConsoleDeploy from "/snippets/framework-guide-console-deploy.mdx";
+import AgentPrompt from "/snippets/framework-guide-agent-prompt.mdx";
+
+This guide deploys a Node.js application built with Express, with a PostgreSQL database and migrations that run before each release. Qovery builds the image from your Dockerfile and runs it on a Kubernetes cluster in your own cloud account.
+
+<NoRepositoryManifest />
+
+## Prerequisites
+
+- An Express application in a GitHub, GitLab or Bitbucket repository, with a `package-lock.json`.
+- A Qovery account and a cluster: [create one in your cloud account](/getting-started/quickstart/cloud), [connect your own cluster](/getting-started/installation/kubernetes), or [try it on your laptop](/getting-started/quickstart/try-with-an-agent).
+- The `pg` package, and a migration tool (Knex, Prisma, node-pg-migrate or another) listed in `dependencies`, not `devDependencies`, so it is in the production image.
+
+## Prepare the server
+
+Listen on `0.0.0.0` and on the port from `PORT`, answer a health check, and read the database URL from the environment:
+
+```js server.js
+const express = require("express");
+const path = require("path");
+const { Pool } = require("pg");
+
+const app = express();
+const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+
+app.set("trust proxy", true);
+app.use(express.static(path.join(__dirname, "public")));
+
+app.get("/healthz", (req, res) => res.send("ok"));
+
+const port = process.env.PORT || 3000;
+app.listen(port, "0.0.0.0", () => console.log(`Listening on ${port}`));
+```
+
+`trust proxy` makes `req.protocol` and `req.ip` reflect the client, since requests reach the application through the cluster's ingress. `path.join(__dirname, "public")` resolves the static folder from the file location, not from the working directory.
+
+Add a `migrate` script to `package.json` that runs your migration tool, for example `"migrate": "knex migrate:latest"`, `"migrate": "prisma migrate deploy"` or `"migrate": "node-pg-migrate up"`.
+
+## Add a production Dockerfile
+
+Create a `Dockerfile` at the root of the repository:
+
+```dockerfile Dockerfile
+FROM node:24-slim
+
+ENV NODE_ENV=production \
+    PORT=3000
+
+WORKDIR /app
+
+COPY package.json package-lock.json ./
+RUN npm ci --omit=dev
+
+COPY . .
+
+USER node
+EXPOSE 3000
+CMD ["node", "server.js"]
+```
+
+- `node:24-slim` is the official Node.js image on Debian, on a long-term support (LTS) release. Match it to the version you develop with.
+- Copying `package.json` and `package-lock.json` before the code keeps the dependency layer cached when only the code changes. `npm ci` installs the exact versions from the lock file, and `--omit=dev` leaves out the development dependencies.
+- `NODE_ENV=production` turns on the production behavior of Express and many libraries.
+- The `node` user comes with the image, so the server runs without root.
+- `CMD ["node", "server.js"]` starts Node directly rather than through `npm start`, so Node receives the stop signal and shuts down cleanly.
+
+If your project compiles TypeScript or bundles front-end assets, run the build in a first stage and copy only the output into this image. Add a `.dockerignore` with at least `node_modules` and `.git`.
+
+## Port and health check
+
+The application listens on port `3000` and answers `GET /healthz` with `200`. Use both values when you create the application in Qovery.
+
+## Connect PostgreSQL
+
+<Postgres />
+
+Most PostgreSQL clients for Node.js, including `pg`, Knex, Prisma and node-pg-migrate, accept the `postgresql://` URL as is.
+
+## Set the variables
+
+| Variable | Value | Secret |
+|---|---|---|
+| `DATABASE_URL` | The alias or secret from [Connect PostgreSQL](#connect-postgresql) | Yes |
+
+Add the other variables your application reads, and mark keys and passwords as secrets.
+
+## Run the migrations
+
+Run the `migrate` script in a [lifecycle job](/configuration/lifecycle-job) built from the same repository and Dockerfile, triggered on the **Deploy** event, with these CMD arguments:
+
+```json
+["npm", "run", "migrate"]
+```
+
+The job runs once per deployment. In the default [deployment pipeline](/configuration/deployment/pipeline), jobs run after the databases and before the applications, so the schema is up to date when the new code starts.
+
+Running the migrations in the start command instead works for a single instance, but every instance then runs them at boot, and a failed migration leaves the application crashing in a loop.
+
+## Deploy
+
+<Tabs>
+  <Tab title="Console">
+    <ConsoleDeploy port="3000" healthPath="/healthz" migrateArgs='["npm", "run", "migrate"]' />
+  </Tab>
+  <Tab title="With a coding agent">
+    Install the Qovery skills once:
+
+    ```bash
+    curl -fsSL https://skill.qovery.com/install.sh | bash
+    ```
+
+    Open your agent in the repository and paste:
+
+    <AgentPrompt prompt="Deploy this Express application with Qovery, with a PostgreSQL database and a lifecycle job that runs the migrations." />
+
+    The agent writes the Dockerfile if there is none, creates the database, the variables, the job and the application, and gives you the URL. See [Agent Skills](/getting-started/quickstart/agent-skills).
+  </Tab>
+</Tabs>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Deployment fails on the health check">
+    The server listens on another port than the one set in Qovery, or on `localhost`. Pass `"0.0.0.0"` to `app.listen` and check that the port in Qovery is `3000`. Read the error lines with `qovery environment deployment logs --environment "<env>" --service "<app>" --errors-only`.
+  </Accordion>
+  <Accordion title="Cannot find module at startup">
+    A package the server needs at runtime is in `devDependencies`, so `npm ci --omit=dev` left it out. Move it to `dependencies`. The same applies to the migration tool, which the job runs from the same image.
+  </Accordion>
+  <Accordion title="relation does not exist">
+    The migrations did not run against this database. Check that the job and the application read the same `DATABASE_URL` at the environment scope, and read the job output with `qovery log --job "<job name>"`.
+  </Accordion>
+  <Accordion title="Static files return 404">
+    The folder is missing from the image, because `.dockerignore` excludes it or the front-end build did not run, or `express.static` points at a path relative to the working directory. Use `path.join(__dirname, "public")`.
+  </Accordion>
+</AccordionGroup>
+
+For other errors, see [Diagnose a Failed Build or Deployment](/getting-started/troubleshoot/overview#diagnose-a-failed-build-or-deployment).
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Preview environments" icon="code-pull-request" href="/getting-started/guides/use-cases/preview-environments">
+    Get a full copy of the environment for each pull request
+  </Card>
+  <Card title="Autoscaling" icon="arrows-up-down" href="/configuration/application">
+    Set the number of instances and the resources
+  </Card>
+  <Card title="Auto deploy" icon="rotate" href="/configuration/deployment/auto-deploy">
+    Deploy on every push to the branch
+  </Card>
+  <Card title="Other frameworks" icon="layer-group" href="/getting-started/guides/frameworks/overview">
+    All framework guides
+  </Card>
+</CardGroup>

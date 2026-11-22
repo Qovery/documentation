@@ -1,0 +1,174 @@
+---
+title: "Deploy a FastAPI Application"
+sidebarTitle: "FastAPI"
+description: "Deploy a FastAPI application with PostgreSQL on Kubernetes in your own cloud account with Qovery: production Dockerfile, Uvicorn, health check, Alembic migrations as a lifecycle job, static files."
+---
+
+import NoRepositoryManifest from "/snippets/no-repository-manifest.mdx";
+import Postgres from "/snippets/framework-guide-postgres.mdx";
+import ConsoleDeploy from "/snippets/framework-guide-console-deploy.mdx";
+import AgentPrompt from "/snippets/framework-guide-agent-prompt.mdx";
+
+This guide deploys a FastAPI application served by Uvicorn, with a PostgreSQL database and Alembic migrations that run before each release. Qovery builds the image from your Dockerfile and runs it on a Kubernetes cluster in your own cloud account.
+
+<NoRepositoryManifest />
+
+## Prerequisites
+
+- A FastAPI application in a GitHub, GitLab or Bitbucket repository, with a `requirements.txt`.
+- A Qovery account and a cluster: [create one in your cloud account](/getting-started/quickstart/cloud), [connect your own cluster](/getting-started/installation/kubernetes), or [try it on your laptop](/getting-started/quickstart/try-with-an-agent).
+- These packages in `requirements.txt`: `fastapi`, `uvicorn`, `sqlalchemy`, `psycopg2-binary` and `alembic`.
+
+## Prepare the application
+
+Add a health check and read the database URL from the environment, in `app/main.py`:
+
+```python app/main.py
+import os
+from pathlib import Path
+
+from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
+from sqlalchemy import create_engine
+
+engine = create_engine(os.environ["DATABASE_URL"], pool_pre_ping=True)
+
+app = FastAPI()
+app.mount("/static", StaticFiles(directory=Path(__file__).parent / "static"), name="static")
+
+
+@app.get("/healthz")
+def healthz():
+    return {"status": "ok"}
+```
+
+SQLAlchemy opens a `postgresql://` URL with the `psycopg2` driver. `pool_pre_ping=True` replaces connections the database closed while they were idle. The static folder is resolved from the file location, not from the working directory. Leave out the `mount` line if the application serves no static files.
+
+In Alembic's `migrations/env.py`, take the URL from the same variable:
+
+```python migrations/env.py
+import os
+from alembic import context
+
+config = context.config
+config.set_main_option("sqlalchemy.url", os.environ["DATABASE_URL"])
+```
+
+## Add a production Dockerfile
+
+Create a `Dockerfile` at the root of the repository:
+
+```dockerfile Dockerfile
+FROM python:3.13-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PORT=8000
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+RUN useradd --create-home appuser
+USER appuser
+
+EXPOSE 8000
+CMD ["sh", "-c", "exec uvicorn app.main:app --host 0.0.0.0 --port ${PORT} --proxy-headers --forwarded-allow-ips='*'"]
+```
+
+- `python:3.13-slim` is the official Python image without build tools. `psycopg2-binary` ships its own PostgreSQL client library, so no system package is needed.
+- `PYTHONUNBUFFERED=1` sends logs straight to stdout, where Qovery reads them.
+- Copying `requirements.txt` before the code keeps the dependency layer cached when only the code changes.
+- The container runs as a non-root user.
+- Uvicorn binds to `0.0.0.0`, not `127.0.0.1`, so Kubernetes can reach it. `--proxy-headers` with `--forwarded-allow-ips` makes the application see the `https` scheme and the client address set by the cluster's ingress, so the URLs it generates start with `https://`.
+- `exec` makes Uvicorn the main process, so it receives the stop signal and shuts down cleanly.
+
+To use several CPU cores, raise the number of instances in Qovery rather than the number of Uvicorn workers. Add a `.dockerignore` with at least `.git`, `.venv` and `__pycache__`.
+
+## Port and health check
+
+The application listens on port `8000` and answers `GET /healthz` with `200`. Use both values when you create the application in Qovery.
+
+## Connect PostgreSQL
+
+<Postgres />
+
+## Set the variables
+
+| Variable | Value | Secret |
+|---|---|---|
+| `DATABASE_URL` | The alias or secret from [Connect PostgreSQL](#connect-postgresql) | Yes |
+
+Add the other variables your application reads, and mark keys and passwords as secrets.
+
+## Run the migrations
+
+Run Alembic in a [lifecycle job](/configuration/lifecycle-job) built from the same repository and Dockerfile, triggered on the **Deploy** event, with these CMD arguments:
+
+```json
+["alembic", "upgrade", "head"]
+```
+
+The job runs once per deployment. In the default [deployment pipeline](/configuration/deployment/pipeline), jobs run after the databases and before the applications, so the schema is up to date when the new code starts.
+
+Running the migrations in the start command instead works for a single instance, but every instance then runs them at boot, and a failed migration leaves the application crashing in a loop.
+
+## Deploy
+
+<Tabs>
+  <Tab title="Console">
+    <ConsoleDeploy port="8000" healthPath="/healthz" migrateArgs='["alembic", "upgrade", "head"]' />
+  </Tab>
+  <Tab title="With a coding agent">
+    Install the Qovery skills once:
+
+    ```bash
+    curl -fsSL https://skill.qovery.com/install.sh | bash
+    ```
+
+    Open your agent in the repository and paste:
+
+    <AgentPrompt prompt="Deploy this FastAPI application with Qovery, with a PostgreSQL database and a lifecycle job that runs the Alembic migrations." />
+
+    The agent writes the Dockerfile if there is none, creates the database, the variables, the job and the application, and gives you the URL. See [Agent Skills](/getting-started/quickstart/agent-skills).
+  </Tab>
+</Tabs>
+
+## Troubleshooting
+
+<AccordionGroup>
+  <Accordion title="Deployment fails on the health check">
+    Uvicorn listens on another port than the one set in Qovery, or on `127.0.0.1`, its default. Keep `--host 0.0.0.0` and check that the port in Qovery is `8000`. Read the error lines with `qovery environment deployment logs --environment "<env>" --service "<app>" --errors-only`.
+  </Accordion>
+  <Accordion title="400 Invalid host header">
+    `TrustedHostMiddleware` rejects the request. Add the `qovery.io` domain and your custom domains to `allowed_hosts`. Kubernetes probes call the pod by its IP address, so if the middleware blocks them, switch the probes to type **TCP** on port `8000`.
+  </Accordion>
+  <Accordion title="relation does not exist or KeyError: 'DATABASE_URL'">
+    The migrations did not run, or the variable is missing. Check that the job and the application read the same `DATABASE_URL` at the environment scope, and read the job output with `qovery log --job "<job name>"`.
+  </Accordion>
+  <Accordion title="Directory 'static' does not exist">
+    The folder is missing from the image, because `.dockerignore` excludes it, or the path is relative to the working directory. Resolve it from `__file__` as in the example.
+  </Accordion>
+</AccordionGroup>
+
+For other errors, see [Diagnose a Failed Build or Deployment](/getting-started/troubleshoot/overview#diagnose-a-failed-build-or-deployment).
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Preview environments" icon="code-pull-request" href="/getting-started/guides/use-cases/preview-environments">
+    Get a full copy of the environment for each pull request
+  </Card>
+  <Card title="Cron jobs" icon="clock" href="/configuration/cronjob">
+    Run scripts on a schedule
+  </Card>
+  <Card title="Auto deploy" icon="rotate" href="/configuration/deployment/auto-deploy">
+    Deploy on every push to the branch
+  </Card>
+  <Card title="Other frameworks" icon="layer-group" href="/getting-started/guides/frameworks/overview">
+    All framework guides
+  </Card>
+</CardGroup>

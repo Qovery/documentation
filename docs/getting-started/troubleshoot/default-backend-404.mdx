@@ -1,0 +1,55 @@
+---
+title: "default backend - 404"
+description: "Your domain answers default backend - 404 or a plain 404 from NGINX. The request reached the cluster but matched no route: check the domain, the public port and the last deployment."
+---
+import StillStuck from "/snippets/troubleshoot-still-stuck.mdx";
+
+Opening the URL of your service returns a bare page with:
+
+```text
+default backend - 404
+```
+
+or a plain `404 Not Found` page served by NGINX, while your application has no such page.
+
+## What the error means
+
+The request reached the ingress of your cluster, but no route matched its host name and path, so the ingress answered with its fallback page. Your application never saw the request.
+
+A route exists only for a service that has a publicly accessible port, for each domain attached to that service, once the service is deployed. Check those three things in order.
+
+## 1. The domain is attached to the right service
+
+If you use a custom domain, its DNS record points to the cluster, but the cluster only routes it if the domain is also declared on the service.
+
+1. Open the service **Settings**, then **Domains**, and check that the exact host name is listed. `www.example.com` and `example.com` are two different domains.
+2. Check that the DNS record is the CNAME given by Qovery for this service. See [Custom domains](/configuration/application#custom-domains).
+3. Redeploy the service after adding or changing a domain.
+
+To rule out the custom domain, open the domain Qovery assigned to the service (shown in the Console). If that URL works, the problem is the custom domain setup.
+
+## 2. The port is publicly accessible
+
+Open the service **Settings**, then **Ports**:
+
+- At least one port must have **Publicly Accessible** enabled.
+- The **Internal Port** must be the port your application listens on. If your application reads the port from a `PORT` variable, make sure the variable and the internal port match.
+- Your application must listen on `0.0.0.0`, not on `localhost` or `127.0.0.1`.
+
+See [Ports](/configuration/application#ports).
+
+## 3. The last deployment succeeded
+
+The route is created when the service deploys. If the deployment failed, for example because the application crashed at startup, the route may not exist yet.
+
+Open the deployment logs of the service and fix the first error. Application crashes at startup, such as an unhandled exception or a missing environment variable, show in the service logs. See [Application is crashing](/getting-started/troubleshoot/overview#service-deployment-issues) and [Debugging rapidly crashing applications](/getting-started/troubleshoot/overview#service-runtime-issues).
+
+## For Helm services
+
+A Helm chart creates its own Kubernetes Services, with names the chart decides. A public port of the Helm service must point to one of them, by its exact name (or its selectors) and the port it exposes. The name is often prefixed with the release name, so it differs from the short name in the chart values. List the Services with `kubectl get svc -n <environment-namespace>` (see [Connect to your cluster](/configuration/connect-to-cluster)).
+
+## Custom 404 page
+
+The NGINX fallback page is the expected answer for unknown hosts. To serve your own page instead, the cluster advanced settings [`nginx.default_backend.enabled`](/configuration/cluster-advanced-settings#nginx-default-backend-enabled), `nginx.default_backend.image_repository` and `nginx.default_backend.image_tag` let you run a custom default backend.
+
+<StillStuck />

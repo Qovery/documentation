@@ -1,0 +1,90 @@
+---
+title: "502 Bad Gateway: recv() failed (104: Connection reset by peer)"
+description: "Fix random 502 errors from the NGINX ingress when your service resets the connection: keep-alive timeouts, single instances, restarts and load balancer health checks."
+---
+import StillStuck from "/snippets/troubleshoot-still-stuck.mdx";
+
+Clients get a `502 Bad Gateway` from time to time, and the NGINX logs of the service show this line at the same moment:
+
+```text
+[error] 164#164: *108859 recv() failed (104: Connection reset by peer) while reading response header from upstream, client: 203.0.113.10, server: api.example.com, request: "POST /data HTTP/1.1", upstream: "http://10.0.18.128:5000/data"
+```
+
+The same request usually works when it is sent again a few seconds later.
+
+## What the error means
+
+NGINX forwarded the request to a pod of your service, and the pod closed the TCP connection (it sent a TCP reset) before it returned any response header. NGINX cannot give the client an answer, so it returns `502`.
+
+The reset comes from the pod side: your application, its runtime, or the pod being stopped. NGINX only reports it. To confirm, open the service **Logs** in the Console and look at the [NGINX logs](/configuration/deployment/logs#nginx-logs): the access line for the failed request shows the `502` status and the upstream address of the pod.
+
+## Cause 1: the application closes idle connections before NGINX does
+
+This is the most common cause when the errors look random and grow with traffic.
+
+NGINX keeps connections to your pods open and reuses them for the next requests. The ingress-nginx controller keeps an idle upstream connection for 60 seconds by default. Many application servers close idle connections much sooner:
+
+| Server | Default idle keep-alive timeout |
+|---|---|
+| Node.js `http.Server` (Express, NestJS, Fastify on Node) | 5 seconds (`keepAliveTimeout`) |
+| Gunicorn | 2 seconds (`--keep-alive`) |
+| Uvicorn | 5 seconds (`--timeout-keep-alive`) |
+
+When NGINX sends a request on a connection that the application is closing at that very moment, the application answers with a reset and the request fails with `502`.
+
+**Fix:** make the application keep idle connections open longer than NGINX does, so NGINX is always the side that closes them. Set the keep-alive timeout of your server above 60 seconds.
+
+For Node.js, set both timeouts on the HTTP server, with `headersTimeout` higher than `keepAliveTimeout`:
+
+```js
+const server = app.listen(port);
+server.keepAliveTimeout = 65000;
+server.headersTimeout = 66000;
+```
+
+In NestJS, apply the same two values to `app.getHttpServer()` after `await app.listen(port)`.
+
+For Gunicorn, start it with `--keep-alive 75`. For Uvicorn, use `--timeout-keep-alive 75`.
+
+Redeploy the service. The `recv() failed` lines should stop.
+
+## Cause 2: the only pod was stopped or moved
+
+With a single instance, every restart of that pod drops the connections it holds. This happens on each deployment, when the pod is out of memory, and when the cluster moves the pod to another node to consolidate nodes.
+
+**Fix:**
+
+1. Run at least 2 instances: open the service **Settings**, then **Resources**, and set the minimum number of instances to 2 or more. See [Instances and autoscaling](/configuration/application#instances-%26-autoscaling).
+2. Configure a readiness probe so a new pod gets traffic only once it can answer. See [Health checks](/configuration/service-health-checks).
+3. Handle `SIGTERM` in your application: stop accepting new connections, finish the requests in flight, then exit. If your service needs more time to drain, raise [`deployment.termination_grace_period_seconds`](/configuration/service-advanced-settings#deployment-termination-grace-period-seconds).
+4. If the pod restarts with exit code 137, it ran out of memory. See [SIGKILL Signal 137](/getting-started/troubleshoot/overview#service-runtime-issues).
+
+## Cause 3: the load balancer has no healthy target (AWS)
+
+On AWS, traffic goes from the cloud load balancer to the NGINX ingress pods. If the load balancer sends traffic to nodes, a node without an NGINX pod fails the health check, and requests can hang or fail while NGINX pods move between nodes.
+
+With the AWS Load Balancer Controller, the load balancer sends traffic directly to the IP addresses of the NGINX pods, so node health no longer matters. It is controlled by the cluster advanced setting [`aws.eks.enable_alb_controller`](/configuration/cluster-advanced-settings#aws-eks-enable-alb-controller), which defaults to `true`. If an older cluster still has it set to `false`, enable it and redeploy the cluster.
+
+<Warning>
+Switching `aws.eks.enable_alb_controller` replaces the load balancer: public access to your services is cut for up to 10 minutes while the new load balancer and its DNS propagate. Plan a maintenance window.
+</Warning>
+
+Also keep at least 2 NGINX replicas with [`nginx.hpa.min_number_instances`](/configuration/cluster-advanced-settings#nginx-hpa-min-number-instances) (default `2`).
+
+## Check the service without NGINX
+
+To find out whether the application or the path in front of it is at fault, send the same requests to the service directly with [`qovery port-forward`](/cli/commands/port-forward). The traffic skips NGINX and the load balancer:
+
+```bash
+qovery port-forward "<console-url-of-the-service>" --port 8080:<service-port>
+curl -v http://localhost:8080/your/endpoint
+```
+
+If the errors also happen through the port-forward, the cause is in the application.
+
+## Related errors
+
+- `client intended to send too large body`: the request body is above the limit of 100 MB. Raise [`network.ingress.proxy_body_size_mb`](/configuration/service-advanced-settings#network-ingress-proxy-body-size-mb) on the service.
+- A `502` or `504` after exactly 60 seconds is a timeout, not a reset. See [NGINX timeout: increase the 60 second limit](/getting-started/troubleshoot/nginx-timeout).
+
+<StillStuck />

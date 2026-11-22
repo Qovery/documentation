@@ -36,7 +36,7 @@
 
 ##### Installation
 
-- [Test & Learn Locally](https://www.qovery.com/docs/getting-started/quickstart/docker.md): Install Qovery on your local machine with a k3s Kubernetes cluster in about 15 minutes to learn and test for free, then clean it up. Not for production use.
+- [Test & Learn Locally](https://www.qovery.com/docs/getting-started/quickstart/docker.md): Install Qovery on your local machine with a k3s Kubernetes cluster in about 10 minutes to learn and test for free, then clean it up. Not for production use.
 
 ###### Managed Cluster
 
@@ -135,6 +135,11 @@
 #### Troubleshooting
 
 - [Troubleshooting](https://www.qovery.com/docs/getting-started/troubleshoot/overview.md): Diagnose a failed build or deployment from its logs, then fix common service deployment, runtime and cluster issues on Qovery.
+- [502 Bad Gateway: recv() failed (104: Connection reset by peer)](https://www.qovery.com/docs/getting-started/troubleshoot/nginx-502-connection-reset.md): Fix random 502 errors from the NGINX ingress when your service resets the connection: keep-alive timeouts, single instances, restarts and load balancer health checks.
+- [NGINX timeout: increase the 60 second limit](https://www.qovery.com/docs/getting-started/troubleshoot/nginx-timeout.md): Long requests fail with 502 or 504 after 60 seconds on Qovery. Raise the proxy read, send and connect timeouts of the service, or the Gateway API request timeout.
+- [default backend - 404](https://www.qovery.com/docs/getting-started/troubleshoot/default-backend-404.md): Your domain answers default backend - 404 or a plain 404 from NGINX. The request reached the cluster but matched no route: check the domain, the public port and the last deployment.
+- [Image pull errors: 401 Unauthorized from ECR, 429 Too Many Requests from Docker Hub](https://www.qovery.com/docs/getting-started/troubleshoot/image-pull-errors.md): Fix builds and deployments that cannot pull an image: 401 Unauthorized from a private AWS ECR registry, and the Docker Hub pull rate limit (429 toomanyrequests).
+- [BackoffLimitExceeded: Job has reached the specified backoff limit](https://www.qovery.com/docs/getting-started/troubleshoot/job-backoff-limit-exceeded.md): A Qovery cron job or lifecycle job fails with BackoffLimitExceeded, often with no error in the logs. Find why the container exited and set the number of restarts and max duration.
 
 #### Useful Resources
 

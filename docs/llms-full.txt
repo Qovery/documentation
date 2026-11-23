@@ -13417,7 +13417,11 @@ public class DataSourceConfig {
     @Bean
     DataSource dataSource(@Value("${DATABASE_URL}") String databaseUrl) {
         URI uri = URI.create(databaseUrl);
-        String[] credentials = uri.getUserInfo().split(":", 2);
+        String userInfo = uri.getUserInfo();
+        if (userInfo == null || !userInfo.contains(":")) {
+            throw new IllegalStateException("DATABASE_URL must look like postgresql://user:password@host:port/database");
+        }
+        String[] credentials = userInfo.split(":", 2);
         int port = uri.getPort() == -1 ? 5432 : uri.getPort();
         String query = uri.getRawQuery() == null ? "" : "?" + uri.getRawQuery();
 
@@ -13473,7 +13477,12 @@ With Gradle, build with `./gradlew bootJar` and copy the jar from `build/libs`. 
 
 ## Port and health check
 
-The application listens on port `8080`. Actuator answers `GET /actuator/health/readiness` with `200` once the application can take traffic, so use it as the health check path. You can point the liveness probe at `/actuator/health/liveness` instead.
+The application listens on port `8080`. Actuator exposes two probe endpoints that answer `200`:
+
+- `GET /actuator/health/readiness` for the readiness probe, which tells Kubernetes when the application can take traffic.
+- `GET /actuator/health/liveness` for the liveness probe, which tells Kubernetes when to restart it.
+
+Keep them apart: during a graceful shutdown, readiness turns down while liveness stays up, so a liveness probe on the readiness path would restart a pod that is only draining.
 
 ## Connect PostgreSQL
 
@@ -13572,6 +13581,8 @@ Letting Flyway run when the application starts, the Spring Boot default, works f
     Deploy the environment. Qovery deploys the database, then the job, then the application, builds the image from your Dockerfile and gives the application a URL on `qovery.io`. Follow the progress in the **Deployment logs** tab.
   </Step>
 </Steps>
+
+    In the health checks step, then change the path of the liveness probe to `/actuator/health/liveness`.
   </Tab>
   <Tab title="With a coding agent">
     Install the Qovery skills once:
@@ -13590,7 +13601,7 @@ Letting Flyway run when the application starts, the Spring Boot default, works f
 
 ## Troubleshooting
 
-The CLI commands below use the organization and project selected with `qovery context set`. Run it first, or add `--organization` and `--project` to each command.
+The CLI commands below use the organization, project and environment selected with `qovery context set`. Run it first, or add `--organization`, `--project` and `--environment` to each command.
 
 <AccordionGroup>
   <Accordion title="Deployment fails on the health check">

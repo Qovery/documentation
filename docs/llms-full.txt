@@ -13477,7 +13477,7 @@ With Gradle, build with `./gradlew bootJar` and copy the jar from `build/libs`. 
 
 ## Port and health check
 
-The application listens on port `8080`. Actuator exposes two probe endpoints that answer `200`:
+The application listens on port `8080`. Actuator exposes two probe endpoints, which answer `200` when the state is up and `503` when it is not:
 
 - `GET /actuator/health/readiness` for the readiness probe, which tells Kubernetes when the application can take traffic.
 - `GET /actuator/health/liveness` for the liveness probe, which tells Kubernetes when to restart it.

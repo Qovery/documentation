@@ -1,0 +1,215 @@
+---
+title: "Deploy a Go Application"
+sidebarTitle: "Go"
+description: "Deploy a Go web service with PostgreSQL on Kubernetes in your own cloud account with Qovery: multi-stage Dockerfile with a distroless image, port and health check, golang-migrate migrations as a lifecycle job."
+---
+
+import NoRepositoryManifest from "/snippets/no-repository-manifest.mdx";
+import Postgres from "/snippets/framework-guide-postgres.mdx";
+import ConsoleDeploy from "/snippets/framework-guide-console-deploy.mdx";
+import AgentPrompt from "/snippets/framework-guide-agent-prompt.mdx";
+
+This guide deploys a Go web service built with `net/http`, with a PostgreSQL database and migrations that run before each release. Qovery builds the image from your Dockerfile and runs it on a Kubernetes cluster in your own cloud account.
+
+<NoRepositoryManifest />
+
+## Prerequisites
+
+- A Go module in a GitHub, GitLab or Bitbucket repository, with a `go.mod` and a `go.sum`.
+- A Qovery account and a cluster: [create one in your cloud account](/getting-started/quickstart/cloud), [connect your own cluster](/getting-started/installation/kubernetes), or [try it on your laptop](/getting-started/quickstart/try-with-an-agent).
+- These modules in `go.mod`: `github.com/jackc/pgx/v5` and `github.com/golang-migrate/migrate/v4`.
+
+## Prepare the server
+
+Listen on the port from `PORT`, answer a health check, read the database URL from the environment, and add a `migrate` subcommand that applies the migrations embedded in the binary:
+
+```go main.go
+package main
+
+import (
+	"context"
+	"embed"
+	"errors"
+	"log"
+	"net/http"
+	"os"
+	"strings"
+
+	"github.com/golang-migrate/migrate/v4"
+	_ "github.com/golang-migrate/migrate/v4/database/pgx/v5"
+	"github.com/golang-migrate/migrate/v4/source/iofs"
+	"github.com/jackc/pgx/v5/pgxpool"
+)
+
+//go:embed migrations/*.sql
+var migrations embed.FS
+
+func main() {
+	databaseURL := os.Getenv("DATABASE_URL")
+
+	if len(os.Args) > 1 && os.Args[1] == "migrate" {
+		if err := runMigrations(databaseURL); err != nil {
+			log.Fatal(err)
+		}
+		log.Println("migrations applied")
+		return
+	}
+
+	pool, err := pgxpool.New(context.Background(), databaseURL)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer pool.Close()
+
+	http.HandleFunc("/healthz", func(w http.ResponseWriter, r *http.Request) {
+		w.Write([]byte("ok"))
+	})
+
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+	log.Printf("listening on %s", port)
+	log.Fatal(http.ListenAndServe(":"+port, nil))
+}
+
+func runMigrations(databaseURL string) error {
+	source, err := iofs.New(migrations, "migrations")
+	if err != nil {
+		return err
+	}
+	// The pgx/v5 driver of golang-migrate reads URLs that start with pgx5://
+	m, err := migrate.NewWithSourceInstance("iofs", source, strings.Replace(databaseURL, "postgresql://", "pgx5://", 1))
+	if err != nil {
+		return err
+	}
+	if err := m.Up(); err != nil && !errors.Is(err, migrate.ErrNoChange) {
+		return err
+	}
+	return nil
+}
+```
+
+`":"+port` listens on all interfaces, so Kubernetes can reach the server. Put the migrations in a `migrations` folder next to `main.go`, in the golang-migrate file format, for example `000001_create_items.up.sql` and `000001_create_items.down.sql`. `//go:embed` compiles them into the binary, so the image needs no other file.
+
+## Add a production Dockerfile
+
+Create a `Dockerfile` at the root of the repository:
+
+```dockerfile Dockerfile
+FROM golang:1.27-alpine AS build
+
+WORKDIR /src
+
+COPY go.mod go.sum ./
+RUN go mod download
+
+COPY . .
+RUN CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o /out/server .
+
+FROM gcr.io/distroless/static-debian13:nonroot
+
+COPY --from=build /out/server /server
+
+ENV PORT=8080
+EXPOSE 8080
+USER nonroot:nonroot
+CMD ["/server"]
+```
+
+- The first stage compiles with the official `golang:1.27-alpine` image. Match the Go version to the `go` line of your `go.mod`.
+- Copying `go.mod` and `go.sum` before the code keeps the downloaded modules cached when only the code changes.
+- `CGO_ENABLED=0` builds a static binary, which runs without a C library. `-trimpath` and `-ldflags="-s -w"` remove local paths and debug symbols.
+- The final image, `gcr.io/distroless/static-debian13:nonroot`, holds only the binary, CA certificates and time zone data, with no shell. It runs as a non-root user.
+- `CMD ["/server"]` starts the binary directly, so it receives the stop signal.
+
+Add a `.dockerignore` with at least `.git` to keep the build context small.
+
+## Port and health check
+
+The application listens on port `8080` and answers `GET /healthz` with `200`. Use both values when you create the application in Qovery.
+
+## Connect PostgreSQL
+
+<Postgres />
+
+pgx reads the `postgresql://` URL as is. The `migrate` subcommand only swaps its scheme for `pgx5://`, the name the golang-migrate pgx driver registers.
+
+## Set the variables
+
+| Variable | Value | Secret |
+|---|---|---|
+| `DATABASE_URL` | The alias or secret from [Connect PostgreSQL](#connect-postgresql) | Yes |
+
+Add the other variables your application reads, and mark keys and passwords as secrets.
+
+## Run the migrations
+
+Run the `migrate` subcommand in a [lifecycle job](/configuration/lifecycle-job) built from the same repository and Dockerfile, triggered on the **Deploy** event, with these CMD arguments:
+
+```json
+["/server", "migrate"]
+```
+
+The job runs once per deployment. In the default [deployment pipeline](/configuration/deployment/pipeline), jobs run after the databases and before the applications, so the schema is up to date when the new code starts. golang-migrate records the applied version in a `schema_migrations` table, so a run with nothing new exits successfully.
+
+Running the migrations at server startup instead works for a single instance, but every instance then runs them at boot, and a failed migration leaves the application crashing in a loop.
+
+## Deploy
+
+<Tabs>
+  <Tab title="Console">
+    <ConsoleDeploy port="8080" healthPath="/healthz" migrateArgs='["/server", "migrate"]' />
+  </Tab>
+  <Tab title="With a coding agent">
+    Install the Qovery skills once:
+
+    ```bash
+    curl -fsSL https://skill.qovery.com/install.sh | bash
+    ```
+
+    Open your agent in the repository and paste:
+
+    <AgentPrompt prompt="Deploy this Go service with Qovery, with a PostgreSQL database and a lifecycle job that runs the migrations." />
+
+    The agent writes the Dockerfile if there is none, creates the database, the variables, the job and the application, and gives you the URL. See [Agent Skills](/getting-started/quickstart/agent-skills).
+  </Tab>
+</Tabs>
+
+## Troubleshooting
+
+The CLI commands below use the organization and project selected with `qovery context set`. Run it first, or add `--organization` and `--project` to each command.
+
+<AccordionGroup>
+  <Accordion title="Deployment fails on the health check">
+    The server listens on another port than the one set in Qovery, or on `127.0.0.1`. Listen on `":"+port` and check that the port in Qovery is `8080`. Read the error lines with `qovery environment deployment logs --environment "<env>" --service "<app>" --errors-only`.
+  </Accordion>
+  <Accordion title="no such file or directory at startup">
+    The binary was built with cgo, so it needs a C library that the distroless `static` image does not have. Keep `CGO_ENABLED=0`. If a dependency needs cgo, use `gcr.io/distroless/base-debian13:nonroot` as the final image instead.
+  </Accordion>
+  <Accordion title="relation does not exist">
+    The migrations did not run against this database. Check that the job and the application read the same `DATABASE_URL` at the environment scope, and read the job output with `qovery log --job "<job name>"`.
+  </Accordion>
+  <Accordion title="Dirty database version">
+    A migration failed halfway, and golang-migrate refuses to run until the version is fixed. Correct the migration, then set the version back with the [migrate CLI](https://github.com/golang-migrate/migrate/tree/master/cmd/migrate) `force` command against the database, and redeploy.
+  </Accordion>
+</AccordionGroup>
+
+For other errors, see [Diagnose a Failed Build or Deployment](/getting-started/troubleshoot/overview#diagnose-a-failed-build-or-deployment).
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Preview environments" icon="code-pull-request" href="/getting-started/guides/use-cases/preview-environments">
+    Get a full copy of the environment for each pull request
+  </Card>
+  <Card title="Autoscaling" icon="arrows-up-down" href="/configuration/application">
+    Set the number of instances and the resources
+  </Card>
+  <Card title="Auto deploy" icon="rotate" href="/configuration/deployment/auto-deploy">
+    Deploy on every push to the branch
+  </Card>
+  <Card title="Other frameworks" icon="layer-group" href="/getting-started/guides/frameworks/overview">
+    All framework guides
+  </Card>
+</CardGroup>

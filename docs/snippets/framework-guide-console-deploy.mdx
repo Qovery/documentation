@@ -15,7 +15,7 @@
     Set the readiness and liveness probes to type **HTTP**, path <code>{healthPath}</code>, port <code>{port}</code>. See [Service Health Checks](/configuration/service-health-checks).
   </Step>
   <Step title="Add the variables">
-    Click **Create**, without deploying yet. Then open the **Variables** section of the environment and add the variables listed in [Set the variables](#set-the-variables) at the environment scope, so the migration job gets them too. Mark keys and passwords as secrets.
+    Click **Create**, without deploying yet. Then open the **Variables** section of the environment and add the other variables listed in [Set the variables](#set-the-variables) at the environment scope, so the migration job gets them too. `DATABASE_URL` already exists from the previous step. Mark keys and passwords as secrets.
   </Step>
   <Step title="Create the migration job">
     Click **New Service** › **Create lifecycle job**, select the same repository, branch and Dockerfile, and trigger it on the **Deploy** event (`START`) with the CMD arguments <code>{migrateArgs}</code>. Set the number of restarts to 0. See [Run the migrations](#run-the-migrations).

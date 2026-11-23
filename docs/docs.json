@@ -151,7 +151,8 @@
                   "getting-started/guides/frameworks/nextjs",
                   "getting-started/guides/frameworks/fastapi",
                   "getting-started/guides/frameworks/go",
-                  "getting-started/guides/frameworks/spring-boot"
+                  "getting-started/guides/frameworks/spring-boot",
+                  "getting-started/guides/frameworks/laravel"
                 ]
               },
               {

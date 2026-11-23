@@ -1,0 +1,188 @@
+---
+title: "Deploy a Laravel Application"
+sidebarTitle: "Laravel"
+description: "Deploy a Laravel application with PostgreSQL on Kubernetes in your own cloud account with Qovery: production Dockerfile with PHP and Apache, the /up health check, artisan migrations as a lifecycle job."
+---
+
+import NoRepositoryManifest from "/snippets/no-repository-manifest.mdx";
+import Postgres from "/snippets/framework-guide-postgres.mdx";
+import ConsoleDeploy from "/snippets/framework-guide-console-deploy.mdx";
+import AgentPrompt from "/snippets/framework-guide-agent-prompt.mdx";
+
+This guide deploys a Laravel application served by Apache with PHP, with a PostgreSQL database and migrations that run before each release. Qovery builds the image from your Dockerfile and runs it on a Kubernetes cluster in your own cloud account.
+
+<NoRepositoryManifest />
+
+## Prerequisites
+
+- A Laravel 11 or later application in a GitHub, GitLab or Bitbucket repository, with a `composer.lock`.
+- A Qovery account and a cluster: [create one in your cloud account](/getting-started/quickstart/cloud), [connect your own cluster](/getting-started/installation/kubernetes), or [try it on your laptop](/getting-started/quickstart/try-with-an-agent).
+- An application key, generated with `php artisan key:generate --show`.
+
+## Prepare the application
+
+Laravel reads a full connection URL from `DB_URL`. In `config/database.php`, let the `pgsql` connection fall back to `DATABASE_URL`, the name the other services of the environment use:
+
+```php config/database.php
+'pgsql' => [
+    'driver' => 'pgsql',
+    'url' => env('DB_URL', env('DATABASE_URL')),
+    // keep the other keys as they are
+],
+```
+
+In `bootstrap/app.php`, trust the cluster's ingress, so Laravel builds `https://` URLs and reads the client IP from the forwarded headers:
+
+```php bootstrap/app.php
+->withMiddleware(function (Middleware $middleware): void {
+    $middleware->trustProxies(at: '*');
+})
+```
+
+The pod is only reachable through the ingress, so trusting every proxy address is safe here.
+
+## Add a production Dockerfile
+
+Create a `Dockerfile` at the root of the repository:
+
+```dockerfile Dockerfile
+FROM php:8.4-apache
+
+ENV APP_ENV=production \
+    APP_DEBUG=false \
+    LOG_CHANNEL=stderr \
+    APACHE_DOCUMENT_ROOT=/var/www/html/public
+
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends libpq-dev libzip-dev unzip \
+ && docker-php-ext-install pdo_pgsql opcache zip \
+ && rm -rf /var/lib/apt/lists/*
+
+RUN a2enmod rewrite \
+ && sed -ri 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf \
+ && sed -ri 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf \
+ && sed -ri 's!Listen 80$!Listen 8080!' /etc/apache2/ports.conf \
+ && sed -ri 's!<VirtualHost \*:80>!<VirtualHost *:8080>!' /etc/apache2/sites-available/000-default.conf \
+ && mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+WORKDIR /var/www/html
+
+COPY composer.json composer.lock ./
+RUN composer install --no-dev --no-interaction --prefer-dist --no-scripts --no-autoloader
+
+COPY . .
+RUN composer dump-autoload --no-dev --optimize \
+ && php artisan package:discover --ansi \
+ && chown -R www-data:www-data storage bootstrap/cache
+
+USER www-data
+EXPOSE 8080
+CMD ["sh", "-c", "php artisan optimize && exec apache2-foreground"]
+```
+
+- `php:8.4-apache` is the official PHP image with Apache, which serves PHP in a single container. The `fpm` variant needs a separate web server in front of it. Match the PHP version to the `php` constraint of your `composer.json`.
+- It adds the `pdo_pgsql` extension for PostgreSQL, `opcache` to cache compiled PHP, and `zip` for Composer, and uses the production `php.ini`.
+- The `sed` lines point Apache at the `public` folder, where Laravel's entry point is, and move it to port `8080`, so it runs without root. `mod_rewrite` reads the `.htaccess` that Laravel ships in `public`.
+- Composer comes from the official `composer:2` image. Installing the dependencies before copying the code keeps that layer cached when only the code changes.
+- The container runs as `www-data`, which owns `storage` and `bootstrap/cache`, the folders Laravel writes to.
+- `php artisan optimize` caches the configuration, routes and views at startup, when the variables are set, then `exec` makes Apache the main process, so it receives the stop signal.
+- `LOG_CHANNEL=stderr` sends the logs to the container output, where Qovery reads them.
+
+If the application uses Vite, build the assets in a first stage from a `node` image with `npm ci` and `npm run build`, and copy `public/build` into this image. Add a `.dockerignore` with at least `.git`, `.env`, `vendor` and `node_modules`.
+
+## Port and health check
+
+The application listens on port `8080`. Laravel 11 and later register a `GET /up` route in `bootstrap/app.php` that answers `200` when the application boots, so use it as the health check path.
+
+## Connect PostgreSQL
+
+<Postgres />
+
+Laravel reads the `postgresql://` URL as is and maps it to its `pgsql` driver.
+
+## Set the variables
+
+| Variable | Value | Secret |
+|---|---|---|
+| `DATABASE_URL` | The alias or secret from [Connect PostgreSQL](#connect-postgresql) | Yes |
+| `DB_CONNECTION` | `pgsql` | No |
+| `APP_KEY` | The output of `php artisan key:generate --show`, starting with `base64:` | Yes |
+| `APP_URL` | The URL of the application, for example `https://my-app-z1234abcd.z5678efgh.qovery.io` | No |
+
+The `qovery.io` domain shows in the Console once the application is created. Without `DB_CONNECTION`, Laravel 11 and later use SQLite.
+
+## Run the migrations
+
+Run `migrate` in a [lifecycle job](/configuration/lifecycle-job) built from the same repository and Dockerfile, triggered on the **Deploy** event, with these CMD arguments:
+
+```json
+["php", "artisan", "migrate", "--force"]
+```
+
+`--force` is required because `APP_ENV` is `production`. The job runs once per deployment. In the default [deployment pipeline](/configuration/deployment/pipeline), jobs run after the databases and before the applications, so the schema is up to date when the new code starts. The default Laravel migrations also create the `sessions`, `cache` and `jobs` tables that the `database` drivers use.
+
+Running `migrate` in the start command instead works for a single instance, but every instance then runs it at boot, and a failed migration leaves the application crashing in a loop.
+
+## Deploy
+
+<Tabs>
+  <Tab title="Console">
+    <ConsoleDeploy port="8080" healthPath="/up" migrateArgs='["php", "artisan", "migrate", "--force"]' />
+  </Tab>
+  <Tab title="With a coding agent">
+    Install the Qovery skills once:
+
+    ```bash
+    curl -fsSL https://skill.qovery.com/install.sh | bash
+    ```
+
+    Open your agent in the repository and paste:
+
+    <AgentPrompt prompt="Deploy this Laravel application with Qovery, with a PostgreSQL database and a lifecycle job that runs the migrations." />
+
+    The agent writes the Dockerfile if there is none, creates the database, the variables, the job and the application, and gives you the URL. See [Agent Skills](/getting-started/quickstart/agent-skills).
+  </Tab>
+</Tabs>
+
+## Troubleshooting
+
+The CLI commands below use the organization, project and environment selected with `qovery context set`. Run it first, or add `--organization`, `--project` and `--environment` to each command.
+
+<AccordionGroup>
+  <Accordion title="Deployment fails on the health check">
+    Apache listens on another port than the one set in Qovery. Check that the `Listen 8080` and `VirtualHost *:8080` lines are in the Dockerfile and that the port in Qovery is `8080`. Read the error lines with `qovery environment deployment logs --environment "<env>" --service "<app>" --errors-only`.
+  </Accordion>
+  <Accordion title="Database file at path database.sqlite does not exist">
+    `DB_CONNECTION` is not set, so Laravel falls back to SQLite. Set it to `pgsql` at the environment scope, so the migration job gets it too, then redeploy.
+  </Accordion>
+  <Accordion title="No application encryption key has been specified">
+    `APP_KEY` is missing or empty. Generate one with `php artisan key:generate --show` and add it as a secret, including the `base64:` prefix.
+  </Accordion>
+  <Accordion title="relation does not exist">
+    The migrations did not run against this database. Check that the job and the application read the same `DATABASE_URL` and `DB_CONNECTION` at the environment scope, and read the job output with `qovery log --job "<job name>"`.
+  </Accordion>
+  <Accordion title="Links and assets use http:// instead of https://">
+    Laravel does not trust the forwarded headers of the ingress. Add `trustProxies(at: '*')` in `bootstrap/app.php` and set `APP_URL` to the `https://` URL. A `Vite manifest not found` error means the assets were not built into the image.
+  </Accordion>
+</AccordionGroup>
+
+For other errors, see [Diagnose a Failed Build or Deployment](/getting-started/troubleshoot/overview#diagnose-a-failed-build-or-deployment).
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Preview environments" icon="code-pull-request" href="/getting-started/guides/use-cases/preview-environments">
+    Get a full copy of the environment for each pull request
+  </Card>
+  <Card title="Custom domain" icon="globe" href="/configuration/application#custom-domains">
+    Serve the application on your own domain
+  </Card>
+  <Card title="Auto deploy" icon="rotate" href="/configuration/deployment/auto-deploy">
+    Deploy on every push to the branch
+  </Card>
+  <Card title="Other frameworks" icon="layer-group" href="/getting-started/guides/frameworks/overview">
+    All framework guides
+  </Card>
+</CardGroup>

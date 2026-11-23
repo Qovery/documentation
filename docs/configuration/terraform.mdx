@@ -619,6 +619,59 @@ Destroy: -parallelism=5 -refresh=false
 
 ---
 
+## Use ARN role for AWS services
+
+When your AWS cluster uses [Restricted Credentials](/configuration/integrations/kubernetes/eks/managed#restricted-credentials), a Terraform service that relies on the cluster credentials (the default behavior) is deployed with the restricted credentials. To manage resources that rely on `iam:*` or `kms:*`, make the Terraform service assume a dedicated IAM role that has the permissions it needs.
+
+<Info>
+Apply these steps only once your cluster uses Restricted Credentials: the dedicated IAM role only trusts the restricted IAM role, so a Terraform service running with other credentials cannot assume it.
+</Info>
+
+<Steps>
+  <Step title="Create a dedicated IAM role">
+    In your AWS account, create an IAM role with the IAM and KMS permissions your Terraform code needs. Set its trust relationship so that the [restricted IAM role](/configuration/integrations/kubernetes/eks/managed#create-the-iam-roles) can assume it. Replace `<restricted-role-arn>` with the **RoleARN** output of the restricted role stack:
+
+    ```json
+    {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Effect": "Allow",
+          "Principal": { "AWS": "<restricted-role-arn>" },
+          "Action": "sts:AssumeRole"
+        }
+      ]
+    }
+    ```
+  </Step>
+
+  <Step title="Assume the role in your Terraform code">
+    Add an `assume_role` block to the `provider "aws"` block of your Terraform code:
+
+    ```hcl
+    variable "aws_role_arn" {
+      type = string
+    }
+
+    provider "aws" {
+      # ...your existing provider configuration
+
+      assume_role {
+        role_arn = var.aws_role_arn
+      }
+    }
+    ```
+  </Step>
+
+  <Step title="Set the role ARN">
+    Qovery detects the `aws_role_arn` variable declared in `main.tf` or `variables.tf` and exposes it as `tf_var_aws_role_arn` (see the **Configure Terraform Variables** step of [Creating a Terraform Service](#creating-a-terraform-service)). Set it to the ARN of the dedicated IAM role, then redeploy the Terraform service.
+  </Step>
+</Steps>
+
+The Terraform service still starts with the restricted credentials, then uses the dedicated IAM role to manage your IAM and KMS resources.
+
+---
+
 ## Custom Build Image
 
 By default, Terraform services run using a base Docker image (Debian-based) containing Terraform (or OpenTofu), `dumb-init`, `rsync`, `bash`, and `ca-certificates`. If your Terraform code requires additional binaries or tools (e.g., AWS CLI, `kubectl`, `jq`, custom scripts), you can customize the build image using a **Dockerfile fragment**.

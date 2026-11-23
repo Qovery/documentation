@@ -35,7 +35,7 @@ The backoff limit is the **Number of restarts** of the job in Qovery (`max_nb_re
     kubectl describe pod <job-pod-name> -n <environment-namespace>
     ```
 
-    In `Last State`, `Reason: OOMKilled` or `Exit Code: 137` means the job ran out of memory. Another non-zero exit code comes from your program. A command that cannot be found usually gives `Exit Code: 127` or a `StartError`.
+    Look under `State` for the container that ran, or under `Last State` if it restarted. `Reason: OOMKilled` means the job ran out of memory. `Exit Code: 137` alone is only a hint: it means the container received `SIGKILL`, which also happens when the job is stopped from outside or reaches its maximum duration. Another non-zero exit code comes from your program. A command that cannot be found usually gives `Exit Code: 127` or a `StartError`.
 
     By default only the last failed run of a cron job is kept ([`cronjob.failed_jobs_history_limit`](/configuration/service-advanced-settings#cronjob-failed-jobs-history-limit) is `1`). Raise it to keep more failed runs to inspect.
   </Step>

@@ -57,7 +57,7 @@ With a single instance, every restart of that pod drops the connections it holds
 1. Run at least 2 instances: open the service **Settings**, then **Resources**, and set the minimum number of instances to 2 or more. See [Instances and autoscaling](/configuration/application#instances-%26-autoscaling).
 2. Configure a readiness probe so a new pod gets traffic only once it can answer. See [Health checks](/configuration/service-health-checks).
 3. Handle `SIGTERM` in your application: stop accepting new connections, finish the requests in flight, then exit. If your service needs more time to drain, raise [`deployment.termination_grace_period_seconds`](/configuration/service-advanced-settings#deployment-termination-grace-period-seconds).
-4. If the pod restarts with exit code 137, it ran out of memory. See [SIGKILL Signal 137](/getting-started/troubleshoot/overview#service-runtime-issues).
+4. Exit code 137 means the pod received `SIGKILL`: either it ran out of memory (`Reason: OOMKilled`), or it did not stop within the termination grace period of step 3. See [SIGKILL Signal 137](/getting-started/troubleshoot/overview#service-runtime-issues).
 
 ## Cause 3: the load balancer has no healthy target (AWS)
 

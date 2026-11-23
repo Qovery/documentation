@@ -38,7 +38,7 @@ Qovery tried to read an image from a private registry without valid credentials 
   </Step>
 
   <Step title="Check the external ID condition">
-    With STS, if the trust policy of the role has an `sts:ExternalId` condition, it must list the Qovery ID of the registry. Without it, every deployment that pulls from this registry fails, even though the Console can validate the registry. See [Trust policy](/configuration/organization/container-registry#trust-policy).
+    With STS, if the trust policy of the role has an `sts:ExternalId` condition, it must list the Qovery ID of the registry and the all-zeros value `00000000-0000-0000-0000-000000000000`. Without the registry ID, every deployment that pulls from this registry fails, even though the Console can validate the registry. Without the all-zeros value, the Console cannot validate the registry or list your images. See [Trust policy](/configuration/organization/container-registry#trust-policy).
   </Step>
 
   <Step title="Deploy again">
@@ -74,7 +74,7 @@ Other ways to stop depending on Docker Hub limits:
 - Copy the base images you use to your own registry and reference them from there.
 
 <Info>
-On AWS clusters, the cluster advanced setting [`aws.ecr.enable_pull_through_cache`](/configuration/cluster-advanced-settings#aws-ecr-enable-pull-through-cache) caches the public ECR images used by Qovery components. It does not cache your own images or Docker Hub images.
+On Qovery-managed EKS clusters that use Karpenter, the cluster advanced setting [`aws.ecr.enable_pull_through_cache`](/configuration/cluster-advanced-settings#aws-ecr-enable-pull-through-cache) caches the public ECR images used by Qovery components. It does not cache your own images or Docker Hub images.
 </Info>
 
 ## Related

@@ -1,0 +1,204 @@
+---
+title: "Deploy a Spring Boot Application"
+sidebarTitle: "Spring Boot"
+description: "Deploy a Spring Boot application with PostgreSQL on Kubernetes in your own cloud account with Qovery: multi-stage Dockerfile with Eclipse Temurin, Actuator health checks, Flyway migrations as a lifecycle job."
+---
+
+import NoRepositoryManifest from "/snippets/no-repository-manifest.mdx";
+import Postgres from "/snippets/framework-guide-postgres.mdx";
+import ConsoleDeploy from "/snippets/framework-guide-console-deploy.mdx";
+import AgentPrompt from "/snippets/framework-guide-agent-prompt.mdx";
+
+This guide deploys a Spring Boot web application built with Maven, with a PostgreSQL database and Flyway migrations that run before each release. Qovery builds the image from your Dockerfile and runs it on a Kubernetes cluster in your own cloud account.
+
+<NoRepositoryManifest />
+
+## Prerequisites
+
+- A Spring Boot application in a GitHub, GitLab or Bitbucket repository, with the Maven wrapper (`mvnw` and the `.mvn` folder) committed.
+- A Qovery account and a cluster: [create one in your cloud account](/getting-started/quickstart/cloud), [connect your own cluster](/getting-started/installation/kubernetes), or [try it on your laptop](/getting-started/quickstart/try-with-an-agent).
+- These dependencies: the Spring Web, Actuator, JDBC (or Data JPA) and Flyway starters, `org.postgresql:postgresql` and `org.flywaydb:flyway-database-postgresql`. [Spring Initializr](https://start.spring.io) adds them when you pick Spring Web, Spring Boot Actuator, JDBC API, Flyway Migration and PostgreSQL Driver.
+
+## Prepare the application
+
+Read the port from `PORT`, trust the ingress headers, turn on the health probes, and turn Flyway off at startup, because a lifecycle job runs it:
+
+```properties src/main/resources/application.properties
+server.port=${PORT:8080}
+server.forward-headers-strategy=framework
+management.endpoint.health.probes.enabled=true
+spring.flyway.enabled=false
+```
+
+Spring Boot expects a JDBC URL, with the user and password apart, while `DATABASE_URL` holds a `postgresql://user:password@host:port/database` URL. This configuration class builds the data source from it. Flyway uses the same data source:
+
+```java src/main/java/com/example/demo/DataSourceConfig.java
+package com.example.demo;
+
+import com.zaxxer.hikari.HikariDataSource;
+import java.net.URI;
+import javax.sql.DataSource;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class DataSourceConfig {
+
+    @Bean
+    DataSource dataSource(@Value("${DATABASE_URL}") String databaseUrl) {
+        URI uri = URI.create(databaseUrl);
+        String userInfo = uri.getUserInfo();
+        if (userInfo == null || !userInfo.contains(":")) {
+            throw new IllegalStateException("DATABASE_URL must look like postgresql://user:password@host:port/database");
+        }
+        String[] credentials = userInfo.split(":", 2);
+        int port = uri.getPort() == -1 ? 5432 : uri.getPort();
+        String query = uri.getRawQuery() == null ? "" : "?" + uri.getRawQuery();
+
+        HikariDataSource dataSource = new HikariDataSource();
+        dataSource.setJdbcUrl("jdbc:postgresql://" + uri.getHost() + ":" + port + uri.getRawPath() + query);
+        dataSource.setUsername(credentials[0]);
+        dataSource.setPassword(credentials[1]);
+        return dataSource;
+    }
+}
+```
+
+Replace `com.example.demo` with your package. Put the migrations in `src/main/resources/db/migration`, named in the Flyway format, for example `V1__create_items.sql`.
+
+## Add a production Dockerfile
+
+Create a `Dockerfile` at the root of the repository:
+
+```dockerfile Dockerfile
+FROM eclipse-temurin:25-jdk AS build
+
+WORKDIR /src
+
+COPY mvnw pom.xml ./
+COPY .mvn .mvn
+RUN ./mvnw -B -q dependency:go-offline
+
+COPY src src
+RUN ./mvnw -B -q package -DskipTests && cp target/*.jar /app.jar
+
+FROM eclipse-temurin:25-jre
+
+ENV PORT=8080 \
+    JAVA_TOOL_OPTIONS="-XX:MaxRAMPercentage=75"
+
+WORKDIR /app
+COPY --from=build /app.jar app.jar
+
+RUN useradd --create-home spring
+USER spring
+
+EXPOSE 8080
+CMD ["java", "-jar", "app.jar"]
+```
+
+- The first stage builds the jar with the official `eclipse-temurin:25-jdk` image, the second runs it on `eclipse-temurin:25-jre`, which has no compiler. Match the Java version to the `java.version` of your `pom.xml`.
+- Downloading the dependencies before copying `src` keeps that layer cached when only the code changes.
+- `-XX:MaxRAMPercentage=75` sizes the heap from the memory limit of the container, instead of the memory of the node.
+- The container runs as a non-root user.
+- `CMD ["java", "-jar", "app.jar"]` starts the JVM directly, so it receives the stop signal.
+
+With Gradle, build with `./gradlew bootJar` and copy the jar from `build/libs`. Add a `.dockerignore` with at least `.git` and `target`.
+
+## Port and health check
+
+The application listens on port `8080`. Actuator exposes two probe endpoints, which answer `200` when the state is up and `503` when it is not:
+
+- `GET /actuator/health/readiness` for the readiness probe, which tells Kubernetes when the application can take traffic.
+- `GET /actuator/health/liveness` for the liveness probe, which tells Kubernetes when to restart it.
+
+Keep them apart: during a graceful shutdown, readiness turns down while liveness stays up, so a liveness probe on the readiness path would restart a pod that is only draining.
+
+## Connect PostgreSQL
+
+<Postgres />
+
+## Set the variables
+
+| Variable | Value | Secret |
+|---|---|---|
+| `DATABASE_URL` | The alias or secret from [Connect PostgreSQL](#connect-postgresql) | Yes |
+
+Add the other variables your application reads, and mark keys and passwords as secrets. Spring Boot maps environment variables to properties, so `SPRING_PROFILES_ACTIVE=prod` sets `spring.profiles.active`.
+
+## Run the migrations
+
+Run Flyway in a [lifecycle job](/configuration/lifecycle-job) built from the same repository and Dockerfile, triggered on the **Deploy** event, with these CMD arguments:
+
+```json
+["java", "-jar", "app.jar", "--spring.main.web-application-type=none", "--spring.flyway.enabled=true"]
+```
+
+The job starts the application without the web server and with Flyway on, applies the pending migrations, then exits. It runs once per deployment. In the default [deployment pipeline](/configuration/deployment/pipeline), jobs run after the databases and before the applications, so the schema is up to date when the new code starts.
+
+Letting Flyway run when the application starts, the Spring Boot default, works for a single instance, but every instance then runs it at boot, and a failed migration leaves the application crashing in a loop.
+
+## Deploy
+
+<Tabs>
+  <Tab title="Console">
+    <ConsoleDeploy port="8080" healthPath="/actuator/health/readiness" migrateArgs='["java", "-jar", "app.jar", "--spring.main.web-application-type=none", "--spring.flyway.enabled=true"]' />
+
+    In the health checks step, then change the path of the liveness probe to `/actuator/health/liveness`.
+  </Tab>
+  <Tab title="With a coding agent">
+    Install the Qovery skills once:
+
+    ```bash
+    curl -fsSL https://skill.qovery.com/install.sh | bash
+    ```
+
+    Open your agent in the repository and paste:
+
+    <AgentPrompt prompt="Deploy this Spring Boot application with Qovery, with a PostgreSQL database and a lifecycle job that runs the Flyway migrations." />
+
+    The agent writes the Dockerfile if there is none, creates the database, the variables, the job and the application, and gives you the URL. See [Agent Skills](/getting-started/quickstart/agent-skills).
+  </Tab>
+</Tabs>
+
+## Troubleshooting
+
+The CLI commands below use the organization, project and environment selected with `qovery context set`. Run it first, or add `--organization`, `--project` and `--environment` to each command.
+
+<AccordionGroup>
+  <Accordion title="Deployment fails on the health check">
+    The application listens on another port than the one set in Qovery, or the probes are off. Check `server.port=${PORT:8080}` and `management.endpoint.health.probes.enabled=true`, and that the port in Qovery is `8080`. A large application can take longer to start than the probe allows: raise the initial delay in [Service Health Checks](/configuration/service-health-checks). Read the error lines with `qovery environment deployment logs --environment "<env>" --service "<app>" --errors-only`.
+  </Accordion>
+  <Accordion title="OOMKilled or out of memory">
+    The heap does not fit in the memory of the container. Keep `-XX:MaxRAMPercentage=75` and raise the memory of the application, or lower the percentage if the application uses a lot of memory outside the heap.
+  </Accordion>
+  <Accordion title="relation does not exist">
+    The migrations did not run against this database. Check that the job and the application read the same `DATABASE_URL` at the environment scope, and read the job output with `qovery log --job "<job name>"`.
+  </Accordion>
+  <Accordion title="The migration job never finishes">
+    Something in the application keeps the JVM running without the web server, such as a scheduler or a message listener. Turn it off in the job with a property, for example with `@ConditionalOnProperty` on its configuration, and pass that property in the CMD arguments.
+  </Accordion>
+  <Accordion title="mvnw: Permission denied">
+    The wrapper lost its executable bit, which happens when the repository was committed from Windows. Run `git update-index --chmod=+x mvnw`, commit and push.
+  </Accordion>
+</AccordionGroup>
+
+For other errors, see [Diagnose a Failed Build or Deployment](/getting-started/troubleshoot/overview#diagnose-a-failed-build-or-deployment).
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Preview environments" icon="code-pull-request" href="/getting-started/guides/use-cases/preview-environments">
+    Get a full copy of the environment for each pull request
+  </Card>
+  <Card title="Autoscaling" icon="arrows-up-down" href="/configuration/application">
+    Set the number of instances and the resources
+  </Card>
+  <Card title="Auto deploy" icon="rotate" href="/configuration/deployment/auto-deploy">
+    Deploy on every push to the branch
+  </Card>
+  <Card title="Other frameworks" icon="layer-group" href="/getting-started/guides/frameworks/overview">
+    All framework guides
+  </Card>
+</CardGroup>

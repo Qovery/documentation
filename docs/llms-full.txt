@@ -11875,7 +11875,7 @@ Now that you've set up database seeding, you can:
 # Framework Guides
 Source: https://www.qovery.com/docs/getting-started/guides/frameworks/overview
 
-> Step-by-step guides to deploy Django, Ruby on Rails, Node.js with Express, Next.js, FastAPI, Go and Spring Boot applications with PostgreSQL on Kubernetes in your own cloud account with Qovery.
+> Step-by-step guides to deploy Django, Ruby on Rails, Node.js with Express, Next.js, FastAPI, Go, Spring Boot and Laravel applications with PostgreSQL on Kubernetes in your own cloud account with Qovery.
 
 Each guide takes one framework from a Git repository to a running application on a Kubernetes cluster in your own cloud account. It covers a production Dockerfile, the port and health check, a PostgreSQL database wired through `DATABASE_URL`, migrations in a lifecycle job, the deployment from the Console or with a coding agent, and the errors people hit most.
 
@@ -11900,6 +11900,9 @@ Each guide takes one framework from a Git repository to a running application on
   </Card>
   <Card title="Spring Boot" icon="java" href="https://www.qovery.com/docs/getting-started/guides/frameworks/spring-boot">
     Eclipse Temurin, Actuator probes and Flyway
+  </Card>
+  <Card title="Laravel" icon="laravel" href="https://www.qovery.com/docs/getting-started/guides/frameworks/laravel">
+    PHP with Apache, the `/up` health check and `artisan migrate`
   </Card>
 </CardGroup>
 
@@ -13620,6 +13623,259 @@ For other errors, see [Diagnose a Failed Build or Deployment](https://www.qovery
   </Card>
   <Card title="Autoscaling" icon="arrows-up-down" href="https://www.qovery.com/docs/configuration/application">
     Set the number of instances and the resources
+  </Card>
+  <Card title="Auto deploy" icon="rotate" href="https://www.qovery.com/docs/configuration/deployment/auto-deploy">
+    Deploy on every push to the branch
+  </Card>
+  <Card title="Other frameworks" icon="layer-group" href="https://www.qovery.com/docs/getting-started/guides/frameworks/overview">
+    All framework guides
+  </Card>
+</CardGroup>
+
+# Deploy a Laravel Application
+Source: https://www.qovery.com/docs/getting-started/guides/frameworks/laravel
+
+> Deploy a Laravel application with PostgreSQL on Kubernetes in your own cloud account with Qovery: production Dockerfile with PHP and Apache, the /up health check, artisan migrations as a lifecycle job.
+
+This guide deploys a Laravel application served by Apache with PHP, with a PostgreSQL database and migrations that run before each release. Qovery builds the image from your Dockerfile and runs it on a Kubernetes cluster in your own cloud account.
+
+<Note>
+**No configuration file in your repository.** Qovery does not read a `qovery.yml`, `.qovery.yml` or `.qovery.toml`, and there is no `qovery init`. Projects, environments and services are created in the Console, with `qovery api`, or with [Terraform](https://www.qovery.com/docs/terraform-provider/overview). For the full path from a repository to a running app with commands only, see [Deploy with the CLI and API](https://www.qovery.com/docs/getting-started/quickstart/cli-and-api).
+</Note>
+
+## Prerequisites
+
+- A Laravel 11 or later application in a GitHub, GitLab or Bitbucket repository, with a `composer.lock`.
+- A Qovery account and a cluster: [create one in your cloud account](https://www.qovery.com/docs/getting-started/quickstart/cloud), [connect your own cluster](https://www.qovery.com/docs/getting-started/installation/kubernetes), or [try it on your laptop](https://www.qovery.com/docs/getting-started/quickstart/try-with-an-agent).
+- An application key, generated with `php artisan key:generate --show`.
+
+## Prepare the application
+
+Laravel reads a full connection URL from `DB_URL`. In `config/database.php`, let the `pgsql` connection fall back to `DATABASE_URL`, the name the other services of the environment use:
+
+```php config/database.php
+'pgsql' => [
+    'driver' => 'pgsql',
+    'url' => env('DB_URL', env('DATABASE_URL')),
+    // keep the other keys as they are
+],
+```
+
+In `bootstrap/app.php`, trust the cluster's ingress, so Laravel builds `https://` URLs and reads the client IP from the forwarded headers:
+
+```php bootstrap/app.php
+->withMiddleware(function (Middleware $middleware): void {
+    $middleware->trustProxies(at: '*');
+})
+```
+
+The pod is only reachable through the ingress, so trusting every proxy address is safe here.
+
+## Add a production Dockerfile
+
+Create a `Dockerfile` at the root of the repository:
+
+```dockerfile Dockerfile
+FROM php:8.4-apache
+
+ENV APP_ENV=production \
+    APP_DEBUG=false \
+    LOG_CHANNEL=stderr \
+    APACHE_DOCUMENT_ROOT=/var/www/html/public
+
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends libpq-dev libzip-dev unzip \
+ && docker-php-ext-install pdo_pgsql opcache zip \
+ && rm -rf /var/lib/apt/lists/*
+
+RUN a2enmod rewrite \
+ && sed -ri 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf \
+ && sed -ri 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf \
+ && sed -ri 's!Listen 80$!Listen 8080!' /etc/apache2/ports.conf \
+ && sed -ri 's!<VirtualHost \*:80>!<VirtualHost *:8080>!' /etc/apache2/sites-available/000-default.conf \
+ && mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+
+WORKDIR /var/www/html
+
+COPY composer.json composer.lock ./
+RUN composer install --no-dev --no-interaction --prefer-dist --no-scripts --no-autoloader
+
+COPY . .
+RUN composer dump-autoload --no-dev --optimize \
+ && php artisan package:discover --ansi \
+ && chown -R www-data:www-data storage bootstrap/cache
+
+USER www-data
+EXPOSE 8080
+CMD ["sh", "-c", "php artisan optimize && exec apache2-foreground"]
+```
+
+- `php:8.4-apache` is the official PHP image with Apache, which serves PHP in a single container. The `fpm` variant needs a separate web server in front of it. Match the PHP version to the `php` constraint of your `composer.json`.
+- It adds the `pdo_pgsql` extension for PostgreSQL, `opcache` to cache compiled PHP, and `zip` for Composer, and uses the production `php.ini`.
+- The `sed` lines point Apache at the `public` folder, where Laravel's entry point is, and move it to port `8080`, so it runs without root. `mod_rewrite` reads the `.htaccess` that Laravel ships in `public`.
+- Composer comes from the official `composer:2` image. Installing the dependencies before copying the code keeps that layer cached when only the code changes.
+- The container runs as `www-data`, which owns `storage` and `bootstrap/cache`, the folders Laravel writes to.
+- `php artisan optimize` caches the configuration, routes and views at startup, when the variables are set, then `exec` makes Apache the main process, so it receives the stop signal.
+- `LOG_CHANNEL=stderr` sends the logs to the container output, where Qovery reads them.
+
+If the application uses Vite, build the assets in a first stage from a `node` image with `npm ci` and `npm run build`, and copy `public/build` into this image. Add a `.dockerignore` with at least `.git`, `.env`, `vendor` and `node_modules`.
+
+## Port and health check
+
+The application listens on port `8080`. Laravel 11 and later register a `GET /up` route in `bootstrap/app.php` that answers `200` when the application boots, so use it as the health check path.
+
+## Connect PostgreSQL
+
+The application and the migration job read the connection string from `DATABASE_URL`. Create PostgreSQL, then expose its connection string under that name at the environment scope, so every service of the environment gets it.
+
+<Tabs>
+  <Tab title="Qovery database (development)">
+    1. In the environment, click **New Service** and pick **PostgreSQL**. Keep the visibility private, then create and deploy it. See [Create a Database](https://www.qovery.com/docs/getting-started/guides/getting-started/connect-database).
+    2. Open the **Variables** section of the environment, find the built-in variable `QOVERY_POSTGRESQL_Z<ID>_DATABASE_URL_INTERNAL`, select **Create alias**, and name it `DATABASE_URL`.
+
+    From the CLI, once the application exists:
+
+    ```bash
+    # Copy the exact name of the ..._DATABASE_URL_INTERNAL variable
+    qovery application env list -n my-app
+
+    qovery application env alias create -n my-app \
+      -k "QOVERY_POSTGRESQL_Z1234ABCD_DATABASE_URL_INTERNAL" \
+      --alias DATABASE_URL --scope ENVIRONMENT
+    ```
+
+    This database runs as a container on your cluster, with no automated backups. Use it for development and testing.
+  </Tab>
+
+  <Tab title="Blueprint (production)">
+    1. In the environment, click **New Service** › **Blueprint** and pick a managed PostgreSQL, such as [Amazon RDS for PostgreSQL](https://www.qovery.com/docs/configuration/blueprints/aws-rds-postgresql) or [Scaleway Managed PostgreSQL](https://www.qovery.com/docs/configuration/blueprints/scaleway-managed-postgresql). Deploy it.
+    2. The Blueprint publishes its outputs as variables named `QOVERY_OUTPUT_TERRAFORM_Z<ID>_<OUTPUT>`, and by default Qovery also creates an alias for each output, named `<PREFIX>_<OUTPUT>` after the Blueprint name. See [Aliases Qovery creates for outputs](https://www.qovery.com/docs/configuration/environment-variables#aliases-qovery-creates-for-outputs) for the naming rules and the cases where no alias is created. Copy the prefix from the **Variables** section, then create an environment secret `DATABASE_URL` that composes the outputs with `{{...}}` interpolation. The output names differ per Blueprint.
+
+    Amazon RDS for PostgreSQL:
+
+    ```text
+    postgresql://{{QOVERY_OUTPUT_TERRAFORM_Z1234ABCD_DB_USERNAME}}:{{QOVERY_OUTPUT_TERRAFORM_Z1234ABCD_DB_PASSWORD}}@{{QOVERY_OUTPUT_TERRAFORM_Z1234ABCD_DB_ADDRESS}}:{{QOVERY_OUTPUT_TERRAFORM_Z1234ABCD_DB_PORT}}/{{QOVERY_OUTPUT_TERRAFORM_Z1234ABCD_DB_NAME}}
+    ```
+
+    Scaleway Managed PostgreSQL:
+
+    ```text
+    postgresql://{{QOVERY_OUTPUT_TERRAFORM_Z1234ABCD_DB_USERNAME}}:{{QOVERY_OUTPUT_TERRAFORM_Z1234ABCD_DB_PASSWORD}}@{{QOVERY_OUTPUT_TERRAFORM_Z1234ABCD_ENDPOINT_IP}}:{{QOVERY_OUTPUT_TERRAFORM_Z1234ABCD_ENDPOINT_PORT}}/{{QOVERY_OUTPUT_TERRAFORM_Z1234ABCD_DB_NAME}}
+    ```
+
+    Interpolation inserts the values as they are, without URL encoding. Leave the Blueprint's `db_password` input empty so Qovery generates the password, or set one made of letters and digits only: characters such as `#`, `?`, `%` or `:` break the URL.
+
+    Make sure the Blueprint is deployed in a [deployment stage](https://www.qovery.com/docs/configuration/deployment/pipeline) that runs before the migration job.
+  </Tab>
+</Tabs>
+
+See [Aliases](https://www.qovery.com/docs/configuration/environment-variables#aliases) and [Variable Interpolation](https://www.qovery.com/docs/configuration/environment-variables#variable-interpolation) for the rules.
+
+Laravel reads the `postgresql://` URL as is and maps it to its `pgsql` driver.
+
+## Set the variables
+
+| Variable | Value | Secret |
+|---|---|---|
+| `DATABASE_URL` | The alias or secret from [Connect PostgreSQL](#connect-postgresql) | Yes |
+| `DB_CONNECTION` | `pgsql` | No |
+| `APP_KEY` | The output of `php artisan key:generate --show`, starting with `base64:` | Yes |
+| `APP_URL` | The URL of the application, for example `https://my-app-z1234abcd.z5678efgh.qovery.io` | No |
+
+The `qovery.io` domain shows in the Console once the application is created. Without `DB_CONNECTION`, Laravel 11 and later use SQLite.
+
+## Run the migrations
+
+Run `migrate` in a [lifecycle job](https://www.qovery.com/docs/configuration/lifecycle-job) built from the same repository and Dockerfile, triggered on the **Deploy** event, with these CMD arguments:
+
+```json
+["php", "artisan", "migrate", "--force"]
+```
+
+`--force` is required because `APP_ENV` is `production`. The job runs once per deployment. In the default [deployment pipeline](https://www.qovery.com/docs/configuration/deployment/pipeline), jobs run after the databases and before the applications, so the schema is up to date when the new code starts. The default Laravel migrations also create the `sessions`, `cache` and `jobs` tables that the `database` drivers use.
+
+Running `migrate` in the start command instead works for a single instance, but every instance then runs it at boot, and a failed migration leaves the application crashing in a loop.
+
+## Deploy
+
+<Tabs>
+  <Tab title="Console">
+    <Steps>
+  <Step title="Create a project and an environment">
+    Follow steps 1 and 2 of [Deploy Your First Application](https://www.qovery.com/docs/getting-started/guides/getting-started/deploy-your-first-application#step-1-create-a-project). Pick the cluster the environment runs on.
+  </Step>
+  <Step title="Add PostgreSQL">
+    Create the database and the `DATABASE_URL` variable as described in [Connect PostgreSQL](#connect-postgresql).
+  </Step>
+  <Step title="Create the application">
+    In the environment, click **New Service** › **Create application**, select **Git Repository**, then your repository and branch. Leave **Root Application Path** empty unless the Dockerfile is in a subfolder.
+  </Step>
+  <Step title="Set the port">
+    Add port <code>8080</code> with the protocol **HTTP**, and turn on **Publicly Accessible**. Qovery serves it over HTTPS on port 443.
+  </Step>
+  <Step title="Set the health checks">
+    Set the readiness and liveness probes to type **HTTP**, path <code>/up</code>, port <code>8080</code>. See [Service Health Checks](https://www.qovery.com/docs/configuration/service-health-checks).
+  </Step>
+  <Step title="Add the variables">
+    Click **Create**, without deploying yet. Then open the **Variables** section of the environment and add the other variables listed in [Set the variables](#set-the-variables) at the environment scope, so the migration job gets them too. `DATABASE_URL` already exists from the previous step. Mark keys and passwords as secrets.
+  </Step>
+  <Step title="Create the migration job">
+    Click **New Service** › **Create lifecycle job**, select the same repository, branch and Dockerfile, and trigger it on the **Deploy** event (`START`) with the CMD arguments <code>["php", "artisan", "migrate", "--force"]</code>. Set the number of restarts to 0. See [Run the migrations](#run-the-migrations).
+  </Step>
+  <Step title="Deploy">
+    Deploy the environment. Qovery deploys the database, then the job, then the application, builds the image from your Dockerfile and gives the application a URL on `qovery.io`. Follow the progress in the **Deployment logs** tab.
+  </Step>
+</Steps>
+  </Tab>
+  <Tab title="With a coding agent">
+    Install the Qovery skills once:
+
+    ```bash
+    curl -fsSL https://skill.qovery.com/install.sh | bash
+    ```
+
+    Open your agent in the repository and paste:
+
+    Deploy this Laravel application with Qovery, with a PostgreSQL database and a lifecycle job that runs the migrations.
+
+    The agent writes the Dockerfile if there is none, creates the database, the variables, the job and the application, and gives you the URL. See [Agent Skills](https://www.qovery.com/docs/getting-started/quickstart/agent-skills).
+  </Tab>
+</Tabs>
+
+## Troubleshooting
+
+The CLI commands below use the organization and project selected with `qovery context set`. Run it first, or add `--organization` and `--project` to each command.
+
+<AccordionGroup>
+  <Accordion title="Deployment fails on the health check">
+    Apache listens on another port than the one set in Qovery. Check that the `Listen 8080` and `VirtualHost *:8080` lines are in the Dockerfile and that the port in Qovery is `8080`. Read the error lines with `qovery environment deployment logs --environment "<env>" --service "<app>" --errors-only`.
+  </Accordion>
+  <Accordion title="Database file at path database.sqlite does not exist">
+    `DB_CONNECTION` is not set, so Laravel falls back to SQLite. Set it to `pgsql` at the environment scope, so the migration job gets it too, then redeploy.
+  </Accordion>
+  <Accordion title="No application encryption key has been specified">
+    `APP_KEY` is missing or empty. Generate one with `php artisan key:generate --show` and add it as a secret, including the `base64:` prefix.
+  </Accordion>
+  <Accordion title="relation does not exist">
+    The migrations did not run against this database. Check that the job and the application read the same `DATABASE_URL` and `DB_CONNECTION` at the environment scope, and read the job output with `qovery log --job "<job name>"`.
+  </Accordion>
+  <Accordion title="Links and assets use http:// instead of https://">
+    Laravel does not trust the forwarded headers of the ingress. Add `trustProxies(at: '*')` in `bootstrap/app.php` and set `APP_URL` to the `https://` URL. A `Vite manifest not found` error means the assets were not built into the image.
+  </Accordion>
+</AccordionGroup>
+
+For other errors, see [Diagnose a Failed Build or Deployment](https://www.qovery.com/docs/getting-started/troubleshoot/overview#diagnose-a-failed-build-or-deployment).
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Preview environments" icon="code-pull-request" href="https://www.qovery.com/docs/getting-started/guides/use-cases/preview-environments">
+    Get a full copy of the environment for each pull request
+  </Card>
+  <Card title="Custom domain" icon="globe" href="https://www.qovery.com/docs/configuration/application#custom-domains">
+    Serve the application on your own domain
   </Card>
   <Card title="Auto deploy" icon="rotate" href="https://www.qovery.com/docs/configuration/deployment/auto-deploy">
     Deploy on every push to the branch

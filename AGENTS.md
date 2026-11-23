@@ -62,7 +62,7 @@ description: "Short description shown below the title."
 
 1. Create the `.mdx` file in the appropriate folder.
 2. Add its path to `docs/docs.json` in the correct group under `navigation.tabs`.
-3. Run `python3 scripts/llms/generate.py` to update `docs/llms.txt` and `docs/llms-full.txt`. The pull request check fails if you forget. The two full-text files hold every page's content, so run it after editing any page or snippet too.
+3. Run `python3 scripts/llms/generate.py` to update `docs/llms.txt` and `docs/llms-full.txt`. The pull request check fails if you forget. `docs/llms-full.txt` holds every page's content, so run it after editing any page or snippet too.
 
 ### Navigation (`docs.json`)
 

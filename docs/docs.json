@@ -149,7 +149,8 @@
                   "getting-started/guides/frameworks/ruby-on-rails",
                   "getting-started/guides/frameworks/nodejs-express",
                   "getting-started/guides/frameworks/nextjs",
-                  "getting-started/guides/frameworks/fastapi"
+                  "getting-started/guides/frameworks/fastapi",
+                  "getting-started/guides/frameworks/go"
                 ]
               },
               {

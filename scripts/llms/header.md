@@ -1,6 +1,6 @@
 # Qovery
 
-> Qovery is an Agentic DevOps platform. It deploys and runs applications, databases, jobs and Helm charts on Kubernetes clusters in your own cloud account (AWS, GCP, Azure, Scaleway) or on your own Kubernetes cluster. People use the Console; scripts and coding agents use the CLI, the REST API, the Terraform provider, the MCP server and the agent skills.
+> Qovery is an Agentic DevOps platform. Developers and AI coding agents deploy and run applications on Kubernetes in your own cloud account, with the guardrails, audit trail and cost control a platform team would otherwise build by hand. It runs applications, databases, jobs and Helm charts on clusters in AWS, GCP, Azure or Scaleway, or on your own Kubernetes cluster. People use the Console; scripts and coding agents use the CLI, the REST API, the Terraform provider, the MCP server and the agent skills.
 
 ## Start here (for coding agents)
 

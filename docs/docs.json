@@ -142,6 +142,14 @@
               "getting-started/guides/getting-started/connect-database",
               "getting-started/guides/others/database-seeding-lifecycle-job",
               {
+                "group": "Framework Guides",
+                "pages": [
+                  "getting-started/guides/frameworks/overview",
+                  "getting-started/guides/frameworks/django",
+                  "getting-started/guides/frameworks/ruby-on-rails"
+                ]
+              },
+              {
                 "group": "Advanced Tutorials",
                 "pages": [
                   {
@@ -1448,7 +1456,7 @@
     },
     {
       "source": "/guides/tutorial/deploy-temporal-on-kubernetes",
-      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+      "destination": "/configuration/blueprints/temporal-cloud-namespace"
     },
     {
       "source": "/guides/tutorial/generate-qovery-api-client",

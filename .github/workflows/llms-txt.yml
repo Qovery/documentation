@@ -7,7 +7,6 @@ on:
       - "docs/**/*.mdx"
       - "docs/llms.txt"
       - "docs/llms-full.txt"
-      - "docs/llms-full-guides.txt"
       - "scripts/llms/**"
       - "docs/api-reference/openapi.yaml"
 

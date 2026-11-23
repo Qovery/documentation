@@ -4,7 +4,6 @@
 - docs/llms.txt: index of every page, from docs.json and page frontmatter.
 - docs/llms-full.txt: the full text of every page, product overview first and
   API reference last (tab order in FULL_TAB_ORDER).
-- docs/llms-full-guides.txt: the same without the API reference.
 
 Mintlify serves these files instead of the ones it would generate. Run this
 after adding, removing, retitling or editing a page:
@@ -28,8 +27,7 @@ API_TAB = "API Reference"
 FULL_TAB_ORDER = ["Getting Started", "Configuration", "AI", "CLI", "Terraform Provider"]
 FULL_LINKS = """## Full text
 
-- [Full documentation](https://www.qovery.com/docs/llms-full.txt): every page in one file, product overview first, API reference last.
-- [Guides and reference without the API](https://www.qovery.com/docs/llms-full-guides.txt): the same file without the API reference."""
+- [Full documentation](https://www.qovery.com/docs/llms-full.txt): every page in one file, product overview first, API reference last."""
 
 
 def frontmatter(page):
@@ -356,7 +354,6 @@ def build_full(include_api):
 OUTPUTS = {
     "llms.txt": build,
     "llms-full.txt": lambda: build_full(include_api=True),
-    "llms-full-guides.txt": lambda: build_full(include_api=False),
 }
 
 
@@ -374,4 +371,4 @@ if __name__ == "__main__":
     if "--check" in sys.argv:
         if stale:
             sys.exit(", ".join(stale) + " stale: run python3 scripts/llms/generate.py")
-        print("docs/llms.txt, docs/llms-full.txt and docs/llms-full-guides.txt are up to date")
+        print("docs/llms.txt and docs/llms-full.txt are up to date")

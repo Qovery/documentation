@@ -108,13 +108,14 @@
 
 ##### Framework Guides
 
-- [Framework Guides](https://www.qovery.com/docs/getting-started/guides/frameworks/overview.md): Step-by-step guides to deploy Django, Ruby on Rails, Node.js with Express, Next.js, FastAPI and Go applications with PostgreSQL on Kubernetes in your own cloud account with Qovery.
+- [Framework Guides](https://www.qovery.com/docs/getting-started/guides/frameworks/overview.md): Step-by-step guides to deploy Django, Ruby on Rails, Node.js with Express, Next.js, FastAPI, Go and Spring Boot applications with PostgreSQL on Kubernetes in your own cloud account with Qovery.
 - [Deploy a Django Application](https://www.qovery.com/docs/getting-started/guides/frameworks/django.md): Deploy a Django application with PostgreSQL on Kubernetes in your own cloud account with Qovery: production Dockerfile, Gunicorn, health check, migrations as a lifecycle job, static files with WhiteNoise.
 - [Deploy a Ruby on Rails Application](https://www.qovery.com/docs/getting-started/guides/frameworks/ruby-on-rails.md): Deploy a Ruby on Rails application with PostgreSQL on Kubernetes in your own cloud account with Qovery: production Dockerfile, Puma, the /up health check, migrations as a lifecycle job, precompiled assets.
 - [Deploy a Node.js Express Application](https://www.qovery.com/docs/getting-started/guides/frameworks/nodejs-express.md): Deploy a Node.js Express API with PostgreSQL on Kubernetes in your own cloud account with Qovery: production Dockerfile, port and health check, migrations as a lifecycle job, static files.
 - [Deploy a Next.js Application](https://www.qovery.com/docs/getting-started/guides/frameworks/nextjs.md): Deploy a Next.js application with PostgreSQL on Kubernetes in your own cloud account with Qovery: standalone output, production Dockerfile, port and health check, build-time variables, migrations as a lifecycle job.
 - [Deploy a FastAPI Application](https://www.qovery.com/docs/getting-started/guides/frameworks/fastapi.md): Deploy a FastAPI application with PostgreSQL on Kubernetes in your own cloud account with Qovery: production Dockerfile, Uvicorn, health check, Alembic migrations as a lifecycle job, static files.
 - [Deploy a Go Application](https://www.qovery.com/docs/getting-started/guides/frameworks/go.md): Deploy a Go web service with PostgreSQL on Kubernetes in your own cloud account with Qovery: multi-stage Dockerfile with a distroless image, port and health check, golang-migrate migrations as a lifecycle job.
+- [Deploy a Spring Boot Application](https://www.qovery.com/docs/getting-started/guides/frameworks/spring-boot.md): Deploy a Spring Boot application with PostgreSQL on Kubernetes in your own cloud account with Qovery: multi-stage Dockerfile with Eclipse Temurin, Actuator health checks, Flyway migrations as a lifecycle job.
 
 ##### Advanced Tutorials
 

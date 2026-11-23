@@ -135,9 +135,26 @@ def render_snippet(path, attrs, depth):
     if "=>" in body or "onClick" in body:
         # interactive component: keep only what it displays
         return "\n".join(f"{v}" for v in attrs.values())
+    body = resolve_jsx_strings(body, attrs)
     for k, v in attrs.items():
         body = body.replace("{" + k + "}", v)
     return page_body(body, depth + 1).strip()
+
+
+JSX_CONCAT_RE = re.compile(r'\{\s*((?:"[^"]*"|\w+)(?:\s*\+\s*(?:"[^"]*"|\w+))+)\s*\}')
+
+
+def resolve_jsx_strings(body, attrs):
+    """Evaluate `{"a" + prop + "b"}` expressions with the snippet's props, so a
+    prop used inside a JSX attribute (e.g. a link) ends up in the text."""
+
+    def evaluate(m):
+        parts = re.findall(r'"([^"]*)"|(\w+)', m.group(1))
+        if any(name and name not in attrs for _, name in parts):
+            return m.group(0)
+        return '"' + "".join(lit if not name else attrs[name] for lit, name in parts) + '"'
+
+    return JSX_CONCAT_RE.sub(evaluate, body)
 
 
 def page_body(text, depth=0):

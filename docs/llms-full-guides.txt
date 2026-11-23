@@ -1223,7 +1223,7 @@ Source: https://www.qovery.com/docs/getting-started/quickstart/docker
 
 Install Qovery on your local machine using a k3s Kubernetes cluster. Perfect for learning, testing, and development.
 
-<Card title="Try it in the demo console" icon="play" href={"https://console-demo.qovery.com/?tour=" + tour + "&utm_source=docs&utm_medium=try-it&utm_content=" + tour} horizontal>
+<Card title="Try it in the demo console" icon="play" href="https://console-demo.qovery.com/?tour=deploy&utm_source=docs&utm_medium=try-it&utm_content=deploy" horizontal>
   Want to look around before installing anything? Take the guided tour. No account needed. Sample data, every feature turned on.
 </Card>
 
@@ -4425,7 +4425,7 @@ Source: https://www.qovery.com/docs/getting-started/guides/qovery-101/provision
 
 Qovery Provision automates the setup and configuration of your cloud infrastructure on AWS, GCP, Azure, or Scaleway. It handles the complexities of cluster provisioning, networking, and infrastructure management, allowing you to focus on deploying applications rather than managing infrastructure.
 
-<Card title="Try it in the demo console" icon="play" href={"https://console-demo.qovery.com/?tour=" + tour + "&utm_source=docs&utm_medium=try-it&utm_content=" + tour} horizontal>
+<Card title="Try it in the demo console" icon="play" href="https://console-demo.qovery.com/?tour=provision&utm_source=docs&utm_medium=try-it&utm_content=provision" horizontal>
   A 2-minute guided tour of a cluster: autoscaling, Karpenter, spot instances, GPU node pools and VPC. No account needed. Sample data, every feature turned on.
 </Card>
 
@@ -4612,7 +4612,7 @@ Source: https://www.qovery.com/docs/getting-started/guides/qovery-101/deploy
 
 Qovery Deploy automates application deployment to Kubernetes with zero-downtime releases, automatic rollbacks, and integrated CI/CD. Deploy from Git repositories, container registries, or Helm charts with a few clicks or API calls.
 
-<Card title="Try it in the demo console" icon="play" href={"https://console-demo.qovery.com/?tour=" + tour + "&utm_source=docs&utm_medium=try-it&utm_content=" + tour} horizontal>
+<Card title="Try it in the demo console" icon="play" href="https://console-demo.qovery.com/?tour=deploy&utm_source=docs&utm_medium=try-it&utm_content=deploy" horizontal>
   A 3-minute guided tour: create an app, deploy it and follow its logs. No account needed. Sample data, every feature turned on.
 </Card>
 
@@ -4766,7 +4766,7 @@ graph LR
 
 ---
 
-<Card title="Practice it in the training console" icon="graduation-cap" href={"https://console-training.qovery.com/?track=" + track + "&utm_source=docs&utm_medium=practice&utm_content=" + track} horizontal>
+<Card title="Practice it in the training console" icon="graduation-cap" href="https://console-training.qovery.com/?track=basics&utm_source=docs&utm_medium=practice&utm_content=basics" horizontal>
   Seven lessons: what Qovery is, how it is organized, and your first deployment. Hands-on lessons in a sandbox: nothing touches a real cluster.
 </Card>
 
@@ -4804,11 +4804,11 @@ Supports Applications, Containers, and Managed Databases (MySQL and PostgreSQL o
 Qovery Observe is not yet self-service. Contact Qovery via Slack or email to get access.
 </Info>
 
-<Card title="Try it in the demo console" icon="play" href={"https://console-demo.qovery.com/?tour=" + tour + "&utm_source=docs&utm_medium=try-it&utm_content=" + tour} horizontal>
+<Card title="Try it in the demo console" icon="play" href="https://console-demo.qovery.com/?tour=observe&utm_source=docs&utm_medium=try-it&utm_content=observe" horizontal>
   A 2-minute guided tour of metrics, events, database monitoring, logs and alerts. No account needed. Sample data, every feature turned on.
 </Card>
 
-<Card title="Practice it in the training console" icon="graduation-cap" href={"https://console-training.qovery.com/?track=" + track + "&utm_source=docs&utm_medium=practice&utm_content=" + track} horizontal>
+<Card title="Practice it in the training console" icon="graduation-cap" href="https://console-training.qovery.com/?track=observability&utm_source=docs&utm_medium=practice&utm_content=observability" horizontal>
   Five lessons: built-in monitoring, alerts, your own tools and tags. Hands-on lessons in a sandbox: nothing touches a real cluster.
 </Card>
 
@@ -5143,11 +5143,11 @@ Qovery Secure provides essential security features to protect your applications 
 
 ---
 
-<Card title="Try it in the demo console" icon="play" href={"https://console-demo.qovery.com/?tour=" + tour + "&utm_source=docs&utm_medium=try-it&utm_content=" + tour} horizontal>
+<Card title="Try it in the demo console" icon="play" href="https://console-demo.qovery.com/?tour=secure&utm_source=docs&utm_medium=try-it&utm_content=secure" horizontal>
   A 2-minute guided tour of roles, audit logs and secret managers. No account needed. Sample data, every feature turned on.
 </Card>
 
-<Card title="Practice it in the training console" icon="graduation-cap" href={"https://console-training.qovery.com/?track=" + track + "&utm_source=docs&utm_medium=practice&utm_content=" + track} horizontal>
+<Card title="Practice it in the training console" icon="graduation-cap" href="https://console-training.qovery.com/?track=security&utm_source=docs&utm_medium=practice&utm_content=security" horizontal>
   Two lessons on securing your setup. Hands-on lessons in a sandbox: nothing touches a real cluster.
 </Card>
 
@@ -5461,7 +5461,7 @@ Agent Tasks let you delegate a job, investigating an incident, optimizing a buil
   <img src="/images/console/agent-task-runs.png" alt="The Runs tab of an agent task, listing runs started by a webhook, by hand and by a schedule, with status, payload, duration and cost" />
 </Frame>
 
-<Card title="Try it in the demo console" icon="play" href={"https://console-demo.qovery.com/?tour=" + tour + "&utm_source=docs&utm_medium=try-it&utm_content=" + tour} horizontal>
+<Card title="Try it in the demo console" icon="play" href="https://console-demo.qovery.com/?tour=automations&utm_source=docs&utm_medium=try-it&utm_content=automations" horizontal>
   A 2-minute guided tour of an agent task that analyzes incidents. No account needed. Sample data, every feature turned on.
 </Card>
 
@@ -9447,11 +9447,11 @@ For teams that prefer full control over every step.
   </Accordion>
 </AccordionGroup>
 
-<Card title="Practice it in the training console" icon="graduation-cap" href={"https://console-training.qovery.com/?track=" + track + "&utm_source=docs&utm_medium=practice&utm_content=" + track} horizontal>
+<Card title="Practice it in the training console" icon="graduation-cap" href="https://console-training.qovery.com/?track=heroku&utm_source=docs&utm_medium=practice&utm_content=heroku" horizontal>
   Map, migrate and switch over a Heroku app to AWS. Hands-on lessons in a sandbox: nothing touches a real cluster.
 </Card>
 
-<Card title="Practice it in the training console" icon="graduation-cap" href={"https://console-training.qovery.com/?track=" + track + "&utm_source=docs&utm_medium=practice&utm_content=" + track} horizontal>
+<Card title="Practice it in the training console" icon="graduation-cap" href="https://console-training.qovery.com/?track=vercel&utm_source=docs&utm_medium=practice&utm_content=vercel" horizontal>
   The same three steps for a Vercel app. Hands-on lessons in a sandbox: nothing touches a real cluster.
 </Card>
 
@@ -9629,11 +9629,11 @@ Ephemeral environments are temporary, isolated environments that are automatical
 
 Ephemeral environments (also called Preview Environments) are automatically created when you open a pull request and deleted when it's merged or closed, giving you on-demand testing environments that mirror your production setup.
 
-<Card title="Try it in the demo console" icon="play" href={"https://console-demo.qovery.com/?tour=" + tour + "&utm_source=docs&utm_medium=try-it&utm_content=" + tour} horizontal>
+<Card title="Try it in the demo console" icon="play" href="https://console-demo.qovery.com/?tour=preview&utm_source=docs&utm_medium=try-it&utm_content=preview" horizontal>
   A 1-minute guided tour: one environment for every pull request. No account needed. Sample data, every feature turned on.
 </Card>
 
-<Card title="Practice it in the training console" icon="graduation-cap" href={"https://console-training.qovery.com/?track=" + track + "&utm_source=docs&utm_medium=practice&utm_content=" + track} horizontal>
+<Card title="Practice it in the training console" icon="graduation-cap" href="https://console-training.qovery.com/?track=previews&utm_source=docs&utm_medium=practice&utm_content=previews" horizontal>
   Four lessons, from why previews matter to cost and data at scale. Hands-on lessons in a sandbox: nothing touches a real cluster.
 </Card>
 
@@ -17939,7 +17939,7 @@ This troubleshooting guide helps you resolve common issues you may encounter whi
 
 ---
 
-<Card title="Practice it in the training console" icon="graduation-cap" href={"https://console-training.qovery.com/?track=" + track + "&utm_source=docs&utm_medium=practice&utm_content=" + track} horizontal>
+<Card title="Practice it in the training console" icon="graduation-cap" href="https://console-training.qovery.com/?track=troubleshooting&utm_source=docs&utm_medium=practice&utm_content=troubleshooting" horizontal>
   Ten lessons, one per common failure: build errors, wrong port, out of memory, timeouts, registry access and more. Hands-on lessons in a sandbox: nothing touches a real cluster.
 </Card>
 
@@ -56397,7 +56397,7 @@ The Qovery Console includes a built-in AI Copilot that provides contextual assis
 **Settings**: You can manage AI Copilot credits and activation under **Settings > AI Copilot** in the Console.
 </Info>
 
-<Card title="Try it in the demo console" icon="play" href={"https://console-demo.qovery.com/?tour=" + tour + "&utm_source=docs&utm_medium=try-it&utm_content=" + tour} horizontal>
+<Card title="Try it in the demo console" icon="play" href="https://console-demo.qovery.com/?tour=copilot&utm_source=docs&utm_medium=try-it&utm_content=copilot" horizontal>
   A 1-minute guided tour: ask the Copilot why a deployment failed. No account needed. Sample data, every feature turned on.
 </Card>
 
@@ -68603,7 +68603,7 @@ This page covers the setup. The reference of every resource and data source is o
 Upgrading from an earlier version? Read the [upgrade guide](https://registry.terraform.io/providers/qovery/qovery/latest/docs/guides/upgrade-to-1.0) before you change the version constraint.
 </Info>
 
-<Card title="Practice it in the training console" icon="graduation-cap" href={"https://console-training.qovery.com/?track=" + track + "&utm_source=docs&utm_medium=practice&utm_content=" + track} horizontal>
+<Card title="Practice it in the training console" icon="graduation-cap" href="https://console-training.qovery.com/?track=terraform&utm_source=docs&utm_medium=practice&utm_content=terraform" horizontal>
   Five lessons, from Terraform basics to running the Qovery provider in production. Hands-on lessons in a sandbox: nothing touches a real cluster.
 </Card>
 

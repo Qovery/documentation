@@ -148,6 +148,8 @@ Running `migrate` in the start command instead works for a single instance, but 
 
 ## Troubleshooting
 
+The CLI commands below use the organization and project selected with `qovery context set`. Run it first, or add `--organization` and `--project` to each command.
+
 <AccordionGroup>
   <Accordion title="Deployment fails on the health check">
     Gunicorn listens on another port, or on `127.0.0.1`. Check that the port in Qovery is `8000`, that Gunicorn binds to `0.0.0.0:${PORT}`, and that `HealthCheckMiddleware` is first in `MIDDLEWARE`. Read the error lines with `qovery environment deployment logs --environment "<env>" --service "<app>" --errors-only`.

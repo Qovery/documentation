@@ -17,7 +17,7 @@ This guide deploys a Rails application served by Puma, with a PostgreSQL databas
 
 - A Rails 7.1 or later application in a GitHub, GitLab or Bitbucket repository, using the `pg` gem.
 - A Qovery account and a cluster: [create one in your cloud account](/getting-started/quickstart/cloud), [connect your own cluster](/getting-started/installation/kubernetes), or [try it on your laptop](/getting-started/quickstart/try-with-an-agent).
-- The `RAILS_MASTER_KEY` of the application (the content of `config/master.key`), or a `SECRET_KEY_BASE`.
+- The `RAILS_MASTER_KEY` of the application (the content of `config/master.key`).
 
 ## Add a production Dockerfile
 
@@ -122,6 +122,8 @@ The Dockerfile that Rails generates also runs `db:prepare` in `bin/docker-entryp
 
 ## Troubleshooting
 
+The CLI commands below use the organization and project selected with `qovery context set`. Run it first, or add `--organization` and `--project` to each command.
+
 <AccordionGroup>
   <Accordion title="Deployment fails on the health check">
     The port in Qovery does not match the server: `3000` for Puma, `80` with Thruster in the Rails 8 Dockerfile. Check that Puma binds to `0.0.0.0`. Read the error lines with `qovery environment deployment logs --environment "<env>" --service "<app>" --errors-only`.
@@ -130,13 +132,13 @@ The Dockerfile that Rails generates also runs `db:prepare` in `bin/docker-entryp
     `config.hosts` does not include the domain. Set `APP_HOST` to the `qovery.io` domain shown in the Console, add your custom domains, and keep `/up` excluded from host authorization.
   </Accordion>
   <Accordion title="Missing secret_key_base or ActiveSupport::MessageEncryptor::InvalidMessage">
-    `RAILS_MASTER_KEY` is missing or does not match `config/credentials.yml.enc`. Set it as a secret on the application and on the migration job.
+    `RAILS_MASTER_KEY` is missing or does not match `config/credentials.yml.enc`. Set it as a secret at the environment scope, so the application and the migration job both get it.
   </Accordion>
   <Accordion title="PendingMigrationError or missing tables">
     The migrations did not run against this database. Check that the job and the application read the same `DATABASE_URL`, and read the job output with `qovery log --job "<job name>"`.
   </Accordion>
   <Accordion title="Assets return 404">
-    `assets:precompile` did not run at build time, or `config.public_file_server.enabled` is `false` in production. Check the build logs for the precompile step.
+    `assets:precompile` did not run at build time, or `config.public_file_server.enabled` is `false` in production. Rails 7.1 and later serve `public/` by default; an application generated with an older version may still read `RAILS_SERVE_STATIC_FILES` in `config/environments/production.rb`, so set that variable to `1` or remove the condition. Check the build logs for the precompile step.
   </Accordion>
 </AccordionGroup>
 

@@ -56,7 +56,7 @@ Run the same command locally with `docker run <image> <arguments>` to confirm it
 
 ### The job ran out of memory
 
-`OOMKilled` or exit code `137` means the container used more memory than its limit. Raise the memory of the job in its **Resources** settings, or process the data in smaller batches.
+`Reason: OOMKilled` means the container used more memory than its limit. Exit code `137` without that reason can have another cause, as described above. Raise the memory of the job in its **Resources** settings, or process the data in smaller batches.
 
 ### The job ran longer than its max duration
 

@@ -468,7 +468,7 @@ Find solutions for common runtime errors and issues you may encounter when opera
   <Accordion title="SIGKILL Signal 137 - Memory Exhaustion" icon="memory">
     **Symptom:** Your container terminates unexpectedly with exit code 137 or SIGKILL signal.
 
-    **Cause:** Your application has exceeded its memory limit. When system resources become constrained, Kubernetes forcibly terminates the container to reclaim memory (Out of Memory Kill - OOMKill).
+    **Cause:** Exit code 137 means the container received `SIGKILL`. Most often, your application exceeded its memory limit and Kubernetes terminated it (Out of Memory Kill - OOMKill). It also happens when the container does not stop within its termination grace period after `SIGTERM`. Only `OOMKilled` confirms a memory problem; for a slow shutdown, see [502 Bad Gateway: recv() failed](/getting-started/troubleshoot/nginx-502-connection-reset).
 
     **How to Identify:**
 

@@ -37,6 +37,7 @@ TODAY = datetime.now(timezone.utc).strftime("%Y-%m-%d")
 
 # The page list and the API page slugs come from the llms generator, so both
 # files always agree on the URL set.
+sys.dont_write_bytecode = True  # no __pycache__ left in scripts/llms
 _spec = importlib.util.spec_from_file_location("llms", ROOT / "scripts" / "llms" / "generate.py")
 llms = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(llms)

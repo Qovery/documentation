@@ -150,7 +150,7 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/application-custom-domain/add-custom-domain-to-the-application</loc>
-    <lastmod>2025-10-04</lastmod>
+    <lastmod>2026-11-23</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/application-custom-domain/check-application-custom-domain</loc>
@@ -158,11 +158,11 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/application-custom-domain/delete-a-custom-domain</loc>
-    <lastmod>2025-10-04</lastmod>
+    <lastmod>2026-11-23</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/application-custom-domain/edit-a-custom-domain</loc>
-    <lastmod>2025-10-04</lastmod>
+    <lastmod>2026-11-23</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/application-custom-domain/get-an-application-custom-domain</loc>
@@ -171,6 +171,10 @@
   <url>
     <loc>https://www.qovery.com/docs/api-reference/application-custom-domain/list-application-custom-domains</loc>
     <lastmod>2025-10-04</lastmod>
+  </url>
+  <url>
+    <loc>https://www.qovery.com/docs/api-reference/application-custom-domain/list-the-domains-of-the-application</loc>
+    <lastmod>2026-11-23</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/application-deployment-history/list-application-deploys</loc>
@@ -826,7 +830,7 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/container-custom-domain/add-custom-domain-to-the-container</loc>
-    <lastmod>2025-10-04</lastmod>
+    <lastmod>2026-11-23</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/container-custom-domain/check-container-custom-domain</loc>
@@ -834,11 +838,11 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/container-custom-domain/delete-a-custom-domain</loc>
-    <lastmod>2025-10-04</lastmod>
+    <lastmod>2026-11-23</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/container-custom-domain/edit-a-custom-domain</loc>
-    <lastmod>2025-10-04</lastmod>
+    <lastmod>2026-11-23</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/container-custom-domain/get-a-container-custom-domain</loc>
@@ -847,6 +851,10 @@
   <url>
     <loc>https://www.qovery.com/docs/api-reference/container-custom-domain/list-container-custom-domains</loc>
     <lastmod>2025-10-04</lastmod>
+  </url>
+  <url>
+    <loc>https://www.qovery.com/docs/api-reference/container-custom-domain/list-the-domains-of-the-container</loc>
+    <lastmod>2026-11-23</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/container-deployment-history/list-container-deployments</loc>
@@ -1114,7 +1122,7 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/environment-actions/clone-environment</loc>
-    <lastmod>2026-08-11</lastmod>
+    <lastmod>2026-11-23</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/environment-actions/delete-services</loc>
@@ -1161,6 +1169,30 @@
     <lastmod>2025-10-04</lastmod>
   </url>
   <url>
+    <loc>https://www.qovery.com/docs/api-reference/environment-custom-domain/create-a-custom-domain-for-several-services</loc>
+    <lastmod>2026-11-23</lastmod>
+  </url>
+  <url>
+    <loc>https://www.qovery.com/docs/api-reference/environment-custom-domain/delete-a-custom-domain-of-several-services</loc>
+    <lastmod>2026-11-23</lastmod>
+  </url>
+  <url>
+    <loc>https://www.qovery.com/docs/api-reference/environment-custom-domain/edit-a-custom-domain-of-several-services</loc>
+    <lastmod>2026-11-23</lastmod>
+  </url>
+  <url>
+    <loc>https://www.qovery.com/docs/api-reference/environment-custom-domain/get-the-cname-target-of-the-environment</loc>
+    <lastmod>2026-11-23</lastmod>
+  </url>
+  <url>
+    <loc>https://www.qovery.com/docs/api-reference/environment-custom-domain/list-environment-custom-domains</loc>
+    <lastmod>2026-11-23</lastmod>
+  </url>
+  <url>
+    <loc>https://www.qovery.com/docs/api-reference/environment-custom-domain/validate-a-custom-domain-for-several-services</loc>
+    <lastmod>2026-11-23</lastmod>
+  </url>
+  <url>
     <loc>https://www.qovery.com/docs/api-reference/environment-deployment-history/generate-a-grafana-snapshot-report-showing-build-runner-pod-usage-for-a-specific-deployment</loc>
     <lastmod>2026-03-19</lastmod>
   </url>
@@ -1194,11 +1226,11 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/environment-main-calls/edit-an-environment</loc>
-    <lastmod>2026-08-11</lastmod>
+    <lastmod>2026-11-23</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/environment-main-calls/get-environment-by-id</loc>
-    <lastmod>2026-08-11</lastmod>
+    <lastmod>2026-11-23</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/environment-main-calls/get-environment-status</loc>
@@ -1298,11 +1330,11 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/environments/create-an-environment</loc>
-    <lastmod>2026-08-11</lastmod>
+    <lastmod>2026-11-23</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/environments/list-environments</loc>
-    <lastmod>2026-08-11</lastmod>
+    <lastmod>2026-11-23</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/environments/list-environments-overview</loc>
@@ -1366,7 +1398,7 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/helm-custom-domain/add-custom-domain-to-the-helm</loc>
-    <lastmod>2025-10-04</lastmod>
+    <lastmod>2026-11-23</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/helm-custom-domain/check-helm-custom-domain</loc>
@@ -1374,11 +1406,11 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/helm-custom-domain/delete-a-custom-domain</loc>
-    <lastmod>2025-10-04</lastmod>
+    <lastmod>2026-11-23</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/helm-custom-domain/edit-a-custom-domain</loc>
-    <lastmod>2025-10-04</lastmod>
+    <lastmod>2026-11-23</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/helm-custom-domain/get-a-custom-domain</loc>
@@ -1387,6 +1419,10 @@
   <url>
     <loc>https://www.qovery.com/docs/api-reference/helm-custom-domain/list-helm-custom-domains</loc>
     <lastmod>2025-10-04</lastmod>
+  </url>
+  <url>
+    <loc>https://www.qovery.com/docs/api-reference/helm-custom-domain/list-the-domains-of-the-helm</loc>
+    <lastmod>2026-11-23</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/helm-deployment-history/list-helm-deployments</loc>
@@ -1821,8 +1857,12 @@
     <lastmod>2025-10-04</lastmod>
   </url>
   <url>
+    <loc>https://www.qovery.com/docs/api-reference/organization-custom-domain/delete-custom-domains-of-several-environments</loc>
+    <lastmod>2026-11-23</lastmod>
+  </url>
+  <url>
     <loc>https://www.qovery.com/docs/api-reference/organization-custom-domain/list-organization-custom-domains</loc>
-    <lastmod>2026-11-17</lastmod>
+    <lastmod>2026-11-23</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/organization-custom-role/create-an-organization-custom-role</loc>
@@ -2474,7 +2514,7 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/blueprints</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-23</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/blueprints/aiven-kafka</loc>
@@ -2482,43 +2522,47 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/blueprints/aws-amazon-mq-rabbitmq</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-23</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/blueprints/aws-bedrock-access</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-23</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/blueprints/aws-cloudfront</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-23</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/blueprints/aws-elasticache-redis</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-23</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/blueprints/aws-elasticache-redis-node</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-23</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/blueprints/aws-elasticache-valkey</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-23</lastmod>
+  </url>
+  <url>
+    <loc>https://www.qovery.com/docs/configuration/blueprints/aws-elasticache-valkey-serverless</loc>
+    <lastmod>2026-11-23</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/blueprints/aws-msk</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-23</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/blueprints/aws-rds-mysql</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-23</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/blueprints/aws-rds-postgresql</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-23</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/blueprints/aws-s3</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-23</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/blueprints/bigquery-dataset</loc>

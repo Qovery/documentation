@@ -621,15 +621,9 @@ Destroy: -parallelism=5 -refresh=false
 
 ## Use ARN role for AWS services
 
-When your AWS cluster uses [Restricted Credentials](/configuration/integrations/kubernetes/eks/managed#restricted-credentials), a Terraform service that relies on the cluster credentials (the default behavior) is deployed with the restricted credentials. To manage resources that rely on `iam:*` or `kms:*`, make the Terraform service assume a dedicated IAM role that has the permissions it needs.
-
-<Info>
-Apply these steps only once your cluster uses Restricted Credentials: the dedicated IAM role only trusts the restricted IAM role, so a Terraform service running with other credentials cannot assume it.
-</Info>
-
 <Steps>
   <Step title="Create a dedicated IAM role">
-    In your AWS account, create an IAM role with the IAM and KMS permissions your Terraform code needs. Set its trust relationship so that the [restricted IAM role](/configuration/integrations/kubernetes/eks/managed#create-the-iam-roles) can assume it. Replace `<restricted-role-arn>` with the **RoleARN** output of the restricted role stack:
+    In your AWS account, create an IAM role with the required permissions your Terraform code needs. Set its trust relationship so that the cluster credentials IAM role can assume it. Replace `<cluster-credentials-role-arn>` with your cluster credentials role arn:
 
     ```json
     {
@@ -637,7 +631,7 @@ Apply these steps only once your cluster uses Restricted Credentials: the dedica
       "Statement": [
         {
           "Effect": "Allow",
-          "Principal": { "AWS": "<restricted-role-arn>" },
+          "Principal": { "AWS": "<cluster-credentials-role-arn>" },
           "Action": "sts:AssumeRole"
         }
       ]
@@ -667,8 +661,6 @@ Apply these steps only once your cluster uses Restricted Credentials: the dedica
     Qovery detects the `aws_role_arn` variable declared in `main.tf` or `variables.tf` and exposes it as `tf_var_aws_role_arn` (see the **Configure Terraform Variables** step of [Creating a Terraform Service](#creating-a-terraform-service)). Set it to the ARN of the dedicated IAM role, then redeploy the Terraform service.
   </Step>
 </Steps>
-
-The Terraform service still starts with the restricted credentials, then uses the dedicated IAM role to manage your IAM and KMS resources.
 
 ---
 

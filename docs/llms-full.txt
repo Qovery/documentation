@@ -29144,7 +29144,7 @@ Each of the two credentials uses the STS Assume Role method and targets its own 
 - Service deployments, including the blueprints
 
 <Warning>
-Once Restricted Credentials is enabled, the following services that use the cluster credentials (the default behavior) are always deployed with the restricted credentials. Review them before requesting the feature: only those managing resources that rely on `iam:*` or `kms:*` are concerned.
+Once Restricted Credentials is enabled and your cluster is redeployed, the following services that use the cluster credentials (the default behavior) are always deployed with the restricted credentials. Review them before requesting the feature: only those managing resources that rely on `iam:*` or `kms:*` are concerned.
 
 - [Terraform services](https://www.qovery.com/docs/configuration/terraform): once your cluster uses Restricted Credentials, [update these Terraform services](https://www.qovery.com/docs/configuration/terraform#use-arn-role-for-aws-services) before their next deployment.
 - AWS [blueprints](https://www.qovery.com/docs/configuration/blueprints): once your cluster uses Restricted Credentials, set their `role_arn` variable to a dedicated IAM role before their next deployment. See [Assuming an IAM role](https://www.qovery.com/docs/configuration/blueprints#assuming-an-iam-role-aws-blueprints).
@@ -29366,9 +29366,18 @@ Changing the trust policy only blocks new role assumptions. Temporary credential
 While the extended credentials are disabled, Qovery cannot perform operations that require them, such as deleting the cluster or enabling a feature that needs additional AWS permissions.
 </Warning>
 
-### Update your Terraform services
+### Update your Terraform based services
 
-Once your cluster uses Restricted Credentials, Terraform services that manage resources relying on `iam:*` or `kms:*` must assume a dedicated IAM role. See [Use ARN role for AWS services](https://www.qovery.com/docs/configuration/terraform#use-arn-role-for-aws-services) for the steps.
+<Info>
+Apply these steps only once your cluster uses Restricted Credentials: the dedicated IAM role only trusts the restricted IAM role, so a Terraform service running with other credentials cannot assume it.
+</Info>
+
+Once your cluster uses Restricted Credentials, Terraform services that manage resources relying on `iam:*` or `kms:*` must assume a dedicated IAM role:
+
+* Terraform Service: [Use ARN role for AWS services](https://www.qovery.com/docs/configuration/terraform#use-arn-role-for-aws-services)
+* AWS Blueprints: [Use ARN role for Blueprints](https://www.qovery.com/docs/configuration/blueprints#assuming-an-iam-role-aws-blueprints)
+
+The Terraform service still starts with the restricted credentials, then uses the dedicated IAM role to manage your IAM and KMS resources.
 
 # AWS Cluster Preflight Checks
 Source: https://www.qovery.com/docs/configuration/integrations/kubernetes/eks/preflight-checks
@@ -38802,15 +38811,9 @@ Destroy: -parallelism=5 -refresh=false
 
 ## Use ARN role for AWS services
 
-When your AWS cluster uses [Restricted Credentials](https://www.qovery.com/docs/configuration/integrations/kubernetes/eks/managed#restricted-credentials), a Terraform service that relies on the cluster credentials (the default behavior) is deployed with the restricted credentials. To manage resources that rely on `iam:*` or `kms:*`, make the Terraform service assume a dedicated IAM role that has the permissions it needs.
-
-<Info>
-Apply these steps only once your cluster uses Restricted Credentials: the dedicated IAM role only trusts the restricted IAM role, so a Terraform service running with other credentials cannot assume it.
-</Info>
-
 <Steps>
   <Step title="Create a dedicated IAM role">
-    In your AWS account, create an IAM role with the IAM and KMS permissions your Terraform code needs. Set its trust relationship so that the [restricted IAM role](https://www.qovery.com/docs/configuration/integrations/kubernetes/eks/managed#create-the-iam-roles) can assume it. Replace `<restricted-role-arn>` with the **RoleARN** output of the restricted role stack:
+    In your AWS account, create an IAM role with the required permissions your Terraform code needs. Set its trust relationship so that the cluster credentials IAM role can assume it. Replace `<cluster-credentials-role-arn>` with your cluster credentials role arn:
 
     ```json
     {
@@ -38818,7 +38821,7 @@ Apply these steps only once your cluster uses Restricted Credentials: the dedica
       "Statement": [
         {
           "Effect": "Allow",
-          "Principal": { "AWS": "<restricted-role-arn>" },
+          "Principal": { "AWS": "<cluster-credentials-role-arn>" },
           "Action": "sts:AssumeRole"
         }
       ]
@@ -38848,8 +38851,6 @@ Apply these steps only once your cluster uses Restricted Credentials: the dedica
     Qovery detects the `aws_role_arn` variable declared in `main.tf` or `variables.tf` and exposes it as `tf_var_aws_role_arn` (see the **Configure Terraform Variables** step of [Creating a Terraform Service](#creating-a-terraform-service)). Set it to the ARN of the dedicated IAM role, then redeploy the Terraform service.
   </Step>
 </Steps>
-
-The Terraform service still starts with the restricted credentials, then uses the dedicated IAM role to manage your IAM and KMS resources.
 
 ---
 

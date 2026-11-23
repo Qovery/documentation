@@ -31,7 +31,7 @@ const { Pool } = require("pg");
 const app = express();
 const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 
-app.set("trust proxy", true);
+app.set("trust proxy", 1);
 app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/healthz", (req, res) => res.send("ok"));
@@ -40,7 +40,7 @@ const port = process.env.PORT || 3000;
 app.listen(port, "0.0.0.0", () => console.log(`Listening on ${port}`));
 ```
 
-`trust proxy` makes `req.protocol` and `req.ip` reflect the client, since requests reach the application through the cluster's ingress. `path.join(__dirname, "public")` resolves the static folder from the file location, not from the working directory.
+`trust proxy` set to `1` trusts one hop, the cluster's ingress, so `req.protocol` and `req.ip` reflect what the ingress saw, and a client cannot spoof them with its own `X-Forwarded-*` headers. `path.join(__dirname, "public")` resolves the static folder from the file location, not from the working directory.
 
 Add a `migrate` script to `package.json` that runs your migration tool, for example `"migrate": "knex migrate:latest"`, `"migrate": "prisma migrate deploy"` or `"migrate": "node-pg-migrate up"`.
 
@@ -126,6 +126,8 @@ Running the migrations in the start command instead works for a single instance,
 </Tabs>
 
 ## Troubleshooting
+
+The CLI commands below use the organization and project selected with `qovery context set`. Run it first, or add `--organization` and `--project` to each command.
 
 <AccordionGroup>
   <Accordion title="Deployment fails on the health check">

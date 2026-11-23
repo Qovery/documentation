@@ -1045,6 +1045,18 @@
       "destination": "/configuration/helm"
     },
     {
+      "source": "/guides/advanced/managing-environment-variables",
+      "destination": "/configuration/environment-variables"
+    },
+    {
+      "source": "/guides/advanced/using-multiple-environments",
+      "destination": "/configuration/environment"
+    },
+    {
+      "source": "/guides/getting-started/adding-a-database",
+      "destination": "/configuration/database"
+    },
+    {
       "source": "/guides/advanced/microservices",
       "destination": "/getting-started/guides/advanced-tutorials/microservices-monorepo"
     },
@@ -2475,10 +2487,6 @@
     {
       "source": "/community/:slug*",
       "destination": "/getting-started/useful-resources/help-and-support"
-    },
-    {
-      "source": "/guides/:slug*",
-      "destination": "/getting-started/introduction"
     },
     {
       "source": "/extending-qovery/:slug*",

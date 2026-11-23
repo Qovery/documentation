@@ -587,10 +587,10 @@ kubectl get events --namespace <namespace> --sort-by='.lastTimestamp'
   <Accordion title="exec plugin: invalid apiVersion">
     **Symptoms**: `exec plugin: invalid apiVersion "client.authentication.k8s.io/v1"` or `"client.authentication.k8s.io/v1alpha1"`
 
-    **Cause**: The kubeconfig asks the AWS CLI for a token in a format your local tools do not support. An old AWS CLI cannot produce `v1` tokens, and recent versions of kubectl no longer accept `v1alpha1`.
+    **Cause**: Your kubectl and AWS CLI versions do not work together. The kubeconfig names the `client.authentication.k8s.io` API version of the credential exchange between kubectl and the AWS CLI. Recent versions of kubectl no longer accept `v1alpha1`, and an old AWS CLI writes kubeconfigs and credentials with a version that a recent kubectl rejects. kubectl can raise this error before it runs the AWS CLI.
 
     **Solutions**:
-    - Update the AWS CLI and kubectl to their latest versions
+    - Update the AWS CLI to its latest version, and use a kubectl version within one minor version of the cluster's Kubernetes version
     - Download the kubeconfig again: `qovery cluster kubeconfig --cluster-id <cluster-id>`, or `aws eks update-kubeconfig --region <region> --name <cluster-name>`
 
   </Accordion>

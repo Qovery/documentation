@@ -38,7 +38,7 @@ So a deployment that stays queued is almost always waiting for another one: a lo
 
 Cancel the deployment that blocks the queue, or the queued requests you no longer need. In the deployment history, click the cancel icon next to the deployment. Deployments in **Queued** or **In Progress** status can be cancelled.
 
-From the CLI:
+From the CLI, after selecting the organization and project with `qovery context set` (or with `--organization` and `--project`):
 
 ```bash
 qovery environment cancel --environment "<environment-name>" --watch

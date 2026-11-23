@@ -60,7 +60,7 @@ On clusters with a fixed node range (GKE, AKS, Scaleway Kapsule, or AWS without 
 
 ### Run more, smaller instances
 
-A service that needs 2 vCPU in one pod needs a node with more than 2 vCPU free. Two instances of 1 vCPU fit in more places. With autoscaling, set a minimum and a maximum number of instances so the service grows with the load instead of reserving its peak all the time. See [Instances and autoscaling](/configuration/application#instances-%26-autoscaling).
+A service that needs 2 vCPU in one pod needs a node with at least 2 vCPU of allocatable capacity free. Two instances of 1 vCPU fit in more places. With autoscaling, set a minimum and a maximum number of instances so the service grows with the load instead of reserving its peak all the time. See [Instances and autoscaling](/configuration/application#instances-%26-autoscaling).
 
 ## Cluster updates fail for the same reason
 

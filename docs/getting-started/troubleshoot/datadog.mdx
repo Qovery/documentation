@@ -45,7 +45,7 @@ agents:
 
 Create the `SERVICE_DISPLAY_NAME` and `TEAM` variables on your services, redeploy them, then redeploy the Datadog service. These tags are attached to containers, not to pods, so pod-level views in Datadog do not show them.
 
-## The deployment fails after adding a Datadog log annotation
+## Logs are missing or the deployment fails after adding a Datadog log annotation
 
 You added a Datadog autodiscovery annotation to a service, for example:
 
@@ -53,23 +53,27 @@ You added a Datadog autodiscovery annotation to a service, for example:
 ad.datadoghq.com/my-container.logs: [{"source": "nodejs", "service": "checkout-api"}]
 ```
 
-and the service no longer deploys, while it deploys fine without the annotation.
+and Datadog does not collect the logs as configured, or the service no longer deploys.
 
-### Fix
+### Logs are missing or untagged
 
-Check these points in the annotation group:
+The Datadog agent reads the annotation after the pod starts. A mistake in it changes what the agent collects, not how the pod is scheduled or becomes ready. Check these points in the annotation group:
 
 - **The key names the container.** The part between `ad.datadoghq.com/` and `.logs` must be the name of the container in the pod, not the name of the service in Qovery. Get it with `kubectl get pod <pod-name> -n <namespace> -o jsonpath='{.spec.containers[*].name}'`.
 - **The value is valid JSON.** It must be a JSON array, with double quotes around every key and string. A trailing comma or single quotes make it invalid.
 - **The scope is right.** Datadog reads autodiscovery annotations on pods. Set the scope of the annotation group to pods.
 
-Then redeploy the service. If the deployment still fails, open the deployment logs and look for the line that mentions the annotation. See [Datadog Autodiscovery Annotations](/configuration/integrations/observability/datadog#datadog-autodiscovery-annotations).
+Then redeploy the service. See [Datadog Autodiscovery Annotations](/configuration/integrations/observability/datadog#datadog-autodiscovery-annotations).
+
+### The deployment fails
+
+The agent does not take part in the rollout, so look for the cause in the deployment itself. Open the deployment logs and the Kubernetes events of the service, and read the first error line. If it mentions the annotation, Kubernetes rejected its key: a key is an optional prefix, a `/`, and a name of at most 63 characters made of letters, digits, `-`, `_` and `.`.
 
 ## Uninstall the Datadog agent
 
 How you remove the agent depends on how it was installed.
 
-**Installed as a Qovery Helm service** (the method in the [Datadog guide](/configuration/integrations/observability/datadog)): stop the Datadog Helm service, then delete it (three-dot menu, **Remove helm**). Deleting a Helm service removes all the Kubernetes resources created by the chart. From the CLI: `qovery helm stop -n <datadog-service> --watch`, then `qovery helm delete -n <datadog-service> --watch`. See [Delete a Helm service](/configuration/helm#delete-service).
+**Installed as a Qovery Helm service** (the method in the [Datadog guide](/configuration/integrations/observability/datadog)): stop the Datadog Helm service, then delete it (three-dot menu, **Remove helm**). Deleting a Helm service removes all the Kubernetes resources created by the chart. From the CLI: `qovery helm stop -n <datadog-service> --watch`, then `qovery helm delete -n <datadog-service> --watch`. These commands use the organization, project and environment selected with `qovery context set`; run it first, or add `--organization`, `--project` and `--environment`. See [Delete a Helm service](/configuration/helm#delete-service).
 
 **Installed by hand with Helm or kubectl:** connect to the cluster (see [Connect to your cluster](/configuration/connect-to-cluster)) and remove it the same way:
 

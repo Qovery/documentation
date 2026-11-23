@@ -24,7 +24,7 @@ When the release is a Qovery component (for example `vertical-pod-autoscaler`, `
 2. Give the cluster room: raise the maximum number of nodes, allow larger instance types, or raise the node pool limits. See [Insufficient cpu or memory](/getting-started/troubleshoot/insufficient-cpu).
 3. Update the cluster again.
 
-A cluster with a fixed number of nodes (same minimum and maximum) has no room for the extra pods an update needs. Allow at least one more node than you run day to day.
+A cluster with a fixed number of nodes (same minimum and maximum) cannot add a node during the update. If its nodes are full, the extra pods the update needs have no room. Allow at least one more node than you run day to day.
 
 ## During the deployment of a Helm service
 

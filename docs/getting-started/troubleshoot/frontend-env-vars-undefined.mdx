@@ -42,7 +42,7 @@ Qovery injects your variables into the running container, which is too late for 
   </Step>
 
   <Step title="Create the variable in Qovery">
-    Create `REACT_APP_BACKEND_URL` on the frontend service, or at environment level. To point at another service of the environment, create an [alias](/configuration/environment-variables#aliases) on the built-in host variable of the backend, named the way your frontend expects.
+    Create `REACT_APP_BACKEND_URL` on the frontend service, or at environment level. To point at another service of the environment, create an [alias](/configuration/environment-variables#aliases) on the built-in variable of the backend that ends in `_HOST_EXTERNAL`, named the way your frontend expects. The browser cannot reach the `_HOST_INTERNAL` host; see [Use the public host name of the backend](#use-the-public-host-name-of-the-backend).
   </Step>
 
   <Step title="Add the protocol">

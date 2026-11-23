@@ -39250,7 +39250,7 @@ This lets you give a blueprint its own role with only the permissions it needs, 
 | **Same account** | The role must be in the same AWS account as the deployment credentials. Cross-account roles are not supported. |
 | **Permission to assume it** | The deployment credentials need `sts:AssumeRole` on the role, **and** the role's trust policy must allow the deployment credentials' IAM principal to assume it. Without both, the deployment fails with `AccessDenied`. |
 
-For example, this trust policy on the role lets the IAM role used by the deployment credentials assume it. Replace the principal with the role of your deployment credentials (the cluster credentials by default):
+For example, this trust policy on the role lets the IAM role behind the deployment credentials assume it. Replace the principal with the exact ARN of the role behind your deployment credentials (the cluster credentials by default). If you supply an IAM user's access keys with `credentials: env`, use the ARN of that user (`arn:aws:iam::<account-id>:user/<name>`) instead:
 
 ```json
 {

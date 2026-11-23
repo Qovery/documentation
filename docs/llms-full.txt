@@ -39240,17 +39240,17 @@ For Helm blueprints, engine version, credentials, and state backend do not apply
 
 ### Assuming an IAM role (AWS blueprints)
 
-By default, an AWS blueprint calls AWS with the cluster's cloud credentials. Every blueprint whose source is AWS also exposes an optional `role_arn` variable. When you set it, the blueprint uses the cluster credentials to assume that IAM role, and every AWS call of the deployment is made as the role. Leave it empty to keep using the cluster credentials directly.
+By default, an AWS blueprint calls AWS with its deployment credentials: the cluster's cloud credentials, unless you set the [credentials](#engine-%26-advanced-settings) to `env`. Every blueprint whose source is AWS also exposes an optional `role_arn` variable. When you set it, the blueprint uses the deployment credentials to assume that IAM role, and the calls that manage the AWS resources are made as the role. Leave it empty to keep using the deployment credentials directly.
 
-This lets you give a blueprint its own role with only the permissions it needs, instead of granting them to the cluster credentials. Each blueprint page lists its permissions under **Required AWS IAM permissions**: they belong to the role, and the cluster credentials then only need `sts:AssumeRole` on it.
+This lets you give a blueprint its own role with only the permissions it needs, instead of granting them to the deployment credentials. Each blueprint page lists its permissions under **Required AWS IAM permissions**: they belong to the role, and the deployment credentials then only need `sts:AssumeRole` on it.
 
 | Requirement | Details |
 |-------------|---------|
 | **Format** | `arn:aws:iam::<account-id>:role/<name>`, with an optional path (`role/<path>/<name>`). The `aws-cn`, `aws-us-gov` and `aws-iso*` partitions are accepted too. |
-| **Same account** | The role must be in the same AWS account as the cluster credentials. Cross-account roles are not supported. |
-| **Permission to assume it** | The cluster credentials need `sts:AssumeRole` on the role, **and** the role's trust policy must allow the cluster credentials' IAM principal to assume it. Without both, the deployment fails with `AccessDenied`. |
+| **Same account** | The role must be in the same AWS account as the deployment credentials. Cross-account roles are not supported. |
+| **Permission to assume it** | The deployment credentials need `sts:AssumeRole` on the role, **and** the role's trust policy must allow the deployment credentials' IAM principal to assume it. Without both, the deployment fails with `AccessDenied`. |
 
-For example, this trust policy on the role lets the IAM role used by the cluster credentials assume it. Replace the principal with the role of your cluster credentials:
+For example, this trust policy on the role lets the IAM role used by the deployment credentials assume it. Replace the principal with the role of your deployment credentials (the cluster credentials by default):
 
 ```json
 {
@@ -39260,7 +39260,7 @@ For example, this trust policy on the role lets the IAM role used by the cluster
       "Sid": "Statement1",
       "Effect": "Allow",
       "Principal": {
-        "AWS": "arn:aws:iam::<account-id>:role/<your_cluster_credentials_role_name>"
+        "AWS": "arn:aws:iam::<account-id>:role/<your_deployment_credentials_role_name>"
       },
       "Action": "sts:AssumeRole"
     }
@@ -39278,7 +39278,7 @@ To set it from the API or CLI, add it to the `variables` of the blueprint, like 
 ```
 
 <Warning>
-`role_arn` does not apply to a user-provided Terraform state backend: access to it keeps using the cluster credentials. It does not exist on Helm, GCP, Scaleway or External blueprints (including AWS Bedrock Access, which is an External blueprint).
+`role_arn` does not apply to a user-provided Terraform state backend: access to it keeps using the deployment credentials. It does not exist on Helm, GCP, Scaleway or External blueprints (including AWS Bedrock Access, which is an External blueprint).
 </Warning>
 
 ## Using External Secrets

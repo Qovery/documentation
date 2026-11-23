@@ -211,13 +211,13 @@ For Helm blueprints, engine version, credentials, and state backend do not apply
 
 By default, an AWS blueprint calls AWS with its deployment credentials: the cluster's cloud credentials, unless you set the [credentials](#engine-%26-advanced-settings) to `env`. Every blueprint whose source is AWS also exposes an optional `role_arn` variable. When you set it, the blueprint uses the deployment credentials to assume that IAM role, and the calls that manage the AWS resources are made as the role. Leave it empty to keep using the deployment credentials directly.
 
-This lets you give a blueprint its own role with only the permissions it needs, instead of granting them to the deployment credentials. Each blueprint page lists its permissions under **Required AWS IAM permissions**: they belong to the role, and the deployment credentials then only need `sts:AssumeRole` on it.
+This lets you give a blueprint its own role with only the permissions it needs, instead of granting them to the deployment credentials. Each blueprint page lists its permissions under **Required AWS IAM permissions**: they belong to the role, not to the deployment credentials.
 
 | Requirement | Details |
 |-------------|---------|
 | **Format** | `arn:aws:iam::<account-id>:role/<name>`, with an optional path (`role/<path>/<name>`). The `aws-cn`, `aws-us-gov` and `aws-iso*` partitions are accepted too. |
 | **Same account** | The role must be in the same AWS account as the deployment credentials. Cross-account roles are not supported. |
-| **Permission to assume it** | The deployment credentials need `sts:AssumeRole` on the role, **and** the role's trust policy must allow the deployment credentials' IAM principal to assume it. Without both, the deployment fails with `AccessDenied`. |
+| **Permission to assume it** | The role's trust policy must allow the deployment credentials' IAM principal to assume it. |
 
 For example, this trust policy on the role lets the IAM role behind the deployment credentials assume it. Replace the principal with the exact ARN of the role behind your deployment credentials (the cluster credentials by default). If you supply an IAM user's access keys with `credentials: env`, use the ARN of that user (`arn:aws:iam::<account-id>:user/<name>`) instead:
 

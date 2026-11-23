@@ -23,7 +23,6 @@
 ## Full text
 
 - [Full documentation](https://www.qovery.com/docs/llms-full.txt): every page in one file, product overview first, API reference last.
-- [Guides and reference without the API](https://www.qovery.com/docs/llms-full-guides.txt): the same file without the API reference.
 
 ## Documentation
 

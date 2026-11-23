@@ -29144,9 +29144,10 @@ Each of the two credentials uses the STS Assume Role method and targets its own 
 - Service deployments, including the blueprints
 
 <Warning>
-Once Restricted Credentials is enabled, [Terraform services](https://www.qovery.com/docs/configuration/terraform) that use the cluster credentials (the default behavior) are always deployed with the restricted credentials.
+Once Restricted Credentials is enabled, the following services that use the cluster credentials (the default behavior) are always deployed with the restricted credentials. Review them before requesting the feature: only those managing resources that rely on `iam:*` or `kms:*` are concerned.
 
-Review your Terraform services before requesting the feature: only Terraform services managing resources that rely on `iam:*` or `kms:*` are concerned. Once your cluster uses Restricted Credentials, [update these Terraform services](#update-your-terraform-services) before their next deployment.
+- [Terraform services](https://www.qovery.com/docs/configuration/terraform): once your cluster uses Restricted Credentials, [update these Terraform services](#update-your-terraform-services) before their next deployment.
+- AWS [blueprints](https://www.qovery.com/docs/configuration/blueprints): once your cluster uses Restricted Credentials, set their `role_arn` variable to a dedicated IAM role before their next deployment. See [Assuming an IAM role](https://www.qovery.com/docs/configuration/blueprints#assuming-an-iam-role-aws-blueprints).
 </Warning>
 
 ### Create the IAM roles
@@ -39055,7 +39056,7 @@ Blueprints come from three kinds of source — cloud provider, Helm, and Externa
 
 | Source | What it provisions | Credentials |
 |--------|--------------------|-------------|
-| **AWS / GCP / Scaleway** | A managed resource in the cloud account backing the target cluster (RDS, ElastiCache, S3, Memorystore, Scaleway Managed Database…). | Reuses the cluster's cloud credentials by default. |
+| **AWS / GCP / Scaleway** | A managed resource in the cloud account backing the target cluster (RDS, ElastiCache, S3, Memorystore, Scaleway Managed Database…). | Reuses the cluster's cloud credentials by default. AWS blueprints can also assume an IAM role with the `role_arn` variable: see [Assuming an IAM role](#assuming-an-iam-role-aws-blueprints). |
 | **Helm** | A Kubernetes add-on deployed on the cluster itself, from a curated Helm chart. | Runs in-cluster, no cloud credentials needed. |
 | **External** | A third-party SaaS resource provisioned through that vendor's own Terraform provider. Available on **every** cluster regardless of its cloud provider. | You supply the vendor's credentials as secret variables on the service. |
 
@@ -39072,6 +39073,7 @@ The catalog is expanding — [`catalog.json`](https://github.com/Qovery/service-
 | [**Amazon ElastiCache for Redis**](https://www.qovery.com/docs/configuration/blueprints/aws-elasticache-redis) | AWS | 6, 7 |
 | [**Amazon ElastiCache for Redis (legacy single node)**](https://www.qovery.com/docs/configuration/blueprints/aws-elasticache-redis-node) | AWS | 5, 6, 7 |
 | [**Amazon ElastiCache for Valkey**](https://www.qovery.com/docs/configuration/blueprints/aws-elasticache-valkey) | AWS | 9 |
+| [**Amazon ElastiCache Serverless for Valkey**](https://www.qovery.com/docs/configuration/blueprints/aws-elasticache-valkey-serverless) | AWS | 9 |
 | [**Amazon RDS for MySQL**](https://www.qovery.com/docs/configuration/blueprints/aws-rds-mysql) | AWS | 8 |
 | [**Amazon RDS for PostgreSQL**](https://www.qovery.com/docs/configuration/blueprints/aws-rds-postgresql) | AWS | 14, 15, 16, 17, 18 |
 | [**Google Cloud Memorystore for Redis**](https://www.qovery.com/docs/configuration/blueprints/gcp-memorystore-redis) | GCP | 7 |
@@ -39226,7 +39228,7 @@ The engine block defines how the resource is provisioned. Which settings you can
 |---------|-----------|-------------|
 | **Engine** | all | `terraform`, `opentofu`, or `helm` — the tool used to provision the resource. |
 | **Version** | Terraform / OpenTofu | Engine version. Editable only if the author marked it overridable, and constrained to the allowed values. |
-| **Credentials** | Terraform / OpenTofu | `cluster` (use the cluster's cloud credentials) or `env` (credentials supplied as variables on the service). External blueprints are always `env`. |
+| **Credentials** | Terraform / OpenTofu | `cluster` (use the cluster's cloud credentials) or `env` (credentials supplied as variables on the service). External blueprints are always `env`. AWS blueprints can assume an IAM role, see [Assuming an IAM role](#assuming-an-iam-role-aws-blueprints). |
 | **State backend** | Terraform / OpenTofu | `qovery` (Qovery-managed state) or `user_provided` (bring your own backend, e.g. S3/GCS/Azure). |
 | **Resources** | all | CPU, RAM, and ephemeral storage allocated to the provisioning job (for example `500m`, `512Mi`, `1Gi`). |
 | **Timeout** | all | Maximum duration, in seconds, for the provisioning run. |
@@ -39235,6 +39237,49 @@ The engine block defines how the resource is provisioned. Which settings you can
 <Info>
 For Helm blueprints, engine version, credentials, and state backend do not apply — the chart and its version are defined by the blueprint, and the resources block is ignored because the chart declares its own.
 </Info>
+
+### Assuming an IAM role (AWS blueprints)
+
+By default, an AWS blueprint calls AWS with its deployment credentials: the cluster's cloud credentials, unless you set the [credentials](#engine-%26-advanced-settings) to `env`. Every blueprint whose source is AWS also exposes an optional `role_arn` variable. When you set it, the blueprint uses the deployment credentials to assume that IAM role, and the calls that manage the AWS resources are made as the role. Leave it empty to keep using the deployment credentials directly.
+
+This lets you give a blueprint its own role with only the permissions it needs, instead of granting them to the deployment credentials. Each blueprint page lists its permissions under **Required AWS IAM permissions**: they belong to the role, not to the deployment credentials.
+
+| Requirement | Details |
+|-------------|---------|
+| **Format** | `arn:aws:iam::<account-id>:role/<name>`, with an optional path (`role/<path>/<name>`). The `aws-cn`, `aws-us-gov` and `aws-iso*` partitions are accepted too. |
+| **Same account** | The role must be in the same AWS account as the deployment credentials. Cross-account roles are not supported. |
+| **Permission to assume it** | The role's trust policy must allow the deployment credentials' IAM principal to assume it. |
+
+For example, this trust policy on the role lets the IAM role behind the deployment credentials assume it. Replace the principal with the exact ARN of the role behind your deployment credentials (the cluster credentials by default). If you supply an IAM user's access keys with `credentials: env`, use the ARN of that user (`arn:aws:iam::<account-id>:user/<name>`) instead:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Statement1",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::<account-id>:role/<your_deployment_credentials_role_name>"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+```
+
+To set it from the API or CLI, add it to the `variables` of the blueprint, like any other variable:
+
+```json
+{
+  "name": "role_arn",
+  "value": "arn:aws:iam::123456789012:role/my-blueprint-role"
+}
+```
+
+<Warning>
+`role_arn` does not apply to a user-provided Terraform state backend: access to it keeps using the deployment credentials. It does not exist on Helm, GCP, Scaleway or External blueprints (including AWS Bedrock Access, which is an External blueprint).
+</Warning>
 
 ## Using External Secrets
 
@@ -39387,6 +39432,9 @@ Creating, updating, and deploying a blueprint requires the **Manager** role on t
   <Accordion title="Scope the credentials you give an External blueprint" icon="user-shield">
     Create a dedicated vendor-side service account per blueprint service, limited to what the template provisions, rather than reusing an administrator token.
   </Accordion>
+  <Accordion title="Use a dedicated IAM role for AWS blueprints" icon="user-lock">
+    Set `role_arn` to a role limited to what the blueprint provisions, rather than granting those permissions to the cluster credentials. See [Assuming an IAM role](#assuming-an-iam-role-aws-blueprints).
+  </Accordion>
   <Accordion title="Consume outputs instead of hardcoding endpoints" icon="link">
     Wire applications to a blueprint's published outputs. A later update that changes an endpoint then propagates on its own.
   </Accordion>
@@ -39429,7 +39477,7 @@ Source: https://www.qovery.com/docs/configuration/blueprints/aws-elasticache-red
 
 > AWS ElastiCache for Redis 7 replication group with TLS and auth token, attached to the Qovery cluster network, with configurable size, topology, backups and maintenance
 
-{/* Generated by scripts/blueprints/generate.py from Qovery/service-catalog tag AWS/redis/7/1.1.2. Edit the Blueprint's README, not this page. */}
+{/* Generated by scripts/blueprints/generate.py from Qovery/service-catalog tag AWS/redis/7/1.3.1. Edit the Blueprint's README, not this page. */}
 
 Qovery creates it in the AWS account of the environment's cluster, as a [Blueprint](https://www.qovery.com/docs/configuration/blueprints) service in one of your environments.
 
@@ -39439,8 +39487,8 @@ Qovery creates it in the AWS account of the environment's cluster, as a [Bluepri
 | Category | Databases & Caches |
 | Provider | AWS |
 | Engine | terraform |
-| Major versions (latest release) | `6` (1.0.2), `7` (1.1.2) |
-| Source | [AWS/redis/7](https://github.com/Qovery/service-catalog/tree/AWS/redis/7/1.1.2/AWS/redis/7) |
+| Major versions (latest release) | `6` (1.2.1), `7` (1.3.1) |
+| Source | [AWS/redis/7](https://github.com/Qovery/service-catalog/tree/AWS/redis/7/1.3.1/AWS/redis/7) |
 
 <Tip>
 **New to this?** You don't need to know Kubernetes or Terraform. Qovery sets up Amazon ElastiCache for Redis in your cloud account and manages it for you: you fill in a form, or paste the prompt below into your coding agent. The values it publishes, listed under Outputs, reach your other services as environment variables. Qovery tells you when a newer version of the Blueprint is available. Check the requirements in the Reference section before you start, and try it first in a development environment.
@@ -39467,7 +39515,7 @@ Qovery creates it in the AWS account of the environment's cluster, as a [Bluepri
     cat > blueprint.json <<'EOF'
     {
       "name": "aws-elasticache-redis",
-      "tag": "AWS/redis/7/1.1.2",
+      "tag": "AWS/redis/7/1.3.1",
       "icon": "app://qovery-console/redis",
       "variables": [
         {
@@ -39508,9 +39556,9 @@ You don't add any file to your repository. Qovery creates the Blueprint from the
 
 ## Variables and outputs
 
-Generated from `qbm.yml` at `AWS/redis/7/1.1.2`, the manifest the Console form is built from.
+Generated from `qbm.yml` at `AWS/redis/7/1.3.1`, the manifest the Console form is built from.
 
-<Accordion title="All 17 variables">
+<Accordion title="All 18 variables">
 
 | Name | Type | Required | Default | Secret | Description |
 | --- | --- | --- | --- | --- | --- |
@@ -39531,6 +39579,7 @@ Generated from `qbm.yml` at `AWS/redis/7/1.1.2`, the manifest the Console form i
 | `backup_retention_period` | number |  | `14` |  | Days to retain automatic snapshots (0 disables) |
 | `skip_final_snapshot` | bool |  | `false` |  | Skip the final snapshot on deletion. False leaves a snapshot behind after the group is destroyed. |
 | `snapshot_name` | string |  |  |  | Unset = start empty. Else an existing ElastiCache snapshot to seed from; read at creation only. |
+| `role_arn` | string |  |  |  | Unset = use the cluster credentials directly. Set an IAM role ARN of the cluster's AWS account to assume it; cross-account roles are not supported. |
 
 </Accordion>
 
@@ -39567,7 +39616,7 @@ Secret variables and outputs are encrypted and masked in Qovery, but Terraform c
 
 ## Reference
 
-From the Blueprint's [README](https://github.com/Qovery/service-catalog/blob/AWS/redis/7/1.1.2/AWS/redis/7/README.md).
+From the Blueprint's [README](https://github.com/Qovery/service-catalog/blob/AWS/redis/7/1.3.1/AWS/redis/7/README.md).
 
 Creates an AWS ElastiCache for Redis 7 replication group with configurable node type, topology, backups, maintenance window, and network settings. Traffic is encrypted in transit and protected by an auth token, and data is encrypted at rest.
 
@@ -39589,6 +39638,7 @@ Available node types: every ElastiCache node type Qovery offers for native manag
 | Name | Type | Sensitive | Default | Description |
 | ---- | ---- | --------- | ------- | ----------- |
 | `redis_password` | string | yes | _generated_ | Omit and Qovery generates a 32-character alphanumeric auth token. To set your own: 16–128 chars, must not contain /, @, ", or spaces. |
+| `role_arn` | string | | | Unset = use the cluster credentials directly. Set an IAM role ARN of the cluster's AWS account to assume it; cross-account roles are not supported. |
 
 In the Console, leaving the field blank omits it. Through the API or Terraform, omit the variable rather than sending an empty string: the platform rejects an empty variable value.
 
@@ -39679,9 +39729,20 @@ Changing `redis_password` later rotates through Terraform: `ROTATE` adds the new
 
 **Before moving a service created on an earlier version to this one**, make `redis_password` equal the group's live token. Earlier versions ignored `auth_token`, so a token rotated out-of-band left the old one in state, and the first apply on this version sends `redis_password` with `ROTATE`.
 
+### Assuming an IAM role
+
+Optional. Set the `role_arn` variable to make the blueprint assume an IAM role instead of using the configured credentials directly; leave it unset to use them as is.
+
+- Format: `arn:aws:iam::<account-id>:role/<name>`, with an optional path (`role/<path>/<name>`). The `aws-cn`, `aws-us-gov` and `aws-iso*` partitions are accepted too.
+- The role must be in the **same AWS account** as the credentials; cross-account roles are not supported.
+- The role's trust policy must allow the deploy credentials' IAM principal to assume it.
+- The role itself must carry the permissions listed in [Required AWS IAM permissions](#required-aws-iam-permissions).
+
 ### Required AWS IAM permissions
 
-The credentials used to deploy this blueprint must allow the actions below. EC2 read actions are needed so Terraform can look up the cluster VPC and workers security group when the network variables are left empty.
+> When `role_arn` is set, Terraform makes these AWS calls as the assumed role, so the permissions below belong to that role. Access to a user-provided Terraform backend, if you use one, is not covered by `role_arn`: it keeps using the deploy credentials.
+
+Unless `role_arn` is set, the credentials used to deploy this blueprint must allow the actions below. EC2 read actions are needed so Terraform can look up the cluster VPC and workers security group when the network variables are left empty.
 
 ```json
 {
@@ -39727,7 +39788,7 @@ Source: https://www.qovery.com/docs/configuration/blueprints/aws-elasticache-red
 
 > Adopts an existing single-node AWS ElastiCache for Redis cluster created by Qovery native managed Redis. Import only: it cannot create a new cluster. This shape has no auth token and no TLS.
 
-{/* Generated by scripts/blueprints/generate.py from Qovery/service-catalog tag AWS/redis-node/7/1.0.1. Edit the Blueprint's README, not this page. */}
+{/* Generated by scripts/blueprints/generate.py from Qovery/service-catalog tag AWS/redis-node/7/1.2.1. Edit the Blueprint's README, not this page. */}
 
 Qovery creates it in the AWS account of the environment's cluster, as a [Blueprint](https://www.qovery.com/docs/configuration/blueprints) service in one of your environments.
 
@@ -39737,8 +39798,8 @@ Qovery creates it in the AWS account of the environment's cluster, as a [Bluepri
 | Category | Databases & Caches |
 | Provider | AWS |
 | Engine | terraform |
-| Major versions (latest release) | `5` (1.0.1), `6` (1.0.1), `7` (1.0.1) |
-| Source | [AWS/redis-node/7](https://github.com/Qovery/service-catalog/tree/AWS/redis-node/7/1.0.1/AWS/redis-node/7) |
+| Major versions (latest release) | `5` (1.2.1), `6` (1.2.1), `7` (1.2.1) |
+| Source | [AWS/redis-node/7](https://github.com/Qovery/service-catalog/tree/AWS/redis-node/7/1.2.1/AWS/redis-node/7) |
 
 <Tip>
 **New to this?** You don't need to know Kubernetes or Terraform. Qovery sets up Amazon ElastiCache for Redis (legacy single node) in your cloud account and manages it for you: you fill in a form, or paste the prompt below into your coding agent. The values it publishes, listed under Outputs, reach your other services as environment variables. Qovery tells you when a newer version of the Blueprint is available. Check the requirements in the Reference section before you start, and try it first in a development environment.
@@ -39765,7 +39826,7 @@ Qovery creates it in the AWS account of the environment's cluster, as a [Bluepri
     cat > blueprint.json <<'EOF'
     {
       "name": "aws-elasticache-redis-node",
-      "tag": "AWS/redis-node/7/1.0.1",
+      "tag": "AWS/redis-node/7/1.2.1",
       "icon": "app://qovery-console/redis",
       "variables": [
         {
@@ -39810,9 +39871,9 @@ You don't add any file to your repository. Qovery creates the Blueprint from the
 
 ## Variables and outputs
 
-Generated from `qbm.yml` at `AWS/redis-node/7/1.0.1`, the manifest the Console form is built from.
+Generated from `qbm.yml` at `AWS/redis-node/7/1.2.1`, the manifest the Console form is built from.
 
-<Accordion title="All 12 variables">
+<Accordion title="All 13 variables">
 
 | Name | Type | Required | Default | Secret | Description |
 | --- | --- | --- | --- | --- | --- |
@@ -39828,6 +39889,7 @@ Generated from `qbm.yml` at `AWS/redis-node/7/1.0.1`, the manifest the Console f
 | `preferred_backup_window` | string |  | `00:00-01:00` |  | Daily, UTC, format hh24:mi-hh24:mi. Only used when backup_retention_period &gt; 0. |
 | `backup_retention_period` | number |  | `14` |  | Days to retain automatic snapshots (0 disables) |
 | `skip_final_snapshot` | bool |  | `false` |  | Skip the final snapshot on deletion. False leaves a snapshot behind after the cluster is destroyed. |
+| `role_arn` | string |  |  |  | Unset = use the cluster credentials directly. Set an IAM role ARN of the cluster's AWS account to assume it; cross-account roles are not supported. |
 
 </Accordion>
 
@@ -39858,7 +39920,7 @@ Secret variables and outputs are encrypted and masked in Qovery, but Terraform c
 
 ## Reference
 
-From the Blueprint's [README](https://github.com/Qovery/service-catalog/blob/AWS/redis-node/7/1.0.1/AWS/redis-node/7/README.md).
+From the Blueprint's [README](https://github.com/Qovery/service-catalog/blob/AWS/redis-node/7/1.2.1/AWS/redis-node/7/README.md).
 
 Adopts an existing single-node AWS ElastiCache for Redis 7 cluster (`aws_elasticache_cluster`), the shape native Qovery-managed Redis created when the login was `qoveryadmin`. It brings the live cluster under a blueprint via `terraform import`, with no re-provision and no data movement.
 
@@ -39880,6 +39942,7 @@ Adopts an existing single-node AWS ElastiCache for Redis 7 cluster (`aws_elastic
 | `preferred_backup_window` | string | `00:00-01:00` | Daily snapshot window (UTC), used when `backup_retention_period > 0` |
 | `backup_retention_period` | number | `14` | Days to retain automatic snapshots (0 disables) |
 | `skip_final_snapshot` | bool | `false` | Skip the final snapshot on deletion. With `false`, deleting the service leaves a `<cluster id>-final-snap-<timestamp>` snapshot behind, billed until you delete it. |
+| `role_arn` | string | | Unset = use the cluster credentials directly. Set an IAM role ARN of the cluster's AWS account to assume it; cross-account roles are not supported. |
 
 The node count is fixed at 1, like the native template.
 
@@ -39907,7 +39970,18 @@ Node types: every ElastiCache node type Qovery offers for native managed Redis, 
 - `maintenance_window`, `log_delivery_configuration`, `notification_topic_arn`, `auto_minor_version_upgrade` — the same list the native template ignores.
 - `tags` — preserves native tags (`cluster_id` drives YACE metrics).
 
+### Assuming an IAM role
+
+Optional. Set the `role_arn` variable to make the blueprint assume an IAM role instead of using the configured credentials directly; leave it unset to use them as is.
+
+- Format: `arn:aws:iam::<account-id>:role/<name>`, with an optional path (`role/<path>/<name>`). The `aws-cn`, `aws-us-gov` and `aws-iso*` partitions are accepted too.
+- The role must be in the **same AWS account** as the credentials; cross-account roles are not supported.
+- The role's trust policy must allow the deploy credentials' IAM principal to assume it.
+- The role itself must carry the permissions listed in [Required AWS IAM permissions](#required-aws-iam-permissions).
+
 ### Required AWS IAM permissions
+
+> When `role_arn` is set, Terraform makes these AWS calls as the assumed role, so the permissions below belong to that role. Access to a user-provided Terraform backend, if you use one, is not covered by `role_arn`: it keeps using the deploy credentials.
 
 ```json
 {
@@ -39938,7 +40012,7 @@ Source: https://www.qovery.com/docs/configuration/blueprints/aws-elasticache-val
 
 > AWS ElastiCache for Valkey replication group with TLS and auth token, attached to the Qovery cluster network, with configurable size, topology, backups and maintenance
 
-{/* Generated by scripts/blueprints/generate.py from Qovery/service-catalog tag AWS/valkey/9/1.0.2. Edit the Blueprint's README, not this page. */}
+{/* Generated by scripts/blueprints/generate.py from Qovery/service-catalog tag AWS/valkey/9/1.2.1. Edit the Blueprint's README, not this page. */}
 
 Qovery creates it in the AWS account of the environment's cluster, as a [Blueprint](https://www.qovery.com/docs/configuration/blueprints) service in one of your environments.
 
@@ -39948,8 +40022,8 @@ Qovery creates it in the AWS account of the environment's cluster, as a [Bluepri
 | Category | Databases & Caches |
 | Provider | AWS |
 | Engine | terraform |
-| Major versions (latest release) | `9` (1.0.2) |
-| Source | [AWS/valkey/9](https://github.com/Qovery/service-catalog/tree/AWS/valkey/9/1.0.2/AWS/valkey/9) |
+| Major versions (latest release) | `9` (1.2.1) |
+| Source | [AWS/valkey/9](https://github.com/Qovery/service-catalog/tree/AWS/valkey/9/1.2.1/AWS/valkey/9) |
 
 <Tip>
 **New to this?** You don't need to know Kubernetes or Terraform. Qovery sets up Amazon ElastiCache for Valkey in your cloud account and manages it for you: you fill in a form, or paste the prompt below into your coding agent. The values it publishes, listed under Outputs, reach your other services as environment variables. Qovery tells you when a newer version of the Blueprint is available. Check the requirements in the Reference section before you start, and try it first in a development environment.
@@ -39976,7 +40050,7 @@ Qovery creates it in the AWS account of the environment's cluster, as a [Bluepri
     cat > blueprint.json <<'EOF'
     {
       "name": "aws-elasticache-valkey",
-      "tag": "AWS/valkey/9/1.0.2",
+      "tag": "AWS/valkey/9/1.2.1",
       "icon": "app://qovery-console/redis",
       "variables": [
         {
@@ -40017,9 +40091,9 @@ You don't add any file to your repository. Qovery creates the Blueprint from the
 
 ## Variables and outputs
 
-Generated from `qbm.yml` at `AWS/valkey/9/1.0.2`, the manifest the Console form is built from.
+Generated from `qbm.yml` at `AWS/valkey/9/1.2.1`, the manifest the Console form is built from.
 
-<Accordion title="All 17 variables">
+<Accordion title="All 18 variables">
 
 | Name | Type | Required | Default | Secret | Description |
 | --- | --- | --- | --- | --- | --- |
@@ -40040,6 +40114,7 @@ Generated from `qbm.yml` at `AWS/valkey/9/1.0.2`, the manifest the Console form 
 | `backup_retention_period` | number |  | `14` |  | Days to retain automatic snapshots (0 disables) |
 | `skip_final_snapshot` | bool |  | `false` |  | Skip the final snapshot on deletion. False leaves a snapshot behind after the group is destroyed. |
 | `snapshot_name` | string |  |  |  | Unset = start empty. Else an existing ElastiCache snapshot to seed from; read at creation only. |
+| `role_arn` | string |  |  |  | Unset = use the cluster credentials directly. Set an IAM role ARN of the cluster's AWS account to assume it; cross-account roles are not supported. |
 
 </Accordion>
 
@@ -40070,7 +40145,7 @@ Secret variables and outputs are encrypted and masked in Qovery, but Terraform c
 
 ## Reference
 
-From the Blueprint's [README](https://github.com/Qovery/service-catalog/blob/AWS/valkey/9/1.0.2/AWS/valkey/9/README.md).
+From the Blueprint's [README](https://github.com/Qovery/service-catalog/blob/AWS/valkey/9/1.2.1/AWS/valkey/9/README.md).
 
 Creates an AWS ElastiCache for Valkey 9 replication group with configurable node type, topology, backups, maintenance window, and network settings. Traffic is encrypted in transit and protected by an auth token, and data is encrypted at rest.
 
@@ -40148,6 +40223,12 @@ The window is lowercased before it reaches AWS, which is how AWS stores and repo
 
 With `skip_final_snapshot = false`, destroying the service leaves a snapshot named `<replication group id>-final-snap-<creation timestamp>` behind, which keeps costing storage until deleted. The timestamp is stamped once at creation, so it is unique per group — successive create/destroy cycles of the same name do not collide on an existing snapshot id — while staying stable across plans. `snapshot_name` is read at creation only: pointing it at a different snapshot later does nothing.
 
+#### IAM role
+
+| Name | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `role_arn` | string | — | Unset = use the cluster credentials directly. Set an IAM role ARN of the cluster's AWS account to assume it; cross-account roles are not supported. |
+
 ### Outputs
 
 | Name | Sensitive | Description |
@@ -40183,9 +40264,20 @@ Changing `valkey_password` later rotates through Terraform: `ROTATE` adds the ne
 
 **Before moving a service created on an earlier version to this one**, make `valkey_password` equal the group's live token. Earlier versions ignored `auth_token`, so a token rotated out-of-band left the old one in state, and the first apply on this version sends `valkey_password` with `ROTATE`.
 
+### Assuming an IAM role
+
+Optional. Set the `role_arn` variable to make the blueprint assume an IAM role instead of using the configured credentials directly; leave it unset to use them as is.
+
+- Format: `arn:aws:iam::<account-id>:role/<name>`, with an optional path (`role/<path>/<name>`). The `aws-cn`, `aws-us-gov` and `aws-iso*` partitions are accepted too.
+- The role must be in the **same AWS account** as the credentials; cross-account roles are not supported.
+- The role's trust policy must allow the deploy credentials' IAM principal to assume it.
+- The role itself must carry the permissions listed in [Required AWS IAM permissions](#required-aws-iam-permissions).
+
 ### Required AWS IAM permissions
 
-The credentials used to deploy this blueprint must allow the actions below. EC2 read actions are needed so Terraform can look up the cluster VPC and workers security group when the network variables are left empty.
+> When `role_arn` is set, Terraform makes these AWS calls as the assumed role, so the permissions below belong to that role. Access to a user-provided Terraform backend, if you use one, is not covered by `role_arn`: it keeps using the deploy credentials.
+
+Unless `role_arn` is set, the credentials used to deploy this blueprint must allow the actions below. EC2 read actions are needed so Terraform can look up the cluster VPC and workers security group when the network variables are left empty.
 
 ```json
 {
@@ -40226,12 +40318,308 @@ The credentials used to deploy this blueprint must allow the actions below. EC2 
 }
 ```
 
+# Amazon ElastiCache Serverless for Valkey
+Source: https://www.qovery.com/docs/configuration/blueprints/aws-elasticache-valkey-serverless
+
+> AWS ElastiCache Serverless cache on Valkey 9, billed on usage, with TLS and a password-protected user, on the Qovery cluster network. Needs a cluster-mode client.
+
+{/* Generated by scripts/blueprints/generate.py from Qovery/service-catalog tag AWS/valkey-serverless/9/1.2.1. Edit the Blueprint's README, not this page. */}
+
+Qovery creates it in the AWS account of the environment's cluster, as a [Blueprint](https://www.qovery.com/docs/configuration/blueprints) service in one of your environments.
+
+| | |
+| --- | --- |
+| Catalog name | `aws-elasticache-valkey-serverless` |
+| Category | Databases & Caches |
+| Provider | AWS |
+| Engine | terraform |
+| Major versions (latest release) | `9` (1.2.1) |
+| Source | [AWS/valkey-serverless/9](https://github.com/Qovery/service-catalog/tree/AWS/valkey-serverless/9/1.2.1/AWS/valkey-serverless/9) |
+
+<Tip>
+**New to this?** You don't need to know Kubernetes or Terraform. Qovery sets up Amazon ElastiCache Serverless for Valkey in your cloud account and manages it for you: you fill in a form, or paste the prompt below into your coding agent. The values it publishes, listed under Outputs, reach your other services as environment variables. Qovery tells you when a newer version of the Blueprint is available. Check the requirements in the Reference section before you start, and try it first in a development environment.
+</Tip>
+
+## Create it
+
+<Tabs>
+  <Tab title="Console">
+    1. Open the environment, then **New service** › **Blueprint**.
+    2. Find **Amazon ElastiCache Serverless for Valkey** in the catalog and pick the major version.
+    3. Fill in the variables. Required ones are marked; the others use their defaults.
+    4. Create the service, and deploy it now or later.
+  </Tab>
+  <Tab title="CLI and API">
+    List the catalog to get the latest tag, then create the service from it. `qovery api` signs the requests with your CLI session.
+
+    ```bash
+    ORG_ID="REPLACE_WITH_ORGANIZATION_ID"
+    ENV_ID="REPLACE_WITH_ENVIRONMENT_ID"
+
+    qovery api "organization/$ORG_ID/blueprint/catalog" | jq '.. | objects | select(.name? == "aws-elasticache-valkey-serverless")'
+
+    cat > blueprint.json <<'EOF'
+    {
+      "name": "aws-elasticache-valkey-serverless",
+      "tag": "AWS/valkey-serverless/9/1.2.1",
+      "icon": "app://qovery-console/redis",
+      "variables": [
+        {
+          "name": "valkey_name",
+          "value": "REPLACE_WITH_VALKEY_NAME"
+        }
+      ],
+      "spec_overrides": {
+        "engine_version": "1.9.7"
+      }
+    }
+    EOF
+    BLUEPRINT_ID=$(qovery api "environment/$ENV_ID/blueprint" --method POST --input - < blueprint.json | jq -r .id)
+    rm blueprint.json   # it can hold secret values
+    qovery api "blueprint/$BLUEPRINT_ID"   # status of the latest deployment
+    ```
+
+    Replace each `REPLACE_WITH_` value. Add optional variables to `variables` the same way.
+
+    Creating the service starts its first deployment. To deploy it again later, run `qovery api "blueprint/$BLUEPRINT_ID/deploy" --method POST`.
+  </Tab>
+  <Tab title="Coding agent">
+    Paste this into Claude Code, Cursor, Codex or another coding agent with the [Qovery agent skills](https://www.qovery.com/docs/getting-started/quickstart/agent-skills) installed (`curl -fsSL https://skill.qovery.com/install.sh | bash`).
+
+    ```text Prompt wrap
+    Add the Qovery Blueprint Amazon ElastiCache Serverless for Valkey (aws-elasticache-valkey-serverless) to one of my Qovery environments and deploy it. Ask me for valkey_name.
+    Ask me before deploying to a production environment.
+    Docs: https://www.qovery.com/docs/configuration/blueprints/aws-elasticache-valkey-serverless.md
+    ```
+  </Tab>
+</Tabs>
+
+You don't add any file to your repository. Qovery creates the Blueprint from the Console or the API.
+
+## Variables and outputs
+
+Generated from `qbm.yml` at `AWS/valkey-serverless/9/1.2.1`, the manifest the Console form is built from.
+
+<Accordion title="All 10 variables">
+
+| Name | Type | Required | Default | Secret | Description |
+| --- | --- | --- | --- | --- | --- |
+| `valkey_name` | string | Yes |  |  | Letters, digits, single hyphens; must start with a letter and end with a letter or digit; max 32 chars. No underscores. |
+| `valkey_password` | string |  |  | Yes | Leave empty and Qovery generates a 32-character one. To set your own: 16–128 chars, no comma, /, @, " or spaces. A change replaces it. |
+| `data_storage_max_gb` | number |  | `0` |  | 0 = the AWS maximum, 5000 GB. Else the most data the cache may store, in GB (1–5000). |
+| `ecpu_per_second_max` | number |  | `0` |  | 0 = the AWS maximum, 15000000. Else the most ECPUs per second the cache may use (1000–15000000). |
+| `subnet_ids` | string |  |  |  | Leave empty — derived from the cluster's ElastiCache subnet group. Set it (comma-separated, one per AZ) only on a user-provided VPC; read at creation. |
+| `security_group_ids` | string |  |  |  | Leave empty for the blueprint's own group (opens 6379–6380 to allowed_cidrs). Else comma-separated ids. |
+| `allowed_cidrs` | string |  |  |  | Leave empty to allow the whole VPC (every cluster pod). Else comma-separated IPv4 CIDRs; only affects the blueprint's security group. |
+| `backup_retention_period` | number |  | `14` |  | Days to retain daily automatic snapshots (0 disables) |
+| `daily_snapshot_time` | string |  | `00:00` |  | UTC, format hh24:mi. Only used when backup_retention_period &gt; 0. |
+| `role_arn` | string |  |  |  | Unset = use the cluster credentials directly. Set an IAM role ARN of the cluster's AWS account to assume it; cross-account roles are not supported. |
+
+</Accordion>
+
+Outputs become environment variables that other services in the environment can use. By default Qovery also creates an alias for each output, prefixed with the Blueprint's name; see [Aliases Qovery creates for outputs](https://www.qovery.com/docs/configuration/environment-variables#aliases-qovery-creates-for-outputs) for the naming rules and the cases where no alias is created.
+
+<Accordion title="All 10 outputs">
+
+| Name | Secret | Description |
+| --- | --- | --- |
+| `valkey_identifier` |  | ElastiCache serverless cache name |
+| `valkey_host` |  | Hostname applications connect to (cluster-mode clients only) |
+| `valkey_port` |  | Port of the primary endpoint, for writes and consistent reads |
+| `valkey_reader_port` |  | Port of the reader endpoint, on the same hostname |
+| `valkey_username` |  | Valkey user applications authenticate as |
+| `valkey_password` | Yes | Password of that user (generated when the input was left empty) |
+| `valkey_url` | Yes | Connection URL over TLS, on the primary endpoint |
+| `valkey_arn` |  | Serverless cache ARN |
+| `valkey_engine_version_actual` |  | Engine version actually running (including the patch AWS chose) |
+| `valkey_security_group_id` |  | Security group created for the cache (empty when security_group_ids is set) |
+
+</Accordion>
+
+<Warning>
+Secret variables and outputs are encrypted and masked in Qovery, but Terraform can also keep their values, and values derived from them, in its state. With the Qovery-managed state backend (the default), Qovery stores the state. If you use your own backend, protect it and keep state files out of version control.
+</Warning>
+
+## Reference
+
+From the Blueprint's [README](https://github.com/Qovery/service-catalog/blob/AWS/valkey-serverless/9/1.2.1/AWS/valkey-serverless/9/README.md).
+
+Creates an AWS ElastiCache Serverless cache on Valkey 9. There is no node type or shard count to pick: AWS scales the cache with the load and bills the data stored and the ECPUs consumed. Traffic is encrypted in transit, data is encrypted at rest, and access goes through a password-protected user.
+
+For a cache with a fixed node type, use the `aws-elasticache-valkey` blueprint instead.
+
+### Connecting
+
+Three things differ from the node-based blueprint:
+
+- **Use a cluster-mode client.** A serverless cache always runs in cluster mode, and AWS only supports clients that speak the cluster protocol. Multi-key commands only work on keys that share a hash slot; across slots they fail with `CROSSSLOT`.
+- **Two ports.** The cache serves writes and consistent reads on `6379` and replica reads on `6380`, on the same hostname. Many clients open connections to both, so the security group opens both.
+- **A user name is required.** Applications authenticate as the `app` user with `valkey_password`. There is no auth token and no usable `default` user.
+
+The `valkey_url` output carries all of it: `rediss://app:<password>@<host>:6379`. The `rediss://` scheme is correct: Valkey speaks the Redis protocol, and TLS is always on.
+
+### Variables
+
+#### Required
+
+| Name | Type | Sensitive | Description |
+| ---- | ---- | --------- | ----------- |
+| `valkey_name` | string | | Cache name, lowercased by AWS. Must start with a letter, end with a letter or digit, and use single hyphens between them; max 32 chars. Underscores are not allowed. |
+
+The limit is 32 characters to leave room for the suffixes of the user id (`<name>-app`) and the user group id (`<name>-users`), which ElastiCache caps at 40.
+
+#### Credentials
+
+| Name | Type | Sensitive | Default | Description |
+| ---- | ---- | --------- | ------- | ----------- |
+| `valkey_password` | string | yes | _generated_ | Omit and Qovery generates a 32-character alphanumeric password. To set your own: 16–128 chars, must not contain a comma, /, @, ", or spaces. |
+
+In the Console, leaving the field blank omits it. Through the API or Terraform, omit the variable rather than sending an empty string: the platform rejects an empty variable value.
+
+Changing `valkey_password` replaces the password in place, without touching the cache or its data. AWS takes a few minutes to apply it (close to four in testing). Applications still holding the old one must be redeployed with the new value.
+
+#### Usage limits
+
+| Name | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `data_storage_max_gb` | number | `0` | Most data the cache may store, in whole GB (1–5000). `0` = the AWS maximum, 5000 GB. |
+| `ecpu_per_second_max` | number | `0` | Most ECPUs per second the cache may use, a whole number (1000–15000000). `0` = the AWS maximum, 15000000. |
+
+With both at `0`, the cache scales as far as AWS allows. A cap bounds the bill as well as the capacity.
+
+The blueprint always sends both limits, with `0` translated to the AWS maximum. A cache whose limits are removed altogether cannot be updated: AWS rejects the call with `No modifications were requested`.
+
+#### Network
+
+| Name | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `subnet_ids` | string | | Leave empty — derived from the Qovery cluster's ElastiCache subnet group. Set it (comma-separated, one per Availability Zone) only on a cluster with a user-provided VPC, where that lookup finds nothing. Read at creation only. |
+| `security_group_ids` | string | | Leave empty for the blueprint's own security group. Set it (comma-separated ids) to attach existing groups instead; they must open 6379 and 6380 to the cluster. |
+| `allowed_cidrs` | string | | Leave empty to allow the whole VPC, which covers every pod of the cluster. Set it (comma-separated IPv4 network addresses, such as `10.0.0.0/24`) to narrow the blueprint's security group. Ignored when `security_group_ids` is set. |
+
+By default the cache is attached to the Qovery cluster network. The subnets come from the ElastiCache subnet group created at cluster bootstrap (`elasticache-<cluster vpc id>`): one subnet per Availability Zone, three at most. The security group is created by the blueprint, named `qovery-valkey-serverless-<name>`, and opens 6379–6380 to every CIDR of the VPC. It does not reuse the cluster workers security group, which opens 6379 only.
+
+ElastiCache cannot move a serverless cache to other subnets, so `subnet_ids` is read once. A later change to the variable or to the cluster's subnet group leaves the cache where it is.
+
+#### Backups
+
+| Name | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `backup_retention_period` | number | `14` | Whole days to retain daily automatic snapshots (0–35). `0` disables. |
+| `daily_snapshot_time` | string | `00:00` | Time of the daily snapshot (UTC), `hh24:mi`. Only used when `backup_retention_period > 0`. |
+
+**Deleting the service deletes the cache without a final snapshot.** The AWS Terraform provider has no argument for one on a serverless cache. To keep the data, take a manual snapshot in AWS before deleting the service.
+
+#### IAM role
+
+| Name | Type | Default | Description |
+| ---- | ---- | ------- | ----------- |
+| `role_arn` | string | — | Unset = use the cluster credentials directly. Set an IAM role ARN of the cluster's AWS account to assume it; cross-account roles are not supported. |
+
+### Outputs
+
+| Name | Sensitive | Description |
+| ---- | --------- | ----------- |
+| `valkey_identifier` | | ElastiCache serverless cache name |
+| `valkey_host` | | Hostname to connect to, for cluster-mode clients |
+| `valkey_port` | | Port of the primary endpoint (`6379`), for writes and consistent reads |
+| `valkey_reader_port` | | Port of the reader endpoint (`6380`), on the same hostname |
+| `valkey_username` | | Valkey user applications authenticate as (`app`) |
+| `valkey_password` | yes | Password of that user (generated when the input was left empty) |
+| `valkey_url` | yes | `rediss://app:<password>@<host>:<port>` on the primary endpoint |
+| `valkey_arn` | | Serverless cache ARN |
+| `valkey_engine_version_actual` | | Engine version actually running (incl. AWS-chosen patch) |
+| `valkey_security_group_id` | | Security group created for the cache (empty when `security_group_ids` is set) |
+
+### Access control
+
+The blueprint creates one ElastiCache user and one user group, both on the `valkey` engine, and attaches the group to the cache:
+
+- user `<name>-app`, user name `app`, access string `on ~* &* +@all` (every key, every pub/sub channel, every command), authenticated by password;
+- user group `<name>-users`, holding that user.
+
+Terraform manages the membership list of the group: a user added to it outside the blueprint is removed on the next deployment.
+
+### Lifecycle ignore_changes
+
+- `subnet_ids` — set at creation; see [Network](#network).
+
+### Assuming an IAM role
+
+Optional. Set the `role_arn` variable to make the blueprint assume an IAM role instead of using the configured credentials directly; leave it unset to use them as is.
+
+- Format: `arn:aws:iam::<account-id>:role/<name>`, with an optional path (`role/<path>/<name>`). The `aws-cn`, `aws-us-gov` and `aws-iso*` partitions are accepted too.
+- The role must be in the **same AWS account** as the credentials; cross-account roles are not supported.
+- The role's trust policy must allow the deploy credentials' IAM principal to assume it.
+- The role itself must carry the permissions listed in [Required AWS IAM permissions](#required-aws-iam-permissions).
+
+### Required AWS IAM permissions
+
+> When `role_arn` is set, Terraform makes these AWS calls as the assumed role, so the permissions below belong to that role. Access to a user-provided Terraform backend, if you use one, is not covered by `role_arn`: it keeps using the deploy credentials.
+
+Unless `role_arn` is set, the credentials used to deploy this blueprint must allow the actions below. The EC2 read actions let Terraform look up the cluster VPC and its subnets. `ec2:CreateVpcEndpoint`, the `ec2:CreateTags` that goes with it and `iam:CreateServiceLinkedRole` are the ones the AWS managed policy `AmazonElastiCacheFullAccess` grants for serverless caches: ElastiCache places a VPC endpoint in the chosen subnets.
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "elasticache:CreateServerlessCache",
+        "elasticache:ModifyServerlessCache",
+        "elasticache:DeleteServerlessCache",
+        "elasticache:DescribeServerlessCaches",
+        "elasticache:CreateUser",
+        "elasticache:ModifyUser",
+        "elasticache:DeleteUser",
+        "elasticache:DescribeUsers",
+        "elasticache:CreateUserGroup",
+        "elasticache:ModifyUserGroup",
+        "elasticache:DeleteUserGroup",
+        "elasticache:DescribeUserGroups",
+        "elasticache:DescribeCacheSubnetGroups",
+        "elasticache:AddTagsToResource",
+        "elasticache:RemoveTagsFromResource",
+        "elasticache:ListTagsForResource"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ec2:DescribeVpcs",
+        "ec2:DescribeSubnets",
+        "ec2:DescribeSecurityGroups",
+        "ec2:DescribeAvailabilityZones",
+        "ec2:CreateSecurityGroup",
+        "ec2:DeleteSecurityGroup",
+        "ec2:AuthorizeSecurityGroupIngress",
+        "ec2:RevokeSecurityGroupIngress",
+        "ec2:RevokeSecurityGroupEgress",
+        "ec2:CreateTags",
+        "ec2:CreateVpcEndpoint"
+      ],
+      "Resource": "*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": "iam:CreateServiceLinkedRole",
+      "Resource": "arn:aws:iam::*:role/aws-service-role/elasticache.amazonaws.com/AWSServiceRoleForElastiCache",
+      "Condition": {
+        "StringEquals": { "iam:AWSServiceName": "elasticache.amazonaws.com" }
+      }
+    }
+  ]
+}
+```
+
 # Amazon RDS for MySQL
 Source: https://www.qovery.com/docs/configuration/blueprints/aws-rds-mysql
 
 > AWS RDS MySQL 8.4 instance with configurable size, storage, backups, maintenance, monitoring, and network
 
-{/* Generated by scripts/blueprints/generate.py from Qovery/service-catalog tag AWS/mysql/8/3.5.1. Edit the Blueprint's README, not this page. */}
+{/* Generated by scripts/blueprints/generate.py from Qovery/service-catalog tag AWS/mysql/8/3.8.1. Edit the Blueprint's README, not this page. */}
 
 Qovery creates it in the AWS account of the environment's cluster, as a [Blueprint](https://www.qovery.com/docs/configuration/blueprints) service in one of your environments.
 
@@ -40241,8 +40629,8 @@ Qovery creates it in the AWS account of the environment's cluster, as a [Bluepri
 | Category | Databases & Caches |
 | Provider | AWS |
 | Engine | terraform |
-| Major versions (latest release) | `8` (3.5.1) |
-| Source | [AWS/mysql/8](https://github.com/Qovery/service-catalog/tree/AWS/mysql/8/3.5.1/AWS/mysql/8) |
+| Major versions (latest release) | `8` (3.8.1) |
+| Source | [AWS/mysql/8](https://github.com/Qovery/service-catalog/tree/AWS/mysql/8/3.8.1/AWS/mysql/8) |
 
 <Tip>
 **New to this?** You don't need to know Kubernetes or Terraform. Qovery sets up Amazon RDS for MySQL in your cloud account and manages it for you: you fill in a form, or paste the prompt below into your coding agent. The values it publishes, listed under Outputs, reach your other services as environment variables. Qovery tells you when a newer version of the Blueprint is available. Check the requirements in the Reference section before you start, and try it first in a development environment.
@@ -40269,7 +40657,7 @@ Qovery creates it in the AWS account of the environment's cluster, as a [Bluepri
     cat > blueprint.json <<'EOF'
     {
       "name": "aws-rds-mysql",
-      "tag": "AWS/mysql/8/3.5.1",
+      "tag": "AWS/mysql/8/3.8.1",
       "icon": "app://qovery-console/mysql",
       "variables": [
         {
@@ -40314,9 +40702,9 @@ You don't add any file to your repository. Qovery creates the Blueprint from the
 
 ## Variables and outputs
 
-Generated from `qbm.yml` at `AWS/mysql/8/3.5.1`, the manifest the Console form is built from.
+Generated from `qbm.yml` at `AWS/mysql/8/3.8.1`, the manifest the Console form is built from.
 
-<Accordion title="All 32 variables">
+<Accordion title="All 33 variables">
 
 | Name | Type | Required | Default | Secret | Description |
 | --- | --- | --- | --- | --- | --- |
@@ -40352,6 +40740,7 @@ Generated from `qbm.yml` at `AWS/mysql/8/3.5.1`, the manifest the Console form i
 | `deletion_protection` | bool |  | `false` |  | Prevent the database from being deleted via TF or the API |
 | `iam_database_authentication_enabled` | bool |  | `false` |  | Enable IAM database authentication |
 | `dedicated_log_volume` | bool |  | `false` |  | Provision a dedicated EBS volume for database logs (RDS feature) |
+| `role_arn` | string |  |  |  | Unset = use the cluster credentials directly. Set an IAM role ARN of the cluster's AWS account to assume it; cross-account roles are not supported. |
 
 </Accordion>
 
@@ -40380,7 +40769,7 @@ Secret variables and outputs are encrypted and masked in Qovery, but Terraform c
 
 ## Reference
 
-From the Blueprint's [README](https://github.com/Qovery/service-catalog/blob/AWS/mysql/8/3.5.1/AWS/mysql/8/README.md).
+From the Blueprint's [README](https://github.com/Qovery/service-catalog/blob/AWS/mysql/8/3.8.1/AWS/mysql/8/README.md).
 
 Creates an AWS RDS MySQL 8.4 instance with configurable instance class, storage, backups, maintenance window, monitoring, and network settings. Storage is encrypted by default.
 
@@ -40503,6 +40892,7 @@ create/destroy cycles of the same name do not collide.
 | `deletion_protection`                 | bool   | `false` | Prevent deletion via TF/API                        |
 | `iam_database_authentication_enabled` | bool   | `false` | Enable IAM DB authentication                       |
 | `dedicated_log_volume`                | bool   | `false` | Provision a dedicated EBS volume for database logs |
+| `role_arn`                            | string |         | Unset = use the cluster credentials directly. Set an IAM role ARN of the cluster's AWS account to assume it; cross-account roles are not supported. |
 
 ### Outputs
 
@@ -40544,6 +40934,9 @@ Read this before repointing a deployment at this version.
 - Terraform moves from 1.9.7 to 1.13.3, and `1.9.7` is no longer an accepted override. State written by
   1.13.3 cannot be read by 1.9.7, so a deployment cannot be repointed at an earlier blueprint version
   once it has applied.
+- From 3.6.0 the parameter group name no longer depends on the Qovery cluster name. Up to 3.5.1, renaming
+  the cluster made the next apply create a new group and then fail to delete the old one, still attached
+  to the instance. An existing group keeps its name and is not touched by the upgrade.
 
 ### Lifecycle ignore_changes
 
@@ -40564,11 +40957,23 @@ A few attributes remain ignored:
 - `enabled_cloudwatch_logs_exports` — list type, not yet supported by the qbm.yml schema.
 - `max_allocated_storage` — will turn into a managed input when the storage autoscale feature is added.
 
-Note: `parameter_group_name` is **not** ignored — the blueprint owns its parameter group.
+- `parameter_group_name` — an adopted instance keeps its live parameter group; the blueprint's group is applied on create.
+- `name_prefix` on the parameter group — groups created before 3.6.0 were prefixed with the cluster name. Ignoring it means a cluster rename, or the upgrade to 3.6.0, never replaces the group. New groups are prefixed with the database name only.
+
+### Assuming an IAM role
+
+Optional. Set the `role_arn` variable to make the blueprint assume an IAM role instead of using the configured credentials directly; leave it unset to use them as is.
+
+- Format: `arn:aws:iam::<account-id>:role/<name>`, with an optional path (`role/<path>/<name>`). The `aws-cn`, `aws-us-gov` and `aws-iso*` partitions are accepted too.
+- The role must be in the **same AWS account** as the credentials; cross-account roles are not supported.
+- The role's trust policy must allow the deploy credentials' IAM principal to assume it.
+- The role itself must carry the permissions listed in [Required AWS IAM permissions](#required-aws-iam-permissions).
 
 ### Required AWS IAM permissions
 
-The credentials used to deploy this blueprint must allow the actions below. The RDS actions target instances in any region you deploy to; EC2 read actions are needed so Terraform can look up the default VPC, subnets, and security groups when none are explicitly configured.
+> When `role_arn` is set, Terraform makes these AWS calls as the assumed role, so the permissions below belong to that role. Access to a user-provided Terraform backend, if you use one, is not covered by `role_arn`: it keeps using the deploy credentials.
+
+Unless `role_arn` is set, the credentials used to deploy this blueprint must allow the actions below. The RDS actions target instances in any region you deploy to; EC2 read actions are needed so Terraform can look up the default VPC, subnets, and security groups when none are explicitly configured.
 
 ```json
 {
@@ -40608,14 +41013,22 @@ The credentials used to deploy this blueprint must allow the actions below. The 
 }
 ```
 
-When `monitoring_interval > 0`, the supplied `monitoring_role_arn` must be assumable by RDS (`monitoring.rds.amazonaws.com` trust relationship) and grant the `AmazonRDSEnhancedMonitoringRole` managed policy.
+When `monitoring_interval > 0`, the supplied `monitoring_role_arn` must be assumable by RDS (`monitoring.rds.amazonaws.com` trust relationship) and grant the `AmazonRDSEnhancedMonitoringRole` managed policy. The identity that applies the blueprint (the assumed role when `role_arn` is set) also needs `iam:PassRole` on that role, to hand it to RDS. It is not in the policy above because it only applies when monitoring is enabled; add this statement, with the resource set to your `monitoring_role_arn`:
+
+```json
+{
+  "Effect": "Allow",
+  "Action": "iam:PassRole",
+  "Resource": "arn:aws:iam::<account-id>:role/<monitoring-role-name>"
+}
+```
 
 # Amazon RDS for PostgreSQL
 Source: https://www.qovery.com/docs/configuration/blueprints/aws-rds-postgresql
 
 > AWS RDS PostgreSQL 18 instance with configurable size, storage, backups, maintenance, monitoring, network, and optional read replicas
 
-{/* Generated by scripts/blueprints/generate.py from Qovery/service-catalog tag AWS/postgres/18/1.8.0. Edit the Blueprint's README, not this page. */}
+{/* Generated by scripts/blueprints/generate.py from Qovery/service-catalog tag AWS/postgres/18/1.10.1. Edit the Blueprint's README, not this page. */}
 
 Qovery creates it in the AWS account of the environment's cluster, as a [Blueprint](https://www.qovery.com/docs/configuration/blueprints) service in one of your environments.
 
@@ -40625,8 +41038,8 @@ Qovery creates it in the AWS account of the environment's cluster, as a [Bluepri
 | Category | Databases & Caches |
 | Provider | AWS |
 | Engine | terraform |
-| Major versions (latest release) | `14` (4.9.0), `15` (4.9.0), `16` (4.9.0), `17` (4.9.0), `18` (1.8.0) |
-| Source | [AWS/postgres/18](https://github.com/Qovery/service-catalog/tree/AWS/postgres/18/1.8.0/AWS/postgres/18) |
+| Major versions (latest release) | `14` (4.11.1), `15` (4.11.1), `16` (4.11.1), `17` (4.11.1), `18` (1.10.1) |
+| Source | [AWS/postgres/18](https://github.com/Qovery/service-catalog/tree/AWS/postgres/18/1.10.1/AWS/postgres/18) |
 
 <Tip>
 **New to this?** You don't need to know Kubernetes or Terraform. Qovery sets up Amazon RDS for PostgreSQL in your cloud account and manages it for you: you fill in a form, or paste the prompt below into your coding agent. The values it publishes, listed under Outputs, reach your other services as environment variables. Qovery tells you when a newer version of the Blueprint is available. Check the requirements in the Reference section before you start, and try it first in a development environment.
@@ -40653,7 +41066,7 @@ Qovery creates it in the AWS account of the environment's cluster, as a [Bluepri
     cat > blueprint.json <<'EOF'
     {
       "name": "aws-rds-postgresql",
-      "tag": "AWS/postgres/18/1.8.0",
+      "tag": "AWS/postgres/18/1.10.1",
       "icon": "app://qovery-console/postgresql",
       "variables": [
         {
@@ -40698,9 +41111,9 @@ You don't add any file to your repository. Qovery creates the Blueprint from the
 
 ## Variables and outputs
 
-Generated from `qbm.yml` at `AWS/postgres/18/1.8.0`, the manifest the Console form is built from.
+Generated from `qbm.yml` at `AWS/postgres/18/1.10.1`, the manifest the Console form is built from.
 
-<Accordion title="All 41 variables">
+<Accordion title="All 42 variables">
 
 | Name | Type | Required | Default | Secret | Description |
 | --- | --- | --- | --- | --- | --- |
@@ -40745,6 +41158,7 @@ Generated from `qbm.yml` at `AWS/postgres/18/1.8.0`, the manifest the Console fo
 | `read_replica_publicly_accessible` | bool |  | `false` |  | Expose read replicas to the public internet. Keep false unless an external analytics tool must reach them directly. |
 | `read_replica_allowed_cidrs` | string |  |  |  | Empty = the primary's security groups. Else up to 50 network CIDRs (10.0.0.0/24, not 10.0.0.5/24); public ones need read_replica_publicly_accessible. |
 | `read_replica_multi_az` | bool |  | `false` |  | Enable Multi-AZ for read replicas (higher availability, roughly doubles their cost). |
+| `role_arn` | string |  |  |  | Unset = use the cluster credentials directly. Set an IAM role ARN of the cluster's AWS account to assume it; cross-account roles are not supported. |
 
 </Accordion>
 
@@ -40791,7 +41205,7 @@ Secret variables and outputs are encrypted and masked in Qovery, but Terraform c
 
 ## Reference
 
-From the Blueprint's [README](https://github.com/Qovery/service-catalog/blob/AWS/postgres/18/1.8.0/AWS/postgres/18/README.md).
+From the Blueprint's [README](https://github.com/Qovery/service-catalog/blob/AWS/postgres/18/1.10.1/AWS/postgres/18/README.md).
 
 Creates an AWS RDS PostgreSQL 18 instance with configurable instance class, storage, backups, maintenance window, monitoring, and network settings. Storage is encrypted by default.
 
@@ -40961,6 +41375,7 @@ deploy.
 | `deletion_protection`                 | bool   | `false` | Prevent deletion via TF/API                        |
 | `iam_database_authentication_enabled` | bool   | `false` | Enable IAM DB authentication                       |
 | `dedicated_log_volume`                | bool   | `false` | Provision a dedicated EBS volume for database logs |
+| `role_arn`                            | string |         | Unset = use the cluster credentials directly. Set an IAM role ARN of the cluster's AWS account to assume it; cross-account roles are not supported. |
 
 #### Parameters
 
@@ -41103,9 +41518,20 @@ Two attributes remain ignored on the primary:
 - `password` — the master password moved to the write-only `password_wo`; ignoring the plain attribute stops the value left in older state reading as a removal.
 - `tags` — ignored on the primary and every read replica, so tag changes from the blueprint never reach an existing database. The reason is adoption: the native path tags managed RDS with `cluster_id`, which the YACE CloudWatch exporter filters DB metrics on.
 
+### Assuming an IAM role
+
+Optional. Set the `role_arn` variable to make the blueprint assume an IAM role instead of using the configured credentials directly; leave it unset to use them as is.
+
+- Format: `arn:aws:iam::<account-id>:role/<name>`, with an optional path (`role/<path>/<name>`). The `aws-cn`, `aws-us-gov` and `aws-iso*` partitions are accepted too.
+- The role must be in the **same AWS account** as the credentials; cross-account roles are not supported.
+- The role's trust policy must allow the deploy credentials' IAM principal to assume it.
+- The role itself must carry the permissions listed in [Required AWS IAM permissions](#required-aws-iam-permissions).
+
 ### Required AWS IAM permissions
 
-The credentials used to deploy this blueprint must allow the actions below. The RDS actions target instances in any region you deploy to; EC2 read actions are needed so Terraform can look up the default VPC, subnets, and security groups when none are explicitly configured. The EC2 write actions are used while `read_replica_allowed_cidrs` is set, and on the apply that clears it (Terraform revokes the rules and deletes the group), so keep them until that apply has run.
+> When `role_arn` is set, Terraform makes these AWS calls as the assumed role, so the permissions below belong to that role. Access to a user-provided Terraform backend, if you use one, is not covered by `role_arn`: it keeps using the deploy credentials.
+
+Unless `role_arn` is set, the credentials used to deploy this blueprint must allow the actions below. The RDS actions target instances in any region you deploy to; EC2 read actions are needed so Terraform can look up the default VPC, subnets, and security groups when none are explicitly configured. The EC2 write actions are used while `read_replica_allowed_cidrs` is set, and on the apply that clears it (Terraform revokes the rules and deletes the group), so keep them until that apply has run.
 
 ```json
 {
@@ -41161,7 +41587,15 @@ The credentials used to deploy this blueprint must allow the actions below. The 
 }
 ```
 
-When `monitoring_interval > 0`, the supplied `monitoring_role_arn` must be assumable by RDS (`monitoring.rds.amazonaws.com` trust relationship) and grant the `AmazonRDSEnhancedMonitoringRole` managed policy.
+When `monitoring_interval > 0`, the supplied `monitoring_role_arn` must be assumable by RDS (`monitoring.rds.amazonaws.com` trust relationship) and grant the `AmazonRDSEnhancedMonitoringRole` managed policy. The identity that applies the blueprint (the assumed role when `role_arn` is set) also needs `iam:PassRole` on that role, to hand it to RDS. It is not in the policy above because it only applies when monitoring is enabled; add this statement, with the resource set to your `monitoring_role_arn`:
+
+```json
+{
+  "Effect": "Allow",
+  "Action": "iam:PassRole",
+  "Resource": "arn:aws:iam::<account-id>:role/<monitoring-role-name>"
+}
+```
 
 # Google Cloud Memorystore for Redis
 Source: https://www.qovery.com/docs/configuration/blueprints/gcp-memorystore-redis
@@ -42721,7 +43155,7 @@ Source: https://www.qovery.com/docs/configuration/blueprints/aws-amazon-mq-rabbi
 
 > Amazon MQ for RabbitMQ 4 broker over AMQPS, attached to the Qovery cluster network, single node or three-node cluster. Requires mq:* on the deploying IAM role (see README).
 
-{/* Generated by scripts/blueprints/generate.py from Qovery/service-catalog tag AWS/rabbitmq/4/2.0.1. Edit the Blueprint's README, not this page. */}
+{/* Generated by scripts/blueprints/generate.py from Qovery/service-catalog tag AWS/rabbitmq/4/2.2.1. Edit the Blueprint's README, not this page. */}
 
 Qovery creates it in the AWS account of the environment's cluster, as a [Blueprint](https://www.qovery.com/docs/configuration/blueprints) service in one of your environments.
 
@@ -42731,8 +43165,8 @@ Qovery creates it in the AWS account of the environment's cluster, as a [Bluepri
 | Category | Messaging & Streaming |
 | Provider | AWS |
 | Engine | terraform |
-| Major versions (latest release) | `4` (2.0.1) |
-| Source | [AWS/rabbitmq/4](https://github.com/Qovery/service-catalog/tree/AWS/rabbitmq/4/2.0.1/AWS/rabbitmq/4) |
+| Major versions (latest release) | `4` (2.2.1) |
+| Source | [AWS/rabbitmq/4](https://github.com/Qovery/service-catalog/tree/AWS/rabbitmq/4/2.2.1/AWS/rabbitmq/4) |
 
 <Tip>
 **New to this?** You don't need to know Kubernetes or Terraform. Qovery sets up Amazon MQ for RabbitMQ in your cloud account and manages it for you: you fill in a form, or paste the prompt below into your coding agent. The values it publishes, listed under Outputs, reach your other services as environment variables. Qovery tells you when a newer version of the Blueprint is available. Check the requirements in the Reference section before you start, and try it first in a development environment.
@@ -42759,7 +43193,7 @@ Qovery creates it in the AWS account of the environment's cluster, as a [Bluepri
     cat > blueprint.json <<'EOF'
     {
       "name": "aws-amazon-mq-rabbitmq",
-      "tag": "AWS/rabbitmq/4/2.0.1",
+      "tag": "AWS/rabbitmq/4/2.2.1",
       "icon": "app://qovery-console/amazon-mq",
       "variables": [
         {
@@ -42804,9 +43238,9 @@ You don't add any file to your repository. Qovery creates the Blueprint from the
 
 ## Variables and outputs
 
-Generated from `qbm.yml` at `AWS/rabbitmq/4/2.0.1`, the manifest the Console form is built from.
+Generated from `qbm.yml` at `AWS/rabbitmq/4/2.2.1`, the manifest the Console form is built from.
 
-<Accordion title="All 19 variables">
+<Accordion title="All 20 variables">
 
 | Name | Type | Required | Default | Secret | Description |
 | --- | --- | --- | --- | --- | --- |
@@ -42829,6 +43263,7 @@ Generated from `qbm.yml` at `AWS/rabbitmq/4/2.0.1`, the manifest the Console for
 | `consumer_timeout_ms` | number |  | `1800000` |  | Ack timeout in ms: a consumer that does not ack in time has its channel closed. 0 = no timeout. |
 | `heartbeat_seconds` | number |  | `60` |  | Seconds without traffic before RabbitMQ considers a connection dead |
 | `extra_configuration` | string |  |  |  | Extra rabbitmq.conf lines, separated by ';'. Amazon MQ rejects keys it does not allow at apply. |
+| `role_arn` | string |  |  |  | Unset = use the cluster credentials directly. Set an IAM role ARN of the cluster's AWS account to assume it; cross-account roles are not supported. |
 
 </Accordion>
 
@@ -42857,7 +43292,7 @@ Secret variables and outputs are encrypted and masked in Qovery, but Terraform c
 
 ## Reference
 
-From the Blueprint's [README](https://github.com/Qovery/service-catalog/blob/AWS/rabbitmq/4/2.0.1/AWS/rabbitmq/4/README.md).
+From the Blueprint's [README](https://github.com/Qovery/service-catalog/blob/AWS/rabbitmq/4/2.2.1/AWS/rabbitmq/4/README.md).
 
 Creates an Amazon MQ for RabbitMQ 4 broker, reachable over AMQPS (port 5671, TLS only), on a single
 node or as a three-node cluster spread across availability zones. By default the broker joins the
@@ -42973,6 +43408,7 @@ for the keys Amazon MQ accepts.
 | ---- | ---- | ------- | ----------- |
 | `general_logs` | bool | `false` | Send broker logs to CloudWatch Logs (billed by CloudWatch). |
 | `kms_key_id` | string | | Empty = encrypted with an AWS-owned key. Set a KMS key ARN to use your own key. Changing it replaces the broker. |
+| `role_arn` | string | | Unset = use the cluster credentials directly. Set an IAM role ARN of the cluster's AWS account to assume it; cross-account roles are not supported. |
 
 Amazon MQ can only publish logs once a CloudWatch Logs resource policy lets it. With
 `general_logs = true` the blueprint creates one, named `qovery-amazonmq-<broker_name>`. AWS allows
@@ -43021,10 +43457,21 @@ scrape_configs:
 not. See
 [Accessing Prometheus metrics](https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/rabbitmq-prometheus-metrics.html).
 
+### Assuming an IAM role
+
+Optional. Set the `role_arn` variable to make the blueprint assume an IAM role instead of using the configured credentials directly; leave it unset to use them as is.
+
+- Format: `arn:aws:iam::<account-id>:role/<name>`, with an optional path (`role/<path>/<name>`). The `aws-cn`, `aws-us-gov` and `aws-iso*` partitions are accepted too.
+- The role must be in the **same AWS account** as the credentials; cross-account roles are not supported.
+- The role's trust policy must allow the deploy credentials' IAM principal to assume it.
+- The role itself must carry the permissions listed in [Required AWS IAM permissions](#required-aws-iam-permissions).
+
 ### Required AWS IAM permissions
 
-The identity that deploys the blueprint needs the actions below. With `credentials: cluster` (the
-default) that is the cluster's IAM role, `qovery-user-role` on a standard installation: attach them
+> When `role_arn` is set, Terraform makes these AWS calls as the assumed role, so the permissions below belong to that role. Access to a user-provided Terraform backend, if you use one, is not covered by `role_arn`: it keeps using the deploy credentials.
+
+Unless `role_arn` is set, the identity that deploys the blueprint needs the actions
+below. With `credentials: cluster` (the default) that is the cluster's IAM role, `qovery-user-role` on a standard installation: attach them
 to it as an extra policy. With `credentials: env`, the keys you supply need them. The EC2 and RDS
 read actions let Terraform find the cluster subnets, and the security group actions create the
 broker's own group; the `logs` actions are only used with `general_logs = true`.
@@ -43086,7 +43533,7 @@ Source: https://www.qovery.com/docs/configuration/blueprints/aws-msk
 
 > Amazon MSK Serverless (managed Kafka) with SASL/IAM auth, attached to the Qovery cluster network
 
-{/* Generated by scripts/blueprints/generate.py from Qovery/service-catalog tag AWS/msk/default/1.0.8. Edit the Blueprint's README, not this page. */}
+{/* Generated by scripts/blueprints/generate.py from Qovery/service-catalog tag AWS/msk/default/1.2.1. Edit the Blueprint's README, not this page. */}
 
 Qovery creates it in the AWS account of the environment's cluster, as a [Blueprint](https://www.qovery.com/docs/configuration/blueprints) service in one of your environments.
 
@@ -43096,8 +43543,8 @@ Qovery creates it in the AWS account of the environment's cluster, as a [Bluepri
 | Category | Messaging & Streaming |
 | Provider | AWS |
 | Engine | terraform |
-| Major versions (latest release) | `default` (1.0.8) |
-| Source | [AWS/msk/default](https://github.com/Qovery/service-catalog/tree/AWS/msk/default/1.0.8/AWS/msk/default) |
+| Major versions (latest release) | `default` (1.2.1) |
+| Source | [AWS/msk/default](https://github.com/Qovery/service-catalog/tree/AWS/msk/default/1.2.1/AWS/msk/default) |
 
 <Tip>
 **New to this?** You don't need to know Kubernetes or Terraform. Qovery sets up Amazon MSK in your cloud account and manages it for you: you fill in a form, or paste the prompt below into your coding agent. The values it publishes, listed under Outputs, reach your other services as environment variables. Qovery tells you when a newer version of the Blueprint is available. Check the requirements in the Reference section before you start, and try it first in a development environment.
@@ -43124,7 +43571,7 @@ Qovery creates it in the AWS account of the environment's cluster, as a [Bluepri
     cat > blueprint.json <<'EOF'
     {
       "name": "aws-msk",
-      "tag": "AWS/msk/default/1.0.8",
+      "tag": "AWS/msk/default/1.2.1",
       "icon": "app://qovery-console/amazon-msk",
       "variables": [
         {
@@ -43161,15 +43608,16 @@ You don't add any file to your repository. Qovery creates the Blueprint from the
 
 ## Variables and outputs
 
-Generated from `qbm.yml` at `AWS/msk/default/1.0.8`, the manifest the Console form is built from.
+Generated from `qbm.yml` at `AWS/msk/default/1.2.1`, the manifest the Console form is built from.
 
-<Accordion title="All 3 variables">
+<Accordion title="All 4 variables">
 
 | Name | Type | Required | Default | Secret | Description |
 | --- | --- | --- | --- | --- | --- |
 | `cluster_name` | string | Yes |  |  | Letters, digits, dots, hyphens, underscores; max 64 chars. |
 | `subnet_ids` | string |  |  |  | Leave empty — discovered from the cluster's VPC subnets. Set it (comma-separated ids) only on a user-provided VPC. |
 | `security_group_ids` | string |  |  |  | Leave empty — derived from the cluster's workers security group. Set it (comma-separated ids) only on a user-provided VPC. |
+| `role_arn` | string |  |  |  | Unset = use the cluster credentials directly. Set an IAM role ARN of the cluster's AWS account to assume it; cross-account roles are not supported. |
 
 </Accordion>
 
@@ -43188,7 +43636,7 @@ Outputs become environment variables that other services in the environment can 
 
 ## Reference
 
-From the Blueprint's [README](https://github.com/Qovery/service-catalog/blob/AWS/msk/default/1.0.8/AWS/msk/default/README.md).
+From the Blueprint's [README](https://github.com/Qovery/service-catalog/blob/AWS/msk/default/1.2.1/AWS/msk/default/README.md).
 
 Provisions an [Amazon MSK Serverless](https://docs.aws.amazon.com/msk/latest/developerguide/serverless.html) cluster (`aws_msk_serverless_cluster`) — managed Apache Kafka with no broker sizing — via `hashicorp/aws` (`~> 5.0`).
 
@@ -43211,6 +43659,12 @@ Uses the Qovery cluster's AWS credentials (`credentials.default: cluster`). By d
 | `subnet_ids`         | string |         | Leave empty — discovered from the Qovery cluster's VPC subnets. Set it (comma-separated ids) only on a cluster with a user-provided VPC, where that lookup finds nothing. |
 | `security_group_ids` | string |         | Leave empty — derived from the Qovery cluster's workers security group. Set it (comma-separated ids) only on a cluster with a user-provided VPC, where that lookup finds nothing. |
 
+#### IAM role
+
+| Name       | Type   | Default | Description                                                                                                                                         |
+| ---------- | ------ | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `role_arn` | string | —       | Unset = use the cluster credentials directly. Set an IAM role ARN of the cluster's AWS account to assume it; cross-account roles are not supported. |
+
 ### Outputs
 
 | Name                         | Description                                              |
@@ -43226,7 +43680,18 @@ Uses the Qovery cluster's AWS credentials (`credentials.default: cluster`). By d
 - MSK Serverless does not create networking; it attaches to existing subnets/SG (auto-discovered here).
 - Billed per-throughput + storage (no idle broker-hour cost, unlike provisioned MSK).
 
+### Assuming an IAM role
+
+Optional. Set the `role_arn` variable to make the blueprint assume an IAM role instead of using the configured credentials directly; leave it unset to use them as is.
+
+- Format: `arn:aws:iam::<account-id>:role/<name>`, with an optional path (`role/<path>/<name>`). The `aws-cn`, `aws-us-gov` and `aws-iso*` partitions are accepted too.
+- The role must be in the **same AWS account** as the credentials; cross-account roles are not supported.
+- The role's trust policy must allow the deploy credentials' IAM principal to assume it.
+- The role itself must carry the permissions listed in [Required AWS IAM permissions](#required-aws-iam-permissions-to-deploy).
+
 ### Required AWS IAM permissions (to deploy)
+
+> When `role_arn` is set, Terraform makes these AWS calls as the assumed role, so the permissions below belong to that role. Access to a user-provided Terraform backend, if you use one, is not covered by `role_arn`: it keeps using the deploy credentials.
 
 ```json
 {
@@ -43716,7 +44181,7 @@ Source: https://www.qovery.com/docs/configuration/blueprints/aws-s3
 
 > S3 bucket with encryption, versioning, and public-access blocking
 
-{/* Generated by scripts/blueprints/generate.py from Qovery/service-catalog tag AWS/s3/default/1.2.1. Edit the Blueprint's README, not this page. */}
+{/* Generated by scripts/blueprints/generate.py from Qovery/service-catalog tag AWS/s3/default/1.4.1. Edit the Blueprint's README, not this page. */}
 
 Qovery creates it in the AWS account of the environment's cluster, as a [Blueprint](https://www.qovery.com/docs/configuration/blueprints) service in one of your environments.
 
@@ -43726,8 +44191,8 @@ Qovery creates it in the AWS account of the environment's cluster, as a [Bluepri
 | Category | Storage |
 | Provider | AWS |
 | Engine | terraform |
-| Major versions (latest release) | `default` (1.2.1) |
-| Source | [AWS/s3/default](https://github.com/Qovery/service-catalog/tree/AWS/s3/default/1.2.1/AWS/s3/default) |
+| Major versions (latest release) | `default` (1.4.1) |
+| Source | [AWS/s3/default](https://github.com/Qovery/service-catalog/tree/AWS/s3/default/1.4.1/AWS/s3/default) |
 
 <Tip>
 **New to this?** You don't need to know Kubernetes or Terraform. Qovery sets up Amazon S3 in your cloud account and manages it for you: you fill in a form, or paste the prompt below into your coding agent. The values it publishes, listed under Outputs, reach your other services as environment variables. Qovery tells you when a newer version of the Blueprint is available. Check the requirements in the Reference section before you start, and try it first in a development environment.
@@ -43754,7 +44219,7 @@ Qovery creates it in the AWS account of the environment's cluster, as a [Bluepri
     cat > blueprint.json <<'EOF'
     {
       "name": "aws-s3",
-      "tag": "AWS/s3/default/1.2.1",
+      "tag": "AWS/s3/default/1.4.1",
       "icon": "app://qovery-console/s3",
       "variables": [
         {
@@ -43791,9 +44256,9 @@ You don't add any file to your repository. Qovery creates the Blueprint from the
 
 ## Variables and outputs
 
-Generated from `qbm.yml` at `AWS/s3/default/1.2.1`, the manifest the Console form is built from.
+Generated from `qbm.yml` at `AWS/s3/default/1.4.1`, the manifest the Console form is built from.
 
-<Accordion title="All 5 variables">
+<Accordion title="All 6 variables">
 
 | Name | Type | Required | Default | Secret | Description |
 | --- | --- | --- | --- | --- | --- |
@@ -43802,6 +44267,7 @@ Generated from `qbm.yml` at `AWS/s3/default/1.2.1`, the manifest the Console for
 | `encryption` | bool |  | `true` |  | Enable server-side encryption (AES-256) |
 | `force_destroy` | bool |  | `false` |  | Allow bucket deletion even if it contains objects |
 | `bucket_policy` | bool |  | `true` |  | Enforce TLS: attach a bucket policy that denies plain HTTP requests |
+| `role_arn` | string |  |  |  | Unset = use the cluster credentials directly. Set an IAM role ARN of the cluster's AWS account to assume it; cross-account roles are not supported. |
 
 </Accordion>
 
@@ -43819,7 +44285,7 @@ Outputs become environment variables that other services in the environment can 
 
 ## Reference
 
-From the Blueprint's [README](https://github.com/Qovery/service-catalog/blob/AWS/s3/default/1.2.1/AWS/s3/default/README.md).
+From the Blueprint's [README](https://github.com/Qovery/service-catalog/blob/AWS/s3/default/1.4.1/AWS/s3/default/README.md).
 
 Creates an S3 bucket with encryption, versioning, and public access block configured. The bucket name is automatically lowercased before creation.
 
@@ -43832,6 +44298,7 @@ Creates an S3 bucket with encryption, versioning, and public access block config
 | `encryption`    | bool   | no       |           | `true`  | Enable AES-256 server-side encryption                                                                                                                                                                                      |
 | `force_destroy` | bool   | no       |           | `false` | Allow bucket deletion even if it contains objects                                                                                                                                                                          |
 | `bucket_policy` | bool   | no       |           | `true`  | Enforce TLS: attach a bucket policy that denies plain HTTP requests                                                                                                                                                        |
+| `role_arn`      | string | no       |           | —       | Unset = use the cluster credentials directly. Set an IAM role ARN of the cluster's AWS account to assume it; cross-account roles are not supported.                                                                        |
 
 ### Outputs
 
@@ -43845,9 +44312,20 @@ Creates an S3 bucket with encryption, versioning, and public access block config
 
 `bucket_policy` defaults to `true`, so upgrading an existing bucket attaches the TLS policy. S3 holds a single policy per bucket: this one **replaces** any policy attached outside the blueprint. Preview the update before applying it (the plan shows `aws_s3_bucket_policy.this[0]` being created), and set `bucket_policy = false` if the bucket relies on a policy managed elsewhere. Setting it to `false` after the policy was replaced deletes the policy; it does not restore the previous one.
 
+### Assuming an IAM role
+
+Optional. Set the `role_arn` variable to make the blueprint assume an IAM role instead of using the configured credentials directly; leave it unset to use them as is.
+
+- Format: `arn:aws:iam::<account-id>:role/<name>`, with an optional path (`role/<path>/<name>`). The `aws-cn`, `aws-us-gov` and `aws-iso*` partitions are accepted too.
+- The role must be in the **same AWS account** as the credentials; cross-account roles are not supported.
+- The role's trust policy must allow the deploy credentials' IAM principal to assume it.
+- The role itself must carry the permissions listed in [Required AWS IAM permissions](#required-aws-iam-permissions).
+
 ### Required AWS IAM permissions
 
-The credentials used to deploy this blueprint must allow the actions below. Resource scope: `arn:aws:s3:::*` (bucket-level) and `arn:aws:s3:::*/*` (object-level, only needed when `force_destroy = true`).
+> When `role_arn` is set, Terraform makes these AWS calls as the assumed role, so the permissions below belong to that role. Access to a user-provided Terraform backend, if you use one, is not covered by `role_arn`: it keeps using the deploy credentials.
+
+Unless `role_arn` is set, the credentials used to deploy this blueprint must allow the actions below. Resource scope: `arn:aws:s3:::*` (bucket-level) and `arn:aws:s3:::*/*` (object-level). The last two statements, `s3:ListBucketVersions` and the object deletes, are only needed when `force_destroy = true`: Terraform uses them to empty the bucket before deleting it.
 
 ```json
 {
@@ -43886,10 +44364,14 @@ The credentials used to deploy this blueprint must allow the actions below. Reso
     },
     {
       "Effect": "Allow",
+      "Action": "s3:ListBucketVersions",
+      "Resource": "arn:aws:s3:::*"
+    },
+    {
+      "Effect": "Allow",
       "Action": [
         "s3:DeleteObject",
-        "s3:DeleteObjectVersion",
-        "s3:ListBucketVersions"
+        "s3:DeleteObjectVersion"
       ],
       "Resource": "arn:aws:s3:::*/*"
     }
@@ -44043,7 +44525,7 @@ Source: https://www.qovery.com/docs/configuration/blueprints/aws-cloudfront
 
 > AWS CloudFront CDN distribution in front of an HTTP/S origin (ALB, app host, or S3 website), with configurable caching, price class, custom domains, and geo restrictions
 
-{/* Generated by scripts/blueprints/generate.py from Qovery/service-catalog tag AWS/cloudfront/default/1.0.7. Edit the Blueprint's README, not this page. */}
+{/* Generated by scripts/blueprints/generate.py from Qovery/service-catalog tag AWS/cloudfront/default/1.2.1. Edit the Blueprint's README, not this page. */}
 
 Qovery creates it in the AWS account of the environment's cluster, as a [Blueprint](https://www.qovery.com/docs/configuration/blueprints) service in one of your environments.
 
@@ -44053,8 +44535,8 @@ Qovery creates it in the AWS account of the environment's cluster, as a [Bluepri
 | Category | Networking & Edge |
 | Provider | AWS |
 | Engine | terraform |
-| Major versions (latest release) | `default` (1.0.7) |
-| Source | [AWS/cloudfront/default](https://github.com/Qovery/service-catalog/tree/AWS/cloudfront/default/1.0.7/AWS/cloudfront/default) |
+| Major versions (latest release) | `default` (1.2.1) |
+| Source | [AWS/cloudfront/default](https://github.com/Qovery/service-catalog/tree/AWS/cloudfront/default/1.2.1/AWS/cloudfront/default) |
 
 <Tip>
 **New to this?** You don't need to know Kubernetes or Terraform. Qovery sets up AWS CloudFront in your cloud account and manages it for you: you fill in a form, or paste the prompt below into your coding agent. The values it publishes, listed under Outputs, reach your other services as environment variables. Qovery tells you when a newer version of the Blueprint is available. Check the requirements in the Reference section before you start, and try it first in a development environment.
@@ -44081,7 +44563,7 @@ Qovery creates it in the AWS account of the environment's cluster, as a [Bluepri
     cat > blueprint.json <<'EOF'
     {
       "name": "aws-cloudfront",
-      "tag": "AWS/cloudfront/default/1.0.7",
+      "tag": "AWS/cloudfront/default/1.2.1",
       "icon": "app://qovery-console/cloudfront",
       "variables": [
         {
@@ -44118,9 +44600,9 @@ You don't add any file to your repository. Qovery creates the Blueprint from the
 
 ## Variables and outputs
 
-Generated from `qbm.yml` at `AWS/cloudfront/default/1.0.7`, the manifest the Console form is built from.
+Generated from `qbm.yml` at `AWS/cloudfront/default/1.2.1`, the manifest the Console form is built from.
 
-<Accordion title="All 17 variables">
+<Accordion title="All 18 variables">
 
 | Name | Type | Required | Default | Secret | Description |
 | --- | --- | --- | --- | --- | --- |
@@ -44141,6 +44623,7 @@ Generated from `qbm.yml` at `AWS/cloudfront/default/1.0.7`, the manifest the Con
 | `acm_certificate_arn` | string |  |  |  | Empty = default CloudFront certificate. Set it for the custom domains; must be in us-east-1. |
 | `geo_restriction_type` | string |  | `none` |  | Geo restriction mode |
 | `geo_restriction_locations` | string |  |  |  | Comma-separated ISO 3166-1-alpha-2 country codes (e.g. US,FR). Required when geo_restriction_type is not none. |
+| `role_arn` | string |  |  |  | Unset = use the cluster credentials directly. Set an IAM role ARN of the cluster's AWS account to assume it; cross-account roles are not supported. |
 
 </Accordion>
 
@@ -44162,7 +44645,7 @@ Outputs become environment variables that other services in the environment can 
 
 ## Reference
 
-From the Blueprint's [README](https://github.com/Qovery/service-catalog/blob/AWS/cloudfront/default/1.0.7/AWS/cloudfront/default/README.md).
+From the Blueprint's [README](https://github.com/Qovery/service-catalog/blob/AWS/cloudfront/default/1.2.1/AWS/cloudfront/default/README.md).
 
 Creates an AWS CloudFront distribution in front of a single HTTP/S origin (an ALB, application host, or S3 website endpoint) with configurable caching, price class, optional custom domains, and geo restrictions.
 
@@ -44170,7 +44653,7 @@ By default the distribution serves over the CloudFront-managed `*.cloudfront.net
 
 ### Credentials
 
-Uses the Qovery cluster's AWS credentials (`credentials.default: cluster`). The credentials must allow the CloudFront and (when using ACM) certificate actions listed under [Required IAM permissions](#required-aws-iam-permissions).
+Uses the Qovery cluster's AWS credentials (`credentials.default: cluster`). The credentials must allow the CloudFront and (when using ACM) certificate actions listed under [Required IAM permissions](#required-aws-iam-permissions). When `role_arn` is set, the listed permissions are needed by that role instead (see [Assuming an IAM role](#assuming-an-iam-role)).
 
 ### Variables
 
@@ -44216,6 +44699,12 @@ Uses the Qovery cluster's AWS credentials (`credentials.default: cluster`). The 
 | `geo_restriction_type`      | string | `none`  | `none`, `whitelist`, or `blacklist`                                               |
 | `geo_restriction_locations` | string |         | Comma-separated ISO country codes (e.g. `US,FR`). Required when type is not `none`. |
 
+#### IAM role
+
+| Name       | Type   | Default | Description                                                                                                                                         |
+| ---------- | ------ | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `role_arn` | string | —       | Unset = use the cluster credentials directly. Set an IAM role ARN of the cluster's AWS account to assume it; cross-account roles are not supported. |
+
 ### Outputs
 
 | Name               | Description                                                     |
@@ -44233,7 +44722,18 @@ Uses the Qovery cluster's AWS credentials (`credentials.default: cluster`). The 
 - Caching uses the self-contained `forwarded_values` config (query string forwarded, cookies not), so the blueprint doesn't depend on a managed cache policy id. The AWS provider is pinned to `~> 5.0`.
 - CloudFront is a global service; the provider `region` (from the cluster) only configures the AWS client.
 
+### Assuming an IAM role
+
+Optional. Set the `role_arn` variable to make the blueprint assume an IAM role instead of using the configured credentials directly; leave it unset to use them as is.
+
+- Format: `arn:aws:iam::<account-id>:role/<name>`, with an optional path (`role/<path>/<name>`). The `aws-cn`, `aws-us-gov` and `aws-iso*` partitions are accepted too.
+- The role must be in the **same AWS account** as the credentials; cross-account roles are not supported.
+- The role's trust policy must allow the deploy credentials' IAM principal to assume it.
+- The role itself must carry the permissions listed in [Required AWS IAM permissions](#required-aws-iam-permissions).
+
 ### Required AWS IAM permissions
+
+> When `role_arn` is set, Terraform makes these AWS calls as the assumed role, so the permissions below belong to that role. Access to a user-provided Terraform backend, if you use one, is not covered by `role_arn`: it keeps using the deploy credentials.
 
 ```json
 {
@@ -44761,7 +45261,7 @@ Source: https://www.qovery.com/docs/configuration/blueprints/aws-bedrock-access
 
 > Provision scoped AWS Bedrock access — an IAM policy limited to the models you name, plus an optional IAM user with keys — so an application on any cloud (AWS, Azure, Scaleway or GCP) can call Bedrock models
 
-{/* Generated by scripts/blueprints/generate.py from Qovery/service-catalog tag EXTERNAL/bedrock/default/1.0.3. Edit the Blueprint's README, not this page. */}
+{/* Generated by scripts/blueprints/generate.py from Qovery/service-catalog tag EXTERNAL/bedrock/default/1.0.4. Edit the Blueprint's README, not this page. */}
 
 Qovery creates it in your account with a third-party provider, using credentials you enter in the form, as a [Blueprint](https://www.qovery.com/docs/configuration/blueprints) service in one of your environments.
 
@@ -44771,8 +45271,8 @@ Qovery creates it in your account with a third-party provider, using credentials
 | Category | AI |
 | Provider | EXTERNAL |
 | Engine | terraform |
-| Major versions (latest release) | `default` (1.0.3) |
-| Source | [EXTERNAL/bedrock/default](https://github.com/Qovery/service-catalog/tree/EXTERNAL/bedrock/default/1.0.3/EXTERNAL/bedrock/default) |
+| Major versions (latest release) | `default` (1.0.4) |
+| Source | [EXTERNAL/bedrock/default](https://github.com/Qovery/service-catalog/tree/EXTERNAL/bedrock/default/1.0.4/EXTERNAL/bedrock/default) |
 
 <Tip>
 **New to this?** You don't need to know Terraform or Kubernetes. Qovery sets up AWS Bedrock Access in your account with the provider: you fill in a form, or paste the prompt below into your coding agent. The values it publishes, listed under Outputs, reach your other services as environment variables. Qovery tells you when a newer version of the Blueprint is available. Check the requirements in the Reference section before you start, and try it first in a development environment.
@@ -44799,7 +45299,7 @@ Qovery creates it in your account with a third-party provider, using credentials
     cat > blueprint.json <<'EOF'
     {
       "name": "aws-bedrock-access",
-      "tag": "EXTERNAL/bedrock/default/1.0.3",
+      "tag": "EXTERNAL/bedrock/default/1.0.4",
       "icon": "app://qovery-console/bedrock",
       "variables": [
         {
@@ -44850,7 +45350,7 @@ You don't add any file to your repository. Qovery creates the Blueprint from the
 
 ## Variables and outputs
 
-Generated from `qbm.yml` at `EXTERNAL/bedrock/default/1.0.3`, the manifest the Console form is built from.
+Generated from `qbm.yml` at `EXTERNAL/bedrock/default/1.0.4`, the manifest the Console form is built from.
 
 <Accordion title="All 8 variables">
 
@@ -44890,7 +45390,7 @@ Secret variables and outputs are encrypted and masked in Qovery, but Terraform c
 
 ## Reference
 
-From the Blueprint's [README](https://github.com/Qovery/service-catalog/blob/EXTERNAL/bedrock/default/1.0.3/EXTERNAL/bedrock/default/README.md).
+From the Blueprint's [README](https://github.com/Qovery/service-catalog/blob/EXTERNAL/bedrock/default/1.0.4/EXTERNAL/bedrock/default/README.md).
 
 Provisions scoped access to [Amazon Bedrock](https://aws.amazon.com/bedrock/): an IAM policy
 (`aws_iam_policy`) allowing invocation of the models you name, and by default an IAM user with a
@@ -44974,6 +45474,10 @@ No `bedrock:*` permission is needed — the blueprint only writes IAM.
   Qovery. Rotating it means tainting `aws_iam_access_key.app` and redeploying. Prefer
   `create_iam_user = false` plus `attach_to_role_name` wherever the workload already has an AWS
   identity.
+- **A Qovery cluster rename does not replace the IAM policy.** AWS cannot change a policy
+  description in place, so the description no longer carries the cluster name (from 1.0.4) and
+  changes to it are ignored. A policy created on an earlier version keeps its old description. The
+  `qovery-cluster` tag still follows the cluster name and is updated in place.
 - **`force_destroy` is set on the IAM user**, so destroying the blueprint removes the user together
   with the keys it still holds instead of failing.
 - Guardrails, knowledge bases and provisioned throughput are out of scope: each is a substantial

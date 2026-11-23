@@ -25,7 +25,7 @@ Blueprints come from three kinds of source — cloud provider, Helm, and Externa
 
 | Source | What it provisions | Credentials |
 |--------|--------------------|-------------|
-| **AWS / GCP / Scaleway** | A managed resource in the cloud account backing the target cluster (RDS, ElastiCache, S3, Memorystore, Scaleway Managed Database…). | Reuses the cluster's cloud credentials by default. |
+| **AWS / GCP / Scaleway** | A managed resource in the cloud account backing the target cluster (RDS, ElastiCache, S3, Memorystore, Scaleway Managed Database…). | Reuses the cluster's cloud credentials by default. AWS blueprints can also assume an IAM role with the `role_arn` variable: see [Assuming an IAM role](#assuming-an-iam-role-aws-blueprints). |
 | **Helm** | A Kubernetes add-on deployed on the cluster itself, from a curated Helm chart. | Runs in-cluster, no cloud credentials needed. |
 | **External** | A third-party SaaS resource provisioned through that vendor's own Terraform provider. Available on **every** cluster regardless of its cloud provider. | You supply the vendor's credentials as secret variables on the service. |
 
@@ -42,6 +42,7 @@ The catalog is expanding — [`catalog.json`](https://github.com/Qovery/service-
 | [**Amazon ElastiCache for Redis**](/configuration/blueprints/aws-elasticache-redis) | AWS | 6, 7 |
 | [**Amazon ElastiCache for Redis (legacy single node)**](/configuration/blueprints/aws-elasticache-redis-node) | AWS | 5, 6, 7 |
 | [**Amazon ElastiCache for Valkey**](/configuration/blueprints/aws-elasticache-valkey) | AWS | 9 |
+| [**Amazon ElastiCache Serverless for Valkey**](/configuration/blueprints/aws-elasticache-valkey-serverless) | AWS | 9 |
 | [**Amazon RDS for MySQL**](/configuration/blueprints/aws-rds-mysql) | AWS | 8 |
 | [**Amazon RDS for PostgreSQL**](/configuration/blueprints/aws-rds-postgresql) | AWS | 14, 15, 16, 17, 18 |
 | [**Google Cloud Memorystore for Redis**](/configuration/blueprints/gcp-memorystore-redis) | GCP | 7 |
@@ -196,7 +197,7 @@ The engine block defines how the resource is provisioned. Which settings you can
 |---------|-----------|-------------|
 | **Engine** | all | `terraform`, `opentofu`, or `helm` — the tool used to provision the resource. |
 | **Version** | Terraform / OpenTofu | Engine version. Editable only if the author marked it overridable, and constrained to the allowed values. |
-| **Credentials** | Terraform / OpenTofu | `cluster` (use the cluster's cloud credentials) or `env` (credentials supplied as variables on the service). External blueprints are always `env`. |
+| **Credentials** | Terraform / OpenTofu | `cluster` (use the cluster's cloud credentials) or `env` (credentials supplied as variables on the service). External blueprints are always `env`. AWS blueprints can assume an IAM role, see [Assuming an IAM role](#assuming-an-iam-role-aws-blueprints). |
 | **State backend** | Terraform / OpenTofu | `qovery` (Qovery-managed state) or `user_provided` (bring your own backend, e.g. S3/GCS/Azure). |
 | **Resources** | all | CPU, RAM, and ephemeral storage allocated to the provisioning job (for example `500m`, `512Mi`, `1Gi`). |
 | **Timeout** | all | Maximum duration, in seconds, for the provisioning run. |
@@ -205,6 +206,49 @@ The engine block defines how the resource is provisioned. Which settings you can
 <Info>
 For Helm blueprints, engine version, credentials, and state backend do not apply — the chart and its version are defined by the blueprint, and the resources block is ignored because the chart declares its own.
 </Info>
+
+### Assuming an IAM role (AWS blueprints)
+
+By default, an AWS blueprint calls AWS with its deployment credentials: the cluster's cloud credentials, unless you set the [credentials](#engine-%26-advanced-settings) to `env`. Every blueprint whose source is AWS also exposes an optional `role_arn` variable. When you set it, the blueprint uses the deployment credentials to assume that IAM role, and the calls that manage the AWS resources are made as the role. Leave it empty to keep using the deployment credentials directly.
+
+This lets you give a blueprint its own role with only the permissions it needs, instead of granting them to the deployment credentials. Each blueprint page lists its permissions under **Required AWS IAM permissions**: they belong to the role, not to the deployment credentials.
+
+| Requirement | Details |
+|-------------|---------|
+| **Format** | `arn:aws:iam::<account-id>:role/<name>`, with an optional path (`role/<path>/<name>`). The `aws-cn`, `aws-us-gov` and `aws-iso*` partitions are accepted too. |
+| **Same account** | The role must be in the same AWS account as the deployment credentials. Cross-account roles are not supported. |
+| **Permission to assume it** | The role's trust policy must allow the deployment credentials' IAM principal to assume it. |
+
+For example, this trust policy on the role lets the IAM role behind the deployment credentials assume it. Replace the principal with the exact ARN of the role behind your deployment credentials (the cluster credentials by default). If you supply an IAM user's access keys with `credentials: env`, use the ARN of that user (`arn:aws:iam::<account-id>:user/<name>`) instead:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Statement1",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::<account-id>:role/<your_deployment_credentials_role_name>"
+      },
+      "Action": "sts:AssumeRole"
+    }
+  ]
+}
+```
+
+To set it from the API or CLI, add it to the `variables` of the blueprint, like any other variable:
+
+```json
+{
+  "name": "role_arn",
+  "value": "arn:aws:iam::123456789012:role/my-blueprint-role"
+}
+```
+
+<Warning>
+`role_arn` does not apply to a user-provided Terraform state backend: access to it keeps using the deployment credentials. It does not exist on Helm, GCP, Scaleway or External blueprints (including AWS Bedrock Access, which is an External blueprint).
+</Warning>
 
 ## Using External Secrets
 
@@ -356,6 +400,9 @@ Creating, updating, and deploying a blueprint requires the **Manager** role on t
   </Accordion>
   <Accordion title="Scope the credentials you give an External blueprint" icon="user-shield">
     Create a dedicated vendor-side service account per blueprint service, limited to what the template provisions, rather than reusing an administrator token.
+  </Accordion>
+  <Accordion title="Use a dedicated IAM role for AWS blueprints" icon="user-lock">
+    Set `role_arn` to a role limited to what the blueprint provisions, rather than granting those permissions to the cluster credentials. See [Assuming an IAM role](#assuming-an-iam-role-aws-blueprints).
   </Accordion>
   <Accordion title="Consume outputs instead of hardcoding endpoints" icon="link">
     Wire applications to a blueprint's published outputs. A later update that changes an endpoint then propagates on its own.

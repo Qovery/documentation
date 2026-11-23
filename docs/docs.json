@@ -404,6 +404,7 @@
                       "configuration/blueprints/aws-elasticache-redis",
                       "configuration/blueprints/aws-elasticache-redis-node",
                       "configuration/blueprints/aws-elasticache-valkey",
+                      "configuration/blueprints/aws-elasticache-valkey-serverless",
                       "configuration/blueprints/aws-rds-mysql",
                       "configuration/blueprints/aws-rds-postgresql",
                       "configuration/blueprints/gcp-memorystore-redis",

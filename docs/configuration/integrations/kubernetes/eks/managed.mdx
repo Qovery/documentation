@@ -343,9 +343,10 @@ Each of the two credentials uses the STS Assume Role method and targets its own 
 - Service deployments, including the blueprints
 
 <Warning>
-Once Restricted Credentials is enabled, [Terraform services](/configuration/terraform) that use the cluster credentials (the default behavior) are always deployed with the restricted credentials.
+Once Restricted Credentials is enabled, the following services that use the cluster credentials (the default behavior) are always deployed with the restricted credentials. Review them before requesting the feature: only those managing resources that rely on `iam:*` or `kms:*` are concerned.
 
-Review your Terraform services before requesting the feature: only Terraform services managing resources that rely on `iam:*` or `kms:*` are concerned. Once your cluster uses Restricted Credentials, [update these Terraform services](#update-your-terraform-services) before their next deployment.
+- [Terraform services](/configuration/terraform): once your cluster uses Restricted Credentials, [update these Terraform services](#update-your-terraform-services) before their next deployment.
+- AWS [blueprints](/configuration/blueprints): once your cluster uses Restricted Credentials, set their `role_arn` variable to a dedicated IAM role before their next deployment. See [Assuming an IAM role](/configuration/blueprints#assuming-an-iam-role-aws-blueprints).
 </Warning>
 
 ### Create the IAM roles

@@ -1,4 +1,4 @@
-name: llms.txt is up to date
+name: llms files are up to date
 
 on:
   pull_request:
@@ -6,6 +6,8 @@ on:
       - "docs/docs.json"
       - "docs/**/*.mdx"
       - "docs/llms.txt"
+      - "docs/llms-full.txt"
+      - "docs/llms-full-guides.txt"
       - "scripts/llms/**"
       - "docs/api-reference/openapi.yaml"
 

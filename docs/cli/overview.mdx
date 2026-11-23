@@ -124,6 +124,35 @@ The command shows what will happen and asks for confirmation (`--yes` or `-y` sk
 
 See [Moving to a newer major version](/configuration/blueprints#moving-to-a-newer-major-version) for details.
 
+## Containers
+
+### Deploy a Git Container at a Specific Commit
+
+`qovery container deploy` accepts a `--commit-id` (`-c`) flag for containers built from a Git repository, as an alternative to `--tag`, which only applies to containers built from a registry image:
+
+```bash
+qovery container deploy -n "$CONTAINER_NAME" --commit-id "$COMMIT_SHA"
+```
+
+This deploys the container at that commit, which lets a CI pipeline deploy the commit it just pushed since Git containers do not yet auto-deploy on push. Passing `--tag` on a Git container, `--commit-id` on an image container, both flags together, or `--commit-id latest` fails before any request is sent.
+
+`qovery container list` shows each container's source (registry image or Git repository) and running image in the `Source` and `Image` columns, and in the `source`, `registry`, `image_name`, `tag`, and `git_repository` fields with `--json`.
+
+## AI Coding Agents
+
+### Manage the Qovery Skills
+
+`qovery skills install` installs or updates the [Qovery skills](/getting-started/quickstart/agent-skills) for AI coding agents (Claude Code, Cursor, OpenCode, Gemini CLI, and others), globally by default or in the current project with `--project`:
+
+```bash
+qovery skills install
+qovery skills install --project
+```
+
+`qovery skills status` shows where the skills are installed, and `qovery skills uninstall` removes them from every location.
+
+After a successful `qovery auth`, the CLI offers to install the skills if they are missing and an AI coding tool is found on the machine.
+
 ## Environment Variables
 
 ### Override a Variable That Already Exists at a Higher Scope

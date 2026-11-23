@@ -1,0 +1,171 @@
+---
+title: "Deploy a Next.js Application"
+sidebarTitle: "Next.js"
+description: "Deploy a Next.js application with PostgreSQL on Kubernetes in your own cloud account with Qovery: standalone output, production Dockerfile, port and health check, build-time variables, migrations as a lifecycle job."
+---
+
+import NoRepositoryManifest from "/snippets/no-repository-manifest.mdx";
+import Postgres from "/snippets/framework-guide-postgres.mdx";
+import ConsoleDeploy from "/snippets/framework-guide-console-deploy.mdx";
+import AgentPrompt from "/snippets/framework-guide-agent-prompt.mdx";
+
+This guide deploys a Next.js application as a Node.js server, with a PostgreSQL database and migrations that run before each release. Qovery builds the image from your Dockerfile and runs it on a Kubernetes cluster in your own cloud account. Server components, API routes and server actions all work, because the full Next.js server runs in the container.
+
+<NoRepositoryManifest />
+
+## Prerequisites
+
+- A Next.js application in a GitHub, GitLab or Bitbucket repository, with a `package-lock.json`.
+- A Qovery account and a cluster: [create one in your cloud account](/getting-started/quickstart/cloud), [connect your own cluster](/getting-started/installation/kubernetes), or [try it on your laptop](/getting-started/quickstart/try-with-an-agent).
+- A migration tool if you use one (Prisma, Drizzle Kit, Knex or another), with a `migrate` script in `package.json`, for example `"migrate": "prisma migrate deploy"`. Without one, skip [Run the migrations](#run-the-migrations) and the migration job step of the deployment.
+
+## Prepare the application
+
+Turn on the standalone output in `next.config.js` (or `next.config.ts`). `next build` then writes a self-contained `server.js` with only the dependencies it needs:
+
+```js next.config.js
+module.exports = {
+  output: "standalone",
+};
+```
+
+Add a health check route that does not render a page:
+
+```ts app/api/healthz/route.ts
+export const dynamic = "force-dynamic";
+
+export function GET() {
+  return new Response("ok");
+}
+```
+
+## Add a production Dockerfile
+
+Create a `Dockerfile` at the root of the repository:
+
+```dockerfile Dockerfile
+FROM node:24-slim AS deps
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci
+
+FROM node:24-slim AS build
+WORKDIR /app
+ENV NEXT_TELEMETRY_DISABLED=1
+ARG NEXT_PUBLIC_API_URL
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+RUN npm run build
+
+FROM node:24-slim AS runner
+WORKDIR /app
+ENV NODE_ENV=production \
+    NEXT_TELEMETRY_DISABLED=1 \
+    PORT=3000
+COPY --from=build --chown=node:node /app/public ./public
+COPY --from=build --chown=node:node /app/.next/standalone ./
+COPY --from=build --chown=node:node /app/.next/static ./.next/static
+USER node
+EXPOSE 3000
+CMD ["sh", "-c", "HOSTNAME=0.0.0.0 exec node server.js"]
+```
+
+- `node:24-slim` is the official Node.js image on Debian, on a long-term support (LTS) release.
+- Three stages keep the final image small: `deps` installs every package, `build` runs `next build`, and `runner` gets only the standalone server, the static files and `public`.
+- `ARG NEXT_PUBLIC_API_URL` passes a variable of the same name to the build. Next.js writes `NEXT_PUBLIC_` values into the JavaScript bundle at build time, so they must exist during the build, not only at runtime. Add one `ARG` line per `NEXT_PUBLIC_` variable.
+- `.next/static` and `public` are copied next to `server.js`, because the standalone output does not include them.
+- The standalone server reads `HOSTNAME` to choose the address it listens on. Kubernetes sets `HOSTNAME` to the pod name, so the start command sets it to `0.0.0.0`.
+- The `node` user comes with the image, so the server runs without root.
+
+If the project has no `public` folder, remove that `COPY` line. Add a `.dockerignore` with at least `node_modules`, `.next` and `.git`.
+
+## Port and health check
+
+The application listens on port `3000` and answers `GET /api/healthz` with `200`. Use both values when you create the application in Qovery.
+
+## Connect PostgreSQL
+
+<Postgres />
+
+Read `process.env.DATABASE_URL` only in server code: route handlers, server components and server actions. A variable without the `NEXT_PUBLIC_` prefix never reaches the browser.
+
+## Set the variables
+
+| Variable | Value | Secret |
+|---|---|---|
+| `DATABASE_URL` | The alias or secret from [Connect PostgreSQL](#connect-postgresql) | Yes |
+| `NEXT_PUBLIC_API_URL` | An example of a public, build-time value. Declare it as an `ARG` in the Dockerfile | No |
+
+See [Passing a value as a build argument](/configuration/environment-variables#passing-a-value-as-a-build-argument). Never put a secret in a `NEXT_PUBLIC_` variable: it ends up in the bundle that browsers download.
+
+## Run the migrations
+
+Run the `migrate` script in a [lifecycle job](/configuration/lifecycle-job) built from the same repository and Dockerfile, triggered on the **Deploy** event, with these CMD arguments:
+
+```json
+["npm", "run", "migrate"]
+```
+
+Set the job's **target stage** to `build`. The `runner` image holds only what `server.js` needs, while the `build` stage has every package, the migration files and `package.json`. The job runs once per deployment. In the default [deployment pipeline](/configuration/deployment/pipeline), jobs run after the databases and before the applications, so the schema is up to date when the new code starts.
+
+## Deploy
+
+<Tabs>
+  <Tab title="Console">
+    <ConsoleDeploy port="3000" healthPath="/api/healthz" migrateArgs='["npm", "run", "migrate"]' />
+  </Tab>
+  <Tab title="With a coding agent">
+    Install the Qovery skills once:
+
+    ```bash
+    curl -fsSL https://skill.qovery.com/install.sh | bash
+    ```
+
+    Open your agent in the repository and paste:
+
+    <AgentPrompt prompt="Deploy this Next.js application with Qovery, with a PostgreSQL database and a lifecycle job that runs the migrations." />
+
+    The agent writes the Dockerfile if there is none, creates the database, the variables, the job and the application, and gives you the URL. See [Agent Skills](/getting-started/quickstart/agent-skills).
+  </Tab>
+</Tabs>
+
+## Troubleshooting
+
+The CLI commands below use the organization and project selected with `qovery context set`. Run it first, or add `--organization` and `--project` to each command.
+
+<AccordionGroup>
+  <Accordion title="Deployment fails on the health check">
+    The server listens on the pod name instead of `0.0.0.0`, or on another port. Keep `HOSTNAME=0.0.0.0` in the start command and check that the port in Qovery is `3000`. Read the error lines with `qovery environment deployment logs --environment "<env>" --service "<app>" --errors-only`.
+  </Accordion>
+  <Accordion title="Build fails on COPY /app/.next/standalone">
+    `output: "standalone"` is missing from the Next.js config, so `next build` did not write the folder.
+  </Accordion>
+  <Accordion title="A NEXT_PUBLIC_ value is undefined in the browser">
+    The value was not set when the image was built. Declare it with `ARG` in the `build` stage, create the variable in Qovery, and redeploy so the image is rebuilt.
+  </Accordion>
+  <Accordion title="CSS, JavaScript or images return 404">
+    `.next/static` or `public` was not copied into the `runner` stage. The standalone output leaves both out.
+  </Accordion>
+  <Accordion title="relation does not exist">
+    The migrations did not run against this database. Check that the job and the application read the same `DATABASE_URL`, and read the job output with `qovery log --job "<job name>"`.
+  </Accordion>
+</AccordionGroup>
+
+For other errors, see [Diagnose a Failed Build or Deployment](/getting-started/troubleshoot/overview#diagnose-a-failed-build-or-deployment).
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Preview environments" icon="code-pull-request" href="/getting-started/guides/use-cases/preview-environments">
+    Get a full copy of the environment for each pull request
+  </Card>
+  <Card title="Custom domain" icon="globe" href="/configuration/application#custom-domains">
+    Serve the application on your own domain
+  </Card>
+  <Card title="Auto deploy" icon="rotate" href="/configuration/deployment/auto-deploy">
+    Deploy on every push to the branch
+  </Card>
+  <Card title="Other frameworks" icon="layer-group" href="/getting-started/guides/frameworks/overview">
+    All framework guides
+  </Card>
+</CardGroup>

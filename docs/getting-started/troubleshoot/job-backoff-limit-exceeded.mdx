@@ -1,0 +1,83 @@
+---
+title: "BackoffLimitExceeded: Job has reached the specified backoff limit"
+description: "A Qovery cron job or lifecycle job fails with BackoffLimitExceeded, often with no error in the logs. Find why the container exited and set the number of restarts and max duration."
+---
+import StillStuck from "/snippets/troubleshoot-still-stuck.mdx";
+
+A cron job or a lifecycle job is marked as failed, and its events or deployment logs show:
+
+```text
+BackoffLimitExceeded: Job has reached the specified backoff limit
+```
+
+Sometimes the job logs show nothing wrong, or nothing at all.
+
+## What the error means
+
+Qovery runs cron jobs and lifecycle jobs as Kubernetes Jobs. Each time the container of the job exits with a non-zero code, or is killed, Kubernetes counts one failure. When the number of failures goes above the backoff limit, Kubernetes stops retrying and marks the Job as failed with `BackoffLimitExceeded`.
+
+The backoff limit is the **Number of restarts** of the job in Qovery (`max_nb_restart` in the API). Its default is `0`: a single failed run fails the job.
+
+`BackoffLimitExceeded` is only the final status. The real error is the reason the container stopped, so look for that.
+
+## Find why the container stopped
+
+<Steps>
+  <Step title="Read the job logs">
+    Open the job in the Console and go to **Logs**. Look at the last lines before the end of the run: an exception, a stack trace, `Killed`, or an exit message. Logs are kept for a limited time, so check a failed run soon after it happens.
+  </Step>
+
+  <Step title="Check the exit code">
+    If the logs are empty or end abruptly, connect to the cluster (see [Connect to your cluster](/configuration/connect-to-cluster)) and inspect the pod of the failed run:
+
+    ```bash
+    kubectl get pods -n <environment-namespace>
+    kubectl describe pod <job-pod-name> -n <environment-namespace>
+    ```
+
+    Look under `State` for the container that ran, or under `Last State` if it restarted. `Reason: OOMKilled` means the job ran out of memory. `Exit Code: 137` alone is only a hint: it means the container received `SIGKILL`, which also happens when the job is stopped from outside or reaches its maximum duration. Another non-zero exit code comes from your program. A command that cannot be found usually gives `Exit Code: 127` or a `StartError`.
+
+    By default only the last failed run of a cron job is kept ([`cronjob.failed_jobs_history_limit`](/configuration/service-advanced-settings#cronjob-failed-jobs-history-limit) is `1`). Raise it to keep more failed runs to inspect.
+  </Step>
+</Steps>
+
+## Common causes and fixes
+
+### The command is wrong
+
+The job starts, the command fails at once, and nothing useful is printed. This is the most frequent cause when there is no log at all.
+
+In the job **Settings**, Qovery has two fields: **Entrypoint**, which replaces the `ENTRYPOINT` of the image, and **CMD Arguments**, which are passed to it. Putting the full command in **Entrypoint** when the image already has an entrypoint (or the reverse) runs something other than what you expect. Check them against the image:
+
+- Leave **Entrypoint** empty to keep the entrypoint of the image, and put your command in **CMD Arguments** as a JSON array, for example `["npm", "run", "report"]`.
+- To run a shell command, set **Entrypoint** to `/bin/sh` and **CMD Arguments** to `["-c", "./run.sh && echo done"]`.
+
+Run the same command locally with `docker run <image> <arguments>` to confirm it works.
+
+### The job ran out of memory
+
+`Reason: OOMKilled` means the container used more memory than its limit. Exit code `137` without that reason can have another cause, as described above. Raise the memory of the job in its **Resources** settings, or process the data in smaller batches.
+
+### The job ran longer than its max duration
+
+When a run takes longer than the **Max Duration** of the job (`max_duration_seconds` in the API), Kubernetes stops it and the run counts as failed. Raise **Max Duration** in the job settings, or make the job do less per run.
+
+### The job fails sometimes and should retry
+
+For jobs that call external systems that can fail for a moment, set **Number of restarts** above `0` so Kubernetes retries a failed run before giving up. Make sure the job is safe to run twice.
+
+### Two runs overlap
+
+If a run is still going when the next schedule starts, [`cronjob.concurrency_policy`](/configuration/service-advanced-settings#cronjob-concurrency-policy) decides what happens. With `Replace`, the running job is stopped. Keep the default `Forbidden` unless your job is built for it.
+
+## Make failures visible
+
+A job that fails without logs is hard to fix the next time. Make your job:
+
+- log a line when it starts and when it ends, with the outcome,
+- catch errors at the top level, log them, and exit with a non-zero code,
+- report the failure to the tool your team already watches (error tracker, chat, monitoring).
+
+See also [Lifecycle Jobs and Cronjobs execution failed](/getting-started/troubleshoot/overview#service-deployment-issues), [Cron jobs](/configuration/cronjob) and [Lifecycle jobs](/configuration/lifecycle-job).
+
+<StillStuck />

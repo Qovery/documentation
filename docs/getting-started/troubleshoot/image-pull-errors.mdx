@@ -1,0 +1,85 @@
+---
+title: "Image pull errors: 401 Unauthorized from ECR, 429 Too Many Requests from Docker Hub"
+description: "Fix builds and deployments that cannot pull an image: 401 Unauthorized from a private AWS ECR registry, and the Docker Hub pull rate limit (429 toomanyrequests)."
+---
+import StillStuck from "/snippets/troubleshoot-still-stuck.mdx";
+
+This page covers the two most common errors when Qovery pulls a container image, either for the `FROM` line of your Dockerfile during the build, or for a service deployed from a container registry.
+
+## 401 Unauthorized from a private ECR registry
+
+```text
+ERROR: unexpected status from HEAD request to https://123456789012.dkr.ecr.us-east-1.amazonaws.com/v2/my-base-image/manifests/1.2.3: 401 Unauthorized
+```
+
+### Cause
+
+Qovery tried to read an image from a private registry without valid credentials for it. It happens most often when the `FROM` line of a Dockerfile points to a private ECR repository: the build only logs in to the registries declared in your organization, so a registry that is not declared is pulled anonymously and refused.
+
+### Fix
+
+<Steps>
+  <Step title="Declare the registry in your organization">
+    Go to **Organization Settings**, then **Container Registries**, and click **Add Registry**. Choose **ECR** and set the registry URL to the host used in your image reference, with the protocol:
+
+    ```text
+    https://123456789012.dkr.ecr.us-east-1.amazonaws.com
+    ```
+
+    The account ID and the region must be the ones of the repository, not of your cluster. During the build, Qovery logs in to the registries of your organization that your Dockerfile uses, so the `FROM` line can pull from it.
+  </Step>
+
+  <Step title="Give the credentials read access">
+    Use **Assume role via STS** (recommended) or static access keys. Either way, the identity needs `ecr:GetAuthorizationToken` on `*` and the read actions (`ecr:BatchGetImage`, `ecr:GetDownloadUrlForLayer`, `ecr:BatchCheckLayerAvailability`) on the repositories. The full policy is in [AWS ECR with STS assume role](/configuration/organization/container-registry#aws-ecr-with-sts-assume-role).
+  </Step>
+
+  <Step title="Cross-account repositories">
+    If the repository is in another AWS account than the role or the access keys, the IAM policy is not enough: the policy of each repository must also allow that role or user for the same actions.
+  </Step>
+
+  <Step title="Check the external ID condition">
+    With STS, if the trust policy of the role has an `sts:ExternalId` condition, it must list the Qovery ID of the registry and the all-zeros value `00000000-0000-0000-0000-000000000000`. Without the registry ID, every deployment that pulls from this registry fails, even though the Console can validate the registry. Without the all-zeros value, the Console cannot validate the registry or list your images. See [Trust policy](/configuration/organization/container-registry#trust-policy).
+  </Step>
+
+  <Step title="Deploy again">
+    The deployment logs show a login to the registry before the build pulls the image.
+  </Step>
+</Steps>
+
+The same steps apply to any private registry (GCP Artifact Registry, ACR, GitHub, GitLab, a generic registry): declare it under **Container Registries** with the URL used in the image reference, and give the credentials read access.
+
+## 429 Too Many Requests from Docker Hub
+
+```text
+429 Too Many Requests - Server message: toomanyrequests: You have reached your pull rate limit. You may increase the limit by authenticating and upgrading: https://www.docker.com/increase-rate-limit
+```
+
+### Cause
+
+Docker Hub limits anonymous pulls per source IP address. Your builds and nodes reach the internet through a small number of IP addresses (the NAT gateways of the cluster, for example), so all your services share one anonymous quota. Busy days, many services using public base images such as `node` or `python`, or preview environments, use it up quickly. The limit can also be reached by other traffic from the same IP addresses.
+
+### Fix
+
+Authenticate to Docker Hub so that pulls count against your own account:
+
+1. Create a Docker Hub access token (Docker Hub **Account Settings**, then **Security**, then **New Access Token**).
+2. In Qovery, go to **Organization Settings**, then **Container Registries**, click **Add Registry**, choose **Docker Hub**, and enter your Docker Hub username and the token. See [Docker Hub](/configuration/integrations/container-registries/docker-hub).
+3. Deploy again. Builds log in to Docker Hub before pulling the `FROM` images. Services deployed from a Docker Hub image must use this registry.
+
+A paid Docker Hub plan raises the limit further. See [Docker Hub usage and limits](https://docs.docker.com/docker-hub/usage/).
+
+Other ways to stop depending on Docker Hub limits:
+
+- Pull official images from the Amazon ECR Public Gallery mirror, for example `FROM public.ecr.aws/docker/library/node:20` instead of `FROM node:20`.
+- Copy the base images you use to your own registry and reference them from there.
+
+<Info>
+On Qovery-managed EKS clusters that use Karpenter, the cluster advanced setting [`aws.ecr.enable_pull_through_cache`](/configuration/cluster-advanced-settings#aws-ecr-enable-pull-through-cache) caches the public ECR images used by Qovery components. It does not cache your own images or Docker Hub images.
+</Info>
+
+## Related
+
+- [Image mirroring](/configuration/deployment/image-mirroring): how Qovery copies the image of each service to the registry of the cluster before deploying it.
+- [Container registries](/configuration/organization/container-registry)
+
+<StillStuck />

@@ -32187,7 +32187,7 @@ Application images are built inside your cluster, in builder pods of the `qovery
 
 Depending on the cluster configuration, a pod can reach the metadata endpoint of the node it runs on. On EKS with an IMDS hop limit of 2, a build step can request an IMDS token and read the temporary credentials of the node IAM role. Those credentials give the permissions of the node role, and they authenticate to the Kubernetes API as the node.
 
-Configure this isolation on your cluster using the instructions for your cloud provider.
+On BYOK clusters, your team controls the node and network settings that govern access to node metadata. Follow the instructions for your cloud provider to configure this isolation.
 
 <Tabs>
   <Tab title="AWS (EKS)">
@@ -32209,7 +32209,7 @@ Configure this isolation on your cluster using the instructions for your cloud p
   <Tab title="GCP (GKE)">
     On GKE Standard, enable [Workload Identity Federation for GKE](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) on the cluster and verify that every node pool that can run builds uses the `GKE_METADATA` mode. GKE Autopilot enables Workload Identity Federation automatically.
 
-    For builder pods outside the host network, the GKE metadata server uses the pod’s workload identity. It can still return the node ID over HTTP, so verify the node pool’s metadata mode to confirm the isolation.
+    For builder pods outside the host network, the GKE metadata server uses the pod’s workload identity. It can still return the node ID over HTTP, so verify the node pool’s metadata mode to confirm the isolation. See [Instance metadata in the GKE documentation](https://docs.cloud.google.com/kubernetes-engine/docs/concepts/workload-identity#instance_metadata).
   </Tab>
   <Tab title="Scaleway (Kapsule)">
     Run the check below. If a build step gets an answer from the metadata endpoint, restrict the egress of the builder pods, which carry the label `qovery.com/is-builder: "true"`, with the network plugin of the cluster, and run the check again.

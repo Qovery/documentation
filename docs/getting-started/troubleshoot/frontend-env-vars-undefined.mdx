@@ -1,0 +1,71 @@
+---
+title: "Environment variable is undefined in a React, Vite or Next.js frontend"
+description: "process.env.REACT_APP_API_URL is undefined in the browser after deploying on Qovery. Frontend variables are read at build time: declare them as Dockerfile build arguments."
+---
+import StillStuck from "/snippets/troubleshoot-still-stuck.mdx";
+
+You set a variable such as `REACT_APP_BACKEND_URL` in Qovery, but in the browser your frontend reads:
+
+```text
+undefined
+```
+
+or calls a wrong URL, such as the backend host name appended to the frontend URL (`https://frontend.example.com/backend.example.com/api`).
+
+## Cause
+
+The code of a React (Create React App), Vite or Next.js frontend that runs in the browser does not run in your container. Its build tool replaces `process.env.REACT_APP_*`, `import.meta.env.VITE_*` or `process.env.NEXT_PUBLIC_*` with fixed values when you run `npm run build`. After that, the files served to the browser no longer read any environment variable.
+
+Qovery injects your variables into the running container, which is too late for these frameworks. A variable reaches the build only if the Dockerfile declares it. See [Build-time variables](/configuration/environment-variables#build-time-variables).
+
+## Fix
+
+<Steps>
+  <Step title="Declare the variable as a build argument">
+    In the build stage of your Dockerfile, add an `ARG` with the same name as the Qovery variable, before the build command:
+
+    ```dockerfile
+    FROM node:20 AS build
+    WORKDIR /app
+    COPY package*.json ./
+    RUN npm ci
+    COPY . .
+
+    ARG REACT_APP_BACKEND_URL
+    RUN npm run build
+
+    FROM nginx:alpine
+    COPY --from=build /app/build /usr/share/nginx/html
+    ```
+
+    In a multi-stage Dockerfile, declare the `ARG` in the stage that runs the build. An `ARG` declared in another stage is not visible there.
+  </Step>
+
+  <Step title="Create the variable in Qovery">
+    Create `REACT_APP_BACKEND_URL` on the frontend service, or at environment level. To point at another service of the environment, create an [alias](/configuration/environment-variables#aliases) on the built-in variable of the backend that ends in `_HOST_EXTERNAL`, named the way your frontend expects. The browser cannot reach the `_HOST_INTERNAL` host; see [Use the public host name of the backend](#use-the-public-host-name-of-the-backend).
+  </Step>
+
+  <Step title="Add the protocol">
+    The built-in host variables hold a host name only, without `https://`. Used as is, the browser treats the value as a relative path, which gives URLs like `https://frontend.example.com/backend.example.com`. Add the protocol where you build the URL:
+
+    ```js
+    const apiUrl = `https://${process.env.REACT_APP_BACKEND_URL}`;
+    ```
+  </Step>
+
+  <Step title="Redeploy the frontend">
+    Changing the value of a variable declared as an `ARG` changes the image tag, so Qovery builds the frontend again with the new value.
+  </Step>
+</Steps>
+
+## Use the public host name of the backend
+
+The browser calls your backend over the internet, so it needs the public host name of the backend, not its internal one. Use the variable ending in `_HOST_EXTERNAL`, which exists only when the backend has a publicly accessible port. A value ending in `_HOST_INTERNAL` only resolves inside the cluster. See [Linking services together](/terraform-provider/linking-services).
+
+If the backend uses a custom domain, set the variable to that domain instead.
+
+<Warning>
+Build arguments are written into the image and into the JavaScript files sent to every visitor. Never pass secrets to a frontend this way. Keep API keys and tokens on the backend.
+</Warning>
+
+<StillStuck />

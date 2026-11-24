@@ -1,4 +1,4 @@
-name: llms.txt is up to date
+name: llms files and sitemap are up to date
 
 on:
   pull_request:
@@ -6,7 +6,10 @@ on:
       - "docs/docs.json"
       - "docs/**/*.mdx"
       - "docs/llms.txt"
+      - "docs/llms-full.txt"
+      - "docs/sitemap.xml"
       - "scripts/llms/**"
+      - "scripts/sitemap/**"
       - "docs/api-reference/openapi.yaml"
 
 permissions:
@@ -16,10 +19,13 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4.4.0
         with:
           persist-credentials: false
-      - uses: actions/setup-python@v5
+          # the sitemap reads each page's git history
+          fetch-depth: 0
+      - uses: actions/setup-python@v5.6.0
         with:
           python-version: "3.12"
       - run: python3 scripts/llms/generate.py --check
+      - run: python3 scripts/sitemap/generate.py --check

@@ -1,0 +1,64 @@
+---
+title: "Deployment stuck on Queued"
+description: "A Qovery deployment stays in the Queued status and never starts building. Find what it waits for in the deployment history, cancel what blocks it, and avoid long queues."
+---
+import StillStuck from "/snippets/troubleshoot-still-stuck.mdx";
+
+You deploy a service, and its deployment status stays on:
+
+```text
+QUEUED
+```
+
+for a long time, without moving to `BUILDING` or `DEPLOYING`. Deploying again does not help.
+
+## What Queued means
+
+`QUEUED` means the deployment request is accepted and waits for its turn. Qovery processes one deployment action at a time per environment. A new request waits while another deployment of the same environment is running, and starts when that one ends. See [Queueing and merging](/configuration/deployment/actions#queueing-and-merging).
+
+So a deployment that stays queued is almost always waiting for another one: a long build, a deployment stuck on a step, or a chain of requests in front of it.
+
+## Find what the deployment waits for
+
+<Steps>
+  <Step title="Open the deployment history">
+    Open the environment and go to its **Deployments** tab. See [Deployment History](/configuration/deployment/history). Look for a deployment in progress above your queued one, and for other queued requests.
+  </Step>
+
+  <Step title="Check the running deployment">
+    Open the logs of the running deployment. A build that takes very long, a service that never becomes healthy, or a Helm release that waits for its pods will hold the queue until it finishes or times out.
+  </Step>
+
+  <Step title="Count the queued requests">
+    With auto-deploy, each push to the branch creates a deployment request. Many pushes in a short time, with long builds, create a queue. Requests from the same user with the same action are merged, but requests from different users or actions are not.
+  </Step>
+</Steps>
+
+## Unblock the queue
+
+Cancel the deployment that blocks the queue, or the queued requests you no longer need. In the deployment history, click the cancel icon next to the deployment. Deployments in **Queued** or **In Progress** status can be cancelled.
+
+From the CLI, after selecting the organization and project with `qovery context set` (or with `--organization` and `--project`):
+
+```bash
+qovery environment cancel --environment "<environment-name>" --watch
+```
+
+To force the cancellation, add `--force`. With the API, call `POST /environment/{environmentId}/cancelDeployment`.
+
+Once the queue is empty, deploy the service again. Cancelling a deployment in the middle can leave some services partly updated, so redeploy the environment if several services were involved.
+
+<Warning>
+For lifecycle jobs, the Console asks you to confirm a forced cancellation, because the job may already have made changes (for example a database migration).
+</Warning>
+
+## Avoid long queues
+
+- Fix the deployment that blocks: a service that fails its health checks keeps the deployment running until the timeout. See [Health checks](/configuration/service-health-checks).
+- Make builds faster so each deployment holds the queue for less time. Build parallelism and resources are described in [Deployment pipeline](/configuration/deployment/pipeline).
+- Use [deployment restrictions](/configuration/application#deployment-restrictions) on file paths so that a push only deploys the services it changes.
+- If you push often to the same branch, deploy from a branch that receives merged changes, not every commit.
+
+If a deployment stays queued while the deployment history shows nothing running, contact support with the environment URL: the request may be stuck on the Qovery side.
+
+<StillStuck />

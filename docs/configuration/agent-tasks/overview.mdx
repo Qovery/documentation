@@ -82,7 +82,7 @@ For ready-made jobs with their policies, see **Agents → Automate** in the Cons
       "agent_prompt": "Review the last deployments and propose faster build settings.",
       "model": { "type": "CLAUDE", "llm_provider_id": "REPLACE_WITH_LLM_PROVIDER_ID" },
       "resources": { "cpu_milli": 1000, "ram_mib": 2048, "gpu": 0, "storage_gib": 10 },
-      "governance": { "host_allowlist": ["github.com"] },
+      "governance": { "host_allowlist": ["github.com", "api.anthropic.com"] },
       "execution_mode": "IN_PLACE",
       "schedule": { "cron_expression": "0 8 * * 1-5", "timezone": "Europe/Paris" }
     }
@@ -91,7 +91,7 @@ For ready-made jobs with their policies, see **Agents → Automate** in the Cons
     echo "$AGENTIC_WORKFLOW_ID"
     ```
 
-    `model.type` is `CLAUDE` or `BEDROCK`. A token of type Anthropic-compatible is used with `CLAUDE`. `execution_mode` is `IN_PLACE` or `CLONE_ENVIRONMENT`. Omit `schedule` for an agent task triggered by its webhook only. To attach MCP servers or Qovery services as context, set `mcp_server_ids` and `context_service_ids`. See the [API reference](/api-reference/introduction) for the full schema.
+    `model.type` is `CLAUDE` or `BEDROCK`. A token of type Anthropic-compatible is used with `CLAUDE`. `execution_mode` is `IN_PLACE` or `CLONE_ENVIRONMENT`. Omit `schedule` for an agent task triggered by its webhook only. The API does not add the model provider's hosts to `host_allowlist` the way the Console does: list them yourself (see [Governance](#configuration)), or the agent can't reach its model. A `*` allowlist already covers them. To require a secret on webhook calls, set `webhook_auth` to `{ "mode": "SECRET_HEADER", "secret": "..." }`. To attach MCP servers or Qovery services as context, set `mcp_server_ids` and `context_service_ids`. See the [API reference](/api-reference/introduction) for the full schema.
 
     The command stores the agent task ID in `AGENTIC_WORKFLOW_ID`. Run `qovery api "agenticWorkflow/$AGENTIC_WORKFLOW_ID"` to read its `webhook` URL.
   </Tab>
@@ -155,7 +155,7 @@ Add a trigger to run the agent automatically, and optionally an output to send i
 ### Triggers
 
 - **On a schedule**: a cron expression and timezone, for example `0 8 * * 1-5` for 8:00 AM, Monday through Friday.
-- **From a webhook**: Qovery generates a unique URL for the agent task, visible later by hovering **Webhook** in the **Trigger** column of the **Agent tasks** list in the environment's **Automations** tab (for example `https://webhook.qovery.com/api/v1/hook/...`). Anything that can send a POST request to that URL starts the agent.
+- **From a webhook**: Qovery generates a unique URL for the agent task, visible later by hovering **Webhook** in the **Trigger** column of the **Agent tasks** list in the environment's **Automations** tab (for example `https://webhook.qovery.com/api/v1/hook/...`). Anything that can send a POST request to that URL starts the agent. To require a shared secret on each call, set up webhook authentication under [Governance](#configuration).
 
 ### Outputs
 
@@ -189,7 +189,24 @@ Some agents use a different, more direct pattern instead: storing a chat webhook
     CPU (mCPU), memory (MiB), and storage (GB) allocated to the agent, same as any other Qovery service. CPU and memory are required, with a minimum of 1000 mCPU and 2048 MiB. The ready-made templates start at these minimums.
   </Accordion>
   <Accordion title="Governance" icon="shield-check">
-    A domain allowlist controls which external hosts the agent task can reach: comma-separated hostnames, or `*` for all domains.
+    A domain allowlist controls which external hosts the agent task can reach: comma-separated hostnames, or `*` for all domains. An entry can be an IP address, and can use `*` as a wildcard anywhere in a hostname, for example `*.sentry.io` or `bedrock-runtime.*.amazonaws.com`.
+
+    The agent also needs to reach its model. Each time you create the agent task or save its settings, the Console adds the hosts of the selected LLM provider to the allowlist, so you don't have to list them yourself:
+
+    | Provider | Hosts added |
+    |---|---|
+    | Claude | `api.anthropic.com` |
+    | Bedrock | `bedrock-runtime.*.amazonaws.com`, `51.45.40.194`, `13.37.114.98`, `15.188.250.162` |
+    | Anthropic-compatible | The hostname of the provider's base URL |
+
+    A `*` allowlist is saved unchanged, and a host already in the list is not added twice. After a save, the field shows the added hosts. If you switch to another provider, the previous provider's hosts stay in the list until you remove them.
+
+    **Webhook authentication** controls who can call the agent task's webhook URL. Set it under **Settings > Governance**:
+
+    - **None** (default): no secret is checked. Only the webhook IP allowlist, if set through the API (`webhook_ip_allowlist`, a list of CIDR ranges), restricts who can call the URL.
+    - **Secret header**: each call must send the secret in an HTTP header, `x-qovery-webhook-secret` unless you set another header name. Headers that proxies rewrite or consume, such as `authorization`, `cookie`, `host`, `content-type`, or `x-forwarded-*`, are rejected. A call without the right value is rejected with `401`. The secret must be 16 to 1024 printable ASCII characters, with no leading or trailing space. Qovery stores only its SHA-256 hash and never shows it again.
+
+    Once **Secret header** is saved, the field is labeled **New secret** and is empty: leave it empty to keep the current secret, or enter a new value to rotate it. Agent tasks created from the Console start with **None**; set the secret header right after creation. The webhook IP allowlist applies on top of both modes. Through the API, use the `webhook_auth` field of the agent task.
   </Accordion>
   <Accordion title="Environment Variables" icon="key">
     Plain variables or encrypted secrets the agent's instructions can reference by name. Secret values can't be viewed again once set.

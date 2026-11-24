@@ -34,6 +34,8 @@ Before running the demo:
 - **A Qovery account**: run `qovery auth` first. The Free plan is enough.
 - **macOS or Linux**: on Windows, run the command in WSL
 
+The demo cluster counts as a cluster on your plan. On the Free plan, it uses the one included cluster. Run `qovery demo destroy --delete-qovery-config` to free it.
+
 ## Examples
 
 ### Start the Demo
@@ -73,8 +75,27 @@ Use the demo to learn Qovery CLI commands before working with production environ
 </Tip>
 
 <Warning>
-Ensure Docker Desktop has sufficient resources allocated (at least 4GB RAM, 2 CPUs).
+Give Docker at least 4 CPUs and 8 GB of memory.
 </Warning>
+
+## Troubleshooting
+
+When `qovery demo up` fails, it prints the step that failed, an error code, a short hint and a diagnostic ID. The debug log is uploaded to Qovery, so the diagnostic ID is enough when you contact support.
+
+| Error code | What to do |
+|------------|------------|
+| `MISSING_DEPENDENCY` | Install the commands it lists (Docker, `k3d`, `helm`, `kubectl`), then run `qovery demo up` again. |
+| `DOCKER_NOT_RUNNING` | Start Docker, then run the command again. |
+| `AUTHENTICATION_FAILED` | Run `qovery auth` (or `qovery auth --headless`). |
+| `ORGANIZATION_NOT_RESOLVED` | Run `qovery context set` and pick your organization. |
+| `DEMO_SUBNET_IN_USE` | Another Docker network uses `172.42.0.0/16`. Run the `docker network rm` or `k3d cluster delete` command from the hint. |
+| `LOOPBACK_SETUP_FAILED` | The local address `172.42.0.3` could not be added. On macOS, run `sudo ifconfig lo0 alias 172.42.0.3/32 up` and try again. |
+| `UNSUPPORTED_OS` | On Windows, run the command inside WSL. |
+| `OPERATOR_HEARTBEAT_TIMEOUT`, `CLUSTER_DEPLOYMENT_FAILED`, `CLUSTER_DEPLOYMENT_TIMEOUT` | Run `qovery demo up` again. If it fails a second time, contact support with the diagnostic ID. |
+
+Running `qovery demo up` again is safe: it restarts a stopped local cluster instead of creating a new one, and it waits for a cluster deployment already in progress. The cluster is registered in your Qovery organization only after the local setup succeeds.
+
+To pause the cluster without deleting it, use `k3d cluster stop <cluster-name>` and `k3d cluster start <cluster-name>`.
 
 ## Next Steps
 

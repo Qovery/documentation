@@ -66,13 +66,16 @@ Before starting, ensure you have:
 
     This command:
     - Creates a local k3s cluster with k3d (lightweight Kubernetes in Docker)
-    - Installs the Qovery Operator on it and connects the cluster to your organization
+    - Installs the Qovery Operator and Engine v2 on it and connects the cluster to your organization
     - Lets Qovery deploy its stack on the cluster, including networking and ingress
-    - Takes approximately 5-10 minutes to complete
+    - Checks that the Operator and the engine are running before it finishes
+    - Takes approximately 5-10 minutes to complete, and shows each step with its duration
 
     <Warning>
-    You may be prompted for your password (`sudo`). It adds a local network address so that traffic from your machine reaches the applications on the cluster.
+    On macOS and WSL, you may be prompted for your password (`sudo`). It adds the local address `172.42.0.3` so that traffic from your machine reaches the applications on the cluster. If the address is already set, the prompt is skipped.
     </Warning>
+
+    If the command fails, it prints an error code and a diagnostic ID. See [Troubleshooting](/cli/commands/demo#troubleshooting).
   </Step>
 
   <Step title="Access the Console">
@@ -101,7 +104,7 @@ The local cluster runs entirely on your machine, making it perfect for testing a
 Local Kubernetes is **NOT for production**:
 - Single node (no high availability)
 - Limited resources
-- Loses data on restart
+- Runs only while Docker runs on your machine
 - Performance limitations
 </Warning>
 

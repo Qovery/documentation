@@ -145,7 +145,7 @@ Letting Flyway run when the application starts, the Spring Boot default, works f
   <Tab title="Console">
     <ConsoleDeploy port="8080" healthPath="/actuator/health/readiness" migrateArgs='["java", "-jar", "app.jar", "--spring.main.web-application-type=none", "--spring.flyway.enabled=true"]' />
 
-    In the health checks step, then change the path of the liveness probe to `/actuator/health/liveness`.
+    In the health checks step, change the path of the liveness probe to `/actuator/health/liveness`.
   </Tab>
   <Tab title="With a coding agent">
     Install the Qovery skills once:

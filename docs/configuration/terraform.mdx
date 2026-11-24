@@ -623,7 +623,7 @@ Destroy: -parallelism=5 -refresh=false
 
 <Steps>
   <Step title="Create a dedicated IAM role">
-    In your AWS account, create an IAM role with the required permissions your Terraform code needs. Set its trust relationship so that the cluster credentials IAM role can assume it. Replace `<cluster-credentials-role-arn>` with your cluster credentials role arn:
+    In your AWS account, create an IAM role with the required permissions your Terraform code needs. Set its trust relationship so that the cluster credentials IAM role can assume it. Replace `<cluster-credentials-role-arn>` with your cluster credentials role ARN:
 
     ```json
     {

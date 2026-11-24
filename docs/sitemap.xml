@@ -2814,7 +2814,7 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/integrations/kubernetes/byok</loc>
-    <lastmod>2026-11-08</lastmod>
+    <lastmod>2026-11-24</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/integrations/kubernetes/byok-legacy</loc>
@@ -2894,7 +2894,7 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/integrations/slack</loc>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-17</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/integrations/webhooks</loc>
@@ -3006,7 +3006,7 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/terraform</loc>
-    <lastmod>2026-11-23</lastmod>
+    <lastmod>2026-11-24</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/user-account</loc>
@@ -3030,7 +3030,7 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/copilot/capabilities/optimization</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-17</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/copilot/capabilities/troubleshooting</loc>
@@ -3194,7 +3194,7 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/getting-started/guides/frameworks/spring-boot</loc>
-    <lastmod>2026-11-23</lastmod>
+    <lastmod>2026-11-24</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/getting-started/guides/getting-started/connect-database</loc>

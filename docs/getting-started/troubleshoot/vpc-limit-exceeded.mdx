@@ -1,0 +1,46 @@
+---
+title: "VpcLimitExceeded: The maximum number of VPCs has been reached"
+description: "Creating an AWS cluster on Qovery fails when the region hits its VPC quota. Raise the quota, delete unused VPCs, or deploy the cluster on an existing VPC."
+---
+import StillStuck from "/snippets/troubleshoot-still-stuck.mdx";
+
+Creating a cluster on AWS fails, and the cluster logs show:
+
+```text
+Error: creating EC2 VPC: operation error EC2: CreateVpc, https response error StatusCode: 400, api error VpcLimitExceeded: The maximum number of VPCs has been reached.
+```
+
+The preflight report of the cluster can also show `[FAIL] VPC quota`.
+
+## Cause
+
+By default, a cluster managed by Qovery gets its own VPC. AWS limits the number of VPCs per region and per account, with a default quota of 5. When the region already holds as many VPCs as the quota allows, AWS refuses to create one more. The default VPC of the region counts too, as do VPCs left behind by deleted clusters or other tools.
+
+## Fix
+
+Pick one of the three options.
+
+### Raise the VPC quota
+
+1. Open the [AWS Service Quotas console](https://console.aws.amazon.com/servicequotas/) in the region of the cluster.
+2. Go to **Amazon Virtual Private Cloud (Amazon VPC)**, then **VPCs per Region**.
+3. Request a higher value. Small increases are often approved automatically within minutes.
+4. Deploy the cluster again from the Qovery Console.
+
+### Delete unused VPCs
+
+In the AWS VPC console, list the VPCs of the region and delete the ones nothing uses any more. Check first that a VPC has no running instances, load balancers, NAT gateways or databases. VPCs created by Qovery for deleted clusters carry the tags described in [AWS account cleanup](/configuration/clusters#aws-account-cleanup).
+
+### Deploy the cluster on an existing VPC
+
+When you create the cluster, choose **Deploy on my existing VPC** in the network settings and give the VPC ID and the subnet IDs. Qovery then creates no new VPC. The VPC must have DNS hostnames enabled and the subnets must carry the tags Qovery needs. See [Use your existing VPC](/configuration/integrations/kubernetes/eks/managed#use-your-existing-vpc) and the [VPC configuration checks](/configuration/integrations/kubernetes/eks/preflight-checks#vpc-configuration-checks-custom-vpc-mode-only).
+
+<Info>
+The existing VPC option is set when the cluster is created and cannot be changed afterwards.
+</Info>
+
+## Check quotas before you create a cluster
+
+Qovery runs [preflight checks](/configuration/integrations/kubernetes/eks/preflight-checks) before it creates an AWS cluster, including the VPC, Elastic IP and EKS quotas of the region. Add the `servicequotas:GetServiceQuota` permission to the IAM policy used by Qovery so the checks read your real quotas instead of the AWS defaults.
+
+<StillStuck />

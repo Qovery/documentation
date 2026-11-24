@@ -1,0 +1,162 @@
+---
+title: "Deploy a Ruby on Rails Application"
+sidebarTitle: "Ruby on Rails"
+description: "Deploy a Ruby on Rails app with PostgreSQL on Kubernetes with Qovery: Dockerfile, Puma, the /up health check, migrations as a lifecycle job, assets."
+---
+
+import NoRepositoryManifest from "/snippets/no-repository-manifest.mdx";
+import Postgres from "/snippets/framework-guide-postgres.mdx";
+import ConsoleDeploy from "/snippets/framework-guide-console-deploy.mdx";
+import AgentPrompt from "/snippets/framework-guide-agent-prompt.mdx";
+
+This guide deploys a Rails application served by Puma, with a PostgreSQL database and migrations that run before each release. Qovery builds the image from your Dockerfile and runs it on a Kubernetes cluster in your own cloud account.
+
+<NoRepositoryManifest />
+
+## Prerequisites
+
+- A Rails 7.1 or later application in a GitHub, GitLab or Bitbucket repository, using the `pg` gem.
+- A Qovery account and a cluster: [create one in your cloud account](/getting-started/quickstart/cloud), [connect your own cluster](/getting-started/installation/kubernetes), or [try it on your laptop](/getting-started/quickstart/try-with-an-agent).
+- The `RAILS_MASTER_KEY` of the application (the content of `config/master.key`).
+
+## Add a production Dockerfile
+
+`rails new` generates a production Dockerfile since Rails 7.1. You can keep it (see [the port note](#port-and-health-check)), or use this shorter one at the root of the repository:
+
+```dockerfile Dockerfile
+FROM ruby:3.4-slim AS base
+WORKDIR /rails
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y libpq5 && \
+    rm -rf /var/lib/apt/lists/*
+ENV RAILS_ENV=production \
+    BUNDLE_DEPLOYMENT=1 \
+    BUNDLE_PATH=/usr/local/bundle \
+    BUNDLE_WITHOUT=development:test
+
+FROM base AS build
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y build-essential git libpq-dev libyaml-dev pkg-config && \
+    rm -rf /var/lib/apt/lists/*
+COPY Gemfile Gemfile.lock ./
+RUN bundle install && rm -rf ~/.bundle "${BUNDLE_PATH}"/ruby/*/cache
+COPY . .
+RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
+
+FROM base
+COPY --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
+COPY --from=build /rails /rails
+RUN useradd rails --uid 1000 --create-home --shell /bin/bash && \
+    mkdir -p db log storage tmp && chown -R rails:rails db log storage tmp
+USER 1000:1000
+EXPOSE 3000
+CMD ["./bin/rails", "server", "-b", "0.0.0.0", "-p", "3000"]
+```
+
+- `ruby:3.4-slim` is the official Ruby image without build tools. Match the version to your `.ruby-version`. It installs `libpq5`, the PostgreSQL client library that the `pg` gem loads at runtime.
+- The `build` stage has the compilers and headers that native gems such as `pg` need. The final stage copies only the installed gems and the application, so the image stays small.
+- `BUNDLE_WITHOUT=development:test` leaves out the gems you do not need in production.
+- `SECRET_KEY_BASE_DUMMY=1` lets `assets:precompile` run at build time without the real secret.
+- The container runs as a non-root user that owns `db`, `log`, `storage` and `tmp`, the folders Rails writes to.
+- Puma binds to `0.0.0.0`, not `localhost`, so Kubernetes can reach it.
+
+## Port and health check
+
+The application listens on port `3000`. Rails 7.1 and later add a `GET /up` route that answers `200` when the application boots, so use it as the health check path.
+
+The Dockerfile that Rails 8 generates starts Puma behind Thruster on port `80`. If you keep it, set the port to `80` in Qovery instead of `3000`.
+
+If you set `config.hosts` in `config/environments/production.rb`, exclude the health check from host authorization, because Kubernetes probes call the pod by its IP address:
+
+```ruby config/environments/production.rb
+config.hosts << ENV["APP_HOST"] if ENV["APP_HOST"].present?
+config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+```
+
+## Connect PostgreSQL
+
+<Postgres />
+
+Rails reads `DATABASE_URL` and merges it into the `production` entry of `config/database.yml`. If that entry also declares `cache`, `queue` and `cable` databases (the Rails 8 default for Solid Cache, Solid Queue and Solid Cable), give each one a database it can reach on the same server, or remove the ones you do not use.
+
+## Set the variables
+
+| Variable | Value | Secret |
+|---|---|---|
+| `DATABASE_URL` | The alias or secret from [Connect PostgreSQL](#connect-postgresql) | Yes |
+| `RAILS_MASTER_KEY` | The content of `config/master.key` | Yes |
+| `APP_HOST` | The domain of the application, if you use `config.hosts` | No |
+
+## Run the migrations
+
+Run `db:migrate` in a [lifecycle job](/configuration/lifecycle-job) built from the same repository and Dockerfile, triggered on the **Deploy** event, with these CMD arguments:
+
+```json
+["./bin/rails", "db:migrate"]
+```
+
+The job runs once per deployment. In the default [deployment pipeline](/configuration/deployment/pipeline), jobs run after the databases and before the applications, so the schema is up to date when the new code starts. The job needs `DATABASE_URL` and `RAILS_MASTER_KEY` too: create them at the environment scope.
+
+The Dockerfile that Rails generates also runs `db:prepare` in `bin/docker-entrypoint` when the server starts. This works for a single instance. With several instances, each one runs it at boot, so prefer the job.
+
+## Deploy
+
+<Tabs>
+  <Tab title="Console">
+    <ConsoleDeploy port="3000" healthPath="/up" migrateArgs='["./bin/rails", "db:migrate"]' />
+  </Tab>
+  <Tab title="With a coding agent">
+    Install the Qovery skills once:
+
+    ```bash
+    curl -fsSL https://skill.qovery.com/install.sh | bash
+    ```
+
+    Open your agent in the repository and paste:
+
+    <AgentPrompt prompt="Deploy this Rails application with Qovery, with a PostgreSQL database and a lifecycle job that runs the migrations." />
+
+    The agent writes the Dockerfile if there is none, creates the database, the variables, the job and the application, and gives you the URL. It asks you for the `RAILS_MASTER_KEY`. See [Agent Skills](/getting-started/quickstart/agent-skills).
+  </Tab>
+</Tabs>
+
+## Troubleshooting
+
+The CLI commands below use the organization and project selected with `qovery context set`. Run it first, or add `--organization` and `--project` to each command.
+
+<AccordionGroup>
+  <Accordion title="Deployment fails on the health check">
+    The port in Qovery does not match the server: `3000` for Puma, `80` with Thruster in the Rails 8 Dockerfile. Check that Puma binds to `0.0.0.0`. Read the error lines with `qovery environment deployment logs --environment "<env>" --service "<app>" --errors-only`.
+  </Accordion>
+  <Accordion title="Blocked hosts error or 403">
+    `config.hosts` does not include the domain. Set `APP_HOST` to the `qovery.io` domain shown in the Console, add your custom domains, and keep `/up` excluded from host authorization.
+  </Accordion>
+  <Accordion title="Missing secret_key_base or ActiveSupport::MessageEncryptor::InvalidMessage">
+    `RAILS_MASTER_KEY` is missing or does not match `config/credentials.yml.enc`. Set it as a secret at the environment scope, so the application and the migration job both get it.
+  </Accordion>
+  <Accordion title="PendingMigrationError or missing tables">
+    The migrations did not run against this database. Check that the job and the application read the same `DATABASE_URL`, and read the job output with `qovery log --job "<job name>"`.
+  </Accordion>
+  <Accordion title="Assets return 404">
+    `assets:precompile` did not run at build time, or `config.public_file_server.enabled` is `false` in production. Rails 7.1 and later serve `public/` by default; an application generated with an older version may still read `RAILS_SERVE_STATIC_FILES` in `config/environments/production.rb`, so set that variable to `1` or remove the condition. Check the build logs for the precompile step.
+  </Accordion>
+</AccordionGroup>
+
+For other errors, see [Diagnose a Failed Build or Deployment](/getting-started/troubleshoot/overview#diagnose-a-failed-build-or-deployment).
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Preview environments" icon="code-pull-request" href="/getting-started/guides/use-cases/preview-environments">
+    Get a full copy of the environment for each pull request
+  </Card>
+  <Card title="Cron jobs" icon="clock" href="/configuration/cronjob">
+    Run rake tasks on a schedule
+  </Card>
+  <Card title="Auto deploy" icon="rotate" href="/configuration/deployment/auto-deploy">
+    Deploy on every push to the branch
+  </Card>
+  <Card title="Other frameworks" icon="layer-group" href="/getting-started/guides/frameworks/overview">
+    All framework guides
+  </Card>
+</CardGroup>

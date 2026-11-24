@@ -1,6 +1,6 @@
 ---
 title: "Terraform"
-description: "Deploy and manage Terraform modules natively on Qovery"
+description: "Deploy Terraform or OpenTofu code as a Qovery service: run plan and apply, set Terraform arguments, use an AWS ARN role and a custom build image."
 ---
 
 ## Introduction
@@ -616,6 +616,51 @@ Plan: -parallelism=10 -var="environment=production"
 Apply: -parallelism=10 -var="environment=production"
 Destroy: -parallelism=5 -refresh=false
 ```
+
+---
+
+## Use ARN role for AWS services
+
+<Steps>
+  <Step title="Create a dedicated IAM role">
+    In your AWS account, create an IAM role with the required permissions your Terraform code needs. Set its trust relationship so that the cluster credentials IAM role can assume it. Replace `<cluster-credentials-role-arn>` with your cluster credentials role arn:
+
+    ```json
+    {
+      "Version": "2012-10-17",
+      "Statement": [
+        {
+          "Effect": "Allow",
+          "Principal": { "AWS": "<cluster-credentials-role-arn>" },
+          "Action": "sts:AssumeRole"
+        }
+      ]
+    }
+    ```
+  </Step>
+
+  <Step title="Assume the role in your Terraform code">
+    Add an `assume_role` block to the `provider "aws"` block of your Terraform code:
+
+    ```hcl
+    variable "aws_role_arn" {
+      type = string
+    }
+
+    provider "aws" {
+      # ...your existing provider configuration
+
+      assume_role {
+        role_arn = var.aws_role_arn
+      }
+    }
+    ```
+  </Step>
+
+  <Step title="Set the role ARN">
+    Qovery detects the `aws_role_arn` variable declared in `main.tf` or `variables.tf` and exposes it as `tf_var_aws_role_arn` (see the **Configure Terraform Variables** step of [Creating a Terraform Service](#creating-a-terraform-service)). Set it to the ARN of the dedicated IAM role, then redeploy the Terraform service.
+  </Step>
+</Steps>
 
 ---
 

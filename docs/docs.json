@@ -142,6 +142,20 @@
               "getting-started/guides/getting-started/connect-database",
               "getting-started/guides/others/database-seeding-lifecycle-job",
               {
+                "group": "Framework Guides",
+                "pages": [
+                  "getting-started/guides/frameworks/overview",
+                  "getting-started/guides/frameworks/django",
+                  "getting-started/guides/frameworks/ruby-on-rails",
+                  "getting-started/guides/frameworks/nodejs-express",
+                  "getting-started/guides/frameworks/nextjs",
+                  "getting-started/guides/frameworks/fastapi",
+                  "getting-started/guides/frameworks/go",
+                  "getting-started/guides/frameworks/spring-boot",
+                  "getting-started/guides/frameworks/laravel"
+                ]
+              },
+              {
                 "group": "Advanced Tutorials",
                 "pages": [
                   {
@@ -185,7 +199,18 @@
           {
             "group": "Troubleshooting",
             "pages": [
-              "getting-started/troubleshoot/overview"
+              "getting-started/troubleshoot/overview",
+              "getting-started/troubleshoot/nginx-502-connection-reset",
+              "getting-started/troubleshoot/nginx-timeout",
+              "getting-started/troubleshoot/default-backend-404",
+              "getting-started/troubleshoot/image-pull-errors",
+              "getting-started/troubleshoot/job-backoff-limit-exceeded",
+              "getting-started/troubleshoot/insufficient-cpu",
+              "getting-started/troubleshoot/deployment-stuck-queued",
+              "getting-started/troubleshoot/helm-timed-out",
+              "getting-started/troubleshoot/vpc-limit-exceeded",
+              "getting-started/troubleshoot/frontend-env-vars-undefined",
+              "getting-started/troubleshoot/datadog"
             ]
           },
           {
@@ -382,6 +407,7 @@
                       "configuration/blueprints/aws-elasticache-redis",
                       "configuration/blueprints/aws-elasticache-redis-node",
                       "configuration/blueprints/aws-elasticache-valkey",
+                      "configuration/blueprints/aws-elasticache-valkey-serverless",
                       "configuration/blueprints/aws-rds-mysql",
                       "configuration/blueprints/aws-rds-postgresql",
                       "configuration/blueprints/gcp-memorystore-redis",
@@ -1023,6 +1049,18 @@
       "destination": "/configuration/helm"
     },
     {
+      "source": "/guides/advanced/managing-environment-variables",
+      "destination": "/configuration/environment-variables"
+    },
+    {
+      "source": "/guides/advanced/using-multiple-environments",
+      "destination": "/configuration/environment"
+    },
+    {
+      "source": "/guides/getting-started/adding-a-database",
+      "destination": "/configuration/database"
+    },
+    {
       "source": "/guides/advanced/microservices",
       "destination": "/getting-started/guides/advanced-tutorials/microservices-monorepo"
     },
@@ -1448,7 +1486,7 @@
     },
     {
       "source": "/guides/tutorial/deploy-temporal-on-kubernetes",
-      "destination": "/getting-started/guides/getting-started/deploy-your-first-application"
+      "destination": "/configuration/blueprints/temporal-cloud-namespace"
     },
     {
       "source": "/guides/tutorial/generate-qovery-api-client",
@@ -2453,10 +2491,6 @@
     {
       "source": "/community/:slug*",
       "destination": "/getting-started/useful-resources/help-and-support"
-    },
-    {
-      "source": "/guides/:slug*",
-      "destination": "/getting-started/introduction"
     },
     {
       "source": "/extending-qovery/:slug*",

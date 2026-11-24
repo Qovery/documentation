@@ -1,0 +1,40 @@
+---
+title: "Framework Guides"
+sidebarTitle: "Overview"
+description: "Guides to deploy Django, Rails, Express, Next.js, FastAPI, Go, Spring Boot and Laravel apps with PostgreSQL on Kubernetes in your own cloud with Qovery."
+---
+
+import NoRepositoryManifest from "/snippets/no-repository-manifest.mdx";
+
+Each guide takes one framework from a Git repository to a running application on a Kubernetes cluster in your own cloud account. It covers a production Dockerfile, the port and health check, a PostgreSQL database wired through `DATABASE_URL`, migrations in a lifecycle job, the deployment from the Console or with a coding agent, and the errors people hit most.
+
+<CardGroup cols={2}>
+  <Card title="Django" icon="python" href="/getting-started/guides/frameworks/django">
+    Gunicorn, WhiteNoise and `manage.py migrate`
+  </Card>
+  <Card title="Ruby on Rails" icon="gem" href="/getting-started/guides/frameworks/ruby-on-rails">
+    Puma, the `/up` health check and `db:migrate`
+  </Card>
+  <Card title="Node.js (Express)" icon="node-js" href="/getting-started/guides/frameworks/nodejs-express">
+    An Express API with `pg` and a migration script
+  </Card>
+  <Card title="Next.js" icon="react" href="/getting-started/guides/frameworks/nextjs">
+    Standalone output and build-time variables
+  </Card>
+  <Card title="FastAPI" icon="bolt" href="/getting-started/guides/frameworks/fastapi">
+    Uvicorn, SQLAlchemy and Alembic
+  </Card>
+  <Card title="Go" icon="golang" href="/getting-started/guides/frameworks/go">
+    A static binary on distroless and golang-migrate
+  </Card>
+  <Card title="Spring Boot" icon="java" href="/getting-started/guides/frameworks/spring-boot">
+    Eclipse Temurin, Actuator probes and Flyway
+  </Card>
+  <Card title="Laravel" icon="laravel" href="/getting-started/guides/frameworks/laravel">
+    PHP with Apache, the `/up` health check and `artisan migrate`
+  </Card>
+</CardGroup>
+
+All guides follow the same path as [Deploy Your First Application](/getting-started/guides/getting-started/deploy-your-first-application). For another language, start from [Write a Dockerfile](/getting-started/guides/advanced-tutorials/write-dockerfile), or ask your coding agent to deploy the repository with the [Qovery Agent Skills](/getting-started/quickstart/agent-skills).
+
+<NoRepositoryManifest />

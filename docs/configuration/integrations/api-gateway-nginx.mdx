@@ -14,7 +14,7 @@ This guide shows you how to connect an API gateway in front of 3 different appli
 - At least one application created in Qovery
 - Ideally three applications (billing API, core API, messaging API), though one application is sufficient to follow this tutorial
 
-## Step 1: Clone API Gateway Template
+## Step 1: Fork the API Gateway Template
 
 Fork the NGINX gateway repository:
 
@@ -22,13 +22,11 @@ Fork the NGINX gateway repository:
 https://github.com/Qovery/nginx-gateway
 ```
 
-The project includes two configuration files that you'll need to modify for your setup.
+To set up your routes, the only file you need to change is `routes.conf.template`. Forks created before November 20, 2026 also need the updates described in [Keep NGINX Up to Date](#keep-nginx-up-to-date).
 
-## Step 2: Edit Configuration Files
+## Step 2: Edit routes.conf.template
 
-### routes.conf.template
-
-The routing configuration directs incoming traffic to the appropriate backend services:
+Replace the content of `routes.conf.template` with your routes. Each UPPERCASE `$NAME` is a backend you define in Step 4:
 
 ```nginx
 location ~* ^/api/billing/?(.*)$ {
@@ -50,11 +48,19 @@ location ~* ^/?(.*)$ {
 
 <Info>
 **Important Notes:**
-- Rules apply sequentially - the first match wins
-- Internal network uses HTTP protocol
-- External connections use HTTPS
+- Rules apply in order: the first match wins
+- The gateway talks to the backends over HTTP on the internal network
+- Clients reach the gateway over HTTPS
 - Complex path patterns are supported
 </Info>
+
+At startup, the gateway replaces each UPPERCASE variable used in `routes.conf.template` with the environment variable of the same name. Lowercase NGINX variables such as `$request_uri` are left as is.
+
+- A short service name, such as the value of a `QOVERY_..._HOST_INTERNAL` variable, is completed with the namespace domain, and the port is read from the DNS SRV record of the service.
+- If the service exposes several ports, set `<NAME>_PORT` (for example `CORE_BACKEND_PORT=8080`).
+- A value with a dot or a port (`api.example.com`, `api.example.com:8443`) is used as is.
+
+The gateway stops at startup with an explicit error if a variable is missing or if its port cannot be found.
 
 **Example of an Advanced Rule:**
 
@@ -73,7 +79,7 @@ Create a new application in Qovery with the following settings:
 
 ## Step 4: Configure Environment Variables
 
-Create three environment variable aliases with **ENVIRONMENT** scope:
+Create one environment variable alias per backend used in `routes.conf.template`, with **ENVIRONMENT** scope:
 
 | Built-in Variable | Alias Name |
 |------------------|------------|
@@ -91,11 +97,11 @@ To find the right environment variable for each service:
    https://console.qovery.com/platform/organization/xxx/projects/yyy/environments/zzz/applications/082e36c4-7fbb-42b2-9046-37ccce21616a
    ```
 3. Take the first segment of the ID: `082e36c4`
-4. Prepend 'Z': `Z082e36c4`
+4. Prepend 'Z' and switch to uppercase: `Z082E36C4`
 5. Search for environment variables containing this prefix
 
 <Info>
-The environment variable with this prefix and suffix `_HOST_INTERNAL` is the one you need to use.
+The variable you need is `QOVERY_APPLICATION_Z082E36C4_HOST_INTERNAL` (`QOVERY_CONTAINER_..._HOST_INTERNAL` for a container service).
 </Info>
 
 ## Step 5: Set Up Custom Domain
@@ -110,7 +116,13 @@ Navigate to your API gateway application settings and configure your custom doma
 2. Push to your repository
 3. Deploy the application from the Qovery Console
 
-Your API gateway is now ready to route traffic to your backend services!
+The application logs print the generated routes between `GENERATED ROUTES.CONF` markers. Each Qovery service backend should resolve to `<service>.<namespace>.svc.cluster.local:<port>`. A backend set to a host with a dot (such as `api.example.com`) stays as you configured it.
+
+## Keep NGINX Up to Date
+
+Your fork does not receive the fixes made to the template. Follow the [NGINX security advisories](https://nginx.org/en/security_advisories.html) and update the `FROM nginx:...` line of your `Dockerfile` when a new version is out. The template enables Dependabot, which opens a pull request on your fork when a new image is published.
+
+Forks created before November 20, 2026 run NGINX 1.21.5. Update them to 1.30.7 or later, and copy the new `run.sh` from the template.
 
 ## Next Steps
 

@@ -1,0 +1,66 @@
+---
+title: "NGINX timeout: increase the 60 second limit"
+description: "Requests fail with 504 or 502 when NGINX gets no response for 60 seconds. Raise the proxy read, send and connect timeouts, or the Gateway API timeout."
+---
+import StillStuck from "/snippets/troubleshoot-still-stuck.mdx";
+
+A slow request fails when your service sends no response data for 60 seconds, even though the same call works when you run the application locally. The client gets a `504 Gateway Time-out` (sometimes a `502`), and the NGINX logs of the service show:
+
+```text
+upstream timed out (110: Connection timed out) while reading response header from upstream
+```
+
+WebSocket and server-sent event connections that stay quiet for 60 seconds are closed for the same reason.
+
+## Cause
+
+Requests to a public port go through the ingress of the cluster before they reach your service. By default, the NGINX ingress waits at most 60 seconds between two reads of the response from your service, then gives up. This is an inactivity limit, not a limit on the total duration: a response that keeps sending data, such as a stream, can last longer. Your application keeps running, but the client has already received an error.
+
+There is no single "request timeout" field: NGINX has one timeout per step, and each is an advanced setting of the service.
+
+| Advanced setting | What it limits | Default |
+|---|---|---|
+| [`network.ingress.proxy_read_timeout_seconds`](/configuration/service-advanced-settings#network-ingress-proxy-read-timeout-seconds) | Time to wait between two reads of the response from your service, including the first byte. This is the one that ends slow requests. | `60` |
+| [`network.ingress.proxy_send_timeout_seconds`](/configuration/service-advanced-settings#network-ingress-proxy-send-timeout-seconds) | Time to transmit the request to your service, for large uploads. | `60` |
+| [`network.ingress.send_timeout_seconds`](/configuration/service-advanced-settings#network-ingress-send-timeout-seconds) | Time to transmit the response to a slow client. | `60` |
+| [`network.ingress.proxy_connect_timeout_seconds`](/configuration/service-advanced-settings#network-ingress-proxy-connect-timeout-seconds) | Time to open a connection to your service. Rarely needs a change. | `60` |
+
+## Fix on the NGINX ingress
+
+<Steps>
+  <Step title="Open the advanced settings of the service">
+    In the Console, open the application, container or Helm service, go to **Settings**, then **Advanced Settings**.
+  </Step>
+
+  <Step title="Raise the timeouts">
+    Set `network.ingress.proxy_read_timeout_seconds` to a value above the duration of your longest request, for example `120` or `300`. For long uploads, raise `network.ingress.proxy_send_timeout_seconds` too. For large downloads to slow clients, raise `network.ingress.send_timeout_seconds`.
+  </Step>
+
+  <Step title="Redeploy the service">
+    The new values apply only after the service is redeployed. Saving the settings is not enough.
+  </Step>
+</Steps>
+
+With the API or Terraform, set the same keys in the advanced settings of the service:
+
+```json
+{
+  "network.ingress.proxy_read_timeout_seconds": 300,
+  "network.ingress.proxy_send_timeout_seconds": 300
+}
+```
+
+## Fix on the Gateway API
+
+When the cluster advanced setting [`k8s.use_api_gateway`](/configuration/cluster-advanced-settings#k8s.use_api_gateway) is `true`, new services are exposed through the Gateway API instead of NGINX. Services created before the switch can still route through NGINX, where the `network.ingress.*` settings above apply. Check how your own service is exposed before changing settings. For a service exposed through the Gateway API, the `network.ingress.*` settings do not apply. Use these instead, then redeploy the service:
+
+- [`network.gateway_api.http_request_timeout_seconds`](/configuration/service-advanced-settings#network-gateway-api-http-request-timeout-seconds): maximum time to wait for the complete response. Requests that take longer end with `504 Gateway Timeout`.
+- [`envoy.gateway_api.http_request_timeout_seconds`](/configuration/cluster-advanced-settings#envoy-gateway-api-http-request-timeout-seconds): the cluster-wide default, used by services that do not set their own value.
+
+## Before raising the timeout
+
+A longer timeout keeps a connection and a worker busy for the whole request. For work that takes minutes, consider answering at once and processing in the background: put the job in a queue, return `202 Accepted` with an ID, and let the client poll for the result. A [lifecycle job](/configuration/lifecycle-job) or a [cron job](/configuration/cronjob) can also run long tasks outside the request path.
+
+If requests fail with `502` well before 60 seconds, the cause is not a timeout. See [502 Bad Gateway: recv() failed (104: Connection reset by peer)](/getting-started/troubleshoot/nginx-502-connection-reset).
+
+<StillStuck />

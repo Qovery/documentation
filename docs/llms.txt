@@ -1,6 +1,6 @@
 # Qovery
 
-> Qovery is an Agentic DevOps platform. It deploys and runs applications, databases, jobs and Helm charts on Kubernetes clusters in your own cloud account (AWS, GCP, Azure, Scaleway) or on your own Kubernetes cluster. People use the Console; scripts and coding agents use the CLI, the REST API, the Terraform provider, the MCP server and the agent skills.
+> Qovery is an Agentic DevOps platform. Developers and AI coding agents deploy and run applications on Kubernetes in your own cloud account, with the guardrails, audit trail and cost control a platform team would otherwise build by hand. It runs applications, databases, jobs and Helm charts on clusters in AWS, GCP, Azure or Scaleway, or on your own Kubernetes cluster. People use the Console; scripts and coding agents use the CLI, the REST API, the Terraform provider, the MCP server and the agent skills.
 
 ## Start here (for coding agents)
 
@@ -20,13 +20,17 @@
 - No `qovery application create`, `qovery database create`, `qovery project create` or `qovery environment create`. Use `qovery api ... --method POST` or Terraform. `qovery container create` exists for image-based services.
 - `qovery context set` takes no flags and is interactive. In scripts, pass `--organization`, `--project` and `--environment` to each command.
 
+## Full text
+
+- [Full documentation](https://www.qovery.com/docs/llms-full.txt): every page in one file, product overview first, API reference last.
+
 ## Documentation
 
 ### Getting Started
 
 #### Get Started
 
-- [Introduction](https://www.qovery.com/docs/getting-started/introduction.md): The Kubernetes control plane for humans and AI agents, on your own infrastructure, cloud or on-premise.
+- [Introduction](https://www.qovery.com/docs/getting-started/introduction.md): Qovery is an Agentic DevOps platform for developers and AI coding agents, on Kubernetes in your own cloud account or on-premise.
 - [Get Started with Qovery](https://www.qovery.com/docs/getting-started/quickstart.md): Choose how to start with Qovery: deploy with an AI agent, migrate an app, set up preview environments, try it locally or connect your own cluster.
 - [Deploy with AI Agent](https://www.qovery.com/docs/getting-started/quickstart/ai-agent.md): Tell your AI coding agent to deploy. It handles everything, from your code to a live Kubernetes deployment.
 - [Try Qovery on Your Laptop with a Coding Agent](https://www.qovery.com/docs/getting-started/quickstart/try-with-an-agent.md): Install the Qovery skills and ask your coding agent to deploy a GitHub project. With no cluster, it creates a local Kubernetes cluster in Docker on your laptop.
@@ -36,7 +40,7 @@
 
 ##### Installation
 
-- [Test & Learn Locally](https://www.qovery.com/docs/getting-started/quickstart/docker.md): Install Qovery on your local machine with a k3s Kubernetes cluster in about 15 minutes to learn and test for free, then clean it up. Not for production use.
+- [Test & Learn Locally](https://www.qovery.com/docs/getting-started/quickstart/docker.md): Install Qovery on your local machine with a k3s Kubernetes cluster in about 10 minutes to learn and test for free, then clean it up. Not for production use.
 
 ###### Managed Cluster
 
@@ -102,6 +106,18 @@
 - [Create a Database](https://www.qovery.com/docs/getting-started/guides/getting-started/connect-database.md): Add a database to your environment and connect your application to it with the connection URI and the environment variables Qovery creates.
 - [Database Seeding with Lifecycle Jobs](https://www.qovery.com/docs/getting-started/guides/others/database-seeding-lifecycle-job.md): Seed a PostgreSQL database from SQL scripts with a Qovery Lifecycle Job, including idempotent, conditional and per-environment seeding.
 
+##### Framework Guides
+
+- [Framework Guides](https://www.qovery.com/docs/getting-started/guides/frameworks/overview.md): Step-by-step guides to deploy Django, Ruby on Rails, Node.js with Express, Next.js, FastAPI, Go, Spring Boot and Laravel applications with PostgreSQL on Kubernetes in your own cloud account with Qovery.
+- [Deploy a Django Application](https://www.qovery.com/docs/getting-started/guides/frameworks/django.md): Deploy a Django application with PostgreSQL on Kubernetes in your own cloud account with Qovery: production Dockerfile, Gunicorn, health check, migrations as a lifecycle job, static files with WhiteNoise.
+- [Deploy a Ruby on Rails Application](https://www.qovery.com/docs/getting-started/guides/frameworks/ruby-on-rails.md): Deploy a Ruby on Rails application with PostgreSQL on Kubernetes in your own cloud account with Qovery: production Dockerfile, Puma, the /up health check, migrations as a lifecycle job, precompiled assets.
+- [Deploy a Node.js Express Application](https://www.qovery.com/docs/getting-started/guides/frameworks/nodejs-express.md): Deploy a Node.js Express API with PostgreSQL on Kubernetes in your own cloud account with Qovery: production Dockerfile, port and health check, migrations as a lifecycle job, static files.
+- [Deploy a Next.js Application](https://www.qovery.com/docs/getting-started/guides/frameworks/nextjs.md): Deploy a Next.js application with PostgreSQL on Kubernetes in your own cloud account with Qovery: standalone output, production Dockerfile, port and health check, build-time variables, migrations as a lifecycle job.
+- [Deploy a FastAPI Application](https://www.qovery.com/docs/getting-started/guides/frameworks/fastapi.md): Deploy a FastAPI application with PostgreSQL on Kubernetes in your own cloud account with Qovery: production Dockerfile, Uvicorn, health check, Alembic migrations as a lifecycle job, static files.
+- [Deploy a Go Application](https://www.qovery.com/docs/getting-started/guides/frameworks/go.md): Deploy a Go web service with PostgreSQL on Kubernetes in your own cloud account with Qovery: multi-stage Dockerfile with a distroless image, port and health check, golang-migrate migrations as a lifecycle job.
+- [Deploy a Spring Boot Application](https://www.qovery.com/docs/getting-started/guides/frameworks/spring-boot.md): Deploy a Spring Boot application with PostgreSQL on Kubernetes in your own cloud account with Qovery: multi-stage Dockerfile with Eclipse Temurin, Actuator health checks, Flyway migrations as a lifecycle job.
+- [Deploy a Laravel Application](https://www.qovery.com/docs/getting-started/guides/frameworks/laravel.md): Deploy a Laravel application with PostgreSQL on Kubernetes in your own cloud account with Qovery: production Dockerfile with PHP and Apache, the /up health check, artisan migrations as a lifecycle job.
+
 ##### Advanced Tutorials
 
 ###### Infrastructure & Security
@@ -135,6 +151,17 @@
 #### Troubleshooting
 
 - [Troubleshooting](https://www.qovery.com/docs/getting-started/troubleshoot/overview.md): Diagnose a failed build or deployment from its logs, then fix common service deployment, runtime and cluster issues on Qovery.
+- [502 Bad Gateway: recv() failed (104: Connection reset by peer)](https://www.qovery.com/docs/getting-started/troubleshoot/nginx-502-connection-reset.md): Fix random 502 errors from the NGINX ingress when your service resets the connection: keep-alive timeouts, single instances, restarts and load balancer health checks.
+- [NGINX timeout: increase the 60 second limit](https://www.qovery.com/docs/getting-started/troubleshoot/nginx-timeout.md): Slow requests fail with 504 or 502 when the NGINX ingress gets no response data for 60 seconds. Raise the proxy read, send and connect timeouts of the service, or set the Gateway API request timeout.
+- [default backend - 404](https://www.qovery.com/docs/getting-started/troubleshoot/default-backend-404.md): Your domain answers default backend - 404 or a plain 404 from NGINX. The request reached the cluster but matched no route: check the domain, the public port and the last deployment.
+- [Image pull errors: 401 Unauthorized from ECR, 429 Too Many Requests from Docker Hub](https://www.qovery.com/docs/getting-started/troubleshoot/image-pull-errors.md): Fix builds and deployments that cannot pull an image: 401 Unauthorized from a private AWS ECR registry, and the Docker Hub pull rate limit (429 toomanyrequests).
+- [BackoffLimitExceeded: Job has reached the specified backoff limit](https://www.qovery.com/docs/getting-started/troubleshoot/job-backoff-limit-exceeded.md): A Qovery cron job or lifecycle job fails with BackoffLimitExceeded, often with no error in the logs. Find why the container exited and set the number of restarts and max duration.
+- [0/1 nodes are available: 1 Insufficient cpu. No preemption victims found](https://www.qovery.com/docs/getting-started/troubleshoot/insufficient-cpu.md): Pods stay Pending with Insufficient cpu or Insufficient memory on Qovery. Learn how Kubernetes places pods on nodes, then size your services and node pools to fit.
+- [Deployment stuck on Queued](https://www.qovery.com/docs/getting-started/troubleshoot/deployment-stuck-queued.md): A Qovery deployment stays in the Queued status and never starts building. Find what it waits for in the deployment history, cancel what blocks it, and avoid long queues.
+- [Helm upgrade failed: context deadline exceeded](https://www.qovery.com/docs/getting-started/troubleshoot/helm-timed-out.md): A cluster update or a Helm service fails with Helm timed out, UPGRADE FAILED or context deadline exceeded. Find the resource that never became ready, then fix it or raise the timeout.
+- [VpcLimitExceeded: The maximum number of VPCs has been reached](https://www.qovery.com/docs/getting-started/troubleshoot/vpc-limit-exceeded.md): Creating an AWS cluster on Qovery fails because the region has reached its VPC quota. Raise the quota, delete unused VPCs, or deploy the cluster on an existing VPC.
+- [Environment variable is undefined in a React, Vite or Next.js frontend](https://www.qovery.com/docs/getting-started/troubleshoot/frontend-env-vars-undefined.md): process.env.REACT_APP_API_URL is undefined in the browser after deploying on Qovery. Frontend variables are read at build time: declare them as Dockerfile build arguments.
+- [Datadog on Qovery: service tags, log annotations and uninstalling the agent](https://www.qovery.com/docs/getting-started/troubleshoot/datadog.md): Find Qovery services by name in Datadog, fix Datadog autodiscovery annotations that break a deployment, and remove the Datadog agent from a cluster.
 
 #### Useful Resources
 
@@ -282,6 +309,7 @@
 - [Amazon ElastiCache for Redis](https://www.qovery.com/docs/configuration/blueprints/aws-elasticache-redis.md): AWS ElastiCache for Redis 7 replication group with TLS and auth token, attached to the Qovery cluster network, with configurable size, topology, backups and maintenance
 - [Amazon ElastiCache for Redis (legacy single node)](https://www.qovery.com/docs/configuration/blueprints/aws-elasticache-redis-node.md): Adopts an existing single-node AWS ElastiCache for Redis cluster created by Qovery native managed Redis. Import only: it cannot create a new cluster. This shape has no auth token and no TLS.
 - [Amazon ElastiCache for Valkey](https://www.qovery.com/docs/configuration/blueprints/aws-elasticache-valkey.md): AWS ElastiCache for Valkey replication group with TLS and auth token, attached to the Qovery cluster network, with configurable size, topology, backups and maintenance
+- [Amazon ElastiCache Serverless for Valkey](https://www.qovery.com/docs/configuration/blueprints/aws-elasticache-valkey-serverless.md): AWS ElastiCache Serverless cache on Valkey 9, billed on usage, with TLS and a password-protected user, on the Qovery cluster network. Needs a cluster-mode client.
 - [Amazon RDS for MySQL](https://www.qovery.com/docs/configuration/blueprints/aws-rds-mysql.md): AWS RDS MySQL 8.4 instance with configurable size, storage, backups, maintenance, monitoring, and network
 - [Amazon RDS for PostgreSQL](https://www.qovery.com/docs/configuration/blueprints/aws-rds-postgresql.md): AWS RDS PostgreSQL 18 instance with configurable size, storage, backups, maintenance, monitoring, network, and optional read replicas
 - [Google Cloud Memorystore for Redis](https://www.qovery.com/docs/configuration/blueprints/gcp-memorystore-redis.md): GCP Memorystore for Redis 7 instance with configurable tier, memory size, auth, TLS, persistence, maintenance window, and optional read replicas
@@ -506,5 +534,4 @@
 - [API Reference / Platform Configuration (8 pages)](https://www.qovery.com/docs/_llms/api-reference/platform-configuration.txt): Documentation for API Reference / Platform Configuration.
 - [API Reference / Clusters (38 pages)](https://www.qovery.com/docs/_llms/api-reference/clusters.txt): Documentation for API Reference / Clusters.
 - [API Reference / Cloud Provider Credentials (25 pages)](https://www.qovery.com/docs/_llms/api-reference/cloud-provider-credentials.txt): Documentation for API Reference / Cloud Provider Credentials.
-- [API Reference / ArgoCD (10 pages)](https://www.qovery.com/docs/_llms/api-reference/argo-cd.txt): Documentation for API Reference / ArgoCD.
 - [API Reference / Blueprint Main Calls (11 pages)](https://www.qovery.com/docs/_llms/api-reference/blueprint-main-calls.txt): Documentation for API Reference / Blueprint Main Calls.

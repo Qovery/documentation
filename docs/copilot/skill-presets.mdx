@@ -11,7 +11,7 @@ The [Qovery agent skills](/getting-started/quickstart/agent-skills) are written 
   and the agent-side behaviour described here are likely to change.
 </Info>
 
-In the Console, skill presets live in the **Skills registry**: open the **Agents** tab of your organization, next to **Audit Logs**, which opens on it. The feature and the API keep the name skill presets. The Agents tab also holds Automate, Activity, your policy tokens and the Copilot settings, and **Connect an agent** in the Skills registry header gives the commands to connect an agent. See [Agents](/configuration/organization#agents). The old **Organization settings** links to the Copilot, skill presets and agent activity redirect there.
+In the Console, skill presets live in the **Skills registry**: open the **Agents** tab of your organization, next to **Audit Logs**, which opens on it. The feature and the API keep the name skill presets. The Agents tab also holds Activity, your policy tokens, the Copilot settings and, where Agent Tasks are available, Automations, and **Connect an agent** in the Skills registry header gives the commands to connect an agent. See [Agents](/configuration/organization#agents). The old **Organization settings** links to the Copilot, skill presets and agent activity redirect there.
 
 ## How it works
 
@@ -226,7 +226,7 @@ Each finding says which gate raised it: `RULES` for the rule checks, `MODEL` for
   Without it, a create or an edit answers `403`. Reading presets, members'
   skill loads and deleting presets keep working when AI features are off. Owners
   and Admins turn them on with **Turn on AI**, shown in the Skills registry
-  and in the setup on the organization overview when AI features are off: one confirmation turns on AI
+  and on Copilot settings when AI features are off: one confirmation turns on AI
   features and the Copilot, in read-only mode. New organizations have AI
   features on by default. See
   [Turn on AI](/configuration/organization#turn-on-ai). They can also use the API,
@@ -376,7 +376,7 @@ Activity covers both kinds of agent identity in one view: a member's agent actin
 - **Actions agents took through Qovery**: API and CLI calls made by the Qovery skills, tool calls through the [Qovery MCP server](/copilot/mcp-server), and every call made with a policy token, from any client (a script, a CI job, Terraform, an agent's own HTTP client). For each action you see the event, the target and its project and environment, the time and the outcome.
 - **Denied calls**: requests refused by a policy token's policy (`401`), or by role permissions (`403`) for a call made by a skill or by a policy token. Both count as denied.
 
-Filter by period, actor (everyone, all members, all policy tokens, or one member or token), skill, source (**Skills**, **MCP**, **Policy token calls** or **Refused requests**) and outcome. The filters are kept in the page URL, so a filtered view can be shared or bookmarked. The breakdown switches between members, policy tokens and skills, and clicking a row filters the whole page. **What was blocked** lists the refused calls, and **Show only denied** narrows the page to them. A timeline and the most recent actions complete the view.
+Filter by period, actor (everyone, all members, all policy tokens, or one member or token), skill, source (**Skills**, **MCP**, **Policy token calls** or **Refused requests**) and outcome. The filters are kept in the page URL, so a filtered view can be shared or bookmarked. The breakdown switches between members, policy tokens and skills, and clicking a row filters the whole page. **What was blocked** lists the refused calls, and **Show all denied** narrows the page to them. A timeline and the most recent actions complete the view.
 
 Policy tokens are grouped by token, not by name, so a renamed token stays one entry. A deleted token keeps the last name its calls recorded, with a **Deleted** badge. Older refusals recorded without a token name are grouped as **Unknown policy token (older records)**.
 

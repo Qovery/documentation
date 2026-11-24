@@ -183,7 +183,7 @@ allow if {
 ```
 
 <Warning>
-A policy token is only as narrow as its policy and its role. The role defaults to organization admin, so with the default role a policy that allows everything grants everything: pick a narrower role to cap it. In the Console, only organization Owners and Admins can create one, in **Agents → Settings → Policy tokens**.
+A policy token is only as narrow as its policy and its role. The role defaults to organization admin, so with the default role a policy that allows everything grants everything: pick a narrower role to cap it. Organization Owners and Admins can create one in **Agents → Settings → Policy tokens**, and so can DevOps members, for a role no wider than DevOps.
 </Warning>
 
 See [API Policy Token](/configuration/organization/api-policy-token) for the full input contract, more policy recipes, and the current limitations.

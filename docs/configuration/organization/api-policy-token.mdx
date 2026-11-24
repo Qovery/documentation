@@ -13,7 +13,7 @@ An **API Policy Token** is a second kind of organization token, intended for aut
 
 <Note>
   The Console calls them **policy tokens**. They are managed in **Agents → Settings → Policy tokens**,
-  by organization Owners and Admins. The old Organization settings page redirects there.
+  by organization Owners, Admins and DevOps members. The old Organization settings page redirects there.
 </Note>
 
 ## Why use one
@@ -24,7 +24,7 @@ A role answers "what kind of thing may this token do, across a scope". A policy 
 | --------------------------- | ------------------------------------------------------ | ---------------------------------------------------------------------- |
 | Authorization               | An [RBAC role](/configuration/organization/members-rbac) | A rego policy, evaluated on every request, then the token's role       |
 | Granularity                 | What the role allows                                   | Any condition over the HTTP request and the resource it targets        |
-| Who can create it           | Depends on your role                                   | In the Console, **Owner** or **Admin**. Through the API, also **DevOps**, for a DevOps, Viewer, Billing or custom role |
+| Who can create it           | Depends on your role                                   | **Owner** or **Admin**, or **DevOps** for a DevOps, Viewer, Billing or custom role |
 | Editable after creation     | No                                                     | No: not the policy, the role or the expiry                              |
 | Typical use                 | CI/CD, Terraform, scripts                              | AI agents, tightly scoped automation                                   |
 
@@ -131,7 +131,7 @@ Rego also ships a large standard library - `startswith`, `endswith`, `count`, `r
 
 - **The policy and the role constrain the token together.** The role defaults to organization admin, and the policy is what narrows it. With the default role, a policy whose `allow` is unconditionally `true` grants **full organization-admin access**. Pick a narrower role, such as Viewer or a custom role, to cap what the token can ever do, whatever its policy says. The Owner role cannot be given to a policy token.
 - **It fails closed.** Anything other than an explicit `true` denies the request: no matching rule, a non-boolean `allow`, a request path that Qovery cannot resolve, or a policy engine that cannot be reached.
-- **Who can create one.** In the Console, organization Owners and Admins. Through the API, Owners and Admins can create a token with any role but Owner, and DevOps members can create one with the DevOps, Viewer or Billing role, or a custom role. Other roles, custom roles included, cannot create one.
+- **Who can create one.** Owners and Admins can create a token with any role but Owner, and DevOps members can create one with the DevOps, Viewer or Billing role, or a custom role, in the Console or through the API. Other roles, custom roles included, cannot create one.
 - **Revocation is immediate.** The token is looked up on every request, with no caching.
 - **Actions are attributed in the audit log** as `policy:<token-id>:<token-name>`, so an agent's activity is distinguishable from a regular API token's.
 
@@ -245,7 +245,7 @@ allow_deployment if {
 
 ## Policy recipes
 
-For complete use cases, with the full policy, the prompt for the agent, and what the agent can and cannot do, see the [agent policy examples](/configuration/organization/policy-examples/overview): incident investigation, preview environments, stopping idle environments, right-sizing, scaling, rollbacks, tests on a copy of production and security patches. In the Console, **Agents → Automate** lists the same examples and can prefill the token form with any of them.
+For complete use cases, with the full policy, the prompt for the agent, and what the agent can and cannot do, see the [agent policy examples](/configuration/organization/policy-examples/overview): incident investigation, preview environments, stopping idle environments, right-sizing, scaling, rollbacks, tests on a copy of production and security patches.
 
 The recipes below are smaller building blocks.
 
@@ -325,15 +325,13 @@ The recipes below are smaller building blocks.
 <Steps>
   <Step title="Open Policy tokens">
     In the Console, open the **Agents** tab of your organization, then
-    **Settings → Policy tokens** (Owners and Admins). The setup step on the
-    organization overview and the links in Automate and Activity also lead there. Regular [API tokens](/configuration/organization/api-token)
+    **Settings → Policy tokens** (Owners, Admins and DevOps). Regular [API tokens](/configuration/organization/api-token)
     stay in Organization settings.
   </Step>
 
   <Step title="Click Create policy token">
-    Press **Create policy token**. To start from a ready-made job instead, use
-    **Create policy token** on a job in **Agents → Automate**: the form opens
-    prefilled with its name, description and policy.
+    Press **Create policy token**. To start from a ready-made job, copy the
+    policy of one of the [agent policy examples](/configuration/organization/policy-examples/overview).
   </Step>
 
   <Step title="Configure the token">

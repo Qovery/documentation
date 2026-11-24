@@ -16,10 +16,6 @@ Each page gives you:
 - a prompt to create the token with the `qovery-policy-token` skill,
 - a prompt to give the agent its task.
 
-<Tip>
-  The same examples are in the Console under **Agents → Automate**, ordered safest first, each with its suggested trigger. A job's **Run it on its own** sheet walks through the two steps below: **Create policy token** opens the policy token form prefilled with the example's name, description and policy (replace the `REPLACE_WITH_` IDs before you save), then schedule the agent. See [Agents](/configuration/organization#agents).
-</Tip>
-
 ## Examples
 
 Start at the top. The first jobs only read or touch non-production environments. The last ones change production, in a narrow way.
@@ -43,7 +39,7 @@ Start at the top. The first jobs only read or touch non-production environments.
     Every value that starts with `REPLACE_WITH_` is an ID from your organization: organization, project, environment, application or cluster. Copy them from the Console URL or list them with the [Qovery CLI](/cli/overview).
   </Step>
   <Step title="Create the token">
-    In the Console, open **Agents → Settings → Policy tokens**, click **Create policy token**, and paste the policy, or use **Create policy token** on the job in **Agents → Automate** to get the form prefilled. Or ask a coding agent with the `qovery-policy-token` skill, using the prompt on the page. Only an organization Owner or Admin can create a policy token.
+    In the Console, open **Agents → Settings → Policy tokens**, click **Create policy token**, and paste the policy. Or ask a coding agent with the `qovery-policy-token` skill, using the prompt on the page. Only an organization Owner or Admin can create a policy token.
   </Step>
   <Step title="Give the token to the agent">
     Set it in the agent's environment, never in the prompt:
@@ -71,13 +67,13 @@ Once the token exists, give the agent a trigger: a schedule, or an event such as
     Pick one:
 
     - **From your coding agent.** Run the job from the coding agent you already use: Claude Code, Codex, Cursor, OpenCode, Gemini CLI, VS Code Copilot, or any agent with the [Qovery Agent Skills](/getting-started/quickstart/agent-skills). It works through the Qovery skills or the [Qovery MCP server](/copilot/mcp-server), signed in with the policy token, which you give outside the prompt: `QOVERY_CLI_ACCESS_TOKEN=<policy token>` for the skills and the CLI, or the MCP header `Authorization: Token <policy token>`. To make it recurring, use the coding agent's own scheduling if it has one, or start it from a CI cron job with the prompt. For a webhook trigger, start it when the event happens.
-    - **As an Agent Task on Qovery (recommended).** It runs next to your services on its own schedule or webhook, with no laptop or CI to keep running. From the environment's **Automations** tab, create an [agent task](/configuration/agent-tasks/overview) with the prompt and the trigger. Agent Tasks support two triggers natively: a schedule (a cron expression and a timezone) and a webhook. Give it the Qovery MCP server, `https://mcp.qovery.com/mcp`, with the header `Authorization: Token <policy token>`, added under **Agents → Settings → MCP servers**. In **Agents → Automate**, this route creates nothing: **Open Automations in an environment** takes you to where you add the agent task. See [Add MCP Servers](/configuration/agent-tasks/overview#creating-an-agent).
+    - **As an Agent Task on Qovery (recommended).** It runs next to your services on its own schedule or webhook, with no laptop or CI to keep running. From the environment's **Automations** tab, or with **Create agent task** in **Agents → Automations**, create an [agent task](/configuration/agent-tasks/overview) with the prompt and the trigger. Agent Tasks support two triggers natively: a schedule (a cron expression and a timezone) and a webhook. Give it the Qovery MCP server, `https://mcp.qovery.com/mcp`, with the header `Authorization: Token <policy token>`, added under **Agents → Settings → MCP servers**. See [Add MCP Servers](/configuration/agent-tasks/overview#creating-an-agent).
   </Step>
 </Steps>
 
 ### Automate a job that has no example
 
-Describe the recurring job in plain English to a coding agent that has the [Qovery Agent Skills](/getting-started/quickstart/agent-skills), with `/qovery-policy-token <what the agent should do>`. In the Console, **Automate a new job** in **Agents → Automate** builds that command for you. The skill confirms the resources with you, writes a deny-by-default policy, tests it locally, creates the token once you approve, and checks it live: calls outside the job are refused, safe reads work, and no destructive action is allowed unless you asked for it. Then schedule it: as an Agent Task on Qovery (recommended), or from your coding agent, with that token.
+Describe the recurring job in plain English to a coding agent that has the [Qovery Agent Skills](/getting-started/quickstart/agent-skills), with `/qovery-policy-token <what the agent should do>`. The skill confirms the resources with you, writes a deny-by-default policy, tests it locally, creates the token once you approve, and checks it live: calls outside the job are refused, safe reads work, and no destructive action is allowed unless you asked for it. Then schedule it: as an Agent Task on Qovery (recommended), or from your coding agent, with that token.
 
 ## What every policy has in common
 

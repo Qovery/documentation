@@ -21745,37 +21745,26 @@ The **Agents** tab gathers in one place how your team's coding agents work with 
 
 The idea behind it: agents can do real infrastructure work on their own when every operation is checked at the API. Agents sets that up in three parts: **Guide** agents with the Qovery skills, tailored per team and per person with skill presets; **Control** them with policy tokens, so each agent gets exactly the permissions its job needs, checked on every API call and denied by default; and **Observe** what they did and what was blocked, in Activity and the audit logs.
 
-Its side menu has three entries, then a **Settings** group for Owners and Admins:
+Its side menu has the Skills registry, Automations and Activity, then a **Settings** group:
 
 - **Skills registry**: where your organization's [skill presets](https://www.qovery.com/docs/copilot/skill-presets) (Preview) live, its own version of the Qovery skills. One page holds the list of presets, which you can sort and filter, the editor, a preview side panel that shows what a member or a role receives, and each preset's history. New presets start from scratch or from a template per user profile. Members see a read-only **What your agent receives** view instead. Skill loads are in the [audit logs](https://www.qovery.com/docs/getting-started/security-and-compliance/audit-logs), and usage is in **Activity**.
-- **Automate**: agents that run on their own, on a schedule or on an event. Each one gets a policy token that allows exactly its job: anything else is refused at the API, and every call is logged. The jobs are the [agent policy examples](https://www.qovery.com/docs/configuration/organization/policy-examples/overview), in one grid with a level filter: All, Investigate, Hygiene, Cost, Reliability and Change. One-shot operations are not listed here. Each job has a suggested trigger, such as a webhook when an incident fires or `0 8,20 * * 1-5` to stop idle environments in the evening and start them in the morning. Its panel first says where the agent runs: as an Agent Task on your Qovery infrastructure, or from a coding agent on a laptop or in CI. It then shows the prompt for the agent, what the agent can and can never do, and the steps to run it on its own: create the policy token, prefilled with the example's name, description and policy (replace the `REPLACE_WITH_` IDs, and keep the token value, shown once), then schedule the agent, in one of two ways. The first is the coding agent you already use (Claude Code, Codex, Cursor, OpenCode, Gemini CLI, VS Code Copilot, or any agent with the Qovery skills), signed in with the token outside the prompt (in `QOVERY_CLI_ACCESS_TOKEN` or the MCP header) and started by the agent's own scheduling, a CI cron job or the event. The second, recommended, is an [Agent Task](https://www.qovery.com/docs/configuration/agent-tasks/overview) on Qovery, with the Qovery MCP server authenticated by that token: it runs next to your services on its own schedule or webhook, with no laptop or CI to keep running. The page creates nothing for this route: **Open Automations in an environment** takes you to where you add the agent task. The page lists the Agent Tasks templates under **Or run agents on Qovery**. **Automate a new job** turns a recurring job you describe into a `/qovery-policy-token` command for your coding agent, then you schedule it the same way. See [Run it on its own](https://www.qovery.com/docs/configuration/organization/policy-examples/overview#run-it-on-its-own).
-- **Activity**: one view of what members' agents did (through the skills and the MCP server) and what policy tokens did, allowed and denied. Its menu entry shows a badge with the number of denied calls in the last 7 days. One toolbar filters by period, actor (everyone, all members, all policy tokens, or one member or token), skill, source and outcome. The filters are kept in the URL, so you can share a filtered view. **Recent actions** sits right under the chart, 30 per page, with an **Action type** filter. Break the activity down by member, by token or by skill, and click a row to filter the whole page. **What was blocked** lists the refused calls, with **Show only denied**. See [Activity](https://www.qovery.com/docs/copilot/skill-presets#activity).
-- **Settings** (Owners and Admins):
-  - **Policy tokens**: the organization's [API Policy Tokens](https://www.qovery.com/docs/configuration/organization/api-policy-token), managed entirely here. The setup step on the organization overview, the **Create policy token** buttons in Automate and the token links in Activity also lead here. **Create policy token** opens the form. Each token shows its role, a bar of its last 7 days (allowed and denied calls per day), when it was last used and when it expires, with a **No expiry** warning badge for a token that never expires. Its row menu has **See activity** (Activity filtered on that token), **View policy** (read-only: a policy cannot change after creation) and **Delete token** (you confirm by typing the token's name). Deleted tokens that made calls in the last 30 days are listed greyed out.
-  - **Copilot settings** (Beta): what the [Console AI Copilot](https://www.qovery.com/docs/copilot/console) does, its status, and its settings: access source, access mode, scheduled tasks, and **Turn off Copilot**.
+- **Automations** (where [Agent Tasks](https://www.qovery.com/docs/configuration/agent-tasks/overview) are available): the organization's agent tasks, with their project and environment. Owners and Admins can **Create agent task**, which asks for the environment it runs in. To run one of the [agent policy examples](https://www.qovery.com/docs/configuration/organization/policy-examples/overview) on its own, see [Run it on its own](https://www.qovery.com/docs/configuration/organization/policy-examples/overview#run-it-on-its-own).
+- **Activity**: one view of what members' agents did (through the skills and the MCP server) and what policy tokens did, allowed and denied. Its menu entry shows a badge with the number of denied calls in the last 7 days. One toolbar filters by period, actor (everyone, all members, all policy tokens, or one member or token), skill, source and outcome. The filters are kept in the URL, so you can share a filtered view. **Recent actions** sits right under the chart, in pages, with an **Action type** filter. Break the activity down by member, by token or by skill, and click a row to filter the whole page. **What was blocked** lists the refused calls, with **Show all denied**. See [Activity](https://www.qovery.com/docs/copilot/skill-presets#activity).
+- **Settings**, shown to the roles that can use at least one of its pages:
+  - **Policy tokens** (Owners, Admins and DevOps): the organization's [API Policy Tokens](https://www.qovery.com/docs/configuration/organization/api-policy-token), managed entirely here. **Create policy token** opens the form. Each token shows its role, a bar of its last 7 days (allowed and denied calls per day), when it was last used and when it expires, with a **No expiry** warning badge for a token that never expires. Its row menu has **See activity** (Activity filtered on that token), **View policy** (read-only: a policy cannot change after creation) and **Delete token** (you confirm by typing the token's name). Deleted tokens that made calls in the last 30 days are listed greyed out.
+  - **Copilot settings** (Beta, Owners and Admins): what the [Console AI Copilot](https://www.qovery.com/docs/copilot/console) does, its status, and its settings: access source, access mode, scheduled tasks, and **Turn off Copilot**.
   - **Model tokens** and **MCP servers**, where [Agent Tasks](https://www.qovery.com/docs/configuration/agent-tasks/overview) are available, shared with every agent task in the organization. See [Agent Tasks: model tokens and MCP servers](#agent-tasks-model-tokens-and-mcp-servers).
 
-**Connect an agent**, in the Skills registry header and in the setup on the organization overview, opens a window with three tabs: **Qovery skills** (the install command), **CLI** (install and sign in), and **MCP server**, with the setup for Claude Code, Codex, Cursor, Gemini CLI and VS Code.
-
-### Set up your coding agents
-
-The organization overview shows Owners and Admins a **Set up your coding agents** section with three steps, the next one highlighted:
-
-1. **Create a preset in the Skills registry**, from a template for your team's profile.
-2. **Limit what agents can do**: create a policy token.
-3. **Connect your agent**: install the Qovery skills where your team codes. This step counts as done once Qovery has seen agent activity in the organization in the last 30 days: a skill load, an agent action or a denied call.
-
-When AI features are off, the section says so and offers **Turn on AI**. You can dismiss the section, and it goes away once every step is done.
+**Connect an agent**, in the Skills registry header, opens a window with three tabs: **Qovery skills** (the install command), **CLI** (install and sign in), and **MCP server**, with the setup for Claude Code, Codex, Cursor, Gemini CLI and VS Code.
 
 **Who sees what**
 
 | Page | Owners and Admins | Other members |
 |------|-------------------|---------------|
 | Skills registry | Create, edit, assign, preview and see the history of presets | **What your agent receives**, read-only |
-| Automate | Yes, with **Create policy token** | Read-only: **Copy prompt** and links, and who can create the token |
+| Automations | Yes, with **Create agent task** | The list, without **Create agent task** |
 | Activity | The whole organization, members and policy tokens | **Your activity**: their own, with no actor filter and no token breakdown |
-| Settings | Policy tokens, Copilot settings, model tokens and MCP servers | Not in the menu |
-| Set up your coding agents, on the organization overview | Yes | Not shown |
+| Settings | Policy tokens, Copilot settings, model tokens and MCP servers | DevOps: Policy tokens. Model tokens and MCP servers where Agent Tasks are available |
 
 Old links keep working: the former Agents overview and the usage, skill loads and assignments pages redirect to the Skills registry or to Activity, and the former connect page opens the Skills registry with the **Connect an agent** window open.
 
@@ -21783,7 +21772,7 @@ Old links keep working: the former Agents overview and the usage, skill loads an
 
 AI features are the organization's opt-in to AI. The Copilot needs them, and so does the security review that checks every skill preset before it is saved. New organizations have AI features on by default.
 
-When AI features are off, Owners and Admins see **Turn on AI** in the setup on the organization overview, in the Skills registry and on **Copilot settings**. They turn everything on in one step:
+When AI features are off, Owners and Admins see **Turn on AI** in the Skills registry and on **Copilot settings**. They turn everything on in one step:
 
 1. Click **Turn on AI**.
 2. Read the summary of the Copilot terms, open the full terms if you want, accept them and confirm.
@@ -22750,7 +22739,7 @@ An **API Policy Token** is a second kind of organization token, intended for aut
 
 <Note>
   The Console calls them **policy tokens**. They are managed in **Agents → Settings → Policy tokens**,
-  by organization Owners and Admins. The old Organization settings page redirects there.
+  by organization Owners, Admins and DevOps members. The old Organization settings page redirects there.
 </Note>
 
 ## Why use one
@@ -22761,7 +22750,7 @@ A role answers "what kind of thing may this token do, across a scope". A policy 
 | --------------------------- | ------------------------------------------------------ | ---------------------------------------------------------------------- |
 | Authorization               | An [RBAC role](https://www.qovery.com/docs/configuration/organization/members-rbac) | A rego policy, evaluated on every request, then the token's role       |
 | Granularity                 | What the role allows                                   | Any condition over the HTTP request and the resource it targets        |
-| Who can create it           | Depends on your role                                   | In the Console, **Owner** or **Admin**. Through the API, also **DevOps**, for a DevOps, Viewer, Billing or custom role |
+| Who can create it           | Depends on your role                                   | **Owner** or **Admin**, or **DevOps** for a DevOps, Viewer, Billing or custom role |
 | Editable after creation     | No                                                     | No: not the policy, the role or the expiry                              |
 | Typical use                 | CI/CD, Terraform, scripts                              | AI agents, tightly scoped automation                                   |
 
@@ -22868,7 +22857,7 @@ Rego also ships a large standard library - `startswith`, `endswith`, `count`, `r
 
 - **The policy and the role constrain the token together.** The role defaults to organization admin, and the policy is what narrows it. With the default role, a policy whose `allow` is unconditionally `true` grants **full organization-admin access**. Pick a narrower role, such as Viewer or a custom role, to cap what the token can ever do, whatever its policy says. The Owner role cannot be given to a policy token.
 - **It fails closed.** Anything other than an explicit `true` denies the request: no matching rule, a non-boolean `allow`, a request path that Qovery cannot resolve, or a policy engine that cannot be reached.
-- **Who can create one.** In the Console, organization Owners and Admins. Through the API, Owners and Admins can create a token with any role but Owner, and DevOps members can create one with the DevOps, Viewer or Billing role, or a custom role. Other roles, custom roles included, cannot create one.
+- **Who can create one.** Owners and Admins can create a token with any role but Owner, and DevOps members can create one with the DevOps, Viewer or Billing role, or a custom role, in the Console or through the API. Other roles, custom roles included, cannot create one.
 - **Revocation is immediate.** The token is looked up on every request, with no caching.
 - **Actions are attributed in the audit log** as `policy:<token-id>:<token-name>`, so an agent's activity is distinguishable from a regular API token's.
 
@@ -22982,7 +22971,7 @@ allow_deployment if {
 
 ## Policy recipes
 
-For complete use cases, with the full policy, the prompt for the agent, and what the agent can and cannot do, see the [agent policy examples](https://www.qovery.com/docs/configuration/organization/policy-examples/overview): incident investigation, preview environments, stopping idle environments, right-sizing, scaling, rollbacks, tests on a copy of production and security patches. In the Console, **Agents → Automate** lists the same examples and can prefill the token form with any of them.
+For complete use cases, with the full policy, the prompt for the agent, and what the agent can and cannot do, see the [agent policy examples](https://www.qovery.com/docs/configuration/organization/policy-examples/overview): incident investigation, preview environments, stopping idle environments, right-sizing, scaling, rollbacks, tests on a copy of production and security patches.
 
 The recipes below are smaller building blocks.
 
@@ -23062,15 +23051,13 @@ The recipes below are smaller building blocks.
 <Steps>
   <Step title="Open Policy tokens">
     In the Console, open the **Agents** tab of your organization, then
-    **Settings → Policy tokens** (Owners and Admins). The setup step on the
-    organization overview and the links in Automate and Activity also lead there. Regular [API tokens](https://www.qovery.com/docs/configuration/organization/api-token)
+    **Settings → Policy tokens** (Owners, Admins and DevOps). Regular [API tokens](https://www.qovery.com/docs/configuration/organization/api-token)
     stay in Organization settings.
   </Step>
 
   <Step title="Click Create policy token">
-    Press **Create policy token**. To start from a ready-made job instead, use
-    **Create policy token** on a job in **Agents → Automate**: the form opens
-    prefilled with its name, description and policy.
+    Press **Create policy token**. To start from a ready-made job, copy the
+    policy of one of the [agent policy examples](https://www.qovery.com/docs/configuration/organization/policy-examples/overview).
   </Step>
 
   <Step title="Configure the token">
@@ -23244,10 +23231,6 @@ Each page gives you:
 - a prompt to create the token with the `qovery-policy-token` skill,
 - a prompt to give the agent its task.
 
-<Tip>
-  The same examples are in the Console under **Agents → Automate**, ordered safest first, each with its suggested trigger. A job's **Run it on its own** sheet walks through the two steps below: **Create policy token** opens the policy token form prefilled with the example's name, description and policy (replace the `REPLACE_WITH_` IDs before you save), then schedule the agent. See [Agents](https://www.qovery.com/docs/configuration/organization#agents).
-</Tip>
-
 ## Examples
 
 Start at the top. The first jobs only read or touch non-production environments. The last ones change production, in a narrow way.
@@ -23271,7 +23254,7 @@ Start at the top. The first jobs only read or touch non-production environments.
     Every value that starts with `REPLACE_WITH_` is an ID from your organization: organization, project, environment, application or cluster. Copy them from the Console URL or list them with the [Qovery CLI](https://www.qovery.com/docs/cli/overview).
   </Step>
   <Step title="Create the token">
-    In the Console, open **Agents → Settings → Policy tokens**, click **Create policy token**, and paste the policy, or use **Create policy token** on the job in **Agents → Automate** to get the form prefilled. Or ask a coding agent with the `qovery-policy-token` skill, using the prompt on the page. Only an organization Owner or Admin can create a policy token.
+    In the Console, open **Agents → Settings → Policy tokens**, click **Create policy token**, and paste the policy. Or ask a coding agent with the `qovery-policy-token` skill, using the prompt on the page. Only an organization Owner or Admin can create a policy token.
   </Step>
   <Step title="Give the token to the agent">
     Set it in the agent's environment, never in the prompt:
@@ -23299,13 +23282,13 @@ Once the token exists, give the agent a trigger: a schedule, or an event such as
     Pick one:
 
     - **From your coding agent.** Run the job from the coding agent you already use: Claude Code, Codex, Cursor, OpenCode, Gemini CLI, VS Code Copilot, or any agent with the [Qovery Agent Skills](https://www.qovery.com/docs/getting-started/quickstart/agent-skills). It works through the Qovery skills or the [Qovery MCP server](https://www.qovery.com/docs/copilot/mcp-server), signed in with the policy token, which you give outside the prompt: `QOVERY_CLI_ACCESS_TOKEN=<policy token>` for the skills and the CLI, or the MCP header `Authorization: Token <policy token>`. To make it recurring, use the coding agent's own scheduling if it has one, or start it from a CI cron job with the prompt. For a webhook trigger, start it when the event happens.
-    - **As an Agent Task on Qovery (recommended).** It runs next to your services on its own schedule or webhook, with no laptop or CI to keep running. From the environment's **Automations** tab, create an [agent task](https://www.qovery.com/docs/configuration/agent-tasks/overview) with the prompt and the trigger. Agent Tasks support two triggers natively: a schedule (a cron expression and a timezone) and a webhook. Give it the Qovery MCP server, `https://mcp.qovery.com/mcp`, with the header `Authorization: Token <policy token>`, added under **Agents → Settings → MCP servers**. In **Agents → Automate**, this route creates nothing: **Open Automations in an environment** takes you to where you add the agent task. See [Add MCP Servers](https://www.qovery.com/docs/configuration/agent-tasks/overview#creating-an-agent).
+    - **As an Agent Task on Qovery (recommended).** It runs next to your services on its own schedule or webhook, with no laptop or CI to keep running. From the environment's **Automations** tab, or with **Create agent task** in **Agents → Automations**, create an [agent task](https://www.qovery.com/docs/configuration/agent-tasks/overview) with the prompt and the trigger. Agent Tasks support two triggers natively: a schedule (a cron expression and a timezone) and a webhook. Give it the Qovery MCP server, `https://mcp.qovery.com/mcp`, with the header `Authorization: Token <policy token>`, added under **Agents → Settings → MCP servers**. See [Add MCP Servers](https://www.qovery.com/docs/configuration/agent-tasks/overview#creating-an-agent).
   </Step>
 </Steps>
 
 ### Automate a job that has no example
 
-Describe the recurring job in plain English to a coding agent that has the [Qovery Agent Skills](https://www.qovery.com/docs/getting-started/quickstart/agent-skills), with `/qovery-policy-token <what the agent should do>`. In the Console, **Automate a new job** in **Agents → Automate** builds that command for you. The skill confirms the resources with you, writes a deny-by-default policy, tests it locally, creates the token once you approve, and checks it live: calls outside the job are refused, safe reads work, and no destructive action is allowed unless you asked for it. Then schedule it: as an Agent Task on Qovery (recommended), or from your coding agent, with that token.
+Describe the recurring job in plain English to a coding agent that has the [Qovery Agent Skills](https://www.qovery.com/docs/getting-started/quickstart/agent-skills), with `/qovery-policy-token <what the agent should do>`. The skill confirms the resources with you, writes a deny-by-default policy, tests it locally, creates the token once you approve, and checks it live: calls outside the job are refused, safe reads work, and no destructive action is allowed unless you asked for it. Then schedule it: as an Agent Task on Qovery (recommended), or from your coding agent, with that token.
 
 ## What every policy has in common
 
@@ -23449,7 +23432,7 @@ You can copy the IDs from the Console URL, or list them with `qovery project lis
     The `qovery-policy-token` skill finds the IDs, writes a policy like the one above, tests it locally and against the API, then creates the token.
   </Tab>
   <Tab title="In the Console">
-    1. Open the **Agents** tab of your organization, then **Automate**, and click **Create policy token** on this job. The form opens prefilled with its name, description and policy. Or open **Agents → Settings → Policy tokens**, click **Create policy token**, and paste the policy.
+    1. Open the **Agents** tab of your organization, then **Settings → Policy tokens**, click **Create policy token**, and paste the policy.
     2. Replace the `REPLACE_WITH_` IDs with yours.
     3. Create the token.
     4. Copy the token (`sk-qov-01-...`). It is shown once.
@@ -23603,7 +23586,7 @@ You can copy the IDs from the Console URL, or list them with `qovery project lis
     The `qovery-policy-token` skill finds the IDs, writes a policy like the one above, tests it locally and against the API, then creates the token.
   </Tab>
   <Tab title="In the Console">
-    1. Open the **Agents** tab of your organization, then **Automate**, and click **Create policy token** on this job. The form opens prefilled with its name, description and policy. Or open **Agents → Settings → Policy tokens**, click **Create policy token**, and paste the policy.
+    1. Open the **Agents** tab of your organization, then **Settings → Policy tokens**, click **Create policy token**, and paste the policy.
     2. Replace the `REPLACE_WITH_` IDs with yours.
     3. Create the token.
     4. Copy the token (`sk-qov-01-...`). It is shown once.
@@ -23756,7 +23739,7 @@ You can copy the IDs from the Console URL, or list them with `qovery project lis
     The `qovery-policy-token` skill finds the IDs, writes a policy like the one above, tests it locally and against the API, then creates the token.
   </Tab>
   <Tab title="In the Console">
-    1. Open the **Agents** tab of your organization, then **Automate**, and click **Create policy token** on this job. The form opens prefilled with its name, description and policy. Or open **Agents → Settings → Policy tokens**, click **Create policy token**, and paste the policy.
+    1. Open the **Agents** tab of your organization, then **Settings → Policy tokens**, click **Create policy token**, and paste the policy.
     2. Replace the `REPLACE_WITH_` IDs with yours.
     3. Create the token.
     4. Copy the token (`sk-qov-01-...`). It is shown once.
@@ -23907,7 +23890,7 @@ You can copy the IDs from the Console URL, or list them with `qovery project lis
     The `qovery-policy-token` skill finds the IDs, writes a policy like the one above, tests it locally and against the API, then creates the token.
   </Tab>
   <Tab title="In the Console">
-    1. Open the **Agents** tab of your organization, then **Automate**, and click **Create policy token** on this job. The form opens prefilled with its name, description and policy. Or open **Agents → Settings → Policy tokens**, click **Create policy token**, and paste the policy.
+    1. Open the **Agents** tab of your organization, then **Settings → Policy tokens**, click **Create policy token**, and paste the policy.
     2. Replace the `REPLACE_WITH_` IDs with yours.
     3. Create the token.
     4. Copy the token (`sk-qov-01-...`). It is shown once.
@@ -24086,7 +24069,7 @@ You can copy the IDs from the Console URL, or list them with `qovery project lis
     The `qovery-policy-token` skill finds the IDs, writes a policy like the one above, tests it locally and against the API, then creates the token.
   </Tab>
   <Tab title="In the Console">
-    1. Open the **Agents** tab of your organization, then **Automate**, and click **Create policy token** on this job. The form opens prefilled with its name, description and policy. Or open **Agents → Settings → Policy tokens**, click **Create policy token**, and paste the policy.
+    1. Open the **Agents** tab of your organization, then **Settings → Policy tokens**, click **Create policy token**, and paste the policy.
     2. Replace the `REPLACE_WITH_` IDs with yours.
     3. Create the token.
     4. Copy the token (`sk-qov-01-...`). It is shown once.
@@ -24259,7 +24242,7 @@ You can copy the IDs from the Console URL, or list them with `qovery project lis
     The `qovery-policy-token` skill finds the IDs, writes a policy like the one above, tests it locally and against the API, then creates the token.
   </Tab>
   <Tab title="In the Console">
-    1. Open the **Agents** tab of your organization, then **Automate**, and click **Create policy token** on this job. The form opens prefilled with its name, description and policy. Or open **Agents → Settings → Policy tokens**, click **Create policy token**, and paste the policy.
+    1. Open the **Agents** tab of your organization, then **Settings → Policy tokens**, click **Create policy token**, and paste the policy.
     2. Replace the `REPLACE_WITH_` IDs with yours.
     3. Create the token.
     4. Copy the token (`sk-qov-01-...`). It is shown once.
@@ -24426,7 +24409,7 @@ You can copy the IDs from the Console URL, or list them with `qovery project lis
     The `qovery-policy-token` skill finds the IDs, writes a policy like the one above, tests it locally and against the API, then creates the token.
   </Tab>
   <Tab title="In the Console">
-    1. Open the **Agents** tab of your organization, then **Automate**, and click **Create policy token** on this job. The form opens prefilled with its name, description and policy. Or open **Agents → Settings → Policy tokens**, click **Create policy token**, and paste the policy.
+    1. Open the **Agents** tab of your organization, then **Settings → Policy tokens**, click **Create policy token**, and paste the policy.
     2. Replace the `REPLACE_WITH_` IDs with yours.
     3. Create the token.
     4. Copy the token (`sk-qov-01-...`). It is shown once.
@@ -24596,7 +24579,7 @@ You can copy the IDs from the Console URL, or list them with `qovery project lis
     The `qovery-policy-token` skill finds the IDs, writes a policy like the one above, tests it locally and against the API, then creates the token.
   </Tab>
   <Tab title="In the Console">
-    1. Open the **Agents** tab of your organization, then **Automate**, and click **Create policy token** on this job. The form opens prefilled with its name, description and policy. Or open **Agents → Settings → Policy tokens**, click **Create policy token**, and paste the policy.
+    1. Open the **Agents** tab of your organization, then **Settings → Policy tokens**, click **Create policy token**, and paste the policy.
     2. Replace the `REPLACE_WITH_` IDs with yours.
     3. Create the token.
     4. Copy the token (`sk-qov-01-...`). It is shown once.
@@ -24782,7 +24765,7 @@ You can copy the IDs from the Console URL, or list them with `qovery project lis
     The `qovery-policy-token` skill finds the IDs, writes a policy like the one above, tests it locally and against the API, then creates the token.
   </Tab>
   <Tab title="In the Console">
-    1. Open the **Agents** tab of your organization, then **Automate**, and click **Create policy token** on this job. The form opens prefilled with its name, description and policy. Or open **Agents → Settings → Policy tokens**, click **Create policy token**, and paste the policy.
+    1. Open the **Agents** tab of your organization, then **Settings → Policy tokens**, click **Create policy token**, and paste the policy.
     2. Replace the `REPLACE_WITH_` IDs with yours.
     3. Create the token.
     4. Copy the token (`sk-qov-01-...`). It is shown once.
@@ -38053,7 +38036,7 @@ Agent Tasks is available to all organizations. Capabilities and configuration ma
 
 Agent Tasks are one-time or scheduled jobs delegated to AI agents, running on your Qovery-managed infrastructure like any other service. Each agent runs with its own resources, environment variables, and a domain allowlist controlling exactly what it can reach.
 
-For ready-made jobs with their policies, see **Agents → Automate** in the Console. An agent task is the recommended way to run them on their own: it runs next to your services on its own schedule or webhook, with no laptop or CI to keep running. Pair it with the Qovery MCP server authenticated by a policy token, so it is limited to exactly what it is allowed. You can also run them from your own coding agent. See [Run it on its own](https://www.qovery.com/docs/configuration/organization/policy-examples/overview#run-it-on-its-own).
+**Agents → Automations** in the Console lists the agent tasks of your organization. For ready-made jobs with their policies, see the [agent policy examples](https://www.qovery.com/docs/configuration/organization/policy-examples/overview). An agent task is the recommended way to run them on their own: it runs next to your services on its own schedule or webhook, with no laptop or CI to keep running. Pair it with the Qovery MCP server authenticated by a policy token, so it is limited to exactly what it is allowed. You can also run them from your own coding agent. See [Run it on its own](https://www.qovery.com/docs/configuration/organization/policy-examples/overview#run-it-on-its-own).
 
 ## Creating an Agent
 
@@ -57416,7 +57399,7 @@ To enable Qovery AI Copilot for your organization:
   </Step>
 
   <Step title="Turn on AI if it is off">
-    New organizations have AI features on by default. If they are off, click **Turn on AI**, on **Settings → Copilot settings** or in the **Set up your coding agents** section of the organization overview, read the summary of the Copilot Terms & Conditions (the full terms are one click away), accept them and confirm. You will receive a copy of the Terms & Conditions by email for your records.
+    New organizations have AI features on by default. If they are off, click **Turn on AI**, on **Settings → Copilot settings** or in the Skills registry, read the summary of the Copilot Terms & Conditions (the full terms are one click away), accept them and confirm. You will receive a copy of the Terms & Conditions by email for your records.
 
     This one confirmation turns on the organization's AI features and the Copilot, in **read-only mode**. AI features are also what the security review of [skill presets](https://www.qovery.com/docs/copilot/skill-presets) needs. If the Copilot cannot be turned on, AI features stay on and you can retry.
   </Step>
@@ -59078,7 +59061,7 @@ allow if {
 ```
 
 <Warning>
-A policy token is only as narrow as its policy and its role. The role defaults to organization admin, so with the default role a policy that allows everything grants everything: pick a narrower role to cap it. In the Console, only organization Owners and Admins can create one, in **Agents → Settings → Policy tokens**.
+A policy token is only as narrow as its policy and its role. The role defaults to organization admin, so with the default role a policy that allows everything grants everything: pick a narrower role to cap it. Organization Owners and Admins can create one in **Agents → Settings → Policy tokens**, and so can DevOps members, for a role no wider than DevOps.
 </Warning>
 
 See [API Policy Token](https://www.qovery.com/docs/configuration/organization/api-policy-token) for the full input contract, more policy recipes, and the current limitations.
@@ -59436,7 +59419,7 @@ The [Qovery agent skills](https://www.qovery.com/docs/getting-started/quickstart
   and the agent-side behaviour described here are likely to change.
 </Info>
 
-In the Console, skill presets live in the **Skills registry**: open the **Agents** tab of your organization, next to **Audit Logs**, which opens on it. The feature and the API keep the name skill presets. The Agents tab also holds Automate, Activity, your policy tokens and the Copilot settings, and **Connect an agent** in the Skills registry header gives the commands to connect an agent. See [Agents](https://www.qovery.com/docs/configuration/organization#agents). The old **Organization settings** links to the Copilot, skill presets and agent activity redirect there.
+In the Console, skill presets live in the **Skills registry**: open the **Agents** tab of your organization, next to **Audit Logs**, which opens on it. The feature and the API keep the name skill presets. The Agents tab also holds Activity, your policy tokens, the Copilot settings and, where Agent Tasks are available, Automations, and **Connect an agent** in the Skills registry header gives the commands to connect an agent. See [Agents](https://www.qovery.com/docs/configuration/organization#agents). The old **Organization settings** links to the Copilot, skill presets and agent activity redirect there.
 
 ## How it works
 
@@ -59651,7 +59634,7 @@ Each finding says which gate raised it: `RULES` for the rule checks, `MODEL` for
   Without it, a create or an edit answers `403`. Reading presets, members'
   skill loads and deleting presets keep working when AI features are off. Owners
   and Admins turn them on with **Turn on AI**, shown in the Skills registry
-  and in the setup on the organization overview when AI features are off: one confirmation turns on AI
+  and on Copilot settings when AI features are off: one confirmation turns on AI
   features and the Copilot, in read-only mode. New organizations have AI
   features on by default. See
   [Turn on AI](https://www.qovery.com/docs/configuration/organization#turn-on-ai). They can also use the API,
@@ -59801,7 +59784,7 @@ Activity covers both kinds of agent identity in one view: a member's agent actin
 - **Actions agents took through Qovery**: API and CLI calls made by the Qovery skills, tool calls through the [Qovery MCP server](https://www.qovery.com/docs/copilot/mcp-server), and every call made with a policy token, from any client (a script, a CI job, Terraform, an agent's own HTTP client). For each action you see the event, the target and its project and environment, the time and the outcome.
 - **Denied calls**: requests refused by a policy token's policy (`401`), or by role permissions (`403`) for a call made by a skill or by a policy token. Both count as denied.
 
-Filter by period, actor (everyone, all members, all policy tokens, or one member or token), skill, source (**Skills**, **MCP**, **Policy token calls** or **Refused requests**) and outcome. The filters are kept in the page URL, so a filtered view can be shared or bookmarked. The breakdown switches between members, policy tokens and skills, and clicking a row filters the whole page. **What was blocked** lists the refused calls, and **Show only denied** narrows the page to them. A timeline and the most recent actions complete the view.
+Filter by period, actor (everyone, all members, all policy tokens, or one member or token), skill, source (**Skills**, **MCP**, **Policy token calls** or **Refused requests**) and outcome. The filters are kept in the page URL, so a filtered view can be shared or bookmarked. The breakdown switches between members, policy tokens and skills, and clicking a row filters the whole page. **What was blocked** lists the refused calls, and **Show all denied** narrows the page to them. A timeline and the most recent actions complete the view.
 
 Policy tokens are grouped by token, not by name, so a renamed token stays one entry. A deleted token keeps the last name its calls recorded, with a **Deleted** badge. Older refusals recorded without a token name are grouped as **Unknown policy token (older records)**.
 
@@ -59905,7 +59888,7 @@ curl -H "Authorization: Token $QOVERY_API_TOKEN" \
   "https://api.qovery.com/organization/$ORGANIZATION_ID/skillPreset"
 ```
 
-Creating and editing presets requires AI features to be turned on for the organization, because every save goes through a [model review](https://www.qovery.com/docs/copilot/skill-presets#how-a-save-is-checked). Reading, member endpoints and delete work either way. New organizations have it on by default. An Owner or Admin can turn it on with **Turn on AI** in the Console, from the Skills registry or the setup on the organization overview, which also turns on the Copilot in read-only mode (see [Turn on AI](https://www.qovery.com/docs/configuration/organization#turn-on-ai)), or with [Edit the organization's AI features opt-in](https://www.qovery.com/docs/api-reference/organization-main-calls/edit-the-organizations-ai-features-opt-in):
+Creating and editing presets requires AI features to be turned on for the organization, because every save goes through a [model review](https://www.qovery.com/docs/copilot/skill-presets#how-a-save-is-checked). Reading, member endpoints and delete work either way. New organizations have it on by default. An Owner or Admin can turn it on with **Turn on AI** in the Console, from the Skills registry or Copilot settings, which also turns on the Copilot in read-only mode (see [Turn on AI](https://www.qovery.com/docs/configuration/organization#turn-on-ai)), or with [Edit the organization's AI features opt-in](https://www.qovery.com/docs/api-reference/organization-main-calls/edit-the-organizations-ai-features-opt-in):
 
 ```bash
 qovery api "organization/$ORGANIZATION_ID/aiFeatures" --method PUT --field enabled=true

@@ -100,37 +100,26 @@ The **Agents** tab gathers in one place how your team's coding agents work with 
 
 The idea behind it: agents can do real infrastructure work on their own when every operation is checked at the API. Agents sets that up in three parts: **Guide** agents with the Qovery skills, tailored per team and per person with skill presets; **Control** them with policy tokens, so each agent gets exactly the permissions its job needs, checked on every API call and denied by default; and **Observe** what they did and what was blocked, in Activity and the audit logs.
 
-Its side menu has three entries, then a **Settings** group for Owners and Admins:
+Its side menu has the Skills registry, Automations and Activity, then a **Settings** group:
 
 - **Skills registry**: where your organization's [skill presets](/copilot/skill-presets) (Preview) live, its own version of the Qovery skills. One page holds the list of presets, which you can sort and filter, the editor, a preview side panel that shows what a member or a role receives, and each preset's history. New presets start from scratch or from a template per user profile. Members see a read-only **What your agent receives** view instead. Skill loads are in the [audit logs](/getting-started/security-and-compliance/audit-logs), and usage is in **Activity**.
-- **Automate**: agents that run on their own, on a schedule or on an event. Each one gets a policy token that allows exactly its job: anything else is refused at the API, and every call is logged. The jobs are the [agent policy examples](/configuration/organization/policy-examples/overview), in one grid with a level filter: All, Investigate, Hygiene, Cost, Reliability and Change. One-shot operations are not listed here. Each job has a suggested trigger, such as a webhook when an incident fires or `0 8,20 * * 1-5` to stop idle environments in the evening and start them in the morning. Its panel first says where the agent runs: as an Agent Task on your Qovery infrastructure, or from a coding agent on a laptop or in CI. It then shows the prompt for the agent, what the agent can and can never do, and the steps to run it on its own: create the policy token, prefilled with the example's name, description and policy (replace the `REPLACE_WITH_` IDs, and keep the token value, shown once), then schedule the agent, in one of two ways. The first is the coding agent you already use (Claude Code, Codex, Cursor, OpenCode, Gemini CLI, VS Code Copilot, or any agent with the Qovery skills), signed in with the token outside the prompt (in `QOVERY_CLI_ACCESS_TOKEN` or the MCP header) and started by the agent's own scheduling, a CI cron job or the event. The second, recommended, is an [Agent Task](/configuration/agent-tasks/overview) on Qovery, with the Qovery MCP server authenticated by that token: it runs next to your services on its own schedule or webhook, with no laptop or CI to keep running. The page creates nothing for this route: **Open Automations in an environment** takes you to where you add the agent task. The page lists the Agent Tasks templates under **Or run agents on Qovery**. **Automate a new job** turns a recurring job you describe into a `/qovery-policy-token` command for your coding agent, then you schedule it the same way. See [Run it on its own](/configuration/organization/policy-examples/overview#run-it-on-its-own).
-- **Activity**: one view of what members' agents did (through the skills and the MCP server) and what policy tokens did, allowed and denied. Its menu entry shows a badge with the number of denied calls in the last 7 days. One toolbar filters by period, actor (everyone, all members, all policy tokens, or one member or token), skill, source and outcome. The filters are kept in the URL, so you can share a filtered view. **Recent actions** sits right under the chart, 30 per page, with an **Action type** filter. Break the activity down by member, by token or by skill, and click a row to filter the whole page. **What was blocked** lists the refused calls, with **Show only denied**. See [Activity](/copilot/skill-presets#activity).
-- **Settings** (Owners and Admins):
-  - **Policy tokens**: the organization's [API Policy Tokens](/configuration/organization/api-policy-token), managed entirely here. The setup step on the organization overview, the **Create policy token** buttons in Automate and the token links in Activity also lead here. **Create policy token** opens the form. Each token shows its role, a bar of its last 7 days (allowed and denied calls per day), when it was last used and when it expires, with a **No expiry** warning badge for a token that never expires. Its row menu has **See activity** (Activity filtered on that token), **View policy** (read-only: a policy cannot change after creation) and **Delete token** (you confirm by typing the token's name). Deleted tokens that made calls in the last 30 days are listed greyed out.
-  - **Copilot settings** (Beta): what the [Console AI Copilot](/copilot/console) does, its status, and its settings: access source, access mode, scheduled tasks, and **Turn off Copilot**.
+- **Automations** (where [Agent Tasks](/configuration/agent-tasks/overview) are available): the organization's agent tasks, with their project and environment. Owners and Admins can **Create agent task**, which asks for the environment it runs in. To run one of the [agent policy examples](/configuration/organization/policy-examples/overview) on its own, see [Run it on its own](/configuration/organization/policy-examples/overview#run-it-on-its-own).
+- **Activity**: one view of what members' agents did (through the skills and the MCP server) and what policy tokens did, allowed and denied. Its menu entry shows a badge with the number of denied calls in the last 7 days. One toolbar filters by period, actor (everyone, all members, all policy tokens, or one member or token), skill, source and outcome. The filters are kept in the URL, so you can share a filtered view. **Recent actions** sits right under the chart, in pages, with an **Action type** filter. Break the activity down by member, by token or by skill, and click a row to filter the whole page. **What was blocked** lists the refused calls, with **Show all denied**. See [Activity](/copilot/skill-presets#activity).
+- **Settings**, shown to the roles that can use at least one of its pages:
+  - **Policy tokens** (Owners, Admins and DevOps): the organization's [API Policy Tokens](/configuration/organization/api-policy-token), managed entirely here. **Create policy token** opens the form. Each token shows its role, a bar of its last 7 days (allowed and denied calls per day), when it was last used and when it expires, with a **No expiry** warning badge for a token that never expires. Its row menu has **See activity** (Activity filtered on that token), **View policy** (read-only: a policy cannot change after creation) and **Delete token** (you confirm by typing the token's name). Deleted tokens that made calls in the last 30 days are listed greyed out.
+  - **Copilot settings** (Beta, Owners and Admins): what the [Console AI Copilot](/copilot/console) does, its status, and its settings: access source, access mode, scheduled tasks, and **Turn off Copilot**.
   - **Model tokens** and **MCP servers**, where [Agent Tasks](/configuration/agent-tasks/overview) are available, shared with every agent task in the organization. See [Agent Tasks: model tokens and MCP servers](#agent-tasks-model-tokens-and-mcp-servers).
 
-**Connect an agent**, in the Skills registry header and in the setup on the organization overview, opens a window with three tabs: **Qovery skills** (the install command), **CLI** (install and sign in), and **MCP server**, with the setup for Claude Code, Codex, Cursor, Gemini CLI and VS Code.
-
-### Set up your coding agents
-
-The organization overview shows Owners and Admins a **Set up your coding agents** section with three steps, the next one highlighted:
-
-1. **Create a preset in the Skills registry**, from a template for your team's profile.
-2. **Limit what agents can do**: create a policy token.
-3. **Connect your agent**: install the Qovery skills where your team codes. This step counts as done once Qovery has seen agent activity in the organization in the last 30 days: a skill load, an agent action or a denied call.
-
-When AI features are off, the section says so and offers **Turn on AI**. You can dismiss the section, and it goes away once every step is done.
+**Connect an agent**, in the Skills registry header, opens a window with three tabs: **Qovery skills** (the install command), **CLI** (install and sign in), and **MCP server**, with the setup for Claude Code, Codex, Cursor, Gemini CLI and VS Code.
 
 **Who sees what**
 
 | Page | Owners and Admins | Other members |
 |------|-------------------|---------------|
 | Skills registry | Create, edit, assign, preview and see the history of presets | **What your agent receives**, read-only |
-| Automate | Yes, with **Create policy token** | Read-only: **Copy prompt** and links, and who can create the token |
+| Automations | Yes, with **Create agent task** | The list, without **Create agent task** |
 | Activity | The whole organization, members and policy tokens | **Your activity**: their own, with no actor filter and no token breakdown |
-| Settings | Policy tokens, Copilot settings, model tokens and MCP servers | Not in the menu |
-| Set up your coding agents, on the organization overview | Yes | Not shown |
+| Settings | Policy tokens, Copilot settings, model tokens and MCP servers | DevOps: Policy tokens. Model tokens and MCP servers where Agent Tasks are available |
 
 Old links keep working: the former Agents overview and the usage, skill loads and assignments pages redirect to the Skills registry or to Activity, and the former connect page opens the Skills registry with the **Connect an agent** window open.
 
@@ -138,7 +127,7 @@ Old links keep working: the former Agents overview and the usage, skill loads an
 
 AI features are the organization's opt-in to AI. The Copilot needs them, and so does the security review that checks every skill preset before it is saved. New organizations have AI features on by default.
 
-When AI features are off, Owners and Admins see **Turn on AI** in the setup on the organization overview, in the Skills registry and on **Copilot settings**. They turn everything on in one step:
+When AI features are off, Owners and Admins see **Turn on AI** in the Skills registry and on **Copilot settings**. They turn everything on in one step:
 
 1. Click **Turn on AI**.
 2. Read the summary of the Copilot terms, open the full terms if you want, accept them and confirm.

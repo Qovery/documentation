@@ -339,11 +339,63 @@ The checks cover:
 
 A blocking check that fails stops the deployment before Qovery changes anything in the cluster. The other checks only add a warning to the logs, and the deployment continues. Today, the checks on the Operator connection, the platform profile, its inputs and the DNS provider block, and so do Kubernetes API access and target namespaces still being deleted. The other in-cluster checks only warn.
 
+## Builds and node credentials
+
+Application images are built inside your cluster, in builder pods of the `qovery` namespace. A build runs the `RUN` steps of the Dockerfile, so anyone who can deploy a service from a Git repository they control decides what runs in that pod.
+
+By default, a pod can reach the metadata endpoint of the node it runs on. On EKS with an IMDS hop limit of 2, a build step can request an IMDS token and read the temporary credentials of the node IAM role. Those credentials give the permissions of the node role, and they authenticate to the Kubernetes API as the node.
+
+Qovery does not change the network or the nodes of a cluster you run. Close this path on the cluster itself before you let people build on it, then [check the result](#check-the-result).
+
+<Tabs>
+  <Tab title="AWS (EKS)">
+    Set the IMDS hop limit to `1` on the nodes that run builds. A pod is one network hop further than the node, so its requests to IMDS get no answer.
+
+    - Managed node group: set `HttpPutResponseHopLimit` to `1` and `HttpTokens` to `required` in the metadata options of the launch template.
+    - Karpenter: set `metadataOptions.httpPutResponseHopLimit: 1` in the `EC2NodeClass`.
+
+    This applies to every pod of those nodes, except pods on the host network. Pods that call AWS must then get their credentials from [IAM roles for service accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) or [EKS Pod Identity](https://docs.aws.amazon.com/eks/latest/userguide/pod-identities.html), not from the node role.
+
+    <Warning>
+    Do not rely on a Kubernetes NetworkPolicy for this on EKS. With the network policy support of the Amazon VPC CNI enabled, a policy that denies egress to `169.254.169.254` for the builder pods did not stop a build step from getting an IMDS token.
+    </Warning>
+
+    Whatever you set, keep the node IAM role to the permissions a node needs.
+  </Tab>
+  <Tab title="GCP (GKE)">
+    Enable [Workload Identity Federation for GKE](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) on the cluster and its node pools. Pods then reach the GKE metadata server instead of the Compute Engine metadata server of the node. Autopilot clusters always have it.
+  </Tab>
+  <Tab title="Scaleway (Kapsule)">
+    Run the check below. If a build step gets an answer from the metadata endpoint, restrict the egress of the builder pods, which carry the label `qovery.com/is-builder: "true"`, with the network plugin of the cluster, and run the check again.
+  </Tab>
+</Tabs>
+
+### Check the result
+
+Deploy an application from a repository that holds this Dockerfile, and read the build output in the deployment logs:
+
+```dockerfile
+FROM public.ecr.aws/docker/library/alpine:3.20
+RUN apk add --no-cache curl >/dev/null; \
+    c=$(curl -s -o /dev/null -w '%{http_code}' -m 3 -X PUT http://169.254.169.254/latest/api/token -H 'X-aws-ec2-metadata-token-ttl-seconds: 60' || true); \
+    echo "AWS IMDS token PUT ${c:-000}"; \
+    g=$(curl -s -o /dev/null -w '%{http_code}' -m 3 -H 'Metadata-Flavor: Google' http://169.254.169.254/computeMetadata/v1/instance/id || true); \
+    echo "GCE metadata ${g:-000}"; \
+    s=$(curl -s -o /dev/null -w '%{http_code}' -m 3 http://169.254.42.42/conf || true); \
+    echo "SCW metadata ${s:-000}"
+CMD ["sleep", "3600"]
+```
+
+`000` means the build step got no answer from the endpoint. On EKS, `AWS IMDS token PUT 200` means a build can still read the node credentials, and `000` means it cannot.
+
+Dockerfiles that relied on the node identity, for example to pull from a private registry or to download from a bucket during the build, stop working once the endpoint is closed.
+
 ## Current limitations
 
 - **DNS**: applications are exposed on the domain provided by Qovery. The DNS provider of the cluster cannot be changed.
 - **Observe and metrics**: Observe and the Monitoring graphs of the cluster and its services are not available on BYOK clusters yet, and Qovery installs no metrics stack on them. If you need them, tell us, since we prioritize BYOK features from customer requests.
 - **Existing installations**: Qovery does not adopt an existing cert-manager, ExternalDNS or Envoy Gateway installation. Use a cluster without them. See [Components that must not already run on the cluster](/configuration/integrations/kubernetes/byok-supported-setups#components-that-must-not-already-run-on-the-cluster).
+- **Build isolation**: Qovery does not block the node metadata endpoint for builds. See [Builds and node credentials](#builds-and-node-credentials).
 - **Removal**: deleting the cluster in Qovery does not uninstall anything from the cluster. See [Remove the cluster](#remove-the-cluster).
 
 Need a component, a DNS provider or a cloud provider that is not covered yet? Contact Qovery Support through your usual channel: in-app chat, shared Slack or Microsoft Teams channel, or email.

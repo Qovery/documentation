@@ -347,16 +347,16 @@ Application images are built inside your cluster, in builder pods of the `qovery
 
 Depending on the cluster configuration, a pod can reach the metadata endpoint of the node it runs on. On EKS with an IMDS hop limit of 2, a build step can request an IMDS token and read the temporary credentials of the node IAM role. Those credentials give the permissions of the node role, and they authenticate to the Kubernetes API as the node.
 
-On BYOK clusters, your team controls the node and network settings that govern access to node metadata. Follow the instructions for your cloud provider to configure this isolation.
+Qovery relies on your cluster's metadata isolation. Follow the guidance below for your cloud provider and cluster mode.
 
 <Tabs>
   <Tab title="AWS (EKS)">
     Require IMDSv2 and set the IMDS response hop limit to `1` on every node that can run builds. Together, these settings prevent pods outside the host network from getting an IMDSv2 token.
 
-    - Managed node group: set `HttpPutResponseHopLimit` to `1` and `HttpTokens` to `required` in the metadata options of the launch template.
-    - Karpenter: set `spec.metadataOptions.httpPutResponseHopLimit` to `1` and `spec.metadataOptions.httpTokens` to `required` in the `EC2NodeClass`.
+    - For a managed node group, set `HttpPutResponseHopLimit` to `1` and `HttpTokens` to `required` in the launch template. [Update the node group to use the new template version](https://docs.aws.amazon.com/eks/latest/userguide/update-managed-node-group.html).
+    - For Karpenter, set `spec.metadataOptions.httpPutResponseHopLimit` to `1` and `spec.metadataOptions.httpTokens` to `required` in the `EC2NodeClass`. Wait for Karpenter to replace the affected nodes. See [Karpenter disruption and node replacement](https://karpenter.sh/docs/concepts/disruption/).
 
-    Verify both settings on the running nodes before you [check the result](#check-the-result).
+    After the rollout completes, verify both settings on every running node that can host a build, then [check the result](#check-the-result) before allowing builds.
 
     This applies to every pod of those nodes, except pods on the host network. Pods that call AWS must then get their credentials from [IAM roles for service accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) or [EKS Pod Identity](https://docs.aws.amazon.com/eks/latest/userguide/pod-identities.html), not from the node role.
 
@@ -367,9 +367,9 @@ On BYOK clusters, your team controls the node and network settings that govern a
     Whatever you set, keep the node IAM role to the permissions a node needs.
   </Tab>
   <Tab title="GCP (GKE)">
-    On GKE Standard, enable [Workload Identity Federation for GKE](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) on the cluster and verify that every node pool that can run builds uses the `GKE_METADATA` mode. GKE Autopilot enables Workload Identity Federation automatically.
+    On GKE Standard, enable [Workload Identity Federation for GKE](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) on the cluster and verify that every node pool that can run builds uses the `GKE_METADATA` mode. In GKE Autopilot, Google manages the nodes and enables Workload Identity Federation automatically.
 
-    For builder pods outside the host network, the GKE metadata server uses the pod’s workload identity. It can still return the node ID over HTTP, so verify the node pool’s metadata mode to confirm the isolation. See [Instance metadata in the GKE documentation](https://docs.cloud.google.com/kubernetes-engine/docs/concepts/workload-identity#instance_metadata).
+    For builder pods outside the host network, the GKE metadata server uses the pod’s workload identity. It can still return the node ID over HTTP. See [Instance metadata in the GKE documentation](https://docs.cloud.google.com/kubernetes-engine/docs/concepts/workload-identity#instance_metadata).
   </Tab>
   <Tab title="Scaleway (Kapsule)">
     Run the check below. If a build step gets an answer from the metadata endpoint, restrict the egress of the builder pods, which carry the label `qovery.com/is-builder: "true"`, with the network plugin of the cluster, and run the check again.

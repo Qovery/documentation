@@ -48,7 +48,7 @@ You can click on any event to reveal the JSON response containing the post-event
 
 [Skill presets](/copilot/skill-presets) (Preview) add these events:
 
-- **Edits**: creating, updating or deleting a preset logs a `CREATE`, `UPDATE` or `DELETE` event holding the saved state with its full text. An update also holds the previous state and a summary of what changed.
+- **Edits**: creating, updating or deleting a preset logs a `CREATE`, `UPDATE` or `DELETE` event holding the saved state with its full text (for a preset over 65,536 characters of text, the SHA-256 hashes only; the revision history keeps the full text). An update also holds the previous state and a summary of what changed.
 - **Refused saves**: a save refused by the security checks logs a `SKILL_PRESET_REJECTED` event with who tried, the SHA-256 of each text field and the findings, never the text.
 - **Loads**: each time a member's agent loads a skill, a `SKILL_LOAD` event records the skill, the preset and revision that applied, and the SHA-256 of what was loaded, including loads served from the agent's cache.
 - **Views**: when a person opens a skill to read it, for example in the Console, a `SKILL_VIEW` event records the same details. Views are not counted as agent loads.

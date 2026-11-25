@@ -7370,7 +7370,7 @@ You can click on any event to reveal the JSON response containing the post-event
 
 [Skill presets](https://www.qovery.com/docs/copilot/skill-presets) (Preview) add these events:
 
-- **Edits**: creating, updating or deleting a preset logs a `CREATE`, `UPDATE` or `DELETE` event holding the saved state with its full text. An update also holds the previous state and a summary of what changed.
+- **Edits**: creating, updating or deleting a preset logs a `CREATE`, `UPDATE` or `DELETE` event holding the saved state with its full text (for a preset over 65,536 characters of text, the SHA-256 hashes only; the revision history keeps the full text). An update also holds the previous state and a summary of what changed.
 - **Refused saves**: a save refused by the security checks logs a `SKILL_PRESET_REJECTED` event with who tried, the SHA-256 of each text field and the findings, never the text.
 - **Loads**: each time a member's agent loads a skill, a `SKILL_LOAD` event records the skill, the preset and revision that applied, and the SHA-256 of what was loaded, including loads served from the agent's cache.
 - **Views**: when a person opens a skill to read it, for example in the Console, a `SKILL_VIEW` event records the same details. Views are not counted as agent loads.
@@ -22781,7 +22781,7 @@ sequenceDiagram
     DB-->>API: The targeted service, environment and project
     API->>OPA: Evaluate allow against the input document
     OPA-->>API: true, false or undefined
-    API-->>Agent: 200 and the response, or 401 Unauthorized
+    API-->>Agent: 200 and the response, 401 if the policy refuses, or 403 if the role does
 ```
 
 1. **The token is recognised** by its `sk-qov-01` prefix in the `Authorization` header, which is what tells it apart from a regular API token sent under the same `Token` scheme.
@@ -23430,8 +23430,8 @@ You can copy the IDs from the Console URL, or list them with `qovery project lis
     The `qovery-policy-token` skill finds the IDs, writes a policy like the one above, tests it locally and against the API, then creates the token.
   </Tab>
   <Tab title="In the Console">
-    1. Open the **Agents** tab of your organization, then **Settings → Policy tokens**, click **Create policy token**, and paste the policy.
-    2. Replace the `REPLACE_WITH_` IDs with yours.
+    1. Open the **Agents** tab of your organization, then **Settings → Policy tokens**, and click **Create policy token**.
+    2. Enter a name and a description, pick a role (organization admin by default, or a narrower one that still allows the job), and paste the policy with the `REPLACE_WITH_` IDs replaced by yours.
     3. Create the token.
     4. Copy the token (`sk-qov-01-...`). It is shown once.
   </Tab>
@@ -23584,8 +23584,8 @@ You can copy the IDs from the Console URL, or list them with `qovery project lis
     The `qovery-policy-token` skill finds the IDs, writes a policy like the one above, tests it locally and against the API, then creates the token.
   </Tab>
   <Tab title="In the Console">
-    1. Open the **Agents** tab of your organization, then **Settings → Policy tokens**, click **Create policy token**, and paste the policy.
-    2. Replace the `REPLACE_WITH_` IDs with yours.
+    1. Open the **Agents** tab of your organization, then **Settings → Policy tokens**, and click **Create policy token**.
+    2. Enter a name and a description, pick a role (organization admin by default, or a narrower one that still allows the job), and paste the policy with the `REPLACE_WITH_` IDs replaced by yours.
     3. Create the token.
     4. Copy the token (`sk-qov-01-...`). It is shown once.
   </Tab>
@@ -23737,8 +23737,8 @@ You can copy the IDs from the Console URL, or list them with `qovery project lis
     The `qovery-policy-token` skill finds the IDs, writes a policy like the one above, tests it locally and against the API, then creates the token.
   </Tab>
   <Tab title="In the Console">
-    1. Open the **Agents** tab of your organization, then **Settings → Policy tokens**, click **Create policy token**, and paste the policy.
-    2. Replace the `REPLACE_WITH_` IDs with yours.
+    1. Open the **Agents** tab of your organization, then **Settings → Policy tokens**, and click **Create policy token**.
+    2. Enter a name and a description, pick a role (organization admin by default, or a narrower one that still allows the job), and paste the policy with the `REPLACE_WITH_` IDs replaced by yours.
     3. Create the token.
     4. Copy the token (`sk-qov-01-...`). It is shown once.
   </Tab>
@@ -23888,8 +23888,8 @@ You can copy the IDs from the Console URL, or list them with `qovery project lis
     The `qovery-policy-token` skill finds the IDs, writes a policy like the one above, tests it locally and against the API, then creates the token.
   </Tab>
   <Tab title="In the Console">
-    1. Open the **Agents** tab of your organization, then **Settings → Policy tokens**, click **Create policy token**, and paste the policy.
-    2. Replace the `REPLACE_WITH_` IDs with yours.
+    1. Open the **Agents** tab of your organization, then **Settings → Policy tokens**, and click **Create policy token**.
+    2. Enter a name and a description, pick a role (organization admin by default, or a narrower one that still allows the job), and paste the policy with the `REPLACE_WITH_` IDs replaced by yours.
     3. Create the token.
     4. Copy the token (`sk-qov-01-...`). It is shown once.
   </Tab>
@@ -24067,8 +24067,8 @@ You can copy the IDs from the Console URL, or list them with `qovery project lis
     The `qovery-policy-token` skill finds the IDs, writes a policy like the one above, tests it locally and against the API, then creates the token.
   </Tab>
   <Tab title="In the Console">
-    1. Open the **Agents** tab of your organization, then **Settings → Policy tokens**, click **Create policy token**, and paste the policy.
-    2. Replace the `REPLACE_WITH_` IDs with yours.
+    1. Open the **Agents** tab of your organization, then **Settings → Policy tokens**, and click **Create policy token**.
+    2. Enter a name and a description, pick a role (organization admin by default, or a narrower one that still allows the job), and paste the policy with the `REPLACE_WITH_` IDs replaced by yours.
     3. Create the token.
     4. Copy the token (`sk-qov-01-...`). It is shown once.
   </Tab>
@@ -24240,8 +24240,8 @@ You can copy the IDs from the Console URL, or list them with `qovery project lis
     The `qovery-policy-token` skill finds the IDs, writes a policy like the one above, tests it locally and against the API, then creates the token.
   </Tab>
   <Tab title="In the Console">
-    1. Open the **Agents** tab of your organization, then **Settings → Policy tokens**, click **Create policy token**, and paste the policy.
-    2. Replace the `REPLACE_WITH_` IDs with yours.
+    1. Open the **Agents** tab of your organization, then **Settings → Policy tokens**, and click **Create policy token**.
+    2. Enter a name and a description, pick a role (organization admin by default, or a narrower one that still allows the job), and paste the policy with the `REPLACE_WITH_` IDs replaced by yours.
     3. Create the token.
     4. Copy the token (`sk-qov-01-...`). It is shown once.
   </Tab>
@@ -24407,8 +24407,8 @@ You can copy the IDs from the Console URL, or list them with `qovery project lis
     The `qovery-policy-token` skill finds the IDs, writes a policy like the one above, tests it locally and against the API, then creates the token.
   </Tab>
   <Tab title="In the Console">
-    1. Open the **Agents** tab of your organization, then **Settings → Policy tokens**, click **Create policy token**, and paste the policy.
-    2. Replace the `REPLACE_WITH_` IDs with yours.
+    1. Open the **Agents** tab of your organization, then **Settings → Policy tokens**, and click **Create policy token**.
+    2. Enter a name and a description, pick a role (organization admin by default, or a narrower one that still allows the job), and paste the policy with the `REPLACE_WITH_` IDs replaced by yours.
     3. Create the token.
     4. Copy the token (`sk-qov-01-...`). It is shown once.
   </Tab>
@@ -24577,8 +24577,8 @@ You can copy the IDs from the Console URL, or list them with `qovery project lis
     The `qovery-policy-token` skill finds the IDs, writes a policy like the one above, tests it locally and against the API, then creates the token.
   </Tab>
   <Tab title="In the Console">
-    1. Open the **Agents** tab of your organization, then **Settings → Policy tokens**, click **Create policy token**, and paste the policy.
-    2. Replace the `REPLACE_WITH_` IDs with yours.
+    1. Open the **Agents** tab of your organization, then **Settings → Policy tokens**, and click **Create policy token**.
+    2. Enter a name and a description, pick a role (organization admin by default, or a narrower one that still allows the job), and paste the policy with the `REPLACE_WITH_` IDs replaced by yours.
     3. Create the token.
     4. Copy the token (`sk-qov-01-...`). It is shown once.
   </Tab>
@@ -24763,8 +24763,8 @@ You can copy the IDs from the Console URL, or list them with `qovery project lis
     The `qovery-policy-token` skill finds the IDs, writes a policy like the one above, tests it locally and against the API, then creates the token.
   </Tab>
   <Tab title="In the Console">
-    1. Open the **Agents** tab of your organization, then **Settings → Policy tokens**, click **Create policy token**, and paste the policy.
-    2. Replace the `REPLACE_WITH_` IDs with yours.
+    1. Open the **Agents** tab of your organization, then **Settings → Policy tokens**, and click **Create policy token**.
+    2. Enter a name and a description, pick a role (organization admin by default, or a narrower one that still allows the job), and paste the policy with the `REPLACE_WITH_` IDs replaced by yours.
     3. Create the token.
     4. Copy the token (`sk-qov-01-...`). It is shown once.
   </Tab>
@@ -47660,7 +47660,7 @@ Qovery utilizes three probe mechanisms:
 
 - **Liveness probe**: Verifies container vitality. Failed checks trigger container restarts, addressing issues like deadlocks where applications run but cannot progress.
 - **Readiness probe**: Confirms container readiness for incoming requests. Traffic routes only to ready pods; unready containers are removed from load balancers.
-- **Startup probe** (optional): Verifies that the container has started. Kubernetes runs the liveness and readiness probes only once it succeeds, so a slow start does not trigger a restart.
+- **Startup probe** (optional): Verifies that the container has started. Kubernetes runs the liveness and readiness probes only once it succeeds, so a slow start does not trip the liveness probe. If the startup probe keeps failing past its failure threshold, the container is restarted.
 
 <Frame>
   <img src="/images/configuration/health-checks/workflow.png" alt="Kubernetes Probes Workflow" />
@@ -47731,7 +47731,7 @@ Applications with extended boot operations may fail deployment if probes cannot 
 ```
 
 <Tip>
-Add a **startup probe** for an application that takes long to boot. Its failure threshold times its period is the time the application gets to start (with the Console defaults, 30 failures every 10 seconds, about 5 minutes), and the liveness probe only starts once it succeeds. You can also increase **Initial Delay** to match your boot duration.
+Add a **startup probe** for an application that takes long to boot. Its initial delay plus its failure threshold times its period is roughly the time the application gets to start (with the Console defaults, 10 seconds plus 30 failures every 10 seconds, about 5 minutes), and the liveness probe only starts once it succeeds. You can also increase **Initial Delay** to match your boot duration.
 </Tip>
 
 ## Applicable Services

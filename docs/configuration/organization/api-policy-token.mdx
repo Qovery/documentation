@@ -57,7 +57,7 @@ sequenceDiagram
     DB-->>API: The targeted service, environment and project
     API->>OPA: Evaluate allow against the input document
     OPA-->>API: true, false or undefined
-    API-->>Agent: 200 and the response, or 401 Unauthorized
+    API-->>Agent: 200 and the response, 401 if the policy refuses, or 403 if the role does
 ```
 
 1. **The token is recognised** by its `sk-qov-01` prefix in the `Authorization` header, which is what tells it apart from a regular API token sent under the same `Token` scheme.

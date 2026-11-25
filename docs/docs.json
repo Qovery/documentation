@@ -2461,6 +2461,14 @@
       "destination": "/configuration/integrations/secret-managers/doppler"
     },
     {
+      "source": "/integrations/ci-cd/github-actions",
+      "destination": "/configuration/integrations/ci-cd/github-actions"
+    },
+    {
+      "source": "/guides/use-cases/production-environment-management",
+      "destination": "/getting-started/guides/use-cases/production-environment-management"
+    },
+    {
       "source": "/using-qovery/:slug*",
       "destination": "/configuration/overview"
     },

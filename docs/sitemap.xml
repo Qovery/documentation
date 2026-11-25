@@ -21,6 +21,14 @@
     <lastmod>2026-10-05</lastmod>
   </url>
   <url>
+    <loc>https://www.qovery.com/docs/api-reference/agent-activity/get-agent-activity</loc>
+    <lastmod>2026-11-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.qovery.com/docs/api-reference/agent-activity/get-my-agent-activity</loc>
+    <lastmod>2026-11-24</lastmod>
+  </url>
+  <url>
     <loc>https://www.qovery.com/docs/api-reference/agentic-workflows/cancel-agentic-workflow-deployment</loc>
     <lastmod>2026-07-30</lastmod>
   </url>
@@ -642,11 +650,11 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/clusters/create-a-cluster</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-11-24</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/clusters/create-a-self-managed-cluster-run-by-the-qovery-operator</loc>
-    <lastmod>2026-11-23</lastmod>
+    <lastmod>2026-11-24</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/clusters/delete-a-cluster</loc>
@@ -1122,7 +1130,7 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/environment-actions/clone-environment</loc>
-    <lastmod>2026-11-23</lastmod>
+    <lastmod>2026-11-24</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/environment-actions/delete-services</loc>
@@ -1330,7 +1338,7 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/environments/create-an-environment</loc>
-    <lastmod>2026-11-23</lastmod>
+    <lastmod>2026-11-24</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/environments/list-environments</loc>
@@ -1766,7 +1774,7 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/members/invite-someone-in-the-organization</loc>
-    <lastmod>2025-10-04</lastmod>
+    <lastmod>2026-11-24</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/members/remove-a-member</loc>
@@ -1906,11 +1914,11 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/organization-event/get-all-events-inside-the-organization</loc>
-    <lastmod>2026-10-13</lastmod>
+    <lastmod>2026-11-24</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/organization-event/get-available-event-targets-to-filter-events</loc>
-    <lastmod>2026-10-13</lastmod>
+    <lastmod>2026-11-24</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/organization-labels-group/create-an-organization-labels-group</loc>
@@ -2026,7 +2034,7 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/organization-policy-api-token/create-an-organization-policy-api-token</loc>
-    <lastmod>2026-08-19</lastmod>
+    <lastmod>2026-11-24</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/organization-policy-api-token/delete-organization-policy-api-token</loc>
@@ -2034,7 +2042,7 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/organization-policy-api-token/list-organization-policy-api-tokens</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-11-24</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/organization-webhook/create-an-organization-webhook</loc>
@@ -2223,6 +2231,42 @@
   <url>
     <loc>https://www.qovery.com/docs/api-reference/service_status/get-ingress-deployment-status-by-service</loc>
     <lastmod>2026-10-05</lastmod>
+  </url>
+  <url>
+    <loc>https://www.qovery.com/docs/api-reference/skill-presets/create-a-skill-preset</loc>
+    <lastmod>2026-11-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.qovery.com/docs/api-reference/skill-presets/delete-a-skill-preset</loc>
+    <lastmod>2026-11-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.qovery.com/docs/api-reference/skill-presets/edit-a-skill-preset</loc>
+    <lastmod>2026-11-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.qovery.com/docs/api-reference/skill-presets/get-a-skill-preset</loc>
+    <lastmod>2026-11-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.qovery.com/docs/api-reference/skill-presets/get-skill-usage</loc>
+    <lastmod>2026-11-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.qovery.com/docs/api-reference/skill-presets/get-the-skill-preset-that-applies-to-the-caller</loc>
+    <lastmod>2026-11-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.qovery.com/docs/api-reference/skill-presets/get-what-to-load-for-one-skill</loc>
+    <lastmod>2026-11-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.qovery.com/docs/api-reference/skill-presets/list-organization-skill-presets</loc>
+    <lastmod>2026-11-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.qovery.com/docs/api-reference/skill-presets/list-skill-preset-revisions</loc>
+    <lastmod>2026-11-24</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/terraform-actions/deploy-terraform</loc>

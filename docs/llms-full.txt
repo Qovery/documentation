@@ -75657,7 +75657,7 @@ Source: https://www.qovery.com/docs/api-reference/clusters/create-a-self-managed
 
 POST /v1/organization/{organizationId}/selfManagedCluster
 
-Creates a self-managed cluster on an existing cloud credential of the organization: AWS, GCP or Scaleway, or an on-premise credential for any other Kubernetes (`provider` `ON_PREMISE`, `HETZNER`, `OVH`, `CIVO`, `ORACLE` or `IBM`, in region `on-premise`). The on-premise providers are not generally available yet: they are accepted for a short list of Qovery test organizations and answer 400 for the others. The organization's plan is not checked. On AWS the credential only needs ECR permissions for the cluster itself, including `ecr:DescribeRepositories` in `us-east-1`, which Qovery calls to check the credential whatever the cluster region; features that call other AWS services with the credential, such as managed databases or Terraform services using the cluster credentials, need more. Without `platform.templateKey` and `platform.templateVersion`, Qovery selects its self-managed platform template release and the response returns it: `"platform": {}` gives that release with its default configuration. Without `clusterInputs`, the cluster has no cluster inputs. The credential, including its registry access in the cluster region, and the platform configuration are checked before anything is created. One transaction then writes the cluster, its Qovery DNS and build providers, its default registry derived from the credential (ECR on AWS, Artifact Registry on GCP, Scaleway Container Registry on Scaleway), its initial deployment status, its platform configuration and its Qovery Operator enrollment. No registry can be derived from an on-premise credential: the cluster gets the generic registry given in `registry`, or an empty generic registry to configure with the container registry API before the first application deployment. Install the Operator next with the cluster's Operator bootstrap.
+Creates a self-managed cluster on an existing cloud credential of the organization: AWS, GCP or Scaleway, or an on-premise credential for any other Kubernetes (`provider` `ON_PREMISE`, `HETZNER`, `OVH`, `CIVO`, `ORACLE` or `IBM`, in region `on-premise`). The on-premise providers are not generally available yet: they are accepted for a short list of Qovery test organizations and answer 400 for the others. The organization's plan, subscription or payment can refuse the creation: it then answers 402 and creates nothing. On AWS the credential only needs ECR permissions for the cluster itself, including `ecr:DescribeRepositories` in `us-east-1`, which Qovery calls to check the credential whatever the cluster region; features that call other AWS services with the credential, such as managed databases or Terraform services using the cluster credentials, need more. Without `platform.templateKey` and `platform.templateVersion`, Qovery selects its self-managed platform template release and the response returns it: `"platform": {}` gives that release with its default configuration. Without `clusterInputs`, the cluster has no cluster inputs. The credential, including its registry access in the cluster region, and the platform configuration are checked before anything is created. One transaction then writes the cluster, its Qovery DNS and build providers, its default registry derived from the credential (ECR on AWS, Artifact Registry on GCP, Scaleway Container Registry on Scaleway), its initial deployment status, its platform configuration and its Qovery Operator enrollment. No registry can be derived from an on-premise credential: the cluster gets the registry given in `registry`, or an empty generic registry to configure with the container registry API before the first application deployment. Install the Operator next with the cluster's Operator bootstrap.
 
 # List all clusters statuses
 Source: https://www.qovery.com/docs/api-reference/clusters/list-all-clusters-statuses
@@ -76131,6 +76131,131 @@ Source: https://www.qovery.com/docs/api-reference/mcp-servers/delete-an-mcp-serv
 DELETE /mcpServer/{mcpServerId}
 
 Delete a remote MCP server configuration.
+
+# Get agent activity
+Source: https://www.qovery.com/docs/api-reference/agent-activity/get-agent-activity
+
+GET /organization/{organizationId}/agentActivity
+
+Return what members' coding agents did on Qovery over a time range, linked to the skills they loaded: skill loads (agent loads only, a person's VIEW is not counted), API calls made from a Qovery skill, Qovery MCP server tool calls, every audited call made by a policy token, and requests refused by a policy or by role permissions. A refusal by a policy token's policy (401) and a refusal by role permissions (403) both count as DENIED. Activity is shown by member, by skill and by policy token. Requires the MANAGE_ORGANIZATION_DATA permission (organization owner or admin); members read their own activity with `getMyAgentActivity`.
+
+Every filter is optional and they combine. `policyTokenId` implies `actorKind` POLICY_TOKEN, and neither combines with `userSub`: those combinations, an unknown enum value or a malformed id are refused with 400.
+
+Coverage: only actions taken through Qovery (its API, CLI, skills and MCP server) are visible. What an agent does elsewhere, such as in a shell, in git or in a cloud console, is not. The response repeats this in `coverage`.
+
+Attribution is indicative, not proof. A member is matched on the username the audit log records, and an action is attributed to a skill from the `QoverySkill/<skill>` user agent the client sends: a client can claim a skill it does not run, or leave the user agent out. What an agent may actually do is enforced by its token's policy, and every refusal is recorded.
+
+No request content is returned: only what the audit log shows (event, target, project and environment names, time, source), never prompt text or request bodies.
+
+The range defaults to the 30 days ending now and spans at most 90 days. `by_member` holds at most 500 rows, `by_skill` 100, `by_policy_token` 100, `actions_by_type` 200 and `recent` the 100 most recent agent actions. Buckets are cut in UTC; empty buckets are omitted.
+
+# Get my agent activity
+Source: https://www.qovery.com/docs/api-reference/agent-activity/get-my-agent-activity
+
+GET /organization/{organizationId}/agentActivity/me
+
+Return the caller's own agent activity: exactly what admins see about them through `getAgentActivity`, and nothing about other members. Any organization member can call it (READ_ORGANIZATION_DATA). Policy tokens belong to the organization, so this view takes no `actorKind` or `policyTokenId` and its `by_policy_token` is always empty. A refusal by policy (401) or by role permissions (403) counts as DENIED. API and policy tokens cannot call it (400): they are not members.
+
+Coverage: only actions taken through Qovery (its API, CLI, skills and MCP server) are visible. What an agent does elsewhere, such as in a shell, in git or in a cloud console, is not. The response repeats this in `coverage`.
+
+Attribution is indicative, not proof. A member is matched on the username the audit log records, and an action is attributed to a skill from the `QoverySkill/<skill>` user agent the client sends: a client can claim a skill it does not run, or leave the user agent out. What an agent may actually do is enforced by its token's policy, and every refusal is recorded.
+
+No request content is returned: only what the audit log shows (event, target, project and environment names, time, source), never prompt text or request bodies.
+
+The range defaults to the 30 days ending now and spans at most 90 days. `by_member` holds at most 500 rows, `by_skill` 100, `by_policy_token` 100, `actions_by_type` 200 and `recent` the 100 most recent agent actions. Buckets are cut in UTC; empty buckets are omitted.
+
+# List organization skill presets
+Source: https://www.qovery.com/docs/api-reference/skill-presets/list-organization-skill-presets
+
+GET /organization/{organizationId}/skillPreset
+
+List the skill presets of the organization, with their full content and who each one is assigned to. Templates are listed too unless `isTemplate` filters them. Requires the MANAGE_ORGANIZATION_DATA permission (organization owner or admin).
+
+# Create a skill preset
+Source: https://www.qovery.com/docs/api-reference/skill-presets/create-a-skill-preset
+
+POST /organization/{organizationId}/skillPreset
+
+Create a skill preset and its assignments. Requires the MANAGE_ORGANIZATION_DATA permission (organization owner or admin). The preset starts at revision 1.
+
+Set `is_template` to save a template: a starting point admins copy into new presets. A template is never resolved for a member and cannot have assignments.
+
+A preset runs inside each assigned member's coding agent, on their machine, so every create and edit is checked before anything reaches members. The check covers every field that reaches an agent (the preset description, the team context, and each skill's description and content) and runs in two steps:
+
+1. Deterministic rules look for content that could turn the agent against its user: overriding its instructions, hiding actions from the user, skipping confirmations, reading local credentials, dumping secrets, sending data out, running remote or obfuscated code, links outside an allowlist of documentation hosts, invisible characters, HTML comments, encoded blobs and pasted credentials. Any finding answers 422 (findings with `source` RULES) and the model is not called.
+
+2. A model review on AWS Bedrock then reads the content as untrusted data, to catch paraphrased or new attacks the rules miss. A BLOCK verdict answers 422 (findings with `source` MODEL).
+
+The check fails closed: if the model review cannot give a verdict (error, timeout or unusable answer), the request answers 503 and nothing is saved. Because every save is sent to the model, an organization with AI features turned off cannot create or edit presets (403). Reading, resolving, loading and deleting presets are not affected. A save refused for security is recorded in the audit log as a `SKILL_PRESET_REJECTED` event with sub-target `SKILL_PRESET`, holding hashes and findings, never the text.
+
+The creation is recorded in the audit log as a `CREATE` event with sub-target `SKILL_PRESET`, holding the saved state with its full text, and as revision 1 in the revision history.
+
+# Get the skill preset that applies to the caller
+Source: https://www.qovery.com/docs/api-reference/skill-presets/get-the-skill-preset-that-applies-to-the-caller
+
+GET /organization/{organizationId}/skillPreset/resolved
+
+Return the manifest of the skill preset that applies to the caller in this organization: its name, base, revision and, for each skill entry, the mode, the description and the size and SHA-256 of the content, but never the content itself. This is what the Qovery loader skill reads first. It then fetches only the skills a task needs with `getResolvedSkill`. Any organization member can call it (READ_ORGANIZATION_DATA). Assignments and the preset's creator are left out.
+
+The preset is resolved in this order: a preset assigned to the caller as a member, then a preset assigned to the caller's role in the organization, then the organization default. When none applies, `source` is `QOVERY_DEFAULT`, `skill_preset` is null and the agent uses the Qovery skills as published. API tokens have no member behind them, so they only receive a role preset or the organization default.
+
+The response carries an `ETag`. Treat it as opaque: it changes when the preset is edited, when the caller moves to another preset, and when the caller reaches the same preset through another assignment. Send it back in `If-None-Match` to get a 304 with no body when nothing changed. Templates are never resolved.
+
+# Get what to load for one skill
+Source: https://www.qovery.com/docs/api-reference/skill-presets/get-what-to-load-for-one-skill
+
+GET /organization/{organizationId}/skillPreset/resolved/skill/{skillName}
+
+Return what the caller's agent must load for one skill, under the preset that applies to the caller (resolved as in `getResolvedSkillPreset`): the organization's content for that skill if any, the team context, and the SHA-256 of each, so the member can check that what their agent follows is what an admin saved. Any organization member can call it (READ_ORGANIZATION_DATA).
+
+A Qovery skill (`qovery` or `qovery-*`) that the preset leaves alone, or any Qovery skill when no preset applies, answers 200 with a null `mode`: load the Qovery skill as published, with the team context if there is one. A `DISABLE` mode means the agent must not load the skill. Any other name that is not in the preset answers 404.
+
+The ETag is the same as the manifest's, so a single revision covers every skill of the preset. Send it in `If-None-Match` to get a 304 with no body when the cached copy is current.
+
+Set `purpose` to say who reads the skill. LOAD (the default) is a member's coding agent loading it to follow it. VIEW is a person reading it, for example in the Console: same body and same ETag and 304 behaviour, recorded as a `SKILL_VIEW` audit event with the same content as a `SKILL_LOAD` entry, and not counted in `getSkillUsage`.
+
+Every LOAD call is recorded in the audit log as a `SKILL_LOAD` event with sub-target `SKILL_PRESET`, 304s included (with `from_cache` set to true): the entry gives the skill, the preset and revision that applied (or `QOVERY_DEFAULT`), the mode, and the SHA-256 of the content and team context that were injected. A 404 is not recorded.
+
+# Get skill usage
+Source: https://www.qovery.com/docs/api-reference/skill-presets/get-skill-usage
+
+GET /organization/{organizationId}/skillPreset/usage
+
+Return how the members' coding agents loaded skills in the organization over a time range: totals, a timeline, and breakdowns by skill, by member and by preset. Requires the MANAGE_ORGANIZATION_DATA permission (organization owner or admin).
+
+Usage counts agent loads only: a load is one call to `getResolvedSkill` with `purpose` LOAD (the default) that returned a skill, cached ones included. A 304 counts as a cached load, a 404 is not counted, and VIEW calls (a person reading a skill) are never counted. Loads are counted whether or not a preset applies. Recording a load is best effort and never blocks the agent, so a load can be missing here while the audit log, which records every load as a `SKILL_LOAD` event, still has it.
+
+The range defaults to the 30 days ending now and spans at most 90 days. Timeline buckets are cut in UTC, and buckets with no load are left out rather than returned as zero. Rows in `by_skill` and `by_member` are sorted by loads, most first, and capped at 100 and 500 rows.
+
+# List skill preset revisions
+Source: https://www.qovery.com/docs/api-reference/skill-presets/list-skill-preset-revisions
+
+GET /organization/{organizationId}/skillPreset/revision
+
+List the saved states of the organization's skill presets, most recent first, each with its full content, who saved it and when. Every create, edit and delete adds one immutable revision. Revisions are kept after a preset is deleted: the deletion adds a final `DELETE` revision holding the state the preset had. A save that fails, for example with a 422, adds nothing. Requires the MANAGE_ORGANIZATION_DATA permission (organization owner or admin).
+
+# Get a skill preset
+Source: https://www.qovery.com/docs/api-reference/skill-presets/get-a-skill-preset
+
+GET /skillPreset/{skillPresetId}
+
+Get a skill preset with its full content and assignments. Requires the MANAGE_ORGANIZATION_DATA permission on the preset's organization.
+
+# Edit a skill preset
+Source: https://www.qovery.com/docs/api-reference/skill-presets/edit-a-skill-preset
+
+PUT /skillPreset/{skillPresetId}
+
+Replace a skill preset, its skill entries and its assignments with the request body, and increase its revision by one. Requires the MANAGE_ORGANIZATION_DATA permission on the preset's organization. The content is checked as on creation, by the rules and then by the model review on AWS Bedrock, and the check fails closed: a finding answers 422, an unavailable review answers 503, and in both cases nothing is saved. An organization with AI features turned off cannot edit presets (403). A refusal for security is recorded as a `SKILL_PRESET_REJECTED` audit event.
+
+The edit is recorded in the audit log as an `UPDATE` event with sub-target `SKILL_PRESET`: the change holds the new state with its full text and a summary of what changed (skills added, removed and modified, and whether the base, the template flag, the team context or the assignments changed), and the original change holds the previous state. When the text of a preset is larger than 64 KB, the audit entry keeps only the SHA-256 of each text and sets `content_omitted`; the revision history always holds the full text.
+
+# Delete a skill preset
+Source: https://www.qovery.com/docs/api-reference/skill-presets/delete-a-skill-preset
+
+DELETE /skillPreset/{skillPresetId}
+
+Delete a skill preset and its assignments. Members it applied to fall back to the next preset in the resolution order, or to the Qovery skills as published. Requires the MANAGE_ORGANIZATION_DATA permission on the preset's organization. The deletion is recorded in the audit log as a `DELETE` event with sub-target `SKILL_PRESET`, holding the deleted state, and as a final `DELETE` revision in the revision history.
 
 # Redeploy database
 Source: https://www.qovery.com/docs/api-reference/database-actions/redeploy-database
@@ -77012,7 +77137,17 @@ POST /organization/{organizationId}/policyApiToken
 
 Create a policy api token, intended for autonomous agents calling the Qovery API.
 
-Unlike a regular api token, a policy api token carries **no organization role**. The Open Policy Agent (rego) policy attached to it is evaluated on every request and is the only thing constraining what the token can do: a policy that allows everything grants full organization admin access. For that reason only an organization owner or admin can create one.
+A policy api token carries two limits, and a request must pass both:
+
+1. Its Open Policy Agent (rego) policy, evaluated on every request. A request the policy does not allow is refused with 401.
+
+2. Its organization role, set with `role_id`. A request the policy allows then runs with that role's permissions, and a request the role does not permit is refused with 403.
+
+Effective access is therefore the intersection of the policy and the role. When `role_id` is omitted, the token gets the organization admin role, so a policy that allows everything then grants full admin access. A token can never act as the Owner role.
+
+Who can create one depends on the role requested: an organization owner or admin can create a token for any role except Owner; a DevOps member only for the DevOps, Viewer or Billing role or a custom role. Other callers are refused with 403.
+
+A token cannot be edited: its policy, role and expiry are fixed at creation. To change them, create a new token and delete the old one. Deleting a custom role also deletes the policy api tokens that use it.
 
 The generated token value is returned only in this response and cannot be retrieved afterwards.
 

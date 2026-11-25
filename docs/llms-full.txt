@@ -29247,6 +29247,12 @@ Once Restricted Credentials is enabled for your organization, the **Use restrict
   </Tab>
 </Tabs>
 
+<Warning>
+  Do not change the cluster credentials while a cluster deployment is in progress. Wait for the running deployment to finish before you turn **Use restrictive permissions** on or off.
+
+  Changing the credentials will block the next application deployments until the cluster deployment has re-applied the new credentials access to your cluster (less than 5 minutes after a cluster deployment is launched).
+</Warning>
+
 You can also configure Restricted Credentials with the [`qovery_cluster`](https://registry.terraform.io/providers/qovery/qovery/latest/docs/resources/cluster) resource of the Qovery Terraform provider.
 
 #### Turn off Restricted Credentials

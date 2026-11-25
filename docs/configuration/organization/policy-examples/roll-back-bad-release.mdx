@@ -8,6 +8,8 @@ A reliability agent that watches production after a release. If error rates go u
 
 **Level:** Reliability. See all the [agent policy examples](/configuration/organization/policy-examples/overview).
 
+**Suggested trigger:** When errors rise after a deploy, from your monitoring alert's webhook. See [Run it on its own](/configuration/organization/policy-examples/overview#run-it-on-its-own).
+
 ## What the agent does
 
 1. Reads the deployment history and the logs after a release.
@@ -117,9 +119,9 @@ You can copy the IDs from the Console URL, or list them with `qovery project lis
     The `qovery-policy-token` skill finds the IDs, writes a policy like the one above, tests it locally and against the API, then creates the token.
   </Tab>
   <Tab title="In the Console">
-    1. Open your organization settings, then **Token API**.
-    2. In **Policy API Token**, click **Add new**.
-    3. Enter a name and a description, and paste the policy with your IDs.
+    1. Open the **Agents** tab of your organization, then **Settings → Policy tokens**, and click **Create policy token**.
+    2. Enter a name and a description, pick a role (organization admin by default, or a narrower one that still allows the job), and paste the policy with the `REPLACE_WITH_` IDs replaced by yours.
+    3. Create the token.
     4. Copy the token (`sk-qov-01-...`). It is shown once.
   </Tab>
 </Tabs>

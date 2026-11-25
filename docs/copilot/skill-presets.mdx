@@ -11,7 +11,7 @@ The [Qovery agent skills](/getting-started/quickstart/agent-skills) are written 
   and the agent-side behaviour described here are likely to change.
 </Info>
 
-In the Console, skill presets live in the **Skills registry**: open the **Agents** tab of your organization, next to **Audit Logs**, which opens on it. The feature and the API keep the name skill presets. The Agents tab also holds Activity, your policy tokens, the Copilot settings and, where Agent Tasks are available, Automations, and **Connect an agent** in the Skills registry header gives the commands to connect an agent. See [Agents](/configuration/organization#agents). The old **Organization settings** links to the Copilot, skill presets and agent activity redirect there.
+In the Console, skill presets live in the **Skills registry**: open the **Agents** tab of your organization, next to **Audit Logs**, which opens on it. The feature and the API keep the name skill presets. The Agents tab also holds Activity (rolling out to organizations), your policy tokens, the Copilot settings and, in early access, Automations, and **Connect an agent** in the Skills registry header gives the commands to connect an agent. See [Agents](/configuration/organization#agents). The old **Organization settings** links to the Copilot, skill presets and agent activity redirect there.
 
 ## How it works
 
@@ -226,7 +226,7 @@ Each finding says which gate raised it: `RULES` for the rule checks, `MODEL` for
   Without it, a create or an edit answers `403`. Reading presets, members'
   skill loads and deleting presets keep working when AI features are off. Owners
   and Admins turn them on with **Turn on AI**, shown in the Skills registry
-  and on Copilot settings when AI features are off: one confirmation turns on AI
+  and on the Copilot page when AI features are off: one confirmation turns on AI
   features and the Copilot, in read-only mode. New organizations have AI
   features on by default. See
   [Turn on AI](/configuration/organization#turn-on-ai). They can also use the API,
@@ -346,7 +346,7 @@ Qovery stores every saved state of a preset as an immutable revision, written to
 
 ### Usage
 
-Admins can see how skills are used over time and by whom: how many loads, of which skills, by which members, under which preset. Usage covers up to 90 days at a time, 30 by default, grouped by hour or by day, and can be filtered on one skill, one member or one preset. Usage data is kept for 90 days. In the Console, usage is part of **Agents → Activity**. See [Read skill usage](/copilot/skill-presets-api#read-skill-usage) for the API.
+Admins can see how skills are used over time and by whom: how many loads, of which skills, by which members, under which preset. Usage covers up to 90 days at a time, 30 by default, grouped by hour or by day, and can be filtered on one skill, one member or one preset. Usage data is kept for 90 days. In the Console, usage is part of **Agents → Activity**, which is rolling out to organizations. See [Read skill usage](/copilot/skill-presets-api#read-skill-usage) for the API.
 
 - **A load** is one skill fetched by a member's agent, the same event as a `SKILL_LOAD` audit entry. Loads served from the agent's cache count too, and are also reported separately as cached loads. Usage counts agent loads only: a person reading a skill in the Console is a `SKILL_VIEW`, recorded in the audit log but not counted here.
 - **Members** is the number of distinct members who loaded at least one skill in the period.
@@ -368,7 +368,7 @@ qovery api "organization/$ORGANIZATION_ID/skillPreset/resolved/skill/qovery-depl
 
 Skill presets **guide** what agents do. [API Policy Tokens](/configuration/organization/api-policy-token) **enforce** what they are allowed to do. Activity lets you **observe** what they actually did on Qovery, linked to the skills they loaded.
 
-In the Console, open **Agents → Activity**. The page was called Agent activity, and its address has not changed. Its menu entry shows the number of denied calls in the last 7 days.
+In the Console, open **Agents → Activity**. The page is rolling out to organizations, so it may not appear for yours yet; the [API](/copilot/skill-presets-api#read-agent-activity) is available to every organization. The old **Organization settings** page for agent activity redirects there. The menu entry shows the number of denied calls in the last 7 days.
 
 Activity covers both kinds of agent identity in one view: a member's agent acting with the member's own credentials, through the skills or the MCP server, and an agent acting with a policy token. For a period of up to 90 days, 30 by default, by hour or by day, it shows:
 

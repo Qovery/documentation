@@ -7377,7 +7377,7 @@ You can click on any event to reveal the JSON response containing the post-event
 
 The hashes in a `SKILL_LOAD` event match those in the edit events, so you can tie what an agent followed to the admin who wrote it. See [Audit and history](https://www.qovery.com/docs/copilot/skill-presets#audit-and-history).
 
-For a view of what agents loaded and did, without reading raw events, including every call made with a policy token, open **Agents → Activity** in the Console, next to **Audit Logs**. See [Activity](https://www.qovery.com/docs/copilot/skill-presets#activity).
+For a view of what agents loaded and did, without reading raw events, including every call made with a policy token, open **Agents → Activity** in the Console, in the **Agents** tab next to **Audit Logs**. Activity is rolling out to organizations and may not appear for yours yet. See [Activity](https://www.qovery.com/docs/copilot/skill-presets#activity).
 
 ---
 
@@ -9513,7 +9513,7 @@ Both let a coding agent work with Kubernetes on AWS. They differ in what the age
 |---|---|---|
 | Credential the agent uses | AWS credentials and IAM ([local server](https://awslabs.github.io/mcp/servers/eks-mcp-server)), or IAM with SigV4 ([fully managed server, preview](https://aws.amazon.com/about-aws/whats-new/2025/11/amazon-eks-ecs-fully-managed-mcp-servers-preview)) | A Qovery login (OAuth) or a Qovery token. No AWS, GCP or Azure credentials |
 | Where it works | Amazon EKS | Clusters on AWS, GCP, Azure, Scaleway, or any Kubernetes cluster you connect |
-| How changes are made | Applies Kubernetes YAML and manages CloudFormation stacks, once the server runs with `--allow-write` | Deploys applications, databases and preview environments through Qovery: builds, variables, rollbacks. The MCP Server is read-only unless you add `read_write=true` and enable write access in the Console (the access mode in **Agents → Settings → Copilot settings**) |
+| How changes are made | Applies Kubernetes YAML and manages CloudFormation stacks, once the server runs with `--allow-write` | Deploys applications, databases and preview environments through Qovery: builds, variables, rollbacks. The MCP Server is read-only unless you add `read_write=true` and enable write access in the Console (the access mode in **Agents → Settings → Copilot**) |
 | Limiting what the agent can do | IAM policies, plus read-only mode by default | An [API Policy Token](https://www.qovery.com/docs/configuration/organization/api-policy-token) that allows or denies each request, plus read-only MCP by default |
 | Audit trail | AWS CloudTrail for the fully managed server | Qovery audit log, with policy-token actions attributed as `policy:<token-id>:<token-name>` |
 | Best fit | Teams that run EKS themselves and want the agent to inspect and edit Kubernetes resources directly | Teams that want the agent to ship and operate apps without cloud admin access or Kubernetes YAML |
@@ -21745,15 +21745,15 @@ The **Agents** tab gathers in one place how your team's coding agents work with 
 
 The idea behind it: agents can do real infrastructure work on their own when every operation is checked at the API. Agents sets that up in three parts: **Guide** agents with the Qovery skills, tailored per team and per person with skill presets; **Control** them with policy tokens, so each agent gets exactly the permissions its job needs, checked on every API call and denied by default; and **Observe** what they did and what was blocked, in Activity and the audit logs.
 
-Its side menu has the Skills registry, Automations and Activity, then a **Settings** group:
+Its side menu has the Skills registry, Automations and Activity, then a **Settings** group. Automations is in early access and Activity is rolling out, so either may not appear for your organization yet.
 
 - **Skills registry**: where your organization's [skill presets](https://www.qovery.com/docs/copilot/skill-presets) (Preview) live, its own version of the Qovery skills. One page holds the list of presets, which you can sort and filter, the editor, a preview side panel that shows what a member or a role receives, and each preset's history. New presets start from scratch or from a template per user profile. Members see a read-only **What your agent receives** view instead. Skill loads are in the [audit logs](https://www.qovery.com/docs/getting-started/security-and-compliance/audit-logs), and usage is in **Activity**.
-- **Automations** (where [Agent Tasks](https://www.qovery.com/docs/configuration/agent-tasks/overview) are available): the organization's agent tasks, with their project and environment. Owners and Admins can **Create agent task**, which asks for the environment it runs in. To run one of the [agent policy examples](https://www.qovery.com/docs/configuration/organization/policy-examples/overview) on its own, see [Run it on its own](https://www.qovery.com/docs/configuration/organization/policy-examples/overview#run-it-on-its-own).
-- **Activity**: one view of what members' agents did (through the skills and the MCP server) and what policy tokens did, allowed and denied. Its menu entry shows a badge with the number of denied calls in the last 7 days. One toolbar filters by period, actor (everyone, all members, all policy tokens, or one member or token), skill, source and outcome. The filters are kept in the URL, so you can share a filtered view. **Recent actions** sits right under the chart, in pages, with an **Action type** filter. Break the activity down by member, by token or by skill, and click a row to filter the whole page. **What was blocked** lists the refused calls, with **Show all denied**. See [Activity](https://www.qovery.com/docs/copilot/skill-presets#activity).
+- **Automations** (in early access, for organizations with [Agent Tasks](https://www.qovery.com/docs/configuration/agent-tasks/overview)): the organization's agent tasks, with their project and environment. Owners and Admins can **Create agent task**, which asks for the environment it runs in. To run one of the [agent policy examples](https://www.qovery.com/docs/configuration/organization/policy-examples/overview) on its own, see [Run it on its own](https://www.qovery.com/docs/configuration/organization/policy-examples/overview#run-it-on-its-own).
+- **Activity** (rolling out to organizations, so it may not appear for yours yet): one view of what members' agents did (through the skills and the MCP server) and what policy tokens did, allowed and denied. Its menu entry shows a badge with the number of denied calls in the last 7 days. One toolbar filters by period, actor (everyone, all members, all policy tokens, or one member or token), skill, source and outcome. The filters are kept in the URL, so you can share a filtered view. **Recent actions** sits right under the chart, in pages, with an **Action type** filter. Break the activity down by member, by token or by skill, and click a row to filter the whole page. **What was blocked** lists the refused calls, with **Show all denied**. See [Activity](https://www.qovery.com/docs/copilot/skill-presets#activity).
 - **Settings**, shown to the roles that can use at least one of its pages:
-  - **Policy tokens** (Owners, Admins and DevOps): the organization's [API Policy Tokens](https://www.qovery.com/docs/configuration/organization/api-policy-token), managed entirely here. **Create policy token** opens the form. Each token shows its role, a bar of its last 7 days (allowed and denied calls per day), when it was last used and when it expires, with a **No expiry** warning badge for a token that never expires. Its row menu has **See activity** (Activity filtered on that token), **View policy** (read-only: a policy cannot change after creation) and **Delete token** (you confirm by typing the token's name). Deleted tokens that made calls in the last 30 days are listed greyed out.
-  - **Copilot settings** (Beta, Owners and Admins): what the [Console AI Copilot](https://www.qovery.com/docs/copilot/console) does, its status, and its settings: access source, access mode, scheduled tasks, and **Turn off Copilot**.
-  - **Model tokens** and **MCP servers**, where [Agent Tasks](https://www.qovery.com/docs/configuration/agent-tasks/overview) are available, shared with every agent task in the organization. See [Agent Tasks: model tokens and MCP servers](#agent-tasks-model-tokens-and-mcp-servers).
+  - **Policy tokens** (Owners, Admins and DevOps): the organization's [API Policy Tokens](https://www.qovery.com/docs/configuration/organization/api-policy-token), managed entirely here. **Create policy token** opens the form. Each token shows its role, a bar of its last 7 days (allowed and denied calls per day, once Activity is available to your organization), when it was last used and when it expires, with a **No expiry** warning badge for a token that never expires. Its row menu has **See activity** (Activity filtered on that token), **View policy** (read-only: a policy cannot change after creation) and **Delete token** (you confirm by typing the token's name). Deleted tokens that made calls in the last 30 days are listed greyed out.
+  - **Copilot** (Owners and Admins): what the [Console AI Copilot](https://www.qovery.com/docs/copilot/console) does, its status, and its settings: access source, access mode, scheduled tasks, and **Turn off Copilot**.
+  - **Model tokens** and **MCPs**, for organizations with [Agent Tasks](https://www.qovery.com/docs/configuration/agent-tasks/overview), shared with every agent task in the organization. See [Agent Tasks: model tokens and MCP servers](#agent-tasks-model-tokens-and-mcp-servers).
 
 **Connect an agent**, in the Skills registry header, opens a window with three tabs: **Qovery skills** (the install command), **CLI** (install and sign in), and **MCP server**, with the setup for Claude Code, Codex, Cursor, Gemini CLI and VS Code.
 
@@ -21762,22 +21762,20 @@ Its side menu has the Skills registry, Automations and Activity, then a **Settin
 | Page | Owners and Admins | Other members |
 |------|-------------------|---------------|
 | Skills registry | Create, edit, assign, preview and see the history of presets | **What your agent receives**, read-only |
-| Automations | Yes, with **Create agent task** | The list, without **Create agent task** |
-| Activity | The whole organization, members and policy tokens | **Your activity**: their own, with no actor filter and no token breakdown |
-| Settings | Policy tokens, Copilot settings, model tokens and MCP servers | DevOps: Policy tokens. Model tokens and MCP servers where Agent Tasks are available |
-
-Old links keep working: the former Agents overview and the usage, skill loads and assignments pages redirect to the Skills registry or to Activity, and the former connect page opens the Skills registry with the **Connect an agent** window open.
+| Automations (early access) | Yes, with **Create agent task** | The list, without **Create agent task** |
+| Activity (rolling out) | The whole organization, members and policy tokens | **Your activity**: their own, with no actor filter and no token breakdown |
+| Settings | Policy tokens, Copilot, model tokens and MCPs | DevOps: Policy tokens. Model tokens and MCPs for organizations with Agent Tasks |
 
 ### Turn on AI
 
 AI features are the organization's opt-in to AI. The Copilot needs them, and so does the security review that checks every skill preset before it is saved. New organizations have AI features on by default.
 
-When AI features are off, Owners and Admins see **Turn on AI** in the Skills registry and on **Copilot settings**. They turn everything on in one step:
+When AI features are off, Owners and Admins see **Turn on AI** in the Skills registry and on the **Copilot** page. They turn everything on in one step:
 
 1. Click **Turn on AI**.
 2. Read the summary of the Copilot terms, open the full terms if you want, accept them and confirm.
 
-This one confirmation turns on the organization's AI features and the Copilot, in read-only mode. To allow actions such as deploys and restarts, change the access mode later in **Settings → Copilot settings**. If the Copilot cannot be turned on, AI features stay on and you can retry from the same page.
+This one confirmation turns on the organization's AI features and the Copilot, in read-only mode. To allow actions such as deploys and restarts, change the access mode later in **Settings → Copilot**. If the Copilot cannot be turned on, AI features stay on and you can retry from the same page.
 
 Other members cannot turn on AI.
 
@@ -21787,11 +21785,11 @@ Other members cannot turn on AI.
 Agent Tasks is available to all organizations. Capabilities and configuration may evolve.
 </Info>
 
-Under **Agents → Settings**, Owners and Admins manage what's shared with every [Agent Task](https://www.qovery.com/docs/configuration/agent-tasks/overview) in the organization: AI provider tokens under **Model tokens**, and MCP servers under **MCP servers**.
+Under **Agents → Settings**, Owners and Admins manage what's shared with every [Agent Task](https://www.qovery.com/docs/configuration/agent-tasks/overview) in the organization: AI provider tokens under **Model tokens**, and MCP servers under **MCPs**.
 
 **Model tokens**: create and manage the AI provider tokens used by agent tasks. Qovery currently supports [Claude](https://www.anthropic.com/) (Anthropic), [AWS Bedrock](https://aws.amazon.com/bedrock/), and Anthropic-compatible gateways as providers. See [Choose a Provider and Model](https://www.qovery.com/docs/configuration/agent-tasks/overview#creating-an-agent) for the Anthropic-compatible Base URL and limits. A token created here, or created on the fly from an agent task's **Choose a Provider** step, is saved to this list and can be reused by any other agent task in the organization instead of re-entering credentials each time.
 
-**MCP servers**: connect any remote HTTPS MCP server here (name, URL, and headers) to make it available when configuring an individual agent.
+**MCPs**: connect any remote HTTPS MCP server here (name, URL, and headers) to make it available when configuring an individual agent.
 
 <Info>
 Qovery's own MCP server is added here automatically, organization-scoped and read-only, as soon as any agent task adds a Qovery service as Context, see [Add MCP Servers](https://www.qovery.com/docs/configuration/agent-tasks/overview#creating-an-agent). To add it yourself instead, for example with write access, use `https://mcp.qovery.com/mcp` and authenticate with an [API Policy Token](https://www.qovery.com/docs/configuration/organization/api-policy-token) (a regular API token works too).
@@ -23099,7 +23097,7 @@ If the policy does not allow the request, the API answers `401 Unauthorized`.
 
 In **Agents → Settings → Policy tokens**, each token shows its role, a bar of its allowed and denied calls over the last 7 days, **Last used** and **Expires**. A token with no expiry date gets a **No expiry** warning badge. Each token's row menu offers:
 
-- **See activity**: opens **Agents → Activity** filtered on the token, with its allowed and refused calls. See [Activity](https://www.qovery.com/docs/copilot/skill-presets#activity).
+- **See activity**: opens **Agents → Activity** filtered on the token, with its allowed and refused calls. Activity is rolling out to organizations, so this entry and the 7-day bar may not appear for yours yet. See [Activity](https://www.qovery.com/docs/copilot/skill-presets#activity).
 - **View policy**: shows the policy attached to the token, read-only. A policy can always be reviewed after creation. Only the token value is write-once.
 - **Delete token**: revokes the token. Type the token's name to confirm, and the token stops working immediately.
 
@@ -23282,7 +23280,7 @@ Once the token exists, give the agent a trigger: a schedule, or an event such as
     Pick one:
 
     - **From your coding agent.** Run the job from the coding agent you already use: Claude Code, Codex, Cursor, OpenCode, Gemini CLI, VS Code Copilot, or any agent with the [Qovery Agent Skills](https://www.qovery.com/docs/getting-started/quickstart/agent-skills). It works through the Qovery skills or the [Qovery MCP server](https://www.qovery.com/docs/copilot/mcp-server), signed in with the policy token, which you give outside the prompt: `QOVERY_CLI_ACCESS_TOKEN=<policy token>` for the skills and the CLI, or the MCP header `Authorization: Token <policy token>`. To make it recurring, use the coding agent's own scheduling if it has one, or start it from a CI cron job with the prompt. For a webhook trigger, start it when the event happens.
-    - **As an Agent Task on Qovery (recommended).** It runs next to your services on its own schedule or webhook, with no laptop or CI to keep running. From the environment's **Automations** tab, or with **Create agent task** in **Agents → Automations**, create an [agent task](https://www.qovery.com/docs/configuration/agent-tasks/overview) with the prompt and the trigger. Agent Tasks support two triggers natively: a schedule (a cron expression and a timezone) and a webhook. Give it the Qovery MCP server, `https://mcp.qovery.com/mcp`, with the header `Authorization: Token <policy token>`, added under **Agents → Settings → MCP servers**. See [Add MCP Servers](https://www.qovery.com/docs/configuration/agent-tasks/overview#creating-an-agent).
+    - **As an Agent Task on Qovery (recommended).** It runs next to your services on its own schedule or webhook, with no laptop or CI to keep running. From the environment's **Automations** tab, or with **Create agent task** in **Agents → Automations** (early access), create an [agent task](https://www.qovery.com/docs/configuration/agent-tasks/overview) with the prompt and the trigger. Agent Tasks support two triggers natively: a schedule (a cron expression and a timezone) and a webhook. Give it the Qovery MCP server, `https://mcp.qovery.com/mcp`, with the header `Authorization: Token <policy token>`, added under **Agents → Settings → MCPs**. See [Add MCP Servers](https://www.qovery.com/docs/configuration/agent-tasks/overview#creating-an-agent).
   </Step>
 </Steps>
 
@@ -38036,7 +38034,7 @@ Agent Tasks is available to all organizations. Capabilities and configuration ma
 
 Agent Tasks are one-time or scheduled jobs delegated to AI agents, running on your Qovery-managed infrastructure like any other service. Each agent runs with its own resources, environment variables, and a domain allowlist controlling exactly what it can reach.
 
-**Agents → Automations** in the Console lists the agent tasks of your organization. For ready-made jobs with their policies, see the [agent policy examples](https://www.qovery.com/docs/configuration/organization/policy-examples/overview). An agent task is the recommended way to run them on their own: it runs next to your services on its own schedule or webhook, with no laptop or CI to keep running. Pair it with the Qovery MCP server authenticated by a policy token, so it is limited to exactly what it is allowed. You can also run them from your own coding agent. See [Run it on its own](https://www.qovery.com/docs/configuration/organization/policy-examples/overview#run-it-on-its-own).
+**Agents → Automations** in the Console, in early access, lists the agent tasks of your organization. For ready-made jobs with their policies, see the [agent policy examples](https://www.qovery.com/docs/configuration/organization/policy-examples/overview). An agent task is the recommended way to run them on their own: it runs next to your services on its own schedule or webhook, with no laptop or CI to keep running. Pair it with the Qovery MCP server authenticated by a policy token, so it is limited to exactly what it is allowed. You can also run them from your own coding agent. See [Run it on its own](https://www.qovery.com/docs/configuration/organization/policy-examples/overview#run-it-on-its-own).
 
 ## Creating an Agent
 
@@ -38069,7 +38067,7 @@ Agent Tasks are one-time or scheduled jobs delegated to AI agents, running on yo
   <Step title="Add MCP Servers (Optional)">
     If you added a Qovery service as Context in the previous step, Qovery's own MCP server is created and selected automatically: organization-scoped, read-only, backed by a Viewer API token. No URL, header, or token to configure. This is also preconfigured for the Incident Analyzer (incident.io and Honeybadger) and Build & deployment optimizer templates.
 
-    For anything else, connect any remote HTTPS MCP server with its own name, URL, and headers. MCP servers added here are available to every agent task in the organization and can also be managed from **Agents → Settings → MCP servers**.
+    For anything else, connect any remote HTTPS MCP server with its own name, URL, and headers. MCP servers added here are available to every agent task in the organization and can also be managed from **Agents → Settings → MCPs**.
 
     To add Qovery's own MCP server manually, for example with write access instead of the automatic read-only setup, use an [API Policy Token](https://www.qovery.com/docs/configuration/organization/api-policy-token) (a regular API token works too):
 
@@ -57399,13 +57397,13 @@ To enable Qovery AI Copilot for your organization:
   </Step>
 
   <Step title="Turn on AI if it is off">
-    New organizations have AI features on by default. If they are off, click **Turn on AI**, on **Settings → Copilot settings** or in the Skills registry, read the summary of the Copilot Terms & Conditions (the full terms are one click away), accept them and confirm. You will receive a copy of the Terms & Conditions by email for your records.
+    New organizations have AI features on by default. If they are off, click **Turn on AI**, on **Settings → Copilot** or in the Skills registry, read the summary of the Copilot Terms & Conditions (the full terms are one click away), accept them and confirm. You will receive a copy of the Terms & Conditions by email for your records.
 
     This one confirmation turns on the organization's AI features and the Copilot, in **read-only mode**. AI features are also what the security review of [skill presets](https://www.qovery.com/docs/copilot/skill-presets) needs. If the Copilot cannot be turned on, AI features stay on and you can retry.
   </Step>
 
   <Step title="Manage the Copilot">
-    Open **Agents → Settings → Copilot settings** to see its status and settings, where you can:
+    Open **Agents → Settings → Copilot** to see its status and settings, where you can:
     - Choose the access source and the access mode (read-only or read-write)
     - View and manage scheduled tasks
     - Turn off the Copilot if needed, with **Turn off Copilot**
@@ -57413,7 +57411,7 @@ To enable Qovery AI Copilot for your organization:
 </Steps>
 
 <Note>
-Only organization **Owners** and **Admins** can turn the Copilot on, change its settings or turn it off. The **Settings** group of the Agents menu is shown to Owners and Admins only. The old **Organization settings → AI settings → Copilot** page redirects to **Agents → Settings → Copilot settings**. See [Agents](https://www.qovery.com/docs/configuration/organization#agents).
+Only organization **Owners** and **Admins** can turn the Copilot on, change its settings or turn it off. The **Settings** group of the Agents menu is shown to Owners and Admins only. The old **Organization settings → AI settings → Copilot** page redirects to **Agents → Settings → Copilot**. See [Agents](https://www.qovery.com/docs/configuration/organization#agents).
 </Note>
 
 <Warning>
@@ -57422,7 +57420,7 @@ Only organization **Owners** and **Admins** can turn the Copilot on, change its 
 
 ## Authentication Modes
 
-The Qovery AI Copilot supports two authentication modes, configurable by an organization administrator on the **Agents → Settings → Copilot settings** page (**Access source**):
+The Qovery AI Copilot supports two authentication modes, configurable by an organization administrator on the **Agents → Settings → Copilot** page (**Access source**):
 
 <Tabs>
   <Tab title="JWT Mode (Default)">
@@ -57876,7 +57874,7 @@ The Qovery Console includes a built-in AI Copilot that provides contextual assis
 </Info>
 
 <Info>
-**Settings**: Manage the Copilot (Beta) under **Agents → Settings → Copilot settings** in the Console. The old **Settings > AI settings > Copilot** page redirects there.
+**Settings**: Manage the Copilot under **Agents → Settings → Copilot** in the Console. The old **Settings > AI settings > Copilot** page redirects there.
 </Info>
 
 <Card title="Try it in the demo console" icon="play" href="https://console-demo.qovery.com/?tour=copilot&utm_source=docs&utm_medium=try-it&utm_content=copilot" horizontal>
@@ -57936,7 +57934,7 @@ The Copilot is turned on in read-only mode. Read-write capabilities must first b
 
 <Steps>
   <Step title="Open the Copilot page">
-    In the Qovery Console, open the **Agents** tab, then **Settings → Copilot settings**.
+    In the Qovery Console, open the **Agents** tab, then **Settings → Copilot**.
   </Step>
 
   <Step title="Enable Read-Write Mode">
@@ -58193,7 +58191,7 @@ This helps you understand if issues you're experiencing are related to the Qover
 
 ## Authentication Modes
 
-The Copilot supports two authentication modes, configured by an organization administrator on the **Agents → Settings → Copilot settings** page. See the [Getting Started guide](https://www.qovery.com/docs/copilot/getting-started#authentication-modes) for full details.
+The Copilot supports two authentication modes, configured by an organization administrator on the **Agents → Settings → Copilot** page. See the [Getting Started guide](https://www.qovery.com/docs/copilot/getting-started#authentication-modes) for full details.
 
 <CardGroup cols={2}>
   <Card title="JWT Mode (Default)" icon="user">
@@ -58242,7 +58240,7 @@ The Copilot supports two authentication modes, configured by an organization adm
 
     **Mode:**
     - Read-only by default per thread
-    - Read-write available (an Owner or Admin enables it on **Agents → Settings → Copilot settings**)
+    - Read-write available (an Owner or Admin enables it on **Agents → Settings → Copilot**)
 
     **Advantages:**
     - No setup required
@@ -58786,7 +58784,7 @@ The `devops_copilot` tool depends on two settings in your Qovery Console:
 1. **Copilot must be enabled** — if disabled, the tool will not be accessible at all, regardless of your MCP configuration
 2. **Write access must be enabled** — required to use the tool in read/write mode (in addition to the `read_write=true` URL parameter)
 
-Both are set on **Agents → Settings → Copilot settings**.
+Both are set on **Agents → Settings → Copilot**.
 </Info>
 
 <Warning>
@@ -59419,7 +59417,7 @@ The [Qovery agent skills](https://www.qovery.com/docs/getting-started/quickstart
   and the agent-side behaviour described here are likely to change.
 </Info>
 
-In the Console, skill presets live in the **Skills registry**: open the **Agents** tab of your organization, next to **Audit Logs**, which opens on it. The feature and the API keep the name skill presets. The Agents tab also holds Activity, your policy tokens, the Copilot settings and, where Agent Tasks are available, Automations, and **Connect an agent** in the Skills registry header gives the commands to connect an agent. See [Agents](https://www.qovery.com/docs/configuration/organization#agents). The old **Organization settings** links to the Copilot, skill presets and agent activity redirect there.
+In the Console, skill presets live in the **Skills registry**: open the **Agents** tab of your organization, next to **Audit Logs**, which opens on it. The feature and the API keep the name skill presets. The Agents tab also holds Activity (rolling out to organizations), your policy tokens, the Copilot settings and, in early access, Automations, and **Connect an agent** in the Skills registry header gives the commands to connect an agent. See [Agents](https://www.qovery.com/docs/configuration/organization#agents). The old **Organization settings** links to the Copilot, skill presets and agent activity redirect there.
 
 ## How it works
 
@@ -59634,7 +59632,7 @@ Each finding says which gate raised it: `RULES` for the rule checks, `MODEL` for
   Without it, a create or an edit answers `403`. Reading presets, members'
   skill loads and deleting presets keep working when AI features are off. Owners
   and Admins turn them on with **Turn on AI**, shown in the Skills registry
-  and on Copilot settings when AI features are off: one confirmation turns on AI
+  and on the Copilot page when AI features are off: one confirmation turns on AI
   features and the Copilot, in read-only mode. New organizations have AI
   features on by default. See
   [Turn on AI](https://www.qovery.com/docs/configuration/organization#turn-on-ai). They can also use the API,
@@ -59754,7 +59752,7 @@ Qovery stores every saved state of a preset as an immutable revision, written to
 
 ### Usage
 
-Admins can see how skills are used over time and by whom: how many loads, of which skills, by which members, under which preset. Usage covers up to 90 days at a time, 30 by default, grouped by hour or by day, and can be filtered on one skill, one member or one preset. Usage data is kept for 90 days. In the Console, usage is part of **Agents → Activity**. See [Read skill usage](https://www.qovery.com/docs/copilot/skill-presets-api#read-skill-usage) for the API.
+Admins can see how skills are used over time and by whom: how many loads, of which skills, by which members, under which preset. Usage covers up to 90 days at a time, 30 by default, grouped by hour or by day, and can be filtered on one skill, one member or one preset. Usage data is kept for 90 days. In the Console, usage is part of **Agents → Activity**, which is rolling out to organizations. See [Read skill usage](https://www.qovery.com/docs/copilot/skill-presets-api#read-skill-usage) for the API.
 
 - **A load** is one skill fetched by a member's agent, the same event as a `SKILL_LOAD` audit entry. Loads served from the agent's cache count too, and are also reported separately as cached loads. Usage counts agent loads only: a person reading a skill in the Console is a `SKILL_VIEW`, recorded in the audit log but not counted here.
 - **Members** is the number of distinct members who loaded at least one skill in the period.
@@ -59776,7 +59774,7 @@ qovery api "organization/$ORGANIZATION_ID/skillPreset/resolved/skill/qovery-depl
 
 Skill presets **guide** what agents do. [API Policy Tokens](https://www.qovery.com/docs/configuration/organization/api-policy-token) **enforce** what they are allowed to do. Activity lets you **observe** what they actually did on Qovery, linked to the skills they loaded.
 
-In the Console, open **Agents → Activity**. The page was called Agent activity, and its address has not changed. Its menu entry shows the number of denied calls in the last 7 days.
+In the Console, open **Agents → Activity**. The page is rolling out to organizations, so it may not appear for yours yet; the [API](https://www.qovery.com/docs/copilot/skill-presets-api#read-agent-activity) is available to every organization. The old **Organization settings** page for agent activity redirects there. The menu entry shows the number of denied calls in the last 7 days.
 
 Activity covers both kinds of agent identity in one view: a member's agent acting with the member's own credentials, through the skills or the MCP server, and an agent acting with a policy token. For a period of up to 90 days, 30 by default, by hour or by day, it shows:
 
@@ -59888,7 +59886,7 @@ curl -H "Authorization: Token $QOVERY_API_TOKEN" \
   "https://api.qovery.com/organization/$ORGANIZATION_ID/skillPreset"
 ```
 
-Creating and editing presets requires AI features to be turned on for the organization, because every save goes through a [model review](https://www.qovery.com/docs/copilot/skill-presets#how-a-save-is-checked). Reading, member endpoints and delete work either way. New organizations have it on by default. An Owner or Admin can turn it on with **Turn on AI** in the Console, from the Skills registry or Copilot settings, which also turns on the Copilot in read-only mode (see [Turn on AI](https://www.qovery.com/docs/configuration/organization#turn-on-ai)), or with [Edit the organization's AI features opt-in](https://www.qovery.com/docs/api-reference/organization-main-calls/edit-the-organizations-ai-features-opt-in):
+Creating and editing presets requires AI features to be turned on for the organization, because every save goes through a [model review](https://www.qovery.com/docs/copilot/skill-presets#how-a-save-is-checked). Reading, member endpoints and delete work either way. New organizations have it on by default. An Owner or Admin can turn it on with **Turn on AI** in the Console, from the Skills registry or the Copilot page, which also turns on the Copilot in read-only mode (see [Turn on AI](https://www.qovery.com/docs/configuration/organization#turn-on-ai)), or with [Edit the organization's AI features opt-in](https://www.qovery.com/docs/api-reference/organization-main-calls/edit-the-organizations-ai-features-opt-in):
 
 ```bash
 qovery api "organization/$ORGANIZATION_ID/aiFeatures" --method PUT --field enabled=true
@@ -60332,7 +60330,7 @@ Usage data is kept for 90 days: older loads are purged every day, so `from` cann
 
 ## Read agent activity
 
-Agent activity links skill loads to what agents did through Qovery, for members' agents and for policy tokens. In the Console it is the **Activity** page. See [Activity](https://www.qovery.com/docs/copilot/skill-presets#activity) for what it covers and its limits.
+Agent activity links skill loads to what agents did through Qovery, for members' agents and for policy tokens. In the Console it is the **Activity** page, which is rolling out to organizations and may not appear for yours yet. The API is available to every organization. See [Activity](https://www.qovery.com/docs/copilot/skill-presets#activity) for what it covers and its limits.
 
 | Endpoint | Who can call it | Query parameters |
 | --- | --- | --- |
@@ -75502,12 +75500,16 @@ GET /application/{applicationId}/deploymentRestriction
 
 Get application deployment restrictions
 
+Deprecated: use `/service/{serviceId}/deploymentRestriction`, which works for every service kind. This endpoint keeps working.
+
 # Create an application deployment restriction
 Source: https://www.qovery.com/docs/api-reference/application-deployment-restriction/create-an-application-deployment-restriction
 
 POST /application/{applicationId}/deploymentRestriction
 
 Create an application deployment restriction
+
+Deprecated: use `/service/{serviceId}/deploymentRestriction`, which works for every service kind. This endpoint keeps working.
 
 # Edit an application deployment restriction
 Source: https://www.qovery.com/docs/api-reference/application-deployment-restriction/edit-an-application-deployment-restriction
@@ -75516,12 +75518,16 @@ PUT /application/{applicationId}/deploymentRestriction/{deploymentRestrictionId}
 
 Edit an application deployment restriction
 
+Deprecated: use `/service/{serviceId}/deploymentRestriction`, which works for every service kind. This endpoint keeps working.
+
 # Delete an application deployment restriction
 Source: https://www.qovery.com/docs/api-reference/application-deployment-restriction/delete-an-application-deployment-restriction
 
 DELETE /application/{applicationId}/deploymentRestriction/{deploymentRestrictionId}
 
 Delete an application deployment restriction
+
+Deprecated: use `/service/{serviceId}/deploymentRestriction`, which works for every service kind. This endpoint keeps working.
 
 # List application deploys
 Source: https://www.qovery.com/docs/api-reference/application-deployment-history/list-application-deploys
@@ -75877,13 +75883,14 @@ PUT /container/{containerId}
 - For storage edition, if you provide a storage id, we will update the corresponding storage. If you don't we will create a new one. If you remove a storage from the payload, we will delete it.
 - To switch the container between an image and a Git repository, send `source`. The container keeps its id, Kubernetes names, volumes and built-in variables. When `source` is not sent, the stored source is kept.
 - A body built from the `GET /container/{containerId}` response is accepted as is: `source` is ignored when it repeats the stored source, and `registry_id`, `image_name` and `tag` when they repeat the image the container runs. Only what changed is applied. To change the image with the flat fields, send all three of `registry_id`, `image_name` and `tag`: GET returns `registry.id`, not `registry_id`.
+- `auto_deploy` and `auto_preview` when not sent: on a container that keeps its Git repository source, they keep their stored values; on a switch from an image to `git_repository`, they are set to false; on a switch from `git_repository` to an image, `auto_preview` is set to false.
+- On a container with a Git repository source, `auto_deploy` true lets anyone who can push to the source branch deploy the container. `auto_preview` true makes a pull request start a preview environment that builds the pull request's code, pull requests from forks included, and runs it with the environment's variables and secrets. Later pushes to the pull request redeploy the preview's copy of the container only when that copy has `auto_deploy` true, as for applications.
 
 Returns 400 when:
 - `source` and `registry_id`, `image_name` or `tag` both ask for a change, unless both name the same image;
 - `source` has both `image` and `git_repository`, or neither;
 - the container has an image source, only some of `registry_id`, `image_name` and `tag` are sent, and either `source` is not sent or one of them differs from the image the container runs: send all three, or none to keep the image;
 - the container has a Git repository source, `source.image` is not sent, and `registry_id`, `image_name` or `tag` differ from the `registry.id`, `image_name` and `tag` that `GET /container/{containerId}` returns. A deployment that finishes between the GET and the PUT changes these values, so the PUT gets a 400: get the container again and retry;
-- `auto_deploy` or `auto_preview` is `true` while `source.git_repository` is sent, or while the container has a Git repository source and `source` is not sent;
 - `build_settings` is sent while the container keeps, or switches to, an image source.
 
 # Delete container
@@ -75992,11 +75999,14 @@ A container is created from an image or from a Git repository:
 - image: send `registry_id`, `image_name` and `tag`, or `source.image`;
 - Git repository: send `source.git_repository`, and optionally `build_settings`. The repository, its token, the Dockerfile and the build settings go through the same checks, with the same errors, as a switch to `git_repository` with `PUT /container/{containerId}`. Nothing is created when a check fails.
 
+On a container created from a Git repository, `auto_deploy` and `auto_preview` are false when not sent. When true:
+- with `auto_deploy`, a push to the source branch deploys the container, so anyone who can push to that branch can deploy it;
+- with `auto_preview`, a pull request starts a preview environment that builds the pull request's code, pull requests from forks included, and runs it with the environment's variables and secrets. Later pushes to the pull request redeploy the preview's copy of the container only when that copy has `auto_deploy` true, as for applications.
+
 Returns 400 when:
 - `source` is sent together with `registry_id`, `image_name` or `tag`;
 - `source` has both `image` and `git_repository`, or neither;
 - `source` is not sent and `registry_id`, `image_name` and `tag` are not all sent;
-- `auto_deploy` or `auto_preview` is `true` while `source.git_repository` is sent;
 - `build_settings` is sent with an image source;
 - `source.git_repository` is sent and the environment's cluster has no build registry.
 
@@ -76157,12 +76167,16 @@ GET /job/{jobId}/deploymentRestriction
 
 Get job deployment restrictions
 
+Deprecated: use `/service/{serviceId}/deploymentRestriction`, which works for every service kind. This endpoint keeps working.
+
 # Create a job deployment restriction
 Source: https://www.qovery.com/docs/api-reference/job-deployment-restriction/create-a-job-deployment-restriction
 
 POST /job/{jobId}/deploymentRestriction
 
 Create a job deployment restriction
+
+Deprecated: use `/service/{serviceId}/deploymentRestriction`, which works for every service kind. This endpoint keeps working.
 
 # Edit a job deployment restriction
 Source: https://www.qovery.com/docs/api-reference/job-deployment-restriction/edit-a-job-deployment-restriction
@@ -76171,12 +76185,16 @@ PUT /job/{jobId}/deploymentRestriction/{deploymentRestrictionId}
 
 Edit a job deployment restriction
 
+Deprecated: use `/service/{serviceId}/deploymentRestriction`, which works for every service kind. This endpoint keeps working.
+
 # Delete a job deployment restriction
 Source: https://www.qovery.com/docs/api-reference/job-deployment-restriction/delete-a-job-deployment-restriction
 
 DELETE /job/{jobId}/deploymentRestriction/{deploymentRestrictionId}
 
 Delete a job deployment restriction
+
+Deprecated: use `/service/{serviceId}/deploymentRestriction`, which works for every service kind. This endpoint keeps working.
 
 # List job deployments
 Source: https://www.qovery.com/docs/api-reference/job-deployment-history/list-job-deployments
@@ -76416,12 +76434,16 @@ GET /helm/{helmId}/deploymentRestriction
 
 Get helm deployment restrictions
 
+Deprecated: use `/service/{serviceId}/deploymentRestriction`, which works for every service kind. This endpoint keeps working.
+
 # Create a helm deployment restriction
 Source: https://www.qovery.com/docs/api-reference/helm-deployment-restriction/create-a-helm-deployment-restriction
 
 POST /helm/{helmId}/deploymentRestriction
 
 Create a helm deployment restriction
+
+Deprecated: use `/service/{serviceId}/deploymentRestriction`, which works for every service kind. This endpoint keeps working.
 
 # Edit a helm deployment restriction
 Source: https://www.qovery.com/docs/api-reference/helm-deployment-restriction/edit-a-helm-deployment-restriction
@@ -76430,12 +76452,16 @@ PUT /helm/{helmId}/deploymentRestriction/{deploymentRestrictionId}
 
 Edit a helm deployment restriction
 
+Deprecated: use `/service/{serviceId}/deploymentRestriction`, which works for every service kind. This endpoint keeps working.
+
 # Delete a helm deployment restriction
 Source: https://www.qovery.com/docs/api-reference/helm-deployment-restriction/delete-a-helm-deployment-restriction
 
 DELETE /helm/{helmId}/deploymentRestriction/{deploymentRestrictionId}
 
 Delete a helm deployment restriction
+
+Deprecated: use `/service/{serviceId}/deploymentRestriction`, which works for every service kind. This endpoint keeps working.
 
 # List helm deployments
 Source: https://www.qovery.com/docs/api-reference/helm-deployment-history/list-helm-deployments
@@ -76856,7 +76882,7 @@ Source: https://www.qovery.com/docs/api-reference/clusters/create-a-self-managed
 
 POST /v1/organization/{organizationId}/selfManagedCluster
 
-Creates a self-managed cluster on an existing cloud credential of the organization: AWS, GCP or Scaleway, or an on-premise credential for any other Kubernetes (`provider` `ON_PREMISE`, `HETZNER`, `OVH`, `CIVO`, `ORACLE` or `IBM`, in region `on-premise`). The on-premise providers are not generally available yet: they are accepted for a short list of Qovery test organizations and answer 400 for the others. The organization's plan is not checked. On AWS the credential only needs ECR permissions for the cluster itself, including `ecr:DescribeRepositories` in `us-east-1`, which Qovery calls to check the credential whatever the cluster region; features that call other AWS services with the credential, such as managed databases or Terraform services using the cluster credentials, need more. Without `platform.templateKey` and `platform.templateVersion`, Qovery selects its self-managed platform template release and the response returns it: `"platform": {}` gives that release with its default configuration. Without `clusterInputs`, the cluster has no cluster inputs. The credential, including its registry access in the cluster region, and the platform configuration are checked before anything is created. One transaction then writes the cluster, its Qovery DNS and build providers, its default registry derived from the credential (ECR on AWS, Artifact Registry on GCP, Scaleway Container Registry on Scaleway), its initial deployment status, its platform configuration and its Qovery Operator enrollment. No registry can be derived from an on-premise credential: the cluster gets the registry given in `registry`, or an empty generic registry to configure with the container registry API before the first application deployment. Install the Operator next with the cluster's Operator bootstrap.
+Creates a self-managed cluster on an existing cloud credential of the organization: AWS, GCP or Scaleway, or an on-premise credential for any other Kubernetes (`provider` `ON_PREMISE`, `HETZNER`, `OVH`, `CIVO`, `ORACLE` or `IBM`, in region `on-premise`). The on-premise providers are not generally available yet: they are accepted for a short list of Qovery test organizations and answer 400 for the others. The organization's plan, subscription or payment can refuse the creation: it then answers 402 and creates nothing. On AWS the credential only needs ECR permissions for the cluster itself, including `ecr:DescribeRepositories` in `us-east-1`, which Qovery calls to check the credential whatever the cluster region; features that call other AWS services with the credential, such as managed databases or Terraform services using the cluster credentials, need more. Without `platform.templateKey` and `platform.templateVersion`, Qovery selects its self-managed platform template release and the response returns it: `"platform": {}` gives that release with its default configuration. Without `clusterInputs`, the cluster has no cluster inputs. The credential, including its registry access in the cluster region, and the platform configuration are checked before anything is created. One transaction then writes the cluster, its Qovery DNS and build providers, its default registry derived from the credential (ECR on AWS, Artifact Registry on GCP, Scaleway Container Registry on Scaleway), its initial deployment status, its platform configuration and its Qovery Operator enrollment. No registry can be derived from an on-premise credential: the cluster gets the registry given in `registry`, or an empty generic registry to configure with the container registry API before the first application deployment. Install the Operator next with the cluster's Operator bootstrap.
 
 # List all clusters statuses
 Source: https://www.qovery.com/docs/api-reference/clusters/list-all-clusters-statuses
@@ -77330,6 +77356,131 @@ Source: https://www.qovery.com/docs/api-reference/mcp-servers/delete-an-mcp-serv
 DELETE /mcpServer/{mcpServerId}
 
 Delete a remote MCP server configuration.
+
+# Get agent activity
+Source: https://www.qovery.com/docs/api-reference/agent-activity/get-agent-activity
+
+GET /organization/{organizationId}/agentActivity
+
+Return what members' coding agents did on Qovery over a time range, linked to the skills they loaded: skill loads (agent loads only, a person's VIEW is not counted), API calls made from a Qovery skill, Qovery MCP server tool calls, every audited call made by a policy token, and requests refused by a policy or by role permissions. A refusal by a policy token's policy (401) and a refusal by role permissions (403) both count as DENIED. Activity is shown by member, by skill and by policy token. Requires the MANAGE_ORGANIZATION_DATA permission (organization owner or admin); members read their own activity with `getMyAgentActivity`.
+
+Every filter is optional and they combine. `policyTokenId` implies `actorKind` POLICY_TOKEN, and neither combines with `userSub`: those combinations, an unknown enum value or a malformed id are refused with 400.
+
+Coverage: only actions taken through Qovery (its API, CLI, skills and MCP server) are visible. What an agent does elsewhere, such as in a shell, in git or in a cloud console, is not. The response repeats this in `coverage`.
+
+Attribution is indicative, not proof. A member is matched on the username the audit log records, and an action is attributed to a skill from the `QoverySkill/<skill>` user agent the client sends: a client can claim a skill it does not run, or leave the user agent out. What an agent may actually do is enforced by its token's policy, and every refusal is recorded.
+
+No request content is returned: only what the audit log shows (event, target, project and environment names, time, source), never prompt text or request bodies.
+
+The range defaults to the 30 days ending now and spans at most 90 days. `by_member` holds at most 500 rows, `by_skill` 100, `by_policy_token` 100, `actions_by_type` 200 and `recent` the 100 most recent agent actions. Buckets are cut in UTC; empty buckets are omitted.
+
+# Get my agent activity
+Source: https://www.qovery.com/docs/api-reference/agent-activity/get-my-agent-activity
+
+GET /organization/{organizationId}/agentActivity/me
+
+Return the caller's own agent activity: exactly what admins see about them through `getAgentActivity`, and nothing about other members. Any organization member can call it (READ_ORGANIZATION_DATA). Policy tokens belong to the organization, so this view takes no `actorKind` or `policyTokenId` and its `by_policy_token` is always empty. A refusal by policy (401) or by role permissions (403) counts as DENIED. API and policy tokens cannot call it (400): they are not members.
+
+Coverage: only actions taken through Qovery (its API, CLI, skills and MCP server) are visible. What an agent does elsewhere, such as in a shell, in git or in a cloud console, is not. The response repeats this in `coverage`.
+
+Attribution is indicative, not proof. A member is matched on the username the audit log records, and an action is attributed to a skill from the `QoverySkill/<skill>` user agent the client sends: a client can claim a skill it does not run, or leave the user agent out. What an agent may actually do is enforced by its token's policy, and every refusal is recorded.
+
+No request content is returned: only what the audit log shows (event, target, project and environment names, time, source), never prompt text or request bodies.
+
+The range defaults to the 30 days ending now and spans at most 90 days. `by_member` holds at most 500 rows, `by_skill` 100, `by_policy_token` 100, `actions_by_type` 200 and `recent` the 100 most recent agent actions. Buckets are cut in UTC; empty buckets are omitted.
+
+# List organization skill presets
+Source: https://www.qovery.com/docs/api-reference/skill-presets/list-organization-skill-presets
+
+GET /organization/{organizationId}/skillPreset
+
+List the skill presets of the organization, with their full content and who each one is assigned to. Templates are listed too unless `isTemplate` filters them. Requires the MANAGE_ORGANIZATION_DATA permission (organization owner or admin).
+
+# Create a skill preset
+Source: https://www.qovery.com/docs/api-reference/skill-presets/create-a-skill-preset
+
+POST /organization/{organizationId}/skillPreset
+
+Create a skill preset and its assignments. Requires the MANAGE_ORGANIZATION_DATA permission (organization owner or admin). The preset starts at revision 1.
+
+Set `is_template` to save a template: a starting point admins copy into new presets. A template is never resolved for a member and cannot have assignments.
+
+A preset runs inside each assigned member's coding agent, on their machine, so every create and edit is checked before anything reaches members. The check covers every field that reaches an agent (the preset description, the team context, and each skill's description and content) and runs in two steps:
+
+1. Deterministic rules look for content that could turn the agent against its user: overriding its instructions, hiding actions from the user, skipping confirmations, reading local credentials, dumping secrets, sending data out, running remote or obfuscated code, links outside an allowlist of documentation hosts, invisible characters, HTML comments, encoded blobs and pasted credentials. Any finding answers 422 (findings with `source` RULES) and the model is not called.
+
+2. A model review on AWS Bedrock then reads the content as untrusted data, to catch paraphrased or new attacks the rules miss. A BLOCK verdict answers 422 (findings with `source` MODEL).
+
+The check fails closed: if the model review cannot give a verdict (error, timeout or unusable answer), the request answers 503 and nothing is saved. Because every save is sent to the model, an organization with AI features turned off cannot create or edit presets (403). Reading, resolving, loading and deleting presets are not affected. A save refused for security is recorded in the audit log as a `SKILL_PRESET_REJECTED` event with sub-target `SKILL_PRESET`, holding hashes and findings, never the text.
+
+The creation is recorded in the audit log as a `CREATE` event with sub-target `SKILL_PRESET`, holding the saved state with its full text, and as revision 1 in the revision history.
+
+# Get the skill preset that applies to the caller
+Source: https://www.qovery.com/docs/api-reference/skill-presets/get-the-skill-preset-that-applies-to-the-caller
+
+GET /organization/{organizationId}/skillPreset/resolved
+
+Return the manifest of the skill preset that applies to the caller in this organization: its name, base, revision and, for each skill entry, the mode, the description and the size and SHA-256 of the content, but never the content itself. This is what the Qovery loader skill reads first. It then fetches only the skills a task needs with `getResolvedSkill`. Any organization member can call it (READ_ORGANIZATION_DATA). Assignments and the preset's creator are left out.
+
+The preset is resolved in this order: a preset assigned to the caller as a member, then a preset assigned to the caller's role in the organization, then the organization default. When none applies, `source` is `QOVERY_DEFAULT`, `skill_preset` is null and the agent uses the Qovery skills as published. API tokens have no member behind them, so they only receive a role preset or the organization default.
+
+The response carries an `ETag`. Treat it as opaque: it changes when the preset is edited, when the caller moves to another preset, and when the caller reaches the same preset through another assignment. Send it back in `If-None-Match` to get a 304 with no body when nothing changed. Templates are never resolved.
+
+# Get what to load for one skill
+Source: https://www.qovery.com/docs/api-reference/skill-presets/get-what-to-load-for-one-skill
+
+GET /organization/{organizationId}/skillPreset/resolved/skill/{skillName}
+
+Return what the caller's agent must load for one skill, under the preset that applies to the caller (resolved as in `getResolvedSkillPreset`): the organization's content for that skill if any, the team context, and the SHA-256 of each, so the member can check that what their agent follows is what an admin saved. Any organization member can call it (READ_ORGANIZATION_DATA).
+
+A Qovery skill (`qovery` or `qovery-*`) that the preset leaves alone, or any Qovery skill when no preset applies, answers 200 with a null `mode`: load the Qovery skill as published, with the team context if there is one. A `DISABLE` mode means the agent must not load the skill. Any other name that is not in the preset answers 404.
+
+The ETag is the same as the manifest's, so a single revision covers every skill of the preset. Send it in `If-None-Match` to get a 304 with no body when the cached copy is current.
+
+Set `purpose` to say who reads the skill. LOAD (the default) is a member's coding agent loading it to follow it. VIEW is a person reading it, for example in the Console: same body and same ETag and 304 behaviour, recorded as a `SKILL_VIEW` audit event with the same content as a `SKILL_LOAD` entry, and not counted in `getSkillUsage`.
+
+Every LOAD call is recorded in the audit log as a `SKILL_LOAD` event with sub-target `SKILL_PRESET`, 304s included (with `from_cache` set to true): the entry gives the skill, the preset and revision that applied (or `QOVERY_DEFAULT`), the mode, and the SHA-256 of the content and team context that were injected. A 404 is not recorded.
+
+# Get skill usage
+Source: https://www.qovery.com/docs/api-reference/skill-presets/get-skill-usage
+
+GET /organization/{organizationId}/skillPreset/usage
+
+Return how the members' coding agents loaded skills in the organization over a time range: totals, a timeline, and breakdowns by skill, by member and by preset. Requires the MANAGE_ORGANIZATION_DATA permission (organization owner or admin).
+
+Usage counts agent loads only: a load is one call to `getResolvedSkill` with `purpose` LOAD (the default) that returned a skill, cached ones included. A 304 counts as a cached load, a 404 is not counted, and VIEW calls (a person reading a skill) are never counted. Loads are counted whether or not a preset applies. Recording a load is best effort and never blocks the agent, so a load can be missing here while the audit log, which records every load as a `SKILL_LOAD` event, still has it.
+
+The range defaults to the 30 days ending now and spans at most 90 days. Timeline buckets are cut in UTC, and buckets with no load are left out rather than returned as zero. Rows in `by_skill` and `by_member` are sorted by loads, most first, and capped at 100 and 500 rows.
+
+# List skill preset revisions
+Source: https://www.qovery.com/docs/api-reference/skill-presets/list-skill-preset-revisions
+
+GET /organization/{organizationId}/skillPreset/revision
+
+List the saved states of the organization's skill presets, most recent first, each with its full content, who saved it and when. Every create, edit and delete adds one immutable revision. Revisions are kept after a preset is deleted: the deletion adds a final `DELETE` revision holding the state the preset had. A save that fails, for example with a 422, adds nothing. Requires the MANAGE_ORGANIZATION_DATA permission (organization owner or admin).
+
+# Get a skill preset
+Source: https://www.qovery.com/docs/api-reference/skill-presets/get-a-skill-preset
+
+GET /skillPreset/{skillPresetId}
+
+Get a skill preset with its full content and assignments. Requires the MANAGE_ORGANIZATION_DATA permission on the preset's organization.
+
+# Edit a skill preset
+Source: https://www.qovery.com/docs/api-reference/skill-presets/edit-a-skill-preset
+
+PUT /skillPreset/{skillPresetId}
+
+Replace a skill preset, its skill entries and its assignments with the request body, and increase its revision by one. Requires the MANAGE_ORGANIZATION_DATA permission on the preset's organization. The content is checked as on creation, by the rules and then by the model review on AWS Bedrock, and the check fails closed: a finding answers 422, an unavailable review answers 503, and in both cases nothing is saved. An organization with AI features turned off cannot edit presets (403). A refusal for security is recorded as a `SKILL_PRESET_REJECTED` audit event.
+
+The edit is recorded in the audit log as an `UPDATE` event with sub-target `SKILL_PRESET`: the change holds the new state with its full text and a summary of what changed (skills added, removed and modified, and whether the base, the template flag, the team context or the assignments changed), and the original change holds the previous state. When the text of a preset is larger than 64 KB, the audit entry keeps only the SHA-256 of each text and sets `content_omitted`; the revision history always holds the full text.
+
+# Delete a skill preset
+Source: https://www.qovery.com/docs/api-reference/skill-presets/delete-a-skill-preset
+
+DELETE /skillPreset/{skillPresetId}
+
+Delete a skill preset and its assignments. Members it applied to fall back to the next preset in the resolution order, or to the Qovery skills as published. Requires the MANAGE_ORGANIZATION_DATA permission on the preset's organization. The deletion is recorded in the audit log as a `DELETE` event with sub-target `SKILL_PRESET`, holding the deleted state, and as a final `DELETE` revision in the revision history.
 
 # Redeploy database
 Source: https://www.qovery.com/docs/api-reference/database-actions/redeploy-database
@@ -78211,7 +78362,17 @@ POST /organization/{organizationId}/policyApiToken
 
 Create a policy api token, intended for autonomous agents calling the Qovery API.
 
-Unlike a regular api token, a policy api token carries **no organization role**. The Open Policy Agent (rego) policy attached to it is evaluated on every request and is the only thing constraining what the token can do: a policy that allows everything grants full organization admin access. For that reason only an organization owner or admin can create one.
+A policy api token carries two limits, and a request must pass both:
+
+1. Its Open Policy Agent (rego) policy, evaluated on every request. A request the policy does not allow is refused with 401.
+
+2. Its organization role, set with `role_id`. A request the policy allows then runs with that role's permissions, and a request the role does not permit is refused with 403.
+
+Effective access is therefore the intersection of the policy and the role. When `role_id` is omitted, the token gets the organization admin role, so a policy that allows everything then grants full admin access. A token can never act as the Owner role.
+
+Who can create one depends on the role requested: an organization owner or admin can create a token for any role except Owner; a DevOps member only for the DevOps, Viewer or Billing role or a custom role. Other callers are refused with 403.
+
+A token cannot be edited: its policy, role and expiry are fixed at creation. To change them, create a new token and delete the old one. Deleting a custom role also deletes the policy api tokens that use it.
 
 The generated token value is returned only in this response and cannot be retrieved afterwards.
 
@@ -78663,12 +78824,16 @@ GET /terraform/{terraformId}/deploymentRestriction
 
 Get terraform deployment restrictions
 
+Deprecated: use `/service/{serviceId}/deploymentRestriction`, which works for every service kind. This endpoint keeps working.
+
 # Create a terraform deployment restriction
 Source: https://www.qovery.com/docs/api-reference/terraform-deployment-restriction/create-a-terraform-deployment-restriction
 
 POST /terraform/{terraformId}/deploymentRestriction
 
 Create a terraform deployment restriction
+
+Deprecated: use `/service/{serviceId}/deploymentRestriction`, which works for every service kind. This endpoint keeps working.
 
 # Edit a terraform deployment restriction
 Source: https://www.qovery.com/docs/api-reference/terraform-deployment-restriction/edit-a-terraform-deployment-restriction
@@ -78677,12 +78842,16 @@ PUT /terraform/{terraformId}/deploymentRestriction/{deploymentRestrictionId}
 
 Edit a terraform deployment restriction
 
+Deprecated: use `/service/{serviceId}/deploymentRestriction`, which works for every service kind. This endpoint keeps working.
+
 # Delete a terraform deployment restriction
 Source: https://www.qovery.com/docs/api-reference/terraform-deployment-restriction/delete-a-terraform-deployment-restriction
 
 DELETE /terraform/{terraformId}/deploymentRestriction/{deploymentRestrictionId}
 
 Delete a terraform deployment restriction
+
+Deprecated: use `/service/{serviceId}/deploymentRestriction`, which works for every service kind. This endpoint keeps working.
 
 # List organization container registries
 Source: https://www.qovery.com/docs/api-reference/container-registries/list-organization-container-registries
@@ -78980,6 +79149,64 @@ Persists new values for a deployed blueprint service. Intended to be called afte
 
 **Note:** `name`, `tag`, and `icon` are required on every call.
 
+# Get git webhook status for a service
+Source: https://www.qovery.com/docs/api-reference/service-main-calls/get-git-webhook-status-for-a-service
+
+GET /service/{serviceId}/gitWebhookStatus
+
+Returns the webhook status for a git-based service. Checks if the Qovery webhook is correctly configured on the git provider (GitHub, GitLab, or Bitbucket).
+
+# Synchronize git webhook for a service
+Source: https://www.qovery.com/docs/api-reference/service-main-calls/synchronize-git-webhook-for-a-service
+
+POST /service/{serviceId}/gitWebhook/sync
+
+Synchronizes the Qovery webhook configuration for a git-based service.
+- If no webhook exists, creates one with the correct configuration
+- If webhook exists but is misconfigured, updates it with the correct events
+- If webhook is already correctly configured, returns current status
+Works with GitHub, GitLab, and Bitbucket repositories.
+
+# List service deployment restrictions
+Source: https://www.qovery.com/docs/api-reference/service-main-calls/list-service-deployment-restrictions
+
+GET /service/{serviceId}/deploymentRestriction
+
+Lists the deployment restrictions of a service. Works for applications, jobs, Helm, Terraform and containers. Restrictions filter which pushes to the source branch deploy the service, by changed file path.
+
+Works on any container, whatever its source: a container's restrictions survive a switch to an image source, without effect until it switches back to a Git repository source.
+
+Returns 400 when the service is a kind that cannot have deployment restrictions: a database or an agentic workflow.
+
+# Create a service deployment restriction
+Source: https://www.qovery.com/docs/api-reference/service-main-calls/create-a-service-deployment-restriction
+
+POST /service/{serviceId}/deploymentRestriction
+
+Creates a deployment restriction on a service. Works for applications, jobs, Helm, Terraform and containers. Restrictions filter which pushes to the source branch deploy the service, by changed file path.
+
+Returns 400 when the service cannot have restrictions: a job or container with an image source, a Helm or Terraform service not using a Git repository, or a kind without restrictions: a database or an agentic workflow.
+
+# Edit a service deployment restriction
+Source: https://www.qovery.com/docs/api-reference/service-main-calls/edit-a-service-deployment-restriction
+
+PUT /service/{serviceId}/deploymentRestriction/{deploymentRestrictionId}
+
+Edits a deployment restriction of a service. Works for applications, jobs, Helm, Terraform and containers.
+
+Returns 400 when the service is a container with an image source, or a kind that cannot have deployment restrictions: a database or an agentic workflow.
+
+# Delete a service deployment restriction
+Source: https://www.qovery.com/docs/api-reference/service-main-calls/delete-a-service-deployment-restriction
+
+DELETE /service/{serviceId}/deploymentRestriction/{deploymentRestrictionId}
+
+Deletes a deployment restriction of a service. Works for applications, jobs, Helm, Terraform and containers.
+
+Works on any container, whatever its source: a container's restrictions survive a switch to an image source, without effect until it switches back to a Git repository source.
+
+Returns 400 when the service is a kind that cannot have deployment restrictions: a database or an agentic workflow.
+
 # Cancel deployment request
 Source: https://www.qovery.com/docs/api-reference/deployment-queue-actions/cancel-deployment-request
 
@@ -79046,24 +79273,6 @@ GET /application/{applicationId}/checkCustomDomain
 Source: https://www.qovery.com/docs/api-reference/terraform-actions/redeploy-terraform
 
 POST /terraform/{terraformId}/redeploy
-
-# Get git webhook status for a service
-Source: https://www.qovery.com/docs/api-reference/service-main-calls/get-git-webhook-status-for-a-service
-
-GET /service/{serviceId}/gitWebhookStatus
-
-Returns the webhook status for a git-based service. Checks if the Qovery webhook is correctly configured on the git provider (GitHub, GitLab, or Bitbucket).
-
-# Synchronize git webhook for a service
-Source: https://www.qovery.com/docs/api-reference/service-main-calls/synchronize-git-webhook-for-a-service
-
-POST /service/{serviceId}/gitWebhook/sync
-
-Synchronizes the Qovery webhook configuration for a git-based service.
-- If no webhook exists, creates one with the correct configuration
-- If webhook exists but is misconfigured, updates it with the correct events
-- If webhook is already correctly configured, returns current status
-Works with GitHub, GitLab, and Bitbucket repositories.
 
 # Get cluster token by clusterId
 Source: https://www.qovery.com/docs/api-reference/get-cluster-token-by-clusterid

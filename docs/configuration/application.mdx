@@ -15,7 +15,7 @@ An application is a container unit that is part of a Project within an Environme
 
 ## Deployment Sources
 
-Qovery supports three deployment sources:
+Qovery supports three deployment sources: an application builds from a Git repository, and a container service runs an image from a container registry or builds one from a Git repository.
 
 ### Git Repository
 
@@ -35,7 +35,7 @@ Qovery pulls a pre-built container image from your configured registry and deplo
 
 ### Build a Container from Git
 
-A container service can also take its image from a Git repository with a Dockerfile: Qovery builds the image from the deployed commit. Set `source.git_repository` with the API (`POST /environment/{environmentId}/container` or `PUT /container/{containerId}`), or on the Terraform `qovery_container` resource (provider 1.10.0 or later, 1.11.0 for `auto_deploy`, `auto_preview` and deployment restrictions). The environment's cluster needs a build registry, or the API returns 400, and Qovery engine v1.417.0 or later, or the deployment fails. Two settings start at `false` when you create the container from Git or switch it to Git without them. With the API, an update that leaves them out keeps their values:
+A container service can also take its image from a Git repository with a Dockerfile: Qovery builds the image from the deployed commit. Set `source.git_repository` with the API (`POST /environment/{environmentId}/container` or `PUT /container/{containerId}`), or on the Terraform `qovery_container` resource (provider 1.10.0 or later, 1.11.0 for `auto_deploy`, `auto_preview` and deployment restrictions). The environment's cluster needs a build registry, or the API returns 400, and Qovery engine v1.417.0 or later, or the deployment fails. Two settings start at `false` when you create the container from Git or switch it to Git without them. With the API, an update that keeps the Git source and leaves them out keeps their values:
 
 - `auto_deploy`: each push to the branch deploys the container. See [Auto-Deploy](/configuration/deployment/auto-deploy).
 - `auto_preview`: in a pull request's preview environment, the container's copy builds the pull request's branch and commit. Off, the copy stays unchanged on the container's branch. On, the preview builds the pull request's code, pull requests from forks included, and runs it with the environment's variables and secrets. See [Preview Environments](/getting-started/guides/use-cases/preview-environments).

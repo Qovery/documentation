@@ -423,7 +423,7 @@ Owners and Admins see the whole organization, members and policy tokens. Every m
     The rules match known patterns, and the model judges intent, so honest text can trip them, typically a link to an internal host or a sentence like "run this without asking for approval". Read the finding's rule or category, field and line, and rewrite the line. See [Read and fix a rejection](#read-and-fix-a-rejection).
   </Accordion>
   <Accordion title="Can I link to our internal wiki?">
-    Not from a preset. Only the hosts listed in [Rule checks](#rule-checks) are allowed. Keep internal documentation in your repositories, where the agent reads it as part of the project.
+    Not from a preset. Only the hosts listed in [What gets rejected](#what-gets-rejected) are allowed. Keep internal documentation in your repositories, where the agent reads it as part of the project.
   </Accordion>
   <Accordion title="Do the checks slow the agent down?">
     No. The agent reads a small manifest first, and fetches a skill only when the task needs it. When nothing changed, each check answers `304 Not Modified`. Only saving a preset takes longer, because of the model review.

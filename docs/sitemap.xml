@@ -2570,7 +2570,7 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/application</loc>
-    <lastmod>2026-11-19</lastmod>
+    <lastmod>2026-11-26</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/blueprints</loc>
@@ -2738,7 +2738,7 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/deployment/auto-deploy</loc>
-    <lastmod>2026-11-08</lastmod>
+    <lastmod>2026-11-26</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/deployment/history</loc>
@@ -2894,7 +2894,7 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/integrations/kubernetes/eks/managed</loc>
-    <lastmod>2026-11-23</lastmod>
+    <lastmod>2026-11-26</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/integrations/kubernetes/eks/overview</loc>
@@ -3126,7 +3126,7 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/copilot/skill-presets</loc>
-    <lastmod>2026-11-26</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/copilot/skill-presets-api</loc>
@@ -3314,7 +3314,7 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/getting-started/guides/use-cases/preview-environments</loc>
-    <lastmod>2026-11-08</lastmod>
+    <lastmod>2026-11-26</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/getting-started/guides/use-cases/production-environment-management</loc>

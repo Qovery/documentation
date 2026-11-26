@@ -9812,7 +9812,7 @@ Use Qovery when each pull request needs the whole stack (backend, database, conf
           | qovery api "environment/$ENV_ID/deploymentRule/$RULE_ID" --method PUT --input -
         ```
 
-        Each service takes the environment value unless its own `auto_preview` is set. In the Console, **Settings** > **Preview environments** > **Activate preview environment for all apps** turns it on for every service. To create a preview only when someone comments `/qovery preview` on the pull request, see [Preview Environment Workflows](https://www.qovery.com/docs/configuration/environment#preview-environment-workflows).
+        Each service takes the environment value unless its own `auto_preview` is set, except containers built from a Git repository: they follow only their own `auto_preview`, `false` unless you set it, and this command does not change it. In the Console, **Settings** > **Preview environments** > **Activate preview environment for all apps** turns it on for every service except those containers. To set it on a Git container, see [Enable Preview Environment](#enable-preview-environment). To create a preview only when someone comments `/qovery preview` on the pull request, see [Preview Environment Workflows](https://www.qovery.com/docs/configuration/environment#preview-environment-workflows).
       </Step>
 
       <Step title="Open a pull request against the base branch">
@@ -9919,9 +9919,17 @@ Now, you can go to turn on Preview Environments by:
   </Tab>
 
   <Tab title="Terraform">
-    Set `auto_preview = true` on each `qovery_application` of the blueprint environment, then run `terraform apply`.
+    Set `auto_preview = true` on each `qovery_application` of the blueprint environment, and on each `qovery_container` built from Git (`source.git_repository`, provider 1.11.0 and later), then run `terraform apply`.
   </Tab>
 </Tabs>
+
+A preview environment copies every service of the blueprint, containers built from a Git repository included. For such a container, its own `auto_preview` decides what the copy runs: on, the copy builds the pull request's branch and commit; off, the copy stays unchanged on its base branch. `auto_preview` is `false` unless you set it, and the Console does not set it for these containers yet: use Terraform, or `PUT /container/{containerId}` as shown for `auto_deploy` in [Auto-Deploy](https://www.qovery.com/docs/configuration/deployment/auto-deploy#activation).
+
+The preview's copy takes `auto_deploy` from the blueprint container, so it follows later pushes to the pull request only when the blueprint container has `auto_deploy` on. The steps in [Validate your Blueprint Environment](#validate-your-blueprint-environment) turn auto-deploy off for applications only. To turn it off on such a container, set `auto_deploy = false` on its `qovery_container`, or send the body of `GET /container/{containerId}` back with `PUT /container/{containerId}` and `auto_deploy` set to `false`, as shown in [Auto-Deploy](https://www.qovery.com/docs/configuration/deployment/auto-deploy#activation). Its previews then no longer follow later pushes to the pull request.
+
+<Warning>
+A preview environment builds the pull request's code, pull requests from forks included, and runs it with the environment's variables and secrets, so that code can read and expose them. If people you do not trust can open pull requests on the repository, keep secrets out of the blueprint environment.
+</Warning>
 
 <div className="video-container">
   <iframe src="https://www.loom.com/embed/55b9d99a59524e1cb7875f7db7691fbe" width="100%" height="400px" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
@@ -30165,6 +30173,12 @@ Once Restricted Credentials is enabled for your organization, the **Use restrict
   </Tab>
 </Tabs>
 
+<Warning>
+  Do not change the cluster credentials while a cluster deployment is in progress. Wait for the running deployment to finish before you turn **Use restrictive permissions** on or off.
+
+  Changing the credentials will block the next application deployments until the cluster deployment has re-applied the new credentials access to your cluster (less than 5 minutes after a cluster deployment is launched).
+</Warning>
+
 You can also configure Restricted Credentials with the [`qovery_cluster`](https://registry.terraform.io/providers/qovery/qovery/latest/docs/resources/cluster) resource of the Qovery Terraform provider.
 
 #### Turn off Restricted Credentials
@@ -35842,6 +35856,17 @@ Qovery pulls a pre-built container image from your configured registry and deplo
   administrators. See [Container Registry
   Management](https://www.qovery.com/docs/configuration/organization/container-registry).
 </Note>
+
+## Build a Container from Git
+
+A container service can also take its image from a Git repository with a Dockerfile: Qovery builds the image from the deployed commit. Set `source.git_repository` with the API (`POST /environment/{environmentId}/container` or `PUT /container/{containerId}`), or on the Terraform `qovery_container` resource (provider 1.10.0 or later, 1.11.0 for `auto_deploy`, `auto_preview` and deployment restrictions). The environment's cluster needs a build registry, or the API returns 400, and Qovery engine v1.417.0 or later, or the deployment fails. Two settings start at `false` when you create the container from Git or switch it to Git without them. With the API, an update that keeps the Git source and leaves them out keeps their values:
+
+- `auto_deploy`: each push to the branch deploys the container. See [Auto-Deploy](https://www.qovery.com/docs/configuration/deployment/auto-deploy).
+- `auto_preview`: in a pull request's preview environment, the container's copy builds the pull request's branch and commit. Off, the copy stays unchanged on the container's branch. On, the preview builds the pull request's code, pull requests from forks included, and runs it with the environment's variables and secrets. Later pushes to the pull request redeploy the copy only when the container's `auto_deploy` is on: see [Enable Preview Environment](https://www.qovery.com/docs/getting-started/guides/use-cases/preview-environments#enable-preview-environment).
+
+Switching the container to an image without them sets `auto_preview` to `false` and `auto_deploy` to `true`. The Console does not set them for containers built from Git yet: use the API or Terraform.
+
+With Terraform, leaving `deployment_restrictions` out of a `qovery_container` deletes the restrictions Qovery holds for it, rules added through the API included. To keep rules managed outside Terraform, add `lifecycle { ignore_changes = [deployment_restrictions] }`: see [Filtering Commits](https://www.qovery.com/docs/configuration/deployment/auto-deploy#filtering-commits).
 
 ## Creating an Application
 
@@ -49630,7 +49655,7 @@ Source: https://www.qovery.com/docs/configuration/deployment/auto-deploy
 
 > Turn on auto-deploy so each Git commit redeploys your service, filter which commits trigger it, and call the Qovery API to deploy new container image tags.
 
-Qovery can automatically update your applications to the latest version of your Git branch. Each time a commit is done on your Git repository, Qovery will receive a webhook call with the commit information and will determine which applications should be automatically re-deployed.
+Qovery can automatically update the services that deploy from a Git repository (applications, jobs, Helm charts, Terraform services, and containers built from Git) to the latest version of their Git branch. Each time a commit is done on your Git repository, Qovery will receive a webhook call with the commit information and will determine which services should be automatically re-deployed. With auto-deploy on, anyone who can push to the branch can deploy the service.
 
 ## Activation
 
@@ -49641,6 +49666,8 @@ You can activate the auto-deploy flag either within the application settings or 
 ![Auto-Deploy Settings](https://www.qovery.com/docs/images/deployment/auto-deploy-settings.png)
 
 ![Auto-Deploy Creation Flow](https://www.qovery.com/docs/images/deployment/auto-deploy-creation-flow.png)
+
+The Console does not offer auto-deploy for containers built from Git yet: use the API or Terraform.
   </Tab>
 
   <Tab title="CLI and API">
@@ -49653,6 +49680,18 @@ You can activate the auto-deploy flag either within the application settings or 
     ```
 
     Pass `--auto-deploy=false` to turn it off. The command uses the organization, project and environment of your CLI context (`qovery context set`), or the `--organization`, `--project` and `--environment` flags.
+
+    For a container built from Git, set `auto_deploy` with `PUT /container/{containerId}`. The request replaces the container's settings (ports and storage left out are deleted), so send the body that `GET /container/{containerId}` returns, with `auto_deploy` changed:
+
+    ```bash
+    CONTAINER_ID="REPLACE_WITH_CONTAINER_ID"  # from qovery container list --json
+
+    qovery api "container/$CONTAINER_ID" \
+      | jq '.auto_deploy = true' \
+      | qovery api "container/$CONTAINER_ID" --method PUT --input -
+    ```
+
+    If a deployment of the container finishes between the `GET` and the `PUT`, the `PUT` returns 400: run the command again.
   </Tab>
 
   <Tab title="Terraform">
@@ -49664,6 +49703,8 @@ You can activate the auto-deploy flag either within the application settings or 
       auto_deploy = true
     }
     ```
+
+    On a `qovery_container` built from Git (`source.git_repository`), `auto_deploy` defaults to `false`: set it to `true` to deploy the container on every push (provider 1.11.0 and later).
   </Tab>
 </Tabs>
 
@@ -49693,7 +49734,7 @@ When you save the settings of an application, job, Helm chart, or Terraform serv
 
 ## Filtering Commits
 
-The "Deployment restrictions" feature allows you to better control which commits should trigger a new deployment and which should not.
+The "Deployment restrictions" feature allows you to better control which commits should trigger a new deployment and which should not. It applies to every service that deploys from a Git repository: applications, jobs, Helm charts, Terraform services, and containers built from Git.
 
 ![Deployment Restrictions](https://www.qovery.com/docs/images/deployment/deployment_restrictions.png)
 
@@ -49710,20 +49751,30 @@ Important notes:
 - You can use path prefixes for partial matching (e.g., `docs/` will match any file within the docs folder)
 </Warning>
 
-To add a restriction without the Console, call `POST /application/{applicationId}/deploymentRestriction`. `mode`, `type` (only `PATH`) and `value` are required:
+To add a restriction without the Console, call `POST /service/{serviceId}/deploymentRestriction`, shared by all these services. `mode`, `type` (only `PATH`) and `value` are required:
 
 ```bash
-APPLICATION_ID="REPLACE_WITH_APPLICATION_ID"  # from qovery application list --json
+SERVICE_ID="REPLACE_WITH_SERVICE_ID"  # ID of the application, job, Helm, Terraform or container service
 
-qovery api "application/$APPLICATION_ID/deploymentRestriction" \
+qovery api "service/$SERVICE_ID/deploymentRestriction" \
   --field mode=EXCLUDE \
   --field type=PATH \
   --field value=docs/
 ```
 
-`GET /application/{applicationId}/deploymentRestriction` lists the restrictions of the application. With Terraform, use the `deployment_restrictions` attribute of `qovery_application`, with the same `mode`, `type` and `value` fields.
+`GET /service/{serviceId}/deploymentRestriction` lists the restrictions of the service. `PUT` and `DELETE /service/{serviceId}/deploymentRestriction/{deploymentRestrictionId}` edit and delete one. The per-kind endpoints (`/application/{applicationId}/deploymentRestriction`, `/job/{jobId}/deploymentRestriction`, `/helm/{helmId}/deploymentRestriction` and `/terraform/{terraformId}/deploymentRestriction`) are deprecated but keep working.
+
+A container's restrictions take effect only while it builds from a Git repository, and the Console does not show them yet: use the API or Terraform.
+
+With Terraform, use the `deployment_restrictions` attribute of `qovery_application`, `qovery_job`, `qovery_helm` or `qovery_container`, with the same `mode`, `type` and `value` fields. `qovery_container` accepts it from provider 1.11.0, on a container built from Git: remove the attribute before switching the container to a registry image.
+
+<Warning>
+From provider 1.11.0, leaving `deployment_restrictions` out of a `qovery_application`, `qovery_job`, `qovery_helm` or `qovery_container` deletes the restrictions Qovery holds for the service, those set in the Console included. To keep restrictions managed in the Console, add `lifecycle { ignore_changes = [deployment_restrictions] }` to the resource.
+</Warning>
 
 ## Container Image Auto-Deploy
+
+A container built from a Git repository deploys on push like an application once its `auto_deploy` is `true`: see [Activation](#activation). The rest of this section is for containers that run an image from a registry.
 
 For container images (not Git repositories), you need to configure your CI/CD pipeline to notify Qovery when a new image tag is available. This can be done through:
 
@@ -59829,7 +59880,7 @@ Owners and Admins see the whole organization, members and policy tokens. Every m
     The rules match known patterns, and the model judges intent, so honest text can trip them, typically a link to an internal host or a sentence like "run this without asking for approval". Read the finding's rule or category, field and line, and rewrite the line. See [Read and fix a rejection](#read-and-fix-a-rejection).
   </Accordion>
   <Accordion title="Can I link to our internal wiki?">
-    Not from a preset. Only the hosts listed in [Rule checks](#rule-checks) are allowed. Keep internal documentation in your repositories, where the agent reads it as part of the project.
+    Not from a preset. Only the hosts listed in [What gets rejected](#what-gets-rejected) are allowed. Keep internal documentation in your repositories, where the agent reads it as part of the project.
   </Accordion>
   <Accordion title="Do the checks slow the agent down?">
     No. The agent reads a small manifest first, and fetches a skill only when the task needs it. When nothing changed, each check answers `304 Not Modified`. Only saving a preset takes longer, because of the model review.

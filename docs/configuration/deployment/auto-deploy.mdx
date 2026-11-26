@@ -38,6 +38,8 @@ The Console does not offer auto-deploy for containers built from Git yet: use th
       | jq '.auto_deploy = true' \
       | qovery api "container/$CONTAINER_ID" --method PUT --input -
     ```
+
+    If a deployment of the container finishes between the `GET` and the `PUT`, the `PUT` returns 400: run the command again.
   </Tab>
 
   <Tab title="Terraform">
@@ -97,7 +99,7 @@ Important notes:
 - You can use path prefixes for partial matching (e.g., `docs/` will match any file within the docs folder)
 </Warning>
 
-To add a restriction without the Console, call `POST /service/{serviceId}/deploymentRestriction`, which works for every service kind. `mode`, `type` (only `PATH`) and `value` are required:
+To add a restriction without the Console, call `POST /service/{serviceId}/deploymentRestriction`, shared by all these services. `mode`, `type` (only `PATH`) and `value` are required:
 
 ```bash
 SERVICE_ID="REPLACE_WITH_SERVICE_ID"  # ID of the application, job, Helm, Terraform or container service
@@ -112,7 +114,11 @@ qovery api "service/$SERVICE_ID/deploymentRestriction" \
 
 A container's restrictions take effect only while it builds from a Git repository, and the Console does not show them yet: use the API or Terraform.
 
-With Terraform, use the `deployment_restrictions` attribute of `qovery_application`, `qovery_job`, `qovery_helm` or `qovery_container`, with the same `mode`, `type` and `value` fields. `qovery_container` accepts it from provider 1.11.0, on a container built from Git: remove the attribute before switching the container to a registry image. From provider 1.11.0, leaving the attribute out deletes the restrictions Qovery holds for the service, those set in the Console included. To keep restrictions managed in the Console, add `lifecycle { ignore_changes = [deployment_restrictions] }` to the resource.
+With Terraform, use the `deployment_restrictions` attribute of `qovery_application`, `qovery_job`, `qovery_helm` or `qovery_container`, with the same `mode`, `type` and `value` fields. `qovery_container` accepts it from provider 1.11.0, on a container built from Git: remove the attribute before switching the container to a registry image.
+
+<Warning>
+From provider 1.11.0, leaving `deployment_restrictions` out of a `qovery_application`, `qovery_job`, `qovery_helm` or `qovery_container` deletes the restrictions Qovery holds for the service, those set in the Console included. To keep restrictions managed in the Console, add `lifecycle { ignore_changes = [deployment_restrictions] }` to the resource.
+</Warning>
 
 ## Container Image Auto-Deploy
 

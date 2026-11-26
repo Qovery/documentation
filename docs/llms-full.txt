@@ -9812,7 +9812,7 @@ Use Qovery when each pull request needs the whole stack (backend, database, conf
           | qovery api "environment/$ENV_ID/deploymentRule/$RULE_ID" --method PUT --input -
         ```
 
-        Each service takes the environment value unless its own `auto_preview` is set. In the Console, **Settings** > **Preview environments** > **Activate preview environment for all apps** turns it on for every service except containers built from a Git repository: see [Enable Preview Environment](#enable-preview-environment) for those. To create a preview only when someone comments `/qovery preview` on the pull request, see [Preview Environment Workflows](https://www.qovery.com/docs/configuration/environment#preview-environment-workflows).
+        Each service takes the environment value unless its own `auto_preview` is set. A container built from a Git repository always has its own, `false` unless you set it. In the Console, **Settings** > **Preview environments** > **Activate preview environment for all apps** turns it on for every service except containers built from a Git repository: see [Enable Preview Environment](#enable-preview-environment) for those. To create a preview only when someone comments `/qovery preview` on the pull request, see [Preview Environment Workflows](https://www.qovery.com/docs/configuration/environment#preview-environment-workflows).
       </Step>
 
       <Step title="Open a pull request against the base branch">
@@ -9925,10 +9925,10 @@ Now, you can go to turn on Preview Environments by:
 
 A preview environment copies every service of the blueprint, containers built from a Git repository included. For such a container, its own `auto_preview` decides what the copy runs: on, the copy builds the pull request's branch and commit; off, the copy stays unchanged on its base branch. `auto_preview` is `false` unless you set it, and the Console does not set it for these containers yet: use Terraform, or `PUT /container/{containerId}` as shown for `auto_deploy` in [Auto-Deploy](https://www.qovery.com/docs/configuration/deployment/auto-deploy#activation).
 
-The preview's copy takes `auto_deploy` from the blueprint container, so it follows later pushes to the pull request only when the blueprint container has `auto_deploy` on. If you turn auto-deploy off in the blueprint as described in [Validate your Blueprint Environment](#validate-your-blueprint-environment), later pushes to the pull request do not redeploy the preview's copy of such a container.
+The preview's copy takes `auto_deploy` from the blueprint container, so it follows later pushes to the pull request only when the blueprint container has `auto_deploy` on. The steps in [Validate your Blueprint Environment](#validate-your-blueprint-environment) leave it unchanged on such a container: keep it on if its previews must follow new pushes. Auto-deploy does not restart a stopped service, so it does not redeploy the stopped blueprint.
 
 <Warning>
-A preview environment builds the pull request's code, pull requests from forks included, and runs it with the environment's variables and secrets.
+A preview environment builds the pull request's code, pull requests from forks included, and runs it with the environment's variables and secrets, so that code can read them. Keep out of the blueprint environment any secret that pull request authors must not see.
 </Warning>
 
 <div className="video-container">
@@ -35859,7 +35859,7 @@ Qovery pulls a pre-built container image from your configured registry and deplo
 
 ### Build a Container from Git
 
-A container service can also take its image from a Git repository with a Dockerfile: Qovery builds the image from the deployed commit. Set `source.git_repository` with the API (`POST /environment/{environmentId}/container` or `PUT /container/{containerId}`), or on the Terraform `qovery_container` resource. The build needs Qovery engine v1.417.0 or later on the cluster: on an older engine, the deployment fails. On such a container, two settings default to `false`:
+A container service can also take its image from a Git repository with a Dockerfile: Qovery builds the image from the deployed commit. Set `source.git_repository` with the API (`POST /environment/{environmentId}/container` or `PUT /container/{containerId}`), or on the Terraform `qovery_container` resource (provider 1.10.0 or later, 1.11.0 for `auto_deploy`, `auto_preview` and deployment restrictions). The environment's cluster needs a build registry, or the API returns 400, and Qovery engine v1.417.0 or later, or the deployment fails. Two settings start at `false` when you create the container from Git or switch it to Git without them. With the API, an update that leaves them out keeps their values:
 
 - `auto_deploy`: each push to the branch deploys the container. See [Auto-Deploy](https://www.qovery.com/docs/configuration/deployment/auto-deploy).
 - `auto_preview`: in a pull request's preview environment, the container's copy builds the pull request's branch and commit. Off, the copy stays unchanged on the container's branch. On, the preview builds the pull request's code, pull requests from forks included, and runs it with the environment's variables and secrets. See [Preview Environments](https://www.qovery.com/docs/getting-started/guides/use-cases/preview-environments).
@@ -49688,6 +49688,8 @@ The Console does not offer auto-deploy for containers built from Git yet: use th
       | jq '.auto_deploy = true' \
       | qovery api "container/$CONTAINER_ID" --method PUT --input -
     ```
+
+    If a deployment of the container finishes between the `GET` and the `PUT`, the `PUT` returns 400: run the command again.
   </Tab>
 
   <Tab title="Terraform">
@@ -49747,7 +49749,7 @@ Important notes:
 - You can use path prefixes for partial matching (e.g., `docs/` will match any file within the docs folder)
 </Warning>
 
-To add a restriction without the Console, call `POST /service/{serviceId}/deploymentRestriction`, which works for every service kind. `mode`, `type` (only `PATH`) and `value` are required:
+To add a restriction without the Console, call `POST /service/{serviceId}/deploymentRestriction`, shared by all these services. `mode`, `type` (only `PATH`) and `value` are required:
 
 ```bash
 SERVICE_ID="REPLACE_WITH_SERVICE_ID"  # ID of the application, job, Helm, Terraform or container service
@@ -49762,7 +49764,11 @@ qovery api "service/$SERVICE_ID/deploymentRestriction" \
 
 A container's restrictions take effect only while it builds from a Git repository, and the Console does not show them yet: use the API or Terraform.
 
-With Terraform, use the `deployment_restrictions` attribute of `qovery_application`, `qovery_job`, `qovery_helm` or `qovery_container`, with the same `mode`, `type` and `value` fields. `qovery_container` accepts it from provider 1.11.0, on a container built from Git: remove the attribute before switching the container to a registry image. From provider 1.11.0, leaving the attribute out deletes the restrictions Qovery holds for the service, those set in the Console included. To keep restrictions managed in the Console, add `lifecycle { ignore_changes = [deployment_restrictions] }` to the resource.
+With Terraform, use the `deployment_restrictions` attribute of `qovery_application`, `qovery_job`, `qovery_helm` or `qovery_container`, with the same `mode`, `type` and `value` fields. `qovery_container` accepts it from provider 1.11.0, on a container built from Git: remove the attribute before switching the container to a registry image.
+
+<Warning>
+From provider 1.11.0, leaving `deployment_restrictions` out of a `qovery_application`, `qovery_job`, `qovery_helm` or `qovery_container` deletes the restrictions Qovery holds for the service, those set in the Console included. To keep restrictions managed in the Console, add `lifecycle { ignore_changes = [deployment_restrictions] }` to the resource.
+</Warning>
 
 ## Container Image Auto-Deploy
 

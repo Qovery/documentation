@@ -21,6 +21,14 @@
     <lastmod>2026-10-05</lastmod>
   </url>
   <url>
+    <loc>https://www.qovery.com/docs/api-reference/agent-activity/get-agent-activity</loc>
+    <lastmod>2026-11-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.qovery.com/docs/api-reference/agent-activity/get-my-agent-activity</loc>
+    <lastmod>2026-11-24</lastmod>
+  </url>
+  <url>
     <loc>https://www.qovery.com/docs/api-reference/agentic-workflows/cancel-agentic-workflow-deployment</loc>
     <lastmod>2026-07-30</lastmod>
   </url>
@@ -186,19 +194,19 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/application-deployment-restriction/create-an-application-deployment-restriction</loc>
-    <lastmod>2025-10-04</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/application-deployment-restriction/delete-an-application-deployment-restriction</loc>
-    <lastmod>2025-10-04</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/application-deployment-restriction/edit-an-application-deployment-restriction</loc>
-    <lastmod>2025-10-04</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/application-deployment-restriction/get-application-deployment-restrictions</loc>
-    <lastmod>2025-10-04</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/application-environment-variable/add-an-environment-variable-to-the-application</loc>
@@ -338,7 +346,7 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/authentication</loc>
-    <lastmod>2026-01-21</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/billing/add-credit-card</loc>
@@ -642,11 +650,11 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/clusters/create-a-cluster</loc>
-    <lastmod>2026-10-27</lastmod>
+    <lastmod>2026-11-24</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/clusters/create-a-self-managed-cluster-run-by-the-qovery-operator</loc>
-    <lastmod>2026-11-23</lastmod>
+    <lastmod>2026-11-24</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/clusters/delete-a-cluster</loc>
@@ -898,7 +906,7 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/container-main-calls/edit-container</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/container-main-calls/get-container-by-id</loc>
@@ -978,7 +986,7 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/containers/create-a-container</loc>
-    <lastmod>2026-11-20</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/containers/list-all-container-registry-container-statuses</loc>
@@ -1122,7 +1130,7 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/environment-actions/clone-environment</loc>
-    <lastmod>2026-11-23</lastmod>
+    <lastmod>2026-11-24</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/environment-actions/delete-services</loc>
@@ -1330,7 +1338,7 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/environments/create-an-environment</loc>
-    <lastmod>2026-11-23</lastmod>
+    <lastmod>2026-11-24</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/environments/list-environments</loc>
@@ -1434,19 +1442,19 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/helm-deployment-restriction/create-a-helm-deployment-restriction</loc>
-    <lastmod>2025-10-04</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/helm-deployment-restriction/delete-a-helm-deployment-restriction</loc>
-    <lastmod>2025-10-04</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/helm-deployment-restriction/edit-a-helm-deployment-restriction</loc>
-    <lastmod>2025-10-04</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/helm-deployment-restriction/get-helm-deployment-restrictions</loc>
-    <lastmod>2025-10-04</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/helm-main-calls/delete-helm</loc>
@@ -1530,7 +1538,7 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/introduction</loc>
-    <lastmod>2026-01-21</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/ips/list-qovery-nat-gateway-ip-addresses</loc>
@@ -1582,19 +1590,19 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/job-deployment-restriction/create-a-job-deployment-restriction</loc>
-    <lastmod>2025-10-04</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/job-deployment-restriction/delete-a-job-deployment-restriction</loc>
-    <lastmod>2025-10-04</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/job-deployment-restriction/edit-a-job-deployment-restriction</loc>
-    <lastmod>2025-10-04</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/job-deployment-restriction/get-job-deployment-restrictions</loc>
-    <lastmod>2025-10-04</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/job-environment-variable/add-an-environment-variable-to-the-job</loc>
@@ -1766,7 +1774,7 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/members/invite-someone-in-the-organization</loc>
-    <lastmod>2025-10-04</lastmod>
+    <lastmod>2026-11-24</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/members/remove-a-member</loc>
@@ -1906,11 +1914,11 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/organization-event/get-all-events-inside-the-organization</loc>
-    <lastmod>2026-10-13</lastmod>
+    <lastmod>2026-11-24</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/organization-event/get-available-event-targets-to-filter-events</loc>
-    <lastmod>2026-10-13</lastmod>
+    <lastmod>2026-11-24</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/organization-labels-group/create-an-organization-labels-group</loc>
@@ -2026,7 +2034,7 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/organization-policy-api-token/create-an-organization-policy-api-token</loc>
-    <lastmod>2026-08-19</lastmod>
+    <lastmod>2026-11-24</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/organization-policy-api-token/delete-organization-policy-api-token</loc>
@@ -2034,7 +2042,7 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/organization-policy-api-token/list-organization-policy-api-tokens</loc>
-    <lastmod>2026-10-14</lastmod>
+    <lastmod>2026-11-24</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/organization-webhook/create-an-organization-webhook</loc>
@@ -2213,8 +2221,24 @@
     <lastmod>2026-09-01</lastmod>
   </url>
   <url>
+    <loc>https://www.qovery.com/docs/api-reference/service-main-calls/create-a-service-deployment-restriction</loc>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+  <url>
+    <loc>https://www.qovery.com/docs/api-reference/service-main-calls/delete-a-service-deployment-restriction</loc>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+  <url>
+    <loc>https://www.qovery.com/docs/api-reference/service-main-calls/edit-a-service-deployment-restriction</loc>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+  <url>
     <loc>https://www.qovery.com/docs/api-reference/service-main-calls/get-git-webhook-status-for-a-service</loc>
     <lastmod>2026-02-10</lastmod>
+  </url>
+  <url>
+    <loc>https://www.qovery.com/docs/api-reference/service-main-calls/list-service-deployment-restrictions</loc>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/service-main-calls/synchronize-git-webhook-for-a-service</loc>
@@ -2223,6 +2247,42 @@
   <url>
     <loc>https://www.qovery.com/docs/api-reference/service_status/get-ingress-deployment-status-by-service</loc>
     <lastmod>2026-10-05</lastmod>
+  </url>
+  <url>
+    <loc>https://www.qovery.com/docs/api-reference/skill-presets/create-a-skill-preset</loc>
+    <lastmod>2026-11-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.qovery.com/docs/api-reference/skill-presets/delete-a-skill-preset</loc>
+    <lastmod>2026-11-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.qovery.com/docs/api-reference/skill-presets/edit-a-skill-preset</loc>
+    <lastmod>2026-11-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.qovery.com/docs/api-reference/skill-presets/get-a-skill-preset</loc>
+    <lastmod>2026-11-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.qovery.com/docs/api-reference/skill-presets/get-skill-usage</loc>
+    <lastmod>2026-11-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.qovery.com/docs/api-reference/skill-presets/get-the-skill-preset-that-applies-to-the-caller</loc>
+    <lastmod>2026-11-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.qovery.com/docs/api-reference/skill-presets/get-what-to-load-for-one-skill</loc>
+    <lastmod>2026-11-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.qovery.com/docs/api-reference/skill-presets/list-organization-skill-presets</loc>
+    <lastmod>2026-11-24</lastmod>
+  </url>
+  <url>
+    <loc>https://www.qovery.com/docs/api-reference/skill-presets/list-skill-preset-revisions</loc>
+    <lastmod>2026-11-24</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/terraform-actions/deploy-terraform</loc>
@@ -2250,19 +2310,19 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/terraform-deployment-restriction/create-a-terraform-deployment-restriction</loc>
-    <lastmod>2025-10-04</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/terraform-deployment-restriction/delete-a-terraform-deployment-restriction</loc>
-    <lastmod>2025-10-04</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/terraform-deployment-restriction/edit-a-terraform-deployment-restriction</loc>
-    <lastmod>2025-10-04</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/terraform-deployment-restriction/get-terraform-deployment-restrictions</loc>
-    <lastmod>2025-10-04</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/api-reference/terraform-main-calls/delete-terraform</loc>
@@ -2354,7 +2414,7 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/cli/commands/auth</loc>
-    <lastmod>2026-11-08</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/cli/commands/blueprint</loc>
@@ -2462,7 +2522,7 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/cli/commands/token</loc>
-    <lastmod>2026-11-08</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/cli/commands/upgrade</loc>
@@ -2506,11 +2566,11 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/agent-tasks/overview</loc>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/application</loc>
-    <lastmod>2026-11-19</lastmod>
+    <lastmod>2026-11-26</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/blueprints</loc>
@@ -2678,7 +2738,7 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/deployment/auto-deploy</loc>
-    <lastmod>2026-11-08</lastmod>
+    <lastmod>2026-11-26</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/deployment/history</loc>
@@ -2910,15 +2970,15 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/organization</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/organization/api-policy-token</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/organization/api-token</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/organization/cloud-credentials</loc>
@@ -2946,43 +3006,43 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/organization/policy-examples/clean-up-preview-environments</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/organization/policy-examples/fix-in-preview-environment</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/organization/policy-examples/investigate-production-incident</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/organization/policy-examples/overview</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/organization/policy-examples/patch-security-issue</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/organization/policy-examples/right-size-applications</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/organization/policy-examples/roll-back-bad-release</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/organization/policy-examples/scale-before-traffic-peak</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/organization/policy-examples/stop-idle-environments</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/organization/policy-examples/test-on-production-clone</loc>
-    <lastmod>2026-11-13</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/organization/sso</loc>
@@ -3002,7 +3062,7 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/service-health-checks</loc>
-    <lastmod>2026-03-10</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/configuration/terraform</loc>
@@ -3038,7 +3098,7 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/copilot/console</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/copilot/examples/advanced-workflows</loc>
@@ -3050,11 +3110,11 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/copilot/getting-started</loc>
-    <lastmod>2026-10-13</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/copilot/mcp-server</loc>
-    <lastmod>2026-11-14</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/copilot/overview</loc>
@@ -3062,11 +3122,19 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/copilot/securing-ai-access</loc>
-    <lastmod>2026-11-08</lastmod>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+  <url>
+    <loc>https://www.qovery.com/docs/copilot/skill-presets</loc>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+  <url>
+    <loc>https://www.qovery.com/docs/copilot/skill-presets-api</loc>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/copilot/slack-bot</loc>
-    <lastmod>2026-10-13</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/copilot/what-is-agentic-ai</loc>
@@ -3234,7 +3302,7 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/getting-started/guides/use-cases/coding-agent-deploy-access</loc>
-    <lastmod>2026-11-14</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/getting-started/guides/use-cases/e2e-testing</loc>
@@ -3246,7 +3314,7 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/getting-started/guides/use-cases/preview-environments</loc>
-    <lastmod>2026-11-08</lastmod>
+    <lastmod>2026-11-26</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/getting-started/guides/use-cases/production-environment-management</loc>
@@ -3286,11 +3354,11 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/getting-started/quickstart/agent-skills</loc>
-    <lastmod>2026-11-08</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/getting-started/quickstart/ai-agent</loc>
-    <lastmod>2026-11-14</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/getting-started/quickstart/cli-and-api</loc>
@@ -3310,7 +3378,7 @@
   </url>
   <url>
     <loc>https://www.qovery.com/docs/getting-started/security-and-compliance/audit-logs</loc>
-    <lastmod>2026-11-10</lastmod>
+    <lastmod>2026-11-25</lastmod>
   </url>
   <url>
     <loc>https://www.qovery.com/docs/getting-started/security-and-compliance/aws-iam-permissions</loc>

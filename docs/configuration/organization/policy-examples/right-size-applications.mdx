@@ -1,12 +1,14 @@
 ---
 title: "Right-size applications"
 sidebarTitle: "Right-size applications"
-description: "An API Policy Token example for an agent that sets CPU and memory from real usage within bounds you choose, and cannot change instances, branch or anything else."
+description: "API Policy Token example for an agent that sets CPU and memory from real usage within bounds you choose, and cannot change instances or the Git branch."
 ---
 
 A cost agent that sets the CPU and memory of applications from their real usage over the last 30 days. It can change CPU and memory within bounds you choose, then redeploy. The number of instances and the Git branch must stay as they are.
 
 **Level:** Cost. See all the [agent policy examples](/configuration/organization/policy-examples/overview).
+
+**Suggested trigger:** Every Monday morning: `0 6 * * 1`. See [Run it on its own](/configuration/organization/policy-examples/overview#run-it-on-its-own).
 
 ## What the agent does
 
@@ -129,9 +131,9 @@ You can copy the IDs from the Console URL, or list them with `qovery project lis
     The `qovery-policy-token` skill finds the IDs, writes a policy like the one above, tests it locally and against the API, then creates the token.
   </Tab>
   <Tab title="In the Console">
-    1. Open your organization settings, then **Token API**.
-    2. In **Policy API Token**, click **Add new**.
-    3. Enter a name and a description, and paste the policy with your IDs.
+    1. Open the **Agents** tab of your organization, then **Settings → Policy tokens**, and click **Create policy token**.
+    2. Enter a name and a description, pick a role (organization admin by default, or a narrower one that still allows the job), and paste the policy with the `REPLACE_WITH_` IDs replaced by yours.
+    3. Create the token.
     4. Copy the token (`sk-qov-01-...`). It is shown once.
   </Tab>
 </Tabs>

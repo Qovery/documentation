@@ -1,14 +1,10 @@
 ---
 title: "Build Optimizer"
-tag: "PREVIEW"
-description: "Analyze the latest build of a service with AI to find why it is slow, mostly Docker layer cache misses, and get fixes, a reworked Dockerfile when one applies, and a prompt for your coding agent."
+tag: "NEW"
+description: "Analyze the latest Docker build of a service with AI to find the cache misses that slow it down, and get suggested fixes and a prompt for a coding agent."
 ---
 
 ## Overview
-
-<Note>
-The Build Optimizer is in preview. The API below works for every organization with AI features enabled, as long as build analysis is available on its Qovery instance (otherwise starting an analysis returns `503`, see [Start Errors](#start-errors)); the Console entry point is not available to every organization yet. The result format and the analysis itself may still change.
-</Note>
 
 The Build Optimizer analyzes the latest Docker build of an application or job and explains how to make it faster. It reads the Dockerfile, the build logs and the cache history of earlier builds, finds the steps that re-ran instead of being cached, and tells you what invalidated their cache.
 
@@ -30,12 +26,11 @@ For a scheduled agent that reviews build **and** deployment times and opens pull
 | A readable Dockerfile | Qovery reads the Dockerfile from the repository at the commit of that build, or the job's inline Dockerfile. It must not be empty and must be at most about 100 KB (102,400 characters). Otherwise starting an analysis returns `422`. |
 | Permissions | Starting an analysis needs the **Deploy** permission or higher on the service's environment. Reading the result needs **Read-Only**. See [Members & RBAC](/configuration/organization/members-rbac#project-level-permissions). |
 | One at a time | A service runs one analysis at a time. Starting another while one is running returns `409`. |
+| Build analysis available | Build analysis must be available on the organization's Qovery instance. Otherwise starting an analysis returns `503`, see [Start Errors](#start-errors). |
 
 ## Run an Analysis
 
 ### From the Console
-
-Where the Console entry point is available for your organization:
 
 <Steps>
   <Step title="Open the logs of the latest build">
@@ -49,7 +44,7 @@ Where the Console entry point is available for your organization:
       <img src="/images/build-optimizer/deployment-logs-optimize.png" alt="Build step of the deployment logs, with the Optimize button next to the step name" />
     </Frame>
 
-    **Optimize** is disabled, with the reason on hover, when the build did not succeed, when the deployment is not the service's latest build, or when the build analysis is unavailable. If the previous analysis failed, hovering **Optimize** shows why, and clicking it starts a new one.
+    **Optimize** is disabled, with the reason on hover, when the build did not succeed, when the deployment is not the service's latest build, when AI features are turned off for the organization, or when the build analysis is unavailable. If the previous analysis failed, hovering **Optimize** shows why, and clicking it starts a new one.
   </Step>
 
   <Step title="Read the result">

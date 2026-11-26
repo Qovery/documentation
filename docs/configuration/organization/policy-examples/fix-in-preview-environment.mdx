@@ -1,12 +1,14 @@
 ---
 title: "Fix a bug and verify it in a preview environment"
 sidebarTitle: "Verify a fix in a preview"
-description: "An API Policy Token example for an agent that reads production to find a bug, then deploys and checks its fix in preview environments, and cannot touch production or staging."
+description: "API Policy Token example for an agent that reads production to find a bug, then deploys and checks its fix in a preview, never in production or staging."
 ---
 
 A triage agent that reads production to find a bug, pushes a fix on a branch, and checks it in the preview environment Qovery creates for the pull request. It can deploy, redeploy and stop previews. Production and staging are read only.
 
 **Level:** Previews. See all the [agent policy examples](/configuration/organization/policy-examples/overview).
+
+**Suggested trigger:** When a pull request is opened, from a Git webhook. See [Run it on its own](/configuration/organization/policy-examples/overview#run-it-on-its-own).
 
 ## What the agent does
 
@@ -104,9 +106,9 @@ You can copy the IDs from the Console URL, or list them with `qovery project lis
     The `qovery-policy-token` skill finds the IDs, writes a policy like the one above, tests it locally and against the API, then creates the token.
   </Tab>
   <Tab title="In the Console">
-    1. Open your organization settings, then **Token API**.
-    2. In **Policy API Token**, click **Add new**.
-    3. Enter a name and a description, and paste the policy with your IDs.
+    1. Open the **Agents** tab of your organization, then **Settings → Policy tokens**, and click **Create policy token**.
+    2. Enter a name and a description, pick a role (organization admin by default, or a narrower one that still allows the job), and paste the policy with the `REPLACE_WITH_` IDs replaced by yours.
+    3. Create the token.
     4. Copy the token (`sk-qov-01-...`). It is shown once.
   </Tab>
 </Tabs>

@@ -13,26 +13,19 @@ The Qovery API uses Bearer token authentication. You need an API token to make a
 
 1. Log in to the [Qovery Console](https://console.qovery.com)
 2. Navigate to **Organization Settings**
-3. Click on **API Tokens**
-4. Click **Generate Token**
+3. Click on **API token**
+4. Click **Add new**
 5. Give your token a descriptive name
-6. Set token permissions and expiration
-7. Click **Create** and save the token securely
+6. Pick the role that sets its permissions
+7. Create it and save the token securely
 
 <Warning>
 API tokens are displayed only once. Store them securely - treat them like passwords.
 </Warning>
 
-### Token Scopes
+### Token permissions
 
-When creating a token, you can configure these scopes:
-
-| Scope | Description |
-|-------|-------------|
-| **Admin** | Full access to all resources |
-| **Read** | Read-only access to resources |
-| **Deploy** | Can trigger deployments |
-| **Write** | Can create and update resources |
+A token has no scopes of its own: it gets the permissions of the role you pick when you create it, a default role or a [custom role](/configuration/organization/members-rbac). For an agent that needs a narrower footprint than any role, use an [API Policy Token](/configuration/organization/api-policy-token), managed in **Agents → Settings → Policy tokens**.
 
 ## Making Authenticated Requests
 

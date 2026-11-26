@@ -1,10 +1,12 @@
 ---
 title: "Agent policy examples"
 sidebarTitle: "Overview"
-description: "Ready-to-use API Policy Tokens for autonomous infrastructure agents: each example gives the use case, the full policy, the prompt, and what the agent can and cannot do."
+description: "Browse API Policy Token examples for agents that run on a schedule or event, each with the use case, full policy, prompts and what the agent can do."
 ---
 
 These examples show AI agents doing real DevOps work on their own, each with an [API Policy Token](/configuration/organization/api-policy-token) (Preview) that allows exactly that job and nothing else. Qovery checks the policy on every API request the agent makes, through the CLI or the API. So the agent does not need a human to approve each action, and anything outside the job is refused.
+
+The most useful agents run on their own, on a schedule or on an event, with a narrow policy token: they cannot go beyond what they are allowed, and every call is logged. These examples are meant to run that way. Each one comes with a suggested trigger. One-shot operations are not what these examples are for.
 
 Each page gives you:
 
@@ -18,17 +20,17 @@ Each page gives you:
 
 Start at the top. The first jobs only read or touch non-production environments. The last ones change production, in a narrow way.
 
-| Example | Level | What the agent does |
-| --- | --- | --- |
-| [Investigate a production incident](/configuration/organization/policy-examples/investigate-production-incident) | Read only | Reads production status, deployment history and logs, and reports the cause. Changes nothing. |
-| [Fix a bug and verify it in a preview environment](/configuration/organization/policy-examples/fix-in-preview-environment) | Previews | Reads production, then deploys and checks a fix in the pull request's preview environment. |
-| [Stop idle environments](/configuration/organization/policy-examples/stop-idle-environments) | Hygiene | Stops listed dev and QA environments when idle, and starts them again. |
-| [Clean up preview environments](/configuration/organization/policy-examples/clean-up-preview-environments) | Hygiene | Deletes previews whose pull request is merged, closed or idle. Never production or staging. |
-| [Right-size applications](/configuration/organization/policy-examples/right-size-applications) | Cost | Sets CPU and memory from real usage, within bounds, then redeploys. |
-| [Scale before a traffic peak](/configuration/organization/policy-examples/scale-before-traffic-peak) | Reliability | Adds instances before a known peak and removes them after, between a floor and a ceiling. |
-| [Roll back a bad release](/configuration/organization/policy-examples/roll-back-bad-release) | Reliability | Deploys the last healthy version when a release goes wrong. |
-| [Test on a copy of production](/configuration/organization/policy-examples/test-on-production-clone) | Change | Clones production into a sandbox, runs tests on the copy, and deletes it. |
-| [Patch a security issue](/configuration/organization/policy-examples/patch-security-issue) | Change | Tests a security fix on a copy of production, then deploys the patched commit. |
+| Example | Level | What the agent does | Suggested trigger |
+| --- | --- | --- | --- |
+| [Investigate a production incident](/configuration/organization/policy-examples/investigate-production-incident) | Read only | Reads production status, deployment history and logs, and reports the cause. Changes nothing. | Incident tool webhook |
+| [Fix a bug and verify it in a preview environment](/configuration/organization/policy-examples/fix-in-preview-environment) | Previews | Reads production, then deploys and checks a fix in the pull request's preview environment. | Git webhook on a new pull request |
+| [Stop idle environments](/configuration/organization/policy-examples/stop-idle-environments) | Hygiene | Stops listed dev and QA environments when idle, and starts them again. | `0 8,20 * * 1-5` |
+| [Clean up preview environments](/configuration/organization/policy-examples/clean-up-preview-environments) | Hygiene | Deletes previews whose pull request is merged, closed or idle. Never production or staging. | `0 * * * *`, or a webhook on merge |
+| [Right-size applications](/configuration/organization/policy-examples/right-size-applications) | Cost | Sets CPU and memory from real usage, within bounds, then redeploys. | `0 6 * * 1` |
+| [Scale before a traffic peak](/configuration/organization/policy-examples/scale-before-traffic-peak) | Reliability | Adds instances before a known peak and removes them after, between a floor and a ceiling. | `0 17 * * 5`, plus a schedule to scale back |
+| [Roll back a bad release](/configuration/organization/policy-examples/roll-back-bad-release) | Reliability | Deploys the last healthy version when a release goes wrong. | Monitoring alert webhook |
+| [Test on a copy of production](/configuration/organization/policy-examples/test-on-production-clone) | Change | Clones production into a sandbox, runs tests on the copy, and deletes it. | `0 2 * * *`, or a CI webhook before a release |
+| [Patch a security issue](/configuration/organization/policy-examples/patch-security-issue) | Change | Tests a security fix on a copy of production, then deploys the patched commit. | `0 7 * * 1` (weekly scan) |
 
 ## How to use an example
 
@@ -37,7 +39,7 @@ Start at the top. The first jobs only read or touch non-production environments.
     Every value that starts with `REPLACE_WITH_` is an ID from your organization: organization, project, environment, application or cluster. Copy them from the Console URL or list them with the [Qovery CLI](/cli/overview).
   </Step>
   <Step title="Create the token">
-    In the Console, open your organization settings, then **Token API**, then **Add new** in **Policy API Token**, and paste the policy. Or ask a coding agent with the `qovery-policy-token` skill, using the prompt on the page. Only an organization Owner or Admin can create a policy token.
+    In the Console, open **Agents → Settings → Policy tokens**, click **Create policy token**, and paste the policy. Or ask a coding agent with the `qovery-policy-token` skill, using the prompt on the page. Only an organization Owner or Admin can create a policy token.
   </Step>
   <Step title="Give the token to the agent">
     Set it in the agent's environment, never in the prompt:
@@ -53,12 +55,33 @@ Start at the top. The first jobs only read or touch non-production environments.
   </Step>
 </Steps>
 
+## Run it on its own
+
+Once the token exists, give the agent a trigger: a schedule, or an event such as a webhook.
+
+<Steps>
+  <Step title="Create its policy token">
+    Create the token as above. Its value is shown once: keep it.
+  </Step>
+  <Step title="Schedule the agent">
+    Pick one:
+
+    - **From your coding agent.** Run the job from the coding agent you already use: Claude Code, Codex, Cursor, OpenCode, Gemini CLI, VS Code Copilot, or any agent with the [Qovery Agent Skills](/getting-started/quickstart/agent-skills). It works through the Qovery skills or the [Qovery MCP server](/copilot/mcp-server), signed in with the policy token, which you give outside the prompt: `QOVERY_CLI_ACCESS_TOKEN=<policy token>` for the skills and the CLI, or the MCP header `Authorization: Token <policy token>`. To make it recurring, use the coding agent's own scheduling if it has one, or start it from a CI cron job with the prompt. For a webhook trigger, start it when the event happens.
+    - **As an Agent Task on Qovery (recommended).** It runs next to your services on its own schedule or webhook, with no laptop or CI to keep running. From the environment's **Automations** tab, or with **Create agent task** in **Agents → Automations** (early access), create an [agent task](/configuration/agent-tasks/overview) with the prompt and the trigger. Agent Tasks support two triggers natively: a schedule (a cron expression and a timezone) and a webhook. Give it the Qovery MCP server, `https://mcp.qovery.com/mcp`, with the header `Authorization: Token <policy token>`, added under **Agents → Settings → MCPs**. See [Add MCP Servers](/configuration/agent-tasks/overview#creating-an-agent).
+  </Step>
+</Steps>
+
+### Automate a job that has no example
+
+Describe the recurring job in plain English to a coding agent that has the [Qovery Agent Skills](/getting-started/quickstart/agent-skills), with `/qovery-policy-token <what the agent should do>`. The skill confirms the resources with you, writes a deny-by-default policy, tests it locally, creates the token once you approve, and checks it live: calls outside the job are refused, safe reads work, and no destructive action is allowed unless you asked for it. Then schedule it: as an Agent Task on Qovery (recommended), or from your coding agent, with that token.
+
 ## What every policy has in common
 
 - **Deny by default.** Each policy starts with `default allow := false`. A request is allowed only if one rule says so.
 - **A rule for CLI lookups.** The Qovery CLI turns names into IDs by listing the organization, its projects and the project's environments (and its clusters, for the examples that clone). The `cli_lookup` rule allows those reads and nothing more.
 - **No environment variable values.** The read rules leave out `environmentVariable` endpoints, because values can be sensitive. Remove that line if your agent needs them.
 - **One scope per job.** Each rule is tied to an environment, a project, or a list of services, so the agent cannot reach anything else.
+- **A role as a ceiling.** The examples work with the default role, organization admin. A narrower role, chosen when you create the token, caps what it can do even if the policy has a mistake, as long as the role still allows the job: a call the role refuses answers `403`.
 
 ## Test a policy before you create the token
 

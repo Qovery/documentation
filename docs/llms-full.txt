@@ -35866,6 +35866,8 @@ A container service can also take its image from a Git repository with a Dockerf
 
 The Console does not set them for containers built from Git yet: use the API or Terraform.
 
+With Terraform, leaving `deployment_restrictions` out of a `qovery_container` deletes the restrictions Qovery holds for it, rules added through the API included. See [Filtering Commits](https://www.qovery.com/docs/configuration/deployment/auto-deploy#filtering-commits).
+
 ## Creating an Application
 
 <Tabs>

@@ -73,7 +73,7 @@ Use Qovery when each pull request needs the whole stack (backend, database, conf
           | qovery api "environment/$ENV_ID/deploymentRule/$RULE_ID" --method PUT --input -
         ```
 
-        Each service takes the environment value unless its own `auto_preview` is set. In the Console, **Settings** > **Preview environments** > **Activate preview environment for all apps** turns it on for every service. To create a preview only when someone comments `/qovery preview` on the pull request, see [Preview Environment Workflows](/configuration/environment#preview-environment-workflows).
+        Each service takes the environment value unless its own `auto_preview` is set. In the Console, **Settings** > **Preview environments** > **Activate preview environment for all apps** turns it on for every service except containers built from a Git repository: see [Enable Preview Environment](#enable-preview-environment) for those. To create a preview only when someone comments `/qovery preview` on the pull request, see [Preview Environment Workflows](/configuration/environment#preview-environment-workflows).
       </Step>
 
       <Step title="Open a pull request against the base branch">
@@ -180,9 +180,15 @@ Now, you can go to turn on Preview Environments by:
   </Tab>
 
   <Tab title="Terraform">
-    Set `auto_preview = true` on each `qovery_application` of the blueprint environment, then run `terraform apply`.
+    Set `auto_preview = true` on each `qovery_application` and `qovery_container` of the blueprint environment, then run `terraform apply`. A `qovery_container` built from Git (`source.git_repository`) accepts it from provider 1.11.0.
   </Tab>
 </Tabs>
+
+Preview environments also include the containers built from a Git repository whose own `auto_preview` is `true`: Qovery builds their image from the pull request's code. It is `false` unless you set it, and the Console does not set it for them yet: use Terraform, or `PUT /container/{containerId}` as shown for `auto_deploy` in [Auto-Deploy](/configuration/deployment/auto-deploy#activation). Later pushes to the pull request redeploy the preview's copy of such a container only when that copy has `auto_deploy` set to `true`, as for applications.
+
+<Warning>
+A preview environment builds the pull request's code, pull requests from forks included, and runs it with the environment's variables and secrets.
+</Warning>
 
 <div className="video-container">
   <iframe src="https://www.loom.com/embed/55b9d99a59524e1cb7875f7db7691fbe" width="100%" height="400px" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>

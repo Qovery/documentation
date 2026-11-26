@@ -15,7 +15,7 @@ An application is a container unit that is part of a Project within an Environme
 
 ## Deployment Sources
 
-Qovery supports two deployment sources for applications:
+Qovery supports three deployment sources:
 
 ### Git Repository
 
@@ -33,12 +33,12 @@ Qovery pulls a pre-built container image from your configured registry and deplo
   Management](/configuration/organization/container-registry).
 </Note>
 
-#### Build a Container from Git
+### Build a Container from Git
 
 A container service can also take its image from a Git repository with a Dockerfile: Qovery builds the image from the deployed commit. Set `source.git_repository` with the API (`POST /environment/{environmentId}/container` or `PUT /container/{containerId}`), or on the Terraform `qovery_container` resource. The build needs Qovery engine v1.417.0 or later on the cluster: on an older engine, the deployment fails. On such a container, two settings default to `false`:
 
 - `auto_deploy`: each push to the branch deploys the container. See [Auto-Deploy](/configuration/deployment/auto-deploy).
-- `auto_preview`: each pull request adds the container to its preview environment. See [Preview Environments](/getting-started/guides/use-cases/preview-environments).
+- `auto_preview`: in a pull request's preview environment, the container's copy builds the pull request's branch and commit. Off, the copy stays unchanged on the container's branch. See [Preview Environments](/getting-started/guides/use-cases/preview-environments).
 
 The Console does not set them for containers built from Git yet: use the API or Terraform.
 

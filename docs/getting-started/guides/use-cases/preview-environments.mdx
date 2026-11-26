@@ -180,11 +180,13 @@ Now, you can go to turn on Preview Environments by:
   </Tab>
 
   <Tab title="Terraform">
-    Set `auto_preview = true` on each `qovery_application` and `qovery_container` of the blueprint environment, then run `terraform apply`. A `qovery_container` built from Git (`source.git_repository`) accepts it from provider 1.11.0.
+    Set `auto_preview = true` on each `qovery_application` of the blueprint environment, and on each `qovery_container` built from Git (`source.git_repository`, provider 1.11.0 and later), then run `terraform apply`.
   </Tab>
 </Tabs>
 
-Preview environments also include the containers built from a Git repository whose own `auto_preview` is `true`: Qovery builds their image from the pull request's code. It is `false` unless you set it, and the Console does not set it for them yet: use Terraform, or `PUT /container/{containerId}` as shown for `auto_deploy` in [Auto-Deploy](/configuration/deployment/auto-deploy#activation). Later pushes to the pull request redeploy the preview's copy of such a container only when that copy has `auto_deploy` set to `true`, as for applications.
+A preview environment copies every service of the blueprint, containers built from a Git repository included. For such a container, its own `auto_preview` decides what the copy runs: on, the copy builds the pull request's branch and commit; off, the copy stays unchanged on its base branch. `auto_preview` is `false` unless you set it, and the Console does not set it for these containers yet: use Terraform, or `PUT /container/{containerId}` as shown for `auto_deploy` in [Auto-Deploy](/configuration/deployment/auto-deploy#activation).
+
+The preview's copy takes `auto_deploy` from the blueprint container, so it follows later pushes to the pull request only when the blueprint container has `auto_deploy` on. If you turn auto-deploy off in the blueprint as described in [Validate your Blueprint Environment](#validate-your-blueprint-environment), later pushes to the pull request do not redeploy the preview's copy of such a container.
 
 <Warning>
 A preview environment builds the pull request's code, pull requests from forks included, and runs it with the environment's variables and secrets.

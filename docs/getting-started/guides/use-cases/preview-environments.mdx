@@ -73,7 +73,7 @@ Use Qovery when each pull request needs the whole stack (backend, database, conf
           | qovery api "environment/$ENV_ID/deploymentRule/$RULE_ID" --method PUT --input -
         ```
 
-        Each service takes the environment value unless its own `auto_preview` is set. In the Console, **Settings** > **Preview environments** > **Activate preview environment for all apps** turns it on for every service. To create a preview only when someone comments `/qovery preview` on the pull request, see [Preview Environment Workflows](/configuration/environment#preview-environment-workflows).
+        Each service takes the environment value unless its own `auto_preview` is set, except containers built from a Git repository: they follow only their own `auto_preview`, `false` unless you set it, and this command does not change it. In the Console, **Settings** > **Preview environments** > **Activate preview environment for all apps** turns it on for every service except those containers. To set it on a Git container, see [Enable Preview Environment](#enable-preview-environment). To create a preview only when someone comments `/qovery preview` on the pull request, see [Preview Environment Workflows](/configuration/environment#preview-environment-workflows).
       </Step>
 
       <Step title="Open a pull request against the base branch">
@@ -180,9 +180,17 @@ Now, you can go to turn on Preview Environments by:
   </Tab>
 
   <Tab title="Terraform">
-    Set `auto_preview = true` on each `qovery_application` of the blueprint environment, then run `terraform apply`.
+    Set `auto_preview = true` on each `qovery_application` of the blueprint environment, and on each `qovery_container` built from Git (`source.git_repository`, provider 1.11.0 and later), then run `terraform apply`.
   </Tab>
 </Tabs>
+
+A preview environment copies every service of the blueprint, containers built from a Git repository included. For such a container, its own `auto_preview` decides what the copy runs: on, the copy builds the pull request's branch and commit; off, the copy stays unchanged on its base branch. `auto_preview` is `false` unless you set it, and the Console does not set it for these containers yet: use Terraform, or `PUT /container/{containerId}` as shown for `auto_deploy` in [Auto-Deploy](/configuration/deployment/auto-deploy#activation).
+
+The preview's copy takes `auto_deploy` from the blueprint container, so it follows later pushes to the pull request only when the blueprint container has `auto_deploy` on. The steps in [Validate your Blueprint Environment](#validate-your-blueprint-environment) turn auto-deploy off for applications only. To turn it off on such a container, set `auto_deploy = false` on its `qovery_container`, or send the body of `GET /container/{containerId}` back with `PUT /container/{containerId}` and `auto_deploy` set to `false`, as shown in [Auto-Deploy](/configuration/deployment/auto-deploy#activation). Its previews then no longer follow later pushes to the pull request.
+
+<Warning>
+A preview environment builds the pull request's code, pull requests from forks included, and runs it with the environment's variables and secrets, so that code can read and expose them. If people you do not trust can open pull requests on the repository, keep secrets out of the blueprint environment.
+</Warning>
 
 <div className="video-container">
   <iframe src="https://www.loom.com/embed/55b9d99a59524e1cb7875f7db7691fbe" width="100%" height="400px" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>

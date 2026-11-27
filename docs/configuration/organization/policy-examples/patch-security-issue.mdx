@@ -1,7 +1,7 @@
 ---
 title: "Patch a security issue"
 sidebarTitle: "Patch a security issue"
-description: "An API Policy Token example for an agent that tests a security fix on a copy of production, then deploys the patched commit, and cannot change production configuration or secrets."
+description: "API Policy Token example for an agent that tests a security fix on a copy of production, then deploys the patched commit without changing configuration."
 ---
 
 A security agent that fixes a vulnerable dependency or base image, tests the fix on a copy of production, and then deploys the patched commit to production. In production it can only deploy a named commit of the listed applications.

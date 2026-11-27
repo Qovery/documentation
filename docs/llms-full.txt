@@ -11896,7 +11896,7 @@ Now that you've set up database seeding, you can:
 # Framework Guides
 Source: https://www.qovery.com/docs/getting-started/guides/frameworks/overview
 
-> Step-by-step guides to deploy Django, Ruby on Rails, Node.js with Express, Next.js, FastAPI, Go, Spring Boot and Laravel applications with PostgreSQL on Kubernetes in your own cloud account with Qovery.
+> Guides to deploy Django, Rails, Express, Next.js, FastAPI, Go, Spring Boot and Laravel apps with PostgreSQL on Kubernetes in your own cloud with Qovery.
 
 Each guide takes one framework from a Git repository to a running application on a Kubernetes cluster in your own cloud account. It covers a production Dockerfile, the port and health check, a PostgreSQL database wired through `DATABASE_URL`, migrations in a lifecycle job, the deployment from the Console or with a coding agent, and the errors people hit most.
 
@@ -11936,7 +11936,7 @@ All guides follow the same path as [Deploy Your First Application](https://www.q
 # Deploy a Django Application
 Source: https://www.qovery.com/docs/getting-started/guides/frameworks/django
 
-> Deploy a Django application with PostgreSQL on Kubernetes in your own cloud account with Qovery: production Dockerfile, Gunicorn, health check, migrations as a lifecycle job, static files with WhiteNoise.
+> Deploy a Django app with PostgreSQL on Kubernetes with Qovery: Dockerfile, Gunicorn, health check, migrations as a lifecycle job, WhiteNoise static files.
 
 This guide deploys a Django project served by Gunicorn, with a PostgreSQL database and migrations that run before each release. Qovery builds the image from your Dockerfile and runs it on a Kubernetes cluster in your own cloud account.
 
@@ -12185,7 +12185,7 @@ For other errors, see [Diagnose a Failed Build or Deployment](https://www.qovery
 # Deploy a Ruby on Rails Application
 Source: https://www.qovery.com/docs/getting-started/guides/frameworks/ruby-on-rails
 
-> Deploy a Ruby on Rails application with PostgreSQL on Kubernetes in your own cloud account with Qovery: production Dockerfile, Puma, the /up health check, migrations as a lifecycle job, precompiled assets.
+> Deploy a Ruby on Rails app with PostgreSQL on Kubernetes with Qovery: Dockerfile, Puma, the /up health check, migrations as a lifecycle job, assets.
 
 This guide deploys a Rails application served by Puma, with a PostgreSQL database and migrations that run before each release. Qovery builds the image from your Dockerfile and runs it on a Kubernetes cluster in your own cloud account.
 
@@ -12412,7 +12412,7 @@ For other errors, see [Diagnose a Failed Build or Deployment](https://www.qovery
 # Deploy a Node.js Express Application
 Source: https://www.qovery.com/docs/getting-started/guides/frameworks/nodejs-express
 
-> Deploy a Node.js Express API with PostgreSQL on Kubernetes in your own cloud account with Qovery: production Dockerfile, port and health check, migrations as a lifecycle job, static files.
+> Deploy a Node.js Express API with PostgreSQL on Kubernetes with Qovery: Dockerfile, port and health check, migrations as a lifecycle job, static files.
 
 This guide deploys a Node.js application built with Express, with a PostgreSQL database and migrations that run before each release. Qovery builds the image from your Dockerfile and runs it on a Kubernetes cluster in your own cloud account.
 
@@ -12641,7 +12641,7 @@ For other errors, see [Diagnose a Failed Build or Deployment](https://www.qovery
 # Deploy a Next.js Application
 Source: https://www.qovery.com/docs/getting-started/guides/frameworks/nextjs
 
-> Deploy a Next.js application with PostgreSQL on Kubernetes in your own cloud account with Qovery: standalone output, production Dockerfile, port and health check, build-time variables, migrations as a lifecycle job.
+> Deploy a Next.js app with PostgreSQL on Kubernetes with Qovery: standalone output, Dockerfile, health check, build-time variables and migration job.
 
 This guide deploys a Next.js application as a Node.js server, with a PostgreSQL database and migrations that run before each release. Qovery builds the image from your Dockerfile and runs it on a Kubernetes cluster in your own cloud account. Server components, API routes and server actions all work, because the full Next.js server runs in the container.
 
@@ -12877,7 +12877,7 @@ For other errors, see [Diagnose a Failed Build or Deployment](https://www.qovery
 # Deploy a FastAPI Application
 Source: https://www.qovery.com/docs/getting-started/guides/frameworks/fastapi
 
-> Deploy a FastAPI application with PostgreSQL on Kubernetes in your own cloud account with Qovery: production Dockerfile, Uvicorn, health check, Alembic migrations as a lifecycle job, static files.
+> Deploy a FastAPI app with PostgreSQL on Kubernetes with Qovery: Dockerfile, Uvicorn, health check, Alembic migrations as a lifecycle job, static files.
 
 This guide deploys a FastAPI application served by Uvicorn, with a PostgreSQL database and Alembic migrations that run before each release. Qovery builds the image from your Dockerfile and runs it on a Kubernetes cluster in your own cloud account.
 
@@ -13118,7 +13118,7 @@ For other errors, see [Diagnose a Failed Build or Deployment](https://www.qovery
 # Deploy a Go Application
 Source: https://www.qovery.com/docs/getting-started/guides/frameworks/go
 
-> Deploy a Go web service with PostgreSQL on Kubernetes in your own cloud account with Qovery: multi-stage Dockerfile with a distroless image, port and health check, golang-migrate migrations as a lifecycle job.
+> Deploy a Go web service with PostgreSQL on Kubernetes with Qovery: distroless multi-stage Dockerfile, health check, golang-migrate as a lifecycle job.
 
 This guide deploys a Go web service built with `net/http`, with a PostgreSQL database and migrations that run before each release. Qovery builds the image from your Dockerfile and runs it on a Kubernetes cluster in your own cloud account.
 
@@ -13398,7 +13398,7 @@ For other errors, see [Diagnose a Failed Build or Deployment](https://www.qovery
 # Deploy a Spring Boot Application
 Source: https://www.qovery.com/docs/getting-started/guides/frameworks/spring-boot
 
-> Deploy a Spring Boot application with PostgreSQL on Kubernetes in your own cloud account with Qovery: multi-stage Dockerfile with Eclipse Temurin, Actuator health checks, Flyway migrations as a lifecycle job.
+> Deploy a Spring Boot app with PostgreSQL on Kubernetes with Qovery: Eclipse Temurin Dockerfile, Actuator health checks, Flyway migration job.
 
 This guide deploys a Spring Boot web application built with Maven, with a PostgreSQL database and Flyway migrations that run before each release. Qovery builds the image from your Dockerfile and runs it on a Kubernetes cluster in your own cloud account.
 
@@ -13667,7 +13667,7 @@ For other errors, see [Diagnose a Failed Build or Deployment](https://www.qovery
 # Deploy a Laravel Application
 Source: https://www.qovery.com/docs/getting-started/guides/frameworks/laravel
 
-> Deploy a Laravel application with PostgreSQL on Kubernetes in your own cloud account with Qovery: production Dockerfile with PHP and Apache, the /up health check, artisan migrations as a lifecycle job.
+> Deploy a Laravel app with PostgreSQL on Kubernetes with Qovery: PHP and Apache Dockerfile, the /up health check, artisan migrations as a lifecycle job.
 
 This guide deploys a Laravel application served by Apache with PHP, with a PostgreSQL database and migrations that run before each release. Qovery builds the image from your Dockerfile and runs it on a Kubernetes cluster in your own cloud account.
 
@@ -19972,7 +19972,7 @@ If you don't find what you need in this troubleshooting guide, we're here to hel
 # 502 Bad Gateway: recv() failed (104: Connection reset by peer)
 Source: https://www.qovery.com/docs/getting-started/troubleshoot/nginx-502-connection-reset
 
-> Fix random 502 errors from the NGINX ingress when your service resets the connection: keep-alive timeouts, single instances, restarts and load balancer health checks.
+> Fix random 502 errors from the NGINX ingress when your service resets the connection: keep-alive timeouts, single instances, restarts and health checks.
 
 Clients get a `502 Bad Gateway` from time to time, and the NGINX logs of the service show this line at the same moment:
 
@@ -20064,7 +20064,7 @@ Contact Qovery support from the Console: click the help button at the bottom rig
 # NGINX timeout: increase the 60 second limit
 Source: https://www.qovery.com/docs/getting-started/troubleshoot/nginx-timeout
 
-> Slow requests fail with 504 or 502 when the NGINX ingress gets no response data for 60 seconds. Raise the proxy read, send and connect timeouts of the service, or set the Gateway API request timeout.
+> Requests fail with 504 or 502 when NGINX gets no response for 60 seconds. Raise the proxy read, send and connect timeouts, or the Gateway API timeout.
 
 A slow request fails when your service sends no response data for 60 seconds, even though the same call works when you run the application locally. The client gets a `504 Gateway Time-out` (sometimes a `502`), and the NGINX logs of the service show:
 
@@ -20132,7 +20132,7 @@ Contact Qovery support from the Console: click the help button at the bottom rig
 # default backend - 404
 Source: https://www.qovery.com/docs/getting-started/troubleshoot/default-backend-404
 
-> Your domain answers default backend - 404 or a plain 404 from NGINX. The request reached the cluster but matched no route: check the domain, the public port and the last deployment.
+> Your domain answers default backend - 404 from NGINX: the request matched no route. Check the domain, the public port and the last deployment.
 
 Opening the URL of your service returns a bare page with:
 
@@ -20189,7 +20189,7 @@ Contact Qovery support from the Console: click the help button at the bottom rig
 # Image pull errors: 401 Unauthorized from ECR, 429 Too Many Requests from Docker Hub
 Source: https://www.qovery.com/docs/getting-started/troubleshoot/image-pull-errors
 
-> Fix builds and deployments that cannot pull an image: 401 Unauthorized from a private AWS ECR registry, and the Docker Hub pull rate limit (429 toomanyrequests).
+> Fix image pulls that fail with 401 Unauthorized from a private AWS ECR registry or with the Docker Hub rate limit (429 toomanyrequests).
 
 This page covers the two most common errors when Qovery pulls a container image, either for the `FROM` line of your Dockerfile during the build, or for a service deployed from a container registry.
 
@@ -20276,7 +20276,7 @@ Contact Qovery support from the Console: click the help button at the bottom rig
 # BackoffLimitExceeded: Job has reached the specified backoff limit
 Source: https://www.qovery.com/docs/getting-started/troubleshoot/job-backoff-limit-exceeded
 
-> A Qovery cron job or lifecycle job fails with BackoffLimitExceeded, often with no error in the logs. Find why the container exited and set the number of restarts and max duration.
+> A Qovery cron job or lifecycle job fails with BackoffLimitExceeded. Find why the container exited, then set the number of restarts and the max duration.
 
 A cron job or a lifecycle job is marked as failed, and its events or deployment logs show:
 
@@ -20361,7 +20361,7 @@ Contact Qovery support from the Console: click the help button at the bottom rig
 # 0/1 nodes are available: 1 Insufficient cpu. No preemption victims found
 Source: https://www.qovery.com/docs/getting-started/troubleshoot/insufficient-cpu
 
-> Pods stay Pending with Insufficient cpu or Insufficient memory on Qovery. Learn how Kubernetes places pods on nodes, then size your services and node pools to fit.
+> Pods stay Pending with Insufficient cpu or memory on Qovery. Learn how Kubernetes places pods on nodes, then size your services and node pools to fit.
 
 A deployment fails or hangs, and the deployment logs show a scheduling error like this one, sometimes repeated many times (`x44`):
 
@@ -20432,7 +20432,7 @@ Contact Qovery support from the Console: click the help button at the bottom rig
 # Deployment stuck on Queued
 Source: https://www.qovery.com/docs/getting-started/troubleshoot/deployment-stuck-queued
 
-> A Qovery deployment stays in the Queued status and never starts building. Find what it waits for in the deployment history, cancel what blocks it, and avoid long queues.
+> A Qovery deployment stays Queued and never starts building. Find what it waits for in the deployment history, cancel what blocks it, and avoid long queues.
 
 You deploy a service, and its deployment status stays on:
 
@@ -20498,7 +20498,7 @@ Contact Qovery support from the Console: click the help button at the bottom rig
 # Helm upgrade failed: context deadline exceeded
 Source: https://www.qovery.com/docs/getting-started/troubleshoot/helm-timed-out
 
-> A cluster update or a Helm service fails with Helm timed out, UPGRADE FAILED or context deadline exceeded. Find the resource that never became ready, then fix it or raise the timeout.
+> A cluster update or Helm service fails with context deadline exceeded. Find the resource that never became ready, then fix it or raise the Helm timeout.
 
 A cluster update or the deployment of a Helm service fails with an error like:
 
@@ -20573,7 +20573,7 @@ Contact Qovery support from the Console: click the help button at the bottom rig
 # VpcLimitExceeded: The maximum number of VPCs has been reached
 Source: https://www.qovery.com/docs/getting-started/troubleshoot/vpc-limit-exceeded
 
-> Creating an AWS cluster on Qovery fails because the region has reached its VPC quota. Raise the quota, delete unused VPCs, or deploy the cluster on an existing VPC.
+> Creating an AWS cluster on Qovery fails when the region hits its VPC quota. Raise the quota, delete unused VPCs, or deploy the cluster on an existing VPC.
 
 Creating a cluster on AWS fails, and the cluster logs show:
 
@@ -20621,7 +20621,7 @@ Contact Qovery support from the Console: click the help button at the bottom rig
 # Environment variable is undefined in a React, Vite or Next.js frontend
 Source: https://www.qovery.com/docs/getting-started/troubleshoot/frontend-env-vars-undefined
 
-> process.env.REACT_APP_API_URL is undefined in the browser after deploying on Qovery. Frontend variables are read at build time: declare them as Dockerfile build arguments.
+> process.env.REACT_APP_API_URL is undefined in the browser after a Qovery deploy. Frontend variables are read at build time: pass them as build arguments.
 
 You set a variable such as `REACT_APP_BACKEND_URL` in Qovery, but in the browser your frontend reads:
 
@@ -23223,7 +23223,7 @@ A denied request tells you only that it was denied, so it is worth evaluating a 
 # Agent policy examples
 Source: https://www.qovery.com/docs/configuration/organization/policy-examples/overview
 
-> Ready-to-use API Policy Tokens for autonomous infrastructure agents: each example gives the use case, the full policy, the prompt, and what the agent can and cannot do.
+> Browse API Policy Token examples for agents that run on a schedule or event, each with the use case, full policy, prompts and what the agent can do.
 
 These examples show AI agents doing real DevOps work on their own, each with an [API Policy Token](https://www.qovery.com/docs/configuration/organization/api-policy-token) (Preview) that allows exactly that job and nothing else. Qovery checks the policy on every API request the agent makes, through the CLI or the API. So the agent does not need a human to approve each action, and anything outside the job is refused.
 
@@ -23488,7 +23488,7 @@ Every call the agent makes appears in the [audit logs](https://www.qovery.com/do
 # Fix a bug and verify it in a preview environment
 Source: https://www.qovery.com/docs/configuration/organization/policy-examples/fix-in-preview-environment
 
-> An API Policy Token example for an agent that reads production to find a bug, then deploys and checks its fix in preview environments, and cannot touch production or staging.
+> API Policy Token example for an agent that reads production to find a bug, then deploys and checks its fix in a preview, never in production or staging.
 
 A triage agent that reads production to find a bug, pushes a fix on a branch, and checks it in the preview environment Qovery creates for the pull request. It can deploy, redeploy and stop previews. Production and staging are read only.
 
@@ -23643,7 +23643,7 @@ Every call the agent makes appears in the [audit logs](https://www.qovery.com/do
 # Stop idle environments
 Source: https://www.qovery.com/docs/configuration/organization/policy-examples/stop-idle-environments
 
-> An API Policy Token example for an agent that stops development environments when nobody uses them and starts them again in the morning, and cannot touch anything else.
+> API Policy Token example for an agent that stops idle development and QA environments and starts them again later, and cannot touch any other environment.
 
 A cost agent that stops development and QA environments when nobody uses them, for example at night and on weekends, and starts them again when the team needs them. It can only stop and start the environments you list.
 
@@ -23946,7 +23946,7 @@ Every call the agent makes appears in the [audit logs](https://www.qovery.com/do
 # Right-size applications
 Source: https://www.qovery.com/docs/configuration/organization/policy-examples/right-size-applications
 
-> An API Policy Token example for an agent that sets CPU and memory from real usage within bounds you choose, and cannot change instances, branch or anything else.
+> API Policy Token example for an agent that sets CPU and memory from real usage within bounds you choose, and cannot change instances or the Git branch.
 
 A cost agent that sets the CPU and memory of applications from their real usage over the last 30 days. It can change CPU and memory within bounds you choose, then redeploy. The number of instances and the Git branch must stay as they are.
 
@@ -24124,7 +24124,7 @@ Every call the agent makes appears in the [audit logs](https://www.qovery.com/do
 # Scale before a traffic peak
 Source: https://www.qovery.com/docs/configuration/organization/policy-examples/scale-before-traffic-peak
 
-> An API Policy Token example for an agent that adds instances before a known traffic peak and removes them after, within a floor and a ceiling, and cannot change anything else.
+> API Policy Token example for an agent that adds instances before a known traffic peak and removes them after, between a floor and a ceiling you set.
 
 A reliability agent that adds instances before a known traffic peak, such as a launch, a sale or a marketing email, and removes them after. It can change the number of instances of listed production applications between a floor and a ceiling. CPU, memory and branch stay as they are.
 
@@ -24298,7 +24298,7 @@ Every call the agent makes appears in the [audit logs](https://www.qovery.com/do
 # Roll back a bad release
 Source: https://www.qovery.com/docs/configuration/organization/policy-examples/roll-back-bad-release
 
-> An API Policy Token example for an agent that reads errors after a deploy and rolls production services back to the last healthy version, and cannot change configuration or delete anything.
+> API Policy Token example for an agent that reads errors after a release and redeploys the last healthy version, and cannot change configuration or delete.
 
 A reliability agent that watches production after a release. If error rates go up, it finds the last healthy version of the service and deploys it again. It can deploy a given version of the listed services, and nothing else.
 
@@ -24637,7 +24637,7 @@ Every call the agent makes appears in the [audit logs](https://www.qovery.com/do
 # Patch a security issue
 Source: https://www.qovery.com/docs/configuration/organization/policy-examples/patch-security-issue
 
-> An API Policy Token example for an agent that tests a security fix on a copy of production, then deploys the patched commit, and cannot change production configuration or secrets.
+> API Policy Token example for an agent that tests a security fix on a copy of production, then deploys the patched commit without changing configuration.
 
 A security agent that fixes a vulnerable dependency or base image, tests the fix on a copy of production, and then deploys the patched commit to production. In production it can only deploy a named commit of the listed applications.
 
@@ -39192,7 +39192,7 @@ Once you've set up object storage:
 # Terraform
 Source: https://www.qovery.com/docs/configuration/terraform
 
-> Deploy and manage Terraform modules natively on Qovery
+> Deploy Terraform or OpenTofu code as a Qovery service: run plan and apply, set Terraform arguments, use an AWS ARN role and a custom build image.
 
 ## Introduction
 
@@ -57432,7 +57432,7 @@ Agentic AI is transforming how we interact with infrastructure:
 # Getting Started with Qovery AI Copilot
 Source: https://www.qovery.com/docs/copilot/getting-started
 
-> Start automating your infrastructure with agentic AI
+> Activate Qovery AI Copilot for your organization, choose an authentication and operating mode, and start with the Console, Slack Bot or MCP Server.
 
 ## Overview
 
@@ -58391,7 +58391,7 @@ Your feedback helps us make the Copilot more helpful!
 # Qovery Slack Bot
 Source: https://www.qovery.com/docs/copilot/slack-bot
 
-> Use AI Copilot directly in Slack to manage your infrastructure
+> Set up the Qovery Slack Bot to query your infrastructure in read-only mode from Slack channels, check status and get guidance with AI Copilot.
 
 ## Overview
 
@@ -59459,7 +59459,7 @@ In the Console, open **Agents** from your organization's tabs. It opens on the *
 # Skill Presets (Preview)
 Source: https://www.qovery.com/docs/copilot/skill-presets
 
-> Control how your members' coding agents use Qovery: choose which Qovery skills apply, add team instructions and your own skills, and assign them by role or member. Content is checked by rules and a model review, and every edit and load is audited.
+> Choose which Qovery skills your members' coding agents load, add team instructions and your own skills, and assign presets by organization, role or member.
 
 The [Qovery agent skills](https://www.qovery.com/docs/getting-started/quickstart/agent-skills) are written for every team, so they are long and load a lot of guidance as soon as they trigger. Your team also has conventions they cannot know: a production cluster shared by several projects, naming rules, a release checklist. A **skill preset** lets an organization admin define, in one place, which Qovery skills your members' agents load, what team instructions come with them, and which of your own skills are available.
 
@@ -59913,7 +59913,7 @@ Owners and Admins see the whole organization, members and policy tokens. Every m
 # Manage Skill Presets with the API (Preview)
 Source: https://www.qovery.com/docs/copilot/skill-presets-api
 
-> Create, edit, assign and delete skill presets, read the manifest and skills a member's agent receives, and read revision history, skill usage and agent activity with the Qovery API.
+> Create, edit, assign and delete skill presets with the Qovery API, and read the manifest a member receives, revisions, skill usage and agent activity.
 
 This page shows how to manage [skill presets](https://www.qovery.com/docs/copilot/skill-presets) with the Qovery API. Read that page first for the concepts: base, skill modes, team context, assignments and resolution order.
 
@@ -61052,7 +61052,7 @@ To find why the latest build of a service is slow and how to fix it, use the [Bu
 # Build Optimizer
 Source: https://www.qovery.com/docs/copilot/capabilities/build-optimizer
 
-> Analyze the latest build of a service with AI to find why it is slow, mostly Docker layer cache misses, and get fixes, a reworked Dockerfile when one applies, and a prompt for your coding agent.
+> Analyze the latest Docker build of a service with AI to find the cache misses that slow it down, and get suggested fixes and a prompt for a coding agent.
 
 ## Overview
 

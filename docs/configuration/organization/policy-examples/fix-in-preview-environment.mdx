@@ -1,7 +1,7 @@
 ---
 title: "Fix a bug and verify it in a preview environment"
 sidebarTitle: "Verify a fix in a preview"
-description: "An API Policy Token example for an agent that reads production to find a bug, then deploys and checks its fix in preview environments, and cannot touch production or staging."
+description: "API Policy Token example for an agent that reads production to find a bug, then deploys and checks its fix in a preview, never in production or staging."
 ---
 
 A triage agent that reads production to find a bug, pushes a fix on a branch, and checks it in the preview environment Qovery creates for the pull request. It can deploy, redeploy and stop previews. Production and staging are read only.

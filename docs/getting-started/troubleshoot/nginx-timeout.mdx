@@ -1,6 +1,6 @@
 ---
 title: "NGINX timeout: increase the 60 second limit"
-description: "Slow requests fail with 504 or 502 when the NGINX ingress gets no response data for 60 seconds. Raise the proxy read, send and connect timeouts of the service, or set the Gateway API request timeout."
+description: "Requests fail with 504 or 502 when NGINX gets no response for 60 seconds. Raise the proxy read, send and connect timeouts, or the Gateway API timeout."
 ---
 import StillStuck from "/snippets/troubleshoot-still-stuck.mdx";
 

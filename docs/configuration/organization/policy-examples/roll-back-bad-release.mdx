@@ -1,7 +1,7 @@
 ---
 title: "Roll back a bad release"
 sidebarTitle: "Roll back a bad release"
-description: "An API Policy Token example for an agent that reads errors after a deploy and rolls production services back to the last healthy version, and cannot change configuration or delete anything."
+description: "API Policy Token example for an agent that reads errors after a release and redeploys the last healthy version, and cannot change configuration or delete."
 ---
 
 A reliability agent that watches production after a release. If error rates go up, it finds the last healthy version of the service and deploys it again. It can deploy a given version of the listed services, and nothing else.

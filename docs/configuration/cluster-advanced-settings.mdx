@@ -208,12 +208,34 @@ Only list the settings you override. Removing a key from `advanced_settings_json
 
 **Type:** `boolean`
 
-**Description:** Enable a secondary Elastic IP (EIP) per NAT Gateway. When enabled, each of the 3 NAT Gateways in your VPC receives an additional EIP, doubling the number of outbound public IP addresses from 3 to 6. This is useful when your workloads interact with external services that have IP-based rate limits — more IPs means higher aggregate limits.
+**Description:** Enable a secondary Elastic IP (EIP) per NAT Gateway. When enabled, each NAT Gateway in your VPC receives an additional EIP, doubling the number of outbound public IP addresses (from 3 to 6 with the default 3 NAT Gateways; on a VPC managed by Qovery, [`cluster.zones_count`](#cluster-zones-count) can lower the number of NAT Gateways). This is useful when your workloads interact with external services that have IP-based rate limits — more IPs means higher aggregate limits.
 
 **Default Value:** `false`
 
 <Warning>
-Enabling this setting creates 3 additional Elastic IPs in your AWS account. Each EIP incurs standard AWS charges. This setting only takes effect when the cluster uses NAT Gateways. Before enabling, verify that your AWS account has sufficient EIP quota (default is 5 per region). You can check and request an increase in the AWS Service Quotas console.
+Enabling this setting creates one additional Elastic IP per NAT Gateway in your AWS account (3 by default). Each EIP incurs standard AWS charges. This setting only takes effect when the cluster uses NAT Gateways. Before enabling, verify that your AWS account has sufficient EIP quota (default is 5 per region). You can check and request an increase in the AWS Service Quotas console.
+</Warning>
+
+<a id="cluster-zones-count"></a>
+
+### cluster.zones_count
+
+**Cloud Provider:** <img src="/images/logos/cloud-providers/aws-icon.svg" alt="AWS" width="20" style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/azure-icon.svg" alt="Azure" width="20" style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} /> <img src="/images/logos/cloud-providers/scaleway-icon.svg" alt="Scaleway" width="20" style={{display: "inline", verticalAlign: "middle", marginRight: "4px"}} />
+
+**Type:** `integer` (`1`, `2` or `3`)
+
+**Description:** Number of availability zones the cluster nodes run in.
+
+- **AWS** (clusters using Karpenter): Karpenter only starts nodes in the first zones of the region. On a VPC managed by Qovery that uses NAT Gateways, the cluster also gets one NAT Gateway per selected zone instead of three, each with its Elastic IP (two with [`aws.vpc.enable_nat_gateway_secondary_eip`](#aws-vpc-enable-nat-gateway-secondary-eip)). The VPC keeps one subnet per zone of the region: the subnets of the other zones reach the internet through the NAT Gateway of the first zone, and managed databases keep their subnets in every zone, so a database can still run in a zone without nodes. On an existing VPC, only the nodes move: the subnets and NAT Gateways stay as you manage them.
+- **Azure**: the cluster gets its node subnets, NAT Gateways and node pools in the first zones of the region only.
+- **Scaleway**: the cluster gets node pools in that many zones, starting with its own zone, where the public gateway runs.
+
+Running in fewer zones cuts the cross-zone traffic between nodes and, on AWS and Azure, the number of NAT Gateways. Scaleway keeps its single Public Gateway whatever the value. The cost is availability: with a single zone, a zone outage takes the applications down.
+
+**Default Value:** `3`
+
+<Warning>
+Set this setting before the first deployment of the cluster: it cannot be changed afterwards. To change the number of zones, create a new cluster and clone your environments into it. A value below `3` is refused on production clusters, and on AWS clusters that do not use Karpenter.
 </Warning>
 
 <a id="loki-log-retention-in-week"></a>
